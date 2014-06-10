@@ -1,4 +1,4 @@
-## Building Rainmeter
+## Building I-Simpa
 
 ### Get the source code
 
