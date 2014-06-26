@@ -1,0 +1,155 @@
+/*! \mainpage Manuel du développeur P.S.P.S.
+ *
+ * \section intro_sec Introduction
+ *
+ * Voici le manuel développeur de l'application "Programme de Simulation de Propagation Sonore"
+ *
+ * Ce document est décomposé en trois parties :
+ *	- Les explications afin d'être en mesure de compiler les sources.
+ *	- Des tutoriaux afin d'ajouter rapidement les fonctionnalitées les plus communes.
+ *	- Une spécification complètes des classes et des membres publiques de celles-ci.
+ *
+ * \section install_sec Installation
+ *  Aprés avoir installé Visual C++ 2005 Express (ou équivalent) il est nécessaire d'installer WxWidgets.
+ *  Dans setup.h, il faut activer les paramètres suivants (ils sont à 0 par défaut) :
+ *		- \#define wxUSE_GLCANVAS       1
+ *		- \#define wxUSE_REGEX       1
+ *
+ * \see http://www.wxwidgets.org/wiki/index.php/Microsoft_Visual_CPP_Guide
+ *
+ * \section addElement Ajout d'un élément au sein du projet
+ * 
+ * Voici la marche à suivre pour ajouter un nouveau type de données de projet dans un des trois arbres (scene,core ou resultats)
+ *
+ * \subsection addElementstepone Créer le fichier d'entête
+ * Il faut créer le fichier vide ".h" dans le dossier correspondant à l'arbre où l'élément sera présent :
+ *	- data_manager\\tree_scene\\ Pour les éléments du premier onglet
+ *	- data_manager\\tree_core\\ Pour les éléments du deuxième onglet
+ *	- data_manager\\tree_rapport\\ Pour les éléments du troisième onglet
+ *
+ * Le nom du fichier doit donner une indication sur sa place dans la hiérarchie, il suffit de se référer aux noms des autres éléments.
+ *
+ * \subsection addElementsteptwo Constructeurs de base d'un élément
+ * Il faut directement hériter de Element pour un élément n'ayant pas de comportement spécial (un dossier ou un élément de propriété)
+ *
+ * \include demos/demos_add_element.h
+ * Le premier constructeur est le constructeur XML. Il est appelé lors du chargement d'un projet existant.
+ *
+ * Le deuxième constructeur est le constructeur de création. Il est appelé lors de la création d'un noueau projet ou en cours d'execution du programme.
+ * La méthode SaveXMLDoc() est la surcharge permettant de sauvegarder les données propres à l'élément pour une récuperation ultérieure dans le constructeur XML.
+ *
+ * @warning Il faut donner un indice à ce nouvel élément en rajoutant une ligne à la fin de l'énumeration des éléments présent dans element.h, voir Element::ELEMENT_TYPE .
+ *
+ * \subsection addElementstepthree Instanciation de la classe
+ * Cette classe n'est pour l'instant pas utilisé. Pour qu'elle le soit il faut ajouter le code d'instanciation de notre nouvelle classe.
+ * Pour cela il faut ouvrir le fichier d'entete de l'élément parent.
+ * Voici un exemple afin de créer toujours l'élément demo à la création de E_Scene_Projet et charger le ou les élément Demo au chargement d'un projet.
+ * \include demos/demos_add_element_parent.h
+ * Comme vous pouvez le voir il y a 3 modifications :
+ *	- Ajout du fichier d'entete de la classe 
+ *	  \skipline e_scene_projet_demo
+ *	- Les deux lignes de test lors du chargement du fichier XML (Test d'égalité des indices)
+ *	  \skip MARKERBEGIN
+ *	  \until MARKEREND
+ *	- La ligne de création dans le deuxième constructeur.
+ *	  \skipline MARKERAPPEND
+ *
+ * Compilez, executez le projet et cliquez sur "Nouveau projet". Vous pouvez voir votre élément dans l'arbre du projet. Cependant l'intéraction avec cet élément est trés limitée.
+ *
+ * \subsection addElementstepfour Ajout de propriétés (facultatif)
+ * La classe Element dispose de plusieurs méthodes afin de contenir des propriétés tel qu'un champ texte et un champ de couleur (@ref addprop "Ensemble de méthodes"):
+ * Reprenons notre exemple. Nous allons ajouter un champ de texte et un champ de couleur.
+ * 
+ * \include demos/demos_add_element_withprop.h
+ * 
+ * On a seulement ajouté ces lignes :
+ * \skip MARKERBEGIN
+ * \until MARKEREND
+ *
+ * Vous vous demandez peut être quel est l'utilité des lignes comportant uniquement @ref traductionTuto "la méthode de traduction" ?
+ *
+ * En fait la raison est simple. Le libellé que vous renseignez dans l'appel de la méthode d'ajout de propriété sera sauvegardé dans le fichier de projet comme étant une chaine non traduite.
+ * Si jamais vous utilisez la méthode de traduction _( ) dans ses paramètres alors les libellé des propriétés d'un projet qui sera échangé entre un anglais et un francais resteront en anglais.
+ * Donc utiliser la méthode de traduction en dehors des propriétés permet au champ d'être traduit uniquement lors de l'affichage du libellé et que cette chaine à traduire soit reconnue par le programme de mise à jour des chaines à traduire.
+ *
+ * Vous pouvez ensuite utiliser \ref getprop "les accesseurs de propriétés" pour lire ses données. Consultez \ref gestionpropelement "la documentation relative" pour plus de détails.
+ *
+ * \subsection addElementstepfive Rendu 3D de l'élément
+ *
+ * Nous allons modifier notre élément de démonstration pour le dessiner sur la vue 3D.
+ * \include demos/demos_add_element_drawable.h
+ *
+ * En premier lieu il ne faut plus inclure directement element.h mais drawable_element.h
+ * \skipline drawable_element
+ *
+ * Nous n'allons plus hériter directement de Element. On va remplacer la classe d'héritage par E_Drawable, cette classe permet justement le rendu 3D d'un élément.
+ * \skipline MARKER0
+ * Il en va de même pour les deux constructeurs.
+ *
+ * Le constructeur XML
+ * \skip MARKER1
+ * \until {
+ * Le constructeur de création
+ * \skip MARKER2
+ * \until {
+ * 
+ * La modification consiste également à la surcharge de la méthode E_Drawable::DrawItem() afin de commander les méthodes de dessins adaptées à notre nouvel élément.
+ * \skip DrawItem
+ * \until }
+ * 
+ * Le libellé de l'élément est dès à présent visible dans la vue 3D. Les modifications des propriétés sont visibles immédiatement dans la vue 3D.
+ * \section traductionTuto Note sur la gestion de la traduction
+ * 
+ * Ce logiciel est destiné à être traduit dans plusieurs langues.
+ *
+ * Le système de traduction utilisé est un des plus commun et est surtout natif à WxWidgets
+ *
+ * \subsection addTraduction Traduire un texte
+ * Il n'y a qu'une seule opération à faire pour traduire un texte.
+ *
+ * Voici une chaine non traduite :
+ * \dontinclude demos/demo_translation_1.h
+ *
+ * \skipline MARKERWRONG
+ *
+ * A chaque fois qu'une chaine de texte sera visible par l'utilisateur il faut l'entourer d'une méthode globale comme ceci :
+ *
+ * \skipline MARKEROK
+ *
+ * \subsection warningtraductionTuto Attention
+ * 
+ * Le language de base de l'application est en francais. Ensuite il y a un certains nombre de dictionnaires associés.
+ *
+ * Le dictionnaire francais est là pour corriger les textes de bases.
+ * @warning Si le texte de base est modifié alors toutes les traductions ne seront plus effectuées jusqu'à la mise à jour manuel de chaque dictionnaire. Il faut donc uniquement faire les corrections dans le dictionnaire francais !
+ *
+ *
+ * \subsection specialtraductionTuto Cas spéciaux
+ * 
+ * Certaines méthodes traduisent elles mêmes les chaines de caractères pour une bonne raison. Dans la plupart des cas cette raison est de ne pas inclure de chaines traduites au sein du fichier de projet.
+ * 
+ * Voici une liste non exhaustive de ces méthodes :
+ *	- @ref Element::Element() "Libellé de l'élément"
+ *	- @ref addprop
+ *
+ * Dans la documentation d'une méthode il est indiqué dans un bloc d'avertissement si un paramètre ne doit pas être traduit au préalable.
+ * \subsection dictionnarytraductionTuto Modifier ou ajouter un dictionnaire
+ * L'ajout ou la modification de dictionnaire est simplifié par l'utilisation du logiciel poEdit.
+ * @see http://www.poedit.net
+ * 
+ * Une fois le logiciel installé se placer dans le dossier de langue.Se placer dans /fr/ pour francais.
+ *
+ * Le fichier internat.po correspond au fichier de configuration ascii qui peut être lu par poEdit.
+ *
+ * Ouvrez ce fichier avec poEdit.
+ *
+ * Pour actualiser les chaines de traductions depuis le code source du projet :
+ *	- Ouvrez le menu "Catalogue"
+ *	- Cliquez sur "Mise à jour depuis les sources"
+ *
+ * Vous obtenez un rapport sur les modifications et les nouvelles chaines sont visibles dans la liste.
+ * 
+ * Double-cliquez sur la ligne à modifier et entrez le texte traduit.
+ *
+ * Enregistrez le fichier. Aprés enregistrement le fichier internat.mo sera créé. C'est la version binaire du fichier de traduction. La seule compréhensible par notre application.
+ */

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="lib_interface">
+</Property><Property Name="Fichier solution" Value="F:\DevLcpc\Sppsproj\coreSrc\lib_interface\lib_interface.sln">
+</Property><Property Name="Date" Value="mercredi 8 octobre 2008">
+</Property><Property Name="Time" Value="13:56">
+</Property></Properties><Event ErrorLevel="1" Project="lib_interface" Source="lib_interface.vcproj" Description="Cette application a été mise à jour pour inclure les paramètres liés à la fonctionnalité Contrôle de compte d'utilisateur de Windows Vista. Par défaut, lorsqu'elle est exécutée sur Windows Vista avec le Contrôle de compte d'utilisateur activé, cette application est marquée pour s'exécuter avec les mêmes privilèges que le processus qui l'a lancée. Ce marquage empêche l'application de s'exécuter avec la virtualisation. Vous pouvez changer les paramètres du Contrôle de compte d'utilisateur dans les pages de propriétés du projet.">
+</Event><Event ErrorLevel="0" Project="lib_interface" Source="lib_interface.vcproj" Description="Mise à niveau du projet terminée.">
+</Event><Event ErrorLevel="3" Project="lib_interface" Source="lib_interface.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="lib_interface.sln" Description="Solution correctement convertie">
+</Event><Event ErrorLevel="3" Project="" Source="lib_interface.sln" Description="Converted">
+</Event></UpgradeLog>

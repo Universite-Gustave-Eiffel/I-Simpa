@@ -1,0 +1,3966 @@
+Content-Type: multipart/related; start=<op.mhtml.1202735551666.7b1144311427b1bc@137.121.74.92>; boundary=----------T54Xb2KNTFvcRpTu3xoBDG
+Content-Location: http://www.wxwidgets.org/wiki/index.php/Microsoft_Visual_CPP_Guide
+Subject: =?utf-8?Q?Microsoft=20Visual=20CPP=20Guide=20-=20WxWiki?=
+MIME-Version: 1.0
+
+------------T54Xb2KNTFvcRpTu3xoBDG
+Content-Disposition: inline; filename=Microsoft_Visual_CPP_Guide.htm
+Content-Type: text/html; name=Microsoft_Visual_CPP_Guide.htm
+Content-Id: <op.mhtml.1202735551666.7b1144311427b1bc@137.121.74.92>
+Content-Location: http://www.wxwidgets.org/wiki/index.php/Microsoft_Visual_CPP_Guide
+Content-Transfer-Encoding: Quoted-Printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://w=
+ww.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns=3D"http://www.w3.org/1999/xhtml" xml:lang=3D"en" lang=3D"en"=
+ dir=3D"ltr">
+	<head>
+		<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-=
+8" />
+		<meta name=3D"keywords" content=3D"Microsoft Visual CPP Guide,FAQ,IRC,=
+Setup.h" />
+<link rel=3D"shortcut icon" href=3D"/favicon.ico" />
+		<title>Microsoft Visual CPP Guide - WxWiki</title>
+		<style type=3D"text/css" media=3D"screen,projection">/*<![CDATA[*/ @im=
+port "/wiki/skins/monobook/main.css?7"; /*]]>*/</style>
+		<link rel=3D"stylesheet" type=3D"text/css" media=3D"print" href=3D"/wi=
+ki/skins/common/commonPrint.css" />
+		<!--[if lt IE 5.5000]><style type=3D"text/css">@import "/wiki/skins/mo=
+nobook/IE50Fixes.css";</style><![endif]-->
+		<!--[if IE 5.5000]><style type=3D"text/css">@import "/wiki/skins/monob=
+ook/IE55Fixes.css";</style><![endif]-->
+		<!--[if IE 6]><style type=3D"text/css">@import "/wiki/skins/monobook/I=
+E60Fixes.css";</style><![endif]-->
+		<!--[if IE 7]><style type=3D"text/css">@import "/wiki/skins/monobook/I=
+E70Fixes.css?1";</style><![endif]-->
+		<!--[if lt IE 7]><script type=3D"text/javascript" src=3D"/wiki/skins/c=
+ommon/IEFixes.js"></script>
+		<meta http-equiv=3D"imagetoolbar" content=3D"no" /><![endif]-->
+		<script type=3D"text/javascript">var skin =3D 'monobook';var stylepath=
+ =3D '/wiki/skins';</script>
+		<script type=3D"text/javascript" src=3D"/wiki/skins/common/wikibits.js=
+"><!-- wikibits js --></script>
+		<script type=3D"text/javascript" src=3D"/wiki/index.php?title=3D-&amp;=
+action=3Draw&amp;gen=3Djs"><!-- site js --></script>
+		<style type=3D"text/css">/*<![CDATA[*/
+@import "/wiki/index.php?title=3DMediaWiki:Common.css&action=3Draw&ctype=
+=3Dtext/css&smaxage=3D18000";
+@import "/wiki/index.php?title=3DMediaWiki:Monobook.css&action=3Draw&cty=
+pe=3Dtext/css&smaxage=3D18000";
+@import "/wiki/index.php?title=3D-&action=3Draw&gen=3Dcss&maxage=3D18000=
+";
+/*]]>*/</style>
+		<!-- Head Scripts -->
+			</head>
+<body  class=3D"ns-0 ltr">
+	<div id=3D"globalWrapper">
+		<div id=3D"column-content">
+	<div id=3D"content">
+		<a name=3D"top" id=3D"top"></a>
+				<h1 class=3D"firstHeading">Microsoft Visual CPP Guide</h1>
+		<div id=3D"bodyContent">
+			<h3 id=3D"siteSub">From WxWiki</h3>
+			<div id=3D"contentSub"></div>
+									<div id=3D"jump-to-nav">Jump to: <a href=3D"#column-one">naviga=
+tion</a>, <a href=3D"#searchInput">search</a></div>			<!-- start content=
+ -->
+			<div id=3D"RealTitleBanner">
+<dl><dd><i>The correct title of this article is <b><span id=3D"RealTitle=
+">Microsoft Visual C++ Guide</span></b>. It appears incorrectly here bec=
+ause of technical restrictions.</i></div>
+</dd></dl>
+<p>This guide outlines the steps for building the wxWidgets library, bui=
+lding and running the included samples, and outlines two separate ways o=
+f setting up your own project (the first <a href=3D"#Creating_a_New_Proj=
+ect_by_Hand" title=3D"">by hand</a>, and the second by <a href=3D"#Creat=
+ing_a_New_Project_From_a_Sample" title=3D"">copying one of the wxWidgets=
+ sample projects</a>).  This is an informal, complementary guide to the =
+official wxWidgets MSW installation docs included with wxWidgets at <b>d=
+ocs\msw\install.txt</b> (which can also be found <a href=3D"http://svn.w=
+xwidgets.org/svn/wx/wxWidgets/branches/WX_2_8_BRANCH/docs/msw/install.tx=
+t" class=3D'external text' title=3D"http://svn.wxwidgets.org/svn/wx/wxWi=
+dgets/branches/WX_2_8_BRANCH/docs/msw/install.txt" rel=3D"nofollow">onli=
+ne</a>), please read all of the "Microsoft Visual C++ compilation" secti=
+on before following this guide for important installation notes not cove=
+red here.  If you run into any problems, check the <a href=3D"#Troublesh=
+ooting" title=3D"">troubleshooting</a> section first, then all of the wx=
+Widgets <a href=3D"/wiki/index.php/FAQ" title=3D"FAQ">FAQs</a>, and fail=
+ing those, you can try the mailing lists, forums, or <a href=3D"/wiki/in=
+dex.php/IRC" title=3D"IRC">IRC</a>.
+</p>
+<table id=3D"toc" class=3D"toc" summary=3D"Contents"><tr><td><div id=3D"=
+toctitle"><h2>Contents</h2></div>
+<ul>
+<li class=3D'toclevel-1'><a href=3D"#Version_Information"><span class=3D=
+"tocnumber">1</span> <span class=3D"toctext">Version Information</span><=
+/a></li>
+<li class=3D'toclevel-1'><a href=3D"#Getting_Started"><span class=3D"toc=
+number">2</span> <span class=3D"toctext">Getting Started</span></a>
+<ul>
+<li class=3D'toclevel-2'><a href=3D"#wxWidgets_Build_Configurations"><sp=
+an class=3D"tocnumber">2.1</span> <span class=3D"toctext">wxWidgets Buil=
+d Configurations</span></a></li>
+<li class=3D'toclevel-2'><a href=3D"#Library_Files"><span class=3D"tocnu=
+mber">2.2</span> <span class=3D"toctext">Library Files</span></a></li>
+</ul>
+</li>
+<li class=3D'toclevel-1'><a href=3D"#Building_wxWidgets"><span class=3D"=
+tocnumber">3</span> <span class=3D"toctext">Building wxWidgets</span></a=
+>
+<ul>
+<li class=3D'toclevel-2'><a href=3D"#Batch_Building_All"><span class=3D"=
+tocnumber">3.1</span> <span class=3D"toctext">Batch Building All</span><=
+/a></li>
+<li class=3D'toclevel-2'><a href=3D"#Building_Single_Configurations"><sp=
+an class=3D"tocnumber">3.2</span> <span class=3D"toctext">Building Singl=
+e Configurations</span></a></li>
+</ul>
+</li>
+<li class=3D'toclevel-1'><a href=3D"#Building_the_wxWidgets_Samples"><sp=
+an class=3D"tocnumber">4</span> <span class=3D"toctext">Building the wxW=
+idgets Samples</span></a></li>
+<li class=3D'toclevel-1'><a href=3D"#Creating_a_New_Project_by_Hand"><sp=
+an class=3D"tocnumber">5</span> <span class=3D"toctext">Creating a New P=
+roject by Hand</span></a>
+<ul>
+<li class=3D'toclevel-2'><a href=3D"#Project_Properties"><span class=3D"=
+tocnumber">5.1</span> <span class=3D"toctext">Project Properties</span><=
+/a></li>
+</ul>
+</li>
+<li class=3D'toclevel-1'><a href=3D"#Creating_a_New_Project_From_a_Sampl=
+e"><span class=3D"tocnumber">6</span> <span class=3D"toctext">Creating a=
+ New Project From a Sample</span></a></li>
+<li class=3D'toclevel-1'><a href=3D"#VC8_2005_Express_and_Text_Editor_of=
+_Your_Choice"><span class=3D"tocnumber">7</span> <span class=3D"toctext"=
+>VC8 2005 Express and Text Editor of Your Choice</span></a></li>
+<li class=3D'toclevel-1'><a href=3D"#Troubleshooting"><span class=3D"toc=
+number">8</span> <span class=3D"toctext">Troubleshooting</span></a>
+<ul>
+<li class=3D'toclevel-2'><a href=3D"#Problems_when_using_wxALL.2C_SVN_or=
+_Daily_Snapshot_Source"><span class=3D"tocnumber">8.1</span> <span class=
+=3D"toctext">Problems when using wxALL, SVN or Daily Snapshot Source</sp=
+an></a></li>
+<li class=3D'toclevel-2'><a href=3D"#Unresolved_Externals_for_Windows_AP=
+I_Functions"><span class=3D"tocnumber">8.2</span> <span class=3D"toctext=
+">Unresolved Externals for Windows API Functions</span></a></li>
+<li class=3D'toclevel-2'><a href=3D"#MSVC_7.0_.282002.29_Release_Build_P=
+roblems"><span class=3D"tocnumber">8.3</span> <span class=3D"toctext">MS=
+VC 7.0 (2002) Release Build Problems</span></a></li>
+<li class=3D'toclevel-2'><a href=3D"#MSVC_8.0_.282005.29_DLL_Linker_Issu=
+es"><span class=3D"tocnumber">8.4</span> <span class=3D"toctext">MSVC 8.=
+0 (2005) DLL Linker Issues</span></a></li>
+<li class=3D'toclevel-2'><a href=3D"#MSVC_8.0_.282005.29_Deprecated_Func=
+tion_Warnings"><span class=3D"tocnumber">8.5</span> <span class=3D"tocte=
+xt">MSVC 8.0 (2005) Deprecated Function Warnings</span></a></li>
+<li class=3D'toclevel-2'><a href=3D"#MSVC_8.0_.282005.29_Windows_XP_Mani=
+fest_Build_Problems"><span class=3D"tocnumber">8.6</span> <span class=3D=
+"toctext">MSVC 8.0 (2005) Windows XP Manifest Build Problems</span></a><=
+/li>
+</ul>
+</li>
+<li class=3D'toclevel-1'><a href=3D"#External_Links"><span class=3D"tocn=
+umber">9</span> <span class=3D"toctext">External Links</span></a></li>
+</ul>
+</td></tr></table><script type=3D"text/javascript"> if (window.showTocTo=
+ggle) { var tocShowText =3D "show"; var tocHideText =3D "hide"; showTocT=
+oggle(); } </script>
+<div class=3D"editsection" style=3D"float:right;margin-left:5px;">[<a hr=
+ef=3D"/wiki/index.php?title=3DMicrosoft_Visual_CPP_Guide&amp;action=3Ded=
+it&amp;section=3D1" title=3D"Edit section: Version Information">edit</a>=
+]</div><a name=3D"Version_Information"></a><h2> Version Information </h2=
+>
+<dl><dt> Visual C++ 6.0&nbsp;</dt><dd> Released in 1998, and is still wi=
+dely used for large and small projects.
+</dd><dt> Visual C++ .NET 2002 (7.0)&nbsp;</dt><dd> First edition of Vis=
+ual C++ to include managed extensions to the C++ language shared with Vi=
+sual Basic and Visual C#.  This version was known to contain some major =
+bugs at release, and it's highly recommended developers either stick wit=
+h 6.0 (since wxWidgets does not use the managed extensions anyway) or up=
+grade to at least 7.1.
+</dd><dt> Visual C++ .NET 2003 (7.1)&nbsp;</dt><dd> Released as a major =
+upgrade to 7.0 fixing a number of issues.  The compiler and linker were =
+released for free in the Visual C++ Toolkit 2003 (which has now been tak=
+en down in favor of using Visual C++ 2005 (8.0) Express Edition).
+</dd><dt> Visual C++ 2005 (8.0)&nbsp;</dt><dd> The newest current releas=
+e of Visual C++.  This version contains a few improvements to Intellisen=
+se and additional STL debugging features.  The Express Edition is availa=
+ble for free, even for commercial use.  While this version is not labele=
+d with ".NET" in the name, the .NET Framework is still supported (though=
+ wxWidgets does not make use of it unless you are using the wx.NET langu=
+age binding).
+</dd></dl>
+<p>The compiler versions (symbol _MSC_VER) for these product versions ar=
+e 1200, 1300, 1310, and 1400, respectively.  Visual C++ 6.0 became very =
+widely used since no good replacement was released until 2003 (Visual C+=
++ .NET 2003), but the compiler is very non-conformant and the standard l=
+ibrary is buggy (and fixes cost money).  Since there are now free versio=
+ns of the compiler/linker (with the Visual C++ Toolkit 2003 if you can f=
+ind it) and the whole IDE (2005 Express Edition), it is highly recommend=
+ed that wxWidgets users use Visual C++ 2005 (8.0).
+</p><p>The instructions below apply to all versions of Visual C++ from 6=
+.0 to 8.0.  Be sure to check the <a href=3D"#Troubleshooting" title=3D""=
+>troubleshooting</a> section for known version specific issues if you ru=
+n into any.
+</p><p><b>Related Links:</b>
+</p>
+<ul><li> <a href=3D"http://msdn.microsoft.com/vstudio/express/visualc/do=
+wnload/" class=3D'external text' title=3D"http://msdn.microsoft.com/vstu=
+dio/express/visualc/download/" rel=3D"nofollow">Visual C++ 2005 (8.0) Ex=
+press Edition Download</a>
+</li><li> <a href=3D"http://www.microsoft.com/downloads/details.aspx?Fam=
+ilyId=3DA55B6B43-E24F-4EA3-A93E-40C0EC4F68E5&amp;displaylang=3Den#fileli=
+st" class=3D'external text' title=3D"http://www.microsoft.com/downloads/=
+details.aspx?FamilyId=3DA55B6B43-E24F-4EA3-A93E-40C0EC4F68E5&amp;display=
+lang=3Den#filelist" rel=3D"nofollow">Windows Platform SDK</a> (not inclu=
+ded with VC8 Express): The Platform SDK Bin, Lib and Include directories=
+ need to be added to your Visual Studio options, or you may get an error=
+ message about files such as windows.h not being found. See <a href=3D"h=
+ttp://msdn2.microsoft.com/en-us/express/aa700755.aspx" class=3D'external=
+ text' title=3D"http://msdn2.microsoft.com/en-us/express/aa700755.aspx" =
+rel=3D"nofollow">this Microsoft article</a> for setup instructions.
+</li></ul>
+<div class=3D"editsection" style=3D"float:right;margin-left:5px;">[<a hr=
+ef=3D"/wiki/index.php?title=3DMicrosoft_Visual_CPP_Guide&amp;action=3Ded=
+it&amp;section=3D2" title=3D"Edit section: Getting Started">edit</a>]</d=
+iv><a name=3D"Getting_Started"></a><h2> Getting Started </h2>
+<p>wxWidgets is available for download in multiple flavors for the Windo=
+ws platform.  There is a wxMSW setup executable that will install wxWidg=
+ets for you, as well as multiple archive formats containing everything n=
+eeded in the wxMSW packages.  Additionally, the wxAll packages include t=
+he source for all supported platforms.  (Be sure to check the <a href=3D=
+"#Troubleshooting" title=3D"">troubleshooting</a> section if you are usi=
+ng wxALL, CVS or daily snapshot sources). You only need one of these dow=
+nloads.  If you downloaded one of the archive formats, installing it is =
+as easy as unpacking it and moving the root folder where ever you want i=
+t to be installed.
+</p><p>If you used the installer, in addition to installing the wxWidget=
+s source files, it also automatically adds a <b>WXWIN</b> environment va=
+riable on your system pointing to the location where you installed wxWid=
+gets.  It isn't necessary to have this environment variable setup, howev=
+er it is highly recommended that you do so if you didn't use the install=
+er.  To setup the <b>WXWIN</b> environment variable by hand follow these=
+ steps:
+</p>
+<ol><li> Close all instances of Visual C++ or your new environment varia=
+bles will not be available until you restart Visual C++.
+</li><li> Right-click on <b>My Computer</b> and open the <b>Properties</=
+b> window.
+</li><li> Switch to the <b>Advanced</b> tab and click the <b>Environment=
+ Variables</b> button.
+</li><li> Under the 'User variables' section, click <b>New</b>.
+</li><li> For name, type "WXWIN", and for value, type the full location =
+where you installed wxWidgets to (typically "C:\wxWidgets-x.x.x").
+</li><li> Click <b>OK</b> on all dialogs to save your settings.
+</li></ol>
+<p>The wxWidgets project files distributed for Visual C++ are currently =
+saved in the Visual C++ 6.0 file format.  If you are using a version of =
+Visual C++ other than 6.0, you will be asked about converting the projec=
+t files for the version you are using.  This is expected behavior, and y=
+ou can safely answer "Yes To All" when opening any of the project or wor=
+kspace files.  The files are saved in the 6.0 format simply for backward=
+s compatibility, and will work in all version of Visual C++ from 6.0 to =
+8.0. =
+
+</p><p>wxWidgets contains two separate Visual C++ workspaces used to bui=
+ld wxWidgets using MSVC: "build\msw\wx.dsw" and "build\msw\wx_dll.dsw". =
+ The first has subproject dependency information setup for use when buil=
+ding static libraries, and the second is setup for building dynamic libr=
+aries.  Both contain configurations for static and dynamic libraries, bu=
+t you may run into problems building those configurations using the wron=
+g workspace.
+</p><p>Keeping the information above in mind, you are now ready to open =
+the wxWidgets workspace file of your choice, and compile the wxWidgets l=
+ibrary.  Once opened (and converted if necessary), the wxWidgets workspa=
+ce contains multiple configurations for all subprojects.  If you are not=
+ familiar with what these are or how they work, please read the next sec=
+tion before continuing onward.
+</p>
+<div class=3D"editsection" style=3D"float:right;margin-left:5px;">[<a hr=
+ef=3D"/wiki/index.php?title=3DMicrosoft_Visual_CPP_Guide&amp;action=3Ded=
+it&amp;section=3D3" title=3D"Edit section: wxWidgets Build Configuration=
+s">edit</a>]</div><a name=3D"wxWidgets_Build_Configurations"></a><h3> wx=
+Widgets Build Configurations </h3>
+<p>All build configurations represent pre-configured settings for buildi=
+ng wxWidgets in either ANSI or Unicode mode, Debug or Release, Static or=
+ Dynamic libraries, as well as separate configurations for building eith=
+er wxMSW or wxUniversal.  Each one of these will result in different lib=
+raries being built in different file locations.  Here's a brief explanat=
+ion of each of these modes:
+</p>
+<ul><li> <b>ANSI/Unicode:</b> If building with Unicode support, wxWidget=
+s will use Unicode strings with all components, and will automatically s=
+et the type of all literal strings properly wrapped with the string tran=
+slation functions [_T(""), _(""), wxT("")] as wide character Unicode str=
+ings. See the <a href=3D"http://wxwidgets.org/manuals/stable/wx_unicode.=
+html" class=3D'external text' title=3D"http://wxwidgets.org/manuals/stab=
+le/wx_unicode.html" rel=3D"nofollow">Unicode Overview</a> for more infor=
+mation.
+</li><li> <b>Debug/Release:</b> Building in debug mode will result in li=
+braries with debug symbols (useful when using a debugger) as well turn o=
+n the functionality of all helpful debugging functions and macros and pr=
+ompt the user upon reaching assertions.  You will almost always have a n=
+eed for both debug and release configurations.  See the <a href=3D"http:=
+//wxwidgets.org/manuals/stable/wx_debuggingoverview.html" class=3D'exter=
+nal text' title=3D"http://wxwidgets.org/manuals/stable/wx_debuggingoverv=
+iew.html" rel=3D"nofollow">Debugging Overview</a> for more information.
+</li><li> <b>Static/Dynamic:</b> Unless a configurations is labeled with=
+ "DLL", it is a static library configuration.  Static libraries are link=
+ed directly into your program's executable when compiled while dynamic l=
+ibraries are released as separate DLL files that your program links to d=
+ynamically at runtime.  If you are unsure about which to use, build the =
+static libraries.
+</li><li> <b>Universal:</b> This is a port of wxWidgets (also referred t=
+o as "wxUniversal") which implements the various GUI controls by drawing=
+ them itself (using low level wxWidgets classes).  It is implemented on =
+most platforms and will result in your program looking identical on all =
+platforms much like using Java or GTK+.  Most wxWidgets users use wxWidg=
+ets because of its ability to build native looking applications, so this=
+ is rarely used, rarely worked on, and only implements a small subset of=
+ the wxWidgets library.  <b>Do not use Universal configurations unless y=
+ou know what you are doing.</b>  See the "docs/univ/readme.txt" file for=
+ more information (also available <a href=3D"http://cvs.wxwidgets.org/vi=
+ewcvs.cgi/*checkout*/wxWidgets/docs/univ/readme.txt?rev=3DHEAD&amp;conte=
+nt-type=3Dtext/plain" class=3D'external text' title=3D"http://cvs.wxwidg=
+ets.org/viewcvs.cgi/*checkout*/wxWidgets/docs/univ/readme.txt?rev=3DHEAD=
+&amp;content-type=3Dtext/plain" rel=3D"nofollow">online</a>).
+</li></ul>
+<div class=3D"editsection" style=3D"float:right;margin-left:5px;">[<a hr=
+ef=3D"/wiki/index.php?title=3DMicrosoft_Visual_CPP_Guide&amp;action=3Ded=
+it&amp;section=3D4" title=3D"Edit section: Library Files">edit</a>]</div=
+><a name=3D"Library_Files"></a><h3> Library Files </h3>
+<p>Refer to this table for the filenames of the libraries needed later w=
+hen building your application based on the configurations desired.  The =
+libraries listed here correspond to those described in the <a href=3D"ht=
+tp://wxwidgets.org/manuals/stable/wx_librarieslist.html" class=3D'extern=
+al text' title=3D"http://wxwidgets.org/manuals/stable/wx_librarieslist.h=
+tml" rel=3D"nofollow">Libraries List</a> in the official manual.  Add th=
+e ".lib" extension to the filename for static builds and ".dll" for dyna=
+mic builds.  If you are not using wxWidgets 2.8, replace the "28" in the=
+ filename with the version of wxWidgets you are using (ie: "26" if using=
+ 2.6).
+</p>
+<table border=3D"1" cellspacing=3D"0" cellpadding=3D"2" width=3D"100%">
+<tr>
+<td rowspan=3D"2" align=3D"center" valign=3D"middle"> <b>Library</b>
+</td><td colspan=3D"2" align=3D"center" valign=3D"middle"> <b>Debug</b>
+</td><td colspan=3D"2" align=3D"center" valign=3D"middle"> <b>Release</b=
+>
+</td></tr>
+<tr>
+<td align=3D"center"> <b>ANSI</b>
+</td><td align=3D"center"> <b>Unicode</b>
+</td><td align=3D"center"> <b>ANSI</b>
+</td><td align=3D"center"> <b>Unicode</b>
+</td></tr>
+<tr>
+<td colspan=3D"5" bgcolor=3D"#CCCCCC" align=3D"center" valign=3D"middle"=
+> <b>wxMSW</b>
+</td></tr>
+<tr>
+<td> wxBase
+</td><td> wxbase28d
+</td><td> wxbase28ud
+</td><td> wxbase28
+</td><td> wxbase28u
+</td></tr>
+<tr>
+<td> wxNet
+</td><td> wxbase28d_net
+</td><td> wxbase28ud_net
+</td><td> wxbase28_net
+</td><td> wxbase28u_net
+</td></tr>
+<tr>
+<td> wxODBC
+</td><td> wxbase28d_odbc
+</td><td> wxbase28ud_odbc
+</td><td> wxbase28_odbc
+</td><td> wxbase28u_odbc
+</td></tr>
+<tr>
+<td> wxXML
+</td><td> wxbase28d_xml
+</td><td> wxbase28ud_xml
+</td><td> wxbase28_xml
+</td><td> wxbase28u_xml
+</td></tr>
+<tr>
+<td> wxAdvanced
+</td><td> wxmsw28d_adv
+</td><td> wxmsw28ud_adv
+</td><td> wxmsw28_adv
+</td><td> wxmsw28u_adv
+</td></tr>
+<tr>
+<td> wxAUI
+</td><td> wxmsw28d_aui
+</td><td> wxmsw28ud_aui
+</td><td> wxmsw28_aui
+</td><td> wxmsw28u_aui
+</td></tr>
+<tr>
+<td> wxCore
+</td><td> wxmsw28d_core
+</td><td> wxmsw28ud_core
+</td><td> wxmsw28_core
+</td><td> wxmsw28u_core
+</td></tr>
+<tr>
+<td> wxDbGrid
+</td><td> wxmsw28d_dbgrid
+</td><td> wxmsw28ud_dbgrid
+</td><td> wxmsw28_dbgrid
+</td><td> wxmsw28u_dbgrid
+</td></tr>
+<tr>
+<td> wxGL
+</td><td> wxmsw28d_gl
+</td><td> wxmsw28ud_gl
+</td><td> wxmsw28_gl
+</td><td> wxmsw28u_gl
+</td></tr>
+<tr>
+<td> wxHTML
+</td><td> wxmsw28d_html
+</td><td> wxmsw28ud_html
+</td><td> wxmsw28_html
+</td><td> wxmsw28u_html
+</td></tr>
+<tr>
+<td> wxMedia
+</td><td> wxmsw28d_media
+</td><td> wxmsw28ud_media
+</td><td> wxmsw28_media
+</td><td> wxmsw28u_media
+</td></tr>
+<tr>
+<td> wxQA
+</td><td> wxmsw28d_qa
+</td><td> wxmsw28ud_qa
+</td><td> wxmsw28_qa
+</td><td> wxmsw28u_qa
+</td></tr>
+<tr>
+<td> wxRichText
+</td><td> wxmsw28d_richtext
+</td><td> wxmsw28ud_richtext
+</td><td> wxmsw28_richtext
+</td><td> wxmsw28u_richtext
+</td></tr>
+<tr>
+<td> wxXRC
+</td><td> wxmsw28d_xrc
+</td><td> wxmsw28ud_xrc
+</td><td> wxmsw28_xrc
+</td><td> wxmsw28u_xrc
+</td></tr>
+<tr>
+<td colspan=3D"5"> <b>Optional Internal Libraries (each released under d=
+ifferent licenses):</b>
+</td></tr>
+<tr>
+<td> <a href=3D"http://expat.sourceforge.net/" class=3D'external text' t=
+itle=3D"http://expat.sourceforge.net/" rel=3D"nofollow">Expat XML Parser=
+</a>
+</td><td> wxexpatd
+</td><td> wxexpatd
+</td><td> wxexpat
+</td><td> wxexpat
+</td></tr>
+<tr>
+<td> <a href=3D"http://www.ijg.org/" class=3D'external text' title=3D"ht=
+tp://www.ijg.org/" rel=3D"nofollow">libjpeg</a> (JPEG Group)
+</td><td> wxjpegd
+</td><td> wxjpegd
+</td><td> wxjpeg
+</td><td> wxjpeg
+</td></tr>
+<tr>
+<td> <a href=3D"http://www.libpng.org/pub/png/libpng.html" class=3D'exte=
+rnal text' title=3D"http://www.libpng.org/pub/png/libpng.html" rel=3D"no=
+follow">libpng</a>
+</td><td> wxpngd
+</td><td> wxpngd
+</td><td> wxpng
+</td><td> wxpng
+</td></tr>
+<tr>
+<td> Modified <a href=3D"http://tcl.sourceforge.net/" class=3D'external =
+text' title=3D"http://tcl.sourceforge.net/" rel=3D"nofollow">Tcl</a> Reg=
+ex
+</td><td> wxregexd
+</td><td> wxregexud
+</td><td> wxregex
+</td><td> wxregexu
+</td></tr>
+<tr>
+<td> <a href=3D"http://www.libtiff.org/" class=3D'external text' title=3D=
+"http://www.libtiff.org/" rel=3D"nofollow">libtiff</a>
+</td><td> wxtiffd
+</td><td> wxtiffd
+</td><td> wxtiff
+</td><td> wxtiff
+</td></tr>
+<tr>
+<td> <a href=3D"http://www.zlib.net/" class=3D'external text' title=3D"h=
+ttp://www.zlib.net/" rel=3D"nofollow">zlib</a>
+</td><td> wxzlibd
+</td><td> wxzlibd
+</td><td> wxzlib
+</td><td> wxzlib
+</td></tr>
+<tr>
+<td colspan=3D"5" bgcolor=3D"#CCCCCC" align=3D"center" valign=3D"middle"=
+> <b>wxUniversal</b>
+</td></tr>
+<tr>
+<td> wxAdvanced
+</td><td> wxmswuniv28d_adv
+</td><td> wxmswuniv28ud_adv
+</td><td> wxmswuniv28_adv
+</td><td> wxmswuniv28u_adv
+</td></tr>
+<tr>
+<td> wxAUI
+</td><td> wxmswuniv28d_aui
+</td><td> wxmswuniv28ud_aui
+</td><td> wxmswuniv28_aui
+</td><td> wxmswuniv28u_aui
+</td></tr>
+<tr>
+<td> wxCore
+</td><td> wxmswuniv28d_core
+</td><td> wxmswuniv28ud_core
+</td><td> wxmswuniv28_core
+</td><td> wxmswuniv28u_core
+</td></tr>
+<tr>
+<td> wxDbGrid
+</td><td> wxmswuniv28d_dbgrid
+</td><td> wxmswuniv28ud_dbgrid
+</td><td> wxmswuniv28_dbgrid
+</td><td> wxmswuniv28u_dbgrid
+</td></tr>
+<tr>
+<td> wxGL
+</td><td> wxmswuniv28d_gl
+</td><td> wxmswuniv28ud_gl
+</td><td> wxmswuniv28_gl
+</td><td> wxmswuniv28u_gl
+</td></tr>
+<tr>
+<td> wxHTML
+</td><td> wxmswuniv28d_html
+</td><td> wxmswuniv28ud_html
+</td><td> wxmswuniv28_html
+</td><td> wxmswuniv28u_html
+</td></tr>
+<tr>
+<td> wxMedia
+</td><td> wxmswuniv28d_media
+</td><td> wxmswuniv28ud_media
+</td><td> wxmswuniv28_media
+</td><td> wxmswuniv28u_media
+</td></tr>
+<tr>
+<td> wxQA
+</td><td> wxmswuniv28d_qa
+</td><td> wxmswuniv28ud_qa
+</td><td> wxmswuniv28_qa
+</td><td> wxmswuniv28u_qa
+</td></tr>
+<tr>
+<td> wxRichText
+</td><td> wxmswuniv28d_richtext
+</td><td> wxmswuniv28ud_richtext
+</td><td> wxmswuniv28_richtext
+</td><td> wxmswuniv28u_richtext
+</td></tr>
+<tr>
+<td> wxXRC
+</td><td> wxmswuniv28d_xrc
+</td><td> wxmswuniv28ud_xrc
+</td><td> wxmswuniv28_xrc
+</td><td> wxmswuniv28u_xrc
+</td></tr></table>
+<div class=3D"editsection" style=3D"float:right;margin-left:5px;">[<a hr=
+ef=3D"/wiki/index.php?title=3DMicrosoft_Visual_CPP_Guide&amp;action=3Ded=
+it&amp;section=3D5" title=3D"Edit section: Building wxWidgets">edit</a>]=
+</div><a name=3D"Building_wxWidgets"></a><h2> Building wxWidgets </h2>
+<p>At this point, you hopefully have a good idea of what configurations =
+you will need to build.  If you don't already have either the <b>wx.dsw<=
+/b> or <b>wx_dll.dsw</b> (both explained above) workspace open, do so no=
+w.  The basic process of building wxWidgets involves either batch buildi=
+ng all configurations, or changing your active configuration to the ones=
+ you need and building those.
+</p><p>If you batch build all configurations, be aware that you will alm=
+ost certainly run into problems building specific projects in certain co=
+nfigurations.  wxWidgets makes every effort to keep these in working ord=
+er, but there are a lot of different configurations, projects, and distr=
+ibution methods that can play a part in errors.  When projects (or whole=
+ configurations) fail to compile you will need to either make sure they =
+are not ones you need, or figure out what's wrong with them and fix them=
+ as you go.  You should also note that batch building everything will ta=
+ke anywhere from one to two hours (assuming you don't run into problems)=
+, and will take up as much as 5GB of disk space.
+</p><p>Building single configurations one at a time will usually take 5 =
+to 10 minutes per configuration, and will result in only needing 400 to =
+800 megabytes depending on which configurations you need.  Using this pr=
+ocess can help with pinpointing problems with the build, and you will kn=
+ow for sure when configurations you need failed to build.  In theory, th=
+is method of building wxWidgets should take more steps, and is slightly =
+more complex, but in practice it tends to be easier since most users run=
+ into less problems this way.  Skip down to the <a href=3D"#Building_Sin=
+gle_Configurations" title=3D"">Building Single Configurations</a> sectio=
+n if you would rather use this method.
+</p>
+<div class=3D"editsection" style=3D"float:right;margin-left:5px;">[<a hr=
+ef=3D"/wiki/index.php?title=3DMicrosoft_Visual_CPP_Guide&amp;action=3Ded=
+it&amp;section=3D6" title=3D"Edit section: Batch Building All">edit</a>]=
+</div><a name=3D"Batch_Building_All"></a><h3> Batch Building All </h3>
+<ol><li> Select "Batch Build..." from the <b>Build</b> menu.
+</li><li> Click the "Select All" button to select all projects and confi=
+gurations (a total of 320 in wxWidgets 2.8).
+</li><li> Click "Build" to start building wxWidgets.
+</li></ol>
+<p>Use the time now to go watch a movie (I recommend <a href=3D"http://w=
+ww.imdb.com/title/tt0119116/" class=3D'external text' title=3D"http://ww=
+w.imdb.com/title/tt0119116/" rel=3D"nofollow">The Fifth Element</a>), or=
+ get a head start reading the <a href=3D"http://wxwidgets.org/manuals/st=
+able/wx_contents.html" class=3D'external text' title=3D"http://wxwidgets=
+.org/manuals/stable/wx_contents.html" rel=3D"nofollow">wxWidgets Manual<=
+/a>.  If you come back to find failed builds and are not sure how to fix=
+ it, check the <a href=3D"#Troubleshooting" title=3D"">troubleshooting</=
+a> section, the <a href=3D"/wiki/index.php/FAQ" title=3D"FAQ">FAQs</a>, =
+and lastly, the mailing lists, forums, and <a href=3D"/wiki/index.php/IR=
+C" title=3D"IRC">IRC</a>.  Repeat the steps above until all configuratio=
+ns build successfully.  Alternatively, you can figure out which configur=
+ations you really need, and use the <a href=3D"#Building_Single_Configur=
+ations" title=3D"">single configuration build method</a>.
+</p><p>(I have found that if I manually set the Project Dependencies in =
+MSVC before I do any builds, I do not have to repeat the process multipl=
+e times.  Simply right click on the solution name in the Solution Explor=
+er and select Project Dependencies... from the menu.  Then start at the =
+<b>bottom</b> of the list shown below and make each one dependent on the=
+ one above it.  Once you have done this, simply build as described above=
+ and MSVC will build in the correct sequence each and every time. ~Bruce=
+Kahn)
+</p>
+<div class=3D"editsection" style=3D"float:right;margin-left:5px;">[<a hr=
+ef=3D"/wiki/index.php?title=3DMicrosoft_Visual_CPP_Guide&amp;action=3Ded=
+it&amp;section=3D7" title=3D"Edit section: Building Single Configuration=
+s">edit</a>]</div><a name=3D"Building_Single_Configurations"></a><h3> Bu=
+ilding Single Configurations </h3>
+<p>Build all libraries you need one by one, in the following order:
+</p>
+<pre>    wxjpeg
+    wxpng
+    wxtiff
+    wxzlib
+    wxregex
+    wxexpat
+    base
+    net
+    odbc
+    xml
+    core
+    gl
+    html
+    media
+    qa
+    adv
+    dbgrid
+    xrc
+    aui
+    richtext
+</pre>
+<div class=3D"editsection" style=3D"float:right;margin-left:5px;">[<a hr=
+ef=3D"/wiki/index.php?title=3DMicrosoft_Visual_CPP_Guide&amp;action=3Ded=
+it&amp;section=3D8" title=3D"Edit section: Building the wxWidgets Sample=
+s">edit</a>]</div><a name=3D"Building_the_wxWidgets_Samples"></a><h2> Bu=
+ilding the wxWidgets Samples </h2>
+<ul><li> Open the sample's .DSW file in .NET
+</li><li> Hit yes to convert
+</li><li> Select the same build you did above (in 'Steps to build wxWidg=
+ets')
+</li><li> build
+</li></ul>
+<p>However, this may result into rebuilding the wx libs/dlls again. If y=
+ou had already built these, do following instead:
+</p>
+<ul><li> Open the sample's .DSW file in .NET
+</li><li> Hit yes to convert
+</li><li> remove those projects from the sample solution, which you alre=
+ady have build (in 'Steps to build all wxWidgets projects')
+</li><li> build
+</li></ul>
+<div class=3D"editsection" style=3D"float:right;margin-left:5px;">[<a hr=
+ef=3D"/wiki/index.php?title=3DMicrosoft_Visual_CPP_Guide&amp;action=3Ded=
+it&amp;section=3D9" title=3D"Edit section: Creating a New Project by Han=
+d">edit</a>]</div><a name=3D"Creating_a_New_Project_by_Hand"></a><h2> Cr=
+eating a New Project by Hand </h2>
+<p>The main things to worry about with project settings are the C runtim=
+e library, preprocessor definitions, additional include directories, lib=
+raries that your program needs, libraries that wxWidgets needs, and the =
+disabling of certain default libraries to resolve symbol conflicts that =
+might occur.
+</p><p>Start with a Visual C++ Win32 Project and accept the default sett=
+ings. (I suggest to check the "empty project" checkbox [or unselect "pre=
+compiled header" for static libs] so you can start really clean. Also, d=
+on't forget that until you have a .cpp file inside the project, the C/C+=
++ won't appear under "configuration settings" in the project's propertie=
+s -DL)
+</p>
+<div class=3D"editsection" style=3D"float:right;margin-left:5px;">[<a hr=
+ef=3D"/wiki/index.php?title=3DMicrosoft_Visual_CPP_Guide&amp;action=3Ded=
+it&amp;section=3D10" title=3D"Edit section: Project Properties">edit</a>=
+]</div><a name=3D"Project_Properties"></a><h3> Project Properties </h3>
+<ul><li> General
+<ul><li> Character Set
+<ul><li> Select Not Set, Unicode, or Multi-Byte depending on what you ne=
+ed.
+</li></ul>
+</li></ul>
+</li><li> C/C++
+<ul><li> Category: General
+<ul><li> Additional include directories:
+<ul><li> Specify the location of the wxWidgets include directory. $(WXWI=
+N)\include
+</li><li> Specify the location of the Setup.h file.  You need to match i=
+t up with the wxWidgets library you are linking with. $(WXWIN)\include\m=
+svc  Here's the rundown:
+</li></ul>
+</li></ul>
+</li></ul>
+</li></ul>
+<table border=3D"1">
+<tr>
+<td> Directory </td><td> Basic wxWidgets libraries </td><td> Description=
+
+</td></tr>
+<tr>
+<td> lib\vc_lib\msw </td><td> wxmsw28_core.lib wxbase28.lib </td><td> re=
+lease ANSI static
+</td></tr>
+<tr>
+<td> lib\vc_lib\mswd </td><td> wxmsw28d_core.lib wxbase28d.lib </td><td>=
+ debug ANSI static
+</td></tr>
+<tr>
+<td> lib\vc_lib\mswu </td><td> wxmsw28u_core.lib wxbase28u.lib </td><td>=
+ release Unicode static
+</td></tr>
+<tr>
+<td> lib\vc_lib\mswud </td><td> wxmsw28ud_core.lib wxbase28ud.lib </td><=
+td> debug Unicode static
+</td></tr></table>
+<ul><li><ul><li><ul><li> Detect 64-bit Portability Issues: Select No to =
+avoid warning messages on strings.
+</li></ul>
+</li><li> Category: Preprocessor:
+<ul><li> Preprocessor definitions:
+<ul><li> Add WINVER=3D0x0400
+</li><li> For projects using GUI components add wxUSE_GUI=3D1
+</li><li> Add __WXDEBUG__ for debug builds that link to wxWidgets debug =
+configurations. Activates wxASSERT(), etc. See the <a href=3D"http://wxw=
+idgets.org/manuals/stable/wx_debuggingoverview.html" class=3D'external t=
+ext' title=3D"http://wxwidgets.org/manuals/stable/wx_debuggingoverview.h=
+tml" rel=3D"nofollow">Debugging Overview</a> for more information.
+</li></ul>
+</li></ul>
+</li><li> Category: Code Generation
+<ul><li> For the C runtime library, use the Multithreaded DLL for releas=
+e and Debug Multithreaded DLL for debug builds, as the multithreaded DLL=
+ libraries are the ones wxWidgets is linked with by default. If you get =
+something like: =
+
+</li></ul>
+</li></ul>
+</li></ul>
+<pre>  MSVCRT.lib(MSVCRT.dll)&nbsp;: error LNK2005: _free already define=
+d in LIBC.lib(free.obj) =
+
+</pre>
+<p>then you're linking with the wrong runtime library.
+</p>
+<ul><li><ul><li> Category: Precompiled Headers
+<ul><li><ul><li> See the Tips'n'Tricks section of the wiki for setting u=
+p precompiled headers
+</li></ul>
+</li></ul>
+</li></ul>
+</li></ul>
+<ul><li> Linker:
+<ul><li> Category: General
+<ul><li> Additional Library Directories
+<ul><li> Specify the location of the wxWidgets lib directory
+</li></ul>
+</li></ul>
+</li><li> Category: Input
+<ul><li> Add comctl32.lib rpcrt4.lib winmm.lib advapi32.lib wsock32.lib.=
+ wxWidgets needs these.
+</li><li> Add any of these that you need:
+<ul><li> Release: wxpng.lib wxzlib.lib wxjpeg.lib wxtiff.lib =
+
+</li><li> Debug: wxpngd.lib wxzlibd.lib wxjpegd.lib wxtiffd.lib
+</li></ul>
+</li><li> Add one of the wxWidgets libraries from the table above
+<ul><li> For example, for debug ANSI static&nbsp;: wxmsw28d_core.lib wxb=
+ase28d.lib
+</li></ul>
+</li></ul>
+</li><li> Category: System
+<ul><li> SubSystem
+<ul><li> Set Windows (/SUBSYSTEM:WINDOWS)
+</li></ul>
+</li></ul>
+</li></ul>
+</li></ul>
+<div class=3D"editsection" style=3D"float:right;margin-left:5px;">[<a hr=
+ef=3D"/wiki/index.php?title=3DMicrosoft_Visual_CPP_Guide&amp;action=3Ded=
+it&amp;section=3D11" title=3D"Edit section: Creating a New Project From =
+a Sample">edit</a>]</div><a name=3D"Creating_a_New_Project_From_a_Sample=
+"></a><h2> Creating a New Project From a Sample </h2>
+<p>If you have trouble with the above method, this is also an option.  I=
+f you can get a sample to build, you should be able to use this method w=
+ithout issues.
+</p><p>This tutorial takes the simple (and usually best) route, of copyi=
+ng a sample's project file.  This automatically sets up all the right bu=
+ild configurations, and is less error prone than manually creating a pro=
+ject file.
+</p>
+<ul><li> First convert samples\internat\internat.dsp to Visual Studio .N=
+ET as above.  This will create internat.vcproj and internat.sln.
+</li><li> Copy internat.vcproj and internat.sln to your application dire=
+ctory, rename as myapp.vcproj and myapp.sln.
+</li><li> Open myapp.vcproj in notepad.
+<ul><li> Search replace "internat" with "myapp".
+</li><li> Search replace "..\.." with "c:\wxWidgets-2.6.2" or wherever y=
+ou installed wxWidgets to. =
+
+</li><li> (Note: with wxWidgets 2.6.2 and VC8 Express or VC .NET 2003 (7=
+.1), the above will yield odd results. Try searching and replacing ".\..=
+\.." with "c:\wxWidgets-2.6.2" or wherever instead. Add more info to thi=
+s wiki if you find this to be true of other combinations.)
+</li><li> Search replace "../.." with "c:\wxWidgets-2.6.2" or wherever y=
+ou installed wxWidgets to.
+</li><li> Save and close.
+</li></ul>
+</li><li> Open myapp.sln in notepad.
+<ul><li> Search replace "internat" with "myapp".
+</li><li> Search replace "..\.." with "c:\wxWidgets-2.6.2" or wherever y=
+ou installed wxWidgets to.
+</li><li> Save and close.
+</li></ul>
+</li><li> Open myapp.sln in Visual Studio .NET, add your source files to=
+ the project and build.
+</li></ul>
+<p>Note that you can add the wxWidgets include/lib paths to your Visual =
+Studio's search paths (under Tools>Options>Projects>VC++ Directories).  =
+This is recommeded if you will be working with anyone else on the projec=
+t.  Otherwise, specifying your path to wxWidgets directly in the project=
+, as described above, is all you need.
+</p>
+<div class=3D"editsection" style=3D"float:right;margin-left:5px;">[<a hr=
+ef=3D"/wiki/index.php?title=3DMicrosoft_Visual_CPP_Guide&amp;action=3Ded=
+it&amp;section=3D12" title=3D"Edit section: VC8 2005 Express and Text Ed=
+itor of Your Choice">edit</a>]</div><a name=3D"VC8_2005_Express_and_Text=
+_Editor_of_Your_Choice"></a><h2> VC8 2005 Express and Text Editor of You=
+r Choice </h2>
+<p>If all else fails (although I wish I had tried this earlier), open th=
+e sample's converted .vcproj file in a text editor and take a close look=
+ at what the paths should be. The solution file is of no value, it will =
+get created automatically. In fact the solution file will be counterprod=
+uctive if you built all the samples at once, because it brings up all th=
+e samples!
+</p><p>In the text editor, pay close attention to the OutputDirectory, I=
+ntermediateDirectory, AdditionalIncludeDirectories, AdditionalDependenci=
+es, and OutputFile attributes and make sure they are what you expect. Us=
+e the $(WXWIN) variable and relative paths whenever possible. You are do=
+ing two things at once, preparing your app for building and making sure =
+the project reflects your preferred code organization.
+</p><p>Search and replace the sample name with your app name, then edit =
+it so that it only contains a single Configuration (such as "Release|Win=
+32"). <i>This must match the build under which you compiled wxWidgets.</=
+i> A single configuration may lose some functionality but makes it harde=
+r to screw up the file. The uniqueness of the <a href=3D"http://msdn2.mi=
+crosoft.com/en-us/library/ms169504" class=3D'external text' title=3D"htt=
+p://msdn2.microsoft.com/en-us/library/ms169504" rel=3D"nofollow">Project=
+GUID</a> setting is necessary to calculate the build order correctly fro=
+m the project dependencies. So you should search and replace the duplica=
+te GUID by a unique one in the .vcproj and .sln files. (Otherwise it sho=
+uld only matter in .NET applications, according to Microsoft.)
+</p><p>Now reopen the .vcproj file in the IDE and remove the bogus files=
+ (left over from the sample) and add the real files. If the .cpp files y=
+ou added do not appear under Source Files, close VC, fire up the text ed=
+itor again and move the File elements so that they are inside the Filter=
+ elements and then close and reopen in VC8.
+</p>
+<div class=3D"editsection" style=3D"float:right;margin-left:5px;">[<a hr=
+ef=3D"/wiki/index.php?title=3DMicrosoft_Visual_CPP_Guide&amp;action=3Ded=
+it&amp;section=3D13" title=3D"Edit section: Troubleshooting">edit</a>]</=
+div><a name=3D"Troubleshooting"></a><h2> Troubleshooting </h2>
+<div class=3D"editsection" style=3D"float:right;margin-left:5px;">[<a hr=
+ef=3D"/wiki/index.php?title=3DMicrosoft_Visual_CPP_Guide&amp;action=3Ded=
+it&amp;section=3D14" title=3D"Edit section: Problems when using wxALL, S=
+VN or Daily Snapshot Source">edit</a>]</div><a name=3D"Problems_when_usi=
+ng_wxALL.2C_SVN_or_Daily_Snapshot_Source"></a><h3> Problems when using w=
+xALL, SVN or Daily Snapshot Source </h3>
+<p>Visual C++ will probably complain about "corrupted project files". Th=
+is is because your project files have Unix line endings (LF) instead of =
+DOS ones (CR LF). You must transform your project files to the DOS forma=
+t using a program such as Microsoft WordPad or <a href=3D"http://notepad=
+-plus.sourceforge.net/uk/site.htm" class=3D'external text' title=3D"http=
+://notepad-plus.sourceforge.net/uk/site.htm" rel=3D"nofollow">Notepad++<=
+/a>. A google search of <b>convert unix dos files</b> should point you i=
+n the right direction if you do not already know how to process these fi=
+les.
+</p><p>If, when building wxWidgets, you get an error like this:
+</p>
+<pre>------ Build started: Project: wxregex, Configuration: Debug Win32 =
+------
+Creating ..\..\lib\vc_lib\mswd\wx\setup.h
+The system cannot find the file specified.
+Project&nbsp;: error PRJ0019: A tool returned an error code from &quot;C=
+reating ..\..\lib\vc_lib\mswd\wx\setup.h&quot;
+Build log was saved at &quot;file://c:\wxWidgets\build\msw\vc_mswd\wxreg=
+ex\BuildLog.htm&quot;
+wxregex - 1 error(s), 0 warning(s)</pre>
+<p>Then you will need to copy <tt>include\wx\msw\setup0.h</tt> to <tt>in=
+clude\wx\msw\setup.h</tt>
+</p>
+<div class=3D"editsection" style=3D"float:right;margin-left:5px;">[<a hr=
+ef=3D"/wiki/index.php?title=3DMicrosoft_Visual_CPP_Guide&amp;action=3Ded=
+it&amp;section=3D15" title=3D"Edit section: Unresolved Externals for Win=
+dows API Functions">edit</a>]</div><a name=3D"Unresolved_Externals_for_W=
+indows_API_Functions"></a><h3> Unresolved Externals for Windows API Func=
+tions </h3>
+<p>If you get unresolved externals to Windows API functions when linking=
+ your project, then you may be missing the required Win32 libraries in y=
+our project settings.  These errors most commonly show for Visual C++ 20=
+05 (8.0) Express users since wxWidgets has relied on the default project=
+ configuration to specify the Windows API libraries for linking, and sta=
+rting with VC8 Express, Microsoft has dropped these libraries from the d=
+efault configuration since the PSDK containing the libraries is not incl=
+uded in the Express edition.
+</p><p>There are two solutions to this problem. The first is to add the =
+libraries to your global default project configuration where Visual C++ =
+will pick up the settings and apply them to all projects you open that a=
+re configured to inherit the settings (this is the default setting for n=
+ew projects, and all wxWidgets projects do the same). You should try thi=
+s first if you are using VC8 Express along with the Windows Server 2003 =
+PSDK. The second solution is to manually add the libraries to all projec=
+ts that need them.
+</p><p><b>First Solution: Global Library Import Settings</b>
+</p><p>If you are using any other version of Visual C++ other than 2005 =
+(8.0) Express, this should already be setup for you. You can double chec=
+k your settings though by finding the "CoreWin.vsprops" (found in the "V=
+C\VCProjectDefaults" folder of your Visual C++ installation location) an=
+d ensuring that at least the following libraries are listed in your "Add=
+itionalDependencies" setting:
+</p>
+<pre>kernel32.lib user32.lib gdi32.lib comdlg32.lib comctl32.lib advapi3=
+2.lib shell32.lib ole32.lib oleaut32.lib rpcrt4.lib</pre>
+<p>VC8 Express users need to do this with the "corewin_express.vsprops" =
+file. Slightly more detailed instructions for doing this with the latest=
+ PSDK can be found on the <a href=3D"http://msdn2.microsoft.com/en-us/ex=
+press/aa700755.aspx" class=3D'external text' title=3D"http://msdn2.micro=
+soft.com/en-us/express/aa700755.aspx" rel=3D"nofollow">Visual C++ Expres=
+s site</a>.
+</p><p><b>Second Solution: Manual Import of Libraries</b>
+</p><p>For any project missing these settings, open your <b>Project Prop=
+erties</b>, select the <b>Linker</b>, under that, select <b>Input</b> se=
+ttings, find the <b>Additional Dependencies</b> setting and make sure th=
+e following are listed:
+</p>
+<pre>user32.lib
+gdi32.lib
+comdlg32.lib
+comctl32.lib
+advapi32.lib
+shell32.lib
+ole32.lib
+oleaut32.lib
+rpcrt4.lib</pre>
+<div class=3D"editsection" style=3D"float:right;margin-left:5px;">[<a hr=
+ef=3D"/wiki/index.php?title=3DMicrosoft_Visual_CPP_Guide&amp;action=3Ded=
+it&amp;section=3D16" title=3D"Edit section: MSVC 7.0 (2002) Release Buil=
+d Problems">edit</a>]</div><a name=3D"MSVC_7.0_.282002.29_Release_Build_=
+Problems"></a><h3> MSVC 7.0 (2002) Release Build Problems </h3>
+<p>There is a bug in VC++ 7.0 (VC.NET 2002) optimisation which causes re=
+lease builds to work incorrectly. To resolve this, after you have conver=
+ted the wxWidgets VC6 project file to VC.NET, change the Optimization se=
+tting from Maximise Speed (/O2) to Custom. Then change Inline Function E=
+xpansion to Disabled. If Disabled is not an option you can add "/Ob0" (w=
+ithout quotes) to the Additional Options of the Command Line. It is thou=
+ght that this only needs to be done for the wxWidgets library, or other =
+code that implements wxModules. Note that this bug been fixed in VC7.1 (=
+VC.NET 2003).
+</p>
+<div class=3D"editsection" style=3D"float:right;margin-left:5px;">[<a hr=
+ef=3D"/wiki/index.php?title=3DMicrosoft_Visual_CPP_Guide&amp;action=3Ded=
+it&amp;section=3D17" title=3D"Edit section: MSVC 8.0 (2005) DLL Linker I=
+ssues">edit</a>]</div><a name=3D"MSVC_8.0_.282005.29_DLL_Linker_Issues">=
+</a><h3> MSVC 8.0 (2005) DLL Linker Issues </h3>
+<p>If you're getting linker errors when trying to build a DLL version of=
+ a program, make sure the preprocessor has the WXUSINGDLL symbol defined=
+. If the application crashes immediately after starting or cannot be ini=
+tialised properly, open the file $(WXWIN)\src\msw\main.cpp and search fo=
+r and remove the function 'DllMain' then recompile wxWidgets DLLs.
+</p><p>You can also get linker errors when there is mismatch between /Zc=
+:wchar_t setting when the wxWidgets library files were built and the /Zc=
+:wchar_t setting in your project. To change this setting in the Visual S=
+tudio development environment:
+</p>
+<pre>  1. Open the project's Property Pages dialog box.
+  2. Click the C/C++ folder.
+  3. Click the Language property page.
+  4. Modify the Treat wchar_t as Built-in Type property.
+</pre>
+<p>More information about the wchar_t setting can be found in the MSDN d=
+ocumentation: <a href=3D"http://msdn2.microsoft.com/en-us/library/dh8che=
+7s.aspx" class=3D'external autonumber' title=3D"http://msdn2.microsoft.c=
+om/en-us/library/dh8che7s.aspx" rel=3D"nofollow">[1]</a>
+</p>
+<div class=3D"editsection" style=3D"float:right;margin-left:5px;">[<a hr=
+ef=3D"/wiki/index.php?title=3DMicrosoft_Visual_CPP_Guide&amp;action=3Ded=
+it&amp;section=3D18" title=3D"Edit section: MSVC 8.0 (2005) Deprecated F=
+unction Warnings">edit</a>]</div><a name=3D"MSVC_8.0_.282005.29_Deprecat=
+ed_Function_Warnings"></a><h3> MSVC 8.0 (2005) Deprecated Function Warni=
+ngs </h3>
+<p>MS has created a bunch of new 'safe' CRT (C RunTime, MS's name for th=
+e C Standard Library) and C++ Standard Library routines (with new names)=
+.  The old 'unsafe' functions have been marked with a DEPRECATED keyword=
+ so they will generate a level 1 warnings (the highest level) unless _CR=
+T_SECURE_NO_DEPRECATE (for the C library) and _SCL_SECURE_NO_DEPRECATE (=
+for the C++ Standard Library) are defined or all deprecation warnings ar=
+e turned off with "#pragma warning(disable&nbsp;: 4996)".  Since the new=
+ MS functions are not cross platform (and probably never will be) future=
+ versions of wx will probably define _CRT_SECURE_NO_DEPRECATE.
+</p><p>In addition, MS has deprecated some of the POSIX-compliant functi=
+on names in favor of C Standard Library names. Define _CRT_NONSTDC_NO_DE=
+PRECATE to suppress those warnings.
+</p><p>Another solution (to make the warnings go away) for 2.6.0 is to a=
+dd the following code to your <a href=3D"/wiki/index.php?title=3DSetup.h=
+&amp;action=3Dedit" class=3D"new" title=3D"Setup.h">setup.h</a>:
+</p>
+<pre> #if (_MSC_VER &gt;=3D 1400)       // VC8+
+ #pragma warning(disable&nbsp;: 4996)    // Either disable all deprecati=
+on warnings,
+ // Or just turn off warnings about the newly deprecated CRT functions.
+ // #ifndef _CRT_SECURE_NO_DEPRECATE
+ // #define _CRT_SECURE_NO_DEPRECATE
+ // #endif
+ // #ifndef _CRT_NONSTDC_NO_DEPRECATE
+ // #define _CRT_NONSTDC_NO_DEPRECATE
+ // #endif
+ #endif   // VC8+
+</pre>
+<p>Adding this to your setup file will solve the problem for the wxWidge=
+ts libraries and for your own projects.  More information on these chang=
+es may be found <a href=3D"http://msdn2.microsoft.com/en-us/library/8ef0=
+s5kh.aspx" class=3D'external text' title=3D"http://msdn2.microsoft.com/e=
+n-us/library/8ef0s5kh.aspx" rel=3D"nofollow">here</a> and <a href=3D"htt=
+p://msdn2.microsoft.com/en-us/library/ms404746.aspx" class=3D'external t=
+ext' title=3D"http://msdn2.microsoft.com/en-us/library/ms404746.aspx" re=
+l=3D"nofollow">here</a>.
+</p><p>If you want to completely disable the warning in Visual Studio it=
+self, edit the corewin.vsprops file (or the corewin_express.vsprops if y=
+ou are using Visual Studio Express) in the "C:\Program Files\Microsoft V=
+isual Studio 8\VC\VCProjectDefaults" directory.  Add the following tag b=
+efore the final close tag of the file:
+</p>
+<pre>&lt;Tool Name=3D&quot;VCCLCompilerTool&quot; PreprocessorDefinition=
+s=3D&quot;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE&quot;/&gt;<=
+/pre>
+<p>Note that on some versions (well, Express downloaded in June 2006, an=
+yway) the tool name is "VCCompilerTool". If you use C++ Standard Library=
+ classes you may also want to add "_SCL_SECURE_NO_DEPRECATE" to the list=
+.
+</p>
+<div class=3D"editsection" style=3D"float:right;margin-left:5px;">[<a hr=
+ef=3D"/wiki/index.php?title=3DMicrosoft_Visual_CPP_Guide&amp;action=3Ded=
+it&amp;section=3D19" title=3D"Edit section: MSVC 8.0 (2005) Windows XP M=
+anifest Build Problems">edit</a>]</div><a name=3D"MSVC_8.0_.282005.29_Wi=
+ndows_XP_Manifest_Build_Problems"></a><h3> MSVC 8.0 (2005) Windows XP Ma=
+nifest Build Problems </h3>
+<p>MSVC 8.0 has changed the way manifests are embedded in your executabl=
+e.  Your project will not build if you include wx.manifest in your resou=
+rce file (tested with 2.6.0).
+</p><p>To solve this, exclude the manifest from your resources. In your =
+resource file:
+</p>
+<pre>// #define wxUSE_NO_MANIFEST 0	// comment this line out
+#define wxUSE_NO_MANIFEST 1	// and add this one</pre>
+<p>Then add these lines to your one of your source or header files to en=
+able XP-Style common controls:
+</p>
+<pre>#if defined(__WXMSW__) &amp;&amp;&nbsp;!defined(__WXWINCE__)
+#pragma comment(linker, &quot;\&quot;/manifestdependency:type=3D'win32' =
+name=3D'Microsoft.Windows.Common-Controls' version=3D'6.0.0.0' processor=
+Architecture=3D'X86' publicKeyToken=3D'6595b64144ccf1df'\&quot;&quot;)
+#endif</pre>
+<div class=3D"editsection" style=3D"float:right;margin-left:5px;">[<a hr=
+ef=3D"/wiki/index.php?title=3DMicrosoft_Visual_CPP_Guide&amp;action=3Ded=
+it&amp;section=3D20" title=3D"Edit section: External Links">edit</a>]</d=
+iv><a name=3D"External_Links"></a><h2> External Links </h2>
+<ul><li> <a href=3D"http://www.wxwidgets.org/technote/vc_ide.htm" class=3D=
+'external text' title=3D"http://www.wxwidgets.org/technote/vc_ide.htm" r=
+el=3D"nofollow">Compiling wxWidgets applications in the VC++ IDE</a>
+</li><li> <a href=3D"http://www.xs4all.nl/~jorgb/wxcrp/" class=3D'extern=
+al text' title=3D"http://www.xs4all.nl/~jorgb/wxcrp/" rel=3D"nofollow">w=
+xCRP</a> - Many useful project templates and code snippets.
+</li><li> <a href=3D"http://www.litwindow.com/" class=3D'external text' =
+title=3D"http://www.litwindow.com/" rel=3D"nofollow">Lit Window Producti=
+ons</a>: Additional help and tools for using wxWidgets with Visual Studi=
+o.
+</li><li> <a href=3D"http://www.drccpp.de/index.php?pwd=3D&amp;page=3Dwx=
+wiz" class=3D'external text' title=3D"http://www.drccpp.de/index.php?pwd=
+=3D&amp;page=3Dwxwiz" rel=3D"nofollow">A wizard able to create a minimal=
+ wxWidgets-project for MSVC.net</a>
+</li></ul>
+<div class=3D"printfooter">
+Retrieved from "<a href=3D"http://www.wxwidgets.org/wiki/index.php/Micro=
+soft_Visual_CPP_Guide">http://www.wxwidgets.org/wiki/index.php/Microsoft=
+_Visual_CPP_Guide</a>"</div>
+			<div id=3D"catlinks"><p class=3D'catlinks'><a href=3D"/wiki/index.php=
+?title=3DSpecial:Categories&amp;article=3DMicrosoft_Visual_CPP_Guide" ti=
+tle=3D"Special:Categories">Category</a>: <span dir=3D'ltr'><a href=3D"/w=
+iki/index.php?title=3DCategory:Articles_with_Unsupported_Titles&amp;acti=
+on=3Dedit" class=3D"new" title=3D"Category:Articles with Unsupported Tit=
+les">Articles with Unsupported Titles</a></span></p></div>			<!-- end co=
+ntent -->
+			<div class=3D"visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id=3D"column-one">
+	<div id=3D"p-cactions" class=3D"portlet">
+		<h5>Views</h5>
+		<ul>
+				 <li id=3D"ca-nstab-main" class=3D"selected"><a href=3D"/wiki/index.=
+php/Microsoft_Visual_CPP_Guide">Article</a></li>
+				 <li id=3D"ca-talk"><a href=3D"/wiki/index.php/Talk:Microsoft_Visual=
+_CPP_Guide">Discussion</a></li>
+				 <li id=3D"ca-edit"><a href=3D"/wiki/index.php?title=3DMicrosoft_Vis=
+ual_CPP_Guide&amp;action=3Dedit">Edit</a></li>
+				 <li id=3D"ca-history"><a href=3D"/wiki/index.php?title=3DMicrosoft_=
+Visual_CPP_Guide&amp;action=3Dhistory">History</a></li>
+		</ul>
+	</div>
+	<div class=3D"portlet" id=3D"p-personal">
+		<h5>Personal tools</h5>
+		<div class=3D"pBody">
+			<ul>
+				<li id=3D"pt-login"><a href=3D"/wiki/index.php?title=3DSpecial:Userl=
+ogin&amp;returnto=3DMicrosoft_Visual_CPP_Guide">Log in / create account<=
+/a></li>
+			</ul>
+		</div>
+	</div>
+	<div class=3D"portlet" id=3D"p-logo">
+		<a style=3D"background-image: url(/wiki/skins/common/images/wiki.png);=
+" href=3D"/wiki/index.php/Main_Page" title=3D"Main Page"></a>
+	</div>
+	<script type=3D"text/javascript"> if (window.isMSIE55) fixalpha(); </sc=
+ript>
+		<div class=3D'portlet' id=3D'p-wiki'>
+		<h5>wiki</h5>
+		<div class=3D'pBody'>
+			<ul>
+				<li id=3D"n-Main-Page"><a href=3D"/wiki/index.php/Main_Page">Main Pa=
+ge</a></li>
+				<li id=3D"n-General-Information"><a href=3D"/wiki/index.php/General_=
+Information">General Information</a></li>
+				<li id=3D"n-Tools"><a href=3D"/wiki/index.php/Tools">Tools</a></li>
+				<li id=3D"n-Resources"><a href=3D"/wiki/index.php/Resources">Resourc=
+es</a></li>
+				<li id=3D"n-Guides-and-Tutorials"><a href=3D"/wiki/index.php/Guides_=
+%26_Tutorials">Guides and Tutorials</a></li>
+				<li id=3D"n-Documentation"><a href=3D"/wiki/index.php/Documentation"=
+>Documentation</a></li>
+				<li id=3D"n-Development"><a href=3D"/wiki/index.php/Development">Dev=
+elopment</a></li>
+				<li id=3D"n-Recent-Changes"><a href=3D"/wiki/index.php/Special:Recen=
+tchanges">Recent Changes</a></li>
+			</ul>
+		</div>
+	</div>
+		<div class=3D'portlet' id=3D'p-other resources'>
+		<h5>other resources</h5>
+		<div class=3D'pBody'>
+			<ul>
+				<li id=3D"n-wxWidgets-Home"><a href=3D"http://www.wxwidgets.org/">wx=
+Widgets Home</a></li>
+				<li id=3D"n-Official-Documentation"><a href=3D"http://www.wxwidgets.=
+org/docs/">Official Documentation</a></li>
+				<li id=3D"n-Mailing-Lists"><a href=3D"http://www.wxwidgets.org/suppo=
+rt/maillst2.htm">Mailing Lists</a></li>
+				<li id=3D"n-Forums"><a href=3D"http://wxforum.shadonet.com/">Forums<=
+/a></li>
+				<li id=3D"n-Internet-Relay-Chat"><a href=3D"/wiki/index.php/IRC">Int=
+ernet Relay Chat</a></li>
+				<li id=3D"n-Donations"><a href=3D"http://www.wxwidgets.org/support/s=
+pi.htm">Donations</a></li>
+			</ul>
+		</div>
+	</div>
+		<div id=3D"p-search" class=3D"portlet">
+		<h5><label for=3D"searchInput">Search</label></h5>
+		<div id=3D"searchBody" class=3D"pBody">
+			<form action=3D"/wiki/index.php/Special:Search" id=3D"searchform"><di=
+v>
+				<input id=3D"searchInput" name=3D"search" type=3D"text" accesskey=3D=
+"f" value=3D"" />
+				<input type=3D'submit' name=3D"go" class=3D"searchButton" id=3D"sear=
+chGoButton"	value=3D"Go" />&nbsp;
+				<input type=3D'submit' name=3D"fulltext" class=3D"searchButton" valu=
+e=3D"Search" />
+			</div></form>
+		</div>
+	</div>
+	<div class=3D"portlet" id=3D"p-tb">
+		<h5>Toolbox</h5>
+		<div class=3D"pBody">
+			<ul>
+				<li id=3D"t-whatlinkshere"><a href=3D"/wiki/index.php/Special:Whatli=
+nkshere/Microsoft_Visual_CPP_Guide">What links here</a></li>
+				<li id=3D"t-recentchangeslinked"><a href=3D"/wiki/index.php/Special:=
+Recentchangeslinked/Microsoft_Visual_CPP_Guide">Related changes</a></li>=
+
+<li id=3D"t-specialpages"><a href=3D"/wiki/index.php/Special:Specialpage=
+s">Special pages</a></li>
+				<li id=3D"t-print"><a href=3D"/wiki/index.php?title=3DMicrosoft_Visu=
+al_CPP_Guide&amp;printable=3Dyes">Printable version</a></li>				<li id=3D=
+"t-permalink"><a href=3D"/wiki/index.php?title=3DMicrosoft_Visual_CPP_Gu=
+ide&amp;oldid=3D5390">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class=3D"visualClear"></div>
+			<div id=3D"footer">
+				<div id=3D"f-poweredbyico"><a href=3D"http://www.mediawiki.org/"><im=
+g src=3D"/wiki/skins/common/images/poweredby_mediawiki_88x31.png" alt=3D=
+"MediaWiki" /></a><a href=3D"http://sourceforge.net"><img src=3D"http://=
+sourceforge.net/sflogo.php?group_id=3D9863&type=3D1" width=3D"88" height=
+=3D"31" border=3D"0" alt=3D"Sourceforge.net Logo" /></a></div>
+			<ul id=3D"f-list">
+				<li id=3D"lastmod"> This page was last modified 21:22, 14 January 20=
+08.</li>
+				<li id=3D"viewcount">This page has been accessed 316,200 times.</li>=
+
+				<li id=3D"privacy"><a href=3D"/wiki/index.php/WxWiki:Privacy_policy"=
+ title=3D"WxWiki:Privacy policy">Privacy policy</a></li>
+				<li id=3D"about"><a href=3D"/wiki/index.php/WxWiki:About" title=3D"W=
+xWiki:About">About WxWiki</a></li>
+				<li id=3D"disclaimer"><a href=3D"/wiki/index.php/WxWiki:General_disc=
+laimer" title=3D"WxWiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+	<script type=3D"text/javascript"> if (window.runOnloadHook) runOnloadHo=
+ok();</script>
+</div>
+<!-- Served by sc8-pr-web4.sourceforge.net in 1.30 secs. -->
+</body></html>
+
+------------T54Xb2KNTFvcRpTu3xoBDG
+Content-Disposition: inline; filename=favicon.ico
+Content-Type: image/x-icon; name=favicon.ico
+Content-Location: http://www.wxwidgets.org/favicon.ico
+Content-Transfer-Encoding: Base64
+
+AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAA1NaeDPz/H9zQ0yvwuLs38KCjR/CIi0vIbG7lkAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAV1e++JWV8P9PT+f/RETp/zo6
+6/8yMu3/IyPH1AAAAAAAAAAALpubQDa7u74xwsLHK8XFxybJycchy8vDGre3Wm9v
+vvy1tfP/cnLq/1ZW5/9JSej/Pz/q/ysrwNkAAAAAAAAAAEi0tMyQ7+//Tejo/0Pp
+6f856+v/Me7u/yPNzfKPj8X8ycn1/5eX7v99fez/XV3m/05O5/81NbvZAAAAAAAA
+AABbtLTVtvPz/2zp6f9T5+f/R+jo/z3q6v8ryMj8nJzG/NTU9f+rq+7/mpru/4h/
+3v+PSID/lTVc8r0pKabBJCSmh6qq8M729v+V7u7/euvr/1rm5v9N5+f/NcLC/KCg
+wurY2PT/vLzv/66u7v+haIr/64SE/+hQUP/pQ0P/7Dk5/56np//Y9vb/qe7u/5ju
+7v+D7e3/bOvr/0vFxfx3d5pAjY2ypIWFsql7e7Gpl1hp3/GwsP/pbm7/51RU/+hH
+R/+npqb/3fb2/7vv7/+s7u7/nO7u/4ru7v9bw8P1AAAAAAAAAAAAAAAAAAAAAKlq
+aqH1zc3/75mZ/+x8fP/mW1v/xWho/6arq/+VvLzlisDA3n6/v95wvb3ZTJ6ebAAA
+AAAAAAAAAAAAAAAAAACtfHyh9tfX/++srP/umZn/7YSE/+pqav/WUVH/lS4uNAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAArYaGnfbf3//vvr7/7q2t/+6d
+nf/ui4v/1mlp/5Q2NjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJl1
+dT3CoKDpyJ6e/MaSkvzGhob8xXl5+6xYWLaTOzsEAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP//AAD//wAA//8AAIP/
+AACDwQAAg8EAAIPBAACAAQAA+AEAAPgfAAD4HwAA+B8AAP//AAD//wAA//8AAA==
+
+------------T54Xb2KNTFvcRpTu3xoBDG
+Content-Disposition: inline; filename=main.css
+Content-Type: text/css; name=main.css
+Content-Location: http://www.wxwidgets.org/wiki/skins/monobook/main.css?7
+Content-Transfer-Encoding: 8bit
+
+/*
+** MediaWiki 'monobook' style sheet for CSS2-capable browsers.
+** Copyright Gabriel Wicke - http://wikidev.net/
+** License: GPL (http://www.gnu.org/copyleft/gpl.html)
+**
+** Loosely based on http://www.positioniseverything.net/ordered-floats.html by Big John
+** and the Plone 2.0 styles, see http://plone.org/ (Alexander Limi,Joe Geldart & Tom Croucher,
+** Michael Zeltner and Geir Bækholt)
+** All you guys rock :)
+*/
+
+#column-content {
+	width: 100%;
+	float: right;
+	margin: 0 0 .6em -12.2em;
+	padding: 0;
+}
+#content {
+	margin: 2.8em 0 0 12.2em;
+	padding: 0 1em 1.5em 1em;
+	background: white;
+	color: black;
+	border: 1px solid #aaa;
+	border-right: none;
+	line-height: 1.5em;
+	position: relative;
+	z-index: 2;
+}
+#column-one {
+	padding-top: 160px;
+}
+/* the left column width is specified in class .portlet */
+
+/* Font size:
+** We take advantage of keyword scaling- browsers won't go below 9px
+** More at http://www.w3.org/2003/07/30-font-size
+** http://style.cleverchimp.com/font_size_intervals/altintervals.html
+*/
+
+body {
+	font: x-small sans-serif;
+	background: #f9f9f9 url(headbg.jpg) 0 0 no-repeat;
+	color: black;
+	margin: 0;
+	padding: 0;
+}
+
+/* scale back up to a sane default */
+#globalWrapper {
+	font-size: 127%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+.visualClear {
+	clear: both;
+}
+
+/* general styles */
+
+table {
+	background: white;
+	font-size: 100%;
+	color: black;
+}
+a {
+	text-decoration: none;
+	color: #002bb8;
+	background: none;
+}
+a:visited {
+	color: #5a3696;
+}
+a:active {
+	color: #faa700;
+}
+a:hover {
+	text-decoration: underline;
+}
+a.stub {
+	color: #772233;
+}
+a.new, #p-personal a.new {
+	color: #ba0000;
+}
+a.new:visited, #p-personal a.new:visited {
+	color: #a55858;
+}
+
+img {
+	border: none;
+	vertical-align: middle;
+}
+p {
+	margin: .4em 0 .5em 0;
+	line-height: 1.5em;
+}
+p img {
+	margin: 0;
+}
+
+hr {
+	height: 1px;
+	color: #aaa;
+	background-color: #aaa;
+	border: 0;
+	margin: .2em 0 .2em 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: black;
+	background: none;
+	font-weight: normal;
+	margin: 0;
+	padding-top: .5em;
+	padding-bottom: .17em;
+	border-bottom: 1px solid #aaa;
+}
+h1 { font-size: 188%; }
+h2 { font-size: 150%; }
+h3, h4, h5, h6 {
+	border-bottom: none;
+	font-weight: bold;
+}
+h3 { font-size: 132%; }
+h4 { font-size: 116%; }
+h5 { font-size: 100%; }
+h6 { font-size: 80%;  }
+
+ul {
+	line-height: 1.5em;
+	list-style-type: square;
+	margin: .3em 0 0 1.5em;
+	padding: 0;
+	list-style-image: url(bullet.gif);
+}
+ol {
+	line-height: 1.5em;
+	margin: .3em 0 0 3.2em;
+	padding: 0;
+	list-style-image: none;
+}
+li {
+	margin-bottom: .1em;
+}
+dt {
+	font-weight: bold;
+	margin-bottom: .1em;
+}
+dl {
+	margin-top: .2em;
+	margin-bottom: .5em;
+}
+dd {
+	line-height: 1.5em;
+	margin-left: 2em;
+	margin-bottom: .1em;
+}
+
+fieldset {
+	border: 1px solid #2f6fab;
+	margin: 1em 0 1em 0;
+	padding: 0 1em 1em;
+	line-height: 1.5em;
+}
+legend {
+	background: white;
+	padding: .5em;
+	font-size: 95%;
+}
+form {
+	border: none;
+	margin: 0;
+}
+
+textarea {
+	width: 100%;
+	padding: .1em;
+}
+
+input.historysubmit {
+	padding: 0 .3em .3em .3em !important;
+	font-size: 94%;
+	cursor: pointer;
+	height: 1.7em !important;
+	margin-left: 1.6em;
+}
+select {
+	vertical-align: top;
+}
+abbr, acronym, .explain {
+	border-bottom: 1px dotted black;
+	color: black;
+	background: none;
+	cursor: help;
+}
+q {
+	font-family: Times, "Times New Roman", serif;
+	font-style: italic;
+}
+/* disabled for now
+blockquote {
+	font-family: Times, "Times New Roman", serif;
+	font-style: italic;
+}*/
+code {
+	background-color: #f9f9f9;
+}
+pre {
+	padding: 1em;
+	border: 1px dashed #2f6fab;
+	color: black;
+	background-color: #f9f9f9;
+	line-height: 1.1em;
+}
+
+div.wxGeshiSyntax {
+	margin: 1em;
+	padding: 0;
+	border: 2px solid #88f;
+}
+div.wxGeshiSyntaxTitle {
+	margin: 0;
+	padding: 2px 4px;
+	background: #ccf;
+	font-weight: bold;
+}
+div.wxGeshiSyntax pre {
+	margin: 0;
+	padding: 0.7em;
+	border: none;
+}
+
+/*
+** the main content area
+*/
+
+#siteSub {
+	display: none;
+}
+
+#jump-to-nav {
+	display: none;
+}
+
+#contentSub, #contentSub2 {
+	font-size: 84%;
+	line-height: 1.2em;
+	margin: 0 0 1.4em 1em;
+	color: #7d7d7d;
+	width: auto;
+}
+span.subpages {
+	display: block;
+}
+
+/* Some space under the headers in the content area */
+#bodyContent h1, #bodyContent h2 {
+	margin-bottom: .6em;
+}
+#bodyContent h3, #bodyContent h4, #bodyContent h5 {
+	margin-bottom: .3em;
+}
+.firstHeading {
+	margin-bottom: .1em;
+}
+
+/* user notification thing */
+.usermessage {
+	background-color: #ffce7b;
+	border: 1px solid #ffa500;
+	color: black;
+	font-weight: bold;
+	margin: 2em 0 1em;
+	padding: .5em 1em;
+	vertical-align: middle;
+}
+#siteNotice {
+	text-align: center;
+	font-size: 95%;
+	padding: 0 .9em;
+}
+#siteNotice p {
+	margin: 0;
+	padding: 0;
+}
+.error {
+	color: red;
+	font-size: larger;
+}
+.errorbox, .successbox {
+	font-size: larger;
+	border: 2px solid;
+	padding: .5em 1em;
+	float: left;
+	margin-bottom: 2em;
+	color: #000;
+}
+.errorbox {
+	border-color: red;
+	background-color: #fff2f2;
+}
+.successbox {
+	border-color: green;
+	background-color: #dfd;
+}
+.errorbox h2, .successbox h2 {
+	font-size: 1em;
+	font-weight: bold;
+	display: inline;
+	margin: 0 .5em 0 0;
+	border: none;
+}
+
+#catlinks {
+	border: 1px solid #aaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	margin-top: 1em;
+	clear: both;
+}
+/* currently unused, intended to be used by a metadata box
+in the bottom-right corner of the content area */
+.documentDescription {
+	/* The summary text describing the document */
+	font-weight: bold;
+	display: block;
+	margin: 1em 0;
+	line-height: 1.5em;
+}
+.documentByLine {
+	text-align: right;
+	font-size: 90%;
+	clear: both;
+	font-weight: normal;
+	color: #76797c;
+}
+
+/* emulate center */
+.center {
+	width: 100%;
+	text-align: center;
+}
+*.center * {
+	margin-left: auto;
+	margin-right: auto;
+}
+/* small for tables and similar */
+.small, .small * {
+	font-size: 94%;
+}
+table.small {
+	font-size: 100%;
+}
+
+/*
+** content styles
+*/
+
+#toc,
+.toc,
+.mw-warning {
+	border: 1px solid #aaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	font-size: 95%;
+}
+#toc h2,
+.toc h2 {
+	display: inline;
+	border: none;
+	padding: 0;
+	font-size: 100%;
+	font-weight: bold;
+}
+#toc #toctitle,
+.toc #toctitle,
+#toc .toctitle,
+.toc .toctitle {
+	text-align: center;
+}
+#toc ul,
+.toc ul {
+	list-style-type: none;
+	list-style-image: none;
+	margin-left: 0;
+	padding-left: 0;
+	text-align: left;
+}
+#toc ul ul,
+.toc ul ul {
+	margin: 0 0 0 2em;
+}
+#toc .toctoggle,
+.toc .toctoggle {
+	font-size: 94%;
+}
+
+.mw-warning {
+	margin-left: 50px;
+	margin-right: 50px;
+	text-align: center;
+}
+
+/* images */
+div.floatright, table.floatright {
+	clear: right;
+	float: right;
+	position: relative;
+	margin: 0 0 .5em .5em;
+	border: 0;
+/*
+	border: .5em solid white;
+	border-width: .5em 0 .8em 1.4em;
+*/
+}
+div.floatright p { font-style: italic; }
+div.floatleft, table.floatleft {
+	float: left;
+	position: relative;
+	margin: 0 .5em .5em 0;
+	border: 0;
+/*
+	margin: .3em .5em .5em 0;
+	border: .5em solid white;
+	border-width: .5em 1.4em .8em 0;
+*/
+}
+div.floatleft p { font-style: italic; }
+/* thumbnails */
+div.thumb {
+	margin-bottom: .5em;
+	border-style: solid;
+	border-color: white;
+	width: auto;
+}
+div.thumb div {
+	border: 1px solid #ccc;
+	padding: 3px !important;
+	background-color: #f9f9f9;
+	font-size: 94%;
+	text-align: center;
+	overflow: hidden;
+}
+div.thumb div a img {
+	border: 1px solid #ccc;
+}
+div.thumb div div.thumbcaption {
+	border: none;
+	text-align: left;
+	line-height: 1.4em;
+	padding: .3em 0 .1em 0;
+}
+div.magnify {
+	float: right;
+	border: none !important;
+	background: none !important;
+}
+div.magnify a, div.magnify img {
+	display: block;
+	border: none !important;
+	background: none !important;
+}
+div.tright {
+	clear: right;
+	float: right;
+	border-width: .5em 0 .8em 1.4em;
+}
+div.tleft {
+	float: left;
+	margin-right: .5em;
+	border-width: .5em 1.4em .8em 0;
+}
+
+.hiddenStructure {
+	display: none;
+	speak: none;
+}
+img.tex {
+	vertical-align: middle;
+}
+span.texhtml {
+	font-family: serif;
+}
+
+/*
+** classes for special content elements like town boxes
+** intended to be referenced directly from the wiki src
+*/
+
+/*
+** User styles
+*/
+/* table standards */
+table.rimage {
+	float: right;
+	position: relative;
+	margin-left: 1em;
+	margin-bottom: 1em;
+	text-align: center;
+}
+.toccolours {
+	border: 1px solid #aaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	font-size: 95%;
+}
+div.townBox {
+	position: relative;
+	float: right;
+	background: white;
+	margin-left: 1em;
+	border: 1px solid gray;
+	padding: .3em;
+	width: 200px;
+	overflow: hidden;
+	clear: right;
+}
+div.townBox dl {
+	padding: 0;
+	margin: 0 0 .3em;
+	font-size: 96%;
+}
+div.townBox dl dt {
+	background: none;
+	margin: .4em 0 0;
+}
+div.townBox dl dd {
+	margin: .1em 0 0 1.1em;
+	background-color: #f3f3f3;
+}
+
+/*
+** edit views etc
+*/
+.special li {
+	line-height: 1.4em;
+	margin: 0;
+	padding: 0;
+}
+
+/* Page history styling */
+/* the auto-generated edit comments */
+.autocomment {
+	color: gray;
+}
+#pagehistory span.user {
+	margin-left: 1.4em;
+	margin-right: .4em;
+}
+#pagehistory span.minor {
+	font-weight: bold;
+}
+#pagehistory li {
+	border: 1px solid white;
+}
+#pagehistory li.selected {
+	background-color: #f9f9f9;
+	border: 1px dashed #aaa;
+}
+
+/*
+** Diff rendering
+*/
+table.diff, td.diff-otitle, td.diff-ntitle {
+	background-color: white;
+}
+td.diff-addedline {
+	background: #cfc;
+	font-size: smaller;
+}
+td.diff-deletedline {
+	background: #ffa;
+	font-size: smaller;
+}
+td.diff-context {
+	background: #eee;
+	font-size: smaller;
+}
+span.diffchange {
+	color: red;
+	font-weight: bold;
+}
+
+/*
+** keep the whitespace in front of the ^=, hides rule from konqueror
+** this is css3, the validator doesn't like it when validating as css2
+*/
+#bodyContent a.external,
+#bodyContent a[href ^="gopher://"] {
+	background: url(external.png) center right no-repeat;
+	padding-right: 13px;
+}
+#bodyContent a[href ^="https://"],
+.link-https {
+	background: url(lock_icon.gif) center right no-repeat;
+	padding-right: 16px;
+}
+#bodyContent a[href ^="mailto:"],
+.link-mailto {
+	background: url(mail_icon.gif) center right no-repeat;
+	padding-right: 18px;
+}
+#bodyContent a[href ^="news://"] {
+	background: url(news_icon.png) center right no-repeat;
+	padding-right: 18px;
+}
+#bodyContent a[href ^="ftp://"],
+.link-ftp {
+	background: url(file_icon.gif) center right no-repeat;
+	padding-right: 18px;
+}
+#bodyContent a[href ^="irc://"],
+.link-irc {
+	background: url(discussionitem_icon.gif) center right no-repeat;
+	padding-right: 18px;
+}
+/* disable interwiki styling */
+#bodyContent a.extiw,
+#bodyContent a.extiw:active {
+	color: #36b;
+	background: none;
+	padding: 0;
+}
+#bodyContent a.external {
+	color: #36b;
+}
+/* this can be used in the content area to switch off
+special external link styling */
+#bodyContent .plainlinks a {
+	background: none !important;
+	padding: 0 !important;
+}
+/*
+** Structural Elements
+*/
+
+/*
+** general portlet styles (elements in the quickbar)
+*/
+.portlet {
+	border: none;
+	margin: 0 0 .5em;
+	padding: 0;
+	float: none;
+	width: 11.6em;
+	overflow: hidden;
+}
+.portlet h4 {
+	font-size: 95%;
+	font-weight: normal;
+	white-space: nowrap;
+}
+.portlet h5 {
+	background: transparent;
+	padding: 0 1em 0 .5em;
+	display: inline;
+	height: 1em;
+	text-transform: lowercase;
+	font-size: 91%;
+	font-weight: normal;
+	white-space: nowrap;
+}
+.portlet h6 {
+	background: #ffae2e;
+	border: 1px solid #2f6fab;
+	border-style: solid solid none solid;
+	padding: 0 1em 0 1em;
+	text-transform: lowercase;
+	display: block;
+	font-size: 1em;
+	height: 1.2em;
+	font-weight: normal;
+	white-space: nowrap;
+}
+.pBody {
+	font-size: 95%;
+	background-color: white;
+	color: black;
+	border-collapse: collapse;
+	border: 1px solid #aaa;
+	padding: 0 .8em .3em .5em;
+}
+.portlet h1,
+.portlet h2,
+.portlet h3,
+.portlet h4 {
+	margin: 0;
+	padding: 0;
+}
+.portlet ul {
+	line-height: 1.5em;
+	list-style-type: square;
+	list-style-image: url(bullet.gif);
+	font-size: 95%;
+}
+.portlet li {
+	padding: 0;
+	margin: 0;
+}
+
+/*
+** Logo properties
+*/
+
+#p-logo {
+	z-index: 3;
+	position: absolute; /*needed to use z-index */
+	top: 0;
+	left: 0;
+	height: 155px;
+	width: 12em;
+	overflow: visible;
+}
+#p-logo h5 {
+	display: none;
+}
+#p-logo a,
+#p-logo a:hover {
+	display: block;
+	height: 155px;
+	width: 12.2em;
+	background-repeat: no-repeat;
+	background-position: 35% 50% !important;
+	text-decoration: none;
+}
+
+/*
+** the navigation portlet
+*/
+
+#p-navigation {
+	position: relative;
+	z-index: 3;
+}
+
+#p-navigation .pBody {
+	padding-right: 0;
+}
+
+#p-navigation a {
+	display: block;
+}
+
+#p-navigation li.active a, #p-navigation li.active a:hover {
+	text-decoration: none;
+	display: inline;
+	font-weight: bold;
+}
+
+
+/*
+** Search portlet
+*/
+#p-search {
+	position: relative;
+	z-index: 3;
+}
+input.searchButton {
+	margin-top: 1px;
+	font-size: 95%;
+}
+#searchGoButton {
+	padding-left: .5em;
+	padding-right: .5em;
+	font-weight: bold;
+}
+#searchInput {
+	width: 10.9em;
+	margin: 0;
+	font-size: 95%;
+}
+#p-search .pBody {
+	padding: .5em .4em .4em .4em;
+	text-align: center;
+}
+
+/*
+** the personal toolbar
+*/
+
+#p-personal {
+	width: 100%;
+	white-space: nowrap;
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 0;
+	border: none;
+	background: none;
+	overflow: visible;
+	line-height: 1.2em;
+}
+
+#p-personal h5 {
+	display: none;
+}
+#p-personal .portlet,
+#p-personal .pBody {
+	padding: 0;
+	margin: 0;
+	border: none;
+	z-index: 0;
+	overflow: visible;
+	background: none;
+}
+/* this is the ul contained in the portlet */
+#p-personal ul {
+	border: none;
+	line-height: 1.4em;
+	color: #2f6fab;
+	padding: 0 2em 0 3em;
+	margin: 0;
+	text-align: right;
+	text-transform: lowercase;
+	list-style: none;
+	z-index: 0;
+	background: none;
+	cursor: default;
+}
+#p-personal li {
+	z-index: 0;
+	border: none;
+	padding: 0;
+	display: inline;
+	color: #2f6fab;
+	margin-left: 1em;
+	line-height: 1.2em;
+	background: none;
+}
+#p-personal li.active {
+	font-weight: bold;
+}
+#p-personal li a {
+	text-decoration: none;
+	color: #005896;
+	padding-bottom: .2em;
+	background: none;
+}
+#p-personal li a:hover {
+	background-color: white;
+	padding-bottom: .2em;
+	text-decoration: none;
+}
+#p-personal li.active a:hover {
+	background-color: transparent;
+}
+/* the icon in front of the user name, single quotes
+in bg url to hide it from iemac */
+li#pt-userpage,
+li#pt-anonuserpage,
+li#pt-login {
+	background: url(user.gif) top left no-repeat;
+	padding-left: 20px;
+	text-transform: none;
+}
+
+/*
+** the page-related actions- page/talk, edit etc
+*/
+#p-cactions {
+	position: absolute;
+	top: 1.3em;
+	left: 11.5em;
+	margin: 0;
+	white-space: nowrap;
+	width: 76%;
+	line-height: 1.1em;
+	overflow: visible;
+	background: none;
+	border-collapse: collapse;
+	padding-left: 1em;
+	list-style: none;
+	font-size: 95%;
+}
+#p-cactions .hiddenStructure {
+	display: none;
+}
+#p-cactions ul {
+	list-style: none;
+}
+#p-cactions li {
+	display: inline;
+	border: 1px solid #aaa;
+	border-bottom: none;
+	padding: 0 0 .1em 0;
+	margin: 0 .3em 0 0;
+	overflow: visible;
+	background: white;
+}
+#p-cactions li.selected {
+	border-color: #fabd23;
+	padding: 0 0 .2em 0;
+	font-weight: bold;
+}
+#p-cactions li a {
+	background-color: #fbfbfb;
+	color: #002bb8;
+	border: none;
+	padding: 0 .8em .3em;
+	text-decoration: none;
+	text-transform: lowercase;
+	position: relative;
+	z-index: 0;
+	margin: 0;
+}
+#p-cactions li.selected a {
+	z-index: 3;
+		background-color: #fff;
+	padding: 0 1em .2em!important;
+}
+#p-cactions .new a {
+	color: #ba0000;
+}
+#p-cactions li a:hover {
+	z-index: 3;
+	text-decoration: none;
+		background-color: #fff;
+}
+#p-cactions h5 {
+	display: none;
+}
+#p-cactions li.istalk {
+	margin-right: 0;
+}
+#p-cactions li.istalk a {
+	padding-right: .5em;
+}
+#p-cactions #ca-addsection a {
+	padding-left: .4em;
+	padding-right: .4em;
+}
+/* offsets to distinguish the tab groups */
+li#ca-talk {
+	margin-right: 1.6em;
+}
+li#ca-watch, li#ca-unwatch, li#ca-varlang-0, li#ca-print {
+	margin-left: 1.6em;
+}
+
+/*
+** the remaining portlets
+*/
+#p-tbx,
+#p-lang {
+	position: relative;
+	z-index: 3;
+}
+
+/* TODO: #t-iscite is only used by the Cite extension, come up with some
+ * system which allows extensions to add to this file on the fly
+ */
+#t-ispermalink, #t-iscite {
+	color: #999;
+}
+/*
+** footer
+*/
+#footer {
+	background-color: white;
+	border-top: 1px solid #fabd23;
+	border-bottom: 1px solid #fabd23;
+	margin: .6em 0 1em 0;
+	padding: .4em 0 1.2em 0;
+	text-align: center;
+	font-size: 90%;
+}
+#footer li {
+	display: inline;
+	margin: 0 1.3em;
+}
+/* hide from incapable browsers */
+head:first-child+body #footer li { white-space: nowrap; }
+#f-poweredbyico, #f-copyrightico {
+	margin: 0 8px;
+	position: relative;
+	top: -2px; /* Bump it up just a tad */
+}
+#f-poweredbyico {
+	float: right;
+	height: 1%;
+}
+#f-copyrightico {
+	float: left;
+	height: 1%;
+}
+
+/* js pref toc */
+#preftoc {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	clear: both;
+}
+#preftoc li {
+	margin: 1px -2px 1px 2px;
+	float: left;
+	padding: 2px 0 3px 0;
+	background-color: #f0f0f0;
+	color: #000;
+	border: 1px solid #fff;
+	border-right-color: #716f64;
+	border-bottom: 0;
+	position: relative;
+	white-space: nowrap;
+	list-style-type: none;
+	list-style-image: none;
+	z-index: 3;
+}
+#preftoc li.selected {
+	font-weight: bold;
+	background-color: #f9f9f9;
+	border: 1px solid #aaa;
+	border-bottom: none;
+	cursor: default;
+	top: 1px;
+	padding-top: 2px;
+	margin-right: -3px;
+}
+#preftoc > li.selected {
+	top: 2px;
+}
+#preftoc a,
+#preftoc a:active {
+	display: block;
+	color: #000;
+	padding: 0 .7em;
+	position: relative;
+	text-decoration: none;
+}
+#preftoc li.selected a {
+	cursor: default;
+	text-decoration: none;
+}
+#prefcontrol {
+	padding-top: 2em;
+	clear: both;
+}
+#preferences {
+	margin: 0;
+	border: 1px solid #aaa;
+	clear: both;
+	padding: 1.5em;
+	background-color: #F9F9F9;
+}
+.prefsection {
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+.prefsection fieldset {
+	border: 1px solid #aaa;
+	float: left;
+	margin-right: 2em;
+}
+.prefsection legend {
+	font-weight: bold;   
+}
+.prefsection table, .prefsection legend {
+	background-color: #F9F9F9;
+}
+.mainLegend {
+	display: none;
+}
+div.prefsectiontip {
+	font-size: 95%;
+	margin-top: 0;
+	background-color: #FFC1C1;
+	padding: .2em .7em;
+	clear: both;
+}
+.btnSavePrefs {
+	font-weight: bold;
+	padding-left: .3em;
+	padding-right: .3em;
+}
+
+.preferences-login {
+	clear: both;
+	margin-bottom: 1.5em;
+}
+
+.prefcache {
+	font-size: 90%;
+	margin-top: 2em;
+}
+
+div#userloginForm form,
+div#userlogin form#userlogin2 {
+	margin: 0 3em 1em 0;
+	border: 1px solid #aaa;
+	clear: both;
+	padding: 1.5em 2em;
+	background-color: #f9f9f9;
+	float: left;
+}
+
+div#userloginForm table,
+div#userlogin form#userlogin2 table {
+	background-color: #f9f9f9;
+}
+
+div#userloginForm h2,
+div#userlogin form#userlogin2 h2 {
+	padding-top: 0;
+}
+
+div#userlogin .captcha {
+	border: 1px solid #bbb;
+	padding: 1.5em 2em;
+	width: 400px;
+	background-color: white;
+}
+
+
+#userloginprompt {
+	font-size: 85%;
+}
+
+#login-emailforlost {
+	font-size: 85%;
+	line-height: 1.2;
+	padding-top: 2em;
+}
+
+#userlogin .loginText, #userlogin .loginPassword {
+	width: 12em;
+}
+
+#userloginlink a, #wpLoginattempt, #wpCreateaccount {
+	font-weight: bold;
+}
+
+/*
+** IE/Mac fixes, hope to find a validating way to move this
+** to a separate stylesheet. This would work but doesn't validate:
+** @import("IEMacFixes.css");
+*/
+/* tabs: border on the a, not the div */
+* > html #p-cactions li { border: none; }
+* > html #p-cactions li a {
+	border: 1px solid #aaa;
+	border-bottom: none;
+}
+* > html #p-cactions li.selected a { border-color: #fabd23; }
+/* footer icons need a fixed width */
+* > html #f-poweredbyico,
+* > html #f-copyrightico { width: 88px; }
+* > html #bodyContent,
+* > html #bodyContent pre {
+	overflow-x: auto;
+	width: 100%;
+	padding-bottom: 25px;
+}
+
+/* more IE fixes */
+/* float/negative margin brokenness */
+* html #footer {margin-top: 0;}
+* html #column-content {
+	display: inline;
+	margin-bottom: 0;
+}
+* html div.editsection { font-size: smaller; }
+#pagehistory li.selected { position: relative; }
+
+/* Mac IE 5.0 fix; floated content turns invisible */
+* > html #column-content {
+	float: none;
+}
+* > html #column-one {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+* > html #footer {
+	margin-left: 13.2em;
+}
+.redirectText {
+	font-size: 150%;
+	margin: 5px;
+}
+
+.printfooter {
+	display: none;
+}
+
+.not-patrolled {
+	background-color: #ffa;
+}
+div.patrollink {
+	font-size: 75%;
+	text-align: right;
+}
+span.newpage, span.minor, span.searchmatch {
+	font-weight: bold;
+}
+span.unpatrolled {
+	font-weight: bold;
+	color: red;
+}
+
+span.searchmatch {
+	color: red;
+}
+.sharedUploadNotice {
+	font-style: italic;
+}
+
+span.updatedmarker {
+	color: black;
+	background-color: #0f0;
+}
+span.newpageletter {
+	font-weight: bold;
+	color: black;
+	background-color: yellow;
+}
+span.minoreditletter {
+	color: black;
+	background-color: #c5ffe6;
+}
+
+table.gallery {
+	border: 1px solid #ccc;
+	margin: 2px;
+	padding: 2px;
+	background-color: white;
+}
+
+table.gallery tr {
+	vertical-align: top;
+}
+
+table.gallery td {
+	vertical-align: top;
+	background-color: #f9f9f9;
+	border: solid 2px white;
+}
+
+div.gallerybox {
+	margin: 2px;
+	width:  150px;
+}
+
+div.gallerybox div.thumb {
+	text-align: center;
+	border: 1px solid #ccc;
+	margin: 2px;
+}
+
+div.gallerytext {
+	font-size: 94%;
+	padding: 2px 4px;
+}
+
+span.comment {
+	font-style: italic;
+}
+
+span.changedby {
+	font-size: 95%;
+}
+
+.previewnote {
+	text-indent: 3em;
+	color: #c00;
+	border-bottom: 1px solid #aaa;
+	padding-bottom: 1em;
+	margin-bottom: 1em;
+}
+
+.previewnote p {
+	margin: 0;
+	padding: 0;
+}
+
+.editExternally {
+	border: 1px solid gray;
+	background-color: #ffffff;
+	padding: 3px;
+	margin-top: 0.5em;
+	float: left;
+	font-size: small;
+	text-align: center;
+}
+.editExternallyHelp {
+	font-style: italic;
+	color: gray;
+}
+
+li span.deleted, span.history-deleted {
+	text-decoration: line-through;
+	color: #888;
+	font-style: italic;
+}
+
+.toggle {
+	margin-left: 2em;
+	text-indent: -2em;
+}
+
+/* Classes for EXIF data display */
+table.mw_metadata {
+	font-size: 0.8em;
+	margin-left: 0.5em;
+	margin-bottom: 0.5em;
+	width: 300px;
+}
+
+table.mw_metadata caption {
+	font-weight: bold;
+}
+
+table.mw_metadata th {
+	font-weight: normal;
+}
+
+table.mw_metadata td {
+	padding: 0.1em;
+}
+
+table.mw_metadata {
+	border: none;
+	border-collapse: collapse;
+}
+
+table.mw_metadata td, table.mw_metadata th {
+	text-align: center;
+	border: 1px solid #aaaaaa;
+	padding-left: 0.1em;
+	padding-right: 0.1em;
+}
+
+table.mw_metadata th {
+	background-color: #f9f9f9;
+}
+
+table.mw_metadata td {
+	background-color: #fcfcfc;
+}
+
+table.collapsed tr.collapsable {
+	display: none;
+}
+
+
+/* filetoc */
+ul#filetoc {
+	text-align: center;
+	border: 1px solid #aaaaaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	font-size: 95%;
+	margin-bottom: 0.5em;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+#filetoc li {
+	display: inline;
+	list-style-type: none;
+	padding-right: 2em;
+}
+
+/* @bug 1714 */
+input#wpSave, input#wpDiff {
+	margin-right: 0.33em;
+}
+
+#editform .editOptions {
+	display: inline;
+}
+
+#wpSave {
+	font-weight: bold;
+}
+
+/* Classes for article validation */
+
+table.revisionform_default {
+	border: 1px solid #000000;
+}
+
+table.revisionform_focus {
+	border: 1px solid #000000;
+	background-color:#00BBFF;
+}
+
+tr.revision_tr_default {
+	background-color:#EEEEEE;
+}
+
+tr.revision_tr_first {
+	background-color:#DDDDDD;
+}
+
+p.revision_saved {
+	color: green;
+	font-weight:bold;
+}
+
+#mw_trackbacks {
+	border: solid 1px #bbbbff;
+	background-color: #eeeeff;
+	padding: 0.2em;
+}
+
+
+/* Allmessages table */
+
+#allmessagestable th {
+	background-color: #b2b2ff;
+}
+
+#allmessagestable tr.orig {
+	background-color: #ffe2e2;
+}
+
+#allmessagestable tr.new {
+	background-color: #e2ffe2;
+}
+
+#allmessagestable tr.def {
+	background-color: #f0f0ff;
+}
+
+
+/* noarticletext */
+div.noarticletext {
+	border: 1px solid #ccc;
+	background: #fff;
+	padding: .2em 1em;
+	color: #000;
+}
+
+div#searchTargetContainer {
+	left:       10px;
+	top:        10px;
+	width:      90%;
+	background: white;
+}
+
+div#searchTarget {
+	padding:    3px;
+	margin:     5px;
+	background: #F0F0F0;
+	border:     solid 1px blue;
+}
+
+div#searchTarget ul li {
+	list-style: none;
+}
+
+div#searchTarget ul li:before {
+	color: orange;
+	content: "\00BB \0020";
+}
+
+
+------------T54Xb2KNTFvcRpTu3xoBDG
+Content-Disposition: inline; filename=headbg.jpg
+Content-Type: image/jpeg; name=headbg.jpg
+Content-Location: http://www.wxwidgets.org/wiki/skins/monobook/headbg.jpg
+Content-Transfer-Encoding: Base64
+
+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
+pqmqalFqtJUGrOhqk4mqUtJqampqa/RqapquqRhbcdOIbqoSWMoZnG01aiZjs3Gf
+tdoO6lFFFFFFFFJRRRRRytyX9LwVBqmpqUclytrcHACgBSUqKJRRQALZYAFFABQB
+SUUUlFFHK2XClAAAFABCoUAAAABQAFACoFAqKAhl2c6KXHu6AiZdkpKWkprGFopR
+FSlAEUAARQAAABFEVAAAKKKKKKAKKTU1TU1KkAoqDWDWE1NTU0NTQ1NV1gqFSWZT
+WzU1NTU1KWpOVv6WxSiiiiiikoooooooXkDgoopKWjkF4ABRAoACgABQBAUAEKKK
+KSiilLAoAFBBQAAAAAARQAQUAAAEyZoopfLVgkpRQUsKAAAAAAAAAAAAAFAUUUUU
+UUUUUUUAAAUUUmpRRRQFFFFFAJRRqUUUUUUUUUUampRSgBRRRRRRRRRRRRRQKBRS
+UUUoAABRQAUAFAAAFFABRRRRQFFFAFFFAUUAUACoUUFAABQAUAAUAoIqSlFFFLEK
+gUUUUAAoAioqCoKICiCgAAAAAAAAAAAAAAAIogKAAAAIoAigAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAD//Z
+------------T54Xb2KNTFvcRpTu3xoBDG
+Content-Disposition: inline; filename=bullet.gif
+Content-Type: image/gif; name=bullet.gif
+Content-Location: http://www.wxwidgets.org/wiki/skins/monobook/bullet.gif
+Content-Transfer-Encoding: Base64
+
+R0lGODlhBQANAIAAAGOMnP///yH5BAEAAAEALAAAAAAFAA0AAAIJjI+pu+APo4Sp
+ADs=
+
+------------T54Xb2KNTFvcRpTu3xoBDG
+Content-Disposition: inline; filename=external.png
+Content-Type: image/png; name=external.png
+Content-Location: http://www.wxwidgets.org/wiki/skins/monobook/external.png
+Content-Transfer-Encoding: Base64
+
+iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAMAAAC67D+PAAAAFVBMVEVmmcwzmcyZ
+zP8AZswAZv////////9E6giVAAAAB3RSTlP///////8AGksDRgAAADhJREFUGFcl
+y0ESAEAEA0Ei6/9P3sEcVB8kmrwFyni0bOeyyDpy9JTLEaOhQq7Ongf5FeMhHS/4
+AVnsAZubxDVmAAAAAElFTkSuQmCC
+------------T54Xb2KNTFvcRpTu3xoBDG
+Content-Disposition: inline; filename=user.gif
+Content-Type: image/gif; name=user.gif
+Content-Location: http://www.wxwidgets.org/wiki/skins/monobook/user.gif
+Content-Transfer-Encoding: Base64
+
+R0lGODlhEAAQAPcAAFtJMlpJNFxIMU5OTm2XH3aIVJNkK5FmMJZnPbt6NIZzXId0
+XpVwQZRzR5p7VI1+baZ3Tdl+Kt1/LIO2JYe5K4q8M4idYZKBbJK/QLqddZfDR5rF
+TZ/HVqfMZanNacKVWuKVQ+ejVuelVu21bPC/e5+XjKOjo7rXhr3aiM+1kNi4icff
+m8rio83jqNHmrtXotOPEl/HDg/LKjvfaq/ngut3Z1Nvrwd/tx/vqz+Hh4erq6v//
+/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAACH5BAEAADsALAAAAAAQABAAAAiBAHcIHEiwoMEaFxRcqGGQ
+YA0FDRgcEMCw4Y4FDlLA+GAAgMUdDzLQmBEjQYCPJVTIIBEiwoCPOkyIACEBQY6P
+O3RA2HnTYkwTI3CQGDCgJ8GYL1gUIGFBQ4WiBU3ccLHihAUOGChMeEnQhI0WE1B0
+2OCBwNaCRNOqJYqzrdu3BQMCADs=
+
+------------T54Xb2KNTFvcRpTu3xoBDG
+Content-Disposition: inline; filename=commonPrint.css
+Content-Type: text/css; name=commonPrint.css
+Content-Location: http://www.wxwidgets.org/wiki/skins/common/commonPrint.css
+Content-Transfer-Encoding: 8bit
+
+/*
+** MediaWiki Print style sheet for CSS2-capable browsers.
+** Copyright Gabriel Wicke, http://www.aulinx.de/
+**
+** Derived from the plone (http://plone.org/) styles
+** Copyright Alexander Limi
+*/
+
+/* Thanks to A List Apart (http://alistapart.com/) for useful extras */
+a.stub,
+a.new{ color:#ba0000; text-decoration:none; }
+
+#toc { 
+    /*border:1px solid #2f6fab;*/
+    border:1px solid #aaaaaa;
+    background-color:#f9f9f9;
+    padding:5px;
+}
+.tocindent {
+	margin-left: 2em;
+}
+.tocline {
+	margin-bottom: 0px;
+}
+.toctoggle, .editsection {
+	font-size: smaller;
+}
+
+/* images */
+div.floatright { 
+    float: right; 
+    margin: 0;
+    position:relative;
+    border: 0.5em solid White;
+    border-width: 0.5em 0 0.8em 1.4em;
+}
+div.floatright p { font-style: italic;} 
+div.floatleft { 
+    float: left; 
+    margin: 0.3em 0.5em 0.5em 0;
+    position:relative;
+    border: 0.5em solid White;
+    border-width: 0.5em 1.4em 0.8em 0;
+}
+div.floatleft p { font-style: italic; } 
+/* thumbnails */
+div.thumb {
+    margin-bottom: 0.5em;
+    border-style: solid; border-color: White;
+    width: auto;
+    overflow: hidden;
+}
+div.thumb div {
+    border:1px solid #cccccc;
+    padding: 3px !important;
+    background-color:#f9f9f9;
+    font-size: 94%;
+    text-align: center;
+}
+div.thumb div a img {
+    border:1px solid #cccccc;
+}
+div.thumb div div.thumbcaption {
+    border: none;
+    padding: 0.3em 0 0.1em 0;
+}
+div.magnify { display: none; }
+div.tright {
+    float: right;
+    border-width: 0.5em 0 0.8em 1.4em;
+}
+div.tleft {
+    float: left;
+    margin-right:0.5em;
+    border-width: 0.5em 1.4em 0.8em 0;
+}
+
+/* table standards */
+table.rimage {
+    float:right; 
+    width:1pt; 
+    position:relative;
+    margin-left:1em; 
+    margin-bottom:1em;
+    text-align:center;
+}
+
+body {
+    background: White;
+    /*font-size: 11pt !important;*/
+    color: Black;
+    margin: 0;
+    padding: 0;
+}
+
+.noprint,
+div#jump-to-nav,
+div.top,
+div#column-one,
+#colophon,
+.editsection,
+.toctoggle,
+.tochidden,
+div#f-poweredbyico,
+div#f-copyrightico,
+li#f-viewcount,
+li#f-about,
+li#f-disclaimer,
+li#f-privacy {
+    /* Hides all the elements irrelevant for printing */
+    display: none;
+}
+
+ul { 
+    list-style-type: square;
+}
+
+#content {
+    background: none;
+    border: none ! important;
+    font-size: 11pt;
+    padding: 0 ! important;
+    margin: 0 ! important;
+}
+#footer {
+	background : white;
+	color : black;
+    border-top: 1px solid black;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+    font-weight: bold;
+}
+
+p, .documentDescription {
+    margin: 1em 0 ! important;
+    line-height: 1.2em;    
+}
+
+.tocindent p {
+	margin: 0 0 0 0 ! important;
+}
+
+pre {
+    border: 1pt dashed black;
+    white-space: pre;
+    font-size: 8pt;
+    overflow: auto;
+    padding: 1em 0;
+	background : white;
+	color : black;
+}
+
+table.listing,
+table.listing td {
+    border: 1pt solid black;
+    border-collapse: collapse;
+}
+
+a {
+    color: Black !important;
+    padding: 0 !important
+}
+
+a:link, a:visited {
+    color: #520;
+    background: transparent;
+    text-decoration: underline;
+}
+
+#content a.external.text:after, #content a.external.autonumber:after {
+    /* Expand URLs for printing */
+    content: " (" attr(href) ") ";
+}
+
+#globalWrapper {
+    width: 100% !important;
+    min-width: 0 !important;
+}
+
+#content {
+	background : white;
+	color : black;
+}
+
+#column-content {
+    margin: 0 !important;
+}
+
+#column-content #content {
+    padding: 1em;
+    margin: 0 !important;
+}
+/* MSIE/Win doesn't understand 'inherit' */
+a, a.external, a.new, a.stub {
+	color: black ! important;
+	text-decoration: none ! important;
+}
+
+/* Continue ... */
+a, a.external, a.new, a.stub {
+	color: inherit ! important;
+	text-decoration: inherit ! important;
+}
+
+img { border: none; }
+img.tex { vertical-align: middle; }
+span.texhtml { font-family: serif; }
+
+div.townBox {
+    position:relative;
+    float:right;
+    background:White;
+    margin-left:1em;
+    border: 1px solid gray;
+    padding:0.3em;
+    width: 200px;
+    overflow: hidden;
+    clear: right;
+}
+div.townBox dl {
+    padding: 0;
+    margin: 0 0 0.3em 0; 
+    font-size: 96%;
+}
+div.townBox dl dt {
+    background: none;
+    margin: 0.4em 0 0 0;
+}
+div.townBox dl dd {
+    margin: 0.1em 0 0 1.1em;
+    background-color: #f3f3f3;
+}
+
+#siteNotice { display: none; }
+
+table.gallery {
+        border:  1px solid #cccccc;
+        margin:  2px;
+        padding: 2px;
+        background-color:#ffffff;
+}
+
+table.gallery tr { 
+        vertical-align:top;
+}
+
+div.gallerybox {
+        border: 1px solid #cccccc;
+        margin: 2px;
+        background-color:#f9f9f9;
+        width:  150px;
+}
+
+div.gallerybox div.thumb {
+        text-align: center;
+        border: 1px solid #cccccc;
+        margin: 2px;
+}       
+
+div.gallerytext {
+        font-size: 94%;
+        padding: 2px 4px;
+}       
+
+/*
+** Diff rendering
+*/
+table.diff { background:white; }
+td.diff-otitle { background:#ffffff; }
+td.diff-ntitle { background:#ffffff; }
+td.diff-addedline {
+    background:#ccffcc;
+    font-size: smaller;
+    border: solid 2px black;
+}
+td.diff-deletedline {
+    background:#ffffaa;
+    font-size: smaller;
+    border: dotted 2px black;
+}
+td.diff-context {
+    background:#eeeeee;
+    font-size: smaller;
+}
+span.diffchange { color: silver; font-weight: bold; text-decoration: underline; }
+
+
+------------T54Xb2KNTFvcRpTu3xoBDG
+Content-Disposition: inline; filename=wikibits.js
+Content-Type: application/x-javascript; name=wikibits.js
+Content-Location: http://www.wxwidgets.org/wiki/skins/common/wikibits.js
+Content-Transfer-Encoding: Base64
+
+Ly8gV2lraXBlZGlhIEphdmFTY3JpcHQgc3VwcG9ydCBmdW5jdGlvbnMKCnZhciBj
+bGllbnRQQyA9IG5hdmlnYXRvci51c2VyQWdlbnQudG9Mb3dlckNhc2UoKTsgLy8g
+R2V0IGNsaWVudCBpbmZvCnZhciBpc19nZWNrbyA9ICgoY2xpZW50UEMuaW5kZXhP
+ZignZ2Vja28nKSE9LTEpICYmIChjbGllbnRQQy5pbmRleE9mKCdzcG9vZmVyJyk9
+PS0xKQogICAgICAgICAgICAgICAgJiYgKGNsaWVudFBDLmluZGV4T2YoJ2todG1s
+JykgPT0gLTEpICYmIChjbGllbnRQQy5pbmRleE9mKCduZXRzY2FwZS83LjAnKT09
+LTEpKTsKdmFyIGlzX3NhZmFyaSA9ICgoY2xpZW50UEMuaW5kZXhPZignQXBwbGVX
+ZWJLaXQnKSE9LTEpICYmIChjbGllbnRQQy5pbmRleE9mKCdzcG9vZmVyJyk9PS0x
+KSk7CnZhciBpc19raHRtbCA9IChuYXZpZ2F0b3IudmVuZG9yID09ICdLREUnIHx8
+ICggZG9jdW1lbnQuY2hpbGROb2RlcyAmJiAhZG9jdW1lbnQuYWxsICYmICFuYXZp
+Z2F0b3IudGFpbnRFbmFibGVkICkpOwppZiAoY2xpZW50UEMuaW5kZXhPZignb3Bl
+cmEnKSAhPSAtMSkgewoJdmFyIGlzX29wZXJhID0gdHJ1ZTsKCXZhciBpc19vcGVy
+YV9wcmVzZXZlbiA9ICh3aW5kb3cub3BlcmEgJiYgIWRvY3VtZW50LmNoaWxkTm9k
+ZXMpOwoJdmFyIGlzX29wZXJhX3NldmVuID0gKHdpbmRvdy5vcGVyYSAmJiBkb2N1
+bWVudC5jaGlsZE5vZGVzKTsKfQoKLy8gYWRkIGFueSBvbmxvYWQgZnVuY3Rpb25z
+IGluIHRoaXMgaG9vayAocGxlYXNlIGRvbid0IGhhcmQtY29kZSBhbnkgZXZlbnRz
+IGluIHRoZSB4aHRtbCBzb3VyY2UpCgp2YXIgZG9uZU9ubG9hZEhvb2s7CgppZiAo
+IXdpbmRvdy5vbmxvYWRGdW5jdHMpCgl2YXIgb25sb2FkRnVuY3RzID0gW107Cgpm
+dW5jdGlvbiBhZGRPbmxvYWRIb29rKGhvb2tGdW5jdCkgewoJLy8gQWxsb3dzIGFk
+ZC1vbiBzY3JpcHRzIHRvIGFkZCBvbmxvYWQgZnVuY3Rpb25zCglvbmxvYWRGdW5j
+dHNbb25sb2FkRnVuY3RzLmxlbmd0aF0gPSBob29rRnVuY3Q7Cn0KCmZ1bmN0aW9u
+IHJ1bk9ubG9hZEhvb2soKSB7CgkvLyBkb24ndCBydW4gYW55dGhpbmcgYmVsb3cg
+dGhpcyBmb3Igbm9uLWRvbSBicm93c2VycwoJaWYgKGRvbmVPbmxvYWRIb29rIHx8
+ICEoZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQgJiYgZG9jdW1lbnQuZ2V0RWxlbWVu
+dHNCeVRhZ05hbWUpKQoJCXJldHVybjsKCgloaXN0cm93aW5pdCgpOwoJdW5oaWRl
+dHpidXR0b24oKTsKCXRhYmJlZHByZWZzKCk7Cglha2V5dHQoKTsKCXNjcm9sbEVk
+aXRCb3goKTsKCXNldHVwQ2hlY2tib3hTaGlmdENsaWNrKCk7CgoJLy8gUnVuIGFu
+eSBhZGRlZC1vbiBmdW5jdGlvbnMKCWZvciAodmFyIGkgPSAwOyBpIDwgb25sb2Fk
+RnVuY3RzLmxlbmd0aDsgaSsrKQoJCW9ubG9hZEZ1bmN0c1tpXSgpOwoKCWRvbmVP
+bmxvYWRIb29rID0gdHJ1ZTsKfQoKZnVuY3Rpb24gaG9va0V2ZW50KGhvb2tOYW1l
+LCBob29rRnVuY3QpIHsKCWlmICh3aW5kb3cuYWRkRXZlbnRMaXN0ZW5lcikKCQlh
+ZGRFdmVudExpc3RlbmVyKGhvb2tOYW1lLCBob29rRnVuY3QsIGZhbHNlKTsKCWVs
+c2UgaWYgKHdpbmRvdy5hdHRhY2hFdmVudCkKCQlhdHRhY2hFdmVudCgib24iICsg
+aG9va05hbWUsIGhvb2tGdW5jdCk7Cn0KCmhvb2tFdmVudCgibG9hZCIsIHJ1bk9u
+bG9hZEhvb2spOwoKLy8gZG9jdW1lbnQud3JpdGUgc3BlY2lhbCBzdHlsZXNoZWV0
+IGxpbmtzCmlmICh0eXBlb2Ygc3R5bGVwYXRoICE9ICd1bmRlZmluZWQnICYmIHR5
+cGVvZiBza2luICE9ICd1bmRlZmluZWQnKSB7CglpZiAoaXNfb3BlcmFfcHJlc2V2
+ZW4pIHsKCQlkb2N1bWVudC53cml0ZSgnPGxpbmsgcmVsPSJzdHlsZXNoZWV0IiB0
+eXBlPSJ0ZXh0L2NzcyIgaHJlZj0iJytzdHlsZXBhdGgrJy8nK3NraW4rJy9PcGVy
+YTZGaXhlcy5jc3MiPicpOwoJfSBlbHNlIGlmIChpc19vcGVyYV9zZXZlbikgewoJ
+CWRvY3VtZW50LndyaXRlKCc8bGluayByZWw9InN0eWxlc2hlZXQiIHR5cGU9InRl
+eHQvY3NzIiBocmVmPSInK3N0eWxlcGF0aCsnLycrc2tpbisnL09wZXJhN0ZpeGVz
+LmNzcyI+Jyk7Cgl9IGVsc2UgaWYgKGlzX2todG1sKSB7CgkJZG9jdW1lbnQud3Jp
+dGUoJzxsaW5rIHJlbD0ic3R5bGVzaGVldCIgdHlwZT0idGV4dC9jc3MiIGhyZWY9
+Iicrc3R5bGVwYXRoKycvJytza2luKycvS0hUTUxGaXhlcy5jc3MiPicpOwoJfQp9
+Ci8vIFVuLXRyYXAgdXMgZnJvbSBmcmFtZXNldHMKaWYgKHdpbmRvdy50b3AgIT0g
+d2luZG93KQoJd2luZG93LnRvcC5sb2NhdGlvbiA9IHdpbmRvdy5sb2NhdGlvbjsK
+Ci8vIGZvciBlbmhhbmNlZCBSZWNlbnRDaGFuZ2VzCmZ1bmN0aW9uIHRvZ2dsZVZp
+c2liaWxpdHkoX2xldmVsSWQsIF9vdGhlcklkLCBfbGlua0lkKSB7Cgl2YXIgdGhp
+c0xldmVsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoX2xldmVsSWQpOwoJdmFy
+IG90aGVyTGV2ZWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChfb3RoZXJJZCk7
+Cgl2YXIgbGlua0xldmVsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoX2xpbmtJ
+ZCk7CglpZiAodGhpc0xldmVsLnN0eWxlLmRpc3BsYXkgPT0gJ25vbmUnKSB7CgkJ
+dGhpc0xldmVsLnN0eWxlLmRpc3BsYXkgPSAnYmxvY2snOwoJCW90aGVyTGV2ZWwu
+c3R5bGUuZGlzcGxheSA9ICdub25lJzsKCQlsaW5rTGV2ZWwuc3R5bGUuZGlzcGxh
+eSA9ICdpbmxpbmUnOwoJfSBlbHNlIHsKCQl0aGlzTGV2ZWwuc3R5bGUuZGlzcGxh
+eSA9ICdub25lJzsKCQlvdGhlckxldmVsLnN0eWxlLmRpc3BsYXkgPSAnaW5saW5l
+JzsKCQlsaW5rTGV2ZWwuc3R5bGUuZGlzcGxheSA9ICdub25lJzsKCX0KfQoKLy8g
+cGFnZSBoaXN0b3J5IHN0dWZmCi8vIGF0dGFjaCBldmVudCBoYW5kbGVycyB0byB0
+aGUgaW5wdXQgZWxlbWVudHMgb24gaGlzdG9yeSBwYWdlCmZ1bmN0aW9uIGhpc3Ry
+b3dpbml0KCkgewoJdmFyIGhmID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3Bh
+Z2VoaXN0b3J5Jyk7CglpZiAoIWhmKQoJCXJldHVybjsKCXZhciBsaXMgPSBoZi5n
+ZXRFbGVtZW50c0J5VGFnTmFtZSgnbGknKTsKCWZvciAoaSA9IDA7IGkgPCBsaXMu
+bGVuZ3RoOyBpKyspIHsKCQl2YXIgaW5wdXRzID0gaGlzdG9yeVJhZGlvcyhsaXNb
+aV0pOwoJCWlmIChpbnB1dHNbMF0gJiYgaW5wdXRzWzFdKSB7CgkJCWlucHV0c1sw
+XS5vbmNsaWNrID0gZGlmZmNoZWNrOwoJCQlpbnB1dHNbMV0ub25jbGljayA9IGRp
+ZmZjaGVjazsKCQl9Cgl9CglkaWZmY2hlY2soKTsKfQoKZnVuY3Rpb24gaGlzdG9y
+eVJhZGlvcyhwYXJlbnQpIHsKCXZhciBpbnB1dHMgPSBwYXJlbnQuZ2V0RWxlbWVu
+dHNCeVRhZ05hbWUoJ2lucHV0Jyk7Cgl2YXIgcmFkaW9zID0gW107Cglmb3IgKHZh
+ciBpID0gMDsgaSA8IGlucHV0cy5sZW5ndGg7IGkrKykgewoJCWlmIChpbnB1dHNb
+aV0ubmFtZSA9PSAiZGlmZiIgfHwgaW5wdXRzW2ldLm5hbWUgPT0gIm9sZGlkIikK
+CQkJcmFkaW9zW3JhZGlvcy5sZW5ndGhdID0gaW5wdXRzW2ldOwoJfQoJcmV0dXJu
+IHJhZGlvczsKfQoKLy8gY2hlY2sgc2VsZWN0aW9uIGFuZCB0d2VhayB2aXNpYmls
+aXR5L2NsYXNzIG9uY2xpY2sKZnVuY3Rpb24gZGlmZmNoZWNrKCkgewoJdmFyIGRs
+aSA9IGZhbHNlOyAvLyB0aGUgbGkgd2hlcmUgdGhlIGRpZmYgcmFkaW8gaXMgY2hl
+Y2tlZAoJdmFyIG9saSA9IGZhbHNlOyAvLyB0aGUgbGkgd2hlcmUgdGhlIG9sZGlk
+IHJhZGlvIGlzIGNoZWNrZWQKCXZhciBoZiA9IGRvY3VtZW50LmdldEVsZW1lbnRC
+eUlkKCdwYWdlaGlzdG9yeScpOwoJaWYgKCFoZikKCQlyZXR1cm47Cgl2YXIgbGlz
+ID0gaGYuZ2V0RWxlbWVudHNCeVRhZ05hbWUoJ2xpJyk7Cglmb3IgKGk9MDtpPGxp
+cy5sZW5ndGg7aSsrKSB7CgkJdmFyIGlucHV0cyA9IGhpc3RvcnlSYWRpb3MobGlz
+W2ldKTsKCQlpZiAoaW5wdXRzWzFdICYmIGlucHV0c1swXSkgewoJCQlpZiAoaW5w
+dXRzWzFdLmNoZWNrZWQgfHwgaW5wdXRzWzBdLmNoZWNrZWQpIHsgLy8gdGhpcyBy
+b3cgaGFzIGEgY2hlY2tlZCByYWRpbyBidXR0b24KCQkJCWlmIChpbnB1dHNbMV0u
+Y2hlY2tlZCAmJiBpbnB1dHNbMF0uY2hlY2tlZCAmJiBpbnB1dHNbMF0udmFsdWUg
+PT0gaW5wdXRzWzFdLnZhbHVlKQoJCQkJCXJldHVybiBmYWxzZTsKCQkJCWlmIChv
+bGkpIHsgLy8gaXQncyB0aGUgc2Vjb25kIGNoZWNrZWQgcmFkaW8KCQkJCQlpZiAo
+aW5wdXRzWzFdLmNoZWNrZWQpIHsKCQkJCQkJb2xpLmNsYXNzTmFtZSA9ICJzZWxl
+Y3RlZCI7CgkJCQkJCXJldHVybiBmYWxzZQoJCQkJCX0KCQkJCX0gZWxzZSBpZiAo
+aW5wdXRzWzBdLmNoZWNrZWQpIHsKCQkJCQlyZXR1cm4gZmFsc2U7CgkJCQl9CgkJ
+CQlpZiAoaW5wdXRzWzBdLmNoZWNrZWQpCgkJCQkJZGxpID0gbGlzW2ldOwoJCQkJ
+aWYgKCFvbGkpCgkJCQkJaW5wdXRzWzBdLnN0eWxlLnZpc2liaWxpdHkgPSAnaGlk
+ZGVuJzsKCQkJCWlmIChkbGkpCgkJCQkJaW5wdXRzWzFdLnN0eWxlLnZpc2liaWxp
+dHkgPSAnaGlkZGVuJzsKCQkJCWxpc1tpXS5jbGFzc05hbWUgPSAic2VsZWN0ZWQi
+OwoJCQkJb2xpID0gbGlzW2ldOwoJCQl9ICBlbHNlIHsgLy8gbm8gcmFkaW8gaXMg
+Y2hlY2tlZCBpbiB0aGlzIHJvdwoJCQkJaWYgKCFvbGkpCgkJCQkJaW5wdXRzWzBd
+LnN0eWxlLnZpc2liaWxpdHkgPSAnaGlkZGVuJzsKCQkJCWVsc2UKCQkJCQlpbnB1
+dHNbMF0uc3R5bGUudmlzaWJpbGl0eSA9ICd2aXNpYmxlJzsKCQkJCWlmIChkbGkp
+CgkJCQkJaW5wdXRzWzFdLnN0eWxlLnZpc2liaWxpdHkgPSAnaGlkZGVuJzsKCQkJ
+CWVsc2UKCQkJCQlpbnB1dHNbMV0uc3R5bGUudmlzaWJpbGl0eSA9ICd2aXNpYmxl
+JzsKCQkJCWxpc1tpXS5jbGFzc05hbWUgPSAiIjsKCQkJfQoJCX0KCX0KfQoKLy8g
+Z2VuZXJhdGUgdG9jIGZyb20gcHJlZnMgZm9ybSwgZm9sZCBzZWN0aW9ucwovLyBY
+WFg6IG5lZWRzIHRlc3Rpbmcgb24gSUUvTWFjIGFuZCBzYWZhcmkKLy8gbW9yZSBj
+b21tZW50cyB0byBmb2xsb3cKZnVuY3Rpb24gdGFiYmVkcHJlZnMoKSB7Cgl2YXIg
+cHJlZmZvcm0gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncHJlZmVyZW5jZXMn
+KTsKCWlmICghcHJlZmZvcm0gfHwgIWRvY3VtZW50LmNyZWF0ZUVsZW1lbnQpCgkJ
+cmV0dXJuOwoJaWYgKHByZWZmb3JtLm5vZGVOYW1lLnRvTG93ZXJDYXNlKCkgPT0g
+J2EnKQoJCXJldHVybjsgLy8gT2NjYXNpb25hbCBJRSBwcm9ibGVtCglwcmVmZm9y
+bS5jbGFzc05hbWUgPSBwcmVmZm9ybS5jbGFzc05hbWUgKyAnanNwcmVmcyc7Cgl2
+YXIgc2VjdGlvbnMgPSBuZXcgQXJyYXkoKTsKCWNoaWxkcmVuID0gcHJlZmZvcm0u
+Y2hpbGROb2RlczsKCXZhciBzZWNpID0gMDsKCWZvciAoaSA9IDA7IGkgPCBjaGls
+ZHJlbi5sZW5ndGg7IGkrKykgewoJCWlmIChjaGlsZHJlbltpXS5ub2RlTmFtZS50
+b0xvd2VyQ2FzZSgpID09ICdmaWVsZHNldCcpIHsKCQkJY2hpbGRyZW5baV0uaWQg
+PSAncHJlZnNlY3Rpb24tJyArIHNlY2k7CgkJCWNoaWxkcmVuW2ldLmNsYXNzTmFt
+ZSA9ICdwcmVmc2VjdGlvbic7CgkJCWlmIChpc19vcGVyYSB8fCBpc19raHRtbCkK
+CQkJCWNoaWxkcmVuW2ldLmNsYXNzTmFtZSA9ICdwcmVmc2VjdGlvbiBvcGVyYXBy
+ZWZzZWN0aW9uJzsKCQkJbGVnZW5kcyA9IGNoaWxkcmVuW2ldLmdldEVsZW1lbnRz
+QnlUYWdOYW1lKCdsZWdlbmQnKTsKCQkJc2VjdGlvbnNbc2VjaV0gPSBuZXcgT2Jq
+ZWN0KCk7CgkJCWxlZ2VuZHNbMF0uY2xhc3NOYW1lID0gJ21haW5MZWdlbmQnOwoJ
+CQlpZiAobGVnZW5kc1swXSAmJiBsZWdlbmRzWzBdLmZpcnN0Q2hpbGQubm9kZVZh
+bHVlKQoJCQkJc2VjdGlvbnNbc2VjaV0udGV4dCA9IGxlZ2VuZHNbMF0uZmlyc3RD
+aGlsZC5ub2RlVmFsdWU7CgkJCWVsc2UKCQkJCXNlY3Rpb25zW3NlY2ldLnRleHQg
+PSAnIyAnICsgc2VjaTsKCQkJc2VjdGlvbnNbc2VjaV0uc2VjaWQgPSBjaGlsZHJl
+bltpXS5pZDsKCQkJc2VjaSsrOwoJCQlpZiAoc2VjdGlvbnMubGVuZ3RoICE9IDEp
+CgkJCQljaGlsZHJlbltpXS5zdHlsZS5kaXNwbGF5ID0gJ25vbmUnOwoJCQllbHNl
+CgkJCQl2YXIgc2VsZWN0ZWRpZCA9IGNoaWxkcmVuW2ldLmlkOwoJCX0KCX0KCXZh
+ciB0b2MgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCd1bCcpOwoJdG9jLmlkID0g
+J3ByZWZ0b2MnOwoJdG9jLnNlbGVjdGVkaWQgPSBzZWxlY3RlZGlkOwoJZm9yIChp
+ID0gMDsgaSA8IHNlY3Rpb25zLmxlbmd0aDsgaSsrKSB7CgkJdmFyIGxpID0gZG9j
+dW1lbnQuY3JlYXRlRWxlbWVudCgnbGknKTsKCQlpZiAoaSA9PSAwKQoJCQlsaS5j
+bGFzc05hbWUgPSAnc2VsZWN0ZWQnOwoJCXZhciBhID0gZG9jdW1lbnQuY3JlYXRl
+RWxlbWVudCgnYScpOwoJCWEuaHJlZiA9ICcjJyArIHNlY3Rpb25zW2ldLnNlY2lk
+OwoJCWEub25tb3VzZWRvd24gPSBhLm9uY2xpY2sgPSB1bmNvdmVyc2VjdGlvbjsK
+CQlhLmFwcGVuZENoaWxkKGRvY3VtZW50LmNyZWF0ZVRleHROb2RlKHNlY3Rpb25z
+W2ldLnRleHQpKTsKCQlhLnNlY2lkID0gc2VjdGlvbnNbaV0uc2VjaWQ7CgkJbGku
+YXBwZW5kQ2hpbGQoYSk7CgkJdG9jLmFwcGVuZENoaWxkKGxpKTsKCX0KCXByZWZm
+b3JtLnBhcmVudE5vZGUuaW5zZXJ0QmVmb3JlKHRvYywgcHJlZmZvcm0ucGFyZW50
+Tm9kZS5jaGlsZE5vZGVzWzBdKTsKCWRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdw
+cmVmc3VibWl0JykuaWQgPSAncHJlZmNvbnRyb2wnOwp9CgpmdW5jdGlvbiB1bmNv
+dmVyc2VjdGlvbigpIHsKCW9sZHNlY2lkID0gdGhpcy5wYXJlbnROb2RlLnBhcmVu
+dE5vZGUuc2VsZWN0ZWRpZDsKCW5ld3NlYyA9IGRvY3VtZW50LmdldEVsZW1lbnRC
+eUlkKHRoaXMuc2VjaWQpOwoJaWYgKG9sZHNlY2lkICE9IHRoaXMuc2VjaWQpIHsK
+CQl1bCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdwcmVmdG9jJyk7CgkJZG9j
+dW1lbnQuZ2V0RWxlbWVudEJ5SWQob2xkc2VjaWQpLnN0eWxlLmRpc3BsYXkgPSAn
+bm9uZSc7CgkJbmV3c2VjLnN0eWxlLmRpc3BsYXkgPSAnYmxvY2snOwoJCXVsLnNl
+bGVjdGVkaWQgPSB0aGlzLnNlY2lkOwoJCWxpcyA9IHVsLmdldEVsZW1lbnRzQnlU
+YWdOYW1lKCdsaScpOwoJCWZvciAoaSA9IDA7IGk8IGxpcy5sZW5ndGg7IGkrKykg
+ewoJCQlsaXNbaV0uY2xhc3NOYW1lID0gJyc7CgkJfQoJCXRoaXMucGFyZW50Tm9k
+ZS5jbGFzc05hbWUgPSAnc2VsZWN0ZWQnOwoJfQoJcmV0dXJuIGZhbHNlOwp9Cgov
+LyBUaW1lem9uZSBzdHVmZgovLyB0eiBpbiBmb3JtYXQgWystXUhITU0KZnVuY3Rp
+b24gY2hlY2tUaW1lem9uZSh0eiwgbXNnKSB7Cgl2YXIgbG9jYWxjbG9jayA9IG5l
+dyBEYXRlKCk7CgkvLyByZXR1cm5zIG5lZ2F0aXZlIG9mZnNldCBmcm9tIEdNVCBp
+biBtaW51dGVzCgl2YXIgdHpSYXcgPSBsb2NhbGNsb2NrLmdldFRpbWV6b25lT2Zm
+c2V0KCk7Cgl2YXIgdHpIb3VyID0gTWF0aC5mbG9vciggTWF0aC5hYnModHpSYXcp
+IC8gNjApOwoJdmFyIHR6TWluID0gTWF0aC5hYnModHpSYXcpICUgNjA7Cgl2YXIg
+dHpTdHJpbmcgPSAoKHR6UmF3ID49IDApID8gIi0iIDogIisiKSArICgodHpIb3Vy
+IDwgMTApID8gIjAiIDogIiIpICsgdHpIb3VyICsgKCh0ek1pbiA8IDEwKSA/ICIw
+IiA6ICIiKSArIHR6TWluOwoJaWYgKHR6ICE9IHR6U3RyaW5nKSB7CgkJdmFyIGp1
+bmsgPSBtc2cuc3BsaXQoJyQxJyk7CgkJZG9jdW1lbnQud3JpdGUoanVua1swXSAr
+ICJVVEMiICsgdHpTdHJpbmcgKyBqdW5rWzFdKTsKCX0KfQoKZnVuY3Rpb24gdW5o
+aWRldHpidXR0b24oKSB7Cgl0emIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgn
+Z3Vlc3N0aW1lem9uZWJ1dHRvbicpCglpZiAodHpiKQoJCXR6Yi5zdHlsZS5kaXNw
+bGF5ID0gJ2lubGluZSc7Cn0KCi8vIGluIFstXUhIOk1NIGZvcm1hdC4uLgovLyB3
+b24ndCB5ZXQgd29yayB3aXRoIG5vbi1ldmVuIHR6cwpmdW5jdGlvbiBmZXRjaFRp
+bWV6b25lKCkgewoJLy8gRklYTUU6IHdvcmsgYXJvdW5kIFNhZmFyaSBidWcKCXZh
+ciBsb2NhbGNsb2NrID0gbmV3IERhdGUoKTsKCS8vIHJldHVybnMgbmVnYXRpdmUg
+b2Zmc2V0IGZyb20gR01UIGluIG1pbnV0ZXMKCXZhciB0elJhdyA9IGxvY2FsY2xv
+Y2suZ2V0VGltZXpvbmVPZmZzZXQoKTsKCXZhciB0ekhvdXIgPSBNYXRoLmZsb29y
+KCBNYXRoLmFicyh0elJhdykgLyA2MCk7Cgl2YXIgdHpNaW4gPSBNYXRoLmFicyh0
+elJhdykgJSA2MDsKCXZhciB0elN0cmluZyA9ICgodHpSYXcgPj0gMCkgPyAiLSIg
+OiAiIikgKyAoKHR6SG91ciA8IDEwKSA/ICIwIiA6ICIiKSArIHR6SG91ciArCgkJ
+IjoiICsgKCh0ek1pbiA8IDEwKSA/ICIwIiA6ICIiKSArIHR6TWluOwoJcmV0dXJu
+IHR6U3RyaW5nOwp9CgpmdW5jdGlvbiBndWVzc1RpbWV6b25lKGJveCkgewoJZG9j
+dW1lbnQuZ2V0RWxlbWVudHNCeU5hbWUoIndwSG91ckRpZmYiKVswXS52YWx1ZSA9
+IGZldGNoVGltZXpvbmUoKTsKfQoKZnVuY3Rpb24gc2hvd1RvY1RvZ2dsZSgpIHsK
+CWlmIChkb2N1bWVudC5jcmVhdGVUZXh0Tm9kZSkgewoJCS8vIFVzZXMgRE9NIGNh
+bGxzIHRvIGF2b2lkIGRvY3VtZW50LndyaXRlICsgWEhUTUwgaXNzdWVzCgoJCXZh
+ciBsaW5rSG9sZGVyID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3RvY3RpdGxl
+JykKCQlpZiAoIWxpbmtIb2xkZXIpCgkJCXJldHVybjsKCgkJdmFyIG91dGVyU3Bh
+biA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ3NwYW4nKTsKCQlvdXRlclNwYW4u
+Y2xhc3NOYW1lID0gJ3RvY3RvZ2dsZSc7CgoJCXZhciB0b2dnbGVMaW5rID0gZG9j
+dW1lbnQuY3JlYXRlRWxlbWVudCgnYScpOwoJCXRvZ2dsZUxpbmsuaWQgPSAndG9n
+Z2xlbGluayc7CgkJdG9nZ2xlTGluay5jbGFzc05hbWUgPSAnaW50ZXJuYWwnOwoJ
+CXRvZ2dsZUxpbmsuaHJlZiA9ICdqYXZhc2NyaXB0OnRvZ2dsZVRvYygpJzsKCQl0
+b2dnbGVMaW5rLmFwcGVuZENoaWxkKGRvY3VtZW50LmNyZWF0ZVRleHROb2RlKHRv
+Y0hpZGVUZXh0KSk7CgoJCW91dGVyU3Bhbi5hcHBlbmRDaGlsZChkb2N1bWVudC5j
+cmVhdGVUZXh0Tm9kZSgnWycpKTsKCQlvdXRlclNwYW4uYXBwZW5kQ2hpbGQodG9n
+Z2xlTGluayk7CgkJb3V0ZXJTcGFuLmFwcGVuZENoaWxkKGRvY3VtZW50LmNyZWF0
+ZVRleHROb2RlKCddJykpOwoKCQlsaW5rSG9sZGVyLmFwcGVuZENoaWxkKGRvY3Vt
+ZW50LmNyZWF0ZVRleHROb2RlKCcgJykpOwoJCWxpbmtIb2xkZXIuYXBwZW5kQ2hp
+bGQob3V0ZXJTcGFuKTsKCgkJdmFyIGNvb2tpZVBvcyA9IGRvY3VtZW50LmNvb2tp
+ZS5pbmRleE9mKCJoaWRldG9jPSIpOwoJCWlmIChjb29raWVQb3MgPiAtMSAmJiBk
+b2N1bWVudC5jb29raWUuY2hhckF0KGNvb2tpZVBvcyArIDgpID09IDEpCgkJCXRv
+Z2dsZVRvYygpOwoJfQp9CgpmdW5jdGlvbiBjaGFuZ2VUZXh0KGVsLCBuZXdUZXh0
+KSB7CgkvLyBTYWZhcmkgd29yayBhcm91bmQKCWlmIChlbC5pbm5lclRleHQpCgkJ
+ZWwuaW5uZXJUZXh0ID0gbmV3VGV4dDsKCWVsc2UgaWYgKGVsLmZpcnN0Q2hpbGQg
+JiYgZWwuZmlyc3RDaGlsZC5ub2RlVmFsdWUpCgkJZWwuZmlyc3RDaGlsZC5ub2Rl
+VmFsdWUgPSBuZXdUZXh0Owp9CgpmdW5jdGlvbiB0b2dnbGVUb2MoKSB7Cgl2YXIg
+dG9jID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3RvYycpLmdldEVsZW1lbnRz
+QnlUYWdOYW1lKCd1bCcpWzBdOwoJdmFyIHRvZ2dsZUxpbmsgPSBkb2N1bWVudC5n
+ZXRFbGVtZW50QnlJZCgndG9nZ2xlbGluaycpCgoJaWYgKHRvYyAmJiB0b2dnbGVM
+aW5rICYmIHRvYy5zdHlsZS5kaXNwbGF5ID09ICdub25lJykgewoJCWNoYW5nZVRl
+eHQodG9nZ2xlTGluaywgdG9jSGlkZVRleHQpOwoJCXRvYy5zdHlsZS5kaXNwbGF5
+ID0gJ2Jsb2NrJzsKCQlkb2N1bWVudC5jb29raWUgPSAiaGlkZXRvYz0wIjsKCX0g
+ZWxzZSB7CgkJY2hhbmdlVGV4dCh0b2dnbGVMaW5rLCB0b2NTaG93VGV4dCk7CgkJ
+dG9jLnN0eWxlLmRpc3BsYXkgPSAnbm9uZSc7CgkJZG9jdW1lbnQuY29va2llID0g
+ImhpZGV0b2M9MSI7Cgl9Cn0KCi8vIHRoaXMgZnVuY3Rpb24gZ2VuZXJhdGVzIHRo
+ZSBhY3R1YWwgdG9vbGJhciBidXR0b25zIHdpdGggbG9jYWxpemVkIHRleHQKLy8g
+d2UgdXNlIGl0IHRvIGF2b2lkIGNyZWF0aW5nIHRoZSB0b29sYmFyIHdoZXJlIGph
+dmFzY3JpcHQgaXMgbm90IGVuYWJsZWQKZnVuY3Rpb24gYWRkQnV0dG9uKGltYWdl
+RmlsZSwgc3BlZWRUaXAsIHRhZ09wZW4sIHRhZ0Nsb3NlLCBzYW1wbGVUZXh0KSB7
+CgkvLyBEb24ndCBnZW5lcmF0ZSBidXR0b25zIGZvciBicm93c2VycyB3aGljaCBk
+b24ndCBmdWxseQoJLy8gc3VwcG9ydCBpdC4KCWlmICghZG9jdW1lbnQuc2VsZWN0
+aW9uICYmICFpc19nZWNrbykgewoJCXJldHVybiBmYWxzZTsKCX0KCWltYWdlRmls
+ZSA9IGVzY2FwZVF1b3Rlc0hUTUwoaW1hZ2VGaWxlKTsKCXNwZWVkVGlwID0gZXNj
+YXBlUXVvdGVzSFRNTChzcGVlZFRpcCk7Cgl0YWdPcGVuID0gZXNjYXBlUXVvdGVz
+KHRhZ09wZW4pOwoJdGFnQ2xvc2UgPSBlc2NhcGVRdW90ZXModGFnQ2xvc2UpOwoJ
+c2FtcGxlVGV4dCA9IGVzY2FwZVF1b3RlcyhzYW1wbGVUZXh0KTsKCXZhciBtb3Vz
+ZU92ZXIgPSAiIjsKCglkb2N1bWVudC53cml0ZSgiPGEgaHJlZj1cImphdmFzY3Jp
+cHQ6aW5zZXJ0VGFncyIpOwoJZG9jdW1lbnQud3JpdGUoIignIit0YWdPcGVuKyIn
+LCciK3RhZ0Nsb3NlKyInLCciK3NhbXBsZVRleHQrIicpO1wiPiIpOwoJZG9jdW1l
+bnQud3JpdGUoIjxpbWcgd2lkdGg9XCIyM1wiIGhlaWdodD1cIjIyXCIgc3JjPVwi
+IitpbWFnZUZpbGUrIlwiIGJvcmRlcj1cIjBcIiBhbHQ9XCIiK3NwZWVkVGlwKyJc
+IiB0aXRsZT1cIiIrc3BlZWRUaXArIlwiIittb3VzZU92ZXIrIj4iKTsKCWRvY3Vt
+ZW50LndyaXRlKCI8L2E+Iik7CglyZXR1cm47Cn0KCmZ1bmN0aW9uIGVzY2FwZVF1
+b3Rlcyh0ZXh0KSB7Cgl2YXIgcmUgPSBuZXcgUmVnRXhwKCInIiwiZyIpOwoJdGV4
+dCA9IHRleHQucmVwbGFjZShyZSwiXFwnIik7CglyZSA9IG5ldyBSZWdFeHAoIlxc
+biIsImciKTsKCXRleHQgPSB0ZXh0LnJlcGxhY2UocmUsIlxcbiIpOwoJcmV0dXJu
+IGVzY2FwZVF1b3Rlc0hUTUwodGV4dCk7Cn0KCmZ1bmN0aW9uIGVzY2FwZVF1b3Rl
+c0hUTUwodGV4dCkgewoJdmFyIHJlID0gbmV3IFJlZ0V4cCgnJicsImciKTsKCXRl
+eHQgPSB0ZXh0LnJlcGxhY2UocmUsIiZhbXA7Iik7Cgl2YXIgcmUgPSBuZXcgUmVn
+RXhwKCciJywiZyIpOwoJdGV4dCA9IHRleHQucmVwbGFjZShyZSwiJnF1b3Q7Iik7
+Cgl2YXIgcmUgPSBuZXcgUmVnRXhwKCc8JywiZyIpOwoJdGV4dCA9IHRleHQucmVw
+bGFjZShyZSwiJmx0OyIpOwoJdmFyIHJlID0gbmV3IFJlZ0V4cCgnPicsImciKTsK
+CXRleHQgPSB0ZXh0LnJlcGxhY2UocmUsIiZndDsiKTsKCXJldHVybiB0ZXh0Owp9
+CgovLyBhcHBseSB0YWdPcGVuL3RhZ0Nsb3NlIHRvIHNlbGVjdGlvbiBpbiB0ZXh0
+YXJlYSwKLy8gdXNlIHNhbXBsZVRleHQgaW5zdGVhZCBvZiBzZWxlY3Rpb24gaWYg
+dGhlcmUgaXMgbm9uZQovLyBjb3BpZWQgYW5kIGFkYXB0ZWQgZnJvbSBwaHBCQgpm
+dW5jdGlvbiBpbnNlcnRUYWdzKHRhZ09wZW4sIHRhZ0Nsb3NlLCBzYW1wbGVUZXh0
+KSB7CglpZiAoZG9jdW1lbnQuZWRpdGZvcm0pCgkJdmFyIHR4dGFyZWEgPSBkb2N1
+bWVudC5lZGl0Zm9ybS53cFRleHRib3gxOwoJZWxzZSB7CgkJLy8gc29tZSBhbHRl
+cm5hdGUgZm9ybT8gdGFrZSB0aGUgZmlyc3Qgb25lIHdlIGNhbiBmaW5kCgkJdmFy
+IGFyZWFzID0gZG9jdW1lbnQuZ2V0RWxlbWVudHNCeVRhZ05hbWUoJ3RleHRhcmVh
+Jyk7CgkJdmFyIHR4dGFyZWEgPSBhcmVhc1swXTsKCX0KCgkvLyBJRQoJaWYgKGRv
+Y3VtZW50LnNlbGVjdGlvbiAgJiYgIWlzX2dlY2tvKSB7CgkJdmFyIHRoZVNlbGVj
+dGlvbiA9IGRvY3VtZW50LnNlbGVjdGlvbi5jcmVhdGVSYW5nZSgpLnRleHQ7CgkJ
+aWYgKCF0aGVTZWxlY3Rpb24pCgkJCXRoZVNlbGVjdGlvbj1zYW1wbGVUZXh0OwoJ
+CXR4dGFyZWEuZm9jdXMoKTsKCQlpZiAodGhlU2VsZWN0aW9uLmNoYXJBdCh0aGVT
+ZWxlY3Rpb24ubGVuZ3RoIC0gMSkgPT0gIiAiKSB7IC8vIGV4Y2x1ZGUgZW5kaW5n
+IHNwYWNlIGNoYXIsIGlmIGFueQoJCQl0aGVTZWxlY3Rpb24gPSB0aGVTZWxlY3Rp
+b24uc3Vic3RyaW5nKDAsIHRoZVNlbGVjdGlvbi5sZW5ndGggLSAxKTsKCQkJZG9j
+dW1lbnQuc2VsZWN0aW9uLmNyZWF0ZVJhbmdlKCkudGV4dCA9IHRhZ09wZW4gKyB0
+aGVTZWxlY3Rpb24gKyB0YWdDbG9zZSArICIgIjsKCQl9IGVsc2UgewoJCQlkb2N1
+bWVudC5zZWxlY3Rpb24uY3JlYXRlUmFuZ2UoKS50ZXh0ID0gdGFnT3BlbiArIHRo
+ZVNlbGVjdGlvbiArIHRhZ0Nsb3NlOwoJCX0KCgkvLyBNb3ppbGxhCgl9IGVsc2Ug
+aWYodHh0YXJlYS5zZWxlY3Rpb25TdGFydCB8fCB0eHRhcmVhLnNlbGVjdGlvblN0
+YXJ0ID09ICcwJykgewoJCXZhciByZXBsYWNlZCA9IGZhbHNlOwoJCXZhciBzdGFy
+dFBvcyA9IHR4dGFyZWEuc2VsZWN0aW9uU3RhcnQ7CgkJdmFyIGVuZFBvcyA9IHR4
+dGFyZWEuc2VsZWN0aW9uRW5kOwoJCWlmIChlbmRQb3Mtc3RhcnRQb3MpCgkJCXJl
+cGxhY2VkID0gdHJ1ZTsKCQl2YXIgc2Nyb2xsVG9wID0gdHh0YXJlYS5zY3JvbGxU
+b3A7CgkJdmFyIG15VGV4dCA9ICh0eHRhcmVhLnZhbHVlKS5zdWJzdHJpbmcoc3Rh
+cnRQb3MsIGVuZFBvcyk7CgkJaWYgKCFteVRleHQpCgkJCW15VGV4dD1zYW1wbGVU
+ZXh0OwoJCWlmIChteVRleHQuY2hhckF0KG15VGV4dC5sZW5ndGggLSAxKSA9PSAi
+ICIpIHsgLy8gZXhjbHVkZSBlbmRpbmcgc3BhY2UgY2hhciwgaWYgYW55CgkJCXN1
+YnN0ID0gdGFnT3BlbiArIG15VGV4dC5zdWJzdHJpbmcoMCwgKG15VGV4dC5sZW5n
+dGggLSAxKSkgKyB0YWdDbG9zZSArICIgIjsKCQl9IGVsc2UgewoJCQlzdWJzdCA9
+IHRhZ09wZW4gKyBteVRleHQgKyB0YWdDbG9zZTsKCQl9CgkJdHh0YXJlYS52YWx1
+ZSA9IHR4dGFyZWEudmFsdWUuc3Vic3RyaW5nKDAsIHN0YXJ0UG9zKSArIHN1YnN0
+ICsKCQkJdHh0YXJlYS52YWx1ZS5zdWJzdHJpbmcoZW5kUG9zLCB0eHRhcmVhLnZh
+bHVlLmxlbmd0aCk7CgkJdHh0YXJlYS5mb2N1cygpOwoJCS8vc2V0IG5ldyBzZWxl
+Y3Rpb24KCQlpZiAocmVwbGFjZWQpIHsKCQkJdmFyIGNQb3MgPSBzdGFydFBvcyso
+dGFnT3Blbi5sZW5ndGgrbXlUZXh0Lmxlbmd0aCt0YWdDbG9zZS5sZW5ndGgpOwoJ
+CQl0eHRhcmVhLnNlbGVjdGlvblN0YXJ0ID0gY1BvczsKCQkJdHh0YXJlYS5zZWxl
+Y3Rpb25FbmQgPSBjUG9zOwoJCX0gZWxzZSB7CgkJCXR4dGFyZWEuc2VsZWN0aW9u
+U3RhcnQgPSBzdGFydFBvcyt0YWdPcGVuLmxlbmd0aDsKCQkJdHh0YXJlYS5zZWxl
+Y3Rpb25FbmQgPSBzdGFydFBvcyt0YWdPcGVuLmxlbmd0aCtteVRleHQubGVuZ3Ro
+OwoJCX0KCQl0eHRhcmVhLnNjcm9sbFRvcCA9IHNjcm9sbFRvcDsKCgkvLyBBbGwg
+b3RoZXIgYnJvd3NlcnMgZ2V0IG5vIHRvb2xiYXIuCgkvLyBUaGVyZSB3YXMgcHJl
+dmlvdXNseSBzdXBwb3J0IGZvciBhIGNyaXBwbGVkICJoZWxwIgoJLy8gYmFyLCBi
+dXQgdGhhdCBjYXVzZWQgbW9yZSBwcm9ibGVtcyB0aGFuIGl0IHNvbHZlZC4KCX0K
+CS8vIHJlcG9zaXRpb24gY3Vyc29yIGlmIHBvc3NpYmxlCglpZiAodHh0YXJlYS5j
+cmVhdGVUZXh0UmFuZ2UpCgkJdHh0YXJlYS5jYXJldFBvcyA9IGRvY3VtZW50LnNl
+bGVjdGlvbi5jcmVhdGVSYW5nZSgpLmR1cGxpY2F0ZSgpOwp9CgpmdW5jdGlvbiBh
+a2V5dHQoKSB7CglpZiAodHlwZW9mIHRhID09ICJ1bmRlZmluZWQiIHx8ICF0YSkK
+CQlyZXR1cm47Cgl2YXIgcHJlZiA9ICdhbHQtJzsKCWlmIChpc19zYWZhcmkgfHwg
+bmF2aWdhdG9yLnVzZXJBZ2VudC50b0xvd2VyQ2FzZSgpLmluZGV4T2YoJ21hYycp
+ICsgMQoJCXx8IG5hdmlnYXRvci51c2VyQWdlbnQudG9Mb3dlckNhc2UoKS5pbmRl
+eE9mKCdrb25xdWVyb3InKSArIDEgKQoJCXByZWYgPSAnY29udHJvbC0nOwoJaWYg
+KGlzX29wZXJhKQoJCXByZWYgPSAnc2hpZnQtZXNjLSc7CgoJZm9yICh2YXIgaWQg
+aW4gdGEpIHsKCQl2YXIgbiA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKGlkKTsK
+CQlpZiAobikgewoJCQl2YXIgYSA9IG51bGw7CgkJCXZhciBhayA9ICcnOwoJCQkv
+LyBBcmUgd2UgcHV0dGluZyBhY2Nlc3NrZXkgaW4gaXQKCQkJaWYgKHRhW2lkXVsw
+XS5sZW5ndGggPiAwKSB7CgkJCQkvLyBJcyB0aGlzIG9iamVjdCBhIG9iamVjdD8g
+SWYgbm90IGFzc3VtZSBpdCdzIHRoZSBuZXh0IGNoaWxkLgoKCQkJCWlmIChuLm5v
+ZGVOYW1lLnRvTG93ZXJDYXNlKCkgPT0gImEiKSB7CgkJCQkJYSA9IG47CgkJCQl9
+IGVsc2UgewoJCQkJCWEgPSBuLmNoaWxkTm9kZXNbMF07CgkJCQl9CgoJCQkJaWYg
+KGEpIHsKCQkJCQlhLmFjY2Vzc0tleSA9IHRhW2lkXVswXTsKCQkJCQlhayA9ICcg
+WycrcHJlZit0YVtpZF1bMF0rJ10nOwoJCQkJfQoJCQl9IGVsc2UgewoJCQkJLy8g
+V2UgZG9uJ3QgY2FyZSB3aGF0IHR5cGUgdGhlIG9iamVjdCBpcyB3aGVuIGFzc2ln
+bmluZyB0b29sdGlwCgkJCQlhID0gbjsKCQkJCWFrID0gJyc7CgkJCX0KCgkJCWlm
+IChhKSB7CgkJCQlhLnRpdGxlID0gdGFbaWRdWzFdK2FrOwoJCQl9CgkJfQoJfQp9
+CgpmdW5jdGlvbiBzZXR1cFJpZ2h0Q2xpY2tFZGl0KCkgewoJaWYgKGRvY3VtZW50
+LmdldEVsZW1lbnRzQnlUYWdOYW1lKSB7CgkJdmFyIGRpdnMgPSBkb2N1bWVudC5n
+ZXRFbGVtZW50c0J5VGFnTmFtZSgnZGl2Jyk7CgkJZm9yICh2YXIgaSA9IDA7IGkg
+PCBkaXZzLmxlbmd0aDsgaSsrKSB7CgkJCXZhciBlbCA9IGRpdnNbaV07CgkJCWlm
+KGVsLmNsYXNzTmFtZSA9PSAnZWRpdHNlY3Rpb24nKSB7CgkJCQlhZGRSaWdodENs
+aWNrRWRpdEhhbmRsZXIoZWwpOwoJCQl9CgkJfQoJfQp9CgpmdW5jdGlvbiBhZGRS
+aWdodENsaWNrRWRpdEhhbmRsZXIoZWwpIHsKCWZvciAodmFyIGkgPSAwOyBpIDwg
+ZWwuY2hpbGROb2Rlcy5sZW5ndGg7IGkrKykgewoJCXZhciBsaW5rID0gZWwuY2hp
+bGROb2Rlc1tpXTsKCQlpZiAobGluay5ub2RlVHlwZSA9PSAxICYmIGxpbmsubm9k
+ZU5hbWUudG9Mb3dlckNhc2UoKSA9PSAnYScpIHsKCQkJdmFyIGVkaXRIcmVmID0g
+bGluay5nZXRBdHRyaWJ1dGUoJ2hyZWYnKTsKCgkJCS8vIGZpbmQgdGhlIGZvbGxv
+d2luZyBhCgkJCXZhciBuZXh0ID0gZWwubmV4dFNpYmxpbmc7CgkJCXdoaWxlIChu
+ZXh0Lm5vZGVUeXBlICE9IDEpCgkJCQluZXh0ID0gbmV4dC5uZXh0U2libGluZzsK
+CgkJCS8vIGZpbmQgdGhlIGZvbGxvd2luZyBoZWFkZXIKCQkJbmV4dCA9IG5leHQu
+bmV4dFNpYmxpbmc7CgkJCXdoaWxlIChuZXh0Lm5vZGVUeXBlICE9IDEpCgkJCQlu
+ZXh0ID0gbmV4dC5uZXh0U2libGluZzsKCgkJCWlmIChuZXh0ICYmIG5leHQubm9k
+ZVR5cGUgPT0gMSAmJgoJCQkJbmV4dC5ub2RlTmFtZS5tYXRjaCgvXltIaF1bMS02
+XSQvKSkgewoJCQkJbmV4dC5vbmNvbnRleHRtZW51ID0gZnVuY3Rpb24oKSB7CgkJ
+CQkJZG9jdW1lbnQubG9jYXRpb24gPSBlZGl0SHJlZjsKCQkJCQlyZXR1cm4gZmFs
+c2U7CgkJCQl9CgkJCX0KCQl9Cgl9Cn0KCmZ1bmN0aW9uIHNldHVwQ2hlY2tib3hT
+aGlmdENsaWNrKCkgewoJaWYgKGRvY3VtZW50LmdldEVsZW1lbnRzQnlUYWdOYW1l
+KSB7CgkJdmFyIHVscyA9IGRvY3VtZW50LmdldEVsZW1lbnRzQnlUYWdOYW1lKCd1
+bCcpOwoJCXZhciBsZW4gPSB1bHMubGVuZ3RoOwoJCWZvciAodmFyIGkgPSAwOyBp
+IDwgbGVuOyArK2kpIHsKCQkJYWRkQ2hlY2tib3hDbGlja0hhbmRsZXJzKHVsc1tp
+XSk7CgkJfQoJfQp9CgpmdW5jdGlvbiBhZGRDaGVja2JveENsaWNrSGFuZGxlcnMo
+dWwsIHN0YXJ0LCBmaW5pc2gpIHsKCWlmICh1bC5jaGVja2JveEhhbmRsZXJzVGlt
+ZXIpIHsKCQljbGVhckludGVydmFsKHVsLmNoZWNrYm94SGFuZGxlcnNUaW1lcik7
+Cgl9CglpZiAoICF1bC5jaGlsZE5vZGVzICkgewoJCXJldHVybjsKCX0KCXZhciBs
+ZW4gPSB1bC5jaGlsZE5vZGVzLmxlbmd0aDsKCWlmIChsZW4gPCAyKSB7CgkJcmV0
+dXJuOwoJfQoJc3RhcnQgPSBzdGFydCB8fCAwOwoJZmluaXNoID0gZmluaXNoIHx8
+IHN0YXJ0ICsgMjUwOwoJaWYgKCBmaW5pc2ggPiBsZW4gKSB7IGZpbmlzaCA9IGxl
+bjsgfQoJdWwuY2hlY2tib3hlcyA9IHVsLmNoZWNrYm94ZXMgfHwgW107Cgl1bC5s
+YXN0Q2hlY2tib3ggPSB1bC5sYXN0Q2hlY2tib3ggfHwgbnVsbDsKCWZvciAodmFy
+IGkgPSBzdGFydDsgaTxmaW5pc2g7ICsraSkgewoJCXZhciBjaGlsZCA9IHVsLmNo
+aWxkTm9kZXNbaV07CgkJaWYgKCBjaGlsZCAmJiBjaGlsZC5jaGlsZE5vZGVzICYm
+IGNoaWxkLmNoaWxkTm9kZXNbMF0gKSB7CgkJCXZhciBjYiA9IGNoaWxkLmNoaWxk
+Tm9kZXNbMF07CgkJCWlmICggIWNiLm5vZGVOYW1lIHx8IGNiLm5vZGVOYW1lLnRv
+TG93ZXJDYXNlKCkgIT0gJ2lucHV0JyB8fAoJCQkgICAgICFjYi50eXBlIHx8IGNi
+LnR5cGUudG9Mb3dlckNhc2UoKSAhPSAnY2hlY2tib3gnICkgewoJCQkJcmV0dXJu
+OwoJCQl9CgkJCWNiLmluZGV4ID0gdWwuY2hlY2tib3hlcy5wdXNoKGNiKSAtIDE7
+CgkJCWNiLmNvbnRhaW5lciA9IHVsOwoJCQljYi5vbm1vdXNldXAgPSBjaGVja2Jv
+eE1vdXNldXBIYW5kbGVyOwoJCX0KCX0KCWlmIChmaW5pc2ggPCBsZW4pIHsKCSAg
+dmFyIGY9ZnVuY3Rpb24oKXsgYWRkQ2hlY2tib3hDbGlja0hhbmRsZXJzKHVsLCBm
+aW5pc2gsIGZpbmlzaCsyNTApOyB9OwoJICB1bC5jaGVja2JveEhhbmRsZXJzVGlt
+ZXI9c2V0SW50ZXJ2YWwoZiwgMjAwKTsKCX0KfQoKZnVuY3Rpb24gY2hlY2tib3hN
+b3VzZXVwSGFuZGxlcihlKSB7CglpZiAodHlwZW9mIGUgPT0gJ3VuZGVmaW5lZCcp
+IHsKCQllID0gd2luZG93LmV2ZW50OwoJfQoJaWYgKCAhZS5zaGlmdEtleSB8fCB0
+aGlzLmNvbnRhaW5lci5sYXN0Q2hlY2tib3ggPT09IG51bGwgKSB7CgkJdGhpcy5j
+b250YWluZXIubGFzdENoZWNrYm94ID0gdGhpcy5pbmRleDsKCQlyZXR1cm4gdHJ1
+ZTsKCX0KCXZhciBlbmRTdGF0ZSA9ICF0aGlzLmNoZWNrZWQ7CglpZiAoIGlzX29w
+ZXJhICkgeyAvLyBvcGVyYSBoYXMgYWxyZWFkeSB0b2dnbGVkIHRoZSBjaGVja2Jv
+eCBieSB0aGlzIHBvaW50CgkJZW5kU3RhdGUgPSAhZW5kU3RhdGU7Cgl9Cgl2YXIg
+c3RhcnQsIGZpbmlzaDsKCWlmICggdGhpcy5pbmRleCA8IHRoaXMuY29udGFpbmVy
+Lmxhc3RDaGVja2JveCApIHsKCQlzdGFydCA9IHRoaXMuaW5kZXggKyAxOwoJCWZp
+bmlzaCA9IHRoaXMuY29udGFpbmVyLmxhc3RDaGVja2JveDsKCX0gZWxzZSB7CgkJ
+c3RhcnQgPSB0aGlzLmNvbnRhaW5lci5sYXN0Q2hlY2tib3g7CgkJZmluaXNoID0g
+dGhpcy5pbmRleCAtIDE7Cgl9Cglmb3IgKHZhciBpID0gc3RhcnQ7IGkgPD0gZmlu
+aXNoOyArK2kgKSB7CgkJdGhpcy5jb250YWluZXIuY2hlY2tib3hlc1tpXS5jaGVj
+a2VkID0gZW5kU3RhdGU7Cgl9Cgl0aGlzLmNvbnRhaW5lci5sYXN0Q2hlY2tib3gg
+PSB0aGlzLmluZGV4OwoJcmV0dXJuIHRydWU7Cn0KCmZ1bmN0aW9uIGZpbGxEZXN0
+RmlsZW5hbWUoKSB7CglpZiAoIWRvY3VtZW50LmdldEVsZW1lbnRCeUlkKQoJCXJl
+dHVybjsKCXZhciBwYXRoID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3dwVXBs
+b2FkRmlsZScpLnZhbHVlOwoJLy8gRmluZCB0cmFpbGluZyBwYXJ0Cgl2YXIgc2xh
+c2ggPSBwYXRoLmxhc3RJbmRleE9mKCcvJyk7Cgl2YXIgYmFja3NsYXNoID0gcGF0
+aC5sYXN0SW5kZXhPZignXFwnKTsKCXZhciBmbmFtZTsKCWlmIChzbGFzaCA9PSAt
+MSAmJiBiYWNrc2xhc2ggPT0gLTEpIHsKCQlmbmFtZSA9IHBhdGg7Cgl9IGVsc2Ug
+aWYgKHNsYXNoID4gYmFja3NsYXNoKSB7CgkJZm5hbWUgPSBwYXRoLnN1YnN0cmlu
+ZyhzbGFzaCsxLCAxMDAwMCk7Cgl9IGVsc2UgewoJCWZuYW1lID0gcGF0aC5zdWJz
+dHJpbmcoYmFja3NsYXNoKzEsIDEwMDAwKTsKCX0KCgkvLyBDYXBpdGFsaXNlIGZp
+cnN0IGxldHRlciBhbmQgcmVwbGFjZSBzcGFjZXMgYnkgdW5kZXJzY29yZXMKCWZu
+YW1lID0gZm5hbWUuY2hhckF0KDApLnRvVXBwZXJDYXNlKCkuY29uY2F0KGZuYW1l
+LnN1YnN0cmluZygxLDEwMDAwKSkucmVwbGFjZSgvIC9nLCAnXycpOwoKCS8vIE91
+dHB1dCByZXN1bHQKCXZhciBkZXN0RmlsZSA9IGRvY3VtZW50LmdldEVsZW1lbnRC
+eUlkKCd3cERlc3RGaWxlJyk7CglpZiAoZGVzdEZpbGUpCgkJZGVzdEZpbGUudmFs
+dWUgPSBmbmFtZTsKfQoKCmZ1bmN0aW9uIGNvbnNpZGVyQ2hhbmdpbmdFeHBpcnlG
+b2N1cygpIHsKCWlmICghZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQpCgkJcmV0dXJu
+OwoJdmFyIGRyb3AgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnd3BCbG9ja0V4
+cGlyeScpOwoJaWYgKCFkcm9wKQoJCXJldHVybjsKCXZhciBmaWVsZCA9IGRvY3Vt
+ZW50LmdldEVsZW1lbnRCeUlkKCd3cEJsb2NrT3RoZXInKTsKCWlmICghZmllbGQp
+CgkJcmV0dXJuOwoJdmFyIG9wdCA9IGRyb3AudmFsdWU7CglpZiAob3B0ID09ICdv
+dGhlcicpCgkJZmllbGQuc3R5bGUuZGlzcGxheSA9ICcnOwoJZWxzZQoJCWZpZWxk
+LnN0eWxlLmRpc3BsYXkgPSAnbm9uZSc7Cn0KCmZ1bmN0aW9uIHNjcm9sbEVkaXRC
+b3goKSB7Cgl2YXIgZWRpdEJveEVsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQo
+IndwVGV4dGJveDEiKTsKCXZhciBzY3JvbGxUb3BFbCA9IGRvY3VtZW50LmdldEVs
+ZW1lbnRCeUlkKCJ3cFNjcm9sbHRvcCIpOwoJdmFyIGVkaXRGb3JtRWwgPSBkb2N1
+bWVudC5nZXRFbGVtZW50QnlJZCgiZWRpdGZvcm0iKTsKCglpZiAoZWRpdEJveEVs
+ICYmIHNjcm9sbFRvcEVsKSB7CgkJaWYgKHNjcm9sbFRvcEVsLnZhbHVlKSBlZGl0
+Qm94RWwuc2Nyb2xsVG9wID0gc2Nyb2xsVG9wRWwudmFsdWU7CgkJZWRpdEZvcm1F
+bC5vbnN1Ym1pdCA9IGZ1bmN0aW9uKCkgewoJCQlkb2N1bWVudC5nZXRFbGVtZW50
+QnlJZCgid3BTY3JvbGx0b3AiKS52YWx1ZSA9IGRvY3VtZW50LmdldEVsZW1lbnRC
+eUlkKCJ3cFRleHRib3gxIikuc2Nyb2xsVG9wOwoJCX0KCX0KfQoKaG9va0V2ZW50
+KCJsb2FkIiwgc2Nyb2xsRWRpdEJveCk7CgpmdW5jdGlvbiBhbGxtZXNzYWdlc2Zp
+bHRlcigpIHsKCXRleHQgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnYWxsbWVz
+c2FnZXNpbnB1dCcpLnZhbHVlOwoJayA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlk
+KCdhbGxtZXNzYWdlc3RhYmxlJyk7CglpZiAoIWspIHsgcmV0dXJuO30KCgl2YXIg
+aXRlbXMgPSBrLmdldEVsZW1lbnRzQnlUYWdOYW1lKCdzcGFuJyk7CgoJaWYgKCB0
+ZXh0Lmxlbmd0aCA+IGFsbG1lc3NhZ2VzX3ByZXYubGVuZ3RoICkgewoJCWZvciAo
+dmFyIGkgPSBpdGVtcy5sZW5ndGgtMSwgaiA9IDA7IGkgPj0gMDsgaS0tKSB7CgkJ
+CWogPSBhbGxtZXNzYWdlc2ZvcmVhY2goaXRlbXMsIGksIGopOwoJCX0KCX0gZWxz
+ZSB7CgkJZm9yICh2YXIgaSA9IDAsIGogPSAwOyBpIDwgaXRlbXMubGVuZ3RoOyBp
+KyspIHsKCQkJaiA9IGFsbG1lc3NhZ2VzZm9yZWFjaChpdGVtcywgaSwgaik7CgkJ
+fQoJfQoJYWxsbWVzc2FnZXNfcHJldiA9IHRleHQ7Cn0KCmZ1bmN0aW9uIGFsbG1l
+c3NhZ2VzZm9yZWFjaChpdGVtcywgaSwgaikgewoJdmFyIGhJdGVtID0gaXRlbXNb
+aV0uZ2V0QXR0cmlidXRlKCdpZCcpOwoJaWYgKGhJdGVtLnN1YnN0cmluZygwLDE3
+KSA9PSAnc3AtYWxsbWVzc2FnZXMtaS0nKSB7CgkJaWYgKGl0ZW1zW2ldLmZpcnN0
+Q2hpbGQgJiYgaXRlbXNbaV0uZmlyc3RDaGlsZC5ub2RlTmFtZSA9PSAnI3RleHQn
+ICYmIGl0ZW1zW2ldLmZpcnN0Q2hpbGQubm9kZVZhbHVlLmluZGV4T2YodGV4dCkg
+IT0gLTEpIHsKCQkJdmFyIGl0ZW1BID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQo
+IGhJdGVtLnJlcGxhY2UoJ2knLCAncjEnKSApOwoJCQl2YXIgaXRlbUIgPSBkb2N1
+bWVudC5nZXRFbGVtZW50QnlJZCggaEl0ZW0ucmVwbGFjZSgnaScsICdyMicpICk7
+CgkJCWlmICggaXRlbUEuc3R5bGUuZGlzcGxheSAhPSAnJyApIHsKCQkJCXZhciBz
+ID0gImFsbG1lc3NhZ2VzaGlkZXIoXCIiICsgaEl0ZW0ucmVwbGFjZSgnaScsICdy
+MScpICsgIlwiLCBcIiIgKyBoSXRlbS5yZXBsYWNlKCdpJywgJ3IyJykgKyAiXCIs
+ICcnKSI7CgkJCQl2YXIgayA9IHdpbmRvdy5zZXRUaW1lb3V0KHMsaisrKjUpOwoJ
+CQl9CgkJfSBlbHNlIHsKCQkJdmFyIGl0ZW1BID0gZG9jdW1lbnQuZ2V0RWxlbWVu
+dEJ5SWQoIGhJdGVtLnJlcGxhY2UoJ2knLCAncjEnKSApOwoJCQl2YXIgaXRlbUIg
+PSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCggaEl0ZW0ucmVwbGFjZSgnaScsICdy
+MicpICk7CgkJCWlmICggaXRlbUEuc3R5bGUuZGlzcGxheSAhPSAnbm9uZScgKSB7
+CgkJCQl2YXIgcyA9ICJhbGxtZXNzYWdlc2hpZGVyKFwiIiArIGhJdGVtLnJlcGxh
+Y2UoJ2knLCAncjEnKSArICJcIiwgXCIiICsgaEl0ZW0ucmVwbGFjZSgnaScsICdy
+MicpICsgIlwiLCAnbm9uZScpIjsKCQkJCXZhciBrID0gd2luZG93LnNldFRpbWVv
+dXQocyxqKysqNSk7CgkJCX0KCQl9Cgl9CglyZXR1cm4gajsKfQoKCmZ1bmN0aW9u
+IGFsbG1lc3NhZ2VzaGlkZXIoaWRBLCBpZEIsIGNzdHlsZSkgewoJdmFyIGl0ZW1B
+ID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoIGlkQSApOwoJdmFyIGl0ZW1CID0g
+ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoIGlkQiApOwoJaWYgKGl0ZW1BKSB7IGl0
+ZW1BLnN0eWxlLmRpc3BsYXkgPSBjc3R5bGU7IH0KCWlmIChpdGVtQikgeyBpdGVt
+Qi5zdHlsZS5kaXNwbGF5ID0gY3N0eWxlOyB9Cn0KCmZ1bmN0aW9uIGFsbG1lc3Nh
+Z2VzbW9kaWZpZWQoKSB7CglhbGxtZXNzYWdlc19tb2RpZmllZCA9ICFhbGxtZXNz
+YWdlc19tb2RpZmllZDsKCWsgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnYWxs
+bWVzc2FnZXN0YWJsZScpOwoJaWYgKCFrKSB7IHJldHVybjt9Cgl2YXIgaXRlbXMg
+PSBrLmdldEVsZW1lbnRzQnlUYWdOYW1lKCd0cicpOwoJZm9yICh2YXIgaSA9IDAs
+IGogPSAwOyBpPCBpdGVtcy5sZW5ndGg7IGkrKykgewoJCWlmICghYWxsbWVzc2Fn
+ZXNfbW9kaWZpZWQgKSB7CgkJCWlmICggaXRlbXNbaV0uc3R5bGUuZGlzcGxheSAh
+PSAnJyApIHsKCQkJCXZhciBzID0gImFsbG1lc3NhZ2VzaGlkZXIoXCIiICsgaXRl
+bXNbaV0uZ2V0QXR0cmlidXRlKCdpZCcpICsgIlwiLCBudWxsLCAnJykiOwoJCQkJ
+dmFyIGsgPSB3aW5kb3cuc2V0VGltZW91dChzLGorKyo1KTsKCQkJfQoJCX0gZWxz
+ZSBpZiAoaXRlbXNbaV0uZ2V0QXR0cmlidXRlKCdjbGFzcycpID09ICdkZWYnICYm
+IGFsbG1lc3NhZ2VzX21vZGlmaWVkKSB7CgkJCWlmICggaXRlbXNbaV0uc3R5bGUu
+ZGlzcGxheSAhPSAnbm9uZScgKSB7CgkJCQl2YXIgcyA9ICJhbGxtZXNzYWdlc2hp
+ZGVyKFwiIiArIGl0ZW1zW2ldLmdldEF0dHJpYnV0ZSgnaWQnKSArICJcIiwgbnVs
+bCwgJ25vbmUnKSI7CgkJCQl2YXIgayA9IHdpbmRvdy5zZXRUaW1lb3V0KHMsaisr
+KjUpOwoJCQl9CgkJfQoJfQp9CgpmdW5jdGlvbiBhbGxtZXNzYWdlc3Nob3coKSB7
+CglrID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2FsbG1lc3NhZ2VzZmlsdGVy
+Jyk7CglpZiAoaykgeyBrLnN0eWxlLmRpc3BsYXkgPSAnJzsgfQoKCWFsbG1lc3Nh
+Z2VzX3ByZXYgPSAnJzsKCWFsbG1lc3NhZ2VzX21vZGlmaWVkID0gZmFsc2U7Cn0K
+Cmhvb2tFdmVudCgibG9hZCIsIGFsbG1lc3NhZ2Vzc2hvdyk7Cg==
+
+------------T54Xb2KNTFvcRpTu3xoBDG
+Content-Disposition: inline; filename=index.css
+Content-Type: text/css; name=index.css
+Content-Location: http://www.wxwidgets.org/wiki/index.php?title=MediaWiki:Common.css&action=raw&ctype=text/css&smaxage=18000
+Content-Transfer-Encoding: 8bit
+
+&lt;Common.css&gt;
+------------T54Xb2KNTFvcRpTu3xoBDG
+Content-Disposition: inline; filename=index.css
+Content-Type: text/css; name=index.css
+Content-Location: http://www.wxwidgets.org/wiki/index.php?title=MediaWiki:Monobook.css&action=raw&ctype=text/css&smaxage=18000
+Content-Transfer-Encoding: 8bit
+
+/* edit this file to customize the monobook skin for the entire site */
+------------T54Xb2KNTFvcRpTu3xoBDG
+Content-Disposition: inline; filename=index.css
+Content-Type: text/css; name=index.css
+Content-Location: http://www.wxwidgets.org/wiki/index.php?title=-&action=raw&gen=css&maxage=18000
+Content-Transfer-Encoding: 8bit
+
+/* generated user stylesheet */
+a.new, #quickbar a.new { color: #CC2200; }
+
+------------T54Xb2KNTFvcRpTu3xoBDG
+Content-Disposition: inline; filename=wiki.png
+Content-Type: image/png; name=wiki.png
+Content-Location: http://www.wxwidgets.org/wiki/skins/common/images/wiki.png
+Content-Transfer-Encoding: Base64
+
+iVBORw0KGgoAAAANSUhEUgAAAIcAAACHCAYAAAA850oKAAAaKklEQVR42u1de5xc
+VX3/3sfMbHazr+wma16bhISEPFiTIAJqKwYFASmWQi0k+KiW1gf1o/2olNoapQp8
+EEWFyIcqVsFWqlJAVEqrLUJsQyt5fPIkCVlCNrvJbmZ2Zmfmzn2d0z/uvTtnz557
+Z+7M3AmE+/t87mdm7v3NOXfO+d7f6/zOb4CYYooppphiiimmmGKKKaaYYooppphi
+iimm1ytJr/Uf8M1v7r4qmy1uKhaNCy2LdJum3Q4AlPofla5Xc7jDZyqKkk0k1MOp
+VPJnXV29W+64Y1EmBsdppgcf3PeWV17Jbclkim9kz0cJiErtKIqa6+npunfLljWf
+lySJxuA4DXTffXs/eeTI2F2WZSdeDaDgj46Omdt6enrffc89S8ZjcDSR7rzzhc+N
+jORup5RKACBJEpYunY2lS2ejt7cdM2YkIUkyKAUI8T8qXa+GR9MMFAo6hodPYXBw
+GIWCPgmQlpaW/QsXLlj/9a8v1GJwNIG+8Y2dlwwOZn5JKU1QCvT0zMSll65Ed3db
+wya8Vh7TtHHgwFEcPHgUhFBQCrS1tT35k5+8+arXKjjk19LNjo0V7yWEJggBOjpa
+8d73rkVnZxtsG7BtwLL8j6h5KFWwbNkSnH32kknpMTFRuHLjxp2XxOCImO6/f8+1
+2WzpHEIASZJxxRVroKoqbBtQFKCzE+juBmbOBFR16kQGTXijefr7F6Knp8eTKFKh
+YH45BkfEND5uvt8T5+ec8wa0t7fCshxg9PQ4gPCuK0oZIM2WJLYtYenSpZPqplAo
+nnfTTYc7Y3BESOl04SJPzy9fPm9yMmbNmq7/bbt8LuyEN0KSpFKt6Ojo9GwRNZ0u
+XfNaBIf6WrjJzZs3y6OjZrcnGTo6HKkhy0AqBRjGVGB4k+a9ng5DtaWlFYRkQSmg
+adqKGBwRUSr1vn7bHlEoBVRVBaUyCHGuiSaOfbJtO3pQiK4rSnLymmVJ82JwROVv
+S6TNG2hKyxPOBqb4yWFFfrPcWfYAFAbAJBGDI0JiJ8ObcA8cPCh4e6CZoODtHg/M
+MTgiIs+m8ANHkEqpxuaIAjSedPPOxeBokuTwBl6WxRNSrc0RpSRhwRFLjgjJNDHF
+APUkhyRNXfB6NdkcLDgojcERKbEAEIFD5Mqy4Dhd6y6OtxKDo+kGqaJUNkgrubL1
+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
+
+------------T54Xb2KNTFvcRpTu3xoBDG
+Content-Disposition: inline; filename=poweredby_mediawiki_88x31.png
+Content-Type: image/png; name=poweredby_mediawiki_88x31.png
+Content-Location: http://www.wxwidgets.org/wiki/skins/common/images/poweredby_mediawiki_88x31.png
+Content-Transfer-Encoding: Base64
+
+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
+NgAAAABJRU5ErkJggg==
+
+------------T54Xb2KNTFvcRpTu3xoBDG
+Content-Disposition: inline; filename=sflogo.png
+Content-Type: image/png; name=sflogo.png
+Content-Location: http://sourceforge.net/sflogo.php?group_id=9863&type=1
+Content-Transfer-Encoding: Base64
+
+iVBORw0KGgoAAAANSUhEUgAAAFgAAAAfCAMAAABUFvrSAAAAGXRFWHRTb2Z0d2Fy
+ZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAFpQTFRF////7u7uX2pytLm9ipKYn6aq
+dH6F3+Hj6uvsf4iOv8PHanR71NfZlJyhqrC09PX2ys3Qsri8kpqf7KqcmJ+k1kkq
+zdDTxcnMub7BoKarqpOR8cK4lp2j6Z6NbVanUgAAARFJREFUSMft08lu3DAURNHb
+93EUKbUcJ7Ez/f9vZiG3h2TdG0O1IMDNQaEIcrlTuHCXnPAJn/Bng69deyXU3nIG
+Ui5qEGpkX5JnVzdUe6tdjUV1gWQwTepxWC5cdisR25i0Xm5wEIZBzTlDM0GzVLJZ
+WfwxSiW2xQAgaZ0mE8BiHFPktcEIoPrlFc4jrQBZfVINA64OJfx6iItagGQp+1G2
+vcG03OMGr0Daiva5HvCt8Rtc3MOA5MNr41rKv41nr4S/x0LtfRuNOqLEdF8Mak8f
+pkiGtpFeLg8GPH57TLbqf1Ns6kZW12vrarqWYBrvHi8Bs+sIlN3+vajrs+rPP7+S
+jTimKO+mOD/ICZ/wJ4LvlL9T9gm7i8l68gAAAABJRU5ErkJggg==
+
+------------T54Xb2KNTFvcRpTu3xoBDG--

@@ -1,0 +1,1392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DLL Debug|Win32">
+      <Configuration>DLL Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DLL Release|Win32">
+      <Configuration>DLL Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DLL Unicode Debug|Win32">
+      <Configuration>DLL Unicode Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DLL Unicode Release|Win32">
+      <Configuration>DLL Unicode Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DLL Universal Debug|Win32">
+      <Configuration>DLL Universal Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DLL Universal Release|Win32">
+      <Configuration>DLL Universal Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DLL Universal Unicode Debug|Win32">
+      <Configuration>DLL Universal Unicode Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DLL Universal Unicode Release|Win32">
+      <Configuration>DLL Universal Unicode Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Unicode Debug|Win32">
+      <Configuration>Unicode Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Unicode Release|Win32">
+      <Configuration>Unicode Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Universal Debug|Win32">
+      <Configuration>Universal Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Universal Release|Win32">
+      <Configuration>Universal Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Universal Unicode Debug|Win32">
+      <Configuration>Universal Unicode Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Universal Unicode Release|Win32">
+      <Configuration>Universal Unicode Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>I-SIMPA</ProjectName>
+    <ProjectGuid>{AF6CF5F7-AEF4-4304-B3B8-1FA6891836A0}</ProjectGuid>
+    <RootNamespace>I-SIMPA</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Universal Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Universal Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Universal Unicode Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Unicode Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Universal Unicode Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Unicode Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Universal Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Universal Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Universal Unicode Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Unicode Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Universal Unicode Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Unicode Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">
+    <OutDir>.\vc_mswddll\</OutDir>
+    <IntDir>.\vc_mswddll\sppsProj\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Unicode Release|Win32'">
+    <OutDir>.\vc_mswunivudll\</OutDir>
+    <IntDir>.\vc_mswunivudll\sppsProj\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Universal Unicode Release|Win32'">
+    <OutDir>.\vc_mswunivu\</OutDir>
+    <IntDir>.\vc_mswunivu\sppsProj\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Unicode Debug|Win32'">
+    <OutDir>.\vc_mswunivuddll\</OutDir>
+    <IntDir>.\vc_mswunivuddll\sppsProj\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|Win32'">
+    <OutDir>.\vc_mswunivdll\</OutDir>
+    <IntDir>.\vc_mswunivdll\sppsProj\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\vc_msw\</OutDir>
+    <IntDir>.\vc_msw\isimpa\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug|Win32'">
+    <OutDir>.\vc_mswuddll\</OutDir>
+    <IntDir>.\vc_mswuddll\sppsProj\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'">
+    <OutDir>.\vc_mswunivddll\</OutDir>
+    <IntDir>.\vc_mswunivddll\sppsProj\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+    <OutDir>.\vc_mswu\</OutDir>
+    <IntDir>.\vc_mswu\sppsProj\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\vc_mswd\</OutDir>
+    <IntDir>.\vc_mswd\isimpa\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Universal Unicode Debug|Win32'">
+    <OutDir>.\vc_mswunivud\</OutDir>
+    <IntDir>.\vc_mswunivud\sppsProj\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Universal Release|Win32'">
+    <OutDir>.\vc_mswuniv\</OutDir>
+    <IntDir>.\vc_mswuniv\sppsProj\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+    <OutDir>.\vc_mswud\</OutDir>
+    <IntDir>.\vc_mswud\sppsProj\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">
+    <OutDir>.\vc_mswdll\</OutDir>
+    <IntDir>.\vc_mswdll\sppsProj\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release|Win32'">
+    <OutDir>.\vc_mswudll\</OutDir>
+    <IntDir>.\vc_mswudll\sppsProj\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Universal Debug|Win32'">
+    <OutDir>.\vc_mswunivd\</OutDir>
+    <IntDir>.\vc_mswunivd\sppsProj\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\vc_mswddll/sppsProj.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/EHsc  %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll\mswd;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\vc_mswddll\sppsProj/sppsProj.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\vc_mswddll\sppsProj/</AssemblerListingLocation>
+      <ObjectFileName>.\vc_mswddll\sppsProj/</ObjectFileName>
+      <ProgramDataBaseFileName>vc_mswddll\sppsProj.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;__WXMSW__;__WXDEBUG__;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll\mswd;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>wxmsw28d_gl.lib;opengl32.lib;glu32.lib;wxmsw28d_core.lib;wxbase28d.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexd.lib;wxexpatd.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>vc_mswddll\sppsProj.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\vc_mswddll/sppsProj.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\vc_mswddll/sppsProj.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Unicode Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>WIN32;__WXMSW__;__WXUNIVERSAL__;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\vc_mswunivudll/sppsProj.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/EHsc  %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll\mswunivu;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;__WXMSW__;__WXUNIVERSAL__;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\vc_mswunivudll\sppsProj/sppsProj.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\vc_mswunivudll\sppsProj/</AssemblerListingLocation>
+      <ObjectFileName>.\vc_mswunivudll\sppsProj/</ObjectFileName>
+      <ProgramDataBaseFileName>vc_mswunivudll\sppsProj.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>__WXMSW__;__WXUNIVERSAL__;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll\mswunivu;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>wxmswuniv28u_gl.lib;opengl32.lib;glu32.lib;wxmswuniv28u_core.lib;wxbase28u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>vc_mswunivudll\sppsProj.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>.\vc_mswunivudll/sppsProj.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\vc_mswunivudll/sppsProj.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Universal Unicode Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>WIN32;__WXMSW__;__WXUNIVERSAL__;_UNICODE;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\vc_mswunivu/sppsProj.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/EHsc  %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_lib\mswunivu;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;__WXMSW__;__WXUNIVERSAL__;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\vc_mswunivu\sppsProj/sppsProj.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\vc_mswunivu\sppsProj/</AssemblerListingLocation>
+      <ObjectFileName>.\vc_mswunivu\sppsProj/</ObjectFileName>
+      <ProgramDataBaseFileName>vc_mswunivu\sppsProj.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>__WXMSW__;__WXUNIVERSAL__;_UNICODE;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_lib\mswunivu;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>wxmswuniv28u_gl.lib;opengl32.lib;glu32.lib;wxmswuniv28u_core.lib;wxbase28u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>vc_mswunivu\sppsProj.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>.\vc_mswunivu/sppsProj.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\vc_mswunivu/sppsProj.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Unicode Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXUNIVERSAL__;__WXDEBUG__;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\vc_mswunivuddll/sppsProj.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/EHsc  %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll\mswunivud;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXUNIVERSAL__;__WXDEBUG__;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\vc_mswunivuddll\sppsProj/sppsProj.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\vc_mswunivuddll\sppsProj/</AssemblerListingLocation>
+      <ObjectFileName>.\vc_mswunivuddll\sppsProj/</ObjectFileName>
+      <ProgramDataBaseFileName>vc_mswunivuddll\sppsProj.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;__WXMSW__;__WXUNIVERSAL__;__WXDEBUG__;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll\mswunivud;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>wxmswuniv28ud_gl.lib;opengl32.lib;glu32.lib;wxmswuniv28ud_core.lib;wxbase28ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>vc_mswunivuddll\sppsProj.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\vc_mswunivuddll/sppsProj.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\vc_mswunivuddll/sppsProj.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>WIN32;__WXMSW__;__WXUNIVERSAL__;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\vc_mswunivdll/sppsProj.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/EHsc  %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll\mswuniv;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;__WXMSW__;__WXUNIVERSAL__;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\vc_mswunivdll\sppsProj/sppsProj.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\vc_mswunivdll\sppsProj/</AssemblerListingLocation>
+      <ObjectFileName>.\vc_mswunivdll\sppsProj/</ObjectFileName>
+      <ProgramDataBaseFileName>vc_mswunivdll\sppsProj.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>__WXMSW__;__WXUNIVERSAL__;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll\mswuniv;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>wxmswuniv28_gl.lib;opengl32.lib;glu32.lib;wxmswuniv28_core.lib;wxbase28.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregex.lib;wxexpat.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>vc_mswunivdll\sppsProj.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>.\vc_mswunivdll/sppsProj.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\vc_mswunivdll/sppsProj.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PreBuildEvent>
+      <Command>cd $(SolutionDir)data_manager\python_interface\py_ui_module\
+python generate_enum_def.py
+</Command>
+    </PreBuildEvent>
+    <Midl>
+      <PreprocessorDefinitions>WIN32;__WXMSW__;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\vc_msw/sppsProj.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/EHsc  %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>coreSrc\lib_interface;$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;$(WXWIN)\contrib\include;.;$(BOOST);$(PYTHON)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;__WXMSW__;_WINDOWS;NOPCH;USE_PYTHON;_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>true</MinimalRebuild>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\vc_msw\isimpa/isimpa.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\vc_msw\isimpa/</AssemblerListingLocation>
+      <ObjectFileName>.\vc_msw\isimpa/</ObjectFileName>
+      <ProgramDataBaseFileName>vc_msw\isimpa.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level2</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>__WXMSW__;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>winmm.lib;wxmsw29u_aui.lib;wxmsw29u_gl.lib;wxmsw29u_adv.lib;wxmsw29u_core.lib;wxbase29u_xml.lib;wxexpat.lib;wxbase29u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;comctl32.lib;rpcrt4.lib;coreSrc\lib_interface\Release\lib_interface.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>..\..\currentRelease\I-SIMPA.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_lib;$(PYTHON)\libs;$(BOOST)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>MSVCRT.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ProgramDatabaseFile />
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration />
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\vc_msw/sppsProj.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\vc_mswuddll/sppsProj.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/EHsc  %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll\mswud;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\vc_mswuddll\sppsProj/sppsProj.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\vc_mswuddll\sppsProj/</AssemblerListingLocation>
+      <ObjectFileName>.\vc_mswuddll\sppsProj/</ObjectFileName>
+      <ProgramDataBaseFileName>vc_mswuddll\sppsProj.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;__WXMSW__;__WXDEBUG__;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll\mswud;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>wxmsw28ud_gl.lib;opengl32.lib;glu32.lib;wxmsw28ud_core.lib;wxbase28ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>vc_mswuddll\sppsProj.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\vc_mswuddll/sppsProj.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\vc_mswuddll/sppsProj.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Universal Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXUNIVERSAL__;__WXDEBUG__;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\vc_mswunivddll/sppsProj.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/EHsc  %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll\mswunivd;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXUNIVERSAL__;__WXDEBUG__;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\vc_mswunivddll\sppsProj/sppsProj.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\vc_mswunivddll\sppsProj/</AssemblerListingLocation>
+      <ObjectFileName>.\vc_mswunivddll\sppsProj/</ObjectFileName>
+      <ProgramDataBaseFileName>vc_mswunivddll\sppsProj.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;__WXMSW__;__WXUNIVERSAL__;__WXDEBUG__;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll\mswunivd;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>wxmswuniv28d_gl.lib;opengl32.lib;glu32.lib;wxmswuniv28d_core.lib;wxbase28d.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexd.lib;wxexpatd.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>vc_mswunivddll\sppsProj.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\vc_mswunivddll/sppsProj.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\vc_mswunivddll/sppsProj.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>WIN32;__WXMSW__;_UNICODE;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\vc_mswu/sppsProj.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/EHsc  %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_lib\mswu;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;__WXMSW__;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\vc_mswu\sppsProj/sppsProj.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\vc_mswu\sppsProj/</AssemblerListingLocation>
+      <ObjectFileName>.\vc_mswu\sppsProj/</ObjectFileName>
+      <ProgramDataBaseFileName>vc_mswu\sppsProj.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>__WXMSW__;_UNICODE;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_lib\mswu;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>wxmsw28u_gl.lib;opengl32.lib;glu32.lib;wxmsw28u_core.lib;wxbase28u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>vc_mswu\sppsProj.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>.\vc_mswu/sppsProj.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\vc_mswu/sppsProj.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PreBuildEvent>
+      <Command>cd $(SolutionDir)data_manager\python_interface\py_ui_module\
+python generate_enum_def.py
+</Command>
+    </PreBuildEvent>
+    <Midl>
+      <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\vc_mswd/sppsProj.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/EHsc  %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>coreSrc\lib_interface;$(WXWIN)\include;$(WXWIN)\contrib\include;$(WXWIN)\lib\vc_lib\mswud;.;$(BOOST);$(PYTHON)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>USE_PYTHON;WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;_UNICODE;UNICODE;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\vc_mswd\isimpa/isimpa.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\vc_mswd\isimpa/</AssemblerListingLocation>
+      <ObjectFileName>.\vc_mswd\isimpa/</ObjectFileName>
+      <ProgramDataBaseFileName>isimpa_deb.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level1</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;__WXMSW__;__WXDEBUG__;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0000</Culture>
+      <AdditionalIncludeDirectories>.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>winmm.lib;wxmsw29ud_aui.lib;wxmsw29ud_gl.lib;wxmsw29ud_adv.lib;wxmsw29ud_core.lib;wxbase29ud_xml.lib;wxexpatd.lib;wxbase29ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;rpcrt4.lib;comctl32.lib;coreSrc\lib_interface\Debug\lib_interface.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>vc_mswd\I-SIMPA.exe</OutputFile>
+      <Version>0.1</Version>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_lib;$(PYTHON)\libs;$(BOOST)\lib;$(PYTHON);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile />
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences />
+      <EnableCOMDATFolding />
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+      <Profile>false</Profile>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\vc_mswd/sppsProj.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Universal Unicode Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXUNIVERSAL__;__WXDEBUG__;_UNICODE;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\vc_mswunivud/sppsProj.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/EHsc  %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_lib\mswunivud;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXUNIVERSAL__;__WXDEBUG__;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\vc_mswunivud\sppsProj/sppsProj.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\vc_mswunivud\sppsProj/</AssemblerListingLocation>
+      <ObjectFileName>.\vc_mswunivud\sppsProj/</ObjectFileName>
+      <ProgramDataBaseFileName>vc_mswunivud\sppsProj.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;__WXMSW__;__WXUNIVERSAL__;__WXDEBUG__;_UNICODE;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_lib\mswunivud;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>wxmswuniv28ud_gl.lib;opengl32.lib;glu32.lib;wxmswuniv28ud_core.lib;wxbase28ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>vc_mswunivud\sppsProj.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\vc_mswunivud/sppsProj.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\vc_mswunivud/sppsProj.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Universal Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>WIN32;__WXMSW__;__WXUNIVERSAL__;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\vc_mswuniv/sppsProj.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/EHsc  %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_lib\mswuniv;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;__WXMSW__;__WXUNIVERSAL__;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\vc_mswuniv\sppsProj/sppsProj.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\vc_mswuniv\sppsProj/</AssemblerListingLocation>
+      <ObjectFileName>.\vc_mswuniv\sppsProj/</ObjectFileName>
+      <ProgramDataBaseFileName>vc_mswuniv\sppsProj.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>__WXMSW__;__WXUNIVERSAL__;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_lib\mswuniv;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>wxmswuniv28_gl.lib;opengl32.lib;glu32.lib;wxmswuniv28_core.lib;wxbase28.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregex.lib;wxexpat.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>vc_mswuniv\sppsProj.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>.\vc_mswuniv/sppsProj.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\vc_mswuniv/sppsProj.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;_UNICODE;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\vc_mswud/sppsProj.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/EHsc  %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_lib\mswud;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\vc_mswud\sppsProj/sppsProj.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\vc_mswud\sppsProj/</AssemblerListingLocation>
+      <ObjectFileName>.\vc_mswud\sppsProj/</ObjectFileName>
+      <ProgramDataBaseFileName>vc_mswud\sppsProj.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;__WXMSW__;__WXDEBUG__;_UNICODE;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_lib\mswud;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>wxmsw28ud_gl.lib;opengl32.lib;glu32.lib;wxmsw28ud_core.lib;wxbase28ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>vc_mswud\sppsProj.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\vc_mswud/sppsProj.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\vc_mswud/sppsProj.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>WIN32;__WXMSW__;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\vc_mswdll/sppsProj.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/EHsc  %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll\msw;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;__WXMSW__;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\vc_mswdll\sppsProj/sppsProj.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\vc_mswdll\sppsProj/</AssemblerListingLocation>
+      <ObjectFileName>.\vc_mswdll\sppsProj/</ObjectFileName>
+      <ProgramDataBaseFileName>vc_mswdll\sppsProj.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>__WXMSW__;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll\msw;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>wxmsw28_gl.lib;opengl32.lib;glu32.lib;wxmsw28_core.lib;wxbase28.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregex.lib;wxexpat.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>vc_mswdll\sppsProj.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>.\vc_mswdll/sppsProj.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\vc_mswdll/sppsProj.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>WIN32;__WXMSW__;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\vc_mswudll/sppsProj.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/EHsc  %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll\mswu;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;__WXMSW__;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\vc_mswudll\sppsProj/sppsProj.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\vc_mswudll\sppsProj/</AssemblerListingLocation>
+      <ObjectFileName>.\vc_mswudll\sppsProj/</ObjectFileName>
+      <ProgramDataBaseFileName>vc_mswudll\sppsProj.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>__WXMSW__;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll\mswu;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>wxmsw28u_gl.lib;opengl32.lib;glu32.lib;wxmsw28u_core.lib;wxbase28u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>vc_mswudll\sppsProj.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_dll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>.\vc_mswudll/sppsProj.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\vc_mswudll/sppsProj.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Universal Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXUNIVERSAL__;__WXDEBUG__;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\vc_mswunivd/sppsProj.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/EHsc  %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_lib\mswunivd;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXUNIVERSAL__;__WXDEBUG__;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\vc_mswunivd\sppsProj/sppsProj.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\vc_mswunivd\sppsProj/</AssemblerListingLocation>
+      <ObjectFileName>.\vc_mswunivd\sppsProj/</ObjectFileName>
+      <ProgramDataBaseFileName>vc_mswunivd\sppsProj.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;__WXMSW__;__WXUNIVERSAL__;__WXDEBUG__;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_lib\mswunivd;C:\stage\wxWidgets-2.8.7\include;.;C:\stage\wxWidgets-2.8.7\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>wxmswuniv28d_gl.lib;opengl32.lib;glu32.lib;wxmswuniv28d_core.lib;wxbase28d.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexd.lib;wxexpatd.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>vc_mswunivd\sppsProj.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\stage\wxWidgets-2.8.7\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\vc_mswunivd/sppsProj.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\vc_mswunivd/sppsProj.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="main\i_simpa_main.cpp" />
+    <ClCompile Include="UtfConverter.cpp" />
+    <ClCompile Include="3dengine\Core\Animator.cpp" />
+    <ClCompile Include="3dengine\ArcBall.cpp" />
+    <ClCompile Include="3dengine\Camera.cpp" />
+    <ClCompile Include="3dengine\GlBitmapSurface.cpp" />
+    <ClCompile Include="3dengine\legendFonts.cpp" />
+    <ClCompile Include="3dengine\legendObject.cpp" />
+    <ClCompile Include="3dengine\Core\Material.cpp" />
+    <ClCompile Include="3dengine\Core\Model3D.cpp" />
+    <ClCompile Include="3dengine\Core\Objet3D.cpp" />
+    <ClCompile Include="3dengine\Core\Objet3D_maillage.cpp" />
+    <ClCompile Include="3dengine\OpenGLApp.cpp" />
+    <ClCompile Include="3dengine\Core\Particules.cpp" />
+    <ClCompile Include="3dengine\Core\Recepteurs_ponctuel_intensity.cpp" />
+    <ClCompile Include="3dengine\Core\Recepteurs_surfacique.cpp" />
+    <ClCompile Include="3dengine\Core\Texture.cpp" />
+    <ClCompile Include="3dengine\Core\3ds.cpp" />
+    <ClCompile Include="3dengine\Core\Asc.cpp" />
+    <ClCompile Include="3dengine\Core\Nff.cpp" />
+    <ClCompile Include="3dengine\Core\mesh.cpp" />
+    <ClCompile Include="3dengine\Core\bin.cpp" />
+    <ClCompile Include="coreSrc\preprocess\input_output\poly.cpp" />
+    <ClCompile Include="3dengine\Core\ply.cpp" />
+    <ClCompile Include="3dengine\Core\var.cpp" />
+    <ClCompile Include="3dengine\Core\stl.cpp" />
+    <ClCompile Include="3dengine\tools\intersection_seeker.cpp" />
+    <ClCompile Include="GL\offScreenRendering.cpp" />
+    <ClCompile Include="3dengine\tools\opengl_test.cpp" />
+    <ClCompile Include="3dengine\tools\tesselator.cpp" />
+    <ClCompile Include="data_manager\appconfig.cpp" />
+    <ClCompile Include="ConvertUTF.c" />
+    <ClCompile Include="data_manager\drawable_element.cpp" />
+    <ClCompile Include="data_manager\element.cpp" />
+    <ClCompile Include="manager\modelRetriever.cpp" />
+    <ClCompile Include="data_manager\projet.cpp" />
+    <ClCompile Include="data_manager\projet_calculation.cpp" />
+    <ClCompile Include="data_manager\projet_maillage.cpp" />
+    <ClCompile Include="data_manager\projet_python.cpp" />
+    <ClCompile Include="data_manager\projet_remesh.cpp" />
+    <ClCompile Include="data_manager\projet_undo_redo.cpp" />
+    <ClCompile Include="data_manager\tree_rapport\e_report_file.cpp" />
+    <ClCompile Include="data_manager\tree_rapport\e_report_gabe.cpp" />
+    <ClCompile Include="data_manager\tree_rapport\e_report_gabe_gap.cpp" />
+    <ClCompile Include="data_manager\tree_rapport\e_report_gabe_recp.cpp" />
+    <ClCompile Include="data_manager\tree_rapport\e_report_unknown_file.cpp" />
+    <ClCompile Include="data_manager\tree_scene\e_scene.cpp" />
+    <ClCompile Include="data_manager\tree_scene\e_scene_groupesurfaces_groupe.cpp" />
+    <ClCompile Include="data_manager\tree_scene\e_scene_volumes.cpp" />
+    <ClCompile Include="data_manager\generic_element\e_gammeabsorption.cpp" />
+    <ClCompile Include="data_manager\generic_element\e_gammefrequence.cpp">
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Level2</WarningLevel>
+    </ClCompile>
+    <ClCompile Include="data_manager\generic_element\e_materiau.cpp" />
+    <ClCompile Include="data_manager\generic_element\e_property_freq.cpp" />
+    <ClCompile Include="data_manager\grpInfo\data_group_info.cpp" />
+    <ClCompile Include="data_manager\python_interface\boost_python_header.cpp" />
+    <ClCompile Include="data_manager\python_interface\instanceManager.cpp" />
+    <ClCompile Include="data_manager\python_interface\pythonshell.cpp" />
+    <ClCompile Include="data_manager\python_interface\pythonstdioredirect.cpp" />
+    <ClCompile Include="data_manager\python_interface\py_ui_module\Application.cpp" />
+    <ClCompile Include="data_manager\python_interface\py_ui_module\e_pyext.cpp" />
+    <ClCompile Include="data_manager\python_interface\py_ui_module\element_file_pywrap.cpp" />
+    <ClCompile Include="data_manager\python_interface\py_ui_module\element_pywrap.cpp" />
+    <ClCompile Include="data_manager\python_interface\py_ui_module\enum_def.cpp" />
+    <ClCompile Include="IHM\applicationPreferences.cpp" />
+    <ClCompile Include="IHM\base64.cpp" />
+    <ClCompile Include="IHM\ComboTreeCtrl.cpp" />
+    <ClCompile Include="IHM\DataWindow.cpp" />
+    <ClCompile Include="IHM\DialogDiagramCreator.cpp" />
+    <ClCompile Include="IHM\foldpaneltree.cpp" />
+    <ClCompile Include="IHM\GabeDataGrid.cpp" />
+    <ClCompile Include="IHM\languageSelection.cpp" />
+    <ClCompile Include="IHM\loadingSceneDialog.cpp" />
+    <ClCompile Include="IHM\MainPropGrid.cpp" />
+    <ClCompile Include="3dengine\OpenGlViewer.cpp" />
+    <ClCompile Include="IHM\PropGrid.cpp" />
+    <ClCompile Include="IHM\pyConsole.cpp" />
+    <ClCompile Include="IHM\RecepteurSOperationDialog.cpp" />
+    <ClCompile Include="IHM\simpleGraph.cpp" />
+    <ClCompile Include="IHM\simpleGraphDialogs.cpp" />
+    <ClCompile Include="IHM\simpleGraphEnumerators.cpp" />
+    <ClCompile Include="IHM\simpleGraphManager.cpp" />
+    <ClCompile Include="IHM\uiTreeCtrl.cpp" />
+    <ClCompile Include="IHM\WizardRemeshModel.cpp" />
+    <ClCompile Include="data_manager\customEditor\wxGridCellColorEditor.cpp" />
+    <ClCompile Include="data_manager\customEditor\wxGridCellFontEditor.cpp" />
+    <ClCompile Include="data_manager\customEditor\wxGridCellTreeEditor.cpp" />
+    <ClCompile Include="IHM\customdialog\customdlg.cpp" />
+    <ClCompile Include="IHM\customRenderer\gridcellgabefloatrenderer.cpp" />
+    <ClCompile Include="manager\bigfilereader.cpp" />
+    <ClCompile Include="manager\processManager.cpp" />
+    <ClCompile Include="manager\sppsString.cpp" />
+    <ClCompile Include="3dengine\tools\recepteursurf_difference.cpp" />
+    <ClCompile Include="IHM\customItem\uimenuitem.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="3dengine\tools\opengl_test.hpp" />
+    <ClInclude Include="data_manager\e_data.h" />
+    <ClInclude Include="data_manager\e_data_bool.h" />
+    <ClInclude Include="data_manager\e_data_bool_bfreqchoice.h" />
+    <ClInclude Include="data_manager\e_data_color.h" />
+    <ClInclude Include="data_manager\e_data_entier.h" />
+    <ClInclude Include="data_manager\e_data_float.h" />
+    <ClInclude Include="data_manager\e_data_font.h" />
+    <ClInclude Include="data_manager\e_data_list.h" />
+    <ClInclude Include="data_manager\e_data_row.h" />
+    <ClInclude Include="data_manager\e_data_row_bandefreq.h" />
+    <ClInclude Include="data_manager\e_data_row_ext_bandefreq.h" />
+    <ClInclude Include="data_manager\e_data_row_materiau.h" />
+    <ClInclude Include="data_manager\e_data_text.h" />
+    <ClInclude Include="data_manager\e_data_tree.h" />
+    <ClInclude Include="data_manager\tree_core\e_core.h" />
+    <ClInclude Include="data_manager\tree_core\e_core_core.h" />
+    <ClInclude Include="data_manager\tree_core\e_core_core_bfreqselection.h" />
+    <ClInclude Include="data_manager\tree_core\e_core_core_config.h" />
+    <ClInclude Include="data_manager\tree_core\e_core_core_tetconf.h" />
+    <ClInclude Include="data_manager\tree_core\e_core_sppscore.h" />
+    <ClInclude Include="data_manager\tree_core\e_core_sppsoctreecore.h" />
+    <ClInclude Include="data_manager\tree_core\e_core_tccore.h" />
+    <ClInclude Include="data_manager\tree_core\e_core_tlmcore.h" />
+    <ClInclude Include="data_manager\tree_rapport\e_report.h" />
+    <ClInclude Include="data_manager\tree_rapport\e_report_folder.h" />
+    <ClInclude Include="data_manager\tree_rapport\e_report_partvisualisation.h" />
+    <ClInclude Include="data_manager\tree_rapport\e_report_recepteurssvisualisation.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_materiaux.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_materiaux_app.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_materiaux_app_group.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_materiaux_app_materiau.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_materiaux_propmateriau.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_materiaux_rendermateriau.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_materiaux_user.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_materiaux_user_group.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_materiaux_user_materiau.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_spectrums.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_spectrums_app.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_spectrums_user.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_donnees.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_encombrements.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_encombrements_encombrement_cuboide.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_encombrements_encombrement_model.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_encombrements_encombrement_proprietes.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_encombrements_encombrement_rendu.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_groupesurfaces.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_groupesurfaces_groupe_vertex.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_projet.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_projet_configuration.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_projet_environnement.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_projet_informations.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_projet_rendu.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_projet_rendu_origine.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_projet_userconfiguration.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_recepteursp.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_recepteursp_recepteur.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_recepteursp_recepteur_proprietes.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_recepteursp_recepteur_rendu.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_recepteurss.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_recepteurss_recepteur.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_recepteurss_recepteur_proprietes.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_recepteurss_recepteur_rendu.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_recepteurss_recepteurcoupe.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_recepteurss_recepteurcoupe_proprietes.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_recepteurss_recepteurcoupe_rendu.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_sources.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_sources_source.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_sources_source_proprietes.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_sources_source_rendu.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_volumes_volume.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_volumes_volume_proprietes.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_volumes_volume_rendu.h" />
+    <ClInclude Include="data_manager\generic_element\e_gammefrequence_app.h" />
+    <ClInclude Include="data_manager\generic_element\e_gammefrequence_user.h" />
+    <ClInclude Include="data_manager\generic_element\e_materiau_app.h" />
+    <ClInclude Include="data_manager\generic_element\e_materiau_user.h" />
+    <ClInclude Include="data_manager\e_position.h" />
+    <ClInclude Include="data_manager\tree_userpref\e_userprefitem.hpp" />
+    <ClInclude Include="data_manager\tree_userpref\e_userprefitemisotemplate.hpp" />
+    <ClInclude Include="data_manager\tree_userpref\e_userprefnode.hpp" />
+    <ClInclude Include="ConvertUTF.h" />
+    <ClInclude Include="first_header_include.hpp" />
+    <ClInclude Include="main\i_simpa_main.h" />
+    <ClInclude Include="last_cpp_include.hpp" />
+    <ClInclude Include="UtfConverter.h" />
+    <ClInclude Include="manager\alphanum.hpp" />
+    <ClInclude Include="manager\bigfilereader.h" />
+    <ClInclude Include="manager\interf_logger.hpp" />
+    <ClInclude Include="manager\lifetimeWitness.hpp" />
+    <ClInclude Include="manager\processManager.h" />
+    <ClInclude Include="manager\smart_ptr.h" />
+    <ClInclude Include="manager\stringParser.h" />
+    <ClInclude Include="manager\stringTools.h" />
+    <ClInclude Include="3dengine\Core\Animator.hpp" />
+    <ClInclude Include="3dengine\ArcBall.h" />
+    <ClInclude Include="3dengine\Camera.h" />
+    <ClInclude Include="3dengine\GlBitmapSurface.h" />
+    <ClInclude Include="3dengine\legendFonts.h" />
+    <ClInclude Include="3dengine\legendObject.h" />
+    <ClInclude Include="3dengine\Core\Material.h" />
+    <ClInclude Include="3dengine\Core\Mathlib.h" />
+    <ClInclude Include="3dengine\Core\Objet3D.h" />
+    <ClInclude Include="GL\opengl_inc.h" />
+    <ClInclude Include="3dengine\OpenGLApp.h" />
+    <ClInclude Include="3dengine\Core\Particules.h" />
+    <ClInclude Include="3dengine\Core\Recepteurs_ponctuel_intensity.hpp" />
+    <ClInclude Include="3dengine\Core\Recepteurs_surfacique.h" />
+    <ClInclude Include="3dengine\Core\Texture.h" />
+    <ClInclude Include="3dengine\Core\Model3D.h" />
+    <ClInclude Include="3dengine\Core\3ds.h" />
+    <ClInclude Include="3dengine\Core\mesh.h" />
+    <ClInclude Include="3dengine\Core\Nff.h" />
+    <ClInclude Include="3dengine\Core\Asc.h" />
+    <ClInclude Include="3dengine\Core\bin.h" />
+    <ClInclude Include="coreSrc\preprocess\input_output\poly.h" />
+    <ClInclude Include="3dengine\Core\var.h" />
+    <ClInclude Include="3dengine\Core\stl.hpp" />
+    <ClInclude Include="3dengine\tools\intersection_seeker.h" />
+    <ClInclude Include="3dengine\tools\tesselator.h" />
+    <ClInclude Include="GL\wglext.h" />
+    <ClInclude Include="IHM\applicationPreferences.hpp" />
+    <ClInclude Include="IHM\base64.h" />
+    <ClInclude Include="IHM\ComboTreeCtrl.h" />
+    <ClInclude Include="IHM\DataWindow.h" />
+    <ClInclude Include="IHM\DialogDiagramCreator.h" />
+    <ClInclude Include="IHM\foldpaneltree.h" />
+    <ClInclude Include="IHM\GabeDataGrid.hpp" />
+    <ClInclude Include="IHM\languageSelection.hpp" />
+    <ClInclude Include="IHM\loadingSceneDialog.hpp" />
+    <ClInclude Include="IHM\MainPropGrid.h" />
+    <ClInclude Include="3dengine\OpenGlViewer.h" />
+    <ClInclude Include="IHM\PropGrid.h" />
+    <ClInclude Include="IHM\pyConsole.hpp" />
+    <ClInclude Include="IHM\RecepteurSOperationDialog.h" />
+    <ClInclude Include="IHM\simpleGraph.h" />
+    <ClInclude Include="IHM\simpleGraphArrays.h" />
+    <ClInclude Include="IHM\simpleGraphDialogs.h" />
+    <ClInclude Include="IHM\simpleGraphEnumerators.h" />
+    <ClInclude Include="IHM\simpleGraphManager.h" />
+    <ClInclude Include="IHM\uiTreeCtrl.h" />
+    <ClInclude Include="IHM\WizardRemeshModel.hpp" />
+    <ClInclude Include="data_manager\customEditor\wxGridCellColorEditor.h" />
+    <ClInclude Include="data_manager\customEditor\wxGridCellTreeEditor.h" />
+    <ClInclude Include="IHM\customdialog\customdlg.h" />
+    <ClInclude Include="data_manager\appconfig.h" />
+    <ClInclude Include="data_manager\drawable_element.h" />
+    <ClInclude Include="data_manager\element.h" />
+    <ClInclude Include="data_manager\logger_tetgen_debug.hpp" />
+    <ClInclude Include="manager\modelRetriever.hpp" />
+    <ClInclude Include="data_manager\projet.h" />
+    <ClInclude Include="data_manager\generic_element\e_gammeabsorption.h" />
+    <ClInclude Include="data_manager\generic_element\e_gammefrequence.h" />
+    <ClInclude Include="data_manager\generic_element\e_materiau.h" />
+    <ClInclude Include="data_manager\generic_element\e_property_freq.h" />
+    <ClInclude Include="data_manager\tree_rapport\e_report_file.h" />
+    <ClInclude Include="data_manager\tree_rapport\e_report_gabe.h" />
+    <ClInclude Include="data_manager\tree_rapport\e_report_gabe_gap.h" />
+    <ClInclude Include="data_manager\tree_rapport\e_report_gabe_recp.h" />
+    <ClInclude Include="data_manager\tree_rapport\e_report_rpi.h" />
+    <ClInclude Include="data_manager\tree_rapport\e_report_unknown_file.h" />
+    <ClInclude Include="data_manager\grpInfo\data_group_info.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_groupesurfaces_groupe.h" />
+    <ClInclude Include="data_manager\tree_scene\e_scene_volumes.h" />
+    <ClInclude Include="data_manager\python_interface\boost_python_header.h" />
+    <ClInclude Include="data_manager\python_interface\instanceManager.hpp" />
+    <ClInclude Include="data_manager\python_interface\python_command.h" />
+    <ClInclude Include="data_manager\python_interface\pythonshell.hpp" />
+    <ClInclude Include="data_manager\python_interface\pythonstdioredirect.hpp" />
+    <ClInclude Include="data_manager\python_interface\py_ui_module\Application.hpp" />
+    <ClInclude Include="data_manager\python_interface\py_ui_module\e_pyext.hpp" />
+    <ClInclude Include="data_manager\python_interface\py_ui_module\element_file_pywrap.hpp" />
+    <ClInclude Include="data_manager\python_interface\py_ui_module\element_pywrap.hpp" />
+    <ClInclude Include="3dengine\tools\recepteursurf_difference.hpp" />
+    <ClInclude Include="Language\additionnal_univ.h" />
+    <ClInclude Include="doxDoc\addelementDoc.h" />
+    <ClInclude Include="doxDoc\doxygenDoc.h" />
+    <ClInclude Include="doxDoc\mainDoc.h" />
+    <ClInclude Include="doxDoc\translationDoc.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="manager\smart_ptr.inl" />
+    <None Include="data_manager\python_interface\py_ui_module\uictrl_doxygen.py" />
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="isimpa.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="coreSrc\lib_interface\lib_interface.vcxproj">
+      <Project>{40060fc5-4087-4ca0-9d0b-49789b52792b}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

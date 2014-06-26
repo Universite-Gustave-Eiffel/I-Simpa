@@ -1,0 +1,19 @@
+*.mo
+*.pyd
+*.pyo
+*.bak
+*.7z
+*.hgignore
+*.user
+*.orig
+Debug
+Debug Unix
+*Release*
+*.ncb
+*.rar
+*.tags
+*.idb
+*.pdb
+*.suo
+*.depend
+*.exe

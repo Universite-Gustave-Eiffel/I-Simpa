@@ -1,0 +1,101 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: module_recp_tools\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-05-12 15:21+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Picaut <i-simpa.ifsttar.fr>\n"
+"Language-Team: Nicolas Fortin <nicolas.fortin@lcpc.fr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: .\n"
+"Language: en_US\n"
+"X-Generator: Poedit 1.5.5\n"
+"X-Poedit-SearchPath-0: ../../..\n"
+
+#: ../../../__init__.py:51
+msgid "Orienter le groupe vers.."
+msgstr "Orient the group to.."
+
+#: ../../../__init__.py:52
+msgid "Translation des récepteurs ponctuels"
+msgstr "Translation of receivers"
+
+#: ../../../__init__.py:53
+msgid "Rotation des récepteurs ponctuels"
+msgstr "Rotation of receivers"
+
+#: ../../../__init__.py:55 ../../../__init__.py:69
+msgid "Créer une grille de récepteurs ponctuels"
+msgstr "Create a receiver grid"
+
+#: ../../../__init__.py:58
+msgid "Point de départ [x,y,z]"
+msgstr "Starting position [x,y,z] (m)"
+
+#: ../../../__init__.py:59
+msgid "Nombre de récepteurs ponctuels en ligne"
+msgstr "Receiver points row count"
+
+#: ../../../__init__.py:60
+msgid "Nombre de récepteurs ponctuels en colonne"
+msgstr "Receiver points col count"
+
+#: ../../../__init__.py:61
+msgid "Pas ligne [x,y,z]"
+msgstr "Row step [x,y,z] (m)"
+
+#: ../../../__init__.py:62
+msgid "Pas colonne [x,y,z]"
+msgstr "Col step [x,y,z] (m)"
+
+#: ../../../__init__.py:70
+msgid ""
+"Veuillez saisir les informations pour créer la grille de récepteurs "
+"ponctuels."
+msgstr "Please fill the following fields to create the receivers points grid"
+
+#: ../../../__init__.py:81
+msgid "Orienter vers [x,y,z]"
+msgstr "Orient to position [x,y,z]"
+
+#: ../../../__init__.py:82
+msgid "Orienter un groupe de récepteur vers un point dans l'espace."
+msgstr "Orient a group of receivers to a point"
+
+#: ../../../__init__.py:83
+msgid "Veuillez saisir les coordonnées du point d'orientation."
+msgstr "Please enter the coordinates of the orientation point"
+
+#: ../../../__init__.py:94
+msgid "Vecteur de rotation"
+msgstr "Vector rotation"
+
+#: ../../../__init__.py:95
+msgid "Angle (degrés)"
+msgstr "Angle (degrees)"
+
+#: ../../../__init__.py:96
+msgid "Centre de rotation"
+msgstr "Rotation center"
+
+#: ../../../__init__.py:108
+msgid "Rotation d'un groupe de récepteurs ponctuels"
+msgstr "Rotation of a group of receivers"
+
+#: ../../../__init__.py:120 ../../../__init__.py:137
+msgid "Erreur de saisie des paramètres"
+msgstr "Wrong parameters"
+
+#: ../../../__init__.py:128
+msgid "Direction (m)"
+msgstr "Direction (m)"
+
+#: ../../../__init__.py:129
+msgid "Translation d'un groupe de récepteurs ponctuel"
+msgstr "Translation of a group of receivers"
+
+#~ msgid "Make report"
+#~ msgstr "Générer le rapport"

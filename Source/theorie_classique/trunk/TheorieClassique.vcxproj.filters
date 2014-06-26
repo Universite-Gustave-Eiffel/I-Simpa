@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Fichiers sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Fichiers sources\input_output">
+      <UniqueIdentifier>{7be5bcd0-c5f9-40f2-86b2-5b9532c2118b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\data_manager">
+      <UniqueIdentifier>{9520ab4a-f2be-40a5-8aea-2275e7346ec9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\data_manager">
+      <UniqueIdentifier>{feadf2bb-bbad-4bbb-80ce-3d5a1077da91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\input_output">
+      <UniqueIdentifier>{6c2b57de-7e44-496e-8f0b-06bd9d6c5685}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers de ressources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main_tc.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="TC_CalculationCore.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\reportmanager.cpp">
+      <Filter>Fichiers sources\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\core_configuration.cpp">
+      <Filter>Fichiers sources\data_manager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TC_CalculationCore.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="tcTypes.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\core_configuration.h">
+      <Filter>Fichiers d%27en-tête\data_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="input_output\reportmanager.h">
+      <Filter>Fichiers d%27en-tête\input_output</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

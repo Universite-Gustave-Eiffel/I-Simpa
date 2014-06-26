@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Release Win32" />
+	<File name="3dengine\Camera.cpp" open="0" top="0" tabpos="13">
+		<Cursor position="357" topLine="3" />
+	</File>
+	<File name="3dengine\Camera.h" open="1" top="0" tabpos="5">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="3dengine\Core\3ds.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="71" topLine="0" />
+	</File>
+	<File name="3dengine\Core\3ds.h" open="0" top="0" tabpos="1">
+		<Cursor position="125" topLine="0" />
+	</File>
+	<File name="3dengine\Core\Animator.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="842" topLine="55" />
+	</File>
+	<File name="3dengine\Core\Animator.hpp" open="0" top="0" tabpos="3">
+		<Cursor position="174" topLine="0" />
+	</File>
+	<File name="3dengine\Core\Mathlib.h" open="1" top="0" tabpos="6">
+		<Cursor position="151" topLine="0" />
+	</File>
+	<File name="3dengine\Core\Model3D.h" open="0" top="0" tabpos="0">
+		<Cursor position="187" topLine="0" />
+	</File>
+	<File name="3dengine\Core\Nff.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="2032" topLine="44" />
+	</File>
+	<File name="3dengine\Core\Objet3D.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="7281" topLine="222" />
+	</File>
+	<File name="3dengine\Core\Objet3D.h" open="0" top="0" tabpos="1">
+		<Cursor position="1579" topLine="34" />
+	</File>
+	<File name="3dengine\Core\Objet3D_maillage.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="178" topLine="0" />
+	</File>
+	<File name="3dengine\Core\Particules.h" open="0" top="0" tabpos="0">
+		<Cursor position="3672" topLine="107" />
+	</File>
+	<File name="3dengine\Core\Recepteurs_ponctuel_intensity.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="26" topLine="0" />
+	</File>
+	<File name="3dengine\Core\Recepteurs_surfacique.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="5621" topLine="194" />
+	</File>
+	<File name="3dengine\Core\Texture.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="3227" topLine="96" />
+	</File>
+	<File name="3dengine\Core\Texture.h" open="0" top="0" tabpos="0">
+		<Cursor position="417" topLine="0" />
+	</File>
+	<File name="3dengine\Core\bin.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="11213" topLine="252" />
+	</File>
+	<File name="3dengine\Core\bin.h" open="0" top="0" tabpos="6">
+		<Cursor position="2281" topLine="75" />
+	</File>
+	<File name="3dengine\Core\mesh.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="43" topLine="0" />
+	</File>
+	<File name="3dengine\Core\ply.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="5433" topLine="256" />
+	</File>
+	<File name="3dengine\Core\stl.cpp" open="0" top="0" tabpos="17">
+		<Cursor position="123" topLine="0" />
+	</File>
+	<File name="3dengine\GlBitmapSurface.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="5744" topLine="161" />
+	</File>
+	<File name="3dengine\OpenGLApp.cpp" open="0" top="0" tabpos="8">
+		<Cursor position="1313" topLine="33" />
+	</File>
+	<File name="3dengine\OpenGLApp.h" open="0" top="0" tabpos="9">
+		<Cursor position="755" topLine="13" />
+	</File>
+	<File name="3dengine\OpenGlViewer.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="718" topLine="631" />
+	</File>
+	<File name="3dengine\OpenGlViewer.h" open="0" top="0" tabpos="0">
+		<Cursor position="633" topLine="0" />
+	</File>
+	<File name="3dengine\tools\intersection_seeker.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="2738" topLine="57" />
+	</File>
+	<File name="3dengine\tools\opengl_test.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="109" topLine="1" />
+	</File>
+	<File name="ConvertUTF.h" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="78" />
+	</File>
+	<File name="GL\opengl_inc.h" open="0" top="0" tabpos="0">
+		<Cursor position="262" topLine="0" />
+	</File>
+	<File name="IHM\DialogDiagramCreator.h" open="0" top="0" tabpos="0">
+		<Cursor position="59" topLine="0" />
+	</File>
+	<File name="IHM\MainPropGrid.h" open="0" top="0" tabpos="9">
+		<Cursor position="747" topLine="10" />
+	</File>
+	<File name="IHM\PropGrid.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="144" topLine="0" />
+	</File>
+	<File name="IHM\PropGrid.h" open="0" top="0" tabpos="3">
+		<Cursor position="460" topLine="19" />
+	</File>
+	<File name="IHM\RecepteurSOperationDialog.h" open="0" top="0" tabpos="0">
+		<Cursor position="1522" topLine="14" />
+	</File>
+	<File name="IHM\base64.cpp" open="0" top="0" tabpos="12">
+		<Cursor position="473" topLine="0" />
+	</File>
+	<File name="IHM\customItem\uimenuitem.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="310" topLine="1" />
+	</File>
+	<File name="IHM\customRenderer\gridcellgabefloatrenderer.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1184" topLine="28" />
+	</File>
+	<File name="IHM\languageSelection.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="3829" topLine="74" />
+	</File>
+	<File name="IHM\languageSelection.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="174" topLine="0" />
+	</File>
+	<File name="IHM\pyConsole.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1590" topLine="43" />
+	</File>
+	<File name="IHM\simpleGraph.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="48572" topLine="1516" />
+	</File>
+	<File name="IHM\simpleGraph.h" open="0" top="0" tabpos="0">
+		<Cursor position="249" topLine="0" />
+	</File>
+	<File name="IHM\simpleGraphManager.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="7288" topLine="175" />
+	</File>
+	<File name="IHM\uiTreeCtrl.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="14494" topLine="305" />
+	</File>
+	<File name="UtfConverter.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="4254" topLine="77" />
+	</File>
+	<File name="UtfConverter.h" open="0" top="0" tabpos="0">
+		<Cursor position="295" topLine="0" />
+	</File>
+	<File name="data_manager\appconfig.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="3040" topLine="17" />
+	</File>
+	<File name="data_manager\appconfig.h" open="0" top="0" tabpos="2">
+		<Cursor position="4670" topLine="76" />
+	</File>
+	<File name="data_manager\drawable_element.h" open="0" top="0" tabpos="2">
+		<Cursor position="74" topLine="0" />
+	</File>
+	<File name="data_manager\e_data.h" open="0" top="0" tabpos="6">
+		<Cursor position="2765" topLine="62" />
+	</File>
+	<File name="data_manager\e_data_list.h" open="0" top="0" tabpos="0">
+		<Cursor position="2931" topLine="75" />
+	</File>
+	<File name="data_manager\e_position.h" open="0" top="0" tabpos="10">
+		<Cursor position="97" topLine="0" />
+	</File>
+	<File name="data_manager\element.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="9117" topLine="330" />
+	</File>
+	<File name="data_manager\element.h" open="0" top="0" tabpos="4">
+		<Cursor position="31189" topLine="463" />
+	</File>
+	<File name="data_manager\logger_tetgen_debug.hpp" open="0" top="0" tabpos="5">
+		<Cursor position="1183" topLine="0" />
+	</File>
+	<File name="data_manager\projet.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="85639" topLine="2359" />
+	</File>
+	<File name="data_manager\projet.h" open="0" top="0" tabpos="0">
+		<Cursor position="13312" topLine="360" />
+	</File>
+	<File name="data_manager\projet_calculation.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="7545" topLine="844" />
+	</File>
+	<File name="data_manager\projet_maillage.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="8635" topLine="0" />
+	</File>
+	<File name="data_manager\projet_python.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1887" topLine="195" />
+	</File>
+	<File name="data_manager\projet_remesh.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="5752" topLine="131" />
+	</File>
+	<File name="data_manager\python_interface\boost_python_header.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="299" topLine="0" />
+	</File>
+	<File name="data_manager\python_interface\boost_python_header.h" open="0" top="0" tabpos="8">
+		<Cursor position="184" topLine="0" />
+	</File>
+	<File name="data_manager\python_interface\py_ui_module\Application.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="13134" topLine="340" />
+	</File>
+	<File name="data_manager\python_interface\py_ui_module\e_pyext.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="230" topLine="0" />
+	</File>
+	<File name="data_manager\python_interface\py_ui_module\element_file_pywrap.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="1322" topLine="24" />
+	</File>
+	<File name="data_manager\python_interface\py_ui_module\element_pywrap.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="27148" topLine="601" />
+	</File>
+	<File name="data_manager\python_interface\pythonshell.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="9345" topLine="308" />
+	</File>
+	<File name="data_manager\tree_core\e_core.h" open="0" top="0" tabpos="0">
+		<Cursor position="2344" topLine="69" />
+	</File>
+	<File name="data_manager\tree_core\e_core_sppscore.h" open="0" top="0" tabpos="0">
+		<Cursor position="5438" topLine="115" />
+	</File>
+	<File name="data_manager\tree_core\e_core_sppsoctreecore.h" open="0" top="0" tabpos="0">
+		<Cursor position="3226" topLine="61" />
+	</File>
+	<File name="data_manager\tree_core\e_core_tccore.h" open="0" top="0" tabpos="0">
+		<Cursor position="2454" topLine="45" />
+	</File>
+	<File name="data_manager\tree_rapport\e_report.h" open="0" top="0" tabpos="0">
+		<Cursor position="1110" topLine="21" />
+	</File>
+	<File name="data_manager\tree_rapport\e_report_file.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="11102" topLine="347" />
+	</File>
+	<File name="data_manager\tree_scene\e_scene.h" open="0" top="0" tabpos="0">
+		<Cursor position="717" topLine="9" />
+	</File>
+	<File name="data_manager\tree_scene\e_scene_encombrements_encombrement_cuboide.h" open="0" top="0" tabpos="6">
+		<Cursor position="1536" topLine="20" />
+	</File>
+	<File name="data_manager\tree_scene\e_scene_encombrements_encombrement_proprietes.h" open="0" top="0" tabpos="1">
+		<Cursor position="848" topLine="17" />
+	</File>
+	<File name="data_manager\tree_scene\e_scene_groupesurfaces.h" open="0" top="0" tabpos="0">
+		<Cursor position="5226" topLine="141" />
+	</File>
+	<File name="data_manager\tree_scene\e_scene_groupesurfaces_groupe.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="8031" topLine="214" />
+	</File>
+	<File name="data_manager\tree_scene\e_scene_groupesurfaces_groupe.h" open="0" top="0" tabpos="0">
+		<Cursor position="2184" topLine="45" />
+	</File>
+	<File name="data_manager\tree_scene\e_scene_projet_configuration.h" open="0" top="0" tabpos="0">
+		<Cursor position="703" topLine="14" />
+	</File>
+	<File name="data_manager\tree_scene\e_scene_recepteursp.h" open="0" top="0" tabpos="0">
+		<Cursor position="770" topLine="7" />
+	</File>
+	<File name="doxDoc\addelementDoc.h" open="0" top="0" tabpos="0">
+		<Cursor position="493" topLine="0" />
+	</File>
+	<File name="first_header_include.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="195" topLine="0" />
+	</File>
+	<File name="last_cpp_include.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="44" topLine="0" />
+	</File>
+	<File name="main\i_simpa_main.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="28973" topLine="792" />
+	</File>
+	<File name="main\i_simpa_main.h" open="0" top="0" tabpos="4">
+		<Cursor position="7023" topLine="243" />
+	</File>
+	<File name="manager\processManager.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1433" topLine="59" />
+	</File>
+	<File name="manager\stringParser.h" open="0" top="0" tabpos="0">
+		<Cursor position="1502" topLine="70" />
+	</File>
+	<File name="manager\stringTools.h" open="0" top="0" tabpos="0">
+		<Cursor position="2838" topLine="85" />
+	</File>
+</CodeBlocks_layout_file>

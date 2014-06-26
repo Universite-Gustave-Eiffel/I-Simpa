@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Release Unix" />
+	<File name="../Core/mathlib.cpp" open="0" top="0" tabpos="18">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="../dummy.hpp" open="0" top="0" tabpos="17">
+		<Cursor position="406" topLine="0" />
+	</File>
+	<File name="../en_numeric.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="20" topLine="0" />
+	</File>
+	<File name="_libsimpa.py.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="3619" topLine="83" />
+	</File>
+	<File name="generate_code.py" open="0" top="0" tabpos="0">
+		<Cursor position="1135" topLine="87" />
+	</File>
+</CodeBlocks_layout_file>

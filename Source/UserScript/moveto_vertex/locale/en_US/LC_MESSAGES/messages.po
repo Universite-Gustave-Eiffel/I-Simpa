@@ -1,0 +1,111 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: module_recp_tools\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-19 14:50+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Picaut <i-simpa.ifsttar.fr>\n"
+"Language-Team: Nicolas Fortin <nicolas.fortin@lcpc.fr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: .\n"
+"Language: en_US\n"
+"X-Generator: Poedit 1.5.5\n"
+"X-Poedit-SearchPath-0: ../../..\n"
+
+#: ../../../__init__.py:14
+msgid "Déplacer vers un groupe existant"
+msgstr "Move to an existing group"
+
+#: ../../../__init__.py:22
+msgid "Libellé"
+msgstr "Label"
+
+#: ../../../__init__.py:24
+msgid "Déplacement de faces"
+msgstr "Move faces"
+
+#: ../../../__init__.py:24
+msgid "(Veuillez sélectionner le groupe de surface de destination :"
+msgstr "(Please select the group of destination:"
+
+#~ msgid "Activer"
+#~ msgstr "Enable"
+
+#~ msgid "Désactiver"
+#~ msgstr "Disable"
+
+#~ msgid "Rotation"
+#~ msgstr "Rotation"
+
+#~ msgid "Translation"
+#~ msgstr "Translation"
+
+#~ msgid "Toutes les sources"
+#~ msgstr "All sources"
+
+#~ msgid "Créer une ligne de sources sonores"
+#~ msgstr "Create a line of sound sources"
+
+#~ msgid "Point de départ [x,y,z]"
+#~ msgstr "Start position [x,y,z]"
+
+#~ msgid "Nombre de sources"
+#~ msgstr "Number of sources"
+
+#~ msgid "Pas [x,y,z]"
+#~ msgstr "Step [x,y,z]"
+
+#~ msgid ""
+#~ "Veuillez saisir les informations pour créer la ligne de sources sonores."
+#~ msgstr "Please fill the following fields to create the sound source line"
+
+#~ msgid "Erreur de saisie des paramètres"
+#~ msgstr "Wrong parameters"
+
+#~ msgid "Vecteur de rotation"
+#~ msgstr "Vector rotation"
+
+#~ msgid "Angle (degrées)"
+#~ msgstr "Angle (degrees)"
+
+#~ msgid "Rotation d'un groupe de sources sonores"
+#~ msgstr "Rotation of sound source"
+
+#~ msgid "Direction (m)"
+#~ msgstr "Direction (m)"
+
+#~ msgid "Translation d'un groupe de sources sonores"
+#~ msgstr "Translation of a sound source group"
+
+#~ msgid "Orienter le groupe vers.."
+#~ msgstr "Orient the group to.."
+
+#~ msgid "Translation des récepteurs ponctuels"
+#~ msgstr "Translation of receivers points"
+
+#~ msgid "Rotation des récepteurs ponctuels"
+#~ msgstr "Rotation of receivers points"
+
+#~ msgid "Nombre de récepteurs ponctuels en ligne"
+#~ msgstr "Receiver points row count"
+
+#~ msgid "Nombre de récepteurs ponctuels en colonne"
+#~ msgstr "Receiver points col count"
+
+#~ msgid "Pas colonne [x,y,z]"
+#~ msgstr "Col step [x,y,z]"
+
+#~ msgid "Orienter vers [x,y,z]"
+#~ msgstr "Orient to [x,y,z]"
+
+#~ msgid "Orienter un groupe de récepteur vers un point dans l'espace."
+#~ msgstr "Orient a receiver point group to a "
+
+#~ msgid "Veuillez saisir les coordonnées du point d'orientation."
+#~ msgstr "Please enter the coordinates of the orientation point."
+
+#~ msgid "Make report"
+#~ msgstr "Générer le rapport"

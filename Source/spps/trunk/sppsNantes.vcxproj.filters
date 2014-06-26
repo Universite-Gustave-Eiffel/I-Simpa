@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Fichiers sources">
+      <UniqueIdentifier>{3af98582-3db4-47c8-8402-690befad372d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\data_manager">
+      <UniqueIdentifier>{cdc42392-bb99-495f-96f4-b4e1f2bdf3a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\input_output">
+      <UniqueIdentifier>{676329b4-3c1d-4aa5-8e26-f03639cf6e2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\input_output\particles">
+      <UniqueIdentifier>{90a79bbc-7202-4d83-83fd-4fde9ec297b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\tools">
+      <UniqueIdentifier>{44f355e3-c79a-4ba5-8586-19d781c92b5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27entêtes">
+      <UniqueIdentifier>{db9a40af-755b-4946-a558-8b74780fdd4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27entêtes\data_manager">
+      <UniqueIdentifier>{f7191906-d9ce-4f84-ba70-ede9a2928016}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27entêtes\input_output">
+      <UniqueIdentifier>{f2538787-cb0b-4c04-a900-7ac577b151ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27entêtes\input_output\particles">
+      <UniqueIdentifier>{03312fcb-f568-48db-a23d-fcf602c2e583}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27entêtes\tools">
+      <UniqueIdentifier>{da2f8055-5266-42d3-864d-17d6a2d2c0fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers de ressources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CalculationCore.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="sppsInitialisation.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="sppsNantes.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="sppsTypes.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\core_configuration.cpp">
+      <Filter>Fichiers sources\data_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\reportmanager.cpp">
+      <Filter>Fichiers sources\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\dotdistribution.cpp">
+      <Filter>Fichiers sources\tools</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CalculationCore.h">
+      <Filter>Fichiers d%27entêtes</Filter>
+    </ClInclude>
+    <ClInclude Include="sppsInitialisation.h">
+      <Filter>Fichiers d%27entêtes</Filter>
+    </ClInclude>
+    <ClInclude Include="sppsTypes.h">
+      <Filter>Fichiers d%27entêtes</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\core_configuration.h">
+      <Filter>Fichiers d%27entêtes\data_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="input_output\reportmanager.h">
+      <Filter>Fichiers d%27entêtes\input_output</Filter>
+    </ClInclude>
+    <ClInclude Include="input_output\particles\part_binary.h">
+      <Filter>Fichiers d%27entêtes\input_output\particles</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\dotdistribution.h">
+      <Filter>Fichiers d%27entêtes\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\dotreflection.h">
+      <Filter>Fichiers d%27entêtes\tools</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>

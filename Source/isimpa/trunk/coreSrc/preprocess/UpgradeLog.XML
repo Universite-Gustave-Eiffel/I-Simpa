@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Preprocess">
+</Property><Property Name="Fichier solution" Value="F:\DevLcpc\Sppsproj\coreSrc\preprocess\Preprocess.sln">
+</Property><Property Name="Fichier d'options utilisateur" Value="F:\DevLcpc\Sppsproj\coreSrc\preprocess\Preprocess.suo">
+</Property><Property Name="Date" Value="jeudi 16 octobre 2008">
+</Property><Property Name="Time" Value="09:54">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="Preprocess.sln" Description="Fichier correctement sauvegardé en tant que F:\DevLcpc\Sppsproj\coreSrc\preprocess\Preprocess.sln.old">
+</Event><Event ErrorLevel="0" Project="" Source="Preprocess.suo" Description="Fichier correctement sauvegardé en tant que F:\DevLcpc\Sppsproj\coreSrc\preprocess\Preprocess.suo.old">
+</Event><Event ErrorLevel="0" Project="Preprocess" Source="Preprocess.vcproj" Description="Le déploiement Web sur le serveur IIS local IIS n'est plus pris en charge. L'outil de génération Déploiement Web a été supprimé des paramètres de votre projet.">
+</Event><Event ErrorLevel="1" Project="Preprocess" Source="Preprocess.vcproj" Description="Cette application a été mise à jour pour inclure les paramètres liés à la fonctionnalité Contrôle de compte d'utilisateur de Windows Vista. Par défaut, lorsqu'elle est exécutée sur Windows Vista avec le Contrôle de compte d'utilisateur activé, cette application est marquée pour s'exécuter avec les mêmes privilèges que le processus qui l'a lancée. Ce marquage empêche l'application de s'exécuter avec la virtualisation. Vous pouvez changer les paramètres du Contrôle de compte d'utilisateur dans les pages de propriétés du projet.">
+</Event><Event ErrorLevel="0" Project="Preprocess" Source="Preprocess.vcproj" Description="Fichier projet correctement sauvegardé en tant que 'F:\DevLcpc\Sppsproj\coreSrc\preprocess\Preprocess.vcproj.8.00.old'.">
+</Event><Event ErrorLevel="0" Project="Preprocess" Source="Preprocess.vcproj" Description="Mise à niveau du projet terminée.">
+</Event><Event ErrorLevel="3" Project="Preprocess" Source="Preprocess.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="Preprocess.sln" Description="Solution correctement convertie">
+</Event><Event ErrorLevel="3" Project="" Source="Preprocess.sln" Description="Converted">
+</Event></UpgradeLog>

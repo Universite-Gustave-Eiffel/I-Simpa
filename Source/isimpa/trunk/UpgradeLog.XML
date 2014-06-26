@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="PSPS">
+</Property><Property Name="Fichier solution" Value="F:\DevLcpc\Sppsproj\PSPS.sln">
+</Property><Property Name="Date" Value="mercredi 8 octobre 2008">
+</Property><Property Name="Time" Value="08:21">
+</Property></Properties><Event ErrorLevel="0" Project="pspsProj" Source="pspsProj.vcproj" Description="Le déploiement Web sur le serveur IIS local IIS n'est plus pris en charge. L'outil de génération Déploiement Web a été supprimé des paramètres de votre projet.">
+</Event><Event ErrorLevel="1" Project="pspsProj" Source="pspsProj.vcproj" Description="Cette application a été mise à jour pour inclure les paramètres liés à la fonctionnalité Contrôle de compte d'utilisateur de Windows Vista. Par défaut, lorsqu'elle est exécutée sur Windows Vista avec le Contrôle de compte d'utilisateur activé, cette application est marquée pour s'exécuter avec les mêmes privilèges que le processus qui l'a lancée. Ce marquage empêche l'application de s'exécuter avec la virtualisation. Vous pouvez changer les paramètres du Contrôle de compte d'utilisateur dans les pages de propriétés du projet.">
+</Event><Event ErrorLevel="0" Project="pspsProj" Source="pspsProj.vcproj" Description="Mise à niveau du projet terminée.">
+</Event><Event ErrorLevel="3" Project="pspsProj" Source="pspsProj.vcproj" Description="Converted">
+</Event><Event ErrorLevel="2" Project="wx_aui" Source="..\..\stage\wxWidgets-2.8.7\build\msw\wx_aui.vcproj" Description="Impossible de mettre à niveau le fichier projet 'F:\stage\wxWidgets-2.8.7\build\msw\wx_aui.vcproj'. Vérifiez que le fichier existe et n'est pas protégé en écriture.">
+</Event><Event ErrorLevel="2" Project="wx_aui" Source="..\..\stage\wxWidgets-2.8.7\build\msw\wx_aui.vcproj" Description="La mise à niveau du projet a échoué.">
+</Event><Event ErrorLevel="3" Project="wx_aui" Source="..\..\stage\wxWidgets-2.8.7\build\msw\wx_aui.vcproj" Description="Non convertie">
+</Event><Event ErrorLevel="2" Project="wx_base" Source="..\..\stage\wxWidgets-2.8.7\build\msw\wx_base.vcproj" Description="Impossible de mettre à niveau le fichier projet 'F:\stage\wxWidgets-2.8.7\build\msw\wx_base.vcproj'. Vérifiez que le fichier existe et n'est pas protégé en écriture.">
+</Event><Event ErrorLevel="2" Project="wx_base" Source="..\..\stage\wxWidgets-2.8.7\build\msw\wx_base.vcproj" Description="La mise à niveau du projet a échoué.">
+</Event><Event ErrorLevel="3" Project="wx_base" Source="..\..\stage\wxWidgets-2.8.7\build\msw\wx_base.vcproj" Description="Non convertie">
+</Event><Event ErrorLevel="2" Project="wx_core" Source="..\..\stage\wxWidgets-2.8.7\build\msw\wx_core.vcproj" Description="Impossible de mettre à niveau le fichier projet 'F:\stage\wxWidgets-2.8.7\build\msw\wx_core.vcproj'. Vérifiez que le fichier existe et n'est pas protégé en écriture.">
+</Event><Event ErrorLevel="2" Project="wx_core" Source="..\..\stage\wxWidgets-2.8.7\build\msw\wx_core.vcproj" Description="La mise à niveau du projet a échoué.">
+</Event><Event ErrorLevel="3" Project="wx_core" Source="..\..\stage\wxWidgets-2.8.7\build\msw\wx_core.vcproj" Description="Non convertie">
+</Event><Event ErrorLevel="2" Project="wx_gl" Source="..\..\stage\wxWidgets-2.8.7\build\msw\wx_gl.vcproj" Description="Impossible de mettre à niveau le fichier projet 'F:\stage\wxWidgets-2.8.7\build\msw\wx_gl.vcproj'. Vérifiez que le fichier existe et n'est pas protégé en écriture.">
+</Event><Event ErrorLevel="2" Project="wx_gl" Source="..\..\stage\wxWidgets-2.8.7\build\msw\wx_gl.vcproj" Description="La mise à niveau du projet a échoué.">
+</Event><Event ErrorLevel="3" Project="wx_gl" Source="..\..\stage\wxWidgets-2.8.7\build\msw\wx_gl.vcproj" Description="Non convertie">
+</Event><Event ErrorLevel="2" Project="wx_xml" Source="..\..\stage\wxWidgets-2.8.7\build\msw\wx_xml.vcproj" Description="Impossible de mettre à niveau le fichier projet 'F:\stage\wxWidgets-2.8.7\build\msw\wx_xml.vcproj'. Vérifiez que le fichier existe et n'est pas protégé en écriture.">
+</Event><Event ErrorLevel="2" Project="wx_xml" Source="..\..\stage\wxWidgets-2.8.7\build\msw\wx_xml.vcproj" Description="La mise à niveau du projet a échoué.">
+</Event><Event ErrorLevel="3" Project="wx_xml" Source="..\..\stage\wxWidgets-2.8.7\build\msw\wx_xml.vcproj" Description="Non convertie">
+</Event><Event ErrorLevel="2" Project="sppsNantes" Source="coreSrc\sppsNantes\sppsNantes\sppsNantes\sppsNantes.vcproj" Description="Impossible de mettre à niveau le fichier projet 'F:\DevLcpc\Sppsproj\coreSrc\sppsNantes\sppsNantes\sppsNantes\sppsNantes.vcproj'. Vérifiez que le fichier existe et n'est pas protégé en écriture.">
+</Event><Event ErrorLevel="2" Project="sppsNantes" Source="coreSrc\sppsNantes\sppsNantes\sppsNantes\sppsNantes.vcproj" Description="La mise à niveau du projet a échoué.">
+</Event><Event ErrorLevel="3" Project="sppsNantes" Source="coreSrc\sppsNantes\sppsNantes\sppsNantes\sppsNantes.vcproj" Description="Non convertie">
+</Event><Event ErrorLevel="0" Project="" Source="PSPS.sln" Description="Solution correctement convertie">
+</Event><Event ErrorLevel="3" Project="" Source="PSPS.sln" Description="Converted">
+</Event></UpgradeLog>

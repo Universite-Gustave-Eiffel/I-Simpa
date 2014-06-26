@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeLite_Workspace Name="I-SIMPA" Database="./I-SIMPA.tags">
+  <Project Name="VolumetricMeshRepair" Path="coreSrc/VolumetricMeshRepair/VolumetricMeshRepair.project" Active="Yes"/>
+  <Project Name="TheorieClassique" Path="coreSrc/theorie_classique/TheorieClassique/TheorieClassique.project"/>
+  <Project Name="lib_interface" Path="coreSrc/lib_interface/lib_interface.project"/>
+  <Project Name="python_bindings" Path="coreSrc/lib_interface/python_bindings/python_bindings.project"/>
+  <Project Name="Preprocess" Path="coreSrc/preprocess/Preprocess.project"/>
+  <Project Name="sppsNantes" Path="coreSrc/sppsNantes/sppsNantes/sppsNantes.project"/>
+  <Project Name="I-SIMPA" Path="I-SIMPA.project"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Debug" Selected="yes">
+      <Project Name="VolumetricMeshRepair" ConfigName="Debug"/>
+      <Project Name="TheorieClassique" ConfigName="Debug"/>
+      <Project Name="lib_interface" ConfigName="Debug"/>
+      <Project Name="python_bindings" ConfigName="Debug"/>
+      <Project Name="Preprocess" ConfigName="Debug"/>
+      <Project Name="sppsNantes" ConfigName="Debug"/>
+      <Project Name="I-SIMPA" ConfigName="Debug"/>
+    </WorkspaceConfiguration>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Project Name="VolumetricMeshRepair" ConfigName="Debug"/>
+      <Project Name="TheorieClassique" ConfigName="Debug"/>
+      <Project Name="lib_interface" ConfigName="Debug"/>
+      <Project Name="python_bindings" ConfigName="Debug"/>
+      <Project Name="Preprocess" ConfigName="Debug"/>
+      <Project Name="sppsNantes" ConfigName="Debug"/>
+      <Project Name="I-SIMPA" ConfigName="Debug"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+</CodeLite_Workspace>

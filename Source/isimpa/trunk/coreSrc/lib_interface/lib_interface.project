@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeLite_Project Name="lib_interface">
+  <Description/>
+  <VirtualDirectory Name="src"/>
+  <VirtualDirectory Name="include"/>
+  <Dependencies/>
+  <Settings Type="Static Library">
+    <GlobalSettings>
+      <Compiler Options="">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="">
+        <LibraryPath Value="."/>
+      </Linker>
+      <ResourceCompiler Options=""/>
+    </GlobalSettings>
+    <Configuration Name="Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Static Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g" Required="yes" PreCompiledHeader="">
+        <IncludePath Value="./"/>
+        <Preprocessor Value="WIN32"/>
+        <Preprocessor Value="_DEBUG"/>
+        <Preprocessor Value="_CONSOLE"/>
+      </Compiler>
+      <Linker Options="-O0" Required="yes">
+        <LibraryPath Value="."/>
+        <LibraryPath Value="Debug"/>
+      </Linker>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="/lib" IntermediateDirectory="$(ConfigurationName)" Command="" CommandArguments="" WorkingDirectory="./Debug" PauseExecWhenProcTerminates="no"/>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName/>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+    </Configuration>
+    <Configuration Name="Release" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Static Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g" Required="yes" PreCompiledHeader="">
+        <IncludePath Value="./"/>
+        <Preprocessor Value="WIN32"/>
+        <Preprocessor Value="NDEBUG"/>
+        <Preprocessor Value="_CONSOLE"/>
+      </Compiler>
+      <Linker Options="-O0" Required="yes">
+        <LibraryPath Value="."/>
+        <LibraryPath Value="Debug"/>
+      </Linker>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="/lib" IntermediateDirectory="$(ConfigurationName)" Command="" CommandArguments="" WorkingDirectory="./Debug" PauseExecWhenProcTerminates="yes"/>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName/>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+    </Configuration>
+  </Settings>
+  <VirtualDirectory Name="Fichiers d'en-têtes">
+    <File Name="coreInitialisation.h"/>
+    <File Name="coreString.h"/>
+    <File Name="coreTypes.h"/>
+    <File Name="en_numeric.hpp"/>
+    <File Name="std_tools.hpp"/>
+    <VirtualDirectory Name="Core">
+      <File Name="Core/mathlib.h"/>
+      <File Name="Core/Model3D.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="data_manager">
+      <File Name="data_manager/base_core_configuration.h"/>
+      <VirtualDirectory Name="data_calculation">
+        <File Name="data_manager/data_calculation/calculsPropagation.h"/>
+      </VirtualDirectory>
+    </VirtualDirectory>
+    <VirtualDirectory Name="input_output">
+      <File Name="input_output/basereportmanager.h"/>
+      <File Name="input_output/bin.h"/>
+      <File Name="input_output/cxml.h"/>
+      <File Name="input_output/progressionInfo.h"/>
+      <File Name="input_output/utf8.h"/>
+      <VirtualDirectory Name="exportRecepteurSurf">
+        <File Name="input_output/exportRecepteurSurf/rsbin.h"/>
+        <File Name="input_output/exportRecepteurSurf/std_rsbin.hpp"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="gabe">
+        <File Name="input_output/gabe/gabe.h"/>
+        <File Name="input_output/gabe/stdgabe.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="importExportMaillage">
+        <File Name="input_output/importExportMaillage/m_report_bin.h"/>
+        <File Name="input_output/importExportMaillage/mbin.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="utf8">
+        <File Name="input_output/utf8/checked.h"/>
+        <File Name="input_output/utf8/core.h"/>
+        <File Name="input_output/utf8/unchecked.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="particles">
+        <File Name="input_output/particles/part_binary.h"/>
+        <File Name="input_output/particles/part_io.hpp"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="ply">
+        <File Name="input_output/ply/rply.h"/>
+        <File Name="input_output/ply/rply_interface.hpp"/>
+      </VirtualDirectory>
+    </VirtualDirectory>
+    <VirtualDirectory Name="tools">
+      <File Name="tools/collision.h"/>
+      <File Name="tools/octree44.hpp"/>
+      <File Name="tools/octree44_cylinderElement.hpp"/>
+      <File Name="tools/octree44_dotElement.hpp"/>
+      <File Name="tools/octree44_segmentElement.hpp"/>
+      <File Name="tools/octree44_sphereElement.hpp"/>
+      <File Name="tools/octree44_triangleElement.hpp"/>
+      <File Name="tools/surf_merging.hpp"/>
+      <File Name="tools/vol_identifier.hpp"/>
+      <File Name="tools/vol_splitter.hpp"/>
+    </VirtualDirectory>
+  </VirtualDirectory>
+  <VirtualDirectory Name="Fichiers sources">
+    <File Name="coreinitialisation.cpp"/>
+    <File Name="coreString.cpp"/>
+    <File Name="coreTypes.cpp"/>
+    <File Name="dummy.cpp"/>
+    <File Name="en_numeric.cpp"/>
+    <File Name="std_tools.cpp"/>
+    <VirtualDirectory Name="Core"/>
+    <VirtualDirectory Name="data_manager">
+      <File Name="data_manager/base_core_configuration.cpp"/>
+      <VirtualDirectory Name="data_calculation">
+        <File Name="data_manager/data_calculation/Celerite_du_son.cpp"/>
+        <File Name="data_manager/data_calculation/Coef_Att_Atmos.cpp"/>
+        <File Name="data_manager/data_calculation/Masse_volumique_air.cpp"/>
+      </VirtualDirectory>
+    </VirtualDirectory>
+    <VirtualDirectory Name="input_output">
+      <File Name="input_output/baseReportManager.cpp"/>
+      <File Name="input_output/bin.cpp"/>
+      <File Name="input_output/cxml.cpp"/>
+      <File Name="input_output/gpl_io.cpp"/>
+      <VirtualDirectory Name="exportRecepteurSurf">
+        <File Name="input_output/exportRecepteurSurf/rsbin.cpp"/>
+        <File Name="input_output/exportRecepteurSurf/std_rsbin.cpp"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="gabe">
+        <File Name="input_output/gabe/gabe.cpp"/>
+        <File Name="input_output/gabe/stdgabe.cpp"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="importExportMaillage">
+        <File Name="input_output/importExportMaillage/m_report_bin.cpp"/>
+        <File Name="input_output/importExportMaillage/mbin.cpp"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="utf8"/>
+      <VirtualDirectory Name="particles">
+        <File Name="input_output/particles/part_io.cpp"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="ply">
+        <File Name="input_output/ply/rply.c"/>
+        <File Name="input_output/ply/rply_interface.cpp"/>
+      </VirtualDirectory>
+    </VirtualDirectory>
+    <VirtualDirectory Name="tools">
+      <File Name="tools/octree44.cpp"/>
+      <File Name="tools/octree44_cylinderElement.cpp"/>
+      <File Name="tools/octree44_dotElement.cpp"/>
+      <File Name="tools/octree44_segmentElement.cpp"/>
+      <File Name="tools/octree44_sphereElement.cpp"/>
+      <File Name="tools/octree44_triangleElement.cpp"/>
+      <File Name="tools/surf_merging.cpp"/>
+      <File Name="tools/vol_identifier.cpp"/>
+      <File Name="tools/vol_splitter.cpp"/>
+    </VirtualDirectory>
+  </VirtualDirectory>
+  <VirtualDirectory Name="Fichiers de ressources"/>
+</CodeLite_Project>

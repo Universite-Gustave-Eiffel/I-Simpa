@@ -1,0 +1,1 @@
+- Ajouter l'option -reduceonly afin d'effectuer uniquement une réduction du nombre de triangles

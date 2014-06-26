@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="TheorieClassique" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug Win32">
+				<Option output="TheorieClassique" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Debug Win32" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D_CONSOLE" />
+					<Add option="-W" />
+					<Add option="-g" />
+					<Add option="-O0" />
+					<Add directory="../../lib_interface" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="../../lib_interface" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="../../lib_interface/Debug/lib_interface" />
+				</Linker>
+			</Target>
+			<Target title="Release Win32">
+				<Option output="TheorieClassique" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Release Win32" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DWIN32" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_CONSOLE" />
+					<Add option="-W" />
+					<Add directory="../../lib_interface" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="../../lib_interface" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="../../lib_interface/Release/lib_interface" />
+				</Linker>
+			</Target>
+			<Target title="Debug Unix">
+				<Option platforms="Unix;" />
+				<Option output="Debug Unix/TheorieClassique" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Debug Unix" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-W" />
+					<Add option="-g" />
+					<Add option="-O0" />
+					<Add option="-D_UNIX" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D_CONSOLE" />
+					<Add directory="../../lib_interface" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="../../lib_interface" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="../../lib_interface/Debug Unix/lib_interface.a" />
+				</Linker>
+			</Target>
+			<Target title="Release Unix">
+				<Option platforms="Unix;" />
+				<Option output="Release Unix/TheorieClassique" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Release Unix" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-W" />
+					<Add option="-D_UNIX" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_CONSOLE" />
+					<Add directory="../../lib_interface" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="../../lib_interface" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="../../lib_interface/Release Unix/lib_interface.a" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="TC_CalculationCore.cpp" />
+		<Unit filename="TC_CalculationCore.h" />
+		<Unit filename="data_manager/core_configuration.cpp" />
+		<Unit filename="data_manager/core_configuration.h" />
+		<Unit filename="input_output/reportmanager.cpp" />
+		<Unit filename="input_output/reportmanager.h" />
+		<Unit filename="main_tc.cpp" />
+		<Unit filename="tcTypes.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

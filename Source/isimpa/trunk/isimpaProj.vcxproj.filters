@@ -1,0 +1,1031 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{b3946a90-d6d6-4820-906f-e4f136d3201d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3d_Engine">
+      <UniqueIdentifier>{e9646732-418c-481a-a5b3-8bccad765501}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3d_Engine\Import/Export">
+      <UniqueIdentifier>{5c346c2b-3b5f-4b23-8f2b-276b1a6acef5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3d_Engine\Import/Export\3DS">
+      <UniqueIdentifier>{2a8f57cc-05c7-4ea5-8800-13fcb6c5ebc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3d_Engine\Import/Export\ASC">
+      <UniqueIdentifier>{8e1b03a5-060b-41ed-be24-d0bc5b69ef53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3d_Engine\Import/Export\NFF">
+      <UniqueIdentifier>{937742dd-a54e-4422-bc9c-3c11035a3d4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3d_Engine\Import/Export\MESH">
+      <UniqueIdentifier>{02b5b502-272d-4412-a2b8-64fcd36fbd53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3d_Engine\Import/Export\BIN">
+      <UniqueIdentifier>{fc9b6e22-2ef5-471a-8f46-e67b482c7c5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3d_Engine\Import/Export\POLY">
+      <UniqueIdentifier>{01c1a7d5-8325-482b-8981-93be7dc2b48d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3d_Engine\Import/Export\PLY">
+      <UniqueIdentifier>{f3c14a2b-de61-4d9d-8629-acd973479861}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3d_Engine\Import/Export\VAR">
+      <UniqueIdentifier>{9d36fc96-f1a7-4ee1-ac39-bf7e1bb934df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3d_Engine\Import/Export\STL">
+      <UniqueIdentifier>{392e146b-ec49-4d99-91ed-14a8776e4e08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3d_Engine\mailleur">
+      <UniqueIdentifier>{7006ba6e-9a6c-45f0-bdcd-f4955126355e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3d_Engine\Outils">
+      <UniqueIdentifier>{eb4f2338-e934-4089-b124-8d9fdbdf954e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Data_Manager">
+      <UniqueIdentifier>{64c151d6-9b1f-4e54-9642-4f2a2f0dbf26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Data_Manager\tree_core">
+      <UniqueIdentifier>{8779a52a-e2b1-40f2-8156-0ee93e53147a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Data_Manager\tree_report">
+      <UniqueIdentifier>{c93ec1fb-313f-49e5-ae9f-d9f838d1cdfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Data_Manager\tree_scene">
+      <UniqueIdentifier>{16fb2eb4-9044-40b1-855d-31567b24d34d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Data_Manager\generic_element">
+      <UniqueIdentifier>{2b342822-8c5d-4b9c-832b-f07e930d98ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Data_Manager\GroupeInfo">
+      <UniqueIdentifier>{a56beeb4-b62f-4a39-bc06-5cf80055c0f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Data_Manager\PythonInterface">
+      <UniqueIdentifier>{eca4b51a-002f-41ef-a799-d7c517d18717}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Data_Manager\PythonInterface\PythonModule">
+      <UniqueIdentifier>{863c4ee7-a49e-4800-8fc3-a2adefd17500}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Data_Manager\tree_userpref">
+      <UniqueIdentifier>{3bc4d835-b4a3-45b0-abe6-aec0e4aa85f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ihm">
+      <UniqueIdentifier>{385e4c2a-1bda-40ab-9f93-fc08ecff7d34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ihm\customEditor">
+      <UniqueIdentifier>{8a1a6f32-94d7-486c-9d42-5272ee3a0a12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ihm\customDialog">
+      <UniqueIdentifier>{ac16d38f-a0df-4657-b3e3-75691d1f4a5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ihm\customRenderer">
+      <UniqueIdentifier>{d96032b0-e791-4d1d-a24a-59a1577212e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Gestionnaire">
+      <UniqueIdentifier>{65b205cc-1550-41e2-9a89-2aa100dac72f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tools">
+      <UniqueIdentifier>{8e5d5182-cd22-4f01-b5e6-3e308319059f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\customitem">
+      <UniqueIdentifier>{c09d5eb4-5742-4978-96ac-f7bc085edceb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{4916c4fd-a759-48e6-961a-a294b23e0ae9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Gestionnaire">
+      <UniqueIdentifier>{0fca82cd-84b1-4eda-bf44-b89952617ce0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3d_Engine">
+      <UniqueIdentifier>{9a33ae85-b8bb-4550-b3a1-d8193dfab194}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3d_Engine\mailleur">
+      <UniqueIdentifier>{e6c4db47-5728-4b6a-8060-01faff78c454}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3d_Engine\Import/Export">
+      <UniqueIdentifier>{0126df4c-bc97-411e-bd67-9d146c966f4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3d_Engine\Import/Export\3DS">
+      <UniqueIdentifier>{afaec118-dee1-4992-9014-460d6ffc1e9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3d_Engine\Import/Export\MESH">
+      <UniqueIdentifier>{5af57c3e-10b2-48a2-a38b-4f8fe6a2980a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3d_Engine\Import/Export\NFF">
+      <UniqueIdentifier>{eebd3d94-096f-4b9a-9275-2d6c433c9812}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3d_Engine\Import/Export\ASC">
+      <UniqueIdentifier>{f8c8530a-bdff-4ba6-8218-dddc8db77681}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3d_Engine\Import/Export\BIN">
+      <UniqueIdentifier>{d9d5ca58-4b19-4671-989f-f9b180deddc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3d_Engine\Import/Export\POLY">
+      <UniqueIdentifier>{4adc596a-3624-4342-a572-ed297e48c2c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3d_Engine\Import/Export\VAR">
+      <UniqueIdentifier>{a858752f-ffef-4d70-9059-d3c83949be3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3d_Engine\Import/Export\STL">
+      <UniqueIdentifier>{42f4bdea-95ed-4cb2-8bcb-abf2552508b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3d_Engine\Outils">
+      <UniqueIdentifier>{a969c6c5-e90b-461a-a087-77d5ad317a94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ihm">
+      <UniqueIdentifier>{c2d1bfa9-d79d-4b4a-9287-3d8295037d73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ihm\customEditor">
+      <UniqueIdentifier>{5a3cd283-aa21-480a-bf91-dd8c1e71c6b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ihm\customDialog">
+      <UniqueIdentifier>{59081412-8ffb-4e65-bf8e-cd643a77978a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Data_Manager">
+      <UniqueIdentifier>{b820064b-d78f-4e99-a13c-419835998c41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Data_Manager\generic_element">
+      <UniqueIdentifier>{b11a113b-7846-4c46-8239-18f942d80ec8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Data_Manager\tree_core">
+      <UniqueIdentifier>{e9f9f1c3-29a9-4597-abd8-8d24b57f0921}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Data_Manager\tree_rapport">
+      <UniqueIdentifier>{100bad19-2508-4c4f-a3ce-b89679c94178}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Data_Manager\GroupeInfo">
+      <UniqueIdentifier>{e08277be-2992-4813-939e-5e96069d457f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Data_Manager\tree_scene">
+      <UniqueIdentifier>{4bdb5bf0-a257-49cb-938f-60d66c987398}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Data_Manager\PythonInterface">
+      <UniqueIdentifier>{35102155-fa3a-48b4-8aad-a2a351402ba9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Data_Manager\PythonInterface\PythonModule">
+      <UniqueIdentifier>{feb624f1-b140-4752-b7a9-1a5211147cda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Data_Manager\tree_userpref">
+      <UniqueIdentifier>{48b2a201-89c0-4b36-98c1-085c67abd09c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tools">
+      <UniqueIdentifier>{24c29c67-014e-4c24-8874-17cd61bc0374}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Language">
+      <UniqueIdentifier>{c7c59ca7-258e-4b95-9a41-4e4c677cefe4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Language\fr">
+      <UniqueIdentifier>{10625f16-95f7-4dba-815c-867ad29fd5ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Language\en">
+      <UniqueIdentifier>{ddc468c6-3fd9-4f58-82fc-1cc3532c9d1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ressource">
+      <UniqueIdentifier>{77efeda2-3252-414b-a0de-249e3a68255b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DoxygenDocumentation">
+      <UniqueIdentifier>{31dd9aef-c4e5-4a19-a3ef-0cf8f53e1bd9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main\i_simpa_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UtfConverter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\Core\Animator.cpp">
+      <Filter>Source Files\3d_Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\ArcBall.cpp">
+      <Filter>Source Files\3d_Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\Camera.cpp">
+      <Filter>Source Files\3d_Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\GlBitmapSurface.cpp">
+      <Filter>Source Files\3d_Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\legendFonts.cpp">
+      <Filter>Source Files\3d_Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\legendObject.cpp">
+      <Filter>Source Files\3d_Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\Core\Material.cpp">
+      <Filter>Source Files\3d_Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\Core\Model3D.cpp">
+      <Filter>Source Files\3d_Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\Core\Objet3D.cpp">
+      <Filter>Source Files\3d_Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\Core\Objet3D_maillage.cpp">
+      <Filter>Source Files\3d_Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\OpenGLApp.cpp">
+      <Filter>Source Files\3d_Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\Core\Particules.cpp">
+      <Filter>Source Files\3d_Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\Core\Recepteurs_ponctuel_intensity.cpp">
+      <Filter>Source Files\3d_Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\Core\Recepteurs_surfacique.cpp">
+      <Filter>Source Files\3d_Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\Core\Texture.cpp">
+      <Filter>Source Files\3d_Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\Core\3ds.cpp">
+      <Filter>Source Files\3d_Engine\Import/Export\3DS</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\Core\Asc.cpp">
+      <Filter>Source Files\3d_Engine\Import/Export\ASC</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\Core\Nff.cpp">
+      <Filter>Source Files\3d_Engine\Import/Export\NFF</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\Core\mesh.cpp">
+      <Filter>Source Files\3d_Engine\Import/Export\MESH</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\Core\bin.cpp">
+      <Filter>Source Files\3d_Engine\Import/Export\BIN</Filter>
+    </ClCompile>
+    <ClCompile Include="coreSrc\preprocess\input_output\poly.cpp">
+      <Filter>Source Files\3d_Engine\Import/Export\POLY</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\Core\ply.cpp">
+      <Filter>Source Files\3d_Engine\Import/Export\PLY</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\Core\var.cpp">
+      <Filter>Source Files\3d_Engine\Import/Export\VAR</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\Core\stl.cpp">
+      <Filter>Source Files\3d_Engine\Import/Export\STL</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\tools\intersection_seeker.cpp">
+      <Filter>Source Files\3d_Engine\Outils</Filter>
+    </ClCompile>
+    <ClCompile Include="GL\offScreenRendering.cpp">
+      <Filter>Source Files\3d_Engine\Outils</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\tools\opengl_test.cpp">
+      <Filter>Source Files\3d_Engine\Outils</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\tools\tesselator.cpp">
+      <Filter>Source Files\3d_Engine\Outils</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\appconfig.cpp">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="ConvertUTF.c">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\drawable_element.cpp">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\element.cpp">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="manager\modelRetriever.cpp">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\projet.cpp">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\projet_calculation.cpp">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\projet_maillage.cpp">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\projet_python.cpp">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\projet_remesh.cpp">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\projet_undo_redo.cpp">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\tree_rapport\e_report_file.cpp">
+      <Filter>Source Files\Data_Manager\tree_report</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\tree_rapport\e_report_gabe.cpp">
+      <Filter>Source Files\Data_Manager\tree_report</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\tree_rapport\e_report_gabe_gap.cpp">
+      <Filter>Source Files\Data_Manager\tree_report</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\tree_rapport\e_report_gabe_recp.cpp">
+      <Filter>Source Files\Data_Manager\tree_report</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\tree_rapport\e_report_unknown_file.cpp">
+      <Filter>Source Files\Data_Manager\tree_report</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\tree_scene\e_scene.cpp">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\tree_scene\e_scene_groupesurfaces_groupe.cpp">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\tree_scene\e_scene_volumes.cpp">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\generic_element\e_gammeabsorption.cpp">
+      <Filter>Source Files\Data_Manager\generic_element</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\generic_element\e_gammefrequence.cpp">
+      <Filter>Source Files\Data_Manager\generic_element</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\generic_element\e_materiau.cpp">
+      <Filter>Source Files\Data_Manager\generic_element</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\generic_element\e_property_freq.cpp">
+      <Filter>Source Files\Data_Manager\generic_element</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\grpInfo\data_group_info.cpp">
+      <Filter>Source Files\Data_Manager\GroupeInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\python_interface\boost_python_header.cpp">
+      <Filter>Source Files\Data_Manager\PythonInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\python_interface\instanceManager.cpp">
+      <Filter>Source Files\Data_Manager\PythonInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\python_interface\pythonshell.cpp">
+      <Filter>Source Files\Data_Manager\PythonInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\python_interface\pythonstdioredirect.cpp">
+      <Filter>Source Files\Data_Manager\PythonInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\python_interface\py_ui_module\Application.cpp">
+      <Filter>Source Files\Data_Manager\PythonInterface\PythonModule</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\python_interface\py_ui_module\e_pyext.cpp">
+      <Filter>Source Files\Data_Manager\PythonInterface\PythonModule</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\python_interface\py_ui_module\element_file_pywrap.cpp">
+      <Filter>Source Files\Data_Manager\PythonInterface\PythonModule</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\python_interface\py_ui_module\element_pywrap.cpp">
+      <Filter>Source Files\Data_Manager\PythonInterface\PythonModule</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\python_interface\py_ui_module\enum_def.cpp">
+      <Filter>Source Files\Data_Manager\PythonInterface\PythonModule</Filter>
+    </ClCompile>
+    <ClCompile Include="IHM\applicationPreferences.cpp">
+      <Filter>Source Files\ihm</Filter>
+    </ClCompile>
+    <ClCompile Include="IHM\base64.cpp">
+      <Filter>Source Files\ihm</Filter>
+    </ClCompile>
+    <ClCompile Include="IHM\ComboTreeCtrl.cpp">
+      <Filter>Source Files\ihm</Filter>
+    </ClCompile>
+    <ClCompile Include="IHM\DataWindow.cpp">
+      <Filter>Source Files\ihm</Filter>
+    </ClCompile>
+    <ClCompile Include="IHM\DialogDiagramCreator.cpp">
+      <Filter>Source Files\ihm</Filter>
+    </ClCompile>
+    <ClCompile Include="IHM\foldpaneltree.cpp">
+      <Filter>Source Files\ihm</Filter>
+    </ClCompile>
+    <ClCompile Include="IHM\GabeDataGrid.cpp">
+      <Filter>Source Files\ihm</Filter>
+    </ClCompile>
+    <ClCompile Include="IHM\languageSelection.cpp">
+      <Filter>Source Files\ihm</Filter>
+    </ClCompile>
+    <ClCompile Include="IHM\loadingSceneDialog.cpp">
+      <Filter>Source Files\ihm</Filter>
+    </ClCompile>
+    <ClCompile Include="IHM\MainPropGrid.cpp">
+      <Filter>Source Files\ihm</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\OpenGlViewer.cpp">
+      <Filter>Source Files\ihm</Filter>
+    </ClCompile>
+    <ClCompile Include="IHM\PropGrid.cpp">
+      <Filter>Source Files\ihm</Filter>
+    </ClCompile>
+    <ClCompile Include="IHM\pyConsole.cpp">
+      <Filter>Source Files\ihm</Filter>
+    </ClCompile>
+    <ClCompile Include="IHM\RecepteurSOperationDialog.cpp">
+      <Filter>Source Files\ihm</Filter>
+    </ClCompile>
+    <ClCompile Include="IHM\simpleGraph.cpp">
+      <Filter>Source Files\ihm</Filter>
+    </ClCompile>
+    <ClCompile Include="IHM\simpleGraphDialogs.cpp">
+      <Filter>Source Files\ihm</Filter>
+    </ClCompile>
+    <ClCompile Include="IHM\simpleGraphEnumerators.cpp">
+      <Filter>Source Files\ihm</Filter>
+    </ClCompile>
+    <ClCompile Include="IHM\simpleGraphManager.cpp">
+      <Filter>Source Files\ihm</Filter>
+    </ClCompile>
+    <ClCompile Include="IHM\uiTreeCtrl.cpp">
+      <Filter>Source Files\ihm</Filter>
+    </ClCompile>
+    <ClCompile Include="IHM\WizardRemeshModel.cpp">
+      <Filter>Source Files\ihm</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\customEditor\wxGridCellColorEditor.cpp">
+      <Filter>Source Files\ihm\customEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\customEditor\wxGridCellFontEditor.cpp">
+      <Filter>Source Files\ihm\customEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\customEditor\wxGridCellTreeEditor.cpp">
+      <Filter>Source Files\ihm\customEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="IHM\customdialog\customdlg.cpp">
+      <Filter>Source Files\ihm\customDialog</Filter>
+    </ClCompile>
+    <ClCompile Include="IHM\customRenderer\gridcellgabefloatrenderer.cpp">
+      <Filter>Source Files\ihm\customRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="manager\bigfilereader.cpp">
+      <Filter>Source Files\Gestionnaire</Filter>
+    </ClCompile>
+    <ClCompile Include="manager\processManager.cpp">
+      <Filter>Source Files\Gestionnaire</Filter>
+    </ClCompile>
+    <ClCompile Include="manager\sppsString.cpp">
+      <Filter>Source Files\Gestionnaire</Filter>
+    </ClCompile>
+    <ClCompile Include="3dengine\tools\recepteursurf_difference.cpp">
+      <Filter>Source Files\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="IHM\customItem\uimenuitem.cpp">
+      <Filter>Source Files\customitem</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="3dengine\tools\opengl_test.hpp">
+      <Filter>Source Files\3d_Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\e_data.h">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\e_data_bool.h">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\e_data_bool_bfreqchoice.h">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\e_data_color.h">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\e_data_entier.h">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\e_data_float.h">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\e_data_font.h">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\e_data_list.h">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\e_data_row.h">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\e_data_row_bandefreq.h">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\e_data_row_ext_bandefreq.h">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\e_data_row_materiau.h">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\e_data_text.h">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\e_data_tree.h">
+      <Filter>Source Files\Data_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_core\e_core.h">
+      <Filter>Source Files\Data_Manager\tree_core</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_core\e_core_core.h">
+      <Filter>Source Files\Data_Manager\tree_core</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_core\e_core_core_bfreqselection.h">
+      <Filter>Source Files\Data_Manager\tree_core</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_core\e_core_core_config.h">
+      <Filter>Source Files\Data_Manager\tree_core</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_core\e_core_core_tetconf.h">
+      <Filter>Source Files\Data_Manager\tree_core</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_core\e_core_sppscore.h">
+      <Filter>Source Files\Data_Manager\tree_core</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_core\e_core_sppsoctreecore.h">
+      <Filter>Source Files\Data_Manager\tree_core</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_core\e_core_tccore.h">
+      <Filter>Source Files\Data_Manager\tree_core</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_core\e_core_tlmcore.h">
+      <Filter>Source Files\Data_Manager\tree_core</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_rapport\e_report.h">
+      <Filter>Source Files\Data_Manager\tree_report</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_rapport\e_report_folder.h">
+      <Filter>Source Files\Data_Manager\tree_report</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_rapport\e_report_partvisualisation.h">
+      <Filter>Source Files\Data_Manager\tree_report</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_rapport\e_report_recepteurssvisualisation.h">
+      <Filter>Source Files\Data_Manager\tree_report</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_materiaux.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_materiaux_app.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_materiaux_app_group.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_materiaux_app_materiau.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_materiaux_propmateriau.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_materiaux_rendermateriau.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_materiaux_user.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_materiaux_user_group.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_materiaux_user_materiau.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_spectrums.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_spectrums_app.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_bdd_spectrums_user.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_donnees.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_encombrements.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_encombrements_encombrement_cuboide.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_encombrements_encombrement_model.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_encombrements_encombrement_proprietes.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_encombrements_encombrement_rendu.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_groupesurfaces.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_groupesurfaces_groupe_vertex.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_projet.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_projet_configuration.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_projet_environnement.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_projet_informations.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_projet_rendu.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_projet_rendu_origine.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_projet_userconfiguration.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_recepteursp.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_recepteursp_recepteur.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_recepteursp_recepteur_proprietes.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_recepteursp_recepteur_rendu.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_recepteurss.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_recepteurss_recepteur.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_recepteurss_recepteur_proprietes.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_recepteurss_recepteur_rendu.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_recepteurss_recepteurcoupe.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_recepteurss_recepteurcoupe_proprietes.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_recepteurss_recepteurcoupe_rendu.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_sources.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_sources_source.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_sources_source_proprietes.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_sources_source_rendu.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_volumes_volume.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_volumes_volume_proprietes.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_volumes_volume_rendu.h">
+      <Filter>Source Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\generic_element\e_gammefrequence_app.h">
+      <Filter>Source Files\Data_Manager\generic_element</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\generic_element\e_gammefrequence_user.h">
+      <Filter>Source Files\Data_Manager\generic_element</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\generic_element\e_materiau_app.h">
+      <Filter>Source Files\Data_Manager\generic_element</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\generic_element\e_materiau_user.h">
+      <Filter>Source Files\Data_Manager\generic_element</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\e_position.h">
+      <Filter>Source Files\Data_Manager\generic_element</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_userpref\e_userprefitem.hpp">
+      <Filter>Source Files\Data_Manager\tree_userpref</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_userpref\e_userprefitemisotemplate.hpp">
+      <Filter>Source Files\Data_Manager\tree_userpref</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_userpref\e_userprefnode.hpp">
+      <Filter>Source Files\Data_Manager\tree_userpref</Filter>
+    </ClInclude>
+    <ClInclude Include="ConvertUTF.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="first_header_include.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="main\i_simpa_main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="last_cpp_include.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UtfConverter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="manager\alphanum.hpp">
+      <Filter>Header Files\Gestionnaire</Filter>
+    </ClInclude>
+    <ClInclude Include="manager\bigfilereader.h">
+      <Filter>Header Files\Gestionnaire</Filter>
+    </ClInclude>
+    <ClInclude Include="manager\interf_logger.hpp">
+      <Filter>Header Files\Gestionnaire</Filter>
+    </ClInclude>
+    <ClInclude Include="manager\lifetimeWitness.hpp">
+      <Filter>Header Files\Gestionnaire</Filter>
+    </ClInclude>
+    <ClInclude Include="manager\processManager.h">
+      <Filter>Header Files\Gestionnaire</Filter>
+    </ClInclude>
+    <ClInclude Include="manager\smart_ptr.h">
+      <Filter>Header Files\Gestionnaire</Filter>
+    </ClInclude>
+    <ClInclude Include="manager\stringParser.h">
+      <Filter>Header Files\Gestionnaire</Filter>
+    </ClInclude>
+    <ClInclude Include="manager\stringTools.h">
+      <Filter>Header Files\Gestionnaire</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\Core\Animator.hpp">
+      <Filter>Header Files\3d_Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\ArcBall.h">
+      <Filter>Header Files\3d_Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\Camera.h">
+      <Filter>Header Files\3d_Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\GlBitmapSurface.h">
+      <Filter>Header Files\3d_Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\legendFonts.h">
+      <Filter>Header Files\3d_Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\legendObject.h">
+      <Filter>Header Files\3d_Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\Core\Material.h">
+      <Filter>Header Files\3d_Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\Core\Mathlib.h">
+      <Filter>Header Files\3d_Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\Core\Objet3D.h">
+      <Filter>Header Files\3d_Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="GL\opengl_inc.h">
+      <Filter>Header Files\3d_Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\OpenGLApp.h">
+      <Filter>Header Files\3d_Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\Core\Particules.h">
+      <Filter>Header Files\3d_Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\Core\Recepteurs_ponctuel_intensity.hpp">
+      <Filter>Header Files\3d_Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\Core\Recepteurs_surfacique.h">
+      <Filter>Header Files\3d_Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\Core\Texture.h">
+      <Filter>Header Files\3d_Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\Core\Model3D.h">
+      <Filter>Header Files\3d_Engine\Import/Export</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\Core\3ds.h">
+      <Filter>Header Files\3d_Engine\Import/Export\3DS</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\Core\mesh.h">
+      <Filter>Header Files\3d_Engine\Import/Export\MESH</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\Core\Nff.h">
+      <Filter>Header Files\3d_Engine\Import/Export\NFF</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\Core\Asc.h">
+      <Filter>Header Files\3d_Engine\Import/Export\ASC</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\Core\bin.h">
+      <Filter>Header Files\3d_Engine\Import/Export\BIN</Filter>
+    </ClInclude>
+    <ClInclude Include="coreSrc\preprocess\input_output\poly.h">
+      <Filter>Header Files\3d_Engine\Import/Export\POLY</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\Core\var.h">
+      <Filter>Header Files\3d_Engine\Import/Export\VAR</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\Core\stl.hpp">
+      <Filter>Header Files\3d_Engine\Import/Export\STL</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\tools\intersection_seeker.h">
+      <Filter>Header Files\3d_Engine\Outils</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\tools\tesselator.h">
+      <Filter>Header Files\3d_Engine\Outils</Filter>
+    </ClInclude>
+    <ClInclude Include="GL\wglext.h">
+      <Filter>Header Files\3d_Engine\Outils</Filter>
+    </ClInclude>
+    <ClInclude Include="IHM\applicationPreferences.hpp">
+      <Filter>Header Files\ihm</Filter>
+    </ClInclude>
+    <ClInclude Include="IHM\base64.h">
+      <Filter>Header Files\ihm</Filter>
+    </ClInclude>
+    <ClInclude Include="IHM\ComboTreeCtrl.h">
+      <Filter>Header Files\ihm</Filter>
+    </ClInclude>
+    <ClInclude Include="IHM\DataWindow.h">
+      <Filter>Header Files\ihm</Filter>
+    </ClInclude>
+    <ClInclude Include="IHM\DialogDiagramCreator.h">
+      <Filter>Header Files\ihm</Filter>
+    </ClInclude>
+    <ClInclude Include="IHM\foldpaneltree.h">
+      <Filter>Header Files\ihm</Filter>
+    </ClInclude>
+    <ClInclude Include="IHM\GabeDataGrid.hpp">
+      <Filter>Header Files\ihm</Filter>
+    </ClInclude>
+    <ClInclude Include="IHM\languageSelection.hpp">
+      <Filter>Header Files\ihm</Filter>
+    </ClInclude>
+    <ClInclude Include="IHM\loadingSceneDialog.hpp">
+      <Filter>Header Files\ihm</Filter>
+    </ClInclude>
+    <ClInclude Include="IHM\MainPropGrid.h">
+      <Filter>Header Files\ihm</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\OpenGlViewer.h">
+      <Filter>Header Files\ihm</Filter>
+    </ClInclude>
+    <ClInclude Include="IHM\PropGrid.h">
+      <Filter>Header Files\ihm</Filter>
+    </ClInclude>
+    <ClInclude Include="IHM\pyConsole.hpp">
+      <Filter>Header Files\ihm</Filter>
+    </ClInclude>
+    <ClInclude Include="IHM\RecepteurSOperationDialog.h">
+      <Filter>Header Files\ihm</Filter>
+    </ClInclude>
+    <ClInclude Include="IHM\simpleGraph.h">
+      <Filter>Header Files\ihm</Filter>
+    </ClInclude>
+    <ClInclude Include="IHM\simpleGraphArrays.h">
+      <Filter>Header Files\ihm</Filter>
+    </ClInclude>
+    <ClInclude Include="IHM\simpleGraphDialogs.h">
+      <Filter>Header Files\ihm</Filter>
+    </ClInclude>
+    <ClInclude Include="IHM\simpleGraphEnumerators.h">
+      <Filter>Header Files\ihm</Filter>
+    </ClInclude>
+    <ClInclude Include="IHM\simpleGraphManager.h">
+      <Filter>Header Files\ihm</Filter>
+    </ClInclude>
+    <ClInclude Include="IHM\uiTreeCtrl.h">
+      <Filter>Header Files\ihm</Filter>
+    </ClInclude>
+    <ClInclude Include="IHM\WizardRemeshModel.hpp">
+      <Filter>Header Files\ihm</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\customEditor\wxGridCellColorEditor.h">
+      <Filter>Header Files\ihm\customEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\customEditor\wxGridCellTreeEditor.h">
+      <Filter>Header Files\ihm\customEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="IHM\customdialog\customdlg.h">
+      <Filter>Header Files\ihm\customDialog</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\appconfig.h">
+      <Filter>Header Files\Data_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\drawable_element.h">
+      <Filter>Header Files\Data_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\element.h">
+      <Filter>Header Files\Data_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\logger_tetgen_debug.hpp">
+      <Filter>Header Files\Data_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="manager\modelRetriever.hpp">
+      <Filter>Header Files\Data_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\projet.h">
+      <Filter>Header Files\Data_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\generic_element\e_gammeabsorption.h">
+      <Filter>Header Files\Data_Manager\generic_element</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\generic_element\e_gammefrequence.h">
+      <Filter>Header Files\Data_Manager\generic_element</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\generic_element\e_materiau.h">
+      <Filter>Header Files\Data_Manager\generic_element</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\generic_element\e_property_freq.h">
+      <Filter>Header Files\Data_Manager\generic_element</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_rapport\e_report_file.h">
+      <Filter>Header Files\Data_Manager\tree_rapport</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_rapport\e_report_gabe.h">
+      <Filter>Header Files\Data_Manager\tree_rapport</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_rapport\e_report_gabe_gap.h">
+      <Filter>Header Files\Data_Manager\tree_rapport</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_rapport\e_report_gabe_recp.h">
+      <Filter>Header Files\Data_Manager\tree_rapport</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_rapport\e_report_rpi.h">
+      <Filter>Header Files\Data_Manager\tree_rapport</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_rapport\e_report_unknown_file.h">
+      <Filter>Header Files\Data_Manager\tree_rapport</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\grpInfo\data_group_info.h">
+      <Filter>Header Files\Data_Manager\GroupeInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_groupesurfaces_groupe.h">
+      <Filter>Header Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\tree_scene\e_scene_volumes.h">
+      <Filter>Header Files\Data_Manager\tree_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\python_interface\boost_python_header.h">
+      <Filter>Header Files\Data_Manager\PythonInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\python_interface\instanceManager.hpp">
+      <Filter>Header Files\Data_Manager\PythonInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\python_interface\python_command.h">
+      <Filter>Header Files\Data_Manager\PythonInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\python_interface\pythonshell.hpp">
+      <Filter>Header Files\Data_Manager\PythonInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\python_interface\pythonstdioredirect.hpp">
+      <Filter>Header Files\Data_Manager\PythonInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\python_interface\py_ui_module\Application.hpp">
+      <Filter>Header Files\Data_Manager\PythonInterface\PythonModule</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\python_interface\py_ui_module\e_pyext.hpp">
+      <Filter>Header Files\Data_Manager\PythonInterface\PythonModule</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\python_interface\py_ui_module\element_file_pywrap.hpp">
+      <Filter>Header Files\Data_Manager\PythonInterface\PythonModule</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\python_interface\py_ui_module\element_pywrap.hpp">
+      <Filter>Header Files\Data_Manager\PythonInterface\PythonModule</Filter>
+    </ClInclude>
+    <ClInclude Include="3dengine\tools\recepteursurf_difference.hpp">
+      <Filter>Header Files\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Language\additionnal_univ.h">
+      <Filter>Language</Filter>
+    </ClInclude>
+    <ClInclude Include="doxDoc\addelementDoc.h">
+      <Filter>DoxygenDocumentation</Filter>
+    </ClInclude>
+    <ClInclude Include="doxDoc\doxygenDoc.h">
+      <Filter>DoxygenDocumentation</Filter>
+    </ClInclude>
+    <ClInclude Include="doxDoc\mainDoc.h">
+      <Filter>DoxygenDocumentation</Filter>
+    </ClInclude>
+    <ClInclude Include="doxDoc\translationDoc.h">
+      <Filter>DoxygenDocumentation</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="manager\smart_ptr.inl">
+      <Filter>Header Files\Gestionnaire</Filter>
+    </None>
+    <None Include="data_manager\python_interface\py_ui_module\uictrl_doxygen.py">
+      <Filter>Header Files\Data_Manager\PythonInterface\PythonModule</Filter>
+    </None>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="isimpa.rc">
+      <Filter>ressource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
