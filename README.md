@@ -1,7 +1,7 @@
 #I-Simpa 
 ##I-Simpa presentation
 
-I-Simpa is a graphical user unterface (GUI) developed to host three-dimensional numerical codes for the modeling of sound propagation
+I-Simpa is a graphical user interface (GUI) developed to host three-dimensional numerical codes for the modeling of sound propagation
 in complex geometrical domains. Although I-Simpa is well adapted for energetic models (ray-tracing, sound-particle tracing, theory of
 reverberation…), it can be extend to use ondulatory approaches.
 I-Simpa alone is not a calculation software, but is equivalent to a pre and post-processor for acoustic codes. One or more numerical
@@ -23,3 +23,7 @@ I-Simpa has been initially developed as a research tool (i.e. for research labor
 professional or commercial use.
 
 For build instructions, see [this](https://github.com/Ifsttar/I-Simpa/blob/master/Docs/Building.md).
+
+## **License**
+
+I-Simpa is an application developped by Ifsttar under the GENERAL PUBLIC LICENSE Version 3, please refere to [GPLv3](https://github.com/Ifsttar/I-Simpa/blob/master/License.md) for more details about it and [here](https://github.com/Ifsttar/I-Simpa/blob/master/Docs/License.txt) for Ifsttar informations.
