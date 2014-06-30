@@ -26,4 +26,4 @@ For build instructions, see [this](https://github.com/Ifsttar/I-Simpa/blob/maste
 
 ## **License**
 
-I-Simpa is an application developped by Ifsttar under the GENERAL PUBLIC LICENSE Version 3, please refere to [GPLv3](https://github.com/Ifsttar/I-Simpa/blob/master/License.md) for more details about it and [here](https://github.com/Ifsttar/I-Simpa/blob/master/Docs/License.txt) for Ifsttar informations.
+I-Simpa is an application developped by Ifsttar under the GENERAL PUBLIC LICENSE Version 3, please refere to [GPLv3](https://github.com/Ifsttar/I-Simpa/blob/master/LICENSE.md) for more details about it and [here](https://github.com/Ifsttar/I-Simpa/blob/master/Docs/License.txt) for Ifsttar informations.
