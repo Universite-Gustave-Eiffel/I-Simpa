@@ -1,16 +1,18 @@
 ## Building I-Simpa
 
-### Install GITEXTENSION
+I-Simpa is a software developed in C/C++ using Visual Studio 2008.
+For the rest of the tutorial, we assume that you got already Visual Studio 2008.
 
-Gitextension is an add-on for Visual Studio that allow the user to download and upload from the interface on his github repository thanks to a "Git" widget.
+#### Minimal Hardware requirements
+* Processor 1.5 GHz Intel Pentium® or equivalent / higher
+* Graphic card with OpenGl® (1.4 or higher) with display resolution 1024 x 728 or more
+* Hard disk: 20 Go free space
+* RAM: 512 Mo minimum required
 
-To install it, download the laster version of gitextension in .msdi format from <a href="https://code.google.com/p/gitextensions/downloads/list">here</a>
+Following step by step the configuration / installation of all libraries required for I-Simpa.
 
-Quick configuration is needed: in the install interface, 
+<a href="https://github.com/Ifsttar/I-Simpa/wiki/GITEXTENSION">Install Gitextension</a>
 
-
-### Get the source code
-
-Use <a href="http://git-scm.com">Git</a> to clone the repository:
+Clone the repository:
 
     git clone https://github.com/Ifsttar/I-Simpa.git
