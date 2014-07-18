@@ -18,3 +18,7 @@ Following step by step the configuration / installation of all libraries require
 * <a href="https://github.com/Ifsttar/I-Simpa/wiki/boost">Install Boost</a>
 * <a href="https://github.com/Ifsttar/I-Simpa/wiki/wxWidgets">Install wxWidgets</a>
 * <a href="https://github.com/Ifsttar/I-Simpa/wiki/python"> Install Python</a>
+
+If all the previous steps are made correctly you could be able to build I-Simpa using the I-Simpa.sln file in I-Simp\isimpa\trunk.
+
+If you get any error / unsuccess compilation, <a href="mailto:i-simpa@ifsttar.fr">Contact us</a>
