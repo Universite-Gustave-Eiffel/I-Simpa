@@ -19,8 +19,6 @@ Following step by step the configuration / installation of all libraries require
 * <a href="https://github.com/Ifsttar/I-Simpa/wiki/wxWidgets">Install wxWidgets</a>
 * <a href="https://github.com/Ifsttar/I-Simpa/wiki/python"> Install Python</a>
 * <a href="https://github.com/Ifsttar/I-Simpa/wiki/Opcode"> Install Opcode</a>
-* <a href="https://www.github.com/Ifsttar/I-Simpa/wiki/pyplusplus"> Install pyplusplus</a>
-* <a href="https://www.github.com/Ifsttar/I-Simpa/wiki/snakefood"> Install snakefood</a>
 
 You could be able to build I-Simpa using the I-Simpa.sln file in I-Simpa\isimpa\trunk.
 
