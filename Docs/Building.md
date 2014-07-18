@@ -20,6 +20,6 @@ Following step by step the configuration / installation of all libraries require
 * <a href="https://github.com/Ifsttar/I-Simpa/wiki/python"> Install Python</a>
 * <a href="https://github.com/Ifsttar/I-Simpa/wiki/Opcode"> Install Opcode</a>
 
-You could be able to build I-Simpa using the I-Simpa.sln file in I-Simpa\isimpa\trunk.
+You could be able to build I-Simpa using the I-Simpa.sln file in I-Simpa\Source\isimpa\trunk.
 
 If you get any error / unsuccess compilation, <a href="mailto:i-simpa@ifsttar.fr">Contact us</a>.
