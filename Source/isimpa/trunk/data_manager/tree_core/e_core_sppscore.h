@@ -74,15 +74,15 @@ protected:
 		this->AppendPropertyText("intensity_rp_filename","intensity_rp_filename","ponct_intensity.gabe",true,true)->Hide();
 		#if 0
 		    // Code source à destination de PoEdit
-			_("IntensityAnimation");
-			_("core_stat");
-			_("sl_per_src");
+			_("Intensity Animation");
+			_("Core Statistics");
+			_("Sound level per source");
 		#endif
 	}
 	void InitExportRs(Element* confCore)
 	{
 		confCore->AppendPropertyBool("output_recs_byfreq","Export des récepteurs de surface par bande de fréquence",true,true);
-		_("Export des récepteurs de surface par bande de fréquence");
+		_("Export surface receivers for each frequency band");
 	}
 	void InitOutputRecpBySource(Element* confCore) {
 		confCore->AppendPropertyBool("output_recp_bysource", "Echogramme par source", false, true);
@@ -91,7 +91,7 @@ protected:
 		confCore->AppendPropertyEntier("random_seed","Random seed", 0,true, false, true);
 		#if 0
 		    // Code source à destination de PoEdit
-			_("Random seed");
+			_("Random number generator initialization");
 		#endif
 	}
 public:
@@ -158,19 +158,19 @@ public:
 		#if 0
 		    // Code source à destination de PoEdit
 			_("SPPS");
-			_("Aléatoire");
-			_("Énergétique");
-			_("Export des récepteurs de surface par bande de fréquence");
-			_("Méthode de calcul");
-			_("Particules par source");
-			_("Particules par source (rendu)");
-			_("Calcul Absorption atmosphérique");
-			_("Calcul Encombrement");
-			_("Calcul du Champ Direct uniquement");
-			_("Rayon des récepteurs ponctuels");
-			_("Limite de transmission");
-			_("Calcul Transmission");
-			_("ponct_intensity");
+			_("Random");
+			_("Energetic");
+			_("Export surface receivers for each frequency band");
+			_("Calculation method");
+			_("Number of sound particles per source");
+			_("Number of sound particles per source (display)");
+			_("Active calculation of atmospheric absorption");
+			_("Active calculation of diffusion by fitting objects");
+			_("Active calculation of direct field only");
+			_("Radius of receivers (m)");
+			_("Limit of propagation (10^n)");
+			_("Active calculation of acoustic transmission");
+			_("Punctual intensity");
 		#endif
 
 		this->AppendFils(new E_Core_Core_Bfreqselection(this));

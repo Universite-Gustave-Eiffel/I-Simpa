@@ -38,7 +38,7 @@
 E_Report_Gabe_Recp::E_Report_Gabe_Recp(Element* parent,wxString Nom,wxString Path)
 	:E_Report_Gabe(parent,Nom,Path,ELEMENT_TYPE_REPORT_GABE_RECP)
 {
-	_("soundpressure"); //Libellé du fichier standard
+	_("Sound level"); //Libellé du fichier standard
 }
 
 E_Report_Gabe_Recp::E_Report_Gabe_Recp(Element* parent,wxXmlNode* nodeElement)
@@ -49,7 +49,7 @@ E_Report_Gabe_Recp::E_Report_Gabe_Recp(Element* parent,wxXmlNode* nodeElement)
 
 void E_Report_Gabe_Recp::OnRightClic(wxMenu* leMenu)
 {
-	leMenu->Append(GetMenuItem(leMenu,IDEVENT_RECP_COMPUTE_ACOUSTIC_PARAMETERS,_("Calculer les paramètres acoustiques")));
+	leMenu->Append(GetMenuItem(leMenu,IDEVENT_RECP_COMPUTE_ACOUSTIC_PARAMETERS,_("Calculate acoustic parameters")));
 	E_Report_Gabe::OnRightClic(leMenu);
 }
 
@@ -192,7 +192,7 @@ bool E_Report_Gabe_Recp::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,
 		this->BuildFullPath(gabeFolder);
 		graphPage->SetDefaultSaveGraphSavePath(gabeFolder);
 
-		noteBookWin->AddPage(graphPage,_("Spectre"));
+		noteBookWin->AddPage(graphPage,_("Spectrum"));
 		SG_Element_List* drawingEl;
 		//Ajout du spectre total
 		if(true)
@@ -264,7 +264,7 @@ bool E_Report_Gabe_Recp::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,
 		}
 		if(true)
 		{
-			SG_Element_Data* drawingElDat=new SG_Element_Data(graphPage,_("Décroissance lissée"),nbcolel-1);
+			SG_Element_Data* drawingElDat=new SG_Element_Data(graphPage,_("Schroeder's curve"),nbcolel-1);
 			drawingElDat->el_style.SetDrawingMethod(DRAWING_METHOD_LINE);
 			drawingElDat->el_style.SetPen(&wxPen(*wxBLACK,2,wxSOLID));
 			//Ajout de schroeder

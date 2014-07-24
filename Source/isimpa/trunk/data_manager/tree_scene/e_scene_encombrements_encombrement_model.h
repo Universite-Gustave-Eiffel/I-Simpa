@@ -72,7 +72,7 @@ public:
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_FITTING_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_FITTING_CLOSE);
 		this->elementInfo.userDestroyable=true;
-		_("Encombrement");
+		_("Fitting zone");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;
@@ -105,12 +105,12 @@ public:
 		}
 		if(this->GetElementByType(ELEMENT_TYPE_POSITION)==NULL) //maj version < 4/11/2008
 		{
-			this->AppendPropertyPosition("volpos",_("Intérieur du volume"),vec3(),true);
-			wxLogWarning(_("Pour l'encombrement de scène nommé %s veuillez définir le point au centre de l'encombrement"),this->elementInfo.libelleElement);
+			this->AppendPropertyPosition("volpos",_("Inside position"),vec3(),true);
+			wxLogWarning(_("Please define a point inside the fitting zone %s"),this->elementInfo.libelleElement);
 		}
 	}
 
-	E_Scene_Encombrements_Encombrement_Model( Element* parent,wxString nom=wxString::Format(_("Encombrement %i"),ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Encombrement+1))
+	E_Scene_Encombrements_Encombrement_Model( Element* parent,wxString nom=wxString::Format(_("Fitting zone %i"),ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Encombrement+1))
 		:E_Drawable(parent,nom,Element::ELEMENT_TYPE_SCENE_ENCOMBREMENTS_ENCOMBREMENT)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_FITTING_OPEN);
@@ -120,8 +120,8 @@ public:
 		this->AppendFils(new E_Scene_Groupesurfaces_Groupe(this,"Surface",true));
 		this->AppendFils(new E_GammeAbsorption(this));
 		this->AppendFils(new E_Scene_Encombrements_Encombrement_Rendu(this));
-		this->AppendPropertyPosition("volpos",_("Intérieur du volume"),vec3(),true);
-		wxLogWarning(_("Pour l'encombrement de scène nommé %s veuillez définir le point au centre de l'encombrement"),this->elementInfo.libelleElement);
+		this->AppendPropertyPosition("volpos",_("Inside position"),vec3(),true);
+		wxLogWarning(_("Please define a point inside the fitting zone %s"),this->elementInfo.libelleElement);
 		_("Surface");
 		InitEncombrementProp(); 
 	}

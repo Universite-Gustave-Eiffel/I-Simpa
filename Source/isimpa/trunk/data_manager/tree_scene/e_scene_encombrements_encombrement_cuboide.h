@@ -56,7 +56,7 @@ public:
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_FITTING_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_FITTING_CLOSE);
 		this->elementInfo.userDestroyable=true;
-		_("Encombrement");
+		_("Fitting zone");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;
@@ -87,7 +87,7 @@ public:
 		needBuild=true;
 	}
 
-	E_Scene_Encombrements_Encombrement_Cuboide( Element* parent,wxString nom=wxString::Format(_("Encombrement %i"),ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Encombrement+1))
+	E_Scene_Encombrements_Encombrement_Cuboide( Element* parent,wxString nom=wxString::Format(_("Fitting zone %i"),ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Encombrement+1))
 		:E_Drawable(parent,nom,Element::ELEMENT_TYPE_SCENE_ENCOMBREMENTS_ENCOMBREMENT_CUBOIDE)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_FITTING_OPEN);
@@ -104,8 +104,8 @@ public:
 	{
 		this->AppendPropertyPosition("ba","Origine volume",vec3(0,0,0));
 		this->AppendPropertyPosition("hc","Destination volume",vec3(0,0,0));
-		_("Origine volume");
-		_("Destination volume");
+		_("Origin");
+		_("Destination");
 	}
 	/**
 	 *  Construction du cuboide
@@ -359,7 +359,7 @@ public:
 			Element::SaveXMLCoreDoc(thisNode);
 			return thisNode;
 		}else{
-			wxLogWarning(_("L'encombrement %s est ignoré pour le calcul conformément au choix de l'utilisateur."),this->elementInfo.libelleElement);
+			wxLogWarning(_("Fitting zone %s is not taken into account in the calculation (user choice)"),this->elementInfo.libelleElement);
 			return NoeudParent;
 		}
 	}

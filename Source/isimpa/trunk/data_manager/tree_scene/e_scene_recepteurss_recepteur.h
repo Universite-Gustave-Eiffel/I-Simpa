@@ -57,7 +57,7 @@ public:
 		this->AllowMultipleSelection();
 		this->elementInfo.userDestroyable=true;
 		ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_RecepteurS++;
-		_("Récepteur scène");
+		_("Scene receiver");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;

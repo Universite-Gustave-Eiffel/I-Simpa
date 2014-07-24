@@ -95,7 +95,7 @@ wxXmlNode* E_Scene_Volumes::SaveXMLDoc(wxXmlNode* NoeudParent)
 }
 void E_Scene_Volumes::OnRightClic(wxMenu* leMenu)
 {
-	leMenu->Append(GetMenuItem(leMenu,IDEVENT_NEW_VOLUME, _("Déclarer un volume"),"./Bitmaps/popup_new.png"));
-	leMenu->Append(GetMenuItem(leMenu,IDEVENT_BUILD_VOLUMES_FROM_TRIMESH, _("Auto-détection des volumes"),"./Bitmaps/popup_new.png"));
+	leMenu->Append(GetMenuItem(leMenu,IDEVENT_NEW_VOLUME, _("Create a volume"),"./Bitmaps/popup_new.png"));
+	leMenu->Append(GetMenuItem(leMenu,IDEVENT_BUILD_VOLUMES_FROM_TRIMESH, _("Volume auto-detect"),"./Bitmaps/popup_new.png"));
 	Element::OnRightClic(leMenu);
 }

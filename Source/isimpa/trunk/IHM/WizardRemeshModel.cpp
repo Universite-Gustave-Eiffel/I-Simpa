@@ -59,7 +59,7 @@ namespace ModelReconstructionUI
 {
 	
 	ModelReconstructionWizard::ModelReconstructionWizard(wxFrame *frame,ModelReconstructionManagerBase* _modelReconstructionManager)
-		: wxWizard(frame,wxID_ANY,_("Opération de correction de modèle 3D"),wxNullBitmap,wxDefaultPosition,wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX | wxRESIZE_BORDER),
+		: wxWizard(frame,wxID_ANY,_("Mesh correction computation"),wxNullBitmap,wxDefaultPosition,wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX | wxRESIZE_BORDER),
 			modelReconstructionManager(_modelReconstructionManager),
 			m_page1(NULL)
 	{ 
@@ -116,30 +116,30 @@ namespace ModelReconstructionUI
 
 		
 	    //Ajout du "slider"
-		AddCtrl(new wxSlider(this,WIZARD_CTRL_SLIDER_DEPTH,defaultParameters.depth,5,10,wxDefaultPosition,wxDefaultSize,wxSL_HORIZONTAL | wxSL_AUTOTICKS | wxSL_LABELS),_("Résolution du modèle"),mainSizer);
+		AddCtrl(new wxSlider(this,WIZARD_CTRL_SLIDER_DEPTH,defaultParameters.depth,5,10,wxDefaultPosition,wxDefaultSize,wxSL_HORIZONTAL | wxSL_AUTOTICKS | wxSL_LABELS),_("Model solving"),mainSizer);
 		//Ajout du choix du mode de triangularisation du modèle
 		wxArrayString triangulationMethods;
 		triangulationMethods.push_back(_("Marching cube")); //TRIANGULATION_METHOD_MARCHING_CUBE
 		wxComboBox* triangulationMethod= new wxComboBox(this,WIZARD_CTRL_COMBO_TRIANGULATION_MODE,triangulationMethods[defaultParameters.triangulationMethod],wxDefaultPosition,wxDefaultSize,triangulationMethods);
 		triangulationMethod->SetSelection(defaultParameters.triangulationMethod);
-		AddCtrl(triangulationMethod,_("Méthode de triangulation"),mainSizer);
+		AddCtrl(triangulationMethod,_("Triangulation method"),mainSizer);
 		//Ajout de la liste déroulante du choix de la méthode adaptative
 		wxArrayString adaptativeMethods;
-		adaptativeMethods.push_back(_("Aucune"));					//ADAPTATIVE_MESH_METHOD_NONE
-		adaptativeMethods.push_back(_("Translation des sommets"));	//ADAPTATIVE_MESH_METHOD_VERTICE_TRANSLATION
+		adaptativeMethods.push_back(_("None"));					//ADAPTATIVE_MESH_METHOD_NONE
+		adaptativeMethods.push_back(_("Vertices translation"));	//ADAPTATIVE_MESH_METHOD_VERTICE_TRANSLATION
 		wxComboBox* adaptativeMethod=new wxComboBox(this,WIZARD_CTRL_COMBO_ADAPTATIVE_REMESH_MODE,adaptativeMethods[defaultParameters.adaptativeMeshMethod],wxDefaultPosition,wxDefaultSize,adaptativeMethods);
 		adaptativeMethod->SetSelection(defaultParameters.adaptativeMeshMethod);
-		AddCtrl(adaptativeMethod,_("Methode d'adaptation au modèle d'origine"),mainSizer);
+		AddCtrl(adaptativeMethod,_("Remesh adaptation"),mainSizer);
 		//Ajout de la liste déroulante du choix de la méthode de simplification
 		wxArrayString simplificationMethods;
 		simplificationMethods.push_back(_("Edge collapse"));		//MESH_SIMPLIFICATION_METHOD_EDGE_COLLAPSE
 		wxComboBox* simplificationMethod=new wxComboBox(this,WIZARD_CTRL_COMBO_SIMPLIFICATION_MODE,simplificationMethods[defaultParameters.meshSimplificationMethod],wxDefaultPosition,wxDefaultSize,simplificationMethods);
 		simplificationMethod->SetSelection(defaultParameters.meshSimplificationMethod);
-		AddCtrl(simplificationMethod,_("Methode de réduction du nombre de surfaces"),mainSizer);
+		AddCtrl(simplificationMethod,_("Reduction of the number of surfaces"),mainSizer);
 		//Ajout du choix de la qualité min des triangles
-		AddCtrl(new wxSlider(this,WIZARD_CTRL_SLIDER_TRIANGLE_QUALITY,(int)(defaultParameters.minTriangleQuality*100),0,62,wxDefaultPosition,wxDefaultSize,wxSL_HORIZONTAL | wxSL_AUTOTICKS | wxSL_LABELS),_("Contrainte de qualitée minimale des triangles"),mainSizer);
+		AddCtrl(new wxSlider(this,WIZARD_CTRL_SLIDER_TRIANGLE_QUALITY,(int)(defaultParameters.minTriangleQuality*100),0,62,wxDefaultPosition,wxDefaultSize,wxSL_HORIZONTAL | wxSL_AUTOTICKS | wxSL_LABELS),_("Quality constraint"),mainSizer);
 		//Ajout du choix de l'approximation de la simplification
-		AddCtrl(new wxSlider(this,WIZARD_CTRL_SLIDER_EPSILON_MERGE,(int)(defaultParameters.mergeEpsilon*1000),900,1000,wxDefaultPosition,wxDefaultSize,wxSL_HORIZONTAL | wxSL_AUTOTICKS | wxSL_LABELS),_("Aproximation de la simplification du modèle"),mainSizer);
+		AddCtrl(new wxSlider(this,WIZARD_CTRL_SLIDER_EPSILON_MERGE,(int)(defaultParameters.mergeEpsilon*1000),900,1000,wxDefaultPosition,wxDefaultSize,wxSL_HORIZONTAL | wxSL_AUTOTICKS | wxSL_LABELS),_("Approximation constraint"),mainSizer);
 		//Finalisation de l'initialisation des contrôles
         SetSizer(mainSizer);
         mainSizer->Fit(this);
@@ -200,7 +200,7 @@ namespace ModelReconstructionUI
         wxBoxSizer *mainSizer = new wxBoxSizer(wxVERTICAL);
 		 wxBoxSizer *hboxSizer = new wxBoxSizer(wxHORIZONTAL);
 
-		 wxStaticText* ctrlText=new wxStaticText(this,wxID_ANY,_("Veuillez sélectionner le volume à extraire"));
+		 wxStaticText* ctrlText=new wxStaticText(this,wxID_ANY,_("Please select the volume to extract"));
 
 
     	 wxListBox* volumesLst=new wxListBox(this,WIZARD_CTRL_VOLUMES_LIST,wxDefaultPosition,wxDefaultSize,wxArrayString());

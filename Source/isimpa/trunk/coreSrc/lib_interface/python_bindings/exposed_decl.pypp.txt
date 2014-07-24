@@ -3067,6 +3067,7 @@
 ~@variable_t@time_write@::_wfinddata32_t::time_write
 ~@variable_t@time_write@::_wfinddata64_t::time_write
 ~@variable_t@cols@::formatGABE::GABE::cols
++@variable_t@('c:\\Users\\Jimmy\\Ifsttar\\I-Simpa\\Source\\isimpa\\trunk\\coreSrc\\lib_interface\\input_output/bin.h', 74)@::formatCoreBIN::t_pos
 ~@variable_t@_Inf@::_Inf
 ~@variable_t@_Myres@::std::wstring::_Myres
 ~@variable_t@_Myres@::std::string::_Myres
@@ -3149,7 +3150,6 @@
 ~@variable_t@st_gid@::_stat32i64::st_gid
 ~@variable_t@st_gid@::stat::st_gid
 ~@variable_t@st_gid@::_stat32::st_gid
-+@variable_t@('c:\\Users\\Jimmy\\I-Simpa\\Source\\isimpa\\trunk\\coreSrc\\lib_interface\\input_output/bin.h', 74)@::formatCoreBIN::t_pos
 ~@variable_t@positive_sign@::lconv::positive_sign
 ~@variable_t@_Id@::std::locale::id::_Id
 ~@variable_t@_Oldlocname@::std::_Locinfo::_Oldlocname
@@ -3491,6 +3491,7 @@
 ~@variable_t@_IGnext@::std::basic_streambuf< char, std::char_traits< char > >::_IGnext
 ~@variable_t@_IGnext@::std::basic_streambuf< unsigned short, std::char_traits< unsigned short > >::_IGnext
 ~@variable_t@_VBITS@::std::_VBITS
++@variable_t@('c:\\Users\\Jimmy\\Ifsttar\\I-Simpa\\Source\\isimpa\\trunk\\coreSrc\\lib_interface\\input_output/bin.h', 72)@::formatCoreBIN::t_pos
 ~@variable_t@wcin@::std::wcin
 ~@variable_t@_Nan@::_Nan
 ~@variable_t@_Double@::_Dconst::_Double
@@ -3507,7 +3508,6 @@
 ~@variable_t@mbcinfo@::localeinfo_struct::mbcinfo
 ~@variable_t@basefield@::std::_Iosb< int >::basefield
 ~@variable_t@__argv@::__argv
-+@variable_t@('c:\\Users\\Jimmy\\I-Simpa\\Source\\isimpa\\trunk\\coreSrc\\lib_interface\\input_output/bin.h', 72)@::formatCoreBIN::t_pos
 ~@variable_t@_ZTISt13bad_exception@::_ZTISt13bad_exception
 ~@variable_t@_bufsiz@::_iobuf::_bufsiz
 ~@variable_t@wcerr@::std::wcerr
@@ -3611,6 +3611,7 @@
 ~@class_t@runtime_error@::std::runtime_error
 ~@class_t@_Secure_char_traits_tag@::std::_Secure_char_traits_tag
 ~@class_t@bidirectional_iterator_tag@::std::bidirectional_iterator_tag
++@class_t@('c:\\Users\\Jimmy\\Ifsttar\\I-Simpa\\Source\\isimpa\\trunk\\coreSrc\\lib_interface\\input_output/bin.h', 72)@::formatCoreBIN::t_pos
 ~@class_t@_exception@::_exception
 ~@class_t@_Ptr_cat_helper< bool const*, bool* >@::std::_Ptr_cat_helper< bool const*, bool* >
 ~@class_t@_Allocator_base< wchar_t >@::std::_Allocator_base< wchar_t >
@@ -3650,7 +3651,6 @@
 +@class_t@rsurf_data@::formatRSBIN::rsurf_data
 ~@class_t@allocator< formatCoreBIN::t_pos >@::std::allocator< formatCoreBIN::t_pos >
 ~@class_t@GABE_Data< int, formatGABE::t_NoStruct >@::formatGABE::GABE_Data< int, formatGABE::t_NoStruct >
-+@class_t@('c:\\Users\\Jimmy\\I-Simpa\\Source\\isimpa\\trunk\\coreSrc\\lib_interface\\input_output/bin.h', 71)@::formatCoreBIN::t_pos
 ~@class_t@threadlocaleinfostruct@::threadlocaleinfostruct
 ~@class_t@_Allocator_base< std::_List_nod<volumes_splitter::VolumesSplitter::vol_t, std::allocator<volumes_splitter::VolumesSplitter::vol_t> >::_Node* >@::std::_Allocator_base< std::_List_nod<volumes_splitter::VolumesSplitter::vol_t, std::allocator<volumes_splitter::VolumesSplitter::vol_t> >::_Node* >
 ~@class_t@out_of_range@::std::out_of_range
@@ -3731,6 +3731,7 @@
 ~@class_t@_wfinddata32_t@::_wfinddata32_t
 ~@class_t@_Ptr_cat_helper< char*, char* >@::std::_Ptr_cat_helper< char*, char* >
 ~@class_t@__si_class_type_info_pseudo@::__si_class_type_info_pseudo
++@class_t@('c:\\Users\\Jimmy\\Ifsttar\\I-Simpa\\Source\\isimpa\\trunk\\coreSrc\\lib_interface\\input_output/bin.h', 71)@::formatCoreBIN::t_pos
 ~@class_t@failure@::std::ios_base::failure
 ~@class_t@_Sentry_base@::std::basic_istream< char, std::char_traits< char > >::_Sentry_base
 ~@class_t@_Sentry_base@::std::basic_ostream< unsigned short, std::char_traits< unsigned short > >::_Sentry_base
@@ -3839,7 +3840,6 @@
 ~@class_t@GABE_Object@::formatGABE::GABE_Object
 ~@class_t@codecvt< wchar_t, char, int >@::std::codecvt< wchar_t, char, int >
 ~@class_t@length_error@::std::length_error
-+@class_t@('c:\\Users\\Jimmy\\I-Simpa\\Source\\isimpa\\trunk\\coreSrc\\lib_interface\\input_output/bin.h', 72)@::formatCoreBIN::t_pos
 ~@class_t@bad_exception@::std::bad_exception
 ~@class_t@_Allocator_base< std::_List_nod<unsigned int, std::allocator<unsigned int> >::_Node* >@::std::_Allocator_base< std::_List_nod<unsigned int, std::allocator<unsigned int> >::_Node* >
 ~@class_t@_Ptr_cat_helper< unsigned short*, unsigned short* >@::std::_Ptr_cat_helper< unsigned short*, unsigned short* >

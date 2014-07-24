@@ -62,10 +62,10 @@ bool CalculationCore::Run()
 	// Calcul pour chaque recepteurs ponctuels
 	if(configurationTool->recepteur_p_List.size()>0)
 	{
-		std::cout<<"Step 2/3 : Ponctual receivers calculation."<<std::endl;
+		std::cout<<"Step 2/3 : Punctual receivers calculation."<<std::endl;
 		RunStep2(progressOutput.GetMainOperation());
 	}else{
-		std::cout<<"Step 2/3 : No Ponctual receivers."<<std::endl;
+		std::cout<<"Step 2/3 : No Punctual receivers."<<std::endl;
 	}
 
 	///////////////////////////////////////////

@@ -60,23 +60,23 @@ private:
 		this->AppendPropertyBool("showgyz","Grille plan yz",false);
 		this->AppendPropertyColor("couleurgrille","Couleur de la grille",90,90,90);
 		this->AppendPropertyEntier("echellegrille","Echelle de la grille",1);
-		_("Longueur flèche");
-		_("Largeur flèche");
-		_("Couleur flèche x");
-		_("Couleur flèche y");
-		_("Couleur flèche z");
-		_("Afficher repère");
-		_("Grille plan xy");
-		_("Grille plan xz");
-		_("Grille plan yz");
-		_("Couleur de la grille");
+		_("Arrow length");
+		_("Arrow width");
+		_("Arrow color (x)");
+		_("Arrow color (y)");
+		_("Arrow color (z)");
+		_("Show XYZ axis");
+		_("XY Grid");
+		_("XZ Grid");
+		_("YZ Grid");
+		_("Grid color");
 	}
 public:
 	E_Scene_Rendu_Origine( wxXmlNode* noeudCourant ,  Element* parent)
 		:E_Drawable(parent,"Repère",Element::ELEMENT_TYPE_SCENE_PROJET_RENDU_ORIGINE,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_ORIGIN);
-		_("Repère");
+		_("XYZ axis");
 		this->InitProps();
 	}
 

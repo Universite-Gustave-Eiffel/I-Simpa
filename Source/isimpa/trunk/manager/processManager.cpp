@@ -93,7 +93,7 @@ void processManager::LogOutput(bool &hasOutput, const wxString &label,float *out
 		}
         // this assumes that the output is always line buffered
         wxString msg;
-		msg << _("Erreur exécutable :") << errMsg;
+		msg << _("Calculation code error:") << errMsg;
 		msg.Replace("%","%%"); //si il y a un seul % alors un bug apparait wxString attend un format du type %s ou %i par exemple
 		wxLogError(msg);
 
@@ -112,14 +112,14 @@ bool uiRunExe(wxFrame* parent,const wxString& path,const wxString& labelOutput, 
 	_("Remaining time : ");
 	_("Close");
 	_("Cancel");
-	_("unknown");
+	_("Unknown");
 	wxProgressDialog * progDialog=wxDynamicCast(progressDialog,wxProgressDialog);
 	bool hasOutput=true;
 	processManager* process = new processManager(parent,path);
 	if(extLogger.get()!=NULL)
 		process->AddLogger(extLogger);
 
-	wxLogInfo(_("Execution d'un programme externe :"));
+	wxLogInfo(_("External code execution"));
 	wxLogInfo(path);
 
 	int processId=wxExecute(path,wxEXEC_ASYNC,process);
@@ -149,27 +149,27 @@ bool uiRunExe(wxFrame* parent,const wxString& path,const wxString& labelOutput, 
 			if(progDialog && !progDialog->Update(percFinish*100))
 			{
 				wxKillError killerror=wxProcess::Kill(processId,wxSIGKILL);
-				wxLogInfo(_("Execution du programme externe annulé."));
-				wxLogInfo(_("Réponse du processus :"));
+				wxLogInfo(_("External code execution canceled"));
+				wxLogInfo(_("Process answer:"));
 				switch(killerror)
 				{
 				case wxKILL_OK:              // no error
-					wxLogInfo(_("Pas d'erreur."));
+					wxLogInfo(_("No error"));
 					break;
 				case wxKILL_BAD_SIGNAL:      // no such signal
-					wxLogError(_("Le signal n'existe pas."));
+					wxLogError(_("Signal doesn't exist"));
 					break;
 				case wxKILL_ACCESS_DENIED:   // permission denied
-					wxLogError(_("Fermeture du processus non autorisée."));
+					wxLogError(_("Unauthorized closing process"));
 					break;
 				case wxKILL_NO_PROCESS:      // no such process
-					wxLogError(_("Ce processus n'existe pas."));
+					wxLogError(_("Process doesn't exist"));
 					break;
 				case wxKILL_ERROR :           // another, unspecified error
-					wxLogError(_("Retour du processus non spécifié"));
+					wxLogError(_("Non-specified process output"));
 					break;
 				default:
-					wxLogError(_("Retour du processus inconnue"));
+					wxLogError(_("Unknown output process"));
 					break;
 				}
 				//Si on supprime le processus maintenant on aura une erreur

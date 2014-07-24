@@ -79,7 +79,7 @@ private:
 #define _END_PY_EXT_CALL_WORKING_AROUND }\
 	catch( bp::error_already_set )\
 	{\
-		wxLogError(_("La méthode implémenté en python contient une erreur"));\
+		wxLogError(_("There are errors in the Python(TM) script!"));\
 	}
 
 
@@ -190,9 +190,9 @@ public:
 						if(appIcon.Ok())
 							this->elementInfo.graphElement=treeToFeed->GetImageList()->Add(appIcon);
 						else
-							wxLogWarning(_("Le format de l'icone %s n'est pas supporté !"),iconPath);
+							wxLogWarning(_("The icon format of %s is not supported."),iconPath);
 					}else{
-						wxLogWarning(_("L'icone %s n'existe pas !"),iconPath);
+						wxLogWarning(_("The icon %s doesn't exist!"),iconPath);
 					}
 				}
 				_BEGIN_PY_EXT_CALL_WORKING_AROUND
@@ -209,9 +209,9 @@ public:
 						if(appIcon.Ok())
 							this->elementInfo.graphElementStateOpen=treeToFeed->GetImageList()->Add(appIcon);
 						else
-							wxLogWarning(_("Le format de l'icone %s n'est pas supporté !"),iconPath);
+							wxLogWarning(_("The icon format of %s is not supported."),iconPath);
 					}else{
-						wxLogWarning(_("L'icone %s n'existe pas !"),iconPath);
+						wxLogWarning(_("The icon %s doesn't exist!"),iconPath);
 					}
 				}else{
 					this->elementInfo.graphElementStateOpen=this->elementInfo.graphElement;

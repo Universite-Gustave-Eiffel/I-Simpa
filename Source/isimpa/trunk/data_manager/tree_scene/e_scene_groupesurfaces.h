@@ -106,7 +106,7 @@ public:
 				E_Scene_Groupesurfaces_Groupe* eGroupe=dynamic_cast<E_Scene_Groupesurfaces_Groupe*>(grFils);
 				if(!eGroupe->IsEmpty())
 				{
-					wxLogInfo(_("Un groupe peut être détruit seulement s'il est vide !"));
+					wxLogInfo(_("The group is not empty. You can't delete it!"));
 					return true;
 				}
 			}
@@ -198,7 +198,7 @@ public:
 
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SURFACE_GROUP, _("Ajouter un groupe"),"./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SURFACE_GROUP, _("Add a group"),"./Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 };

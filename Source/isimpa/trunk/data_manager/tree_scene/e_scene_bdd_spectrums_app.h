@@ -50,7 +50,7 @@ public:
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_APPLICATION_SPECTRUMS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_APPLICATION_SPECTRUMS_CLOSE);
-		_("Référence");
+		_("Reference");
 
 		wxXmlNode* noeudCfg=ApplicationConfiguration::GetAppSpectreNode();
 

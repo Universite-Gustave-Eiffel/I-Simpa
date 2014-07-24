@@ -49,7 +49,7 @@ private:
 	void InitExportRs(Element* confCore)
 	{
 		confCore->AppendPropertyBool("output_recs_byfreq","Export des récepteurs de surface par bande de fréquence",true,true);
-		_("Export des récepteurs de surface par bande de fréquence");
+		_("Export surface receivers for each frequency band");
 	}
 public:
 
@@ -66,7 +66,7 @@ public:
 
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_STANDARTCORE_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_STANDARTCORE_CLOSE);
-		_("Théorie Classique (TC)");
+		_("Classical theory of reverberation");
 		Element* coreConf=this->GetElementByType(Element::ELEMENT_TYPE_CORE_CORE_CONFIG);
 		if(!coreConf) //Maj version < 05/11/2008
 		{
@@ -89,10 +89,10 @@ public:
 		this->AppendPropertyText("direct_recepteurSOutputName","",wxString("folder_ChampDirect")+wxFileName::GetPathSeparator(),true,true)->Hide();
 		this->AppendPropertyText("sabine_recepteurSOutputName","",wxString("folder_Sabine")+wxFileName::GetPathSeparator(),true,true)->Hide();
 		this->AppendPropertyText("eyring_recepteurSOutputName","",wxString("folder_Eyring")+wxFileName::GetPathSeparator(),true,true)->Hide();
-		_("folder_ChampDirect");
-		_("folder_Sabine");
-		_("folder_Eyring");
-		_("main_calculation");
+		_("Direct field");
+		_("Total field (Sabine)");
+		_("Total field (Eyring)");
+		_("Main calculation");
 
 
 

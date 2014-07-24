@@ -62,9 +62,9 @@ public:
 	void InitProperties()
 	{
 		this->AppendPropertyText("urlmodel","Fichier de modèle","",true);
-		_("Fichier de modèle"); //Pour generer les fichiers de langues
+		_("Scene file"); //Pour generer les fichiers de langues
 		this->AppendPropertyText("urlsave","Fichier de sauvegarde","",true);
-		_("Fichier de sauvegarde");
+		_("Backup file");
 	}
 
 	void FillWxTree(wxTreeCtrl* treeToFeed,const wxTreeItemId& parentId)

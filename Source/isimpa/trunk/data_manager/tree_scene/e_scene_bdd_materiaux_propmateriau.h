@@ -49,16 +49,16 @@ public:
 	void AddSideProperty()
 	{
 		std::vector<wxString> choices;
-		choices.push_back(_("Unilatéral"));
-		choices.push_back(_("Bilatéral"));
-		this->AppendPropertyList("side_material",_("Sens de prise en compte"),choices,1,false,1,std::vector<int>(),true);
+		choices.push_back(_("Unilateral"));
+		choices.push_back(_("Bilateral"));
+		this->AppendPropertyList("side_material",_("Side of material effect"),choices,1,false,1,std::vector<int>(),true);
 	}
 
 	E_Scene_Bdd_Materiaux_PropertyMaterial( wxXmlNode* noeudCourant ,  Element* parent)
 		:Element(parent,"Description du matériau",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_PROPMATERIAU,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
-		_("Description du matériau");
+		_("Material description");
 		if(!this->IsPropertyExist("side_material"))
 		{
 			AddSideProperty();
@@ -73,10 +73,10 @@ public:
 		this->AppendPropertyText("description","Description","");
 		this->AppendPropertyText("reference","Référence","");
 		AddSideProperty();
-		_("Référence");
+		_("Reference");
 		_("Description");
-		_("Masse volumique (Kg/m3)");
-		_("Résistivité (cgs)");
+		_("Mass density (kg/m3)");
+		_("Resistivity (cgs)");
 	}
 
 	wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)

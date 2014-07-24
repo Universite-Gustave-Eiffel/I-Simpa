@@ -39,7 +39,7 @@
 E_Report_Gabe_Gap::E_Report_Gabe_Gap(Element* parent,wxString Nom,wxString Path)
 	:E_Report_Gabe(parent,Nom,Path,ELEMENT_TYPE_REPORT_GABE_GAP)
 {
-	_("advParams"); //Libellé du fichier standart
+	_("Advanced acoustic parameters"); //Libellé du fichier standart
 }
 
 E_Report_Gabe_Gap::E_Report_Gabe_Gap(Element* parent,wxXmlNode* nodeElement)
@@ -50,7 +50,7 @@ E_Report_Gabe_Gap::E_Report_Gabe_Gap(Element* parent,wxXmlNode* nodeElement)
 
 void E_Report_Gabe_Gap::OnRightClic(wxMenu* leMenu)
 {
-	leMenu->Append(GetMenuItem(leMenu,IDEVENT_RECP_COMPUTE_ADVANCED_ACOUSTIC_PARAMETERS,_("Calculer les paramètres acoustiques")));
+	leMenu->Append(GetMenuItem(leMenu,IDEVENT_RECP_COMPUTE_ADVANCED_ACOUSTIC_PARAMETERS,_("Calculate acoustic parameters")));
 	E_Report_Gabe::OnRightClic(leMenu);
 }
 
@@ -72,7 +72,7 @@ bool E_Report_Gabe_Gap::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,s
 	if(!gReader.GetCol(indexCol->GetValue(0),&lstFloatParam))
 		return false;
 
-	arrayTitle=_("Niveau sonore latéral");
+	arrayTitle=_("Lateral sound level");
 	////////////////////////
 	// Construction des libellés des lignes, bandes de fréquences
 	int nbfreq=indexCol->GetValue(5);

@@ -93,17 +93,17 @@ public:
 		#if 0
 		    // Code source à destination de PoEdit
 			_("SPPS");
-			_("Aléatoire");
-			_("Énergétique");
-			_("Export des récepteurs de surface par bande de fréquence");
-			_("Méthode de calcul");
-			_("Particules par source");
-			_("Particules par source (rendu)");
-			_("Calcul Absorption atmosphérique");
-			_("Calcul Encombrement");
-			_("Calcul du Champ Direct uniquement");
-			_("statsSPPS");
-			_("Rayon des récepteurs ponctuels");
+			_("Random");
+			_("Energetic");
+			_("Export surface receivers for each frequency band");
+			_("Calculation method");
+			_("Number of sound particles per source");
+			_("Number of sound particles per source (display)");
+			_("Active calculation of atmospheric absorption");
+			_("Active calculation of diffusion by fitting objects");
+			_("Active calculation of direct field only");
+			_("Calculation informations");
+			_("Radius of receivers (m)");
 		#endif
 
 		this->AppendFils(new E_Core_Core_Bfreqselection(this));

@@ -150,22 +150,22 @@ wxPanel* BuildGraphSheetDialog::CreateMainSettingsPage(wxWindow* parent)
     wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
     wxBoxSizer *topSizer = new wxBoxSizer( wxVERTICAL );
 
-	topSizer->Add(new wxStaticText(panel,wxID_ANY,_("Libellé Onglet :")),0,wxALL,2);
-	topSizer->Add(new wxTextCtrl(panel,ID_PANEL_CONTROL_TAB_LABEL,_("Diagramme utilisateur")),0,wxALL,2);
-	topSizer->Add(new wxStaticText(panel,wxID_ANY,_("Libellé Axe X :")),0,wxALL,2);
+	topSizer->Add(new wxStaticText(panel,wxID_ANY,_("Tab name:")),0,wxALL,2);
+	topSizer->Add(new wxTextCtrl(panel,ID_PANEL_CONTROL_TAB_LABEL,_("User diagram")),0,wxALL,2);
+	topSizer->Add(new wxStaticText(panel,wxID_ANY,_("Name of X axis")),0,wxALL,2);
 	topSizer->Add(new wxTextCtrl(panel,ID_PANEL_CONTROL_X_AXIS_LABEL,""),0,wxALL,2);
-	topSizer->Add(new wxStaticText(panel,wxID_ANY,_("Libellé Axe Y :")),0,wxALL,2);
+	topSizer->Add(new wxStaticText(panel,wxID_ANY,_("Name of Y axis")),0,wxALL,2);
 	topSizer->Add(new wxTextCtrl(panel,ID_PANEL_CONTROL_Y_AXIS_LABEL,""),0,wxALL,2);
 	wxArrayString radioChoice;
-	radioChoice.Add(_("Colonnes"));
-	radioChoice.Add(_("Lignes"));
-	topSizer->Add(new wxRadioBox(panel,ID_PANEL_CONTROL_RADIO_DATA,_("Orientation des séries de données"),wxDefaultPosition,wxDefaultSize,radioChoice), 0, wxGROW|wxTOP, 2);
-	topSizer->Add(new wxStaticText(panel,wxID_ANY,_("Libellés :")),0,wxALL,2);
-	wxCheckBox* convertCheck=new wxCheckBox(panel,ID_PANEL_CONTROL_CHECK_CONVERTX_INTO_NUMBER,_("Libellés X en texte"));
+	radioChoice.Add(_("Column"));
+	radioChoice.Add(_("Lines"));
+	topSizer->Add(new wxRadioBox(panel,ID_PANEL_CONTROL_RADIO_DATA,_("Data alignment"),wxDefaultPosition,wxDefaultSize,radioChoice), 0, wxGROW|wxTOP, 2);
+	topSizer->Add(new wxStaticText(panel,wxID_ANY,_("Label:")),0,wxALL,2);
+	wxCheckBox* convertCheck=new wxCheckBox(panel,ID_PANEL_CONTROL_CHECK_CONVERTX_INTO_NUMBER,_("Text label for X"));
 	topSizer->Add(convertCheck,0,wxALL,2);
-	convertCheck->SetToolTip(_("En mode texte (coché) la valeur X séparant chaque donnée est de 1.")
-		+wxString(_("Si ce champ est décoché alors les libellés seront converties en nombre et appliqués sur l'axe des X pour chaque valeur.")));
-	topSizer->Add(new wxStaticText(panel,wxID_ANY,_("Style par défaut :")),0,wxALL,2);
+	convertCheck->SetToolTip(_("In text mode, X data are regularly spaced (unit step)")
+		+wxString(_("If this field is not activated, label are converted in numbers and applied on the X axis")));
+	topSizer->Add(new wxStaticText(panel,wxID_ANY,_("Default style")),0,wxALL,2);
 	wxComboBox* lstStyles=new wxComboBox(panel,ID_PANEL_CONTROL_SELECT_DEFAULT_STYLE,"",wxDefaultPosition, wxDefaultSize, 0, NULL, wxCB_READONLY | wxCB_DROPDOWN );
 	topSizer->Add(lstStyles,0,wxALL,2);
 	FillComboBox(lstStyles,&drawingMethodStyles);

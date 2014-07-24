@@ -38,7 +38,7 @@
 E_Scene::E_Scene( wxXmlNode* noeudCourant )
 	:Element(NULL,"Scène",Element::ELEMENT_TYPE_SCENE_ROOT,noeudCourant)
 {
-	_("Scène");
+	_("Scene");
 	eventBinded=false;
 	this->Init();
 	if(noeudCourant!=NULL)

@@ -220,7 +220,7 @@ bool CPly::ImportPly(t_model& scene, const char* mfilename)
   char buffer[250];
   infile = fopen(mfilename, "r+");
   if (infile == (FILE *) NULL) {
-    wxLogInfo(_("File I/O Error:  Cannot open file %s.\n"), mefilename);
+    wxLogInfo(_("File I/O Error:  Cannot open file %s\n"), mefilename);
     return false;
   }
 

@@ -127,17 +127,17 @@ private:
 	void InitProperties() 
 	{
 		this->AppendPropertyDecimal("z0","Rugosité - z0 (m)",0.02f,false,4,false,true,0,0.0001f,true);
-		_("Rugosité - z0 (m)");
+		_("Roughness - z0 (m)");
 		this->AppendPropertyDecimal("alog","Effets météo - Gradient de célérité alog",0,false,4,false,false,0,0,true);
-		_("Effets météo - Gradient de célérité alog");
+		_("Meteorological effect - Celerity gradient a_log");
 		this->AppendPropertyDecimal("blin","Effets météo - Gradient de célérité blin",0,false,4,false,false,0,0,true);
-		_("Effets météo - Gradient de célérité blin");
+		_("Meteorological effect - Celerity gradient b_lin");
 		this->AppendPropertyDecimal("temperature","Temperature (°C)",20,false,2,false,false,0,0,true);
 		_("Temperature (°C)");
 		this->AppendPropertyDecimal("humidite","Humidité relative (%)",50,false,0,true,true,100,0,true);
-		_("Humidité relative (%)");
+		_("Relative humidity (%)");
 		this->AppendPropertyDecimal("pression","Pression atmosphérique (Pa)",101325,false,1,false,false,0,0,true);
-		_("Pression atmosphérique (Pa)");
+		_("Atmospheric pressure (Pa)");
 		std::vector<wxString> effetsMeteo;
 		std::vector<int> effetsMeteoIndex;
 		effetsMeteo.push_back("Très favorable");
@@ -150,14 +150,14 @@ private:
 		effetsMeteoIndex.push_back(EFFET_METEO_DEFAVORABLE);
 		effetsMeteo.push_back("Très défavorable");
 		effetsMeteoIndex.push_back(EFFET_METEO_TRES_DEFAVORABLE);
-		_("Effet météo");
-		_("Très favorable");
+		_("Meteorological effect");
+		_("Very favorable");
 		_("Favorable");
-		_("Homogène");
-		_("Défavorable");
-		_("Très défavorable");
+		_("Homogeneous");
+		_("Unfavorable");
+		_("Very unfavorable");
 		this->AppendPropertyList("lst_meteoeffect","Effets météo - Profiles",effetsMeteo,EFFET_METEO_HOMOGENE,false,1,effetsMeteoIndex);
-		_("Effets météo - Profiles");
+		_("Meteorology effects - Profiles");
 		std::vector<wxString> solTypes;
 		std::vector<int> solTypesIndex;
 		solTypes.push_back("Eau libre");
@@ -178,32 +178,32 @@ private:
 		solTypesIndex.push_back(TYPE_SOL_PERIURBAIN_DENSE);
 		solTypes.push_back("Urbain dense");
 		solTypesIndex.push_back(TYPE_SOL_URBAIN_DENSE);
-		_("Eau libre");
-		_("Sol nu");
-		_("Gazon ras");
-		_("Gazon dense");
-		_("Blé (1m de haut)");
-		_("Habitat épars (fermes, villages, arbres, haies)");
-		_("Périurbain peu dense (zone résidentielles, jardins)");
-		_("Périurbain dense");
-		_("Urbain dense");
+		_("Water");
+		_("Ground");
+		_("Short Lawn");
+		_("Dense Lawn");
+		_("Wheat (1m height)");
+		_("Sparse habitat (farm, trees, hedges)");
+		_("Low concentration Suburb (residential areas, gardens)");
+		_("Dense Suburb");
+		_("Dense urban");
 		this->AppendPropertyList("lst_soltype","Rugosité - Types de sol",solTypes,TYPE_SOL_NU,false,1,solTypesIndex,true);
-		_("Rugosité - Types de sol");
+		_("Rugosity - Ground type");
 		InitCoeffConstraint();
 	}
 	void InitCoeffConstraint()
 	{
 		this->AppendPropertyBool("disable_absatmo_computation","Absorption atmosphérique imposé",false,true);
-		_("Absorption atmosphérique imposé");
+		_("Set user defined atmospheric absorption");
 		this->AppendPropertyDecimal("absatmo","Absorption atmosphérique",0,true,5,false,true,0,0,true);
-		_("Absorption atmosphérique");
+		_("Atmospheric absorption");
 	}
 public:
 	E_Scene_Projet_Environnement( wxXmlNode* noeudCourant ,  Element* parent)
 		:Element(parent,"Environnement",Element::ELEMENT_TYPE_SCENE_PROJET_ENVIRONNEMENTCONF,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_ENVIRONMENT);
-		_("Environnement");
+		_("Environment");
 		if(!this->IsPropertyExist("absatmo"))
 		{
 			InitCoeffConstraint();

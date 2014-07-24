@@ -48,7 +48,7 @@ public:
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_USER_MATERIALS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_USER_MATERIALS_CLOSE);
 		insertPasteMenu=true;
-		_("Utilisateur");
+		_("User");
 		if(noeudCourant!=NULL)
 		{
 			// On va créer les fils de notre noeudCourant
@@ -141,10 +141,10 @@ public:
 	
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_USERMAT, _("Nouveau matériau"),"./Bitmaps/popup_new.png"));
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_MATERIAL_GROUP, _("Créer groupe"),"./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_USERMAT, _("New material"),"./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_MATERIAL_GROUP, _("Create group"),"./Bitmaps/popup_new.png"));
 		leMenu->AppendSeparator();		
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_IMPORT_MATERIAL, _("Importer depuis un fichier")));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_IMPORT_MATERIAL, _("Import from file")));
 		Element::OnRightClic(leMenu);
 	}
 	/**

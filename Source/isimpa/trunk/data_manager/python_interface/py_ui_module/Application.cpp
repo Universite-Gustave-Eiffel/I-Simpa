@@ -245,7 +245,7 @@ namespace uictrl
 					self->AppendBatchParameters(keys[idk],values[idk]);
 				}
 			}else{
-				wxLogError(_("Certains paramètres sont de types incorrects. Les valeurs et les indices doivent être des chaines de caractères."));
+				wxLogError(_("Incorrect data types. Values and index must be characters"));
 			}
 		}
 		pyeventlocker lckUi(&self->pyeventmode);

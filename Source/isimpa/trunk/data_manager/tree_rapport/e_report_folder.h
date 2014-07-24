@@ -83,7 +83,7 @@ public:
 		
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,IDEVENT_OPEN_FOLDER, _("Ouvrir le dossier")));
+		leMenu->Append(GetMenuItem(leMenu,IDEVENT_OPEN_FOLDER, _("Open folder")));
 		E_Report_File::OnRightClic(leMenu);
 	}
 	wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)

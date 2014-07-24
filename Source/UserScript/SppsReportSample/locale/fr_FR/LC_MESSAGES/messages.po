@@ -19,7 +19,7 @@ msgid "Sound level"
 msgstr "Niveaux sonores"
 
 #: ../../../buildhtmlreport.py:51
-msgid "Ponctual receivers"
+msgid "Punctual receivers"
 msgstr "Récepteurs ponctuels"
 
 #: ../../../buildhtmlreport.py:52
@@ -43,7 +43,7 @@ msgid "Synthesis"
 msgstr "Synthèse"
 
 #: ../../../buildhtmlreport.py:158
-msgid "Ponctuals receivers"
+msgid "Punctual receivers"
 msgstr "Récepteurs ponctuels"
 
 #: ../../../buildhtmlreport.py:159

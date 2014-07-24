@@ -55,7 +55,7 @@ public:
 	E_Materiau_App( wxXmlNode* noeudCourant ,  Element* parent)
 		:E_Materiau(parent,"Matériau application",Element::ELEMENT_TYPE_MATERIAU_APP,noeudCourant)
 	{
-		_("Matériau application");
+		_("Reference material");
 		const std::vector<ApplicationConfiguration::t_freq> tabfreq=ApplicationConfiguration::GetAllFrequencies();
 		//Les champs de saisies sont en lectures seules pour les matériaux d'application
 		for(int i=0;i<tabfreq.size();i++)

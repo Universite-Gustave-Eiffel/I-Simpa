@@ -46,7 +46,7 @@ public:
 		:Element(parent,"Informations",Element::ELEMENT_TYPE_SCENE_PROJET_INFORMATION,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_INFORMATION);
-		_("Informations");
+		_("Information");
 		if(!this->IsPropertyExist("nbencombrementenable"))
 		{
 			AppendNewProperties();
@@ -68,8 +68,8 @@ public:
 
 		this->AppendPropertyEntier("nbencombrementenable","Nombre d'encombrements actifs",0);
 		this->AppendPropertyEntier("nbsourcesenable","Nombre de sources sonores actives",0);
-		_("Nombre d'encombrements actifs");
-		_("Nombre de sources sonores actives");
+		_("Number of active fitting zones");
+		_("Number of active sound sources");
 	}
 	/*
 	 * Ajoute les éléments de configuration tel que l'emplacement du fichier de modèle et le chemin de sauvegarde par défaut du projet
@@ -86,14 +86,14 @@ public:
 		this->AppendPropertyDecimal("surfscene","Surface totale de la scène (m2)",0.f,true,1);
 		AppendNewProperties();
 		this->SetReadOnlyAllConfig();
-		_("Nombre de faces de la scène");
-		_("Nombre d'encombrements");
-		_("Nombre de récepteurs ponctuels");
-		_("Nombre de récepteurs surfaciques");
-		_("Nombre de sources sonores");
-		_("Nombre de groupes de surfaces");
-		_("Volume total de la scène (m3)");
-		_("Surface totale de la scène (m2)");
+		_("Model face count");
+		_("Number of fitting zones");
+		_("Number of punctual receivers");
+		_("Number of surfaces receivers");
+		_("Number of sound sources");
+		_("Number of surface groups");
+		_("Scene volume (m3)");
+		_("Scene surface (m²)");
 	}
 		
 	void InitProp()

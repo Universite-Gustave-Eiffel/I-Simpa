@@ -76,7 +76,7 @@ E_GammeAbsorption::E_GammeAbsorption(Element* parent)
 :Element(parent,"Paramètres acoustiques",ELEMENT_TYPE_GAMMEABSORPTION,NULL)
 {
 	SetIcon(GRAPH_STATE_ALL,GRAPH_SPECTRUM);
-	_("Paramètres acoustiques");
+	_("Acoustic parameters");
 	ignoreNextUpdate=true;
 	InitProperties();
 	ignoreNextUpdate=false;
@@ -105,7 +105,7 @@ void E_GammeAbsorption::InitProperties()
 	Lstlois.push_back("Uniforme");
 	//Lstlois.push_back("Collision uniforme");
 	//Lstlois.push_back("Collision Lambert");
-	_("Uniforme");
+	_("Uniform");
 	//_("Collision uniforme");
 	//_("Collision Lambert");
 	std::vector<int> LstloisIndex(Lstlois.size());
@@ -136,10 +136,10 @@ void E_GammeAbsorption::InitProperties()
 	nouvLigne->AppendPropertyDecimal("alpha","Alpha",0,false,precisionDecimal,true,true,1.f,0.f,true);
 	nouvLigne->AppendPropertyDecimal("lambda","Lambda",1.f,false,precisionDecimal,false,true,0,.01f,true);
 	nouvLigne->AppendPropertyText("l_diff","Loi de diffusion","",true);
-	_("Moyenne");
+	_("Average");
 	_("Alpha");
 	_("Lambda");
-	_("Loi de diffusion");
+	_("Diffusion law");
 	this->AppendFils(nouvLigne);
 }
 

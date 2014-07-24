@@ -185,7 +185,7 @@ formatGABE::GABE_Data_Float* Compute_TR_Param(wxFloat32 fromdbL,wxFloat32 todbL,
 		newParameter->SetLabel(_("EDT (s)"));
 		newParameter->headerData.numOfDigits=3;
 	}else{
-		newParameter->SetLabel(wxString::Format(_("TR-%g (s)"),todbL-5));
+		newParameter->SetLabel(wxString::Format(_("RT-%g (s)"),todbL-5));
 		newParameter->headerData.numOfDigits=3;
 	}
 
@@ -207,7 +207,7 @@ formatGABE::GABE_Data_Float* dB_Sum_Param(const std::vector<wxFloat32>& timeTabl
 		newParameter->Set(idFreq,db_CurrentFreq);
 	}
 
-	newParameter->SetLabel(_("Niveau sonore (dB)"));
+	newParameter->SetLabel(_("Sound level (dB)"));
 	newParameter->headerData.numOfDigits=3;
 	return newParameter;
 
@@ -247,7 +247,7 @@ formatGABE::GABE_Data_Float* dBa_Sum_Param(const std::vector<wxFloat32>& timeTab
 		newParameter->Set(idFreq,db_CurrentFreq);
 	}
 
-	newParameter->SetLabel(_("Niveau sonore (dBA)"));
+	newParameter->SetLabel(_("Sound level (dBA)"));
 	newParameter->headerData.numOfDigits=3;
 	return newParameter;
 
@@ -498,10 +498,10 @@ void ProjectManager::OnMenuDoAcousticParametersComputation(uiTreeCtrl* fromCtrl,
 	wxString TRdefault="15;30";
 	if(!pyeventmode)
 	{
-		wxCustomEntryDialog parametersDialog(mainFrame,_("Veuillez entrer les paramètres acoustiques à calculer.\nLe caractère ';' permet de séparer les paramètres."),_("Calculs des paramètres acoustiques"));
-		parametersDialog.AddTextControl(_("Clarté (ms)"),Cdefault);
-		parametersDialog.AddTextControl(_("Définition (ms)"),Ddefault);
-		parametersDialog.AddTextControl(_("Décroissance pour le calcul du TR (dB)"),TRdefault);
+		wxCustomEntryDialog parametersDialog(mainFrame,_("Please, gives calculation parameters. Use ';' to separate several parameters"),_("Acoustic parameters calculation"));
+		parametersDialog.AddTextControl(_("Clarity (ms)"),Cdefault);
+		parametersDialog.AddTextControl(_("Definition (ms)"),Ddefault);
+		parametersDialog.AddTextControl(_("Sound decay value for RT calculation (dB)"),TRdefault);
 
 		if (parametersDialog.ShowModal() == wxID_OK)
 		{
@@ -536,7 +536,7 @@ void ProjectManager::OnMenuDoAcousticParametersComputation(uiTreeCtrl* fromCtrl,
 
 			if(!wxFileExists(fileName))
 			{
-				wxLogError(_("Le fichier de résultat suivant n'existe pas :\n%s"),fileName);
+				wxLogError(_("The following file doesn't exist:\n%s"),fileName);
 				return;
 			}
 			////////////////////////////////////
@@ -637,7 +637,7 @@ void ProjectManager::OnMenuDoAcousticParametersComputation(uiTreeCtrl* fromCtrl,
 
 
 			tabWriter.Save(fileFolder+"acoustic_param.gabe");
-			_("acoustic_param");
+			_("Acoustic parameters");
 
 			//////////////////////////////////////////
 			// Enregistrement des données des courbes de shroeder
@@ -659,7 +659,7 @@ void ProjectManager::OnMenuDoAcousticParametersComputation(uiTreeCtrl* fromCtrl,
 				tabSchroederWriter.SetCol(idstep+1,colTimeStep);
 			}
 			tabSchroederWriter.Save(fileFolder+"schroedercurves.gabe");
-			_("schroedercurves");
+			_("Schroeder's curve");
 
 
 
@@ -824,9 +824,9 @@ void ProjectManager::OnMenuDoAdvancedAcousticParametersComputation(Element* sele
 
 	if(!pyeventmode)
 	{
-		wxCustomEntryDialog parametersDialog(mainFrame,_("Veuillez entrer les paramètres acoustiques à calculer.\nLe caractère ';' permet de séparer les paramètres."),_("Calculs des paramètres acoustiques"));
-		parametersDialog.AddTextControl(_("Fraction d'énergie latérale précoce LF (ms)"),LFParam);
-		parametersDialog.AddTextControl(_("Fraction d'énergie latérale précoce LFC (ms)"),LFCParam);
+		wxCustomEntryDialog parametersDialog(mainFrame,_("Please, gives calculation parameters. Use ';' to separate several parameters"),_("Acoustic parameters calculation"));
+		parametersDialog.AddTextControl(_("Early lateral fraction LF (ms)"),LFParam);
+		parametersDialog.AddTextControl(_("Early lateral fraction LFC (ms)"),LFCParam);
 		//parametersDialog.AddTextControl(_("Tenue acoustique latérale LG(ms)"),LGParam);
 		//parametersDialog.AddTextControl(_("Tenue acoustique G (ms)"),GParam);
 
@@ -980,6 +980,6 @@ void ProjectManager::OnMenuDoAdvancedAcousticParametersComputation(Element* sele
 		tabWriter.Save(fileFolder+"acoustic_param_advance.gabe");
 		gabeFolder->RefreshFolderContents();
 		gabeFolder->FillWxTree(treeResult);
-		_("acoustic_param_advance");
+		_("Advanced acoustic parameters");
 	}
 }

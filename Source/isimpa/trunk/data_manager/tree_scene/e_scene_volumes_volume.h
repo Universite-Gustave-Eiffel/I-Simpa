@@ -101,14 +101,14 @@ public:
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_VOLUME_CLOSE);
 		ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Volumes++;
 		this->elementInfo.userDestroyable=true;
-		_("Limites intérieures");
+		_("Volume boundary");
 		this->AppendFils(new E_Scene_Volumes_Volume_Proprietes(this));
 		this->AppendFils(new E_Scene_Volumes_Volume_Rendu(this));
 		this->AppendFils(new E_Scene_Groupesurfaces_Groupe(this,"Limites intérieures",true));
 		this->AppendPropertyPosition("volpos","Intérieur du volume",vec3(),true);
 		this->AppendPropertyEntier("idvol","idvol",GetFreeId(parent),true)->Hide();
 
-		_("Intérieur du volume");
+		_("Inside position");
 	}
 
 	~E_Scene_Volumes_Volume()
@@ -194,7 +194,7 @@ public:
 
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_CONVERT_VOL_TO_FITTING, _("Convertir en encombrement")));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_CONVERT_VOL_TO_FITTING, _("Convert to fitting")));
 		Element::OnRightClic(leMenu);
 	}
 

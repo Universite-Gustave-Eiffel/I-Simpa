@@ -79,17 +79,17 @@ bool ProjectManager::RunRemeshProcess(wxString fileToRemesh)
 
 	//On attend que l'execution soit terminée
 	bool hasOutput=true;
-	wxProgressDialog progDialog(_("Execution du code de réparation du modèle"),_("Préparation du modèle"),10000,mainFrame,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
+	wxProgressDialog progDialog(_("Reparing 3D scene"),_("Preparing 3D scene"),10000,mainFrame,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
 
 	bool result=uiRunExe(mainFrame,MeshRegenPath+cmd,lblOutput,&progDialog);
 
 	//progDialog.Close();
 	if(result)
 	{
-		wxLogInfo(_("Réparation du modèle terminée"));
+		wxLogInfo(_("Scene repair complete"));
 		return true;
 	}else{
-		wxLogError(_("Réparation du modèle annulée"));
+		wxLogError(_("Scene repair canceled"));
 		return false;
 	}
 }
@@ -103,7 +103,7 @@ bool ProjectManager::RunTetGenBoundaryMesh( wxString cmd, wxString cacheFolder,w
 	wxString lblOutput=tetgenExe+" : ";
 	cmd=tetgenExe+" "+cmd+" \""+meshFilePath+"\"";
 
-	wxLogInfo(_("Exécution du mailleur avec les paramètres suivants :\n%s"),cmd);
+	wxLogInfo(_("Meshing with the following parameters:\n%s"),cmd);
 
 	///////////////////////////////////////////
 	///	Verifications de l'existance du coeur de calcul
@@ -111,7 +111,7 @@ bool ProjectManager::RunTetGenBoundaryMesh( wxString cmd, wxString cacheFolder,w
 	#ifdef __WXMSW__
 	if(!wxFileExists(tetgenPath+tetgenExe))
 	{
-		wxLogInfo(_("L'exécutable de calcul est introuvable"));
+		wxLogInfo(_("Calculation .exe file not found."));
 		return false;
 	}
 	#endif
@@ -130,20 +130,20 @@ bool ProjectManager::RunTetGenBoundaryMesh( wxString cmd, wxString cacheFolder,w
 	///////////////////////////////////////////
 	///	On execute le logiciel de calcul
 	///////////////////////////////////////////
-	wxProgressDialog progDialog(_("Execution du code de génération de maillage"),_("Génération du maillage"),10000,mainFrame,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
+	wxProgressDialog progDialog(_("Code execution mesh generation"),_("Generating mesh"),10000,mainFrame,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
 
 	bool result=uiRunExe(mainFrame,tetgenPath+cmd,lblOutput,&progDialog);
 
 	if(result)
 	{
-		wxLogInfo(_("Maillage terminé"));
+		wxLogInfo(_("Meshing complete"));
 
 		///////////////////////////////////////////
 		///	On transfert les données vers l'objet de la scène
 		///////////////////////////////////////////
-		wxLogInfo(_("Chargement des fichiers ascii du générateur tétraédrique en cours..."));
+		wxLogInfo(_("Loading mesh ASCII file ..."));
 		sceneMesh._LoadFaceFile(face);
-		wxLogInfo(_("Chargement des fichiers ascii du générateur tétraédrique terminé."));
+		wxLogInfo(_("Loading ASCII files from mesh generator complete"));
 	}
 
 
@@ -152,9 +152,9 @@ bool ProjectManager::RunTetGenBoundaryMesh( wxString cmd, wxString cacheFolder,w
 	wxRemoveFile(meshFilePath);
 
 	wxLongLong durationOperation=wxDateTime::UNow().GetValue()-timeDebOperation.GetValue();
-	wxLogInfo(_("Temps total de l'opération de maillage %i ms"),durationOperation.GetValue());
+	wxLogInfo(_("Total time of meshing: %i ms"),durationOperation.GetValue());
 	if(!result)
-		wxLogError(_("Le maillage du model n'a pu se faire, se référer à l'historique des message afin d'identifier le problème"));
+		wxLogError(_("Meshing aborted: please, see console messages for more information "));
 	return true;
 
 
@@ -186,11 +186,11 @@ bool ProjectManager::RunTetGenMaillage(param_TetGenMaillage& paramMaillage)
 			cmd+=" -A -n "+paramMaillage.cmd_append;
 		}else{
 			cmd+=" -d";
-			wxLogWarning(_("Utilisation du mode débuggage, aucun maillage ne sera produit !"));
+			wxLogWarning(_("Debug mode mesh, nothing will be done"));
 		}
 	}else{
 		cmd+=" "+paramMaillage.user_defined_params;
-		wxLogWarning(_("Utilisation des paramètres utilisateurs !"));
+		wxLogWarning(_("Meshing with user parameters"));
 	}
 	wxString meshFilePath=cacheFolder+sceneName+sceneNameExt;
 	wxString constraintFilePath=cacheFolder+sceneName+".var";
@@ -202,7 +202,7 @@ bool ProjectManager::RunTetGenMaillage(param_TetGenMaillage& paramMaillage)
 	#ifdef __WXMSW__
 	if(!wxFileExists(tetgenPath+tetgenExe))
 	{
-		wxLogInfo(_("L'exécutable de calcul est introuvable"));
+		wxLogInfo(_("Calculation .exe file not found."));
 		return false;
 	}
     #endif
@@ -227,7 +227,7 @@ bool ProjectManager::RunTetGenMaillage(param_TetGenMaillage& paramMaillage)
 
 	if(!sceneMesh._SavePOLY(meshFilePath,true,paramMaillage.doMeshRepair,true,&faceInd))
 	{
-		wxLogError(_("Impossible de fournir une scène au mailleur"));
+		wxLogError(_("No 3D scene for meshing"));
 		return false;
 	}
 	// Correction du modèle
@@ -240,32 +240,32 @@ bool ProjectManager::RunTetGenMaillage(param_TetGenMaillage& paramMaillage)
 	{
 		if(!sceneMesh.BuildVarConstraintFile(constraintFilePath,paramMaillage.maxAreaOnRecepteurss))
 		{
-			wxLogError(_("Impossible de créer le fichier de contrainte."));
+			wxLogError(_("Constraint file can not be created"));
 			return false;
 		}
 	}
 	///////////////////////////////////////////
 	///	On execute le logiciel de calcul
 	///////////////////////////////////////////
-	wxProgressDialog progDialog(_("Execution du code de génération de maillage"),_("Génération du maillage"),10000,mainFrame,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
+	wxProgressDialog progDialog(_("Code execution mesh generation"),_("Generating mesh"),10000,mainFrame,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
 
-	wxLogInfo(_("Exécution du mailleur avec les paramètres suivants :\n%s"),cmd);
+	wxLogInfo(_("Meshing with the following parameters:\n%s"),cmd);
 	TetgenDebugLogger* logger=new TetgenDebugLogger(); //Do not delete smart_ptr will do this
 	smart_ptr<InterfLogger> errorCollector=smart_ptr<InterfLogger>(logger);
 	bool result=uiRunExe(mainFrame,tetgenPath+cmd,lblOutput,&progDialog,errorCollector);
 
 	if(result)
 	{
-		wxLogInfo(_("Maillage terminé"));
+		wxLogInfo(_("Meshing complete"));
 
 		///////////////////////////////////////////
 		///	On transfert les données vers l'objet de la scène
 		///////////////////////////////////////////
 		if(!paramMaillage.debugMode)
 		{
-			wxLogInfo(_("Chargement des fichiers ascii du générateur tétraédrique en cours..."));
+			wxLogInfo(_("Loading mesh ASCII file ..."));
 			sceneMesh.LoadMaillage(WXSTRINGTOSTDWSTRING(face),WXSTRINGTOSTDWSTRING(ele),WXSTRINGTOSTDWSTRING(node),WXSTRINGTOSTDWSTRING(neigh));
-			wxLogInfo(_("Chargement des fichiers ascii du générateur tétraédrique terminé."));
+			wxLogInfo(_("Loading ASCII files from mesh generator complete"));
 		}else{
 			std::vector<int>& faces=logger->GetFaces();
 			
@@ -296,9 +296,9 @@ bool ProjectManager::RunTetGenMaillage(param_TetGenMaillage& paramMaillage)
 
 
 	wxLongLong durationOperation=wxDateTime::UNow().GetValue()-timeDebOperation.GetValue();
-	wxLogInfo(_("Temps total de l'opération de maillage %i ms"),durationOperation.GetValue());
+	wxLogInfo(_("Total time of meshing: %i ms"),durationOperation.GetValue());
 	if(!result)
-		wxLogError(_("Le maillage du model n'a pu se faire, se référer à l'historique des message afin d'identifier le problème"));
+		wxLogError(_("Meshing aborted: please, see console messages for more information "));
 	return true;
 }
 
@@ -380,6 +380,6 @@ void ProjectManager::OnFindSubVolumes(Element* volumes_el)
 			}
 		}
 	}else{
-		wxLogError(_("Vous devez effectuer un maillage avant d'executer cette opération."));
+		wxLogError(_("You must launch the mesh operation before run this method."));
 	}
 }

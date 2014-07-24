@@ -50,12 +50,12 @@ private:
 
 	void InitProperties() 
 	{
-		this->AppendPropertyText("projectname","Nom du projet",_("Nouveau projet"));
-		_("Nom du projet");
+		this->AppendPropertyText("projectname","Nom du projet",_("New project"));
+		_("Project name");
 		this->AppendPropertyText("projectdesc","Description du projet","");
-		_("Description du projet");
+		_("Project description");
 		this->AppendPropertyText("projectuser","Auteur","");
-		_("Auteur");
+		_("Author");
 		wxDateTime maintenant=wxDateTime::UNow();
 		wxString folderDated=maintenant.Format("%d-%m-%Y %Hh%Mm");
 		this->AppendPropertyText("projectdate","Date",folderDated);

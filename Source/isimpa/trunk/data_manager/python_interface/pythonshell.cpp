@@ -132,7 +132,7 @@ void PythonShell::Init()
 	RunRawCmd("import __main__");
 	RunRawCmd("import sys");
 	RunRawCmd("import uictrl as ui");
-	RunRawCmd(_("print 'Python',sys.version,'sur',sys.platform"));
+	RunRawCmd(_("print 'Python(TM)',sys.version,'on',sys.platform"));
 	run_startupscript("UserScript/","__ui_startup__.py");
 	run_startupscript("SystemScript/","__ui_startup__.py");
 	//RunRawCmd("emulationDict=dict()");
@@ -206,7 +206,7 @@ void PythonShell::RunRawCmd(const wxString& command)
 		else
 		{
 			if(outputRedirectErr)
-				this->outputRedirectErr->WriteWx(_("Impossible de gérer une erreur de l'implémentation python"));
+				this->outputRedirectErr->WriteWx(_("Python(TM) implementation error can't be produced"));
 		}
 	}
 	ShowMsgStack();
@@ -232,7 +232,7 @@ void PythonShell::register_menu_manager(const int& element_typeid, boost::python
 			this->menu_managers[element_typeid]=lstmanagers;
 		}
 	}else{
-		ThrowPyException(_("Un gestionnaire de menu doit comporter une méthode bool getmenu(eltype,elid,listmenu) !"));
+		ThrowPyException(_("A menu manager must contain the following method: bool getmenu(eltype,elid,listmenu) "));
 	}
 }
 int PythonShell::register_event(boost::python::object& func)
@@ -267,7 +267,7 @@ void PythonShell::call_event(const int& eventid,const int& elementid)
 		if(ShowMsgStack())
 		   m_py_ctrl->AddPrompt(promptNewCmd);
 	}else{
-		ThrowPyException(_("Cet événement n'existe pas !"));
+		ThrowPyException(_("This event doesn't exist !"));
 	}
 }
 
@@ -341,7 +341,7 @@ bool PythonShell::ins_pyelement(boost::python::object& py_el,const wxInt32& wxid
 		if (PyErr_Occurred())
 		{
 			PyErr_Print();
-			wxLogError(_("Impossible d'initialiser l'élément python utilisateur %s du module %s"),_pyclass,module);
+			wxLogError(_("Unable to init the Python(TM) element %s of the %s module"),_pyclass,module);
 		}
 	}
 

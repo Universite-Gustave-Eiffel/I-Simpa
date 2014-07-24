@@ -433,7 +433,7 @@ void OpenGlViewer::OnTimer( wxTimerEvent& event) //rafraichie le rendu afin d'af
 		}
 	}
 	catch( ... ) {
-		wxLogError(_("Erreur de rendu inconnue"));
+		wxLogError(_("Display error unknown"));
 		m_Timer.Start(this->minimalTimeStep,true);
 		return;
 	}

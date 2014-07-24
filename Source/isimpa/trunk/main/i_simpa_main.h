@@ -357,7 +357,7 @@ public:
 		switch ( level ) {
 			case wxLOG_FatalError:
 				DoLogString(wxString(_("Fatal error: ")) + szString, t,wxRED);
-				DoLogString(_("Program aborted."), t,wxRED);
+				DoLogString(_("Program aborted"), t,wxRED);
 				Flush();
 		#ifdef __WXWINCE__
 				ExitThread(3);
@@ -367,11 +367,11 @@ public:
 				break;
 
 			case wxLOG_Error:
-				DoLogString(wxString(_("Erreur : ")) + szString, t,wxRED);
+				DoLogString(wxString(_("Error:")) + szString, t,wxRED);
 				break;
 
 			case wxLOG_Warning:
-				DoLogString(wxString(_("Avertissement : ")) + szString, t,wxRED);
+				DoLogString(wxString(_("Warning: ")) + szString, t,wxRED);
 				break;
 
 			case wxLOG_Message:
@@ -486,14 +486,14 @@ class ISimpaApp : public wxApp
 				if(folderDirs.size()>1)
 				{
 
-					wxMessageDialog dialog( NULL, _("Plusieurs anciennes instances du l'interface existent.\nSouhaitez-vous charger un de ces projets en l'état avant la fermeture de l'interface ?"),
+					wxMessageDialog dialog( NULL, _("Many old sessions of the user interface are available.\nDo you want to retrieve an old session?"),
 					wxString(_("Interface "))+APPLICATION_NAME, wxYES_DEFAULT|wxYES_NO|wxICON_INFORMATION);
 
 					wxCommandEvent cmdEvt;
 					wxInt32 userResponse=dialog.ShowModal();
 					if(userResponse==wxID_YES)
 					{
-						wxSingleChoiceDialog dialchoice(NULL,_("Veuillez choisir l'instance à charger"),wxString(_("Interface "))+APPLICATION_NAME,folderDirs);
+						wxSingleChoiceDialog dialchoice(NULL,_("Please choose the application instance"),wxString(_("Interface "))+APPLICATION_NAME,folderDirs);
 						if(dialchoice.ShowModal()==wxID_OK)
 						{
 							cleartmpfolder=false;

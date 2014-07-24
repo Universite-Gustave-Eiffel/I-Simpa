@@ -72,7 +72,7 @@ public:
 		:E_Report_File(parent,"Visualisation particules","",ELEMENT_TYPE_REPORT_PARTVISUALISATION,nodeElement)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_DISK_PARTICLE);
-		_("Visualisation particules");
+		_("Particles display");
 	}
 
 
@@ -82,9 +82,9 @@ public:
 	{
 		
 		wxMenu* subMenuLoadSimu = new wxMenu;
-		subMenuLoadSimu->Append(GetMenuItem(subMenuLoadSimu,IDEVENT_LOAD_PARTICLE_SIMULATION,_("En particules")));
-		subMenuLoadSimu->Append(GetMenuItem(subMenuLoadSimu,IDEVENT_LOAD_PARTICLE_SIMULATION_PATH,_("En rayons")));
-		leMenu->Append(GetMenuItem(leMenu,-1,_("Charger la simulation"),subMenuLoadSimu));
+		subMenuLoadSimu->Append(GetMenuItem(subMenuLoadSimu,IDEVENT_LOAD_PARTICLE_SIMULATION,_("Particles")));
+		subMenuLoadSimu->Append(GetMenuItem(subMenuLoadSimu,IDEVENT_LOAD_PARTICLE_SIMULATION_PATH,_("Rays")));
+		leMenu->Append(GetMenuItem(leMenu,-1,_("Load animation"),subMenuLoadSimu));
 		E_Report_File::OnRightClic(leMenu);
 	}
 

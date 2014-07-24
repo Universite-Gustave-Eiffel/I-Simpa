@@ -75,7 +75,7 @@ def ReplaceHtmlTags(  webpage_path, replace_dict, outwebpage ):
 # @return Html Code for the synthesis webpage
 def MakePageOne( tags_dict, pr_data, sr_data ):
     tags_dict["TITLE_SOUNDLEVEL"]=_("Sound level")
-    tags_dict["TITLE_PONCTUAL_RECEIVER"]=_("Ponctual receivers")
+    tags_dict["TITLE_PONCTUAL_RECEIVER"]=_("Punctual receivers")
     tags_dict["TITLE_SURFACE_RECEIVER"]=_("Surface receivers")
     tags_dict["TITLE_ACOUSTIC_PARAMETERS"]=_("Acoustic parameters")
     tags_dict["TITLE_REVERBERATION_TIME"]=_("Reverberation time")
@@ -214,7 +214,7 @@ class ReportBuilder:
         #Tags globaux
         tags_dict={
          "MENUBAR_SYNTHESIS" : _("Synthesis"),         
-         "MENUBAR_PONCTUALRECEIVER" : _("Ponctuals receivers"),
+         "MENUBAR_PONCTUALRECEIVER" : _("Punctual receivers"),
          "MENUBAR_STATS" : _("Statistics"),
          "BOTTOM_USECONDITION" : _("Terms of Use"),
          "REPORTLANGUAGE" : language

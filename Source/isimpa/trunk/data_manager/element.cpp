@@ -828,7 +828,7 @@ void Element::Reparent( Element* newParent )
 		Element* nvParent=this->GetElementByTreeId(newParent->GetElementInfos().idElement);
 		if(nvParent!=NULL)
 		{
-			wxLogInfo(_("Cette opération est impossible."));
+			wxLogInfo(_("Operation not allowed"));
 			return;
 		}
 	}
@@ -895,7 +895,7 @@ wxMenuItem* Element::GetMenuItem(wxMenu* parent,int id,const wxString& label, wx
 			newmenu->SetBitmapPath(menuIcon);
 
 		}else{
-			wxLogWarning(_("L'icône de menu popup n'existe pas :\n%s"),menuIcon);
+			wxLogWarning(_("Popup icon file doesn't find:\n%s"),menuIcon);
 		}
 	}
 	return newmenu;
@@ -912,7 +912,7 @@ wxMenuItem* Element::GetMenuItem(wxMenu* parent,int id,const wxString& label, co
 			newmenu->SetBitmapPath(menuIcon);
 
 		}else{
-			wxLogWarning(_("L'icône de menu popup n'existe pas :\n%s"),menuIcon);
+			wxLogWarning(_("Popup icon file doesn't find:\n%s"),menuIcon);
 		}
 	}
 	return newmenu;
@@ -922,8 +922,8 @@ void Element::OnRightClic(wxMenu* leMenu)
 	if(leMenu->GetMenuItemCount()>0)
 		leMenu->AppendSeparator();
 	//leMenu->Append(IDEVENT_COPIER, _("Copier"));
-	leMenu->Append(GetMenuItem(leMenu,IDEVENT_COPIER, _("Copier"),"./Bitmaps/popup_copy.png"));
-	wxMenuItem*	pasteMenu=leMenu->Append(GetMenuItem(leMenu,IDEVENT_COLLER, _("Coller"),"./Bitmaps/popup_paste.png"));
+	leMenu->Append(GetMenuItem(leMenu,IDEVENT_COPIER, _("Copy"),"./Bitmaps/popup_copy.png"));
+	wxMenuItem*	pasteMenu=leMenu->Append(GetMenuItem(leMenu,IDEVENT_COLLER, _("Paste"),"./Bitmaps/popup_paste.png"));
 
 	wxTreeEvent renameEvent;
 	renameEvent.Allow();
@@ -932,10 +932,10 @@ void Element::OnRightClic(wxMenu* leMenu)
 	if(renameEvent.IsAllowed() ||  this->elementInfo.userDestroyable)
 		leMenu->AppendSeparator();
 	if(renameEvent.IsAllowed())
-		leMenu->Append(GetMenuItem(leMenu,IDEVENT_RENAME_ELEMENT, _("Renommer"),"./Bitmaps/popup_rename.png"));
+		leMenu->Append(GetMenuItem(leMenu,IDEVENT_RENAME_ELEMENT, _("Rename"),"./Bitmaps/popup_rename.png"));
 
 	if(this->elementInfo.userDestroyable)
-		leMenu->Append(GetMenuItem(leMenu,IDEVENT_DELETE_ELEMENT, _("Supprimer"),"./Bitmaps/popup_delete.png"));
+		leMenu->Append(GetMenuItem(leMenu,IDEVENT_DELETE_ELEMENT, _("Delete"),"./Bitmaps/popup_delete.png"));
 
 	//Si l'element accepte des données provenant de l'exterieur, et si il y a du texte dans le presse papier
 	if(!insertPasteMenu || !wxTheClipboard->IsSupported(wxDataFormat(wxDF_TEXT)))
@@ -943,7 +943,7 @@ void Element::OnRightClic(wxMenu* leMenu)
 	if(this->IsContainsProperties())
 	{
 		leMenu->AppendSeparator();
-		leMenu->Append(GetMenuItem(leMenu,IDEVENT_GETPROPERTIES, _("Propriétés"),"./Bitmaps/popup_show_property.png"));
+		leMenu->Append(GetMenuItem(leMenu,IDEVENT_GETPROPERTIES, _("Properties"),"./Bitmaps/popup_show_property.png"));
 	}
 }
 void Element::ForceBottomModified()
@@ -976,7 +976,7 @@ bool Element::IsFittingWithThisType( const ELEMENT_TYPE& typeTest )
 
 wxString Element::GetColTitle(int col)
 {
-	return _("Valeur");
+	return _("Value");
 }
 
 void Element::OnSelectTreeItem(wxTreeEvent& treeEvent)
@@ -1176,7 +1176,7 @@ wxString Element::GetStringConfig(wxString name)
 			return dataEl->GetValue();
 		}
 	}
-	wxLogDebug(_("Ce champ n'existe pas !\nLibellé élément : %s Nom du champ : %s"),this->elementInfo.libelleElement,name);
+	wxLogDebug(_("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
 	return "";
 }
 
@@ -1192,7 +1192,7 @@ wxFont Element::GetFontConfig(const wxString& name)
 			return dataEl->GetValue();
 		}
 	}
-	wxLogDebug(_("Ce champ n'existe pas !\nLibellé élément : %s Nom du champ : %s"),this->elementInfo.libelleElement,name);
+	wxLogDebug(_("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
 	return wxFont();
 }
 vec3 Element::GetColorConfig(wxString name)
@@ -1207,7 +1207,7 @@ vec3 Element::GetColorConfig(wxString name)
 			return dataEl->GetValue();
 		}
 	}
-	wxLogDebug(_("Ce champ n'existe pas !\nLibellé élément : %s Nom du champ : %s"),this->elementInfo.libelleElement,name);
+	wxLogDebug(_("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
 	return vec3(0,0,0);
 }
 
@@ -1223,7 +1223,7 @@ int Element::GetListConfig(wxString name)
 			return dataEl->GetChoice();
 		}
 	}
-	wxLogDebug(_("Ce champ n'existe pas !\nLibellé élément : %s Nom du champ : %s"),this->elementInfo.libelleElement,name);
+	wxLogDebug(_("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
 	return -1;
 }
 float Element::GetDecimalConfig(wxString name)
@@ -1238,7 +1238,7 @@ float Element::GetDecimalConfig(wxString name)
 			return dataEl->GetValue();
 		}
 	}
-	wxLogDebug(_("Ce champ n'existe pas !\nLibellé élément : %s Nom du champ : %s"),this->elementInfo.libelleElement,name);
+	wxLogDebug(_("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
 	return 0;
 }
 
@@ -1254,7 +1254,7 @@ int Element::GetEntierConfig(wxString name)
 			return dataEl->GetValue();
 		}
 	}
-	wxLogDebug(_("Ce champ n'existe pas !\nLibellé élément : %s Nom du champ : %s"),this->elementInfo.libelleElement,name);
+	wxLogDebug(_("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
 	return 0;
 }
 
@@ -1286,7 +1286,7 @@ bool Element::GetBoolConfig(wxString name)
 			return dataEl->GetValue();
 		}
 	}
-	wxLogDebug(_("Ce champ n'existe pas !\nLibellé élément : %s Nom du champ : %s"),this->elementInfo.libelleElement,name);
+	wxLogDebug(_("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
 	return false;
 }
 
@@ -1320,7 +1320,7 @@ vec3 Element::GetPositionConfig(wxString name)
 				return dataEl->GetPosValue();
 		}
 	}
-	wxLogDebug(_("Ce champ n'existe pas !\nLibellé élément : %s Nom du champ : %s"),this->elementInfo.libelleElement,name);
+	wxLogDebug(_("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
 	return vec3(0,0,0);
 }
 

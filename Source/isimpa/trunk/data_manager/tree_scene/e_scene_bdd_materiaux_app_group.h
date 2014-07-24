@@ -47,7 +47,7 @@ public:
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_APPLICATION_MATERIALS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_APPLICATION_MATERIALS_CLOSE);
-		_("Groupe");
+		_("Group");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;

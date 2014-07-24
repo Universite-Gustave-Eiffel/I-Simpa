@@ -54,7 +54,7 @@ public:
 		:Element(parent,"Propriétés",Element::ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEUR_PROPRIETES,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
-		_("Propriétés");
+		_("Properties");
 	}
 
 	E_Scene_Recepteurss_Recepteur_Proprietes( Element* parent)

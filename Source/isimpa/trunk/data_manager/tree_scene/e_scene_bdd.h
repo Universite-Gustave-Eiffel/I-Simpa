@@ -49,7 +49,7 @@ public:
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_DATABASE_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_DATABASE_CLOSE);
-		_("Base de données du projet");
+		_("Project database");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;

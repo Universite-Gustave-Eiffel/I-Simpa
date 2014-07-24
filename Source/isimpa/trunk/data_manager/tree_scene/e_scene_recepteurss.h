@@ -51,7 +51,7 @@ public:
 		insertPasteMenu=true;
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_SURFACE_RECEIVERS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_SURFACE_RECEIVERS_CLOSE);
-		_("Récepteurs surfaciques");
+		_("Surface receivers");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;
@@ -136,8 +136,8 @@ public:
 
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_RECEPTEUR_S, _("Nouveau récepteur surfacique de scène"),"./Bitmaps/popup_new.png"));
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_RECEPTEUR_S_COUPE, _("Nouveau récepteur surfacique en coupe"),"./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_RECEPTEUR_S, _("New scene face receiver"),"./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_RECEPTEUR_S_COUPE, _("New plane receiver"),"./Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 	void OnPaste(wxXmlNode* nodeElement)

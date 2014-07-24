@@ -68,7 +68,7 @@ bool GetFormulaEvaluation(const wxString& formula,double& evalResult)
   {
     try
 	{
-      	evalResult=extract_or_throw<double>(pyshell->eval(formula),WXSTRINGTOSTDWSTRING(_("The formula result must be a number.")));
+      	evalResult=extract_or_throw<double>(pyshell->eval(formula),WXSTRINGTOSTDWSTRING(_("The formula result must be a number")));
 	}catch( error_already_set ) {
 		wxLogError(_("Unable to solve the user's defined formula !"));
 		return false;
@@ -181,7 +181,7 @@ bool ProjectManager::GetParameter(const wxString& name,wxString& value)
 		value=it->second;
 		return true;
 	}else{
-		wxLogError(_("Python parameter %s not found"),name);
+		wxLogError(_("Python(TM) parameter %s not found"),name);
 		return false;
 	}
 }

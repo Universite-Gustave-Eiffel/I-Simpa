@@ -41,12 +41,12 @@ namespace sgSpace
 	void SG_EnumeratorFiller::FillStyleEnumeration(StyleArray& arrayToFeed)
 	{
 		//Chargement des styles de tracés
-		arrayToFeed.Add(t_LstEnums(_("Courbe"),DRAWING_METHOD_LINE));
-		arrayToFeed.Add(t_LstEnums(_("Histogramme"),DRAWING_METHOD_COLS));
-		arrayToFeed.Add(t_LstEnums(_("Echogramme"),DRAWING_METHOD_ECHOGRAM));
-		arrayToFeed.Add(t_LstEnums(_("Nuage d'images"),DRAWING_METHOD_STIPPLE));
-		arrayToFeed.Add(t_LstEnums(_("Nuage de marqueurs"),DRAWING_METHOD_DOT_CLOUD));
-		arrayToFeed.Add(t_LstEnums(_("Courbe arrondi (méthode des splines)"),DRAWING_METHOD_SPLINE));
+		arrayToFeed.Add(t_LstEnums(_("Curve"),DRAWING_METHOD_LINE));
+		arrayToFeed.Add(t_LstEnums(_("Histogram"),DRAWING_METHOD_COLS));
+		arrayToFeed.Add(t_LstEnums(_("Echogram"),DRAWING_METHOD_ECHOGRAM));
+		arrayToFeed.Add(t_LstEnums(_("Scatter image"),DRAWING_METHOD_STIPPLE));
+		arrayToFeed.Add(t_LstEnums(_("Scatter marker"),DRAWING_METHOD_DOT_CLOUD));
+		arrayToFeed.Add(t_LstEnums(_("Spline"),DRAWING_METHOD_SPLINE));
 	}
 
 	const wxString& SG_EnumeratorFiller::FindStringWithIndex( StyleArray* dataSrc , wxInt32 enumIndex)
@@ -61,32 +61,32 @@ namespace sgSpace
 	void SG_EnumeratorFiller::FillPenStyleEnumeration(StyleArray& arrayToFeed)
 	{
 		arrayToFeed.Add(t_LstEnums(_("Transparent"),wxTRANSPARENT));
-		arrayToFeed.Add(t_LstEnums(_("Trait continu"),wxSOLID));
+		arrayToFeed.Add(t_LstEnums(_("Continuous line"),wxSOLID));
 		arrayToFeed.Add(t_LstEnums(_("Point"),wxDOT));
-		arrayToFeed.Add(t_LstEnums(_("Tiret diagonale (gauche)"),wxBDIAGONAL_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Croix"),wxCROSS_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Trait horizontal"),wxHORIZONTAL_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Trait vertical"),wxVERTICAL_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Trait long et point"),wxDOT_DASH));
-		arrayToFeed.Add(t_LstEnums(_("Tirets court"),wxSHORT_DASH));
-		arrayToFeed.Add(t_LstEnums(_("Tirets longs"),wxLONG_DASH));
+		arrayToFeed.Add(t_LstEnums(_("Left diagonal dash"),wxBDIAGONAL_HATCH));
+		arrayToFeed.Add(t_LstEnums(_("Cross"),wxCROSS_HATCH));
+		arrayToFeed.Add(t_LstEnums(_("Horizontal line"),wxHORIZONTAL_HATCH));
+		arrayToFeed.Add(t_LstEnums(_("Vertical line"),wxVERTICAL_HATCH));
+		arrayToFeed.Add(t_LstEnums(_("Dotted-dashed line"),wxDOT_DASH));
+		arrayToFeed.Add(t_LstEnums(_("Small dash"),wxSHORT_DASH));
+		arrayToFeed.Add(t_LstEnums(_("Long dash"),wxLONG_DASH));
 	}
 	void SG_EnumeratorFiller::FillBrushStyleEnumeration(StyleArray& arrayToFeed)
 	{
 		arrayToFeed.Add(t_LstEnums(_("Transparent"),wxTRANSPARENT));
-		arrayToFeed.Add(t_LstEnums(_("Plein"),wxSOLID));
-		arrayToFeed.Add(t_LstEnums(_("Tiret diagonale (gauche)"),wxBDIAGONAL_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Croix"),wxCROSSDIAG_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Tiret diagonale (droite)"),wxFDIAGONAL_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Croix 2"),wxCROSS_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Trait horizontal"),wxHORIZONTAL_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Trait vertical"),wxVERTICAL_HATCH));
+		arrayToFeed.Add(t_LstEnums(_("Full"),wxSOLID));
+		arrayToFeed.Add(t_LstEnums(_("Left diagonal dash"),wxBDIAGONAL_HATCH));
+		arrayToFeed.Add(t_LstEnums(_("Cross"),wxCROSSDIAG_HATCH));
+		arrayToFeed.Add(t_LstEnums(_("Right diagonal dash"),wxFDIAGONAL_HATCH));
+		arrayToFeed.Add(t_LstEnums(_("Plus"),wxCROSS_HATCH));
+		arrayToFeed.Add(t_LstEnums(_("Horizontal line"),wxHORIZONTAL_HATCH));
+		arrayToFeed.Add(t_LstEnums(_("Vertical line"),wxVERTICAL_HATCH));
 	}
 	void SG_EnumeratorFiller::FillMarkersStyleEnumeration(StyleArray& arrayToFeed)
 	{
-		arrayToFeed.Add(t_LstEnums(_("Aucun"),DRAWING_MARKER_NONE));
-		arrayToFeed.Add(t_LstEnums(_("Rond"),DRAWING_MARKER_DOT));
-		arrayToFeed.Add(t_LstEnums(_("Carré"),DRAWING_MARKER_SQUARE));
-		arrayToFeed.Add(t_LstEnums(_("Croix diagonale"),DRAWING_MARKER_CROSS_D));
+		arrayToFeed.Add(t_LstEnums(_("None"),DRAWING_MARKER_NONE));
+		arrayToFeed.Add(t_LstEnums(_("Circle"),DRAWING_MARKER_DOT));
+		arrayToFeed.Add(t_LstEnums(_("Square"),DRAWING_MARKER_SQUARE));
+		arrayToFeed.Add(t_LstEnums(_("Cross"),DRAWING_MARKER_CROSS_D));
 	}
 }

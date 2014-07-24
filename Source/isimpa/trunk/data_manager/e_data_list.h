@@ -108,7 +108,7 @@ public:
 		iList=_iList;
 		eList=_eList;
 		if(iList.size()!=_eList.size())
-			wxLogDebug(_("Le tableau d'indices ne correspond pas au tableau de valeurs !"));
+			wxLogDebug(_("Index list is not coherent with data list"));
 		SetValue(defaultChoice);
 	}
 
@@ -227,7 +227,7 @@ public:
 				{
 					SetValue(iList[id],sValue);
 				}else{
-					wxLogInfo(_("Valeur non autorisée"));
+					wxLogInfo(_("Unauthorized data"));
 				}
 				Modified(this);
 				return;

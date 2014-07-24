@@ -61,10 +61,10 @@ public:
 	{
 		
 		SetIcon(GRAPH_STATE_ALL,GRAPH_DISK_RS);
-		_("recepteurss");
+		_("Surface receivers");
 		onlySum=false;
 		this->AppendPropertyDecimal("surfacetransparency","Opacité des faces",1.f,false,2,true,true,1,0);
-		_("Opacité des faces");
+		_("Face opacity");
 		this->AppendPropertyBool("rendersideone","Afficher recto",true);
 		this->AppendPropertyBool("rendersidetwo","Afficher verso",true);
 		//On charge le fichier de la première bande de fréquence disponible afin d'avoir le nombre de pas de temps
@@ -107,12 +107,12 @@ public:
 		this->AppendPropertyDecimal("mininterval",libelMin,vmin);
 		this->AppendCurvesParameters();
 
-		_("Afficher recto");
-		_("Afficher verso");
-		_("Valeur maximale (dB)");
-		_("Valeur minimale (dB)");
-		_("Valeur maximale (s)");
-		_("Valeur minimale (s)");
+		_("Display recto");
+		_("Display verso");
+		_("Maximum value (dB)");
+		_("Minimum value (dB)");
+		_("Maximum value (s)");
+		_("Minimum value (s)");
 	}
 
 	/**
@@ -121,11 +121,11 @@ public:
 	 * @param nodeElement	Noeud XML si création depuis un fichier XML, sinon Pointeur nul (par défaut)
 	 */
 	E_Report_RecepteurSurfaciqueVisualisation(Element* parent,wxXmlNode* nodeElement)
-		:E_Report_File(parent,"Visualisation recepteurs surfaciques","",ELEMENT_TYPE_REPORT_RECEPTEURSSVISUALISATION,nodeElement)
+		:E_Report_File(parent,"Surface receivers display","",ELEMENT_TYPE_REPORT_RECEPTEURSSVISUALISATION,nodeElement)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_DISK_RS);
 		onlySum=false;
-		_("Visualisation récepteurs surfaciques");
+		_("Surface receivers display");
 		wxString propVal;
 		if(nodeElement!=NULL && nodeElement->GetPropVal("wxid",&propVal))
 		{
@@ -143,9 +143,9 @@ public:
 		this->AppendPropertyBool("showisolvl","Afficher les lignes de niveaux",true);
 		this->AppendPropertyText("isolvllist","Liste des niveaux iso","");
 		this->AppendPropertyEntier("isosmoothlvl","Niveau de lissage",0,false,false,true,0,0);
-		_("Afficher les lignes de niveaux");
-		_("Liste des niveaux iso");
-		_("Niveau de lissage");
+		_("Show iso-curves");
+		_("Iso level list");
+		_("Smooth level");
 	}
 		
 	virtual bool IsFittingWithThisType( const ELEMENT_TYPE& typeTest )
@@ -176,29 +176,29 @@ public:
 		wxMenu* subMenuSimu = new wxMenu;
 		if(!onlySum)
 		{
-			subMenuSimu->Append(Element::GetMenuItem(subMenuSimu,IDEVENT_LOAD_RECEPTEURSS_SIMULATION_BY_TIMESTEP,_("Niveau Sonore (Instantané)")));
-			subMenuSimu->Append(Element::GetMenuItem(subMenuSimu,IDEVENT_LOAD_RECEPTEURSS_SIMULATION_BY_TIMESTEP_SUM,_("Niveau Sonore (Instantané avec cumul)")));
+			subMenuSimu->Append(Element::GetMenuItem(subMenuSimu,IDEVENT_LOAD_RECEPTEURSS_SIMULATION_BY_TIMESTEP,_("Instantaneous sound level")));
+			subMenuSimu->Append(Element::GetMenuItem(subMenuSimu,IDEVENT_LOAD_RECEPTEURSS_SIMULATION_BY_TIMESTEP_SUM,_("Cumulative instantaneous sound level")));
 		}
-		wxString libelCumul=_("Niveau Sonore (Cumul)");
+		wxString libelCumul=_("Cumulating sound level");
 		if(recordType==RECEPTEURS_RECORD_TYPE_TR)
-			libelCumul=_("Temps de réverbération (TR)");
+			libelCumul=_("Reverberation time (RT)");
 		else if( recordType==RECEPTEURS_RECORD_TYPE_EDT)
-			libelCumul=_("Temps de décroissance initial (EDT)");
+			libelCumul=_("Early decay time (EDT)");
 		subMenuSimu->Append(Element::GetMenuItem(subMenuSimu,IDEVENT_LOAD_RECEPTEURSS_SIMULATION_SUM,libelCumul));
 
 		if(recordType==RECEPTEURS_RECORD_TYPE_SPL_STANDART && !onlySum)
 		{
 			wxMenu* subMenuPostComputation = new wxMenu;
-			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_TR,_("Calcul du TR15 et TR30")));
-			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_EDT,_("Calcul de l'EDT")));
-			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_CLARITY,_("Calcul de C50 et C80")));
-			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_DEFINITION,_("Calcul de D50")));
-			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_TS,_("Calcul de TS")));
-			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_ST,_("Calcul de ST")));
-			leMenu->Append(GetMenuItem(leMenu,-1,_("Paramètres acoustiques"),subMenuPostComputation));
+			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_TR,_("RT computation")));
+			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_EDT,_("EDT calculation")));
+			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_CLARITY,_("Clarity computation")));
+			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_DEFINITION,_("D50 computation")));
+			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_TS,_("TS computation")));
+			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_ST,_("ST computation")));
+			leMenu->Append(GetMenuItem(leMenu,-1,_("Acoustic parameters"),subMenuPostComputation));
 		}
 
-		leMenu->Append(GetMenuItem(leMenu,-1,_("Charger la simulation"),subMenuSimu));
+		leMenu->Append(GetMenuItem(leMenu,-1,_("Load animation"),subMenuSimu));
 		E_Report_File::OnRightClic(leMenu);
 	}
 	

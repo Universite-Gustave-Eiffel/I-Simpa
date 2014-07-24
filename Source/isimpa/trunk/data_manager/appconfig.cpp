@@ -141,12 +141,12 @@ void ApplicationConfiguration::LoadConfiguration(wxString propFile)
 	tabLoisReflexion.push_back("W3");
 	tabLoisReflexion.push_back("W4");
 	tabLoisReflexion.push_back("Semi-diffus");
-	_("Spéculaire");
-	_("Uniforme");
+	_("Specular");
+	_("Uniform");
 	_("W2");
 	_("W3");
 	_("W4");
-	_("Semi-diffus");
+	_("Semi-diffuse");
 }
 
 //Retourne la liste des toutes les frequences par bande de l'application

@@ -111,37 +111,37 @@ sceneLoadOptionDialog::sceneLoadOptionDialog(wxWindow *parent,
 	//vinputsizer->SetHGap(5);
 
 
-	cb_RemeshModel = new wxCheckBox(this,SL_CTRLS_ID_CHECKBOX_REMESH_MODEL,_("Opération de remaillage approximatif du modèle"));
-	cb_RemeshModel->SetToolTip(_("Si cette option est activée un guide vous permettra de remodeliser la scène importée automatiquement, cette scène sera une approximation du modèle originale mais sera compatible avec tout les codes de calculs."));
+	cb_RemeshModel = new wxCheckBox(this,SL_CTRLS_ID_CHECKBOX_REMESH_MODEL,_("Average model remesh"));
+	cb_RemeshModel->SetToolTip(_("With this option you are able to remesh the input model to make it compatible with all calculation core. Use this option as a last resort"));
 	cb_RemeshModel->SetValue(false);
 	topsizer->Add(cb_RemeshModel,0,wxLEFT | wxTOP, 5);
 	//Champ choix de la correction du modèle
-	cb_TryToRepairMesh = new wxCheckBox(this,wxID_ANY,_("Tenter de réparer le modèle"));
-	cb_TryToRepairMesh->SetToolTip(_("Si cette option est activée alors le modèle importé subira une correction afin d'assurer une meilleure compatibilité avec le mailleur tétraèdrique."));
+	cb_TryToRepairMesh = new wxCheckBox(this,wxID_ANY,_("Repair model"));
+	cb_TryToRepairMesh->SetToolTip(_("If this option is activated, the scene will be imported with a correction process to improve compatibility with the mesh generator"));
 	cb_TryToRepairMesh->SetValue(true);
 	topsizer->Add(cb_TryToRepairMesh,0,wxLEFT | wxTOP,5);
 	//Champ choix maillage de surface
-	cb_TryToMeshSurface = new wxCheckBox(this,SL_CTRLS_ID_CHECKBOX_SURFACE_MESH,_("Effectuer un maillage de surface"));
-	cb_TryToMeshSurface->SetToolTip(_("Les surfaces du modèle importées seront maillées afin d'obtenir une discrétisation en triangles de formes régulières. Cette option est utile pour un meilleur rendu des récepteurs de surface."));
+	cb_TryToMeshSurface = new wxCheckBox(this,SL_CTRLS_ID_CHECKBOX_SURFACE_MESH,_("Surface meshing"));
+	cb_TryToMeshSurface->SetToolTip(_("Faces of the scene will be meshed in order to enhance the resolution of the surface receivers display"));
 	topsizer->Add(cb_TryToMeshSurface,0,wxLEFT | wxTOP,5);
 	// Champ de paramètrage de tetgen
-	vinputsizer->Add( new wxStaticText( this, wxID_ANY, _("Paramètres de tetgen") ), 0);
+	vinputsizer->Add( new wxStaticText( this, wxID_ANY, _("TetGen parameters") ), 0);
 	txt_ParamMesh = new wxTextCtrl(this,wxID_ANY,defaultMeshParams);
 	txt_ParamMesh->Disable();
 	cb_TryToMeshSurface->SetValue(false);
 	vinputsizer->Add( txt_ParamMesh,0,wxGROW| wxALL,1);
 	topsizer->Add( vinputsizer, 0, wxEXPAND | wxLEFT, 20);
 	//Champ choix de conservation des liens entre les groupes et les faces
-	cb_KeepExistingFaceLinks = new wxCheckBox(this,SL_CTRLS_ID_CHECKBOX_RESTOREGROUPS,_("Garder les groupes existants"));
+	cb_KeepExistingFaceLinks = new wxCheckBox(this,SL_CTRLS_ID_CHECKBOX_RESTOREGROUPS,_("Keep existing groups"));
 	cb_KeepExistingFaceLinks->SetValue(true);
-	cb_KeepExistingFaceLinks->SetToolTip(_("Les surfaces importées ayant la même position que les surfaces du modèle avant l'importation sont associées aux matériaux, récepteur de surfaces et encombrements déjà définies."));
+	cb_KeepExistingFaceLinks->SetToolTip(_("New faces with the same position than old faces keep materials and surface receivers"));
 	topsizer->Add(cb_KeepExistingFaceLinks,0,wxLEFT | wxTOP,5);
 	//Champ de choix de l'epsilon
-	vslidersizer->Add( new wxStaticText( this, wxID_ANY, _("Distance maximale d'association (m)") ), 0);
+	vslidersizer->Add( new wxStaticText( this, wxID_ANY, _("Association maximum distance (m)") ), 0);
 	//slider_EpsilonLinkingFaceGroupe = new wxSlider(this,wxID_ANY,1,0,500,wxDefaultPosition,wxDefaultSize,wxSL_HORIZONTAL | wxSL_AUTOTICKS | wxSL_LABELS);
 	//vslidersizer->Add(slider_EpsilonLinkingFaceGroupe,0,wxGROW| wxALL,1);
 	wxTextCtrl* sliderCtrl=new wxTextCtrl(this, SL_CTRLS_ID_COMBO_EPSILON, epsilonValue, wxDefaultPosition, wxDefaultSize, 0,wxTextValidator(wxFILTER_NUMERIC, &epsilonValue));
-	sliderCtrl->SetHelpText(_("Distance maximale d'association en metre "));
+	sliderCtrl->SetHelpText(_("Association maximum distance (m)"));
 	vslidersizer->Add(sliderCtrl,0,wxGROW| wxALL,1);
 	topsizer->Add( vslidersizer, 0, wxEXPAND | wxLEFT, 20);
 	
@@ -171,7 +171,7 @@ bool sceneLoadOptionDialog::IsRemeshModel()
 void sceneLoadOptionDialog::OnOK(wxCommandEvent& event)
 {
 	if(GetEpsilonLinkingFaceGroup()<=0.f)
-		wxLogError(_("La valeur epsilon doit être supérieur à 0 m"));
+		wxLogError(_("Epsilon must be higher than 0 meter"));
     else
 		EndModal(wxID_OK);
 }
@@ -225,6 +225,6 @@ float sceneLoadOptionDialog::GetEpsilonLinkingFaceGroup()
 		if(epsilonCtrl->GetValue().ToDouble(&value))
 			return value;
 	}
-	wxLogError(_("Impossible de lire la valeur epsilon"));
+	wxLogError(_("Unable to read the epsilon value"));
 	return 0.01f;
 }

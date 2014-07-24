@@ -51,7 +51,7 @@ public:
 		:Element(NULL,"Résultats",Element::ELEMENT_TYPE_RESULT_ROOT ,noeudCourant)
 	{
 		eventBinded=false;
-		_("Résultats");
+		_("Results");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;

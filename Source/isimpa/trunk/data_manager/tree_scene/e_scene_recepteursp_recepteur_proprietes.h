@@ -54,7 +54,7 @@ private:
 	{
 		std::vector<wxString> typesrecepteursp;
 		typesrecepteursp.push_back("Omnidirectionnel");
-		_("Omnidirectionnel");
+		_("Omnidirectional");
 		this->AppendPropertyList("typereception","Type",typesrecepteursp,0);
 		_("Type");
 		this->AppendPropertyText("description","Description","");
@@ -66,7 +66,7 @@ public:
 		:Element(parent,"Propriétés",Element::ELEMENT_TYPE_SCENE_RECEPTEURSP_RECEPTEUR_PROPRIETES,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
-		_("Propriétés");
+		_("Properties");
 		if(!this->IsPropertyExist("u")) //maj versions < 06/11/2008
 		{
 			InitDirectivite();

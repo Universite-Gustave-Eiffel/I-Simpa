@@ -57,7 +57,7 @@ public:
 	E_Scene_Projet( wxXmlNode* noeudCourant ,  Element* parent)
 		:Element(parent,"Projet",Element::ELEMENT_TYPE_SCENE_PROJET,noeudCourant)
 	{
-		_("Projet");
+		_("Project");
 		
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_PROJECT_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_PROJECT_CLOSE);

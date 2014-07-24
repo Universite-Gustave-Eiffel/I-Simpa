@@ -52,7 +52,7 @@ public:
 		:Element(parent,"Propriétés",Element::ELEMENT_TYPE_CORE_CORE_CONFIG,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
-		_("Propriétés");
+		_("Properties");
 	}
 
 	E_Core_Core_Configuration( Element* parent)
@@ -75,8 +75,8 @@ public:
 		
 		AppendPropertyDecimal("duree_simulation","Durée de la simulation (s)",2,false,8,false,true,0,0.0001f,true);
 		AppendPropertyDecimal("pasdetemps","Pas de temps (s)",0.01f,false,8,false,false,0,0,true);
-		_("Durée de la simulation (s)");
-		_("Pas de temps (s)");
+		_("Simulation length (s)");
+		_("Time step (s)");
 	}
 	
 };

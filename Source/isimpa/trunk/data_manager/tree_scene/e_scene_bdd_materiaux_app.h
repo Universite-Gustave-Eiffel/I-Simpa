@@ -51,7 +51,7 @@ public:
 	E_Scene_Bdd_Materiaux_Application( wxXmlNode* noeudCourant ,  Element* parent)
 		:Element(parent,"Référence",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_APP,noeudCourant)
 	{
-		_("Référence");
+		_("Reference");
 
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_APPLICATION_MATERIALS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_APPLICATION_MATERIALS_CLOSE);

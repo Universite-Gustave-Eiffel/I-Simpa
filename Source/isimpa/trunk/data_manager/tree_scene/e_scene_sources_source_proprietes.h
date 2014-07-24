@@ -47,7 +47,7 @@ private:
 	void InitNewProperties()
 	{
 		this->AppendPropertyBool("enable","Source active",true);
-		_("Source active");
+		_("Active source");
 	}
 	void InitProperties()
 	{
@@ -60,21 +60,21 @@ private:
 		vDirectivite.push_back("Plan XY");
 		vDirectivite.push_back("Plan YZ");
 		vDirectivite.push_back("Plan XZ");
-		_("Omnidirectionnel");
-		_("Unidirectionnel");
-		_("Plan XY");
-		_("Plan YZ");
-		_("Plan XZ");
+		_("Omnidirectional");
+		_("Unidirectional");
+		_("XY plan");
+		_("YZ plan");
+		_("XZ plan");
 		this->AppendPropertyList("directivite","Directivité",vDirectivite,DIRECTIVITE_SOURCE_OMINIDIRECTIONNEL,false,1,iDirectivite,true);
-		_("Directivité");
+		_("Directivity");
 		this->AppendPropertyDecimal("u","Direction x",1,true,2,false,false,0,0,true);
 		this->AppendPropertyDecimal("v","Direction y",1,true,2,false,false,0,0,true);
 		this->AppendPropertyDecimal("w","Direction z",1,true,2,false,false,0,0,true);
-		_("Direction x");
-		_("Direction y");
-		_("Direction z");
+		_("Direction X");
+		_("Direction Y");
+		_("Direction Z");
 		this->AppendPropertyDecimal("delay","Délai de déclenchement",0.f,false,4,false,true,0,0,true);
-		_("Délai de déclenchement");
+		_("Time delay (s)");
 		InitNewProperties();
 	}
 public:
@@ -96,7 +96,7 @@ public:
 		if(this->GetBoolConfig("enable"))
 			ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Sources_Actives++;
 		ignore_count_change=false;
-		_("Propriétés");
+		_("Properties");
 	}
 
 	E_Scene_Sources_Source_Proprietes( Element* parent)

@@ -46,7 +46,7 @@ bool isFileNameValid(const wxString& fileName)
 {
     if ( fileName.empty() )
     {
-		wxLogError(_("Un nom de dossier ou de fichier ne doit pas être vide !"));
+		wxLogError(_("Folder name or file name can't be empty"));
 		return false;
     }
 
@@ -56,7 +56,7 @@ bool isFileNameValid(const wxString& fileName)
 		const wxChar currChar(fileName[n]);
 		if ( currChar == 92 || currChar == 47 || currChar == 58 || currChar == 42 || currChar == 63 || currChar == 34 || currChar == 60 || currChar == 62 || currChar == 124 )
         {
-			wxLogError(_("Un nom de dossier ou de fichier ne doit pas contenir les caractères \\/:*?\"<>|"));
+			wxLogError(_("Folder name can't use the following letters: \\/:*?\"<>|"));
             return false;
         }
     }
@@ -159,7 +159,7 @@ void E_Report_File::OnEndLabelEdit(wxTreeEvent& treeEvent)
 		}else{
 			treeEvent.Veto();
 			if(wxFileExists(newFileNamePath))
-				wxLogError(_("Impossible de renommer le fichier, un fichier du même nom existe !"));
+				wxLogError(_("File can't be renamed, a file with the same name already exists"));
 
 		}
 	}else{
@@ -357,7 +357,7 @@ bool E_Report_File::OnElementRemoved()
 	this->BuildFullPath(FullPath);
 	if(wxFileExists(FullPath) || wxDirExists(FullPath))
 	{
-		wxMessageDialog dialog( NULL, wxString::Format(_("Êtes-vous certain de vouloir supprimer ce fichier définitivement ?\n\n%s"),FullPath),
+		wxMessageDialog dialog( NULL, wxString::Format(_("Are you sure to delete this element forever?\n%s"),FullPath),
 			APPLICATION_NAME, wxNO_DEFAULT|wxYES_NO|wxICON_INFORMATION);
 		if( dialog.ShowModal()==wxID_NO)
 		{
@@ -375,7 +375,7 @@ void E_Report_File::OnRightClic( wxMenu* leMenu )
 	wxFileName fileInfo(filePath);
 	if(fileInfo.IsDir())
 	{
-		leMenu->Append(GetMenuItem(leMenu,IDEVENT_RELOAD_FOLDER,_("Actualiser le dossier")));
+		leMenu->Append(GetMenuItem(leMenu,IDEVENT_RELOAD_FOLDER,_("Refresh folder")));
 	}
 	Element::OnRightClic(leMenu);
 }

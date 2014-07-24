@@ -670,9 +670,9 @@ namespace sgSpace
 		{
 			if(this->axisOrientation==wxVERTICAL)
 			{
-				return _("Axe Y");
+				return _("Y axis");
 			}else{
-				return _("Axe X");
+				return _("X axis");
 			}
 		}else{
 			return SG_Element::GetLabel();
@@ -680,7 +680,7 @@ namespace sgSpace
 	}
 	void SG_Element_Axis::SetLabel(const wxString& newLabel)
 	{
-		if(newLabel!=_("Axe X") && newLabel!=_("Axe Y"))
+		if(newLabel!=_("X axis") && newLabel!=_("Y axis"))
 		{
 			SG_Element::SetLabel(newLabel);
 		}

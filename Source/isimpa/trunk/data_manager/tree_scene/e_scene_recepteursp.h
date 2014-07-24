@@ -42,14 +42,14 @@
 class E_Scene_Recepteursp: public Element
 {
 public:
-	E_Scene_Recepteursp( wxXmlNode* noeudCourant ,  Element* parent,const wxString& name="Récepteurs ponctuels")
+	E_Scene_Recepteursp( wxXmlNode* noeudCourant ,  Element* parent,const wxString& name="Punctual receivers")
 		:Element(parent,name,Element::ELEMENT_TYPE_SCENE_RECEPTEURSP,noeudCourant)
 	{
 
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_PUNCTUAL_RECEIVERS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_PUNCTUAL_RECEIVERS_CLOSE);
 		insertPasteMenu=true;
-		_("Récepteurs ponctuels");
+		_("Punctual receivers");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;
@@ -95,7 +95,7 @@ public:
 					wxString recpName;
 					currentChild->GetPropVal("name",&recpName);
 					currentChild->DeleteProperty("name");
-					currentChild->AddProperty("name",wxString::Format(_("Copie de %s"),recpName));
+					currentChild->AddProperty("name",wxString::Format(_("Copy of %s"),recpName));
 					this->AppendFils(new E_Scene_Recepteursp_Recepteur(currentChild,this))->ForceBottomModified();
 					somethingAdded=true;
 				}else if(typeEle==Element::ELEMENT_TYPE_SCENE_RECEPTEURSP)
@@ -103,7 +103,7 @@ public:
 					wxString recpName;
 					currentChild->GetPropVal("name",&recpName);
 					currentChild->DeleteProperty("name");
-					currentChild->AddProperty("name",wxString::Format(_("Copie de %s"),recpName));
+					currentChild->AddProperty("name",wxString::Format(_("Copy of %s"),recpName));
 					E_Scene_Recepteursp* newel=new E_Scene_Recepteursp(currentChild,this);
 					newel->SetUserGroup();
 					newel->ForceBottomModified();
@@ -164,7 +164,7 @@ public:
 		}
 	}
 	E_Scene_Recepteursp( Element* parent)
-		:Element(parent,"Récepteurs ponctuels",Element::ELEMENT_TYPE_SCENE_RECEPTEURSP)
+		:Element(parent,"Punctual receivers",Element::ELEMENT_TYPE_SCENE_RECEPTEURSP)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_PUNCTUAL_RECEIVERS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_PUNCTUAL_RECEIVERS_CLOSE);
@@ -191,8 +191,8 @@ public:
 	}
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_RECEPTEUR_P, _("Nouveau récepteur"),"./Bitmaps/popup_new.png"));
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_RECEPTEURP_GROUP, _("Nouveau groupe"),"./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_RECEPTEUR_P, _("New receiver"),"./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_RECEPTEURP_GROUP, _("New group"),"./Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 

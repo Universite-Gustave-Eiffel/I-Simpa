@@ -76,7 +76,7 @@ RecepteursSControler::~RecepteursSControler()
 }
 wxString RecepteursSControler::GetRendererLabel()
 {
-	return _("Récepteur surfacique");
+	return _("Surface receiver");
 }
 void RecepteursSControler::Init(const bool&  resetLoadingTime)
 {
@@ -129,7 +129,7 @@ void RecepteursSControler::SetTimeStep(const int& _timeStp)
 				this->rs_legends.currentTimeStep->InitText(wxString::Format("%.4f s",timeStep*(idStep+1)));
 			}else{
 				if(RecordRecepteurSurfType==formatRSBIN::RECEPTEURS_RECORD_TYPE_SPL_STANDART)
-					this->rs_legends.currentTimeStep->InitText(_("Niveau sonore cumulé"));
+					this->rs_legends.currentTimeStep->InitText(_("Total sound level"));
 				else
 					this->rs_legends.currentTimeStep->InitText(this->libellLegends.labelEl);
 			}
@@ -214,7 +214,7 @@ bool RecepteursSControler::LoadRecepteursSFile(wxArrayString& recepteurSFiles, v
 {
 	wxDateTime fileLoading=wxDateTime::UNow();
 	const float dissipationFaceSurSommets=1.f;// /3.f;
-	wxProgressDialog progDialog(_("Chargement du fichier de récepteur de surface"),_("Chargement du fichier de récepteur de surface"),100,NULL,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE );
+	wxProgressDialog progDialog(_("Loading of the surface receiver file"),_("Loading of the surface receiver file"),100,NULL,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE );
 
 	if(recepteurSFiles.size()==0)
 		return false;
@@ -269,7 +269,7 @@ bool RecepteursSControler::LoadRecepteursSFile(wxArrayString& recepteurSFiles, v
 		}else if(RecordRecepteurSurfType==(int)RECEPTEURS_RECORD_TYPE_DEFINITION){
 			libellLegends.unit=_("%");
 		}else if(RecordRecepteurSurfType==(int)RECEPTEURS_RECORD_TYPE_PRESSURE){
-			libellLegends.unit=_("pascal");
+			libellLegends.unit=_("Pascal");
 		}
 		libellLegends.labelEl=elConf->GetElementInfos().libelleElement;
 	}
@@ -719,28 +719,28 @@ bool RecepteursSControler::UserWantToKnowAcousticLevelAtPosition( vec3 extractPo
 			if(RecordRecepteurSurfType==(int)formatRSBIN::RECEPTEURS_RECORD_TYPE_SPL_STANDART || RecordRecepteurSurfType==(int)formatRSBIN::RECEPTEURS_RECORD_TYPE_SPL_GAIN)
 			{
 				if(wxFinite(energyValue))
-					wxLogInfo(_("Le niveau sonore à cet endroit est de %.2f ")+libellLegends.unit,energyValue);
+					wxLogInfo(_("Sound level at pointer s %.2f ")+libellLegends.unit,energyValue);
 				else
-					wxLogInfo(_("Niveau acoustique nul."));
+					wxLogInfo(_("Sound level is not given"));
 			}else{
 					if(RecordRecepteurSurfType==(int)formatRSBIN::RECEPTEURS_RECORD_TYPE_TR)
-						wxLogInfo(_("La valeur du TR à cet endroit est de %.2f ")+libellLegends.unit,energyValue);
+						wxLogInfo(_("RT at pointer is %.2f ")+libellLegends.unit,energyValue);
 					else if(RecordRecepteurSurfType==(int)formatRSBIN::RECEPTEURS_RECORD_TYPE_CLARITY)
-						wxLogInfo(_("La valeur de la clarté à cet endroit est de %.2f ")+libellLegends.unit,energyValue);
+						wxLogInfo(_("The clarity value at this coordinate is %.2f")+libellLegends.unit,energyValue);
 					else if(RecordRecepteurSurfType==(int)formatRSBIN::RECEPTEURS_RECORD_TYPE_DEFINITION)
-						wxLogInfo(_("La valeur de la définition à cet endroit est de %.2f ")+libellLegends.unit,energyValue);
+						wxLogInfo(_("The D value at this coordinate is %.2f")+libellLegends.unit,energyValue);
 					else if(RecordRecepteurSurfType==(int)formatRSBIN::RECEPTEURS_RECORD_TYPE_EDT)
-						wxLogInfo(_("La valeur du TS à cet endroit est de %.2f ")+libellLegends.unit,energyValue);
+						wxLogInfo(_("The TS value at this coordinate is %.2f")+libellLegends.unit,energyValue);
 					else if(RecordRecepteurSurfType==(int)formatRSBIN::RECEPTEURS_RECORD_TYPE_EDT)
-						wxLogInfo(_("La valeur du ST à cet endroit est de %.2f ")+libellLegends.unit,energyValue);
+						wxLogInfo(_("The ST value at this coordinate is %.2f")+libellLegends.unit,energyValue);
 					else if(RecordRecepteurSurfType==(int)formatRSBIN::RECEPTEURS_RECORD_TYPE_PRESSURE)
-						wxLogInfo(_("La valeur de la pression à cet endroit est de %.2f ")+libellLegends.unit,energyValue);
+						wxLogInfo(_("The pressure value at this coordinate is %.2f")+libellLegends.unit,energyValue);
 					else if(RecordRecepteurSurfType==(int)formatRSBIN::RECEPTEURS_RECORD_TYPE_EDT)
-						wxLogInfo(_("La valeur de l'EDT à cet endroit est de %.2f ")+libellLegends.unit,energyValue);
+						wxLogInfo(_("EDT at pointer is %.2f ")+libellLegends.unit,energyValue);
 			}
 		}
 	}else{
-		wxLogError(_("Cette zone ne correspond pas à un récepteur de surface."));
+		wxLogError(_("This zone does not correspond to a defined surface receiver"));
 	}
 	return false;
 }
@@ -886,7 +886,7 @@ void RecepteursSControler::RedrawLegend()
 		this->rs_legends.currentFile->SetFont( legendFont);
 		this->rs_legends.currentFile->SetTextForeground(text_foreground_color);
 		this->rs_legends.currentFile->SetTextBackground(text_background_color);
-		this->rs_legends.currentFile->InitText(_("Récepteurs surfaciques : ")+libellLegends.path);
+		this->rs_legends.currentFile->InitText(_("Surface receivers :")+libellLegends.path);
 		if(pushLegend)
 		{
 			legendCfg currentObjConf=this->rs_legends.currentFile->GetCfg();
@@ -914,7 +914,7 @@ void RecepteursSControler::RedrawLegend()
 			if(this->nbStep==1)
 			{
 				if(RecordRecepteurSurfType==formatRSBIN::RECEPTEURS_RECORD_TYPE_SPL_STANDART)
-					tmstepLegend->InitText(_("Niveau sonore cumulé"));
+					tmstepLegend->InitText(_("Total sound level"));
 				else
 					tmstepLegend->InitText(this->libellLegends.labelEl);
 			}else{

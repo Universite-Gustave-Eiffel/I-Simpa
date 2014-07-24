@@ -47,7 +47,7 @@ private:
 	void AddActiveProp()
 	{
 		this->AppendPropertyBool("enabled","Activé",true,false);
-		_("Activé");
+		_("Enabled");
 	}
 	void InitProperties()
 	{
@@ -55,14 +55,14 @@ private:
 		this->AppendPropertyDecimal("resolution","Résolution (m)", .5f,false,2,false,true,0,.05f,true);
 		AddActiveProp();
 		_("Description");
-		_("Résolution (m)");
+		_("Resolution (m)");
 	}
 public:
 	E_Scene_Recepteurss_RecepteurCoupe_Proprietes( wxXmlNode* noeudCourant ,  Element* parent)
 		:Element(parent,"Propriétés",Element::ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEURCOUPE_PROPRIETES,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
-		_("Propriétés");
+		_("Properties");
 		if(!this->IsPropertyExist("enabled"))
 			AddActiveProp();
 	}

@@ -102,16 +102,16 @@ protected:
 		this->AppendPropertyBool("ismaxvol","Contrainte de volume",false);
 		this->AppendPropertyBool("preprocess","Correction du modèle avant maillage",true);
 		this->AppendPropertyBool("debugmode","Test mesh topology",false);
-		_("Contrainte de volume (m3)");
-		_("Rapport Rayon/arête");
-		_("Paramétres supplémentaires");
-		_("Paramétres utilisateur");
-		_("Contrainte d'aire des récepteurs surfaciques (m²)");
-		_("Contrainte d'aire des récepteurs surfaciques");
-		_("Contrainte de volume");
-		_("Correction du modèle avant maillage");
+		_("Volume constraint (m3)");
+		_("Radius/Edge ratio");
+		_("Additional parameters");
+		_("User-defined parameters");
+		_("Surface receivers constraint (m²)");
+		_("Surface receivers constraint");
+		_("Volume constraint");
+		_("Scene correction before meshing");
 		_("Test mesh topology");
-		_("Maillage");
+		_("Meshing");
 	}
 	
 };

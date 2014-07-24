@@ -49,7 +49,7 @@ public:
 		
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_RENDERING_FOLDER_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_RENDERING_FOLDER_CLOSE);
-		_("Rendu");
+		_("Display");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;

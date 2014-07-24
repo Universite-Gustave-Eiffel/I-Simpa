@@ -1214,7 +1214,7 @@ bool CObjet3D::_LoadBIN(const char *filename)
 	}
 	catch(...)
 	{
-		wxLogWarning(_("Impossible de charger ce format"));
+		wxLogWarning(_("Unable to load this format"));
 		return false;
 	}
 

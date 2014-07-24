@@ -47,7 +47,7 @@ E_Scene_Groupesurfaces_Groupe::E_Scene_Groupesurfaces_Groupe( wxXmlNode* noeudCo
 	SetIcon(GRAPH_STATE_NORMAL,GRAPH_SURFACES_CLOSE);
 	vertexFileIsLoaded=false;
 	ignoreModification=false;
-	_("groupe");
+	_("Group");
 	isPointerGroup=false;
 	vertexInFile=true;
 	if(noeudCourant!=NULL)
@@ -111,7 +111,7 @@ void E_Scene_Groupesurfaces_Groupe::InitGroupProp()
 	if(!this->IsPropertyExist("aire"))
 	{
 		this->AppendPropertyDecimal("aire","Aire de la surface (m²)",0,true,2);
-		_("Aire de la surface (m²)");
+		_("Surface area (m²)");
 	}else{
 		this->UpdateDecimalConfig("aire",0);
 	}
@@ -259,7 +259,7 @@ void E_Scene_Groupesurfaces_Groupe::PushFace(std::vector<std::vector<Application
 void E_Scene_Groupesurfaces_Groupe::GetMaterialsLink( std::vector<std::vector<ApplicationConfiguration::t_PropFace> > &matFacesAssociations)
 {
 	if(!isPointerGroup && !ApplicationConfiguration::IsIdMateriauExist(this->GetEntierConfig("idmat")))
-		wxLogError(_("Le matériau du groupe de surface %s n'a pas été renseigné, un matériau aléatoire sera choisi par défaut !"),this->elementInfo.libelleElement);
+		wxLogError(_("Material of the surface group %s has not be defined: the default material is applied"),this->elementInfo.libelleElement);
 	if(vertexInFile)
 	{
 		if(!vertexFileIsLoaded)
@@ -383,7 +383,7 @@ void E_Scene_Groupesurfaces_Groupe::EndDrag(wxTreeEvent& treeEvent,wxTreeCtrl* t
 				if(!isPointerGroup) //On ne supprime pas de l'element source si nous sommes un pointeur
 					ansGroup->DeleteElementByTreeId(infosDragEl.idElement);
 			}else{
-				wxLogInfo(_("Le glissé déposé de vertex doit se faire à partir d'un groupe de surface standard"));
+				wxLogInfo(_("The drag and drop of vertex is allowed only from surface groups"));
 			}
 		}else if(infosDragEl.typeElement==Element::ELEMENT_TYPE_SCENE_GROUPESURFACES_GROUPE && infosDragEl.idElement!=this->elementInfo.idElement)
 		{
@@ -410,7 +410,7 @@ void E_Scene_Groupesurfaces_Groupe::EndDrag(wxTreeEvent& treeEvent,wxTreeCtrl* t
 					draggingGroup->ClearGroup();
 				}
 			}else{
-				wxLogInfo(_("Le glissé déposé de groupe doit se faire à partir d'un groupe de surface standard"));
+				wxLogInfo(_("The drag and drop of a group is allowed only from main surface groups"));
 			}
 
 		}
@@ -440,10 +440,10 @@ void E_Scene_Groupesurfaces_Groupe::OnRightClic(wxMenu* leMenu)
 
 	if(isPointerGroup)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_EMPTY_POINTER_VERTEX_GROUP, _("Vider")));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_EMPTY_POINTER_VERTEX_GROUP, _("Clean")));
 		leMenu->AppendSeparator();
 	}
-	leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_INVERT_FACE_ORIENTATION, _("Inverser l'orientation des faces")));
+	leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_INVERT_FACE_ORIENTATION, _("Invert face normal")));
 	Element::OnRightClic(leMenu);
 }
 
@@ -485,7 +485,7 @@ void E_Scene_Groupesurfaces_Groupe::AddFaces(const std::list<t_faceIndex>& faceL
 	wxProgressDialog* progDialog(NULL);
 	std::size_t faceCount(faceList.size());
 	if(faceCount>500)
-		progDialog=new wxProgressDialog(_("Chargement des faces"),_("Chargement des faces en cours"),100,NULL, wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
+		progDialog=new wxProgressDialog(_("Loading faces"),_("Loading faces of 3D scene"),100,NULL, wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
 	this->ignoreModification=true;
 	std::size_t i(0);
 	wxDateTime lastUpdate(wxDateTime::UNow());
@@ -497,7 +497,7 @@ void E_Scene_Groupesurfaces_Groupe::AddFaces(const std::list<t_faceIndex>& faceL
 			if(wxDateTime::UNow()-lastUpdate>1)
 			{
 				int newperc=int((float(i)/float(faceCount))*100);
-				progDialog->Update(newperc,wxString::Format(_("Chargement de la face %i/%i"),i,faceCount));
+				progDialog->Update(newperc,wxString::Format(_("Loading face %i/%i"),i,faceCount));
 				lastUpdate=wxDateTime::UNow();
 			}
 		}

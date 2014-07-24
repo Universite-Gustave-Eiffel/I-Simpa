@@ -49,7 +49,7 @@ public:
 		:Element(parent,"Rendu 3D",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_MATERIAU_RENDER,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_3D_DISPLAY);
-		_("Rendu 3D");
+		_("3D display");
 		this->SetDrawable();
 	}
 	E_Scene_Bdd_Materiaux_RenderMaterial( Element* parent)
@@ -57,7 +57,7 @@ public:
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_3D_DISPLAY);
 		this->AppendPropertyColor("mat_color","Couleur",GetRandValue()*255,GetRandValue()*255,GetRandValue()*255);
-		_("Rendu");
+		_("Display");
 		this->SetDrawable();
 	}
 

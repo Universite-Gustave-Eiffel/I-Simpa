@@ -151,11 +151,11 @@ public:
 			wxBell();
 			ev.Veto();
 			if(isMaxValue && isMinValue)
-				wxLogInfo(_("La valeur doit être comprise entre %s et %s."),FloatToString(minValue),FloatToString(maxValue));
+				wxLogInfo(_("Data must be in the range %s - %s"),FloatToString(minValue),FloatToString(maxValue));
 			else if(isMaxValue)
-				wxLogInfo(_("La valeur doit être au maximum égal à %s."),FloatToString(maxValue));
+				wxLogInfo(_("Authorized maximum value: %s"),FloatToString(maxValue));
 			else if(isMinValue)
-				wxLogInfo(_("La valeur doit être au minimum égal à %s."),FloatToString(minValue));
+				wxLogInfo(_("Authorized minimum value: %s"),FloatToString(minValue));
 		}
 	}
 

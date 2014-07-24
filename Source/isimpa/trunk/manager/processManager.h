@@ -66,7 +66,7 @@ public:
 	 * @param[in] label Libellé du message qui précede le texte de sortie
 	 * @param[out] Si une des sortie est de la forme "#entier" alors affecte cet entier dans cette variable
 	 */
-	void LogOutput(bool &hasOutput, const wxString &label=wxString(_("Sortie exécutable :")),float *outputProgression=NULL);
+	void LogOutput(bool &hasOutput, const wxString &label=wxString(_("Calculation output:")),float *outputProgression=NULL);
 	/**
 	 * Permet de connaître l'etat de l'execution
 	 * @return Vrai si l'application est en cours d'exécution

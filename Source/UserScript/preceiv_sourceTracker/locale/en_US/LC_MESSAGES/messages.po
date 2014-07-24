@@ -65,7 +65,7 @@ msgstr "Delete the link with the source"
 #~ msgid "Synthesis"
 #~ msgstr "Synthèse"
 
-#~ msgid "Ponctuals receivers"
+#~ msgid "Punctual receivers"
 #~ msgstr "Récepteurs ponctuels"
 
 #~ msgid "Statistics"

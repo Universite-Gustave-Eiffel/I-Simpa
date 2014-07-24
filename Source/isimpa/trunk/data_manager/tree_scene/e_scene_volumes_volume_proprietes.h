@@ -46,7 +46,7 @@ public:
 		:Element(parent,"Propriétés",Element::ELEMENT_TYPE_SCENE_VOLUMES_VOLUME_PROPRIETES,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
-		_("Propriétés");
+		_("Properties");
 	}
 
 	E_Scene_Volumes_Volume_Proprietes( Element* parent)
@@ -55,8 +55,8 @@ public:
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
 		this->AppendPropertyBool("fcompute_mean_free_path","Calculer libre parcourt moyen",true,true);
 		this->AppendPropertyDecimal("mean_free_path","Libre parcourt moyen",1,true,2,false,true,0,.01f,true);
-		_("Calculer libre parcourt moyen");
-		_("Libre parcourt moyen");
+		_("Calculate the mean free path");
+		_("Mean free path");
 	}
 
 	void Modified(Element* eModif)

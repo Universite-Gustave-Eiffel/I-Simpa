@@ -573,7 +573,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="winmm.lib wxmsw29u_aui.lib wxmsw29u_gl.lib wxmsw29u_adv.lib wxmsw29u_core.lib wxbase29u_xml.lib wxexpat.lib wxbase29u.lib wxtiff.lib wxjpeg.lib wxpng.lib wxzlib.lib wxregexu.lib comctl32.lib rpcrt4.lib coreSrc\lib_interface\Release\lib_interface.lib"
-				OutputFile="..\..\currentRelease\I-SIMPA.exe"
+				OutputFile="..\..\..\currentRelease\I-SIMPA.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="&quot;$(WXWIN)\lib\vc_lib&quot;;$(PYTHON)\libs;&quot;$(BOOST)\lib&quot;"
@@ -980,6 +980,7 @@
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="&quot;$(WXWIN)\lib\vc_lib&quot;;&quot;$(PYTHON)\libs&quot;;&quot;$(BOOST)\lib&quot;;&quot;$(PYTHON)&quot;"
+				IgnoreDefaultLibraryNames="MSVCRT.lib"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=""
 				SubSystem="2"

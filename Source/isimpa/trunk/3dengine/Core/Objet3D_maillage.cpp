@@ -755,7 +755,7 @@ bool CObjet3D::SaveMaillage(const char *filename,bool toRealCoords)
 	binExporter.SaveMesh(filename,trimesh);
 	if(!wxFileExists(filename))
 	{
-		wxLogError(_("L'exportation du maillage de la scène n'a pu se faire."));
+		wxLogError(_("Failed to export meshing"));
 		return false;
 	}
 	return true;

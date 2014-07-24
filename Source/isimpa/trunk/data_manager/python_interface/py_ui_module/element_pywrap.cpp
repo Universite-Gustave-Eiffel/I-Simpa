@@ -163,7 +163,7 @@ void export_project_class()
   export_enum();
   class_<element>("element",init<int>())
 	  .def(init<element>())
-	  .def("childs", &element::childs,REMTR("Retourne les indices des éléments contenues dans l'objet.\nChaque élément est défini par trois valeurs : \n- la première est l'indice de l'élément permettant de créer l'objet\n- la deuxième est son type\n- la troisième son libellé\n\nL'indice est unique pour tout les éléments du projet, toutefois il est constant que sur l'instance d'execution du logiciel et est modifié lors du chargement du fichier de projet\nLe type correspond a un ensemble d'élément de même nature, ce type est constant même pour les prochaines mise à jour du logiciel.\nLe libellé correspond à celui visible dans l'arbre du projet et est donc trés variable,.Seul les éléments de propriétés ont un nom fixe et peuvent être utilisé de manière sûre."))
+	  .def("childs", &element::childs,REMTR("Retourne les indices des éléments contenues dans l'objet.\nChaque élément est défini par trois valeurs : \n- la première est l'indice de l'élément permettant de créer l'objet\n- la deuxième est son type\n- la troisième son libellé\n\nL'indice est unique pour tous les éléments du projet, toutefois il est constant que sur l'instance d'execution du logiciel et est modifié lors du chargement du fichier de projet\nLe type correspond a un ensemble d'élément de même nature, ce type est constant même pour les prochaines mise à jour du logiciel.\nLe libellé correspond à celui visible dans l'arbre du projet et est donc trés variable,.Seul les éléments de propriétés ont un nom fixe et peuvent être utilisé de manière sûre."))
 	  .def("updatestringconfig", &element::updatestringconfig,REMTR("Met à jour un champ de données"),args("propertyname","propertynewvalue"))
 	  .def("updatedecimalconfig", &element::updatedecimalconfig,REMTR("Met à jour un champ de données"),args("propertyname","propertynewvalue"))
 	  .def("updatelistconfig", &element::updatelistconfig,REMTR("Met à jour un champ de données"),args("propertyname","propertynewindex"))
@@ -186,7 +186,7 @@ void export_project_class()
 	  .def ("appendpropertybool", &element::appendpropertybool, appendpropertybool_overloads(REMTR("Ajoute un champ de données dans l'élément."), args("propertyname","propertylabel","propertydefaultvalue","exporttocore")))
 	  .def ("appendpropertyfont", &element::appendpropertyfont, appendpropertyfont_overloads(REMTR("Ajoute un champ de données dans l'élément."), args("propertyname","propertylabel","propertydefaultvalue")))
 	  .def("getmenu", &element::getmenu,REMTR("Retourne les actions possibles a effectuer sur l'élément."))
-	  .def("getallelementbytype", &element::getallelementbytype,REMTR("Retourne tout les éléments ayant comme type celui passé en paramètre."),args("elementtype"))
+	  .def("getallelementbytype", &element::getallelementbytype,REMTR("Retourne tous les éléments ayant comme type celui passé en paramètre."),args("elementtype"))
 	  .def("getelementbytype", &element::getelementbytype,REMTR("Retourne le premier élément rencontré de ce type dans les éléments enfants et récursivement"),args("elementtype"))
 	  .def("getelementbylibelle", &element::getelementbylibelle,REMTR("Retourne le premier élément rencontré ayant ce libellé.Pour les éléments de propriétés il s'agira du nom et non du libellé."),args("elementlabel"))
 	  .def ("getinfos", &element::getinfos,REMTR("Retourne les informations de cet élément tel que son libellé, son type etc.."))
@@ -194,12 +194,12 @@ void export_project_class()
 	  .def ("appendfilsbytype", &element::appendfilsbytype, appendfilsbytype_overloads(REMTR("Cette fonction permet l'ajout d'un fils à partir de son type. Cette fonction ne fonctionne qu'avec les éléments compatibles (ayant un lien parent/fils) \n@return L'indice de l'élément ajouté ou -1 si aucun élément ajouté."), args("element_type","element_label")))
 	  .def ("modified", &element::modified,REMTR("Marque l'élément comme mis à jour et sera sauvegardé dans le fichier xml."))
 	  .def ("hasproperty", &element::hasproperty,REMTR("Retourne vrai si cet élément a une propriété portant ce nom"))
-      .def ("hide", &element::hide, hide_overloads(_("Que ce soit un élément de l'arbre ou une propriété cette permet permet de cacher ou d'afficher l'objet. \n@param visible Nouvel état de visibilité"),args("visible=False")))
-	  .def ("setreadonlyconfig", &element::setreadonlyconfig, setreadonlyconfig_overloads(_("Active/Désactive la possibilité de modifier le champ pour l'utilisateur pour un champ donné \n@param name Nom du champ \n@param readOnly Nouvel état du champ \n@param col Pour les champ ayant plusieurs colonnes tel que E_Data_Row indique quel colonne sera affecté par la lecture seule."),args("name","readOnly","col")))
-	  .def ("setreadonlyallconfig", &element::setreadonlyallconfig, setreadonlyallconfig_overloads(_("Active/Désactive la possibilité de modifier tout les champs pour l'utilisateur pour une colonne donnée\n @param readOnly Nouvel état des champs\n @param col Pour les champ ayant plusieurs colonnes tel que E_Data_Row indique quel colonne sera affectée par la lecture seule."),args("readOnly","col")))
-	  .def ("deleteelementbyxmlid", &element::deleteelementbyxmlid, deleteelementbyxmlid_overloads(_("Supprime un élément fils ayant cet identifiant. La suppression s'arrête au niveau fils seulement."),args("xmlIdElement","setModification")))
-	  .def("deleteallelementbytype",&element::deleteallelementbytype,REMTR("Supprime tout les enfants de cet élément à ce niveau ayant ce type d'élément."),args("elementType"))
-	  .def("deleteallelementbytyper",&element::deleteallelementbytyper,REMTR("Supprimme récursivement tout les descendants ayant ce type de données"),args("elementType"))
+      .def ("hide", &element::hide, hide_overloads(_("Hide an element"),args("visible=False")))
+	  .def ("setreadonlyconfig", &element::setreadonlyconfig, setreadonlyconfig_overloads(_("Enable or Disable the user access to this data."),args("name","readOnly","col")))
+	  .def ("setreadonlyallconfig", &element::setreadonlyallconfig, setreadonlyallconfig_overloads(_("Enables / Disables the ability to change all the fields to the user for a given column."),args("readOnly","col")))
+	  .def ("deleteelementbyxmlid", &element::deleteelementbyxmlid, deleteelementbyxmlid_overloads(_("Find and delete the son with this id. This is not a recursively search"),args("xmlIdElement","setModification")))
+	  .def("deleteallelementbytype",&element::deleteallelementbytype,REMTR("Supprime tous les enfants de cet élément à ce niveau ayant ce type d'élément."),args("elementType"))
+	  .def("deleteallelementbytyper",&element::deleteallelementbytyper,REMTR("Supprimme récursivement tous les descendants ayant ce type de données"),args("elementType"))
 	  .def("register_update_manager",&element::register_update_manager,REMTR("english\n Link a python function to the event of element update.You can add multiple links. Links are alive until project close.\n param func Python class with a function called OnUpdate with one parameter, the updated element index, may be this element or a child.\n french\n Lie une fonction python à l'événement de mise à jour d'un élément. Vous pouvez ajouter plusieurs liens, ces liens restent en place jusqu'à la fermeture du projet.\n param func Classe python avec une fonction nommé OnUpdate avec un paramètre correspondant à l'indice de l'élément mis à jour (l'élément courant ou un de ses fils)"),args("class"))
 	  .def("getid", &element::getid,REMTR("Return the element id."))
 	  .def("register_appendchild_manager",&element::register_appendchild_manager,REMTR("Link a python function to the event of element append a new element child.You can add multiple links. Links are alive until project close."))
@@ -217,7 +217,7 @@ Element* GetElement(const wxInt32& xmlId)
 	{
 		return (Element*)obj;
 	}else{
-		ThrowPyException(WXSTRINGTOCHARPTR(_("Cet élément n'existe pas ou plus.")));
+		ThrowPyException(WXSTRINGTOCHARPTR(_("This element doesn't exist")));
 		return NULL;
 	}
 }
@@ -393,7 +393,7 @@ int element::appendpropertylist(const std::wstring& propertyName,const std::wstr
 		std::vector<std::wstring> tmpvalues;
 		if(!extract_array<std::wstring>(values[0],&tmpvalues))
 		{
-			ThrowPyException(_("Liste incorrecte."));
+			ThrowPyException(_("Uncorrect data list"));
 		}
 		for(int id=0;id<tmpvalues.size();id++)
 		{
@@ -403,7 +403,7 @@ int element::appendpropertylist(const std::wstring& propertyName,const std::wstr
 		{
 			if(!extract_array<int>(values[1],&wxindex))
 			{
-				ThrowPyException(_("Liste d'indices incorrecte."));
+				ThrowPyException(_("Uncorrect index list"));
 			}
 		}
 	}else{
@@ -624,7 +624,7 @@ struct LinkBetweenElementUpdateEventAndPythonScript : public t_baseEvtCatcher
 		{
 			updateFunction(elid);
 		} catch( error_already_set ) {
-			wxLogError(_("Error during call of python script on element update.."));
+			wxLogError(_("Error during call of Python(TM) script on element update"));
 		}
 
 	}
@@ -646,7 +646,7 @@ struct LinkBetweenElementAppendChildEventAndPythonScript : public t_baseEvtCatch
 		{
 			appendFunction(childType,parentid,childid);
 		} catch( error_already_set ) {
-			wxLogError(_("Error during call of python script on element apend child.."));
+			wxLogError(_("Error during call of Python(TM) script on element append child"));
 		}
 	}
 	boost::python::object appendFunction;

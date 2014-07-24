@@ -47,7 +47,7 @@ public:
 		:Element(parent,"Rendu",Element::ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEURCOUPE_RENDU,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_3D_DISPLAY);
-		_("Rendu");
+		_("Display");
 	}
 
 	E_Scene_Recepteurss_RecepteurCoupe_Rendu( Element* parent)
@@ -57,9 +57,9 @@ public:
 		this->AppendPropertyBool("showplane","Afficher grille",true);
 		this->AppendPropertyBool("showlabels","Afficher le nom des sommets",true);
 		this->AppendPropertyColor("planecolor","Couleur de la coupe",241,243,175);
-		_("Afficher grille");
-		_("Afficher le nom des sommets");
-		_("Couleur de la coupe");
+		_("Show the grid");
+		_("Show vertices name");
+		_("Cut color");
 	}
 
 	

@@ -52,19 +52,19 @@ private:
 		modes.push_back("Bordures");
 		this->AppendPropertyList("rendermode","Mode de rendu",modes,0);
 		_("Volume");
-		_("Bordures");
-		_("Mode de rendu");
+		_("Borders");
+		_("Render mode");
 	}
 	void InitProperties()
 	{
 		this->AppendPropertyColor("couleur","Couleur",GetRandValue()*255,GetRandValue()*255,GetRandValue()*255);
-		_("Couleur"); //Pour generer le fichier de langues automatiquement
+		_("Color"); //Pour generer le fichier de langues automatiquement
 		this->AppendPropertyBool("showlabel","Afficher le libellé",false);
-		_("Afficher le libellé");
+		_("Show name");
 		if(this->pere && this->pere->GetElementInfos().typeElement!=Element::ELEMENT_TYPE_SCENE_ENCOMBREMENTS_ENCOMBREMENT)
 		{
 			this->AppendPropertyDecimal("obj_transp","Opacité",.5f,false,2,true,true,1,0);
-			_("Opacité");
+			_("Opacity");
 			InitLineRenderingProp();
 		}
 	}
@@ -73,7 +73,7 @@ public:
 		:Element(parent,"Rendu",Element::ELEMENT_TYPE_SCENE_ENCOMBREMENTS_ENCOMBREMENT_RENDU,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_3D_DISPLAY);
-		_("Rendu");
+		_("Display");
 		if(parent && parent->GetElementInfos().typeElement!=Element::ELEMENT_TYPE_SCENE_ENCOMBREMENTS_ENCOMBREMENT && !this->IsPropertyExist("rendermode"))
 			InitLineRenderingProp();
 	}

@@ -49,7 +49,7 @@ public:
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_ROOT_MATERIALS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_ROOT_MATERIALS_CLOSE);
-		_("Materiaux");
+		_("Materials");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;

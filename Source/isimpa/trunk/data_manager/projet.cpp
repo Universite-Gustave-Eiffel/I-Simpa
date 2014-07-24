@@ -367,28 +367,28 @@ void ProjectManager::CopyGlToFile()
 	GlFrame->GetImage(glImage);
 	if(glImage.IsOk())
 	{
-		wxFileDialog saveFileDialog( mainFrame, _("Exporter la vue 3D"), "", "", _("Fichiers Png (*.png)|*.png|Fichiers Jpeg (*.jpg)|*.jpg|Fichiers Bitmap (*.bmp)|*.bmp"),
+		wxFileDialog saveFileDialog( mainFrame, _("Export view 3D"), "PNG file (*.png)|*.png|JPG file (*.jpg)|*.jpg|Bitmap file (*.bmp)|*.bmp", "PNG file (*.png)|*.png|JPG file (*.jpg)|*.jpg|Bitmap file (*.bmp)|*.bmp", _("PNG file (*.png)|*.png|JPG file (*.jpg)|*.jpg|Bitmap file (*.bmp)|*.bmp"),
 															wxFD_SAVE, wxDefaultPosition);
 
 		if (saveFileDialog.ShowModal() == wxID_OK)
 		{
 			wxString filename(wxString(saveFileDialog.GetPath()));
 			glImage.SaveFile(filename);
-			wxLogInfo(_("Image enregistrée avec succés"));
+			wxLogInfo(_("Image saved successfully"));
 
 		}
 	}
 	else
-		wxLogError(_("Image non valide, exportation annulée"));
+		wxLogError(_("Non-allowed image. Exportation cancelled"));
 }
 
 void ProjectManager::CopyGlToFileWithDim()
 {
 	wxImage glImage;
 	wxSize sizeCapture;
-	wxCustomEntryDialog entrydiag(mainFrame,_("Veuillez saisir la taille de capture de l'image"),_("Capture 3D"));
-	entrydiag.AddTextControl(_("Largeur"),"800");
-	entrydiag.AddTextControl(_("Hauteur"),"600");
+	wxCustomEntryDialog entrydiag(mainFrame,_("Please give the size of the exported picture."),_("Export 3D View"));
+	entrydiag.AddTextControl(_("Width"),"800");
+	entrydiag.AddTextControl(_("Height"),"600");
 	if(entrydiag.ShowModal()==wxID_OK)
 	{
 		std::vector<wxString> values;
@@ -397,19 +397,19 @@ void ProjectManager::CopyGlToFileWithDim()
 		GlFrame->GetImage(glImage,sizeCapture.GetWidth(),sizeCapture.GetHeight());
 		if(glImage.IsOk())
 		{
-			wxFileDialog saveFileDialog( mainFrame, _("Exporter la vue 3D"), "", "", _("Fichiers Png (*.png)|*.png|Fichiers Jpeg (*.jpg)|*.jpg|Fichiers Bitmap (*.bmp)|*.bmp"),
+			wxFileDialog saveFileDialog( mainFrame, _("Export view 3D"), "PNG file (*.png)|*.png|JPG file (*.jpg)|*.jpg|Bitmap file (*.bmp)|*.bmp", "PNG file (*.png)|*.png|JPG file (*.jpg)|*.jpg|Bitmap file (*.bmp)|*.bmp", _("PNG file (*.png)|*.png|JPG file (*.jpg)|*.jpg|Bitmap file (*.bmp)|*.bmp"),
 																wxFD_SAVE, wxDefaultPosition);
 
 			if (saveFileDialog.ShowModal() == wxID_OK)
 			{
 				wxString filename(wxString(saveFileDialog.GetPath()));
 				glImage.SaveFile(filename);
-				wxLogInfo(_("Image enregistrée avec succés"));
+				wxLogInfo(_("Image saved successfully"));
 
 			}
 		}
 		else
-			wxLogError(_("Image non valide, exportation annulée"));
+			wxLogError(_("Non-allowed image. Exportation cancelled"));
 	}
 }
 void ProjectManager::ElementEvent(wxCommandEvent& eventElement,eventCtrl fromCtrl,Element* elementSelected)
@@ -670,13 +670,13 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 
 	if(ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Sources==0)
 	{
-		wxLogError(_("Pour executer un code de calcul vous devez au moins créer une source sonore !"));
+		wxLogError(_("Calculation requires, at least, one active sound source"));
 		return;
 	}
 
 	if(this->sceneMesh.GetNumFaces()==0)
 	{
-		wxLogError(_("Votre modèle ne comporte aucune face. Veuillez créer ou importer une scène."));
+		wxLogError(_("Your model doesn't have any face. Please create or import a model."));
 		return;
 	}
 
@@ -709,7 +709,7 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 		}
 		if(zeroFreq)
 		{
-			wxLogError(_("Pour executer un code de calcul vous devez sélectionner au moins une bande de fréquence !"));
+			wxLogError(_("Calculation requires do define a valid frequency band"));
 			return;
 		}
 	}
@@ -746,7 +746,7 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	///////////////////////////////////////////
 	if(!wxFileExists(this->PathCores+corePath+exeName))
 	{
-		wxLogError(_("L'exécutable de calcul est introuvable"));
+		wxLogError(_("Calculation .exe file not found."));
 		return;
 	}
 	///////////////////////////////////////////
@@ -754,7 +754,7 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	///////////////////////////////////////////
 	if(!this->RunCoreMaillage(coreCalculation))
 	{
-		wxLogError(_("Impossible d'executer le code de calcul sans un maillage de la scène"));
+		wxLogError(_("Calculation requires a scene meshing"));
 		return;
 	}
 
@@ -794,7 +794,7 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	wxString cmd;
 	//On attend que l'execution soit terminée
 	bool hasOutput=true;
-	wxProgressDialog progDialog(_("Execution du code de calcul"),_("Calcul de propagation sonore en cours"),10000,mainFrame,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
+	wxProgressDialog progDialog(_("Calculation execution"),_("Calculation in progress..."),10000,mainFrame,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
 
 	wxString labelOutput=exeName+" :";
 
@@ -810,24 +810,24 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	bool result=uiRunExe(mainFrame,cmd,labelOutput,&progDialog);
 	wxLongLong durationCalculation=wxDateTime::UNow().GetValue()-timeDebCalculation.GetValue();
 
-	wxLogInfo(_("Calcul terminé en %i ms"),durationCalculation.GetValue());
+	wxLogInfo(_("Calcuation time: %i ms"),durationCalculation.GetValue());
 
 	///////////////////////////////////////////
 	// Copie du fichier de projet XML dans le dossier de rapport de calcul
 	///////////////////////////////////////////
-	wxLogInfo(_("Copie des paramètres de calcul"));
+	wxLogInfo(_("Copy of calculation parameters"));
 	this->UpdateXmlFile(reportFolderName+wxFileName::GetPathSeparator());
 
 
 	///////////////////////////////////////////
 	///	On ajoute un enregistrement des résultats de calcul dans les éléments
 	///////////////////////////////////////////
-	wxLogInfo(_("Actualisation de l'onglet Rapports"));
+	wxLogInfo(_("Refreshing onglet 'Report'"));
 
 	RefreshReportFolder();
 
 	wxLongLong durationOperation=wxDateTime::UNow().GetValue()-timeDebOperation.GetValue();
-	wxLogInfo(_("Temps total de l'opération de calcul %i ms"),durationOperation.GetValue());
+	wxLogInfo(_("Total time calculation: %i ms"),durationOperation.GetValue());
 
 
 }
@@ -905,7 +905,7 @@ void ProjectManager::OnMenuImportMaterial()
 	wxString FileName;
 	if(!pyeventmode)
 	{
-		wxFileDialog openFileDialog( mainFrame, _("Importer des matériaux depuis un fichier"), "", "", _("Fichier echange CATT-Acoustic (*.txt)|*.txt|Fichier li8 Odeon (*.li8)|*.li8"),
+		wxFileDialog openFileDialog( mainFrame, _("Import material from file"), "CATT-Acoustic file (*.txt)|*.txt|li8 Odeon file (*.li8)|*.li8", "CATT-Acoustic file (*.txt)|*.txt|li8 Odeon file (*.li8)|*.li8", _("CATT-Acoustic file (*.txt)|*.txt|li8 Odeon file (*.li8)|*.li8"),
 															wxFD_OPEN, wxDefaultPosition);
 
 		if (openFileDialog.ShowModal() == wxID_OK)
@@ -936,17 +936,17 @@ void ProjectManager::ImportMaterial(wxString fromFile)
 		{
 			ImportMaterialCatt(fromFile);
 		}else{
-			wxLogInfo(_("Format de fichier inconnue"));
+			wxLogInfo(_("Unknown file format"));
 		}
 	}else{
-		wxLogError(_("Ce fichier n'existe pas"));
+		wxLogError(_("File does not exist"));
 	}
 }
 
 void ProjectManager::ImportMaterialCatt(wxString fromFile)
 {
 	wxFileName nomDeFichier(fromFile);
-	wxLogInfo(_("Importation d'une liste de matériaux provenant de CATT-Acoustic"));
+	wxLogInfo(_("Import from CATT-Acoustic file"));
 
 	//Ajout du groupe dans l'arbre du projet
 	Element* searchResult=rootScene->GetElementByType(Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_USER);
@@ -1139,7 +1139,7 @@ void ProjectManager::ImportMaterialCatt(wxString fromFile)
 					importedMaterial->UpdateDiffusionValue(16000,diffValue);
 					importedMaterial->UpdateDiffusionValue(20000,diffValue);
 				}
-				wxLogInfo(_("Importation du matériau %s"),absName);
+				wxLogInfo(_("Importation of material %s"),absName);
 				mainFrame->Update();
 				ligne=lecteur.GetLine();
 			}else{
@@ -1157,7 +1157,7 @@ void ProjectManager::ImportMaterialCatt(wxString fromFile)
 	_("Chairs");
 	_("Audiences");
 	_("Walls");
-	_("Windows");
+	_("Window");
 	_("Floors");
 
 
@@ -1166,7 +1166,7 @@ void ProjectManager::ImportMaterialCatt(wxString fromFile)
 
 void ProjectManager::ImportMaterialOdeon(wxString fromFile)
 {
-	wxLogInfo(_("Importation d'une liste de matériaux provenant d'Odeon"));
+	wxLogInfo(_("Import from Odeon file"));
 	wxFileName nomDeFichier(fromFile);
 
 	//Ajout du groupe dans l'arbre du projet
@@ -1201,7 +1201,7 @@ void ProjectManager::ImportMaterialOdeon(wxString fromFile)
 				tabAbs.push_back(lineParser.GetNextFloat());
 			if(tabAbs.size()==8)
 			{
-				wxLogInfo(_("Importation du matériau %s"),absName);
+				wxLogInfo(_("Importation of material %s"),absName);
 				//Ajout du matériau dans le groupe
 				E_Scene_Bdd_Materiaux_User_Materiau* importedMaterial=nvGroup->AppendUserMateriau(absName);
 				//*************************************************
@@ -1490,7 +1490,7 @@ void ProjectManager::OpenPropertyElement(Element* elementToOpen)
 		{
 			parentLabel=wxString::Format(" (%s)",_(parent->GetTreeLabel()));
 		}
-		this->auiManager->GetPane(this->propFrame).Caption(_("Propriétés - ")+wxString(_(elementToOpen->GetTreeLabel()))+parentLabel);
+		this->auiManager->GetPane(this->propFrame).Caption(_("Properties - ")+wxString(_(elementToOpen->GetTreeLabel()))+parentLabel);
 		this->auiManager->Update(); //maj des modifications
 	}else if(elementToOpen->IsFittingWithThisType(Element::ELEMENT_TYPE_REPORT_GABE))
 	{
@@ -1528,7 +1528,7 @@ void ProjectManager::OnMenuLoadRecepteurspSimulation(Element* elRpRecord,Element
 			recepteursPContainer.LoadRecepteursPFile(fileToLoad,sceneMesh.UnitizeVar);
 			recepteursPContainer.EnableRendering();
 		}else{
-			wxLogError(_("Ce fichier n'existe pas"));
+			wxLogError(_("File does not exist"));
 			return;
 		}
 	}
@@ -1555,7 +1555,7 @@ void ProjectManager::OnMenuLoadRecepteurssSimulation(uiTreeCtrl* fromCtrl,Elemen
 			recepteursSContainer.LoadRecepteursSFile(pathRssFile,sceneMesh.UnitizeVar,reportEle,loadingMethod);
 			recepteursSContainer.UpdateRecepteurSSConfig();
 		}else{
-			wxLogError(_("Le fichier de recepteur surfacique correspondant à cette fréquence n'existe pas."));
+			wxLogError(_("Surface receivers file does not exist for the corresponding frequency"));
 		}
 	}
 	//Demmarage de la simulation
@@ -1584,7 +1584,7 @@ void ProjectManager::OnMenuLoadParticleSimulation(uiTreeCtrl* fromCtrl,Element* 
 				particulesContainer.LoadParticleFile(pathPartFile,sceneMesh.UnitizeVar,reportEle,loadingMethod);
 
 			}else{
-				wxLogError(_("Le fichier de particule correspondant à cette fréquence n'existe pas."));
+				wxLogError(_("Particles file does not exist for the corresponding frequency"));
 			}
 		}
 	}
@@ -1615,7 +1615,7 @@ void ProjectManager::OnMenuClearSurfaceGroup(uiTreeCtrl* fromCtrl,Element* eRoot
 
 void ProjectManager::OnMenuDeleteFolder(uiTreeCtrl* fromCtrl,Element* eRoot,Element* elementWithProp)
 {
-	wxMessageDialog dialog( mainFrame, _("Êtes-vous certain de vouloir supprimer ce dossier définitivement ?"),
+	wxMessageDialog dialog( mainFrame, _("Do you really want to delete this folder?"),
 	this->mainFrame->GetLabel(), wxNO_DEFAULT|wxYES_NO|wxICON_INFORMATION);
 	if( dialog.ShowModal()==wxID_NO)
 			return;
@@ -1767,7 +1767,7 @@ void ProjectManager::OnAskSelectPosition()
 	eventUpdate.SetInt(ApplicationConfiguration::MAIN_EVENT_SWITCH_TO_CAMERA_TOOL);
 	wxPostEvent(mainFrame, eventUpdate);
 	GlFrame->modeSelectionPoint=true;
-	wxLogInfo(_("Veuillez cliquer sur la vue 3D pour affecter les coordonnées")+wxString(" :"));
+	wxLogInfo(_("Please click on the 3D view to update the coordinates")+wxString(" :"));
 }
 
 
@@ -1808,7 +1808,7 @@ void ProjectManager::NewProject()
 
 void ProjectManager::LoadCurrentProject(bool reloadXmlFile)
 {
-	wxProgressDialog progInfo(_("Chargement du projet"),_("Chargement du fichier XML"),100,mainFrame,wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
+	wxProgressDialog progInfo(_("Loading project"),_("Loading XML file"),100,mainFrame,wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
 
 	this->CloseApp(); //ferme le projet courant
 
@@ -1852,13 +1852,13 @@ void ProjectManager::LoadCurrentProject(bool reloadXmlFile)
 		}
 		if(this->rootCore==NULL || this->rootScene==NULL || this->rootResult==NULL)
 		{
-			wxLogError(_("Fichier Xml du projet endomagé, impossible de charger le projet"));
+			wxLogError(_("XML file corrupted. File can't be loaded"));
 			return;
 		}
 	}else{
 		return; //Fichier vide
 	}
-	progInfo.Update(25,_("Chargement du modèle 3D"));
+	progInfo.Update(25,_("Loading 3D scene ..."));
 	// Initialisation de la scène 3D
 	Element* elementCible=this->rootScene->GetElementByType(Element::ELEMENT_TYPE_SCENE_PROJET_CONFIGURATION);
 	if(elementCible!=NULL)
@@ -1870,7 +1870,7 @@ void ProjectManager::LoadCurrentProject(bool reloadXmlFile)
 			{
 				sceneMesh.Load(urlScene);
 			}else{
-				wxLogError(_("Modèle non existant !"));
+				wxLogError(_("Scene does not exist!"));
 			}
 		}
 		dynamic_cast<E_Scene*>(this->rootScene)->BindUpdateEvent(OnElementRootUpdate);
@@ -2119,7 +2119,7 @@ bool ProjectManager::UpdateZip(wxString folderfrom,wxString zipfilename)
     wxTempFileOutputStream out(tmpFileName);
 
     wxZipInputStream inzip(*in);
-	wxProgressDialog progInfo(_("Sauvegarde du projet"),_("Mise à jour du fichier de sauvegarde du projet"),100,mainFrame,wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
+	wxProgressDialog progInfo(_("Saving project"),_("Updating project backup"),100,mainFrame,wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
 
     wxZipOutputStream outzip(out);
 
@@ -2172,7 +2172,7 @@ bool ProjectManager::UpdateZip(wxString folderfrom,wxString zipfilename)
 				if(!inputFile.IsDir())
 				{
 
-					progInfo.Update((int)((nbUpdated/(float)nbToUpdate)*100),wxString::Format(_("Copie du fichier \n%s"),GetFittedString(progInfo,inputFile.GetFullPath())));
+					progInfo.Update((int)((nbUpdated/(float)nbToUpdate)*100),wxString::Format(_("Copy of the file\n%s"),GetFittedString(progInfo,inputFile.GetFullPath())));
 				}
 				//progInfo.Fit();
 				//progInfo.Update();
@@ -2183,7 +2183,7 @@ bool ProjectManager::UpdateZip(wxString folderfrom,wxString zipfilename)
 				//Le fichier a été modifié on compacte ce nouveau fichier dans l'archive
 				if(inputFile.IsFileReadable())
 				{
-					progInfo.Update((int)((nbUpdated/(float)nbToUpdate)*100),_(wxString::Format("Compression du fichier \n%s",GetFittedString(progInfo,showPath.GetFullPath()))));
+					progInfo.Update((int)((nbUpdated/(float)nbToUpdate)*100),_(wxString::Format("Compression of file\n%s",GetFittedString(progInfo,showPath.GetFullPath()))));
 					wxFileStream fstr(elementName);
 					outzip.PutNextEntry(entryName,realFileDate);
 					outzip<<fstr;
@@ -2211,7 +2211,7 @@ bool ProjectManager::UpdateZip(wxString folderfrom,wxString zipfilename)
 			if(wxFileExists(tabFichiers[i]))
 			{
 				wxFileName nouvFich(tabFichiers[i]);
-				progInfo.Update((int)((i/(float)nbfichier)*100),_(wxString::Format("Compression du fichier %s",nouvFich.GetFullName())));
+				progInfo.Update((int)((i/(float)nbfichier)*100),_(wxString::Format("Compression of file\n%s",nouvFich.GetFullName())));
 				wxDateTime fileTime=nouvFich.GetModificationTime();
 				outzip.PutNextEntry(entryName,fileTime);
 				wxFFileInputStream fstr(tabFichiers[i]);
@@ -2252,7 +2252,7 @@ bool ProjectManager::ZipFolder(const wxString&folderfrom,const wxString&zipfilen
 	{
 		if(sizeFree<sizeFolder)
 		{
-			wxLogError(_("Espace disque insuffisant. %li Mo requis et seulement %li Mo libre sur le disque spécifié."),(long)(sizeFolder.ToLong()/1000000),(long)(sizeFree.ToLong()/1000000));
+			wxLogError(_("Enough memory. %li Mo required, %li Mo free on the corresponding disk"),(long)(sizeFolder.ToLong()/1000000),(long)(sizeFree.ToLong()/1000000));
 			return false;
 		}
 	}
@@ -2262,7 +2262,7 @@ bool ProjectManager::ZipFolder(const wxString&folderfrom,const wxString&zipfilen
 		return UpdateZip(folderfrom,zipfilename);
 
 
-	wxProgressDialog progInfo(_("Compression du projet"),_("Compression des fichiers du projet en cours.."),100,mainFrame,wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
+	wxProgressDialog progInfo(_("Project compression"),_("Project files compression in progress ..."),100,mainFrame,wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
 	wxArrayString tabFichiers;
 	this->GetAllFolderItems(folderfrom,tabFichiers);
 	wxFFileOutputStream out(zipfilename);
@@ -2281,7 +2281,7 @@ bool ProjectManager::ZipFolder(const wxString&folderfrom,const wxString&zipfilen
 			if(wxFileExists(tabFichiers[i]))
 			{
 				wxFileName nouvFich(tabFichiers[i]);
-				progInfo.Update((int)((i/(float)nbfichier)*100),wxString::Format(_("Compression du fichier \n%s"),GetFittedString(progInfo,nouvFich.GetFullPath())));
+				progInfo.Update((int)((i/(float)nbfichier)*100),wxString::Format(_("Compression of file\n%s"),GetFittedString(progInfo,nouvFich.GetFullPath())));
 				//progInfo.Fit();
 				//progInfo.Update();
 				zip.PutNextEntry(entryName,nouvFich.GetModificationTime());
@@ -2305,67 +2305,67 @@ void ProjectManager::CreateUserPreferenceTree()
 	//Dossier Rendu 3D
 	Element* render3d_node=rootUserConfig->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_NODE,"3drendering");
 
-	_("3drendering");
+	_("3D Rendering");
 	/////////////////////////////////////////////////////////////
 	//Dossier Rendu 3D / Général
 	Element* render3d_general_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"general");
-	_("general");
+	_("Main");
 	render3d_general_node->AppendPropertyColor("colormodellines","Lignes scène",0,0,255);
 	render3d_general_node->AppendPropertyColor("colorselection","Sélection",128,0,255);
 	render3d_general_node->AppendPropertyColor("colorbackground","Fond de la scène",255,255,255);
 	render3d_general_node->AppendPropertyColor("colordefaultmodel","Couleur par défaut",125,125,125);
-	_("Lignes scène");
-	_("Sélection");
-	_("Fond de la scène");
-	_("Couleur par défaut");
+	_("Scene lines");
+	_("Selection");
+	_("Scene background");
+	_("Default color");
 	/////////////////////////////////////////////////////////////
 	//Dossier Rendu 3D / Animations
 	Element* render3d_animation_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"animations");
-	_("animations");
+	_("Animations");
 	render3d_animation_node->AppendPropertyDecimal("animation_rate","Freq affichage (Hz)",60,false,4,true,true,100,1);
 	render3d_animation_node->AppendPropertyBool("showparticle","Rendu des particules",true);
 	render3d_animation_node->AppendPropertyBool("showrecepteurss","Rendu des récepteurs surfaciques",true);
 	render3d_animation_node->AppendPropertyColor("legendtextcolour","Couleur du texte de la légende",0,0,0);
-	_("Freq affichage (Hz)");
-	_("Couleur du texte de la légende");
-	_("Pas de temps affichage (s)");
-	_("Rendu des particules");
-	_("Rendu des récepteurs surfaciques");
+	_("Render frequency (Hz)");
+	_("Label color");
+	_("Display time step (s)");
+	_("Particles display");
+	_("Surface receivers display");
 	/////////////////////////////////////////////////////////////
 	//Dossier Rendu 3D / Légendes
 	Element* render3d_legend_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"legend");
-	_("legend");
+	_("Legend");
 	render3d_legend_node->AppendPropertyFont("legend_font","Police de la légende");
 	render3d_legend_node->AppendPropertyColor("legend_text_foreground_color","Couleur du texte",0,0,0);
 	render3d_legend_node->AppendPropertyColor("legend_text_background_color","Couleur de fond du texte",255,255,255);
 	render3d_legend_node->AppendPropertyBool("legend_text_background_invisible","Fond du texte transparent",true);
-	_("Couleur du texte");
-	_("Couleur de fond du texte");
-	_("Fond du texte transparent");
+	_("Text color");
+	_("Text background color");
+	_("Transparent text background");
 
 	/////////////////////////////////////////////////////////////
 	//Dossier Rendu 3D / Carte de bruits
 	Element* render3d_soundmap_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM_ISOTEMPLATE,"soundmap");
 	render3d_soundmap_node->AppendPropertyColor("iso_line_color","Couleur des lignes iso",0,0,0);
-	_("Couleur des lignes iso");
-	_("soundmap");
+	_("Iso-lines color");
+	_("Sound map");
 	/////////////////////////////////////////////////////////////
 	//Dossier Rendu 3D / Particules
 	Element* render3d_particle_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"particle");
 	render3d_particle_node->AppendPropertyColor("particle_color","Couleur des particules",15,15,128);
-	_("Couleur des particules");
-	_("particle");
+	_("Color of particles");
+	_("Particles");
 
 	/////////////////////////////////////////////////////////////
 	//Dossier préférence générale
 	Element* main_node=rootUserConfig->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_NODE,"mainpref");
-	_("mainpref");
+	_("General");
 	/////////////////////////////////////////////////////////////
 	//Dossier Général / Historique
 	Element* main_history_node=main_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"history");
-	_("history");
+	_("History");
 	main_history_node->AppendPropertyBool("keep_modification_history","Conserver l'historique des modifications",true);
-	_("Conserver l'historique des modifications");
+	_("Keep modification history");
 }
 void ProjectManager::SaveUserPreferenceTree()
 {
@@ -2412,18 +2412,18 @@ void ProjectManager::PatchUserPreferenceTree(const wxString& oldVersion)
 		/////////////////////////////////////////////////////////////
 		//Dossier préférence générale
 		Element* main_node=rootUserConfig->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_NODE,"mainpref");
-		_("mainpref");
+		_("General");
 		/////////////////////////////////////////////////////////////
 		//Dossier Général / Historique
 		Element* main_history_node=main_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"history");
-		_("history");
+		_("History");
 		main_history_node->AppendPropertyBool("keep_modification_history","Conserver l'historique des modifications",true);
-		_("Conserver l'historique des modifications");
+		_("Keep modification history");
 	}
 }
 bool ProjectManager::UnZipFolder(const wxString&zipfilename,const wxString&folderTo)
 {
-	wxProgressDialog progInfo(_("Décompression du projet"),_("Décompression des fichiers du projet en cours.."),100,mainFrame,wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
+	wxProgressDialog progInfo(_("Project decompression"),_("Project files decompression in progress ..."),100,mainFrame,wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
 	wxString fto(folderTo);
     wxZipEntryPtr entry;
     wxFFileInputStream in(zipfilename);
@@ -2445,7 +2445,7 @@ bool ProjectManager::UnZipFolder(const wxString&zipfilename,const wxString&folde
 		if(!fichToCreate.IsDir())
 		{
 			i++;
-			progInfo.Update((int)((i/(float)nbfichier)*100),wxString::Format(_("Décompression du fichier \n%s"),GetFittedString(progInfo,name)));
+			progInfo.Update((int)((i/(float)nbfichier)*100),wxString::Format(_("Dezip of file\n%s"),GetFittedString(progInfo,name)));
 			//progInfo.Fit();
 			//progInfo.Update();
 			wxFFileOutputStream out(name);
@@ -2487,7 +2487,7 @@ bool ProjectManager::Open(const wxString&filename)
 			elementCible->UpdateStringConfig("urlsave",filename);
 		}
 		//logControl->Clear();
-		wxLogInfo(_("Ouverture du projet : %s"), fProjet.GetFullName());
+		wxLogInfo(_("Loading project: %s"), fProjet.GetFullName());
 		return true;
 	}else{
 		return false;
@@ -2549,7 +2549,7 @@ bool ProjectManager::SaveTo( const wxString& filename , bool updateConfig)
 	{
 		return false;
 	}else{
-		wxProgressDialog progInfo(_("Sauvegarde du projet"),_("Mise à jour du fichier XML"),100,mainFrame,wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
+		wxProgressDialog progInfo(_("Saving project"),_("Updating XML file"),100,mainFrame,wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
 		//Sauvegarde du nom dans l'element de config
 		Element* elementCible=this->rootScene->GetElementByType(Element::ELEMENT_TYPE_SCENE_PROJET_CONFIGURATION);
 		if(elementCible!=NULL && updateConfig)
@@ -2564,7 +2564,7 @@ bool ProjectManager::SaveTo( const wxString& filename , bool updateConfig)
 		SetMainFrameName(pathSauvegarde.GetName(),false);
 	}
 	bool res=ZipFolder(this->dossierCourant,filename);
-	wxLogInfo(_("Sauvegarde terminée"));
+	wxLogInfo(_("Save finished"));
 	return res;
 }
 
@@ -2701,7 +2701,7 @@ void ProjectManager::OnMaillage(wxCommandEvent& event)
 		lstCore[i]=(*itfils)->GetElementInfos().libelleElement;
 		i++;
 	}
-	wxSingleChoiceDialog choiceDialog(mainFrame,_("Veuillez choisir le moteur de calcul associé au mailleur"),_("Prévisualisation du maillage"),eFilsCore.size(),&(*lstCore));
+	wxSingleChoiceDialog choiceDialog(mainFrame,_("Please chose a calculation code"),_("Display mesh"),eFilsCore.size(),&(*lstCore));
 	if(choiceDialog.ShowModal()==wxID_OK)
 	{
 		std::list<Element*>::iterator itfils=eFilsCore.begin();
@@ -2727,7 +2727,7 @@ void ProjectManager::OnCameraTool(wxCommandEvent& event)
 void ProjectManager::OnSwitchSelectionMode(wxCommandEvent& event)
 {
 	this->GlFrame->SetCurrentTool(OpenGlViewer::TOOL_MODE_SELECTION);
-	wxLogInfo(_("Outil de sélection des faces. Clic gauche sur la vue 3D pour sélectionner une face. Ctrl+ double Clic gauche pour séléctionner toute la surface."));
+	wxLogInfo(_("Select face: Left Click on the 3D view 3D to select a face; Double left Click+Ctrl to select a face entirely"));
 }
 
 
@@ -2863,7 +2863,7 @@ void ProjectManager::OnUpdateEvent(Element* elUpdate)
 }
 bool ProjectManager::LoadScene(const t_param_load_model& paramLoading)
 {
-	wxProgressDialog progInfo(_("Chargement du modèle 3D"),_("Chargement du modèle 3D"),100,mainFrame,wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
+	wxProgressDialog progInfo(_("Loading 3D scene ..."),_("Loading 3D scene ..."),100,mainFrame,wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
 	t_retrieves_groups oldFacesDistribution;
 	if(paramLoading.keepexistingfacegroup)
 		BuildFaceGroupAssociation(oldFacesDistribution);
@@ -2878,14 +2878,14 @@ bool ProjectManager::LoadScene(const t_param_load_model& paramLoading)
 		this->GlFrame->AddAnimator(&recepteursSContainer);
 		this->GlFrame->AddAnimator(&recepteursPContainer);
 
-		progInfo.Update(25,_("Chargement des faces du modèle 3D"));
-		this->AddLogMessage(wxString::Format(_("Changement du Modèle de la scène 3D : %s\n"), paramLoading.pathModel.AfterLast(wxFileName::GetPathSeparator())));
+		progInfo.Update(25,_("Loading faces of 3D scene"));
+		this->AddLogMessage(wxString::Format(_("Loading 3D scene: %s\n"), paramLoading.pathModel.AfterLast(wxFileName::GetPathSeparator())));
 		if(paramLoading.keepexistingfacegroup)
 			this->LoadFacesFromModel(&progInfo,&oldFacesDistribution,paramLoading.epsilonLinkingFaceGroup);
 		else
 			this->LoadFacesFromModel(&progInfo);
 		//On sauvegarde la nouvelle scène3D
-		progInfo.Update(50,_("Sauvegarde du modèle 3D"));
+		progInfo.Update(50,_("Saving 3D scene"));
 		this->sceneMesh.Save(this->dossierCourant+ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME);
 		//Chargement de la surface du modèle
 		ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.surfScene=this->sceneMesh.GetAireScene();
@@ -2899,7 +2899,7 @@ bool ProjectManager::LoadScene(const t_param_load_model& paramLoading)
 		this->GlFrame->RefreshElementDraw();
 		return true;
 	}else{
-		wxLogError(_("Impossible de charger le modèle 3D !"));
+		wxLogError(_("Unable to load the 3D model"));
 		return false;
 	}
 }
@@ -2908,7 +2908,7 @@ void ProjectManager::ChangeModel3d(const wxString& FileName)
 {
 	t_param_load_model paramLoading;
 	paramLoading.pathModel=FileName;
-	sceneLoadOptionDialog optDialog(mainFrame,_("Veuillez spécifier les options d'importation d'un modèle 3D."),_("Chargement d'un modèle"),paramLoading.paramTetgen);
+	sceneLoadOptionDialog optDialog(mainFrame,_("Please, select 3D scene importation options"),_("Loading 3D scene"),paramLoading.paramTetgen);
 
 	int res=optDialog.ShowModal();
 	if(res==wxID_OK)
@@ -2937,7 +2937,7 @@ void ProjectManager::BuildModel3d(vec3 debCuboide,vec3 finCuboide)
 	bool loadSuccess=this->sceneMesh.BuildModel(debCuboide,finCuboide);
 	if(loadSuccess)
 	{
-		this->AddLogMessage(_("Changement du Modèle de la scène 3D , création d'un nouveau modèle\n"));
+		this->AddLogMessage(_("Build of a 3D scene.\n"));
 		//On sauvegarde la nouvelle scène3D
 		this->sceneMesh.Save(this->dossierCourant+ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME);
 		this->ChangeModel3d(this->dossierCourant+ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME);
@@ -3132,7 +3132,7 @@ void ProjectManager::OpenNewDataWindow(Element* linkedElement)
 				shortName=".."+fileFullPath.Mid(fileFullPath.size()-71);
 
 			auiManager->AddPane(newWindow, wxAuiPaneInfo().
-				Caption(_("Feuille de données")+wxString(" - ")+shortName).FloatingSize(380,200)
+				Caption(_("Spreadsheet")+wxString(" - ")+shortName).FloatingSize(380,200)
 					  .Float().CloseButton(true).MaximizeButton(true).DestroyOnClose(true));
 
 			auiManager->Update();

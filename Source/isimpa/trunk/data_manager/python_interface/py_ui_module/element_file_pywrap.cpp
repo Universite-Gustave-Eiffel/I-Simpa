@@ -59,11 +59,11 @@ E_Report_File* GetFileElement(const wxInt32& xmlId)
 		{
 			return el;
 		}else{
-			ThrowPyException(_("Cet élément ne représente pas un fichier ou un dossier."));
+			ThrowPyException(_("This element doesn't represent a file or a folder"));
 			return NULL;
 		}
 	}else{
-		ThrowPyException(_("Cet élément n'existe pas ou plus."));
+		ThrowPyException(_("This element doesn't exist"));
 		return NULL;
 	}
 }

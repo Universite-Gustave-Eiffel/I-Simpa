@@ -44,12 +44,12 @@ class E_Scene_Encombrements: public Element
 {
 public:
 	E_Scene_Encombrements( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Encombrements",Element::ELEMENT_TYPE_SCENE_ENCOMBREMENTS,noeudCourant)
+		:Element(parent,"Fitting zone",Element::ELEMENT_TYPE_SCENE_ENCOMBREMENTS,noeudCourant)
 	{
 		
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_FITTINGS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_FITTINGS_CLOSE);
-		_("Encombrements");
+		_("Fitting zone");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;
@@ -78,7 +78,7 @@ public:
 	}
 
 	E_Scene_Encombrements( Element* parent)
-		:Element(parent,"Encombrements",Element::ELEMENT_TYPE_SCENE_ENCOMBREMENTS)
+		:Element(parent,"Fitting zone",Element::ELEMENT_TYPE_SCENE_ENCOMBREMENTS)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_FITTINGS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_FITTINGS_CLOSE);
@@ -106,8 +106,8 @@ public:
 
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_ENCOMBREMENT, _("Définir encombrement scène"),"./Bitmaps/popup_new.png"));
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_ENCOMBREMENT_CUBOIDE, _("Nouvel encombrement cuboïde"),"./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_ENCOMBREMENT, _("Define scene fitted zone "),"./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_ENCOMBREMENT_CUBOIDE, _("Define rectangular fitted zone"),"./Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 

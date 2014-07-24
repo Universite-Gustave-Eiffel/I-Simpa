@@ -53,7 +53,7 @@ public:
 	{
 		
 		this->elementInfo.userDestroyable=true;
-		_("Spectre utilisateur");
+		_("User spectrum");
 	}
 
 	E_GammeFrequence_User( Element* parent)

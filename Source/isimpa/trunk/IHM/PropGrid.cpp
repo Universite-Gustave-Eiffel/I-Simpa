@@ -242,14 +242,14 @@ void PropGrid::Paste(wxCommandEvent& event)
 
 void PropGrid::DoFillMenu(wxGridEvent& ev,wxMenu* mainMenu)
 {
-	mainMenu->Append(ID_COPIER, _("Copier"));
+	mainMenu->Append(ID_COPIER, _("Copy"));
 	if(allowPaste)
 	{
-		mainMenu->Append(ID_COLLER, _("Coller"));
+		mainMenu->Append(ID_COLLER, _("Paste"));
 		wxMenu* subMenu=new wxMenu;
-		subMenu->Append(ID_COPY_ON_COLUMN,_("à la colonne"));
-		subMenu->Append(ID_COPY_ON_ROW,_("à la ligne"));
-		mainMenu->Append(new wxUiMenuItem(mainMenu, -1,_("Affecter la même valeur"),"",wxITEM_NORMAL,subMenu));
+		subMenu->Append(ID_COPY_ON_COLUMN,_("to the column"));
+		subMenu->Append(ID_COPY_ON_ROW,_("to the row"));
+		mainMenu->Append(new wxUiMenuItem(mainMenu, -1,_("Set the same value"),"Set the same value",wxITEM_NORMAL,subMenu));
 	}
 }
 void PropGrid::OnRightClic(wxGridEvent& ev)

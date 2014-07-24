@@ -47,16 +47,16 @@ private:
 	void InitProperties()
 	{
 		this->AppendPropertyColor("couleur","Couleur",255,0,0);
-		_("Couleur"); //Pour generer le fichier de langues automatiquement
+		_("Color"); //Pour generer le fichier de langues automatiquement
 		this->AppendPropertyBool("showlabel","Afficher le libellé",true);
-		_("Afficher le libellé");
+		_("Show name");
 	}
 public:
 	E_Scene_Sources_Source_Rendu( wxXmlNode* noeudCourant ,  Element* parent)
 		:Element(parent,"Rendu",Element::ELEMENT_TYPE_SCENE_SOURCES_SOURCE_RENDU,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_3D_DISPLAY);
-		_("Rendu");
+		_("Display");
 		InitProperties();
 	}
 

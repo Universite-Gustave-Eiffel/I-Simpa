@@ -64,7 +64,7 @@ public:
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_CORES_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_CORES_CLOSE);
 		eventBinded=false;
-		_("Code de calcul");
+		_("Calculation code");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;
