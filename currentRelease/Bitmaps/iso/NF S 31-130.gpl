@@ -1,0 +1,14 @@
+GIMP Palette
+Name: NF S 31-130
+Columns: 0
+# Norme NF S 31-130 "Cartographie du bruit en milieu extérieur". Représentation de la gamme complète des niveaux sonores continus équivalents LAeq,T
+229 254 202	inférieur à 40 dB  (vert très clair)
+148 254  40	40-45 dB (vert clair)
+ 72 144   0	45-50 dB (vert moyen)
+  0 105   0	50-55 dB (vert foncé)
+255 255  40	55-60 dB (jaune)
+154  82  59	60-65 dB (marron)
+255 138  22	65-70 dB (orange)
+255  39  40	70-75 dB (rouge)
+209   0 238	75-80 dB (violet)
+ 47   0 114	supérieur à 80 dB (bleu foncé)

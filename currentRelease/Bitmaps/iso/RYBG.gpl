@@ -1,0 +1,10 @@
+GIMP Palette
+Name: RYBG
+Columns: 0
+# 6 niveaux passant par rouge, jaune, bleu, vert foncé, vert clair, blanc
+212 242 212	Blanc
+ 60 254  60	Vert clair
+  4 190   4	Vert
+  4   2 252	Bleu
+252  254  4	Jaune
+255   0   0 Rouge

@@ -1,0 +1,26 @@
+Prochaines mises à jour :
+- Lors de la correction approximative de modèle, les volumes déjà définis dans le modèle sont affichés lors de la sélection du volume à extraire;
+- Généraliser la fonction "Affecter en tant que fenêtre principale" les autres fenêtres (pas seulement la fenetre 3D);
+- Ajouter l'option -reduceonly afin d'effectuer uniquement une réduction du nombre de triangles;
+- Dans l'outil de maillage surfacique du modèle utiliser l'outil de réduction du nombre de triangles.
+- SPPS, Possibilité de désactiver l'enregistrement des vecteurs d'intensité sur les récepteurs ponctuel;
+- Format PLY triangulation des polygones présents dans le fichier;
+- Script Python(TM) de conversion du format de fichier Odeon .SUR vers format standart PLY;
+- Ajouter ui.application.registerimportformat(format description, format extension, format import method) afin de prendre en charge de nouveau format de modèle 3D via un script Python(TM);
+- Ajouter ui.application.userrequestopenfile(window title, default folder, extensions) afin de demander à l'utilisateur de spécifier un fichier;
+- Ajouter l'option "Exécuter et arrêter l'ordinateur" dans le script d'execution des codes de calculs planifiée;
+- Conversion cartographie au format VTK (ParaView)
+- Import export matériaux au format fichier XML. (copier coller fonctionne déjà)
+- Import des récepteurs à partir d'un fichier XYZ
+- Il faut pouvoir modifier le dossier WorkSpace dans les options de l'interface. Lors du premier chargement de l'interface, un dialogue permet à l'utilisateur de changer le workspace par défaut.
+- Implémentation de la caméra 3D "arcball" (http://nehe.gamedev.net/data/lessons/lesson.asp?lesson=48);
+- Ajouter les autres paramètres acoustiques dans la réalisation des cartographies (même que rp, tr, edt, g, ST ..)
+- Directivité des sources (format CLF ou SD)
+- Désactiver les autres options si le champ "Paramètres utilisateur" est renseigné
+- Correction import matériaux
+- Import des matériaux ailleur que uniquement la racine de la base de données
+- Outil de création de cartographie de coupe par rapport à un ensemble de surface
+- Option de rendu du maillage tétraèdrique
+- Option "Préparer sans executer" sur E_Core_Core afin de créer le dossier de calcul daté sans lancer le code de calcul sélectionné
+- MeshReconstruction, ajouter la méthode du Dual Contouring
+- Problème de gestion de fenêtres dans le graphique, occasionne des dysfonctionnements. Surtout sur la version ubuntu 64 bits.

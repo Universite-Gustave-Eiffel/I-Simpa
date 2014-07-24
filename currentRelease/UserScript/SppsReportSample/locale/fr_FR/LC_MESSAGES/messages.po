@@ -1,0 +1,72 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: module_sppsreport\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-01-23 15:24+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Picaut <i-simpa.ifsttar.fr>\n"
+"Language-Team: Nicolas Fortin, Judicaël Picaut <i-simpa@ifsttar.fr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.5.5\n"
+"X-Poedit-SearchPath-0: ../../..\n"
+
+#: ../../../buildhtmlreport.py:77
+msgid "Sound level"
+msgstr "Niveaux sonores"
+
+#: ../../../buildhtmlreport.py:78
+msgid "Punctual receivers"
+msgstr "Récepteurs ponctuels"
+
+#: ../../../buildhtmlreport.py:79
+msgid "Surface receivers"
+msgstr "Récepteurs surfaciques"
+
+#: ../../../buildhtmlreport.py:80
+msgid "Acoustic parameters"
+msgstr "Paramètres acoustiques"
+
+#: ../../../buildhtmlreport.py:81
+msgid "Reverberation time"
+msgstr "Temps de réverberation"
+
+#: ../../../buildhtmlreport.py:97
+msgid "SPL"
+msgstr "SPL"
+
+#: ../../../buildhtmlreport.py:161
+msgid "RT30"
+msgstr "TR30"
+
+#: ../../../buildhtmlreport.py:216
+msgid "Synthesis"
+msgstr "Synthèse"
+
+#: ../../../buildhtmlreport.py:217
+msgid "Punctual receivers"
+msgstr "Récepteurs ponctuels"
+
+#: ../../../buildhtmlreport.py:218
+msgid "Statistics"
+msgstr "Statistiques"
+
+#: ../../../buildhtmlreport.py:219
+msgid "Terms of Use"
+msgstr "Conditions d'utilisation"
+
+#: ../../../testlocale.py:8 ../../../__init__.py:164
+msgid "Make report"
+msgstr "Générer le rapport"
+
+#: ../../../__init__.py:62
+#, python-format
+msgid "TR-%g (s)"
+msgstr "TR-%g (s)"
+
+#: ../../../__init__.py:63
+msgid "EDT (s)"
+msgstr "EDT (s)"
