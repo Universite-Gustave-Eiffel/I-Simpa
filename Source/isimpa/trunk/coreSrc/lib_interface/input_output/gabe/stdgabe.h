@@ -63,7 +63,7 @@ namespace gabe_io
 		/**
 		 * @param sizeHint A la génération d'un tableau ce paramètre permet une plus grand rapiditée d'ajout des colonnes
 		 */
-		Gabe_rw(const size_t& sizeHint);
+		Gabe_rw(const std::size_t& sizeHint);
 
 		Gabe_rw();
 		/**
@@ -92,7 +92,7 @@ namespace gabe_io
 		/**
 		 * Lecture du titre d'une colonne
 		 */
-		string GetColTitle(const size_t& idcol);
+		string GetColTitle(const std::size_t& idcol);
 		/**
 		 * Retourne les types de données sur les colonnes
 		 */
@@ -102,19 +102,19 @@ namespace gabe_io
 		 * Lecture d'une colonne sous forme de chaine de caractère, n'echoue jamais
 		 * @python The coldata paramemeter is returned by this function.
 		 */
-		void ReadColStr(const size_t& idcol,stringarray& coldata);
+		void ReadColStr(const std::size_t& idcol,stringarray& coldata);
 		/*
 		 * Lecture d'une colonne sous forme de chaine de caractère
 		 * @warning Si cet indice ne correspond pas à une colonne de ce type alors cette méthode n'affectera pas le paramètre en entrée et ne lévera pas d'erreur.
 		 * @python The coldata paramemeter is returned by this function.
 		 */
-		void ReadColInt(const size_t& idcol,intarray& coldata);
+		void ReadColInt(const std::size_t& idcol,intarray& coldata);
 		/*
 		 * Lecture d'une colonne sous forme de chaine de caractère
 		 * @warning Si cet indice ne correspond pas à une colonne de ce type alors cette méthode n'affectera pas le paramètre en entrée et ne lévera pas d'erreur.
 		 * @python The coldata paramemeter is returned by this function.
 		 */
-		void ReadColFloat(const size_t& idcol,floatarray& coldata);
+		void ReadColFloat(const std::size_t& idcol,floatarray& coldata);
 
 
 		/**
@@ -131,13 +131,13 @@ namespace gabe_io
 		 * @return Nombre de colonnes
 		 * @python Use the len function to give the number of cols.
 		 */
-		size_t size() const;
+		std::size_t size() const;
 		/**
 		 * Lire une colonne en tant que chaine de caractères (compatible avec n'importe quel type de colonne)
 		 */
-		stringarray operator[](size_t indicecol);
+		stringarray operator[](std::size_t indicecol);
 	private:
-		size_t filledcols;
+		std::size_t filledcols;
 		/*
 		 * @return Indice de la première colonne non affecté, -1 si aucun
 		 */
