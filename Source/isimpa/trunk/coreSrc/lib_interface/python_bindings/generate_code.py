@@ -42,7 +42,7 @@ if __name__ == '__main__':
     mb = module_builder.module_builder_t( files=[
                                                      os.path.abspath('../dummy.hpp')
                                                  ]
-                                          , gccxml_path="C:/Program Files/gccxml/bin"
+                                          , gccxml_path=os.environ["GCCXML"]
                                           , encoding='iso-8859-1')
 
     #mb.namespace("core_mathlib").exclude()

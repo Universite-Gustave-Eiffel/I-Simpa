@@ -17,4 +17,8 @@ Debug Unix
 *.suo
 *.depend
 *.exe
+*.obj
+*~
 images/
+vc_msw/
+vc_mswd/
