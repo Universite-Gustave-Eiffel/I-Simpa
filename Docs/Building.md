@@ -22,4 +22,15 @@ Following step by step the configuration / installation of all libraries require
 
 You could be able to build I-Simpa using the I-Simpa.sln file in I-Simpa\Source\isimpa\trunk.
 
-If you get any error / unsuccess compilation, <a href="mailto:i-simpa@ifsttar.fr">Contact us</a>.
+Please note that in debug building you will need to put two folder into the debug folder that Visual Studio create:
+
+* Bitmap that contain all images for the software
+* Local that contain some .po files
+
+If you get any error / unsuccess compilation, first clean all the solution.
+
+After, remove from your X:\Users\U\AppData\Local\Temp I-Simpa folder, where X: is your hard disk letter, and U your name user.
+
+Try to rebuild all the solution. 
+
+If you still get an error, <a href="mailto:i-simpa@ifsttar.fr">Contact us</a>.
