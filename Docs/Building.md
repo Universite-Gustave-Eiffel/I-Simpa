@@ -30,6 +30,7 @@ Please note that in debug building you will need to put two folder into the debu
 If you get any error / unsuccess compilation, first clean all the solution.
 
 After, remove from your X:\Users\U\AppData\Local\Temp I-Simpa folder, where X: is your hard disk letter, and U your name user.
+NB: AppData is an hidden directory, change display configuration on your windows explorer to see it.
 
 Try to rebuild all the solution. 
 
