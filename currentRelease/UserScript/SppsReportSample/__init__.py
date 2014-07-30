@@ -126,7 +126,7 @@ def MakeHtmlReport(folderwxid):
     rotated=zip(*subelementsid) #Inversion lignes, colonnes
 
     #Recuperation des données pour les récepteurs ponctuels
-    prfolder=rotated[0][rotated[2].index(u'Récepteurs_Ponctuels')]
+    prfolder=rotated[0][rotated[2].index(u'Punctual receivers')]
     pr_dict=GetPonctualReceiversData(prfolder)
     #Recuperation des données pour les récepteurs surfacique
     if 'recepteurss' in rotated[2]:

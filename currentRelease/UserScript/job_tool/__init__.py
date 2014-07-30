@@ -125,7 +125,7 @@ class JobManager(object):
     def ExportJobLst(self,idel):
         pass
     def PrintJobLst(self,idel):
-        print _(u"%i tâches :" % (len(self.joblst)))
+        print _(u"%i tasks:" % (len(self.joblst)))
         for job in self.joblst:
             print job.to_str()
 
@@ -138,13 +138,13 @@ class manager:
         self.print_jobs_id=ui.application.register_event(self.jmanager.PrintJobLst)
     def getmenu(self,typeel,idel,menu):
         submenu=[]
-        submenu.append((_(u"Ajouter le calcul"),self.addcalculation_id))
+        submenu.append((_(u"Add calculation in the job list"),self.addcalculation_id))
         submenu.append(())
-        submenu.append((_(u"Effacer la liste de travail"),[(_(u"Confirmation"),self.clear_jobs_id)]))
-        submenu.append((_(u"Executer la liste de travail"),self.execute_jobs_id))
-        submenu.append((_(u"Afficher la liste de travail"),self.print_jobs_id))
+        submenu.append((_(u"Clear job list"),[(_(u"Confirmation"),self.clear_jobs_id)]))
+        submenu.append((_(u"Run job list"),self.execute_jobs_id))
+        submenu.append((_(u"Show job list"),self.print_jobs_id))
         menu.insert(2,())
-        menu.insert(2,(_(u"Liste de travail"),submenu))
+        menu.insert(2,(_(u"Job list"),submenu))
         return True
 menu_manager=manager()
 ui.application.register_menu_manager(ui.element_type.ELEMENT_TYPE_CORE_SPPS,menu_manager )

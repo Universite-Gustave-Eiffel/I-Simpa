@@ -43,7 +43,7 @@ class E_Scene_Bdd_Materiaux_App_Group: public Element
 {
 public:
 	E_Scene_Bdd_Materiaux_App_Group( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Groupe",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_APP_GROUP,noeudCourant)
+		:Element(parent,"Group",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_APP_GROUP,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_APPLICATION_MATERIALS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_APPLICATION_MATERIALS_CLOSE);

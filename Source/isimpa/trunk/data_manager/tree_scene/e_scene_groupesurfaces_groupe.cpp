@@ -41,7 +41,7 @@
 
 
 E_Scene_Groupesurfaces_Groupe::E_Scene_Groupesurfaces_Groupe( wxXmlNode* noeudCourant ,  Element* parent)
-	:E_Drawable(parent,"groupe",Element::ELEMENT_TYPE_SCENE_GROUPESURFACES_GROUPE,noeudCourant)
+	:E_Drawable(parent,"Group",Element::ELEMENT_TYPE_SCENE_GROUPESURFACES_GROUPE,noeudCourant)
 {
 	SetIcon(GRAPH_STATE_EXPANDED,GRAPH_SURFACES_OPEN);
 	SetIcon(GRAPH_STATE_NORMAL,GRAPH_SURFACES_CLOSE);

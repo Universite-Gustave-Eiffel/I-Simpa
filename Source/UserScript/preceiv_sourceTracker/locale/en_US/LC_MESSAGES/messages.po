@@ -16,63 +16,21 @@ msgstr ""
 "X-Poedit-SearchPath-0: ../../..\n"
 
 #: ../../../__ui_startup__.py:97
-msgid "Nom de la source"
+msgid "Source name"
 msgstr "Source name"
 
 #: ../../../__ui_startup__.py:98
-msgid "Sélection d'une source"
+msgid "Source selection"
 msgstr "Source selection"
 
 #: ../../../__ui_startup__.py:98
-msgid "Veuillez choisir la source :"
+msgid "Please choose the source:"
 msgstr "Please choose the source:"
 
 #: ../../../__ui_startup__.py:110
-msgid "Lier à la position d'une source"
-msgstr "Link to the position of a source"
+msgid "Link to the source position"
+msgstr "Link to the source position"
 
 #: ../../../__ui_startup__.py:113
-msgid "Supprimer le lien à la position d'une source"
+msgid "Delete the link with the source"
 msgstr "Delete the link with the source"
-
-#~ msgid "Ponctual receiver name"
-#~ msgstr "Ponctual receiver name"
-
-#~ msgid "Global"
-#~ msgstr "Global"
-
-#~ msgid "Normalise SPL"
-#~ msgstr "Normalise SPL"
-
-#~ msgid "SPL_norm"
-#~ msgstr "RP_norm"
-
-#~ msgid "Sound level"
-#~ msgstr "Niveaux sonores"
-
-#~ msgid "Surface receivers"
-#~ msgstr "Récepteurs de surfaces"
-
-#~ msgid "Acoustic parameters"
-#~ msgstr "Paramètres acoustiques"
-
-#~ msgid "Reverberation time"
-#~ msgstr "Temps de réverberation"
-
-#~ msgid "RT30"
-#~ msgstr "TR30"
-
-#~ msgid "Synthesis"
-#~ msgstr "Synthèse"
-
-#~ msgid "Punctual receivers"
-#~ msgstr "Récepteurs ponctuels"
-
-#~ msgid "Statistics"
-#~ msgstr "Statistiques"
-
-#~ msgid "Terms of Use"
-#~ msgstr "Conditions d'utilisation"
-
-#~ msgid "Make report"
-#~ msgstr "Générer le rapport"

@@ -102,7 +102,7 @@ public:
 	}
 	void InitEncombrementProp()
 	{
-		this->AppendPropertyPosition("ba","Origine volume",vec3(0,0,0));
+		this->AppendPropertyPosition("ba","Origin",vec3(0,0,0));
 		this->AppendPropertyPosition("hc","Destination volume",vec3(0,0,0));
 		_("Origin");
 		_("Destination");

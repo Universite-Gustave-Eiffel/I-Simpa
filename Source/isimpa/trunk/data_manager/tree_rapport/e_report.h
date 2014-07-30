@@ -48,7 +48,7 @@ void (*pointeurFonctionEvent)(Element*);
 bool eventBinded;
 public:
 	E_Report( wxXmlNode* noeudCourant )
-		:Element(NULL,"Résultats",Element::ELEMENT_TYPE_RESULT_ROOT ,noeudCourant)
+		:Element(NULL,"Results",Element::ELEMENT_TYPE_RESULT_ROOT ,noeudCourant)
 	{
 		eventBinded=false;
 		_("Results");
@@ -83,13 +83,13 @@ public:
 	}
 
 	E_Report( )
-		:Element(NULL,"Résultats",Element::ELEMENT_TYPE_RESULT_ROOT)
+		:Element(NULL,"Results",Element::ELEMENT_TYPE_RESULT_ROOT)
 	{
 		eventBinded=false;
 		wxString ReportFolder=ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath+ApplicationConfiguration::CONST_REPORT_FOLDER_PATH;
 		if(!wxFileExists(ReportFolder))
 			wxMkdir(ReportFolder);
-		this->AppendFils(new E_Report_Folder(this,"Résultats",ApplicationConfiguration::CONST_REPORT_FOLDER_PATH));
+		this->AppendFils(new E_Report_Folder(this,"Results",ApplicationConfiguration::CONST_REPORT_FOLDER_PATH));
 	}
 	/**
 		Initialise le pointeur de méthode vers le gestionnaire de projet

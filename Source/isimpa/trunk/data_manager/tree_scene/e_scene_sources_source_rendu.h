@@ -53,7 +53,7 @@ private:
 	}
 public:
 	E_Scene_Sources_Source_Rendu( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Rendu",Element::ELEMENT_TYPE_SCENE_SOURCES_SOURCE_RENDU,noeudCourant)
+		:Element(parent,"Display",Element::ELEMENT_TYPE_SCENE_SOURCES_SOURCE_RENDU,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_3D_DISPLAY);
 		_("Display");
@@ -61,7 +61,7 @@ public:
 	}
 
 	E_Scene_Sources_Source_Rendu( Element* parent)
-		:Element(parent,"Rendu",Element::ELEMENT_TYPE_SCENE_SOURCES_SOURCE_RENDU)
+		:Element(parent,"Display",Element::ELEMENT_TYPE_SCENE_SOURCES_SOURCE_RENDU)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_3D_DISPLAY);
 		InitProperties();

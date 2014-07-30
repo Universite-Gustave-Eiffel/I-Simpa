@@ -119,7 +119,7 @@ public:
 	struct t_PropFace
 	{
 		int idMaterial;				/*!< Indice du materiau */
-		int idRecepteurSurfacique;	/*!< Indice du recepteur surfacique */
+		int idRecepteurSurfacique;	/*!< Indice du récepteur surfacique */
 		int idEncombrement;			/*!< Indice de l'encombrement */
 		t_PropFace(){idMaterial=0;idRecepteurSurfacique=-1;idEncombrement=-1;};
 	};

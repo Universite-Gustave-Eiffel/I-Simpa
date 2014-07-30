@@ -46,7 +46,7 @@ class E_Scene_Sources: public Element
 {
 public:
 	E_Scene_Sources( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Sources sonores",Element::ELEMENT_TYPE_SCENE_SOURCES,noeudCourant)
+		:Element(parent,"Sound sources",Element::ELEMENT_TYPE_SCENE_SOURCES,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_SOUND_SOURCES_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_SOUND_SOURCES_CLOSE);
@@ -94,7 +94,7 @@ public:
 	}
 
 	E_Scene_Sources( Element* parent)
-		:Element(parent,"Sources sonores",Element::ELEMENT_TYPE_SCENE_SOURCES)
+		:Element(parent,"Sound sources",Element::ELEMENT_TYPE_SCENE_SOURCES)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_SOUND_SOURCES_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_SOUND_SOURCES_CLOSE);
@@ -220,8 +220,10 @@ public:
 
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SOURCE, _("New source"),"./Bitmaps/popup_new.png"));
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SOURCE_GROUP, _("New group"),"./Bitmaps/popup_new.png"));
+		std::string path=getenv("ISIMPA");
+		std::string bitmapPath= path +  "/currentRelease";
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SOURCE, _("New source"),bitmapPath + "/Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SOURCE_GROUP, _("New group"),bitmapPath + "/Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 

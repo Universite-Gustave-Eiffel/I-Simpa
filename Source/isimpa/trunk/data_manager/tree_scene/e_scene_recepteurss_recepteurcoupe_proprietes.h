@@ -59,7 +59,7 @@ private:
 	}
 public:
 	E_Scene_Recepteurss_RecepteurCoupe_Proprietes( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Propriétés",Element::ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEURCOUPE_PROPRIETES,noeudCourant)
+		:Element(parent,"Properties",Element::ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEURCOUPE_PROPRIETES,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
 		_("Properties");
@@ -68,7 +68,7 @@ public:
 	}
 
 	E_Scene_Recepteurss_RecepteurCoupe_Proprietes( Element* parent)
-		:Element(parent,"Propriétés",Element::ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEURCOUPE_PROPRIETES)
+		:Element(parent,"Properties",Element::ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEURCOUPE_PROPRIETES)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
 		InitProperties();

@@ -17,10 +17,10 @@ def MakeLineRecp(recpgroupindice,startpoint=[0,0,0],quantity=1,step=[1,0,0]):
     recpgroup=ui.element(recpgroupindice)
     #on recupere tout les indices des récepteurs ponctuels déjà présents
     oldrecplst=recpgroup.getallelementbytype(ui.element_type.ELEMENT_TYPE_SCENE_RECEPTEURSP_RECEPTEUR)
-    #On construit les quantity nouveaux recepteur ponctuels
+    #On construit les quantity nouveaux récepteurs ponctuels
     for i in range(0,quantity):
         ui.application.sendevent(recpgroup,ui.idevent.IDEVENT_NEW_RECEPTEUR_P)
-    #on cherche a obtenir les indices des nouvaux recepteur ponctuels
+    #on cherche a obtenir les indices des nouveaux récepteurs ponctuels
     newrecplst=recpgroup.getallelementbytype(ui.element_type.ELEMENT_TYPE_SCENE_RECEPTEURSP_RECEPTEUR)
     createdrecp=[]
     for recp in newrecplst:
@@ -48,26 +48,26 @@ class manager:
     def getmenu(self,typeel,idel,menu):
         #si le groupe n'est pas vide
         if len(ui.element(idel).childs())>0:
-            menu.insert(2,(_(u"Orienter le groupe vers.."),self.alignfuncid))
-            menu.insert(2,(_(u"Translation des récepteurs ponctuels"),self.translaterpfuncid))
-            menu.insert(2,(_(u"Rotation des récepteurs ponctuels"),self.rotaterpfuncid))
+            menu.insert(2,(_(u"Orient the group to a position"),self.alignfuncid))
+            menu.insert(2,(_(u"Translation of receivers"),self.translaterpfuncid))
+            menu.insert(2,(_(u"Rotation of receivers"),self.rotaterpfuncid))
             menu.insert(2,())
-        menu.insert(2,(_(u"Créer une grille de récepteurs ponctuels"),self.makelinerecpid,"Bitmaps/popup_new.png"))
+        menu.insert(2,(_(u"Create a receiver grid"),self.makelinerecpid,"Bitmaps/popup_new.png"))
         return True
     def makeline(self,idel):
-        lbl_startpt=_(u"Point de départ [x,y,z]")
-        lbl_nbrecp=_(u"Nombre de récepteurs ponctuels en ligne")
-        lbl_nbrecpcol=_(u"Nombre de récepteurs ponctuels en colonne")
-        lbl_step=_(u"Pas ligne [x,y,z]")
-        lbl_stepcol=_(u"Pas colonne [x,y,z]")
+        lbl_startpt=_(u"Starting position [x,y,z] (m)")
+        lbl_nbrecp=_(u"Number of rows")
+        lbl_nbrecpcol=_(u"Number of cols")
+        lbl_step=_(u"Row step [x,y,z] (m)")
+        lbl_stepcol=_(u"Col step [x,y,z] (m)")
         inputs={ lbl_startpt : "[0.,0.,0.]",
                   lbl_nbrecp : "1",
                   lbl_nbrecpcol : "1",
                    lbl_step : "[1.,0.,0.]",
                    lbl_stepcol : "[0.,1.,0.]"
                     }
-        res=ui.application.getuserinput(_(u"Créer une grille de récepteurs ponctuels"),
-                                    _(u"Veuillez saisir les informations pour créer la grille de récepteurs ponctuels."),
+        res=ui.application.getuserinput(_(u"Create a receiver grid"),
+                                    _(u"Please fill the following fields to create the receivers points grid"),
                                     inputs)
         if res[0]:
             startpoint=eval(res[1][lbl_startpt])
@@ -78,9 +78,9 @@ class manager:
             MakeGridRecp(idel,startpoint,nbrecp,nbrecpcol,step,stepcol)
     def align_on_same_point(self,idel):
         
-        lbl_topt=_(u"Orienter vers [x,y,z]")
-        res=ui.application.getuserinput(_(u"Orienter un groupe de récepteur vers un point dans l'espace."),
-                                    _(u"Veuillez saisir les coordonnées du point d'orientation."),
+        lbl_topt=_(u"Orient to position [x,y,z]")
+        res=ui.application.getuserinput(_(u"Orient a group of receivers to a point"),
+                                    _(u"Please enter the coordinates of the orientation point"),
                                     { lbl_topt : "[0.,0.,0.]"
                                         })
         if res[0]:
@@ -91,9 +91,9 @@ class manager:
                 recp=ui.element(recpid)
                 recp.updatepositionconfig("direction_dot",topt)
     def rotate(self,idgrp):
-        lbl_vec=_(u"Vecteur de rotation")
-        lbl_angle=_(u"Angle (degrés)")
-        lbl_rotation_pos=_(u"Centre de rotation")
+        lbl_vec=_(u"Vector of rotation (m)")
+        lbl_angle=_(u"Angle of rotation (degrees)")
+        lbl_rotation_pos=_(u"Rotation center (m)")
 
         #on recupere le groupe des rp
         rpgroup=ui.element(idgrp)
@@ -105,7 +105,7 @@ class manager:
             #On recupere la position du récepteur ponctuel
             centregroup+=vec3(rpEl.getpositionconfig("pos_recepteur"))
         centregroup/=len(rplst)
-        res=ui.application.getuserinput(_(u"Rotation d'un groupe de récepteurs ponctuels"),
+        res=ui.application.getuserinput(_(u"Rotation of a group of receivers"),
                                     "",
                                     { lbl_vec : "[0.,0.,1.]",
                                       lbl_angle : "90",
@@ -117,7 +117,7 @@ class manager:
                 anglerotation=float(res[1][lbl_angle])
                 centregroup=vec3(eval(res[1][lbl_rotation_pos]))
             except:
-                print(_(u"Erreur de saisie des paramètres"),file=sys.stderr)
+                print(_(u"Wrong parameters"),file=sys.stderr)
                 return
             for rp in rplst:
                 rpEl=ui.element(rp)
@@ -126,7 +126,7 @@ class manager:
                 rpEl.updatepositionconfig("pos_recepteur",[rotatedpos.x,rotatedpos.y,rotatedpos.z])
     def translate(self,idgrp):
         lbl_vec=_(u"Direction (m)")
-        res=ui.application.getuserinput(_(u"Translation d'un groupe de récepteurs ponctuel"),
+        res=ui.application.getuserinput(_(u"Translation of a group of receivers"),
                                     "",
                                     { lbl_vec : "[1.,0.,0.]"
                                         })
@@ -134,7 +134,7 @@ class manager:
             try:
                 vectranslation=vec3(eval(res[1][lbl_vec]))
             except:
-                print(_(u"Erreur de saisie des paramètres"),file=sys.stderr)
+                print(_(u"Wrong parameters"),file=sys.stderr)
                 return
             #on recupere le groupe des rp
             rpgroup=ui.element(idgrp)

@@ -45,7 +45,7 @@ class E_Scene_Bdd: public Element
 {
 public:
 	E_Scene_Bdd( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Base de données du projet",Element::ELEMENT_TYPE_SCENE_BDD,noeudCourant)
+		:Element(parent,"Project database",Element::ELEMENT_TYPE_SCENE_BDD,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_DATABASE_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_DATABASE_CLOSE);
@@ -74,7 +74,7 @@ public:
 	}
 
 	E_Scene_Bdd( Element* parent)
-		:Element(parent,"Base de données du projet",Element::ELEMENT_TYPE_SCENE_BDD)
+		:Element(parent,"Project database",Element::ELEMENT_TYPE_SCENE_BDD)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_DATABASE_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_DATABASE_CLOSE);

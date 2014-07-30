@@ -182,7 +182,7 @@ void ApplicationConfiguration::GetFaceLink( std::vector<std::vector<t_PropFace> 
 			{
 				if((*itfils)->GetElementInfos().typeElement==Element::ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEUR)
 				{
-					//Pour chaque recepteur surfaciques
+					//Pour chaque récepteur surfacique
 					Element* egroupeSurfFolder=(*itfils)->GetElementByType(Element::ELEMENT_TYPE_SCENE_GROUPESURFACES_GROUPE);
 					if(egroupeSurfFolder)
 					{

@@ -128,7 +128,7 @@ public:
 	 */	
 	void ToCBINFormat(formatCoreBIN::ioModel& modelExport);
 	/**
-	 * Construit le fichier .var de contrainte des faces. A partir des faces associées aux recepteur surfacique définit une surface de tetrahèdre maximal en contact.
+	 * Construit le fichier .var de contrainte des faces. A partir des faces associées aux récepteur surfacique définit une surface de tetrahèdre maximal en contact.
 	 * @param filename Chemin et nom du fichier de maillage
 	 * @param faceAreaContraint Contrainte de surface des tetrahèdres en m²
 	 */

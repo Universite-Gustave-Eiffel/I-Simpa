@@ -60,6 +60,7 @@
 class Element
 {
 	private:
+		std::string   bitmapPath;
 		static long nbElement;
 		void SaveChildren(wxXmlNode* NoeudCourant);
 		wxXmlNode* GenericSaveXmlDoc(wxXmlNode* NoeudParent);

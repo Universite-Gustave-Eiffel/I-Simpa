@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: module_sppsreport\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-23 15:22+0100\n"
+"Report-Msgid-Bugs-To: 2014-07-24 13:57\n"
+"POT-Creation-Date: 2014-07-30 13:29+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Picaut <i-simpa.ifsttar.fr>\n"
 "Language-Team: Nicolas Fortin, Judicaël Picaut <i-simpa@ifsttar.fr>\n"
@@ -12,67 +12,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
 #: ../../../__init__.py:139
-msgid "Nom de la source"
+msgid "Source name"
 msgstr "Source name"
 
 #: ../../../__init__.py:140
-msgid "Sélection d'une source"
+msgid "Source selection"
 msgstr "Source selection"
 
 #: ../../../__init__.py:140
-msgid "Veuillez choisir la source :"
+msgid "Please choose the source:"
 msgstr "Please choose the source:"
 
 #: ../../../__init__.py:166 ../../../__init__.py:172
-msgid "Lier à la position d'une source"
-msgstr "Link to the position of a source"
+msgid "Link to the source position"
+msgstr "Link to the source position"
 
 #: ../../../__init__.py:169
-msgid "Supprimer le lien à la position d'une source"
+msgid "Delete the link with the source"
 msgstr "Delete the link with the source"
-
-#~ msgid "Ponctual receiver name"
-#~ msgstr "Ponctual receiver name"
-
-#~ msgid "Global"
-#~ msgstr "Global"
-
-#~ msgid "Normalise SPL"
-#~ msgstr "Normalise SPL"
-
-#~ msgid "SPL_norm"
-#~ msgstr "RP_norm"
-
-#~ msgid "Sound level"
-#~ msgstr "Niveaux sonores"
-
-#~ msgid "Surface receivers"
-#~ msgstr "Récepteurs de surfaces"
-
-#~ msgid "Acoustic parameters"
-#~ msgstr "Paramètres acoustiques"
-
-#~ msgid "Reverberation time"
-#~ msgstr "Temps de réverberation"
-
-#~ msgid "RT30"
-#~ msgstr "TR30"
-
-#~ msgid "Synthesis"
-#~ msgstr "Synthèse"
-
-#~ msgid "Punctual receivers"
-#~ msgstr "Récepteurs ponctuels"
-
-#~ msgid "Statistics"
-#~ msgstr "Statistiques"
-
-#~ msgid "Terms of Use"
-#~ msgstr "Conditions d'utilisation"
-
-#~ msgid "Make report"
-#~ msgstr "Générer le rapport"

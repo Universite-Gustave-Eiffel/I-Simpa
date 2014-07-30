@@ -247,7 +247,7 @@ void BaseReportManager::SauveRecepteursSurfaciquesCoupe(stringClass rootFolder,s
 			}
 		}
 
-		//Ajout d'un recepteur surfacique
+		//Ajout d'un récepteur surfacique
 		mainData.tabRs[idRs].dataRec.xmlIndex=(**itrs).idRecepteurS;
 		mainData.tabRs[idRs].dataRec.quantFaces=(**itrs).nbrows*(**itrs).nbcols*2;
 		tabRecepteurS[idRs]->name.copy(mainData.tabRs[idRs].dataRec.recepteurSName,STRING_SIZE-1);

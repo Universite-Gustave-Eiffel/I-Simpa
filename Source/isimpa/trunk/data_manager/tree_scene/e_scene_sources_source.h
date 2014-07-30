@@ -94,7 +94,7 @@ public:
 		ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Sources++;
 		this->AppendFils(new E_Scene_Sources_Source_Proprietes(this));
 		this->AppendFils(new E_Scene_Sources_Source_Rendu(this));
-		this->AppendFils(new E_Property_Freq(this,"Puissance"));
+		this->AppendFils(new E_Property_Freq(this,"Sound power"));
 		_("Sound power");
 		this->AppendPropertyPosition("pos_source","Position",vec3(0,0,0),true);
 		_("Position");

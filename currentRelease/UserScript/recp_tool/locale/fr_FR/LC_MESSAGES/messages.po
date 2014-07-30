@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: module_recp_tools\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-12 15:21+0100\n"
+"POT-Creation-Date: 2014-07-30 13:38+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Picaut <i-simpa.ifsttar.fr>\n"
 "Language-Team: \n"
@@ -11,83 +11,81 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: .\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
 #: ../../../__init__.py:51
-msgid "Orienter le groupe vers.."
-msgstr "Orientation du groupe vers un point"
+msgid "Orient the group to a position"
+msgstr "Orienter le groupe vers.."
 
 #: ../../../__init__.py:52
-msgid "Translation des récepteurs ponctuels"
+msgid "Translation of receivers"
 msgstr "Translation des récepteurs ponctuels"
 
 #: ../../../__init__.py:53
-msgid "Rotation des récepteurs ponctuels"
+msgid "Rotation of receivers"
 msgstr "Rotation des récepteurs ponctuels"
 
 #: ../../../__init__.py:55 ../../../__init__.py:69
-msgid "Créer une grille de récepteurs ponctuels"
+msgid "Create a receiver grid"
 msgstr "Créer une grille de récepteurs ponctuels"
 
 #: ../../../__init__.py:58
-msgid "Point de départ [x,y,z]"
-msgstr "Point de départ [x,y,z] (m)"
+msgid "Starting position [x,y,z] (m)"
+msgstr "Point de départ [x,y,z]"
 
 #: ../../../__init__.py:59
-msgid "Nombre de récepteurs ponctuels en ligne"
-msgstr "Nombre de récepteurs ponctuels sur une ligne"
+msgid "Number of rows"
+msgstr "Nombre de récepteurs ponctuels en ligne"
 
 #: ../../../__init__.py:60
-msgid "Nombre de récepteurs ponctuels en colonne"
-msgstr "Nombre de récepteurs ponctuels sur une colonne"
+msgid "Number of cols"
+msgstr "Nombre de récepteurs ponctuels en colonne"
 
 #: ../../../__init__.py:61
-msgid "Pas ligne [x,y,z]"
-msgstr "Pas ligne [x,y,z] (m)"
+msgid "Row step [x,y,z] (m)"
+msgstr "Pas ligne [x,y,z]"
 
 #: ../../../__init__.py:62
-msgid "Pas colonne [x,y,z]"
-msgstr "Pas colonne [x,y,z] (m)"
+msgid "Col step [x,y,z] (m)"
+msgstr "Pas colonne [x,y,z]"
 
 #: ../../../__init__.py:70
-msgid ""
-"Veuillez saisir les informations pour créer la grille de récepteurs "
-"ponctuels."
+msgid "Please fill the following fields to create the receivers points grid"
 msgstr ""
 "Veuillez saisir les informations pour créer la grille de récepteurs "
 "ponctuels."
 
 #: ../../../__init__.py:81
-msgid "Orienter vers [x,y,z]"
-msgstr "Orienter vers le point [x,y,z]"
+msgid "Orient to position [x,y,z]"
+msgstr "Orienter vers [x,y,z]"
 
 #: ../../../__init__.py:82
-msgid "Orienter un groupe de récepteur vers un point dans l'espace."
-msgstr "Orienter un groupe de récepteurs vers un point dans l'espace"
+msgid "Orient a group of receivers to a point"
+msgstr "Orienter un groupe de récepteur vers un point dans l'espace."
 
 #: ../../../__init__.py:83
-msgid "Veuillez saisir les coordonnées du point d'orientation."
-msgstr "Veuillez saisir les coordonnées du point d'orientation"
+msgid "Please enter the coordinates of the orientation point"
+msgstr "Veuillez saisir les coordonnées du point d'orientation."
 
 #: ../../../__init__.py:94
-msgid "Vecteur de rotation"
-msgstr "Axe de rotation (m)"
+msgid "Vector of rotation (m)"
+msgstr "Vecteur de rotation"
 
 #: ../../../__init__.py:95
-msgid "Angle (degrés)"
-msgstr "Angle de rotation (degrés)"
+msgid "Angle of rotation (degrees)"
+msgstr "Angle (degrés)"
 
 #: ../../../__init__.py:96
-msgid "Centre de rotation"
-msgstr "Centre de rotation (m)"
+msgid "Rotation center (m)"
+msgstr "Centre de rotation"
 
 #: ../../../__init__.py:108
-msgid "Rotation d'un groupe de récepteurs ponctuels"
+msgid "Rotation of a group of receivers"
 msgstr "Rotation d'un groupe de récepteurs ponctuels"
 
 #: ../../../__init__.py:120 ../../../__init__.py:137
-msgid "Erreur de saisie des paramètres"
+msgid "Wrong parameters"
 msgstr "Erreur de saisie des paramètres"
 
 #: ../../../__init__.py:128
@@ -95,8 +93,5 @@ msgid "Direction (m)"
 msgstr "Direction (m)"
 
 #: ../../../__init__.py:129
-msgid "Translation d'un groupe de récepteurs ponctuel"
-msgstr "Translation d'un groupe de récepteurs ponctuels"
-
-#~ msgid "Make report"
-#~ msgstr "Générer le rapport"
+msgid "Translation of a group of receivers"
+msgstr "Translation d'un groupe de récepteurs ponctuel"

@@ -43,7 +43,7 @@ class E_Scene_Bdd_Spectrums_User: public Element
 {
 public:
 	E_Scene_Bdd_Spectrums_User( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Utilisateur",Element::ELEMENT_TYPE_SCENE_BDD_SPECTRUMS_USER,noeudCourant)
+		:Element(parent,"User",Element::ELEMENT_TYPE_SCENE_BDD_SPECTRUMS_USER,noeudCourant)
 	{
 		insertPasteMenu=true;
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_USER_SPECTRUMS_OPEN);
@@ -59,7 +59,7 @@ public:
 	}
 
 	E_Scene_Bdd_Spectrums_User( Element* parent)
-		:Element(parent,"Utilisateur",Element::ELEMENT_TYPE_SCENE_BDD_SPECTRUMS_USER)
+		:Element(parent,"User",Element::ELEMENT_TYPE_SCENE_BDD_SPECTRUMS_USER)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_USER_SPECTRUMS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_USER_SPECTRUMS_CLOSE);
@@ -69,7 +69,9 @@ public:
 	
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_USERFREQ, _("New spectrum"),"./Bitmaps/popup_new.png"));
+		std::string path=getenv("ISIMPA");
+		std::string bitmapPath= path +  "/currentRelease";
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_USERFREQ, _("New spectrum"),bitmapPath + "/Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 

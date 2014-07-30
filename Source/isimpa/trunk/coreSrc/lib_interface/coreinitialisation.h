@@ -58,9 +58,9 @@ void InitSourcesTetraLocalisation(t_TetraMesh* tetraMesh,std::vector<t_Source*>*
  */
 void InitTetraCelerite(t_TetraMesh* tetraMesh,Base_Core_Configuration& configManager);
 /**
- * Initialise la propriété des tétraèdres lié aux recepteurs ponctuels
+ * Initialise la propriété des tétraèdres lié aux récepteurs ponctuels
  * @param tetraMesh Maillage tétraèdrique de la scène
- * @param lstRecepteurP Liste des recepteurs ponctuels
+ * @param lstRecepteurP Liste des récepteurs ponctuels
  */
 void InitRecepteurPTetraLocalisation(t_TetraMesh* tetraMesh,std::vector<t_Recepteur_P*>* lstRecepteurP,Base_Core_Configuration& configManager);
 
@@ -86,7 +86,7 @@ void InitRecepteurSCut(std::vector<r_SurfCut*>& recepteursSurfaciques,Base_Core_
 /**
  * Initialise les récepteurs surfaciques. Ajoute les faces correspondantes aux recepteurs composés de plusieurs surfaces du modèle
  * @param tetraMesh Maillage tétraèdrique de la scène
- * @param lstRecepteurP Liste des recepteurs ponctuels
+ * @param lstRecepteurP Liste des récepteurs ponctuels
  */
 void InitRecepteurS(t_Mesh* sceneMesh,std::vector<r_Surf*>& recepteursSurfaciques,Base_Core_Configuration& configManager);
 

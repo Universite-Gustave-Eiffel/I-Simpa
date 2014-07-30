@@ -43,14 +43,14 @@ class E_Scene_Volumes_Volume_Rendu: public Element
 {
 public:
 	E_Scene_Volumes_Volume_Rendu( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Rendu",Element::ELEMENT_TYPE_SCENE_VOLUMES_VOLUME_RENDU,noeudCourant)
+		:Element(parent,"Display",Element::ELEMENT_TYPE_SCENE_VOLUMES_VOLUME_RENDU,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_3D_DISPLAY);
 		_("Display");
 	}
 
 	E_Scene_Volumes_Volume_Rendu( Element* parent)
-		:Element(parent,"Rendu",Element::ELEMENT_TYPE_SCENE_VOLUMES_VOLUME_RENDU)
+		:Element(parent,"Display",Element::ELEMENT_TYPE_SCENE_VOLUMES_VOLUME_RENDU)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_3D_DISPLAY);
 		this->AppendPropertyColor("volcolor","Couleur du volume",GetRandValue()*255,GetRandValue()*255,GetRandValue()*255);

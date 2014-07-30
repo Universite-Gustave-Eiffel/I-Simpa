@@ -124,6 +124,8 @@ void SortChildrensByProperty(wxXmlNode* node,const wxString& propertyName)
 
 Element::Element(Element* parent,const wxString& Nom,ELEMENT_TYPE _type,wxXmlNode* nodeElement)
 {
+	std::string path=getenv("ISIMPA");
+	this->bitmapPath= path +  "/currentRelease";
 	this->elementInfo.userDestroyable=false;
 	this->elementInfo.hidden=false;
 	this->elementInfo.exportLblToCore=false;
@@ -922,8 +924,8 @@ void Element::OnRightClic(wxMenu* leMenu)
 	if(leMenu->GetMenuItemCount()>0)
 		leMenu->AppendSeparator();
 	//leMenu->Append(IDEVENT_COPIER, _("Copier"));
-	leMenu->Append(GetMenuItem(leMenu,IDEVENT_COPIER, _("Copy"),"./Bitmaps/popup_copy.png"));
-	wxMenuItem*	pasteMenu=leMenu->Append(GetMenuItem(leMenu,IDEVENT_COLLER, _("Paste"),"./Bitmaps/popup_paste.png"));
+	leMenu->Append(GetMenuItem(leMenu,IDEVENT_COPIER, _("Copy"),this->bitmapPath + "/Bitmaps/popup_copy.png"));
+	wxMenuItem*	pasteMenu=leMenu->Append(GetMenuItem(leMenu,IDEVENT_COLLER, _("Paste"),this->bitmapPath + "/Bitmaps/popup_paste.png"));
 
 	wxTreeEvent renameEvent;
 	renameEvent.Allow();
@@ -932,10 +934,10 @@ void Element::OnRightClic(wxMenu* leMenu)
 	if(renameEvent.IsAllowed() ||  this->elementInfo.userDestroyable)
 		leMenu->AppendSeparator();
 	if(renameEvent.IsAllowed())
-		leMenu->Append(GetMenuItem(leMenu,IDEVENT_RENAME_ELEMENT, _("Rename"),"./Bitmaps/popup_rename.png"));
+		leMenu->Append(GetMenuItem(leMenu,IDEVENT_RENAME_ELEMENT, _("Rename"),this->bitmapPath + "/Bitmaps/popup_rename.png"));
 
 	if(this->elementInfo.userDestroyable)
-		leMenu->Append(GetMenuItem(leMenu,IDEVENT_DELETE_ELEMENT, _("Delete"),"./Bitmaps/popup_delete.png"));
+		leMenu->Append(GetMenuItem(leMenu,IDEVENT_DELETE_ELEMENT, _("Delete"),this->bitmapPath +"/Bitmaps/popup_delete.png"));
 
 	//Si l'element accepte des données provenant de l'exterieur, et si il y a du texte dans le presse papier
 	if(!insertPasteMenu || !wxTheClipboard->IsSupported(wxDataFormat(wxDF_TEXT)))
@@ -943,7 +945,7 @@ void Element::OnRightClic(wxMenu* leMenu)
 	if(this->IsContainsProperties())
 	{
 		leMenu->AppendSeparator();
-		leMenu->Append(GetMenuItem(leMenu,IDEVENT_GETPROPERTIES, _("Properties"),"./Bitmaps/popup_show_property.png"));
+		leMenu->Append(GetMenuItem(leMenu,IDEVENT_GETPROPERTIES, _("Properties"),this->bitmapPath + "/Bitmaps/popup_show_property.png"));
 	}
 }
 void Element::ForceBottomModified()

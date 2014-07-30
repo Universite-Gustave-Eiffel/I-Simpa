@@ -72,7 +72,7 @@ public:
 	void SetRsBinData(t_ExchangeData* rsData);
 	void SetRsBinData(t_ExchangeData& rsData);
 	/**
-	 * @return le nombre de récepteur surfaciques.
+	 * @return le nombre de récepteurs surfaciques.
 	 */
 	std::size_t GetRsCount();
 	/**
@@ -140,7 +140,7 @@ public:
 	 */
 	void GetNodePositionValue(const std::size_t& nodeIndex, float& x, float& y, float& z) const;
 	/**
-	 * Accesseur Information sur un recepteur surfacique
+	 * Accesseur Information sur un récepteur surfacique
 	 * @param[in] rsIndex Indice du récepteur de surface
 	 * @param[out] nbfaces Nombre de surfaces
 	 * @param[out] rs_name Libellé du récepteur de surface

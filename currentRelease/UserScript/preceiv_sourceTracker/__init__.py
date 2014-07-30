@@ -136,8 +136,8 @@ class managerLinkWithSourcePosition:
             dict_src[src.getinfos()["name"]]=sourceid
         srcLst=dict_src.keys()
         srcLst.sort()
-        srcsellabel=_(u"Nom de la source")
-        dialog_res=ui.application.getuserinput(_(u"Sélection d'une source"),_(u"Veuillez choisir la source :"),{srcsellabel : srcLst})
+        srcsellabel=_(u"Source name")
+        dialog_res=ui.application.getuserinput(_(u"Source selection"),_(u"Please choose the source:"),{srcsellabel : srcLst})
 
         if(dialog_res[0]==1 and srcsellabel in dialog_res[1].keys()):
             selected_sourcename=dialog_res[1][srcsellabel]
@@ -163,13 +163,13 @@ class managerLinkWithSourcePosition:
         infoParent=ui.element(infoEl["parentid"]).getinfos()
         if infoParent["typeElement"]==ui.element_type.ELEMENT_TYPE_SCENE_RECEPTEURSP_RECEPTEUR:
             if infoEl["name"]==u"direction_dot":
-                menu.insert(1,(_(u"Lier à la position d'une source"),self.linkWithSourcePositionEventId))
+                menu.insert(1,(_(u"Link to the source position"),self.linkWithSourcePositionEventId))
                 if ui.element(idel).hasproperty("linkedsource"):
 
-                    menu.insert(1,(_(u"Supprimer le lien à la position d'une source"),self.unlinkReceiverDirEventId))
+                    menu.insert(1,(_(u"Delete the link with the source"),self.unlinkReceiverDirEventId))
                 return True
             elif infoEl["name"]==u"pos_recepteur":
-                menu.insert(1,(_(u"Lier à la position d'une source"),self.linkPositionWithSourcePositionEventId))
+                menu.insert(1,(_(u"Link to the source position"),self.linkPositionWithSourcePositionEventId))
                 #todo tester si la position du récepteur est déjà lié a une source
                 return True
         return False

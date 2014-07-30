@@ -17,10 +17,10 @@ def MakeLineRecp(recpgroupindice,startpoint=[0,0,0],quantity=1,step=[1,0,0]):
     recpgroup=ui.element(recpgroupindice)
     #on recupere tout les indices des récepteurs ponctuels déjà présents
     oldrecplst=recpgroup.getallelementbytype(ui.element_type.ELEMENT_TYPE_SCENE_RECEPTEURSP_RECEPTEUR)
-    #On construit les quantity nouveaux recepteur ponctuels
+    #On construit les quantity nouveaux récepteurs ponctuels
     for i in range(0,quantity):
         ui.application.sendevent(recpgroup,ui.idevent.IDEVENT_NEW_RECEPTEUR_P)
-    #on cherche a obtenir les indices des nouvaux recepteur ponctuels
+    #on cherche a obtenir les indices des nouveaux récepteurs ponctuels
     newrecplst=recpgroup.getallelementbytype(ui.element_type.ELEMENT_TYPE_SCENE_RECEPTEURSP_RECEPTEUR)
     createdrecp=[]
     for recp in newrecplst:

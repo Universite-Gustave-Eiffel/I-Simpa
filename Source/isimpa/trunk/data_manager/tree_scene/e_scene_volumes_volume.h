@@ -104,8 +104,8 @@ public:
 		_("Volume boundary");
 		this->AppendFils(new E_Scene_Volumes_Volume_Proprietes(this));
 		this->AppendFils(new E_Scene_Volumes_Volume_Rendu(this));
-		this->AppendFils(new E_Scene_Groupesurfaces_Groupe(this,"Limites intérieures",true));
-		this->AppendPropertyPosition("volpos","Intérieur du volume",vec3(),true);
+		this->AppendFils(new E_Scene_Groupesurfaces_Groupe(this,"Volume boundary",true));
+		this->AppendPropertyPosition("volpos","Inside position",vec3(),true);
 		this->AppendPropertyEntier("idvol","idvol",GetFreeId(parent),true)->Hide();
 
 		_("Inside position");

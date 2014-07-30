@@ -43,7 +43,7 @@ class E_Scene_Projet_Information: public Element
 {
 public:
 	E_Scene_Projet_Information( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Informations",Element::ELEMENT_TYPE_SCENE_PROJET_INFORMATION,noeudCourant)
+		:Element(parent,"Information",Element::ELEMENT_TYPE_SCENE_PROJET_INFORMATION,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_INFORMATION);
 		_("Information");
@@ -66,8 +66,8 @@ public:
 	void AppendNewProperties()
 	{
 
-		this->AppendPropertyEntier("nbencombrementenable","Nombre d'encombrements actifs",0);
-		this->AppendPropertyEntier("nbsourcesenable","Nombre de sources sonores actives",0);
+		this->AppendPropertyEntier("nbencombrementenable","Number of active fitting zones",0);
+		this->AppendPropertyEntier("nbsourcesenable","Number of active sound sources",0);
 		_("Number of active fitting zones");
 		_("Number of active sound sources");
 	}
@@ -76,14 +76,14 @@ public:
 	 */
 	void InitProperties() 
 	{
-		this->AppendPropertyEntier("nbfacemodel","Nombre de faces de la scène",0);
-		this->AppendPropertyEntier("nbencombrement","Nombre d'encombrements",0);
-		this->AppendPropertyEntier("nbrecepteurp","Nombre de récepteurs ponctuels",0);
-		this->AppendPropertyEntier("nbrecepteurs","Nombre de récepteurs surfaciques",0);
-		this->AppendPropertyEntier("nbsources","Nombre de sources sonores",0);
-		this->AppendPropertyEntier("nbsurfacegroup","Nombre de groupes de surfaces",0);
-		this->AppendPropertyDecimal("volmodel","Volume total de la scène (m3)",0.f,true,1);
-		this->AppendPropertyDecimal("surfscene","Surface totale de la scène (m2)",0.f,true,1);
+		this->AppendPropertyEntier("nbfacemodel","Model face count",0);
+		this->AppendPropertyEntier("nbencombrement","Number of fitting zones",0);
+		this->AppendPropertyEntier("nbrecepteurp","Number of punctual receivers",0);
+		this->AppendPropertyEntier("nbrecepteurs","Number of surfaces receivers",0);
+		this->AppendPropertyEntier("nbsources","Number of sound sources",0);
+		this->AppendPropertyEntier("nbsurfacegroup","Number of surface groups",0);
+		this->AppendPropertyDecimal("volmodel","Scene volume (m3)",0.f,true,1);
+		this->AppendPropertyDecimal("surfscene","Scene surface (m²)",0.f,true,1);
 		AppendNewProperties();
 		this->SetReadOnlyAllConfig();
 		_("Model face count");

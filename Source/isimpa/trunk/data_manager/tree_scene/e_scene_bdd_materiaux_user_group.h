@@ -115,7 +115,7 @@ public:
 		}
 	}
 	E_Scene_Bdd_Materiaux_User_Group( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Groupe",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_USER_GROUP,noeudCourant)
+		:Element(parent,"Group",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_USER_GROUP,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_MATERIAL_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_MATERIAL_CLOSE);
@@ -131,7 +131,7 @@ public:
 	}
 
 
-	E_Scene_Bdd_Materiaux_User_Group( Element* parent,wxString nom="Groupe")
+	E_Scene_Bdd_Materiaux_User_Group( Element* parent,wxString nom="Group")
 		:Element(parent,nom,Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_USER_GROUP)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_USER_MATERIALS_OPEN);
@@ -201,8 +201,10 @@ public:
 	}
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_USERMAT, _("New material"),"./Bitmaps/popup_new.png"));
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_MATERIAL_GROUP, _("Create group"),"./Bitmaps/popup_new.png"));
+		std::string path=getenv("ISIMPA");
+		std::string bitmapPath= path +  "/currentRelease";
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_USERMAT, _("New material"),bitmapPath + "/Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_MATERIAL_GROUP, _("Create group"),bitmapPath + "/Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 	wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)

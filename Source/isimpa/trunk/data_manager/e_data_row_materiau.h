@@ -223,8 +223,8 @@ protected:
 		this->AppendPropertyDecimal("absorb","Absorption",absorb,false,precisionDecimal,true,true,1,0,true);
 		this->AppendPropertyDecimal("diffusion","Diffusion",diffusion,(absorb==1),precisionDecimal,true,true,1,0,true);
 		this->AppendPropertyBool("transmission","Transmission",transmission,false);
-		this->AppendPropertyDecimal("affaiblissement","Affaiblissement (dB)",affaiblissement,!transmission,1,false,true,0,0,true);
-		this->AppendPropertyList("loi","Loi de diffusion",Lstlois,loi,false,1,std::vector<int>(),true);
+		this->AppendPropertyDecimal("affaiblissement","Loss (dB)",affaiblissement,!transmission,1,false,true,0,0,true);
+		this->AppendPropertyList("loi","Diffusion law",Lstlois,loi,false,1,std::vector<int>(),true);
 		if(loi==0)
 			this->SetReadOnlyConfig("loi");
 		#if 0

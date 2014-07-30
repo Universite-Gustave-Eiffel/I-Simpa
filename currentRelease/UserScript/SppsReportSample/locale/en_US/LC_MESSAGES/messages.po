@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: module_sppsreport\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-23 15:23+0100\n"
+"POT-Creation-Date: 2014-07-30 13:43+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Picaut <i-simpa.ifsttar.fr>\n"
 "Language-Team: Nicolas Fortin, Judicaël Picaut <i-simpa@ifsttar.fr>\n"
@@ -11,14 +11,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
 #: ../../../buildhtmlreport.py:77
 msgid "Sound level"
 msgstr "Sound level"
 
-#: ../../../buildhtmlreport.py:78
+#: ../../../buildhtmlreport.py:78 ../../../buildhtmlreport.py:217
 msgid "Punctual receivers"
 msgstr "Punctual receivers"
 
@@ -45,10 +45,6 @@ msgstr "RT30"
 #: ../../../buildhtmlreport.py:216
 msgid "Synthesis"
 msgstr "Synthesis"
-
-#: ../../../buildhtmlreport.py:217
-msgid "Punctual receivers"
-msgstr "Punctual receivers"
 
 #: ../../../buildhtmlreport.py:218
 msgid "Statistics"

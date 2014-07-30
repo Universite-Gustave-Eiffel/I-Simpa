@@ -125,7 +125,7 @@ int MainProcess(int argc, char* argv[])
 
 		}
 		/////////////
-		// Colonnes des recepteurs ponctuels
+		// Colonnes des récepteurs ponctuels
 		std::vector<CoreString> colsLbl;
 		colsLbl.push_back("Champ direct"+CoreString(ret)+"dB SPL");
 		colsLbl.push_back("Champ total Sabine"+CoreString(ret)+"dB SPL");

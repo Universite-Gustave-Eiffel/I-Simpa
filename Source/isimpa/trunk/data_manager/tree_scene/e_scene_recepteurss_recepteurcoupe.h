@@ -50,7 +50,7 @@ class E_Scene_Recepteurss_RecepteurCoupe: public E_Drawable
 {
 public:
 	E_Scene_Recepteurss_RecepteurCoupe( wxXmlNode* noeudCourant ,  Element* parent)
-		:E_Drawable(parent,"Récepteur coupe",Element::ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEURCOUPE,noeudCourant)
+		:E_Drawable(parent,"Plane Receiver",Element::ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEURCOUPE,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_SURFACE_RECEIVER_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_SURFACE_RECEIVER_CLOSE);
@@ -89,7 +89,7 @@ public:
 	 * @param parent Element parent
 	 * @param nom Libellé du recepteur
 	 */
-	E_Scene_Recepteurss_RecepteurCoupe( Element* parent,wxString nom="Récepteur coupe")
+	E_Scene_Recepteurss_RecepteurCoupe( Element* parent,wxString nom="Plane Receiver")
 		:E_Drawable(parent,nom,Element::ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEURCOUPE)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_SURFACE_RECEIVER_OPEN);
@@ -100,9 +100,9 @@ public:
 		boundingBoxMax.set(boundingBoxMax.x,-boundingBoxMax.z,boundingBoxMax.y);
 		this->AllowMultipleSelection();
 		this->elementInfo.userDestroyable=true;
-		this->AppendPropertyPosition("verta","Sommet A",vec3(boundingBoxMin.x,boundingBoxMax.y,boundingBoxMin.z+1.6));
-		this->AppendPropertyPosition("vertb","Sommet B",vec3(boundingBoxMin.x,boundingBoxMin.y,boundingBoxMin.z+1.6));
-		this->AppendPropertyPosition("vertc","Sommet C",vec3(boundingBoxMax.x,boundingBoxMin.y,boundingBoxMin.z+1.6));
+		this->AppendPropertyPosition("verta","Vertex A",vec3(boundingBoxMin.x,boundingBoxMax.y,boundingBoxMin.z+1.6));
+		this->AppendPropertyPosition("vertb","Vertex B",vec3(boundingBoxMin.x,boundingBoxMin.y,boundingBoxMin.z+1.6));
+		this->AppendPropertyPosition("vertc","Vertex C",vec3(boundingBoxMax.x,boundingBoxMin.y,boundingBoxMin.z+1.6));
 		AppendFilsByType(ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEURCOUPE_PROPRIETES);
 		AppendFilsByType(ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEURCOUPE_RENDU);
 		ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_RecepteurS++;

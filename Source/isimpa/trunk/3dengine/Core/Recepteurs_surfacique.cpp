@@ -312,7 +312,7 @@ bool RecepteursSControler::LoadRecepteursSFile(wxArrayString& recepteurSFiles, v
 			recepteursS.push_back(t_recepteurS());
 			t_recepteurS* newRecepteurss=&recepteursS[recepteursS.size()-1];
 
-			//Pour chaque face composant le recepteur surfacique
+			//Pour chaque face composant le récepteur surfacique
 			newRecepteurss->faces.reserve(currentRS.dataRec.quantFaces);
 			for(int idFace=0;idFace<currentRS.dataRec.quantFaces;idFace++)
 			{
@@ -873,7 +873,7 @@ void RecepteursSControler::RedrawLegend()
 			legendRenderer->Push(this->rs_legends.graduationBar);
 		}
 	}
-	//Nom du fichier de recepteur surfacique
+	//Nom du fichier de récepteur surfacique
 	if(legendRenderer)
 	{
 

@@ -55,7 +55,7 @@ public:
 	}
 
 	E_Scene_Bdd_Materiaux_PropertyMaterial( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Description du matériau",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_PROPMATERIAU,noeudCourant)
+		:Element(parent,"Material description",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_PROPMATERIAU,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
 		_("Material description");
@@ -68,10 +68,10 @@ public:
 		:Element(parent,"Description du matériau",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_PROPMATERIAU)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
-		this->AppendPropertyDecimal("masse_volumique","Masse volumique (Kg/m3)",0,false,4,false,false,0,0,true);
-		this->AppendPropertyDecimal("resistivite","Résistivité (cgs)",100000,false,4,false,false,0,0,true);
+		this->AppendPropertyDecimal("masse_volumique","Mass density (kg/m3)",0,false,4,false,false,0,0,true);
+		this->AppendPropertyDecimal("resistivite","Resistivity (cgs)",100000,false,4,false,false,0,0,true);
 		this->AppendPropertyText("description","Description","");
-		this->AppendPropertyText("reference","Référence","");
+		this->AppendPropertyText("reference","Reference","");
 		AddSideProperty();
 		_("Reference");
 		_("Description");

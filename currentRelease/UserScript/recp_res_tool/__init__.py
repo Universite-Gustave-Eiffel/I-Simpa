@@ -62,9 +62,9 @@ class manager:
     def getmenu(self,typeel,idel,menu):
         el=ui.element(idel)
         infos=el.getinfos()
-        if infos["name"]==u"Récepteurs_Ponctuels":
+        if infos["name"]==u"Punctual receivers":
             menu.insert(0,())
-            menu.insert(0,(u"Fusionner les récepteurs ponctuels",self.GetMixedLevelid))
+            menu.insert(0,(u"Merge point receivers",self.GetMixedLevelid))
             return True
         else:
             return False

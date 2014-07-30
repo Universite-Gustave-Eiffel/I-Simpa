@@ -36,7 +36,7 @@
 #include "data_manager/e_data_list.h"
 
 E_GammeAbsorption::E_GammeAbsorption(wxXmlNode* nodeElement,Element* parent)
-	:Element(parent,"Paramètres acoustiques",ELEMENT_TYPE_GAMMEABSORPTION,nodeElement)
+	:Element(parent,"Acoustic parameters",ELEMENT_TYPE_GAMMEABSORPTION,nodeElement)
 {
 	SetIcon(GRAPH_STATE_ALL,GRAPH_SPECTRUM);
 	ignoreNextUpdate=false;
@@ -73,7 +73,7 @@ E_GammeAbsorption::E_GammeAbsorption(wxXmlNode* nodeElement,Element* parent)
 }
 
 E_GammeAbsorption::E_GammeAbsorption(Element* parent)
-:Element(parent,"Paramètres acoustiques",ELEMENT_TYPE_GAMMEABSORPTION,NULL)
+:Element(parent,"Acoustic parameters",ELEMENT_TYPE_GAMMEABSORPTION,NULL)
 {
 	SetIcon(GRAPH_STATE_ALL,GRAPH_SPECTRUM);
 	_("Acoustic parameters");
@@ -126,7 +126,7 @@ void E_GammeAbsorption::InitProperties()
 		nouvLigne->SetXmlCoreVisibility(true); //Exporter
 		nouvLigne->AppendPropertyDecimal("alpha","Alpha",0.f,false,precisionDecimal,true,true,1.f,0.f,true);
 		nouvLigne->AppendPropertyDecimal("lambda","Lambda",1.f,false,precisionDecimal,false,true,0,.01f,true);
-		nouvLigne->AppendPropertyList("loi_diff","Loi de diffusion",Lstlois,0,false,1,LstloisIndex,true);
+		nouvLigne->AppendPropertyList("loi_diff","Diffusion law",Lstlois,0,false,1,LstloisIndex,true);
 		this->AppendFils(nouvLigne);
 	}
 	//Ajout du cumul
@@ -135,7 +135,7 @@ void E_GammeAbsorption::InitProperties()
 	nouvLigne->SetXmlCoreVisibility(false); //Ne pas exporter
 	nouvLigne->AppendPropertyDecimal("alpha","Alpha",0,false,precisionDecimal,true,true,1.f,0.f,true);
 	nouvLigne->AppendPropertyDecimal("lambda","Lambda",1.f,false,precisionDecimal,false,true,0,.01f,true);
-	nouvLigne->AppendPropertyText("l_diff","Loi de diffusion","",true);
+	nouvLigne->AppendPropertyText("l_diff","Diffusion law","",true);
 	_("Average");
 	_("Alpha");
 	_("Lambda");

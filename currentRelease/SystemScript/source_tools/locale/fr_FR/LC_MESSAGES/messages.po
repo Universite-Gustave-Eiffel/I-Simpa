@@ -15,11 +15,11 @@ msgstr ""
 "X-Poedit-SearchPath-0: ../../..\n"
 
 #: ../../../__init__.py:45
-msgid "Activer"
+msgid "Enable"
 msgstr "Activer"
 
 #: ../../../__init__.py:46
-msgid "Désactiver"
+msgid "Disable"
 msgstr "Désactiver"
 
 #: ../../../__init__.py:48
@@ -31,49 +31,48 @@ msgid "Translation"
 msgstr "Translation"
 
 #: ../../../__init__.py:51
-msgid "Toutes les sources"
+msgid "All sources"
 msgstr "Toutes les sources"
 
 #: ../../../__init__.py:53 ../../../__init__.py:59
-msgid "Créer une ligne de sources sonores"
+msgid "Create a line of sound sources"
 msgstr "Créer une grille de sources sonores"
 
 #: ../../../__init__.py:56
-msgid "Point de départ [x,y,z]"
+msgid "Starting position [x,y,z] (m)"
 msgstr "Point de départ [x,y,z] (m)"
 
 #: ../../../__init__.py:57
-msgid "Nombre de sources"
+msgid "Number of sources"
 msgstr "Nombre de sources"
 
 #: ../../../__init__.py:58
-msgid "Pas [x,y,z]"
+msgid "Step [x,y,z] (m)"
 msgstr "Pas [x,y,z] (m)"
 
 #: ../../../__init__.py:60
-msgid ""
-"Veuillez saisir les informations pour créer la ligne de sources sonores."
+msgid "Please fill the following fields to create the sound source line"
 msgstr ""
 "Veuillez saisir les informations pour créer la ligne de sources sonores"
 
 #: ../../../__init__.py:71 ../../../__init__.py:113 ../../../__init__.py:134
-msgid "Erreur de saisie des paramètres"
+msgid "Wrong parameters"
 msgstr "Erreur de saisie des paramètres"
 
 #: ../../../__init__.py:86
-msgid "Vecteur de rotation"
+msgid "Vector of rotation"
 msgstr "Vecteur de rotation"
 
 #: ../../../__init__.py:87
-msgid "Angle (degrés)"
+msgid "Angle (degrees)"
 msgstr "Angle (degrés)"
 
 #: ../../../__init__.py:88
-msgid "Centre de rotation"
+msgid "Rotation centre"
 msgstr "Centre de rotation"
 
 #: ../../../__init__.py:101
-msgid "Rotation d'un groupe de sources sonores"
+msgid "Rotation of a group of sound sources"
 msgstr "Rotation d'un groupe de sources sonores"
 
 #: ../../../__init__.py:125
@@ -81,35 +80,5 @@ msgid "Direction (m)"
 msgstr "Direction (m)"
 
 #: ../../../__init__.py:126
-msgid "Translation d'un groupe de sources sonores"
+msgid "Translation of a group of sound sources"
 msgstr "Translation d'un groupe de sources sonores"
-
-#~ msgid "Orienter le groupe vers.."
-#~ msgstr "Orienter le groupe vers.."
-
-#~ msgid "Translation des récepteurs ponctuels"
-#~ msgstr "Translation des récepteurs ponctuels"
-
-#~ msgid "Rotation des récepteurs ponctuels"
-#~ msgstr "Rotation des récepteurs ponctuels"
-
-#~ msgid "Nombre de récepteurs ponctuels en ligne"
-#~ msgstr "Nombre de récepteurs ponctuels en ligne"
-
-#~ msgid "Nombre de récepteurs ponctuels en colonne"
-#~ msgstr "Nombre de récepteurs ponctuels en colonne"
-
-#~ msgid "Pas colonne [x,y,z]"
-#~ msgstr "Pas colonne [x,y,z]"
-
-#~ msgid "Orienter vers [x,y,z]"
-#~ msgstr "Orienter vers [x,y,z]"
-
-#~ msgid "Orienter un groupe de récepteur vers un point dans l'espace."
-#~ msgstr "Orienter un groupe de récepteur vers un point dans l'espace."
-
-#~ msgid "Veuillez saisir les coordonnées du point d'orientation."
-#~ msgstr "Veuillez saisir les coordonnées du point d'orientation."
-
-#~ msgid "Make report"
-#~ msgstr "Générer le rapport"

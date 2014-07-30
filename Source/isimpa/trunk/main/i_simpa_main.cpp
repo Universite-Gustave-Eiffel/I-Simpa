@@ -167,13 +167,15 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 									wxDefaultPosition, wxSize(1024,768),
 									wxDEFAULT_FRAME_STYLE),m_locale(lang)
 {
+	std::string path=getenv("ISIMPA");
+	std::string bitmapPath= path +  "/currentRelease";
 	saveManagerConfig=true;
 	CustomLog logClass;
 	// Liaison du manager aui à la fenêtre
 	//m_mgr.SetFrame(this);
 	m_mgr.SetManagedWindow(this);
 	wxIcon ico_ui;
-	if(ico_ui.LoadFile("isimpa.ico",wxBITMAP_TYPE_ICO))
+	if(ico_ui.LoadFile(bitmapPath + "/isimpa.ico",wxBITMAP_TYPE_ICO))
 		SetIcon(ico_ui);
 	else
 		wxLogError(_("Can not read the I-SIMPA icon"));

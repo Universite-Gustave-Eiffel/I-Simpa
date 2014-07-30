@@ -139,7 +139,7 @@ struct t_Material
 
 
 /**
- * Structure de donnée désignant une fraction du recepteur surfacique (une zone du recepteur), sur une bande de fréquence
+ * Structure de donnée désignant une fraction du récepteur surfacique (une zone du recepteur), sur une bande de fréquence
  */
 class r_Surf_Face
 {
@@ -164,15 +164,15 @@ private:
 	void deleteData();
 };
 /**
- * @brief Structure de stockage d'un récepteur surfaciques
+ * @brief Structure de stockage d'un récepteur surfacique
  */
 class r_Surf
 {
 public:
 	CoreString name;	/*!< Nom du récepteur surfacique */
-	entier idRecepteurS; /*!< Indice du recepteur surfacique (externe) */
+	entier idRecepteurS; /*!< Indice du récepteur surfacique (externe) */
 	uentier nbFaces;
-	r_Surf_Face* faces; /*!< La taille du tableau correspond au nombre de sous-élément composant le recepteur surfacique*/
+	r_Surf_Face* faces; /*!< La taille du tableau correspond au nombre de sous-élément composant le récepteur surfacique*/
 	void InitFaces(uentier _nbFaces, uentier _nbfreq);
 	r_Surf();
 	r_Surf(r_Surf& copyFrom);
@@ -258,12 +258,12 @@ typedef std::vector<t_time_ar> t_col_ar;
 typedef std::vector<t_col_ar> t_row_ar;
 typedef std::vector<t_row_ar> t_freq_ar;
 /**
- * @brief Structure de stockage d'un récepteur surfaciques en coupe
+ * @brief Structure de stockage d'un récepteur surfacique en coupe
  */
 struct r_SurfCut
 {
 	CoreString name;	/*!< Nom du récepteur surfacique */
-	entier idRecepteurS; /*!< Indice du recepteur surfacique (xml) */
+	entier idRecepteurS; /*!< Indice du récepteur surfacique (xml) */
 	entier NbCellU;	/*!< Nombre de cellules sur le segment BC */
 	entier NbCellV; /*!< Nombre de cellules sur le segment BA */
 	decimal UCellSize; /*!< Taille du coté u des cellules (m)*/
@@ -350,8 +350,8 @@ struct t_cFace
 	t_Material* faceMaterial;				/*!< Pointeur vers le matériau associé (NULL si aucun) */
 	t_Encombrement* faceEncombrement;		/*!< Pointeur vers l'encombrement associé (NULL si aucun) */
 	entier idencombrement;					/*!< Indice de l'encombrement (-1 si aucun,indice externe )*/
-	entier idRecepteurS;					/*!< Indice du recepteur surfacique (indice externe)*/
-	r_Surf_Face* recepteurS;				/*!<  Pointeur vers la face du recepteur surfacique correspondant */
+	entier idRecepteurS;					/*!< Indice du récepteur surfacique (indice externe)*/
+	r_Surf_Face* recepteurS;				/*!<  Pointeur vers la face du récepteur surfacique correspondant */
 	t_cFace(){ faceMaterial=NULL;
 	recepteurS=NULL;
 
@@ -394,7 +394,7 @@ struct t_Tetra_Faces
 	ivec3 indiceSommets;					/*!< Indices des 3 sommets du triangles */
 	vec3 normal;							/*!< Normal de la face (orianté vers l'exterieur) */
 
-	r_Surf_Face* recepteurS;						/*!< Pointeur vers la face du recepteur surfacique correspondant */
+	r_Surf_Face* recepteurS;						/*!< Pointeur vers la face du récepteur surfacique correspondant */
 
 	t_Tetra_Faces(){
 		face_scene=NULL;

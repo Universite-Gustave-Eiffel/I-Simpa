@@ -126,29 +126,29 @@ private:
 	}
 	void InitProperties() 
 	{
-		this->AppendPropertyDecimal("z0","Rugosité - z0 (m)",0.02f,false,4,false,true,0,0.0001f,true);
+		this->AppendPropertyDecimal("z0","Roughness - z0 (m)",0.02f,false,4,false,true,0,0.0001f,true);
 		_("Roughness - z0 (m)");
-		this->AppendPropertyDecimal("alog","Effets météo - Gradient de célérité alog",0,false,4,false,false,0,0,true);
+		this->AppendPropertyDecimal("alog","Meteorological effect - Celerity gradient a_log",0,false,4,false,false,0,0,true);
 		_("Meteorological effect - Celerity gradient a_log");
-		this->AppendPropertyDecimal("blin","Effets météo - Gradient de célérité blin",0,false,4,false,false,0,0,true);
+		this->AppendPropertyDecimal("blin","Meteorological effect - Celerity gradient b_linn",0,false,4,false,false,0,0,true);
 		_("Meteorological effect - Celerity gradient b_lin");
 		this->AppendPropertyDecimal("temperature","Temperature (°C)",20,false,2,false,false,0,0,true);
 		_("Temperature (°C)");
-		this->AppendPropertyDecimal("humidite","Humidité relative (%)",50,false,0,true,true,100,0,true);
+		this->AppendPropertyDecimal("humidite","Relative humidity (%)",50,false,0,true,true,100,0,true);
 		_("Relative humidity (%)");
-		this->AppendPropertyDecimal("pression","Pression atmosphérique (Pa)",101325,false,1,false,false,0,0,true);
+		this->AppendPropertyDecimal("pression","Atmospheric pressure (Pa)",101325,false,1,false,false,0,0,true);
 		_("Atmospheric pressure (Pa)");
 		std::vector<wxString> effetsMeteo;
 		std::vector<int> effetsMeteoIndex;
-		effetsMeteo.push_back("Très favorable");
+		effetsMeteo.push_back("Very favorable");
 		effetsMeteoIndex.push_back(EFFET_METEO_TRES_FAVORABLE);
 		effetsMeteo.push_back("Favorable");
 		effetsMeteoIndex.push_back(EFFET_METEO_FAVORABLE);
-		effetsMeteo.push_back("Homogène");
+		effetsMeteo.push_back("Homogeneous");
 		effetsMeteoIndex.push_back(EFFET_METEO_HOMOGENE);
-		effetsMeteo.push_back("Défavorable");
+		effetsMeteo.push_back("Unfavorable");
 		effetsMeteoIndex.push_back(EFFET_METEO_DEFAVORABLE);
-		effetsMeteo.push_back("Très défavorable");
+		effetsMeteo.push_back("Very unfavorable");
 		effetsMeteoIndex.push_back(EFFET_METEO_TRES_DEFAVORABLE);
 		_("Meteorological effect");
 		_("Very favorable");
@@ -156,27 +156,27 @@ private:
 		_("Homogeneous");
 		_("Unfavorable");
 		_("Very unfavorable");
-		this->AppendPropertyList("lst_meteoeffect","Effets météo - Profiles",effetsMeteo,EFFET_METEO_HOMOGENE,false,1,effetsMeteoIndex);
+		this->AppendPropertyList("lst_meteoeffect","Meteorology effects - Profiles",effetsMeteo,EFFET_METEO_HOMOGENE,false,1,effetsMeteoIndex);
 		_("Meteorology effects - Profiles");
 		std::vector<wxString> solTypes;
 		std::vector<int> solTypesIndex;
-		solTypes.push_back("Eau libre");
+		solTypes.push_back("Water");
 		solTypesIndex.push_back(TYPE_SOL_EAU_LIBRE);
-		solTypes.push_back("Sol nu");
+		solTypes.push_back("Ground");
 		solTypesIndex.push_back(TYPE_SOL_NU);
-		solTypes.push_back("Gazon ras");
+		solTypes.push_back("Short Lawn");
 		solTypesIndex.push_back(TYPE_SOL_GAZON_RAS);
-		solTypes.push_back("Gazon dense");
+		solTypes.push_back("Dense Lawn");
 		solTypesIndex.push_back(TYPE_SOL_GAZON_DENSE);
-		solTypes.push_back("Blé (1m de haut)");
+		solTypes.push_back("Wheat (1m height)");
 		solTypesIndex.push_back(TYPE_SOL_BLE);
-		solTypes.push_back("Habitat épars (fermes, villages, arbres, haies)");
+		solTypes.push_back("Sparse habitat (farm, trees, hedges)");
 		solTypesIndex.push_back(TYPE_SOL_HABITAT_EPARS);
-		solTypes.push_back("Périurbain peu dense (zone résidentielles, jardins)");
+		solTypes.push_back("Low concentration Suburb (residential areas, gardens)");
 		solTypesIndex.push_back(TYPE_SOL_PERIURBAIN_PEU_DENSE);
-		solTypes.push_back("Périurbain dense");
+		solTypes.push_back("Dense Suburb");
 		solTypesIndex.push_back(TYPE_SOL_PERIURBAIN_DENSE);
-		solTypes.push_back("Urbain dense");
+		solTypes.push_back("Dense urban");
 		solTypesIndex.push_back(TYPE_SOL_URBAIN_DENSE);
 		_("Water");
 		_("Ground");
@@ -187,20 +187,20 @@ private:
 		_("Low concentration Suburb (residential areas, gardens)");
 		_("Dense Suburb");
 		_("Dense urban");
-		this->AppendPropertyList("lst_soltype","Rugosité - Types de sol",solTypes,TYPE_SOL_NU,false,1,solTypesIndex,true);
+		this->AppendPropertyList("lst_soltype","Rugosity - Ground type",solTypes,TYPE_SOL_NU,false,1,solTypesIndex,true);
 		_("Rugosity - Ground type");
 		InitCoeffConstraint();
 	}
 	void InitCoeffConstraint()
 	{
-		this->AppendPropertyBool("disable_absatmo_computation","Absorption atmosphérique imposé",false,true);
+		this->AppendPropertyBool("disable_absatmo_computation","Set user defined atmospheric absorption",false,true);
 		_("Set user defined atmospheric absorption");
-		this->AppendPropertyDecimal("absatmo","Absorption atmosphérique",0,true,5,false,true,0,0,true);
+		this->AppendPropertyDecimal("absatmo","Atmospheric absorption",0,true,5,false,true,0,0,true);
 		_("Atmospheric absorption");
 	}
 public:
 	E_Scene_Projet_Environnement( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Environnement",Element::ELEMENT_TYPE_SCENE_PROJET_ENVIRONNEMENTCONF,noeudCourant)
+		:Element(parent,"Environment",Element::ELEMENT_TYPE_SCENE_PROJET_ENVIRONNEMENTCONF,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_ENVIRONMENT);
 		_("Environment");
@@ -211,7 +211,7 @@ public:
 	}
 
 	E_Scene_Projet_Environnement( Element* parent)
-		:Element(parent,"Environnement",Element::ELEMENT_TYPE_SCENE_PROJET_ENVIRONNEMENTCONF)
+		:Element(parent,"Environment",Element::ELEMENT_TYPE_SCENE_PROJET_ENVIRONNEMENTCONF)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_ENVIRONMENT);
 		InitProperties();

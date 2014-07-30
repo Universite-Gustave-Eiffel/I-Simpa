@@ -43,14 +43,14 @@ class E_Scene_Volumes_Volume_Proprietes: public Element
 {
 public:
 	E_Scene_Volumes_Volume_Proprietes( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Propriétés",Element::ELEMENT_TYPE_SCENE_VOLUMES_VOLUME_PROPRIETES,noeudCourant)
+		:Element(parent,"Properties",Element::ELEMENT_TYPE_SCENE_VOLUMES_VOLUME_PROPRIETES,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
 		_("Properties");
 	}
 
 	E_Scene_Volumes_Volume_Proprietes( Element* parent)
-		:Element(parent,"Propriétés",Element::ELEMENT_TYPE_SCENE_VOLUMES_VOLUME_PROPRIETES)
+		:Element(parent,"Properties",Element::ELEMENT_TYPE_SCENE_VOLUMES_VOLUME_PROPRIETES)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
 		this->AppendPropertyBool("fcompute_mean_free_path","Calculer libre parcourt moyen",true,true);

@@ -45,7 +45,7 @@ namespace formatRSBIN
 		Longb t_FaceRS_Length;		    /*!< Taille de la structure */
 		Longb t_faceValue_Length;	 	/*!< Taille de la structure */
 		Intb quantNodes;				/*!< Nombre de noeuds (point liant les faces) */
-		Intb quantRS;					/*!< Nombre de recepteur surfacique */
+		Intb quantRS;					/*!< Nombre de récepteur surfacique */
 		Intb nbTimeStep;				/*!< Nombre de pas de temps */
 		Floatb timeStep;				/*!< Pas de temps (s)*/
 		RECEPTEURS_RECORD_TYPE recordType; /*!< Type d'enregistrement de ce récepteur de surface */

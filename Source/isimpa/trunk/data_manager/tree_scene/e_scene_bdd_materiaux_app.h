@@ -49,7 +49,7 @@ public:
    */
 
 	E_Scene_Bdd_Materiaux_Application( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Référence",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_APP,noeudCourant)
+		:Element(parent,"Reference",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_APP,noeudCourant)
 	{
 		_("Reference");
 
@@ -81,7 +81,7 @@ public:
 	}
 
 	E_Scene_Bdd_Materiaux_Application( Element* parent)
-		:Element(parent,"Référence",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_APP)
+		:Element(parent,"Reference",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_APP)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_APPLICATION_MATERIALS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_APPLICATION_MATERIALS_CLOSE);

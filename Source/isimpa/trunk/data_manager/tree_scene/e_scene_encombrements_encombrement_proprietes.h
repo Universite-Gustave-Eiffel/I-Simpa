@@ -59,7 +59,7 @@ private:
 	}
 public:
 	E_Scene_Encombrements_Encombrement_Proprietes( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Propriétés",Element::ELEMENT_TYPE_SCENE_ENCOMBREMENTS_ENCOMBREMENT_PROPRIETES,noeudCourant)
+		:Element(parent,"Properties",Element::ELEMENT_TYPE_SCENE_ENCOMBREMENTS_ENCOMBREMENT_PROPRIETES,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
 		ignore_count_change=false;
@@ -70,7 +70,7 @@ public:
 	}
 
 	E_Scene_Encombrements_Encombrement_Proprietes( Element* parent)
-		:Element(parent,"Propriétés",Element::ELEMENT_TYPE_SCENE_ENCOMBREMENTS_ENCOMBREMENT_PROPRIETES)
+		:Element(parent,"Properties",Element::ELEMENT_TYPE_SCENE_ENCOMBREMENTS_ENCOMBREMENT_PROPRIETES)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
 		ignore_count_change=true;

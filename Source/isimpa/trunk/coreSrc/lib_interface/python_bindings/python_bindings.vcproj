@@ -96,6 +96,7 @@
 			ConfigurationType="2"
 			CharacterSet="1"
 			ManagedExtensions="0"
+			DeleteExtensionsOnClean="*.obj;*.ilk;*.tlb;*.tli;*.tlh;*.tmp;*.rsp;*.pgc;*.pgd;*.meta;*~;$(TargetPath)"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -134,7 +135,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\..\..\..\..\currentRelease\libsimpa\_libsimpa.pyd"
+				OutputFile="..\..\..\..\..\..\currentRelease\libsimpa\_libsimpa.pyd"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="&quot;$(PYTHON)\libs&quot;;&quot;$(BOOST)\lib&quot;"
 				GenerateManifest="true"

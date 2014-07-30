@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: module_sppsreport\n"
 "Report-Msgid-Bugs-To: 2014-07-24 14:15\n"
-"POT-Creation-Date: 2014-07-24 14:15\n"
+"POT-Creation-Date: 2014-07-30 12:32+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Picaut <i-simpa.ifsttar.fr>\n"
 "Language-Team: Nicolas Fortin, Judicaël Picaut <i-simpa@ifsttar.fr>\n"
@@ -23,56 +23,10 @@ msgstr "Nom de la source"
 msgid "Source selection"
 msgstr "Sélection d'une source"
 
-#: ../../../__init__.py:140
+#: ../../../__init__.py:140 ../../../__init__.py:166 ../../../__init__.py:172
 msgid "Please choose the source:"
 msgstr "Veuillez choisir la source:"
-
-#: ../../../__init__.py:166 ../../../__init__.py:172
-msgid "Link to the position of a source"
-msgstr "Lier à la position d'une source"
 
 #: ../../../__init__.py:169
 msgid "Delete the link with the source"
 msgstr "Supprimer le lien à la position d'une source"
-
-#~ msgid "Ponctual receiver name"
-#~ msgstr "Nom du récepteur ponctuel"
-
-#~ msgid "Global"
-#~ msgstr "Global"
-
-#~ msgid "Normalise SPL"
-#~ msgstr "Normaliser les niveaux sonores"
-
-#~ msgid "SPL_norm"
-#~ msgstr "Niveau sonore normalisé"
-
-#~ msgid "Sound level"
-#~ msgstr "Niveaux sonores"
-
-#~ msgid "Surface receivers"
-#~ msgstr "Récepteurs de surfaces"
-
-#~ msgid "Acoustic parameters"
-#~ msgstr "Paramètres acoustiques"
-
-#~ msgid "Reverberation time"
-#~ msgstr "Temps de réverberation"
-
-#~ msgid "RT30"
-#~ msgstr "TR30"
-
-#~ msgid "Synthesis"
-#~ msgstr "Synthèse"
-
-#~ msgid "Punctual receivers"
-#~ msgstr "Récepteurs ponctuels"
-
-#~ msgid "Statistics"
-#~ msgstr "Statistiques"
-
-#~ msgid "Terms of Use"
-#~ msgstr "Conditions d'utilisation"
-
-#~ msgid "Make report"
-#~ msgstr "Générer le rapport"

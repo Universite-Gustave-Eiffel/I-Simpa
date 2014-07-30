@@ -46,7 +46,7 @@ class E_Scene_Bdd_Spectrums_Application: public Element
 {
 public:
 	E_Scene_Bdd_Spectrums_Application( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Référence",Element::ELEMENT_TYPE_SCENE_BDD_SPECTRUMS_APP,noeudCourant)
+		:Element(parent,"Reference",Element::ELEMENT_TYPE_SCENE_BDD_SPECTRUMS_APP,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_APPLICATION_SPECTRUMS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_APPLICATION_SPECTRUMS_CLOSE);
@@ -75,7 +75,7 @@ public:
 	}
 
 	E_Scene_Bdd_Spectrums_Application( Element* parent)
-		:Element(parent,"Référence",Element::ELEMENT_TYPE_SCENE_BDD_SPECTRUMS_APP)
+		:Element(parent,"Reference",Element::ELEMENT_TYPE_SCENE_BDD_SPECTRUMS_APP)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_APPLICATION_SPECTRUMS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_APPLICATION_SPECTRUMS_CLOSE);

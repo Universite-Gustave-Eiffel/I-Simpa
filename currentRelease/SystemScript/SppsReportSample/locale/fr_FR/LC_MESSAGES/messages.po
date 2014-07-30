@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: module_sppsreport\n"
 "Report-Msgid-Bugs-To: 2014-07-24 14:20\n"
-"POT-Creation-Date: 014-07-24 14:20\n"
+"POT-Creation-Date: 2014-07-30 13:19+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Picaut <i-simpa.ifsttar.fr>\n"
 "Language-Team: Nicolas Fortin, Judicaël Picaut <i-simpa@ifsttar.fr>\n"
@@ -18,7 +18,7 @@ msgstr ""
 msgid "Sound level"
 msgstr "Niveaux sonores"
 
-#: ../../../buildhtmlreport.py:78
+#: ../../../buildhtmlreport.py:78 ../../../buildhtmlreport.py:217
 msgid "Punctual receivers"
 msgstr "Récepteurs ponctuels"
 
@@ -45,10 +45,6 @@ msgstr "TR30"
 #: ../../../buildhtmlreport.py:216
 msgid "Synthesis"
 msgstr "Synthèse"
-
-#: ../../../buildhtmlreport.py:217
-msgid "Punctual receivers"
-msgstr "Récepteurs ponctuels"
 
 #: ../../../buildhtmlreport.py:218
 msgid "Statistics"

@@ -44,19 +44,19 @@ class E_Scene_Recepteurss_RecepteurCoupe_Rendu: public Element
 {
 public:
 	E_Scene_Recepteurss_RecepteurCoupe_Rendu( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Rendu",Element::ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEURCOUPE_RENDU,noeudCourant)
+		:Element(parent,"Display",Element::ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEURCOUPE_RENDU,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_3D_DISPLAY);
 		_("Display");
 	}
 
 	E_Scene_Recepteurss_RecepteurCoupe_Rendu( Element* parent)
-		:Element(parent,"Rendu",Element::ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEURCOUPE_RENDU)
+		:Element(parent,"Display",Element::ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEURCOUPE_RENDU)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_3D_DISPLAY);
-		this->AppendPropertyBool("showplane","Afficher grille",true);
-		this->AppendPropertyBool("showlabels","Afficher le nom des sommets",true);
-		this->AppendPropertyColor("planecolor","Couleur de la coupe",241,243,175);
+		this->AppendPropertyBool("showplane","Show the grid",true);
+		this->AppendPropertyBool("showlabels","Show vertices name",true);
+		this->AppendPropertyColor("planecolor","Cut color",241,243,175);
 		_("Show the grid");
 		_("Show vertices name");
 		_("Cut color");

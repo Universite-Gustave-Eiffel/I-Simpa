@@ -87,7 +87,7 @@ public:
 		DIRECTIVITE_SOURCE_XZ
 	};
 	E_Scene_Sources_Source_Proprietes( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Propriétés",Element::ELEMENT_TYPE_SCENE_SOURCES_SOURCE_PROPRIETES,noeudCourant)
+		:Element(parent,"Properties",Element::ELEMENT_TYPE_SCENE_SOURCES_SOURCE_PROPRIETES,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
 		ignore_count_change=true;
@@ -100,7 +100,7 @@ public:
 	}
 
 	E_Scene_Sources_Source_Proprietes( Element* parent)
-		:Element(parent,"Propriétés",Element::ELEMENT_TYPE_SCENE_SOURCES_SOURCE_PROPRIETES)
+		:Element(parent,"Properties",Element::ELEMENT_TYPE_SCENE_SOURCES_SOURCE_PROPRIETES)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
 		ignore_count_change=true;

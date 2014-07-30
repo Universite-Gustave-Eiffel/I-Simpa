@@ -92,7 +92,7 @@ public:
 	 * @param parent Element parent
 	 * @param nom Libellé du recepteur
 	 */
-	E_Scene_Recepteurss_Recepteur( Element* parent,wxString nom="Récepteur")
+	E_Scene_Recepteurss_Recepteur( Element* parent,wxString nom="Receiver")
 		:E_Drawable(parent,nom,Element::ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEUR)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_SURFACE_RECEIVER_OPEN);

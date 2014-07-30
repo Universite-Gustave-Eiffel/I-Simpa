@@ -126,7 +126,7 @@ def MakeHtmlReport(folderwxid):
     rotated=zip(*subelementsid) #Inversion lignes, colonnes
     
     #Recuperation des données pour les récepteurs ponctuels
-    prfolder=rotated[0][rotated[2].index(u'Récepteurs_Ponctuels')]
+    prfolder=rotated[0][rotated[2].index(u'Punctual receivers')]
     pr_dict=GetPonctualReceiversData(prfolder)
     #Recuperation des données pour les récepteurs surfacique
     if 'recepteurss' in rotated[2]:
@@ -160,7 +160,7 @@ class manager:
         infos=el.getinfos()
         if infos["parentid"]>0:
             parent=ui.element(infos["parentid"])
-            if parent.getinfos()["label"]=="SPPS" or parent.getinfos()["label"]==u"Modèle de diffusion":
+            if parent.getinfos()["label"]=="SPPS" or parent.getinfos()["label"]==u"Diffusion model":
                 menu.insert(0,(_("Make report"),self.MakeReportEventId))
                 return True
             else:

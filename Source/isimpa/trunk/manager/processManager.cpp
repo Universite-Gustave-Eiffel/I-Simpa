@@ -125,7 +125,7 @@ bool uiRunExe(wxFrame* parent,const wxString& path,const wxString& labelOutput, 
 	int processId=wxExecute(path,wxEXEC_ASYNC,process);
 	if(!processId)
 	{
-		wxLogInfo("L'execution du programme a échoué");
+		wxLogInfo("Program execution failed");
 		delete process;
 		return false;
 	}

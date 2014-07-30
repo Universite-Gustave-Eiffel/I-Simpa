@@ -59,7 +59,7 @@ public:
 		_("Direction");
 	}
 	E_Scene_Recepteursp_Recepteur( wxXmlNode* noeudCourant ,  Element* parent)
-		:E_Drawable(parent,"Récepteur",Element::ELEMENT_TYPE_SCENE_RECEPTEURSP_RECEPTEUR,noeudCourant)
+		:E_Drawable(parent,"Receiver",Element::ELEMENT_TYPE_SCENE_RECEPTEURSP_RECEPTEUR,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_PUNCTUAL_RECEIVER_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_PUNCTUAL_RECEIVER_CLOSE);
@@ -100,7 +100,7 @@ public:
 		}
 		if(!noiseSet) //maj version < 4/11/2008
 		{
-			this->AppendFils(new E_Property_Freq(this,"Bruit de fond"));
+			this->AppendFils(new E_Property_Freq(this,"Background noise"));
 		}
 		if(!IsPropertyExist("direction_dot")) //maj version < 6/11/2008
 		{
@@ -134,7 +134,7 @@ public:
 		ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_RecepteurP++;
 		this->AppendFils(new E_Scene_Recepteursp_Recepteur_Proprietes(this));
 		this->AppendFils(new E_Scene_Recepteursp_Recepteur_Rendu(this));
-		this->AppendFils(new E_Property_Freq(this,"Bruit de fond"));
+		this->AppendFils(new E_Property_Freq(this,"Background noise"));
 		_("Background noise");
 		_("Position");
 		AddDirectionProperty();

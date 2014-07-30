@@ -71,7 +71,7 @@ private:
 public:
 	E_Scene_Groupesurfaces_Groupe( wxXmlNode* noeudCourant ,  Element* parent);
 
-	E_Scene_Groupesurfaces_Groupe( Element* parent,wxString name="Groupe",bool isPointer=false);
+	E_Scene_Groupesurfaces_Groupe( Element* parent,wxString name="Group",bool isPointer=false);
 	~E_Scene_Groupesurfaces_Groupe();
 	void BeginDrag(wxTreeEvent& treeEvent,wxTreeCtrl* tree);
 

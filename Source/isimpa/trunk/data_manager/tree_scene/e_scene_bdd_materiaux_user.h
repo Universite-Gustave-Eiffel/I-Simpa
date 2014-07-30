@@ -43,7 +43,7 @@ class E_Scene_Bdd_Materiaux_User: public Element
 {
 public:
 	E_Scene_Bdd_Materiaux_User( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Utilisateur",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_USER,noeudCourant)
+		:Element(parent,"User",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_USER,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_USER_MATERIALS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_USER_MATERIALS_CLOSE);
@@ -56,7 +56,7 @@ public:
 		}
 	}
 	E_Scene_Bdd_Materiaux_User( Element* parent)
-		:Element(parent,"Utilisateur",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_USER)
+		:Element(parent,"User",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_USER)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_USER_MATERIALS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_USER_MATERIALS_CLOSE);
@@ -141,8 +141,10 @@ public:
 	
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_USERMAT, _("New material"),"./Bitmaps/popup_new.png"));
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_MATERIAL_GROUP, _("Create group"),"./Bitmaps/popup_new.png"));
+		std::string path=getenv("ISIMPA");
+		std::string bitmapPath= path +  "/currentRelease";
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_USERMAT, _("New material"),bitmapPath + "/Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_MATERIAL_GROUP, _("Create group"),bitmapPath + "/Bitmaps/popup_new.png"));
 		leMenu->AppendSeparator();		
 		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_IMPORT_MATERIAL, _("Import from file")));
 		Element::OnRightClic(leMenu);
