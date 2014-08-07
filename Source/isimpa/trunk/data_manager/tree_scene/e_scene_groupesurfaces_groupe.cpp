@@ -110,7 +110,7 @@ void E_Scene_Groupesurfaces_Groupe::InitGroupProp()
 {
 	if(!this->IsPropertyExist("aire"))
 	{
-		this->AppendPropertyDecimal("aire","Aire de la surface (m²)",0,true,2);
+		this->AppendPropertyDecimal("aire","Surface area (m²)",0,true,2);
 		_("Surface area (m²)");
 	}else{
 		this->UpdateDecimalConfig("aire",0);

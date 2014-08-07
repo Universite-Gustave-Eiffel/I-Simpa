@@ -606,7 +606,7 @@ void ProjectManager::ElementEvent(wxCommandEvent& eventElement,eventCtrl fromCtr
 				this->OnConvertSubVolumeToFitting(elementSelected);
 				break;
 			default:
-				wxLogDebug("Evenement non géré indice %i ",idEvenementElement);
+				wxLogDebug("Event not generated %i ",idEvenementElement);
 			};
 			this->GlFrame->RefreshElementDraw();
 		}
@@ -2303,12 +2303,12 @@ void ProjectManager::CreateUserPreferenceTree()
 	rootUserConfig=new E_UserPreferenceNode(NULL,"userprefroot");
 	/////////////////////////////////////////////////////////////
 	//Dossier Rendu 3D
-	Element* render3d_node=rootUserConfig->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_NODE,"3drendering");
+	Element* render3d_node=rootUserConfig->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_NODE,"3D Rendering");
 
 	_("3D Rendering");
 	/////////////////////////////////////////////////////////////
 	//Dossier Rendu 3D / Général
-	Element* render3d_general_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"general");
+	Element* render3d_general_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"Main");
 	_("Main");
 	render3d_general_node->AppendPropertyColor("colormodellines","Lignes scène",0,0,255);
 	render3d_general_node->AppendPropertyColor("colorselection","Sélection",128,0,255);
@@ -2333,38 +2333,39 @@ void ProjectManager::CreateUserPreferenceTree()
 	_("Surface receivers display");
 	/////////////////////////////////////////////////////////////
 	//Dossier Rendu 3D / Légendes
-	Element* render3d_legend_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"legend");
+	Element* render3d_legend_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"Legend");
 	_("Legend");
-	render3d_legend_node->AppendPropertyFont("legend_font","Police de la légende");
-	render3d_legend_node->AppendPropertyColor("legend_text_foreground_color","Couleur du texte",0,0,0);
-	render3d_legend_node->AppendPropertyColor("legend_text_background_color","Couleur de fond du texte",255,255,255);
-	render3d_legend_node->AppendPropertyBool("legend_text_background_invisible","Fond du texte transparent",true);
+	render3d_legend_node->AppendPropertyFont("legend_font","Police legend");
+	render3d_legend_node->AppendPropertyColor("legend_text_foreground_color","Text color",0,0,0);
+	render3d_legend_node->AppendPropertyColor("legend_text_background_color","Text background color",255,255,255);
+	render3d_legend_node->AppendPropertyBool("legend_text_background_invisible","Transparent text background",true);
+	_("Police legend");
 	_("Text color");
 	_("Text background color");
 	_("Transparent text background");
 
 	/////////////////////////////////////////////////////////////
 	//Dossier Rendu 3D / Carte de bruits
-	Element* render3d_soundmap_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM_ISOTEMPLATE,"soundmap");
-	render3d_soundmap_node->AppendPropertyColor("iso_line_color","Couleur des lignes iso",0,0,0);
+	Element* render3d_soundmap_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM_ISOTEMPLATE,"Sound map");
+	render3d_soundmap_node->AppendPropertyColor("iso_line_color","Iso-lines color",0,0,0);
 	_("Iso-lines color");
 	_("Sound map");
 	/////////////////////////////////////////////////////////////
 	//Dossier Rendu 3D / Particules
-	Element* render3d_particle_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"particle");
-	render3d_particle_node->AppendPropertyColor("particle_color","Couleur des particules",15,15,128);
+	Element* render3d_particle_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"Particles");
+	render3d_particle_node->AppendPropertyColor("particle_color","Color of particles",15,15,128);
 	_("Color of particles");
 	_("Particles");
 
 	/////////////////////////////////////////////////////////////
 	//Dossier préférence générale
-	Element* main_node=rootUserConfig->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_NODE,"mainpref");
+	Element* main_node=rootUserConfig->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_NODE,"General");
 	_("General");
 	/////////////////////////////////////////////////////////////
 	//Dossier Général / Historique
-	Element* main_history_node=main_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"history");
+	Element* main_history_node=main_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"History");
 	_("History");
-	main_history_node->AppendPropertyBool("keep_modification_history","Conserver l'historique des modifications",true);
+	main_history_node->AppendPropertyBool("keep_modification_history","Keep modification history",true);
 	_("Keep modification history");
 }
 void ProjectManager::SaveUserPreferenceTree()
@@ -2411,13 +2412,13 @@ void ProjectManager::PatchUserPreferenceTree(const wxString& oldVersion)
 	{
 		/////////////////////////////////////////////////////////////
 		//Dossier préférence générale
-		Element* main_node=rootUserConfig->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_NODE,"mainpref");
+		Element* main_node=rootUserConfig->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_NODE,"General");
 		_("General");
 		/////////////////////////////////////////////////////////////
 		//Dossier Général / Historique
-		Element* main_history_node=main_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"history");
+		Element* main_history_node=main_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"History");
 		_("History");
-		main_history_node->AppendPropertyBool("keep_modification_history","Conserver l'historique des modifications",true);
+		main_history_node->AppendPropertyBool("keep_modification_history","Keep modification history",true);
 		_("Keep modification history");
 	}
 }
