@@ -49,16 +49,16 @@ private:
 
 	void InitProps()
 	{
-		this->AppendPropertyColor("couleurx","Couleur flèche x",255,0,0);
-		this->AppendPropertyColor("couleury","Couleur flèche y",0,255,0);
-		this->AppendPropertyColor("couleurz","Couleur flèche z",0,0,255);
-		this->AppendPropertyDecimal("arrowsize","Longueur flèche",.15f);
-		this->AppendPropertyDecimal("arrowwidth","Largeur flèche",.008f);
-		this->AppendPropertyBool("show","Afficher repère",true);
-		this->AppendPropertyBool("showgxy","Grille plan xy",true);
-		this->AppendPropertyBool("showgxz","Grille plan xz",false);
-		this->AppendPropertyBool("showgyz","Grille plan yz",false);
-		this->AppendPropertyColor("couleurgrille","Couleur de la grille",90,90,90);
+		this->AppendPropertyColor("couleurx","Arrow color (x)",255,0,0);
+		this->AppendPropertyColor("couleury","Arrow color (y)",0,255,0);
+		this->AppendPropertyColor("couleurz","Arrow color (z)",0,0,255);
+		this->AppendPropertyDecimal("arrowsize","Arrow length",.15f);
+		this->AppendPropertyDecimal("arrowwidth","Arrow width",.008f);
+		this->AppendPropertyBool("show","Show XYZ axis",true);
+		this->AppendPropertyBool("showgxy","XY Grid",true);
+		this->AppendPropertyBool("showgxz","XZ Grid",false);
+		this->AppendPropertyBool("showgyz","YZ Grid",false);
+		this->AppendPropertyColor("couleurgrille","Grid color",90,90,90);
 		this->AppendPropertyEntier("echellegrille","Echelle de la grille",1);
 		_("Arrow length");
 		_("Arrow width");
@@ -84,6 +84,7 @@ public:
 		:E_Drawable(parent,"Repère",Element::ELEMENT_TYPE_SCENE_PROJET_RENDU_ORIGINE)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_ORIGIN);
+		_("XYZ axis");
 		this->InitProps();
 	}
 	void DrawPlan( vec4 unitizeValue,vec3 pas,vec3 extremitea,vec3 extremiteb,int rangebegin,int rangeend,vec3 couleurGrille,vec3 couleurElement)
