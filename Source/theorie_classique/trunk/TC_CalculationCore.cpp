@@ -72,12 +72,12 @@ bool CalculationCore::Run()
 	// Calcul pour chaque recepteurs surfaciques et sauvegarde de ceux-ci
 	if(configurationTool->recepteur_s_List.size()>0 || configurationTool->recepteur_scut_List.size()>0)
 	{
+		std::cout<<"double"<<std::endl;
 		std::cout<<"Step 3/3 : Surface receivers calculation."<<std::endl;
 		RunStep3(progressOutput.GetMainOperation());
 	}else{
 		std::cout<<"Step 3/3 : No Surface receivers."<<std::endl;
 	}
-
 	return true;
 }
 
@@ -282,7 +282,7 @@ void CalculationCore::RunStep2( progressOperation* parentProgressOp )
 void CalculationCore::RunStep3( progressOperation* parentProgressOp )
 {
 
-
+	std::cout<<"Step 3/3 : Surface receivers calculation."<<std::endl;
 	///////////////////////////////
 	// Création des dossiers pour chaque méthode de calcul
 	CoreString rootFolder=*this->configurationTool->FastGetConfigValue(Core_Configuration::SPROP_CORE_WORKING_DIRECTORY);
@@ -431,6 +431,7 @@ void CalculationCore::RunStep3( progressOperation* parentProgressOp )
 			delete recepteurSCutLin[idTheorie][idRsCut];
 		}
 	}
+	std::cout<<"Step 3/3 : Surface receivers calculation."<<std::endl;
 }
 void CalculationCore::SetEnergyDirectCut( entier idFreq, std::vector<r_SurfCut*>& recepteurS )
 {

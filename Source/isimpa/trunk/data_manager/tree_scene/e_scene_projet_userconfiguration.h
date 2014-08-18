@@ -51,8 +51,8 @@ private:
 	void InitProperties() 
 	{
 		this->AppendPropertyText("projectname","Project name","New project");
-		_("New project");
 		_("Project name");
+		_("New project");
 		this->AppendPropertyText("projectdesc","Project description","");
 		_("Project description");
 		this->AppendPropertyText("projectuser","Author","");

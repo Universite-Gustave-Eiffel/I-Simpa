@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: I-SIMPA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-07 10:53+0100\n"
-"PO-Revision-Date: 2014-08-07 10:53+0100\n"
+"POT-Creation-Date: 2014-07-30 14:05+0100\n"
+"PO-Revision-Date: 2014-07-30 14:05+0100\n"
 "Last-Translator: Picaut <i-simpa.ifsttar.fr>\n"
 "Language-Team: Nicolas Fortin, Judicaël Picaut <i-simpa@ifsttar.fr>\n"
 "Language: fr_FR\n"
@@ -341,7 +341,7 @@ msgstr "Fenêtre centrale"
 
 #: ../Source/isimpa/trunk/main/i_simpa_main.cpp:439
 #: ../Source/isimpa/trunk/IHM/GabeDataGrid.cpp:449
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_userconfiguration.h:54
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_userconfiguration.h:53
 msgid "New project"
 msgstr "Nouveau projet"
 
@@ -592,7 +592,7 @@ msgstr "Retour du processus inconnu"
 
 #: ../Source/isimpa/trunk/IHM/DialogDiagramCreator.cpp:110
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_configuration.h:48
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_userconfiguration.h:70
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_userconfiguration.h:69
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -652,7 +652,7 @@ msgstr ""
 
 #: ../Source/isimpa/trunk/IHM/GabeDataGrid.cpp:308
 #: ../Source/isimpa/trunk/IHM/MainPropGrid.cpp:167
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:3136
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:3135
 msgid "Spreadsheet"
 msgstr "Feuille de données"
 
@@ -1514,7 +1514,7 @@ msgid "XML file corrupted. File can't be loaded"
 msgstr "Fichier Xml du projet endommagé, impossible de charger le projet"
 
 #: ../Source/isimpa/trunk/data_manager/projet.cpp:1861
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2867
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2866
 msgid "Loading 3D scene ..."
 msgstr "Chargement du modèle 3D"
 
@@ -1523,7 +1523,7 @@ msgid "Scene does not exist!"
 msgstr "Modèle non existant !"
 
 #: ../Source/isimpa/trunk/data_manager/projet.cpp:2122
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2553
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2552
 msgid "Saving project"
 msgstr "Sauvegarde du projet"
 
@@ -1619,64 +1619,60 @@ msgid "Legend"
 msgstr "Légende"
 
 #: ../Source/isimpa/trunk/data_manager/projet.cpp:2342
-msgid "Police legend"
-msgstr "Police de la légend"
-
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2343
 msgid "Text color"
 msgstr "Couleur du texte"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2344
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2343
 msgid "Text background color"
 msgstr "Couleur de fond du texte"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2345
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2344
 msgid "Transparent text background"
 msgstr "Fond du texte transparent"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2351
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2350
 msgid "Iso-lines color"
 msgstr "Couleur des lignes iso"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2352
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2351
 msgid "Sound map"
 msgstr "Carte du bruit"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2357
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2356
 msgid "Color of particles"
 msgstr "Couleur des particules"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2358
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2357
 #: ../Source/isimpa/trunk/3dengine/Core/Particules.cpp:60
 #: ../Source/isimpa/trunk/Language/additionnal_univ.h:39
 #: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_partvisualisation.h:85
 msgid "Particles"
 msgstr "Particules"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2363
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2416
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2362
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2415
 msgid "General"
 msgstr "Général"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2367
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2420
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2366
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2419
 msgid "History"
 msgstr "Historique"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2369
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2422
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2368
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2421
 msgid "Keep modification history"
 msgstr "Conserver l'historique des modifications"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2427
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2426
 msgid "Project decompression"
 msgstr "Décompression du projet"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2427
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2426
 msgid "Project files decompression in progress ..."
 msgstr "Décompression des fichiers du projet en cours ..."
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2449
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2448
 #, c-format
 msgid ""
 "Dezip of file\n"
@@ -1685,28 +1681,28 @@ msgstr ""
 "Décompression du fichier \n"
 "%s"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2491
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2490
 #, c-format
 msgid "Loading project: %s"
 msgstr "Ouverture du projet : %s"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2553
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2552
 msgid "Updating XML file"
 msgstr "Mise à jour du fichier XML"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2568
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2567
 msgid "Save finished"
 msgstr "Sauvegarde terminée"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2705
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2704
 msgid "Please chose a calculation code"
 msgstr "Veuillez choisir le moteur de calcul associé au mailleur"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2705
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2704
 msgid "Display mesh"
 msgstr "Prévisualisation du maillage"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2731
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2730
 msgid ""
 "Select face: Left Click on the 3D view 3D to select a face; Double left Click"
 "+Ctrl to select a face entirely"
@@ -1714,33 +1710,33 @@ msgstr ""
 "Outil de sélection des faces. Click gauche sur la vue 3D pour sélectionner "
 "une face. Ctrl+ double Click gauche pour sélectionner toute la surface."
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2882
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2881
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_groupesurfaces_groupe.cpp:488
 msgid "Loading faces of 3D scene"
 msgstr "Chargement des faces du modèle 3D"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2883
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2882
 #, c-format
 msgid "Loading 3D scene: %s\n"
 msgstr "Changement du modèle de la scène 3D : %s\n"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2889
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2888
 msgid "Saving 3D scene"
 msgstr "Sauvegarde du modèle 3D"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2903
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2902
 msgid "Unable to load the 3D model"
 msgstr "Impossible de charger le modèle 3D !"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2912
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2911
 msgid "Please, select 3D scene importation options"
 msgstr "Veuillez spécifier les options d'importation d'un modèle 3D."
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2912
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2911
 msgid "Loading 3D scene"
 msgstr "Chargement d'un modèle"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2941
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2940
 msgid "Build of a 3D scene.\n"
 msgstr "Changement du modèle de la scène 3D, création d'un nouveau modèle\n"
 
@@ -2008,14 +2004,6 @@ msgstr "Reconstruction approximée du modèle en entrée."
 #: ../Source/isimpa/trunk/data_manager/projet_remesh.cpp:187
 msgid "Unable to save the file under the PLY format"
 msgstr "Impossible de sauvegarder le modèle au format PLY."
-
-#: ../Source/isimpa/trunk/data_manager/projet_undo_redo.cpp:74
-msgid "Add modifications in the change log"
-msgstr "Ajout des modifications dans l'historique des modifications"
-
-#: ../Source/isimpa/trunk/data_manager/projet_undo_redo.cpp:76
-msgid "Forced adding changes in the change log."
-msgstr "Ajout forcé des modifications dans l'historique des modifications"
 
 #: ../Source/isimpa/trunk/data_manager/generic_element/e_gammeabsorption.cpp:140
 msgid "Alpha"
@@ -3353,19 +3341,19 @@ msgstr "Couleur de la grille"
 msgid "XYZ axis"
 msgstr "Repère"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_userconfiguration.h:55
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_userconfiguration.h:54
 msgid "Project name"
 msgstr "Nom du projet"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_userconfiguration.h:57
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_userconfiguration.h:56
 msgid "Project description"
 msgstr "Description du projet"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_userconfiguration.h:59
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_userconfiguration.h:58
 msgid "Author"
 msgstr "Auteur"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_userconfiguration.h:63
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_userconfiguration.h:62
 msgid "Date"
 msgstr "Date"
 

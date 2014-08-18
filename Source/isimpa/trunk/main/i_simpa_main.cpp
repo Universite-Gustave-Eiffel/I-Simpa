@@ -116,7 +116,7 @@ BEGIN_EVENT_TABLE(MainUiFrame, wxFrame)
 	EVT_MENU(ID_annuler, MainUiFrame::OnUndo)
 	EVT_MENU(ID_retablir, MainUiFrame::OnRedo)
 	EVT_MENU(ID_Help_About, MainUiFrame::OnShowAboutDialog)
-	EVT_MENU(ID_Help_Forum, MainUiFrame::OnLinkWebForum)
+	//EVT_MENU(ID_Help_Forum, MainUiFrame::OnLinkWebForum)
 	EVT_MENU(ID_Help_Web, MainUiFrame::OnLinkWebIsimpa)
 	EVT_MENU(ID_Help_Doc, MainUiFrame::OnLinkWebDoc)
 	EVT_MENU(ID_Help_Licence, MainUiFrame::OnFileLicence)
@@ -330,7 +330,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	wxMenu* aide_menu = new wxMenu;
 	//aide_menu->Append(ID_Help, _("Aide"));
 	aide_menu->Append(ID_Help_Web, _("Website"));
-	aide_menu->Append(ID_Help_Forum, _("Online forums"));
+	//aide_menu->Append(ID_Help_Forum, _("Online forums"));
 	aide_menu->Append(ID_Help_Doc, _("Online documentation"));
 	aide_menu->AppendSeparator();
 	aide_menu->Append(ID_Help_Doc_Isimpa_Pdf, _("I-Simpa documentation (PDF in French)"));
@@ -913,7 +913,7 @@ void MainUiFrame::OnLinkWebIsimpa(wxCommandEvent& event)
 void MainUiFrame::OnLinkWebDoc(wxCommandEvent& event)
 {
 	//ShellExecute( NULL,TEXT("open"), TEXT("http://i-simpa.ifsttar.fr/wiki/"), NULL, NULL, SW_SHOWNORMAL);
-	wxLaunchDefaultBrowser("http://i-simpa.ifsttar.fr/wiki/");
+	wxLaunchDefaultBrowser("https://github.com/Ifsttar/I-Simpa/wiki");
 }
 
 void MainUiFrame::OnFileLicence(wxCommandEvent& event)
@@ -923,11 +923,15 @@ void MainUiFrame::OnFileLicence(wxCommandEvent& event)
 
 void MainUiFrame::OnFileIsimpaDoc(wxCommandEvent& event)
 {
-	wxLaunchDefaultApplication("../isimpa/trunk/doc/documentation/manuel_I_Simpa.pdf");
+	std::string path = getenv("ISIMPA");
+	std::string docpath = path + "/Source/isimpa/trunk/documentation/manuel_I_Simpa.pdf";
+	wxLaunchDefaultApplication(docpath);
 }
 void MainUiFrame::OnFileSppsDoc(wxCommandEvent& event)
 {
-	wxLaunchDefaultApplication("../isimpa/trunk/doc/documentation/SPPS_manuel.pdf");
+	std::string path = getenv("ISIMPA");
+	std::string docpath = path + "/Source/isimpa/trunk/documentation/SPPS_manuel.pdf";
+	wxLaunchDefaultApplication(docpath);
 }
 
 void MainUiFrame::OnOpenFile (wxCommandEvent & event)

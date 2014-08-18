@@ -1,82 +1,29 @@
-I-SIMPA END USER LICENSE AGREEMENT
-January 6th, 2012
-
-PLEASE READ THE TERMS AND CONDITIONS OF THIS LICENSE AGREEMENT (“AGREEMENT”) CAREFULLY BEFORE USING THE SOFTWARE (AS DEFINED BELOW). THIS IS A LEGALLY BINDING CONTRACT BETWEEN YOU AND IFSTTAR - I-SIMPA SOFTWARE DEVELOPMENT TEAM. BY ASSENTING ELECTRONICALLY, INSTALLING OR USING THIS SOFTWARE YOU ACCEPT ALL THE TERMS AND CONDITIONS OF THIS AGREEMENT.
-
-If you do not agree with the terms and conditions of this Agreement, do not continue the installation process and delete or destroy all copies of the Software in your possession.
-
-1. License
-
-I-Simpa Software Development Team (I-Simpa SDT) grants to you a non-exclusive license to use the Software and the Documentation for so long as I-Simpa SDT makes the Software available, provided that you agree to the terms and conditions of this Agreement.
-
-2. Term. This Agreement is effective for an unlimited duration unless and until earlier terminated as set forth herein. This Agreement will terminate   automatically if you fail to comply with any of the limitations or other requirements described herein. Upon any termination or expiration of this Agreement, you must destroy all copies of the Software and the Documentation. You may terminate this Agreement at any point by destroying all copies of the Software and the Documentation.
-
-3. Permitted Use of the Software
-
-You may install and use the Software on an unlimited number of computers. The Software must be used exclusively by you or members of your company.
-
-4. Upgrades and Updates
-
-Upgrades and updates of the Software shall be provided by I-Simpa SDT as long as I-Simpa SDT makes such upgrades and updates available to the users of the Software.
-	
-5. Ownership Rights
-
-The Software and Documentation is the intellectual property of I-Simpa SDT and is protected by applicable copyright laws, international treaty provisions and other applicable laws of the country in which the Software is being used.
-
-The structure, organization and code of the Software are valuable trade secrets and confidential information of I-Simpa SDT.
-
-To the extent you provide any comments or suggestions about the Software to I-Simpa SDT, I-Simpa SDT shall have the right to retain and use any such comments or suggestions in our current or future products or services, without further compensation to you and without your approval of such retention or use.
-
-Except as stated in this Agreement, your possession, installation and use of the Software does not grant you any rights or title to any intellectual property rights in the Software or Documentation.
-
-6. Restrictions
-
-You may not copy or use the Software or the Documentation except as set forth in Section 2 of this Agreement.
-
-You may not remove any proprietary notices or labels on the Software; any copies that you are permitted to make pursuant to this Agreement must contain the same copyright and other proprietary notices that appear on and in the Software.
-
-You agree not to modify, adapt, translate, reverse engineer, decompile or disassemble the Software or otherwise attempt to discover the source code of the Software or algorithms contained therein or create any derivative works from the Software.
-
-7. Transfer
-
-You may not rent, lease, sub-license, or lend the Software or the Documentation or any portions thereof.
-
-You may, however, transfer all your rights to use the Software and the Documentation to another person provided that (i) the transferee accepts the terms of this Agreement; (ii) you transfer the Software, including all copies, updates and prior versions, and all Documentation to such person; and (iii) you retain no copies of the Software or of the Documentation. Partial transfer of your rights under this Agreement is strictly prohibited.
-
-8. Disclaimers and Exclusion of Liability
-
-Be aware that the Software may make changes to your computer that may adversely affect its functionality, such as deleting system or application files identified (correctly or incorrectly) by the Software as infected. You acknowledge and agree to such changes to your computer that may occur as a result of your use of the Software. The Software is not fault-tolerant and as such is not designed for use in hazardous environments requiring fail-safe performance.
-
-THE SOFTWARE IS PROVIDED “AS IS” AND I-SIMPA SDT DO NOT AND CANNOT GARRANTEE THE RESULTS YOU MAY OBTAIN BY USING THE SOFTWARE OR DOCUMENTATION. YOU AGREE AND ACCEPT THAT I-SIMPA SDT CAN NOT BE RESPONSABLE FOR ANY DAMAGES, INCLUDING ANY LOST PROFITS, LOST SAVINGS OR LOST DATA, EVEN IF I-SIMPA STD HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
-
-YOU ASSUME RESPONSIBILITY FOR SELECTING THE SOFTWARE TO ACHIEVE YOUR INTENDED RESULTS, AND FOR THE INSTALLATION OF, USE OF, AND RESULTS OBTAINED FROM THE SOFTWARE. WITHOUT LIMITING THE FOREGOING PROVISIONS, I-SIMPA SDT MAKES NO WARRANTY THAT THE SOFTWARE WILL BE ERROR-FREE OR FREE FROM INTERRUPTIONS OR OTHER FAILURES OR THAT THE SOFTWARE WILL MEET YOUR REQUIREMENTS. 
-
-The foregoing provisions shall be enforceable to the maximum extent permitted by applicable law. 
-
-9. Privacy; Processing of Personal Information
-
-The Software may collect certain information, which may include personally identifiable information, from the computer on which it is installed. The information collected by the Software is not correlated with any other personal information related to you that I-Simpa STD may be processing such as information given by you to I-Simpa STD during the process of downloading the Software. Unless you have permitted otherwise, the information collected by the Software is used anonymously in aggregation with similar information from other users of the Software for analytical purposes to identify new viruses and threats and for improvement and development of the Software and for statistical purposes. By using the Software you acknowledge and agree that I-Simpa STD may collect and use the information as described above.
-	
-I-Simpa STD warrants that no personal information will be sell or rent to other companies.
-
-10. Contact and information
-
-If you have any questions regarding this Agreement or wish to request any information from I-Simpa STD, please visit our contact page on the I-Simpa website.
-
-11. Miscellaneous. This Agreement is governed by the laws of France.
-
-
-Copyright © 2012 - IFSTTAR
-
-LIBRAIRIES ET PROGRAMMES TIERS UTILISEES :
-
-wxWindows Library , Version 3.1
-Copyright (c) 1998-2005 Julian Smart, Robert Roebling et al
-
-Python 2.6
-Copyright © 2001-2008 Python Software Foundation. All rights reserved.
-
-TetGen, A Quality Tetrahedral Mesh Generator and 3D Delaunay Triangulator
-Version 1.4 (Released on January 14, 2006). Copyright Hang Si (Rathausstr. 9, 10178 Berlin, Germany si@wias-berlin.de )
-
-Boost Software - Version 1.37 - 3 Novembre 2008
+/* ----------------------------------------------------------------------
+* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+*
+* I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
+* to scientific acoustic simulations.
+* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+*
+* I-SIMPA is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 3 of the License, or
+* (at your option) any later version.
+* 
+* I-SIMPA is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, write to the Free Software Foundation,
+* Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
+* see <http://ww.gnu.org/licenses/>
+*
+* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
+* send an email to i-simpa@ifsttar.fr
+*
+* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
+* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
+* or write to scientific.computing@ifsttar.fr
+* ----------------------------------------------------------------------*/

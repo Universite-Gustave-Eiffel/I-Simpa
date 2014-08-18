@@ -207,7 +207,7 @@ class MainUiFrame : public wxFrame
 			ID_Help,
 			ID_Help_About,
 			ID_Help_Licence,
-			ID_Help_Forum,
+			//ID_Help_Forum,
 			ID_Help_Doc,
 			ID_Help_Doc_Isimpa_Pdf,
 			ID_Help_Doc_Spps_Pdf,

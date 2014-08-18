@@ -810,7 +810,7 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	bool result=uiRunExe(mainFrame,cmd,labelOutput,&progDialog);
 	wxLongLong durationCalculation=wxDateTime::UNow().GetValue()-timeDebCalculation.GetValue();
 
-	wxLogInfo(_("Calcuation time: %i ms"),durationCalculation.GetValue());
+	wxLogInfo(_("Calculation time: %i ms"),durationCalculation.GetValue());
 
 	///////////////////////////////////////////
 	// Copie du fichier de projet XML dans le dossier de rapport de calcul
