@@ -8,7 +8,7 @@
 *.orig
 Debug
 Debug Unix
-*Release*
+currentRelease/libisimpa/
 *.ncb
 *.rar
 *.tags
@@ -17,6 +17,8 @@ Debug Unix
 *.suo
 *.depend
 *.exe
+*.pyc
+*.pyd
 *.obj
 *~
 images/
