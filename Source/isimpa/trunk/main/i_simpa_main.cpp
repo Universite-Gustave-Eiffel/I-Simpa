@@ -936,7 +936,7 @@ void MainUiFrame::OnFileSppsDoc(wxCommandEvent& event)
 
 void MainUiFrame::OnOpenFile (wxCommandEvent & event)
 {
-		smart_ptr<wxFileDialog> openFileDialog = new wxFileDialog ( this, _("Import new scene"), "Import new scene", "Import new scene", _("All compatible files|*.3ds;*.ply;*.bin;*.poly;*.stl|3DS file (*.3ds)|*.3ds|poly file (*.poly)|*.bin|ply file (*.ply)|*.ply|Binary file 1.00(*.bin)|*.bin|Stererolithograpic file(*.stl)|*.stl|CATT-Acoustic file(*.geo)|*.geo"),
+		smart_ptr<wxFileDialog> openFileDialog = new wxFileDialog ( this, _("Import new scene"), "", "", _("All compatible files|*.3ds;*.ply;*.bin;*.poly;*.stl|3DS file (*.3ds)|*.3ds|poly file (*.poly)|*.bin|ply file (*.ply)|*.ply|Binary file 1.00 (*.bin)|*.bin|Stererolithograpic file (*.stl)|*.stl|CATT-Acoustic file (*.geo)|*.geo"),
 														wxFD_OPEN, wxDefaultPosition);
 
 	if (openFileDialog->ShowModal() == wxID_OK)
