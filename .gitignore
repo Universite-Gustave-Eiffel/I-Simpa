@@ -6,6 +6,7 @@
 *.hgignore
 *.user
 *.orig
+*.htm
 Debug
 Debug Unix
 currentRelease/libisimpa/
@@ -21,6 +22,9 @@ currentRelease/libisimpa/
 *.pyd
 *.obj
 *~
+*.exp
+*.lib
+enum_def.cpp
 images/
 vc_msw/
 vc_mswd/
