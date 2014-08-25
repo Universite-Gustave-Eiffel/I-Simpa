@@ -1684,7 +1684,6 @@
 ~@variable_t@time_write@::_wfinddata32_t::time_write
 ~@variable_t@_M_caches@::std::locale::_Impl::_M_caches
 ~@variable_t@cols@::formatGABE::GABE::cols
-+@variable_t@('c:\\Users\\Jimmy\\Ifsttar\\I-Simpa\\Source\\isimpa\\trunk\\coreSrc\\lib_interface\\input_output/bin.h', 74)@::formatCoreBIN::t_pos
 ~@variable_t@_M_pback_cur_save@::std::basic_filebuf< wchar_t, std::char_traits< wchar_t > >::_M_pback_cur_save
 ~@variable_t@_M_pback_cur_save@::std::basic_filebuf< char, std::char_traits< char > >::_M_pback_cur_save
 ~@variable_t@_M_string@::std::basic_stringbuf< char, std::char_traits< char >, std::allocator< char > >::_M_string
@@ -1778,6 +1777,7 @@
 ~@variable_t@st_gid@::_stat32i64::st_gid
 ~@variable_t@st_gid@::_stat64i32::st_gid
 +@variable_t@localData@::formatRSBIN::rsurf_data::localData
++@variable_t@('c:\\Users\\Jimmy\\I-Simpa\\Source\\isimpa\\trunk\\coreSrc\\lib_interface\\input_output/bin.h', 74)@::formatCoreBIN::t_pos
 ~@variable_t@positive_sign@::lconv::positive_sign
 ~@variable_t@alnum@::std::ctype_base::alnum
 +@variable_t@b@::formatCoreBIN::ioFace::b
@@ -1874,6 +1874,7 @@
 ~@variable_t@_M_out_cur@::std::basic_streambuf< wchar_t, std::char_traits< wchar_t > >::_M_out_cur
 ~@variable_t@_M_out_cur@::std::basic_streambuf< char, std::char_traits< char > >::_M_out_cur
 +@variable_t@parent@::progressOperation::parent
+~@variable_t@decimal_point@::lconv::decimal_point
 +@variable_t@currentPartInfo@::particleio::ParticuleIO::currentPartInfo
 +@variable_t@idVolume@::formatMBIN::bintetrahedre::idVolume
 +@variable_t@c@::formatCoreBIN::ioFace::c
@@ -1917,7 +1918,6 @@
 ~@variable_t@_M_reading@::std::basic_filebuf< wchar_t, std::char_traits< wchar_t > >::_M_reading
 ~@variable_t@_M_reading@::std::basic_filebuf< char, std::char_traits< char > >::_M_reading
 +@variable_t@maxstepcount@::particleio::ParticuleIO::fileInfo_t::maxstepcount
-+@variable_t@('c:\\Users\\Jimmy\\Ifsttar\\I-Simpa\\Source\\isimpa\\trunk\\coreSrc\\lib_interface\\input_output/bin.h', 72)@::formatCoreBIN::t_pos
 ~@variable_t@Pref@::CalculsGenerauxThermodynamique::CGTconst::Pref
 ~@variable_t@_ZTISt19basic_ostringstreamIcSt11char_traitsIcESaIcEE@::_ZTISt19basic_ostringstreamIcSt11char_traitsIcESaIcEE
 ~@variable_t@_ZTISt14basic_ofstreamIcSt11char_traitsIcEE@::_ZTISt14basic_ofstreamIcSt11char_traitsIcEE
@@ -2082,7 +2082,7 @@
 ~@variable_t@_S_id_ctype@::std::locale::_Impl::_S_id_ctype
 ~@variable_t@cin@::std::cin
 ~@variable_t@_S_atoms_out@::std::__num_base::_S_atoms_out
-~@variable_t@decimal_point@::lconv::decimal_point
++@variable_t@('c:\\Users\\Jimmy\\I-Simpa\\Source\\isimpa\\trunk\\coreSrc\\lib_interface\\input_output/bin.h', 72)@::formatCoreBIN::t_pos
 +@variable_t@z@::formatCoreBIN::t_pos::z
 ~@variable_t@_M_buf_allocated@::std::basic_filebuf< wchar_t, std::char_traits< wchar_t > >::_M_buf_allocated
 ~@variable_t@_M_buf_allocated@::std::basic_filebuf< char, std::char_traits< char > >::_M_buf_allocated
@@ -2331,7 +2331,6 @@
 +@class_t@VolumesSplitter@::volumes_splitter::VolumesSplitter
 ~@class_t@__is_byte< char >@::std::__is_byte< char >
 ~@class_t@_Destroy_aux< false >@::std::_Destroy_aux< false >
-+@class_t@('c:\\Users\\Jimmy\\Ifsttar\\I-Simpa\\Source\\isimpa\\trunk\\coreSrc\\lib_interface\\input_output/bin.h', 71)@::formatCoreBIN::t_pos
 ~@class_t@failure@::std::ios_base::failure
 ~@class_t@__uninitialized_fill_n< true >@::std::__uninitialized_fill_n< true >
 ~@class_t@allocator< std::_List_node< unsigned int > >@::std::allocator< std::_List_node< unsigned int > >
@@ -2366,7 +2365,6 @@
 ~@class_t@allocator< volumes_splitter::VolumesSplitter::facemodel_t >@::std::allocator< volumes_splitter::VolumesSplitter::facemodel_t >
 ~@class_t@__conditional_type< true, unsigned long, unsigned long long >@::__gnu_cxx::__conditional_type< true, unsigned long, unsigned long long >
 ~@class_t@num_put< wchar_t, std::ostreambuf_iterator< wchar_t, std::char_traits< wchar_t > > >@::std::num_put< wchar_t, std::ostreambuf_iterator< wchar_t, std::char_traits< wchar_t > > >
-+@class_t@('c:\\Users\\Jimmy\\Ifsttar\\I-Simpa\\Source\\isimpa\\trunk\\coreSrc\\lib_interface\\input_output/bin.h', 72)@::formatCoreBIN::t_pos
 ~@class_t@__remove_unsigned< unsigned char >@::__gnu_cxx::__remove_unsigned< unsigned char >
 ~@class_t@allocator< formatCoreBIN::ioFace >@::std::allocator< formatCoreBIN::ioFace >
 ~@class_t@__is_integer< double >@::std::__is_integer< double >
@@ -2402,6 +2400,7 @@
 ~@class_t@__gthread_recursive_mutex_t@::__gthread_recursive_mutex_t
 ~@class_t@rebind< char >@::std::allocator< wchar_t >::rebind< char >
 ~@class_t@rebind< char >@::std::allocator< char >::rebind< char >
++@class_t@('c:\\Users\\Jimmy\\I-Simpa\\Source\\isimpa\\trunk\\coreSrc\\lib_interface\\input_output/bin.h', 71)@::formatCoreBIN::t_pos
 ~@class_t@__copy_move< false, false, std::random_access_iterator_tag >@::std::__copy_move< false, false, std::random_access_iterator_tag >
 ~@class_t@_List_impl@::std::_List_base< unsigned int, std::allocator< unsigned int > >::_List_impl
 ~@class_t@_List_impl@::std::_List_base< volumes_splitter::VolumesSplitter::vol_t, std::allocator< volumes_splitter::VolumesSplitter::vol_t > >::_List_impl
@@ -2439,6 +2438,7 @@
 ~@class_t@codecvt< wchar_t, char, int >@::std::codecvt< wchar_t, char, int >
 ~@class_t@t_StringShort@::formatGABE::t_StringShort
 ~@class_t@iterator< std::random_access_iterator_tag, bool, int, bool*, bool& >@::std::iterator< std::random_access_iterator_tag, bool, int, bool*, bool& >
++@class_t@('c:\\Users\\Jimmy\\I-Simpa\\Source\\isimpa\\trunk\\coreSrc\\lib_interface\\input_output/bin.h', 72)@::formatCoreBIN::t_pos
 ~@class_t@bad_exception@::std::bad_exception
 ~@class_t@__alloc_traits< std::allocator< formatCoreBIN::t_pos > >@::__gnu_cxx::__alloc_traits< std::allocator< formatCoreBIN::t_pos > >
 ~@class_t@__codecvt_abstract_base< char, char, int >@::std::__codecvt_abstract_base< char, char, int >

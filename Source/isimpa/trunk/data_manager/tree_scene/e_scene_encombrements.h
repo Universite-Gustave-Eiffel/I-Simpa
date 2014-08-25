@@ -106,10 +106,8 @@ public:
 
 	void OnRightClic(wxMenu* leMenu)
 	{
-		std::string path=getenv("ISIMPA");
-		std::string bitmapPath= path +  "/currentRelease";
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_ENCOMBREMENT, _("Define scene fitted zone "),bitmapPath + "/Bitmaps/popup_new.png"));
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_ENCOMBREMENT_CUBOIDE, _("Define rectangular fitted zone"),bitmapPath + "/Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_ENCOMBREMENT, _("Define scene fitted zone "),"./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_ENCOMBREMENT_CUBOIDE, _("Define rectangular fitted zone"),"./Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 

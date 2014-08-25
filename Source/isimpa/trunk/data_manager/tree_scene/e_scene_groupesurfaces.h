@@ -198,9 +198,7 @@ public:
 
 	void OnRightClic(wxMenu* leMenu)
 	{
-		std::string path=getenv("ISIMPA");
-		std::string bitmapPath= path +  "/currentRelease";
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SURFACE_GROUP, _("Add a group"),bitmapPath + "/Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SURFACE_GROUP, _("Add a group"),"./Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 };

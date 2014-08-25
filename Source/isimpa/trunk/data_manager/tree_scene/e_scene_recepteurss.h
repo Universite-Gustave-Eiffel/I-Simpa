@@ -135,11 +135,9 @@ public:
 	}
 
 	void OnRightClic(wxMenu* leMenu)
-	{
-		std::string path=getenv("ISIMPA");
-		std::string bitmapPath= path +  "/currentRelease";	
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_RECEPTEUR_S, _("New scene face receiver"),bitmapPath + "/Bitmaps/popup_new.png"));
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_RECEPTEUR_S_COUPE, _("New plane receiver"),bitmapPath + "/Bitmaps/popup_new.png"));
+	{	
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_RECEPTEUR_S, _("New scene face receiver"),"./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_RECEPTEUR_S_COUPE, _("New plane receiver"),"./Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 	void OnPaste(wxXmlNode* nodeElement)

@@ -129,9 +129,7 @@ public:
 	}
 	void OnRightClic(wxMenu* leMenu)
 	{
-		std::string path=getenv("ISIMPA");
-		std::string bitmapPath= path +  "/currentRelease";
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_RUN_CALCULATION, _("Run calculation"),bitmapPath + "/Bitmaps/popup_launch_calculation.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_RUN_CALCULATION, _("Run calculation"),"./Bitmaps/popup_launch_calculation.png"));
 		Element::OnRightClic(leMenu);
 	}
 	virtual wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)

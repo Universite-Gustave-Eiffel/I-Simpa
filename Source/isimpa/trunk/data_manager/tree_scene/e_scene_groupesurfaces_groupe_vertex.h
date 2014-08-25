@@ -73,11 +73,9 @@ public:
 	}
 	void OnRightClic(wxMenu* leMenu)
 	{
-		std::string path=getenv("ISIMPA");
-		std::string bitmapPath= path +  "/currentRelease";
 		if(this->pere && this->pere->GetElementInfos().userDestroyable)
 		{
-			leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SURFACE_GROUP_FROM_SELECTION,_("Send to a new surface group"),bitmapPath + "/Bitmaps/popup_new.png"));
+			leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SURFACE_GROUP_FROM_SELECTION,_("Send to a new surface group"),"./Bitmaps/popup_new.png"));
 			leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_INVERT_FACE_ORIENTATION, _("Invert face normal")));
 		}
 		Element::OnRightClic(leMenu);

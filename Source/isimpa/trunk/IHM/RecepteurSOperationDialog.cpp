@@ -39,11 +39,8 @@
 #include <wx/button.h>
 #include "last_cpp_include.hpp"
 
-std::string path=getenv("ISIMPA");
-std::string bitmapPath= path +  "/currentRelease";
-
 RecepteurSelectionWizard::RecepteurSelectionWizard(wxFrame *frame, E_Report_File* _rootFolder)
-        : wxWizard(frame,wxID_ANY,_("Compare surface receivers"),wxBitmap(bitmapPath + "/Bitmaps/wiz3.png", wxBITMAP_TYPE_PNG)),
+        : wxWizard(frame,wxID_ANY,_("Compare surface receivers"),wxBitmap("./Bitmaps/wiz3.png", wxBITMAP_TYPE_PNG)),
 		rootFolder(_rootFolder)
 { 
 	_("&Cancel");

@@ -95,9 +95,7 @@ wxXmlNode* E_Scene_Volumes::SaveXMLDoc(wxXmlNode* NoeudParent)
 }
 void E_Scene_Volumes::OnRightClic(wxMenu* leMenu)
 {
-	std::string path=getenv("ISIMPA");
-	std::string bitmapPath= path +  "/currentRelease";
-	leMenu->Append(GetMenuItem(leMenu,IDEVENT_NEW_VOLUME, _("Create a volume"),bitmapPath + "/Bitmaps/popup_new.png"));
-	leMenu->Append(GetMenuItem(leMenu,IDEVENT_BUILD_VOLUMES_FROM_TRIMESH, _("Volume auto-detect"),bitmapPath + "/Bitmaps/popup_new.png"));
+	leMenu->Append(GetMenuItem(leMenu,IDEVENT_NEW_VOLUME, _("Create a volume"),"./Bitmaps/popup_new.png"));
+	leMenu->Append(GetMenuItem(leMenu,IDEVENT_BUILD_VOLUMES_FROM_TRIMESH, _("Volume auto-detect"),"./Bitmaps/popup_new.png"));
 	Element::OnRightClic(leMenu);
 }

@@ -69,9 +69,7 @@ public:
 	
 	void OnRightClic(wxMenu* leMenu)
 	{
-		std::string path=getenv("ISIMPA");
-		std::string bitmapPath= path +  "/currentRelease";
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_USERFREQ, _("New spectrum"),bitmapPath + "/Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_USERFREQ, _("New spectrum"),"./Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 
