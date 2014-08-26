@@ -25,6 +25,8 @@ professional or commercial use.
 For build instructions, see [this](https://github.com/Ifsttar/I-Simpa/blob/master/Docs/Building.md).<br \>
 For using I-Simpa, see [this](https://github.com/Ifsttar/I-Simpa/wiki).
 
+**IMPORTANT NOTE:** although the source code is available, it is not ready to fork. Works are in progress to correct minor bugs and to propose a first stable release. We suggest to contributors to wait this first release before contributtting to the development of I-Simpa.
+
 ## **License**
 
 I-Simpa is an application developped by Ifsttar under the GENERAL PUBLIC LICENSE Version 3, please refere to [GPLv3](https://github.com/Ifsttar/I-Simpa/blob/master/LICENSE.md) for more details about it and [here](https://github.com/Ifsttar/I-Simpa/blob/master/Docs/License.txt) for Ifsttar information.
