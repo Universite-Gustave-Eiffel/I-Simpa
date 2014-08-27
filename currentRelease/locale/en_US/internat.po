@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: I-SIMPA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-27 13:33+0100\n"
-"PO-Revision-Date: 2014-08-27 13:33+0100\n"
+"POT-Creation-Date: 2014-08-27 14:22+0100\n"
+"PO-Revision-Date: 2014-08-27 14:23+0100\n"
 "Last-Translator: Ifsttar <Judicael.Picaut@ifsttar.fr>\n"
 "Language-Team: Nicolas Fortin, Judicaël Picaut <i-simpa@ifsttar.fr>\n"
 "Language: fr_FR\n"
@@ -80,7 +80,7 @@ msgstr "Intensity"
 
 #: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_ponctuel_intensity.cpp:77
 msgid "Intensity : "
-msgstr "Intensity : "
+msgstr "Intensity: "
 
 #: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:79
 msgid "Surface receiver"
@@ -162,7 +162,7 @@ msgstr "This zone does not correspond to a defined surface receiver"
 
 #: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:889
 msgid "Surface receivers :"
-msgstr "Surface receivers :"
+msgstr "Surface receivers:"
 
 #: ../Source/isimpa/trunk/3dengine/Core/ply.cpp:223
 #, c-format
@@ -188,7 +188,7 @@ msgstr ""
 #: ../Source/isimpa/trunk/3dengine/OpenGLApp.cpp:415
 #, c-format
 msgid "Error code : %i"
-msgstr "Error code : %i"
+msgstr "Error code: %i"
 
 #: ../Source/isimpa/trunk/3dengine/OpenGLApp.cpp:420
 msgid ""
@@ -2890,7 +2890,7 @@ msgid "Materials"
 msgstr "Materials"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_app.h:54
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:76
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:77
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_spectrums_app.h:53
 msgid "Reference"
 msgstr "Reference"
@@ -2912,10 +2912,11 @@ msgid "Side of material effect"
 msgstr "Side of material effect"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:61
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:70
 msgid "Material description"
 msgstr "Material description"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:77
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:78
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_encombrements_encombrement_proprietes.h:56
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteursp_recepteur_proprietes.h:61
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteur_proprietes.h:50
@@ -2924,11 +2925,11 @@ msgstr "Material description"
 msgid "Description"
 msgstr "Description"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:78
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:79
 msgid "Mass density (kg/m3)"
 msgstr "Mass density (kg/m3)"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:79
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:80
 msgid "Resistivity (cgs)"
 msgstr "Resistivity (cgs)"
 

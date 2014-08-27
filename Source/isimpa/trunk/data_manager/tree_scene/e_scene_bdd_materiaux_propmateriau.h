@@ -67,6 +67,7 @@ public:
 	E_Scene_Bdd_Materiaux_PropertyMaterial( Element* parent)
 		:Element(parent,"Description du matériau",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_PROPMATERIAU)
 	{
+		_("Material description");
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
 		this->AppendPropertyDecimal("masse_volumique","Mass density (kg/m3)",0,false,4,false,false,0,0,true);
 		this->AppendPropertyDecimal("resistivite","Resistivity (cgs)",100000,false,4,false,false,0,0,true);
