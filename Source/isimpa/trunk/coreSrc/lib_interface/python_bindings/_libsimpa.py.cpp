@@ -95,14 +95,14 @@ struct t_binNode_wrapper : formatMBIN::t_binNode, bp::wrapper< formatMBIN::t_bin
 
 };
 
-static boost::python::tuple GetFaceEnergy_55c09b76319b542d67de8263861c1e72( ::formatRSBIN::rsurf_data const & inst, ::std::size_t const & rsIndex, ::std::size_t const & faceIndex, ::std::size_t const & recordIndex ){
+static boost::python::tuple GetFaceEnergy_55c09b76319b542d67de8263861c1e72( ::formatRSBIN::rsurf_data const & inst, ::size_t const & rsIndex, ::size_t const & faceIndex, ::size_t const & recordIndex ){
     unsigned int idstep2;
     float energy2;
     inst.GetFaceEnergy(rsIndex, faceIndex, recordIndex, idstep2, energy2);
     return bp::make_tuple( idstep2, energy2 );
 }
 
-static boost::python::tuple GetFaceInfo_ffd41391329802f344cde7ce4f2494dc( ::formatRSBIN::rsurf_data const & inst, ::std::size_t const & rsIndex, ::std::size_t const & faceIndex ){
+static boost::python::tuple GetFaceInfo_ffd41391329802f344cde7ce4f2494dc( ::formatRSBIN::rsurf_data const & inst, ::size_t const & rsIndex, ::size_t const & faceIndex ){
     unsigned int vertexA2;
     unsigned int vertexB2;
     unsigned int vertexC2;
@@ -121,7 +121,7 @@ static boost::python::tuple GetFileInfos_525a3be9f8f575bd95315a87170ba40a( ::for
     return bp::make_tuple( rs_size2, nodes_size2, nbtimestep2, timestep2, recordType2 );
 }
 
-static boost::python::tuple GetNodePositionValue_69e14843c7ed97ad3f492e0c41cf7a26( ::formatRSBIN::rsurf_data const & inst, ::std::size_t const & nodeIndex ){
+static boost::python::tuple GetNodePositionValue_69e14843c7ed97ad3f492e0c41cf7a26( ::formatRSBIN::rsurf_data const & inst, ::size_t const & nodeIndex ){
     float x2;
     float y2;
     float z2;
@@ -129,7 +129,7 @@ static boost::python::tuple GetNodePositionValue_69e14843c7ed97ad3f492e0c41cf7a2
     return bp::make_tuple( x2, y2, z2 );
 }
 
-static boost::python::tuple GetRsInfo_a448d76a66bcf1e5144f7f8c9f8afdd9( ::formatRSBIN::rsurf_data const & inst, ::std::size_t const & rsIndex ){
+static boost::python::tuple GetRsInfo_a448d76a66bcf1e5144f7f8c9f8afdd9( ::formatRSBIN::rsurf_data const & inst, ::size_t const & rsIndex ){
     unsigned int nbfaces2;
     std::basic_string<char,std::char_traits<char>,std::allocator<char> > rs_name2;
     int xmlid2;
@@ -178,19 +178,19 @@ struct t_curve_wrapper : formatRSBIN::t_curve, bp::wrapper< formatRSBIN::t_curve
 
 };
 
-static boost::python::object ReadColFloat_2d7d953196ad1599f64a7b62cd706458( ::gabe_io::Gabe_rw & inst, ::std::size_t const & idcol ){
+static boost::python::object ReadColFloat_2d7d953196ad1599f64a7b62cd706458( ::gabe_io::Gabe_rw & inst, ::size_t const & idcol ){
     std::vector<float, std::allocator<float> > coldata2;
     inst.ReadColFloat(idcol, coldata2);
     return bp::object( coldata2 );
 }
 
-static boost::python::object ReadColInt_a923d984c4b477c9ce588113f8089b93( ::gabe_io::Gabe_rw & inst, ::std::size_t const & idcol ){
+static boost::python::object ReadColInt_a923d984c4b477c9ce588113f8089b93( ::gabe_io::Gabe_rw & inst, ::size_t const & idcol ){
     std::vector<int, std::allocator<int> > coldata2;
     inst.ReadColInt(idcol, coldata2);
     return bp::object( coldata2 );
 }
 
-static boost::python::object ReadColStr_0f0439e36e04578028500fb87bbc9ea3( ::gabe_io::Gabe_rw & inst, ::std::size_t const & idcol ){
+static boost::python::object ReadColStr_0f0439e36e04578028500fb87bbc9ea3( ::gabe_io::Gabe_rw & inst, ::size_t const & idcol ){
     std::vector<std::string, std::allocator<std::string> > coldata2;
     inst.ReadColStr(idcol, coldata2);
     return bp::object( coldata2 );
@@ -456,22 +456,22 @@ BOOST_PYTHON_MODULE(_libsimpa){
     bp::class_< formatRSBIN::rsurf_data >( "rsurf_data", "", bp::init< >("") )    
         .def( 
             "ComputeFaceArea"
-            , (float ( ::formatRSBIN::rsurf_data::* )( ::std::size_t const &,::std::size_t const & ) )( &::formatRSBIN::rsurf_data::ComputeFaceArea )
+            , (float ( ::formatRSBIN::rsurf_data::* )( ::size_t const &,::size_t const & ) )( &::formatRSBIN::rsurf_data::ComputeFaceArea )
             , ( bp::arg("rsIndex"), bp::arg("faceIndex") )
             , "Calcul laire dune surface\nParam:[in] rsIndex Indice du récepteur de surface\nParam:[in] faceIndex Indice de la surface\nRetourne Aire de la surface en m²\n" )    
         .def( 
             "GetFaceEnergy"
-            , (boost::python::tuple (*)( ::formatRSBIN::rsurf_data const &,::std::size_t const &,::std::size_t const &,::std::size_t const & ))( &GetFaceEnergy_55c09b76319b542d67de8263861c1e72 )
+            , (boost::python::tuple (*)( ::formatRSBIN::rsurf_data const &,::size_t const &,::size_t const &,::size_t const & ))( &GetFaceEnergy_55c09b76319b542d67de8263861c1e72 )
             , ( bp::arg("inst"), bp::arg("rsIndex"), bp::arg("faceIndex"), bp::arg("recordIndex") )
             , "Accesseur Information sur un enregistrement dune face\nParam:[in] rsIndex Indice du récepteur de surface\nParam:[in] faceIndex Indice de la surface\nParam:[in] recordIndex Indice de lenregistrement\nParam:[out] idstep Compteur du pas de temps\nParam:[out] energy Energie(w) ou temps(s)\n@python Return a tuple containing (idstep,energy)\n" )    
         .def( 
             "GetFaceInfo"
-            , (boost::python::tuple (*)( ::formatRSBIN::rsurf_data const &,::std::size_t const &,::std::size_t const & ))( &GetFaceInfo_ffd41391329802f344cde7ce4f2494dc )
+            , (boost::python::tuple (*)( ::formatRSBIN::rsurf_data const &,::size_t const &,::size_t const & ))( &GetFaceInfo_ffd41391329802f344cde7ce4f2494dc )
             , ( bp::arg("inst"), bp::arg("rsIndex"), bp::arg("faceIndex") )
             , "Accesseur Information sur une face\nParam:[in] rsIndex Indice du récepteur de surface\nParam:[in] faceIndex Indice de la surface\nParam:[out] vertexA Indice du sommet\nParam:[out] vertexB Indice du sommet\nParam:[out] vertexC Indice du sommet\nParam:[out] recordCount Nombre denregistrement\n@python Return a tuple containing ( vertexA,vertexB,vertexC,recordCount)\n" )    
         .def( 
             "GetFaceSumEnergy"
-            , (float ( ::formatRSBIN::rsurf_data::* )( ::std::size_t const &,::std::size_t const & ) )( &::formatRSBIN::rsurf_data::GetFaceSumEnergy )
+            , (float ( ::formatRSBIN::rsurf_data::* )( ::size_t const &,::size_t const & ) )( &::formatRSBIN::rsurf_data::GetFaceSumEnergy )
             , ( bp::arg("rsIndex"), bp::arg("faceIndex") )
             , "Accesseur Information sur un enregistrement dune face\nParam:[in] rsIndex Indice du récepteur de surface\nParam:[in] faceIndex Indice de la surface\nRetourne Energie cumulé (w) ou temps (s)\n" )    
         .def( 
@@ -481,41 +481,41 @@ BOOST_PYTHON_MODULE(_libsimpa){
             , "Accesseur propriétés du fichier\nParam:[out] rs_size Nombre de sommets de triangles\nParam:[out] nodes_size Nombre de récepteurs de surfaces\nParam:[out] nbtimestep Nombre de pas de temps maximum\nParam:[out] timestep Pas de temps en secondes\nParam:[out] record_type Type denregistrement. Valeurs possibles SPL_STANDART SPL_GAIN TR EDT\n@python Return a tuple containing (rs_size,nodes_size,nbtimestep,timestep,recordType)\n" )    
         .def( 
             "GetNodePositionValue"
-            , (boost::python::tuple (*)( ::formatRSBIN::rsurf_data const &,::std::size_t const & ))( &GetNodePositionValue_69e14843c7ed97ad3f492e0c41cf7a26 )
+            , (boost::python::tuple (*)( ::formatRSBIN::rsurf_data const &,::size_t const & ))( &GetNodePositionValue_69e14843c7ed97ad3f492e0c41cf7a26 )
             , ( bp::arg("inst"), bp::arg("nodeIndex") )
             , "Accesseur valeur dun noeud\nParam:[in] nodeIndex Indice du sommet\nParam:[out] x X\nParam:[out] y Y\nParam:[out] z Z\n@python Return a tuple containing (x,y,z)\n" )    
         .def( 
             "GetRsCount"
-            , (::std::size_t ( ::formatRSBIN::rsurf_data::* )(  ) )( &::formatRSBIN::rsurf_data::GetRsCount )
+            , (::size_t ( ::formatRSBIN::rsurf_data::* )(  ) )( &::formatRSBIN::rsurf_data::GetRsCount )
             , "Retourne le nombre de récepteurs surfaciques.\n" )    
         .def( 
             "GetRsInfo"
-            , (boost::python::tuple (*)( ::formatRSBIN::rsurf_data const &,::std::size_t const & ))( &GetRsInfo_a448d76a66bcf1e5144f7f8c9f8afdd9 )
+            , (boost::python::tuple (*)( ::formatRSBIN::rsurf_data const &,::size_t const & ))( &GetRsInfo_a448d76a66bcf1e5144f7f8c9f8afdd9 )
             , ( bp::arg("inst"), bp::arg("rsIndex") )
             , "Accesseur Information sur un récepteur surfacique\nParam:[in] rsIndex Indice du récepteur de surface\nParam:[out] nbfaces Nombre de surfaces\nParam:[out] rs_name Libellé du récepteur de surface\nParam:[out] xmlid Indice xml du récepteur\n@python Return a tuple containing (nbfaces,rs_name,xmlid)\n" )    
         .def( 
             "Make"
-            , (void ( ::formatRSBIN::rsurf_data::* )( ::std::size_t const &,::std::size_t const &,int const &,float const &,::std::string const & ) )( &::formatRSBIN::rsurf_data::Make )
+            , (void ( ::formatRSBIN::rsurf_data::* )( ::size_t const &,::size_t const &,int const &,float const &,::std::string const & ) )( &::formatRSBIN::rsurf_data::Make )
             , ( bp::arg("tabNodesSize"), bp::arg("tabRsSize"), bp::arg("nbtimestep"), bp::arg("timestep"), bp::arg("record_type")="SPL_STANDART" )
             , "1ere étape Création, Mise en place des récepteurs et des propriétés\nParam:[in] tabNodesSize Nombre de sommets de triangles\nParam:[in] tabRsSize Nombre de récepteurs de surfaces\nParam:[in] nbtimestep Nombre de pas de temps maximum\nParam:[in] timestep Pas de temps en secondes\nParam:[in] record_type Type denregistrement. Valeurs possibles SPL_STANDART SPL_GAIN TR EDT\n" )    
         .def( 
             "MakeRs"
-            , (void ( ::formatRSBIN::rsurf_data::* )( ::std::size_t const &,::std::size_t const &,::std::string const &,int const & ) )( &::formatRSBIN::rsurf_data::MakeRs )
+            , (void ( ::formatRSBIN::rsurf_data::* )( ::size_t const &,::size_t const &,::std::string const &,int const & ) )( &::formatRSBIN::rsurf_data::MakeRs )
             , ( bp::arg("rsIndex"), bp::arg("nbfacesconst"), bp::arg("rs_name"), bp::arg("xmlid") )
             , "2eme étape Création, Affectation des propriétés dun récepteur\nParam:[in] rsIndex Indice du récepteur surfacique\nParam:[in] nbfacesconst Nombre de faces dans ce récepteur de surfaces.\nParam:[in] rs_name Nom du récepteur de surface\nParam:[in] xmlid Indice XML du récepteur de surface\n" )    
         .def( 
             "SetFaceEnergy"
-            , (void ( ::formatRSBIN::rsurf_data::* )( ::std::size_t const &,::std::size_t const &,::std::size_t const &,::std::size_t const &,float const & ) )( &::formatRSBIN::rsurf_data::SetFaceEnergy )
+            , (void ( ::formatRSBIN::rsurf_data::* )( ::size_t const &,::size_t const &,::size_t const &,::size_t const &,float const & ) )( &::formatRSBIN::rsurf_data::SetFaceEnergy )
             , ( bp::arg("rsIndex"), bp::arg("faceIndex"), bp::arg("recordIndex"), bp::arg("idstep"), bp::arg("energy") )
             , "4eme étape Création, Affectation de la valeur de pression dun pas de temps sur une face\nParam:[in] rsIndex Indice du récepteur de surface\nParam:[in] faceIndex Indice de la face\nParam:[in] recordIndex Indice de lenregistrement\nParam:[in] idstep xeme pas de temps ( x=y sectimestep )\nParam:[in] energy Niveau de pression (SPL) ou temps (TR EDT)\n" )    
         .def( 
             "SetFaceInfo"
-            , (void ( ::formatRSBIN::rsurf_data::* )( ::std::size_t const &,::std::size_t const &,::std::size_t const &,::std::size_t const &,::std::size_t const &,::std::size_t const & ) )( &::formatRSBIN::rsurf_data::SetFaceInfo )
+            , (void ( ::formatRSBIN::rsurf_data::* )( ::size_t const &,::size_t const &,::size_t const &,::size_t const &,::size_t const &,::size_t const & ) )( &::formatRSBIN::rsurf_data::SetFaceInfo )
             , ( bp::arg("rsIndex"), bp::arg("faceIndex"), bp::arg("vertexA"), bp::arg("vertexB"), bp::arg("vertexC"), bp::arg("recordCount") )
             , "3eme étape Création, Affectation des propriétés dune face\nParam:[in] rsIndex Indice du récepteur de surface\nParam:[in] faceIndex Indice de la face\nParam:[in] vertexA Indice du sommet\nParam:[in] vertexB Indice du sommet\nParam:[in] vertexC Indice du sommet\nParam:[in] recordCount Nombre denregistrements de niveaux (energy=0)\n" )    
         .def( 
             "SetNodeValue"
-            , (void ( ::formatRSBIN::rsurf_data::* )( ::std::size_t const &,float const &,float const &,float const & ) )( &::formatRSBIN::rsurf_data::SetNodeValue )
+            , (void ( ::formatRSBIN::rsurf_data::* )( ::size_t const &,float const &,float const &,float const & ) )( &::formatRSBIN::rsurf_data::SetNodeValue )
             , ( bp::arg("nodeIndex"), bp::arg("x"), bp::arg("y"), bp::arg("z") )
             , "2eme étape Création, Affectation de la valeur dun noeud\nParam:[in] nodeIndex Indice du sommet\nParam:[in] x Position X (m)\nParam:[in] y Position Y (m)\nParam:[in] z Position Z (m)\n" );
 
@@ -533,7 +533,7 @@ BOOST_PYTHON_MODULE(_libsimpa){
         .staticmethod( "Load" )    
         .staticmethod( "Save" );
 
-    bp::class_< formatRSBIN::rsurf_iso_contouring >( "rsurf_iso_contouring", "", bp::init< formatRSBIN::rsurf_data const &, std::size_t const & >(( bp::arg("data"), bp::arg("rsIndex") ), "~english\nIso Contouring initialisation step.\n") )    
+    bp::class_< formatRSBIN::rsurf_iso_contouring >( "rsurf_iso_contouring", "", bp::init< formatRSBIN::rsurf_data const &, size_t const & >(( bp::arg("data"), bp::arg("rsIndex") ), "~english\nIso Contouring initialisation step.\n") )    
         .def( 
             "GetIsoLevelCurves"
             , (boost::python::object (*)( ::formatRSBIN::rsurf_iso_contouring &,float const & ))( &GetIsoLevelCurves_0b820db76235dcaa6b487d6859dceb78 )
@@ -577,9 +577,9 @@ BOOST_PYTHON_MODULE(_libsimpa){
 
     { //::gabe_io::Gabe_rw
         typedef bp::class_< gabe_io::Gabe_rw > Gabe_rw_exposer_t;
-        Gabe_rw_exposer_t Gabe_rw_exposer = Gabe_rw_exposer_t( "Gabe_rw", "", bp::init< std::size_t const & >(( bp::arg("sizeHint") ), "Param: sizeHint A la génération dun tableau ce paramètre permet une plus grand rapiditée dajout des colonnes\n") );
+        Gabe_rw_exposer_t Gabe_rw_exposer = Gabe_rw_exposer_t( "Gabe_rw", "", bp::init< size_t const & >(( bp::arg("sizeHint") ), "Param: sizeHint A la génération dun tableau ce paramètre permet une plus grand rapiditée dajout des colonnes\n") );
         bp::scope Gabe_rw_scope( Gabe_rw_exposer );
-        bp::implicitly_convertible< std::size_t const &, gabe_io::Gabe_rw >();
+        bp::implicitly_convertible< size_t const &, gabe_io::Gabe_rw >();
         Gabe_rw_exposer.def( bp::init< >("") );
         { //::gabe_io::Gabe_rw::AppendFloatCol
         
@@ -616,7 +616,7 @@ BOOST_PYTHON_MODULE(_libsimpa){
         }
         { //::gabe_io::Gabe_rw::GetColTitle
         
-            typedef ::std::string ( ::gabe_io::Gabe_rw::*GetColTitle_function_type )( ::std::size_t const & ) ;
+            typedef ::std::string ( ::gabe_io::Gabe_rw::*GetColTitle_function_type )( ::size_t const & ) ;
             
             Gabe_rw_exposer.def( 
                 "GetColTitle"
@@ -658,7 +658,7 @@ BOOST_PYTHON_MODULE(_libsimpa){
         }
         { //::gabe_io::Gabe_rw::ReadColFloat
         
-            typedef boost::python::object ( *ReadColFloat_function_type )( ::gabe_io::Gabe_rw &,::std::size_t const & );
+            typedef boost::python::object ( *ReadColFloat_function_type )( ::gabe_io::Gabe_rw &,::size_t const & );
             
             Gabe_rw_exposer.def( 
                 "ReadColFloat"
@@ -669,7 +669,7 @@ BOOST_PYTHON_MODULE(_libsimpa){
         }
         { //::gabe_io::Gabe_rw::ReadColInt
         
-            typedef boost::python::object ( *ReadColInt_function_type )( ::gabe_io::Gabe_rw &,::std::size_t const & );
+            typedef boost::python::object ( *ReadColInt_function_type )( ::gabe_io::Gabe_rw &,::size_t const & );
             
             Gabe_rw_exposer.def( 
                 "ReadColInt"
@@ -680,7 +680,7 @@ BOOST_PYTHON_MODULE(_libsimpa){
         }
         { //::gabe_io::Gabe_rw::ReadColStr
         
-            typedef boost::python::object ( *ReadColStr_function_type )( ::gabe_io::Gabe_rw &,::std::size_t const & );
+            typedef boost::python::object ( *ReadColStr_function_type )( ::gabe_io::Gabe_rw &,::size_t const & );
             
             Gabe_rw_exposer.def( 
                 "ReadColStr"
@@ -713,7 +713,7 @@ BOOST_PYTHON_MODULE(_libsimpa){
         }
         { //::gabe_io::Gabe_rw::operator[]
         
-            typedef ::gabe_io::stringarray ( ::gabe_io::Gabe_rw::*__getitem___function_type )( ::std::size_t ) ;
+            typedef ::gabe_io::stringarray ( ::gabe_io::Gabe_rw::*__getitem___function_type )( ::size_t ) ;
             
             Gabe_rw_exposer.def( 
                 "__getitem__"
@@ -724,7 +724,7 @@ BOOST_PYTHON_MODULE(_libsimpa){
         }
         { //::gabe_io::Gabe_rw::size
         
-            typedef ::std::size_t ( ::gabe_io::Gabe_rw::*__len___function_type )(  ) const;
+            typedef ::size_t ( ::gabe_io::Gabe_rw::*__len___function_type )(  ) const;
             
             Gabe_rw_exposer.def( 
                 "__len__"
