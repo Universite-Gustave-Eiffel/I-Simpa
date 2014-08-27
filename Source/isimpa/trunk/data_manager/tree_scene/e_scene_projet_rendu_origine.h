@@ -73,7 +73,7 @@ private:
 	}
 public:
 	E_Scene_Rendu_Origine( wxXmlNode* noeudCourant ,  Element* parent)
-		:E_Drawable(parent,"Repère",Element::ELEMENT_TYPE_SCENE_PROJET_RENDU_ORIGINE,noeudCourant)
+		:E_Drawable(parent,"XYZ axis",Element::ELEMENT_TYPE_SCENE_PROJET_RENDU_ORIGINE,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_ORIGIN);
 		_("XYZ axis");
@@ -81,7 +81,7 @@ public:
 	}
 
 	E_Scene_Rendu_Origine( Element* parent)
-		:E_Drawable(parent,"Repère",Element::ELEMENT_TYPE_SCENE_PROJET_RENDU_ORIGINE)
+		:E_Drawable(parent,"XYZ axis",Element::ELEMENT_TYPE_SCENE_PROJET_RENDU_ORIGINE)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_ORIGIN);
 		_("XYZ axis");

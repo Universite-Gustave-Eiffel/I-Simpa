@@ -45,7 +45,7 @@ class E_Scene_Bdd_Spectrums: public Element
 {
 public:
 	E_Scene_Bdd_Spectrums( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Spectres",Element::ELEMENT_TYPE_SCENE_BDD_SPECTRUMS,noeudCourant)
+		:Element(parent,"Spectrum",Element::ELEMENT_TYPE_SCENE_BDD_SPECTRUMS,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_ROOT_SPECTRUMS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_ROOT_SPECTRUMS_CLOSE);
@@ -74,7 +74,7 @@ public:
 	}
 
 	E_Scene_Bdd_Spectrums( Element* parent)
-		:Element(parent,"Spectres",Element::ELEMENT_TYPE_SCENE_BDD_SPECTRUMS)
+		:Element(parent,"Spectrum",Element::ELEMENT_TYPE_SCENE_BDD_SPECTRUMS)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_ROOT_SPECTRUMS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_ROOT_SPECTRUMS_CLOSE);

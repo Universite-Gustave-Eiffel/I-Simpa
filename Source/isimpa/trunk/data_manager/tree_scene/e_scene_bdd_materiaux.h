@@ -45,7 +45,7 @@ class E_Scene_Bdd_Materiaux: public Element
 {
 public:
 	E_Scene_Bdd_Materiaux( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Materiaux",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX,noeudCourant)
+		:Element(parent,"Materials",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_ROOT_MATERIALS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_ROOT_MATERIALS_CLOSE);
@@ -74,7 +74,7 @@ public:
 	}
 
 	E_Scene_Bdd_Materiaux( Element* parent)
-		:Element(parent,"Materiaux",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX)
+		:Element(parent,"Materials",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_ROOT_MATERIALS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_ROOT_MATERIALS_CLOSE);

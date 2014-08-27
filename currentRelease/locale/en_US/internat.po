@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: I-SIMPA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-27 11:34+0100\n"
-"PO-Revision-Date: 2014-08-27 12:08+0100\n"
+"POT-Creation-Date: 2014-08-27 13:33+0100\n"
+"PO-Revision-Date: 2014-08-27 13:33+0100\n"
 "Last-Translator: Ifsttar <Judicael.Picaut@ifsttar.fr>\n"
 "Language-Team: Nicolas Fortin, Judicaël Picaut <i-simpa@ifsttar.fr>\n"
 "Language: fr_FR\n"
@@ -2753,25 +2753,26 @@ msgstr "Punctual intensity"
 msgid "Calculation informations"
 msgstr "Calculation informations"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_tccore.h:69
-msgid "Classical theory of reverberation"
-msgstr "Classical theory of reverberation"
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_tccore.h:62
+msgid "Atmospheric absorption calculation"
+msgstr "Active calculation of atmospheric absorption"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_tccore.h:92
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_tccore.h:70
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_tccore.h:83
+msgid "Classical theory of reverberation"
+msgstr "Classical theory of reverberation (TCR)"
+
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_tccore.h:94
 msgid "Direct field"
 msgstr "Direct field"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_tccore.h:93
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_tccore.h:95
 msgid "Total field (Sabine)"
 msgstr "Total field (Sabine)"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_tccore.h:94
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_tccore.h:96
 msgid "Total field (Eyring)"
 msgstr "Total field (Eyring)"
-
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_tccore.h:95
-msgid "Main calculation"
-msgstr "Main calculation"
 
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_tlmcore.h:53
 msgid "TLM"
@@ -2938,6 +2939,7 @@ msgstr "3D display"
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_rendermateriau.h:60
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_encombrements_encombrement_rendu.h:76
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_rendu.h:52
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_rendu.h:77
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteursp_recepteur_rendu.h:59
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteur_rendu.h:50
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_rendu.h:50
@@ -3527,6 +3529,9 @@ msgstr "Time"
 #: ../Source/isimpa/trunk/data_manager/python_interface/py_ui_module/samples/add_data_sample.py:62
 msgid "Static"
 msgstr "Static"
+
+#~ msgid "Main calculation"
+#~ msgstr "Main calculation"
 
 #~ msgid "Main"
 #~ msgstr "Main"

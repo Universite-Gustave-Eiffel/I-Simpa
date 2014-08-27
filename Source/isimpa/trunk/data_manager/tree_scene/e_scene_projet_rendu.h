@@ -44,7 +44,7 @@ class E_Scene_Rendu: public Element
 {
 public:
 	E_Scene_Rendu( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Rendu",Element::ELEMENT_TYPE_SCENE_PROJET_RENDU,noeudCourant)
+		:Element(parent,"Display",Element::ELEMENT_TYPE_SCENE_PROJET_RENDU,noeudCourant)
 	{
 		
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_RENDERING_FOLDER_OPEN);
@@ -72,9 +72,9 @@ public:
 	}
 
 	E_Scene_Rendu( Element* parent)
-		:Element(parent,"Rendu",Element::ELEMENT_TYPE_SCENE_PROJET_RENDU)
+		:Element(parent,"Display",Element::ELEMENT_TYPE_SCENE_PROJET_RENDU)
 	{
-		
+		_("Display");
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_RENDERING_FOLDER_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_RENDERING_FOLDER_CLOSE);
 		this->AppendFils(new E_Scene_Rendu_Origine(this));	

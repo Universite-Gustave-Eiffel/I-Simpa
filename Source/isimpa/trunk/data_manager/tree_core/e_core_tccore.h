@@ -48,7 +48,7 @@ class E_Core_Tc: public E_Core_Core
 private:
 	void InitExportRs(Element* confCore)
 	{
-		confCore->AppendPropertyBool("output_recs_byfreq","Export des récepteurs de surface par bande de fréquence",true,true);
+		confCore->AppendPropertyBool("output_recs_byfreq","Export surface receivers for each frequency band",true,true);
 		_("Export surface receivers for each frequency band");
 	}
 public:
@@ -57,11 +57,12 @@ public:
 	{
 		E_Core_Core_Configuration* confCore=new E_Core_Core_Configuration(this);
 		this->AppendFils(confCore);
-		confCore->AppendPropertyBool("abs_atmo_calc","Calcul Absorption atmosphérique",true,true);
+		confCore->AppendPropertyBool("abs_atmo_calc","Atmospheric absorption calculation",true,true);
 		InitExportRs(confCore);
+		_("Atmospheric absorption calculation");
 	}
 	E_Core_Tc( Element* parent, wxXmlNode* noeudCourant)
-		:E_Core_Core(parent,"Théorie Classique (TC)",ELEMENT_TYPE_CORE_TC,noeudCourant)
+		:E_Core_Core(parent,"Classical theory of reverberation",ELEMENT_TYPE_CORE_TC,noeudCourant)
 	{
 
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_STANDARTCORE_OPEN);
@@ -79,6 +80,7 @@ public:
 	E_Core_Tc( Element* parent)
 		:E_Core_Core(parent,"Classical theory of reverberation",ELEMENT_TYPE_CORE_TC)
 	{
+		_("Classical theory of reverberation");
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_STANDARTCORE_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_STANDARTCORE_CLOSE);
 
@@ -92,7 +94,7 @@ public:
 		_("Direct field");
 		_("Total field (Sabine)");
 		_("Total field (Eyring)");
-		_("Main calculation");
+		//_("Main calculation");
 
 
 

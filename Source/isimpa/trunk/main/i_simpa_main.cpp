@@ -999,7 +999,7 @@ void MainUiFrame::OnSaveFile (wxCommandEvent & event)
 
 void MainUiFrame::OnOpenProject(wxCommandEvent& event)
 {
-	smart_ptr<wxFileDialog> openFileDialog = new wxFileDialog ( this, _("Open project"), "Open project", "Open project", _("Project (*.proj)|*.proj"),
+	smart_ptr<wxFileDialog> openFileDialog = new wxFileDialog ( this, _("Open project"), "", "", _("Project (*.proj)|*.proj"),
 														wxFD_OPEN, wxDefaultPosition);
 	if (openFileDialog->ShowModal() == wxID_OK)
 	{
@@ -1018,7 +1018,7 @@ void MainUiFrame::OnOpenProject(wxCommandEvent& event)
 
 void MainUiFrame::OnSaveToProject(wxCommandEvent& event)
 {
-	wxFileDialog saveFileDialog( this, _("Save project"), "Save project", "Save project", "Projet (*.proj)|*.proj",
+	wxFileDialog saveFileDialog( this, _("Save project"), "", "", "Projet (*.proj)|*.proj",
 														wxFD_SAVE, wxDefaultPosition);
 
 	if (saveFileDialog.ShowModal() == wxID_OK)
