@@ -1,19 +1,24 @@
+#
+# Translators:
+# ISimpa <i-simpa@ifsttar.fr>, 2014
 msgid ""
 msgstr ""
-"Project-Id-Version: I-SIMPA\n"
+"Project-Id-Version: I-Simpa GUI\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-30 14:05+0100\n"
-"PO-Revision-Date: 2014-07-30 14:05+0100\n"
-"Last-Translator: Picaut <i-simpa.ifsttar.fr>\n"
-"Language-Team: Nicolas Fortin, Judicaël Picaut <i-simpa@ifsttar.fr>\n"
-"Language: fr_FR\n"
+"POT-Creation-Date: 2014-08-27 11:34+0100\n"
+"PO-Revision-Date: 2014-08-27 12:20+0100\n"
+"Last-Translator: Ifsttar <Judicael.Picaut@ifsttar.fr>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/i-simpa/language/"
+"fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: _\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.6.8\n"
 "X-Poedit-Basepath: ../../\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ../Source/isimpa/trunk/main\n"
 "X-Poedit-SearchPath-1: ../Source/isimpa/trunk/manager\n"
 "X-Poedit-SearchPath-2: ../Source/isimpa/trunk/Language\n"
@@ -21,578 +26,261 @@ msgstr ""
 "X-Poedit-SearchPath-4: ../Source/isimpa/trunk/data_manager\n"
 "X-Poedit-SearchPath-5: ../Source/isimpa/trunk/3dengine\n"
 
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:166
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:1055
-#: ../Source/isimpa/trunk/main/i_simpa_main.h:490
-#: ../Source/isimpa/trunk/main/i_simpa_main.h:496
-msgid "Interface "
-msgstr "Interface "
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:181
-msgid "Can not read the I-SIMPA icon"
-msgstr "Impossible de lire l'icône d'I-SIMPA"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:188
-msgid "New project\tCtrl+N"
-msgstr "Nouveau projet\tCtrl+N"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:189
-msgid "Open project\tCtrl+O"
-msgstr "Ouvrir un projet\tCtrl+O"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:192
-msgid "Export scene"
-msgstr "Exporter la scène"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:193
-msgid "New scene"
-msgstr "Créer la scène"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:195
-msgid "Save project\tCtrl+S"
-msgstr "Enregistrer le projet\tCtrl+S"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:196
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:443
-msgid "Save project as ..."
-msgstr "Enregistrer le projet sous ..."
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:197
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:1084
-msgid "Save copy of project"
-msgstr "Enregistrer une copie du projet"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:200
-msgid "Recent projects"
-msgstr "Projets récents"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:209
-msgid "Options"
-msgstr "Options"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:210
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:1035
-msgid "Language"
-msgstr "Langue du logiciel"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:211
-msgid "Settings"
-msgstr "Préférences"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:214
-msgid "Exit"
-msgstr "Quitter"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:217
-msgid "Undo\tCtrl+Z"
-msgstr "Annuler\tCtrl+Z"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:218
-msgid "Redo\tCtrl+Y"
-msgstr "Rétablir\tCtrl+Y"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:221
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:446
-msgid "Play"
-msgstr "Lecture de la simulation"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:222
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:447
-msgid "Pause"
-msgstr "Mise en pause de la simulation"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:223
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:449
-msgid "Stop"
-msgstr "Stopper la simulation"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:225
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:466
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_tetconf.h:114
-msgid "Meshing"
-msgstr "Maillage du modèle"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:229
-#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:46
-msgid "Compare surface receivers"
-msgstr "Différencier les récepteurs de surfaces"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:230
-msgid "File results process"
-msgstr "Traitements des fichiers de résultats"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:239
-msgid "Outside"
-msgstr "Extérieur"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:240
-msgid "Inside"
-msgstr "Intérieur"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:241
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:256
-#: ../Source/isimpa/trunk/IHM/simpleGraphEnumerators.cpp:87
-#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:128
-msgid "None"
-msgstr "Aucune"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:243
-msgid "Faces"
-msgstr "Faces"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:247
-msgid "Original"
-msgstr "Original"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:248
-msgid "Material"
-msgstr "Matériau associé"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:249
-msgid "Material color"
-msgstr "Couleur modèle"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:253
-msgid "Contour lines calculation"
-msgstr "Calcul automatique du contour"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:254
-msgid "All"
-msgstr "Toutes"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:255
-msgid "Contour"
-msgstr "Contour"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:258
-#: ../Source/isimpa/trunk/IHM/DialogDiagramCreator.cpp:161
-msgid "Lines"
-msgstr "Lignes"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:279
-msgid "Hide meshing"
-msgstr "Cacher le maillage"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:283
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:462
-msgid "Reinitialize camera"
-msgstr "Réinitialiser la caméra"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:285
-msgid "First person"
-msgstr "Première personne"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:286
-msgid "Rotation / Zoom"
-msgstr "Rotation / Zoom"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:288
-msgid "Camera"
-msgstr "Caméra"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:293
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_rendu_origine.h:69
-msgid "XY Grid"
-msgstr "Grille plan xy"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:296
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_rendu_origine.h:70
-msgid "XZ Grid"
-msgstr "Grille plan xz"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:299
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_rendu_origine.h:71
-msgid "YZ Grid"
-msgstr "Grille plan yz"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:308
-msgid "To file"
-msgstr "Vers un fichier"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:309
-msgid "To a file with a specified resolution"
-msgstr "Vers un fichier avec une autre résolution."
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:310
-msgid "Copy 3D View"
-msgstr "Copier la vue 3D"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:317
-msgid "Reinitialize interface"
-msgstr "Réinitialiser le gestionnaire"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:319
-msgid "Set 3D View as main window"
-msgstr "Mettre la vue 3D en tant qu'affichage principal"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:320
-msgid "Floating 3D View"
-msgstr "Vue 3D flottante"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:321
-msgid "3D View"
-msgstr "Vue 3D"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:323
-msgid "Export to file"
-msgstr "Copier le contenu vers un fichier"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:325
-msgid "Delete windows"
-msgstr "Effacer le contenu"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:327
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:406
-msgid "Console"
-msgstr "Console"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:332
-msgid "Website"
-msgstr "Site Web"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:333
-msgid "Online forums"
-msgstr "Forum en ligne"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:334
-msgid "Online documentation"
-msgstr "Documentation en ligne"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:336
-msgid "I-Simpa documentation (PDF in French)"
-msgstr "Documentation I-Simpa (PDF en français)"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:337
-msgid "SPPS documentation (PDF in French)"
-msgstr "Documentation SPPS (PDF en français)"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:339
-msgid "License"
-msgstr "Licence"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:340
-msgid "About "
-msgstr "A propos de "
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:344
-msgid "File"
-msgstr "Fichier"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:345
-msgid "Edition"
-msgstr "Edition"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:346
-msgid "Simulation"
-msgstr "Simulation"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:347
-msgid "Tools"
-msgstr "Outils"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:348
-msgid "View"
-msgstr "Affichage"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:349
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:1160
-msgid "Window"
-msgstr "Fenêtre"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:350
-msgid "Help"
-msgstr "Aide"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:366
-msgid "Messages"
-msgstr "Messages"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:369
-msgid "Python(TM)"
-msgstr "Python"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:395
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene.cpp:41
-msgid "Scene"
-msgstr "Scène"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:396
-msgid "Calculation"
-msgstr "Calcul"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:397
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report.h:54
-msgid "Results"
-msgstr "Résultats"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:403
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet.h:60
-msgid "Project"
-msgstr "Projet"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:410
-msgid "Interface options"
-msgstr "Options de l'interface"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:417
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:487
-msgid "Main windows"
-msgstr "Fenêtre centrale"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:439
-#: ../Source/isimpa/trunk/IHM/GabeDataGrid.cpp:449
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_userconfiguration.h:53
-msgid "New project"
-msgstr "Nouveau projet"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:440
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:1002
-msgid "Open project"
-msgstr "Ouvrir un projet"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:442
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:1021
-msgid "Save project"
-msgstr "Enregistrer le projet"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:445
-msgid "Previous time step"
-msgstr "Pas de temps précédent"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:448
-msgid "Next time step"
-msgstr "Pas de temps suivant"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:450
-msgid "Delete the simulation"
-msgstr "Effacer la simulation"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:452
-msgid "Face view"
-msgstr "Vue des faces"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:453
-msgid "Wireframe view"
-msgstr "Vue fil de fer"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:454
-msgid "Combined view"
-msgstr "Vue combinée"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:457
-msgid "Camera mode"
-msgstr "Outil de visualisation"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:458
-msgid "Surface selection mode"
-msgstr "Mode de sélection des triangles"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:459
-msgid "Extract sound level from 3D view"
-msgstr ""
-"Extraction des valeurs de niveau sonore des récepteurs de surfaces à partir "
-"de la vue 3D"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:463
-msgid "Orbit camera"
-msgstr "Caméra en rotation"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:464
-msgid "First person camera"
-msgstr "Caméra en vue à la première personne"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:467
-msgid "Show / Hide meshing"
-msgstr "Masquer / Montrer le maillage"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:490
-msgid "Project tools"
-msgstr "Barre d'outils projet"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:496
-msgid "Camera tools"
-msgstr "Barre d'outils caméra"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:501
-msgid "Meshing tools"
-msgstr "Barre d'outils maillage"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:505
-msgid "Animation toolbar"
-msgstr "Barre d'outils d'animation"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:509
-msgid "Standard tools"
-msgstr "Barre d'outils standard"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:513
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:517
-#: ../Source/isimpa/trunk/data_manager/element.cpp:948
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_config.h:55
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_encombrements_encombrement_proprietes.h:66
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteursp_recepteur_proprietes.h:69
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_proprietes.h:65
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteur_proprietes.h:57
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_sources_source_proprietes.h:99
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_volumes_volume_proprietes.h:49
-msgid "Properties"
-msgstr "Propriétés"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:553
-msgid "Save console"
-msgstr "Sauvegarder la console"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:553
-msgid "Text file (*.txt)|*.txt"
-msgstr "Fichiers texte (*.txt)|*.txt"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:870
-msgid "Language will be changed after restarting I-Simpa"
-msgstr "Les paramètres de langue seront appliqués au prochain démarrage"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:896
-msgid "License >>"
-msgstr "Licence >>"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:897
-msgid "Developers >>"
-msgstr "Développeurs >>"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:935
-msgid "Import new scene"
-msgstr "Importer une scène"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:935
+#: ../Source/isimpa/trunk/3dengine/Core/Objet3D.cpp:1217
+msgid "Unable to load this format"
+msgstr "Impossible de charger ce format"
+
+#: ../Source/isimpa/trunk/3dengine/Core/Objet3D_maillage.cpp:758
+msgid "Failed to export meshing"
+msgstr "L'exportation du maillage de la scène n'a pu se faire."
+
+#: ../Source/isimpa/trunk/3dengine/Core/Particules.cpp:60
+#: ../Source/isimpa/trunk/Language/additionnal_univ.h:39
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_partvisualisation.h:85
+msgid "Particles"
+msgstr "Particules"
+
+#: ../Source/isimpa/trunk/3dengine/Core/Particules.cpp:202
+msgid "Loading particles file"
+msgstr "Chargement du fichier de particules"
+
+#: ../Source/isimpa/trunk/3dengine/Core/Particules.cpp:224
+#, c-format
 msgid ""
-"All compatible files|*.3ds;*.ply;*.bin;*.poly;*.stl|3DS file (*.3ds)|*.3ds|"
-"poly file (*.poly)|*.bin|ply file (*.ply)|*.ply|Binary file 1.00(*.bin)|*."
-"bin|Stererolithograpic file(*.stl)|*.stl|CATT-Acoustic file(*.geo)|*.geo"
+"Insufficent memory available, %u memory required and %u memory available"
 msgstr ""
-"Tous les formats compatibles|*.3ds;*.ply;*.bin;*.poly;*.stl|Fichier 3DS "
-"(*.3ds)|*.3ds|Fichier poly(*.poly)|*.bin|Fichier ply (*.ply)|*.ply|Fichier "
-"binaire 1.00(*.bin)|*.bin|Fichier stéréolithographie(*.stl)|*.stl|Fichier "
-"CATT-Acoustic(*.geo)|*.geo"
+"Espace mémoire insuffisant, ce fichier de particule nécessite au moins %u Mo "
+"de mémoire et il n'y a que %u Mo de disponible."
 
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:957
-msgid "Please enter scene dimensions"
-msgstr "Veuillez entrer les caractéristiques du cuboïde"
+#: ../Source/isimpa/trunk/3dengine/Core/Particules.cpp:236
+#, c-format
+msgid "Particles file contains %i particles and %i time step"
+msgstr "Le fichier de particule contient %i particules et %i pas de temps."
 
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:957
-msgid "Creating scene"
-msgstr "Création d'une scène"
+#: ../Source/isimpa/trunk/3dengine/Core/Particules.cpp:253
+msgid "Cancel loading particles files"
+msgstr "Annulation du chargement de fichier de particules"
 
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:958
-msgid "Width (x)"
-msgstr "Largeur (m)"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:959
-msgid "Length (y)"
-msgstr "Longueur(m)"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:960
-msgid "Height (z)"
-msgstr "Hauteur (m)"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:989
-msgid "Export model"
-msgstr "Exporter le modèle"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:989
+#: ../Source/isimpa/trunk/3dengine/Core/Particules.cpp:307
+#, c-format
 msgid ""
-"Stanfort University PlY (*.ply)|*.ply|Stanfort University PlY with project "
-"groups (*.mat.ply)|*.mat.ply|Poly files (*.poly)|*.poly|Mesh files (*.mesh)|"
-"*.mesh|Nff files (*.nff)|*.nff|Binary file (*.bin)|*.bin|Binary file Calcul "
-"SPPS (*.cbin)|*.cbin|Asc files (*.asc)|*.asc"
+"Particles file does not exist!\n"
+" %s"
 msgstr ""
-"Stanfort University PlY (*.ply)|*.ply|Stanfort University PlY with project "
-"groups (*.mat.ply)|*.mat.ply|Poly files (*.poly)|*.poly|Mesh files (*.mesh)|"
-"*.mesh|Nff files (*.nff)|*.nff|Fichier binaire (*.bin)|*.bin|Fichier binaire "
-"Calcul SPPS (*.cbin)|*.cbin|Asc files (*.asc)|*.asc"
+"Le fichier de particule suivant n'existe pas !\n"
+" %s"
 
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:1002
-msgid "Project (*.proj)|*.proj"
-msgstr "Projet (*.proj)|*.proj"
+#: ../Source/isimpa/trunk/3dengine/Core/Particules.cpp:316
+msgid "Unknown error when reading particles file"
+msgstr "Erreur inconnue dans la lecture du fichier de particule"
 
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:1035
-msgid "Please choose language:"
-msgstr "Veuillez choisir la langue:"
+#: ../Source/isimpa/trunk/3dengine/Core/Particules.cpp:342
+msgid "Particles:"
+msgstr "Particules : "
 
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:1054
+#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_ponctuel_intensity.cpp:54
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_rpi.h:59
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_rpi.h:70
+msgid "Intensity"
+msgstr "Intensité"
+
+#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_ponctuel_intensity.cpp:77
+msgid "Intensity : "
+msgstr "Intensité : "
+
+#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:79
+msgid "Surface receiver"
+msgstr "Récepteur surfacique"
+
+#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:132
+#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:917
+msgid "Total sound level"
+msgstr "Niveau sonore cumulé"
+
+#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:217
+msgid "Loading of the surface receiver file"
+msgstr "Chargement du fichier de récepteur de surface"
+
+#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:263
+#: ../Source/isimpa/trunk/data_manager/e_data_row_bandefreq.h:87
+msgid "dB"
+msgstr "dB"
+
+#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:268
+msgid "s"
+msgstr "s"
+
+#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:270
+msgid "%"
+msgstr "%"
+
+#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:272
+msgid "Pascal"
+msgstr "Pascal"
+
+#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:722
+#, c-format
+msgid "Sound level at pointer s %.2f "
+msgstr "Le niveau sonore à cet endroit est de %.2f "
+
+#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:724
+msgid "Sound level is not given"
+msgstr "Niveau acoustique nul."
+
+#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:727
+#, c-format
+msgid "RT at pointer is %.2f "
+msgstr "La valeur du TR à cet endroit est de %.2f "
+
+#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:729
+#, c-format
+msgid "The clarity value at this coordinate is %.2f"
+msgstr "La valeur de la clarté à cet endroit est de %.2f "
+
+#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:731
+#, c-format
+msgid "The D value at this coordinate is %.2f"
+msgstr "La valeur de la définition à cet endroit est de %.2f "
+
+#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:733
+#, c-format
+msgid "The TS value at this coordinate is %.2f"
+msgstr "La valeur du TS à cet endroit est de %.2f "
+
+#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:735
+#, c-format
+msgid "The ST value at this coordinate is %.2f"
+msgstr "La valeur du ST à cet endroit est de %.2f "
+
+#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:737
+#, c-format
+msgid "The pressure value at this coordinate is %.2f"
+msgstr "La valeur de la pression à cet endroit est de %.2f "
+
+#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:739
+#, c-format
+msgid "EDT at pointer is %.2f "
+msgstr "La valeur de l'EDT à cet endroit est de %.2f "
+
+#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:743
+msgid "This zone does not correspond to a defined surface receiver"
+msgstr "Cette zone ne correspond pas à un récepteur de surface."
+
+#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:889
+msgid "Surface receivers :"
+msgstr "Récepteurs surfaciques : "
+
+#: ../Source/isimpa/trunk/3dengine/Core/ply.cpp:223
+#, c-format
+msgid "File I/O Error:  Cannot open file %s\n"
+msgstr "File I/O Error:  Cannot open file %s.\n"
+
+#: ../Source/isimpa/trunk/3dengine/OpenGLApp.cpp:396
 msgid ""
-"Project has been modified.\n"
-"Save project with modifications?"
+"Resolution is too high, your graphic card is enable to manage this size. "
+"Please choose a lower export resolution"
 msgstr ""
-"Le projet a été modifié.\n"
-"Souhaitez-vous enregistrer les modifications apportées ?"
+"Résolution trop élevé, votre carte graphique ne peut gérer une telle "
+"dimension, veuillez réduire la largeur et/ou la hauteur"
 
-#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:1074
-msgid "Unexpected Dialog response return !"
-msgstr "Le système a retourné un message inattendu !"
+#: ../Source/isimpa/trunk/3dengine/OpenGLApp.cpp:413
+msgid ""
+"Unknown OpenGL error, try to set a lower resolution or use another "
+"exportation method."
+msgstr ""
+"Erreur d'exportation OpenGl Inconnue, tentez de diminuer la résolution ou "
+"bien choisissez la méthode d'exportation de la fenêtre openGl"
 
-#: ../Source/isimpa/trunk/manager/processManager.cpp:96
-msgid "Calculation code error:"
-msgstr "Erreur exécutable :"
+#: ../Source/isimpa/trunk/3dengine/OpenGLApp.cpp:415
+#, c-format
+msgid "Error code : %i"
+msgstr "Code de l'erreur : %i"
 
-#: ../Source/isimpa/trunk/manager/processManager.cpp:111
-msgid "Elapsed time : "
-msgstr "Temps écoulé : "
+#: ../Source/isimpa/trunk/3dengine/OpenGLApp.cpp:420
+msgid ""
+"OpenGL exportation error. Try to use the window exportation method instead"
+msgstr ""
+"Erreur d'exportation OpenGl Inconnue, tentez de choisir la méthode "
+"d'exportation de la fenêtre openGl"
 
-#: ../Source/isimpa/trunk/manager/processManager.cpp:112
-msgid "Remaining time : "
-msgstr "Temps restant : "
+#: ../Source/isimpa/trunk/3dengine/OpenGLApp.cpp:622
+msgid "Preparing display of surfaces receivers"
+msgstr "Compilation du rendu des récepteurs surfaciques"
 
-#: ../Source/isimpa/trunk/manager/processManager.cpp:113
-msgid "Close"
-msgstr "Fermer"
+#: ../Source/isimpa/trunk/3dengine/OpenGLApp.cpp:629
+#, c-format
+msgid "Loading time step %i/%i"
+msgstr "Chargement du pas de temps %i/%i"
 
-#: ../Source/isimpa/trunk/manager/processManager.cpp:114
-#: ../Source/isimpa/trunk/IHM/simpleGraphDialogs.cpp:130
-msgid "Cancel"
-msgstr "Annuler"
+#: ../Source/isimpa/trunk/3dengine/OpenGlViewer.cpp:436
+msgid "Display error unknown"
+msgstr "Erreur de rendu inconnue"
 
-#: ../Source/isimpa/trunk/manager/processManager.cpp:115
-msgid "Unknown"
-msgstr "Inconnu"
+#: ../Source/isimpa/trunk/3dengine/tools/recepteursurf_difference.cpp:40
+#, c-format
+msgid ""
+"Can't load surface receiver:\n"
+"%s"
+msgstr ""
+"Impossible de charger le récepteur surfacique de référence :\n"
+"%s"
 
-#: ../Source/isimpa/trunk/manager/processManager.cpp:122
-msgid "External code execution"
-msgstr "Exécution d'un programme externe :"
+#: ../Source/isimpa/trunk/3dengine/tools/recepteursurf_difference.cpp:139
+#, c-format
+msgid ""
+"Can't compare surface receivers: time step is different with the reference "
+"one:\n"
+"%s "
+msgstr ""
+"Impossible de comparer ce récepteur surfacique car le nombre de pas de temps "
+"est différent que celui du fichier de référence :\n"
+"%s"
 
-#: ../Source/isimpa/trunk/manager/processManager.cpp:152
-msgid "External code execution canceled"
-msgstr "Exécution du programme externe annulé."
+#: ../Source/isimpa/trunk/3dengine/tools/recepteursurf_difference.cpp:144
+#, c-format
+msgid ""
+"Surface receivers can not be compared. Time step (delta T) is different from "
+"the reference one:\n"
+"%s"
+msgstr ""
+"Impossible de comparer ce récepteur surfacique car le pas de temps (delta T) "
+"est différent que celui du fichier de référence :\n"
+"%s"
 
-#: ../Source/isimpa/trunk/manager/processManager.cpp:153
-msgid "Process answer:"
-msgstr "Réponse du processus :"
+#: ../Source/isimpa/trunk/3dengine/tools/recepteursurf_difference.cpp:149
+#, c-format
+msgid ""
+"Data can not be compared with reference surface receivers. Number of surface "
+"receivers is different from the reference one:\n"
+"%s"
+msgstr ""
+"Impossible de comparer avec le fichier de référence car il n'y a pas le même "
+"nombre de récepteur de surface :\n"
+"%s"
 
-#: ../Source/isimpa/trunk/manager/processManager.cpp:157
-msgid "No error"
-msgstr "Pas d'erreur."
+#: ../Source/isimpa/trunk/3dengine/tools/recepteursurf_difference.cpp:160
+#, c-format
+msgid ""
+"The following surface receiver is not composed with the same number of "
+"surfaces as the reference one:\n"
+"%s"
+msgstr ""
+"La structure du récepteur de surface suivant ne contient pas le même nombre "
+"de surfaces que le fichier de référence :\n"
+"%s"
 
-#: ../Source/isimpa/trunk/manager/processManager.cpp:160
-msgid "Signal doesn't exist"
-msgstr "Le signal n'existe pas."
-
-#: ../Source/isimpa/trunk/manager/processManager.cpp:163
-msgid "Unauthorized closing process"
-msgstr "Fermeture du processus non autorisée."
-
-#: ../Source/isimpa/trunk/manager/processManager.cpp:166
-msgid "Process doesn't exist"
-msgstr "Ce processus n'existe pas."
-
-#: ../Source/isimpa/trunk/manager/processManager.cpp:169
-msgid "Non-specified process output"
-msgstr "Retour du processus non spécifié"
-
-#: ../Source/isimpa/trunk/manager/processManager.cpp:172
-msgid "Unknown output process"
-msgstr "Retour du processus inconnu"
+#: ../Source/isimpa/trunk/3dengine/tools/recepteursurf_difference.cpp:195
+#, c-format
+msgid ""
+"The following surface receiver can't be loaded:\n"
+"%s"
+msgstr ""
+"Impossible de charger le récepteur surfacique suivant :\n"
+"%s"
 
 #: ../Source/isimpa/trunk/IHM/DialogDiagramCreator.cpp:110
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_configuration.h:48
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_userconfiguration.h:69
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_userconfiguration.h:70
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -615,6 +303,11 @@ msgstr "Libellé Axe Y :"
 #: ../Source/isimpa/trunk/IHM/DialogDiagramCreator.cpp:160
 msgid "Column"
 msgstr "Colonnes"
+
+#: ../Source/isimpa/trunk/IHM/DialogDiagramCreator.cpp:161
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:256
+msgid "Lines"
+msgstr "Lignes"
 
 #: ../Source/isimpa/trunk/IHM/DialogDiagramCreator.cpp:162
 msgid "Data alignment"
@@ -652,7 +345,7 @@ msgstr ""
 
 #: ../Source/isimpa/trunk/IHM/GabeDataGrid.cpp:308
 #: ../Source/isimpa/trunk/IHM/MainPropGrid.cpp:167
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:3135
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:3136
 msgid "Spreadsheet"
 msgstr "Feuille de données"
 
@@ -675,6 +368,12 @@ msgstr "Veuillez saisir le nouveau libellé de la ligne."
 #: ../Source/isimpa/trunk/IHM/GabeDataGrid.cpp:401
 msgid "Please, give the name of column"
 msgstr "Veuillez saisir le nouveau libellé de la colonne."
+
+#: ../Source/isimpa/trunk/IHM/GabeDataGrid.cpp:449
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:437
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_userconfiguration.h:55
+msgid "New project"
+msgstr "Nouveau projet"
 
 #: ../Source/isimpa/trunk/IHM/GabeDataGrid.cpp:485
 #, c-format
@@ -741,6 +440,183 @@ msgstr "Impossible d'écrire un fichier avec cette destination !"
 #: ../Source/isimpa/trunk/IHM/GabeDataGrid.cpp:737
 msgid "Corrupted file or file doesn't exist"
 msgstr "Fichier corrompu ou non existant."
+
+#: ../Source/isimpa/trunk/IHM/MainPropGrid.cpp:220
+#: ../Source/isimpa/trunk/IHM/customdialog/customdlg.cpp:126
+#: ../Source/isimpa/trunk/data_manager/element.cpp:979
+msgid "Value"
+msgstr "Valeur"
+
+#: ../Source/isimpa/trunk/IHM/MainPropGrid.cpp:276
+msgid "Error in loading properties"
+msgstr "Erreur de chargement des propriétés"
+
+#: ../Source/isimpa/trunk/IHM/PropGrid.cpp:245
+#: ../Source/isimpa/trunk/data_manager/element.cpp:925
+msgid "Copy"
+msgstr "Copier"
+
+#: ../Source/isimpa/trunk/IHM/PropGrid.cpp:248
+#: ../Source/isimpa/trunk/data_manager/element.cpp:926
+msgid "Paste"
+msgstr "Coller"
+
+#: ../Source/isimpa/trunk/IHM/PropGrid.cpp:250
+msgid "to the column"
+msgstr "à la colonne"
+
+#: ../Source/isimpa/trunk/IHM/PropGrid.cpp:251
+msgid "to the row"
+msgstr "à la ligne"
+
+#: ../Source/isimpa/trunk/IHM/PropGrid.cpp:252
+msgid "Set the same value"
+msgstr "Affecter la même valeur"
+
+#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:43
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:227
+msgid "Compare surface receivers"
+msgstr "Différencier les récepteurs de surfaces"
+
+#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:46
+#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:66
+msgid "&Cancel"
+msgstr "&Annuler"
+
+#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:47
+#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:67
+msgid "< &Back"
+msgstr "< &Back"
+
+#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:67
+msgid "&Next >"
+msgstr "&Next >"
+
+#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:67
+msgid "&Finish"
+msgstr "&Finish"
+
+#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:122
+msgid ""
+"This file or folder doesn't correspond to a compatible surface receivers"
+msgstr ""
+"Ce fichier ou dossier ne correspond pas à un récepteur de surface compatible."
+
+#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:158
+msgid "Please, select surface receivers of reference:"
+msgstr "Veuillez sélectionner le récepteur surfacique de référence :"
+
+#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:182
+#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:253
+msgid "You must select a surface receiver data file to continue"
+msgstr ""
+"Vous devez sélectionner un fichier de résultat du type récepteur de surface "
+"pour pouvoir continuer."
+
+#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:204
+msgid "Surface receiver to be compared to the reference one:"
+msgstr "Récepteur surfacique à comparer avec les données de référence :"
+
+#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:220
+msgid "Result filename"
+msgstr "Nom du fichier de résultat de la comparaison :"
+
+#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:226
+msgid "Power gain"
+msgstr "Gain"
+
+#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:232
+msgid "Add new data file"
+msgstr "Ajouter d'autres fichiers."
+
+#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:233
+msgid "Add next data file"
+msgstr ""
+"Continuer à ajouter d'autres fichiers à comparer avec le fichier de "
+"référence."
+
+#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:264
+msgid "Please, give filename for the output results"
+msgstr ""
+"Veuillez saisir un libellé valide pour le fichier de sortie qui sera créé."
+
+#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:270
+msgid ""
+"You have select the same file as the reference one.  Please select another "
+"file"
+msgstr ""
+"Vous venez de sélectionner le même fichier que le fichier de référence. "
+"Veuillez sélectionner un fichier différent pour effectuer le traitement."
+
+#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:280
+msgid "You have already select this file. Please select another file"
+msgstr ""
+"Vous avez déjà sélectionné ce fichier dans le lot de traitement. Veuillez "
+"sélectionner un fichier différent pour effectuer le traitement."
+
+#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:286
+msgid ""
+"You have already used this label as an output data file.  Please select "
+"another label"
+msgstr ""
+"Vous avez déjà utilisé ce libellé comme fichier de sortie. Veuillez "
+"sélectionner un libellé différent."
+
+#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:62
+msgid "Mesh correction computation"
+msgstr "Opération de correction de modèle 3D"
+
+#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:119
+msgid "Model solving"
+msgstr "Résolution du modèle"
+
+#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:122
+msgid "Marching cube"
+msgstr "Marching cube"
+
+#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:125
+msgid "Triangulation method"
+msgstr "Méthode de triangulation"
+
+#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:128
+#: ../Source/isimpa/trunk/IHM/simpleGraphEnumerators.cpp:87
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:239
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:254
+msgid "None"
+msgstr "Aucune"
+
+#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:129
+msgid "Vertices translation"
+msgstr "Translation des sommets"
+
+#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:132
+msgid "Remesh adaptation"
+msgstr "Méthode d'adaptation au modèle d'origine"
+
+#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:135
+msgid "Edge collapse"
+msgstr "Edge collapse"
+
+#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:138
+msgid "Reduction of the number of surfaces"
+msgstr "Méthode de réduction du nombre de surfaces"
+
+#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:140
+msgid "Quality constraint"
+msgstr "Contrainte de qualité minimale des triangles"
+
+#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:142
+msgid "Approximation constraint"
+msgstr "Approximation de la simplification du modèle"
+
+#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:203
+msgid "Please select the volume to extract"
+msgstr "Veuillez sélectionner le volume à extraire"
+
+#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:253
+#, c-format
+msgid "Vol id:%i  %.0f m3"
+msgstr "Vol id:%i  %.0f m3"
 
 #: ../Source/isimpa/trunk/IHM/loadingSceneDialog.cpp:114
 msgid "Average model remesh"
@@ -810,122 +686,6 @@ msgstr "La valeur epsilon doit être supérieure à 0 m"
 msgid "Unable to read the epsilon value"
 msgstr "Impossible de lire la valeur epsilon"
 
-#: ../Source/isimpa/trunk/IHM/MainPropGrid.cpp:220
-#: ../Source/isimpa/trunk/IHM/customdialog/customdlg.cpp:126
-#: ../Source/isimpa/trunk/data_manager/element.cpp:981
-msgid "Value"
-msgstr "Valeur"
-
-#: ../Source/isimpa/trunk/IHM/MainPropGrid.cpp:276
-msgid "Error in loading properties"
-msgstr "Erreur de chargement des propriétés"
-
-#: ../Source/isimpa/trunk/IHM/PropGrid.cpp:245
-#: ../Source/isimpa/trunk/data_manager/element.cpp:927
-msgid "Copy"
-msgstr "Copier"
-
-#: ../Source/isimpa/trunk/IHM/PropGrid.cpp:248
-#: ../Source/isimpa/trunk/data_manager/element.cpp:928
-msgid "Paste"
-msgstr "Coller"
-
-#: ../Source/isimpa/trunk/IHM/PropGrid.cpp:250
-msgid "to the column"
-msgstr "à la colonne"
-
-#: ../Source/isimpa/trunk/IHM/PropGrid.cpp:251
-msgid "to the row"
-msgstr "à la ligne"
-
-#: ../Source/isimpa/trunk/IHM/PropGrid.cpp:252
-msgid "Set the same value"
-msgstr "Affecter la même valeur"
-
-#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:49
-#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:66
-msgid "&Cancel"
-msgstr "&Annuler"
-
-#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:50
-#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:67
-msgid "< &Back"
-msgstr "< &Back"
-
-#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:70
-msgid "&Next >"
-msgstr "&Next >"
-
-#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:70
-msgid "&Finish"
-msgstr "&Finish"
-
-#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:125
-msgid ""
-"This file or folder doesn't correspond to a compatible surface receivers"
-msgstr ""
-"Ce fichier ou dossier ne correspond pas à un récepteur de surface compatible."
-
-#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:161
-msgid "Please, select surface receivers of reference:"
-msgstr "Veuillez sélectionner le récepteur surfacique de référence :"
-
-#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:185
-#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:256
-msgid "You must select a surface receiver data file to continue"
-msgstr ""
-"Vous devez sélectionner un fichier de résultat du type récepteur de surface "
-"pour pouvoir continuer."
-
-#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:207
-msgid "Surface receiver to be compared to the reference one:"
-msgstr "Récepteur surfacique à comparer avec les données de référence :"
-
-#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:223
-msgid "Result filename"
-msgstr "Nom du fichier de résultat de la comparaison :"
-
-#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:229
-msgid "Power gain"
-msgstr "Gain"
-
-#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:235
-msgid "Add new data file"
-msgstr "Ajouter d'autres fichiers."
-
-#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:236
-msgid "Add next data file"
-msgstr ""
-"Continuer à ajouter d'autres fichiers à comparer avec le fichier de "
-"référence."
-
-#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:267
-msgid "Please, give filename for the output results"
-msgstr ""
-"Veuillez saisir un libellé valide pour le fichier de sortie qui sera créé."
-
-#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:273
-msgid ""
-"You have select the same file as the reference one.  Please select another "
-"file"
-msgstr ""
-"Vous venez de sélectionner le même fichier que le fichier de référence. "
-"Veuillez sélectionner un fichier différent pour effectuer le traitement."
-
-#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:283
-msgid "You have already select this file. Please select another file"
-msgstr ""
-"Vous avez déjà sélectionné ce fichier dans le lot de traitement. Veuillez "
-"sélectionner un fichier différent pour effectuer le traitement."
-
-#: ../Source/isimpa/trunk/IHM/RecepteurSOperationDialog.cpp:289
-msgid ""
-"You have already used this label as an output data file.  Please select "
-"another label"
-msgstr ""
-"Vous avez déjà utilisé ce libellé comme fichier de sortie. Veuillez "
-"sélectionner un libellé différent."
-
 #: ../Source/isimpa/trunk/IHM/simpleGraph.cpp:673
 #: ../Source/isimpa/trunk/IHM/simpleGraph.cpp:683
 msgid "Y axis"
@@ -944,6 +704,11 @@ msgstr "Temps total de l'opération de dessin %i ms"
 #: ../Source/isimpa/trunk/IHM/simpleGraphDialogs.cpp:129
 msgid "OK"
 msgstr "OK"
+
+#: ../Source/isimpa/trunk/IHM/simpleGraphDialogs.cpp:130
+#: ../Source/isimpa/trunk/manager/processManager.cpp:114
+msgid "Cancel"
+msgstr "Annuler"
 
 #: ../Source/isimpa/trunk/IHM/simpleGraphDialogs.cpp:270
 msgid "Apply"
@@ -1229,55 +994,6 @@ msgstr "Afficher/Cacher courbes"
 msgid "Display parameters"
 msgstr "Modifier les paramètres d'affichage"
 
-#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:62
-msgid "Mesh correction computation"
-msgstr "Opération de correction de modèle 3D"
-
-#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:119
-msgid "Model solving"
-msgstr "Résolution du modèle"
-
-#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:122
-msgid "Marching cube"
-msgstr "Marching cube"
-
-#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:125
-msgid "Triangulation method"
-msgstr "Méthode de triangulation"
-
-#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:129
-msgid "Vertices translation"
-msgstr "Translation des sommets"
-
-#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:132
-msgid "Remesh adaptation"
-msgstr "Méthode d'adaptation au modèle d'origine"
-
-#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:135
-msgid "Edge collapse"
-msgstr "Edge collapse"
-
-#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:138
-msgid "Reduction of the number of surfaces"
-msgstr "Méthode de réduction du nombre de surfaces"
-
-#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:140
-msgid "Quality constraint"
-msgstr "Contrainte de qualité minimale des triangles"
-
-#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:142
-msgid "Approximation constraint"
-msgstr "Approximation de la simplification du modèle"
-
-#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:203
-msgid "Please select the volume to extract"
-msgstr "Veuillez sélectionner le volume à extraire"
-
-#: ../Source/isimpa/trunk/IHM/WizardRemeshModel.cpp:253
-#, c-format
-msgid "Vol id:%i  %.0f m3"
-msgstr "Vol id:%i  %.0f m3"
-
 #: ../Source/isimpa/trunk/data_manager/appconfig.cpp:144
 msgid "Specular"
 msgstr "Spéculaire"
@@ -1303,12 +1019,12 @@ msgstr "W4"
 msgid "Semi-diffuse"
 msgstr "Semi-diffus"
 
-#: ../Source/isimpa/trunk/data_manager/element.cpp:833
+#: ../Source/isimpa/trunk/data_manager/element.cpp:831
 msgid "Operation not allowed"
 msgstr "Cette opération est impossible."
 
-#: ../Source/isimpa/trunk/data_manager/element.cpp:900
-#: ../Source/isimpa/trunk/data_manager/element.cpp:917
+#: ../Source/isimpa/trunk/data_manager/element.cpp:898
+#: ../Source/isimpa/trunk/data_manager/element.cpp:915
 #, c-format
 msgid ""
 "Popup icon file doesn't find:\n"
@@ -1317,22 +1033,35 @@ msgstr ""
 "L'icône de menu popup n'existe pas :\n"
 "%s"
 
-#: ../Source/isimpa/trunk/data_manager/element.cpp:937
+#: ../Source/isimpa/trunk/data_manager/element.cpp:935
 msgid "Rename"
 msgstr "Renommer"
 
-#: ../Source/isimpa/trunk/data_manager/element.cpp:940
+#: ../Source/isimpa/trunk/data_manager/element.cpp:938
 msgid "Delete"
 msgstr "Supprimer"
 
-#: ../Source/isimpa/trunk/data_manager/element.cpp:1181
-#: ../Source/isimpa/trunk/data_manager/element.cpp:1197
-#: ../Source/isimpa/trunk/data_manager/element.cpp:1212
-#: ../Source/isimpa/trunk/data_manager/element.cpp:1228
-#: ../Source/isimpa/trunk/data_manager/element.cpp:1243
-#: ../Source/isimpa/trunk/data_manager/element.cpp:1259
-#: ../Source/isimpa/trunk/data_manager/element.cpp:1291
-#: ../Source/isimpa/trunk/data_manager/element.cpp:1325
+#: ../Source/isimpa/trunk/data_manager/element.cpp:946
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:511
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:515
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_config.h:55
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_encombrements_encombrement_proprietes.h:66
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteursp_recepteur_proprietes.h:69
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteur_proprietes.h:57
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_proprietes.h:65
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_sources_source_proprietes.h:99
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_volumes_volume_proprietes.h:49
+msgid "Properties"
+msgstr "Propriétés"
+
+#: ../Source/isimpa/trunk/data_manager/element.cpp:1179
+#: ../Source/isimpa/trunk/data_manager/element.cpp:1195
+#: ../Source/isimpa/trunk/data_manager/element.cpp:1210
+#: ../Source/isimpa/trunk/data_manager/element.cpp:1226
+#: ../Source/isimpa/trunk/data_manager/element.cpp:1241
+#: ../Source/isimpa/trunk/data_manager/element.cpp:1257
+#: ../Source/isimpa/trunk/data_manager/element.cpp:1289
+#: ../Source/isimpa/trunk/data_manager/element.cpp:1323
 #, c-format
 msgid ""
 "This field does not exist!\n"
@@ -1340,6 +1069,73 @@ msgid ""
 msgstr ""
 "Ce champ n'existe pas !\n"
 "Libellé élément : %s Nom du champ : %s"
+
+#: ../Source/isimpa/trunk/data_manager/generic_element/e_gammeabsorption.cpp:79
+#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:640
+#: ../Source/isimpa/trunk/Language/additionnal_univ.h:36
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:198
+msgid "Acoustic parameters"
+msgstr "Paramètres acoustiques"
+
+#: ../Source/isimpa/trunk/data_manager/generic_element/e_gammeabsorption.cpp:139
+#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:586
+#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:946
+msgid "Average"
+msgstr "Moyenne"
+
+#: ../Source/isimpa/trunk/data_manager/generic_element/e_gammeabsorption.cpp:140
+msgid "Alpha"
+msgstr "Alpha"
+
+#: ../Source/isimpa/trunk/data_manager/generic_element/e_gammeabsorption.cpp:141
+msgid "Lambda"
+msgstr "Lambda"
+
+#: ../Source/isimpa/trunk/data_manager/generic_element/e_gammeabsorption.cpp:142
+#: ../Source/isimpa/trunk/data_manager/e_data_row_materiau.h:233
+msgid "Diffusion law"
+msgstr "Loi de diffusion"
+
+#: ../Source/isimpa/trunk/data_manager/generic_element/e_gammefrequence.cpp:158
+#: ../Source/isimpa/trunk/data_manager/generic_element/e_property_freq.cpp:190
+#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:585
+#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:945
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_gabe_recp.cpp:64
+msgid "Global"
+msgstr "Global"
+
+#: ../Source/isimpa/trunk/data_manager/generic_element/e_materiau.cpp:41
+msgid "Material spectrum"
+msgstr "Spectre du matériau"
+
+#: ../Source/isimpa/trunk/data_manager/generic_element/e_property_freq.cpp:54
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_gabe_recp.cpp:195
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_spectrums.h:52
+msgid "Spectrum"
+msgstr "Spectre"
+
+#: ../Source/isimpa/trunk/data_manager/generic_element/e_property_freq.cpp:158
+#: ../Source/isimpa/trunk/data_manager/generic_element/e_property_freq.cpp:178
+#, c-format
+msgid "Spectrum of element %s does not exist! Please, specify a valid spectrum"
+msgstr ""
+"Le spectre associé à l'élément %s n'existe pas ! Veuillez spécifier un "
+"spectre valide."
+
+#: ../Source/isimpa/trunk/data_manager/generic_element/e_property_freq.cpp:191
+#: ../Source/isimpa/trunk/data_manager/e_data_row_bandefreq.h:88
+msgid "dB(A)"
+msgstr "dB(A)"
+
+#: ../Source/isimpa/trunk/data_manager/generic_element/e_property_freq.cpp:192
+#: ../Source/isimpa/trunk/data_manager/e_data_row_ext_bandefreq.h:75
+msgid "Attenuation"
+msgstr "Atténuation"
+
+#: ../Source/isimpa/trunk/data_manager/generic_element/e_property_freq.cpp:193
+#: ../Source/isimpa/trunk/data_manager/e_data_row_ext_bandefreq.h:76
+msgid "Lw"
+msgstr "Lw"
 
 #: ../Source/isimpa/trunk/data_manager/projet.cpp:370
 #: ../Source/isimpa/trunk/data_manager/projet.cpp:400
@@ -1415,8 +1211,8 @@ msgstr "Calcul de propagation sonore en cours"
 
 #: ../Source/isimpa/trunk/data_manager/projet.cpp:813
 #, c-format
-msgid "Calcuation time: %i ms"
-msgstr "Calcul terminé en %i ms"
+msgid "Calculation time: %i ms"
+msgstr "Temps de calcul : %i ms"
 
 #: ../Source/isimpa/trunk/data_manager/projet.cpp:818
 msgid "Copy of calculation parameters"
@@ -1471,6 +1267,11 @@ msgstr "Audiences"
 msgid "Walls"
 msgstr "Murs"
 
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:1160
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:347
+msgid "Window"
+msgstr "Fenêtre"
+
 #: ../Source/isimpa/trunk/data_manager/projet.cpp:1161
 msgid "Floors"
 msgstr "Sols"
@@ -1514,7 +1315,7 @@ msgid "XML file corrupted. File can't be loaded"
 msgstr "Fichier Xml du projet endommagé, impossible de charger le projet"
 
 #: ../Source/isimpa/trunk/data_manager/projet.cpp:1861
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2866
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2867
 msgid "Loading 3D scene ..."
 msgstr "Chargement du modèle 3D"
 
@@ -1523,7 +1324,7 @@ msgid "Scene does not exist!"
 msgstr "Modèle non existant !"
 
 #: ../Source/isimpa/trunk/data_manager/projet.cpp:2122
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2552
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2553
 msgid "Saving project"
 msgstr "Sauvegarde du projet"
 
@@ -1565,11 +1366,11 @@ msgstr ""
 "%s"
 
 #: ../Source/isimpa/trunk/data_manager/projet.cpp:2308
-msgid "3D Rendering"
-msgstr "3drendering"
+msgid "3drendering"
+msgstr "Rendu 3D"
 
 #: ../Source/isimpa/trunk/data_manager/projet.cpp:2312
-msgid "Main"
+msgid "general"
 msgstr "Général"
 
 #: ../Source/isimpa/trunk/data_manager/projet.cpp:2317
@@ -1589,20 +1390,16 @@ msgid "Default color"
 msgstr "Couleur par défaut"
 
 #: ../Source/isimpa/trunk/data_manager/projet.cpp:2324
-msgid "Animations"
+msgid "animations"
 msgstr "Animations"
 
 #: ../Source/isimpa/trunk/data_manager/projet.cpp:2329
 msgid "Render frequency (Hz)"
-msgstr "Freq affichage (Hz)"
+msgstr "Fréquence d'affichage (Hz)"
 
 #: ../Source/isimpa/trunk/data_manager/projet.cpp:2330
 msgid "Label color"
 msgstr "Couleur du texte de la légende"
-
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2331
-msgid "Display time step (s)"
-msgstr "Pas de temps affichage (s)"
 
 #: ../Source/isimpa/trunk/data_manager/projet.cpp:2332
 #: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_partvisualisation.h:75
@@ -1615,64 +1412,65 @@ msgid "Surface receivers display"
 msgstr "Visualisation récepteurs surfaciques"
 
 #: ../Source/isimpa/trunk/data_manager/projet.cpp:2337
-msgid "Legend"
+msgid "legend"
 msgstr "Légende"
 
 #: ../Source/isimpa/trunk/data_manager/projet.cpp:2342
+msgid "Police font"
+msgstr "Police"
+
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2343
 msgid "Text color"
 msgstr "Couleur du texte"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2343
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2344
 msgid "Text background color"
 msgstr "Couleur de fond du texte"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2344
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2345
 msgid "Transparent text background"
 msgstr "Fond du texte transparent"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2350
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2351
 msgid "Iso-lines color"
 msgstr "Couleur des lignes iso"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2351
-msgid "Sound map"
-msgstr "Carte du bruit"
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2352
+msgid "soundmap"
+msgstr "Carte de bruit"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2356
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2357
 msgid "Color of particles"
 msgstr "Couleur des particules"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2357
-#: ../Source/isimpa/trunk/3dengine/Core/Particules.cpp:60
-#: ../Source/isimpa/trunk/Language/additionnal_univ.h:39
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_partvisualisation.h:85
-msgid "Particles"
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2358
+msgid "particle"
 msgstr "Particules"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2362
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2415
-msgid "General"
-msgstr "Général"
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2363
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2416
+msgid "mainpref"
+msgstr "Préférences"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2366
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2419
-msgid "History"
-msgstr "Historique"
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2367
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2420
+msgid "history"
+msgstr "Historique des modifications"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2368
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2421
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2369
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2422
 msgid "Keep modification history"
 msgstr "Conserver l'historique des modifications"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2426
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2427
 msgid "Project decompression"
 msgstr "Décompression du projet"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2426
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2427
 msgid "Project files decompression in progress ..."
 msgstr "Décompression des fichiers du projet en cours ..."
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2448
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2449
 #, c-format
 msgid ""
 "Dezip of file\n"
@@ -1681,28 +1479,28 @@ msgstr ""
 "Décompression du fichier \n"
 "%s"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2490
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2491
 #, c-format
 msgid "Loading project: %s"
 msgstr "Ouverture du projet : %s"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2552
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2553
 msgid "Updating XML file"
 msgstr "Mise à jour du fichier XML"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2567
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2568
 msgid "Save finished"
 msgstr "Sauvegarde terminée"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2704
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2705
 msgid "Please chose a calculation code"
 msgstr "Veuillez choisir le moteur de calcul associé au mailleur"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2704
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2705
 msgid "Display mesh"
 msgstr "Prévisualisation du maillage"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2730
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2731
 msgid ""
 "Select face: Left Click on the 3D view 3D to select a face; Double left Click"
 "+Ctrl to select a face entirely"
@@ -1710,33 +1508,33 @@ msgstr ""
 "Outil de sélection des faces. Click gauche sur la vue 3D pour sélectionner "
 "une face. Ctrl+ double Click gauche pour sélectionner toute la surface."
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2881
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2882
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_groupesurfaces_groupe.cpp:488
 msgid "Loading faces of 3D scene"
 msgstr "Chargement des faces du modèle 3D"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2882
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2883
 #, c-format
 msgid "Loading 3D scene: %s\n"
 msgstr "Changement du modèle de la scène 3D : %s\n"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2888
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2889
 msgid "Saving 3D scene"
 msgstr "Sauvegarde du modèle 3D"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2902
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2903
 msgid "Unable to load the 3D model"
 msgstr "Impossible de charger le modèle 3D !"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2911
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2912
 msgid "Please, select 3D scene importation options"
 msgstr "Veuillez spécifier les options d'importation d'un modèle 3D."
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2911
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2912
 msgid "Loading 3D scene"
 msgstr "Chargement d'un modèle"
 
-#: ../Source/isimpa/trunk/data_manager/projet.cpp:2940
+#: ../Source/isimpa/trunk/data_manager/projet.cpp:2941
 msgid "Build of a 3D scene.\n"
 msgstr "Changement du modèle de la scène 3D, création d'un nouveau modèle\n"
 
@@ -1826,27 +1624,6 @@ msgid ""
 msgstr ""
 "Le fichier de résultat suivant n'existe pas :\n"
 "%s"
-
-#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:585
-#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:945
-#: ../Source/isimpa/trunk/data_manager/generic_element/e_gammefrequence.cpp:158
-#: ../Source/isimpa/trunk/data_manager/generic_element/e_property_freq.cpp:190
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_gabe_recp.cpp:64
-msgid "Global"
-msgstr "Global"
-
-#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:586
-#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:946
-#: ../Source/isimpa/trunk/data_manager/generic_element/e_gammeabsorption.cpp:139
-msgid "Average"
-msgstr "Moyenne"
-
-#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:640
-#: ../Source/isimpa/trunk/data_manager/generic_element/e_gammeabsorption.cpp:79
-#: ../Source/isimpa/trunk/Language/additionnal_univ.h:36
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:198
-msgid "Acoustic parameters"
-msgstr "Paramètres acoustiques"
 
 #: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:662
 #: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_gabe_recp.cpp:267
@@ -2005,76 +1782,13 @@ msgstr "Reconstruction approximée du modèle en entrée."
 msgid "Unable to save the file under the PLY format"
 msgstr "Impossible de sauvegarder le modèle au format PLY."
 
-#: ../Source/isimpa/trunk/data_manager/generic_element/e_gammeabsorption.cpp:140
-msgid "Alpha"
-msgstr "Alpha"
+#: ../Source/isimpa/trunk/data_manager/projet_undo_redo.cpp:74
+msgid "Add modifications in the change log"
+msgstr "Ajout de modifications dans le fichier historique"
 
-#: ../Source/isimpa/trunk/data_manager/generic_element/e_gammeabsorption.cpp:141
-msgid "Lambda"
-msgstr "Lambda"
-
-#: ../Source/isimpa/trunk/data_manager/generic_element/e_gammeabsorption.cpp:142
-#: ../Source/isimpa/trunk/data_manager/e_data_row_materiau.h:233
-msgid "Diffusion law"
-msgstr "Loi de diffusion"
-
-#: ../Source/isimpa/trunk/data_manager/generic_element/e_materiau.cpp:41
-msgid "Material spectrum"
-msgstr "Spectre du matériau"
-
-#: ../Source/isimpa/trunk/data_manager/generic_element/e_property_freq.cpp:54
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_gabe_recp.cpp:195
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_spectrums.h:52
-msgid "Spectrum"
-msgstr "Spectre"
-
-#: ../Source/isimpa/trunk/data_manager/generic_element/e_property_freq.cpp:158
-#: ../Source/isimpa/trunk/data_manager/generic_element/e_property_freq.cpp:178
-#, c-format
-msgid "Spectrum of element %s does not exist! Please, specify a valid spectrum"
-msgstr ""
-"Le spectre associé à l'élément %s n'existe pas ! Veuillez spécifier un "
-"spectre valide."
-
-#: ../Source/isimpa/trunk/data_manager/generic_element/e_property_freq.cpp:191
-#: ../Source/isimpa/trunk/data_manager/e_data_row_bandefreq.h:88
-msgid "dB(A)"
-msgstr "dB(A)"
-
-#: ../Source/isimpa/trunk/data_manager/generic_element/e_property_freq.cpp:192
-#: ../Source/isimpa/trunk/data_manager/e_data_row_ext_bandefreq.h:75
-msgid "Attenuation"
-msgstr "Atténuation"
-
-#: ../Source/isimpa/trunk/data_manager/generic_element/e_property_freq.cpp:193
-#: ../Source/isimpa/trunk/data_manager/e_data_row_ext_bandefreq.h:76
-msgid "Lw"
-msgstr "Lw"
-
-#: ../Source/isimpa/trunk/data_manager/python_interface/pythonshell.cpp:135
-msgid "print 'Python(TM)',sys.version,'on',sys.platform"
-msgstr "print 'Python',sys.version,'sur',sys.platform"
-
-#: ../Source/isimpa/trunk/data_manager/python_interface/pythonshell.cpp:209
-msgid "Python(TM) implementation error can't be produced"
-msgstr "Impossible de gérer une erreur de l'implémentation python"
-
-#: ../Source/isimpa/trunk/data_manager/python_interface/pythonshell.cpp:235
-msgid ""
-"A menu manager must contain the following method: bool getmenu(eltype,elid,"
-"listmenu) "
-msgstr ""
-"Un gestionnaire de menu doit comporter une méthode bool getmenu(eltype,elid,"
-"listmenu) !"
-
-#: ../Source/isimpa/trunk/data_manager/python_interface/pythonshell.cpp:270
-msgid "This event doesn't exist !"
-msgstr "Cet événement n'existe pas !"
-
-#: ../Source/isimpa/trunk/data_manager/python_interface/pythonshell.cpp:344
-#, c-format
-msgid "Unable to init the Python(TM) element %s of the %s module"
-msgstr "Impossible d'initialiser l'élément python utilisateur %s du module %s"
+#: ../Source/isimpa/trunk/data_manager/projet_undo_redo.cpp:76
+msgid "Forced adding changes in the change log."
+msgstr "Force l'ajout de modifications dans le fichier historique"
 
 #: ../Source/isimpa/trunk/data_manager/python_interface/py_ui_module/Application.cpp:248
 msgid "Incorrect data types. Values and index must be characters"
@@ -2141,6 +1855,31 @@ msgstr "Erreur durant l'appel au script Python(TM) (mise à jour d'un élément)
 msgid "Error during call of Python(TM) script on element append child"
 msgstr "Erreur durant l'appel au script Python(TM) (élément enfant)"
 
+#: ../Source/isimpa/trunk/data_manager/python_interface/pythonshell.cpp:135
+msgid "print 'Python(TM)',sys.version,'on',sys.platform"
+msgstr "print 'Python',sys.version,'sur',sys.platform"
+
+#: ../Source/isimpa/trunk/data_manager/python_interface/pythonshell.cpp:209
+msgid "Python(TM) implementation error can't be produced"
+msgstr "Impossible de gérer une erreur de l'implémentation python"
+
+#: ../Source/isimpa/trunk/data_manager/python_interface/pythonshell.cpp:235
+msgid ""
+"A menu manager must contain the following method: bool getmenu(eltype,elid,"
+"listmenu) "
+msgstr ""
+"Un gestionnaire de menu doit comporter une méthode bool getmenu(eltype,elid,"
+"listmenu) !"
+
+#: ../Source/isimpa/trunk/data_manager/python_interface/pythonshell.cpp:270
+msgid "This event doesn't exist !"
+msgstr "Cet événement n'existe pas !"
+
+#: ../Source/isimpa/trunk/data_manager/python_interface/pythonshell.cpp:344
+#, c-format
+msgid "Unable to init the Python(TM) element %s of the %s module"
+msgstr "Impossible d'initialiser l'élément python utilisateur %s du module %s"
+
 #: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_file.cpp:49
 msgid "Folder name or file name can't be empty"
 msgstr "Un nom de dossier ou de fichier ne doit pas être vide !"
@@ -2202,6 +1941,11 @@ msgstr " (dB)"
 msgid "Total"
 msgstr "Total"
 
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene.cpp:41
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:393
+msgid "Scene"
+msgstr "Scène"
+
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_groupesurfaces_groupe.cpp:50
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_app_group.h:50
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_user_group.h:124
@@ -2238,7 +1982,7 @@ msgid "Clean"
 msgstr "Vider"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_groupesurfaces_groupe.cpp:446
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_groupesurfaces_groupe_vertex.h:81
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_groupesurfaces_groupe_vertex.h:79
 msgid "Invert face normal"
 msgstr "Inverser l'orientation des faces"
 
@@ -2255,292 +1999,526 @@ msgstr "Chargement de la face %i/%i"
 msgid "Volumes"
 msgstr "Volumes"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_volumes.cpp:100
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_volumes.cpp:98
 msgid "Create a volume"
 msgstr "Déclarer un volume"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_volumes.cpp:101
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_volumes.cpp:99
 msgid "Volume auto-detect"
 msgstr "Auto-détection des volumes"
 
-#: ../Source/isimpa/trunk/3dengine/OpenGLApp.cpp:396
-msgid ""
-"Resolution is too high, your graphic card is enable to manage this size. "
-"Please choose a lower export resolution"
-msgstr ""
-"Résolution trop élevé, votre carte graphique ne peut gérer une telle "
-"dimension, veuillez réduire la largeur et/ou la hauteur"
-
-#: ../Source/isimpa/trunk/3dengine/OpenGLApp.cpp:413
-msgid ""
-"Unknown OpenGL error, try to set a lower resolution or use another "
-"exportation method."
-msgstr ""
-"Erreur d'exportation OpenGl Inconnue, tentez de diminuer la résolution ou "
-"bien choisissez la méthode d'exportation de la fenêtre openGl"
-
-#: ../Source/isimpa/trunk/3dengine/OpenGLApp.cpp:415
-#, c-format
-msgid "Error code : %i"
-msgstr "Code de l'erreur : %i"
-
-#: ../Source/isimpa/trunk/3dengine/OpenGLApp.cpp:420
-msgid ""
-"OpenGL exportation error. Try to use the window exportation method instead"
-msgstr ""
-"Erreur d'exportation OpenGl Inconnue, tentez de choisir la méthode "
-"d'exportation de la fenêtre openGl"
-
-#: ../Source/isimpa/trunk/3dengine/OpenGLApp.cpp:622
-msgid "Preparing display of surfaces receivers"
-msgstr "Compilation du rendu des récepteurs surfaciques"
-
-#: ../Source/isimpa/trunk/3dengine/OpenGLApp.cpp:629
-#, c-format
-msgid "Loading time step %i/%i"
-msgstr "Chargement du pas de temps %i/%i"
-
-#: ../Source/isimpa/trunk/3dengine/OpenGlViewer.cpp:436
-msgid "Display error unknown"
-msgstr "Erreur de rendu inconnue"
-
-#: ../Source/isimpa/trunk/3dengine/Core/Objet3D.cpp:1217
-msgid "Unable to load this format"
-msgstr "Impossible de charger ce format"
-
-#: ../Source/isimpa/trunk/3dengine/Core/Objet3D_maillage.cpp:758
-msgid "Failed to export meshing"
-msgstr "L'exportation du maillage de la scène n'a pu se faire."
-
-#: ../Source/isimpa/trunk/3dengine/Core/Particules.cpp:202
-msgid "Loading particles file"
-msgstr "Chargement du fichier de particules"
-
-#: ../Source/isimpa/trunk/3dengine/Core/Particules.cpp:224
-#, c-format
-msgid ""
-"Insufficent memory available, %u memory required and %u memory available"
-msgstr ""
-"Espace mémoire insuffisant, ce fichier de particule nécessite au moins %u Mo "
-"de mémoire et il n'y a que %u Mo de disponible."
-
-#: ../Source/isimpa/trunk/3dengine/Core/Particules.cpp:236
-#, c-format
-msgid "Particles file contains %i particles and %i time step"
-msgstr "Le fichier de particule contient %i particules et %i pas de temps."
-
-#: ../Source/isimpa/trunk/3dengine/Core/Particules.cpp:253
-msgid "Cancel loading particles files"
-msgstr "Annulation du chargement de fichier de particules"
-
-#: ../Source/isimpa/trunk/3dengine/Core/Particules.cpp:307
-#, c-format
-msgid ""
-"Particles file does not exist!\n"
-" %s"
-msgstr ""
-"Le fichier de particule suivant n'existe pas !\n"
-" %s"
-
-#: ../Source/isimpa/trunk/3dengine/Core/Particules.cpp:316
-msgid "Unknown error when reading particles file"
-msgstr "Erreur inconnue dans la lecture du fichier de particule"
-
-#: ../Source/isimpa/trunk/3dengine/Core/Particules.cpp:342
-msgid "Particles:"
-msgstr "Particules : "
-
-#: ../Source/isimpa/trunk/3dengine/Core/ply.cpp:223
-#, c-format
-msgid "File I/O Error:  Cannot open file %s\n"
-msgstr "File I/O Error:  Cannot open file %s.\n"
-
-#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_ponctuel_intensity.cpp:54
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_rpi.h:59
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_rpi.h:70
-msgid "Intensity"
-msgstr "Intensité"
-
-#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_ponctuel_intensity.cpp:77
-msgid "Intensity : "
-msgstr "Intensité : "
-
-#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:79
-msgid "Surface receiver"
-msgstr "Récepteur surfacique"
-
-#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:132
-#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:917
-msgid "Total sound level"
-msgstr "Niveau sonore cumulé"
-
-#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:217
-msgid "Loading of the surface receiver file"
-msgstr "Chargement du fichier de récepteur de surface"
-
-#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:263
-#: ../Source/isimpa/trunk/data_manager/e_data_row_bandefreq.h:87
-msgid "dB"
-msgstr "dB"
-
-#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:268
-msgid "s"
-msgstr "s"
-
-#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:270
-msgid "%"
-msgstr "%"
-
-#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:272
-msgid "Pascal"
-msgstr "Pascal"
-
-#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:722
-#, c-format
-msgid "Sound level at pointer s %.2f "
-msgstr "Le niveau sonore à cet endroit est de %.2f "
-
-#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:724
-msgid "Sound level is not given"
-msgstr "Niveau acoustique nul."
-
-#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:727
-#, c-format
-msgid "RT at pointer is %.2f "
-msgstr "La valeur du TR à cet endroit est de %.2f "
-
-#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:729
-#, c-format
-msgid "The clarity value at this coordinate is %.2f"
-msgstr "La valeur de la clarté à cet endroit est de %.2f "
-
-#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:731
-#, c-format
-msgid "The D value at this coordinate is %.2f"
-msgstr "La valeur de la définition à cet endroit est de %.2f "
-
-#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:733
-#, c-format
-msgid "The TS value at this coordinate is %.2f"
-msgstr "La valeur du TS à cet endroit est de %.2f "
-
-#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:735
-#, c-format
-msgid "The ST value at this coordinate is %.2f"
-msgstr "La valeur du ST à cet endroit est de %.2f "
-
-#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:737
-#, c-format
-msgid "The pressure value at this coordinate is %.2f"
-msgstr "La valeur de la pression à cet endroit est de %.2f "
-
-#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:739
-#, c-format
-msgid "EDT at pointer is %.2f "
-msgstr "La valeur de l'EDT à cet endroit est de %.2f "
-
-#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:743
-msgid "This zone does not correspond to a defined surface receiver"
-msgstr "Cette zone ne correspond pas à un récepteur de surface."
-
-#: ../Source/isimpa/trunk/3dengine/Core/Recepteurs_surfacique.cpp:889
-msgid "Surface receivers :"
-msgstr "Récepteurs surfaciques : "
-
-#: ../Source/isimpa/trunk/3dengine/tools/recepteursurf_difference.cpp:40
-#, c-format
-msgid ""
-"Can't load surface receiver:\n"
-"%s"
-msgstr ""
-"Impossible de charger le récepteur surfacique de référence :\n"
-"%s"
-
-#: ../Source/isimpa/trunk/3dengine/tools/recepteursurf_difference.cpp:139
-#, c-format
-msgid ""
-"Can't compare surface receivers: time step is different with the reference "
-"one:\n"
-"%s "
-msgstr ""
-"Impossible de comparer ce récepteur surfacique car le nombre de pas de temps "
-"est différent que celui du fichier de référence :\n"
-"%s"
-
-#: ../Source/isimpa/trunk/3dengine/tools/recepteursurf_difference.cpp:144
-#, c-format
-msgid ""
-"Surface receivers can not be compared. Time step (delta T) is different from "
-"the reference one:\n"
-"%s"
-msgstr ""
-"Impossible de comparer ce récepteur surfacique car le pas de temps (delta T) "
-"est différent que celui du fichier de référence :\n"
-"%s"
-
-#: ../Source/isimpa/trunk/3dengine/tools/recepteursurf_difference.cpp:149
-#, c-format
-msgid ""
-"Data can not be compared with reference surface receivers. Number of surface "
-"receivers is different from the reference one:\n"
-"%s"
-msgstr ""
-"Impossible de comparer avec le fichier de référence car il n'y a pas le même "
-"nombre de récepteur de surface :\n"
-"%s"
-
-#: ../Source/isimpa/trunk/3dengine/tools/recepteursurf_difference.cpp:160
-#, c-format
-msgid ""
-"The following surface receiver is not composed with the same number of "
-"surfaces as the reference one:\n"
-"%s"
-msgstr ""
-"La structure du récepteur de surface suivant ne contient pas le même nombre "
-"de surfaces que le fichier de référence :\n"
-"%s"
-
-#: ../Source/isimpa/trunk/3dengine/tools/recepteursurf_difference.cpp:195
-#, c-format
-msgid ""
-"The following surface receiver can't be loaded:\n"
-"%s"
-msgstr ""
-"Impossible de charger le récepteur surfacique suivant :\n"
-"%s"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.h:359
-msgid "Fatal error: "
-msgstr "Erreur: "
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.h:360
-msgid "Program aborted"
-msgstr "Le programme a été stoppé"
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.h:370
-msgid "Error:"
-msgstr "Erreur : "
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.h:374
-msgid "Warning: "
-msgstr "Avertissement : "
-
-#: ../Source/isimpa/trunk/main/i_simpa_main.h:489
-msgid ""
-"Many old sessions of the user interface are available.\n"
-"Do you want to retrieve an old session?"
-msgstr ""
-"Plusieurs anciennes instances du l'interface existent.\n"
-"Souhaitez-vous charger un de ces projets en l'état avant la fermeture de "
-"l'interface ?"
-
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:166
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:1055
+#: ../Source/isimpa/trunk/main/i_simpa_main.h:490
 #: ../Source/isimpa/trunk/main/i_simpa_main.h:496
-msgid "Please choose the application instance"
-msgstr "Veuillez choisir l'instance à charger"
+msgid "Interface "
+msgstr "Interface "
 
-#: ../Source/isimpa/trunk/manager/processManager.h:69
-msgid "Calculation output:"
-msgstr "Sortie exécutable :"
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:179
+msgid "Can not read the I-SIMPA icon"
+msgstr "Impossible de lire l'icône d'I-Simpa"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:186
+msgid "New project\tCtrl+N"
+msgstr "Nouveau projet\tCtrl+N"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:187
+msgid "Open project\tCtrl+O"
+msgstr "Ouvrir un projet\tCtrl+O"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:190
+msgid "Export scene"
+msgstr "Exporter la scène"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:191
+msgid "New scene"
+msgstr "Créer la scène"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:193
+msgid "Save project\tCtrl+S"
+msgstr "Enregistrer le projet\tCtrl+S"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:194
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:441
+msgid "Save project as ..."
+msgstr "Enregistrer le projet sous ..."
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:195
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:1084
+msgid "Save copy of project"
+msgstr "Enregistrer une copie du projet"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:198
+msgid "Recent projects"
+msgstr "Projets récents"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:207
+msgid "Options"
+msgstr "Options"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:208
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:1035
+msgid "Language"
+msgstr "Langue du logiciel"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:209
+msgid "Settings"
+msgstr "Préférences"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:212
+msgid "Exit"
+msgstr "Quitter"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:215
+msgid "Undo\tCtrl+Z"
+msgstr "Annuler\tCtrl+Z"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:216
+msgid "Redo\tCtrl+Y"
+msgstr "Rétablir\tCtrl+Y"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:219
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:444
+msgid "Play"
+msgstr "Lecture de la simulation"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:220
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:445
+msgid "Pause"
+msgstr "Mise en pause de la simulation"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:221
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:447
+msgid "Stop"
+msgstr "Stopper la simulation"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:223
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:464
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_tetconf.h:114
+msgid "Meshing"
+msgstr "Maillage du modèle"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:228
+msgid "File results process"
+msgstr "Traitements des fichiers de résultats"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:237
+msgid "Outside"
+msgstr "Extérieur"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:238
+msgid "Inside"
+msgstr "Intérieur"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:241
+msgid "Faces"
+msgstr "Faces"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:245
+msgid "Original"
+msgstr "Original"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:246
+msgid "Material"
+msgstr "Matériau associé"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:247
+msgid "Material color"
+msgstr "Couleur modèle"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:251
+msgid "Contour lines calculation"
+msgstr "Calcul automatique du contour"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:252
+msgid "All"
+msgstr "Toutes"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:253
+msgid "Contour"
+msgstr "Contour"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:277
+msgid "Hide meshing"
+msgstr "Cacher le maillage"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:281
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:460
+msgid "Reinitialize camera"
+msgstr "Réinitialiser la caméra"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:283
+msgid "First person"
+msgstr "Première personne"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:284
+msgid "Rotation / Zoom"
+msgstr "Rotation / Zoom"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:286
+msgid "Camera"
+msgstr "Caméra"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:291
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_rendu_origine.h:69
+msgid "XY Grid"
+msgstr "Grille plan xy"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:294
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_rendu_origine.h:70
+msgid "XZ Grid"
+msgstr "Grille plan xz"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:297
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_rendu_origine.h:71
+msgid "YZ Grid"
+msgstr "Grille plan yz"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:306
+msgid "To file"
+msgstr "Vers un fichier"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:307
+msgid "To a file with a specified resolution"
+msgstr "Vers un fichier avec une autre résolution."
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:308
+msgid "Copy 3D View"
+msgstr "Copier la vue 3D"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:315
+msgid "Reinitialize interface"
+msgstr "Réinitialiser le gestionnaire"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:317
+msgid "Set 3D View as main window"
+msgstr "Mettre la vue 3D en tant qu'affichage principal"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:318
+msgid "Floating 3D View"
+msgstr "Vue 3D flottante"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:319
+msgid "3D View"
+msgstr "Vue 3D"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:321
+msgid "Export to file"
+msgstr "Copier le contenu vers un fichier"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:323
+msgid "Delete windows"
+msgstr "Effacer le contenu"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:325
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:404
+msgid "Console"
+msgstr "Console"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:330
+msgid "Website"
+msgstr "Site Web"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:332
+msgid "Online documentation"
+msgstr "Documentation en ligne"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:334
+msgid "I-Simpa documentation (PDF in French)"
+msgstr "Documentation I-Simpa (PDF en français)"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:335
+msgid "SPPS documentation (PDF in French)"
+msgstr "Documentation SPPS (PDF en français)"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:337
+msgid "License"
+msgstr "Licence"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:338
+msgid "About "
+msgstr "A propos de "
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:342
+msgid "File"
+msgstr "Fichier"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:343
+msgid "Edition"
+msgstr "Edition"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:344
+msgid "Simulation"
+msgstr "Simulation"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:345
+msgid "Tools"
+msgstr "Outils"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:346
+msgid "View"
+msgstr "Affichage"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:348
+msgid "Help"
+msgstr "Aide"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:364
+msgid "Messages"
+msgstr "Messages"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:367
+msgid "Python(TM)"
+msgstr "Python"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:394
+msgid "Calculation"
+msgstr "Calcul"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:395
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report.h:54
+msgid "Results"
+msgstr "Résultats"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:401
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet.h:60
+msgid "Project"
+msgstr "Projet"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:408
+msgid "Interface options"
+msgstr "Options de l'interface"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:415
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:485
+msgid "Main windows"
+msgstr "Fenêtre centrale"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:438
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:1002
+msgid "Open project"
+msgstr "Ouvrir un projet"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:440
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:1021
+msgid "Save project"
+msgstr "Enregistrer le projet"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:443
+msgid "Previous time step"
+msgstr "Pas de temps précédent"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:446
+msgid "Next time step"
+msgstr "Pas de temps suivant"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:448
+msgid "Delete the simulation"
+msgstr "Effacer la simulation"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:450
+msgid "Face view"
+msgstr "Vue des faces"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:451
+msgid "Wireframe view"
+msgstr "Vue fil de fer"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:452
+msgid "Combined view"
+msgstr "Vue combinée"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:455
+msgid "Camera mode"
+msgstr "Outil de visualisation"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:456
+msgid "Surface selection mode"
+msgstr "Mode de sélection des triangles"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:457
+msgid "Extract sound level from 3D view"
+msgstr ""
+"Extraction des valeurs de niveau sonore des récepteurs de surfaces à partir "
+"de la vue 3D"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:461
+msgid "Orbit camera"
+msgstr "Caméra en rotation"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:462
+msgid "First person camera"
+msgstr "Caméra en vue à la première personne"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:465
+msgid "Show / Hide meshing"
+msgstr "Masquer / Montrer le maillage"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:488
+msgid "Project tools"
+msgstr "Barre d'outils projet"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:494
+msgid "Camera tools"
+msgstr "Barre d'outils caméra"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:499
+msgid "Meshing tools"
+msgstr "Barre d'outils maillage"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:503
+msgid "Animation toolbar"
+msgstr "Barre d'outils d'animation"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:507
+msgid "Standard tools"
+msgstr "Barre d'outils standard"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:551
+msgid "Save console"
+msgstr "Sauvegarder la console"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:551
+msgid "Text file (*.txt)|*.txt"
+msgstr "Fichiers texte (*.txt)|*.txt"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:868
+msgid "Language will be changed after restarting I-Simpa"
+msgstr "Les paramètres de langue seront appliqués au prochain démarrage"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:894
+msgid "License >>"
+msgstr "Licence >>"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:895
+msgid "Developers >>"
+msgstr "Développeurs >>"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:935
+msgid "Import new scene"
+msgstr "Importer une scène"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:935
+msgid ""
+"All compatible files|*.3ds;*.ply;*.bin;*.poly;*.stl|3DS file (*.3ds)|*.3ds|"
+"poly file (*.poly)|*.bin|ply file (*.ply)|*.ply|Binary file 1.00 (*.bin)|*."
+"bin|Stererolithograpic file (*.stl)|*.stl|CATT-Acoustic file (*.geo)|*.geo"
+msgstr ""
+"Fichiers compatibles|*.3ds;*.ply;*.bin;*.poly;*.stl|3DS file (*.3ds)|*.3ds|"
+"poly file (*.poly)|*.bin|ply file (*.ply)|*.ply|Binary file 1.00 (*.bin)|*."
+"bin|Stererolithograpic file (*.stl)|*.stl"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:957
+msgid "Please enter scene dimensions"
+msgstr "Veuillez entrer les caractéristiques du cuboïde"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:957
+msgid "Creating scene"
+msgstr "Création d'une scène"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:958
+msgid "Width (x)"
+msgstr "Largeur (m)"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:959
+msgid "Length (y)"
+msgstr "Longueur(m)"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:960
+msgid "Height (z)"
+msgstr "Hauteur (m)"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:989
+msgid "Export model"
+msgstr "Exporter le modèle"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:989
+msgid ""
+"Stanfort University PlY (*.ply)|*.ply|Stanfort University PlY with project "
+"groups (*.mat.ply)|*.mat.ply|Poly files (*.poly)|*.poly|Mesh files (*.mesh)|"
+"*.mesh|Nff files (*.nff)|*.nff|Binary file (*.bin)|*.bin|Binary file Calcul "
+"SPPS (*.cbin)|*.cbin|Asc files (*.asc)|*.asc"
+msgstr ""
+"Stanfort University PlY (*.ply)|*.ply|Stanfort University PlY with project "
+"groups (*.mat.ply)|*.mat.ply|Poly files (*.poly)|*.poly|Mesh files (*.mesh)|"
+"*.mesh|Nff files (*.nff)|*.nff|Fichier binaire (*.bin)|*.bin|Fichier binaire "
+"Calcul SPPS (*.cbin)|*.cbin|Asc files (*.asc)|*.asc"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:1002
+msgid "Project (*.proj)|*.proj"
+msgstr "Projet (*.proj)|*.proj"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:1035
+msgid "Please choose language:"
+msgstr "Veuillez choisir la langue:"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:1054
+msgid ""
+"Project has been modified.\n"
+"Save project with modifications?"
+msgstr ""
+"Le projet a été modifié.\n"
+"Souhaitez-vous enregistrer les modifications apportées ?"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.cpp:1074
+msgid "Unexpected Dialog response return !"
+msgstr "Le système a retourné un message inattendu !"
+
+#: ../Source/isimpa/trunk/manager/processManager.cpp:96
+msgid "Calculation code error:"
+msgstr "Erreur exécutable :"
+
+#: ../Source/isimpa/trunk/manager/processManager.cpp:111
+msgid "Elapsed time : "
+msgstr "Temps écoulé : "
+
+#: ../Source/isimpa/trunk/manager/processManager.cpp:112
+msgid "Remaining time : "
+msgstr "Temps restant : "
+
+#: ../Source/isimpa/trunk/manager/processManager.cpp:113
+msgid "Close"
+msgstr "Fermer"
+
+#: ../Source/isimpa/trunk/manager/processManager.cpp:115
+msgid "Unknown"
+msgstr "Inconnu"
+
+#: ../Source/isimpa/trunk/manager/processManager.cpp:122
+msgid "External code execution"
+msgstr "Exécution d'un programme externe :"
+
+#: ../Source/isimpa/trunk/manager/processManager.cpp:152
+msgid "External code execution canceled"
+msgstr "Exécution du programme externe annulé."
+
+#: ../Source/isimpa/trunk/manager/processManager.cpp:153
+msgid "Process answer:"
+msgstr "Réponse du processus :"
+
+#: ../Source/isimpa/trunk/manager/processManager.cpp:157
+msgid "No error"
+msgstr "Pas d'erreur."
+
+#: ../Source/isimpa/trunk/manager/processManager.cpp:160
+msgid "Signal doesn't exist"
+msgstr "Le signal n'existe pas."
+
+#: ../Source/isimpa/trunk/manager/processManager.cpp:163
+msgid "Unauthorized closing process"
+msgstr "Fermeture du processus non autorisée."
+
+#: ../Source/isimpa/trunk/manager/processManager.cpp:166
+msgid "Process doesn't exist"
+msgstr "Ce processus n'existe pas."
+
+#: ../Source/isimpa/trunk/manager/processManager.cpp:169
+msgid "Non-specified process output"
+msgstr "Retour du processus non spécifié"
+
+#: ../Source/isimpa/trunk/manager/processManager.cpp:172
+msgid "Unknown output process"
+msgstr "Retour du processus inconnu"
 
 #: ../Source/isimpa/trunk/Language/additionnal_univ.h:37
 msgid "Global sound level"
@@ -2656,7 +2634,7 @@ msgstr "Matériau application"
 msgid "Calculation code"
 msgstr "Code de calcul"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core.h:134
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core.h:132
 msgid "Run calculation"
 msgstr "Exécuter le calcul"
 
@@ -2998,8 +2976,8 @@ msgstr "Description du matériau"
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:77
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_encombrements_encombrement_proprietes.h:56
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteursp_recepteur_proprietes.h:61
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_proprietes.h:57
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteur_proprietes.h:50
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_proprietes.h:57
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_sources_source_proprietes.h:55
 msgid "Description"
 msgstr "Description"
@@ -3020,8 +2998,8 @@ msgstr "Rendu 3D"
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_encombrements_encombrement_rendu.h:76
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_rendu.h:52
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteursp_recepteur_rendu.h:59
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_rendu.h:50
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteur_rendu.h:50
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_rendu.h:50
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_sources_source_rendu.h:59
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_volumes_volume_rendu.h:49
 msgid "Display"
@@ -3032,22 +3010,22 @@ msgstr "Rendu"
 msgid "User"
 msgstr "Utilisateur"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_user.h:146
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_user_group.h:206
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_user.h:144
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_user_group.h:204
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_user_materiau.h:62
 msgid "New material"
 msgstr "Nouveau matériau"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_user.h:147
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_user_group.h:207
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_user.h:145
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_user_group.h:205
 msgid "Create group"
 msgstr "Créer groupe"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_user.h:149
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_user.h:147
 msgid "Import from file"
 msgstr "Importer depuis un fichier"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_spectrums_user.h:74
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_spectrums_user.h:72
 msgid "New spectrum"
 msgstr "Nouveau spectre"
 
@@ -3057,11 +3035,11 @@ msgstr "Nouveau spectre"
 msgid "Fitting zone"
 msgstr "Encombrements"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_encombrements.h:111
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_encombrements.h:109
 msgid "Define scene fitted zone "
 msgstr "Définir encombrement scène"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_encombrements.h:112
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_encombrements.h:110
 msgid "Define rectangular fitted zone"
 msgstr "Nouvel encombrement cuboïde"
 
@@ -3079,7 +3057,7 @@ msgstr "Surface"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_encombrements_encombrement_cuboide.h:107
 msgid "Origin"
-msgstr "Origine du volume"
+msgstr "Origine volume"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_encombrements_encombrement_cuboide.h:108
 msgid "Destination"
@@ -3141,7 +3119,7 @@ msgstr "Surfaces"
 msgid "The group is not empty. You can't delete it!"
 msgstr "Un groupe peut être détruit seulement s'il est vide !"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_groupesurfaces.h:203
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_groupesurfaces.h:201
 msgid "Add a group"
 msgstr "Ajouter un groupe"
 
@@ -3149,7 +3127,7 @@ msgstr "Ajouter un groupe"
 msgid "Face"
 msgstr "Face"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_groupesurfaces_groupe_vertex.h:80
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_groupesurfaces_groupe_vertex.h:78
 msgid "Send to a new surface group"
 msgstr "Envoyer vers un nouveau groupe"
 
@@ -3338,6 +3316,7 @@ msgid "Grid color"
 msgstr "Couleur de la grille"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_rendu_origine.h:79
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_rendu_origine.h:87
 msgid "XYZ axis"
 msgstr "Repère"
 
@@ -3345,21 +3324,21 @@ msgstr "Repère"
 msgid "Project name"
 msgstr "Nom du projet"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_userconfiguration.h:56
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_userconfiguration.h:57
 msgid "Project description"
 msgstr "Description du projet"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_userconfiguration.h:58
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_userconfiguration.h:59
 msgid "Author"
 msgstr "Auteur"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_userconfiguration.h:62
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_userconfiguration.h:63
 msgid "Date"
 msgstr "Date"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteursp.h:52
 msgid "Punctual receivers"
-msgstr "Récepteurs ponctuels"
+msgstr "Recepteurs ponctuels"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteursp.h:98
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteursp.h:106
@@ -3369,12 +3348,12 @@ msgstr "Récepteurs ponctuels"
 msgid "Copy of %s"
 msgstr "Copie de %s"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteursp.h:196
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteursp.h:194
 msgid "New receiver"
 msgstr "Nouveau récepteur"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteursp.h:197
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_sources.h:226
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteursp.h:195
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_sources.h:224
 msgid "New group"
 msgstr "Nouveau groupe"
 
@@ -3409,11 +3388,11 @@ msgstr "Omnidirectionnel"
 msgid "Type"
 msgstr "Type"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss.h:141
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss.h:139
 msgid "New scene face receiver"
 msgstr "Nouveau récepteur surfacique de scène"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss.h:142
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss.h:140
 msgid "New plane receiver"
 msgstr "Nouveau récepteur surfacique en coupe"
 
@@ -3423,7 +3402,7 @@ msgstr "Récepteur scène"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe.h:60
 msgid "Plane Receiver"
-msgstr "plan récepteur"
+msgstr "Récepteur coupe"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_proprietes.h:50
 msgid "Enabled"
@@ -3449,7 +3428,7 @@ msgstr "Couleur de la coupe"
 msgid "Sound sources"
 msgstr "Sources sonores"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_sources.h:225
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_sources.h:223
 msgid "New source"
 msgstr "Nouvelle source"
 
@@ -3513,7 +3492,7 @@ msgstr "Volume %i"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_volumes_volume.h:104
 msgid "Volume boundary"
-msgstr "Limite de volume"
+msgstr "Limites intérieures"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_volumes_volume.h:197
 msgid "Convert to fitting"
@@ -3530,6 +3509,39 @@ msgstr "Libre parcourt moyen"
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_volumes_volume_rendu.h:57
 msgid "Domain color"
 msgstr "Couleur du volume"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.h:359
+msgid "Fatal error: "
+msgstr "Erreur: "
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.h:360
+msgid "Program aborted"
+msgstr "Le programme a été stoppé"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.h:370
+msgid "Error:"
+msgstr "Erreur : "
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.h:374
+msgid "Warning: "
+msgstr "Avertissement : "
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.h:489
+msgid ""
+"Many old sessions of the user interface are available.\n"
+"Do you want to retrieve an old session?"
+msgstr ""
+"Plusieurs anciennes instances du l'interface existent.\n"
+"Souhaitez-vous charger un de ces projets en l'état avant la fermeture de "
+"l'interface ?"
+
+#: ../Source/isimpa/trunk/main/i_simpa_main.h:496
+msgid "Please choose the application instance"
+msgstr "Veuillez choisir l'instance à charger"
+
+#: ../Source/isimpa/trunk/manager/processManager.h:69
+msgid "Calculation output:"
+msgstr "Sortie exécutable :"
 
 #: ../Source/isimpa/trunk/data_manager/python_interface/py_ui_module/e_pyext.hpp:82
 msgid "There are errors in the Python(TM) script!"
@@ -3551,6 +3563,18 @@ msgstr "L'icone %s n'existe pas !"
 msgid "Iso-levels color"
 msgstr "Palette des niveaux"
 
+#: ../Source/isimpa/trunk/data_manager/python_interface/py_ui_module/samples/__init__.py:66
+msgid "Enable"
+msgstr "Activer"
+
+#: ../Source/isimpa/trunk/data_manager/python_interface/py_ui_module/samples/__init__.py:66
+msgid "Disable"
+msgstr "Desactiver"
+
+#: ../Source/isimpa/trunk/data_manager/python_interface/py_ui_module/samples/__init__.py:67
+msgid "All emitters"
+msgstr "Toutes les sources"
+
 #: ../Source/isimpa/trunk/data_manager/python_interface/py_ui_module/samples/add_data_sample.py:59
 msgid "Calculation mode"
 msgstr "Mode de calcul"
@@ -3567,14 +3591,11 @@ msgstr "Temps"
 msgid "Static"
 msgstr "Stationnaire"
 
-#: ../Source/isimpa/trunk/data_manager/python_interface/py_ui_module/samples/__init__.py:66
-msgid "Enable"
-msgstr "Activer"
+#~ msgid "Main"
+#~ msgstr "Main"
 
-#: ../Source/isimpa/trunk/data_manager/python_interface/py_ui_module/samples/__init__.py:66
-msgid "Disable"
-msgstr "Desactiver"
+#~ msgid "Display time step (s)"
+#~ msgstr "Display time step (s)"
 
-#: ../Source/isimpa/trunk/data_manager/python_interface/py_ui_module/samples/__init__.py:67
-msgid "All emitters"
-msgstr "Toutes les sources"
+#~ msgid "Online forums"
+#~ msgstr "Online forums"
