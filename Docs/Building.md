@@ -13,9 +13,6 @@ Following step by step the configuration / installation of all libraries require
 
 * <a href="https://github.com/Ifsttar/I-Simpa/wiki/boost">Install Boost</a>
 * <a href="https://github.com/Ifsttar/I-Simpa/wiki/GITEXTENSION">Install Gitextension</a>
-* Clone the repository:
-
-    git clone https://github.com/Ifsttar/I-Simpa.git
 * <a href="https://github.com/Ifsttar/I-Simpa/wiki/wxWidgets">Install wxWidgets</a>
 * <a href="https://github.com/Ifsttar/I-Simpa/wiki/python"> Install Python</a>
 
