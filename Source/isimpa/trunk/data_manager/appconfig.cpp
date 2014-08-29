@@ -88,8 +88,8 @@ const wxString ApplicationConfiguration::CONST_PREPROCESS_EXE_PATH=ApplicationCo
 const wxString ApplicationConfiguration::CONST_STATIC_XML_FILE=CONST_RESOURCE_FOLDER+"appconst.xml";
 //const unsigned long ApplicationConfiguration::CONST_WORKINGLIMIT=1325329200;
 const int ApplicationConfiguration::SPPS_UI_VERSION_MAJOR=1;
-const int ApplicationConfiguration::SPPS_UI_VERSION_MINOR=2;
-const int ApplicationConfiguration::SPPS_UI_VERSION_REVISION=4;
+const int ApplicationConfiguration::SPPS_UI_VERSION_MINOR=3;
+const int ApplicationConfiguration::SPPS_UI_VERSION_REVISION=0;
 
 
 

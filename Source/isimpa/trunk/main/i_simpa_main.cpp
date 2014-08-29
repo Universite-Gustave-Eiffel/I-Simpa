@@ -880,11 +880,11 @@ void MainUiFrame::OnShowPreferenceTree(wxCommandEvent& event)
 void MainUiFrame::OnShowAboutDialog(wxCommandEvent& event)
 {
 	wxAboutDialogInfo aboutDlg;
-	aboutDlg.SetVersion(wxString::Format("2014 [%i.%i.%i (beta)]",ApplicationConfiguration::SPPS_UI_VERSION_MAJOR,ApplicationConfiguration::SPPS_UI_VERSION_MINOR,ApplicationConfiguration::SPPS_UI_VERSION_REVISION));
+	aboutDlg.SetVersion(wxString::Format("2014 [%i.%i.%i]",ApplicationConfiguration::SPPS_UI_VERSION_MAJOR,ApplicationConfiguration::SPPS_UI_VERSION_MINOR,ApplicationConfiguration::SPPS_UI_VERSION_REVISION));
 	aboutDlg.SetName(APPLICATION_NAME);
 	aboutDlg.SetWebSite(wxT("http://i-simpa.ifsttar.fr"));
 	//aboutDlg.SetLicence(GetLicenseText());
-	aboutDlg.SetLicence("I-Simpa is a freeware. See the End User Licence Agreement file for more details.");
+	aboutDlg.SetLicence("I-Simpa is an open source software (GPL v3).");
 	aboutDlg.AddDeveloper("Nicolas FORTIN (Ifsttar)");
 	aboutDlg.AddDeveloper("Judicaël PICAUT (Ifsttar)");
 	aboutDlg.SetCopyright("(c) 2014 - Ifsttar <i-simpa@ifsttar.fr>");
@@ -921,18 +921,18 @@ void MainUiFrame::OnFileLicence(wxCommandEvent& event)
 
 void MainUiFrame::OnFileIsimpaDoc(wxCommandEvent& event)
 {
-	std::string docpath = "manuel_I_Simpa.pdf";
+	std::string docpath = ApplicationConfiguration::CONST_RESOURCE_FOLDER+wxString("doc")+wxFileName::GetPathSeparator()+wxString("documentation")+wxFileName::GetPathSeparator()+"manuel_I_Simpa.pdf";
 	wxLaunchDefaultApplication(docpath);
 }
 void MainUiFrame::OnFileSppsDoc(wxCommandEvent& event)
 {
-	std::string docpath = "SPPS_manuel.pdf";
+	std::string docpath = ApplicationConfiguration::CONST_RESOURCE_FOLDER+wxString("doc")+wxFileName::GetPathSeparator()+wxString("documentation")+wxFileName::GetPathSeparator()+"SPPS_manuel.pdf";
 	wxLaunchDefaultApplication(docpath);
 }
 
 void MainUiFrame::OnOpenFile (wxCommandEvent & event)
 {
-		smart_ptr<wxFileDialog> openFileDialog = new wxFileDialog ( this, _("Import new scene"), "", "", _("All compatible files|*.3ds;*.ply;*.bin;*.poly;*.stl|3DS file (*.3ds)|*.3ds|poly file (*.poly)|*.bin|ply file (*.ply)|*.ply|Binary file 1.00 (*.bin)|*.bin|Stererolithograpic file (*.stl)|*.stl|CATT-Acoustic file (*.geo)|*.geo"),
+		smart_ptr<wxFileDialog> openFileDialog = new wxFileDialog ( this, _("Import new scene"), "", "", _("All compatible files|*.3ds;*.ply;*.bin;*.poly;*.stl|3DS file (*.3ds)|*.3ds|POLY file (*.poly)|*.bin|PLY file (*.ply)|*.ply|Binary file 1.00 (*.bin)|*.bin|Stererolithograpic file (*.stl)|*.stl"),
 														wxFD_OPEN, wxDefaultPosition);
 
 	if (openFileDialog->ShowModal() == wxID_OK)
@@ -955,9 +955,9 @@ void MainUiFrame::OnCreateModel(wxCommandEvent & event)
 	while(!lengthOk || !heightOk || !widthOk)
 	{
 		wxCustomEntryDialog textDialog(this,_("Please enter scene dimensions"),_("Creating scene"));
-		textDialog.AddTextControl(_("Width (x)"),"1");
-		textDialog.AddTextControl(_("Length (y)"),"1");
-		textDialog.AddTextControl(_("Height (z)"),"1");
+		textDialog.AddTextControl(_("Width (x)"),"1.0");
+		textDialog.AddTextControl(_("Length (y)"),"1.0");
+		textDialog.AddTextControl(_("Height (z)"),"1.0");
 		if (textDialog.ShowModal() == wxID_OK)
 		{
 			std::vector<wxString> valeursChamps;
@@ -986,7 +986,7 @@ void MainUiFrame::OnCreateModel(wxCommandEvent & event)
 
 void MainUiFrame::OnSaveFile (wxCommandEvent & event)
 {
-	wxFileDialog saveFileDialog( this, _("Export model"), "Export model", "Export model", _("Stanfort University PlY (*.ply)|*.ply|Stanfort University PlY with project groups (*.mat.ply)|*.mat.ply|Poly files (*.poly)|*.poly|Mesh files (*.mesh)|*.mesh|Nff files (*.nff)|*.nff|Binary file (*.bin)|*.bin|Binary file Calcul SPPS (*.cbin)|*.cbin|Asc files (*.asc)|*.asc"),
+	wxFileDialog saveFileDialog( this, _("Export model"), "", "", _("Stanford University (*.ply)|*.ply|Stanford University with project groups (*.mat.ply)|*.mat.ply|Poly file (*.poly)|*.poly|Mesh file (*.mesh)|*.mesh|NFF file (*.nff)|*.nff|Binary file (*.bin)|*.bin|Binary file Calcul SPPS (*.cbin)|*.cbin|Ascii file (*.asc)|*.asc"),
 														wxFD_SAVE, wxDefaultPosition);
 
 	if (saveFileDialog.ShowModal() == wxID_OK)
@@ -1081,7 +1081,7 @@ bool MainUiFrame::AskUserForSaveModification()
 
 void MainUiFrame::OnSaveProjectCopy(wxCommandEvent& event)
 {
-	wxFileDialog saveFileDialog( this, _("Save copy of project"), "Save copy of project", "Save copy of project", "Projet (*.proj)|*.proj",
+	wxFileDialog saveFileDialog( this, _("Save copy of project"), "", "", "Projet (*.proj)|*.proj",
 														wxFD_SAVE, wxDefaultPosition);
 
 	if (saveFileDialog.ShowModal() == wxID_OK)
