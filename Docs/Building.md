@@ -11,9 +11,9 @@ For the rest of the tutorial, we assume that you got already Visual Studio 2008.
 
 Following step by step the configuration / installation of all libraries required for I-Simpa:
 * <a href="https://github.com/Ifsttar/I-Simpa/wiki/boost">Install Boost</a>
-* <a href="https://github.com/Ifsttar/I-Simpa/wiki/GITEXTENSION">Install Gitextension</a>
+* <a href="https://github.com/Ifsttar/I-Simpa/wiki/GITEXTENSION">Install Git Extensions</a>
 * <a href="https://github.com/Ifsttar/I-Simpa/wiki/wxWidgets">Install wxWidgets</a>
-* <a href="https://github.com/Ifsttar/I-Simpa/wiki/python"> Install Python</a>
+* <a href="https://github.com/Ifsttar/I-Simpa/wiki/python">Install Python</a>
 
 You could be able to build I-Simpa using the `I-Simpa.sln` file in `I-Simpa\Source\isimpa\trunk`:
 
