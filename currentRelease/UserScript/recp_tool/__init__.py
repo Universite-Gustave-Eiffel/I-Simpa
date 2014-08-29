@@ -77,7 +77,7 @@ class manager:
             stepcol=eval(res[1][lbl_stepcol])
             MakeGridRecp(idel,startpoint,nbrecp,nbrecpcol,step,stepcol)
     def align_on_same_point(self,idel):
-
+        
         lbl_topt=_(u"Orient to position [x,y,z]")
         res=ui.application.getuserinput(_(u"Orient a group of receivers to a point"),
                                     _(u"Please enter the coordinates of the orientation point"),

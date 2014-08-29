@@ -71,7 +71,7 @@ class manager:
                 print(_(u"Wrong parameters"),file=sys.stderr)
                 return
             MakeLineSrc(idel,startpoint,nbsources,step)
-
+    
     def set_grp_src_activation(self,idgrp,newstate):
         grpsrc=ui.element(idgrp)
         all_property=grpsrc.getallelementbytype(ui.element_type.ELEMENT_TYPE_SCENE_SOURCES_SOURCE_PROPRIETES)
@@ -97,7 +97,7 @@ class manager:
             #On recupere la position de la source
             centregroup+=vec3(sourceEl.getpositionconfig("pos_source"))
         centregroup/=len(srclst)
-
+        
         res=ui.application.getuserinput(_(u"Rotation of a group of sound sources"),
                                     "",
                                     { lbl_vec : "[0.,0.,1.]",
@@ -142,5 +142,5 @@ class manager:
                 #On recupere la position de la source
                 newpos=vec3(sourceEl.getpositionconfig("pos_source"))+vectranslation
                 sourceEl.updatepositionconfig("pos_source",[newpos.x,newpos.y,newpos.z])
-
+                
 ui.application.register_menu_manager(ui.element_type.ELEMENT_TYPE_SCENE_SOURCES, manager())

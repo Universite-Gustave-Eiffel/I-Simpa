@@ -56,7 +56,7 @@ class PositionUpdater:
                     dir.updatestringconfig("linkedsource",ui.element(idsource).getinfos()["name"])
                 except:
                     self.sourceposid=-1 #le recepteur n'existe plus
-
+            
     def UpdateLinker(self):
         receiver=ui.element(self.receiverid)
         dir=None
@@ -80,7 +80,7 @@ class PositionUpdater:
                 src.register_update_manager(self.OnSourceLabelChange) #Lie la méthode à la mise à jour de la source pour le changement de libellé
                 if not self.isPositionTracker:
                     receiver.updatepositionconfig("direction_dot",src.getpositionconfig("pos_source"))
-
+    
 SourcePosTrackerLst={}
 SourcePosToReceiverPosTrackerLst={}
 def LinkSourcePositionWithReceiverPosition(sourceId,ReceiverId):
@@ -91,15 +91,15 @@ def LinkSourcePositionWithReceiverPosition(sourceId,ReceiverId):
     posel=ui.element(receiver.getelementbylibelle("pos_recepteur"))
     if(posel.hasproperty("linkedsource")):
         #Mettre a jour la propriete
-        posel.updatestringconfig("linkedsource",source.getinfos()["name"])
+        posel.updatestringconfig("linkedsource",source.getinfos()["name"])  
     else:
         #Ajouter la propriete
-        ui.element(posel.appendpropertytext("linkedsource","linkedsource",source.getinfos()["name"])).hide()
+        ui.element(posel.appendpropertytext("linkedsource","linkedsource",source.getinfos()["name"])).hide() 
     if not SourcePosToReceiverPosTrackerLst.has_key(ReceiverId):
         SourcePosToReceiverPosTrackerLst[ReceiverId]=PositionUpdater(ReceiverId,True)
     else:
-        SourcePosToReceiverPosTrackerLst[ReceiverId].UpdateLinker()
-
+        SourcePosToReceiverPosTrackerLst[ReceiverId].UpdateLinker()    
+    
 def LinkSourcePositionWithReceiverOrientation(sourceId,ReceiverId):
     #Il faut ajouter un indice dans l'element de propriete de direction du recepteur ponctuel afin de retrouver la source au prochaine chargement du projet
     receiver=ui.element(ReceiverId)
@@ -138,7 +138,7 @@ class managerLinkWithSourcePosition:
         srcLst.sort()
         srcsellabel=_(u"Source name")
         dialog_res=ui.application.getuserinput(_(u"Source selection"),_(u"Please choose the source:"),{srcsellabel : srcLst})
-
+        
         if(dialog_res[0]==1 and srcsellabel in dialog_res[1].keys()):
             selected_sourcename=dialog_res[1][srcsellabel]
             if selected_sourcename in dict_src.keys():
@@ -151,8 +151,8 @@ class managerLinkWithSourcePosition:
     def LinkPositionWithSourcePosition(self,idel):
         selected_sourceid=self.AskUserToSelectASource()
         if selected_sourceid!=-1:
-            LinkSourcePositionWithReceiverPosition(selected_sourceid,ui.element(idel).getinfos()["parentid"])
-
+            LinkSourcePositionWithReceiverPosition(selected_sourceid,ui.element(idel).getinfos()["parentid"])        
+        
     def LinkWithSourcePosition(self,idel):
         selected_sourceid=self.AskUserToSelectASource()
         if selected_sourceid!=-1:
@@ -163,15 +163,15 @@ class managerLinkWithSourcePosition:
         infoParent=ui.element(infoEl["parentid"]).getinfos()
         if infoParent["typeElement"]==ui.element_type.ELEMENT_TYPE_SCENE_RECEPTEURSP_RECEPTEUR:
             if infoEl["name"]==u"direction_dot":
-                menu.insert(1,(_(u"Link to the source position"),self.linkWithSourcePositionEventId))
+                menu.insert(1,(_(u"Please choose the source:"),self.linkWithSourcePositionEventId))
                 if ui.element(idel).hasproperty("linkedsource"):
-
+                    
                     menu.insert(1,(_(u"Delete the link with the source"),self.unlinkReceiverDirEventId))
                 return True
             elif infoEl["name"]==u"pos_recepteur":
-                menu.insert(1,(_(u"Link to the source position"),self.linkPositionWithSourcePositionEventId))
+                menu.insert(1,(_(u"Please choose the source:"),self.linkPositionWithSourcePositionEventId))
                 #todo tester si la position du récepteur est déjà lié a une source
                 return True
         return False
-
+            
 ui.application.register_menu_manager(ui.element_type.ELEMENT_TYPE_POSITION, managerLinkWithSourcePosition())

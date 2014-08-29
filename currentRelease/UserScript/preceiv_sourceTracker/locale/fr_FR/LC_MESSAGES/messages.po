@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: module_sppsreport\n"
 "Report-Msgid-Bugs-To: 2014-07-24 14:15\n"
-"POT-Creation-Date: 2014-07-30 13:31+0100\n"
+"POT-Creation-Date: 2014-07-30 12:32+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Picaut <i-simpa.ifsttar.fr>\n"
 "Language-Team: Nicolas Fortin, Judicaël Picaut <i-simpa@ifsttar.fr>\n"
@@ -23,13 +23,9 @@ msgstr "Nom de la source"
 msgid "Source selection"
 msgstr "Sélection d'une source"
 
-#: ../../../__init__.py:140
+#: ../../../__init__.py:140 ../../../__init__.py:166 ../../../__init__.py:172
 msgid "Please choose the source:"
 msgstr "Veuillez choisir la source:"
-
-#: ../../../__init__.py:166 ../../../__init__.py:172
-msgid "Link to the source position"
-msgstr "Lier à la position d'une source"
 
 #: ../../../__init__.py:169
 msgid "Delete the link with the source"
