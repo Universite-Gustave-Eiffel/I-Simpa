@@ -35,6 +35,6 @@ In the "Debug" building mode, if you want to run I-Simpa, you will need two copy
 ### Need information
 If you have some problem during the building procedure, please <a href="mailto:i-simpa@ifsttar.fr">contact us by mail</a>.
 
-#### Other installation configuration
+#### Other installation/configuration
 
-Contributors can try other configurations, using more recent libraries (wxWidgets for example), other IDE (Code::Blocks for example) or a more recent version of Visual Studio. If you success in building and running I-Simpa, we will appreciate that you share your experience, adding it in this wiki. Please <a href="mailto:i-simpa@ifsttar.fr">contact us by mail</a>.
+Contributors can try other configurations, using more recent libraries (wxWidgets for example), other IDE (Code::Blocks for example) or a more recent version of Visual Studio... If you success in building and running I-Simpa, we will appreciate that you share your experience, adding it in this wiki. Please <a href="mailto:i-simpa@ifsttar.fr">contact us by mail</a>.
