@@ -1,5 +1,4 @@
-#I-Simpa 
-##I-Simpa presentation
+<IMG SRC="http://i-simpa.ifsttar.fr/typo3temp/pics/b06522ab44.jpg" WIDTH=500 ALT="I-Simpa logo" TITLE="I-Simpa logo">
 
 **For more information**, [visit the offical I-Simpa website](http://i-simpa.ifsttar.fr).
 
