@@ -3,6 +3,8 @@
 
 **For more information**, [visit the offical I-Simpa website](http://i-simpa.ifsttar.fr).
 
+<IMG ALIGN="right" SRC="https://raw.githubusercontent.com/Ifsttar/I-Simpa/master/Docs/images/wiki%20pictures/illustration_i_simpa_room-Home_page.png" WIDTH=350 ALT="Room illustration" TITLE="Room illustration">
+
 I-Simpa is a graphical user interface (GUI) developed to host three-dimensional numerical codes for the modeling of sound propagation
 in complex geometrical domains. Although I-Simpa is well adapted for energetic models (ray-tracing, sound-particle tracing, theory of
 reverberation…), it can be extend to use ondulatory approaches.
