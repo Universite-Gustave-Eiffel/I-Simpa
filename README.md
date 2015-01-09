@@ -23,7 +23,7 @@ for its own applications… All have been done in order you can extend I-Simpa e
 
 I-Simpa has been initially developed as a research tool (i.e. for research laboratories), but can also be a very efficient tool for a professional or commercial use.
 
-**For build instructions**, see [the instructions](https://github.com/Ifsttar/I-Simpa/blob/master/Docs/Building.md).
+**For build instructions**, see [the instructions](https://github.com/Ifsttar/I-Simpa/blob/master/Docs/Building.md)
 **For using I-Simpa**, see [the wiki](https://github.com/Ifsttar/I-Simpa/wiki).
 
 **IMPORTANT NOTE:** although the source code is available, it is not ready to fork. Works are in progress to correct minor bugs and to propose a first stable release. We suggest to contributors to wait this first release before contributtting to the development of I-Simpa.
