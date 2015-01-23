@@ -51,7 +51,7 @@ Core_Configuration::Core_Configuration( CoreString xmlFilePath )
 			if(seed != 0) {
 				// User define a random seed, multi-thread have to be deactivated in order to do the same computation
 				SetConfigInformation(IPROP_DO_MULTITHREAD,0);
-				std::cout<<"Random seed has been set, then multi-thread has been deactivated "<<std::endl;
+				std::cout<<"Random seed has been set; then multi-thread has been desactivated."<<std::endl;
 			}
 			SetConfigInformation(I_PROP_RANDOM_SEED,seed);
 			SetConfigInformation(IPROP_DO_CALC_CHAMP_DIRECT,simuNode->GetProperty("direct_calc").ToInt());

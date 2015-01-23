@@ -83,7 +83,7 @@ public:
 		this->AppendPropertyEntier("nbsources","Number of sound sources",0);
 		this->AppendPropertyEntier("nbsurfacegroup","Number of surface groups",0);
 		this->AppendPropertyDecimal("volmodel","Scene volume (m3)",0.f,true,1);
-		this->AppendPropertyDecimal("surfscene","Scene surface (m²)",0.f,true,1);
+		this->AppendPropertyDecimal("surfscene","Scene surface (m2)",0.f,true,1);
 		AppendNewProperties();
 		this->SetReadOnlyAllConfig();
 		_("Model face count");
@@ -93,7 +93,7 @@ public:
 		_("Number of sound sources");
 		_("Number of surface groups");
 		_("Scene volume (m3)");
-		_("Scene surface (m²)");
+		_("Scene surface (m2)");
 	}
 		
 	void InitProp()

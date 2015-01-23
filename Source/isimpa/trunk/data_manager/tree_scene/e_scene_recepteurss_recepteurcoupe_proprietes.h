@@ -46,13 +46,14 @@ private:
 
 	void AddActiveProp()
 	{
-		this->AppendPropertyBool("enabled","Activé",true,false);
+		/*this->AppendPropertyBool("enabled","Activé",true,false);*/
+		this->AppendPropertyBool("enabled","Enabled",true,false);
 		_("Enabled");
 	}
 	void InitProperties()
 	{
 		this->AppendPropertyText("description","Description","");
-		this->AppendPropertyDecimal("resolution","Résolution (m)", .5f,false,2,false,true,0,.05f,true);
+		this->AppendPropertyDecimal("resolution","Resolution (m)", .5f,false,2,false,true,0,.05f,true);
 		AddActiveProp();
 		_("Description");
 		_("Resolution (m)");

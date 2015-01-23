@@ -49,7 +49,7 @@ class E_GammeFrequence_User  : public E_GammeFrequence
 {
 public:
 	E_GammeFrequence_User( wxXmlNode* noeudCourant ,  Element* parent)
-		:E_GammeFrequence(parent,"Spectre utilisateur",Element::ELEMENT_TYPE_GAMMEFREQ_USER,noeudCourant)
+		:E_GammeFrequence(parent,"User spectrum",Element::ELEMENT_TYPE_GAMMEFREQ_USER,noeudCourant)
 	{
 		
 		this->elementInfo.userDestroyable=true;
@@ -57,7 +57,7 @@ public:
 	}
 
 	E_GammeFrequence_User( Element* parent)
-		:E_GammeFrequence(parent,"Spectre utilisateur",Element::ELEMENT_TYPE_GAMMEFREQ_USER)
+		:E_GammeFrequence(parent,"User spectrum",Element::ELEMENT_TYPE_GAMMEFREQ_USER)
 	{
 		this->elementInfo.userDestroyable=true;
 		InitProperties();

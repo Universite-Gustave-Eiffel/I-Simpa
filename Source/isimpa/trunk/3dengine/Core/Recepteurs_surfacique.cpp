@@ -348,7 +348,7 @@ bool RecepteursSControler::LoadRecepteursSFile(wxArrayString& recepteurSFiles, v
 						nodeTimeStep=0;
 					if(nodeTimeStep>=nbStep)
 					{
-						wxLogError("File receiver corrupted, too enough timestep..");
+						wxLogError("File receiver corrupted, too enough timestep.");
 						return false;
 					}
 					if(!wxFinite(curTimeStep.energy))

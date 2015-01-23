@@ -131,7 +131,7 @@ void E_GammeAbsorption::InitProperties()
 	}
 	//Ajout du cumul
 	int i=tabfreq.size();
-	E_Data_Row* nouvLigne=new E_Data_Row(this,"moyenne","Moyenne");
+	E_Data_Row* nouvLigne=new E_Data_Row(this,"moyenne","Average");
 	nouvLigne->SetXmlCoreVisibility(false); //Ne pas exporter
 	nouvLigne->AppendPropertyDecimal("alpha","Alpha",0,false,precisionDecimal,true,true,1.f,0.f,true);
 	nouvLigne->AppendPropertyDecimal("lambda","Lambda",1.f,false,precisionDecimal,false,true,0,.01f,true);

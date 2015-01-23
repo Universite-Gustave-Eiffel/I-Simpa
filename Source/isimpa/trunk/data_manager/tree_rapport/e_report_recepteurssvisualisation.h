@@ -63,10 +63,9 @@ public:
 		SetIcon(GRAPH_STATE_ALL,GRAPH_DISK_RS);
 		_("Surface receivers");
 		onlySum=false;
-		this->AppendPropertyDecimal("surfacetransparency","Opacité des faces",1.f,false,2,true,true,1,0);
-		_("Face opacity");
-		this->AppendPropertyBool("rendersideone","Afficher recto",true);
-		this->AppendPropertyBool("rendersidetwo","Afficher verso",true);
+		this->AppendPropertyDecimal("surfacetransparency",wxTRANSLATE("Face opacity"),1.f,false,2,true,true,1,0);
+		this->AppendPropertyBool("rendersideone",wxTRANSLATE("Display front"),true);
+		this->AppendPropertyBool("rendersidetwo",wxTRANSLATE("Display back"),true);
 		//On charge le fichier de la première bande de fréquence disponible afin d'avoir le nombre de pas de temps
 		using namespace formatRSBIN;
 		t_ExchangeData mainData;
@@ -85,8 +84,8 @@ public:
 			recordType=mainData.recordType;
 		}
 		float vmin,vmax;
-		wxString libelMax="Valeur maximale (dB)";
-		wxString libelMin="Valeur minimale (dB)";
+		wxString libelMax=wxTRANSLATE("Maximum value (dB)");
+		wxString libelMin=wxTRANSLATE("Minimum value (dB)");
 		if(recordType==RECEPTEURS_RECORD_TYPE_SPL_STANDART)
 		{
 			vmin=0;
@@ -96,13 +95,13 @@ public:
 			vmin=0;
 			vmax=0;
 		}else{
-			libelMax="Valeur maximale (s)";
-			libelMin="Valeur minimale (s)";
+			libelMax=wxTRANSLATE("Maximum value (s)");
+			libelMin=wxTRANSLATE("Minimum value (s)");
 			vmin=0;
 			vmax=0;
 		}
 		this->AppendPropertyEntier("rstype","rs",recordType)->Hide();
-		this->AppendPropertyBool("smooth_color","Adoucir les différences de couleurs",true);
+		this->AppendPropertyBool("smooth_color",wxTRANSLATE("Smooth colors"),true);
 		this->AppendPropertyDecimal("maxinterval",libelMax,vmax);
 		this->AppendPropertyDecimal("mininterval",libelMin,vmin);
 		this->AppendCurvesParameters();
@@ -140,12 +139,9 @@ public:
 
 	void AppendCurvesParameters()
 	{
-		this->AppendPropertyBool("showisolvl","Afficher les lignes de niveaux",true);
-		this->AppendPropertyText("isolvllist","Liste des niveaux iso","");
-		this->AppendPropertyEntier("isosmoothlvl","Niveau de lissage",0,false,false,true,0,0);
-		_("Show iso-curves");
-		_("Iso level list");
-		_("Smooth level");
+		this->AppendPropertyBool("showisolvl",wxTRANSLATE("Show iso-curves"),true);
+		this->AppendPropertyText("isolvllist",wxTRANSLATE("Iso level list"),"");
+		this->AppendPropertyEntier("isosmoothlvl",wxTRANSLATE("Smooth level"),0,false,false,true,0,0);
 	}
 		
 	virtual bool IsFittingWithThisType( const ELEMENT_TYPE& typeTest )

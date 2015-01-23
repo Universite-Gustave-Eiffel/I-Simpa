@@ -48,10 +48,9 @@ class E_Core_Core_Bfreqselection: public Element
 {
 public:
 	E_Core_Core_Bfreqselection( wxXmlNode* nodeElement ,  Element* parent)
-		:Element(parent,"Limitation bande de fréquence",Element::ELEMENT_TYPE_CORE_CORE_BFREQSELECTION,nodeElement)
+		:Element(parent,wxTRANSLATE("Frequency bands"),Element::ELEMENT_TYPE_CORE_CORE_BFREQSELECTION,nodeElement)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_SPECTRUM);
-		_("Frequency bands");
 		wxString propVal;
 		//Affecte la valeur de l'element
 
@@ -79,7 +78,7 @@ public:
 	}
 
 	E_Core_Core_Bfreqselection( Element* parent)
-		:Element(parent,"Limitation bande de fréquence",Element::ELEMENT_TYPE_CORE_CORE_BFREQSELECTION)
+		:Element(parent,wxTRANSLATE("Frequency bands"),Element::ELEMENT_TYPE_CORE_CORE_BFREQSELECTION)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_SPECTRUM);
 		InitProperties();

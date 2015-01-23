@@ -51,7 +51,8 @@ public:
 		std::vector<wxString> choices;
 		choices.push_back(_("Unilateral"));
 		choices.push_back(_("Bilateral"));
-		this->AppendPropertyList("side_material",_("Side of material effect"),choices,1,false,1,std::vector<int>(),true);
+		this->AppendPropertyList("side_material","Side of material effect",choices,1,false,1,std::vector<int>(),true);
+		_("Side of material effect");
 	}
 
 	E_Scene_Bdd_Materiaux_PropertyMaterial( wxXmlNode* noeudCourant ,  Element* parent)
@@ -65,7 +66,8 @@ public:
 		}
 	}
 	E_Scene_Bdd_Materiaux_PropertyMaterial( Element* parent)
-		:Element(parent,"Description du matériau",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_PROPMATERIAU)
+		/*:Element(parent,"Description du matériau",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_PROPMATERIAU)*/
+		:Element(parent,"Material description",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_PROPMATERIAU)
 	{
 		_("Material description");
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);

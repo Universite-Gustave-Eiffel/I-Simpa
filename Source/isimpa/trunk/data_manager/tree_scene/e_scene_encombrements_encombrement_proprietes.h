@@ -54,7 +54,7 @@ private:
 	{
 		this->AppendPropertyText(wxT("description"),wxT("Description"),wxT(""));
 		_("Description");
-		this->AppendPropertyBool(wxT("useforcalculation"),wxT("Encombrement actif"),true);
+		this->AppendPropertyBool(wxT("useforcalculation"),wxT("Active fitting zone"),true);
 		_("Active fitting zone");
 	}
 public:

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: I-SIMPA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-29 10:36+0100\n"
-"PO-Revision-Date: 2014-08-29 10:36+0100\n"
+"POT-Creation-Date: 2015-01-23 12:38+0100\n"
+"PO-Revision-Date: 2015-01-23 12:38+0100\n"
 "Last-Translator: Ifsttar <Judicael.Picaut@ifsttar.fr>\n"
 "Language-Team: Nicolas Fortin, Judicaël Picaut <i-simpa@ifsttar.fr>\n"
 "Language: fr_FR\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: _\n"
+"X-Poedit-KeywordsList: _;wxTRANSLATE\n"
 "X-Poedit-Basepath: ../../\n"
 "X-Generator: Poedit 1.6.8\n"
 "X-Poedit-SearchPath-0: ../Source/isimpa/trunk/main\n"
@@ -20,6 +20,8 @@ msgstr ""
 "X-Poedit-SearchPath-3: ../Source/isimpa/trunk/IHM\n"
 "X-Poedit-SearchPath-4: ../Source/isimpa/trunk/data_manager\n"
 "X-Poedit-SearchPath-5: ../Source/isimpa/trunk/3dengine\n"
+"X-Poedit-SearchPath-6: ../Source/theorie_classique/trunk\n"
+"X-Poedit-SearchPath-7: ../Source/isimpa/trunk/data_manager/tree_core\n"
 
 #: ../Source/isimpa/trunk/3dengine/Core/Objet3D.cpp:1217
 msgid "Unable to load this format"
@@ -800,6 +802,7 @@ msgstr "Text rotation (degree)"
 
 #: ../Source/isimpa/trunk/IHM/simpleGraphDialogs.cpp:650
 #: ../Source/isimpa/trunk/IHM/simpleGraphDialogs.cpp:663
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_rendermateriau.h:60
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_encombrements_encombrement_rendu.h:61
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteursp_recepteur_rendu.h:50
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_sources_source_rendu.h:50
@@ -975,28 +978,40 @@ msgstr "Show/Hide curves"
 msgid "Display parameters"
 msgstr "Display parameters"
 
-#: ../Source/isimpa/trunk/data_manager/appconfig.cpp:144
+#: ../Source/isimpa/trunk/data_manager/appconfig.cpp:54
+msgid "particles"
+msgstr "Particles"
+
+#: ../Source/isimpa/trunk/data_manager/appconfig.cpp:55
+msgid "recepteurss"
+msgstr "Surface receivers"
+
+#: ../Source/isimpa/trunk/data_manager/appconfig.cpp:57
+msgid "Sound_level"
+msgstr "Sound level"
+
+#: ../Source/isimpa/trunk/data_manager/appconfig.cpp:145
 msgid "Specular"
 msgstr "Specular"
 
-#: ../Source/isimpa/trunk/data_manager/appconfig.cpp:145
+#: ../Source/isimpa/trunk/data_manager/appconfig.cpp:146
 #: ../Source/isimpa/trunk/data_manager/generic_element/e_gammeabsorption.cpp:108
 msgid "Uniform"
 msgstr "Uniform"
 
-#: ../Source/isimpa/trunk/data_manager/appconfig.cpp:146
+#: ../Source/isimpa/trunk/data_manager/appconfig.cpp:147
 msgid "W2"
 msgstr "W2"
 
-#: ../Source/isimpa/trunk/data_manager/appconfig.cpp:147
+#: ../Source/isimpa/trunk/data_manager/appconfig.cpp:148
 msgid "W3"
 msgstr "W3"
 
-#: ../Source/isimpa/trunk/data_manager/appconfig.cpp:148
+#: ../Source/isimpa/trunk/data_manager/appconfig.cpp:149
 msgid "W4"
 msgstr "W4"
 
-#: ../Source/isimpa/trunk/data_manager/appconfig.cpp:149
+#: ../Source/isimpa/trunk/data_manager/appconfig.cpp:150
 msgid "Semi-diffuse"
 msgstr "Semi-diffuse"
 
@@ -1029,7 +1044,7 @@ msgstr "Delete"
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_encombrements_encombrement_proprietes.h:66
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteursp_recepteur_proprietes.h:69
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteur_proprietes.h:57
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_proprietes.h:65
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_proprietes.h:66
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_sources_source_proprietes.h:99
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_volumes_volume_proprietes.h:49
 msgid "Properties"
@@ -1052,15 +1067,15 @@ msgstr ""
 "Name of element: %s Name of the field: %s"
 
 #: ../Source/isimpa/trunk/data_manager/generic_element/e_gammeabsorption.cpp:79
-#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:640
+#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:639
 #: ../Source/isimpa/trunk/Language/additionnal_univ.h:36
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:198
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:194
 msgid "Acoustic parameters"
 msgstr "Acoustic parameters"
 
 #: ../Source/isimpa/trunk/data_manager/generic_element/e_gammeabsorption.cpp:139
 #: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:586
-#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:946
+#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:943
 msgid "Average"
 msgstr "Average"
 
@@ -1080,7 +1095,7 @@ msgstr "Diffusion law"
 #: ../Source/isimpa/trunk/data_manager/generic_element/e_gammefrequence.cpp:158
 #: ../Source/isimpa/trunk/data_manager/generic_element/e_property_freq.cpp:190
 #: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:585
-#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:945
+#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:942
 #: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_gabe_recp.cpp:64
 msgid "Global"
 msgstr "Global"
@@ -1195,7 +1210,7 @@ msgstr "Copy of calculation parameters"
 
 #: ../Source/isimpa/trunk/data_manager/projet.cpp:825
 msgid "Refreshing onglet 'Report'"
-msgstr "Refreshing onglet 'Report'"
+msgstr "Refreshing tab 'Results'"
 
 #: ../Source/isimpa/trunk/data_manager/projet.cpp:830
 #, c-format
@@ -1377,7 +1392,7 @@ msgid "Particles display"
 msgstr "Particles display"
 
 #: ../Source/isimpa/trunk/data_manager/projet.cpp:2333
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:128
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:127
 msgid "Surface receivers display"
 msgstr "Surface receivers display"
 
@@ -1562,14 +1577,14 @@ msgid "G (dB)"
 msgstr "G (dB)"
 
 #: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:501
-#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:827
+#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:824
 msgid ""
 "Please, gives calculation parameters. Use ';' to separate several parameters"
 msgstr ""
 "Please, gives calculation parameters. Use ';' to separate several parameters"
 
 #: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:501
-#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:827
+#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:824
 msgid "Acoustic parameters calculation"
 msgstr "Acoustic parameters calculation"
 
@@ -1594,27 +1609,26 @@ msgstr ""
 "The following file doesn't exist:\n"
 "%s"
 
-#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:662
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_gabe_recp.cpp:267
-msgid "Schroeder's curve"
-msgstr "Schroeder's curve"
+#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:660
+msgid "Schroeder curves"
+msgstr "Schroeder curves"
 
-#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:828
+#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:825
 msgid "Early lateral fraction LF (ms)"
 msgstr "Early lateral fraction LF (ms)"
 
-#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:829
+#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:826
 msgid "Early lateral fraction LFC (ms)"
 msgstr "Early lateral fraction LFC (ms)"
 
-#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:943
+#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:940
 #: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_gabe_gap.cpp:82
 #: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_gabe_gap.cpp:83
 #: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_gabe_gap.cpp:84
 msgid " Hz"
 msgstr " Hz"
 
-#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:983
+#: ../Source/isimpa/trunk/data_manager/projet_calculation.cpp:977
 #: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_gabe_gap.cpp:42
 msgid "Advanced acoustic parameters"
 msgstr "Advanced acoustic parameters"
@@ -1870,7 +1884,7 @@ msgid " (E*cos theta)"
 msgstr " (E*cos theta)"
 
 #: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_gabe_gap.cpp:84
-msgid " (E*cos² theta)"
+msgid " (E*cos^2 theta)"
 msgstr " (E*cos² theta)"
 
 #: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_gabe_gap.cpp:95
@@ -1878,6 +1892,7 @@ msgid " ms"
 msgstr " ms"
 
 #: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_gabe_recp.cpp:41
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core.h:124
 msgid "Sound level"
 msgstr "Sound level"
 
@@ -1888,6 +1903,10 @@ msgstr " (dB)"
 #: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_gabe_recp.cpp:65
 msgid "Total"
 msgstr "Total"
+
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_gabe_recp.cpp:267
+msgid "Schroeder's curve"
+msgstr "Schroeder's curve"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene.cpp:41
 #: ../Source/isimpa/trunk/main/i_simpa_main.cpp:393
@@ -1901,7 +1920,8 @@ msgid "Group"
 msgstr "Group"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_groupesurfaces_groupe.cpp:114
-msgid "Surface area (m²)"
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_groupesurfaces_groupe_vertex.h:64
+msgid "Surface area (m2)"
 msgstr "Surface area (m²)"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_groupesurfaces_groupe.cpp:262
@@ -1926,7 +1946,7 @@ msgid "Clean"
 msgstr "Clean"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_groupesurfaces_groupe.cpp:446
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_groupesurfaces_groupe_vertex.h:79
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_groupesurfaces_groupe_vertex.h:80
 msgid "Invert face normal"
 msgstr "Invert face normal"
 
@@ -2038,7 +2058,8 @@ msgstr "Stop"
 
 #: ../Source/isimpa/trunk/main/i_simpa_main.cpp:223
 #: ../Source/isimpa/trunk/main/i_simpa_main.cpp:464
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_tetconf.h:114
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_tetconf.h:49
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_tetconf.h:60
 msgid "Meshing"
 msgstr "Meshing"
 
@@ -2120,7 +2141,7 @@ msgstr "YZ Grid"
 
 #: ../Source/isimpa/trunk/main/i_simpa_main.cpp:306
 msgid "To file"
-msgstr "To file"
+msgstr "To a file (default resolution)"
 
 #: ../Source/isimpa/trunk/main/i_simpa_main.cpp:307
 msgid "To a file with a specified resolution"
@@ -2235,8 +2256,8 @@ msgstr "Interface options"
 
 #: ../Source/isimpa/trunk/main/i_simpa_main.cpp:415
 #: ../Source/isimpa/trunk/main/i_simpa_main.cpp:485
-msgid "Main windows"
-msgstr "Main windows"
+msgid "Main window"
+msgstr "Main window"
 
 #: ../Source/isimpa/trunk/main/i_simpa_main.cpp:438
 #: ../Source/isimpa/trunk/main/i_simpa_main.cpp:1002
@@ -2297,24 +2318,24 @@ msgid "Show / Hide meshing"
 msgstr "Show / Hide meshing"
 
 #: ../Source/isimpa/trunk/main/i_simpa_main.cpp:488
-msgid "Project tools"
-msgstr "Project tools"
+msgid "Project toolbar"
+msgstr "Project toolbar"
 
 #: ../Source/isimpa/trunk/main/i_simpa_main.cpp:494
-msgid "Camera tools"
-msgstr "Camera tools"
+msgid "Camera toolbar"
+msgstr "Camera toolbar"
 
 #: ../Source/isimpa/trunk/main/i_simpa_main.cpp:499
-msgid "Meshing tools"
-msgstr "Meshing tools"
+msgid "Meshing toolbar"
+msgstr "Meshing toolbar"
 
 #: ../Source/isimpa/trunk/main/i_simpa_main.cpp:503
 msgid "Animation toolbar"
 msgstr "Animation toolbar"
 
 #: ../Source/isimpa/trunk/main/i_simpa_main.cpp:507
-msgid "Standard tools"
-msgstr "Standard tools"
+msgid "Pointer toolbar"
+msgstr "Pointer toolbar"
 
 #: ../Source/isimpa/trunk/main/i_simpa_main.cpp:551
 msgid "Save console"
@@ -2352,7 +2373,7 @@ msgstr ""
 
 #: ../Source/isimpa/trunk/main/i_simpa_main.cpp:957
 msgid "Please enter scene dimensions"
-msgstr "Please enter scene dimensions"
+msgstr "Please enter scene dimensions (m)"
 
 #: ../Source/isimpa/trunk/main/i_simpa_main.cpp:957
 msgid "Creating scene"
@@ -2412,11 +2433,11 @@ msgstr "Calculation code error:"
 
 #: ../Source/isimpa/trunk/manager/processManager.cpp:111
 msgid "Elapsed time : "
-msgstr "Elapsed time : "
+msgstr "Elapsed time: "
 
 #: ../Source/isimpa/trunk/manager/processManager.cpp:112
 msgid "Remaining time : "
-msgstr "Remaining time : "
+msgstr "Remaining time: "
 
 #: ../Source/isimpa/trunk/manager/processManager.cpp:113
 msgid "Close"
@@ -2461,6 +2482,22 @@ msgstr "Non-specified process output"
 #: ../Source/isimpa/trunk/manager/processManager.cpp:172
 msgid "Unknown output process"
 msgstr "Unknown output process"
+
+#: ../Source/theorie_classique/trunk/main_tc.cpp:50
+msgid "The path of the XML configuration file must be specified!"
+msgstr "The path of the XML configuration file must be specified!"
+
+#: ../Source/theorie_classique/trunk/main_tc.cpp:57
+msgid "XML configuration file is currently loading..."
+msgstr "XML configuration file is currently loading..."
+
+#: ../Source/theorie_classique/trunk/main_tc.cpp:136
+msgid "main_calculation"
+msgstr "Main results"
+
+#: ../Source/theorie_classique/trunk/main_tc.cpp:140
+msgid "Punctual receivers\\"
+msgstr "Punctual receivers\\"
 
 #: ../Source/isimpa/trunk/Language/additionnal_univ.h:37
 msgid "Global sound level"
@@ -2575,183 +2612,228 @@ msgstr "Reference material"
 msgid "Calculation code"
 msgstr "Calculation code"
 
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core.h:123
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteursp.h:52
+msgid "Punctual receivers"
+msgstr "Punctual receivers"
+
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core.h:125
+msgid "Advanced sound level"
+msgstr "Advanced sound level"
+
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core.h:126
+msgid "Total energy"
+msgstr "Total energy"
+
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core.h:132
 msgid "Run calculation"
 msgstr "Run calculation"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_bfreqselection.h:54
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_bfreqselection.h:51
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_bfreqselection.h:81
 msgid "Frequency bands"
 msgstr "Frequency bands"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_bfreqselection.h:133
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_bfreqselection.h:132
 msgid "Unselect all"
 msgstr "Unselect all"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_bfreqselection.h:134
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_bfreqselection.h:133
 msgid "Select all"
 msgstr "Select all"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_bfreqselection.h:136
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_bfreqselection.h:135
 msgid "All [63-16000] Hz"
 msgstr "All [63-16000] Hz"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_bfreqselection.h:137
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_bfreqselection.h:136
 msgid "Building/Road [125-4000] Hz"
 msgstr "Building/Road [125-4000] Hz"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_bfreqselection.h:139
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_bfreqselection.h:138
 msgid "All [50-20000] Hz"
 msgstr "All [50-20000] Hz"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_bfreqselection.h:140
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_bfreqselection.h:139
 msgid "Building/Road [100-5000] Hz"
 msgstr "Building/Road [100-5000] Hz"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_bfreqselection.h:141
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_bfreqselection.h:140
 msgid "Octave"
 msgstr "Octave"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_bfreqselection.h:142
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_bfreqselection.h:141
 msgid "Third octave"
 msgstr "Third octave"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_bfreqselection.h:143
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_bfreqselection.h:142
 msgid "Automatic selection"
 msgstr "Automatic selection"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_config.h:78
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_config.h:76
 msgid "Simulation length (s)"
 msgstr "Simulation length (s)"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_config.h:79
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_config.h:77
 msgid "Time step (s)"
 msgstr "Time step (s)"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_tetconf.h:105
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_tetconf.h:114
 msgid "Volume constraint (m3)"
 msgstr "Volume constraint (m3)"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_tetconf.h:106
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_tetconf.h:115
 msgid "Radius/Edge ratio"
 msgstr "Radius/Edge ratio"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_tetconf.h:107
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_tetconf.h:116
 msgid "Additional parameters"
 msgstr "Additional parameters"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_tetconf.h:108
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_tetconf.h:117
 msgid "User-defined parameters"
 msgstr "User-defined parameters"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_tetconf.h:109
-msgid "Surface receivers constraint (m²)"
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_tetconf.h:118
+msgid "Surface receivers constraint (m2)"
 msgstr "Surface receivers constraint (m²)"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_tetconf.h:110
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_tetconf.h:119
 msgid "Surface receivers constraint"
 msgstr "Surface receivers constraint"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_tetconf.h:111
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_tetconf.h:120
 msgid "Volume constraint"
 msgstr "Volume constraint"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_tetconf.h:112
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_tetconf.h:121
 msgid "Scene correction before meshing"
 msgstr "Scene correction before meshing"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_tetconf.h:113
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_core_tetconf.h:122
 msgid "Test mesh topology"
 msgstr "Test mesh topology"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:77
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:55
+msgid "Active calculation transmission (limit)"
+msgstr "Active calculation of transmission (limit value)"
+
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:56
+msgid "Active calculation transmission"
+msgstr "Active calculation of transmission"
+
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:57
+msgid "Receiver radius"
+msgstr "Receiver radius"
+
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:63
+msgid "Soundmap: intensity"
+msgstr "Soundmap: intensity"
+
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:65
+msgid "Soundmap: SPL"
+msgstr "Soundmap: SPL"
+
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:67
+msgid "Surface receiver export"
+msgstr "Surface receiver export"
+
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:72
+#, fuzzy
+msgid "toto.gabe"
+msgstr "SPPS Statistics.gabe"
+
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:73
+msgid "IntensityAnimation"
+msgstr "Intensity animation"
+
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:74
+msgid "Intensity vector"
+msgstr "Intensity vector"
+
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:78
 #: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_rpi.h:58
 msgid "Intensity Animation"
 msgstr "Intensity Animation"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:78
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:79
 msgid "Core Statistics"
 msgstr "Core Statistics"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:79
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:80
 msgid "Sound level per source"
 msgstr "Sound level per source"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:85
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:163
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:86
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:98
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_tccore.h:52
 msgid "Export surface receivers for each frequency band"
 msgstr "Export surface receivers for each frequency band"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:94
-msgid "Random number generator initialization"
-msgstr "Random number generator initialization"
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:90
+msgid "Echogram per source"
+msgstr "Echogram per source"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:160
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:95
-msgid "SPPS"
-msgstr "SPPS"
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:93
+msgid "Random seed"
+msgstr "Random initialization"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:161
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:96
-msgid "Random"
-msgstr "Random"
-
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:162
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:97
-msgid "Energetic"
-msgstr "Energetic"
-
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:164
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:99
-msgid "Calculation method"
-msgstr "Calculation method"
-
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:165
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:147
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:100
 msgid "Number of sound particles per source"
 msgstr "Number of sound particles per source"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:166
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:148
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:101
 msgid "Number of sound particles per source (display)"
 msgstr "Number of sound particles per source (display)"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:167
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:149
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:102
 msgid "Active calculation of atmospheric absorption"
 msgstr "Active calculation of atmospheric absorption"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:168
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:150
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:103
 msgid "Active calculation of diffusion by fitting objects"
 msgstr "Active calculation of diffusion by fitting objects"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:169
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:151
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:104
 msgid "Active calculation of direct field only"
 msgstr "Active calculation of direct field only"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:170
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:106
-msgid "Radius of receivers (m)"
-msgstr "Radius of receivers (m)"
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:152
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:99
+msgid "Calculation method"
+msgstr "Calculation method"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:171
-msgid "Limit of propagation (10^n)"
-msgstr "Limit of propagation (10^n)"
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:209
+#, c-format
+msgid ""
+"The size of the particle file, for each frequency band, is around %.2f Mo"
+msgstr ""
+"The size of the particle file, for each frequency band, is around %.2f Mo"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:172
-msgid "Active calculation of acoustic transmission"
-msgstr "Active calculation of acoustic transmission"
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:95
+msgid "SPPS"
+msgstr "SPPS"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:173
-msgid "Punctual intensity"
-msgstr "Punctual intensity"
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:96
+msgid "Random"
+msgstr "Random"
+
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:97
+msgid "Energetic"
+msgstr "Energetic"
 
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:105
 msgid "Calculation informations"
 msgstr "Calculation informations"
+
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:106
+msgid "Radius of receivers (m)"
+msgstr "Radius of receivers (m)"
 
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_tccore.h:62
 msgid "Atmospheric absorption calculation"
@@ -2782,12 +2864,16 @@ msgstr "TLM"
 msgid "Open folder"
 msgstr "Open folder"
 
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_partvisualisation.h:60
+msgid "Particles animation"
+msgstr "Particles animation"
+
 #: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_partvisualisation.h:86
 msgid "Rays"
 msgstr "Rays"
 
 #: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_partvisualisation.h:87
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:201
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:197
 #: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_rpi.h:75
 msgid "Load animation"
 msgstr "Load animation"
@@ -2797,87 +2883,103 @@ msgstr "Load animation"
 msgid "Surface receivers"
 msgstr "Surface receivers"
 
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:67
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:66
 msgid "Face opacity"
 msgstr "Face opacity"
 
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:110
-msgid "Display recto"
-msgstr "Display recto"
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:67
+msgid "Display front"
+msgstr "Display front"
 
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:68
+msgid "Display back"
+msgstr "Display back"
+
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:87
 #: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:111
-msgid "Display verso"
-msgstr "Display verso"
-
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:112
 msgid "Maximum value (dB)"
 msgstr "Maximum value (dB)"
 
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:113
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:88
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:112
 msgid "Minimum value (dB)"
 msgstr "Minimum value (dB)"
 
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:114
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:98
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:113
 msgid "Maximum value (s)"
 msgstr "Maximum value (s)"
 
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:115
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:99
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:114
 msgid "Minimum value (s)"
 msgstr "Minimum value (s)"
 
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:146
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:104
+msgid "Smooth colors"
+msgstr "Smooth colors"
+
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:109
+msgid "Display recto"
+msgstr "Display recto"
+
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:110
+msgid "Display verso"
+msgstr "Display verso"
+
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:142
 msgid "Show iso-curves"
 msgstr "Show iso-curves"
 
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:147
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:143
 msgid "Iso level list"
 msgstr "Iso level list"
 
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:148
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:144
 msgid "Smooth level"
 msgstr "Smooth level"
 
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:179
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:175
 msgid "Instantaneous sound level"
 msgstr "Instantaneous sound level"
 
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:180
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:176
 msgid "Cumulative instantaneous sound level"
 msgstr "Cumulative instantaneous sound level"
 
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:182
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:178
 msgid "Cumulating sound level"
 msgstr "Cumulating sound level"
 
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:184
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:180
 msgid "Reverberation time (RT)"
 msgstr "Reverberation time (RT)"
 
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:186
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:182
 msgid "Early decay time (EDT)"
 msgstr "Early decay time (EDT)"
 
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:192
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:188
 msgid "RT computation"
 msgstr "RT computation"
 
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:193
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:189
 msgid "EDT calculation"
 msgstr "EDT calculation"
 
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:194
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:190
 msgid "Clarity computation"
 msgstr "Clarity computation"
 
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:195
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:191
 msgid "D50 computation"
 msgstr "D50 computation"
 
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:196
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:192
 msgid "TS computation"
 msgstr "TS computation"
 
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:197
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:193
 msgid "ST computation"
 msgstr "ST computation"
 
@@ -2890,10 +2992,8 @@ msgid "Materials"
 msgstr "Materials"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_app.h:54
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:77
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_spectrums_app.h:53
-msgid "Reference"
-msgstr "Reference"
+msgid "Reference materials"
+msgstr "Reference materials"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_app_materiau.h:57
 msgid "Application"
@@ -2907,47 +3007,40 @@ msgstr "Unilateral"
 msgid "Bilateral"
 msgstr "Bilateral"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:54
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:55
 msgid "Side of material effect"
 msgstr "Side of material effect"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:61
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:70
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:62
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:72
 msgid "Material description"
 msgstr "Material description"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:78
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:79
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_spectrums_app.h:53
+msgid "Reference"
+msgstr "Reference"
+
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:80
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_encombrements_encombrement_proprietes.h:56
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteursp_recepteur_proprietes.h:61
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteur_proprietes.h:50
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_proprietes.h:57
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_proprietes.h:58
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_sources_source_proprietes.h:55
 msgid "Description"
 msgstr "Description"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:79
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:81
 msgid "Mass density (kg/m3)"
 msgstr "Mass density (kg/m3)"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:80
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:82
 msgid "Resistivity (cgs)"
 msgstr "Resistivity (cgs)"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_rendermateriau.h:52
 msgid "3D display"
 msgstr "3D display"
-
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_rendermateriau.h:60
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_encombrements_encombrement_rendu.h:76
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_rendu.h:52
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_rendu.h:77
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteursp_recepteur_rendu.h:59
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteur_rendu.h:50
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_rendu.h:50
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_sources_source_rendu.h:59
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_volumes_volume_rendu.h:49
-msgid "Display"
-msgstr "Display"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_user.h:51
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_spectrums_user.h:51
@@ -2957,6 +3050,7 @@ msgstr "User"
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_user.h:144
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_user_group.h:204
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_user_materiau.h:62
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd_materiaux_user_materiau.h:87
 msgid "New material"
 msgstr "New material"
 
@@ -3052,6 +3146,17 @@ msgstr "Show name"
 msgid "Opacity"
 msgstr "Opacity"
 
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_encombrements_encombrement_rendu.h:76
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_rendu.h:52
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_rendu.h:77
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteursp_recepteur_rendu.h:59
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteur_rendu.h:50
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_rendu.h:50
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_sources_source_rendu.h:59
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_volumes_volume_rendu.h:49
+msgid "Display"
+msgstr "Display"
+
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_groupesurfaces.h:51
 msgid "Surfaces"
 msgstr "Surfaces"
@@ -3068,7 +3173,7 @@ msgstr "Add a group"
 msgid "Face"
 msgstr "Face"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_groupesurfaces_groupe_vertex.h:78
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_groupesurfaces_groupe_vertex.h:79
 msgid "Send to a new surface group"
 msgstr "Send to a new surface group"
 
@@ -3094,15 +3199,15 @@ msgstr "Meteorological effect - Celerity gradient b_lin"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_environnement.h:136
 msgid "Temperature (°C)"
-msgstr "Temperature (°C)"
+msgstr "Atmospheric condition - Temperature (°C)"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_environnement.h:138
 msgid "Relative humidity (%)"
-msgstr "Relative humidity (%)"
+msgstr "Atmospheric condition - Relative humidity (%)"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_environnement.h:140
 msgid "Atmospheric pressure (Pa)"
-msgstr "Atmospheric pressure (Pa)"
+msgstr "Atmospheric condition - Pressure (Pa)"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_environnement.h:153
 msgid "Meteorological effect"
@@ -3130,7 +3235,7 @@ msgstr "Very unfavorable"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_environnement.h:160
 msgid "Meteorology effects - Profiles"
-msgstr "Meteorology effects - Profiles"
+msgstr "Meteorology effect - Profiles"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_environnement.h:181
 msgid "Water"
@@ -3142,11 +3247,11 @@ msgstr "Ground"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_environnement.h:183
 msgid "Short Lawn"
-msgstr "Short Lawn"
+msgstr "Short lawn"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_environnement.h:184
 msgid "Dense Lawn"
-msgstr "Dense Lawn"
+msgstr "Dense lawn"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_environnement.h:185
 msgid "Wheat (1m height)"
@@ -3162,7 +3267,7 @@ msgstr "Low concentration Suburb (residential areas, gardens)"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_environnement.h:188
 msgid "Dense Suburb"
-msgstr "Dense Suburb"
+msgstr "Dense suburb"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_environnement.h:189
 msgid "Dense urban"
@@ -3170,11 +3275,11 @@ msgstr "Dense urban"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_environnement.h:191
 msgid "Rugosity - Ground type"
-msgstr "Rugosity - Ground type"
+msgstr "Roughness - Ground type"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_environnement.h:197
 msgid "Set user defined atmospheric absorption"
-msgstr "Set user defined atmospheric absorption"
+msgstr "Atmospheric absorption - User defined"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_environnement.h:199
 msgid "Atmospheric absorption"
@@ -3198,7 +3303,7 @@ msgstr "Number of active sound sources"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_informations.h:89
 msgid "Model face count"
-msgstr "Model face count"
+msgstr "Number of faces"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_informations.h:90
 msgid "Number of fitting zones"
@@ -3225,8 +3330,8 @@ msgid "Scene volume (m3)"
 msgstr "Scene volume (m3)"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_informations.h:96
-msgid "Scene surface (m²)"
-msgstr "Scene surface (m²)"
+msgid "Scene surface (m2)"
+msgstr "Surface area (m²)"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_rendu_origine.h:63
 msgid "Arrow length"
@@ -3256,8 +3361,12 @@ msgstr "Show XYZ axis"
 msgid "Grid color"
 msgstr "Grid color"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_rendu_origine.h:79
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_rendu_origine.h:87
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_rendu_origine.h:73
+msgid "Grid scale"
+msgstr "Grid scale (integer)"
+
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_rendu_origine.h:80
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_rendu_origine.h:88
 msgid "XYZ axis"
 msgstr "XYZ axis"
 
@@ -3276,10 +3385,6 @@ msgstr "Author"
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_projet_userconfiguration.h:63
 msgid "Date"
 msgstr "Date"
-
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteursp.h:52
-msgid "Punctual receivers"
-msgstr "Punctual receivers"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteursp.h:98
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteursp.h:106
@@ -3345,11 +3450,11 @@ msgstr "Scene receiver"
 msgid "Plane Receiver"
 msgstr "Plane Receiver"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_proprietes.h:50
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_proprietes.h:51
 msgid "Enabled"
 msgstr "Enabled"
 
-#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_proprietes.h:58
+#: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_proprietes.h:59
 msgid "Resolution (m)"
 msgstr "Resolution (m)"
 
@@ -3363,7 +3468,7 @@ msgstr "Show vertices name"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_rendu.h:62
 msgid "Cut color"
-msgstr "Cut color"
+msgstr "Grid color"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_sources.h:54
 msgid "Sound sources"
@@ -3531,8 +3636,41 @@ msgstr "Time"
 msgid "Static"
 msgstr "Static"
 
-#~ msgid "Main calculation"
-#~ msgstr "Main calculation"
+#~ msgid "Sound_level.csbin"
+#~ msgstr "Sound level.csbin"
+
+#~ msgid "Niveau_Sonore.csbin"
+#~ msgstr "Sound level.csbin"
+
+#~ msgid "Standard tools"
+#~ msgstr "Standard tools"
+
+#~ msgid " (E*cos² theta)"
+#~ msgstr " (E*cos² theta)"
+
+#~ msgid "Random number generator initialization"
+#~ msgstr "Random number generator initialization"
+
+#~ msgid "Limit of propagation (10^n)"
+#~ msgstr "Limit of propagation (10^n)"
+
+#~ msgid "Active calculation of acoustic transmission"
+#~ msgstr "Active calculation of acoustic transmission"
+
+#~ msgid "Punctual intensity"
+#~ msgstr "Punctual intensity"
+
+#~ msgid "Limite de transmission"
+#~ msgstr "Active calculation transmission (limit)"
+
+#~ msgid "Calcul Transmission"
+#~ msgstr "Active transmission calculation"
+
+#~ msgid "Rayon des récepteurs ponctuels"
+#~ msgstr "Receiver radius"
+
+#~ msgid "Model correction"
+#~ msgstr "Model correction"
 
 #~ msgid "Main"
 #~ msgstr "Main"

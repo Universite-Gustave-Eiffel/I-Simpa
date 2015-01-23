@@ -251,8 +251,8 @@ void E_Property_Freq::InitProp()
 			defval=i;
 	}
 	
-	this->AppendPropertyList("idspectre","Type de spectre",txtLst,defval,true,4);
-	("Type de spectre");
+	this->AppendPropertyList("idspectre","Spectrum",txtLst,defval,true,4);
+	("Spectrum");
 	LoadLwFromBdd();
 }
 

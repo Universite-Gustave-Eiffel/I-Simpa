@@ -2,9 +2,9 @@
 <configuration>
   <appmaterials>
     <appgroup wxid="339" name="I-SIMPA" eid="36">
-      <appgroup wxid="376" name="Théorique" eid="36">
-        <appmateriau wxid="701" name="100% absorbant" eid="37">
-          <materiau wxid="702" name="Spectre du matériau" eid="43" idmateriau="24">
+      <appgroup wxid="376" name="Absorbing materials" eid="36">
+        <appmateriau wxid="701" name="100% absorbing" eid="37">
+          <materiau wxid="702" name="Material spectrum" eid="43" idmateriau="24">
             <bfreq wxid="703" name="20000" eid="52" label="20000 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
             <bfreq wxid="704" name="16000" eid="52" label="16000 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
             <bfreq wxid="705" name="12500" eid="52" label="12500 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
@@ -33,18 +33,18 @@
             <bfreq wxid="728" name="63" eid="52" label="63 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
             <bfreq wxid="729" name="50" eid="52" label="50 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
           </materiau>
-          <matcolor wxid="730" name="Rendu 3D" eid="78">
-            <p wxid="731" name="mat_color" eid="21" readonly="1" label="Couleur" r="5" g="5" b="5"/>
+          <matcolor wxid="730" name="Display" eid="78">
+            <p wxid="731" name="mat_color" eid="21" readonly="1" label="Color" r="5" g="5" b="5"/>
           </matcolor>
-          <property wxid="732" name="Description du matériau" eid="41">
-            <p wxid="733" name="resistivite" eid="25" readonly="1" label="Résistivité (cgs)" ex="1" value="100,0" pr="4"/>
-            <p wxid="734" name="reference" eid="20" readonly="1" label="Référence" textValue=""/>
-            <p wxid="735" name="masse_volumique" eid="25" readonly="1" label="Masse volumique (Kg/m3)" value="0,0000" pr="4"/>
-            <p wxid="736" name="description" eid="20" readonly="1" label="Description" textValue="100% absorbent"/>
+          <property wxid="732" name="Material description" eid="41">
+            <p wxid="733" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+            <p wxid="734" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
+            <p wxid="735" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
+            <p wxid="736" name="description" eid="20" readonly="1" label="Description" textValue="100% absorbing"/>
           </property>
         </appmateriau>
-        <appmateriau wxid="377" name="90% absorbant" eid="37">
-          <materiau wxid="378" name="Spectre du matériau" eid="43" idmateriau="15">
+        <appmateriau wxid="377" name="90% absorbing" eid="37">
+          <materiau wxid="378" name="Material spectrum" eid="43" idmateriau="15">
             <bfreq wxid="379" name="20000" eid="52" label="20000 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
             <bfreq wxid="380" name="16000" eid="52" label="16000 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
             <bfreq wxid="381" name="12500" eid="52" label="12500 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
@@ -73,18 +73,18 @@
             <bfreq wxid="404" name="63" eid="52" label="63 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
             <bfreq wxid="405" name="50" eid="52" label="50 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
           </materiau>
-          <matcolor wxid="406" name="Rendu 3D" eid="78">
-            <p wxid="407" name="mat_color" eid="21" readonly="1" label="Couleur" r="25" g="25" b="25"/>
+          <matcolor wxid="406" name="Display" eid="78">
+            <p wxid="407" name="mat_color" eid="21" readonly="1" label="Color" r="25" g="25" b="25"/>
           </matcolor>
-          <property wxid="408" name="Description du matériau" eid="41">
-            <p wxid="409" name="resistivite" eid="25" readonly="1" label="Résistivité (cgs)" ex="1" value="100,0" pr="4"/>
-            <p wxid="410" name="reference" eid="20" readonly="1" label="Référence" textValue=""/>
-            <p wxid="411" name="masse_volumique" eid="25" readonly="1" label="Masse volumique (Kg/m3)" value="0,0000" pr="4"/>
-            <p wxid="412" name="description" eid="20" readonly="1" label="Description" textValue="90% absorbent"/>
+          <property wxid="408" name="Material description" eid="41">
+            <p wxid="409" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+            <p wxid="410" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
+            <p wxid="411" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
+            <p wxid="412" name="description" eid="20" readonly="1" label="Description" textValue="90% absorbing"/>
           </property>
         </appmateriau>
-        <appmateriau wxid="413" name="80% absorbant" eid="37">
-          <materiau wxid="414" name="Spectre du matériau" eid="43" idmateriau="16">
+        <appmateriau wxid="413" name="80% absorbing" eid="37">
+          <materiau wxid="414" name="Material spectrum" eid="43" idmateriau="16">
             <bfreq wxid="415" name="20000" eid="52" label="20000 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
             <bfreq wxid="416" name="16000" eid="52" label="16000 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
             <bfreq wxid="417" name="12500" eid="52" label="12500 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
@@ -113,18 +113,18 @@
             <bfreq wxid="440" name="63" eid="52" label="63 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
             <bfreq wxid="441" name="50" eid="52" label="50 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
           </materiau>
-          <matcolor wxid="442" name="Rendu 3D" eid="78">
-            <p wxid="443" name="mat_color" eid="21" readonly="1" label="Couleur" r="51" g="51" b="51"/>
+          <matcolor wxid="442" name="Display" eid="78">
+            <p wxid="443" name="mat_color" eid="21" readonly="1" label="Color" r="51" g="51" b="51"/>
           </matcolor>
-          <property wxid="444" name="Description du matériau" eid="41">
-            <p wxid="445" name="resistivite" eid="25" readonly="1" label="Résistivité (cgs)" ex="1" value="100,0" pr="4"/>
-            <p wxid="446" name="reference" eid="20" readonly="1" label="Référence" textValue=""/>
-            <p wxid="447" name="masse_volumique" eid="25" readonly="1" label="Masse volumique (Kg/m3)" value="0,0000" pr="4"/>
-            <p wxid="448" name="description" eid="20" readonly="1" label="Description" textValue="80% absorbent"/>
+          <property wxid="444" name="Material description" eid="41">
+            <p wxid="445" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+            <p wxid="446" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
+            <p wxid="447" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
+            <p wxid="448" name="description" eid="20" readonly="1" label="Description" textValue="80% absorbing"/>
           </property>
         </appmateriau>
-        <appmateriau wxid="449" name="70% absorbant" eid="37">
-          <materiau wxid="450" name="Spectre du matériau" eid="43" idmateriau="17">
+        <appmateriau wxid="449" name="70% absorbing" eid="37">
+          <materiau wxid="450" name="Material spectrum" eid="43" idmateriau="17">
             <bfreq wxid="451" name="20000" eid="52" label="20000 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
             <bfreq wxid="452" name="16000" eid="52" label="16000 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
             <bfreq wxid="453" name="12500" eid="52" label="12500 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
@@ -153,18 +153,18 @@
             <bfreq wxid="476" name="63" eid="52" label="63 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
             <bfreq wxid="477" name="50" eid="52" label="50 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
           </materiau>
-          <matcolor wxid="478" name="Rendu 3D" eid="78">
-            <p wxid="479" name="mat_color" eid="21" readonly="1" label="Couleur" r="76" g="76" b="76"/>
+          <matcolor wxid="478" name="Display" eid="78">
+            <p wxid="479" name="mat_color" eid="21" readonly="1" label="Color" r="76" g="76" b="76"/>
           </matcolor>
-          <property wxid="480" name="Description du matériau" eid="41">
-            <p wxid="481" name="resistivite" eid="25" readonly="1" label="Résistivité (cgs)" ex="1" value="100,0" pr="4"/>
-            <p wxid="482" name="reference" eid="20" readonly="1" label="Référence" textValue=""/>
-            <p wxid="483" name="masse_volumique" eid="25" readonly="1" label="Masse volumique (Kg/m3)" value="0,0000" pr="4"/>
-            <p wxid="484" name="description" eid="20" readonly="1" label="Description" textValue="70% absorbent"/>
+          <property wxid="480" name="Material description" eid="41">
+            <p wxid="481" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+            <p wxid="482" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
+            <p wxid="483" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
+            <p wxid="484" name="description" eid="20" readonly="1" label="Description" textValue="70% absorbing"/>
           </property>
         </appmateriau>
-        <appmateriau wxid="485" name="60% absorbant" eid="37">
-          <materiau wxid="486" name="Spectre du matériau" eid="43" idmateriau="18">
+        <appmateriau wxid="485" name="60% absorbing" eid="37">
+          <materiau wxid="486" name="Material spectrum" eid="43" idmateriau="18">
             <bfreq wxid="487" name="20000" eid="52" label="20000 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
             <bfreq wxid="488" name="16000" eid="52" label="16000 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
             <bfreq wxid="489" name="12500" eid="52" label="12500 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
@@ -193,18 +193,18 @@
             <bfreq wxid="512" name="63" eid="52" label="63 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
             <bfreq wxid="513" name="50" eid="52" label="50 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
           </materiau>
-          <matcolor wxid="514" name="Rendu 3D" eid="78">
-            <p wxid="515" name="mat_color" eid="21" readonly="1" label="Couleur" r="102" g="102" b="102"/>
+          <matcolor wxid="514" name="Display" eid="78">
+            <p wxid="515" name="mat_color" eid="21" readonly="1" label="Color" r="102" g="102" b="102"/>
           </matcolor>
-          <property wxid="516" name="Description du matériau" eid="41">
-            <p wxid="517" name="resistivite" eid="25" readonly="1" label="Résistivité (cgs)" ex="1" value="100,0" pr="4"/>
-            <p wxid="518" name="reference" eid="20" readonly="1" label="Référence" textValue=""/>
-            <p wxid="519" name="masse_volumique" eid="25" readonly="1" label="Masse volumique (Kg/m3)" value="0,0000" pr="4"/>
-            <p wxid="520" name="description" eid="20" readonly="1" label="Description" textValue="60% absorbent"/>
+          <property wxid="516" name="Material description" eid="41">
+            <p wxid="517" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+            <p wxid="518" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
+            <p wxid="519" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
+            <p wxid="520" name="description" eid="20" readonly="1" label="Description" textValue="60% absorbing"/>
           </property>
         </appmateriau>
-        <appmateriau wxid="521" name="50% absorbant" eid="37">
-          <materiau wxid="522" name="Spectre du matériau" eid="43" idmateriau="19">
+        <appmateriau wxid="521" name="50% absorbing" eid="37">
+          <materiau wxid="522" name="Material spectrum" eid="43" idmateriau="19">
             <bfreq wxid="523" name="20000" eid="52" label="20000 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
             <bfreq wxid="524" name="16000" eid="52" label="16000 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
             <bfreq wxid="525" name="12500" eid="52" label="12500 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
@@ -233,18 +233,18 @@
             <bfreq wxid="548" name="63" eid="52" label="63 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
             <bfreq wxid="549" name="50" eid="52" label="50 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
           </materiau>
-          <matcolor wxid="550" name="Rendu 3D" eid="78">
-            <p wxid="551" name="mat_color" eid="21" readonly="1" label="Couleur" r="127" g="127" b="127"/>
+          <matcolor wxid="550" name="Display" eid="78">
+            <p wxid="551" name="mat_color" eid="21" readonly="1" label="Color" r="127" g="127" b="127"/>
           </matcolor>
-          <property wxid="552" name="Description du matériau" eid="41">
-            <p wxid="553" name="resistivite" eid="25" readonly="1" label="Résistivité (cgs)" ex="1" value="100,0" pr="4"/>
-            <p wxid="554" name="reference" eid="20" readonly="1" label="Référence" textValue=""/>
-            <p wxid="555" name="masse_volumique" eid="25" readonly="1" label="Masse volumique (Kg/m3)" value="0,0000" pr="4"/>
-            <p wxid="556" name="description" eid="20" readonly="1" label="Description" textValue="50% absorbent"/>
+          <property wxid="552" name="Material description" eid="41">
+            <p wxid="553" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+            <p wxid="554" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
+            <p wxid="555" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
+            <p wxid="556" name="description" eid="20" readonly="1" label="Description" textValue="50% absorbing"/>
           </property>
         </appmateriau>
-        <appmateriau wxid="557" name="40% absorbant" eid="37">
-          <materiau wxid="558" name="Spectre du matériau" eid="43" idmateriau="20">
+        <appmateriau wxid="557" name="40% absorbing" eid="37">
+          <materiau wxid="558" name="Material spectrum" eid="43" idmateriau="20">
             <bfreq wxid="559" name="20000" eid="52" label="20000 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
             <bfreq wxid="560" name="16000" eid="52" label="16000 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
             <bfreq wxid="561" name="12500" eid="52" label="12500 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
@@ -273,18 +273,18 @@
             <bfreq wxid="584" name="63" eid="52" label="63 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
             <bfreq wxid="585" name="50" eid="52" label="50 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
           </materiau>
-          <matcolor wxid="586" name="Rendu 3D" eid="78">
-            <p wxid="587" name="mat_color" eid="21" readonly="1" label="Couleur" r="153" g="153" b="153"/>
+          <matcolor wxid="586" name="Display" eid="78">
+            <p wxid="587" name="mat_color" eid="21" readonly="1" label="Color" r="153" g="153" b="153"/>
           </matcolor>
-          <property wxid="588" name="Description du matériau" eid="41">
-            <p wxid="589" name="resistivite" eid="25" readonly="1" label="Résistivité (cgs)" ex="1" value="100,0" pr="4"/>
-            <p wxid="590" name="reference" eid="20" readonly="1" label="Référence" textValue=""/>
-            <p wxid="591" name="masse_volumique" eid="25" readonly="1" label="Masse volumique (Kg/m3)" value="0,0000" pr="4"/>
-            <p wxid="592" name="description" eid="20" readonly="1" label="Description" textValue="40% absorbent"/>
+          <property wxid="588" name="Material description" eid="41">
+            <p wxid="589" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+            <p wxid="590" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
+            <p wxid="591" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
+            <p wxid="592" name="description" eid="20" readonly="1" label="Description" textValue="40% absorbing"/>
           </property>
         </appmateriau>
-        <appmateriau wxid="593" name="30% absorbant" eid="37">
-          <materiau wxid="594" name="Spectre du matériau" eid="43" idmateriau="21">
+        <appmateriau wxid="593" name="30% absorbing" eid="37">
+          <materiau wxid="594" name="Material spectrum" eid="43" idmateriau="21">
             <bfreq wxid="595" name="20000" eid="52" label="20000 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
             <bfreq wxid="596" name="16000" eid="52" label="16000 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
             <bfreq wxid="597" name="12500" eid="52" label="12500 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
@@ -313,18 +313,18 @@
             <bfreq wxid="620" name="63" eid="52" label="63 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
             <bfreq wxid="621" name="50" eid="52" label="50 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
           </materiau>
-          <matcolor wxid="622" name="Rendu 3D" eid="78">
-            <p wxid="623" name="mat_color" eid="21" readonly="1" label="Couleur" r="178" g="178" b="178"/>
+          <matcolor wxid="622" name="Display" eid="78">
+            <p wxid="623" name="mat_color" eid="21" readonly="1" label="Color" r="178" g="178" b="178"/>
           </matcolor>
-          <property wxid="624" name="Description du matériau" eid="41">
-            <p wxid="625" name="resistivite" eid="25" readonly="1" label="Résistivité (cgs)" ex="1" value="100,0" pr="4"/>
-            <p wxid="626" name="reference" eid="20" readonly="1" label="Référence" textValue=""/>
-            <p wxid="627" name="masse_volumique" eid="25" readonly="1" label="Masse volumique (Kg/m3)" value="0,0000" pr="4"/>
-            <p wxid="628" name="description" eid="20" readonly="1" label="Description" textValue="30% absorbent"/>
+          <property wxid="624" name="Material description" eid="41">
+            <p wxid="625" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+            <p wxid="626" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
+            <p wxid="627" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
+            <p wxid="628" name="description" eid="20" readonly="1" label="Description" textValue="30% absorbing"/>
           </property>
         </appmateriau>
-        <appmateriau wxid="629" name="20% absorbant" eid="37">
-          <materiau wxid="630" name="Spectre du matériau" eid="43" idmateriau="22">
+        <appmateriau wxid="629" name="20% absorbing" eid="37">
+          <materiau wxid="630" name="Material spectrum" eid="43" idmateriau="22">
             <bfreq wxid="631" name="20000" eid="52" label="20000 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
             <bfreq wxid="632" name="16000" eid="52" label="16000 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
             <bfreq wxid="633" name="12500" eid="52" label="12500 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
@@ -353,18 +353,18 @@
             <bfreq wxid="656" name="63" eid="52" label="63 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
             <bfreq wxid="657" name="50" eid="52" label="50 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
           </materiau>
-          <matcolor wxid="658" name="Rendu 3D" eid="78">
-            <p wxid="659" name="mat_color" eid="21" readonly="1" label="Couleur" r="204" g="204" b="204"/>
+          <matcolor wxid="658" name="Display" eid="78">
+            <p wxid="659" name="mat_color" eid="21" readonly="1" label="Color" r="204" g="204" b="204"/>
           </matcolor>
-          <property wxid="660" name="Description du matériau" eid="41">
-            <p wxid="661" name="resistivite" eid="25" readonly="1" label="Résistivité (cgs)" ex="1" value="100,0" pr="4"/>
-            <p wxid="662" name="reference" eid="20" readonly="1" label="Référence" textValue=""/>
-            <p wxid="663" name="masse_volumique" eid="25" readonly="1" label="Masse volumique (Kg/m3)" value="0,0000" pr="4"/>
-            <p wxid="664" name="description" eid="20" readonly="1" label="Description" textValue="20% absorbent"/>
+          <property wxid="660" name="Material description" eid="41">
+            <p wxid="661" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+            <p wxid="662" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
+            <p wxid="663" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
+            <p wxid="664" name="description" eid="20" readonly="1" label="Description" textValue="20% absorbing"/>
           </property>
         </appmateriau>
-        <appmateriau wxid="737" name="10% absorbant" eid="37">
-          <materiau wxid="738" name="Spectre du matériau" eid="43" idmateriau="25">
+        <appmateriau wxid="737" name="10% absorbing" eid="37">
+          <materiau wxid="738" name="Material spectrum" eid="43" idmateriau="25">
             <bfreq wxid="739" name="20000" eid="52" label="20000 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
             <bfreq wxid="740" name="16000" eid="52" label="16000 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
             <bfreq wxid="741" name="12500" eid="52" label="12500 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
@@ -393,18 +393,18 @@
             <bfreq wxid="764" name="63" eid="52" label="63 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
             <bfreq wxid="765" name="50" eid="52" label="50 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
           </materiau>
-          <matcolor wxid="766" name="Rendu 3D" eid="78">
-            <p wxid="767" name="mat_color" eid="21" readonly="1" label="Couleur" r="230" g="230" b="230"/>
+          <matcolor wxid="766" name="Display" eid="78">
+            <p wxid="767" name="mat_color" eid="21" readonly="1" label="Color" r="230" g="230" b="230"/>
           </matcolor>
-          <property wxid="768" name="Description du matériau" eid="41">
-            <p wxid="769" name="resistivite" eid="25" readonly="1" label="Résistivité (cgs)" ex="1" value="100,0" pr="4"/>
-            <p wxid="770" name="reference" eid="20" readonly="1" label="Référence" textValue=""/>
-            <p wxid="771" name="masse_volumique" eid="25" readonly="1" label="Masse volumique (Kg/m3)" value="0,0000" pr="4"/>
-            <p wxid="772" name="description" eid="20" readonly="1" label="Description" textValue="10% absorbent"/>
+          <property wxid="768" name="Material description" eid="41">
+            <p wxid="769" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+            <p wxid="770" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
+            <p wxid="771" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
+            <p wxid="772" name="description" eid="20" readonly="1" label="Description" textValue="10% absorbing"/>
           </property>
         </appmateriau>
-        <appmateriau wxid="665" name="0% absorbant" eid="37">
-          <materiau wxid="666" name="Spectre du matériau" eid="43" idmateriau="23">
+        <appmateriau wxid="665" name="0% absorbing" eid="37">
+          <materiau wxid="666" name="Material spectrum" eid="43" idmateriau="23">
             <bfreq wxid="667" name="20000" eid="52" label="20000 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
             <bfreq wxid="668" name="16000" eid="52" label="16000 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
             <bfreq wxid="669" name="12500" eid="52" label="12500 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
@@ -433,19 +433,19 @@
             <bfreq wxid="692" name="63" eid="52" label="63 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
             <bfreq wxid="693" name="50" eid="52" label="50 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
           </materiau>
-          <matcolor wxid="694" name="Rendu 3D" eid="78">
-            <p wxid="695" name="mat_color" eid="21" readonly="1" label="Couleur" r="255" g="255" b="255"/>
+          <matcolor wxid="694" name="Display" eid="78">
+            <p wxid="695" name="mat_color" eid="21" readonly="1" label="Color" r="255" g="255" b="255"/>
           </matcolor>
-          <property wxid="696" name="Description du matériau" eid="41">
-            <p wxid="697" name="resistivite" eid="25" readonly="1" label="Résistivité (cgs)" ex="1" value="100,0" pr="4"/>
-            <p wxid="698" name="reference" eid="20" readonly="1" label="Référence" textValue=""/>
-            <p wxid="699" name="masse_volumique" eid="25" readonly="1" label="Masse volumique (Kg/m3)" value="0,0000" pr="4"/>
+          <property wxid="696" name="Material description" eid="41">
+            <p wxid="697" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+            <p wxid="698" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
+            <p wxid="699" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
             <p wxid="700" name="description" eid="20" readonly="1" label="Description" textValue="100% reflecting"/>
           </property>
         </appmateriau>
       </appgroup>
-      <appmateriau wxid="340" name="Défaut" eid="37">
-        <materiau wxid="341" name="Spectre du matériau" eid="43" idmateriau="0">
+      <appmateriau wxid="340" name="Default" eid="37">
+        <materiau wxid="341" name="Material spectrum" eid="43" idmateriau="0">
           <bfreq wxid="342" name="20000" eid="52" label="20000 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
           <bfreq wxid="343" name="16000" eid="52" label="16000 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
           <bfreq wxid="344" name="12500" eid="52" label="12500 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
@@ -474,14 +474,14 @@
           <bfreq wxid="367" name="63" eid="52" label="63 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
           <bfreq wxid="368" name="50" eid="52" label="50 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
         </materiau>
-        <matcolor wxid="369" name="Rendu 3D" eid="78">
-          <p wxid="370" name="mat_color" eid="21" readonly="1" label="Couleur" r="255" g="0" b="0"/>
+        <matcolor wxid="369" name="Display" eid="78">
+          <p wxid="370" name="mat_color" eid="21" readonly="1" label="Color" r="255" g="0" b="0"/>
         </matcolor>
-        <property wxid="371" name="Description du matériau" eid="41">
-          <p wxid="372" name="resistivite" eid="25" readonly="1" label="Résistivité (cgs)" ex="1" value="100,0" pr="4"/>
-          <p wxid="373" name="reference" eid="20" readonly="1" label="Référence" textValue=""/>
-          <p wxid="374" name="masse_volumique" eid="25" readonly="1" label="Masse volumique (Kg/m3)" value="0,0000" pr="4"/>
-          <p wxid="375" name="description" eid="20" readonly="1" label="Description" textValue="Matériau par défaut"/>
+        <property wxid="371" name="Material description" eid="41">
+          <p wxid="372" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+          <p wxid="373" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
+          <p wxid="374" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
+          <p wxid="375" name="description" eid="20" readonly="1" label="Description" textValue="Default material"/>
         </property>
       </appmateriau>
     </appgroup>
@@ -715,7 +715,7 @@
         <p name="db" eid="25" wxid="189" label="dB" ex="1" value="57,099998" pr="2"/>
       </p>
     </frequences>
-    <frequences name="Bruit rose" eid="45" wxid="323" idspectre="1">
+    <frequences name="Pink noise" eid="45" wxid="323" idspectre="1">
       <p name="cumul" eid="50" wxid="324" label="Global">
         <p name="dba" eid="25" wxid="326" readonly="1" label="dB(A)" value="-2,373854" pr="2"/>
         <p name="db" eid="25" wxid="325" readonly="1" label="dB" value="0,003638" pr="2"/>
@@ -829,7 +829,7 @@
         <p name="db" eid="25" wxid="330" label="dB" ex="1" value="-14,310000" pr="2"/>
       </p>
     </frequences>
-    <frequences name="Bruit blanc" eid="45" wxid="464" idspectre="0">
+    <frequences name="White noise" eid="45" wxid="464" idspectre="0">
       <p name="cumul" eid="50" wxid="465" label="Global">
         <p name="dba" eid="25" wxid="467" readonly="1" label="dB(A)" value="-2,431984" pr="2"/>
         <p name="db" eid="25" wxid="466" readonly="1" label="dB" value="-0,000421" pr="2"/>

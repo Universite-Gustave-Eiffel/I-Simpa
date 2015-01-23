@@ -59,8 +59,9 @@ public:
 		wxString nom;
 		nom<<_group<<" "<<_face;
 		this->elementInfo.libelleElement=nom;
-		this->AppendPropertyDecimal("aire","Surface area (m²)",0,true,2);
+		this->AppendPropertyDecimal("aire","Surface area (m2)",0,true,2);
 		this->elementInfo.userDestroyable=userCanDestroyThis;
+		_("Surface area (m2)");
 	}
 
 	/**

@@ -46,7 +46,7 @@ class E_Core_Core_Conf_Mailleur: public Element
 {
 public:
 	E_Core_Core_Conf_Mailleur( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Maillage",Element::ELEMENT_TYPE_CORE_CORE_CONFMAILLAGE,noeudCourant)
+		:Element(parent,wxTRANSLATE("Meshing"),Element::ELEMENT_TYPE_CORE_CORE_CONFMAILLAGE,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_TETMESH_PARAMETERS);
 		//Add debug mode parameter v<1.21
@@ -57,7 +57,7 @@ public:
 	}
 
 	E_Core_Core_Conf_Mailleur( Element* parent)
-		:Element(parent,"Maillage",Element::ELEMENT_TYPE_CORE_CORE_CONFMAILLAGE)
+		:Element(parent,wxTRANSLATE("Meshing"),Element::ELEMENT_TYPE_CORE_CORE_CONFMAILLAGE)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_TETMESH_PARAMETERS);
 		InitProperties();
@@ -93,7 +93,7 @@ protected:
 	*/
 	void InitProperties()
 	{
-		this->AppendPropertyDecimal("maxvol","Contrainte de volume (m3)",100);
+		/**this->AppendPropertyDecimal("maxvol","Contrainte de volume (m3)",100);
 		this->AppendPropertyDecimal("minratio","Rapport Rayon/arête",2,false,2,false,true,0,1);
 		this->AppendPropertyText("appendparams","Paramétres supplémentaires","");
 		this->AppendPropertyText("userdefineparams","Paramétres utilisateur","");
@@ -101,17 +101,27 @@ protected:
 		this->AppendPropertyBool("isareaconstraint","Contrainte d'aire des récepteurs surfaciques",false);
 		this->AppendPropertyBool("ismaxvol","Contrainte de volume",false);
 		this->AppendPropertyBool("preprocess","Correction du modèle avant maillage",true);
+		this->AppendPropertyBool("debugmode","Test mesh topology",false);*/
+        this->AppendPropertyDecimal("maxvol","Volume constraint (m3)",100);
+		this->AppendPropertyDecimal("minratio","Radius/Edge ratio",2,false,2,false,true,0,1);
+		this->AppendPropertyText("appendparams","Additional parameters","");
+		this->AppendPropertyText("userdefineparams","User-defined parameters","");
+		this->AppendPropertyDecimal("constraintrecepteurss","Surface receivers constraint (m2)",5.f,true,3,false,true,0,0.001f);
+		this->AppendPropertyBool("isareaconstraint","Surface receivers constraint",false);
+		this->AppendPropertyBool("ismaxvol","Volume constraint",false);
+		this->AppendPropertyBool("preprocess","Scene correction before meshing",true);
 		this->AppendPropertyBool("debugmode","Test mesh topology",false);
 		_("Volume constraint (m3)");
 		_("Radius/Edge ratio");
 		_("Additional parameters");
 		_("User-defined parameters");
-		_("Surface receivers constraint (m²)");
+		_("Surface receivers constraint (m2)");
 		_("Surface receivers constraint");
 		_("Volume constraint");
 		_("Scene correction before meshing");
 		_("Test mesh topology");
-		_("Meshing");
+		/*_("Meshing");*/
+
 	}
 	
 };

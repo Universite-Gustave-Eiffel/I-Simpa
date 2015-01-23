@@ -53,7 +53,7 @@ public:
 		:Element(parent,"Display",Element::ELEMENT_TYPE_SCENE_VOLUMES_VOLUME_RENDU)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_3D_DISPLAY);
-		this->AppendPropertyColor("volcolor","Couleur du volume",GetRandValue()*255,GetRandValue()*255,GetRandValue()*255);
+		this->AppendPropertyColor("volcolor","Domain color",GetRandValue()*255,GetRandValue()*255,GetRandValue()*255);
 		_("Domain color");
 	}
 

@@ -81,7 +81,7 @@ bool E_Report_Gabe_Gap::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,s
 	{
 		lblRows.push_back(wxString(lstFreq->GetStringEquiv(idfreq))+_(" Hz"));
 		lblRows.push_back(wxString(lstFreq->GetStringEquiv(idfreq))+_(" Hz")+_(" (E*cos theta)"));
-		lblRows.push_back(wxString(lstFreq->GetStringEquiv(idfreq))+_(" Hz")+_(" (E*cos² theta)"));
+		lblRows.push_back(wxString(lstFreq->GetStringEquiv(idfreq))+_(" Hz")+_(" (E*cos^2 theta)"));
 	}
 	////////////////////////
 	// Construction des libellés des colonnes, Temps

@@ -46,9 +46,9 @@ private:
 
 	void InitProperties()
 	{
-		this->AppendPropertyColor("couleur","Couleur",0,255,0);
+		this->AppendPropertyColor("couleur","Color",0,255,0);
 		_("Color"); //Pour generer le fichier de langues automatiquement
-		this->AppendPropertyBool("showlabel","Afficher le libellé",true);
+		this->AppendPropertyBool("showlabel","Show name",true);
 		_("Show name");
 	}
 public:

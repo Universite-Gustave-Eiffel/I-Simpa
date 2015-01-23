@@ -34,7 +34,7 @@
 #include "last_cpp_include.hpp"
 
 E_Materiau::E_Materiau(Element* parent,wxString Nom,ELEMENT_TYPE _type,wxXmlNode* nodeElement)
-	:Element(parent,"Spectre du matériau",_type,nodeElement)
+	:Element(parent,"Material spectrum",_type,nodeElement)
 {
 	SetIcon(GRAPH_STATE_ALL,GRAPH_SPECTRUM);
 	ignoreModification=false;

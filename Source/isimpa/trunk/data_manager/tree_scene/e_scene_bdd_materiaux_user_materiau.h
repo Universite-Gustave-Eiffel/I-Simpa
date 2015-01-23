@@ -53,7 +53,7 @@ private:
 	bool ignoreModification;
 public:
 	E_Scene_Bdd_Materiaux_User_Materiau( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Nouveau matériau",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_USER_MATERIAU,noeudCourant)
+		:Element(parent,"New material",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_USER_MATERIAU,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_MATERIAL_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_MATERIAL_CLOSE);
@@ -84,7 +84,7 @@ public:
 		}
 	}
 	
-	E_Scene_Bdd_Materiaux_User_Materiau( Element* parent, wxString name="Nouveau matériau" )
+	E_Scene_Bdd_Materiaux_User_Materiau( Element* parent, wxString name=wxTRANSLATE("New material"))
 		:Element(parent,name,Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_USER_MATERIAU)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_MATERIAL_OPEN);

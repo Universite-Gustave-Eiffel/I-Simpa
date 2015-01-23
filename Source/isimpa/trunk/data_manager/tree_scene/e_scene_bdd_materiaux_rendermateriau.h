@@ -56,8 +56,8 @@ public:
 		:Element(parent,"Display",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_MATERIAU_RENDER)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_3D_DISPLAY);
-		this->AppendPropertyColor("mat_color","Display",GetRandValue()*255,GetRandValue()*255,GetRandValue()*255);
-		_("Display");
+		this->AppendPropertyColor("mat_color","Color",GetRandValue()*255,GetRandValue()*255,GetRandValue()*255);
+		_("Color");
 		this->SetDrawable();
 	}
 

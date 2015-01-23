@@ -73,10 +73,8 @@ public:
 	void InitProperties()
 	{
 		
-		AppendPropertyDecimal("duree_simulation","Durée de la simulation (s)",2,false,8,false,true,0,0.0001f,true);
-		AppendPropertyDecimal("pasdetemps","Pas de temps (s)",0.01f,false,8,false,false,0,0,true);
-		_("Simulation length (s)");
-		_("Time step (s)");
+		AppendPropertyDecimal("duree_simulation",wxTRANSLATE("Simulation length (s)"),2,false,8,false,true,0,0.0001f,true);
+		AppendPropertyDecimal("pasdetemps",wxTRANSLATE("Time step (s)"),0.01f,false,8,false,false,0,0,true);
 	}
 	
 };

@@ -59,7 +59,7 @@ private:
 		this->AppendPropertyBool("showgxz","XZ Grid",false);
 		this->AppendPropertyBool("showgyz","YZ Grid",false);
 		this->AppendPropertyColor("couleurgrille","Grid color",90,90,90);
-		this->AppendPropertyEntier("echellegrille","Echelle de la grille",1);
+		this->AppendPropertyEntier("echellegrille","Grid scale",1);
 		_("Arrow length");
 		_("Arrow width");
 		_("Arrow color (x)");
@@ -70,6 +70,7 @@ private:
 		_("XZ Grid");
 		_("YZ Grid");
 		_("Grid color");
+		_("Grid scale");
 	}
 public:
 	E_Scene_Rendu_Origine( wxXmlNode* noeudCourant ,  Element* parent)

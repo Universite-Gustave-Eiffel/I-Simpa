@@ -65,7 +65,7 @@ public:
 	 * @param nodeElement	Noeud XML si création depuis un fichier XML, sinon Pointeur nul (par défaut)
 	 */
 	E_Report_ReceiverPonctualIntensity(Element* parent,wxXmlNode* nodeElement)
-		:E_Report_File(parent,"Intensité","",ELEMENT_TYPE_REPORT_RPI,nodeElement)
+		:E_Report_File(parent,"Intensity","",ELEMENT_TYPE_REPORT_RPI,nodeElement)
 	{
 		_("Intensity");
 	}

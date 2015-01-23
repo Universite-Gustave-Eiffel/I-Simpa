@@ -152,7 +152,7 @@ void ReportManager::ParticuleFreeTranslation(CONF_PARTICULE& particleInfos, cons
 				uentier CellRow=(uentier)floorf(u*(*itrs)->NbCellU);
 				uentier CellCol=(uentier)floorf(v*(*itrs)->NbCellV);
 				vec3 normal=(*itrs)->planeNormal;
-				if(particleInfos.direction.dot(normal)<0) //si la face du recepteur est orienté dans l'autre direction on inverse la normal
+				if(particleInfos.direction.dot(normal)<0) //si la face du recepteur est orientée dans l'autre direction on inverse la normal
 					normal*=-1;
 				if(*(this->paramReport.configManager->FastGetConfigValue(Core_Configuration::I_PROP_SURFACE_RECEIVER_MODE))==0)
 					(*itrs)->data[particleInfos.frequenceIndex][CellRow][CellCol][particleInfos.pasCourant]+=particleInfos.energie*cosf(normal.angle(particleInfos.direction));
@@ -430,12 +430,19 @@ void ReportManager::SaveThreadsStats(const CoreString& filename,const CoreString
 	using namespace formatGABE;
 
 	GABE_Data_ShortString* statLbl=new GABE_Data_ShortString(7);
-	statLbl->SetString(0,"Particules absorbées par l'atmosphère");
+	/* statLbl->SetString(0,"Particules absorbées par l'atmosphère");
 	statLbl->SetString(1,"Particules absorbées par les matériaux");
 	statLbl->SetString(2,"Particules absorbées par les encombrements");
 	statLbl->SetString(3,"Particules perdues dû aux boucles infinies");
 	statLbl->SetString(4,"Particules perdues dû au maillage incorrect");
 	statLbl->SetString(5,"Particules restantes");
+	statLbl->SetString(6,"Total"); */
+	statLbl->SetString(0,"Particles absorbed by the atmosphere");
+	statLbl->SetString(1,"Particles absorbed by the materials");
+	statLbl->SetString(2,"Particles absorbed by the fittings");
+	statLbl->SetString(3,"Particles lost by infinite loops");
+	statLbl->SetString(4,"Particles lost by meshing problems");
+	statLbl->SetString(5,"Particles remaining at the end of the calculation");
 	statLbl->SetString(6,"Total");
 	uentier nbfreqUsed=0;
 	for(std::size_t idfreq=0;idfreq<cols.size();idfreq++)
@@ -536,7 +543,7 @@ void ReportManager::SaveSoundLevelBySource(const CoreString& filename,std::vecto
 	GABE_Data_ShortString collbl(params.configManager->srcList.size());
 	for(uentier idsrc=0;idsrc<collbl.GetSize();idsrc++)
 		collbl.SetString(idsrc,params.configManager->srcList[idsrc]->sourceName.c_str());
-	collbl.SetLabel("sl_per_src");
+	collbl.SetLabel("Sound level per source");
 
 	//Pour chaque récepteur ponctuel
 	for(uentier idrecp=0;idrecp<params.configManager->recepteur_p_List.size();idrecp++)
@@ -696,7 +703,7 @@ void ReportManager::SaveRecpIntensity(const CoreString& filename,std::vector<t_s
 			for(std::size_t idcol=0;idcol<freq_gabe_cols.size();idcol++)
 				recorder.SetCol(nbheaders_cols+idcol,freq_gabe_cols[idcol]);
 			recorder.LockData();
-			recorder.Save(CoreString(freqdir+"intensity.rpi").c_str());
+			recorder.Save(CoreString(freqdir+"Intensity.rpi").c_str());
 		}
 	}
 

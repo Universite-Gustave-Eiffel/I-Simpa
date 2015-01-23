@@ -51,9 +51,10 @@ ApplicationConfiguration::tab_HashElement ApplicationConfiguration::tab_refEleme
 
 const wxString ApplicationConfiguration::CONST_REPORT_FOLDER_PATH=wxString("report")+wxFileName::GetPathSeparator();
 const wxString ApplicationConfiguration::CONST_REPORT_PARTICLE_FOLDER_PATH=wxString("particles")+wxFileName::GetPathSeparator();
-const wxString ApplicationConfiguration::CONST_REPORT_PARTICLE_FILENAME="particles.pbin";
-const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FOLDER_PATH=wxString("recepteurss")+wxFileName::GetPathSeparator();
-const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FILENAME="Niveau_Sonore.csbin";
+const wxString ApplicationConfiguration::CONST_REPORT_PARTICLE_FILENAME=wxString(_("particles"))+wxString(".pbin");
+const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FOLDER_PATH=wxString(_("recepteurss"))+wxFileName::GetPathSeparator();
+/* const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FILENAME=_("Sound_level.csbin");*/
+const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FILENAME=wxString(_("Sound_level"))+wxString(".csbin");
 const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_CUT_FILENAME="rs_cut.csbin";
 const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FILENAME_TR="TR.csbin";
 const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FILENAME_EDT="EDT.csbin";
@@ -134,13 +135,13 @@ void ApplicationConfiguration::LoadConfiguration(wxString propFile)
 		tabPonderation.push_back(tempPonderation[i]);
 
 	tabLoisReflexion.clear();
-	tabLoisReflexion.push_back("Spéculaire");
-	tabLoisReflexion.push_back("Uniforme");
+	tabLoisReflexion.push_back("Specular");
+	tabLoisReflexion.push_back("Uniform");
 	tabLoisReflexion.push_back("Lambert");
 	tabLoisReflexion.push_back("W2");
 	tabLoisReflexion.push_back("W3");
 	tabLoisReflexion.push_back("W4");
-	tabLoisReflexion.push_back("Semi-diffus");
+	tabLoisReflexion.push_back("Semi-diffuse");
 	_("Specular");
 	_("Uniform");
 	_("W2");

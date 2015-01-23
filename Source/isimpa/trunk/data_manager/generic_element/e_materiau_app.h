@@ -53,7 +53,7 @@ class E_Materiau_App: public E_Materiau
 {
 public:
 	E_Materiau_App( wxXmlNode* noeudCourant ,  Element* parent)
-		:E_Materiau(parent,"Matériau application",Element::ELEMENT_TYPE_MATERIAU_APP,noeudCourant)
+		:E_Materiau(parent,"Reference material",Element::ELEMENT_TYPE_MATERIAU_APP,noeudCourant)
 	{
 		_("Reference material");
 		const std::vector<ApplicationConfiguration::t_freq> tabfreq=ApplicationConfiguration::GetAllFrequencies();

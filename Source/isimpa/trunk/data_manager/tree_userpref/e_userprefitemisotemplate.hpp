@@ -100,7 +100,7 @@ public:
 					}
 				}
 			}
-			this->AppendPropertyList("isofilename","Palette des niveaux",gplFileName,defaultIso,false,1,gplFileId,false);
+			this->AppendPropertyList("isofilename","Iso-levels color",gplFileName,defaultIso,false,1,gplFileId,false);
 			_("Iso-levels color");
 			folder_parsed=true;
 		}

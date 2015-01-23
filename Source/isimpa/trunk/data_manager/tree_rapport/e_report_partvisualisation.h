@@ -57,7 +57,7 @@ public:
 	 * @param Path Chemin d'accès au fichier depuis l'executable de l'interface
 	 */
 	E_Report_ParticulesVisualisation(Element* parent,wxString Nom,wxString Path)
-		:E_Report_File(parent,"Visualisation particules",Path,ELEMENT_TYPE_REPORT_PARTVISUALISATION)
+		:E_Report_File(parent,wxTRANSLATE("Particles animation"),Path,ELEMENT_TYPE_REPORT_PARTVISUALISATION)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_DISK_PARTICLE);
 

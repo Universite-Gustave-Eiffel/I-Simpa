@@ -412,7 +412,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	WX_GL_LEVEL , 1};
 
 	GlFrame = new OpenGlViewer(this, -1, wxPoint(0,25), wxSize(-1,-1),
-												0, _("Main windows") ); //, gl_attrib
+												0, _("Main window") ); //, gl_attrib
 
 	toolbarGl = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTB_FLAT | wxTB_NODIVIDER);
 
@@ -482,21 +482,21 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	glFrameNotebook->AddPage(&(*(GlFrame)), _("Vue 3D") , true);
 */
 
-	m_mgr.AddPane(&(*(GlFrame)), wxAuiPaneInfo().Name("3Dview").Caption(_("Main windows")).
+	m_mgr.AddPane(&(*(GlFrame)), wxAuiPaneInfo().Name("3Dview").Caption(_("Main window")).
 					CenterPane().Show());
     m_mgr.AddPane(tbProjet, wxAuiPaneInfo().
-                  Name(wxT("projetTb")).Caption(_("Project tools")).
+                  Name(wxT("projetTb")).Caption(_("Project toolbar")).
                   ToolbarPane().Position(0).Top().CloseButton(false));
 
 
 
     m_mgr.AddPane(visualisation, wxAuiPaneInfo().
-                  Name(wxT("visualisationTb")).Caption(_("Camera tools")).
+                  Name(wxT("visualisationTb")).Caption(_("Camera toolbar")).
                   ToolbarPane().Top().Position(1).CloseButton(false));
 
 
     m_mgr.AddPane(toolbarGl, wxAuiPaneInfo().
-                  Name(wxT("maillageTb")).Caption(_("Meshing tools")).
+                  Name(wxT("maillageTb")).Caption(_("Meshing toolbar")).
                   ToolbarPane().Top().Position(2).CloseButton(false));
 
     m_mgr.AddPane(simulation, wxAuiPaneInfo().
@@ -504,7 +504,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
                   ToolbarPane().Position(3).Top().CloseButton(false));
 
     m_mgr.AddPane(mousetool, wxAuiPaneInfo().
-                  Name(wxT("toolTb")).Caption(_("Standard tools")).
+                  Name(wxT("toolTb")).Caption(_("Pointer toolbar")).
                   ToolbarPane().Position(4).Top().CloseButton(false));
 	//Feuille de propriétés
 
@@ -955,9 +955,9 @@ void MainUiFrame::OnCreateModel(wxCommandEvent & event)
 	while(!lengthOk || !heightOk || !widthOk)
 	{
 		wxCustomEntryDialog textDialog(this,_("Please enter scene dimensions"),_("Creating scene"));
-		textDialog.AddTextControl(_("Width (x)"),"1.0");
-		textDialog.AddTextControl(_("Length (y)"),"1.0");
-		textDialog.AddTextControl(_("Height (z)"),"1.0");
+		textDialog.AddTextControl(_("Width (x)"),"5.0");
+		textDialog.AddTextControl(_("Length (y)"),"5.0");
+		textDialog.AddTextControl(_("Height (z)"),"5.0");
 		if (textDialog.ShowModal() == wxID_OK)
 		{
 			std::vector<wxString> valeursChamps;

@@ -206,7 +206,7 @@ public:
 	 */
 	static void SaveRecpAcousticParamsAdvance(const CoreString& filename,std::vector<t_sppsThreadParam>& cols,const t_ParamReport& params);
 	/**
-	 * Sauvegarde le tableau contenants les données de vecteurs d'intensitée
+	 * Sauvegarde le tableau contenants les données de vecteurs d'intensité
 	 */
 	static void SaveRecpIntensity(const CoreString& filename,std::vector<t_sppsThreadParam>& cols,const t_ParamReport& params);
 	/**

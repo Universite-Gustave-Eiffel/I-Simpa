@@ -53,8 +53,8 @@ public:
 		:Element(parent,"Properties",Element::ELEMENT_TYPE_SCENE_VOLUMES_VOLUME_PROPRIETES)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
-		this->AppendPropertyBool("fcompute_mean_free_path","Calculer libre parcourt moyen",true,true);
-		this->AppendPropertyDecimal("mean_free_path","Libre parcourt moyen",1,true,2,false,true,0,.01f,true);
+		this->AppendPropertyBool("fcompute_mean_free_path","Calculate the mean free path",true,true);
+		this->AppendPropertyDecimal("mean_free_path","Mean free path",1,true,2,false,true,0,.01f,true);
 		_("Calculate the mean free path");
 		_("Mean free path");
 	}

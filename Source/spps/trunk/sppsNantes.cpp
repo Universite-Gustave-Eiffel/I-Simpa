@@ -60,7 +60,7 @@ void runSourceCalculation( progressOperation* parentOperation, t_ToolBox& applic
 	    #if __USE_MULTITHREAD__
 		boost::mutex::scoped_lock lock(mutex);
 		#endif
-		std::cerr<<"Unable to find the source position !";
+		std::cerr<<"Unable to find the source position!";
 		return;
 	}
 	uentier quandparticules=*applicationTools.configurationTool->FastGetConfigValue(Core_Configuration::IPROP_QUANT_PARTICLE_CALCULATION);
@@ -210,7 +210,7 @@ void runFrequenceCalculation(  progressOperation* parentOperation, ReportManager
 		threadData->GabeColData=outputTool.GetColStats();	//Recupere les données des etats de particules
 		threadData->GabeSumEnergyFreq=outputTool.GetSumEnergy();//Recupere les données du niveau sonore global
 		outputTool.FillWithLefData(*threadData); //Recupere les données du lef (utilisé pour le calcul du LF et LFC)
-		cout<<"End of calculation of emitters at "<<threadData->freqInfos->freqValue<<" Hz."<<endl;
+		cout<<"End of calculation at "<<threadData->freqInfos->freqValue<<" Hz."<<endl;
 
 
 	#if __USE_MULTITHREAD__
@@ -248,13 +248,13 @@ int MainProcess(int argc, char* argv[])
 			pathFichier.append(argv[idarg]);
 		}
 	}else{
-		cout<<"The path of the XML configuration file must be specified !"<<endl;
+		cout<<"The path of the XML configuration file must be specified!"<<endl;
 		return 1;
 	}
 
 	//**************************************************
 	// 1: Lire le fichier XML
-	cout<<"XML configuration file is currently loading .."<<endl;
+	cout<<"XML configuration file is currently loading..."<<endl;
 	Core_Configuration configManager(pathFichier);
 	applicationToolBox.configurationTool=&configManager;
 	cout<<"XML configuration file has been loaded."<<endl;
@@ -353,23 +353,23 @@ int MainProcess(int argc, char* argv[])
 
 	ReportManager::SaveThreadsStats(workingDir+*configManager.FastGetConfigValue(Core_Configuration::SPROP_STATS_FILE_PATH),workingDir+*configManager.FastGetConfigValue(Core_Configuration::SPROP_CUMUL_FILE_PATH),threadsData,reportParameter);
 
-	cout<<"Save Ponctual Receiver Advanced Parameters."<<endl;
+	cout<<"Saving Ponctual Receiver Advanced Parameters..."<<endl;
 	ReportManager::SaveRecpAcousticParamsAdvance(*configManager.FastGetConfigValue(Core_Configuration::SPROP_ADV_PONCTUAL_RECEIVER_FILE_PATH),threadsData,reportParameter);
 	cout<<"End of save of Ponctual Receiver Advanced Parameters."<<endl;
 
-	cout<<"Save Ponctual Receiver intensity."<<endl;
-	ReportManager::SaveRecpIntensity("ponct_intensity.gabe",threadsData,reportParameter);
+	cout<<"Saving Ponctual Receiver Intensity..."<<endl;
+	ReportManager::SaveRecpIntensity("Punctual receiver intensity.gabe",threadsData,reportParameter);
 	cout<<"End of save of Ponctual Receiver intensity."<<endl;
 
-	cout<<"Save sound level for each Ponctual Receiver by source."<<endl;
-	ReportManager::SaveSoundLevelBySource("sl_per_src.recp",threadsData,reportParameter);
-	cout<<"End of save sound level for each Ponctual Receiver by source."<<endl;
+	cout<<"Saving sound level for each Ponctual Receiver per source..."<<endl;
+	ReportManager::SaveSoundLevelBySource("Sound level per source.recp",threadsData,reportParameter);
+	cout<<"End of save sound level for each Ponctual Receiver per source."<<endl;
 	stringClass globalRecSurfPath=workingDir+*configManager.FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FOLDER_PATH)+"Global\\";
 	//Création du dossier Global
 	st_mkdir(globalRecSurfPath.c_str());
     stringClass globalSurfCutPath=globalRecSurfPath+*configManager.FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FILE_CUT_PATH);
 	globalRecSurfPath+=*configManager.FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FILE_PATH);
-	cout<<"Save Global surface receiver data."<<endl;
+	cout<<"Saving Global Surface Receiver Data..."<<endl;
 	#ifndef _PROFILE_
 		#ifdef UTILISER_MAILLAGE_OPTIMISATION
 			ReportManager::SauveGlobalRecepteursSurfaciques(globalRecSurfPath,configManager.recepteur_s_List,sceneTetraMesh,*configManager.FastGetConfigValue(Core_Configuration::FPROP_TIME_STEP));
@@ -378,7 +378,7 @@ int MainProcess(int argc, char* argv[])
 		#endif
 		ReportManager::SauveRecepteursSurfaciquesCoupe(globalSurfCutPath,configManager.recepteur_scut_List,*configManager.FastGetConfigValue(Core_Configuration::FPROP_TIME_STEP));
 	#endif
-	cout<<"End of save Global surface receiver data."<<endl;
+	cout<<"End of save Global Surface Receiver Data."<<endl;
 	//**************************************************
 	// 9: Libère l'espace mémoire
 	for(std::size_t idfreq=0;idfreq<threadsData.size();idfreq++)

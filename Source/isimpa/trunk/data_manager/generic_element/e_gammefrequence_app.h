@@ -48,7 +48,7 @@ class E_GammeFrequence_App: public E_GammeFrequence
 {
 public:
 	E_GammeFrequence_App( wxXmlNode* noeudCourant ,  Element* parent)
-		:E_GammeFrequence(parent,"Spectre application",Element::ELEMENT_TYPE_GAMMEFREQ_APP,noeudCourant)
+		:E_GammeFrequence(parent,"Reference spectrum",Element::ELEMENT_TYPE_GAMMEFREQ_APP,noeudCourant)
 	{
 		_("Reference spectrum");
 	}

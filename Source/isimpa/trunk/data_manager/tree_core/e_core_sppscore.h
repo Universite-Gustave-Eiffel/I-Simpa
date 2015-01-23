@@ -52,25 +52,26 @@ class E_Core_Spps: public E_Core_Core
 protected:
 	void InitTransmission(E_Core_Core_Configuration* confCore)
 	{
-		confCore->AppendPropertyDecimal("trans_epsilon",wxTRANSLATE("Limite de transmission"),5,true,1,true,true,10,0,true);
-		confCore->AppendPropertyBool("trans_calc",wxTRANSLATE("Calcul Transmission"),true,true);
-		confCore->AppendPropertyDecimal("rayon_recepteurp",wxTRANSLATE("Rayon des récepteurs ponctuels"),.31f,false,5,false,true,0,EPSILON,true);
+		confCore->AppendPropertyDecimal("trans_epsilon",wxTRANSLATE("Active calculation transmission (limit)"),5,true,1,true,true,10,0,true);
+		confCore->AppendPropertyBool("trans_calc",wxTRANSLATE("Active calculation transmission"),true,true);
+		confCore->AppendPropertyDecimal("rayon_recepteurp",wxTRANSLATE("Receiver radius"),.31f,false,5,false,true,0,EPSILON,true);
 	}
 	void InitSurfaceReceiverMethod(E_Core_Core_Configuration* confCore)
 	{
 		std::vector<wxString> surfMethod;
 		std::vector<int> surfMethodIndex;
-		surfMethod.push_back(wxTRANSLATE("Cartographie intensité"));
+		surfMethod.push_back(wxTRANSLATE("Soundmap: intensity"));
 		surfMethodIndex.push_back(0);
-		surfMethod.push_back(wxTRANSLATE("Cartographie SPL"));
+		surfMethod.push_back(wxTRANSLATE("Soundmap: SPL"));
 		surfMethodIndex.push_back(1);
-		confCore->AppendPropertyList("surf_receiv_method",wxTRANSLATE("Export des récepteurs surfacique de type"),surfMethod,0,false,1,surfMethodIndex,true);
+		confCore->AppendPropertyList("surf_receiv_method",wxTRANSLATE("Surface receiver export"),surfMethod,0,false,1,surfMethodIndex,true);
 	}
 	void InitNewProperties() //Nouvelle proprietes 07/04/2009
 	{
-		this->AppendPropertyText("stats_filename","stats","statsSPPS.gabe",true,true)->Hide();
+		/* this->AppendPropertyText("stats_filename",wxString(_("SPPS calculation statistics"))+wxString(".gabe"),true,true)->Hide(); */ 
+		this->AppendPropertyText("stats_filename","stats",wxTRANSLATE("toto.gabe"),true,true)->Hide();
 		this->AppendPropertyText("intensity_folder","intensity_folder",wxTRANSLATE("IntensityAnimation"),true,true)->Hide();
-		this->AppendPropertyText("intensity_filename","intensity_filename","intensity.rpi",true,true)->Hide();
+		this->AppendPropertyText("intensity_filename","intensity_filename",wxString(_("Intensity vector"))+wxString(".rpi"),true,true)->Hide();
 		this->AppendPropertyText("intensity_rp_filename","intensity_rp_filename","ponct_intensity.gabe",true,true)->Hide();
 		#if 0
 		    // Code source à destination de PoEdit
@@ -81,18 +82,15 @@ protected:
 	}
 	void InitExportRs(Element* confCore)
 	{
-		confCore->AppendPropertyBool("output_recs_byfreq","Export des récepteurs de surface par bande de fréquence",true,true);
+		confCore->AppendPropertyBool("output_recs_byfreq","Export surface receivers for each frequency band",true,true);
 		_("Export surface receivers for each frequency band");
 	}
 	void InitOutputRecpBySource(Element* confCore) {
-		confCore->AppendPropertyBool("output_recp_bysource", "Echogramme par source", false, true);
+		confCore->AppendPropertyBool("output_recp_bysource", "Echogram per source", false, true);
+		_("Echogram per source");
 	}
 	void InitRandomSeed(Element* confCore) {
-		confCore->AppendPropertyEntier("random_seed","Random seed", 0,true, false, true);
-		#if 0
-		    // Code source à destination de PoEdit
-			_("Random number generator initialization");
-		#endif
+		confCore->AppendPropertyEntier("random_seed",wxTRANSLATE("Random seed"), 0,true, false, true);
 	}
 public:
 
@@ -143,19 +141,19 @@ public:
 		//Ajout des propriétés propres à spps
 		std::vector<wxString> computationMethods;
 		std::vector<int> computationMethodsIndex;
-		computationMethods.push_back("Aléatoire");
-		computationMethods.push_back("Énergétique");
+		computationMethods.push_back("Random");
+		computationMethods.push_back("Energetic");
 
-		confCore->AppendPropertyEntier("nbparticules","Particules par source",150000,true,false,true,0,1);
-		confCore->AppendPropertyEntier("nbparticules_rendu","Particules par source (rendu)",0,true,false,true,0,0);
-		confCore->AppendPropertyBool("abs_atmo_calc","Calcul Absorption atmosphérique",true,true);
-		confCore->AppendPropertyBool("enc_calc","Calcul Encombrement",true,true);
-		confCore->AppendPropertyBool("direct_calc","Calcul du Champ Direct uniquement",false,true);
-		confCore->AppendPropertyList("computation_method","Méthode de calcul",computationMethods,0,false,1,computationMethodsIndex,true);
+		confCore->AppendPropertyEntier("nbparticules",wxTRANSLATE("Number of sound particles per source"),150000,true,false,true,0,1);
+		confCore->AppendPropertyEntier("nbparticules_rendu",wxTRANSLATE("Number of sound particles per source (display)"),0,true,false,true,0,0);
+		confCore->AppendPropertyBool("abs_atmo_calc",wxTRANSLATE("Active calculation of atmospheric absorption"),true,true);
+		confCore->AppendPropertyBool("enc_calc",wxTRANSLATE("Active calculation of diffusion by fitting objects"),true,true);
+		confCore->AppendPropertyBool("direct_calc",wxTRANSLATE("Active calculation of direct field only"),false,true);
+		confCore->AppendPropertyList("computation_method",wxTRANSLATE("Calculation method"),computationMethods,0,false,1,computationMethodsIndex,true);
 
 		InitTransmission(confCore);
 
-		#if 0
+		/* #if 0
 		    // Code source à destination de PoEdit
 			_("SPPS");
 			_("Random");
@@ -171,7 +169,7 @@ public:
 			_("Limit of propagation (10^n)");
 			_("Active calculation of acoustic transmission");
 			_("Punctual intensity");
-		#endif
+		#endif */
 
 		this->AppendFils(new E_Core_Core_Bfreqselection(this));
 
@@ -208,7 +206,7 @@ public:
 				{
 					unsigned int nbpasdetemps=elConf->GetDecimalConfig("duree_simulation")/elConf->GetDecimalConfig("pasdetemps");
 					unsigned int total_data=nbpartrendu*nbpasdetemps*sizeof(float)*4*ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Sources_Actives;
-					wxLogWarning("La taille estimée du fichier de particule par bande de fréquence est de %.2f Mo",float(total_data)/pow(10.f,6.f));
+					wxLogWarning(wxTRANSLATE("The size of the particle file, for each frequency band, is around %.2f Mo"),float(total_data)/pow(10.f,6.f));
 				}
 			}else if(filsInfo.libelleElement=="computation_method")
 			{

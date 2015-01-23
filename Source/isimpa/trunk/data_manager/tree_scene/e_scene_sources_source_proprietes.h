@@ -46,7 +46,7 @@ private:
 	//v1.01
 	void InitNewProperties()
 	{
-		this->AppendPropertyBool("enable","Source active",true);
+		this->AppendPropertyBool("enable","Active source",true);
 		_("Active source");
 	}
 	void InitProperties()

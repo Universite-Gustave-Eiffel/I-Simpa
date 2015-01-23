@@ -110,8 +110,8 @@ void E_Scene_Groupesurfaces_Groupe::InitGroupProp()
 {
 	if(!this->IsPropertyExist("aire"))
 	{
-		this->AppendPropertyDecimal("aire","Surface area (m²)",0,true,2);
-		_("Surface area (m²)");
+		this->AppendPropertyDecimal("aire","Surface area (m2)",0,true,2);
+		_("Surface area (m2)");
 	}else{
 		this->UpdateDecimalConfig("aire",0);
 	}
@@ -221,7 +221,7 @@ void E_Scene_Groupesurfaces_Groupe::InitProp()
 				filterTree.push_back(ELEMENT_TYPE_SCENE_BDD_MATERIAUX_USER_GROUP);
 				filterTree.push_back(ELEMENT_TYPE_SCENE_BDD_MATERIAUX_USER_MATERIAU);
 
-				this->AppendFils(new E_Data_Tree(this,"typesurface","Matériau",rootMateriaux,filterTree,defaultEle,false,1));
+				this->AppendFils(new E_Data_Tree(this,"typesurface","Material",rootMateriaux,filterTree,defaultEle,false,1));
 				this->SetDrawable();
 			}
 			ignoreModification=false;

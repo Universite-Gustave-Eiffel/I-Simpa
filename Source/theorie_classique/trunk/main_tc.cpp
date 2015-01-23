@@ -47,14 +47,14 @@ int MainProcess(int argc, char* argv[])
 			pathFichier.append(argv[idarg]);
 		}
 	}else{
-		cout<<"The path of the XML configuration file must be specified !"<<endl;
+		cout<<_("The path of the XML configuration file must be specified!")<<endl;
 		return 1;
 	}
 
 
 	//**************************************************
 	// 1: Lire le fichier XML
-	cout<<"XML configuration file is currently loading .."<<endl;
+	cout<<_("XML configuration file is currently loading...")<<endl;
 	cout<<pathFichier<<endl;
 	Core_Configuration configManager(pathFichier);
 	applicationToolBox.configurationTool=&configManager;
@@ -127,17 +127,17 @@ int MainProcess(int argc, char* argv[])
 		/////////////
 		// Colonnes des récepteurs ponctuels
 		std::vector<CoreString> colsLbl;
-		colsLbl.push_back("Champ direct"+CoreString(ret)+"dB SPL");
-		colsLbl.push_back("Champ total Sabine"+CoreString(ret)+"dB SPL");
-		colsLbl.push_back("Champ total Eyring"+CoreString(ret)+"dB SPL");
+		colsLbl.push_back("Direct"+CoreString(ret)+"dB SPL");
+		colsLbl.push_back("Total (Sabine)"+CoreString(ret)+"dB SPL");
+		colsLbl.push_back("Total (Eyring)"+CoreString(ret)+"dB SPL");
 
 
 		CoreString fileGlobalName=*configManager.FastGetConfigValue(Core_Configuration::SPROP_CORE_WORKING_DIRECTORY);
-		fileGlobalName+="main_calculation";
+		fileGlobalName+=_("main_calculation");
 		CoreString rpsFolder=*configManager.FastGetConfigValue(Core_Configuration::SPROP_CORE_WORKING_DIRECTORY);
 		if(calcCore.recepteurPList.size()>0)
 		{
-			rpsFolder+="Récepteurs ponctuels\\";
+			rpsFolder+=_("Punctual receivers\\");
 			st_mkdir(rpsFolder.c_str());
 			ReportManager::SauveTCRecepteursPonctuels(rpsFolder,reportFreqLbl,colsLbl,&calcCore.recepteurPList);
 		}
