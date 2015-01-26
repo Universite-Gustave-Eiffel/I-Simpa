@@ -543,7 +543,7 @@ void ReportManager::SaveSoundLevelBySource(const CoreString& filename,std::vecto
 	GABE_Data_ShortString collbl(params.configManager->srcList.size());
 	for(uentier idsrc=0;idsrc<collbl.GetSize();idsrc++)
 		collbl.SetString(idsrc,params.configManager->srcList[idsrc]->sourceName.c_str());
-	collbl.SetLabel("Sound level per source");
+	collbl.SetLabel("SPL");
 
 	//Pour chaque récepteur ponctuel
 	for(uentier idrecp=0;idrecp<params.configManager->recepteur_p_List.size();idrecp++)

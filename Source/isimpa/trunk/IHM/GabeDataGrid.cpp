@@ -674,7 +674,7 @@ void GabeDataGrid::LoadData(wxString gabeFilePath)
 			this->InsertRows(0,gabeData->GetSize());
 			for(int idrow=0;idrow<gabeData->GetSize();idrow++)
 			{
-				this->SetRowLabelValue(idrow, gabeData->GetStringEquiv(idrow));
+				this->SetRowLabelValue(idrow, _(gabeData->GetStringEquiv(idrow)));
 				AutoSizeLibelle(idrow);
 			}
 		}else{

@@ -120,10 +120,10 @@ public:
 		NoeudCourant->AddProperty("recepteurss_filename",ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FILENAME);
 		NoeudCourant->AddProperty("recepteurss_cut_filename",ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_CUT_FILENAME);
 
-		NoeudCourant->AddProperty("receiversp_directory",wxString(_("Punctual receivers")));
-		NoeudCourant->AddProperty("receiversp_filename",wxString(_("Sound level"))+wxString(".recp"));
-		NoeudCourant->AddProperty("receiversp_filename_adv",wxString(_("Advanced sound level"))+wxString(".gap"));
-		NoeudCourant->AddProperty("cumul_filename",wxString(_("Total energy"))+wxString(".recp"));
+		NoeudCourant->AddProperty("receiversp_directory",wxTRANSLATE("Punctual receivers"));
+		NoeudCourant->AddProperty("receiversp_filename",wxTRANSLATE("Sound level")+wxString(".recp"));
+		NoeudCourant->AddProperty("receiversp_filename_adv",wxTRANSLATE("Advanced sound level")+wxString(".gap"));
+		NoeudCourant->AddProperty("cumul_filename",wxTRANSLATE("Total energy")+wxString(".recp"));
 
 		return Element::SaveXMLCoreDoc(NoeudCourant);
 	}

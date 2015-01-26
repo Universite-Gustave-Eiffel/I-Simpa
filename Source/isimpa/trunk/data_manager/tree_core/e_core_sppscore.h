@@ -69,16 +69,20 @@ protected:
 	void InitNewProperties() //Nouvelle proprietes 07/04/2009
 	{
 		/* this->AppendPropertyText("stats_filename",wxString(_("SPPS calculation statistics"))+wxString(".gabe"),true,true)->Hide(); */ 
-		this->AppendPropertyText("stats_filename","stats",wxTRANSLATE("toto.gabe"),true,true)->Hide();
+		this->AppendPropertyText("stats_filename","stats",wxTRANSLATE("statsSPPS")+wxString(".gabe"),true,true)->Hide();
 		this->AppendPropertyText("intensity_folder","intensity_folder",wxTRANSLATE("IntensityAnimation"),true,true)->Hide();
-		this->AppendPropertyText("intensity_filename","intensity_filename",wxString(_("Intensity vector"))+wxString(".rpi"),true,true)->Hide();
+		this->AppendPropertyText("intensity_filename","intensity_filename",wxTRANSLATE("Intensity vector")+wxString(".rpi"),true,true)->Hide();
 		this->AppendPropertyText("intensity_rp_filename","intensity_rp_filename","ponct_intensity.gabe",true,true)->Hide();
-		#if 0
-		    // Code source à destination de PoEdit
-			_("Intensity Animation");
-			_("Core Statistics");
-			_("Sound level per source");
-		#endif
+		    
+		// Code source à destination de PoEdit
+		wxTRANSLATE("Punctual receiver intensity");
+		wxTRANSLATE("Particles absorbed by the atmosphere");
+		wxTRANSLATE("Particles absorbed by the materials");
+		wxTRANSLATE("Particles absorbed by the fittings");
+		wxTRANSLATE("Particles lost by infinite loops");
+		wxTRANSLATE("Particles lost by meshing problems");
+		wxTRANSLATE("Particles remaining at the end of the calculation");
+		wxTRANSLATE("Sound level per source");
 	}
 	void InitExportRs(Element* confCore)
 	{
@@ -86,8 +90,7 @@ protected:
 		_("Export surface receivers for each frequency band");
 	}
 	void InitOutputRecpBySource(Element* confCore) {
-		confCore->AppendPropertyBool("output_recp_bysource", "Echogram per source", false, true);
-		_("Echogram per source");
+		confCore->AppendPropertyBool("output_recp_bysource", wxTRANSLATE("Echogram per source"), false, true);
 	}
 	void InitRandomSeed(Element* confCore) {
 		confCore->AppendPropertyEntier("random_seed",wxTRANSLATE("Random seed"), 0,true, false, true);

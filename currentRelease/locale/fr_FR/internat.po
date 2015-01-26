@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: I-Simpa GUI\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-23 12:39+0100\n"
-"PO-Revision-Date: 2015-01-23 13:53+0100\n"
+"POT-Creation-Date: 2015-01-26 13:33+0100\n"
+"PO-Revision-Date: 2015-01-26 15:21+0100\n"
 "Last-Translator: Ifsttar <Judicael.Picaut@ifsttar.fr>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/i-simpa/language/"
 "fr/)\n"
@@ -2798,9 +2798,8 @@ msgid "Surface receiver export"
 msgstr "Export des récepteurs surfaciques"
 
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:72
-#, fuzzy
-msgid "toto.gabe"
-msgstr "Statistiques SPPS.gabe"
+msgid "statsSPPS"
+msgstr "Statistiques particules SPPS"
 
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:73
 msgid "IntensityAnimation"
@@ -2811,63 +2810,82 @@ msgid "Intensity vector"
 msgstr "Vecteur intensité"
 
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:78
-#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_rpi.h:58
-msgid "Intensity Animation"
-msgstr "Récepteurs ponctuels (animation intensité)"
+msgid "Punctual receiver intensity"
+msgstr "Vecteur intensité"
 
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:79
-msgid "Core Statistics"
-msgstr "core_stat"
+msgid "Particles absorbed by the atmosphere"
+msgstr "Particules absorbées par l'atmosphère"
 
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:80
+msgid "Particles absorbed by the materials"
+msgstr "Particules absorbées par les matériaux"
+
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:81
+msgid "Particles absorbed by the fittings"
+msgstr "Particules absorbées par les encombrements"
+
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:82
+msgid "Particles lost by infinite loops"
+msgstr "Particules perdues en raison de boucles infinies"
+
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:83
+msgid "Particles lost by meshing problems"
+msgstr "Particules perdues en raison de problèmes de maillage"
+
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:84
+msgid "Particles remaining at the end of the calculation"
+msgstr "Particules restantes à la fin du calcul"
+
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:85
 msgid "Sound level per source"
 msgstr "Niveau sonore par source"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:86
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:90
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:98
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_tccore.h:52
 msgid "Export surface receivers for each frequency band"
 msgstr "Export des récepteurs de surface par bande de fréquence"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:90
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:93
 msgid "Echogram per source"
 msgstr "Echogramme par source"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:93
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:96
 msgid "Random seed"
 msgstr "Initialisation du générateur de nombres aléatoires"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:147
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:150
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:100
 msgid "Number of sound particles per source"
 msgstr "Particules par source"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:148
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:151
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:101
 msgid "Number of sound particles per source (display)"
 msgstr "Particules par source (rendu)"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:149
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:152
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:102
 msgid "Active calculation of atmospheric absorption"
 msgstr "Calcul Absorption atmosphérique"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:150
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:153
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:103
 msgid "Active calculation of diffusion by fitting objects"
 msgstr "Calcul Encombrement"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:151
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:154
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:104
 msgid "Active calculation of direct field only"
 msgstr "Calcul du Champ Direct uniquement"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:152
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:155
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppsoctreecore.h:99
 msgid "Calculation method"
 msgstr "Méthode de calcul"
 
-#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:209
+#: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:212
 #, c-format
 msgid ""
 "The size of the particle file, for each frequency band, is around %.2f Mo"
@@ -3042,6 +3060,10 @@ msgstr "Calcul de TS"
 #: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:193
 msgid "ST computation"
 msgstr "Calcul de ST"
+
+#: ../Source/isimpa/trunk/data_manager/tree_rapport/e_report_rpi.h:58
+msgid "Intensity Animation"
+msgstr "Récepteurs ponctuels (animation intensité)"
 
 #: ../Source/isimpa/trunk/data_manager/tree_scene/e_scene_bdd.h:52
 msgid "Project database"
@@ -3699,6 +3721,12 @@ msgstr "Temps"
 #: ../Source/isimpa/trunk/data_manager/python_interface/py_ui_module/samples/add_data_sample.py:62
 msgid "Static"
 msgstr "Stationnaire"
+
+#~ msgid "toto"
+#~ msgstr "Statistiques SPPS"
+
+#~ msgid "Core Statistics"
+#~ msgstr "core_stat"
 
 #~ msgid "Sound_level.csbin"
 #~ msgstr "Niveau sonore.csbin"
