@@ -1,7 +1,10 @@
-#I-Simpa 
-##I-Simpa presentation
+<IMG SRC="http://i-simpa.ifsttar.fr/typo3temp/pics/b06522ab44.jpg" WIDTH=500 ALT="I-Simpa logo" TITLE="I-Simpa logo">
 
-For more information, [visit the offical I-Simpa website](http://i-simpa.ifsttar.fr).
+* **For more information**, [visit the offical I-Simpa website](http://i-simpa.ifsttar.fr).
+* **For build instructions**, see [the instructions](https://github.com/Ifsttar/I-Simpa/blob/master/Docs/Building.md)
+* **For using I-Simpa**, see [the wiki](https://github.com/Ifsttar/I-Simpa/wiki).
+
+<IMG ALIGN="right" SRC="https://raw.githubusercontent.com/Ifsttar/I-Simpa/master/Docs/images/wiki%20pictures/illustration_i_simpa_room-Home_page.png" WIDTH=350 ALT="Room illustration" TITLE="Room illustration">
 
 I-Simpa is a graphical user interface (GUI) developed to host three-dimensional numerical codes for the modeling of sound propagation
 in complex geometrical domains. Although I-Simpa is well adapted for energetic models (ray-tracing, sound-particle tracing, theory of
@@ -21,11 +24,7 @@ properties. Many features are proposed for helping users…
 for its own applications… All have been done in order you can extend I-Simpa easily. 
 
 
-I-Simpa has been initially developed as a research tool (i.e. for research laboratories), but can also be a very efficient tool for a
-professional or commercial use.
-
-For build instructions, see [this](https://github.com/Ifsttar/I-Simpa/blob/master/Docs/Building.md).<br \>
-For using I-Simpa, see [this](https://github.com/Ifsttar/I-Simpa/wiki).
+I-Simpa has been initially developed as a research tool (i.e. for research laboratories), but can also be a very efficient tool for a professional or commercial use.
 
 **IMPORTANT NOTE:** although the source code is available, it is not ready to fork. Works are in progress to correct minor bugs and to propose a first stable release. We suggest to contributors to wait this first release before contributtting to the development of I-Simpa.
 
