@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: I-SIMPA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-26 13:33+0100\n"
-"PO-Revision-Date: 2015-01-26 15:21+0100\n"
+"POT-Creation-Date: 2015-02-20 10:49+0100\n"
+"PO-Revision-Date: 2015-02-20 10:49+0100\n"
 "Last-Translator: Ifsttar <Judicael.Picaut@ifsttar.fr>\n"
 "Language-Team: Nicolas Fortin, Judicaël Picaut <i-simpa@ifsttar.fr>\n"
 "Language: fr_FR\n"
@@ -2716,7 +2716,7 @@ msgstr "Test mesh topology"
 
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:55
 msgid "Active calculation transmission (limit)"
-msgstr "Active calculation of transmission (limit value)"
+msgstr "Limit value of the particle extinction (Energetic method) : ratio 10^n"
 
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:56
 msgid "Active calculation transmission"

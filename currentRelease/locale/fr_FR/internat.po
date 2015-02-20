@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: I-Simpa GUI\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-26 13:33+0100\n"
-"PO-Revision-Date: 2015-01-26 15:21+0100\n"
+"PO-Revision-Date: 2015-02-20 10:51+0100\n"
 "Last-Translator: Ifsttar <Judicael.Picaut@ifsttar.fr>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/i-simpa/language/"
 "fr/)\n"
@@ -2775,11 +2775,12 @@ msgstr "Visualiser les faces en erreur"
 
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:55
 msgid "Active calculation transmission (limit)"
-msgstr "Calcul Transmission (limite)"
+msgstr ""
+"Valeur limite d'extinction des particules (méthode Energétique) : ratio 10^n"
 
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:56
 msgid "Active calculation transmission"
-msgstr "Calcul Transmission (limite)"
+msgstr "Calcul Transmission"
 
 #: ../Source/isimpa/trunk/data_manager/tree_core/e_core_sppscore.h:57
 msgid "Receiver radius"
