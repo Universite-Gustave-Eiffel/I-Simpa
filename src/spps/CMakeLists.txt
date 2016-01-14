@@ -18,6 +18,8 @@ set(Boost_DEBUG 1)
 set(BOOST_LIBRARYDIR $ENV{BOOST_LIBRARYDIR})
 set(BOOST_INCLUDEDIR $ENV{BOOST_INCLUDEDIR})
 find_package(Boost REQUIRED COMPONENTS thread random)
+include_directories(${BOOST_INCLUDEDIR})
+set(LIBS ${LIBS} ${LibXML++_LIBRARIES})
 #find_package(Boost
 #        #1.39 # Minimum or EXACT version e.g. 1.36.0
 #        REQUIRED             # Fail with error if Boost is not found

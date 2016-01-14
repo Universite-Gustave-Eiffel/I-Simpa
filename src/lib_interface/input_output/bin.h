@@ -37,11 +37,7 @@
 #include <fstream>
 #include <vector>
 #include <math.h>
-#ifdef _MSC_VER
-#include "../vc_stdint.h"
-#else
 #include <stdint.h>
-#endif
 /**
  * \brief Implémentation de l'interpréteur de fichier modèle Bin (*.bin)
  */
