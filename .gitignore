@@ -18,6 +18,7 @@ currentRelease/libisimpa/
 *.suo
 *.depend
 *.exe
+*.dll
 *.pyc
 *.pyd
 *.obj
@@ -25,6 +26,8 @@ currentRelease/libisimpa/
 *.exp
 *.lib
 .idea/
+CMakeCache.txt
+CMakeFiles/
 enum_def.cpp
 images/
 vc_msw/
