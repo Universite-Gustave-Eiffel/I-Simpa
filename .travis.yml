@@ -16,10 +16,9 @@ git:
 cache: apt
 
 notifications:
-  email: i-simpa@ifsttar.fr
-    recipients: github
-    on_success: change
-    on_failure: always
+  email:
+    recipients:
+      - "i-simpa@ifsttar.fr"
 
 before_install:
   - ./ci/travis/${TRAVIS_OS_NAME}/before_install.sh
