@@ -1,0 +1,37 @@
+language: cpp
+
+sudo: required
+dist: precise
+group: legacy
+
+os:
+  - linux
+
+compiler:
+  - clang
+
+git:
+  depth: 30
+
+cache: apt
+
+notifications:
+  email: i-simpa@ifsttar.fr
+    recipients: github
+    on_success: change
+    on_failure: always
+
+before_install:
+  - ./ci/travis/${TRAVIS_OS_NAME}/before_install.sh
+
+install:
+  - ./ci/travis/${TRAVIS_OS_NAME}/install.sh
+
+before_script:
+  - ./ci/travis/${TRAVIS_OS_NAME}/before_script.sh
+
+script:
+  - ./ci/travis/${TRAVIS_OS_NAME}/script.sh
+
+after_script:
+  - ./ci/travis/${TRAVIS_OS_NAME}/after_script.sh
