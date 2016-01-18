@@ -30,11 +30,7 @@
 
 #include <memory>
 #include <string.h>
-#ifdef _MSC_VER
-#include <vc_stdint.h>
-#else
 #include <stdint.h>
-#endif
 
 #ifndef __RSBIN__
 #define __RSBIN__

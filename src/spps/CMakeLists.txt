@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.3)
-project(spps)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-message(STATUS " Boost path - $ENV{BOOST_ROOT}")
+include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
+
+message(STATUS " Boost path - $ENV{BOOST_INCLUDEDIR}")
 message(STATUS " Boost lib path - $ENV{BOOST_LIBRARYDIR}")
 set(SOURCE_FILES
     data_manager/core_configuration.cpp
@@ -12,18 +12,24 @@ set(SOURCE_FILES
     sppsInitialisation.cpp
     sppsNantes.cpp
     sppsTypes.cpp)
-include_directories(../lib_interface ./)
 set(Boost_DEBUG 1)
-#set(BOOST_ROOT $ENV{BOOST_ROOT})
 set(BOOST_LIBRARYDIR $ENV{BOOST_LIBRARYDIR})
 set(BOOST_INCLUDEDIR $ENV{BOOST_INCLUDEDIR})
 find_package(Boost REQUIRED COMPONENTS thread random)
 include_directories(${BOOST_INCLUDEDIR})
-set(LIBS ${LIBS} ${LibXML++_LIBRARIES})
-#find_package(Boost
-#        #1.39 # Minimum or EXACT version e.g. 1.36.0
-#        REQUIRED             # Fail with error if Boost is not found
-#        COMPONENTS thread bind # Boost libraries by their canonical name
-#        )
 
+# Set Properties->General->Configuration Type to Application(.exe)
+# Creates spps.exe with the listed sources
+# Adds sources to the Solution Explorer
 add_executable(spps ${SOURCE_FILES})
+
+# Properties->Linker->Input->Additional Dependencies
+target_link_libraries (spps lib_interface)
+
+# Creates a folder "executables" and adds target
+# project (spps.vcproj) under it
+set_property(TARGET spps PROPERTY FOLDER "executables")
+
+# Adds logic to INSTALL.vcproj to copy spps.exe to destination directory
+install (TARGETS spps
+        RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin)
