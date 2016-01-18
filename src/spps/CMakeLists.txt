@@ -13,13 +13,7 @@ set(SOURCE_FILES
     sppsNantes.cpp
     sppsTypes.cpp)
 
-set(Boost_DEBUG 1)
-set(BOOST_LIBRARYDIR $ENV{BOOST_LIBRARYDIR})
-set(BOOST_INCLUDEDIR $ENV{BOOST_INCLUDEDIR})
-set(Boost_USE_STATIC_LIBS OFF) 
-set(Boost_USE_MULTITHREADED ON)  
-set(Boost_USE_STATIC_RUNTIME OFF) 
-ADD_DEFINITIONS( -DBOOST_ALL_NO_LIB ) 
+set(Boost_USE_STATIC_LIBS   ON) 
 find_package(Boost REQUIRED COMPONENTS thread random system)
 link_directories( ${Boost_LIBRARY_DIRS} )  
 include_directories( ${Boost_INCLUDE_DIRS} )  
