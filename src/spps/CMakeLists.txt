@@ -12,11 +12,17 @@ set(SOURCE_FILES
     sppsInitialisation.cpp
     sppsNantes.cpp
     sppsTypes.cpp)
+
 set(Boost_DEBUG 1)
 set(BOOST_LIBRARYDIR $ENV{BOOST_LIBRARYDIR})
 set(BOOST_INCLUDEDIR $ENV{BOOST_INCLUDEDIR})
-find_package(Boost REQUIRED COMPONENTS thread random)
-include_directories(${BOOST_INCLUDEDIR})
+set(Boost_USE_STATIC_LIBS OFF) 
+set(Boost_USE_MULTITHREADED ON)  
+set(Boost_USE_STATIC_RUNTIME OFF) 
+ADD_DEFINITIONS( -DBOOST_ALL_NO_LIB ) 
+find_package(Boost REQUIRED COMPONENTS thread random system)
+link_directories( ${Boost_LIBRARY_DIRS} )  
+include_directories( ${Boost_INCLUDE_DIRS} )  
 
 # Set Properties->General->Configuration Type to Application(.exe)
 # Creates spps.exe with the listed sources
@@ -25,6 +31,7 @@ add_executable(spps ${SOURCE_FILES})
 
 # Properties->Linker->Input->Additional Dependencies
 target_link_libraries (spps lib_interface)
+target_link_libraries(spps ${Boost_LIBRARIES})
 
 # Creates a folder "executables" and adds target
 # project (spps.vcproj) under it
