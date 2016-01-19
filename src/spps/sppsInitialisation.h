@@ -1,4 +1,4 @@
-#include <coretypes.h>
+#include <coreTypes.h>
 #include "data_manager/core_configuration.h"
 
 /**

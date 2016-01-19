@@ -1,5 +1,3 @@
-cmake_minimum_required(VERSION 3.3)
-
 include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
 
 message(STATUS " Boost path - $ENV{BOOST_INCLUDEDIR}")
