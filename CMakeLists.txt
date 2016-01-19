@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.3)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8.6)
 
 # Maps to a solution file (isimpa.sln). The solution will
 # have all targets (exe, lib, dll) as projects (.vcproj)
