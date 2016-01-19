@@ -19,7 +19,7 @@
 
 #include <coreinitialisation.h>
 #include "CalculationCore.h"
-#include "tools\dotdistribution.h"
+#include "tools/dotdistribution.h"
 #include "sppsInitialisation.h"
 
 #if __USE_MULTITHREAD__
