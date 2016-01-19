@@ -17,7 +17,7 @@
 	#define __USE_MULTITHREAD__ 0
 #endif
 
-#include <coreInitialisation.h>
+#include <coreinitialisation.h>
 #include "CalculationCore.h"
 #include "tools\dotdistribution.h"
 #include "sppsInitialisation.h"
