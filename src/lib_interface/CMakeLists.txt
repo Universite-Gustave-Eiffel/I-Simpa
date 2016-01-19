@@ -1,5 +1,3 @@
-cmake_minimum_required(VERSION 3.3)
-
 include_directories (.)
 set(LIBINTERFACE_SOURCE_FILES coreinitialisation.cpp coreString.cpp coreTypes.cpp dummy.cpp en_numeric.cpp std_tools.cpp
         Core/mathlib.cpp data_manager/base_core_configuration.cpp  data_manager/data_calculation/Celerite_du_son.cpp
