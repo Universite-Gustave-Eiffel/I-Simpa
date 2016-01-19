@@ -1,4 +1,5 @@
-#include "data_manager\base_core_configuration.h"
+#include "data_manager/base_core_configuration.h"
+
 /**
  * @file core_configuration.h
  * @brief Gestion des données de configuration
