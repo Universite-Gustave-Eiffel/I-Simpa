@@ -57,6 +57,7 @@ class t_pos
 {
 public:
 	t_pos(float _x,float _y,float _z) : x(_x), y(_y), z(_z) { }
+	t_pos() : x(0), y(0), z(0) { }
 	operator float*() { return this->v; }
 	int operator==(const t_pos &_v) {
 		return (fabs(this->x - _v.x) < EPSILON && fabs(this->y - _v.y) < 0 && fabs(this->z - _v.z) < 0);

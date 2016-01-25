@@ -1,40 +1,32 @@
-include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
+# Libsimpa
+message(STATUS " SWIG_EXECUTABLE     - $ENV{SWIG_EXECUTABLE}")
 
-set(BINDINGS_SOURCE_FILES
-    __array_1.pypp.hpp
-    __call_policies.pypp.hpp
-    __convenience.pypp.hpp
-    _libsimpa.py.cpp)
+FIND_PACKAGE(SWIG REQUIRED)
+INCLUDE(${SWIG_USE_FILE})
 
-set(Boost_USE_STATIC_LIBS ON) 
+# Find package for building
+FIND_PACKAGE(PythonLibs)
+# Find package for testing
+FIND_PACKAGE(PythonInterp REQUIRED)
 
-find_package(Boost REQUIRED COMPONENTS python)
-message(STATUS "Include dirs of boost: " ${Boost_INCLUDE_DIRS} )
-message(STATUS "Libs of boost: " ${Boost_LIBRARIES} )
+INCLUDE_DIRECTORIES(${PYTHON_INCLUDE_PATH})
 
-find_package(PythonLibs REQUIRED)
-message(STATUS "Include dirs of Python: " ${PYTHON_INCLUDE_DIRS} )
-message(STATUS "Libs of Python: " ${PYTHON_LIBRARIES} )
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 
-# Include external dependency
-include_directories( ${Boost_INCLUDE_DIRS} ${PYTHON_INCLUDE_DIRS})
+SET(CMAKE_SWIG_FLAGS "")
+set(CMAKE_SWIG_OUTDIR ${PROJECT_BINARY_DIR}/bin/libsimpa)
 
-# Link with external dependency
-link_directories( ${Boost_LIBRARY_DIRS} ${Python_LIBRARY_DIRS} )
+SET_SOURCE_FILES_PROPERTIES(libsimpa.i PROPERTIES CPLUSPLUS ON)
+SWIG_ADD_MODULE(libsimpa python libsimpa.i)
+SWIG_LINK_LIBRARIES(libsimpa ${PYTHON_LIBRARIES} lib_interface)
 
-add_library(python_bindings ${BINDINGS_SOURCE_FILES})
-
-SET_TARGET_PROPERTIES(python_bindings PROPERTIES SUFFIX pyd)
-
-target_link_libraries (python_bindings lib_interface ${Boost_LIBRARIES} ${PYTHON_LIBRARIES})
-
-# Creates a folder "libraries" and adds target project (python_bindings.vcproj) under it
-set_property(TARGET python_bindings PROPERTY FOLDER "libraries")
-
-# Adds logic to INSTALL.vcproj to copy lib_interface.pyc to the destination directory
-install (TARGETS python_bindings
-        RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin
-        ARCHIVE DESTINATION ${PROJECT_BINARY_DIR}/bin
-        LIBRARY DESTINATION ${PROJECT_BINARY_DIR}/lib
+# Adds logic to INSTALL.vcproj to copy _libsimpa.pyd to the destination directory
+install (TARGETS ${SWIG_MODULE_libsimpa_REAL_NAME}
+        LIBRARY DESTINATION ${PROJECT_BINARY_DIR}/bin/libsimpa
         COMPONENT library
 )
+
+add_test(NAME some_test
+  COMMAND ${PYTHON_EXECUTABLE}
+    ${CMAKE_CURRENT_BINARY_DIR}/run_test.py
+    some_test)
