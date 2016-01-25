@@ -15,10 +15,11 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 # Command to output information to the console
 # Useful for displaying errors, warnings, and debugging
-message ("cxx Flags: " ${CMAKE_CXX_FLAGS})
+message (STATUS "cxx Flags: " ${CMAKE_CXX_FLAGS})
 
 # Sub-directories where more CMakeLists.txt exist
-add_subdirectory(src/lib_interface)
+add_subdirectory (src/lib_interface)
+add_subdirectory (src/python_bindings)
 add_subdirectory (src/spps)
 
 # Turn on CMake testing capabilities
