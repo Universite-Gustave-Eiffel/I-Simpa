@@ -5,5 +5,6 @@ sudo apt-get install --force-yes --no-install-recommends --no-install-suggests \
         python \
         libboost-thread-dev \
         libboost-random-dev \
-        libboost-system-dev
+        libboost-system-dev \
+		swig
 
