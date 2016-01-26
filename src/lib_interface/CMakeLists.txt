@@ -12,6 +12,18 @@ set(LIBINTERFACE_SOURCE_FILES coreinitialisation.cpp coreString.cpp coreTypes.cp
         tools/octree44_cylinderElement.cpp )
 add_library(lib_interface ${LIBINTERFACE_SOURCE_FILES})
 
+#-----------------------------------------------------------------------------
+#
+# To fix compilation problem: relocation R_X86_64_32 against `a local symbol' can not be
+# used when making a shared object; recompile with -fPIC
+# See http://www.cmake.org/pipermail/cmake/2007-May/014350.html
+#
+IF( CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64" )
+  SET_TARGET_PROPERTIES(lib_interface PROPERTIES COMPILE_FLAGS "-fPIC")
+ENDIF( CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64" )
+
+
+
 # Creates a folder "libraries" and adds target project (lib_interface.vcproj) under it
 set_property(TARGET lib_interface PROPERTY FOLDER "libraries")
 
