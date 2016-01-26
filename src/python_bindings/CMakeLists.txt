@@ -16,6 +16,10 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 SET(CMAKE_SWIG_FLAGS "")
 SET(CMAKE_SWIG_OUTDIR ${PROJECT_BINARY_DIR}/libsimpa)
 
+SET_SOURCE_FILES_PROPERTIES(libsimpa.i PROPERTIES CPLUSPLUS ON)
+SWIG_ADD_MODULE(libsimpa python libsimpa.i)
+SWIG_LINK_LIBRARIES(libsimpa ${PYTHON_LIBRARIES} lib_interface)
+
 #-----------------------------------------------------------------------------
 #
 # To fix compilation problem: relocation R_X86_64_32 against `a local symbol' can not be
@@ -23,12 +27,9 @@ SET(CMAKE_SWIG_OUTDIR ${PROJECT_BINARY_DIR}/libsimpa)
 # See http://www.cmake.org/pipermail/cmake/2007-May/014350.html
 #
 IF( CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64" )
-  SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC")
+  SET_TARGET_PROPERTIES(${SWIG_MODULE_libsimpa_REAL_NAME} PROPERTIES COMPILE_FLAGS "-fPIC")
 ENDIF( CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64" )
 
-SET_SOURCE_FILES_PROPERTIES(libsimpa.i PROPERTIES CPLUSPLUS ON)
-SWIG_ADD_MODULE(libsimpa python libsimpa.i)
-SWIG_LINK_LIBRARIES(libsimpa ${PYTHON_LIBRARIES} lib_interface)
 
 # Adds logic to INSTALL.vcproj to copy _libsimpa.pyd to the destination directory
 install (TARGETS ${SWIG_MODULE_libsimpa_REAL_NAME}
