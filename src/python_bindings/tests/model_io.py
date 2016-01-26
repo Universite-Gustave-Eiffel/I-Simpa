@@ -1,4 +1,4 @@
-#----------------------------------------------------------------------
+ï»¿#----------------------------------------------------------------------
 # I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
 #
 # I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
@@ -28,14 +28,14 @@
 # or write to scientific.computing@ifsttar.fr
 # ----------------------------------------------------------------------
 
-# -*- coding: cp1252 -*-
+# -*- coding: utf-8 -*-
 import libsimpa as ls
 
 ##############################################
-# Tableaux
+# Table
  
-#Définition des 8 sommets du cube           
-sommets=[   [5.0, 0.0, 0.0],
+# Make a cube, 8 vertices
+vertices=[   [5.0, 0.0, 0.0],
             [0.0, 0.0, 0.0],
             [0.0, 5.0, 0.0],
             [5.0, 5.0, 0.0],
@@ -44,8 +44,8 @@ sommets=[   [5.0, 0.0, 0.0],
             [0.0, 0.0, 5.0],
             [5.0, 0.0, 5.0]
         ]
-#Définition des 12 faces triangulaire du cube
-# [ sommetA, sommetB, sommetC, idencombrement, idmateriau, idrecepteursurf ]
+# 12 triangular faces
+# [ vertex1, vertexB, vertexC, vertexD, materialID, receiversurf_id ]
 faces=  [   [0, 1, 2, -1, 66, -1],
         [0, 2, 3, -1, 66, -1],
         [2, 4, 5, -1, 100, -1],
@@ -60,17 +60,14 @@ faces=  [   [0, 1, 2, -1, 66, -1],
         [6, 7, 4, -1, 66, -1]
         ]
 ############################################
-## Création du modèle 3D
+## Build 3D model
 
-def CreerModele(filepath):
-    """
-        Création du modèle 3D
-    """
+def BuildModel(filepath):
     model=ls.ioModel()
-    #Ajout des sommets
-    for sommet in sommets:
-        model.vertices.append(ls.t_pos(sommet[0],sommet[1],sommet[2]))
-    #Ajout des faces
+    #Add vertices
+    for vertex in vertices:
+        model.vertices.append(ls.t_pos(vertex[0],vertex[1],vertex[2]))
+    #Add faces
     for face in faces:
         newface=ls.ioFace()
         newface.a=face[0]
@@ -80,5 +77,6 @@ def CreerModele(filepath):
         newface.idMat=face[4]
         newface.idRs=face[5]
         model.faces.append(newface)
-    #sauvegarde du modèle
+    #Save 3D model
     ls.CformatBIN().ExportBIN(filepath,model)
+BuildModel("test_model.bin")
