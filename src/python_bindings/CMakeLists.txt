@@ -28,9 +28,14 @@ install (TARGETS ${SWIG_MODULE_libsimpa_REAL_NAME}
       COMPONENT library
 )
 
-add_custom_target(UNIT_TESTS ${CMAKE_COMMAND} -E env CTEST_OUTPUT_ON_FAILURE=1
-        ${CMAKE_CTEST_COMMAND} -C $<CONFIG> --verbose
-    WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+enable_testing()
+# If you add tests, do not forget to add the name to set_property(TEST ..
 
 add_test(NAME test_modelio
-  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/model_io.py)
+  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/model_io.py
+  WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/libsimpa)
+  
+  
+set_property(TEST test_modelio
+ PROPERTY ENVIRONMENT "PYTHONPATH=${PROJECT_BINARY_DIR}/libsimpa"
+)

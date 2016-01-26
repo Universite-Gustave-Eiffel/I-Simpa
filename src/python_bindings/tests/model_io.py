@@ -29,11 +29,7 @@
 # ----------------------------------------------------------------------
 
 # -*- coding: utf-8 -*-
-import os
-print "Working directory: ", os.getcwd()
-
 import libsimpa as ls
-
 
 ##############################################
 # Table
@@ -68,10 +64,10 @@ faces=  [   [0, 1, 2, -1, 66, -1],
 
 def BuildModel(filepath):
     model=ls.ioModel()
-    #Ajout des sommets
+    #Add vertices
     for vertex in vertices:
         model.vertices.append(ls.t_pos(vertex[0],vertex[1],vertex[2]))
-    #Ajout des faces
+    #Add faces
     for face in faces:
         newface=ls.ioFace()
         newface.a=face[0]
@@ -81,6 +77,6 @@ def BuildModel(filepath):
         newface.idMat=face[4]
         newface.idRs=face[5]
         model.faces.append(newface)
-    #sauvegarde du mod魥
+    #Save 3D model
     ls.CformatBIN().ExportBIN(filepath,model)
 BuildModel("test_model.bin")
