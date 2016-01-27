@@ -1,3 +1,4 @@
 cd build
 make install
-make test
+CTEST_OUTPUT_ON_FAILURE=1 make test
+

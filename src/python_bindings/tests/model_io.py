@@ -62,7 +62,7 @@ faces=  [   [0, 1, 2, -1, 66, -1],
 ############################################
 ## Build 3D model
 
-def BuildModel(filepath):
+def build_model(filepath):
     model=ls.ioModel()
     #Add vertices
     for vertex in vertices:
@@ -79,4 +79,24 @@ def BuildModel(filepath):
         model.faces.append(newface)
     #Save 3D model
     ls.CformatBIN().ExportBIN(filepath,model)
-BuildModel("test_model.bin")
+	
+def check_model(filepath):
+    model=ls.ioModel()
+    assert ls.CformatBIN().ImportBIN(model, filepath), "Cannot import model"
+    # Check if vertex in expected vertices
+    modelvertices = []
+    for vertex in model.vertices:
+        modelvertex = [vertex[0],vertex[1],vertex[2]]
+        modelvertices.append(modelvertex)
+        assert modelvertex in vertices, "wrong vertex"
+        
+    # Check if expected vertex in vertices   
+    for vertex in vertices: 
+        assert vertex in modelvertices, "missing vertex"
+
+	
+	
+# Write test model	
+build_model("test_model.bin")
+# Read test model
+check_model("test_model.bin")

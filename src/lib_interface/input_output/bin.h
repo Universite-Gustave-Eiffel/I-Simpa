@@ -55,21 +55,16 @@ namespace formatCoreBIN
 #endif
 class t_pos
 {
-public:
-	t_pos(float _x,float _y,float _z) : x(_x), y(_y), z(_z) { }
-	t_pos() : x(0), y(0), z(0) { }
+public :
+	float v[3];
+	t_pos(float _x, float _y, float _z) : v{ _x, _y, _z } { }
+	t_pos() : v{ 0, 0, 0 } { }
 	operator float*() { return this->v; }
 	int operator==(const t_pos &_v) {
-		return (fabs(this->x - _v.x) < EPSILON && fabs(this->y - _v.y) < 0 && fabs(this->z - _v.z) < 0);
+		return (fabs(v[0] - _v[0]) < EPSILON && fabs(v[1] - _v[1]) < EPSILON && fabs(v[2] - _v[2]) < EPSILON);
 	}
 
-
 	const float &operator[](int _i) const { return this->v[_i]; }
-	union {
-		struct {float x,y,z;};
-		float v[3];
-	};
-
 };
 /**
  * @brief Structure d'une face, déstiné à l'echange fichier<->CObjet3D
