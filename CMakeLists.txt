@@ -21,6 +21,7 @@ message (STATUS "cxx Flags: " ${CMAKE_CXX_FLAGS})
 add_subdirectory (src/lib_interface)
 add_subdirectory (src/python_bindings)
 add_subdirectory (src/theorie_classique)
+add_subdirectory (src/VolumetricMeshRepair)
 add_subdirectory (src/spps)
 
 

@@ -31,10 +31,10 @@
 #include "triangulator.hpp"
 #include "tools/intersection_tri.h"
 #include <input_output/ply/rply_interface.hpp>
-#include <boost/functional/hash.hpp>
 #include <iostream>
 #include <utility>
 #include <map>
+#include <functional>
 
 namespace Triangulators
 {
@@ -64,16 +64,19 @@ namespace Triangulators
 		}
 	};
 
+	template <class T>
+	inline void hash_combine(std::size_t& seed, const T& v)
+	{
+		std::hash<T> hasher;
+		seed ^= hasher(v) + 0x9e3779b97f4a7c15 + (seed << 6) + (seed >> 2);
+	}
 
-
-
-	boost::hash<decimal> vec_hash;
 	std::size_t GetVectorHash(const vec3& vecToHash)
 	{
-		std::size_t seed(vec_hash(vecToHash.x));
-        boost::hash_combine(seed, vecToHash.y);
-        boost::hash_combine(seed, vecToHash.z);
-        return seed;
+		std::size_t h1 = std::hash<decimal>()(vecToHash.x);
+		hash_combine(h1, vecToHash.y);
+		hash_combine(h1, vecToHash.z);
+		return h1;
 	}
 	inline std::size_t FindOrCreateVertices(const vec3& vert, MergeVerticesOperationObjects_t& mergeProcessData)
 	{
