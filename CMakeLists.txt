@@ -20,7 +20,9 @@ message (STATUS "cxx Flags: " ${CMAKE_CXX_FLAGS})
 # Sub-directories where more CMakeLists.txt exist
 add_subdirectory (src/lib_interface)
 add_subdirectory (src/python_bindings)
+add_subdirectory (src/theorie_classique)
 add_subdirectory (src/spps)
+
 
 # Turn on CMake testing capabilities
 enable_testing()
