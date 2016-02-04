@@ -24,6 +24,7 @@ add_subdirectory (src/theorie_classique)
 add_subdirectory (src/VolumetricMeshRepair)
 add_subdirectory (src/preprocess)
 add_subdirectory (src/spps)
+add_subdirectory (src/isimpa)
 
 
 # Turn on CMake testing capabilities

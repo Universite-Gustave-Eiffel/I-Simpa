@@ -34,7 +34,7 @@
 #include "ply.h"	// gestion du format PLY stanford
 #include "var.h"
 #include "data_manager/appconfig.h"
-#include "coreSrc/preprocess/input_output/poly.h" // gestion du format POLY tetgen
+#include "../preprocess/input_output/poly.h" // gestion du format POLY tetgen
 #include "data_manager/drawable_element.h"
 #include <wx/filename.h>
 #include "data_manager/python_interface/instanceManager.hpp"

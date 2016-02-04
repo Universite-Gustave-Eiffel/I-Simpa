@@ -65,11 +65,8 @@ const wxString ApplicationConfiguration::CONST_PREPROCESS_EXE_FILENAME="Preproce
 const wxString ApplicationConfiguration::CONST_GRAPH_CONFIG_PATH="SIMPLEGRAPH";
 const wxString ApplicationConfiguration::CONST_USER_PREFERENCE_FILE_NAME="isimpa_pref.xml";
 
-
-wxStandardPaths stPath;
-wxFileName fPath=stPath.GetExecutablePath();
-wxString WorkingDir=fPath.GetPath();
-const wxString ApplicationConfiguration::CONST_RESOURCE_FOLDER=fPath.GetPath()+wxFileName::GetPathSeparator();
+wxString WorkingDir=wxStandardPaths::Get().GetExecutablePath();
+const wxString ApplicationConfiguration::CONST_RESOURCE_FOLDER=WorkingDir + wxFileName::GetPathSeparator();
 const wxString ApplicationConfiguration::CONST_RESOURCE_DATA_FOLDER=wxString("Bitmaps")+wxFileName::GetPathSeparator();
 const wxString ApplicationConfiguration::CONST_RESOURCE_ISO_FOLDER=wxString("iso")+wxFileName::GetPathSeparator();
 
@@ -294,8 +291,8 @@ wxFileConfig* ApplicationConfiguration::GetFileConfig()
 {
 	if(projectConfig==NULL)
 	{
-		wxStandardPaths stdpathreader;
-		projectConfig=new wxFileConfig("i-simpa","Lcpc",stdpathreader.GetUserDataDir()+wxFileName::GetPathSeparator()+"isimpa_conf.ini",stdpathreader.GetUserDataDir()+"\\isimpa_conf.ini",wxCONFIG_USE_LOCAL_FILE);
+		wxString userDir = wxStandardPaths::Get().GetUserDataDir();
+		projectConfig=new wxFileConfig("i-simpa","Lcpc", userDir+wxFileName::GetPathSeparator()+"isimpa_conf.ini", userDir+"\\isimpa_conf.ini",wxCONFIG_USE_LOCAL_FILE);
 	}
 	return projectConfig.get();
 }

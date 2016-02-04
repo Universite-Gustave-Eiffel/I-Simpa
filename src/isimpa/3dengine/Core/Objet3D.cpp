@@ -44,7 +44,7 @@
 
 //#include "ply.h"				// gestion du format PLY stanford
 #include <input_output/ply/rply_interface.hpp>	// gestion du format PLY stanford (Librairie externe)
-#include "coreSrc/preprocess/input_output/poly.h"	// gestion du format POLY tetgen
+#include "../preprocess/input_output/poly.h"	// gestion du format POLY tetgen
 
 #include "data_manager/tree_scene/e_scene_encombrements_encombrement_cuboide.h"
 #include "data_manager/appconfig.h"

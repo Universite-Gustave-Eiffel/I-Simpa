@@ -1162,12 +1162,10 @@ MainUiFrame::~MainUiFrame()
 
 
 BEGIN_EVENT_TABLE(ISimpaApp, wxApp)
-	EVT_KEY_DOWN(ISimpaApp::OnKeyDown)
-	EVT_KEY_UP(ISimpaApp::OnKeyUp)
-	EVT_DROP_FILES(ISimpaApp::OnFileDrop)
+EVT_KEY_DOWN(ISimpaApp::OnKeyDown)
+EVT_KEY_UP(ISimpaApp::OnKeyUp)
+EVT_DROP_FILES(ISimpaApp::OnFileDrop)
 END_EVENT_TABLE()
 
-
-DECLARE_APP(ISimpaApp);
-IMPLEMENT_APP(ISimpaApp);
+wxIMPLEMENT_APP(ISimpaApp);
 

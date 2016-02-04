@@ -2,7 +2,7 @@ include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
 
 message(STATUS " Boost path - $ENV{BOOST_INCLUDEDIR}")
 message(STATUS " Boost lib path - $ENV{BOOST_LIBRARYDIR}")
-set(SOURCE_FILES
+set(SPPS_SOURCE_FILES
     data_manager/core_configuration.cpp
     input_output/reportmanager.cpp
     tools/dotdistribution.cpp
@@ -19,7 +19,7 @@ include_directories( ${Boost_INCLUDE_DIRS} )
 # Set Properties->General->Configuration Type to Application(.exe)
 # Creates spps.exe with the listed sources
 # Adds sources to the Solution Explorer
-add_executable(spps ${SOURCE_FILES})
+add_executable(spps ${SPPS_SOURCE_FILES})
 
 # Properties->Linker->Input->Additional Dependencies
 target_link_libraries (spps lib_interface)

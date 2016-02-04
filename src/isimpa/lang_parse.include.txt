@@ -1,7 +1,0 @@
-../sppsProj.h
-../sppsProj.cpp
-../manager/
-../Language/
-../IHM/
-../data_manager/
-../3dengine/

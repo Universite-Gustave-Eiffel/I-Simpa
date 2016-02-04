@@ -1974,8 +1974,7 @@ void ProjectManager::SetControlPointer(	wxTextCtrl* _logControl,uiTreeCtrl* _tre
 	InitPythonEngine(); //Initialisation de python
 
 	//Chargement de l'arbre de préférence (peut contenir des élément implémenté en python
-	wxStandardPaths stdpathreader;
-	UserPreferenceXmlFilePath=stdpathreader.GetUserDataDir()+wxFileName::GetPathSeparator()+ApplicationConfiguration::CONST_USER_PREFERENCE_FILE_NAME;
+	UserPreferenceXmlFilePath= wxStandardPaths::Get().GetUserDataDir()+wxFileName::GetPathSeparator()+ApplicationConfiguration::CONST_USER_PREFERENCE_FILE_NAME;
 	if(!wxFileExists(UserPreferenceXmlFilePath))
 	{
 		this->CreateUserPreferenceTree();

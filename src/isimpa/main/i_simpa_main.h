@@ -437,15 +437,14 @@ class ISimpaApp : public wxApp
 			}
 			*/
 			//Applique le dossier de l'exécutable comme dossier courant
-			wxStandardPaths stPath;
+			wxStandardPaths stPath = wxStandardPaths::Get();
 			wxFileName fPath=stPath.GetExecutablePath();
 			wxString WorkingDir=fPath.GetPath();
 			wxSetWorkingDirectory(WorkingDir);
 
 			//Crée le dossier de préférence de l'utilisateur dans le dossier de session
-			wxStandardPaths stdpathreader;
-			if(!wxDirExists(stdpathreader.GetUserDataDir()))
-				wxMkdir(stdpathreader.GetUserDataDir());
+			if(!wxDirExists(stPath.GetUserDataDir()))
+				wxMkdir(stPath.GetUserDataDir());
 
 			//Charge les gestionnaires de formats d'images
 			wxImage::AddHandler(new wxJPEGHandler); //ajoute le support du format jpeg
@@ -467,7 +466,7 @@ class ISimpaApp : public wxApp
 			lang.AddCatalog("internat",wxLANGUAGE_DEFAULT,"");
 
 			// Réserve ou réutilise le cache du projet
-			ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath=stdpathreader.GetUserDataDir()+wxFileName::GetPathSeparator()+ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath+wxFileName::GetPathSeparator();
+			ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath= stPath.GetUserDataDir()+wxFileName::GetPathSeparator()+ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath+wxFileName::GetPathSeparator();
 			m_checker = new wxSingleInstanceChecker(APPLICATION_NAME);
 			wxInt32 instance_count=1;
 			if(!wxDir::Exists(ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath))
