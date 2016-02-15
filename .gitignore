@@ -29,6 +29,7 @@ currentRelease/libisimpa/
 CMakeCache.txt
 CMakeFiles/
 enum_def.cpp
+enum_doxygen.h
 images/
 vc_msw/
 vc_mswd/
