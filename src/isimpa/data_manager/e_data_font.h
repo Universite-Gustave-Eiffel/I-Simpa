@@ -57,7 +57,7 @@ public:
 		//Creation de la couleur à partir du document XML
 		wxString fontSerialisation;
 		
-		if(noeudCourant->GetPropVal("font",&fontSerialisation))
+		if(noeudCourant->GetAttribute("font",&fontSerialisation))
 		{
 			valeurEl.SetNativeFontInfo(fontSerialisation);
 		}
@@ -78,8 +78,8 @@ public:
 	wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)
 	{
 		wxXmlNode* thisNode = E_Data::SaveXMLDoc(NoeudParent);
-		thisNode->DeleteProperty("font");
-		thisNode->AddProperty("font",valeurEl.GetNativeFontInfoDesc());
+		thisNode->DeleteAttribute("font");
+		thisNode->AddAttribute("font",valeurEl.GetNativeFontInfoDesc());
 
 		return thisNode;
 	}

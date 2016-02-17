@@ -60,22 +60,22 @@ public:
 		//Creation de la liste à partir du document XML
 		wxString propValue;
 
-		if(noeudCourant->GetPropVal("nb",&propValue))
+		if(noeudCourant->GetAttribute("nb",&propValue))
 		{
 			long nbVal;
 			propValue.ToLong(&nbVal);
-			if(noeudCourant->GetPropVal("choice",&propValue))
+			if(noeudCourant->GetAttribute("choice",&propValue))
 				propValue.ToLong(&currentChoice);
 			wxXmlNode* currentChild = noeudCourant->GetChildren();
 			while(currentChild!=NULL)
 			{
 				if(currentChild->GetName()=="enumeration")
 				{
-					if(currentChild->GetPropVal("id",&propValue))
+					if(currentChild->GetAttribute("id",&propValue))
 					{
 						long id;
 						propValue.ToLong(&id);
-						if(currentChild->GetPropVal("value",&propValue))
+						if(currentChild->GetAttribute("value",&propValue))
 						{
 
 							eList.push_back(propValue);
@@ -130,8 +130,8 @@ public:
 	{
 		if(exportToCore)
 		{
-			NoeudParent->DeleteProperty(this->elementInfo.libelleElement);
-			NoeudParent->AddProperty(this->elementInfo.libelleElement,Convertor::ToString((int)currentChoice));
+			NoeudParent->DeleteAttribute(this->elementInfo.libelleElement);
+			NoeudParent->AddAttribute(this->elementInfo.libelleElement,Convertor::ToString((int)currentChoice));
 		}
 		return NoeudParent;
 	}
@@ -139,13 +139,13 @@ public:
 	{
 		wxXmlNode* thisNode = E_Data::SaveXMLDoc(NoeudParent);
 		wxString tmpVal;
-		thisNode->DeleteProperty("nb");
+		thisNode->DeleteAttribute("nb");
 		tmpVal<<eList.size();
-		thisNode->AddProperty("nb",tmpVal);
+		thisNode->AddAttribute("nb",tmpVal);
 		tmpVal="";
-		thisNode->DeleteProperty("choice");
+		thisNode->DeleteAttribute("choice");
 		tmpVal<<currentChoice;
-		thisNode->AddProperty("choice",tmpVal);
+		thisNode->AddAttribute("choice",tmpVal);
 		wxXmlNode* cChild=thisNode->GetChildren();
 		while(cChild!=NULL)
 		{
@@ -158,8 +158,8 @@ public:
 			for(long id=0;id<eList.size();id++)
 			{
 				wxXmlNode* nouvEnum=new wxXmlNode(thisNode,wxXML_ELEMENT_NODE,"enumeration");
-				nouvEnum->AddProperty("id",Convertor::ToString(iList[id]));
-				nouvEnum->AddProperty("value",eList[id]);
+				nouvEnum->AddAttribute("id",Convertor::ToString(iList[id]));
+				nouvEnum->AddAttribute("value",eList[id]);
 			}
 		}
 

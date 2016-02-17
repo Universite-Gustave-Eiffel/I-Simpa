@@ -58,11 +58,11 @@ E_Property_Freq::E_Property_Freq( wxXmlNode* noeudCourant ,  Element* parent)
 		typeSpectre=Element::ELEMENT_TYPE_GAMMEFREQ_APP;
 		idSpectre=0;
 		//Element initialisé AVEC Xml
-		if(noeudCourant->GetPropVal("idspectre",&propVal))
+		if(noeudCourant->GetAttribute("idspectre",&propVal))
 			idSpectre=Convertor::ToInt(propVal);
-		if(noeudCourant->GetPropVal("typespectre",&propVal))
+		if(noeudCourant->GetAttribute("typespectre",&propVal))
 			typeSpectre=(Element::ELEMENT_TYPE)Convertor::ToInt(propVal);
-		if(noeudCourant->GetPropVal("valspectre",&propVal)) //Test pour l'ancienne version de cette élément psps avant le 31 ocobre 2008
+		if(noeudCourant->GetAttribute("valspectre",&propVal)) //Test pour l'ancienne version de cette élément psps avant le 31 ocobre 2008
 		{
 			float cValue=Convertor::ToFloat(propVal);
 			CreateGlobalVal(cValue);
@@ -72,7 +72,7 @@ E_Property_Freq::E_Property_Freq( wxXmlNode* noeudCourant ,  Element* parent)
 		currentChild = noeudCourant->GetChildren();
 		while(currentChild!=NULL)
 		{
-			if(currentChild->GetPropVal("eid",&propValue))
+			if(currentChild->GetAttribute("eid",&propValue))
 			{
 				BoolLocker lockUpdate(&this->ignoreUpdate,true); 
 				long typeEle;
@@ -278,10 +278,10 @@ wxXmlNode* E_Property_Freq::SaveXMLDoc(wxXmlNode* NoeudParent)
 {
 	wxXmlNode* thisNode = Element::SaveXMLDoc(NoeudParent);
 	thisNode->SetName("spectre"); // Nom de la balise xml ( pas d'espace autorise )
-	thisNode->DeleteProperty("idspectre");
-	thisNode->AddProperty("idspectre",wxString::Format("%i",idSpectre));
-	thisNode->DeleteProperty("typespectre");
-	thisNode->AddProperty("typespectre",wxString::Format("%i",typeSpectre));
+	thisNode->DeleteAttribute("idspectre");
+	thisNode->AddAttribute("idspectre",wxString::Format("%i",idSpectre));
+	thisNode->DeleteAttribute("typespectre");
+	thisNode->AddAttribute("typespectre",wxString::Format("%i",typeSpectre));
 	return thisNode;
 }
 

@@ -131,7 +131,7 @@ void PropGrid::OnRangeSelected( wxGridRangeSelectEvent& ev )
 void PropGrid::CopyOnRow(wxCommandEvent& event)
 {
 	wxString cellValue=this->GetCellValue(currentSelection.TopRow,currentSelection.LeftCol);
-	for(int col = 0;col < this->GetCols();col++)
+	for(int col = 0;col < this->GetNumberCols();col++)
 	{
 		if(col!=currentSelection.LeftCol)
 		{
@@ -148,7 +148,7 @@ void PropGrid::CopyOnRow(wxCommandEvent& event)
 }
 void PropGrid::CopyOnColumn(wxCommandEvent& event)
 {
-	for(int row = 0;row < this->GetRows();row++)
+	for(int row = 0;row < this->GetNumberRows();row++)
 	{
 		if(row!=currentSelection.TopRow)
 		{
@@ -198,7 +198,7 @@ void PropGrid::setCellValueWithEvt(int row,int col,const wxString& val)
 		)
 	{
 		this->SetCellValue(row,col,val);
-		wxGridEvent customGreedEvent(1,wxEVT_GRID_CELL_CHANGE,this,row,col);
+		wxGridEvent customGreedEvent(1,wxEVT_GRID_CELL_CHANGED,this,row,col);
 		GetEventHandler()->ProcessEvent( customGreedEvent );
 	}
 }
@@ -212,8 +212,8 @@ void PropGrid::Paste(wxCommandEvent& event)
 	int srcRow,srcCol,nbRowSel,nbColSel;
 	srcRow=0;
 	srcCol=0;
-	nbRowSel=this->GetRows()-currentSelection.TopRow;
-	nbColSel=this->GetCols()-currentSelection.LeftCol;
+	nbRowSel=this->GetNumberRows()-currentSelection.TopRow;
+	nbColSel=this->GetNumberCols()-currentSelection.LeftCol;
 	wxArrayString lignes;
 	PropGridSplitString(dataStr,"\r\n",lignes);
 	while(srcRow<lignes.Count() && srcRow<nbRowSel) //Pour chaque ligne
@@ -225,7 +225,7 @@ void PropGrid::Paste(wxCommandEvent& event)
 		{
 			int col=currentSelection.LeftCol+srcCol;
 			int row=currentSelection.TopRow+srcRow;
-			if(row >= 0 && row < this->GetRows() && col>=0 && col<this->GetCols())
+			if(row >= 0 && row < this->GetNumberRows() && col>=0 && col<this->GetNumberCols())
 			{
 				if(!this->IsReadOnly(row,col))
 				{

@@ -56,9 +56,9 @@ E_Scene_Groupesurfaces_Groupe::E_Scene_Groupesurfaces_Groupe( wxXmlNode* noeudCo
 		currentChild = noeudCourant->GetChildren();
 		// On va créer les fils de notre noeudCourant
 		wxString propValue;
-		if(noeudCourant->GetPropVal("pointer",&propValue))
+		if(noeudCourant->GetAttribute("pointer",&propValue))
 			isPointerGroup=true;
-		if(noeudCourant->GetPropVal("facesFile",&propValue))
+		if(noeudCourant->GetAttribute("facesFile",&propValue))
 			faceFileName=propValue; //Copie de l'adresse du fichier de faces
 	}
 	InitGroupProp();
@@ -327,11 +327,11 @@ wxXmlNode* E_Scene_Groupesurfaces_Groupe::SaveXMLDoc(wxXmlNode* NoeudParent)
 
 
 	wxXmlNode* thisNode = Element::SaveXMLDoc(NoeudParent);
-	thisNode->DeleteProperty("exp"); //ferme l'element pour le prochain chargement du projet
+	thisNode->DeleteAttribute("exp"); //ferme l'element pour le prochain chargement du projet
 	thisNode->SetName("gr"); // Nom de la balise xml ( pas d'espace autorise )
 
-	thisNode->DeleteProperty("facesFile");
-	thisNode->AddProperty("facesFile",faceFileName);
+	thisNode->DeleteAttribute("facesFile");
+	thisNode->AddAttribute("facesFile",faceFileName);
 
 	////////////////////////////
 	// Sauvegarde des faces si chargé
@@ -357,8 +357,8 @@ wxXmlNode* E_Scene_Groupesurfaces_Groupe::SaveXMLDoc(wxXmlNode* NoeudParent)
 
 	if(isPointerGroup)
 	{
-		thisNode->DeleteProperty("pointer");
-		thisNode->AddProperty("pointer","1");
+		thisNode->DeleteAttribute("pointer");
+		thisNode->AddAttribute("pointer","1");
 	}
 
 	return thisNode;

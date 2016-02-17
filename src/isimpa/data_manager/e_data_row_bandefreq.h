@@ -104,7 +104,7 @@ public:
 	wxXmlNode* SaveXMLCoreDoc(wxXmlNode* NoeudParent)
 	{
 		wxXmlNode* NoeudCourant=new wxXmlNode(NoeudParent,wxXML_ELEMENT_NODE,"bfreq");
-		NoeudCourant->AddProperty("freq",this->elementInfo.libelleElement);
+		NoeudCourant->AddAttribute("freq",this->elementInfo.libelleElement);
 		return Element::SaveXMLCoreDoc(NoeudCourant);
 	}
 protected:

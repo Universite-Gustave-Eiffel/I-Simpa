@@ -60,8 +60,8 @@ public:
 		wxString propBlue;
 
 		
-		if(noeudCourant->GetPropVal("r",&propRed) && noeudCourant->GetPropVal("g",&propGreen)
-			&& noeudCourant->GetPropVal("b",&propBlue))
+		if(noeudCourant->GetAttribute("r",&propRed) && noeudCourant->GetAttribute("g",&propGreen)
+			&& noeudCourant->GetAttribute("b",&propBlue))
 		{
 			long rVal;
 			long gVal;
@@ -95,12 +95,12 @@ public:
 		compR<<((int)valeurEl.Red());
 		compG<<((int)valeurEl.Green());
 		compB<<((int)valeurEl.Blue());
-		thisNode->DeleteProperty("r");
-		thisNode->AddProperty("r",compR);
-		thisNode->DeleteProperty("g");
-		thisNode->AddProperty("g",compG);
-		thisNode->DeleteProperty("b");
-		thisNode->AddProperty("b",compB);
+		thisNode->DeleteAttribute("r");
+		thisNode->AddAttribute("r",compR);
+		thisNode->DeleteAttribute("g");
+		thisNode->AddAttribute("g",compG);
+		thisNode->DeleteAttribute("b");
+		thisNode->AddAttribute("b",compB);
 
 		return thisNode;
 	}

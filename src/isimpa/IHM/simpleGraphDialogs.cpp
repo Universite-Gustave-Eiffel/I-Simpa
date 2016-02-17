@@ -218,7 +218,7 @@ namespace sgSpace
 IMPLEMENT_CLASS(SG_PropertySheetDialog, wxPropertySheetDialog)
 
 BEGIN_EVENT_TABLE(SG_PropertySheetDialog, wxPropertySheetDialog)
-	EVT_GRID_CELL_CHANGE( SG_PropertySheetDialog::OnCellValueChanged )
+	EVT_GRID_CELL_CHANGED( SG_PropertySheetDialog::OnCellValueChanged )
 	EVT_BUTTON( wxID_APPLY , SG_PropertySheetDialog::OnApply )
 	EVT_BUTTON( wxID_OK , SG_PropertySheetDialog::OnOK )
 	//2eme onglet
@@ -566,13 +566,13 @@ void SG_PropertySheetDialog::FillGeneralPropGrid()
 
 	//Insertion des lignes
 	wxWindowUpdateLocker paintFreeze(generalPropGrid);
-	generalPropGrid->SetLabelAlignment(wxVERTICAL,wxALIGN_LEFT);
+	generalPropGrid->SetRowLabelAlignment(wxVERTICAL,wxALIGN_LEFT);
 	generalPropGrid->AppendRows(propertyArray.GetCount());
 	
-	generalPropGrid->SetLabelValue(wxHORIZONTAL,_("Data"),0);
+	generalPropGrid->SetColLabelValue(0, _("Data"));
 	for(int idRow=0;idRow<propertyArray.GetCount();idRow++)
 	{
-		generalPropGrid->SetLabelValue(wxVERTICAL,propertyArray.Item(idRow).propertyLabel,idRow);
+		generalPropGrid->SetRowLabelValue(idRow,propertyArray.Item(idRow).propertyLabel);
 		if(propertyArray.Item(idRow).propertyType==MAIN_PROPERTY_TYPE_BOOL)
 		{
 			generalPropGrid->SetCellEditor(idRow, 0, new wxGridCellBoolEditor());

@@ -41,7 +41,7 @@ BEGIN_EVENT_TABLE( MainPropGrid, PropGrid )
     EVT_GRID_SELECT_CELL( MainPropGrid::OnSelectionChange )
 	EVT_KEY_UP(MainPropGrid::KeyEvt )
 	EVT_LEFT_UP(MainPropGrid::MouseEvt )
-    EVT_GRID_CELL_CHANGE( MainPropGrid::OnCellValueChanged )
+    EVT_GRID_CELL_CHANGED( MainPropGrid::OnCellValueChanged )
 	EVT_MENU(ID_CREATE_DIAGRAM, MainPropGrid::OnBuildDiagram)
 END_EVENT_TABLE()
 
@@ -84,7 +84,7 @@ MainPropGrid::MainPropGrid(wxWindow* parent, wxWindowID id, const wxPoint& pos, 
 {
 	reloadElement=false;
 	CurrentElement=NULL;
-	this->SetLabelAlignment(wxVERTICAL,wxALIGN_LEFT);
+	this->SetRowLabelAlignment(wxVERTICAL, wxALIGN_LEFT);
 }
 
 MainPropGrid::~MainPropGrid()
@@ -176,14 +176,14 @@ void MainPropGrid::OnBuildDiagram(wxCommandEvent& event)
 		wxInt32 zeroBaseRow=0;
 		for ( int row = currentSelection.TopRow; row <= currentSelection.BottomRow; row++ )
 		{
-			lblRows[zeroBaseRow]=this->GetLabelValue(wxVERTICAL,row);
+			lblRows[zeroBaseRow]=this->GetRowLabelValue(row);
 			wxInt32 zeroBaseCol=0;
 			for ( int col = currentSelection.LeftCol; col <= currentSelection.RightCol; col++ )
 			{
 				if(row==currentSelection.TopRow)
-					lblCols[zeroBaseCol]=this->GetLabelValue(wxHORIZONTAL,col);
+					lblCols[zeroBaseCol]=this->GetColLabelValue(col);
 				double valCell=0;
-				this->GetCellValue(row,col).ToDouble(&valCell) ;//cellsRealValue[(col*this->GetRows())+row];
+				this->GetCellValue(row,col).ToDouble(&valCell) ;
 				cellsValue[(zeroBaseCol*lblRows.size())+zeroBaseRow]=valCell;
 				zeroBaseCol++;
 			}
@@ -220,7 +220,7 @@ void MainPropGrid::CloseElement()
 		this->SetColLabelValue(0,_("Value"));
 		this->SetRowLabelSize(30);
 		CurrentElement=NULL;
-		this->SetLabelAlignment(wxVERTICAL,wxALIGN_LEFT);
+		this->SetRowLabelAlignment(wxVERTICAL,wxALIGN_LEFT);
 	}
 }
 

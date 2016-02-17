@@ -772,7 +772,7 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	wxXmlNode* rootConfig = new wxXmlNode(wxXML_ELEMENT_NODE,"configuration");
 
 	LastComputationFolder=workingDir;
-	rootConfig->AddProperty("workingdirectory",workingDir);
+	rootConfig->AddAttribute("workingdirectory",workingDir);
 
 
 	xmlCoreDocument.SetRoot(rootConfig);
@@ -1828,7 +1828,7 @@ void ProjectManager::LoadCurrentProject(bool reloadXmlFile)
 		wxXmlNode* currentNode = rootNode->GetChildren();
 		while( currentNode!=NULL)
 		{
-			if(currentNode->GetPropVal("eid",&propVal))
+			if(currentNode->GetAttribute("eid",&propVal))
 			{
 				long typeEle;
 				propVal.ToLong(&typeEle);
@@ -3081,11 +3081,11 @@ void ProjectManager::UpdateXmlFile(wxString toFolder,bool saveToFile)
 	wxXmlNode* noeudRacine=this->projetConfig.GetRoot();
 	if(!noeudRacine)
 		return;
-	noeudRacine->DeleteProperty("appversion");
+	noeudRacine->DeleteAttribute("appversion");
 
 	wxString Appversion;
 	Appversion<<ApplicationConfiguration::SPPS_UI_VERSION_MAJOR<<"."<<ApplicationConfiguration::SPPS_UI_VERSION_MINOR<<"."<<ApplicationConfiguration::SPPS_UI_VERSION_REVISION;
-	noeudRacine->AddProperty("appversion",Appversion);
+	noeudRacine->AddAttribute("appversion",Appversion);
 	Element* eleInfos=this->rootScene->GetElementByType(Element::ELEMENT_TYPE_SCENE_PROJET_INFORMATION);
 	if(eleInfos)
 		eleInfos->InitProp();

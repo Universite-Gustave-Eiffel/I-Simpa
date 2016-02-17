@@ -55,7 +55,7 @@ public:
 		wxString propVal;
 		//Affecte la valeur de l'element
 		long lval;
-		if(noeudCourant->GetPropVal("value",&propVal))
+		if(noeudCourant->GetAttribute("value",&propVal))
 		{
 			propVal.ToLong(&lval);
 			elementValue=lval;
@@ -105,10 +105,10 @@ public:
 	wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)
 	{
 		wxXmlNode* thisNode = E_Data::SaveXMLDoc(NoeudParent);
-		thisNode->DeleteProperty("value");
+		thisNode->DeleteAttribute("value");
 		wxString sval;
 		sval<<elementValue;
-		thisNode->AddProperty("value",sval);		
+		thisNode->AddAttribute("value",sval);		
 		return thisNode;
 	}
 
@@ -139,11 +139,11 @@ public:
 	{
 		if(exportToCore)
 		{
-			NoeudParent->DeleteProperty(this->elementInfo.libelleElement);
+			NoeudParent->DeleteAttribute(this->elementInfo.libelleElement);
 			if(elementValue)
-				NoeudParent->AddProperty(this->elementInfo.libelleElement,"1");
+				NoeudParent->AddAttribute(this->elementInfo.libelleElement,"1");
 			else
-				NoeudParent->AddProperty(this->elementInfo.libelleElement,"0");
+				NoeudParent->AddAttribute(this->elementInfo.libelleElement,"0");
 
 		}
 		return NoeudParent;

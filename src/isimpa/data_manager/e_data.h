@@ -52,15 +52,15 @@ class E_Data: public Element
 
 	wxXmlNode* SaveXMLDataProperty(wxXmlNode* thisNode)
 	{
-		thisNode->DeleteProperty("readonly");
+		thisNode->DeleteAttribute("readonly");
 		if(readOnly)
-			thisNode->AddProperty("readonly","1");	
-		thisNode->DeleteProperty("label");
-		thisNode->AddProperty("label",propertyLabel);
+			thisNode->AddAttribute("readonly","1");	
+		thisNode->DeleteAttribute("label");
+		thisNode->AddAttribute("label",propertyLabel);
 		//Maj valeur exportation vers le coeur de calcul
-		thisNode->DeleteProperty("ex");
+		thisNode->DeleteAttribute("ex");
 		if(exportToCore)
-			thisNode->AddProperty("ex","1");
+			thisNode->AddAttribute("ex","1");
 		return thisNode;
 	}
 protected:
@@ -102,15 +102,15 @@ public:
 		onTop=asTitle;
 		wxString propVal;
 		propertyLabel=Label;
-		if(nodeElement!=NULL && nodeElement->GetPropVal("wxid",&propVal))
+		if(nodeElement!=NULL && nodeElement->GetAttribute("wxid",&propVal))
 		{
 			//Element initialisé AVEC Xml
 	
-			if(nodeElement->GetPropVal("readonly",&propVal))
+			if(nodeElement->GetAttribute("readonly",&propVal))
 				readOnly=true;
-			if(nodeElement->GetPropVal("label",&propVal) && propVal!="")
+			if(nodeElement->GetAttribute("label",&propVal) && propVal!="")
 				propertyLabel=propVal;
-			if(nodeElement->GetPropVal("ex",&propVal))
+			if(nodeElement->GetAttribute("ex",&propVal))
 				exportToCore=true;
 		}else{
 			//Modified(this); //Ajout de la propriété en cours d'execution
@@ -138,8 +138,8 @@ public:
 	{
 		int row=gridToFeed->GetNumberRows()-1;
 		gridToFeed->SetRowLabelValue(row,_(propertyLabel));
-		if(hSize>gridToFeed->GetCols())
-			gridToFeed->AppendCols(hSize-gridToFeed->GetCols());
+		if(hSize>gridToFeed->GetNumberCols())
+			gridToFeed->AppendCols(hSize-gridToFeed->GetNumberCols());
 		if(col>=0)
 		{
 			gridToFeed->SetCellSize(row,col,1,hSize);

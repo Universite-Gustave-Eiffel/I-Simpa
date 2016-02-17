@@ -52,7 +52,7 @@ private:
 		wxString propValue;
 		while(currentChild!=NULL)
 		{
-			if(currentChild->GetPropVal("eid",&propValue))
+			if(currentChild->GetAttribute("eid",&propValue))
 			{
 				long typeEle;
 				propValue.ToLong(&typeEle);
@@ -76,7 +76,7 @@ public:
 	{
 		if(nodeElement!=NULL)
 		{
-			nodeElement->DeleteProperty("idmateriau");
+			nodeElement->DeleteAttribute("idmateriau");
 			wxXmlNode* childElement=nodeElement->GetChildren();
 			while(childElement!=NULL)
 			{
@@ -90,20 +90,13 @@ public:
 		if(nodeElement!=NULL)
 		{
 			wxString propValue;
-			if(nodeElement->GetPropVal("eid",&propValue))
+			if(nodeElement->GetAttribute("eid",&propValue))
 			{
 				long typeEle;
 				propValue.ToLong(&typeEle);
 				if(typeEle==Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_APP_GROUP || typeEle==Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_USER_GROUP || typeEle==Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_APP_MATERIAU || typeEle==Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_USER_MATERIAU)
 				{
-					/*
-					if(nodeElement->GetPropVal("name",&propValue))
-					{
-						nodeElement->DeleteProperty("name");
-						nodeElement->AddProperty("name",wxString::Format(_("Copie de %s"),propValue));
-					}
-					*/
-					nodeElement->DeleteProperty("idmateriau");
+					nodeElement->DeleteAttribute("idmateriau");
 				}
 			}
 			wxXmlNode* childElement=nodeElement->GetChildren();

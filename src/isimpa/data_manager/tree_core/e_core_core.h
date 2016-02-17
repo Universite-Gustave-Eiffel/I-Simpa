@@ -97,7 +97,7 @@ public:
 			wxString propValue;
 			while(currentChild!=NULL)
 			{
-				if(currentChild->GetPropVal("eid",&propValue))
+				if(currentChild->GetAttribute("eid",&propValue))
 				{
 					long typeEle;
 					propValue.ToLong(&typeEle);
@@ -116,14 +116,14 @@ public:
 	{
 		wxXmlNode* NoeudCourant=new wxXmlNode(NoeudParent,wxXML_ELEMENT_NODE,"simulation");
 
-		NoeudCourant->AddProperty("recepteurss_directory",ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FOLDER_PATH);
-		NoeudCourant->AddProperty("recepteurss_filename",ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FILENAME);
-		NoeudCourant->AddProperty("recepteurss_cut_filename",ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_CUT_FILENAME);
+		NoeudCourant->AddAttribute("recepteurss_directory",ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FOLDER_PATH);
+		NoeudCourant->AddAttribute("recepteurss_filename",ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FILENAME);
+		NoeudCourant->AddAttribute("recepteurss_cut_filename",ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_CUT_FILENAME);
 
-		NoeudCourant->AddProperty("receiversp_directory",wxTRANSLATE("Punctual receivers"));
-		NoeudCourant->AddProperty("receiversp_filename",wxTRANSLATE("Sound level")+wxString(".recp"));
-		NoeudCourant->AddProperty("receiversp_filename_adv",wxTRANSLATE("Advanced sound level")+wxString(".gap"));
-		NoeudCourant->AddProperty("cumul_filename",wxTRANSLATE("Total energy")+wxString(".recp"));
+		NoeudCourant->AddAttribute("receiversp_directory",wxTRANSLATE("Punctual receivers"));
+		NoeudCourant->AddAttribute("receiversp_filename",wxTRANSLATE("Sound level")+wxString(".recp"));
+		NoeudCourant->AddAttribute("receiversp_filename_adv",wxTRANSLATE("Advanced sound level")+wxString(".gap"));
+		NoeudCourant->AddAttribute("cumul_filename",wxTRANSLATE("Total energy")+wxString(".recp"));
 
 		return Element::SaveXMLCoreDoc(NoeudCourant);
 	}

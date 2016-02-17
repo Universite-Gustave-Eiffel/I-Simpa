@@ -46,7 +46,7 @@ E_Scene_Volumes::E_Scene_Volumes( wxXmlNode* noeudCourant ,  Element* parent)
 		wxString propValue;
 		while(currentChild!=NULL)
 		{
-			if(currentChild->GetPropVal("eid",&propValue))
+			if(currentChild->GetAttribute("eid",&propValue))
 			{
 				long typeEle;
 				propValue.ToLong(&typeEle);

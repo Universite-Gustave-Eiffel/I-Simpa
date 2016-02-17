@@ -99,7 +99,7 @@ boost::python::list GetMenuItems(wxMenu* menuToFill)
 		{
 			if(curItem->IsSubMenu())
 			{
-				retLst.append(boost::python::make_tuple(WXSTRINGTOSTDWSTRING(curItem->GetLabel()),GetMenuItems(curItem->GetSubMenu())));
+				retLst.append(boost::python::make_tuple(WXSTRINGTOSTDWSTRING(curItem->GetItemLabel()),GetMenuItems(curItem->GetSubMenu())));
 			}else{
 				if(curItem->IsEnabled())
 				{
@@ -108,7 +108,7 @@ boost::python::list GetMenuItems(wxMenu* menuToFill)
 						wxUiMenuItem* curUiItem=dynamic_cast<wxUiMenuItem*>(curItem);
 						if(curUiItem)
 						{
-							retLst.append(boost::python::make_tuple(WXSTRINGTOSTDWSTRING(curUiItem->GetLabel()),curUiItem->GetId(),WXSTRINGTOSTDWSTRING(curUiItem->GetBitmapPath())));
+							retLst.append(boost::python::make_tuple(WXSTRINGTOSTDWSTRING(curUiItem->GetItemLabel()),curUiItem->GetId(),WXSTRINGTOSTDWSTRING(curUiItem->GetBitmapPath())));
 						}else{
 							wxLogDebug("Unable to translate menu with wxUiMenuItem class");
 						}

@@ -167,7 +167,6 @@ set(ISIMPA_SOURCE_FILES
     data_manager/python_interface/py_ui_module/element_file_pywrap.hpp
     data_manager/python_interface/py_ui_module/element_pywrap.cpp
     data_manager/python_interface/py_ui_module/element_pywrap.hpp
-    data_manager/python_interface/py_ui_module/enum_def.cpp
     data_manager/python_interface/python_command.h
     data_manager/python_interface/pythonshell.cpp
     data_manager/python_interface/pythonshell.hpp
@@ -276,6 +275,17 @@ include(${wxWidgets_USE_FILE})
 FIND_PACKAGE(PythonLibs)
 
 find_package(OpenGL REQUIRED)
+# Build auto-generated source files
+# Find package for generation
+FIND_PACKAGE(PythonInterp REQUIRED)
+
+ADD_CUSTOM_COMMAND(
+  OUTPUT "enum_def.cpp"
+  COMMAND "${PYTHON_EXECUTABLE}" ${PROJECT_SOURCE_DIR}/data_manager/python_interface/py_ui_module/generate_enum_def.py
+  MAIN_DEPENDENCY isimpa
+  )
+
+
 include_directories( ${OPENGL_INCLUDE_DIRS})
 
 link_directories( ${Boost_LIBRARY_DIRS} )  
@@ -293,6 +303,8 @@ target_link_libraries(isimpa ${Boost_LIBRARIES})
 target_link_libraries(isimpa ${PYTHON_LIBRARIES})
 target_link_libraries(isimpa ${wxWidgets_LIBRARIES})
 target_link_libraries(isimpa ${OPENGL_LIBRARIES})
+
+add_definitions(-DUSE_PYTHON=${PYTHONLIBS_FOUND})
 
 if(WIN32) # Check if we are on Windows
   if(MSVC) # Check if we are using the Visual Studio compiler

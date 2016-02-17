@@ -51,11 +51,10 @@ BEGIN_EVENT_TABLE(OpenGlViewer, wxGLCanvas)
 	EVT_KEY_DOWN(OpenGlViewer::OnKeyDown )
 END_EVENT_TABLE()
 
-
 OpenGlViewer::OpenGlViewer(wxWindow *parent, wxWindowID id,
     const wxPoint& pos, const wxSize& size, long style,
     const wxString& name, int* gl_attrib)
-    : wxGLCanvas(parent, id, pos, size, style|wxFULL_REPAINT_ON_RESIZE, name, gl_attrib),
+    : wxGLCanvas(parent, id, gl_attrib, pos, size, style | wxFULL_REPAINT_ON_RESIZE, name),
 	m_Timer(this)
 {
 	appLoaded=false;
@@ -66,7 +65,6 @@ OpenGlViewer::OpenGlViewer(wxWindow *parent, wxWindowID id,
 	smooth = GL_TRUE;
 	modeaff = GL_TRIANGLES;
     parent->Show(true);
-    SetCurrent();
 	m_GLApp = new OpenGLApp();
 	appLoaded=true;
 	cutPlaneToUpdate=false;
@@ -117,186 +115,6 @@ int OpenGlViewer::GetImage(wxImage& aimage)
 	else
 		return 0;
 }
-
-/*
-int OpenGlViewer::GetImage(wxImage& aimage, const int awidth, const int aheight)
-{
-#ifdef __WXGTK__
- unsigned char* buffer = (unsigned char*) malloc(awidth*aheight*3) ;
- if(!buffer)
-   {
-     wxLogError("glcanvas/save") ;
-     return -1 ;
-   } // if
-
- OSMesaContext ctx = OSMesaCreateContext(GL_RGB, NULL) ;
- OSMesaMakeCurrent(ctx, buffer, GL_UNSIGNED_BYTE, awidth, aheight) ;
- OSMesaPixelStore(OSMESA_Y_UP, 0) ;
-
- // OpenGL-Commands, no "GetContext" or "SetCurrent" here!!!
- m_GLApp->ChangeWindow(awidth, aheight);
- CurrentObject->backgroundChange=true;
- m_GLApp->InitGl();
- m_GLApp->RunGlCommands(false);
-
- aimage.Create(awidth, aheight) ;
- aimage.SetData(buffer) ;
- OSMesaDestroyContext(ctx) ;
- return 0 ;
-#else
-#ifdef __WXMSW__
-
-
-
- HWND hWND = (HWND) GetHWND() ;
-
- BITMAPINFO bmi ;
- memset(&bmi, 0, sizeof(BITMAPINFO)) ;
- bmi.bmiHeader.biSize           = sizeof(BITMAPINFOHEADER) ;
- bmi.bmiHeader.biWidth          = awidth ;
- bmi.bmiHeader.biHeight         = aheight ;
- bmi.bmiHeader.biPlanes         = 1 ;
- bmi.bmiHeader.biBitCount       = 24 ;
- bmi.bmiHeader.biCompression    = BI_RGB ;
- bmi.bmiHeader.biSizeImage      = awidth * aheight * 3 ;
-
- HDC hDC = ::GetDC(hWND) ; // war ::GetDC(pView->m_hWnd)
- LPVOID p ;
-HBITMAP hDib = ::CreateDIBSection(hDC, &bmi, DIB_RGB_COLORS, &p, NULL, 0) ;
- if(!hDib)
- {
-   wxLogError("CreateDIBSection returned NULL") ;
-   return -1 ;
- } // if
-
- ::ReleaseDC(hWND, hDC) ;
-
- HDC hMemDC = ::CreateCompatibleDC(NULL) ;
- if(!hMemDC)
- {
-   wxLogError("CreateCompatibleDC returned NULL") ;
-   DeleteObject(hDib) ;
-   return -1 ;
- } // if
-
- HANDLE hOldDib = SelectObject(hMemDC, hDib) ;
-
- PIXELFORMATDESCRIPTOR pixelDesc ;
- pixelDesc.nSize           = sizeof(PIXELFORMATDESCRIPTOR) ;
- pixelDesc.nVersion        = 1 ;
- pixelDesc.dwFlags         =
-   PFD_DRAW_TO_BITMAP|PFD_SUPPORT_OPENGL|PFD_STEREO_DONTCARE ;
- pixelDesc.iPixelType      = PFD_TYPE_RGBA ;
- pixelDesc.cColorBits      = 24 ;
- pixelDesc.cRedBits        = 8 ;
- pixelDesc.cRedShift       = 16 ;
- pixelDesc.cGreenBits      = 8 ;
- pixelDesc.cGreenShift     = 8 ;
- pixelDesc.cBlueBits       = 8 ;
- pixelDesc.cBlueShift      = 0 ;
- pixelDesc.cAlphaBits      = 0 ;
- pixelDesc.cAlphaShift     = 0 ;
- pixelDesc.cAccumBits      = 64 ;
- pixelDesc.cAccumRedBits   = 16 ;
- pixelDesc.cAccumGreenBits = 16 ;
- pixelDesc.cAccumBlueBits  = 16 ;
- pixelDesc.cAccumAlphaBits = 0 ;
- pixelDesc.cDepthBits      = 32 ;
- pixelDesc.cStencilBits    = 8 ;
- pixelDesc.cAuxBuffers     = 0 ;
- pixelDesc.iLayerType      = PFD_MAIN_PLANE ;
- pixelDesc.bReserved       = 0 ;
- pixelDesc.dwLayerMask     = 0 ;
- pixelDesc.dwVisibleMask   = 0 ;
- pixelDesc.dwDamageMask    = 0 ;
-int nPixelIndex = ::ChoosePixelFormat(hMemDC, &pixelDesc) ;
- if(nPixelIndex == 0) // war !
- {
-   wxLogMessage("ChoosePixelFormat returned 0, using default") ;
-   nPixelIndex = 1 ; // default
-   if(!::DescribePixelFormat(hMemDC, nPixelIndex,
-     sizeof(PIXELFORMATDESCRIPTOR), &pixelDesc))
-   {
-     wxLogError("DescribePixelFormat returned 0") ;
-     SelectObject(hMemDC, hOldDib) ;
-     DeleteObject(hDib) ;
-     DeleteDC(hMemDC) ;
-     return -1 ;
-   } // if
- } // if
-
- if(!::SetPixelFormat(hMemDC, nPixelIndex, &pixelDesc))
- {
-   wxLogError("SetPixelFormat returned 0") ;
-   SelectObject(hMemDC, hOldDib) ;
-   DeleteObject(hDib) ;
-DeleteDC(hMemDC) ; return -1 ;
- } // if
-
- HGLRC hMemRC = ::wglCreateContext(hMemDC) ; //this->m_glContext->GetGLRC();
- if(!hMemRC)
- {
-   wxLogError("wglCreateContext returned NULL") ;
-   SelectObject(hMemDC, hOldDib) ;
-   DeleteObject(hDib) ;
-DeleteDC(hMemDC) ; return -1 ;
- } // if
-
- HDC hOldDC = ::wglGetCurrentDC() ;
- HGLRC hOldRC = ::wglGetCurrentContext() ;
- ::wglMakeCurrent(hMemDC, hMemRC) ;
-
- if(m_GLApp)
- {
-	 CurrentObject->backgroundChange=true;
-	 m_GLApp->InitGl();
-
-	 // OpenGL Commands, no SetCurrent or GetContext!
-	 m_GLApp->ChangeWindow(awidth, aheight);
-
-	 m_GLApp->RunGlCommands(false);
-	 legendRendering::ForeGroundGlBitmap foregroundRender(legendDrawer);
-	 foregroundRender.Draw(awidth, aheight);
-
- }
-
-
- ::wglMakeCurrent(NULL, NULL) ;
- ::wglDeleteContext(hMemRC) ;
- ::wglMakeCurrent(hOldDC, hOldRC) ;
-
- aimage.Create(awidth, aheight) ;
-
- wxLogInfo(_("Copie des données vers l'image"));
- COLORREF c ;
- for(int x=0 ; x<awidth ; x++)
-   for(int y=0 ; y<aheight ; y++)
-   {
-     c = GetPixel(hMemDC, x, y) ;
-     aimage.SetRGB(x, y, c & 255, (c >> 8) & 255, (c >> 16) & 255) ;
-   } // for
-
- if(hOldDib)
-   SelectObject(hMemDC, hOldDib) ;
-
- DeleteObject(hDib) ;
-DeleteDC(hMemDC) ;
-
-
-return 0 ;
-#else
-if(appLoaded)
-{
-	int retour = m_GLApp->GetImage(aimage,awidth,aheight,(HWND)this->GetHWND());
-	OnSize(wxSizeEvent());
-	return retour;
-}
-else
-	return 0;
-#endif
-#endif
-}
-*/
 
 void OpenGlViewer::SetSimulationRefreshRate(const int& refreshrate)
 {
@@ -445,12 +263,7 @@ void OpenGlViewer::OnPaint( wxPaintEvent& event )
 {
     // This is a dummy, to avoid an endless succession of paint messages.
     // OnPaint handlers must always create a wxPaintDC.
-
-
-	#ifndef __WXMOTIF__
-		if (!GetContext()) return;
-	#endif
-	wxPaintDC(this);
+	wxPaintDC dc(this);
 	Display();
 }
 
@@ -459,10 +272,7 @@ void OpenGlViewer::Display()
 	//Initialisation
 	int w, h;
     GetClientSize(&w, &h);
-
-	if(IsShown() && this->GetParent()->IsShown())
-		SetCurrent();
-
+	
 	//Execution des commandes de rendu 3D
 
 	m_GLApp->ChangeWindow(w,h);
@@ -477,25 +287,16 @@ void OpenGlViewer::OnSize(wxSizeEvent& event)
 {
 	if(!this->IsShownOnScreen())
 		return;
-    // this is also necessary to update the context on some platforms
-    wxGLCanvas::OnSize(event);
 
     // set GL viewport (not called by wxGLCanvas::OnSize on all platforms...)
     int w, h;
     GetClientSize(&w, &h);
-#ifndef __WXMOTIF__
-    if (GetContext())
-#endif
-    {
-        SetCurrent();
-
-		if(appLoaded)
-		{
-			m_GLApp->ChangeWindow((GLint) w, (GLint) h);
-			doScreenRefresh=true;
-		}
-    }
-
+	
+	if(appLoaded)
+	{
+		m_GLApp->ChangeWindow((GLint) w, (GLint) h);
+		doScreenRefresh=true;
+	}
 }
 
 void OpenGlViewer::OnMouseDoubleClick(t_faceIndex vertexSel)

@@ -84,7 +84,7 @@ Element* New_E_Python_Extension( const Element::ELEMENT_TYPE& baseType,Element* 
 Element* New_E_Python_Extension( Element* parent,wxXmlNode* noeudCourant)
 {
 	wxString propValue;
-	noeudCourant->GetPropVal("beid",&propValue);
+	noeudCourant->GetAttribute("beid",&propValue);
 	
 	Element::ELEMENT_TYPE baseType=(Element::ELEMENT_TYPE)Convertor::ToInt(propValue);
 	return SwitchNewElement(baseType,parent,"","",NULL,noeudCourant);

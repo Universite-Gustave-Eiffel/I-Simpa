@@ -58,12 +58,12 @@ public:
 	wxXmlNode* SaveXMLCoreDoc(wxXmlNode* NoeudParent)
 	{
 		wxXmlNode* NoeudCourant=new wxXmlNode(NoeudParent,wxXML_ELEMENT_NODE,"bfreq");
-		NoeudCourant->AddProperty("freq",this->elementInfo.libelleElement);
+		NoeudCourant->AddAttribute("freq",this->elementInfo.libelleElement);
 		
 		if(elementValue)
-			NoeudCourant->AddProperty("docalc","1");
+			NoeudCourant->AddAttribute("docalc","1");
 		else
-			NoeudCourant->AddProperty("docalc","0");
+			NoeudCourant->AddAttribute("docalc","0");
 
 		return NoeudParent;
 	}

@@ -44,11 +44,11 @@ E_Materiau::E_Materiau(Element* parent,wxString Nom,ELEMENT_TYPE _type,wxXmlNode
 	wxString propVal;
 	//Affecte la valeur de l'element
 
-	if(nodeElement!=NULL && nodeElement->GetPropVal("wxid",&propVal))
+	if(nodeElement!=NULL && nodeElement->GetAttribute("wxid",&propVal))
 	{
 		//Element initialisé AVEC Xml
 		long lval;
-		if(nodeElement->GetPropVal("idmateriau",&propVal))
+		if(nodeElement->GetAttribute("idmateriau",&propVal))
 		{
 			propVal.ToLong(&lval);
 			idMateriau=lval;
@@ -58,7 +58,7 @@ E_Materiau::E_Materiau(Element* parent,wxString Nom,ELEMENT_TYPE _type,wxXmlNode
 		wxString propValue;
 		while(currentChild!=NULL)
 		{
-			if(currentChild->GetPropVal("eid",&propValue))
+			if(currentChild->GetAttribute("eid",&propValue))
 			{
 				long typeEle;
 				propValue.ToLong(&typeEle);
@@ -110,8 +110,8 @@ wxXmlNode* E_Materiau::SaveXMLDoc(wxXmlNode* NoeudParent)
 	wxXmlNode* thisNode = Element::SaveXMLDoc(NoeudParent);
 	thisNode->SetName("materiau"); // Nom de la balise xml ( pas d'espace autorise )
 	//Sauvegarde de l'identifiant du matériau
-	thisNode->DeleteProperty("idmateriau");
-	thisNode->AddProperty("idmateriau",Convertor::ToString(idMateriau));	
+	thisNode->DeleteAttribute("idmateriau");
+	thisNode->AddAttribute("idmateriau",Convertor::ToString(idMateriau));	
 	return thisNode;
 }
 
@@ -135,7 +135,7 @@ wxXmlNode* E_Materiau::SaveXMLCoreDoc(wxXmlNode* NoeudParent)
 	if(isUsedInProject)
 	{
 		wxXmlNode* NoeudCourant=new wxXmlNode(NoeudParent,wxXML_ELEMENT_NODE,"type_surface");
-		NoeudCourant->AddProperty("id",Convertor::ToString(idMateriau));
+		NoeudCourant->AddAttribute("id",Convertor::ToString(idMateriau));
 		return Element::SaveXMLCoreDoc(NoeudCourant);
 	}else{
 		return NoeudParent;

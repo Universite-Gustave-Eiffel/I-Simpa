@@ -321,14 +321,14 @@ namespace uictrl
 				self->OpenPropertyElement(el);
 				list collbllst;
 				collbllst.append(std::wstring());
-				for(int idcol=0;idcol<self->propFrame->GetCols();idcol++)
+				for(int idcol=0;idcol<self->propFrame->GetNumberCols();idcol++)
 					collbllst.append(WXSTRINGTOSTDWSTRING(self->propFrame->GetColLabelValue(idcol)));
 				retlst.append(collbllst);
-				for(int idrow=0;idrow<self->propFrame->GetRows();idrow++)
+				for(int idrow=0;idrow<self->propFrame->GetNumberRows();idrow++)
 				{
 					list rowlbllst;
 					rowlbllst.append(WXSTRINGTOSTDWSTRING(self->propFrame->GetRowLabelValue(idrow)));
-					for(int idcol=0;idcol<self->propFrame->GetCols();idcol++)
+					for(int idcol=0;idcol<self->propFrame->GetNumberCols();idcol++)
 						rowlbllst.append(WXSTRINGTOSTDWSTRING(self->propFrame->GetCellValue(idrow,idcol)));
 					retlst.append(rowlbllst);
 				}

@@ -81,7 +81,7 @@ public:
 			wxString propValue;
 			while(currentChild!=NULL)
 			{
-				if(currentChild->GetPropVal("eid",&propValue))
+				if(currentChild->GetAttribute("eid",&propValue))
 				{
 					long typeEle;
 					propValue.ToLong(&typeEle);
@@ -147,7 +147,7 @@ public:
 		if(this->GetElementByType(ELEMENT_TYPE_SCENE_ENCOMBREMENTS_ENCOMBREMENT_PROPRIETES)->GetBoolConfig("useforcalculation"))
 		{
 			wxXmlNode* thisNode = new wxXmlNode(NoeudParent,wxXML_ELEMENT_NODE,"encombrement");
-			thisNode->AddProperty("id",Convertor::ToString(elementInfo.xmlIdElement));
+			thisNode->AddAttribute("id",Convertor::ToString(elementInfo.xmlIdElement));
 			Element::SaveXMLCoreDoc(thisNode);
 			return thisNode;
 		}else{

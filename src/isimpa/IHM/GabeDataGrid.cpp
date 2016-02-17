@@ -287,7 +287,7 @@ BEGIN_EVENT_TABLE( GabeDataGrid, PropGrid )
 	EVT_MENU(ID_DELETE_ROW, GabeDataGrid::OnDeleteRow)
 	EVT_MENU(ID_SAVE, GabeDataGrid::OnSaveDocument)
 	EVT_MENU(ID_SAVE_AS, GabeDataGrid::OnSaveDocument)
-	EVT_GRID_CELL_CHANGE( GabeDataGrid::OnCellValueChanged )
+	EVT_GRID_CELL_CHANGED( GabeDataGrid::OnCellValueChanged )
 END_EVENT_TABLE()
 
 GabeDataGrid::GabeDataGrid(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style, const wxString& name)
@@ -295,7 +295,7 @@ GabeDataGrid::GabeDataGrid(wxWindow* parent, wxWindowID id, const wxPoint& pos, 
 {
 	this->SetTable(new wxGridMixedTable(1,1),true);
 	allowPaste=true;
-	this->SetLabelAlignment(wxVERTICAL,wxALIGN_LEFT);
+	this->SetRowLabelAlignment(wxVERTICAL,wxALIGN_LEFT);
 }
 
 
@@ -441,17 +441,12 @@ void GabeDataGrid::OnCreateDocument(wxCommandEvent& event)
 	std::vector<wxString> cells;
 	std::vector<wxGridCellAttr*> cellsAttr;
 
-	for(int idcol=0;idcol<GetCols();idcol++)
-		1;//cellsAttr.push_back(GetOrCreateCellAttr(idcol,0));
 	CopyUserSelectionToArrays(lblCols,lblRows,cells,cellsValue,true);
 	GabeDataGrid* newSubWindow= new GabeDataGrid(this,-1);
 	newSubWindow->LoadData(lblCols,lblRows,cells,cellsValue,&cellsAttr);
 	noteBookWin->AddPage(newSubWindow,_("New project"));
 	noteBookWin->SetSelection(noteBookWin->GetPageCount()-1);
-
-	//for(int idcol=0;idcol<cellsAttr.size();idcol++)
-	//	cellsAttr[idcol]->DecRef();
-
+	
 }
 
 void GabeDataGrid::CopyUserSelectionToArrays(std::vector<wxString>& lblCols,std::vector<wxString>& lblRows,std::vector<wxString>& cells,std::vector<wxFloat32>& cellsValue, bool initStringCells)
@@ -466,12 +461,12 @@ void GabeDataGrid::CopyUserSelectionToArrays(std::vector<wxString>& lblCols,std:
 	wxInt32 zeroBaseRow=0;
 	for ( int row = currentSelection.TopRow; row <= currentSelection.BottomRow; row++ )
 	{
-		lblRows[zeroBaseRow]=this->GetLabelValue(wxVERTICAL,row);
+		lblRows[zeroBaseRow]=this->GetRowLabelValue(row);
 		wxInt32 zeroBaseCol=0;
 		for ( int col = currentSelection.LeftCol; col <= currentSelection.RightCol; col++ )
 		{
 			if(row==currentSelection.TopRow)
-				lblCols[zeroBaseCol]=this->GetLabelValue(wxHORIZONTAL,col);
+				lblCols[zeroBaseCol]=this->GetColLabelValue(col);
 			double valCell;
 			if(this->GetTable()->CanGetValueAs(row,col,wxGRID_VALUE_FLOAT))
 			{
@@ -566,25 +561,25 @@ void GabeDataGrid::SaveData(wxString gabeFilePath)
 {
 	modified=false;
 	using namespace formatGABE;
-	GABE binExport(this->GetCols()+1);
+	GABE binExport(this->GetNumberCols()+1);
 	//Création de la colonne des libellés
-	GABE_Data_ShortString* rowLabels= new GABE_Data_ShortString(this->GetRows());
-	for(int idrow=0;idrow<this->GetRows();idrow++)
+	GABE_Data_ShortString* rowLabels= new GABE_Data_ShortString(this->GetNumberRows());
+	for(int idrow=0;idrow<this->GetNumberRows();idrow++)
 	{
 		rowLabels->SetString(idrow,this->GetRowLabelValue(idrow));
 	}
 	binExport.SetCol(0,rowLabels);
 	//Création des colonnes du tableau
-	for(int idcol=0;idcol<this->GetCols();idcol++)
+	for (int idcol = 0; idcol < this->GetNumberCols(); idcol++)
 	{
 		GABE_Object* newCol;
 		wxString cellDataType=this->GetTable()->GetTypeName(0,idcol);
 		if(this->GetTable()->CanGetValueAs(0,idcol,wxGRID_VALUE_FLOAT))
 		{
-			GABE_Data_Float* newColFloat=new GABE_Data_Float(this->GetRows());
+			GABE_Data_Float* newColFloat=new GABE_Data_Float(this->GetNumberRows());
 			newCol=newColFloat;
 			double convertedValue;
-			for(int idrow=0;idrow<this->GetRows();idrow++)
+			for(int idrow=0;idrow<this->GetNumberRows();idrow++)
 			{
 				if(this->GetCellValue(idrow,idcol).ToDouble(&convertedValue))
 					newColFloat->Set(idrow,(Floatb)convertedValue);
@@ -595,18 +590,18 @@ void GabeDataGrid::SaveData(wxString gabeFilePath)
 				newColFloat->headerData.numOfDigits=floatRenderer->GetPrecision();
 		}else if(this->GetTable()->CanGetValueAs(0,idcol,wxGRID_VALUE_NUMBER))
 		{
-			GABE_Data_Integer* newColInt=new GABE_Data_Integer(this->GetRows());
+			GABE_Data_Integer* newColInt=new GABE_Data_Integer(this->GetNumberRows());
 			newCol=newColInt;
 			long convertedValue;
-			for(int idrow=0;idrow<this->GetRows();idrow++)
+			for(int idrow=0;idrow<this->GetNumberRows();idrow++)
 			{
 				if(this->GetCellValue(idrow,idcol).ToLong(&convertedValue))
 					newColInt->Set(idrow,(Intb)convertedValue);
 			}
 		}else{
-			GABE_Data_ShortString* newColString=new GABE_Data_ShortString(this->GetRows());
+			GABE_Data_ShortString* newColString=new GABE_Data_ShortString(this->GetNumberRows());
 			newCol=newColString;
-			for(int idrow=0;idrow<this->GetRows();idrow++)
+			for(int idrow=0;idrow<this->GetNumberRows();idrow++)
 			{
 				newColString->SetString(idrow,this->GetCellValue(idrow,idcol));
 			}
@@ -626,18 +621,18 @@ void GabeDataGrid::SaveDataCSV(wxString csvFilePath)
 		return;
 	}
 	wxString lineOfText;
-	for(int idcol=0;idcol<this->GetCols();idcol++)
+	for (int idcol = 0; idcol < this->GetNumberCols(); idcol++)
 	{
 		lineOfText+=";";
 		lineOfText+=this->GetColLabelValue(idcol);
 	}
 	outfile.AddLine(lineOfText);
-	for(int idrow=0;idrow<this->GetRows();idrow++)
+	for (int idrow = 0; idrow < this->GetNumberRows(); idrow++)
 	{
 		lineOfText.clear();
 		lineOfText+=this->GetRowLabelValue(idrow);
 		//Création des colonnes du tableau		
-		for(int idcol=0;idcol<this->GetCols();idcol++)
+		for (int idcol = 0; idcol < this->GetNumberCols(); idcol++)
 		{
 			lineOfText+=";";
 			if(this->GetTable()->CanGetValueAs(0,idcol,wxGRID_VALUE_FLOAT))
@@ -689,8 +684,8 @@ void GabeDataGrid::LoadData(wxString gabeFilePath)
 			if(newCol)
 			{
 				int rows=newCol->GetSize();	
-				if(rows>this->GetRows())
-					this->AppendRows(rows-this->GetRows());
+				if(rows>this->GetNumberRows())
+					this->AppendRows(rows-this->GetNumberRows());
 				
 				wxString labcol(newCol->GetLabel());
 				if(labcol.Len()>0)
@@ -745,10 +740,10 @@ void GabeDataGrid::LoadData(wxString gabeFilePath)
 
 void GabeDataGrid::ClearColsAndRows()
 {
-	if(this->GetRows()>0)
-		this->DeleteRows(0,this->GetRows());
-	if(this->GetCols()>0)
-		this->DeleteCols(0,this->GetCols());
+	if(this->GetNumberRows()>0)
+		this->DeleteRows(0,this->GetNumberRows());
+	if(this->GetNumberCols()>0)
+		this->DeleteCols(0,this->GetNumberCols());
 
 }
 
