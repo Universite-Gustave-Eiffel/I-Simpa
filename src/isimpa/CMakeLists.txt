@@ -264,7 +264,8 @@ set(ISIMPA_SOURCE_FILES
     manager/processManager.h
     manager/sppsString.cpp
     manager/stringParser.h
-    manager/stringTools.h)
+    manager/stringTools.h
+    enum_def.cpp)
 
 set(Boost_USE_STATIC_LIBS   ON) 
 find_package(Boost REQUIRED COMPONENTS system python)
@@ -279,11 +280,15 @@ find_package(OpenGL REQUIRED)
 # Find package for generation
 FIND_PACKAGE(PythonInterp REQUIRED)
 
+# Ask make to call python in order to use element.h to produce enum_def.cpp
 ADD_CUSTOM_COMMAND(
   OUTPUT "enum_def.cpp"
-  COMMAND "${PYTHON_EXECUTABLE}" ${PROJECT_SOURCE_DIR}/data_manager/python_interface/py_ui_module/generate_enum_def.py
-  MAIN_DEPENDENCY isimpa
+  COMMAND "${PYTHON_EXECUTABLE}" ${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/python_interface/py_ui_module/generate_enum_def.py
+  ARGS    "${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/element.h" > "enum_def.cpp"
+  DEPENDS "data_manager/element.h"
   )
+# Before using element_pywrap.cpp build enum_def.cpp
+set_property(SOURCE data_manager/python_interface/py_ui_module/element_pywrap.cpp APPEND PROPERTY OBJECT_DEPENDS enum_def.cpp)
 
 
 include_directories( ${OPENGL_INCLUDE_DIRS})

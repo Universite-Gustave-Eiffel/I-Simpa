@@ -113,11 +113,11 @@ void SortChildrensByProperty(wxXmlNode* node,const wxString& propertyName)
 					//On met à jour les pointeurs
 					childrenNode=nextNode;
 					nextid=currentid;
+					currentid = nextid;
 				}
 			}
 			previousNode=childrenNode;
 			childrenNode=childrenNode->GetNext();
-			currentid=nextid;
 		}
 	}
 }

@@ -65,8 +65,7 @@ const wxString ApplicationConfiguration::CONST_PREPROCESS_EXE_FILENAME="Preproce
 const wxString ApplicationConfiguration::CONST_GRAPH_CONFIG_PATH="SIMPLEGRAPH";
 const wxString ApplicationConfiguration::CONST_USER_PREFERENCE_FILE_NAME="isimpa_pref.xml";
 
-wxString WorkingDir=wxStandardPaths::Get().GetExecutablePath();
-const wxString ApplicationConfiguration::CONST_RESOURCE_FOLDER=WorkingDir + wxFileName::GetPathSeparator();
+const wxString ApplicationConfiguration::CONST_RESOURCE_FOLDER= wxString(".") + wxFileName::GetPathSeparator();
 const wxString ApplicationConfiguration::CONST_RESOURCE_DATA_FOLDER=wxString("Bitmaps")+wxFileName::GetPathSeparator();
 const wxString ApplicationConfiguration::CONST_RESOURCE_ISO_FOLDER=wxString("iso")+wxFileName::GetPathSeparator();
 

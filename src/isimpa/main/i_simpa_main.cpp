@@ -1167,5 +1167,6 @@ EVT_KEY_UP(ISimpaApp::OnKeyUp)
 EVT_DROP_FILES(ISimpaApp::OnFileDrop)
 END_EVENT_TABLE()
 
+wxDECLARE_APP(ISimpaApp);
 wxIMPLEMENT_APP(ISimpaApp);
 

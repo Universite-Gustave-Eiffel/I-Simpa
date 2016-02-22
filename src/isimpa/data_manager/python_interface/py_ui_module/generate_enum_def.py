@@ -31,12 +31,13 @@
 
 import time
 import codecs
+import sys
 
 endlinearr=[",","/*","="]
 
 cppFile=u"""
 //Généré par generate_enum_def.py le datestamp
-#include "element_pywrap.hpp"
+#include "data_manager/python_interface/py_ui_module/element_pywrap.hpp"
 #include "data_manager/element.h"
 #include "data_manager/python_interface/instanceManager.hpp"
 #ifdef USE_PYTHON
@@ -162,7 +163,7 @@ def GetDefGraphEnum(eventText):
     return enumdef_type
 
 
-fichelement=codecs.open("../../element.h",'r',encoding="utf-8")
+fichelement=codecs.open(sys.argv[1],'r',encoding="utf-8")
 stateParsing="seek"
 buffEnum=""
 for line in fichelement:
@@ -177,7 +178,6 @@ for line in fichelement:
             stateParsing="seek"
             buffEnum=""
         elif line.find("enum GRAPH")!=-1:
-            print "graph found"
             stateParsing="GRAPH"
             buffEnum=""
     else:
@@ -211,5 +211,5 @@ cppFile=cppFile.replace("datestamp",time.ctime())
 #doxyfichdest.write(doxyhppFile.encode("utf-8"))
 #fichdest.close()
 #doxyfichdest.close()
-print cppFile
+print cppFile.encode("utf-8")
 

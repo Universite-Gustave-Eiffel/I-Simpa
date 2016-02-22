@@ -343,21 +343,24 @@ class MainUiFrame : public wxFrame
 class CustomLog : public wxLog
 {
 public:
+
 	/**
 	 *	@brief A l'événement de génération d'un message, le message est redirigé
 	 *
 	 *	Pour faire appel à cette méthode n'importe où dans le logiciel, utiliser : wxLogInfo()
 	 *	Se référer au document développeur de wxWidgets
 	*/
-	void DoLog(wxLogLevel level, const wxChar *szString, time_t t)
+	void DoLogRecord(wxLogLevel level,
+		const wxString& szString,
+		const wxLogRecordInfo& info)
 	{
 		wxString message(szString);
 
 
 		switch ( level ) {
 			case wxLOG_FatalError:
-				DoLogString(wxString(_("Fatal error: ")) + szString, t,wxRED);
-				DoLogString(_("Program aborted"), t,wxRED);
+				DoLogText(wxString(_("Fatal error: ")) + szString, wxRED);
+				DoLogText(_("Program aborted"), wxRED);
 				Flush();
 		#ifdef __WXWINCE__
 				ExitThread(3);
@@ -367,20 +370,20 @@ public:
 				break;
 
 			case wxLOG_Error:
-				DoLogString(wxString(_("Error:")) + szString, t,wxRED);
+				DoLogText(wxString(_("Error:")) + szString, wxRED);
 				break;
 
 			case wxLOG_Warning:
-				DoLogString(wxString(_("Warning: ")) + szString, t,wxRED);
+				DoLogText(wxString(_("Warning: ")) + szString, wxRED);
 				break;
 
 			case wxLOG_Message:
-				DoLogString(szString, t,wxBLUE);
+				DoLogText(szString, wxBLUE);
 				break;
 			case wxLOG_Info:
 			case wxLOG_Status:
 			default:    // log unknown log levels too
-				DoLogString(szString, t,wxBLACK);
+				DoLogText(szString, wxBLACK);
 				break;
 
 			case wxLOG_Trace:
@@ -390,14 +393,14 @@ public:
 					wxString msg = level == wxLOG_Trace ? wxT("Trace: ")
 														: wxT("Debug: ");
 					msg << szString;
-					DoLogString(msg, t,wxGREEN);
+					DoLogText(msg, wxGREEN);
 				}
 		#endif // Debug
 				break;
 		}
 
 	}
-	void DoLogString(const wxChar *szString, time_t WXUNUSED(t),const wxColour* msgColor)
+	void DoLogText(const wxChar *szString, const wxColour* msgColor)
 	{
 		wxString str;
 		TimeStamp(&str);
