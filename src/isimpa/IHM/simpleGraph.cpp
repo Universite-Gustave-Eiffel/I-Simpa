@@ -1534,6 +1534,7 @@ namespace sgSpace
 		calculatedAreaSize(70, 30),
 		whereToInsert(_whereToInsert)
 	{
+        this->SetBackgroundColour(*wxWHITE);
 	}
 
 
@@ -1558,7 +1559,7 @@ namespace sgSpace
 
 	void SG_Legend::OnErase(wxEraseEvent& evt)
 	{
-
+        evt.Skip();
 	}
 	void SG_Legend::drawLegend(wxDC& drawDC)
 	{
