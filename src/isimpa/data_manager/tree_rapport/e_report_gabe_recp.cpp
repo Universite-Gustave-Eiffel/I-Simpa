@@ -222,7 +222,7 @@ bool E_Report_Gabe_Recp::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,
 		}
 
 		//Ajout de la légende
-		new SG_Legend(graphPage,LEGEND_PLACEMENT_HORIZONTAL,-1,wxSizerFlags(0).Align(wxALIGN_RIGHT));
+		SG_Legend::Add(new SG_Legend(graphPage,LEGEND_PLACEMENT_HORIZONTAL,-1), wxSizerFlags(0).Align(wxALIGN_TOP));
 
 		//////////////
 		graphPage->ZoomFit();
@@ -244,7 +244,7 @@ bool E_Report_Gabe_Recp::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,
 		new SG_Element_Axis(graphPage,wxHORIZONTAL,0.f,"ms");
 
 		//Ajout de la légende
-		new SG_Legend(graphPage,LEGEND_PLACEMENT_HORIZONTAL,-1,wxSizerFlags(0).Align(wxALIGN_RIGHT));
+		SG_Legend::Add(new SG_Legend(graphPage,LEGEND_PLACEMENT_HORIZONTAL,-1), wxSizerFlags(0).Align(wxALIGN_TOP));
 
 		//Ajout Toute bande
 		for(int idrow=nbrowel-1;idrow<nbrowel;idrow++)

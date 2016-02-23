@@ -28,6 +28,7 @@
 * or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
+
 #include "simpleGraphDialogs.h"
 #include <wx/bookctrl.h>
 #include <wx/arrimpl.cpp> 
@@ -270,7 +271,7 @@ SG_PropertySheetDialog::SG_PropertySheetDialog(simpleGraph* parent, wxWindowID i
 		ApplyButton=new wxButton(m_innerSizer->GetContainingWindow(),wxID_APPLY,_("Apply"));
 		ApplyButton->Disable();
 		buttonSizer->Add( ApplyButton);
-        m_innerSizer->Add( buttonSizer, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT|wxRIGHT, 2);
+        m_innerSizer->Add( buttonSizer, 0, wxGROW, 2); //|wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT|wxRIGHT
         m_innerSizer->AddSpacer(2);
     }
 
@@ -520,7 +521,7 @@ wxPanel* SG_PropertySheetDialog::CreateGeneralSettingsPage(wxWindow* parent)
     itemSizer3->Add(generalPropGrid, 1, wxALL|wxALIGN_CENTER_VERTICAL, 5);
     item0->Add(itemSizer3, 0, wxGROW|wxALL, 0);
 
-    topSizer->Add( item0, 1, wxGROW|wxALIGN_CENTRE|wxALL, 5 );
+    topSizer->Add( item0, 1, wxGROW, 5 ); //|wxALIGN_CENTRE|wxALL
 
     panel->SetSizer(topSizer);
     topSizer->Fit(panel);

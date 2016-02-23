@@ -321,7 +321,7 @@ void BuildGraphSheetDialog::OnOK(wxCommandEvent& event)
 
 
 		//Ajout de la légende
-		new SG_Legend(graphPage,LEGEND_PLACEMENT_HORIZONTAL,-1,wxSizerFlags(0).Align(wxALIGN_RIGHT));
+        SG_Legend::Add(new SG_Legend(graphPage, LEGEND_PLACEMENT_HORIZONTAL, -1), wxSizerFlags(0).Align(wxALIGN_TOP));
 
 		//////////////
 		graphPage->ZoomFit();
