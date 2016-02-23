@@ -615,14 +615,14 @@ namespace sgSpace
 				_parent->parameters.SetCfg(F_PARAM_X_TIC, intervalValue);
 			}
 		}
-		maxSizeElement = 12;
+        maxSizeElement = 50;
 		sizeofTitle = wxSize(12, 12);
 	}
 	wxSize SG_Element_Axis::GetBestSize() const
 	{
 		if (this->axisOrientation == wxVERTICAL)
 		{
-			return wxSize(maxSizeElement + sizeofTitle.GetWidth(), -1);
+            return wxSize(maxSizeElement + sizeofTitle.GetWidth(), -1);
 		}
 		else {
 			return wxSize(-1, maxSizeElement + sizeofTitle.GetHeight());
@@ -864,7 +864,7 @@ namespace sgSpace
 			currentContext->SetBrush(el_style.GetBrush());
 			currentContext->SetFont(el_style.GetFont());
 			currentContext->SetTextForeground(el_style.GetTextForeGroundColor());
-			currentContext->SetTextBackground(el_style.GetTextForeGroundColor());
+			currentContext->SetTextBackground(el_style.GetTextBackGroundColor());
 			if (el_style.GetDrawingMethod() == DRAWING_METHOD_COLS)
 			{
 				wxInt32 penWidth = el_style.GetPen().GetWidth();
@@ -1438,7 +1438,6 @@ namespace sgSpace
 	{
 		//Si on doit redessiner une partie de la zone de dessin alors on utilise notre dernier rendu
 		//Au cas où toute la zone de dessin doit être redessiné on rappel la méthode de dessin
-		wxSize anscalculatedAreaSize = lastCalculatedSize;
 		wxPaintDC tmpDc(this);
 
 		wxClientDC clientDc(this);
@@ -1463,9 +1462,10 @@ namespace sgSpace
 				else {
 					Draw(*backingStoreDc, GetClientSize());
 				}
-				lastCalculatedSize = DoGetBestSize();
-				if (anscalculatedAreaSize != lastCalculatedSize)
+				wxSize calculatedSize = DoGetBestSize();
+				if (m_bestSizeCache != calculatedSize)
 				{
+                    CacheBestSize(calculatedSize);
 					wxPostEvent(m_owner, wxSizeEvent());
 				}
 			}
@@ -1506,11 +1506,11 @@ namespace sgSpace
 
 				}
 			}
-			wxInt16 ticSize = m_owner->parameters.GetCfg(I_PARAM_TIC_SIZE);
-			if (areaType == AREA_TYPE_X_AXIS)
-				maxSize.SetHeight(maxSize.GetHeight() + ticSize);
-			else
-				maxSize.SetWidth(maxSize.GetWidth() + ticSize);
+            wxInt16 ticSize = m_owner->parameters.GetCfg(I_PARAM_TIC_SIZE);
+            if (areaType == AREA_TYPE_X_AXIS)
+                maxSize.SetHeight(maxSize.GetHeight() + ticSize +  2); // Add tic size and offset
+            else
+                maxSize.SetWidth(maxSize.GetWidth() + ticSize + 2); // Add tic size and offset
 
 		}
 
@@ -1531,10 +1531,10 @@ namespace sgSpace
 		:
 		wxControl(parent, id, pos, size, style | wxNO_BORDER, wxDefaultValidator, _T("legend_area")), //| ((whereToInsert==LEGEND_PLACEMENT_INSIDE_MAINGRAPH) ? wxTRANSPARENT_WINDOW : 0)
 		m_owner(parent),
-		calculatedAreaSize(70, 30),
 		whereToInsert(_whereToInsert)
 	{
         this->SetBackgroundColour(*wxWHITE);
+        CacheBestSize(wxSize(5, 5));
 	}
 
 
@@ -1554,7 +1554,7 @@ namespace sgSpace
 
 	wxSize SG_Legend::DoGetBestSize() const
 	{
-		return calculatedAreaSize;
+		return m_bestSizeCache;
 	}
 
 	void SG_Legend::OnErase(wxEraseEvent& evt)
@@ -1564,13 +1564,13 @@ namespace sgSpace
 	void SG_Legend::drawLegend(wxDC& drawDC)
 	{
 
-		wxSize anscalculatedAreaSize = calculatedAreaSize;
+		wxSize anscalculatedAreaSize = m_bestSizeCache;
 		drawDC.Clear();
 		SG_Renderer drawingRenderer(drawDC, m_owner->parameters);
 		ArrayOfGraphEl::iterator it;
 		wxInt32 pictSize = m_owner->parameters.GetCfg(I_PARAM_LEGEND_ICON_SIZE);
 		wxPoint currentPenPosition(5, 5);
-		calculatedAreaSize = wxSize(5, 5);
+        wxSize calculatedAreaSize = wxSize(5, 5);
 		if (!m_owner->parameters.isEnable(B_PARAM_HIDE_LEGEND))
 		{
 			for (it = m_owner->elements.begin(); it != m_owner->elements.end(); ++it)
@@ -1602,6 +1602,7 @@ namespace sgSpace
 		}
 		if (calculatedAreaSize != anscalculatedAreaSize)
 		{
+            CacheBestSize(calculatedAreaSize);
 			wxSizeEvent szevt;
 			m_owner->GetEventHandler()->ProcessEvent(szevt);
 		}
@@ -1653,14 +1654,14 @@ namespace sgSpace
 		m_plotAndTitleSizer = new wxBoxSizer(wxVERTICAL);
 		m_plotAndTitleSizer->Add(plotsizer, 1, wxEXPAND);
 
-		plotsizer->Add(new SG_Area(this, AREA_TYPE_Y_AXIS, wxDefaultSize), wxSizerFlags(0).Expand());
+		plotsizer->Add(new SG_Area(this, AREA_TYPE_Y_AXIS), wxSizerFlags(0).Expand());
 		mainGraphArea = new SG_Area(this, AREA_TYPE_MAINGRAPH);
 		plotsizer->Add(mainGraphArea, wxSizerFlags(1).Expand());
 
 
 		cellSizer = new wxBoxSizer(wxHORIZONTAL);
 		plotsizer->Add(cellSizer, 1, wxEXPAND);
-		plotsizer->Add(new SG_Area(this, AREA_TYPE_X_AXIS, wxDefaultSize), wxSizerFlags(0).Expand());
+		plotsizer->Add(new SG_Area(this, AREA_TYPE_X_AXIS), wxSizerFlags(0).Expand());
 
 		plotsizer->AddGrowableRow(0);
 		plotsizer->AddGrowableCol(1);
@@ -1759,7 +1760,9 @@ namespace sgSpace
 		parameters.SetCfg(F_PARAM_X_MAX, xMax);
 		parameters.SetCfg(F_PARAM_Y_MIN, yMin);
 		parameters.SetCfg(F_PARAM_Y_MAX, yMax);
+
 	}
+
 	void simpleGraph::DeleteDrawingElement(wxInt32 indexEl)
 	{
 		if (elements.find(indexEl) != elements.end())

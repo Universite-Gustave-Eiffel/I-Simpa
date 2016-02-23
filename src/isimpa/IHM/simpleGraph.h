@@ -657,7 +657,6 @@ namespace sgSpace
 		AREA_TYPE areaType;
 		simpleGraph     *m_owner;
 		DECLARE_EVENT_TABLE()
-		wxSize lastCalculatedSize;
 		wxBufferedDC* backingStoreDc;
 		wxSize backingStoreSize;
 	};
@@ -688,7 +687,6 @@ namespace sgSpace
 		void OnErase(wxEraseEvent& evt);
 		simpleGraph* m_owner;
 		DECLARE_EVENT_TABLE()
-		wxSize calculatedAreaSize;
 		LEGEND_PLACEMENT whereToInsert;
 	};
 
