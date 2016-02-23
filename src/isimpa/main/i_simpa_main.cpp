@@ -36,6 +36,7 @@
 #include <wx/evtloop.h>
 #include "last_cpp_include.hpp"
 
+
 BEGIN_EVENT_TABLE(MainUiFrame, wxFrame)
 	EVT_MENU(ID_nouveau_projet, MainUiFrame::NewProject)
 	EVT_MENU(ID_fermer, MainUiFrame::Quit)
@@ -231,34 +232,34 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	//outils_menu->Append(ID_outil_options, _("Options..."));
 
 
-	affichage_menu = new wxMenu;
+	view_menu = new wxMenu;
 
-	affichage_face_menu = new wxMenu;
-	affichage_face_menu->Append(ID_flat, _("Outside"),"Outside",wxITEM_RADIO);
-	affichage_face_menu->Append(ID_flat_inside, _("Inside"),"Inside",wxITEM_RADIO);
-	affichage_face_menu->Append(ID_flat_none, _("None"),"None",wxITEM_RADIO);
-	affichage_face_menu->Check(ID_flat_inside,true);
-	affichage_menu->Append(ID_fold_face, _("Faces"),affichage_face_menu);
+	view_face_menu = new wxMenu;
+	view_face_menu->Append(ID_flat, _("Outside"),"Outside",wxITEM_RADIO);
+	view_face_menu->Append(ID_flat_inside, _("Inside"),"Inside",wxITEM_RADIO);
+	view_face_menu->Append(ID_flat_none, _("None"),"None",wxITEM_RADIO);
+	view_face_menu->Check(ID_flat_inside,true);
+	view_menu->Append(ID_fold_face, _("Faces"),view_face_menu);
 
 
 	wxMenu* affichage_material_menu = new wxMenu;
 	affichage_material_menu->Append(ID_ModelMaterial, _("Original"),"Original",wxITEM_RADIO);
 	affichage_material_menu->Append(ID_SoundMaterial, _("Material"),"Material",wxITEM_RADIO);
-	affichage_menu->Append(ID_fold_material, _("Material color"),affichage_material_menu);
+	view_menu->Append(ID_fold_material, _("Material color"),affichage_material_menu);
 	affichage_material_menu->Check(ID_ModelMaterial,true);
 
-	affichage_ligne_menu = new wxMenu;
-	affichage_ligne_menu->Append(ID_outil_compute_shape, _("Contour lines calculation"));
-	affichage_ligne_menu->Append(ID_wireframe_all, _("All"),"All",wxITEM_RADIO);
-	affichage_ligne_menu->Append(ID_wireframe_shape, _("Contour"),"Contour",wxITEM_RADIO);
-	affichage_ligne_menu->Append(ID_wireframe_none, _("None"),"None",wxITEM_RADIO);
-	affichage_ligne_menu->Check(ID_wireframe_none,true);
-	affichage_menu->Append(ID_fold_wireframe, _("Lines"),affichage_ligne_menu);
+	view_line_menu = new wxMenu;
+	view_line_menu->Append(ID_outil_compute_shape, _("Contour lines calculation"));
+	view_line_menu->Append(ID_wireframe_all, _("All"),"All",wxITEM_RADIO);
+	view_line_menu->Append(ID_wireframe_shape, _("Contour"),"Contour",wxITEM_RADIO);
+	view_line_menu->Append(ID_wireframe_none, _("None"),"None",wxITEM_RADIO);
+	view_line_menu->Check(ID_wireframe_none,true);
+	view_menu->Append(ID_fold_wireframe, _("Lines"),view_line_menu);
 
 
 
 /*
-	affichage_menu->AppendSeparator();
+	view_menu->AppendSeparator();
 
 	wxMenu* affichage_simulation_menu = new wxMenu;
 
@@ -268,46 +269,46 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	LinkMenuItemWithElement(affichage_simulation_menu->Append(ID_simulation_recepteurss, _("Rendu des récepteurs surfaciques"),"",wxITEM_CHECK),
 		Element::ELEMENT_TYPE_SCENE_PROJET_RENDU_PARTICULES,
 		"showrecepteurss");
-	affichage_menu->Append(ID_fold_simulation, _("Simulation"),affichage_simulation_menu);
+	view_menu->Append(ID_fold_simulation, _("Simulation"),affichage_simulation_menu);
 */
 
 
-	affichage_menu->AppendSeparator();
+	view_menu->AppendSeparator();
 
-	affichage_menu->Append(ID_ShowHideMailler, _("Hide meshing"),"Hide meshing",wxITEM_CHECK);
+	view_menu->Append(ID_ShowHideMailler, _("Hide meshing"),"Hide meshing",wxITEM_CHECK);
 
-	affichage_menu->AppendSeparator();
+	view_menu->AppendSeparator();
 
-	affichage_menu->Append(ID_InitCamera, _("Reinitialize camera"));
-	affichage_camera_menu = new wxMenu;
-	affichage_camera_menu->Append(ID_camera_firstperson, _("First person"),"First person",wxITEM_RADIO);
-	affichage_camera_menu->Append(ID_camera_rotate, _("Rotation / Zoom"),"Rotation / Zoom",wxITEM_RADIO);
-	affichage_camera_menu->Check(ID_camera_rotate,true);
-	affichage_menu->Append(ID_fold_camera, _("Camera"),affichage_camera_menu);
+	view_menu->Append(ID_InitCamera, _("Reinitialize camera"));
+	view_camera_menu = new wxMenu;
+	view_camera_menu->Append(ID_camera_firstperson, _("First person"),"First person",wxITEM_RADIO);
+	view_camera_menu->Append(ID_camera_rotate, _("Rotation / Zoom"),"Rotation / Zoom",wxITEM_RADIO);
+	view_camera_menu->Check(ID_camera_rotate,true);
+	view_menu->Append(ID_fold_camera, _("Camera"),view_camera_menu);
 
-	affichage_menu->AppendSeparator();
+	view_menu->AppendSeparator();
 
 	//Ces éléments du menu interagissent avec l'etat d'élément du projet
-	LinkMenuItemWithElement(affichage_menu->Append(ID_grid_xy, _("XY Grid"),"XY Grid",wxITEM_CHECK),
+	LinkMenuItemWithElement(view_menu->Append(ID_grid_xy, _("XY Grid"),"XY Grid",wxITEM_CHECK),
 		Element::ELEMENT_TYPE_SCENE_PROJET_RENDU_ORIGINE,
 		"showgxy");
-	LinkMenuItemWithElement(affichage_menu->Append(ID_grid_xz, _("XZ Grid"),"XZ Grid",wxITEM_CHECK),
+	LinkMenuItemWithElement(view_menu->Append(ID_grid_xz, _("XZ Grid"),"XZ Grid",wxITEM_CHECK),
 		Element::ELEMENT_TYPE_SCENE_PROJET_RENDU_ORIGINE,
 		"showgxz");
-	LinkMenuItemWithElement(affichage_menu->Append(ID_grid_yz, _("YZ Grid"),"YZ Grid",wxITEM_CHECK),
+	LinkMenuItemWithElement(view_menu->Append(ID_grid_yz, _("YZ Grid"),"YZ Grid",wxITEM_CHECK),
 		Element::ELEMENT_TYPE_SCENE_PROJET_RENDU_ORIGINE,
 		"showgyz");
 
-	affichage_menu->AppendSeparator();
+	view_menu->AppendSeparator();
 
 	// Copie de la fenêtre openGl dans un fichier ou dans le presse papier
 	wxMenu* affichage_copygl = new wxMenu;
 	//affichage_copygl->Append(ID_copygl_toclipboard, _("Vers le presse papier"));
 	affichage_copygl->Append(ID_copygl_tofile, _("To file"));
 	affichage_copygl->Append(ID_copygl_tofile_withdim, _("To a file with a specified resolution"));
-	affichage_menu->Append(ID_fold_copygl, _("Copy 3D View"),affichage_copygl);
-	//affichage_menu->AppendSeparator();
-	//affichage_menu->Append(ID_changeLanguage,_("Changer la langue du logiciel"));
+	view_menu->Append(ID_fold_copygl, _("Copy 3D View"),affichage_copygl);
+	//view_menu->AppendSeparator();
+	//view_menu->Append(ID_changeLanguage,_("Changer la langue du logiciel"));
 
 
 
@@ -343,7 +344,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	mb->Append(edit_menu, _("Edition"));
 	mb->Append(simulation_menu, _("Simulation"));
 	mb->Append(outils_menu, _("Tools"));
-	mb->Append(affichage_menu, _("View"));
+	mb->Append(view_menu, _("View"));
 	mb->Append(fenetre_menu, _("Window"));
 	mb->Append(aide_menu, _("Help"));
 
@@ -412,7 +413,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	WX_GL_LEVEL , 1};
 
 	GlFrame = new OpenGlViewer(this, -1, wxPoint(0,25), wxSize(-1,-1),
-												0, _("Main window") ); //, gl_attrib
+												0, _("Main window"), NULL ); //, gl_attrib
 
 	toolbarGl = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTB_FLAT | wxTB_NODIVIDER);
 
@@ -739,23 +740,23 @@ void MainUiFrame::OnChangeCameraMode(wxCommandEvent& event)
 
 void MainUiFrame::OnModeToolWireFrameAndFlat(wxCommandEvent& event)
 {
-	affichage_face_menu->Check(ID_flat_inside,true);
-	affichage_ligne_menu->Check(ID_wireframe_shape,true);
+	view_face_menu->Check(ID_flat_inside,true);
+	view_line_menu->Check(ID_wireframe_shape,true);
 	projetCourant->OnModeFlatInside(event);
 	projetCourant->OnModeWireFrameShape(event);
 }
 
 void MainUiFrame::OnModeToolFlat(wxCommandEvent& event)
 {
-	affichage_face_menu->Check(ID_flat_inside,true);
-	affichage_ligne_menu->Check(ID_wireframe_none,true);
+	view_face_menu->Check(ID_flat_inside,true);
+	view_line_menu->Check(ID_wireframe_none,true);
 	projetCourant->OnModeFlatInside(event);
 	projetCourant->OnModeWireFrameNone(event);
 }
 void MainUiFrame::OnModeToolWireFrame(wxCommandEvent& event)
 {
-	affichage_face_menu->Check(ID_flat_none,true);
-	affichage_ligne_menu->Check(ID_wireframe_shape,true);
+	view_face_menu->Check(ID_flat_none,true);
+	view_line_menu->Check(ID_wireframe_shape,true);
 	projetCourant->OnModeFlatNone(event);
 	projetCourant->OnModeWireFrameShape(event);
 }
@@ -797,7 +798,7 @@ void MainUiFrame::OnShowHideMaillage(wxCommandEvent& event)
 {
 	projetCourant->OnShowHideMaillage(event);
 	if(event.GetId()==ID_Tool_ShowHideMailler)
-		affichage_menu->Check(ID_ShowHideMailler,!affichage_menu->IsChecked(ID_ShowHideMailler));
+		view_menu->Check(ID_ShowHideMailler,!view_menu->IsChecked(ID_ShowHideMailler));
 }
 
 void MainUiFrame::OnCameraToolMode(wxCommandEvent& event)

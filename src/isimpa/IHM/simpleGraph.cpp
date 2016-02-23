@@ -1608,14 +1608,14 @@ namespace sgSpace
 		m_plotAndTitleSizer = new wxBoxSizer( wxVERTICAL );
 		m_plotAndTitleSizer->Add( plotsizer, 1, wxEXPAND  );
 
-		plotsizer->Add( new SG_Area(this,AREA_TYPE_Y_AXIS,wxDefaultSize), wxSizerFlags(0).Center().Expand() );
+		plotsizer->Add( new SG_Area(this,AREA_TYPE_Y_AXIS,wxDefaultSize), wxSizerFlags(0).Center());
 		mainGraphArea=new SG_Area(this,AREA_TYPE_MAINGRAPH);
-		plotsizer->Add( mainGraphArea , wxSizerFlags(1).Center().Expand() );
+		plotsizer->Add( mainGraphArea , wxSizerFlags(1).Center());
 
 
 		cellSizer=new wxBoxSizer( wxHORIZONTAL );
 		plotsizer->Add(cellSizer, 1, wxEXPAND  );
-		plotsizer->Add( new SG_Area(this,AREA_TYPE_X_AXIS,wxDefaultSize), wxSizerFlags(0).Center().Expand() );
+		plotsizer->Add( new SG_Area(this,AREA_TYPE_X_AXIS,wxDefaultSize), wxSizerFlags(0).Center());
 
 		plotsizer->AddGrowableRow(0);
 		plotsizer->AddGrowableCol(1);

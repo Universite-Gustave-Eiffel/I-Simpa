@@ -63,6 +63,7 @@
 
 #include "manager/modelRetriever.hpp"
 #include "data_manager/appconfig.h"
+#include <3dengine/OpenGlViewer.h>
 
 #ifndef __PROJECTMANAGER_H__
 #define __PROJECTMANAGER_H__
@@ -711,7 +712,7 @@ private:
 	RecepteursPControler recepteursPContainer;
 	PythonShell* pyShell;
 
-	//Contrôles
+	// WXWidgets GUI elements
 	wxTextCtrl* logControl;
 	PyConsole* shellControl;
 	uiTreeCtrl* treeCore;
@@ -724,23 +725,23 @@ private:
 	MainPropGrid* propFrame;
 	wxAuiManager* auiManager;
 
-	//Données du projet
+	// Project data
 	CObjet3D sceneMesh;
 
-	// Chemins des fichiers
+	// File paths
 	wxString dossierCourant;
 	wxString FichierConfig;
 	wxString FichierConfigDefaut;
 	wxString PathCores;
-	wxString LastComputationFolder; /*<! Dernier dossier temporaire de calcul */
+	wxString LastComputationFolder; /*<! Last computation temporary path */
 	wxString UserPreferenceXmlFilePath;
 
-	//Variables et objets
-	bool ProcessUpdateEvent; /*<! Prend en compte ou non l'execution de OnUpdateEvent */
+	// State vars
+	bool ProcessUpdateEvent; /*<! Process or not the OnUpdateEvent */
 	bool needSave;
-	bool pyeventmode;		/*!< Lors-ce que python contrôle l'application pyeventmode est à vrai */
+	bool pyeventmode;		/*!<If python is driving the software pyeventmode is true (do not ask user for validations) */
 	bool renderOriginalMaterial;
-	StringHash pyenventparams; /*!< Ce tableau de chaîne correspond a ce que taperai l'utilisateur lors d'un evenement */
+	StringHash pyenventparams; /*!< Parameters provided by python script in order to fill triggered popup ups */
 };
 
 #endif

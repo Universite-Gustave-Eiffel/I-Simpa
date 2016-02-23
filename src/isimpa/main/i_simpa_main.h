@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
 * I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
@@ -67,10 +67,10 @@ class MainUiFrame : public wxFrame
 		smart_ptr<wxFileHistory> fileHistory;
 		smart_ptr<uiTreeCtrl> treeUserPref;
 
-		wxMenu* affichage_menu;
-		wxMenu* affichage_camera_menu;
-		wxMenu* affichage_face_menu;
-		wxMenu* affichage_ligne_menu;
+		wxMenu* view_menu;
+		wxMenu* view_camera_menu;
+		wxMenu* view_face_menu;
+		wxMenu* view_line_menu;
 		wxMenu* edit_menu;
 		wxSlider* slPlan;
 		wxToolBar* toolbarGl;
@@ -627,6 +627,7 @@ class ISimpaApp : public wxApp
 		{
 
 		}
+
 protected:
 	/** Fichier d'internationalisation
 	 */

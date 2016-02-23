@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
 * I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
@@ -33,7 +33,10 @@
 #include <wx/wx.h>
 #include <wx/glcanvas.h>
 #include "OpenGLApp.h"
-#include "GlBitmapSurface.h" //rendu des légendes
+
+#ifndef __OPENGLVIEWER_H__
+#define __OPENGLVIEWER_H__
+
 //#include <string> 
 #define PARAM_BOUND_ON_SELECT_FACES (const std::vector<t_faceIndex>& facelst,const bool& dragging)
 
@@ -238,6 +241,10 @@ public:
 	 */
 	void InitAnimatorLst();
 
+	bool ActivateContext();
+
+		 
+
 	legendRendering::ForeGroundGlBitmap legendDrawer;
 
 	DECLARE_EVENT_TABLE()
@@ -266,5 +273,8 @@ private:
 	int minimalTimeStep; //Taux de raffraichissement Maximal, pas de temps en ms
     wxTimer m_Timer;
 	CObjet3D *CurrentObject;
+	wxGLContext *gl_context;
 	void Display();
 };
+
+#endif __OPENGLVIEWER_H__
