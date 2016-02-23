@@ -40,16 +40,43 @@
  * OpenGlViewer implementation
  */
 #include "OpenGlViewer.h"
+#include "GlBitmapSurface.h" //rendu des légendes
 #include "last_cpp_include.hpp"
 
 BEGIN_EVENT_TABLE(OpenGlViewer, wxGLCanvas)
-    EVT_SIZE(OpenGlViewer::OnSize)
     EVT_PAINT(OpenGlViewer::OnPaint)
     EVT_MOUSE_EVENTS(OpenGlViewer::OnMouseEvent)
     EVT_ERASE_BACKGROUND(OpenGlViewer::OnEraseBackground)
     EVT_TIMER(wxID_ANY, OpenGlViewer::OnTimer)
 	EVT_KEY_DOWN(OpenGlViewer::OnKeyDown )
 END_EVENT_TABLE()
+
+
+static void CheckGLError()
+{
+	GLenum errLast = GL_NO_ERROR;
+
+	for (;; )
+	{
+		GLenum err = glGetError();
+		if (err == GL_NO_ERROR)
+			return;
+
+		// normally the error is reset by the call to glGetError() but if
+		// glGetError() itself returns an error, we risk looping forever here
+		// so check that we get a different error than the last time
+		if (err == errLast)
+		{
+			wxLogError(wxT("OpenGL error state couldn't be reset."));
+			return;
+		}
+
+		errLast = err;
+
+		wxLogError(wxT("OpenGL error %d"), err);
+	}
+}
+
 
 OpenGlViewer::OpenGlViewer(wxWindow *parent, wxWindowID id,
     const wxPoint& pos, const wxSize& size, long style,
@@ -66,6 +93,7 @@ OpenGlViewer::OpenGlViewer(wxWindow *parent, wxWindowID id,
 	modeaff = GL_TRIANGLES;
     parent->Show(true);
 	m_GLApp = new OpenGLApp();
+	gl_context = NULL;
 	appLoaded=true;
 	cutPlaneToUpdate=false;
 	eventBinded=false;
@@ -75,6 +103,7 @@ OpenGlViewer::OpenGlViewer(wxWindow *parent, wxWindowID id,
 	currentTool=TOOL_MODE_CAMERA;
 	SetBackgroundStyle(wxBG_STYLE_CUSTOM);
 	ElementDrawToUpdate=false;
+
 }
 
 void OpenGlViewer::SetCurrentTool(TOOL_MODE newMode)
@@ -109,7 +138,6 @@ int OpenGlViewer::GetImage(wxImage& aimage)
 		//int retour = m_GLApp->GetImage(aimage,awidth,aheight,(HWND)this->GetHWND());
 		int retour = m_GLApp->GetImage(aimage);
 		wxSizeEvent sizeevt;
-		OnSize(sizeevt);
 		return retour;
 	}
 	else
@@ -126,19 +154,8 @@ void OpenGlViewer::OpenModel(CObjet3D *m_Object)
 	if ( m_Timer.IsRunning() )
         m_Timer.Stop();
 
-    int w, h;
-    GetClientSize(&w, &h);
-	m_GLApp->ChangeWindow((GLint) w, (GLint) h);
 	doScreenRefresh=true;
-
-	if(m_Object->IsFontNeedBuilding())
-		#ifdef _WIN32
-			m_Object->BuildFont(((HDC)this->GetHDC()));
-		#else
-			m_Object->BuildFont();
-		#endif
-	m_GLApp->Init(m_Object);
-
+	
 	CurrentObject=m_Object;
 	m_Timer.Start(this->minimalTimeStep,true);
 }
@@ -261,10 +278,15 @@ void OpenGlViewer::OnTimer( wxTimerEvent& event) //rafraichie le rendu afin d'af
 
 void OpenGlViewer::OnPaint( wxPaintEvent& event )
 {
+
     // This is a dummy, to avoid an endless succession of paint messages.
     // OnPaint handlers must always create a wxPaintDC.
 	wxPaintDC dc(this);
-	Display();
+
+	if (appLoaded && CurrentObject)
+	{
+		Display();
+	}
 }
 
 void OpenGlViewer::Display()
@@ -272,7 +294,15 @@ void OpenGlViewer::Display()
 	//Initialisation
 	int w, h;
     GetClientSize(&w, &h);
-	
+
+	if (IsShown() && this->GetParent()->IsShown()) {
+		if(!ActivateContext())
+		{
+			return;
+		}
+	} else {
+		return;
+	}
 	//Execution des commandes de rendu 3D
 
 	m_GLApp->ChangeWindow(w,h);
@@ -281,22 +311,6 @@ void OpenGlViewer::Display()
 	legendDrawer.Draw(w,h);
 
 	SwapBuffers();
-
-}
-void OpenGlViewer::OnSize(wxSizeEvent& event)
-{
-	if(!this->IsShownOnScreen())
-		return;
-
-    // set GL viewport (not called by wxGLCanvas::OnSize on all platforms...)
-    int w, h;
-    GetClientSize(&w, &h);
-	
-	if(appLoaded)
-	{
-		m_GLApp->ChangeWindow((GLint) w, (GLint) h);
-		doScreenRefresh=true;
-	}
 }
 
 void OpenGlViewer::OnMouseDoubleClick(t_faceIndex vertexSel)
@@ -362,12 +376,6 @@ void OpenGlViewer::OnMouseEvent(wxMouseEvent& event)
 				if(eventPositionBinded)
 					(*pointeurFonctionEventSelectionPosition)(posCurseur);
 				doScreenRefresh=true;
-				/*
-				if(CurrentRssRenderer)
-				{
-					doScreenRefresh=CurrentRssRenderer->UserWantToKnowAcousticLevelAtPosition(posCurseur);
-				}
-				*/
 			}
 			if(modeSelectionPoint && CurrentObject!=NULL)
 			{
@@ -431,6 +439,29 @@ void OpenGlViewer::InitAnimatorLst()
 		m_GLApp->InitAnimatorLst();
 	}
 }
+
+bool OpenGlViewer::ActivateContext()
+{
+	wxGLContext *glContext;
+
+	if (!gl_context)
+	{
+		gl_context = new wxGLContext(this);
+		bool res = gl_context->SetCurrent(*this);
+		if(res) {
+			if (CurrentObject->IsFontNeedBuilding()) {
+				CurrentObject->BuildFont(((HDC)this->GetHDC()));
+			}
+			m_GLApp->Init(CurrentObject);
+			CheckGLError();
+		}
+		return res;
+	} else {
+		glContext = gl_context;
+		return glContext->SetCurrent(*this);
+	}
+}
+
 void OpenGlViewer::ClearAnimatorLst()
 {
 	if(appLoaded)
@@ -492,6 +523,11 @@ OpenGlViewer::~OpenGlViewer( )
 {
 	if ( m_Timer.IsRunning() )
         m_Timer.Stop();
-	if(appLoaded)
+	if(gl_context) {
+		delete gl_context;
+		gl_context = NULL;
+	}
+	if(appLoaded) {
 		delete m_GLApp;
+	}
 }
