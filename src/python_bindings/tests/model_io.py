@@ -30,6 +30,7 @@
 
 # -*- coding: utf-8 -*-
 import libsimpa as ls
+import sys
 
 ##############################################
 # Table
@@ -107,6 +108,6 @@ def check_model(filepath):
 
 
 # Write test model	
-build_model("test_model.bin")
+build_model(sys.argv[1] + "test_model.bin")
 # Read test model
-check_model("test_model.bin")
+check_model(sys.argv[1] + "test_model.bin")
