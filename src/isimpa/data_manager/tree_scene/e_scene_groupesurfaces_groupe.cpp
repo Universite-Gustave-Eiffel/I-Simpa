@@ -514,7 +514,9 @@ void E_Scene_Groupesurfaces_Groupe::AddFaces(const std::list<t_faceIndex>& faceL
 		if((*itfils)->GetElementInfos().typeElement==Element::ELEMENT_TYPE_SCENE_GROUPESURFACES_GROUPE_VERTEX)
 		{
 			E_Scene_Groupesurfaces_Groupe_Vertex* vertex=dynamic_cast<E_Scene_Groupesurfaces_Groupe_Vertex*>((*itfils));
-			faceIndexToElementTreeId.insert(mapPairInsert_t(t_faceIndex(vertex->GetFace(),vertex->GetGroup()).GetHashValue(),mapValue_t(t_faceIndex(vertex->GetFace(),vertex->GetGroup()),vertex->GetElementInfos().idElement)));
+            t_faceIndex searchIndex = t_faceIndex(vertex->GetFace(), vertex->GetGroup());
+            mapValue_t mapValue = mapValue_t(searchIndex, vertex->GetElementInfos().idElement);
+			faceIndexToElementTreeId.emplace(searchIndex.GetHashValue(), mapValue);
 		}
 	}
 
@@ -597,9 +599,8 @@ wxTreeItemId E_Scene_Groupesurfaces_Groupe::GetIdElementByFaceAndGroup(long face
 	if(!vertexInFile)
 	{
 		t_faceIndex searchIndex(face,group);
-		std::size_t hashFace(searchIndex.GetHashValue());
-		faceIndexMapType::iterator faceIt(faceIndexToElementTreeId.find(hashFace));
-		while(faceIt!=faceIndexToElementTreeId.end() && faceIt->first==hashFace)
+		faceIndexMapType::iterator faceIt(faceIndexToElementTreeId.find(searchIndex.GetHashValue()));
+		while(faceIt!=faceIndexToElementTreeId.end())
 		{
 
 			if(searchIndex==faceIt->second.first)

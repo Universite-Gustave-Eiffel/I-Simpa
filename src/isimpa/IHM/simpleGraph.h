@@ -678,7 +678,7 @@ namespace sgSpace
         /** Attach Legend with graph after other components */
         static void Add(SG_Legend* legend, const wxSizerFlags& sizerParams);
 		void OnPaint( wxPaintEvent &event );
-		virtual wxSize DoGetBestSize() const;
+	    wxSize DoGetBestSize() const override;
 		void OnMouse( wxMouseEvent &event );
         /** @return Legend's sizer */
         LEGEND_PLACEMENT GetLegendPlacement() const;

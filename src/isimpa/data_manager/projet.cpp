@@ -2799,7 +2799,7 @@ void ProjectManager::OnSelectVertex PARAM_BOUND_ON_SELECT_FACES
 	}
 	//On sélectionne l'élément dans l'arbre
 	Element* targetElement=this->rootScene->GetElementByType(Element::ELEMENT_TYPE_SCENE_GROUPESURFACES);
-	if(targetElement!=NULL)
+	if(targetElement != NULL)
 	{
 		E_Scene_Groupesurfaces* groupeSurfaces=dynamic_cast<E_Scene_Groupesurfaces*>(targetElement);
 		if(!ctrlDown)
