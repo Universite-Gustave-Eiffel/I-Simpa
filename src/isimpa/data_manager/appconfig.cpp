@@ -61,7 +61,7 @@ const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FILENAME_EDT="
 const wxString ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME="sceneMesh.bin";
 
 
-const wxString ApplicationConfiguration::CONST_PREPROCESS_EXE_FILENAME="Preprocess.exe";
+const wxString ApplicationConfiguration::CONST_PREPROCESS_EXE_FILENAME="preprocess.exe";
 const wxString ApplicationConfiguration::CONST_GRAPH_CONFIG_PATH="SIMPLEGRAPH";
 const wxString ApplicationConfiguration::CONST_USER_PREFERENCE_FILE_NAME="isimpa_pref.xml";
 

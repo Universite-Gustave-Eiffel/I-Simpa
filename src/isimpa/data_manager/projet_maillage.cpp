@@ -83,7 +83,6 @@ bool ProjectManager::RunRemeshProcess(wxString fileToRemesh)
 
 	bool result=uiRunExe(mainFrame,MeshRegenPath+cmd,lblOutput,&progDialog);
 
-	//progDialog.Close();
 	if(result)
 	{
 		wxLogInfo(_("Scene repair complete"));

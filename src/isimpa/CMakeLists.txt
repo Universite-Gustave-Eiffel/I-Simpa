@@ -313,6 +313,7 @@ add_definitions(-DUSE_PYTHON=${PYTHONLIBS_FOUND})
 
 if(WIN32) # Check if we are on Windows
   if(MSVC) # Check if we are using the Visual Studio compiler
+    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
     set_target_properties(isimpa PROPERTIES LINK_FLAGS_RELEASE "/SUBSYSTEM:WINDOWS")
     set_target_properties(isimpa PROPERTIES LINK_FLAGS_DEBUG "/SUBSYSTEM:WINDOWS")
   elseif(CMAKE_COMPILER_IS_GNUCXX)
@@ -329,3 +330,21 @@ set_property(TARGET isimpa PROPERTY FOLDER "executables")
 # Adds logic to INSTALL.vcproj to copy isimpa.exe to destination directory
 install (TARGETS isimpa
         RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin)
+        
+set(ISIMPA_RESSOURCES ${PROJECT_SOURCE_DIR}/currentRelease)         
+        
+install (FILES 
+${ISIMPA_RESSOURCES}/appconst.xml
+${ISIMPA_RESSOURCES}/isimpa.ico
+${ISIMPA_RESSOURCES}/Licence.pdf
+${ISIMPA_RESSOURCES}/Licence.rtf
+         DESTINATION  ${PROJECT_BINARY_DIR}/bin)
+         
+install(DIRECTORY 
+${ISIMPA_RESSOURCES}/Bitmaps
+${ISIMPA_RESSOURCES}/Doc
+${ISIMPA_RESSOURCES}/Locale
+${ISIMPA_RESSOURCES}/SystemScript
+${ISIMPA_RESSOURCES}/UserScript
+DESTINATION  ${PROJECT_BINARY_DIR}/bin)
+        
