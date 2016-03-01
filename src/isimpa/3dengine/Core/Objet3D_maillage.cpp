@@ -92,9 +92,10 @@ bool LoadNodeFile(vec4 UnitizeVar, vec3** tabNodes, unsigned long &nodes_mesh_si
                 return false;
             }
 			idNode=Convertor::ToInt(string_tokenizer.GetNextToken());
-			vec3 position(Convertor::ToFloat(string_tokenizer.GetNextToken()),
-                Convertor::ToFloat(string_tokenizer.GetNextToken()),
-                Convertor::ToFloat(string_tokenizer.GetNextToken()));
+            float x = Convertor::ToFloat(string_tokenizer.GetNextToken());
+            float y = Convertor::ToFloat(string_tokenizer.GetNextToken());
+            float z = Convertor::ToFloat(string_tokenizer.GetNextToken());
+			vec3 position(x, y, z);
 			position=coordsOperation::CommonCoordsToGlCoords(UnitizeVar,position);
 			if(idNode>0 && idNode<=nbNodes)
 			{
