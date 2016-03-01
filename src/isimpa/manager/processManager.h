@@ -50,7 +50,7 @@ public:
 	 * @param cmd Chemin de l'exécutable
 	 */
     processManager(wxFrame *parent, const wxString& cmd)
-        : wxProcess((wxEvtHandler*)parent), m_cmd(cmd)
+        : wxProcess(reinterpret_cast<wxEvtHandler*>(parent)), m_cmd(cmd)
     {
         m_parent = parent;
         Redirect();
@@ -77,11 +77,13 @@ public:
 	 * @param logger Instance of log object
 	 */
 	void AddLogger(smart_ptr<InterfLogger> logger);
-private:
-	/**
-	 * Fin de l'execution de l'application externe
-	 */
+
+
+    /**
+    * Fin de l'execution de l'application externe
+    */
     virtual void OnTerminate(int pid, int status);
+private:
 	bool run;
     wxString m_cmd;
 	wxFrame* m_parent;
