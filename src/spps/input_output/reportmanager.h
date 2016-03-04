@@ -99,6 +99,23 @@ public:
 		Core_Configuration* configManager;
 	};
 private:
+    /**
+    * For csv files, collision history with particles and receivers sphere
+    */
+    struct t_receiver_collision_history
+    {
+        vec3 incidentVector;
+        decimal energy;
+        uentier idrp;
+
+        t_receiver_collision_history(const vec3& _incidentVector, const decimal& _energy, const uentier& _idrp)
+            : incidentVector(_incidentVector), energy(_energy), idrp(_idrp)
+        {
+        }
+    };
+    /**
+     * For csv files, collision history with particles and scene surfaces
+     */
 	struct t_collision_history
 	{
 		vec3 collisionCoordinate;
@@ -118,7 +135,9 @@ private:
 	};
 	t_ParamReport paramReport;
 	std::fstream* particleFile;
-	std::fstream* particleCSVFile;
+	std::fstream* particleSurfaceCSVFile; // put data from collisionHistory
+    std::fstream* particleReceiverCSVFile; // put data from receiverCollisionHistory
+    
 	uentier_long lastParticuleFileHeaderInfo;
 	binaryFHeader enteteSortie;
 	uentier_long nbPasDeTempsMax;
@@ -127,7 +146,8 @@ private:
 	bool timeStepInSourceOutput;
 	entier firstTimeStep;
 	std::vector<binaryPTimeStep> positionsCurrentParticule;
-	std::list<t_collision_history> collisionHistory; /*!< Garde l'historique des collisions si les particules sont sauvegardées*/
+	std::list<t_collision_history> collisionHistory; /*!< Records of surface collision history */
+    std::list<t_receiver_collision_history> receiverCollisionHistory; /*!< Records of receiver collision history*/
 	l_decimal* tabEnergyByTimeStep; /*!< Tableau de l'energie global en fonction du temps */
 
 

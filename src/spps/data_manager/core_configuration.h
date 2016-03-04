@@ -51,9 +51,12 @@ public:
 		IPROP_OUTPUT_RECEPTEURS_SURF_BY_FREQ,		/*!< Sortie des récepteurs de surface par bande de fréquence */
 		IPROP_DO_CALC_TRANSMISSION,
 		I_PROP_SURFACE_RECEIVER_MODE,				/*!< 0: Mode intensité avec pondération selon l'angle 2: Mode SPL */
-		I_PROP_OUTPUT_RECEIVER_BY_SOURCE,			/*! 0 Output soundprec.recp, 1 output soudprec.recp by source */
-		I_PROP_RANDOM_SEED							/*! Random SEED */
+		I_PROP_OUTPUT_RECEIVER_BY_SOURCE,			/*!< 0 Output soundprec.recp, 1 output soudprec.recp by source */
+		I_PROP_RANDOM_SEED,							/*!< Random SEED */
+        I_PROP_SAVE_SURFACE_INTERSECTION,           /*!< Save particle and surface intersection events*/
+        I_PROP_SAVE_RECEIVER_INTERSECTION           /*!< Save particle and receiver intersection events*/
 	};
+
 	/**
 	 * Initialisation des paramètres du coeur de calcul à partir d'un fichier XML
 	 * @param xmlFilePath Chemin du fichier XML
