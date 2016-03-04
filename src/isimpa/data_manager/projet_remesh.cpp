@@ -53,7 +53,7 @@ namespace ModelReconstructionUI
 			wxString GetArgFromPreferences(const ReconstructionUserPreferences_t& preferences)
 			{
 				EnglishTemporaryLocale dotNumericOnly;
-				wxString argChain(ApplicationConfiguration::CONST_TETROOT_PATH+"vmr"+wxFileName::GetPathSeparator()+"VolumetricMeshRepair.exe ");
+				wxString argChain(ApplicationConfiguration::CONST_TETROOT_PATH+"vmr"+wxFileName::GetPathSeparator()+"vmr.exe ");
 				argChain+=wxString::Format(" -depth%i",(int)(preferences.depth));
 
 				if(preferences.getVolStats)

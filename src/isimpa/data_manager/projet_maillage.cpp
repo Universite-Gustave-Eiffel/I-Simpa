@@ -36,7 +36,6 @@
 #include "manager/processManager.h"
 #include <tools/vol_identifier.hpp>
 #include <tools/vol_splitter.hpp>
-#include "tree_scene/e_scene_volumes.h"
 #include "tree_scene/e_scene_groupesurfaces_groupe.h"
 #include "last_cpp_include.hpp"
 #include "logger_tetgen_debug.hpp"
@@ -78,7 +77,7 @@ bool ProjectManager::RunRemeshProcess(wxString fileToRemesh)
 	cmd+=" "+fileToRemesh;
 
 	//On attend que l'execution soit terminée
-	bool hasOutput=true;
+
 	wxProgressDialog progDialog(_("Reparing 3D scene"),_("Preparing 3D scene"),10000,mainFrame,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
 
 	bool result=uiRunExe(mainFrame,MeshRegenPath+cmd,lblOutput,&progDialog);
@@ -110,7 +109,7 @@ bool ProjectManager::RunTetGenBoundaryMesh( wxString cmd, wxString cacheFolder,w
 	#ifdef __WXMSW__
 	if(!wxFileExists(tetgenPath+tetgenExe))
 	{
-		wxLogInfo(_("Calculation .exe file not found."));
+		wxLogInfo(_("Calculation program file not found."));
 		return false;
 	}
 	#endif
