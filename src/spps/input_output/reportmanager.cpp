@@ -217,7 +217,7 @@ void ReportManager::ParticuleFreeTranslation(CONF_PARTICULE& particleInfos, cons
                         if (particleInfos.outputToParticleFile && *(this->paramReport.configManager->FastGetConfigValue(Core_Configuration::I_PROP_SAVE_RECEIVER_INTERSECTION)))
                         {
                             //Add intersection to history
-                            this->receiverCollisionHistory.push_back(t_receiver_collision_history(particleInfos.direction, energy, currentRecp->idrp));
+                            this->receiverCollisionHistory.push_back(t_receiver_collision_history(particleInfos.direction, energy * currentRecp->cdt_vol, currentRecp->idrp));
                         }
 					}
 				}
