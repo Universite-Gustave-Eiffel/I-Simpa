@@ -104,12 +104,13 @@ private:
     */
     struct t_receiver_collision_history
     {
+        decimal time;
         vec3 incidentVector;
         decimal energy;
         uentier idrp;
 
-        t_receiver_collision_history(const vec3& _incidentVector, const decimal& _energy, const uentier& _idrp)
-            : incidentVector(_incidentVector), energy(_energy), idrp(_idrp)
+        t_receiver_collision_history(const decimal& _time,const vec3& _incidentVector, const decimal& _energy, const uentier& _idrp)
+            : time(_time), incidentVector(_incidentVector), energy(_energy), idrp(_idrp)
         {
         }
     };

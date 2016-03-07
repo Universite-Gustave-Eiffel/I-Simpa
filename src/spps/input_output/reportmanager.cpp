@@ -121,7 +121,7 @@ void ReportManager::writeParticleFile()
 	lastParticuleFileHeaderInfo=particleFile->tellp();
 	particleFile->write((char*)&enteteSortie,sizeof(binaryFHeader));
 	*particleSurfaceCSVFile<<"id,collision coordinate,face normal,reflection order,incident vector,energy"<<std::endl;
-    *particleReceiverCSVFile << "receiver name,incident vector x,incident vector y,incident vector z,energy * dist" << std::endl;
+    *particleReceiverCSVFile << "time(s),receiver name,incident vector x,incident vector y,incident vector z,energy * dist" << std::endl;
 	realNbParticle=0;
 
 }
@@ -217,7 +217,8 @@ void ReportManager::ParticuleFreeTranslation(CONF_PARTICULE& particleInfos, cons
                         if (particleInfos.outputToParticleFile && *(this->paramReport.configManager->FastGetConfigValue(Core_Configuration::I_PROP_SAVE_RECEIVER_INTERSECTION)))
                         {
                             //Add intersection to history
-                            this->receiverCollisionHistory.push_back(t_receiver_collision_history(particleInfos.direction, energy * currentRecp->cdt_vol, currentRecp->idrp));
+                            decimal time = particleInfos.pasCourant * *this->paramReport.configManager->FastGetConfigValue(Base_Core_Configuration::FPROP_TIME_STEP) + particleInfos.elapsedTime;
+                            this->receiverCollisionHistory.push_back(t_receiver_collision_history(time, particleInfos.direction, energy * currentRecp->cdt_vol, currentRecp->idrp));
                         }
 					}
 				}
@@ -306,7 +307,7 @@ void ReportManager::CloseLastParticleHeader()
             while (!this->receiverCollisionHistory.empty())
             {
                 t_receiver_collision_history& part_event = this->receiverCollisionHistory.front();
-                *this->particleReceiverCSVFile << this->paramReport.configManager->recepteur_p_List.at(part_event.idrp)->lblRp << "," << part_event.incidentVector.x << "," << part_event.incidentVector.y << "," << part_event.incidentVector.z << "," << part_event.energy
+                *this->particleReceiverCSVFile << part_event.time << "," << this->paramReport.configManager->recepteur_p_List.at(part_event.idrp)->lblRp << "," << part_event.incidentVector.x << "," << part_event.incidentVector.y << "," << part_event.incidentVector.z << "," << part_event.energy
                     << std::endl;
                 this->receiverCollisionHistory.pop_front();
             }
