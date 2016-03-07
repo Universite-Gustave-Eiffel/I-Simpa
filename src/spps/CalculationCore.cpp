@@ -70,7 +70,7 @@ bool CalculationCore::Run(CONF_PARTICULE configurationP)
 		}
 
 		if(configurationP.stateParticule==PARTICULE_STATE_ALIVE)
-			Mouvement(configurationP);	//Effectue un mouvement sur la distance restante
+			Movement(configurationP);	//Effectue un mouvement sur la distance restante
 
 
 		//Fin du pas de temps, la particule a effectué aucune ou plusieurs collisions
@@ -110,7 +110,7 @@ bool CalculationCore::Run(CONF_PARTICULE configurationP)
 	return true;
 }
 
-void CalculationCore::Mouvement(CONF_PARTICULE &configurationP)
+void CalculationCore::Movement(CONF_PARTICULE &configurationP)
 {
 	decimal deltaT=*configurationTool->FastGetConfigValue(Core_Configuration::FPROP_TIME_STEP) ;
 	decimal distanceSurLePas=configurationP.direction.length();
@@ -119,17 +119,17 @@ void CalculationCore::Mouvement(CONF_PARTICULE &configurationP)
 	bool collisionResolution=true; //On test de nouveau la collision dans le pas de temps courant si cette valeur est à vrai
 	int iteration=0;
 	decimal distanceCollision=0.f;
-	decimal distanceAParcourir=0.f;
+	decimal distanceToTravel=0.f;
 	while(collisionResolution && configurationP.stateParticule==PARTICULE_STATE_ALIVE)
 	{
 		iteration++;
 		collisionResolution=false;
 		//Si il y a collision avec une face (avec prise en compte de la distance parcourue)
 		distanceCollision=(configurationP.nextModelIntersection.collisionPosition-configurationP.position).length();
-		distanceAParcourir=celeriteLocal*(deltaT-configurationP.tempsEcoule);
+		distanceToTravel=celeriteLocal*(deltaT-configurationP.elapsedTime);
 
 		//Test de collision avec un élément de l'encombrement entre la position de la particule et une face du tetrahèdre courant.
-		if(*configurationTool->FastGetConfigValue(Core_Configuration::IPROP_DO_CALC_ENCOMBREMENT) && distanceAParcourir>=configurationP.distanceToNextEncombrementEle && distanceCollision>configurationP.distanceToNextEncombrementEle && configurationP.currentTetra->volumeEncombrement)
+		if(*configurationTool->FastGetConfigValue(Core_Configuration::IPROP_DO_CALC_ENCOMBREMENT) && distanceToTravel>=configurationP.distanceToNextEncombrementEle && distanceCollision>configurationP.distanceToNextEncombrementEle && configurationP.currentTetra->volumeEncombrement)
 		{
 			//Collision avec un élément virtuel de l'encombrement courant
 
@@ -157,7 +157,7 @@ void CalculationCore::Mouvement(CONF_PARTICULE &configurationP)
 			//N'est pas absorbé
 
 			//On incrémente le temps de parcourt entre la position avant et aprés collision avec l'encombrement virtuel
-			configurationP.tempsEcoule+=configurationP.distanceToNextEncombrementEle/celeriteLocal;
+			configurationP.elapsedTime+=configurationP.distanceToNextEncombrementEle/celeriteLocal;
 			//On place la particule sur la position de collision
 			FreeParticleTranslation(configurationP,(configurationP.direction/configurationP.direction.length())*configurationP.distanceToNextEncombrementEle);
 			collisionResolution=true;
@@ -183,7 +183,7 @@ void CalculationCore::Mouvement(CONF_PARTICULE &configurationP)
 			//Calcul du nouveau point de collision
 			SetNextParticleCollision(configurationP);
 			SetNextParticleCollisionWithObstructionElement(configurationP);
-		}else if(distanceCollision<=distanceAParcourir) // && configurationP.nextModelIntersection.idface!=-1
+		}else if(distanceCollision<=distanceToTravel) // && configurationP.nextModelIntersection.idface!=-1
 		{
 			//Enregistrement de l'énergie passé à la paroi
 			reportTool->ParticuleCollideWithSceneMesh(configurationP);
@@ -191,7 +191,7 @@ void CalculationCore::Mouvement(CONF_PARTICULE &configurationP)
 
 			vec3 vecTranslation=configurationP.nextModelIntersection.collisionPosition-configurationP.position;
 			//On incrémente le temps de parcourt entre la position avant et aprés collision
-			configurationP.tempsEcoule+=(vecTranslation/configurationP.direction.length()).length()*deltaT;
+			configurationP.elapsedTime+=(vecTranslation/configurationP.direction.length()).length()*deltaT;
 
 			//On place la particule sur la position de collision
 			FreeParticleTranslation(configurationP,vecTranslation);
@@ -343,13 +343,13 @@ void CalculationCore::Mouvement(CONF_PARTICULE &configurationP)
 			return;
 		}
 	}
-	if(configurationP.tempsEcoule==0.f)
+	if(configurationP.elapsedTime==0.f)
 	{   //Aucune collision sur le pas de temps courant
 		FreeParticleTranslation(configurationP,configurationP.direction);
 	}else{
 		//Il y a eu une ou plusieurs collisions sur le pas de temps courant
- 		FreeParticleTranslation(configurationP,configurationP.direction*((deltaT-configurationP.tempsEcoule)/deltaT));
-		configurationP.tempsEcoule=0; //remise du compteur à 0
+ 		FreeParticleTranslation(configurationP,configurationP.direction*((deltaT-configurationP.elapsedTime)/deltaT));
+		configurationP.elapsedTime=0; //remise du compteur à 0
 	}
 }
 

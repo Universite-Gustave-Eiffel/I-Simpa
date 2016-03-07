@@ -177,8 +177,8 @@ public:
 		this->AppendFils(new E_Core_Core_Bfreqselection(this));
 
 		this->AppendPropertyText("modelName","","mesh.cbin",true,true)->Hide();
-		this->AppendPropertyText("exeName","","sppsNantes.exe")->Hide();
-		this->AppendPropertyText("corePath","",wxString("sppsNantes")+wxFileName::GetPathSeparator())->Hide();
+		this->AppendPropertyText("exeName","","spps.exe")->Hide();
+		this->AppendPropertyText("corePath","",wxString("spps")+wxFileName::GetPathSeparator())->Hide();
 		this->AppendPropertyText("tetrameshFileName","","tetramesh.mbin",true,true)->Hide();
 	}
 	wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)
