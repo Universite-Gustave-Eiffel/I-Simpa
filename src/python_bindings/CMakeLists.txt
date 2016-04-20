@@ -20,14 +20,14 @@ SET_SOURCE_FILES_PROPERTIES(libsimpa.i PROPERTIES CPLUSPLUS ON)
 SWIG_ADD_MODULE(libsimpa python libsimpa.i)
 SWIG_LINK_LIBRARIES(libsimpa ${PYTHON_LIBRARIES} lib_interface)
 
-if(WIN32) # Check if we are on Windows
-  if(MSVC) # Check if we are using the Visual Studio compiler
-    # A 'Debug' build of the wrappers requires a debug build of the Python interpreter.
-    # http://www.swig.org/Doc2.0/Python.html#Python_nn12
-    # Fix linking with non existing python27_d.lib
-    add_definitions(-DSWIG_PYTHON_INTERPRETER_NO_DEBUG)
-  endif()
-endif()
+#if(WIN32) # Check if we are on Windows
+#  if(MSVC) # Check if we are using the Visual Studio compiler
+#    # A 'Debug' build of the wrappers requires a debug build of the Python interpreter.
+#    # http://www.swig.org/Doc2.0/Python.html#Python_nn12
+#    # Fix linking with non existing python27_d.lib
+#    add_definitions(-DSWIG_PYTHON_INTERPRETER_NO_DEBUG)
+#  endif()
+#endif()
 
 # Adds logic to INSTALL.vcproj to copy _libsimpa.pyd to the destination directory
 install (TARGETS ${SWIG_MODULE_libsimpa_REAL_NAME}

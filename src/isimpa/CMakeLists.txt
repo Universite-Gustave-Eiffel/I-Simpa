@@ -347,4 +347,9 @@ ${ISIMPA_RESSOURCES}/Locale
 ${ISIMPA_RESSOURCES}/SystemScript
 ${ISIMPA_RESSOURCES}/UserScript
 DESTINATION  ${PROJECT_BINARY_DIR}/bin)
+
+
+install (FILES 
+${ISIMPA_RESSOURCES}/libsimpa/__init__.py
+         DESTINATION  ${PROJECT_BINARY_DIR}/bin/libsimpa)
         

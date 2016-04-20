@@ -93,13 +93,13 @@ OpenGlViewer::OpenGlViewer(wxWindow *parent, wxWindowID id,
 	modeaff = GL_TRIANGLES;
     parent->Show(true);
 	m_GLApp = new OpenGLApp();
-	gl_context = NULL;
+	gl_context = nullptr;
 	appLoaded=true;
 	cutPlaneToUpdate=false;
 	eventBinded=false;
 	modeSelectionPoint=false;
 	eventPositionBinded=false;
-	CurrentObject=NULL;
+	CurrentObject= nullptr;
 	currentTool=TOOL_MODE_CAMERA;
 	SetBackgroundStyle(wxBG_STYLE_CUSTOM);
 	ElementDrawToUpdate=false;
@@ -471,7 +471,7 @@ void OpenGlViewer::ClearAnimatorLst()
 }
 void OpenGlViewer::AddAnimator(Animator* newAnimator)
 {
-	if(appLoaded)
+	if(m_GLApp != nullptr)
 	{
 		m_GLApp->AddAnimator(newAnimator);
 		newAnimator->InitLegend(legendDrawer);
@@ -525,7 +525,7 @@ OpenGlViewer::~OpenGlViewer( )
         m_Timer.Stop();
 	if(gl_context) {
 		delete gl_context;
-		gl_context = NULL;
+		gl_context = nullptr;
 	}
 	if(appLoaded) {
 		delete m_GLApp;

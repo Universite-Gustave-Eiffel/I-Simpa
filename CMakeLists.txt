@@ -9,6 +9,9 @@ project (isimpa)
 # defined projects like INSTALL.vcproj and ZERO_CHECK.vcproj
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
+#Add an option in order to build only the computation cores and libraries
+option(SKIPISIMPA "skip-gui" FALSE)
+
 # Set compiler flags and options. 
 # Here it is setting the Visual Studio warning level to 4
 # set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
@@ -24,7 +27,9 @@ add_subdirectory (src/theorie_classique)
 add_subdirectory (src/VolumetricMeshRepair)
 add_subdirectory (src/preprocess)
 add_subdirectory (src/spps)
-add_subdirectory (src/isimpa)
+if(NOT SKIPISIMPA)
+   add_subdirectory (src/isimpa)
+endif()   
 
 
 # Turn on CMake testing capabilities
