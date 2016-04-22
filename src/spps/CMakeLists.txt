@@ -54,4 +54,4 @@ set_property(TARGET spps PROPERTY FOLDER "executables")
 
 # Adds logic to INSTALL.vcproj to copy spps.exe to destination directory
 install (TARGETS spps
-        RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin/core/sppsNantes)
+        RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin/core/spps)

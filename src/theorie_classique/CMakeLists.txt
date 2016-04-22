@@ -9,14 +9,14 @@ set(CT_SOURCE_FILES
 # Set Properties->General->Configuration Type to Application(.exe)
 # Creates spps.exe with the listed sources
 # Adds sources to the Solution Explorer
-add_executable(ct ${CT_SOURCE_FILES})
+add_executable(TheorieClassique ${CT_SOURCE_FILES})
 
 # Properties->Linker->Input->Additional Dependencies
-target_link_libraries (ct lib_interface)
+target_link_libraries (TheorieClassique lib_interface)
 
 # Creates a folder "executables" and adds target
-set_property(TARGET ct PROPERTY FOLDER "executables")
+set_property(TARGET TheorieClassique PROPERTY FOLDER "executables")
 
 # Adds logic to INSTALL.vcproj to copy spps.exe to destination directory
-install (TARGETS ct
-        RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin/core/ct)
+install (TARGETS TheorieClassique
+        RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin/core/theorie_classique)
