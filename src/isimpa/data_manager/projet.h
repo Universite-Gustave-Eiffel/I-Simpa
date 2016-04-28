@@ -640,6 +640,7 @@ private:
 	void OnMenuNewSource(Element* source);
 	void OnMenuNewSourceGroup(Element* elementSelected);
 	void OnMenuNewUserFreq(Element* elementSelected);
+	void OnMenuNewUserDirectiv(Element* elementSelected);
 	Element* OnMenuNewEncombrement(Element* elementSelected,Element::ELEMENT_TYPE typeEl);
 
 	void OnMenuNewVolume(Element* elementSelected);

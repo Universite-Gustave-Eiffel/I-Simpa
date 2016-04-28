@@ -188,7 +188,12 @@ class Element
 			ELEMENT_TYPE_USER_PREFERENCE_NODE,					 /*!< \~french élément de noeud des préférences utilisateurs \~english User preference node, in the user prefrence tree*/
 			ELEMENT_TYPE_USER_PREFERENCE_ITEM,					/*!< \~french élément des préférences utilisateurs \~english User preference item, in the user prefrence tree*/
 			ELEMENT_TYPE_USER_PREFERENCE_ITEM_ISOTEMPLATE,		/*!< \~french élément des préférences utilisateurs qui liste les palettes de couleurs iso \~english User preference item, in the user prefrence tree where user can choose iso palette.*/
-			ELEMENT_TYPE_ROW_EXTBFREQ							/*!< \~french élément ligne de frequence contenant également une attenuation \~english Extanded freq row property */
+			ELEMENT_TYPE_ROW_EXTBFREQ,							/*!< \~french élément ligne de frequence contenant également une attenuation \~english Extanded freq row property */
+			ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES,
+			ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES_APP,
+			ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES_USER,
+			ELEMENT_TYPE_DIRECTIVITIES_APP,
+			ELEMENT_TYPE_DIRECTIVITIES_USER
 		};
 		/**
 		 * Indice des états des images
@@ -342,7 +347,8 @@ class Element
 			IDEVENT_CONVERT_VOL_TO_FITTING,				/*!< \~english built-in event \~french Converti le volume en encombrement scène */
 			IDEVENT_NEW_RECEPTEUR_S_COUPE,				/*!< \~english Add a cutting plan receiver event \~french Ajouter une récepteur en coupe */
 			IDEVENT_BFREQ_PRESELECTION_ALL,		        /*!< \~english built-in event \~french Séléction automatique des bandes de fréquences */
-			IDEVENT_LAST_FIXED
+			IDEVENT_NEW_USERDIRECTIV,
+			IDEVENT_LAST_FIXED /* !! This event must be the last, those before are "built-in" and those after are send to python */
 		};
 		/**
 		 * @brief Structure de données de base d'un élément

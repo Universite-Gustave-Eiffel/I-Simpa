@@ -33,6 +33,7 @@
 #include "data_manager/element.h"
 #include "e_scene_bdd_spectrums.h"
 #include "e_scene_bdd_materiaux.h"
+#include "e_scene_bdd_directivities.h"
 
 /** \file e_scene_bdd.h
     \brief Element dossier, regroupe le dossier de base de données matériaux et spectres
@@ -63,10 +64,12 @@ public:
 					long typeEle;
 					propValue.ToLong(&typeEle);
 					
-					if(typeEle==Element::ELEMENT_TYPE_SCENE_BDD_SPECTRUMS)
-						this->AppendFils(new E_Scene_Bdd_Spectrums(currentChild,this));
-					else if(typeEle==Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX)
-						this->AppendFils(new E_Scene_Bdd_Materiaux(currentChild,this));
+					if (typeEle == Element::ELEMENT_TYPE_SCENE_BDD_SPECTRUMS)
+						this->AppendFils(new E_Scene_Bdd_Spectrums(currentChild, this));
+					else if (typeEle == Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX)
+						this->AppendFils(new E_Scene_Bdd_Materiaux(currentChild, this));
+					else if (typeEle == Element::ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES)
+						this->AppendFils(new E_Scene_Bdd_Directivities(currentChild, this));
 				}
 				currentChild = currentChild->GetNext();
 			}
@@ -79,7 +82,8 @@ public:
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_DATABASE_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_DATABASE_CLOSE);
 		this->AppendFils(new E_Scene_Bdd_Spectrums(this));	
-		this->AppendFils(new E_Scene_Bdd_Materiaux(this));	
+		this->AppendFils(new E_Scene_Bdd_Materiaux(this));
+		this->AppendFils(new E_Scene_Bdd_Directivities(this));
 	}
 
 	

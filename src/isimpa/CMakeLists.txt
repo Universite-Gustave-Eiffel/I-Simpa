@@ -158,6 +158,9 @@ set(DATA_MANAGER_CUSTOMEDIT_SOURCES
     data_manager/customEditor/wxGridCellTreeEditor.h)
 
 set(DATA_MANAGER_GENERICELEM_SOURCES
+    data_manager/generic_element/e_directivity.h
+    data_manager/generic_element/e_directivity.cpp
+    data_manager/generic_element/e_directivity_user.h
     data_manager/generic_element/e_gammeabsorption.cpp
     data_manager/generic_element/e_gammeabsorption.h
     data_manager/generic_element/e_gammefrequence.cpp
@@ -237,6 +240,9 @@ set(DATA_MANAGER_TREESCENE_SOURCES
     data_manager/tree_scene/e_scene_bdd_spectrums.h
     data_manager/tree_scene/e_scene_bdd_spectrums_app.h
     data_manager/tree_scene/e_scene_bdd_spectrums_user.h
+    data_manager/tree_scene/e_scene_bdd_directivities.h
+    data_manager/tree_scene/e_scene_bdd_directivities_app.h
+    data_manager/tree_scene/e_scene_bdd_directivities_user.h
     data_manager/tree_scene/e_scene_donnees.h
     data_manager/tree_scene/e_scene_encombrements.h
     data_manager/tree_scene/e_scene_encombrements_encombrement_cuboide.h

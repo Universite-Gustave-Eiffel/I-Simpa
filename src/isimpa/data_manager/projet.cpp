@@ -605,6 +605,9 @@ void ProjectManager::ElementEvent(wxCommandEvent& eventElement,eventCtrl fromCtr
 			case Element::IDEVENT_CONVERT_VOL_TO_FITTING:
 				this->OnConvertSubVolumeToFitting(elementSelected);
 				break;
+			case Element::IDEVENT_NEW_USERDIRECTIV:
+				this->OnMenuNewUserDirectiv(elementSelected);
+				break;
 			default:
 				wxLogDebug("Event not generated %i ",idEvenementElement);
 			};
@@ -1274,6 +1277,18 @@ void ProjectManager::OnMenuNewUserFreq(Element* searchResult)
 	}
 }
 
+void ProjectManager::OnMenuNewUserDirectiv(Element* searchResult)
+{
+	Element* newSon = searchResult->AppendFilsByType(Element::ELEMENT_TYPE_DIRECTIVITIES_USER);
+	newSon->FillWxTree(this->treeScene);
+	if (!pyeventmode)
+	{
+		this->treeScene->Expand(searchResult->GetElementInfos().idElement);
+		this->treeScene->UnselectAll();
+		this->treeScene->SelectItem(newSon->GetElementInfos().idElement);
+		this->OnMenuRenameElement(treeScene, this->rootScene, newSon);
+	}
+}
 
 void ProjectManager::OnMenuNewMatGroup(Element* searchResult)
 {
