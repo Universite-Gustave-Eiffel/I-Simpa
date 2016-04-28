@@ -130,6 +130,7 @@ set(DATA_MANAGER_SOURCES
     data_manager/e_data_entier.h
     data_manager/e_data_float.h
     data_manager/e_data_font.h
+    data_manager/e_data_file.h
     data_manager/e_data_list.h
     data_manager/e_data_row.h
     data_manager/e_data_row_bandefreq.h
@@ -154,6 +155,8 @@ set(DATA_MANAGER_CUSTOMEDIT_SOURCES
     data_manager/customEditor/wxGridCellColorEditor.h
     data_manager/customEditor/wxGridCellFontEditor.cpp
     data_manager/customEditor/wxGridCellFontEditor.h
+    data_manager/customEditor/wxGridCellFileEditor.cpp
+    data_manager/customEditor/wxGridCellFileEditor.h
     data_manager/customEditor/wxGridCellTreeEditor.cpp
     data_manager/customEditor/wxGridCellTreeEditor.h)
 

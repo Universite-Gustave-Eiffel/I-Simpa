@@ -28,43 +28,33 @@
 * or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
-#include "e_directivity.h"
-#include "data_manager/e_data_row.h"
+#include "wxGridCellFileEditor.h"
+#include <wx/filedlg.h>
 #include "last_cpp_include.hpp"
 
-E_Directivity::E_Directivity(Element* parent, wxString Nom, ELEMENT_TYPE _type, wxXmlNode* nodeElement)
-	:Element(parent, Nom, _type, nodeElement)
+void wxGridCellFileEditor::BeginEdit(int row, int col, wxGrid* grid) 
 {
-	SetIcon(GRAPH_STATE_ALL, GRAPH_ITEM);
+	wxASSERT_MSG(m_control, wxT("The wxGridCellEditor must be created first!"));
 
-	if (nodeElement != NULL) // && nodeElement->GetAttribute("wxid",&propVal)
+	wxFileDialog openFileDialog(grid, _("Open loudspeaker file"), "", "",
+			"TXT files (*.TXT)|*.TXT", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
+
+	if (openFileDialog.ShowModal() == wxID_OK) 
 	{
-		//Element initialisé AVEC Xml
-	}else{
-		//Element initialisé SANS Xml
+		wxString newFile = openFileDialog.GetPath();
+		grid->SetCellValue(row, col, newFile);
+		wxGridCellTextEditor::BeginEdit(row, col, grid);
 	}
 }
 
-void E_Directivity::InitProperties()
+void wxGridCellFileEditor::Show(bool show, wxGridCellAttr *attr) 
 {
-	E_Data_Row* newGridLine = new E_Data_Row(this, "file", "file");
-	newGridLine->AppendPropertyFile("file", "value");
-	this->AppendFils(newGridLine);
+	wxGridCellTextEditor::Show(show, attr);
+	m_control->Hide();
 }
 
-void E_Directivity::InitProp()
+bool wxGridCellFileEditor::EndEdit(int row, int col, const wxGrid *grid,
+	const wxString& oldval, wxString *newval) 
 {
-
-}
-
-wxXmlNode* E_Directivity::SaveXMLCoreDoc(wxXmlNode* NoeudParent)
-{
-	return Element::SaveXMLCoreDoc(NoeudParent);
-}
-
-wxXmlNode* E_Directivity::SaveXMLDoc(wxXmlNode* NoeudParent)
-{
-	wxXmlNode* thisNode = Element::SaveXMLDoc(NoeudParent);
-	thisNode->SetName("directivities"); // Nom de la balise xml ( pas d'espace autorise )
-	return thisNode;
+	return true;
 }

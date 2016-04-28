@@ -28,43 +28,49 @@
 * or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
-#include "e_directivity.h"
-#include "data_manager/e_data_row.h"
-#include "last_cpp_include.hpp"
+#include "first_header_include.hpp"
 
-E_Directivity::E_Directivity(Element* parent, wxString Nom, ELEMENT_TYPE _type, wxXmlNode* nodeElement)
-	:Element(parent, Nom, _type, nodeElement)
+#include "data_manager/e_data.h"
+#ifndef __ELEMENT_FILE__
+#define __ELEMENT_FILE__
+#include "data_manager/customEditor/wxGridCellFileEditor.h"
+
+/** \file e_data_file.h
+\brief Classe spécialisant E_Data afin de représenter un chemin de fichier
+*/
+
+/**
+\brief Classe spécialisant E_Data afin de représenter un chemin de fichier
+@see MainPropGrid
+*/
+
+class E_Data_File : public E_Data
 {
-	SetIcon(GRAPH_STATE_ALL, GRAPH_ITEM);
-
-	if (nodeElement != NULL) // && nodeElement->GetAttribute("wxid",&propVal)
+public:
+	E_Data_File(wxXmlNode* noeudCourant, Element* parent)
+		:E_Data(parent, "Unnamedprop", "", Element::ELEMENT_TYPE_FILE, noeudCourant)
 	{
-		//Element initialisé AVEC Xml
-	}else{
-		//Element initialisé SANS Xml
+		// création depuis le xml
 	}
-}
 
-void E_Directivity::InitProperties()
-{
-	E_Data_Row* newGridLine = new E_Data_Row(this, "file", "file");
-	newGridLine->AppendPropertyFile("file", "value");
-	this->AppendFils(newGridLine);
-}
+	E_Data_File(Element* parent, wxString dataName, wxString dataLabel)
+		:E_Data(parent, dataName, dataLabel, Element::ELEMENT_TYPE_FILE)
+	{
 
-void E_Directivity::InitProp()
-{
+	}
 
-}
+	wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)
+	{
+		wxXmlNode* thisNode = E_Data::SaveXMLDoc(NoeudParent);
+		return thisNode;
+	}
 
-wxXmlNode* E_Directivity::SaveXMLCoreDoc(wxXmlNode* NoeudParent)
-{
-	return Element::SaveXMLCoreDoc(NoeudParent);
-}
+	virtual void FillWxGrid(wxGrid* gridToFeed, int col = 0)
+	{
+		E_Data::FillWxGrid(gridToFeed, col);
+		int row = gridToFeed->GetNumberRows() - 1;
+		gridToFeed->SetCellEditor(row, col, new wxGridCellFileEditor());
+	}
 
-wxXmlNode* E_Directivity::SaveXMLDoc(wxXmlNode* NoeudParent)
-{
-	wxXmlNode* thisNode = Element::SaveXMLDoc(NoeudParent);
-	thisNode->SetName("directivities"); // Nom de la balise xml ( pas d'espace autorise )
-	return thisNode;
-}
+};
+#endif

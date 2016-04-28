@@ -35,6 +35,7 @@
 #include "IHM/ComboTreeCtrl.h"
 #include "e_data_text.h"
 #include "e_data_color.h"
+#include "e_data_file.h"
 #include "e_data_list.h"
 #include "e_data_entier.h"
 #include "e_data_float.h"
@@ -1391,6 +1392,15 @@ Element* Element::AppendPropertyColor(wxString propertyName,wxString propertyLab
 	Element* alreadyExist=NULL;
 	if(!IsPropertyExist(propertyName,&alreadyExist))
 		return this->AppendFils(new E_Data_Color(this,propertyName,propertyLabel,wxColor(defaultRed,defaultGreen,defaultBlue)));
+	else
+		return alreadyExist;
+}
+
+Element* Element::AppendPropertyFile(wxString propertyName, wxString propertyLabel)
+{
+	Element* alreadyExist = NULL;
+	if (!IsPropertyExist(propertyName, &alreadyExist))
+		return this->AppendFils(new E_Data_File(this, propertyName, propertyLabel));
 	else
 		return alreadyExist;
 }

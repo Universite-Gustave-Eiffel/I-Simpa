@@ -193,7 +193,8 @@ class Element
 			ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES_APP,
 			ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES_USER,
 			ELEMENT_TYPE_DIRECTIVITIES_APP,
-			ELEMENT_TYPE_DIRECTIVITIES_USER
+			ELEMENT_TYPE_DIRECTIVITIES_USER,
+			ELEMENT_TYPE_FILE
 		};
 		/**
 		 * Indice des états des images
@@ -776,6 +777,13 @@ class Element
 		 * @see E_Data_Color
 		 */
 		Element* AppendPropertyColor(wxString propertyName,wxString propertyLabel,long defaultRed,long defaultGreen,long defaultBlue);
+		/**
+		 * Ajoute un champ de choix de fichier dans la feuille de propriété de cet élément
+		 * @param propertyName Nom de la propriété, non visible par l'utilisateur, de préférence se limiter aux caractères alphabétique sans accents
+		 * @param propertyLabel Libellé du champ, le libellé ne doit PAS être passé par la méthode de traduction pendant sa création,  Méthode _("") .Il sera traduit par la suite automatiquement à l'affichage.
+		 * @see E_Data_File
+		 */
+		Element* AppendPropertyFile(wxString propertyName, wxString propertyLabel);
 		/**
 		 * Ajoute un champ de saisie de nombre dans la feuille de propriété de cet élément
 		 * @param propertyName Nom de la propriété, non visible par l'utilisateur, de préférence se limiter aux caractères alphabétique sans accents

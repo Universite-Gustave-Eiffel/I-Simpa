@@ -28,43 +28,54 @@
 * or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
-#include "e_directivity.h"
-#include "data_manager/e_data_row.h"
-#include "last_cpp_include.hpp"
+#include "first_header_include.hpp"
 
-E_Directivity::E_Directivity(Element* parent, wxString Nom, ELEMENT_TYPE _type, wxXmlNode* nodeElement)
-	:Element(parent, Nom, _type, nodeElement)
+#include <wx/grid.h>
+#include <wx/textctrl.h>
+
+#ifndef __FILE_EDITOR__
+#define __FILE_EDITOR__
+
+/*! \file wxGridFileColorEditor.h
+*  @brief Editeur de cellule de type fichier
+*  @see E_Data_File
+*/
+
+/**
+*  @brief Editeur de cellule de type fichier
+*
+*  Lors ce que l'utilisateur désire éditer un champ fichier l'instance de cette classe associé est appelé via wxGridCellFileEditor::BeginEdit
+*  Lors ce que la grille MainPropGrid affiche ce type de champ elle appelle wxGridCellFileEditor::Show
+*  A la fin de l'édition du champ la méthode wxGridCellFileEditor::EndEdit est appelé afin de mettre à jour la cellule texte de base
+*  @see E_Data_File
+*/
+
+class wxGridCellFileEditor : public wxGridCellTextEditor
 {
-	SetIcon(GRAPH_STATE_ALL, GRAPH_ITEM);
+public:
+	/**
+	* Début d'édition du champ
+	* @param row Ligne
+	* @param col Colonne
+	* @param grid Pointeur vers le contrôle
+	*/
+	virtual void BeginEdit(int row, int col, wxGrid* grid);
 
-	if (nodeElement != NULL) // && nodeElement->GetAttribute("wxid",&propVal)
-	{
-		//Element initialisé AVEC Xml
-	}else{
-		//Element initialisé SANS Xml
-	}
-}
+	/**
+	* Affichage du champ
+	* @param show "use the specified attributes to set colours/fonts for it."
+	* @param attr Attributs de la cellule associée
+	*/
+	virtual void Show(bool show, wxGridCellAttr *attr);
 
-void E_Directivity::InitProperties()
-{
-	E_Data_Row* newGridLine = new E_Data_Row(this, "file", "file");
-	newGridLine->AppendPropertyFile("file", "value");
-	this->AppendFils(newGridLine);
-}
+	/**
+	* Fin d'édition du champ
+	* @param row Ligne
+	* @param col Colonne
+	* @param grid Pointeur vers le contrôle
+	*/
+	virtual bool EndEdit(int row, int col, const wxGrid *grid,
+		const wxString& oldval, wxString *newval);
+};
 
-void E_Directivity::InitProp()
-{
-
-}
-
-wxXmlNode* E_Directivity::SaveXMLCoreDoc(wxXmlNode* NoeudParent)
-{
-	return Element::SaveXMLCoreDoc(NoeudParent);
-}
-
-wxXmlNode* E_Directivity::SaveXMLDoc(wxXmlNode* NoeudParent)
-{
-	wxXmlNode* thisNode = Element::SaveXMLDoc(NoeudParent);
-	thisNode->SetName("directivities"); // Nom de la balise xml ( pas d'espace autorise )
-	return thisNode;
-}
+#endif
