@@ -30,7 +30,7 @@
 
 #include "first_header_include.hpp"
 
-#include "data_manager/projet.h"
+#include "i_simpa-global.h"
 #include <wx/listctrl.h>
 #include <wx/laywin.h>
 #include <wx/slider.h>

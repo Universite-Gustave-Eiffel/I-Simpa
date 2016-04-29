@@ -616,7 +616,9 @@ void ProjectManager::ElementEvent(wxCommandEvent& eventElement,eventCtrl fromCtr
 	}
 }
 
-
+wxString ProjectManager::GetCurrentFolder() {
+	return this->dossierCourant;
+}
 
 void ProjectManager::CloseApp()
 {

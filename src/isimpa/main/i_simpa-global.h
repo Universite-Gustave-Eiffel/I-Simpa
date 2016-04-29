@@ -28,51 +28,11 @@
 * or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
-#include "e_directivity.h"
-#include "data_manager/e_data_row.h"
-#include "main/i_simpa-global.h"
-#include <wx/filename.h>
-#include "last_cpp_include.hpp"
+#include "data_manager/projet.h"
 
-E_Directivity::E_Directivity(Element* parent, wxString Nom, ELEMENT_TYPE _type, wxXmlNode* nodeElement)
-	:Element(parent, Nom, _type, nodeElement)
-{
-	SetIcon(GRAPH_STATE_ALL, GRAPH_ITEM);
+#ifndef ISIMPA_GLOBAL
+#define ISIMPA_GLOBAL
 
-	if (nodeElement != NULL) // && nodeElement->GetAttribute("wxid",&propVal)
-	{
-		//Element initialisé AVEC Xml
-	}else{
-		//Element initialisé SANS Xml
-	}
-}
+extern ProjectManager *projetCourant;
 
-void E_Directivity::InitProperties()
-{
-	E_Data_Row* newGridLine = new E_Data_Row(this, "file", "file");
-	wxFileName storageFolder (projetCourant->GetCurrentFolder());
-	storageFolder.AppendDir("loudspeaker");
-	if (!storageFolder.DirExists())
-	{
-		storageFolder.Mkdir();
-	}
-	newGridLine->AppendPropertyFile("file", "value", storageFolder.GetPath());
-	this->AppendFils(newGridLine);
-}
-
-void E_Directivity::InitProp()
-{
-
-}
-
-wxXmlNode* E_Directivity::SaveXMLCoreDoc(wxXmlNode* NoeudParent)
-{
-	return Element::SaveXMLCoreDoc(NoeudParent);
-}
-
-wxXmlNode* E_Directivity::SaveXMLDoc(wxXmlNode* NoeudParent)
-{
-	wxXmlNode* thisNode = Element::SaveXMLDoc(NoeudParent);
-	thisNode->SetName("directivities"); // Nom de la balise xml ( pas d'espace autorise )
-	return thisNode;
-}
+#endif

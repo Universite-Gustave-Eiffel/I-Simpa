@@ -259,6 +259,11 @@ public:
 	 * @param fromCtrl Indice du contrôle lié à l'événement
 	 */
 	void ElementEvent(wxCommandEvent& eventElement,eventCtrl fromCtrl,Element* eltevt=NULL);
+
+	/**
+	 * Getter dossier courant
+	 */
+	wxString GetCurrentFolder();
 	//Commandes de la fenêtre principale
 
 	/** @defgroup cmdprojectmanager Commandes de la fenêtre principale

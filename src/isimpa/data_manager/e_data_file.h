@@ -34,6 +34,8 @@
 #ifndef __ELEMENT_FILE__
 #define __ELEMENT_FILE__
 #include "data_manager/customEditor/wxGridCellFileEditor.h"
+#include <wx/filename.h>
+#include <wx/filefn.h> 
 
 /** \file e_data_file.h
 \brief Classe spécialisant E_Data afin de représenter un chemin de fichier
@@ -46,17 +48,30 @@
 
 class E_Data_File : public E_Data
 {
+protected:
+	wxFileName file;
+	wxFileName storageFolder;
+	bool copyToFolder;
 public:
-	E_Data_File(wxXmlNode* noeudCourant, Element* parent)
+	E_Data_File(wxXmlNode* noeudCourant, Element* parent, wxString storageFolder)
 		:E_Data(parent, "Unnamedprop", "", Element::ELEMENT_TYPE_FILE, noeudCourant)
 	{
 		// création depuis le xml
+		this->storageFolder.AssignDir(storageFolder);
+		copyToFolder = true;
+	}
+
+	E_Data_File(Element* parent, wxString dataName, wxString dataLabel, wxString storageFolder)
+		:E_Data(parent, dataName, dataLabel, Element::ELEMENT_TYPE_FILE)
+	{
+		this->storageFolder.AssignDir(storageFolder);
+		copyToFolder = true;
 	}
 
 	E_Data_File(Element* parent, wxString dataName, wxString dataLabel)
 		:E_Data(parent, dataName, dataLabel, Element::ELEMENT_TYPE_FILE)
 	{
-
+		copyToFolder = false;
 	}
 
 	wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)
@@ -70,7 +85,37 @@ public:
 		E_Data::FillWxGrid(gridToFeed, col);
 		int row = gridToFeed->GetNumberRows() - 1;
 		gridToFeed->SetCellEditor(row, col, new wxGridCellFileEditor());
+		gridToFeed->SetCellValue(row, col, "Choose a file");
+	}
+
+	void SetValue(const wxString& newFilePath)
+	{
+		wxFileName newFile(newFilePath);
+
+		// if the choosen file is "ok", we can paste it in our storage folder and the field become readOnly
+		if (newFile != file)
+		{
+			if (copyToFolder)
+			{
+				file.Assign(storageFolder.GetPath() + wxFileName::GetPathSeparator() + newFile.GetFullName());
+				wxCopyFile(newFile.GetFullPath(), file.GetFullPath());
+			} else 
+			{
+				file.Assign(newFile.GetFullPath());
+			}
+			readOnly = true;
+			Modified(this);
+		}
+	}
+
+	virtual void OnValueChanged(wxGridEvent& ev, wxGrid* gridCtrl)
+	{
+		int row = ev.GetRow();
+		int col = ev.GetCol();
+		SetValue(gridCtrl->GetCellValue(row, col));
+		gridCtrl->SetCellValue(row, col, file.GetFullName());
 	}
 
 };
+
 #endif
