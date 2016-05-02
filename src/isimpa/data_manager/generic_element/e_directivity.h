@@ -46,6 +46,7 @@
 class E_Directivity : public Element
 {
 protected:
+	void Modified(Element* eModif);
 	void InitProperties();
 
 public:

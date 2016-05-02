@@ -48,6 +48,8 @@ public:
 	{
 		SetIcon(GRAPH_STATE_EXPANDED, GRAPH_ITEM);
 		SetIcon(GRAPH_STATE_NORMAL, GRAPH_ITEM);
+
+		// TODO : directivités de référence, fourni avec l'appli
 	}
 
 	E_Scene_Bdd_Directivities_Application(Element* parent)

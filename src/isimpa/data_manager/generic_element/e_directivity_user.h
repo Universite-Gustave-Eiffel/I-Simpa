@@ -32,6 +32,18 @@
 
 #include "e_directivity.h"
 
+/** \file e_directivity_user.h
+\brief Classe spécialisant e_directivity
+
+Représente une directivité personalisée utilisateur
+*/
+
+/**
+\brief Classe spécialisant e_directivity
+
+Représente une directivité personalisée utilisateur
+*/
+
 class E_Directivity_User : public E_Directivity
 {
 public:
@@ -50,7 +62,7 @@ public:
 
 	void OnBeginLabelEdit(wxTreeEvent& treeEvent)
 	{
-		//On autorise l'edition en surchargeant l'événement
+		// On autorise l'edition en surchargeant l'événement
 	}
 
 	void OnEndLabelEdit(wxTreeEvent& treeEvent)
@@ -58,6 +70,7 @@ public:
 		if (treeEvent.GetLabel() != "")
 		{
 			this->elementInfo.libelleElement = treeEvent.GetLabel();
+			this->Modified(this); //Indique le l'element a été modifié
 		}
 	}
 

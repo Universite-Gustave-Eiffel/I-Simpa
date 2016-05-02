@@ -57,13 +57,19 @@ public:
 		:E_Data(parent, "Unnamedprop", "", Element::ELEMENT_TYPE_FILE, noeudCourant)
 	{
 		// création depuis le xml
-		this->storageFolder.AssignDir(storageFolder);
-		copyToFolder = true;
+		wxString propFile;
+		if (noeudCourant->GetAttribute("value", &propFile))
+		{
+			this->file.Assign(propFile);
+			this->storageFolder.AssignDir(storageFolder);
+			copyToFolder = true;
+		}
 	}
 
 	E_Data_File(Element* parent, wxString dataName, wxString dataLabel, wxString storageFolder)
 		:E_Data(parent, dataName, dataLabel, Element::ELEMENT_TYPE_FILE)
 	{
+		this->file.Assign("Choose a file");
 		this->storageFolder.AssignDir(storageFolder);
 		copyToFolder = true;
 	}
@@ -77,6 +83,8 @@ public:
 	wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)
 	{
 		wxXmlNode* thisNode = E_Data::SaveXMLDoc(NoeudParent);
+		thisNode->DeleteAttribute("value");
+		thisNode->AddAttribute("value", file.GetFullName());
 		return thisNode;
 	}
 
@@ -85,7 +93,7 @@ public:
 		E_Data::FillWxGrid(gridToFeed, col);
 		int row = gridToFeed->GetNumberRows() - 1;
 		gridToFeed->SetCellEditor(row, col, new wxGridCellFileEditor());
-		gridToFeed->SetCellValue(row, col, "Choose a file");
+		gridToFeed->SetCellValue(row, col, file.GetFullName());
 	}
 
 	void SetValue(const wxString& newFilePath)

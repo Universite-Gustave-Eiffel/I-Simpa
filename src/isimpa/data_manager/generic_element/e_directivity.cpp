@@ -29,7 +29,7 @@
 * ----------------------------------------------------------------------*/
 
 #include "e_directivity.h"
-#include "data_manager/e_data_row.h"
+#include "data_manager/e_data_file.h"
 #include "main/i_simpa-global.h"
 #include <wx/filename.h>
 #include "last_cpp_include.hpp"
@@ -39,25 +39,43 @@ E_Directivity::E_Directivity(Element* parent, wxString Nom, ELEMENT_TYPE _type, 
 {
 	SetIcon(GRAPH_STATE_ALL, GRAPH_ITEM);
 
+	// TODO : Gestion des directivités par appconfig
+
 	if (nodeElement != NULL) // && nodeElement->GetAttribute("wxid",&propVal)
 	{
-		//Element initialisé AVEC Xml
+		wxString propValue;
+
+		wxXmlNode* currentChild;
+		currentChild = nodeElement->GetChildren();
+		wxFileName storageFolder(projetCourant->GetCurrentFolder());
+		storageFolder.AppendDir("loudspeaker");
+		while (currentChild != NULL)
+		{
+			if (currentChild->GetAttribute("eid", &propValue))
+			{
+				long typeEle;
+				propValue.ToLong(&typeEle);
+				if (typeEle == Element::ELEMENT_TYPE_FILE)
+				{
+					this->AppendFils(new E_Data_File(currentChild, this, storageFolder.GetPath()));
+				}
+			}
+			currentChild = currentChild->GetNext();
+		}
 	}else{
-		//Element initialisé SANS Xml
+		Modified(this);
 	}
 }
 
 void E_Directivity::InitProperties()
 {
-	E_Data_Row* newGridLine = new E_Data_Row(this, "file", "file");
 	wxFileName storageFolder (projetCourant->GetCurrentFolder());
 	storageFolder.AppendDir("loudspeaker");
 	if (!storageFolder.DirExists())
 	{
 		storageFolder.Mkdir();
 	}
-	newGridLine->AppendPropertyFile("file", "value", storageFolder.GetPath());
-	this->AppendFils(newGridLine);
+	this->AppendPropertyFile("file", "loudspeaker", storageFolder.GetPath());
 }
 
 void E_Directivity::InitProp()
@@ -76,3 +94,13 @@ wxXmlNode* E_Directivity::SaveXMLDoc(wxXmlNode* NoeudParent)
 	thisNode->SetName("directivities"); // Nom de la balise xml ( pas d'espace autorise )
 	return thisNode;
 }
+
+void E_Directivity::Modified(Element* eModif)
+{
+	Element* pereEModif = eModif->GetElementParent();
+	if (pereEModif != NULL)
+	{
+		Element::Modified(eModif); //Element de base modifié
+	}
+}
+

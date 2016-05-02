@@ -49,6 +49,14 @@ public:
 	{
 		SetIcon(GRAPH_STATE_EXPANDED, GRAPH_ITEM);
 		SetIcon(GRAPH_STATE_NORMAL, GRAPH_ITEM);
+
+		if (noeudCourant != NULL)
+		{
+			wxXmlNode* currentChild;
+			currentChild = noeudCourant->GetChildren();
+			// On va créer les fils de notre noeudCourant
+			InsertChildrens(currentChild);
+		}
 	}
 
 	E_Scene_Bdd_Directivities_User(Element* parent)
@@ -56,6 +64,32 @@ public:
 	{
 		SetIcon(GRAPH_STATE_EXPANDED, GRAPH_ITEM);
 		SetIcon(GRAPH_STATE_NORMAL, GRAPH_ITEM);
+	}
+
+	bool InsertChildrens(wxXmlNode* currentChild)
+	{
+		bool childAdded {false};
+		wxString propValue;
+		while (currentChild != NULL)
+		{
+			if (currentChild->GetAttribute("eid", &propValue))
+			{
+				long typeEle;
+				propValue.ToLong(&typeEle);
+				if (typeEle == Element::ELEMENT_TYPE_DIRECTIVITIES_USER)
+				{
+					this->AppendFils(new E_Directivity_User(currentChild, this));
+					childAdded = true;
+				}
+			}
+			currentChild = currentChild->GetNext();
+		}
+		return childAdded;
+	}
+
+	void OnPaste(wxXmlNode* nodeElement)
+	{
+		// TODO : gestion du copier-coller sur les directivités utilisateurs
 	}
 
 	void OnRightClic(wxMenu* leMenu)
