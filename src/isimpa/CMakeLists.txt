@@ -290,7 +290,6 @@ set(DATA_MANAGER_TREEUSER_SOURCES
     data_manager/tree_userpref/e_userprefnode.hpp)
 
 set(MAIN_SOURCES
-    main/i_simpa-global.h
     main/i_simpa_main.cpp
     main/i_simpa_main.h)
 

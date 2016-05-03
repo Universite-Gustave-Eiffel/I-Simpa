@@ -30,7 +30,7 @@
 
 #include "e_directivity.h"
 #include "data_manager/e_data_file.h"
-#include "main/i_simpa-global.h"
+#include "data_manager/appconfig.h"
 #include <wx/filename.h>
 #include "last_cpp_include.hpp"
 
@@ -47,7 +47,7 @@ E_Directivity::E_Directivity(Element* parent, wxString Nom, ELEMENT_TYPE _type, 
 
 		wxXmlNode* currentChild;
 		currentChild = nodeElement->GetChildren();
-		wxFileName storageFolder(projetCourant->GetCurrentFolder());
+		wxFileName storageFolder(ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath);
 		storageFolder.AppendDir("loudspeaker");
 		while (currentChild != NULL)
 		{
@@ -69,7 +69,7 @@ E_Directivity::E_Directivity(Element* parent, wxString Nom, ELEMENT_TYPE _type, 
 
 void E_Directivity::InitProperties()
 {
-	wxFileName storageFolder (projetCourant->GetCurrentFolder());
+	wxFileName storageFolder (ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath);
 	storageFolder.AppendDir("loudspeaker");
 	if (!storageFolder.DirExists())
 	{
