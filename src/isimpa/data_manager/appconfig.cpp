@@ -38,9 +38,11 @@
 wxXmlDocument ApplicationConfiguration::appConfig;
 std::vector<E_GammeFrequence*> ApplicationConfiguration::allSpectrum;
 std::vector<E_Materiau*> ApplicationConfiguration::allMaterial;
+std::vector<E_Directivity*> ApplicationConfiguration::allDirectivity;
 std::vector<ApplicationConfiguration::t_vec_param> ApplicationConfiguration::vec_param;
 wxString ApplicationConfiguration::nameNodeSpectre="appspectrums";
-wxString ApplicationConfiguration::nameNodeMateriaux="appmaterials";
+wxString ApplicationConfiguration::nameNodeMateriaux = "appmaterials";
+wxString ApplicationConfiguration::nameNodeDirectivity="appdirecivity";
 smart_ptr<wxFileConfig> ApplicationConfiguration::projectConfig=NULL;
 Element* ApplicationConfiguration::rootScene=NULL;
 smart_ptr<Element> ApplicationConfiguration::rootUserConfig;
@@ -116,6 +118,9 @@ void ApplicationConfiguration::LoadConfiguration(wxString propFile)
 		tmpDocXml.Save(propFile);
 		//Noeud matériaux programme
 		wxXmlNode* materiauRoot=new wxXmlNode(xmlRoot,wxXML_ELEMENT_NODE,nameNodeMateriaux);
+		tmpDocXml.Save(propFile);
+		//Noeud directivités programme
+		wxXmlNode* directivityRoot = new wxXmlNode(xmlRoot, wxXML_ELEMENT_NODE, nameNodeDirectivity);
 		tmpDocXml.Save(propFile);
 	}
 	appConfig.Load(propFile);
@@ -549,6 +554,100 @@ std::vector<ApplicationConfiguration::t_lstMat> ApplicationConfiguration::GetLst
 	}
 	return retVec;
 }
+
+void ApplicationConfiguration::AddDirectivity(E_Directivity* elToAdd) 
+{
+	allDirectivity.push_back(elToAdd);
+}
+
+void ApplicationConfiguration::DeleteDirectivity(int xmlId)
+{
+	for (long i = 0; i<allDirectivity.size(); i++)
+	{
+		if (allDirectivity[i]->GetElementInfos().xmlIdElement == xmlId)
+		{
+			allDirectivity.erase(allDirectivity.begin() + i);	//retire le pointeur de la liste
+			break;
+		}
+	}
+}
+
+E_Directivity* ApplicationConfiguration::GetDirectivity(int idDirectivity, Element::ELEMENT_TYPE typeDirectivity)
+{
+	E_Directivity* findDirectivity = NULL;
+	for (int i = 0; i<allDirectivity.size(); i++)
+	{
+		if (allDirectivity[i]->GetIdDirectivity() == idDirectivity)
+		{
+			findDirectivity = allDirectivity[i];
+			break;
+		}
+	}
+	return findDirectivity;
+}
+
+bool ApplicationConfiguration::orderDirectivity(E_Directivity* lSp, E_Directivity* rSp)
+{
+	return lSp->GetIdDirectivity()<rSp->GetIdDirectivity();
+}
+
+int ApplicationConfiguration::GetFreeDirectivityId()
+{
+	std::sort(allDirectivity.begin(), allDirectivity.end(), orderDirectivity);
+	//On ordonne les directivités pour avoir le résultat attendu dans l'algorithme de recherche
+	int freeDirectivity = 100;
+	for (int i = 0; i<allDirectivity.size(); i++)
+	{
+		if (allDirectivity[i]->GetTypeDireciticity() == Element::ELEMENT_TYPE_DIRECTIVITIES_USER)
+		{
+			if (allDirectivity[i]->GetIdDirectivity() == freeDirectivity)
+				freeDirectivity++;
+		}
+	}
+	return freeDirectivity;
+}
+
+bool ApplicationConfiguration::IsIdDirectivityExist(int idDirectivity)
+{
+	for (int i = 0; i<allDirectivity.size(); i++)
+	{
+		if (allDirectivity[i]->GetIdDirectivity() == idDirectivity)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+std::vector<ApplicationConfiguration::t_lstDirectiv> ApplicationConfiguration::GetLstDirectivity()
+{
+	std::vector<t_lstDirectiv> retVec;
+	for (int i = 0; i<allDirectivity.size(); i++)
+	{
+		Element::t_elementInfo infoSpec = allDirectivity[i]->GetElementInfos();
+		Element* ePere = allDirectivity[i]->GetElementParent();
+		t_lstDirectiv curDirectiv;
+		curDirectiv.idDirectivity = allDirectivity[i]->GetIdDirectivity();
+		curDirectiv.typeDirectivity = infoSpec.typeElement;
+		curDirectiv.nom = ePere->GetElementInfos().libelleElement;
+		retVec.push_back(curDirectiv);
+	}
+	return retVec;
+}
+
+wxXmlNode* ApplicationConfiguration::GetAppDirectivityNode()
+{
+	wxXmlNode* rootCfg = appConfig.GetRoot();
+	wxXmlNode* currentNode = NULL;
+	if (rootCfg)
+	{
+		currentNode = rootCfg->GetChildren();
+		while (currentNode != NULL && currentNode->GetName() != nameNodeDirectivity)
+			currentNode = currentNode->GetNext();
+	}
+	return currentNode;
+}
+
 void ApplicationConfiguration::AppendRefElement(Element* newRefEl,ELEMENT_REF_TYPE hashIndex)
 {
 	tab_refElementLst.refElementLst[hashIndex][newRefEl->GetElementInfos().xmlIdElement]=newRefEl;

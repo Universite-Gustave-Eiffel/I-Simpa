@@ -46,14 +46,18 @@
 class E_Directivity : public Element
 {
 protected:
+	int idDirectivity;
 	void Modified(Element* eModif);
 	void InitProperties();
 
 public:
 	E_Directivity(Element* parent, wxString Nom, ELEMENT_TYPE _type, wxXmlNode* nodeElement = NULL);
-	
+	virtual ~E_Directivity();
+
+	int GetIdDirectivity();
 	virtual void InitProp();
 
+	Element::ELEMENT_TYPE GetTypeDireciticity();
 	virtual wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent);
 	virtual wxXmlNode* SaveXMLCoreDoc(wxXmlNode* NoeudParent);
 };

@@ -38,11 +38,26 @@ E_Directivity::E_Directivity(Element* parent, wxString Nom, ELEMENT_TYPE _type, 
 	:Element(parent, Nom, _type, nodeElement)
 {
 	SetIcon(GRAPH_STATE_ALL, GRAPH_ITEM);
+	idDirectivity = -1;
+	wxString propVal;
 
 	// TODO : Gestion des directivités par appconfig
 
 	if (nodeElement != NULL) // && nodeElement->GetAttribute("wxid",&propVal)
 	{
+		//Element initialisé AVEC Xml
+		long lval;
+		if (nodeElement->GetAttribute("iddirectivity", &propVal))
+		{
+			propVal.ToLong(&lval);
+			if (ApplicationConfiguration::IsIdDirectivityExist(lval))
+			{
+				idDirectivity = ApplicationConfiguration::GetFreeDirectivityId();
+			} else {
+				idDirectivity = lval;
+			}
+		}
+
 		wxString propValue;
 
 		wxXmlNode* currentChild;
@@ -63,8 +78,20 @@ E_Directivity::E_Directivity(Element* parent, wxString Nom, ELEMENT_TYPE _type, 
 			currentChild = currentChild->GetNext();
 		}
 	}else{
+		idDirectivity = ApplicationConfiguration::GetFreeDirectivityId();
 		Modified(this);
 	}
+
+	if (idDirectivity == -1)
+	{
+		idDirectivity = ApplicationConfiguration::GetFreeDirectivityId();
+	}
+	ApplicationConfiguration::AddDirectivity(this);
+}
+
+E_Directivity::~E_Directivity()
+{
+	ApplicationConfiguration::DeleteDirectivity(this->elementInfo.xmlIdElement);
 }
 
 void E_Directivity::InitProperties()
@@ -78,9 +105,19 @@ void E_Directivity::InitProperties()
 	this->AppendPropertyFile("file", "loudspeaker", storageFolder.GetPath());
 }
 
+int E_Directivity::GetIdDirectivity()
+{
+	return this->idDirectivity;
+}
+
 void E_Directivity::InitProp()
 {
 
+}
+
+Element::ELEMENT_TYPE E_Directivity::GetTypeDireciticity()
+{
+	return this->elementInfo.typeElement;
 }
 
 wxXmlNode* E_Directivity::SaveXMLCoreDoc(wxXmlNode* NoeudParent)
@@ -92,6 +129,8 @@ wxXmlNode* E_Directivity::SaveXMLDoc(wxXmlNode* NoeudParent)
 {
 	wxXmlNode* thisNode = Element::SaveXMLDoc(NoeudParent);
 	thisNode->SetName("directivities"); // Nom de la balise xml ( pas d'espace autorise )
+	thisNode->DeleteAttribute("iddirectivity");
+	thisNode->AddAttribute("iddirectivity", Convertor::ToString(idDirectivity));
 	return thisNode;
 }
 
