@@ -31,6 +31,7 @@
 #include "first_header_include.hpp"
 
 #include "data_manager/element.h"
+#include "data_manager/appconfig.h"
 
 /**  \file e_scene_sources_source_proprietes.h
  *   \brief Propriétés d'une source sonore ponctuelle de la scène
@@ -60,6 +61,7 @@ private:
 		vDirectivite.push_back("XY plan");
 		vDirectivite.push_back("XY plan");
 		vDirectivite.push_back("XZ plan");
+		vDirectivite.push_back("Directivity balloon");
 		_("Omnidirectional");
 		_("Unidirectional");
 		_("XY plan");
@@ -67,6 +69,19 @@ private:
 		_("XZ plan");
 		this->AppendPropertyList("directivite","Directivity",vDirectivite,DIRECTIVITE_SOURCE_OMINIDIRECTIONNEL,false,1,iDirectivite,true);
 		_("Directivity");
+
+		std::vector<wxString> vBalloon;
+		std::vector<int> iBalloon;
+		std::vector<ApplicationConfiguration::t_lstDirectiv> balloonLst = ApplicationConfiguration::GetLstDirectivity();
+		vBalloon.reserve(balloonLst.size());
+		for (int i = 0; i<balloonLst.size(); i++)
+		{
+			vBalloon.push_back(balloonLst[i].nom);
+			iBalloon.push_back(balloonLst[i].idDirectivity);
+		}
+		this->AppendPropertyList("directivity-balloon", "Directivity Balloon", vBalloon, 0, false, 1, iBalloon);
+		this->SetReadOnlyConfig("directivity-balloon", true);
+
 		this->AppendPropertyDecimal("u","Direction X",1,true,2,false,false,0,0,true);
 		this->AppendPropertyDecimal("v","Direction Y",1,true,2,false,false,0,0,true);
 		this->AppendPropertyDecimal("w","Direction Z",1,true,2,false,false,0,0,true);
@@ -84,7 +99,8 @@ public:
 		DIRECTIVITE_SOURCE_UNIDIRECTIONNEL,
 		DIRECTIVITE_SOURCE_XY,
 		DIRECTIVITE_SOURCE_YZ,
-		DIRECTIVITE_SOURCE_XZ
+		DIRECTIVITE_SOURCE_XZ,
+		DIRECTIVITE_SOURCE_DIRECTIONNEL
 	};
 	E_Scene_Sources_Source_Proprietes( wxXmlNode* noeudCourant ,  Element* parent)
 		:Element(parent,"Properties",Element::ELEMENT_TYPE_SCENE_SOURCES_SOURCE_PROPRIETES,noeudCourant)
@@ -127,15 +143,19 @@ public:
 		if(filsInfo.libelleElement=="directivite")
 		{
 			bool newStateCoord=false;
-			if(this->GetListConfig("directivite")!=DIRECTIVITE_SOURCE_UNIDIRECTIONNEL)
+			if(this->GetListConfig("directivite") == DIRECTIVITE_SOURCE_UNIDIRECTIONNEL 
+				|| this->GetListConfig("directivite") == DIRECTIVITE_SOURCE_DIRECTIONNEL)
 			{
-				newStateCoord=true;
-			}else{
 				newStateCoord=false;
+			}else{
+				newStateCoord=true;
 			}
 			this->SetReadOnlyConfig("u",newStateCoord);
 			this->SetReadOnlyConfig("v",newStateCoord);
 			this->SetReadOnlyConfig("w",newStateCoord);
+			
+			bool newStateBalloon = (this->GetListConfig("directivite") == DIRECTIVITE_SOURCE_DIRECTIONNEL) ? false : true;
+			this->SetReadOnlyConfig("directivity-balloon", newStateBalloon);
 		}else if(!ignore_count_change && filsInfo.libelleElement=="enable")
 		{
 			if(this->GetBoolConfig("enable"))

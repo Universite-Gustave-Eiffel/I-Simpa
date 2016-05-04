@@ -117,6 +117,11 @@ public:
 			wxXmlNode* thisNode = new wxXmlNode(NoeudParent,wxXML_ELEMENT_NODE,"source");
 			thisNode->AddAttribute("id",Convertor::ToString(elementInfo.xmlIdElement));
 			thisNode->AddAttribute("name",elementInfo.libelleElement);
+
+			int iddirectivity = elFilsProperty->GetListConfig("directivity-balloon");
+			E_Directivity* directivity = ApplicationConfiguration::GetDirectivity(iddirectivity, Element::ELEMENT_TYPE_DIRECTIVITIES_APP);
+			thisNode->AddAttribute("directivity_file", directivity->GetAssociatedFile());
+
 			return Element::SaveXMLCoreDoc(thisNode);
 		}else{
 			return NoeudParent;
@@ -139,7 +144,8 @@ public:
 		{
 			destinationFleche.set(-elFilsProperty->GetDecimalConfig("u"),-elFilsProperty->GetDecimalConfig("v"),-elFilsProperty->GetDecimalConfig("w"));
 			destinationFleche=position+(destinationFleche/destinationFleche.length())/unitizeValue.w*.1f*destinationFleche.length();
-			showArrow=elFilsProperty->GetListConfig("directivite")==E_Scene_Sources_Source_Proprietes::DIRECTIVITE_SOURCE_UNIDIRECTIONNEL;
+			showArrow = (elFilsProperty->GetListConfig("directivite") == E_Scene_Sources_Source_Proprietes::DIRECTIVITE_SOURCE_UNIDIRECTIONNEL)
+				|| (elFilsProperty->GetListConfig("directivite") == E_Scene_Sources_Source_Proprietes::DIRECTIVITE_SOURCE_DIRECTIONNEL);
 			showSource=elFilsProperty->GetBoolConfig("enable");
 		}
 		labelInfo.clear();

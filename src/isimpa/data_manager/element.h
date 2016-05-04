@@ -728,6 +728,12 @@ class Element
 		 * @return Valeur de la propriété
 		 */
 		wxFont GetFontConfig(const wxString& name);
+		/**
+		* Obtient la valeur courante de la propriété
+		* @param name Nom de la propriété
+		* @return Valeur de la propriété
+		*/
+		wxString GetFileConfig(wxString name);
 		/** @} */
 
 		/** @defgroup addprop Ajout de propriétés

@@ -36,6 +36,7 @@
 #include "data_manager/customEditor/wxGridCellFileEditor.h"
 #include <wx/filename.h>
 #include <wx/filefn.h> 
+#include <wx/string.h>
 
 /** \file e_data_file.h
 \brief Classe spécialisant E_Data afin de représenter un chemin de fichier
@@ -122,6 +123,10 @@ public:
 		int col = ev.GetCol();
 		SetValue(gridCtrl->GetCellValue(row, col));
 		gridCtrl->SetCellValue(row, col, file.GetFullName());
+	}
+
+	wxString GetFile() {
+		return file.GetFullPath();
 	}
 
 };

@@ -625,11 +625,10 @@ std::vector<ApplicationConfiguration::t_lstDirectiv> ApplicationConfiguration::G
 	for (int i = 0; i<allDirectivity.size(); i++)
 	{
 		Element::t_elementInfo infoSpec = allDirectivity[i]->GetElementInfos();
-		Element* ePere = allDirectivity[i]->GetElementParent();
 		t_lstDirectiv curDirectiv;
 		curDirectiv.idDirectivity = allDirectivity[i]->GetIdDirectivity();
 		curDirectiv.typeDirectivity = infoSpec.typeElement;
-		curDirectiv.nom = ePere->GetElementInfos().libelleElement;
+		curDirectiv.nom = allDirectivity[i]->GetElementInfos().libelleElement;
 		retVec.push_back(curDirectiv);
 	}
 	return retVec;
