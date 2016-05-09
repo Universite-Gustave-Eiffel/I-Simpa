@@ -746,6 +746,7 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	if(!wxFileExists(reportFolderName))
 		wxMkdir(reportFolderName);
 	wxString workingDir=reportFolderName;//this->PathCores+corePath+tempFolder;
+	ApplicationConfiguration::GLOBAL_VAR.workingFolderPath = workingDir;
 	///////////////////////////////////////////
 	///	Verifications de l'existance du coeur de calcul
 	///////////////////////////////////////////

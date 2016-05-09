@@ -125,8 +125,8 @@ public:
 		gridCtrl->SetCellValue(row, col, file.GetFullName());
 	}
 
-	wxString GetFile() {
-		return file.GetFullPath();
+	wxFileName GetFile() {
+		return file;
 	}
 
 };

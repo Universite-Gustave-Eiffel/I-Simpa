@@ -189,6 +189,7 @@ public:
 	static const wxString CONST_REPORT_RECEPTEURSS_CUT_FILENAME;
 	static const wxString CONST_REPORT_RECEPTEURSS_FILENAME_TR;
 	static const wxString CONST_REPORT_RECEPTEURSS_FILENAME_EDT;
+	static const wxString CONST_REPORT_DIRECTIVITIES_FOLDER_PATH;
 	static const wxString CONST_MODEL_SCENE_FILENAME;
 	static const wxString CONST_TETGEN_EXE_FILENAME;
 	static const wxString CONST_TETGEN_EXE_PATH;
@@ -232,6 +233,7 @@ public:
 	struct t_GLOBAL_VAR
 	{
 		wxString cacheFolderPath;
+		wxString workingFolderPath;
 		bool drawMaterialColors;
 	} static GLOBAL_VAR;
 	/** @} */

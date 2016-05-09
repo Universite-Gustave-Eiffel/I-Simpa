@@ -55,7 +55,7 @@ public:
 	virtual ~E_Directivity();
 
 	int GetIdDirectivity();
-	wxString GetAssociatedFile();
+	wxFileName GetAssociatedFile();
 	virtual void InitProp();
 
 	Element::ELEMENT_TYPE GetTypeDireciticity();

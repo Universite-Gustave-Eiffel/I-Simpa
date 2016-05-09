@@ -1197,7 +1197,7 @@ wxFont Element::GetFontConfig(const wxString& name)
 	return wxFont();
 }
 
-wxString Element::GetFileConfig(wxString name)
+wxFileName Element::GetFileConfig(wxString name)
 {
 	//On recherche les éléments qui porte le nom name
 	for (std::list<Element*>::iterator itfils = this->fils.begin(); itfils != this->fils.end(); itfils++)
@@ -1210,7 +1210,7 @@ wxString Element::GetFileConfig(wxString name)
 		}
 	}
 	wxLogDebug(_("This field does not exist!\nName of element: %s Name of the field: %s"), this->elementInfo.libelleElement, name);
-	return wxString();
+	return wxFileName();
 }
 
 vec3 Element::GetColorConfig(wxString name)

@@ -60,6 +60,7 @@ const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FILENAME=wxStr
 const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_CUT_FILENAME="rs_cut.csbin";
 const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FILENAME_TR="TR.csbin";
 const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FILENAME_EDT="EDT.csbin";
+const wxString ApplicationConfiguration::CONST_REPORT_DIRECTIVITIES_FOLDER_PATH = wxString("loudspeakers") + wxFileName::GetPathSeparator();;
 const wxString ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME="sceneMesh.bin";
 
 
@@ -96,7 +97,7 @@ ApplicationConfiguration::t_App_Info ApplicationConfiguration::GLOBAL_CURRENT_AP
 
 
 
-ApplicationConfiguration::t_GLOBAL_VAR ApplicationConfiguration::GLOBAL_VAR={"current",false};
+ApplicationConfiguration::t_GLOBAL_VAR ApplicationConfiguration::GLOBAL_VAR={"current","current",false};
 
 DEFINE_EVENT_TYPE( wxEVT_PSPS_MAIN_EVENT )
 

@@ -31,6 +31,7 @@
 #include "first_header_include.hpp"
 
 #include <wx/treectrl.h>
+#include <wx/filename.h>
 #include <vector>
 #include <list>
 #include <wx/xml/xml.h>
@@ -733,7 +734,7 @@ class Element
 		* @param name Nom de la propriété
 		* @return Valeur de la propriété
 		*/
-		wxString GetFileConfig(wxString name);
+		wxFileName GetFileConfig(wxString name);
 		/** @} */
 
 		/** @defgroup addprop Ajout de propriétés

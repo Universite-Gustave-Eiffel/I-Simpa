@@ -223,7 +223,8 @@ public:
 	{
 		wxXmlNode* NoeudCourant=E_Core_Core::SaveXMLCoreDoc(NoeudParent);
 		NoeudCourant->AddAttribute("particules_directory",ApplicationConfiguration::CONST_REPORT_PARTICLE_FOLDER_PATH);
-		NoeudCourant->AddAttribute("particules_filename",ApplicationConfiguration::CONST_REPORT_PARTICLE_FILENAME);
+		NoeudCourant->AddAttribute("particules_filename", ApplicationConfiguration::CONST_REPORT_PARTICLE_FILENAME);
+		NoeudCourant->AddAttribute("directivities_directory",ApplicationConfiguration::CONST_REPORT_DIRECTIVITIES_FOLDER_PATH);
 		return NoeudCourant;
 	}
 };

@@ -30,6 +30,7 @@
 
 #include "first_header_include.hpp"
 
+#include <wx/filename.h>
 #include "data_manager/drawable_element.h"
 #include "e_scene_sources_source_rendu.h"
 #include "e_scene_sources_source_proprietes.h"
@@ -118,9 +119,21 @@ public:
 			thisNode->AddAttribute("id",Convertor::ToString(elementInfo.xmlIdElement));
 			thisNode->AddAttribute("name",elementInfo.libelleElement);
 
+			// copy directivity file into simulation folder and export to config
 			int iddirectivity = elFilsProperty->GetListConfig("directivity-balloon");
 			E_Directivity* directivity = ApplicationConfiguration::GetDirectivity(iddirectivity, Element::ELEMENT_TYPE_DIRECTIVITIES_APP);
-			thisNode->AddAttribute("directivity_file", directivity->GetAssociatedFile());
+			wxFileName directivityFile = directivity->GetAssociatedFile();
+
+			wxFileName storageFolder(ApplicationConfiguration::GLOBAL_VAR.workingFolderPath);
+			storageFolder.AppendDir("loudspeaker");
+			if (!storageFolder.DirExists())
+			{
+				storageFolder.Mkdir();
+			}
+			storageFolder.SetFullName(directivityFile.GetFullName());
+			wxCopyFile(directivityFile.GetFullPath(), storageFolder.GetFullPath());
+
+			thisNode->AddAttribute("directivity_file", directivityFile.GetFullName());
 
 			return Element::SaveXMLCoreDoc(thisNode);
 		}else{

@@ -110,7 +110,7 @@ int E_Directivity::GetIdDirectivity()
 	return this->idDirectivity;
 }
 
-wxString E_Directivity::GetAssociatedFile()
+wxFileName E_Directivity::GetAssociatedFile()
 {
 	return this->GetFileConfig("file");
 }
