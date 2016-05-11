@@ -10,7 +10,8 @@ set(LIBINTERFACE_SOURCES
     en_numeric.hpp
     en_numeric.cpp
     std_tools.hpp
-    std_tools.cpp)
+    std_tools.cpp
+    directivityBalloon.h)
 
 set(CORE_SOURCES
     Core/mathlib.h
@@ -106,6 +107,27 @@ add_library(lib_interface
     ${IO_PLY_SOURCES}
     ${TOOLS_SOURCES})
 
+# Creates a folder "libraries" and adds target project (lib_interface.vcproj) under it
+set_property(TARGET lib_interface PROPERTY FOLDER "libraries")
+
+# tests
+set(LIBINTERFACE_TESTS
+    tests/balloon_test.cpp)
+
+find_package(Boost COMPONENTS system filesystem unit_test_framework REQUIRED)
+link_directories( ${Boost_LIBRARY_DIRS} )  
+include_directories( ${Boost_INCLUDE_DIRS} )
+
+add_executable(TEST_lib_interface ${LIBINTERFACE_TESTS})
+target_link_libraries (TEST_lib_interface 
+    lib_interface
+    ${Boost_FILESYSTEM_LIBRARY}
+    ${Boost_SYSTEM_LIBRARY}
+    ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+set_property(TARGET TEST_lib_interface PROPERTY FOLDER "tests")
+
+enable_testing()
+add_test( NAME lib_interface COMMAND TEST_lib_interface )
 #-----------------------------------------------------------------------------
 #
 # To fix compilation problem: relocation R_X86_64_32 against `a local symbol' can not be
@@ -115,9 +137,4 @@ add_library(lib_interface
 IF( CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64" )
   SET_TARGET_PROPERTIES(lib_interface PROPERTIES COMPILE_FLAGS "-fPIC")
 ENDIF( CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64" )
-
-
-
-# Creates a folder "libraries" and adds target project (lib_interface.vcproj) under it
-set_property(TARGET lib_interface PROPERTY FOLDER "libraries")
 
