@@ -11,7 +11,8 @@ set(LIBINTERFACE_SOURCES
     en_numeric.cpp
     std_tools.hpp
     std_tools.cpp
-    directivityBalloon.h)
+    directivityBalloon.h
+    directivityBalloon.cpp)
 
 set(CORE_SOURCES
     Core/mathlib.h
@@ -95,6 +96,11 @@ source_group( "input_output\\ply" FILES ${IO_PLY_SOURCES} )
 
 source_group( "tools" FILES ${TOOLS_SOURCES} )
 
+set(Boost_USE_STATIC_LIBS   ON) 
+find_package(Boost COMPONENTS system filesystem unit_test_framework REQUIRED)
+link_directories( ${Boost_LIBRARY_DIRS} )  
+include_directories( ${Boost_INCLUDE_DIRS} )
+
 add_library(lib_interface 
     ${LIBINTERFACE_SOURCES}
     ${CORE_SOURCES}
@@ -107,6 +113,11 @@ add_library(lib_interface
     ${IO_PLY_SOURCES}
     ${TOOLS_SOURCES})
 
+target_link_libraries (lib_interface
+    ${Boost_FILESYSTEM_LIBRARY}
+    ${Boost_SYSTEM_LIBRARY}
+    ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+
 # Creates a folder "libraries" and adds target project (lib_interface.vcproj) under it
 set_property(TARGET lib_interface PROPERTY FOLDER "libraries")
 
@@ -114,16 +125,8 @@ set_property(TARGET lib_interface PROPERTY FOLDER "libraries")
 set(LIBINTERFACE_TESTS
     tests/balloon_test.cpp)
 
-find_package(Boost COMPONENTS system filesystem unit_test_framework REQUIRED)
-link_directories( ${Boost_LIBRARY_DIRS} )  
-include_directories( ${Boost_INCLUDE_DIRS} )
-
 add_executable(TEST_lib_interface ${LIBINTERFACE_TESTS})
-target_link_libraries (TEST_lib_interface 
-    lib_interface
-    ${Boost_FILESYSTEM_LIBRARY}
-    ${Boost_SYSTEM_LIBRARY}
-    ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+target_link_libraries (TEST_lib_interface lib_interface)
 set_property(TARGET TEST_lib_interface PROPERTY FOLDER "tests")
 
 enable_testing()
