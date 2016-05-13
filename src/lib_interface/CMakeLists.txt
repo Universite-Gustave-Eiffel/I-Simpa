@@ -122,6 +122,8 @@ target_link_libraries (lib_interface
 set_property(TARGET lib_interface PROPERTY FOLDER "libraries")
 
 # tests
+file(COPY tests/speaker-test1.txt tests/speaker-test2.txt
+    DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
 set(LIBINTERFACE_TESTS
     tests/balloon_test.cpp)
 
