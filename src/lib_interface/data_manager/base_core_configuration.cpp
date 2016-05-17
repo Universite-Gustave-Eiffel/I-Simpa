@@ -156,7 +156,7 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
 				}
 				nvSource->idsource=srcList.size();
 
-				if ((*nvSource).type == SOURCE_TYPE_DIRECTIONN)
+				if ((*nvSource).type == SOURCE_TYPE_DIRECTION)
 				{
 					nvSource->directivity = new t_DirectivityBalloon((*iterateurNoeuds)->GetProperty("directivity_file"));
 				}

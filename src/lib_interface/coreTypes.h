@@ -102,7 +102,7 @@ enum SOURCE_TYPE
 	SOURCE_TYPE_XY,
 	SOURCE_TYPE_YZ,
 	SOURCE_TYPE_XZ,
-	SOURCE_TYPE_DIRECTIONN
+	SOURCE_TYPE_DIRECTION
 };
 /**
  * Enumération des lois de diffusion dans un encombrement

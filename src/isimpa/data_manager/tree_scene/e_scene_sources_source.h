@@ -122,18 +122,21 @@ public:
 			// copy directivity file into simulation folder and export to config
 			int iddirectivity = elFilsProperty->GetListConfig("directivity-balloon");
 			E_Directivity* directivity = ApplicationConfiguration::GetDirectivity(iddirectivity, Element::ELEMENT_TYPE_DIRECTIVITIES_APP);
-			wxFileName directivityFile = directivity->GetAssociatedFile();
-
-			wxFileName storageFolder(ApplicationConfiguration::GLOBAL_VAR.workingFolderPath);
-			storageFolder.AppendDir("loudspeaker");
-			if (!storageFolder.DirExists())
+			if (directivity != NULL)
 			{
-				storageFolder.Mkdir();
-			}
-			storageFolder.SetFullName(directivityFile.GetFullName());
-			wxCopyFile(directivityFile.GetFullPath(), storageFolder.GetFullPath());
+				wxFileName directivityFile = directivity->GetAssociatedFile();
 
-			thisNode->AddAttribute("directivity_file", directivityFile.GetFullName());
+				wxFileName storageFolder(ApplicationConfiguration::GLOBAL_VAR.workingFolderPath);
+				storageFolder.AppendDir("loudspeaker");
+				if (!storageFolder.DirExists())
+				{
+					storageFolder.Mkdir();
+				}
+				storageFolder.SetFullName(directivityFile.GetFullName());
+				wxCopyFile(directivityFile.GetFullPath(), storageFolder.GetFullPath());
+
+				thisNode->AddAttribute("directivity_file", directivityFile.GetFullName());
+			}
 
 			return Element::SaveXMLCoreDoc(thisNode);
 		}else{
