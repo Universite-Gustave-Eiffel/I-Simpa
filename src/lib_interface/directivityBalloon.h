@@ -28,29 +28,30 @@
 * or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
-#include <iostream>
-#include <fstream>
-#include <string>
 #include <map>
-#include <boost/algorithm/string.hpp>
-#include <boost/algorithm/string/regex.hpp>
+#include <string>
+#include <Core\mathlib.h>
 
 #ifndef DIRECTIVITY_BALLOON
 #define DIRECTIVITY_BALLOON
-
-using namespace std;
 
 /**
 * @brief Modèle d'un ballon de directivité
 */
 class t_DirectivityBalloon
 {
+private:
+	/** @brief store magnitude values as attenuations[frequency][phi][theta] = value */
+	std::map<double, std::map<double, std::map<double, double>>> attenuations;
+
+	static const int ANGLE_INCREMENT = 5;
+
 public:
 	/** 
 	* Constructor using a directivity file
 	* @param filePath File to parse
 	*/
-	t_DirectivityBalloon(string filePath);
+	t_DirectivityBalloon(std::string filePath);
 	~t_DirectivityBalloon();
 
 	bool asDataForFrequency(double frequency);
@@ -80,11 +81,31 @@ public:
 	*/
 	double getInterpolatedValue(double freq, double phi, double theta);
 
-private:
-	/** @brief store magnitude values as attenuations[frequency][phi][theta] = value */
-	std::map<double, std::map<double, std::map<double, double>>> attenuations;
+	/**
+	* Convert cartesian coordinate in spherical coordinate
+	* @return (phi, theta) <=> (azimuth, polar) in radian, with 0 < phi < 2PI and 0 <= theta <= PI
+	*/
+	static std::tuple<double, double> cartesianToSpherical(const vec3 &v);
 
-	static const int ANGLE_INCREMENT = 5;
+	/**
+	* Convert spherical coordinate in cartesian coordinate
+	* Assume the sphere has a radius of 1
+	* @param phi, the azimuth angle in radian in the interval [0, 2pi]
+	* @param theta, the polar angle in radian in the interval [0, pi]
+	*/
+	static vec3 sphericalToCartesian(double phi, double theta);
+
+	/**
+	* Convert a coordinate from the conventionnal coordinate system to the directivity one
+	*
+	* The conventionnal spherical coordinate system used in physics as :
+	* - a polar angle (theta) which is the inclination from the Z direction
+	* - an azimuth (phi) angle mesured from the X axis in the XY plane
+	*
+	* The directivity specification use a different spherical coordinate system where :
+	* - the polar angle (theta) is the inclination from the Y direction
+	* -	the azimuth (phi) angle is mesured from the opposite X axis in the XZ plane
+	*/
+	static std::tuple<double, double> loudspeaker_coordinate(const vec3 &source_Direction, const vec3 &particle);
 };
-
 #endif

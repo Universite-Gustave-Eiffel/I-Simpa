@@ -158,7 +158,12 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
 
 				if ((*nvSource).type == SOURCE_TYPE_DIRECTION)
 				{
-					nvSource->directivity = new t_DirectivityBalloon((*iterateurNoeuds)->GetProperty("directivity_file"));
+					string directivityFile = (*iterateurNoeuds)->GetProperty("directivity_file");
+					if (!directivityFile.empty())
+					{
+						nvSource->directivity = new t_DirectivityBalloon(directivityFile);
+						cout << "Directivity loaded : " << directivityFile << endl;
+					}
 				}
 
 				srcList.push_back(nvSource);

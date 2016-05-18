@@ -107,6 +107,8 @@ void runSourceCalculation( progressOperation* parentOperation, t_ToolBox& applic
 				ParticleDistribution::GenXZDistribution(confPart,nomVecVitesse);
 			else if(sourceInfo.type==SOURCE_TYPE_YZ)
 				ParticleDistribution::GenYZDistribution(confPart,nomVecVitesse);
+			else if(sourceInfo.type==SOURCE_TYPE_DIRECTION)
+				ParticleDistribution::GenSphereDistribution(confPart, nomVecVitesse);
 
 			float lenPart=confPart.direction.length();
 			confPart.position=sourceInfo.Position;
