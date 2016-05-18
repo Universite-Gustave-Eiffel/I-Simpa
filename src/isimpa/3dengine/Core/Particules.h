@@ -151,6 +151,7 @@ struct t_Particule
 	t_PosParticule pos[3];
 	t_EnergyParticule energie;
 };
+t_EnergyParticule max_energie;
 struct t_ParticuleInfo
 {
 	unsigned int nbStep;

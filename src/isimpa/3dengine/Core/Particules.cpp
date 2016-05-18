@@ -52,6 +52,7 @@ ParticulesControler::ParticulesControler()
 	nbStep=0;
 	nbParticles=0;
 	legendRenderer=NULL;
+	max_energie = 0;
 }
 
 
@@ -280,6 +281,10 @@ void ParticulesControler::LoadPBin(wxString fileName, bool doCoordsTransformatio
 					tabInfoParticles[pIndex].tabSteps[pTimeIndex].pos[1]=partTimestep.position[1];
 					tabInfoParticles[pIndex].tabSteps[pTimeIndex].pos[2]=partTimestep.position[2];
 					tabInfoParticles[pIndex].tabSteps[pTimeIndex].energie=partTimestep.energy;
+					if (max_energie < partTimestep.energy)
+					{
+						max_energie = partTimestep.energy;
+					}
 					if(FileVersionDifferent)
 						if((unsigned long)binFile.tellp()!=curPosP+enteteFichier.particleInfoLength)
 							binFile.seekp(curPosP+enteteFichier.particleInfoLength);
@@ -396,11 +401,34 @@ void ParticulesControler::Render(const int& timeStp)
 	if(renderMethod==Element::IDEVENT_LOAD_PARTICLE_SIMULATION)
 	{
 		glBegin(GL_POINTS);
-		glColor4f(particleColor[0],particleColor[1],particleColor[2],1.);
+		glColor4f(particleColor[0], particleColor[1], particleColor[2], 1.);
 		for(unsigned int i=0;i<nbParticles;i++)
 		{
 			if(tabInfoParticles[i].nbStep>timeStp-tabInfoParticles[i].firstStep && tabInfoParticles[i].tabSteps)
 			{
+				#define __PARTICLE_COLOR__ 1
+				#if __PARTICLE_COLOR__
+				// color mod in function of energy
+				float life_remaining = 1.0;
+				if (max_energie > 0)
+				{
+					life_remaining = tabInfoParticles[i].tabSteps[timeStp - tabInfoParticles[i].firstStep].energie / max_energie;
+				}
+
+				if (life_remaining > 0.8) // red
+					glColor4f(1.0f, 0.0f, 0.0f, 1.0);
+				else if (life_remaining > 0.6) // orange
+					glColor4f(1.0f, 0.5f, 0.0f, 1.0);
+				else if (life_remaining > 0.4) // green
+					glColor4f(0.5f, 1.0f, 0.4f, 1.0);
+				else if (life_remaining > 0.2) // light blue
+					glColor4f(0.0f, 1.0f, 1.0f, 1.0);
+				else if (life_remaining > 0.01) //  blue
+					glColor4f(0.0f, 0.0f, 1.0f, 1.0);
+				else
+					glColor4f(0.0f, 0.0f, 0.0f, 1.0);
+				#endif
+				
 				glVertex3fv(tabInfoParticles[i].tabSteps[timeStp-tabInfoParticles[i].firstStep].pos);
 			}
 		}
