@@ -33,6 +33,7 @@ BOOST_AUTO_TEST_CASE(constructor_test2)
 	t_DirectivityBalloon balloon("speaker-test2.txt");
 
 	BOOST_TEST(balloon.asDataForFrequency(40)		== true);
+	BOOST_TEST(balloon.asDataForFrequency(200)		== true);
 	BOOST_TEST(balloon.asDataForFrequency(2000)		== true);
 	BOOST_TEST(balloon.asDataForFrequency(20000)	== false);
 
@@ -121,11 +122,11 @@ BOOST_AUTO_TEST_CASE(sphericalToCartesian_test, *boost::unit_test::tolerance(boo
 	vec3 minus_xaxis(-1, 0, 0);
 	vec3 minus_yaxis(0, -1, 0);
 	
-	vec3 xaxis_calc = t_DirectivityBalloon::sphericalToCartesian(0, M_PIDIV2);
-	vec3 minus_xaxis_calc = t_DirectivityBalloon::sphericalToCartesian(M_PI, M_PIDIV2);
-	vec3 yaxis_calc = t_DirectivityBalloon::sphericalToCartesian(M_PIDIV2, M_PIDIV2);
-	vec3 minus_yaxis_clac = t_DirectivityBalloon::sphericalToCartesian((M_PI + M_PIDIV2), M_PIDIV2);
-	vec3 zaxis_calc = t_DirectivityBalloon::sphericalToCartesian(0, 0);
+	vec3 xaxis_calc = t_DirectivityBalloon::sphericalToCartesian(1, 0, M_PIDIV2);
+	vec3 minus_xaxis_calc = t_DirectivityBalloon::sphericalToCartesian(1, M_PI, M_PIDIV2);
+	vec3 yaxis_calc = t_DirectivityBalloon::sphericalToCartesian(1, M_PIDIV2, M_PIDIV2);
+	vec3 minus_yaxis_clac = t_DirectivityBalloon::sphericalToCartesian(1, (M_PI + M_PIDIV2), M_PIDIV2);
+	vec3 zaxis_calc = t_DirectivityBalloon::sphericalToCartesian(1, 0, 0);
 
 	BOOST_TEST(xaxis.barelyEqual(xaxis_calc));
 	BOOST_TEST(yaxis.barelyEqual(yaxis_calc));

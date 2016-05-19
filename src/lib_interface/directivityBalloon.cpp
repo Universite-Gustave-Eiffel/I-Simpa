@@ -40,68 +40,70 @@ t_DirectivityBalloon::t_DirectivityBalloon(string filePath)
 {
 	ifstream file(filePath, ifstream::in);
 	if (!file.is_open()) {
-		cerr << "File not open" << endl;
+		cout << "DirectivityBalloon : File not open" << endl;
 	}
-
-	string line;
-	double currentFrequency{ 0.0 };
-	double theta_min_value, theta_max_value; // regardless of phi, thetha for 0 and 180° must be constant
-	bool thetaBoundDefined = false;
-	vector< string > tokens;
-	boost::regex Re_notNumber("[^0-9]");
-
-	while (std::getline(file, line))
+	else
 	{
-		if (!line.empty() && line[0] != ';') // not a comment
+		string line;
+		double currentFrequency{ 0.0 };
+		double theta_min_value, theta_max_value; // regardless of phi, thetha for 0 and 180° must be constant
+		bool thetaBoundDefined = false;
+		vector< string > tokens;
+		boost::regex Re_notNumber("[^0-9]");
+
+		while (std::getline(file, line))
 		{
-			boost::split(tokens, line, boost::is_any_of(",")); // split, 60% of cpu time
-			if (!tokens.empty())
+			if (!line.empty() && line[0] != ';') // not a comment
 			{
-				// frequency
-				if (boost::equals(tokens[0], "\"Frequency\"") && tokens.size() == 3) // use iequals() for case insensitivity
+				boost::split(tokens, line, boost::is_any_of(",")); // split, 60% of cpu time
+				if (!tokens.empty())
 				{
-					currentFrequency = stod(tokens[1]);
-				}
-				// data, no missing value allowed, 40% of cpu time
-				else if (tokens.size() == 38 && currentFrequency > 0)
-				{
-					boost::erase_all_regex(tokens[0], Re_notNumber);
-					double phi = stod(tokens[0]);
-
-					// verify if phi is in bound
-					if (0 <= phi && phi <= 360 && fmod(phi, t_DirectivityBalloon::ANGLE_INCREMENT) == 0)
+					// frequency
+					if (boost::equals(tokens[0], "\"Frequency\"") && tokens.size() == 3) // use iequals() for case insensitivity
 					{
-						for (auto i = 1; i < tokens.size(); i++)
-						{
-							double theta = (i - 1) * t_DirectivityBalloon::ANGLE_INCREMENT;
-							double value = stod(tokens[i]);
+						currentFrequency = stod(tokens[1]);
+					}
+					// data, no missing value allowed, 40% of cpu time
+					else if (tokens.size() == 38 && currentFrequency > 0)
+					{
+						boost::erase_all_regex(tokens[0], Re_notNumber);
+						double phi = stod(tokens[0]);
 
-							if (theta == 0) {
-								if (thetaBoundDefined == false) {
-									theta_min_value = value;
+						// verify if phi is in bound
+						if (0 <= phi && phi <= 360 && fmod(phi, t_DirectivityBalloon::ANGLE_INCREMENT) == 0)
+						{
+							for (auto i = 1; i < tokens.size(); i++)
+							{
+								double theta = (i - 1) * t_DirectivityBalloon::ANGLE_INCREMENT;
+								double value = stod(tokens[i]);
+
+								if (theta == 0) {
+									if (thetaBoundDefined == false) {
+										theta_min_value = value;
+									}
+									attenuations[currentFrequency][phi][theta] = theta_min_value;
 								}
-								attenuations[currentFrequency][phi][theta] = theta_min_value;
-							}
-							else if (theta == 180) {
-								if (thetaBoundDefined == false) {
-									theta_max_value = value;
-									thetaBoundDefined = true;
+								else if (theta == 180) {
+									if (thetaBoundDefined == false) {
+										theta_max_value = value;
+										thetaBoundDefined = true;
+									}
+									attenuations[currentFrequency][phi][theta] = theta_max_value;
 								}
-								attenuations[currentFrequency][phi][theta] = theta_max_value;
-							}
-							else {
-								attenuations[currentFrequency][phi][theta] = value;
+								else {
+									attenuations[currentFrequency][phi][theta] = value;
+								}
 							}
 						}
 					}
 				}
 			}
+			tokens.clear();
 		}
-		tokens.clear();
+
+		file.close();
+		cout << "DirectivityBalloon : File parsed correctly" << endl;
 	}
-
-	file.close();
-
 }
 
 t_DirectivityBalloon::~t_DirectivityBalloon()
@@ -175,11 +177,11 @@ tuple<double, double> t_DirectivityBalloon::cartesianToSpherical(const vec3 &v)
 	return make_tuple(azimuth, polar);
 }
 
-vec3 t_DirectivityBalloon::sphericalToCartesian(double phi, double theta)
+vec3 t_DirectivityBalloon::sphericalToCartesian(double radius, double phi, double theta)
 {
-	double x = sin(theta) * cos(phi);
-	double y = sin(theta) * sin(phi);
-	double z = cos(theta);
+	double x = radius * sin(theta) * cos(phi);
+	double y = radius * sin(theta) * sin(phi);
+	double z = radius * cos(theta);
 	vec3 v(x, y, z);
 	return v;
 }

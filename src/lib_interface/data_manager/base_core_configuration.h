@@ -64,6 +64,7 @@ public:
 		SPROP_PONCTUAL_RECEIVER_FILE_PATH,				/*!< Nom du fichier de récepteur ponctuel */
 		SPROP_ADV_PONCTUAL_RECEIVER_FILE_PATH,			/*!< Nom du fichier avancé de récepteur ponctuel */
 		SPROP_CUMUL_FILE_PATH,							/*!< Nom du ficher contenant le niveau global du domaine */
+		SPROP_DIRECTIVITY_FOLDER_PATH,
 		SPROP_LAST										/*!< Dernière énumération (Insérer les nouveaux éléments avant celui-ci) */
 	};
 	/**

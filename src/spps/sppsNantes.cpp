@@ -53,7 +53,7 @@ struct t_ToolBox
  * @param sourceInfo Informations sur la source à utiliser pour l'émission
  * @param confPartFrame Informations de bases pour toutes les particules
  */
-void runSourceCalculation( progressOperation* parentOperation, t_ToolBox& applicationTools, t_Source& sourceInfo, CONF_PARTICULE& confPartFrame)
+void runSourceCalculation( progressOperation* parentOperation, t_ToolBox& applicationTools, t_Source& sourceInfo, CONF_PARTICULE& confPartFrame, unsigned int freq)
 {
 	if(!sourceInfo.currentVolume)
 	{
@@ -81,6 +81,11 @@ void runSourceCalculation( progressOperation* parentOperation, t_ToolBox& applic
 	//Si la directivité de la source est unidirectionnelle
 	if(sourceInfo.type==SOURCE_TYPE_UNIDIRECTION)
 		confPartFrame.direction=sourceInfo.Direction*nomVecVitesse;
+	if (sourceInfo.type == SOURCE_TYPE_DIRECTION && sourceInfo.directivity->asDataForFrequency(freq) == false)
+	{
+		std::cout << "No directivity data for frequency : " << freq << " => skipping" << std::endl;
+		return;
+	}
 	progressOperation thisSrcOperation(parentOperation,quandparticules);
 	//Prise en compte du délai de la source
 	confPartFrame.pasCourant=(uentier_court)ceil(sourceInfo.sourceDelay/(*applicationTools.configurationTool->FastGetConfigValue(Core_Configuration::FPROP_TIME_STEP)));
@@ -107,8 +112,22 @@ void runSourceCalculation( progressOperation* parentOperation, t_ToolBox& applic
 				ParticleDistribution::GenXZDistribution(confPart,nomVecVitesse);
 			else if(sourceInfo.type==SOURCE_TYPE_YZ)
 				ParticleDistribution::GenYZDistribution(confPart,nomVecVitesse);
-			else if(sourceInfo.type==SOURCE_TYPE_DIRECTION)
+			else if (sourceInfo.type == SOURCE_TYPE_DIRECTION) 
+			{
 				ParticleDistribution::GenSphereDistribution(confPart, nomVecVitesse);
+				// aténuation en fonction de la direction
+				std::tuple<double, double> coord_sph = t_DirectivityBalloon::loudspeaker_coordinate(sourceInfo.Direction, confPart.direction);
+				double phi = std::get<0>(coord_sph);
+				double theta = std::get<1>(coord_sph);
+				if (sourceInfo.directivity->asInterpolatedValue(freq, phi, theta))
+				{
+					double spl = sourceInfo.directivity->getInterpolatedValue(freq, phi, theta);
+					confPart.energie *= pow(10, spl / 10);
+				}
+				else {
+					std::cout << "NOPE" << std::endl;
+				}
+			}
 
 			float lenPart=confPart.direction.length();
 			confPart.position=sourceInfo.Position;
@@ -187,7 +206,7 @@ void runFrequenceCalculation(  progressOperation* parentOperation, ReportManager
 
 	for(std::size_t idsrc=0;idsrc<applicationTools.configurationTool->srcList.size();idsrc++)
 	{
-		runSourceCalculation(&thisFreqOperation,applicationTools,*applicationTools.configurationTool->srcList[idsrc],confPartFrame);
+		runSourceCalculation(&thisFreqOperation,applicationTools,*applicationTools.configurationTool->srcList[idsrc],confPartFrame, threadData->freqInfos->freqValue);
 	}
 	//A partir d'ici les threads s'arretent puis continuent un par un.
 	//Première ligne de code du processus en cours

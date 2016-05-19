@@ -89,11 +89,10 @@ public:
 
 	/**
 	* Convert spherical coordinate in cartesian coordinate
-	* Assume the sphere has a radius of 1
 	* @param phi, the azimuth angle in radian in the interval [0, 2pi]
 	* @param theta, the polar angle in radian in the interval [0, pi]
 	*/
-	static vec3 sphericalToCartesian(double phi, double theta);
+	static vec3 sphericalToCartesian(double radius, double phi, double theta);
 
 	/**
 	* Convert a coordinate from the conventionnal coordinate system to the directivity one

@@ -127,7 +127,7 @@ public:
 				wxFileName directivityFile = directivity->GetAssociatedFile();
 
 				wxFileName storageFolder(ApplicationConfiguration::GLOBAL_VAR.workingFolderPath);
-				storageFolder.AppendDir("loudspeaker");
+				storageFolder.AppendDir("loudspeakers");
 				if (!storageFolder.DirExists())
 				{
 					storageFolder.Mkdir();

@@ -99,6 +99,8 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
 			SetConfigInformation(FPROP_SIMULATION_TIME,simuNode->GetProperty("duree_simulation").ToFloat());
 			SetConfigInformation(IPROP_QUANT_TIMESTEP,(entier)(ceil((*FastGetConfigValue(FPROP_SIMULATION_TIME))/(*FastGetConfigValue(FPROP_TIME_STEP)))));
 
+			SetConfigInformation(SPROP_DIRECTIVITY_FOLDER_PATH, simuNode->GetProperty("directivities_directory"));
+
 			CXmlNode* frequNode=simuNode->GetChild("freq_enum");
 			if(frequNode)
 			{
@@ -136,7 +138,7 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
 				(*nvSource).type=(SOURCE_TYPE)(*iterateurNoeuds)->GetProperty("directivite").ToInt();
 				(*nvSource).sourceDelay=(*iterateurNoeuds)->GetProperty("delay").ToFloat();
 				nvSource->sourceName=(*iterateurNoeuds)->GetProperty("name");
-				if((*nvSource).type==SOURCE_TYPE_UNIDIRECTION)
+				if((*nvSource).type==SOURCE_TYPE_UNIDIRECTION || (*nvSource).type == SOURCE_TYPE_DIRECTION)
 				{
 					vec3 uvwSrc((*iterateurNoeuds)->GetProperty("u").ToFloat(),(*iterateurNoeuds)->GetProperty("v").ToFloat(),(*iterateurNoeuds)->GetProperty("w").ToFloat());
 					(*nvSource).Direction=(uvwSrc/uvwSrc.length());
@@ -161,8 +163,12 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
 					string directivityFile = (*iterateurNoeuds)->GetProperty("directivity_file");
 					if (!directivityFile.empty())
 					{
-						nvSource->directivity = new t_DirectivityBalloon(directivityFile);
-						cout << "Directivity loaded : " << directivityFile << endl;
+						string directivityFile_path = *FastGetConfigValue(SPROP_CORE_WORKING_DIRECTORY);
+						directivityFile_path += *FastGetConfigValue(SPROP_DIRECTIVITY_FOLDER_PATH);
+						directivityFile_path += directivityFile;
+
+						nvSource->directivity = new t_DirectivityBalloon(directivityFile_path);
+						cout << "Directivity loaded : " << directivityFile_path << endl;
 					}
 				}
 
