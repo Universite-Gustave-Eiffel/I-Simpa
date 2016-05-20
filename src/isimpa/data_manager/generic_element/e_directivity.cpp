@@ -37,7 +37,7 @@
 E_Directivity::E_Directivity(Element* parent, wxString Nom, ELEMENT_TYPE _type, wxXmlNode* nodeElement)
 	:Element(parent, Nom, _type, nodeElement)
 {
-	SetIcon(GRAPH_STATE_ALL, GRAPH_ITEM);
+	SetIcon(GRAPH_STATE_ALL, GRAPH_DIRECTIVITY);
 	idDirectivity = -1;
 	wxString propVal;
 

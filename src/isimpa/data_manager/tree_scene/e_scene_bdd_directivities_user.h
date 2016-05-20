@@ -47,8 +47,8 @@ public:
 	E_Scene_Bdd_Directivities_User(wxXmlNode* noeudCourant, Element* parent)
 		:Element(parent, "User", Element::ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES_USER, noeudCourant)
 	{
-		SetIcon(GRAPH_STATE_EXPANDED, GRAPH_ITEM);
-		SetIcon(GRAPH_STATE_NORMAL, GRAPH_ITEM);
+		SetIcon(GRAPH_STATE_EXPANDED, GRAPH_USER_DIRECTIVITY_OPEN);
+		SetIcon(GRAPH_STATE_NORMAL, GRAPH_USER_DIRECTIVITY_CLOSE);
 
 		if (noeudCourant != NULL)
 		{
