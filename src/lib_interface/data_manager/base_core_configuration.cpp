@@ -163,12 +163,21 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
 					string directivityFile = (*iterateurNoeuds)->GetProperty("directivity_file");
 					if (!directivityFile.empty())
 					{
-						string directivityFile_path = *FastGetConfigValue(SPROP_CORE_WORKING_DIRECTORY);
-						directivityFile_path += *FastGetConfigValue(SPROP_DIRECTIVITY_FOLDER_PATH);
-						directivityFile_path += directivityFile;
+						if ( directivityList.find(directivityFile) == directivityList.end() )
+						{
+							string directivityFile_path = *FastGetConfigValue(SPROP_CORE_WORKING_DIRECTORY);
+							directivityFile_path += *FastGetConfigValue(SPROP_DIRECTIVITY_FOLDER_PATH);
+							directivityFile_path += directivityFile;
 
-						nvSource->directivity = new t_DirectivityBalloon(directivityFile_path);
-						cout << "Directivity loaded : " << directivityFile_path << endl;
+							nvSource->directivity = new t_DirectivityBalloon(directivityFile_path);
+							directivityList[directivityFile] = nvSource->directivity;
+							cout << "Directivity loaded : " << directivityFile_path << endl;
+						}
+						else
+						{
+							nvSource->directivity = directivityList[directivityFile];
+							cout << "Directivity linked to source : " << directivityFile << endl;
+						}
 					}
 				}
 
@@ -338,6 +347,8 @@ Base_Core_Configuration::~Base_Core_Configuration( )
 		delete srcList[i];
 	for(uentier i=0;i<freqList.size();i++)
 		delete freqList[i];
+	for (std::map<std::string, t_DirectivityBalloon*>::iterator it = directivityList.begin(); it != directivityList.end(); ++it)
+		delete it->second;
 	for(uentier i=0;i<recepteur_p_List.size();i++)
 		delete recepteur_p_List[i];
 	for(uentier i=0;i<recepteur_s_List.size();i++)

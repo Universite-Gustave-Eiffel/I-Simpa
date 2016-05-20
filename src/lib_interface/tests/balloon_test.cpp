@@ -5,6 +5,7 @@
 #include <Core\mathlib.h>
 
 using namespace std;
+namespace utf = boost::unit_test;
 
 BOOST_AUTO_TEST_CASE(constructor_test1)
 {
@@ -64,7 +65,7 @@ BOOST_AUTO_TEST_CASE(getValue_test)
 	BOOST_TEST(balloon.getValue(40, 90, 180) == balloon.getValue(40, 180, 180));
 }
 
-BOOST_AUTO_TEST_CASE(getInterpolatedValue_test, *boost::unit_test::tolerance(boost::test_tools::fpc::percent_tolerance(1.0)))
+BOOST_AUTO_TEST_CASE(getInterpolatedValue_test, *utf::tolerance(boost::test_tools::fpc::percent_tolerance(1.0)))
 {
 	t_DirectivityBalloon balloon("speaker-test2.txt");
 
@@ -81,7 +82,7 @@ BOOST_AUTO_TEST_CASE(getInterpolatedValue_test, *boost::unit_test::tolerance(boo
 
 //-------------------------------------------------------------------------------------------------------------------------\\
 
-BOOST_AUTO_TEST_CASE(cartesianToSpherical_test, *boost::unit_test::tolerance(boost::test_tools::fpc::percent_tolerance(1.0)))
+BOOST_AUTO_TEST_CASE(cartesianToSpherical_test, *utf::tolerance(boost::test_tools::fpc::percent_tolerance(1.0)))
 {
 	vec3 xaxis(1, 0, 0);
 	vec3 yaxis(0, 1, 0);
@@ -114,7 +115,7 @@ BOOST_AUTO_TEST_CASE(cartesianToSpherical_test, *boost::unit_test::tolerance(boo
 	BOOST_TEST(get<1>(coord) == 0.9557);
 }
 
-BOOST_AUTO_TEST_CASE(sphericalToCartesian_test, *boost::unit_test::tolerance(boost::test_tools::fpc::percent_tolerance(1.0)))
+BOOST_AUTO_TEST_CASE(sphericalToCartesian_test, *utf::tolerance(boost::test_tools::fpc::percent_tolerance(1.0)))
 {
 	vec3 xaxis(1, 0, 0);
 	vec3 yaxis(0, 1, 0);
@@ -133,7 +134,7 @@ BOOST_AUTO_TEST_CASE(sphericalToCartesian_test, *boost::unit_test::tolerance(boo
 	BOOST_TEST(zaxis.barelyEqual(zaxis_calc));
 }
 
-BOOST_AUTO_TEST_CASE(vectorRotation_test, *boost::unit_test::tolerance(boost::test_tools::fpc::percent_tolerance(1.0)))
+BOOST_AUTO_TEST_CASE(vectorRotation_test, *utf::tolerance(boost::test_tools::fpc::percent_tolerance(1.0)))
 {
 	vec3 xaxis(1, 0, 0);
 	vec3 yaxis(0, 1, 0);
@@ -180,7 +181,7 @@ BOOST_AUTO_TEST_CASE(vectorRotation_test, *boost::unit_test::tolerance(boost::te
 	BOOST_TEST(particleVector.barelyEqual(somevec3));
 }
 
-BOOST_AUTO_TEST_CASE(loudspeaker_coordinate_test, *boost::unit_test::tolerance(boost::test_tools::fpc::percent_tolerance(1.0)))
+BOOST_AUTO_TEST_CASE(loudspeaker_coordinate_test, *utf::tolerance(boost::test_tools::fpc::percent_tolerance(1.0)))
 {
 	vec3 source_Direction(1, 0, 0); // first test direction
 

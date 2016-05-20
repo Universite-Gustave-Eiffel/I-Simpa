@@ -61,7 +61,7 @@ public:
 		wxString propFile;
 		if (noeudCourant->GetAttribute("value", &propFile))
 		{
-			this->file.Assign(propFile);
+			this->file.Assign(storageFolder, propFile);
 			this->storageFolder.AssignDir(storageFolder);
 			copyToFolder = true;
 		}

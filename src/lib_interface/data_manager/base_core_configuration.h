@@ -106,13 +106,14 @@ public:
 	 */
 	virtual ~Base_Core_Configuration( );
 
-	std::vector<t_Source*> srcList;							/*!< Tableau de sources */
-	std::vector<t_Material*> materialList;					/*!< Tableau de matériaux */
-	std::vector<t_FreqUsage*> freqList;						/*!< Tableau contenant les informations propres aux fréquences */
-	std::vector<t_Recepteur_P*> recepteur_p_List;			/*!< Tableau contenant les récepteurs ponctuels */
-	std::vector<r_Surf*> recepteur_s_List;					/*!< Tableau contenant les recepteurs surfaciques */
-	std::vector<r_SurfCut*> recepteur_scut_List;			/*!< Tableau contenant les recepteurs surfaciques plan */
-	std::vector<t_Encombrement*> encombrement_List;			/*!< Tableau contenant les encombrements */
+	std::vector<t_Source*> srcList;								/*!< Tableau de sources */
+	std::map<std::string, t_DirectivityBalloon*> directivityList;/*!< Tableau de directivité */ 
+	std::vector<t_Material*> materialList;						/*!< Tableau de matériaux */
+	std::vector<t_FreqUsage*> freqList;							/*!< Tableau contenant les informations propres aux fréquences */
+	std::vector<t_Recepteur_P*> recepteur_p_List;				/*!< Tableau contenant les récepteurs ponctuels */
+	std::vector<r_Surf*> recepteur_s_List;						/*!< Tableau contenant les recepteurs surfaciques */
+	std::vector<r_SurfCut*> recepteur_scut_List;				/*!< Tableau contenant les recepteurs surfaciques plan */
+	std::vector<t_Encombrement*> encombrement_List;				/*!< Tableau contenant les encombrements */
 
 	/////////////////////////////////////////////////////////
 	//	Trés rapide
