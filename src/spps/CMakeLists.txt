@@ -55,3 +55,13 @@ set_property(TARGET spps PROPERTY FOLDER "executables")
 # Adds logic to INSTALL.vcproj to copy spps.exe to destination directory
 install (TARGETS spps
         RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin/core/spps)
+
+#Test
+set(SPPS_TESTS
+    tests/spps_directivity_test.cpp)
+
+add_executable(TEST_spps ${SPPS_TESTS})
+set_property(TARGET TEST_spps PROPERTY FOLDER "tests")
+
+enable_testing()
+add_test( NAME spps_directivity COMMAND TEST_spps )
