@@ -117,8 +117,8 @@ void runSourceCalculation( progressOperation* parentOperation, t_ToolBox& applic
 				ParticleDistribution::GenSphereDistribution(confPart, nomVecVitesse);
 				// aténuation en fonction de la direction
 				std::tuple<double, double> coord_sph = t_DirectivityBalloon::loudspeaker_coordinate(sourceInfo.Direction, confPart.direction);
-				double phi = std::get<0>(coord_sph);
-				double theta = std::get<1>(coord_sph);
+				double phi = RadToDeg(std::get<0>(coord_sph));
+				double theta = RadToDeg(std::get<1>(coord_sph));
 				if (sourceInfo.directivity->asInterpolatedValue(freq, phi, theta))
 				{
 					double spl = sourceInfo.directivity->getInterpolatedValue(freq, phi, theta);

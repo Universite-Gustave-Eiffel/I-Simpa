@@ -88,13 +88,18 @@ set(SPPS_TESTS
     tests/spps_directivity_test.cpp)
 
 add_executable(TEST_spps ${SPPS_TESTS})
+target_link_libraries (TEST_spps 
+    lib_interface
+    ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 set_property(TARGET TEST_spps PROPERTY FOLDER "tests")
 
 # Add to test suite
 enable_testing()
+
 add_test( NAME spps_directivity_exec 
     WORKING_DIRECTORY ${TEST_DATA_DIR} 
     COMMAND spps "${SPPS_TEST_DIR}/config.xml")
+
 add_test( NAME spps_directivity_check 
     WORKING_DIRECTORY ${TEST_DATA_DIR}
     COMMAND TEST_spps )

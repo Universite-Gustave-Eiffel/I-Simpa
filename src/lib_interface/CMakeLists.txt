@@ -128,8 +128,7 @@ set_property(TARGET lib_interface PROPERTY FOLDER "libraries")
 
 target_link_libraries (lib_interface
     ${Boost_FILESYSTEM_LIBRARY}
-    ${Boost_SYSTEM_LIBRARY}
-    ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+    ${Boost_SYSTEM_LIBRARY})
 
 #------------#
 #    TEST
@@ -145,7 +144,9 @@ set(LIBINTERFACE_TESTS
     tests/balloon_test.cpp)
 
 add_executable(TEST_lib_interface ${LIBINTERFACE_TESTS})
-target_link_libraries (TEST_lib_interface lib_interface)
+target_link_libraries (TEST_lib_interface 
+    lib_interface
+    ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 set_property(TARGET TEST_lib_interface PROPERTY FOLDER "tests")
 
 # Add to test suite
