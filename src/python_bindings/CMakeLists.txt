@@ -1,6 +1,10 @@
 # Libsimpa
 message(STATUS " SWIG_EXECUTABLE     - $ENV{SWIG_EXECUTABLE}")
 
+#---------------------------------------#
+#    DEPENDENCY & EXECUTABLE (OR LIB)
+#---------------------------------------#
+
 FIND_PACKAGE(SWIG REQUIRED)
 INCLUDE(${SWIG_USE_FILE})
 
@@ -29,6 +33,10 @@ if(WIN32) # Check if we are on Windows
  endif()
 endif()
 
+#--------------#
+#    INSTALL
+#--------------#
+
 # Adds logic to INSTALL.vcproj to copy _libsimpa.pyd to the destination directory
 install (TARGETS ${SWIG_MODULE_libsimpa_REAL_NAME}
       ARCHIVE DESTINATION ${CMAKE_SWIG_OUTDIR}
@@ -36,6 +44,10 @@ install (TARGETS ${SWIG_MODULE_libsimpa_REAL_NAME}
       RUNTIME DESTINATION ${CMAKE_SWIG_OUTDIR}
       COMPONENT library
 )
+
+#------------#
+#    TEST
+#------------#
 
 enable_testing()
 # If you add tests, do not forget to add the name to set_property(TEST ..

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<configuration workingdirectory="D:\lacoura\Documents\I-Simpa-fork\src\spps\tests\">
-  <simulation recepteurss_directory="recepteurss\" recepteurss_filename="Sound_level.csbin" recepteurss_cut_filename="rs_cut.csbin" receiversp_directory="Punctual receivers" receiversp_filename="Sound level.recp" receiversp_filename_adv="Advanced sound level.gap" cumul_filename="Total energy.recp" modelName="mesh.cbin" tetrameshFileName="tetramesh.mbin" abs_atmo_calc="1" enc_calc="1" trans_calc="1" direct_calc="0" duree_simulation="0,100000" output_recp_bysource="0" output_recs_byfreq="1" surf_receiv_method="0" random_seed="0" computation_method="1" nbparticules="150000" nbparticules_rendu="1000" pasdetemps="0,000500" rayon_recepteurp="0,310000" trans_epsilon="5,000000" intensity_filename="Intensity vector.rpi" intensity_folder="IntensityAnimation" intensity_rp_filename="ponct_intensity.gabe" stats_filename="statsSPPS.gabe" particules_directory="particles\" particules_filename="particles.pbin" directivities_directory="loudspeakers\">
+<configuration workingdirectory="${SPPS_TEST_DIR}">
+  <simulation recepteurss_directory="recepteurss\" recepteurss_filename="Sound_level.csbin" recepteurss_cut_filename="rs_cut.csbin" receiversp_directory="Punctual receivers" receiversp_filename="Sound level.recp" receiversp_filename_adv="Advanced sound level.gap" cumul_filename="Total energy.recp" modelName="mesh.cbin" tetrameshFileName="tetramesh.mbin" abs_atmo_calc="1" enc_calc="1" trans_calc="1" direct_calc="0" duree_simulation="0,100000" output_recp_bysource="0" output_recs_byfreq="1" surf_receiv_method="0" random_seed="0" computation_method="1" nbparticules="150000" nbparticules_rendu="1000" pasdetemps="0,000500" rayon_recepteurp="0,310000" trans_epsilon="5,000000" intensity_filename="Intensity vector.rpi" intensity_folder="IntensityAnimation" intensity_rp_filename="ponct_intensity.gabe" stats_filename="statsSPPS.gabe" particules_directory="particles\" particules_filename="particles.pbin" directivities_directory="">
     <freq_enum>
       <bfreq freq="20000" docalc="1"/>
       <bfreq freq="16000" docalc="1"/>
@@ -94,7 +94,7 @@
   </surface_absorption_enum>
   <subdomains/>
   <sources>
-    <source id="3090" name="main-src" directivity_file="speaker-test2.txt" x="2,000000" y="2,000000" z="2,000000" delay="0,000000" u="1,000000" v="0,000000" w="0,000000" directivite="5">
+    <source id="3090" name="main-src" directivity_file="speaker-test3.txt" x="2,000000" y="2,000000" z="2,000000" delay="0,000000" u="1,000000" v="0,000000" w="0,000000" directivite="5">
       <bfreq freq="20000" db="-6,859580"/>
       <bfreq freq="16000" db="-7,859580"/>
       <bfreq freq="12500" db="-8,859579"/>

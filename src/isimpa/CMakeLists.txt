@@ -1,5 +1,9 @@
 include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
 
+#--------------#
+#    SOURCES
+#--------------#
+
 set(3DENGINE_SOURCES
     3dengine/ArcBall.cpp
     3dengine/ArcBall.h
@@ -339,36 +343,9 @@ source_group( "main" FILES ${MAIN_SOURCES} )
 source_group( "manager" FILES ${MANAGER_SOURCES} )
 source_group( "" FILES ${ISIMPA_SOURCES} )
 
-
-set(Boost_USE_STATIC_LIBS   ON) 
-find_package(Boost REQUIRED COMPONENTS system python)
-
-find_package(wxWidgets COMPONENTS core base xml gl aui adv tiff REQUIRED)
-include(${wxWidgets_USE_FILE})
-# Find package for building
-FIND_PACKAGE(PythonLibs)
-
-find_package(OpenGL REQUIRED)
-# Build auto-generated source files
-# Find package for generation
-FIND_PACKAGE(PythonInterp REQUIRED)
-
-# Ask make to call python in order to use element.h to produce enum_def.cpp
-ADD_CUSTOM_COMMAND(
-  OUTPUT "enum_def.cpp"
-  COMMAND "${PYTHON_EXECUTABLE}" ${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/python_interface/py_ui_module/generate_enum_def.py
-  ARGS    "${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/element.h" > "enum_def.cpp"
-  DEPENDS "data_manager/element.h"
-  )
-# Before using element_pywrap.cpp build enum_def.cpp
-set_property(SOURCE data_manager/python_interface/py_ui_module/element_pywrap.cpp APPEND PROPERTY OBJECT_DEPENDS enum_def.cpp)
-
-
-include_directories( ${OPENGL_INCLUDE_DIRS})
-
-link_directories( ${Boost_LIBRARY_DIRS} )  
-include_directories( ${Boost_INCLUDE_DIRS} )  
-include_directories(${PYTHON_INCLUDE_PATH})
+#---------------------------------------#
+#    DEPENDENCY & EXECUTABLE (OR LIB)
+#---------------------------------------#
 
 # Set Properties->General->Configuration Type to Application(.exe)
 # Creates isimpa.exe with the listed sources
@@ -393,6 +370,39 @@ add_executable(isimpa
     ${MANAGER_SOURCES}
     ${ISIMPA_SOURCES})
 
+# Creates a folder "executables" and adds target
+# project (isimpa.vcproj) under it
+set_property(TARGET isimpa PROPERTY FOLDER "executables")
+
+set(Boost_USE_STATIC_LIBS   ON) 
+find_package(Boost REQUIRED COMPONENTS system python)
+
+find_package(wxWidgets COMPONENTS core base xml gl aui adv tiff REQUIRED)
+include(${wxWidgets_USE_FILE})
+# Find package for building
+FIND_PACKAGE(PythonLibs)
+
+find_package(OpenGL REQUIRED)
+# Build auto-generated source files
+# Find package for generation
+FIND_PACKAGE(PythonInterp REQUIRED)
+
+# Ask make to call python in order to use element.h to produce enum_def.cpp
+ADD_CUSTOM_COMMAND(
+  OUTPUT "enum_def.cpp"
+  COMMAND "${PYTHON_EXECUTABLE}" ${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/python_interface/py_ui_module/generate_enum_def.py
+  ARGS    "${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/element.h" > "enum_def.cpp"
+  DEPENDS "data_manager/element.h"
+  )
+# Before using element_pywrap.cpp build enum_def.cpp
+set_property(SOURCE data_manager/python_interface/py_ui_module/element_pywrap.cpp APPEND PROPERTY OBJECT_DEPENDS enum_def.cpp)
+
+include_directories( ${OPENGL_INCLUDE_DIRS})
+
+link_directories( ${Boost_LIBRARY_DIRS} )  
+include_directories( ${Boost_INCLUDE_DIRS} )  
+include_directories(${PYTHON_INCLUDE_PATH})
+
 # Properties->Linker->Input->Additional Dependencies
 target_link_libraries(isimpa lib_interface)
 target_link_libraries(isimpa ${Boost_LIBRARIES})
@@ -414,9 +424,9 @@ if(WIN32) # Check if we are on Windows
   endif()
 ENDIF()
 
-# Creates a folder "executables" and adds target
-# project (isimpa.vcproj) under it
-set_property(TARGET isimpa PROPERTY FOLDER "executables")
+#--------------#
+#    INSTALL
+#--------------#
 
 # Adds logic to INSTALL.vcproj to copy isimpa.exe to destination directory
 install (TARGETS isimpa

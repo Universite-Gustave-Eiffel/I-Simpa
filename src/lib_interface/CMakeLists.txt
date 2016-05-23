@@ -1,5 +1,10 @@
 include_directories (.)
 
+#--------------#
+#    SOURCES
+#--------------#
+
+# Sources files
 set(LIBINTERFACE_SOURCES 
     coreinitialisation.h
     coreinitialisation.cpp
@@ -83,6 +88,7 @@ set(TOOLS_SOURCES
     tools/octree44_cylinderElement.hpp
     tools/octree44_cylinderElement.cpp)
 
+# Sources groups (folders)
 source_group( "" FILES ${LIBINTERFACE_SOURCES} ) 
 source_group( "Core" FILES ${CORE_SOURCES} )
 source_group( "data_manager" FILES ${DATA_MANAGER_SOURCES} )
@@ -96,9 +102,13 @@ source_group( "input_output\\ply" FILES ${IO_PLY_SOURCES} )
 
 source_group( "tools" FILES ${TOOLS_SOURCES} )
 
+#---------------------------------------#
+#    DEPENDENCY & EXECUTABLE (OR LIB)
+#---------------------------------------#
+
 set(Boost_USE_STATIC_LIBS   ON) 
-find_package(Boost COMPONENTS system filesystem unit_test_framework REQUIRED)
-link_directories( ${Boost_LIBRARY_DIRS} )  
+find_package(Boost COMPONENTS system filesystem unit_test_framework REQUIRED) 
+link_directories( ${Boost_LIBRARY_DIRS} ) 
 include_directories( ${Boost_INCLUDE_DIRS} )
 
 add_library(lib_interface 
@@ -113,17 +123,24 @@ add_library(lib_interface
     ${IO_PLY_SOURCES}
     ${TOOLS_SOURCES})
 
+# Creates a folder "libraries" and adds target project (lib_interface.vcproj) under it
+set_property(TARGET lib_interface PROPERTY FOLDER "libraries")
+
 target_link_libraries (lib_interface
     ${Boost_FILESYSTEM_LIBRARY}
     ${Boost_SYSTEM_LIBRARY}
     ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 
-# Creates a folder "libraries" and adds target project (lib_interface.vcproj) under it
-set_property(TARGET lib_interface PROPERTY FOLDER "libraries")
+#------------#
+#    TEST
+#------------#
 
-# tests
+# Data files
+set(TEST_DATA_DIR "${PROJECT_BINARY_DIR}/Testing")
 file(COPY tests/speaker-test1.txt tests/speaker-test2.txt
-    DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+    DESTINATION ${TEST_DATA_DIR})
+
+# Test executable and folder
 set(LIBINTERFACE_TESTS
     tests/balloon_test.cpp)
 
@@ -131,14 +148,20 @@ add_executable(TEST_lib_interface ${LIBINTERFACE_TESTS})
 target_link_libraries (TEST_lib_interface lib_interface)
 set_property(TARGET TEST_lib_interface PROPERTY FOLDER "tests")
 
+# Add to test suite
 enable_testing()
-add_test( NAME lib_interface COMMAND TEST_lib_interface )
-#-----------------------------------------------------------------------------
-#
+add_test( NAME lib_interface
+    WORKING_DIRECTORY ${TEST_DATA_DIR}
+    COMMAND TEST_lib_interface )
+
+#------------#
+#    FIX
+#------------#
+
 # To fix compilation problem: relocation R_X86_64_32 against `a local symbol' can not be
 # used when making a shared object; recompile with -fPIC
 # See http://www.cmake.org/pipermail/cmake/2007-May/014350.html
-#
+
 IF( CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64" )
   SET_TARGET_PROPERTIES(lib_interface PROPERTIES COMPILE_FLAGS "-fPIC")
 ENDIF( CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64" )

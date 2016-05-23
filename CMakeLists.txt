@@ -29,13 +29,9 @@ add_subdirectory (src/preprocess)
 add_subdirectory (src/spps)
 if(NOT SKIPISIMPA)
    add_subdirectory (src/isimpa)
-endif()   
-
+endif()
 
 # Turn on CMake testing capabilities
+set(TEST_DATA_DIR "${PROJECT_BINARY_DIR}/Testing")
+file(MAKE_DIRECTORY ${TEST_DATA_DIR})
 enable_testing()
-
-# Add test cases
-#add_test(AppTest1 ${PROJECT_BINARY_DIR}/bin/app.exe 100)
-#add_test(AppTest2 ${PROJECT_BINARY_DIR}/bin/app.exe 200)
-#add_test(AppTest3 ${PROJECT_BINARY_DIR}/bin/app.exe 300)
