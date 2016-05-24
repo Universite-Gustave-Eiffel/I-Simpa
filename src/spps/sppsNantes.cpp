@@ -257,18 +257,37 @@ int MainProcess(int argc, char* argv[])
 	applicationToolBox.sceneMesh=&sceneMesh;
 	applicationToolBox.tetraMesh=&sceneTetraMesh;
 
+	bool verbose_mode = false;
+
 	//**************************************************
 	//Verification des arguments
 	string pathFichier;
+	bool asParam = false;
+	bool asFilePath = false;
+
 	if(argc>1)
-	{
-		pathFichier.append(argv[1]);
-		for(int idarg=2;idarg<argc;idarg++)
+	{	
+		for(int idarg=1; idarg<argc; idarg++)
 		{
-			pathFichier.append(" ");
-			pathFichier.append(argv[idarg]);
+			string arg = argv[idarg];
+
+			if (arg == "-v" && !asFilePath){ // params need to be before the filepath
+				verbose_mode = true;
+				asParam = true;
+			}
+			else if (pathFichier.empty()) {
+				pathFichier.append(arg);
+				asFilePath = true;
+			}
+			else {
+				pathFichier.append(" ");
+				pathFichier.append(arg);
+			}
 		}
-	}else{
+	}
+
+	if (!asFilePath)
+	{
 		cout<<"The path of the XML configuration file must be specified!"<<endl;
 		return 1;
 	}

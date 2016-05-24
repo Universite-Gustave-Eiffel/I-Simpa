@@ -38,7 +38,8 @@ set(IO_SOURCES
     input_output/cxml.h
     input_output/cxml.cpp
     input_output/gpl_io.hpp
-    input_output/gpl_io.cpp)
+    input_output/gpl_io.cpp
+    input_output/progressionInfo.h)
 
 set(IO_RECSURF_SOURCES
     input_output/exportRecepteurSurf/rsbin.h
