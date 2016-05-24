@@ -93,8 +93,19 @@ target_link_libraries (TEST_spps
     ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 set_property(TARGET TEST_spps PROPERTY FOLDER "tests")
 
+set(SPPS_TESTS_PRE
+    tests/spps_directivity_pre.cpp)
+add_executable(TEST_spps_pre ${SPPS_TESTS_PRE})
+target_link_libraries (TEST_spps_pre 
+    ${Boost_FILESYSTEM_LIBRARY})
+set_property(TARGET TEST_spps_pre PROPERTY FOLDER "tests")
+
 # Add to test suite
 enable_testing()
+
+add_test( NAME spps_directivity_clean
+    WORKING_DIRECTORY ${TEST_DATA_DIR} 
+    COMMAND TEST_spps_pre )
 
 add_test( NAME spps_directivity_exec 
     WORKING_DIRECTORY ${TEST_DATA_DIR} 
