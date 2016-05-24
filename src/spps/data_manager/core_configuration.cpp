@@ -2,10 +2,10 @@
 #include <iostream>
 
 
-Core_Configuration::Core_Configuration( CoreString xmlFilePath )
+Core_Configuration::Core_Configuration( CoreString xmlFilePath, bool verbose_mode)
 {
 	CXml fichierXml(xmlFilePath);
-	LoadCfgFile( fichierXml );
+	LoadCfgFile( fichierXml, verbose_mode );
 
 	#ifdef _PROFILE_
 		SetConfigInformation(SPROP_CORE_WORKING_DIRECTORY,"tmp\\");
@@ -51,7 +51,7 @@ Core_Configuration::Core_Configuration( CoreString xmlFilePath )
 			if(seed != 0) {
 				// User define a random seed, multi-thread have to be deactivated in order to do the same computation
 				SetConfigInformation(IPROP_DO_MULTITHREAD,0);
-				std::cout<<"Random seed has been set; then multi-thread has been desactivated."<<std::endl;
+				if (verbose_mode) { std::cout << "Random seed has been set; then multi-thread has been desactivated." << std::endl; }
 			}
             int saveSurfaceIntersection = 1;
             if (simuNode->IsPropertyExist("save_surface_intersection")) {

@@ -93,11 +93,11 @@ void InitRecepteurS(t_Mesh* sceneMesh,std::vector<r_Surf*>& recepteursSurfacique
 /**
  * Chargement des faces dans les structures appropriées
  */
-bool initMesh(t_Mesh &sceneMesh,CoreString workingDir,CoreString sceneMeshPath,Base_Core_Configuration& configManager);
+bool initMesh(t_Mesh &sceneMesh,CoreString workingDir,CoreString sceneMeshPath,Base_Core_Configuration& configManager, bool verbose_mode = false);
 /**
  * Chargement du fichier de maillage et initialisation de l'environnement
  */
-bool initTetraMesh(CoreString tetraMeshFilePath,t_Mesh &sceneMesh,int nbFreq,t_TetraMesh& sceneTetraMesh,Base_Core_Configuration& configManager);
+bool initTetraMesh(CoreString tetraMeshFilePath,t_Mesh &sceneMesh,int nbFreq,t_TetraMesh& sceneTetraMesh,Base_Core_Configuration& configManager, bool verbose_mode = false);
 /**
  * Enregistrement des données récoltées
  */

@@ -387,19 +387,19 @@ void InitRecepteurS(t_Mesh* sceneMesh,std::vector<r_Surf*>& recepteursSurfacique
 /**
  * Chargement des faces dans les structures appropriées
  */
-bool initMesh(t_Mesh &sceneMesh,CoreString workingDir,CoreString sceneMeshPath,Base_Core_Configuration& configManager)
+bool initMesh(t_Mesh &sceneMesh,CoreString workingDir,CoreString sceneMeshPath,Base_Core_Configuration& configManager, bool verbose_mode)
 {
 	formatCoreBIN::ioModel modelEntree;
 	//**************************************************
 	// 1: Lire le fichier de modèle en entrée
-	cout<<"Scene mesh is currently loading .."<<endl;
+	if (verbose_mode) { cout << "Scene mesh is currently loading .." << endl; }
 	formatCoreBIN::CformatBIN binImporter;
 	if(!binImporter.ImportBIN(modelEntree,sceneMeshPath.c_str()) || modelEntree.vertices.size()==0)
 	{
 		cout<<"Unable to read the scene mesh file :"<<endl<<sceneMeshPath<<endl;
 		return false;
 	}else{
-		cout<<"Opening "<<sceneMeshPath<<endl<<"Load of the scene mesh file has been completed successfully."<<endl;
+		if (verbose_mode) { cout << "Opening " << sceneMeshPath << endl << "Load of the scene mesh file has been completed successfully." << endl; }
 	}
 	//**************************************************
 	// Chargement des faces dans les structures appropriées
@@ -448,7 +448,7 @@ bool initMesh(t_Mesh &sceneMesh,CoreString workingDir,CoreString sceneMeshPath,B
 	return true;
 }
 
-bool initTetraMesh(CoreString tetraMeshFilePath,t_Mesh &sceneMesh,int nbFreq,t_TetraMesh& sceneTetraMesh,Base_Core_Configuration& configManager)
+bool initTetraMesh(CoreString tetraMeshFilePath,t_Mesh &sceneMesh,int nbFreq,t_TetraMesh& sceneTetraMesh,Base_Core_Configuration& configManager, bool verbose_mode)
 {
 	//**************************************************
 	// Chargement du maillage
@@ -457,7 +457,7 @@ bool initTetraMesh(CoreString tetraMeshFilePath,t_Mesh &sceneMesh,int nbFreq,t_T
 		cout<<"Unable to read the tetrahedalization of the scene mesh file, calculation canceled."<<endl;
 		return false;
 	}else{
-		cout<<"Load of the tetrahedalization scene mesh file has been completed successfully."<<endl;
+		if (verbose_mode) { cout << "Load of the tetrahedalization scene mesh file has been completed successfully." << endl; }
 	}
 	//**************************************************
 	// Initialisation des Liens avec le maillage et leurs paramètres (pré-calcul)

@@ -29,9 +29,7 @@
 	boost::mutex mutex; /*!< Variable permettant la synchronisation des processus */
 #endif
 
-
-
-
+bool verbose_mode = false;
 
 /**
  * @brief Structure contenant tout les outils voués au calcul de propagation
@@ -83,7 +81,7 @@ void runSourceCalculation( progressOperation* parentOperation, t_ToolBox& applic
 		confPartFrame.direction=sourceInfo.Direction*nomVecVitesse;
 	if (sourceInfo.type == SOURCE_TYPE_DIRECTION && sourceInfo.directivity->asDataForFrequency(freq) == false)
 	{
-		std::cout << "No directivity data for frequency : " << freq << " => skipping" << std::endl;
+		if (verbose_mode) { std::cout << "No directivity data for frequency : " << freq << " => skipping" << std::endl; }
 		return;
 	}
 	progressOperation thisSrcOperation(parentOperation,quandparticules);
@@ -123,9 +121,6 @@ void runSourceCalculation( progressOperation* parentOperation, t_ToolBox& applic
 				{
 					double spl = sourceInfo.directivity->getInterpolatedValue(freq, phi, theta);
 					confPart.energie *= pow(10, spl / 10);
-				}
-				else {
-					std::cout << "NOPE" << std::endl;
 				}
 			}
 
@@ -231,7 +226,7 @@ void runFrequenceCalculation(  progressOperation* parentOperation, ReportManager
 		threadData->GabeColData=outputTool.GetColStats();	//Recupere les données des etats de particules
 		threadData->GabeSumEnergyFreq=outputTool.GetSumEnergy();//Recupere les données du niveau sonore global
 		outputTool.FillWithLefData(*threadData); //Recupere les données du lef (utilisé pour le calcul du LF et LFC)
-		cout<<"End of calculation at "<<threadData->freqInfos->freqValue<<" Hz."<<endl;
+		if (verbose_mode) { cout << "End of calculation at " << threadData->freqInfos->freqValue << " Hz." << endl; }
 
 
 	#if __USE_MULTITHREAD__
@@ -256,8 +251,6 @@ int MainProcess(int argc, char* argv[])
 	t_TetraMesh sceneTetraMesh;
 	applicationToolBox.sceneMesh=&sceneMesh;
 	applicationToolBox.tetraMesh=&sceneTetraMesh;
-
-	bool verbose_mode = false;
 
 	//**************************************************
 	//Verification des arguments
@@ -288,16 +281,16 @@ int MainProcess(int argc, char* argv[])
 
 	if (!asFilePath)
 	{
-		cout<<"The path of the XML configuration file must be specified!"<<endl;
+		cout << "The path of the XML configuration file must be specified!" << endl;
 		return 1;
 	}
 
 	//**************************************************
 	// 1: Lire le fichier XML
-	cout<<"XML configuration file is currently loading..."<<endl;
-	Core_Configuration configManager(pathFichier);
+	if (verbose_mode) { cout << "XML configuration file is currently loading..." << endl; }
+	Core_Configuration configManager(pathFichier, verbose_mode);
 	applicationToolBox.configurationTool=&configManager;
-	cout<<"XML configuration file has been loaded."<<endl;
+	if (verbose_mode) { cout << "XML configuration file has been loaded." << endl; }
 
 	//**************************************************
 	// 2: Initialisation des variables
@@ -312,12 +305,12 @@ int MainProcess(int argc, char* argv[])
 
 	//**************************************************
 	// 3: Chargement du modèle
-	if(!initMesh(sceneMesh,workingDir,sceneMeshPath,configManager))
+	if(!initMesh(sceneMesh,workingDir,sceneMeshPath,configManager, verbose_mode))
 		return 1;
 
 	//**************************************************
 	// 4: Chargement du maillage
-	if(!initTetraMesh(workingDir+*configManager.FastGetConfigValue(Core_Configuration::SPROP_TETRAHEDRALIZATION_FILE_PATH),sceneMesh,configManager.freqList.size(),sceneTetraMesh,configManager))
+	if(!initTetraMesh(workingDir+*configManager.FastGetConfigValue(Core_Configuration::SPROP_TETRAHEDRALIZATION_FILE_PATH),sceneMesh,configManager.freqList.size(),sceneTetraMesh,configManager, verbose_mode))
 		return 1;
 
 	ExpandRecepteurPTetraLocalisation(&sceneTetraMesh,&configManager.recepteur_p_List,configManager); //Etend la zone d'influance des récepteurs ponctuels en fonction de leurs rayons
@@ -393,23 +386,23 @@ int MainProcess(int argc, char* argv[])
 
 	ReportManager::SaveThreadsStats(workingDir+*configManager.FastGetConfigValue(Core_Configuration::SPROP_STATS_FILE_PATH),workingDir+*configManager.FastGetConfigValue(Core_Configuration::SPROP_CUMUL_FILE_PATH),threadsData,reportParameter);
 
-	cout<<"Saving Ponctual Receiver Advanced Parameters..."<<endl;
+	if (verbose_mode) { cout << "Saving Ponctual Receiver Advanced Parameters..." << endl; }
 	ReportManager::SaveRecpAcousticParamsAdvance(*configManager.FastGetConfigValue(Core_Configuration::SPROP_ADV_PONCTUAL_RECEIVER_FILE_PATH),threadsData,reportParameter);
-	cout<<"End of save of Ponctual Receiver Advanced Parameters."<<endl;
+	if (verbose_mode) { cout << "End of save of Ponctual Receiver Advanced Parameters." << endl; }
 
-	cout<<"Saving Ponctual Receiver Intensity..."<<endl;
+	if (verbose_mode) { cout << "Saving Ponctual Receiver Intensity..." << endl; }
 	ReportManager::SaveRecpIntensity("Punctual receiver intensity.gabe",threadsData,reportParameter);
-	cout<<"End of save of Ponctual Receiver intensity."<<endl;
+	if (verbose_mode) { cout << "End of save of Ponctual Receiver intensity." << endl; }
 
-	cout<<"Saving sound level for each Ponctual Receiver per source..."<<endl;
+	if (verbose_mode) { cout << "Saving sound level for each Ponctual Receiver per source..." << endl; }
 	ReportManager::SaveSoundLevelBySource("Sound level per source.recp",threadsData,reportParameter);
-	cout<<"End of save sound level for each Ponctual Receiver per source."<<endl;
+	if (verbose_mode) { cout << "End of save sound level for each Ponctual Receiver per source." << endl; }
 	stringClass globalRecSurfPath=workingDir+*configManager.FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FOLDER_PATH)+"Global\\";
 	//Création du dossier Global
 	st_mkdir(globalRecSurfPath.c_str());
     stringClass globalSurfCutPath=globalRecSurfPath+*configManager.FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FILE_CUT_PATH);
 	globalRecSurfPath+=*configManager.FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FILE_PATH);
-	cout<<"Saving Global Surface Receiver Data..."<<endl;
+	if (verbose_mode) { cout << "Saving Global Surface Receiver Data..." << endl; }
 	#ifndef _PROFILE_
 		#ifdef UTILISER_MAILLAGE_OPTIMISATION
 			ReportManager::SauveGlobalRecepteursSurfaciques(globalRecSurfPath,configManager.recepteur_s_List,sceneTetraMesh,*configManager.FastGetConfigValue(Core_Configuration::FPROP_TIME_STEP));
@@ -418,7 +411,7 @@ int MainProcess(int argc, char* argv[])
 		#endif
 		ReportManager::SauveRecepteursSurfaciquesCoupe(globalSurfCutPath,configManager.recepteur_scut_List,*configManager.FastGetConfigValue(Core_Configuration::FPROP_TIME_STEP));
 	#endif
-	cout<<"End of save Global Surface Receiver Data."<<endl;
+		if (verbose_mode) { cout << "End of save Global Surface Receiver Data." << endl; }
 	//**************************************************
 	// 9: Libère l'espace mémoire
 	for(std::size_t idfreq=0;idfreq<threadsData.size();idfreq++)

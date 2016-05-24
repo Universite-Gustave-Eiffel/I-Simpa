@@ -47,7 +47,7 @@ Base_Core_Configuration::Base_Core_Configuration( )
 
 
 
-bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
+bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml, bool verbose_mode)
 {
 	bool force_abs_atmo=false;
 	l_decimal abs_atmo=0;
@@ -59,7 +59,7 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
 		SetConfigInformation(SPROP_CORE_WORKING_DIRECTORY,root->GetProperty("workingdirectory"));
 	
 
-		cout<<"Loading of the atmospheric condition.."<<endl;
+		if (verbose_mode) { cout << "Loading of the atmospheric condition.." << endl; }
 		CXmlNode* atmoNode=root->GetChild("condition_atmospherique");
 		if(atmoNode)
 		{
@@ -77,7 +77,7 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
 			abs_atmo=atmoNode->GetProperty("absatmo").ToFloat();
 		}
 
-		cout<<"Loading of the simulation configuration.."<<endl;
+		if (verbose_mode) { cout << "Loading of the simulation configuration.." << endl; }
 		CXmlNode* simuNode=root->GetChild("simulation");
 		if(simuNode)
 		{
@@ -123,7 +123,7 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
 				}
 			}
 		}
-		cout<<"Loading of the emitter list.."<<endl;
+		if (verbose_mode) { cout << "Loading of the emitter list.." << endl; }
 		CXmlNode* srcNode=root->GetChild("sources");
 		if(srcNode)
 		{
@@ -171,12 +171,12 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
 
 							nvSource->directivity = new t_DirectivityBalloon(directivityFile_path);
 							directivityList[directivityFile] = nvSource->directivity;
-							cout << "Directivity loaded : " << directivityFile_path << endl;
+							if (verbose_mode) { cout << "Directivity loaded : " << directivityFile_path << endl; }
 						}
 						else
 						{
 							nvSource->directivity = directivityList[directivityFile];
-							cout << "Directivity linked to source : " << directivityFile << endl;
+							if (verbose_mode) { cout << "Directivity linked to source : " << directivityFile << endl; }
 						}
 					}
 				}
@@ -184,9 +184,9 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
 				srcList.push_back(nvSource);
 			}
 		}
-		cout<<srcList.size()<<" emitters has been loaded."<<endl;
+		if (verbose_mode) { cout << srcList.size() << " emitters has been loaded." << endl; }
 		CXmlNode* surfacesNode=root->GetChild("surface_absorption_enum");
-		cout<<"Loading of the materials.."<<endl;
+		if (verbose_mode) { cout << "Loading of the materials.." << endl; }
 		if(surfacesNode)
 		{
 			//Pour chaque matériaux
@@ -228,9 +228,9 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
 				materialList.push_back(nvMaterial);
 			}
 		}
-		cout<<materialList.size()<<" materials has been loaded."<<endl;
+		if (verbose_mode) { cout << materialList.size() << " materials has been loaded." << endl; }
 		CXmlNode* recepteurspNode=root->GetChild("recepteursp");
-		cout<<"Loading of the punctual receivers"<<endl;
+		if (verbose_mode) { cout << "Loading of the punctual receivers" << endl; }
 		if(recepteurspNode)
 		{
 			//Pour chaque récepteur ponctuel
@@ -264,7 +264,7 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
 			}
 		}
 		CXmlNode* recepteurssNode=root->GetChild("recepteurss");
-		cout<<"Loading of the surfaces receivers"<<endl;
+		if (verbose_mode) { cout << "Loading of the surfaces receivers" << endl; }
 		if(recepteurssNode)
 		{
 			//Pour chaque récepteur surfacique
@@ -304,7 +304,7 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
 			}
 		}
 		CXmlNode* encombrementNode=root->GetChild("encombrement_enum");
-		cout<<"Loading of the obstructions"<<endl;
+		if (verbose_mode) { cout << "Loading of the obstructions" << endl; }
 		if(encombrementNode)
 		{
 			//Pour chaque encombrement

@@ -102,7 +102,6 @@ t_DirectivityBalloon::t_DirectivityBalloon(string filePath)
 		}
 
 		file.close();
-		cout << "DirectivityBalloon : File parsed correctly" << endl;
 	}
 }
 
@@ -196,26 +195,6 @@ tuple<double, double> t_DirectivityBalloon::loudspeaker_coordinate(const vec3 &s
 	double delta_Phi = get<0>(intermediate_Direction_sph) - get<0>(source_Direction_sph);
 	double delta_Theta = get<1>(intermediate_Direction_sph) - get<1>(source_Direction_sph);
 
-	//// 1- get particle spherical coordinate
-	//auto particle_sph = cartesianToSpherical(particle);
-
-	//// 2- translate those coordinate
-	//get<0>(particle_sph) = get<0>(particle_sph) + delta_Phi;
-	//get<1>(particle_sph) = get<1>(particle_sph) + ( get<1>(particle_sph) < get<1>(intermediate_Direction_sph) ? delta_Theta : - delta_Theta);
-
-	//// up bound
-	//if (get<0>(particle_sph) > M_2PI)
-	//	get<0>(particle_sph) = fmod(get<0>(particle_sph), M_2PI);
-	//if (get<1>(particle_sph) > M_PI)
-	//	get<1>(particle_sph) = fmod(get<1>(particle_sph), M_PI);
-
-	//// low bound
-	//if (get<0>(particle_sph) < 0)
-	//	get<0>(particle_sph) = M_2PI - get<0>(particle_sph);
-	//if (get<1>(particle_sph) < 0)
-	//	get<1>(particle_sph) = M_PI - get<1>(particle_sph);
-
-	// 3- switch to directivity frame
 	vec3 xaxis(1, 0, 0);
 	vec3 yaxis(0, 1, 0);
 	vec3 zaxis(0, 0, 1);
@@ -223,7 +202,6 @@ tuple<double, double> t_DirectivityBalloon::loudspeaker_coordinate(const vec3 &s
 	vec3 particle_spk = particle.Rotation(zaxis, delta_Phi);
 	particle_spk = particle_spk.Rotation(xaxis, -delta_Theta);
 
-	//vec3 particle_spk = sphericalToCartesian(get<0>(particle_sph), get<1>(particle_sph));
 	particle_spk = particle_spk.Rotation(yaxis, M_PI);
 	particle_spk = particle_spk.Rotation(xaxis, M_PIDIV2);
 

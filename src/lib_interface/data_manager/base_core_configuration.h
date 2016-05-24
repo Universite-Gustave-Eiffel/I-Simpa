@@ -142,7 +142,7 @@ protected:
 	 * Chargement des paramètres à partir d'un fichier XML
 	 * @param fichierXml Objet contenant les données
 	 */
-	bool LoadCfgFile( CXml& fichierXml );
+	bool LoadCfgFile( CXml& fichierXml, bool verbose_mode = false);
 
 	decimal *tabFloatProp;
 	entier *tabIntProp;
