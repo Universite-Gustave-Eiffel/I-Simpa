@@ -15,7 +15,7 @@ git:
 
 addons:
   apt:
-    sources:
+    packages:
     - cmake
     - cmake-data
     - python
@@ -44,7 +44,7 @@ addons:
 cache: 
   apt: true
   directories:
-  - wxWidgets-install
+  - $HOME/wxWidgets-install
 
 notifications:
   email: false
