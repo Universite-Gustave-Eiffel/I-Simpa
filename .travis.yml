@@ -13,7 +13,8 @@ compiler:
 git:
   depth: 30
 
-cache: apt
+cache: 
+  apt: true
   directories:
   - /wxWidgets-install
 
