@@ -26,6 +26,6 @@ sudo apt-get install --force-yes --no-install-recommends --no-install-suggests \
     libgtk-3-dev
 
 wget https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.0/wxWidgets-3.1.0.tar.bz2
-tar -xzvf wxWidgets-3.1.0.tar.bz2
+tar -xjvf wxWidgets-3.1.0.tar.bz2
 mkdir /wxWidgets-install
 cd wxWidgets-3.1.0 && ./configure --prefix=/wxWidgets-install && make && sudo make install
