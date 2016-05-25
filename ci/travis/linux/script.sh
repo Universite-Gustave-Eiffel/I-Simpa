@@ -1,4 +1,4 @@
-cd build
-pwd
-make
+# cd build
+# pwd
+# make
 
