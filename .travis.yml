@@ -14,11 +14,13 @@ git:
   depth: 30
 
 cache: apt
+  directories:
+  - /wxWidgets-install
 
-notifications:
-  email:
-    recipients:
-      - "i-simpa@ifsttar.fr"
+# notifications:
+#   email:
+#     recipients:
+#       - "i-simpa@ifsttar.fr"
 
 before_install:
   - ./ci/travis/${TRAVIS_OS_NAME}/before_install.sh
