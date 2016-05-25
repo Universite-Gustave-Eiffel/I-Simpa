@@ -1,25 +1,15 @@
 export DEBIAN_FRONTEND=noninteractive
-sudo apt-get install --force-yes --no-install-recommends --no-install-suggests \
-        cmake \
-        cmake-data \
-        python \
-        libboost-thread-dev \
-        libboost-random-dev \
-        libboost-system-dev \
-	libboost-python-dev \
-	freeglut3-dev \
-	libxmu-dev \
-        libxi-dev \
-	swig \
-	libpng-dev \
-	libjpeg-dev \
-	libxxf86vm1 \
-	libxxf86vm-dev \
-	libxi-dev \
-	libxrandr-dev \
-	mesa-common-dev \
-	mesa-utils-extra \
-        libgl1-mesa-dev \
-        libglapi-mesa
-	
 
+if [ -d $HOME/wxWidgets-install/include ] ; then
+	echo "wxWidget already builded (and in travis cache)"
+else
+	wget https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.0/wxWidgets-3.1.0.tar.bz2
+	tar -xjf wxWidgets-3.1.0.tar.bz2
+	mkdir $HOME/wxWidgets-install
+	cd wxWidgets-3.1.0 && ./configure --prefix=$HOME/wxWidgets-install && make && make install
+fi
+
+# check wxWidget install
+export PATH=$HOME/wxWidgets-install/bin/:$PATH
+echo "wxWidget version : "
+wx-config --version
