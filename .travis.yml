@@ -16,7 +16,7 @@ git:
 cache: 
   apt: true
   directories:
-  - /wxWidgets-install
+  - wxWidgets-install
 
 # notifications:
 #   email:
