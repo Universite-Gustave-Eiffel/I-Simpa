@@ -1,7 +1,6 @@
 mkdir build
 cd build
 
-echo "wxWidget version : "
-wx-config --version
-
+export PATH=$HOME/wxWidgets-install/bin/:$PATH
+s
 cmake ..
