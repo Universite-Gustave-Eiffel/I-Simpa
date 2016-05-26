@@ -377,6 +377,7 @@ set_property(TARGET isimpa PROPERTY FOLDER "executables")
 set(Boost_USE_STATIC_LIBS   ON) 
 find_package(Boost REQUIRED COMPONENTS system python)
 
+set(wxWidgets_CONFIG_OPTIONS --prefix=$ENV{HOME}/wxWidgets-install)
 find_package(wxWidgets COMPONENTS core base xml gl aui adv tiff REQUIRED)
 include(${wxWidgets_USE_FILE})
 # Find package for building
