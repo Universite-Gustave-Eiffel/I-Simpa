@@ -9,6 +9,7 @@ else
 	cd wxWidgets-3.1.0 && ./configure --prefix=$HOME/wxWidgets-install && make && make install
 fi
 
-export PATH=$HOME/wxWidgets-install/:$HOME/wxWidgets-install/bin/:$PATH
+export PATH=$HOME/wxWidgets-install/bin/:$PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/wxWidgets-install/lib
 echo "wxWidget version : "
 wx-config --version
