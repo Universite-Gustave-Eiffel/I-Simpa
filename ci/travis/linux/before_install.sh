@@ -10,5 +10,5 @@ else
 fi
 
 ls $HOME/wxWidgets-install/
-tree $HOME/wxWidgets-install/
+tree -D $HOME/wxWidgets-install/
 $HOME/wxWidgets-install/wx-config --version
