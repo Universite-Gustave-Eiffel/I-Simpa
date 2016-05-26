@@ -9,6 +9,4 @@ else
 	cd wxWidgets-3.1.0 && ./configure --prefix=$HOME/wxWidgets-install && make && make install
 fi
 
-ls $HOME/wxWidgets-install/
-tree -D $HOME/wxWidgets-install/
-$HOME/wxWidgets-install/wx-config --version
+$HOME/wxWidgets-install/bin/wx-config --version
