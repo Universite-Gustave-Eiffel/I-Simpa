@@ -10,4 +10,5 @@ else
 fi
 
 export PATH=$HOME/wxWidgets-install/bin/:$PATH
+echo "wxWidget version : "
 wx-config --version
