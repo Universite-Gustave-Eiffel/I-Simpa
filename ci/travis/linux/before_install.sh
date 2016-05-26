@@ -10,3 +10,4 @@ else
 fi
 
 $HOME/wxWidgets-install/bin/wx-config --version
+wx-config --version
