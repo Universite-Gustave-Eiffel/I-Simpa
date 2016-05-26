@@ -10,6 +10,5 @@ else
 fi
 
 export PATH=$HOME/wxWidgets-install/bin/:$PATH
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/wxWidgets-install/lib
 echo "wxWidget version : "
 wx-config --version
