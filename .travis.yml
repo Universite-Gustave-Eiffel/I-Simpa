@@ -21,12 +21,12 @@ addons:
     - cmake
     - cmake-data
     - python
-    - libboost-thread-dev
-    - libboost-random-dev
-    - libboost-system-dev
-    - libboost-filesystem-dev
-    - libboost-test-dev
-    - libboost-python-dev
+    - libboost-thread1.60-dev
+    - libboost-random1.60-dev
+    - libboost-system1.60-dev
+    - libboost-filesystem1.60-dev
+    - libboost-test1.60-dev
+    - libboost-python1.60-dev
     - freeglut3-dev
     - libxmu-dev
     - libxi-dev
@@ -38,6 +38,7 @@ addons:
     - libxi-dev
     - libxrandr-dev
     - mesa-common-dev
+    - mesa-utils
     - mesa-utils-extra
     - libgl1-mesa-dev
     - libglapi-mesa
