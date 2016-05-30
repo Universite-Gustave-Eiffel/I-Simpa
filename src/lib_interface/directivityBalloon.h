@@ -30,7 +30,7 @@
 
 #include <map>
 #include <string>
-#include <Core\mathlib.h>
+#include <Core/mathlib.h>
 
 #ifndef DIRECTIVITY_BALLOON
 #define DIRECTIVITY_BALLOON

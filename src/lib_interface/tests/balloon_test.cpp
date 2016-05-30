@@ -2,7 +2,7 @@
 #include <boost/test/included/unit_test.hpp>
 #include <iostream>
 #include <directivityBalloon.h>
-#include <Core\mathlib.h>
+#include <Core/mathlib.h>
 
 using namespace std;
 namespace utf = boost::unit_test;
