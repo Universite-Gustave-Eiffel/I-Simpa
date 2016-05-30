@@ -41,6 +41,8 @@ addons:
     - libglapi-mesa
     - libgtk-3-dev
     - tree
+    - gcc-5
+    - g++-5
 
 cache: 
   apt: true
