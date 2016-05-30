@@ -108,7 +108,7 @@ source_group( "tools" FILES ${TOOLS_SOURCES} )
 #---------------------------------------#
 
 set(Boost_USE_STATIC_LIBS   ON) 
-find_package(Boost COMPONENTS system filesystem unit_test_framework REQUIRED) 
+find_package(Boost COMPONENTS system filesystem unit_test_framework regex REQUIRED)
 link_directories( ${Boost_LIBRARY_DIRS} ) 
 include_directories( ${Boost_INCLUDE_DIRS} )
 
@@ -129,7 +129,8 @@ set_property(TARGET lib_interface PROPERTY FOLDER "libraries")
 
 target_link_libraries (lib_interface
     ${Boost_FILESYSTEM_LIBRARY}
-    ${Boost_SYSTEM_LIBRARY})
+    ${Boost_SYSTEM_LIBRARY}
+    ${Boost_REGEX_LIBRARY})
 
 #------------#
 #    TEST

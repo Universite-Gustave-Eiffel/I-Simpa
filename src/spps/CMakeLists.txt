@@ -41,7 +41,7 @@ source_group("" FILES ${SPPS_SOURCES})
 #---------------------------------------#
 
 set(Boost_USE_STATIC_LIBS   ON) 
-find_package(Boost REQUIRED COMPONENTS thread random system)
+find_package(Boost REQUIRED COMPONENTS thread random system filesystem)
 link_directories( ${Boost_LIBRARY_DIRS} )  
 include_directories( ${Boost_INCLUDE_DIRS} ) 
 
@@ -96,8 +96,9 @@ set_property(TARGET TEST_spps PROPERTY FOLDER "tests")
 set(SPPS_TESTS_PRE
     tests/spps_directivity_pre.cpp)
 add_executable(TEST_spps_pre ${SPPS_TESTS_PRE})
-target_link_libraries (TEST_spps_pre 
-    ${Boost_FILESYSTEM_LIBRARY})
+target_link_libraries (TEST_spps_pre
+    ${Boost_FILESYSTEM_LIBRARY}
+    ${Boost_SYSTEM_LIBRARY})
 set_property(TARGET TEST_spps_pre PROPERTY FOLDER "tests")
 
 # Add to test suite
