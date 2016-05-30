@@ -12,9 +12,16 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 #Add an option in order to build only the computation cores and libraries
 option(SKIPISIMPA "skip-gui" FALSE)
 
-# Set compiler flags and options. 
-# Here it is setting the Visual Studio warning level to 4
-# set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
+# Set compiler flags and options.
+IF (CMAKE_COMPILER_IS_GNUCXX)
+  SET (CMAKE_CXX_FLAGS "-std=gnu++11")
+ELSEIF (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+  SET (CMAKE_CXX_FLAGS "-std=c++11")
+ELSEIF (MSVC)
+  # Here it is setting the Visual Studio warning level to 4
+  # set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
+ENDIF ()
+
 
 # Command to output information to the console
 # Useful for displaying errors, warnings, and debugging
