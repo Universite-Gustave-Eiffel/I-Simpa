@@ -148,12 +148,17 @@ double t_DirectivityBalloon::getInterpolatedValue(double freq, double phi, doubl
 
 	double phi_lowBound, phi_upBound, theta_lowBound, theta_upBound;
 
-	phi_upBound = attenuations[freq].upper_bound(phi)->first;
-	phi_lowBound = phi_upBound - t_DirectivityBalloon::ANGLE_INCREMENT;
+	if (attenuations[freq].upper_bound(phi) != attenuations[freq].end()) {
+		phi_upBound = attenuations[freq].upper_bound(phi)->first;
+		phi_lowBound = phi_upBound - t_DirectivityBalloon::ANGLE_INCREMENT;
+	} else {
+		phi_upBound = 0;
+		phi_lowBound = 355;
+	}
 	theta_upBound = attenuations[freq][phi_lowBound].upper_bound(theta)->first;
 	theta_lowBound = theta_upBound - t_DirectivityBalloon::ANGLE_INCREMENT;
 
-	// Bilinear interpolation (but we're on an sphere so it's probably a mistake, or not ?)
+	// Bilinear interpolation
 
 	double u = (theta - theta_lowBound) / (theta_upBound - theta_lowBound);
 	double t = (phi - phi_lowBound) / (phi_upBound - phi_lowBound);
