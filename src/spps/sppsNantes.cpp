@@ -1,4 +1,4 @@
-// sppsNantes.cpp†: dÈfinit le point d'entrÈe pour l'application console.
+// sppsNantes.cpp¬†: d√©finit le point d'entr√©e pour l'application console.
 //
 #ifdef _DEBUG
 	#define _CRTDBG_MAP_ALLOC
@@ -32,7 +32,7 @@
 bool verbose_mode = false;
 
 /**
- * @brief Structure contenant tout les outils vouÈs au calcul de propagation
+ * @brief Structure contenant tout les outils vou√©s au calcul de propagation
  */
 struct t_ToolBox
 {
@@ -46,9 +46,9 @@ struct t_ToolBox
 };
 
 /**
- * Execute le calcul pour une source donnÈ
+ * Execute le calcul pour une source donn√©
  * @param applicationTools Panel d'objets permettant le calcul de propagation
- * @param sourceInfo Informations sur la source ‡ utiliser pour l'Èmission
+ * @param sourceInfo Informations sur la source √† utiliser pour l'√©mission
  * @param confPartFrame Informations de bases pour toutes les particules
  */
 void runSourceCalculation( progressOperation* parentOperation, t_ToolBox& applicationTools, t_Source& sourceInfo, CONF_PARTICULE& confPartFrame, unsigned int freq)
@@ -63,7 +63,7 @@ void runSourceCalculation( progressOperation* parentOperation, t_ToolBox& applic
 	}
 	uentier quandparticules=*applicationTools.configurationTool->FastGetConfigValue(Core_Configuration::IPROP_QUANT_PARTICLE_CALCULATION);
 	decimal rapportPartOutput=1;
-	//Calcul du rapport particules ‡ enregistrer sur le nombre de particules ‡ calculer
+	//Calcul du rapport particules √† enregistrer sur le nombre de particules √† calculer
 	if(quandparticules>0)
 		rapportPartOutput=(decimal)(*applicationTools.configurationTool->FastGetConfigValue(Core_Configuration::IPROP_QUANT_PARTICLE_OUTPUT))/(decimal)quandparticules;
 	if(!(rapportPartOutput>=0 && rapportPartOutput<=1))
@@ -76,16 +76,16 @@ void runSourceCalculation( progressOperation* parentOperation, t_ToolBox& applic
 	decimal nomVecVitesse=applicationTools.configurationTool->GetNormVecPart(sourceInfo.Position,confPartFrame.currentTetra);
 	decimal currentRapport=0;
 
-	//Si la directivitÈ de la source est unidirectionnelle
+	//Si la directivit√© de la source est unidirectionnelle
 	if(sourceInfo.type==SOURCE_TYPE_UNIDIRECTION)
 		confPartFrame.direction=sourceInfo.Direction*nomVecVitesse;
 	if (sourceInfo.type == SOURCE_TYPE_DIRECTION && sourceInfo.directivity->asDataForFrequency(freq) == false)
 	{
-		if (verbose_mode) { std::cout << "No directivity data for frequency : " << freq << " => skipping" << std::endl; }
+		if (verbose_mode) { std::cout << "No directivity data for frequency: " << freq << " => skipping" << std::endl; }
 		return;
 	}
 	progressOperation thisSrcOperation(parentOperation,quandparticules);
-	//Prise en compte du dÈlai de la source
+	//Prise en compte du d√©lai de la source
 	confPartFrame.pasCourant=(uentier_court)ceil(sourceInfo.sourceDelay/(*applicationTools.configurationTool->FastGetConfigValue(Core_Configuration::FPROP_TIME_STEP)));
 	confPartFrame.stateParticule=PARTICULE_STATE_ALIVE;
 	if((*applicationTools.configurationTool->FastGetConfigValue(Core_Configuration::IPROP_QUANT_TIMESTEP))>confPartFrame.pasCourant)
@@ -113,7 +113,7 @@ void runSourceCalculation( progressOperation* parentOperation, t_ToolBox& applic
 			else if (sourceInfo.type == SOURCE_TYPE_DIRECTION) 
 			{
 				ParticleDistribution::GenSphereDistribution(confPart, nomVecVitesse);
-				// atÈnuation en fonction de la direction
+				// at√©nuation en fonction de la direction
 				std::tuple<double, double> coord_sph = t_DirectivityBalloon::loudspeaker_coordinate(sourceInfo.Direction, confPart.direction);
 				double phi = RadToDeg(std::get<0>(coord_sph));
 				double theta = RadToDeg(std::get<1>(coord_sph));
@@ -165,27 +165,27 @@ void runSourceCalculation( progressOperation* parentOperation, t_ToolBox& applic
 
 
 /**
- * Execute le calcul pour une frequence donnÈ
+ * Execute le calcul pour une frequence donn√©
  * @param applicationTools Panel d'objets permettant le calcul de propagation
- * @param freqInfo Informations sur la frÈquence ‡ utiliser pour l'Èmission
+ * @param freqInfo Informations sur la fr√©quence √† utiliser pour l'√©mission
  * @param confPartFrame Informations de bases pour toutes les particules
  */
 void runFrequenceCalculation(  progressOperation* parentOperation, ReportManager::t_ParamReport reportParameter, t_ToolBox applicationTools, t_sppsThreadParam* threadData, CONF_PARTICULE confPartFrame)
 {
     using namespace std;
-	//Reserve l'espace mÈmoire pour cette bande de frÈquence
+	//Reserve l'espace m√©moire pour cette bande de fr√©quence
 	InitRecepteurSBfreq(applicationTools.configurationTool->recepteur_s_List,threadData->freqInfos->freqIndex,*applicationTools.configurationTool->FastGetConfigValue(Core_Configuration::IPROP_QUANT_TIMESTEP));
-	//Initialisation du gestionnaire de sortie de donnÈes
+	//Initialisation du gestionnaire de sortie de donn√©es
 	reportParameter.freqIndex=threadData->freqInfos->freqIndex;
 	reportParameter.freqValue=threadData->freqInfos->freqValue;
 	if((applicationTools.configurationTool->recepteur_s_List.size()>0 || applicationTools.configurationTool->recepteur_scut_List.size()>0 ) && *applicationTools.configurationTool->FastGetConfigValue(Core_Configuration::IPROP_OUTPUT_RECEPTEURS_SURF_BY_FREQ))
 	{
-		//CrÈation du dossier pour le rÈcepteur surfacique ‡ cette frÈquence
+		//Cr√©ation du dossier pour le r√©cepteur surfacique √† cette fr√©quence
 		reportParameter._recepteur_surf_Path+=stringClass::FromInt(reportParameter.freqValue)+stringClass(" Hz\\");
 		reportParameter._recepteur_surf_cut_Path=reportParameter._recepteur_surf_Path;
-		//CrÈation du dossier de frÈquence
+		//Cr√©ation du dossier de fr√©quence
 		st_mkdir(reportParameter._recepteur_surf_Path.c_str());
-		//Ajout du nom du fichier ‡ la fin
+		//Ajout du nom du fichier √† la fin
 		reportParameter._recepteur_surf_Path+=*applicationTools.configurationTool->FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FILE_PATH);
 		reportParameter._recepteur_surf_cut_Path+=*applicationTools.configurationTool->FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FILE_CUT_PATH);
 	}
@@ -204,16 +204,16 @@ void runFrequenceCalculation(  progressOperation* parentOperation, ReportManager
 		runSourceCalculation(&thisFreqOperation,applicationTools,*applicationTools.configurationTool->srcList[idsrc],confPartFrame, threadData->freqInfos->freqValue);
 	}
 	//A partir d'ici les threads s'arretent puis continuent un par un.
-	//PremiËre ligne de code du processus en cours
+	//Premi√®re ligne de code du processus en cours
 	#if __USE_MULTITHREAD__
-		if(true) //Cette branche conditionnelle existe afin que l'objet lock soit dÈtruit ‡ la fin du traitement de la condition
+		if(true) //Cette branche conditionnelle existe afin que l'objet lock soit d√©truit √† la fin du traitement de la condition
 		{
 			boost::mutex::scoped_lock lock(mutex);
 	#endif
-		//Post traitement des rÈcepteurs de surface
+		//Post traitement des r√©cepteurs de surface
 		ReportManager::SetPostProcessSurfaceReceiver(*applicationTools.configurationTool,threadData->freqInfos->freqIndex,applicationTools.configurationTool->recepteur_s_List,*applicationTools.configurationTool->FastGetConfigValue(Core_Configuration::FPROP_TIME_STEP));
 		ReportManager::SetPostProcessCutSurfaceReceiver(*applicationTools.configurationTool,threadData->freqInfos->freqIndex,applicationTools.configurationTool->recepteur_scut_List,*applicationTools.configurationTool->FastGetConfigValue(Core_Configuration::FPROP_TIME_STEP));
-		//Sauvegarde des rÈcepteurs surfacique pour cette bande de frÈquence
+		//Sauvegarde des r√©cepteurs surfacique pour cette bande de fr√©quence
 		if(applicationTools.configurationTool->recepteur_s_List.size()>0 &&  *applicationTools.configurationTool->FastGetConfigValue(Core_Configuration::IPROP_OUTPUT_RECEPTEURS_SURF_BY_FREQ))
 #ifdef UTILISER_MAILLAGE_OPTIMISATION
 			ReportManager::SauveRecepteursSurfaciques(reportParameter._recepteur_surf_Path,threadData->freqInfos->freqIndex,applicationTools.configurationTool->recepteur_s_List,*applicationTools.tetraMesh,*applicationTools.configurationTool->FastGetConfigValue(Core_Configuration::FPROP_TIME_STEP));
@@ -223,9 +223,9 @@ void runFrequenceCalculation(  progressOperation* parentOperation, ReportManager
 		if(applicationTools.configurationTool->recepteur_scut_List.size()>0 &&  *applicationTools.configurationTool->FastGetConfigValue(Core_Configuration::IPROP_OUTPUT_RECEPTEURS_SURF_BY_FREQ))
 			ReportManager::SauveRecepteursSurfaciquesCoupe(reportParameter._recepteur_surf_cut_Path,applicationTools.configurationTool->recepteur_scut_List,*applicationTools.configurationTool->FastGetConfigValue(Core_Configuration::FPROP_TIME_STEP),true,false,threadData->freqInfos->freqIndex);
 		outputTool.SaveAndCloseParticleFile();				//Finalisation du fichier de particule
-		threadData->GabeColData=outputTool.GetColStats();	//Recupere les donnÈes des etats de particules
-		threadData->GabeSumEnergyFreq=outputTool.GetSumEnergy();//Recupere les donnÈes du niveau sonore global
-		outputTool.FillWithLefData(*threadData); //Recupere les donnÈes du lef (utilisÈ pour le calcul du LF et LFC)
+		threadData->GabeColData=outputTool.GetColStats();	//Recupere les donn√©es des etats de particules
+		threadData->GabeSumEnergyFreq=outputTool.GetSumEnergy();//Recupere les donn√©es du niveau sonore global
+		outputTool.FillWithLefData(*threadData); //Recupere les donn√©es du lef (utilis√© pour le calcul du LF et LFC)
 		if (verbose_mode) { cout << "End of calculation at " << threadData->freqInfos->freqValue << " Hz." << endl; }
 
 
@@ -304,7 +304,7 @@ int MainProcess(int argc, char* argv[])
 	}
 
 	//**************************************************
-	// 3: Chargement du modËle
+	// 3: Chargement du mod√®le
 	if(!initMesh(sceneMesh,workingDir,sceneMeshPath,configManager, verbose_mode))
 		return 1;
 
@@ -313,10 +313,10 @@ int MainProcess(int argc, char* argv[])
 	if(!initTetraMesh(workingDir+*configManager.FastGetConfigValue(Core_Configuration::SPROP_TETRAHEDRALIZATION_FILE_PATH),sceneMesh,configManager.freqList.size(),sceneTetraMesh,configManager, verbose_mode))
 		return 1;
 
-	ExpandRecepteurPTetraLocalisation(&sceneTetraMesh,&configManager.recepteur_p_List,configManager); //Etend la zone d'influance des rÈcepteurs ponctuels en fonction de leurs rayons
+	ExpandRecepteurPTetraLocalisation(&sceneTetraMesh,&configManager.recepteur_p_List,configManager); //Etend la zone d'influance des r√©cepteurs ponctuels en fonction de leurs rayons
 	TranslateSourceAtTetrahedronVertex(configManager.srcList,&sceneTetraMesh);
 	//**************************************************
-	// 5: Instancier paramËtre gestionnaire de sortie de donnÈes
+	// 5: Instancier param√®tre gestionnaire de sortie de donn√©es
 	ReportManager::t_ParamReport reportParameter;
 	reportParameter._particleFileName=*configManager.FastGetConfigValue(Core_Configuration::SPROP_PARTICULE_FILE_PATH);
 	reportParameter._particlePath=workingDir+*configManager.FastGetConfigValue(Core_Configuration::SPROP_PARTICULE_FOLDER_PATH);
@@ -329,7 +329,7 @@ int MainProcess(int argc, char* argv[])
 	reportParameter.sceneModel=&sceneMesh;
 	reportParameter.working_Path=workingDir;
 
-	//CrÈation du dossier contenant les recepteurs surfaciques
+	//Cr√©ation du dossier contenant les recepteurs surfaciques
 	if(configManager.recepteur_s_List.size()>0 || configManager.recepteur_scut_List.size()>0 )
 		st_mkdir(reportParameter._recepteur_surf_Path.c_str());
 
@@ -381,7 +381,7 @@ int MainProcess(int argc, char* argv[])
 	cout<<"End of calculation."<<endl;
 
 	//**************************************************
-	// 8: Une fois tout les threads de calculs fermÈs on compile les fichiers de resultats
+	// 8: Une fois tout les threads de calculs ferm√©s on compile les fichiers de resultats
 	reportCompilation(configManager,workingDir);
 
 	ReportManager::SaveThreadsStats(workingDir+*configManager.FastGetConfigValue(Core_Configuration::SPROP_STATS_FILE_PATH),workingDir+*configManager.FastGetConfigValue(Core_Configuration::SPROP_CUMUL_FILE_PATH),threadsData,reportParameter);
@@ -398,7 +398,7 @@ int MainProcess(int argc, char* argv[])
 	ReportManager::SaveSoundLevelBySource("Sound level per source.recp",threadsData,reportParameter);
 	if (verbose_mode) { cout << "End of save sound level for each Ponctual Receiver per source." << endl; }
 	stringClass globalRecSurfPath=workingDir+*configManager.FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FOLDER_PATH)+"Global\\";
-	//CrÈation du dossier Global
+	//Cr√©ation du dossier Global
 	st_mkdir(globalRecSurfPath.c_str());
     stringClass globalSurfCutPath=globalRecSurfPath+*configManager.FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FILE_CUT_PATH);
 	globalRecSurfPath+=*configManager.FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FILE_PATH);
@@ -413,7 +413,7 @@ int MainProcess(int argc, char* argv[])
 	#endif
 		if (verbose_mode) { cout << "End of save Global Surface Receiver Data." << endl; }
 	//**************************************************
-	// 9: LibËre l'espace mÈmoire
+	// 9: Lib√®re l'espace m√©moire
 	for(std::size_t idfreq=0;idfreq<threadsData.size();idfreq++)
 		threadsData.at(idfreq).clearMem();
 
@@ -427,7 +427,7 @@ int main(int argc, char* argv[])
 
     #ifdef _WIN32
 	#ifdef _DEBUG
-		_CrtDumpMemoryLeaks(); //Affiche les fuites mÈmoires
+		_CrtDumpMemoryLeaks(); //Affiche les fuites m√©moires
 	#endif
 	#endif
 
