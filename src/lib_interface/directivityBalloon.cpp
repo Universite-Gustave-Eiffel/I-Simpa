@@ -28,7 +28,7 @@
 * or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
-# include <directivityBalloon.h>
+#include <directivityBalloon.h>
 #include <iostream>
 #include <fstream>
 #include <boost/algorithm/string.hpp>
