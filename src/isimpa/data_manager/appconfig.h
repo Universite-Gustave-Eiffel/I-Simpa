@@ -478,12 +478,16 @@ public:
 	/**
 	* Retourne la directivité ayant le numéro de directivité idDirectivity
 	* @param idDirectivity Un entier désignant le n° de directivité (ce n'est PAS xmlIdElement)
-	* @param typeDirectivity Le type de directivité, APP ou USER
 	* @see E_Directivity::GetIdDirectivity()
 	* @return La directivité si existant, NULL si inexistant
 	*/
-	static E_Directivity* GetDirectivity(int idDirectivity, Element::ELEMENT_TYPE typeDirectivity);
-
+	static E_Directivity* GetDirectivity(int idDirectivity);
+	/**
+	* Retrouve l'indice de la directivité en indiquant l'adresse d'un élément contenant une directivité
+	* @param pereEle Element ayant une directivité dans ses fils
+	* @return L'indice de la directivité, -1 si non trouvé.
+	*/
+	static int GetDirectivityId(Element* pereEle);
 	/**
 	* Appelé uniquement par le constructeur de E_Directivity, cette méthode permet d'obtenir un indice unique de directivité
 	* @see E_Directivity

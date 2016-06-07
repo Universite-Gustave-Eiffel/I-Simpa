@@ -120,8 +120,8 @@ public:
 			thisNode->AddAttribute("name",elementInfo.libelleElement);
 
 			// copy directivity file into simulation folder and export to config
-			int iddirectivity = elFilsProperty->GetListConfig("directivity-balloon");
-			E_Directivity* directivity = ApplicationConfiguration::GetDirectivity(iddirectivity, Element::ELEMENT_TYPE_DIRECTIVITIES_APP);
+			int iddirectivity = elFilsProperty->GetEntierConfig("iddirectivity");
+			E_Directivity* directivity = ApplicationConfiguration::GetDirectivity(iddirectivity);
 			if (directivity != NULL)
 			{
 				wxFileName directivityFile = directivity->GetAssociatedFile();

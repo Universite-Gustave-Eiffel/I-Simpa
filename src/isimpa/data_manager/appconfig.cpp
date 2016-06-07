@@ -573,7 +573,7 @@ void ApplicationConfiguration::DeleteDirectivity(int xmlId)
 	}
 }
 
-E_Directivity* ApplicationConfiguration::GetDirectivity(int idDirectivity, Element::ELEMENT_TYPE typeDirectivity)
+E_Directivity* ApplicationConfiguration::GetDirectivity(int idDirectivity)
 {
 	E_Directivity* findDirectivity = NULL;
 	for (int i = 0; i<allDirectivity.size(); i++)
@@ -585,6 +585,25 @@ E_Directivity* ApplicationConfiguration::GetDirectivity(int idDirectivity, Eleme
 		}
 	}
 	return findDirectivity;
+}
+
+int ApplicationConfiguration::GetDirectivityId(Element* pereEle)
+{
+	if (!pereEle)
+		return -1;
+	//Premiere étape, retrouver l'indice de l'élément de la directivité
+	Element* elMat;
+	elMat = pereEle->GetElementByType(Element::ELEMENT_TYPE_DIRECTIVITIES_USER);
+	if (!elMat)
+		elMat = pereEle->GetElementByType(Element::ELEMENT_TYPE_DIRECTIVITIES_APP);
+	if (!elMat)
+		return -1;
+	for (int i = 0; i<allDirectivity.size(); i++)
+	{
+		if (allDirectivity[i] == elMat)
+			return allDirectivity[i]->GetIdDirectivity();
+	}
+	return -1;
 }
 
 bool ApplicationConfiguration::orderDirectivity(E_Directivity* lSp, E_Directivity* rSp)

@@ -32,6 +32,7 @@
 
 #include "data_manager/element.h"
 #include "data_manager/appconfig.h"
+#include "data_manager/e_data_tree.h"
 
 /**  \file e_scene_sources_source_proprietes.h
  *   \brief Propriétés d'une source sonore ponctuelle de la scène
@@ -70,17 +71,7 @@ private:
 		this->AppendPropertyList("directivite","Directivity",vDirectivite,DIRECTIVITE_SOURCE_OMINIDIRECTIONNEL,false,1,iDirectivite,true);
 		_("Directivity");
 
-		std::vector<wxString> vBalloon;
-		std::vector<int> iBalloon;
-		std::vector<ApplicationConfiguration::t_lstDirectiv> balloonLst = ApplicationConfiguration::GetLstDirectivity();
-		vBalloon.reserve(balloonLst.size());
-		for (int i = 0; i<balloonLst.size(); i++)
-		{
-			vBalloon.push_back(balloonLst[i].nom);
-			iBalloon.push_back(balloonLst[i].idDirectivity);
-		}
-		this->AppendPropertyList("directivity-balloon", "Directivity Balloon", vBalloon, 0, false, 1, iBalloon);
-		this->SetReadOnlyConfig("directivity-balloon", true);
+		this->AppendPropertyEntier("iddirectivity", "iddirectivity", 0, false)->Hide();
 
 		this->AppendPropertyDecimal("u","Direction X",1,true,2,false,false,0,0,true);
 		this->AppendPropertyDecimal("v","Direction Y",1,true,2,false,false,0,0,true);
@@ -91,6 +82,32 @@ private:
 		this->AppendPropertyDecimal("delay","Time delay (s)",0.f,false,4,false,true,0,0,true);
 		_("Time delay (s)");
 		InitNewProperties();
+	}
+
+	void InitProp() {
+		if (this->pere != NULL)
+		{
+			if (this->pere->GetElementInfos().typeElement == ELEMENT_TYPE_SCENE_SOURCES_SOURCE)
+			{
+				this->DeleteAllElementByType(ELEMENT_TYPE_TREE_LIST);
+				Element* rootDirectivities = ApplicationConfiguration::GetRootScene()->GetElementByType(Element::ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES);
+				if (rootDirectivities)
+				{
+					Element* defaultEle = ApplicationConfiguration::GetDirectivity(this->GetEntierConfig("iddirectivity"));
+					std::list<Element::ELEMENT_TYPE> filterTree;
+					filterTree.push_back(ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES);
+					filterTree.push_back(ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES_APP);
+					filterTree.push_back(ELEMENT_TYPE_DIRECTIVITIES_APP);
+					filterTree.push_back(ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES_USER);
+					filterTree.push_back(ELEMENT_TYPE_DIRECTIVITIES_USER);
+					this->AppendFils(new E_Data_Tree(this, "directivity-balloon", "Directivity Balloon", rootDirectivities, filterTree, defaultEle, false, 1));
+					if (this->GetListConfig("directivite") != DIRECTIVITE_SOURCE_DIRECTIONNEL)
+					{
+						this->SetReadOnlyConfig("directivity-balloon");
+					}
+				}
+			}
+		}
 	}
 public:
 	enum DIRECTIVITE_SOURCE
@@ -140,6 +157,16 @@ public:
 	void Modified(Element* eModif)
 	{
 		t_elementInfo filsInfo=eModif->GetElementInfos();
+		// si l'on a changé de ballon de directivité
+		if (filsInfo.typeElement == ELEMENT_TYPE_TREE_LIST && filsInfo.libelleElement == "directivity-balloon")
+		{
+			E_Data_Tree* ElementTree = dynamic_cast<E_Data_Tree*>(eModif);
+			if (ElementTree)
+			{
+				this->UpdateEntierConfig("iddirectivity", ApplicationConfiguration::GetDirectivityId(ElementTree->GetChoice()));
+			}
+		}
+		// si l'on a changé de type de directivité
 		if(filsInfo.libelleElement=="directivite")
 		{
 			bool newStateCoord=false;
