@@ -42,7 +42,7 @@ std::vector<E_Directivity*> ApplicationConfiguration::allDirectivity;
 std::vector<ApplicationConfiguration::t_vec_param> ApplicationConfiguration::vec_param;
 wxString ApplicationConfiguration::nameNodeSpectre="appspectrums";
 wxString ApplicationConfiguration::nameNodeMateriaux = "appmaterials";
-wxString ApplicationConfiguration::nameNodeDirectivity="appdirecivity";
+wxString ApplicationConfiguration::nameNodeDirectivity="appdirectivities";
 smart_ptr<wxFileConfig> ApplicationConfiguration::projectConfig=NULL;
 Element* ApplicationConfiguration::rootScene=NULL;
 smart_ptr<Element> ApplicationConfiguration::rootUserConfig;
@@ -71,7 +71,7 @@ const wxString ApplicationConfiguration::CONST_USER_PREFERENCE_FILE_NAME="isimpa
 const wxString ApplicationConfiguration::CONST_RESOURCE_FOLDER= wxString(".") + wxFileName::GetPathSeparator();
 const wxString ApplicationConfiguration::CONST_RESOURCE_DATA_FOLDER=wxString("Bitmaps")+wxFileName::GetPathSeparator();
 const wxString ApplicationConfiguration::CONST_RESOURCE_ISO_FOLDER=wxString("iso")+wxFileName::GetPathSeparator();
-
+const wxString ApplicationConfiguration::CONST_RESOURCE_DIRECTIVITY_FOLDER = wxString("Directivities") + wxFileName::GetPathSeparator();
 
 
 const wxString ApplicationConfiguration::CONST_TETROOT_PATH=CONST_RESOURCE_FOLDER+wxString("meshing")+wxFileName::GetPathSeparator();

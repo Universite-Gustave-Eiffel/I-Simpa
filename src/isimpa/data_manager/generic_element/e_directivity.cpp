@@ -41,8 +41,6 @@ E_Directivity::E_Directivity(Element* parent, wxString Nom, ELEMENT_TYPE _type, 
 	idDirectivity = -1;
 	wxString propVal;
 
-	// TODO : Gestion des directivités par appconfig
-
 	if (nodeElement != NULL) // && nodeElement->GetAttribute("wxid",&propVal)
 	{
 		//Element initialisé AVEC Xml
@@ -62,8 +60,16 @@ E_Directivity::E_Directivity(Element* parent, wxString Nom, ELEMENT_TYPE _type, 
 
 		wxXmlNode* currentChild;
 		currentChild = nodeElement->GetChildren();
-		wxFileName storageFolder(ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath);
-		storageFolder.AppendDir("loudspeaker");
+		// app or user folder
+		wxFileName storageFolder("");
+		if (_type == ELEMENT_TYPE_DIRECTIVITIES_APP)
+		{
+			storageFolder.Assign(ApplicationConfiguration::CONST_RESOURCE_DIRECTIVITY_FOLDER);
+		}
+		else {
+			storageFolder.Assign(ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath + "loudspeaker" + wxFileName::GetPathSeparator());
+		}
+
 		while (currentChild != NULL)
 		{
 			if (currentChild->GetAttribute("eid", &propValue))

@@ -29,7 +29,7 @@
 * ----------------------------------------------------------------------*/
 
 #include "first_header_include.hpp"
-
+#include "data_manager/generic_element/e_directivity_app.h"
 #include "data_manager/element.h"
 
 /** \file e_scene_bdd_spectrums_app.h
@@ -49,7 +49,26 @@ public:
 		SetIcon(GRAPH_STATE_EXPANDED, GRAPH_USER_DIRECTIVITY_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL, GRAPH_USER_DIRECTIVITY_CLOSE);
 
-		// TODO : directivités de référence, fourni avec l'appli
+		wxXmlNode* noeudCfg = ApplicationConfiguration::GetAppDirectivityNode();
+
+		if (noeudCfg != NULL)
+		{
+			wxXmlNode* currentChild;
+			currentChild = noeudCfg->GetChildren();
+			// On va créer les fils de notre noeudCourant
+			wxString propValue;
+			while (currentChild != NULL)
+			{
+				if (currentChild->GetAttribute("eid", &propValue))
+				{
+					long typeEle;
+					propValue.ToLong(&typeEle);
+					if (typeEle == Element::ELEMENT_TYPE_DIRECTIVITIES_USER || typeEle == Element::ELEMENT_TYPE_DIRECTIVITIES_APP)
+						this->AppendFils(new E_Directivity_App(currentChild, this));
+				}
+				currentChild = currentChild->GetNext();
+			}
+		}
 	}
 
 	E_Scene_Bdd_Directivities_Application(Element* parent)

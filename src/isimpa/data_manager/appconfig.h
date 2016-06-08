@@ -200,6 +200,7 @@ public:
 	static const wxString CONST_RESOURCE_FOLDER; /*<! Dossier racine où se trouve les données du programme*/
 	static const wxString CONST_RESOURCE_DATA_FOLDER; /*<! Dossier racine où se trouve les données du programme*/
 	static const wxString CONST_RESOURCE_ISO_FOLDER; /*<! Dossier racine où se trouve les données du programme*/
+	static const wxString CONST_RESOURCE_DIRECTIVITY_FOLDER;  /*<! Dossier racine où se trouve les directivités de référence du programme*/
 	//static const wxString CONST_RESOURCE_LNG_FOLDER; /*<! Dossier racine où se trouve les dossiers de langue*/
 	static const wxString CONST_CORE_PATH; /*<! Dossier racine où se trouve les données du programme*/
 	static const wxString CONST_STATIC_XML_FILE; /*<! fichier xml de configuration d'application (materiaux et spectres application)*/

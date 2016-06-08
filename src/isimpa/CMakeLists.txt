@@ -168,6 +168,7 @@ set(DATA_MANAGER_GENERICELEM_SOURCES
     data_manager/generic_element/e_directivity.h
     data_manager/generic_element/e_directivity.cpp
     data_manager/generic_element/e_directivity_user.h
+    data_manager/generic_element/e_directivity_app.h
     data_manager/generic_element/e_gammeabsorption.cpp
     data_manager/generic_element/e_gammeabsorption.h
     data_manager/generic_element/e_gammefrequence.cpp
@@ -447,6 +448,7 @@ ${ISIMPA_RESSOURCES}/Doc
 ${ISIMPA_RESSOURCES}/Locale
 ${ISIMPA_RESSOURCES}/SystemScript
 ${ISIMPA_RESSOURCES}/UserScript
+${ISIMPA_RESSOURCES}/Directivities
 DESTINATION  ${PROJECT_BINARY_DIR}/bin)
 
 if(WIN32)

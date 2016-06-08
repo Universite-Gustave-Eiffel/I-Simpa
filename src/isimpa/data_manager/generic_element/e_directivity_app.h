@@ -32,54 +32,38 @@
 
 #include "e_directivity.h"
 
-/** \file e_directivity_user.h
+/** \file e_directivity_app.h
 \brief Classe spécialisant e_directivity
 
-Représente une directivité personalisée utilisateur
+Représente une directivité de référence
 */
 
 /**
 \brief Classe spécialisant e_directivity
 
-Représente une directivité personalisée utilisateur
+Représente une directivité de référence
 */
 
-class E_Directivity_User : public E_Directivity
+class E_Directivity_App : public E_Directivity
 {
 public:
-	E_Directivity_User(wxXmlNode* noeudCourant, Element* parent)
-		:E_Directivity(parent, "User directivity", Element::ELEMENT_TYPE_DIRECTIVITIES_USER, noeudCourant)
+	E_Directivity_App(wxXmlNode* noeudCourant, Element* parent)
+		:E_Directivity(parent, "Reference directivity", Element::ELEMENT_TYPE_DIRECTIVITIES_APP, noeudCourant)
 	{
-		this->elementInfo.userDestroyable = true;
+		this->elementInfo.userDestroyable = false;
 	}
 
-	E_Directivity_User(Element* parent)
-		:E_Directivity(parent, "User directivity", Element::ELEMENT_TYPE_DIRECTIVITIES_USER)
+	void InitProp()
 	{
-		this->elementInfo.userDestroyable = true;
-		InitProperties();
-	}
-
-	void OnBeginLabelEdit(wxTreeEvent& treeEvent)
-	{
-		// On autorise l'edition en surchargeant l'événement
-	}
-
-	void OnEndLabelEdit(wxTreeEvent& treeEvent)
-	{
-		if (treeEvent.GetLabel() != "")
-		{
-			this->elementInfo.libelleElement = treeEvent.GetLabel();
-			this->Modified(this); //Indique le l'element a été modifié
-		}
+		this->SetReadOnlyAllConfig(true, -1);
 	}
 
 	virtual wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)
 	{
-		if (!this->ExportMode)
-			return NoeudParent;
-		else
-			return E_Directivity::SaveXMLDoc(NoeudParent);
+		wxXmlNode* thisNode = E_Directivity::SaveXMLDoc(NoeudParent);
+		thisNode->SetName("directivities"); // Nom de la balise xml ( pas d'espace autorise )
+
+		return thisNode;
 	}
 
 };
