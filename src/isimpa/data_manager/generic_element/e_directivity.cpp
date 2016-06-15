@@ -78,7 +78,7 @@ E_Directivity::E_Directivity(Element* parent, wxString Nom, ELEMENT_TYPE _type, 
 				propValue.ToLong(&typeEle);
 				if (typeEle == Element::ELEMENT_TYPE_FILE)
 				{
-					this->AppendFils(new E_Data_File(currentChild, this, storageFolder.GetPath()));
+					this->AppendFils(new E_Data_File(currentChild, this, storageFolder.GetPath(), "Open loudspeaker file", "TXT files (*.TXT)|*.TXT"));
 				}
 			}
 			currentChild = currentChild->GetNext();
@@ -108,7 +108,7 @@ void E_Directivity::InitProperties()
 	{
 		storageFolder.Mkdir();
 	}
-	this->AppendPropertyFile("file", "loudspeaker", storageFolder.GetPath());
+	this->AppendPropertyFile("file", "loudspeaker", storageFolder.GetPath(), "Open loudspeaker file", "TXT files (*.TXT)|*.TXT");
 }
 
 int E_Directivity::GetIdDirectivity()

@@ -52,7 +52,12 @@
 
 class wxGridCellFileEditor : public wxGridCellTextEditor
 {
+private:
+	wxString dialogTitle;
+	wxString fileExtension;
 public:
+	wxGridCellFileEditor(wxString dialogTitle, wxString fileExtension);
+
 	/**
 	* Début d'édition du champ
 	* @param row Ligne

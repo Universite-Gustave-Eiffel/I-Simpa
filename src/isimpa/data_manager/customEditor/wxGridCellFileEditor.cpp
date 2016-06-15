@@ -32,12 +32,18 @@
 #include <wx/filedlg.h>
 #include "last_cpp_include.hpp"
 
+wxGridCellFileEditor::wxGridCellFileEditor(wxString _dialogTitle, wxString _fileExtension)
+ :wxGridCellTextEditor() 
+{
+	dialogTitle = _dialogTitle;
+	fileExtension = _fileExtension;
+}
+
 void wxGridCellFileEditor::BeginEdit(int row, int col, wxGrid* grid) 
 {
 	wxASSERT_MSG(m_control, wxT("The wxGridCellEditor must be created first!"));
 
-	wxFileDialog openFileDialog(grid, _("Open loudspeaker file"), "", "",
-			"TXT files (*.TXT)|*.TXT", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
+	wxFileDialog openFileDialog(grid, _(dialogTitle), "", "", fileExtension, wxFD_OPEN | wxFD_FILE_MUST_EXIST);
 
 	if (openFileDialog.ShowModal() == wxID_OK) 
 	{

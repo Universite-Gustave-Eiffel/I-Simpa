@@ -76,10 +76,10 @@ public:
 
 	virtual wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)
 	{
-		if (!this->ExportMode)
-			return NoeudParent;
-		else
-			return E_Directivity::SaveXMLDoc(NoeudParent);
+		wxXmlNode* thisNode = E_Directivity::SaveXMLDoc(NoeudParent);
+		thisNode->SetName("directivities"); // Nom de la balise xml ( pas d'espace autorise )
+
+		return thisNode;
 	}
 
 };

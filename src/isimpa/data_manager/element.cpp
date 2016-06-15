@@ -1413,11 +1413,11 @@ Element* Element::AppendPropertyColor(wxString propertyName,wxString propertyLab
 		return alreadyExist;
 }
 
-Element* Element::AppendPropertyFile(wxString propertyName, wxString propertyLabel, wxString storageFolder)
+Element* Element::AppendPropertyFile(wxString propertyName, wxString propertyLabel, wxString storageFolder, wxString _dialogTitle, wxString _fileExtension)
 {
 	Element* alreadyExist = NULL;
 	if (!IsPropertyExist(propertyName, &alreadyExist))
-		return this->AppendFils(new E_Data_File(this, propertyName, propertyLabel, storageFolder));
+		return this->AppendFils(new E_Data_File(this, propertyName, propertyLabel, storageFolder, _dialogTitle, _fileExtension));
 	else
 		return alreadyExist;
 }

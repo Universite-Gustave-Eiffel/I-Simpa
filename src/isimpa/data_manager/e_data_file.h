@@ -50,14 +50,21 @@
 class E_Data_File : public E_Data
 {
 protected:
+	wxString dialogTitle;
+	wxString fileExtension;
+
 	wxFileName file;
 	wxFileName storageFolder;
+
 	bool copyToFolder;
 public:
-	E_Data_File(wxXmlNode* noeudCourant, Element* parent, wxString storageFolder)
+	E_Data_File(wxXmlNode* noeudCourant, Element* parent, wxString storageFolder, wxString _dialogTitle, wxString _fileExtension)
 		:E_Data(parent, "Unnamedprop", "", Element::ELEMENT_TYPE_FILE, noeudCourant)
 	{
 		// création depuis le xml
+		dialogTitle = _dialogTitle;
+		fileExtension = _fileExtension;
+
 		wxString propFile;
 		if (noeudCourant->GetAttribute("value", &propFile))
 		{
@@ -67,9 +74,12 @@ public:
 		}
 	}
 
-	E_Data_File(Element* parent, wxString dataName, wxString dataLabel, wxString storageFolder)
+	E_Data_File(Element* parent, wxString dataName, wxString dataLabel, wxString storageFolder, wxString _dialogTitle, wxString _fileExtension)
 		:E_Data(parent, dataName, dataLabel, Element::ELEMENT_TYPE_FILE)
 	{
+		dialogTitle = _dialogTitle;
+		fileExtension = _fileExtension;
+		
 		this->file.Assign("Choose a file");
 		this->storageFolder.AssignDir(storageFolder);
 		copyToFolder = true;
@@ -93,7 +103,7 @@ public:
 	{
 		E_Data::FillWxGrid(gridToFeed, col);
 		int row = gridToFeed->GetNumberRows() - 1;
-		gridToFeed->SetCellEditor(row, col, new wxGridCellFileEditor());
+		gridToFeed->SetCellEditor(row, col, new wxGridCellFileEditor(dialogTitle, fileExtension));
 		gridToFeed->SetCellValue(row, col, file.GetFullName());
 	}
 
