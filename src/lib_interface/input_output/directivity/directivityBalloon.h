@@ -36,23 +36,26 @@
 #define DIRECTIVITY_BALLOON
 
 /**
-* @brief Modèle d'un ballon de directivité
+* @brief Data structure for Directivity Balloon 
 */
 class t_DirectivityBalloon
 {
 private:
 	/** @brief store magnitude values as attenuations[frequency][phi][theta] = value */
 	std::map<double, std::map<double, std::map<double, double>>> attenuations;
-
-	static const int ANGLE_INCREMENT = 5;
+	int AngleIncrement;
 
 public:
 	/** 
-	* Constructor using a directivity file
-	* @param filePath File to parse
+	* Constructor using a Parsing strategy
+	* @param parsingStrategy a class implementing the DirectivityParser interface
+	* @see DirectivityParser
 	*/
-	t_DirectivityBalloon(std::string filePath);
+	t_DirectivityBalloon();
 	~t_DirectivityBalloon();
+
+	void setValue(double freq, double phi, double theta, double value);
+	void setAngleIncrement(int _AngleIncrement);
 
 	bool asDataForFrequency(double frequency);
 	bool asValue(double freq, double phi, double theta);

@@ -15,9 +15,7 @@ set(LIBINTERFACE_SOURCES
     en_numeric.hpp
     en_numeric.cpp
     std_tools.hpp
-    std_tools.cpp
-    directivityBalloon.h
-    directivityBalloon.cpp)
+    std_tools.cpp)
 
 set(CORE_SOURCES
     Core/mathlib.h
@@ -69,6 +67,12 @@ set(IO_PLY_SOURCES
     input_output/ply/rply_interface.hpp
     input_output/ply/rply_interface.cpp)
 
+set(IO_DIRECTIVITY_SOURCES
+    input_output/directivity/directivityBalloon.h
+    input_output/directivity/directivityBalloon.cpp
+    input_output/directivity/directivityParser.h
+    input_output/directivity/directivityParser.cpp)
+
 set(TOOLS_SOURCES
     tools/octree44.hpp
     tools/octree44.cpp
@@ -100,6 +104,7 @@ source_group( "input_output\\gabe" FILES ${IO_GABE_SOURCES} )
 source_group( "input_output\\importExportMaillage" FILES ${IO_MAILLAGE_SOURCES} )
 source_group( "input_output\\particles" FILES ${IO_PARTICLES_SOURCES} )
 source_group( "input_output\\ply" FILES ${IO_PLY_SOURCES} )
+source_group( "input_output\\directivity" FILES ${IO_DIRECTIVITY_SOURCES} )
 
 source_group( "tools" FILES ${TOOLS_SOURCES} )
 
@@ -122,6 +127,7 @@ add_library(lib_interface
     ${IO_MAILLAGE_SOURCES}
     ${IO_PARTICLES_SOURCES}
     ${IO_PLY_SOURCES}
+    ${IO_DIRECTIVITY_SOURCES}
     ${TOOLS_SOURCES})
 
 # Creates a folder "libraries" and adds target project (lib_interface.vcproj) under it

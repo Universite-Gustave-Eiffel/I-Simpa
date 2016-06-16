@@ -32,6 +32,7 @@
 #include "base_core_configuration.h"
 #include <iostream>
 #include <string.h>
+#include "input_output/directivity/directivityParser.h"
 
 using namespace CalculsGenerauxThermodynamique;
 using namespace CGTconst;
@@ -169,7 +170,10 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml, bool verbose_mode)
 							directivityFile_path += *FastGetConfigValue(SPROP_DIRECTIVITY_FOLDER_PATH);
 							directivityFile_path += directivityFile;
 
-							nvSource->directivity = new t_DirectivityBalloon(directivityFile_path);
+							t_DirectivityBalloon *directivity = new t_DirectivityBalloon();
+							xhn_DirectivityParser fileparser;
+							fileparser.parse(directivityFile_path, directivity);
+							nvSource->directivity = directivity;
 							directivityList[directivityFile] = nvSource->directivity;
 							if (verbose_mode) { cout << "Directivity loaded : " << directivityFile_path << endl; }
 						}

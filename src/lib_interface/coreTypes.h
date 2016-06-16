@@ -30,7 +30,7 @@
 
 #include "Core/mathlib.h"
 #include "coreString.h"
-#include "directivityBalloon.h"
+#include "input_output/directivity/directivityBalloon.h"
 #include <vector>
 
 #ifndef CORE_TYPES
