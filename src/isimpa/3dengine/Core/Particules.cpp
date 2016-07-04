@@ -38,7 +38,11 @@
 #include <wx/filename.h>
 #include <wx/utils.h>
 #include <input_output/part_binary.h>
+#include <limits>
+#include <math.h>
 #include "last_cpp_include.hpp"
+
+#define __PARTICLE_COLOR__ 0
 #define CHAR_TAB 9
 #define CHAR_RETURN_WIN 13
 #define CHAR_RETURN_UNIX 10
@@ -52,6 +56,8 @@ ParticulesControler::ParticulesControler()
 	nbStep=0;
 	nbParticles=0;
 	legendRenderer=NULL;
+	min_energy = (std::numeric_limits<float>::max)();
+	max_energy = (std::numeric_limits<float>::min)();
 }
 
 
@@ -280,6 +286,12 @@ void ParticulesControler::LoadPBin(wxString fileName, bool doCoordsTransformatio
 					tabInfoParticles[pIndex].tabSteps[pTimeIndex].pos[1]=partTimestep.position[1];
 					tabInfoParticles[pIndex].tabSteps[pTimeIndex].pos[2]=partTimestep.position[2];
 					tabInfoParticles[pIndex].tabSteps[pTimeIndex].energie=partTimestep.energy;
+
+					if (partTimestep.energy > max_energy)
+						max_energy = partTimestep.energy;
+					if (partTimestep.energy < min_energy)
+						min_energy = partTimestep.energy;
+
 					if(FileVersionDifferent)
 						if((unsigned long)binFile.tellp()!=curPosP+enteteFichier.particleInfoLength)
 							binFile.seekp(curPosP+enteteFichier.particleInfoLength);
@@ -381,6 +393,7 @@ void ParticulesControler::RedrawLegend()
 		}
 	}
 }
+
 void ParticulesControler::Render(const int& timeStp)
 {
 	glDisable(GL_LIGHTING);
@@ -396,11 +409,41 @@ void ParticulesControler::Render(const int& timeStp)
 	if(renderMethod==Element::IDEVENT_LOAD_PARTICLE_SIMULATION)
 	{
 		glBegin(GL_POINTS);
-		glColor4f(particleColor[0],particleColor[1],particleColor[2],1.);
+		glColor4f(particleColor[0], particleColor[1], particleColor[2], 1.);
+		
+		#if __PARTICLE_COLOR__
+			// linear to decibel scale
+			max_energy = 10 * (log(max_energy) / log(10));
+			min_energy = 10 * (log(min_energy) / log(10));
+
+			auto echelon1 = max_energy - 5;
+			auto echelon2 = max_energy - 10;
+			auto echelon3 = max_energy - 15;
+			auto echelon4 = max_energy - 20;
+			auto echelon5 = max_energy - 25;
+		#endif
+
 		for(unsigned int i=0;i<nbParticles;i++)
 		{
 			if(tabInfoParticles[i].nbStep>timeStp-tabInfoParticles[i].firstStep && tabInfoParticles[i].tabSteps)
 			{
+				#if __PARTICLE_COLOR__
+					// color in function of energy
+					float particle_energy = 10 * (log(tabInfoParticles[i].tabSteps[timeStp - tabInfoParticles[i].firstStep].energie) / log(10));
+					if (particle_energy > echelon1)
+						glColor4f(1.0, 0.0, 0.0, 1.);
+					else if (particle_energy > echelon2)
+						glColor4f(1.0, 0.5, 0.0, 1.);
+					else if (particle_energy > echelon3)
+						glColor4f(1.0, 1.0, 0.0, 1.);
+					else if (particle_energy > echelon4)
+						glColor4f(0.5, 1.0, 0.0, 1.);
+					else if (particle_energy > echelon5)
+						glColor4f(0.0, 1.0, 1.0, 1.);
+					else
+						glColor4f(0.0, 0.5, 1.0, 1.);
+				#endif
+				
 				glVertex3fv(tabInfoParticles[i].tabSteps[timeStp-tabInfoParticles[i].firstStep].pos);
 			}
 		}

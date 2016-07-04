@@ -5,7 +5,7 @@
 
 
 
-#define SPPS_VERSION "Spps 2.1.4 version december 13 2013"
+#define SPPS_VERSION "Spps 2.2.0 version june 2016"
 #define __USE_BOOST_RANDOM_GENERATOR__
 #define UTILISER_MAILLAGE_OPTIMISATION
 

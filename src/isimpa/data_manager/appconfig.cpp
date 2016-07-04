@@ -38,9 +38,11 @@
 wxXmlDocument ApplicationConfiguration::appConfig;
 std::vector<E_GammeFrequence*> ApplicationConfiguration::allSpectrum;
 std::vector<E_Materiau*> ApplicationConfiguration::allMaterial;
+std::vector<E_Directivity*> ApplicationConfiguration::allDirectivity;
 std::vector<ApplicationConfiguration::t_vec_param> ApplicationConfiguration::vec_param;
 wxString ApplicationConfiguration::nameNodeSpectre="appspectrums";
-wxString ApplicationConfiguration::nameNodeMateriaux="appmaterials";
+wxString ApplicationConfiguration::nameNodeMateriaux = "appmaterials";
+wxString ApplicationConfiguration::nameNodeDirectivity="appdirectivities";
 smart_ptr<wxFileConfig> ApplicationConfiguration::projectConfig=NULL;
 Element* ApplicationConfiguration::rootScene=NULL;
 smart_ptr<Element> ApplicationConfiguration::rootUserConfig;
@@ -58,6 +60,7 @@ const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FILENAME=wxStr
 const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_CUT_FILENAME="rs_cut.csbin";
 const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FILENAME_TR="TR.csbin";
 const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FILENAME_EDT="EDT.csbin";
+const wxString ApplicationConfiguration::CONST_REPORT_DIRECTIVITIES_FOLDER_PATH = wxString("loudspeakers") + wxFileName::GetPathSeparator();;
 const wxString ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME="sceneMesh.bin";
 
 
@@ -68,7 +71,7 @@ const wxString ApplicationConfiguration::CONST_USER_PREFERENCE_FILE_NAME="isimpa
 const wxString ApplicationConfiguration::CONST_RESOURCE_FOLDER= wxString(".") + wxFileName::GetPathSeparator();
 const wxString ApplicationConfiguration::CONST_RESOURCE_DATA_FOLDER=wxString("Bitmaps")+wxFileName::GetPathSeparator();
 const wxString ApplicationConfiguration::CONST_RESOURCE_ISO_FOLDER=wxString("iso")+wxFileName::GetPathSeparator();
-
+const wxString ApplicationConfiguration::CONST_RESOURCE_DIRECTIVITY_FOLDER = wxString("Directivities") + wxFileName::GetPathSeparator();
 
 
 const wxString ApplicationConfiguration::CONST_TETROOT_PATH=CONST_RESOURCE_FOLDER+wxString("meshing")+wxFileName::GetPathSeparator();
@@ -94,7 +97,7 @@ ApplicationConfiguration::t_App_Info ApplicationConfiguration::GLOBAL_CURRENT_AP
 
 
 
-ApplicationConfiguration::t_GLOBAL_VAR ApplicationConfiguration::GLOBAL_VAR={"current",false};
+ApplicationConfiguration::t_GLOBAL_VAR ApplicationConfiguration::GLOBAL_VAR={"current","current",false};
 
 DEFINE_EVENT_TYPE( wxEVT_PSPS_MAIN_EVENT )
 
@@ -116,6 +119,9 @@ void ApplicationConfiguration::LoadConfiguration(wxString propFile)
 		tmpDocXml.Save(propFile);
 		//Noeud matériaux programme
 		wxXmlNode* materiauRoot=new wxXmlNode(xmlRoot,wxXML_ELEMENT_NODE,nameNodeMateriaux);
+		tmpDocXml.Save(propFile);
+		//Noeud directivités programme
+		wxXmlNode* directivityRoot = new wxXmlNode(xmlRoot, wxXML_ELEMENT_NODE, nameNodeDirectivity);
 		tmpDocXml.Save(propFile);
 	}
 	appConfig.Load(propFile);
@@ -549,6 +555,118 @@ std::vector<ApplicationConfiguration::t_lstMat> ApplicationConfiguration::GetLst
 	}
 	return retVec;
 }
+
+void ApplicationConfiguration::AddDirectivity(E_Directivity* elToAdd) 
+{
+	allDirectivity.push_back(elToAdd);
+}
+
+void ApplicationConfiguration::DeleteDirectivity(int xmlId)
+{
+	for (long i = 0; i<allDirectivity.size(); i++)
+	{
+		if (allDirectivity[i]->GetElementInfos().xmlIdElement == xmlId)
+		{
+			allDirectivity.erase(allDirectivity.begin() + i);	//retire le pointeur de la liste
+			break;
+		}
+	}
+}
+
+E_Directivity* ApplicationConfiguration::GetDirectivity(int idDirectivity)
+{
+	E_Directivity* findDirectivity = NULL;
+	for (int i = 0; i<allDirectivity.size(); i++)
+	{
+		if (allDirectivity[i]->GetIdDirectivity() == idDirectivity)
+		{
+			findDirectivity = allDirectivity[i];
+			break;
+		}
+	}
+	return findDirectivity;
+}
+
+int ApplicationConfiguration::GetDirectivityId(Element* pereEle)
+{
+	if (!pereEle)
+		return -1;
+	//Premiere étape, retrouver l'indice de l'élément de la directivité
+	Element* elMat;
+	elMat = pereEle->GetElementByType(Element::ELEMENT_TYPE_DIRECTIVITIES_USER);
+	if (!elMat)
+		elMat = pereEle->GetElementByType(Element::ELEMENT_TYPE_DIRECTIVITIES_APP);
+	if (!elMat)
+		return -1;
+	for (int i = 0; i<allDirectivity.size(); i++)
+	{
+		if (allDirectivity[i] == elMat)
+			return allDirectivity[i]->GetIdDirectivity();
+	}
+	return -1;
+}
+
+bool ApplicationConfiguration::orderDirectivity(E_Directivity* lSp, E_Directivity* rSp)
+{
+	return lSp->GetIdDirectivity()<rSp->GetIdDirectivity();
+}
+
+int ApplicationConfiguration::GetFreeDirectivityId()
+{
+	std::sort(allDirectivity.begin(), allDirectivity.end(), orderDirectivity);
+	//On ordonne les directivités pour avoir le résultat attendu dans l'algorithme de recherche
+	int freeDirectivity = 100;
+	for (int i = 0; i<allDirectivity.size(); i++)
+	{
+		if (allDirectivity[i]->GetTypeDireciticity() == Element::ELEMENT_TYPE_DIRECTIVITIES_USER)
+		{
+			if (allDirectivity[i]->GetIdDirectivity() == freeDirectivity)
+				freeDirectivity++;
+		}
+	}
+	return freeDirectivity;
+}
+
+bool ApplicationConfiguration::IsIdDirectivityExist(int idDirectivity)
+{
+	for (int i = 0; i<allDirectivity.size(); i++)
+	{
+		if (allDirectivity[i]->GetIdDirectivity() == idDirectivity)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+std::vector<ApplicationConfiguration::t_lstDirectiv> ApplicationConfiguration::GetLstDirectivity()
+{
+	std::vector<t_lstDirectiv> retVec;
+	for (int i = 0; i<allDirectivity.size(); i++)
+	{
+		Element::t_elementInfo infoSpec = allDirectivity[i]->GetElementInfos();
+		t_lstDirectiv curDirectiv;
+		curDirectiv.idDirectivity = allDirectivity[i]->GetIdDirectivity();
+		curDirectiv.typeDirectivity = infoSpec.typeElement;
+		curDirectiv.nom = allDirectivity[i]->GetElementInfos().libelleElement;
+		retVec.push_back(curDirectiv);
+	}
+	return retVec;
+}
+
+wxXmlNode* ApplicationConfiguration::GetAppDirectivityNode()
+{
+	wxXmlNode* rootCfg = appConfig.GetRoot();
+	wxXmlNode* currentNode = NULL;
+	if (rootCfg)
+	{
+		currentNode = rootCfg->GetChildren();
+		while (currentNode != NULL && currentNode->GetName() != nameNodeDirectivity)
+			currentNode = currentNode->GetNext();
+	}
+	return currentNode;
+}
+
 void ApplicationConfiguration::AppendRefElement(Element* newRefEl,ELEMENT_REF_TYPE hashIndex)
 {
 	tab_refElementLst.refElementLst[hashIndex][newRefEl->GetElementInfos().xmlIdElement]=newRefEl;

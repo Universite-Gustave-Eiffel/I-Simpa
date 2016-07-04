@@ -259,6 +259,11 @@ public:
 	 * @param fromCtrl Indice du contrôle lié à l'événement
 	 */
 	void ElementEvent(wxCommandEvent& eventElement,eventCtrl fromCtrl,Element* eltevt=NULL);
+
+	/**
+	 * Getter dossier courant
+	 */
+	wxString GetCurrentFolder();
 	//Commandes de la fenêtre principale
 
 	/** @defgroup cmdprojectmanager Commandes de la fenêtre principale
@@ -640,6 +645,7 @@ private:
 	void OnMenuNewSource(Element* source);
 	void OnMenuNewSourceGroup(Element* elementSelected);
 	void OnMenuNewUserFreq(Element* elementSelected);
+	void OnMenuNewUserDirectiv(Element* elementSelected);
 	Element* OnMenuNewEncombrement(Element* elementSelected,Element::ELEMENT_TYPE typeEl);
 
 	void OnMenuNewVolume(Element* elementSelected);

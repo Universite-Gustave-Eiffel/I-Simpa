@@ -35,6 +35,7 @@
 #include "IHM/ComboTreeCtrl.h"
 #include "e_data_text.h"
 #include "e_data_color.h"
+#include "e_data_file.h"
 #include "e_data_list.h"
 #include "e_data_entier.h"
 #include "e_data_float.h"
@@ -1195,6 +1196,23 @@ wxFont Element::GetFontConfig(const wxString& name)
 	wxLogDebug(_("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
 	return wxFont();
 }
+
+wxFileName Element::GetFileConfig(wxString name)
+{
+	//On recherche les éléments qui porte le nom name
+	for (std::list<Element*>::iterator itfils = this->fils.begin(); itfils != this->fils.end(); itfils++)
+	{
+		const Element::t_elementInfo& infoEl = (*itfils)->GetElementInfos();
+		if (infoEl.typeElement == Element::ELEMENT_TYPE_FILE && infoEl.libelleElement == name)
+		{
+			E_Data_File* dataEl = dynamic_cast<E_Data_File*>((*itfils));
+			return dataEl->GetFile() ;
+		}
+	}
+	wxLogDebug(_("This field does not exist!\nName of element: %s Name of the field: %s"), this->elementInfo.libelleElement, name);
+	return wxFileName();
+}
+
 vec3 Element::GetColorConfig(wxString name)
 {
 	//On recherche les éléments qui porte le nom name
@@ -1391,6 +1409,15 @@ Element* Element::AppendPropertyColor(wxString propertyName,wxString propertyLab
 	Element* alreadyExist=NULL;
 	if(!IsPropertyExist(propertyName,&alreadyExist))
 		return this->AppendFils(new E_Data_Color(this,propertyName,propertyLabel,wxColor(defaultRed,defaultGreen,defaultBlue)));
+	else
+		return alreadyExist;
+}
+
+Element* Element::AppendPropertyFile(wxString propertyName, wxString propertyLabel, wxString storageFolder, wxString _dialogTitle, wxString _fileExtension)
+{
+	Element* alreadyExist = NULL;
+	if (!IsPropertyExist(propertyName, &alreadyExist))
+		return this->AppendFils(new E_Data_File(this, propertyName, propertyLabel, storageFolder, _dialogTitle, _fileExtension));
 	else
 		return alreadyExist;
 }
