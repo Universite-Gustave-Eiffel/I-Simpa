@@ -34,3 +34,9 @@ images/
 vc_msw/
 vc_mswd/
 Thumbs.db
+.cmake_dirty
+.codelite/
+I-Simpa.workspace
+Makefile
+isimpa.mk
+isimpa.project
