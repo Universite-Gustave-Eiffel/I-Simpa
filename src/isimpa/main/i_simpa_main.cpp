@@ -408,12 +408,21 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	m_mgr.AddPane(treeUserPref.get(), wxAuiPaneInfo().
 				Name("userpref").Caption(_("Interface options")).Hide()
 				);
-	int gl_attrib[20] = { WX_GL_RGBA, WX_GL_MIN_RED, 1, WX_GL_MIN_GREEN, 1,
-	WX_GL_MIN_BLUE, 1, WX_GL_DEPTH_SIZE, 1,
-	WX_GL_LEVEL , 1};
-
+#ifdef __WXMSW__
+    int *gl_attrib = NULL;
+#else
+    int gl_attrib[20] =
+        { WX_GL_RGBA, WX_GL_MIN_RED, 1, WX_GL_MIN_GREEN, 1,
+        WX_GL_MIN_BLUE, 1, WX_GL_DEPTH_SIZE, 1,
+        WX_GL_DOUBLEBUFFER,
+#  if defined(__WXMAC__)  || defined(__WXQT__)
+        GL_NONE };
+#  else
+        None };
+#  endif
+#endif
 	GlFrame = new OpenGlViewer(this, -1, wxPoint(0,25), wxSize(-1,-1),
-												0, _("Main window"), NULL ); //, gl_attrib
+												0, _("Main window"), gl_attrib );
 
 	toolbarGl = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTB_FLAT | wxTB_NODIVIDER);
 

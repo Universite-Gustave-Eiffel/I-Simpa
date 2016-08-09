@@ -13,3 +13,17 @@ fi
 export PATH=$HOME/wxWidgets-install/bin/:$PATH
 echo "wxWidget version : "
 wx-config --version
+
+
+if [ -d $HOME/boost-install/include ] ; then
+	echo "Boost already builded (and in travis cache)"
+else
+	wget https://sourceforge.net/projects/boost/files/boost/1.61.0/boost_1_61_0.tar.bz2
+	tar -xjf boost_1_61_0.tar.bz2
+	mkdir $HOME/boost-install
+	cd  boost_1_61_0 && ./bootstrap.sh --with-libraries=filesystem,system,test,regex,python,random,thread --prefix=$HOME/boost-install && ./b2 --build-type=complete install --layout=tagged
+fi
+
+export BOOST_LIBRARYDIR=$HOME/boost-install/lib/
+export BOOST_INCLUDEDIR=$HOME/boost-install/include/
+export BOOST_ROOT=$HOME/boost-install/

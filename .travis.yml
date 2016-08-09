@@ -17,18 +17,10 @@ addons:
   apt:
     sources:
     - ubuntu-toolchain-r-test
-    - boost-latest
     packages:
     - cmake
     - cmake-data
     - python
-    - libboost-thread1.55-dev
-    - libboost-random1.55-dev
-    - libboost-system1.55-dev
-    - libboost-regex1.55-dev
-    - libboost-filesystem1.55-dev
-    - libboost-test1.55-dev
-    - libboost-python1.55-dev
     - freeglut3-dev
     - libxmu-dev
     - libxi-dev
@@ -49,10 +41,11 @@ addons:
     - gcc-5
     - g++-5
 
-cache: 
+cache:
   apt: true
   directories:
   - $HOME/wxWidgets-install
+  - $HOME/boost-install
 
 notifications:
   email: false
