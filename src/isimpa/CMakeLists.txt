@@ -68,9 +68,16 @@ set(3DENGINE_TOOLS_SOURCES
 
 set(GL_SOURCES
     GL/opengl_inc.h
-    GL/wglext.h
+    GL/wglext.h)
+
+if(WIN32) # Check if we are on Windows
+  set(WIN32_SOURCES
     GL/offScreenRendering.cpp
-    GL/offScreenRendering.h)
+    GL/offScreenRendering.h
+      )
+else()
+  set(WIN32_SOURCES )
+endif()
 
 set(IHM_SOURCES
     IHM/ComboTreeCtrl.cpp
@@ -319,14 +326,14 @@ set(ISIMPA_SOURCES
     UtfConverter.cpp
     UtfConverter.h
     ConvertUTF.c
-    ConvertUTF.h
-    enum_def.cpp)
+    ConvertUTF.h)
 
 source_group( "3dengine" FILES ${3DENGINE_SOURCES} )
 source_group( "3dengine\\Core" FILES ${3DENGINE_CORE_SOURCES} )
 source_group( "3dengine\\tools" FILES ${3DENGINE_TOOLS_SOURCES} )
 
 source_group( "GL" FILES ${GL_SOURCES} )
+source_group( "WIN32" FILES ${WIN32_SOURCES})
 source_group( "IHM" FILES ${IHM_SOURCES} )
 source_group( "Language" FILES ${LANGUAGE_SOURCES} )
 
@@ -348,14 +355,30 @@ source_group( "" FILES ${ISIMPA_SOURCES} )
 #    DEPENDENCY & EXECUTABLE (OR LIB)
 #---------------------------------------#
 
+# Build auto-generated source files
+# Find package for generation
+FIND_PACKAGE(PythonInterp REQUIRED)
+
+# Ask make to call python in order to use element.h to produce enum_def.cpp
+ADD_CUSTOM_COMMAND(
+  OUTPUT "enum_def.cpp"
+  COMMAND "${PYTHON_EXECUTABLE}" ${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/python_interface/py_ui_module/generate_enum_def.py
+  ARGS    "${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/element.h" > "enum_def.cpp"
+  DEPENDS "data_manager/element.h"
+  )
+
+# Before using element_pywrap.cpp build enum_def.cpp
+set_property(SOURCE data_manager/python_interface/py_ui_module/element_pywrap.cpp APPEND PROPERTY OBJECT_DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/enum_def.cpp)
+
 # Set Properties->General->Configuration Type to Application(.exe)
 # Creates isimpa.exe with the listed sources
 # Adds sources to the Solution Explorer
-add_executable(isimpa 
+add_executable(isimpa
     ${3DENGINE_SOURCES}
     ${3DENGINE_CORE_SOURCES}
     ${3DENGINE_TOOLS_SOURCES}
     ${GL_SOURCES}
+    ${WIN32_SOURCES}
     ${IHM_SOURCES}
     ${LANGUAGE_SOURCES}
     ${DATA_MANAGER_SOURCES}
@@ -369,39 +392,36 @@ add_executable(isimpa
     ${DATA_MANAGER_TREEUSER_SOURCES}
     ${MAIN_SOURCES}
     ${MANAGER_SOURCES}
-    ${ISIMPA_SOURCES})
+    ${ISIMPA_SOURCES}
+    ${CMAKE_CURRENT_BINARY_DIR}/enum_def.cpp)
 
 # Creates a folder "executables" and adds target
 # project (isimpa.vcproj) under it
 set_property(TARGET isimpa PROPERTY FOLDER "executables")
 
-set(Boost_USE_STATIC_LIBS   ON) 
+set(Boost_USE_STATIC_LIBS   ON)
 find_package(Boost REQUIRED COMPONENTS system python)
 
-find_package(wxWidgets COMPONENTS core base xml gl aui adv tiff REQUIRED)
+IF(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    SET(wxWidgets_USE_DEBUG ON)
+    SET(wxWidgets_USE_STATIC OFF)
+    MESSAGE(STATUS "Using debug version of wxWidgets")
+ELSE()
+    SET(wxWidgets_USE_DEBUG OFF)
+    SET(wxWidgets_USE_STATIC ON)
+    MESSAGE(STATUS "Using static wxWidgets library")
+ENDIF()
+
+find_package(wxWidgets COMPONENTS core base xml gl aui adv REQUIRED)
 include(${wxWidgets_USE_FILE})
 # Find package for building
 FIND_PACKAGE(PythonLibs)
 
 find_package(OpenGL REQUIRED)
-# Build auto-generated source files
-# Find package for generation
-FIND_PACKAGE(PythonInterp REQUIRED)
-
-# Ask make to call python in order to use element.h to produce enum_def.cpp
-ADD_CUSTOM_COMMAND(
-  OUTPUT "enum_def.cpp"
-  COMMAND "${PYTHON_EXECUTABLE}" ${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/python_interface/py_ui_module/generate_enum_def.py
-  ARGS    "${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/element.h" > "enum_def.cpp"
-  DEPENDS "data_manager/element.h"
-  )
-# Before using element_pywrap.cpp build enum_def.cpp
-set_property(SOURCE data_manager/python_interface/py_ui_module/element_pywrap.cpp APPEND PROPERTY OBJECT_DEPENDS enum_def.cpp)
-
 include_directories( ${OPENGL_INCLUDE_DIRS})
 
-link_directories( ${Boost_LIBRARY_DIRS} )  
-include_directories( ${Boost_INCLUDE_DIRS} )  
+link_directories( ${Boost_LIBRARY_DIRS} )
+include_directories( ${Boost_INCLUDE_DIRS} )
 include_directories(${PYTHON_INCLUDE_PATH})
 
 # Properties->Linker->Input->Additional Dependencies
@@ -432,20 +452,20 @@ ENDIF()
 # Adds logic to INSTALL.vcproj to copy isimpa.exe to destination directory
 install (TARGETS isimpa
         RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin)
-        
-set(ISIMPA_RESSOURCES ${PROJECT_SOURCE_DIR}/currentRelease)         
-        
-install (FILES 
+
+set(ISIMPA_RESSOURCES ${PROJECT_SOURCE_DIR}/currentRelease)
+
+install (FILES
 ${ISIMPA_RESSOURCES}/appconst.xml
 ${ISIMPA_RESSOURCES}/isimpa.ico
 ${ISIMPA_RESSOURCES}/Licence.pdf
 ${ISIMPA_RESSOURCES}/Licence.rtf
          DESTINATION  ${PROJECT_BINARY_DIR}/bin)
-         
-install(DIRECTORY 
+
+install(DIRECTORY
 ${ISIMPA_RESSOURCES}/Bitmaps
-${ISIMPA_RESSOURCES}/Doc
-${ISIMPA_RESSOURCES}/Locale
+${ISIMPA_RESSOURCES}/doc
+${ISIMPA_RESSOURCES}/locale
 ${ISIMPA_RESSOURCES}/SystemScript
 ${ISIMPA_RESSOURCES}/UserScript
 ${ISIMPA_RESSOURCES}/Directivities
@@ -455,7 +475,6 @@ if(WIN32)
   install(DIRECTORY ${ISIMPA_RESSOURCES}/meshing DESTINATION  ${PROJECT_BINARY_DIR}/bin)
 ENDIF()
 
-install (FILES 
+install (FILES
 ${ISIMPA_RESSOURCES}/libsimpa/__init__.py
          DESTINATION  ${PROJECT_BINARY_DIR}/bin/libsimpa)
-        

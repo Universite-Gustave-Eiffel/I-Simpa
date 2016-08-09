@@ -1280,7 +1280,8 @@ namespace sgSpace
 		backingStoreDc(NULL)
 	{
 		InheritAttributes();
-		zoomAreaHintStyle.SetPen(&wxPen(*wxBLACK, 1, wxDOT));
+		wxPen pen = wxPen(*wxBLACK, 1, wxDOT);
+		zoomAreaHintStyle.SetPen(&pen);
 		zoomAreaHintStyle.SetBrush(wxTRANSPARENT_BRUSH);
 	}
 	SG_Area::~SG_Area()

@@ -450,7 +450,12 @@ bool OpenGlViewer::ActivateContext()
 		bool res = gl_context->SetCurrent(*this);
 		if(res) {
 			if (CurrentObject->IsFontNeedBuilding()) {
-				CurrentObject->BuildFont(((HDC)this->GetHDC()));
+				
+				#ifdef _WINDOWS
+					CurrentObject->BuildFont(this->GetHDC());
+				#else
+				    CurrentObject->BuildFont(0);
+			    #endif
 			}
 			m_GLApp->Init(CurrentObject);
 			CheckGLError();

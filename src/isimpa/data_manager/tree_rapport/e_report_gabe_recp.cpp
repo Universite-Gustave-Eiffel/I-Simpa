@@ -9,18 +9,18 @@
 * it under the terms of the GNU General Public License as published by
 * the Free Software Foundation; either version 3 of the License, or
 * (at your option) any later version.
-* 
+*
 * I-SIMPA is distributed in the hope that it will be useful,
 * but WITHOUT ANY WARRANTY; without even the implied warranty of
 * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 * GNU General Public License for more details.
-* 
+*
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software Foundation,
-* Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
+* Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
+* For more information, please consult: <http://i-simpa.ifsttar.fr> or
 * send an email to i-simpa@ifsttar.fr
 *
 * To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
@@ -81,7 +81,7 @@ bool E_Report_Gabe_Recp::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,
 	}
 	cellsValue=tmpcellsValue;
 
-	
+
 	//////////////////////////////////////
 	//Cumul sur les lignes
 	std::vector<wxFloat32> schroederGraph(nbrow-1); //Création du tableau qui va contenir les valeurs cumulé
@@ -105,14 +105,14 @@ bool E_Report_Gabe_Recp::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,
 			cellsValue[((nbcol-1)*nbrow)+idrow]=0;
 		}
 	}
-	
+
 	//Par la méthode de schroeder, compilation des pressions
 
 	float sumW=0;
 	for(int idStep=nbrow-2;idStep>=0;idStep--)
 	{
 			sumW+=schroederGraph[idStep];
-			schroederGraph[idStep]=sumW;		
+			schroederGraph[idStep]=sumW;
 	}
 
 	//////////////////////////////////////
@@ -121,7 +121,7 @@ bool E_Report_Gabe_Recp::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,
 	for(int idcol=0;idcol<nbcol;idcol++)
 	{
 		float totPression=0.f;
-		
+
 		for(int idrow=0;idrow<nbrow-1;idrow++)
 		{
 			float* wVal=&cellsValue[((idcol)*nbrow)+idrow];
@@ -186,7 +186,7 @@ bool E_Report_Gabe_Recp::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,
 		//Ajout des données au graphique
 		int nbrowel=lblRows.size();
 		int nbcolel=lblCols.size();
-		
+
 		graphPage=new MainSimpleGraphWindow(noteBookWin,-1);
 		wxString gabeFolder;
 		this->BuildFullPath(gabeFolder);
@@ -201,13 +201,14 @@ bool E_Report_Gabe_Recp::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,
 			drawingEl=new SG_Element_List(graphPage,lblCols[idcol]);
 			drawingEl->el_style.SetDrawingMethod(DRAWING_METHOD_COLS);
 			drawingEl->el_style.SetPen(wxWHITE_PEN);
-			drawingEl->el_style.SetBrush(&wxBrush(*wxBLACK,wxFDIAGONAL_HATCH ));
+			wxBrush brush =wxBrush(*wxBLACK,wxFDIAGONAL_HATCH );
+			drawingEl->el_style.SetBrush(&brush);
 			for(int idrow=0;idrow<nbrowel-1;idrow++)
 			{
 				drawingEl->PushValue(cellsValue[(idcol*nbrowel)+idrow]);
 			}
 		}
-		
+
 
 		//////////////////
 		// Ajout des axes
@@ -228,7 +229,7 @@ bool E_Report_Gabe_Recp::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,
 		graphPage->ZoomFit();
 		graphPage->LoadConfig(ApplicationConfiguration::GetFileConfig(),ApplicationConfiguration::CONST_GRAPH_CONFIG_PATH,true);
 
-		
+
 
 
 		//////////////////////////////////////////////
@@ -251,7 +252,8 @@ bool E_Report_Gabe_Recp::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,
 		{
 			SG_Element_Data* drawingElDat=new SG_Element_Data(graphPage,lblRows[idrow],nbcolel-1);
 			drawingElDat->el_style.SetDrawingMethod(DRAWING_METHOD_ECHOGRAM);
-			drawingElDat->el_style.SetPen(&wxPen(*wxGREEN,1,wxSOLID));
+			wxPen pen = wxPen(*wxGREEN,1,wxSOLID);
+			drawingElDat->el_style.SetPen(&pen);
 
 			bool lastIsZeroVal=false;
 			for(int idcol=0;idcol<nbcolel-1;idcol++)
@@ -266,7 +268,8 @@ bool E_Report_Gabe_Recp::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,
 		{
 			SG_Element_Data* drawingElDat=new SG_Element_Data(graphPage,_("Schroeder's curve"),nbcolel-1);
 			drawingElDat->el_style.SetDrawingMethod(DRAWING_METHOD_LINE);
-			drawingElDat->el_style.SetPen(&wxPen(*wxBLACK,2,wxSOLID));
+			wxPen pen = wxPen(*wxBLACK,2,wxSOLID);
+			drawingElDat->el_style.SetPen(&pen);
 			//Ajout de schroeder
 			for(int idcol=0;idcol<nbcolel-1;idcol++)
 			{

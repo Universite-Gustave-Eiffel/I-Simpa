@@ -2475,7 +2475,8 @@ bool ProjectManager::UnZipFolder(const wxString&zipfilename,const wxString&folde
 				// read 'zip' to access the entry's data
 				out<<zip;
 				out.Close();
-				fichToCreate.SetTimes(NULL,&entry->GetDateTime(),&entry->GetDateTime());
+				wxDateTime entryTime = entry->GetDateTime();
+				fichToCreate.SetTimes(NULL,&entryTime,&entryTime);
 			}
 		}
     }

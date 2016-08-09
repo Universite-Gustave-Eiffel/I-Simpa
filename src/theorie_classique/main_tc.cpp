@@ -5,10 +5,10 @@
 	#include <crtdbg.h>
 #endif
 #endif
-#include <coreInitialisation.h>
+#include <coreinitialisation.h>
 #include "TC_CalculationCore.h"
 /**
- * @brief Structure contenant tout les outils voués au calcul de propagation
+ * @brief Structure contenant tout les outils vouÃ©s au calcul de propagation
  */
 struct t_ToolBox
 {
@@ -69,7 +69,7 @@ int MainProcess(int argc, char* argv[])
 
 
 	//**************************************************
-	// 3: Chargement du modèle
+	// 3: Chargement du modÃ¨le
 	if(!initMesh(sceneMesh,workingDir,sceneMeshPath,configManager))
 		return 1;
 
@@ -79,7 +79,7 @@ int MainProcess(int argc, char* argv[])
 		return 1;
 
 	//**************************************************
-	// 5: Création des données paramètre du coeur de calcul
+	// 5: CrÃ©ation des donnÃ©es paramÃ¨tre du coeur de calcul
 
 	ReportManager::t_ParamReport reportParameter;
 	reportParameter._recepteur_surf_Path=workingDir;
@@ -87,7 +87,7 @@ int MainProcess(int argc, char* argv[])
 	reportParameter.freqIndex=0;
 	reportParameter.tetraModel=&sceneTetraMesh;
 	reportParameter.sceneModel=&sceneMesh;
-	//Reserve l'espace mémoire pour les récepteurs surfacique pour toutes les bandes de fréquence
+	//Reserve l'espace mÃ©moire pour les rÃ©cepteurs surfacique pour toutes les bandes de frÃ©quence
 	for(std::size_t idFreq=0;idFreq<configManager.freqList.size();idFreq++)
 		InitRecepteurSBfreq(configManager.recepteur_s_List,idFreq,*configManager.FastGetConfigValue(Core_Configuration::IPROP_QUANT_TIMESTEP));
 	//**************************************************
@@ -99,7 +99,7 @@ int MainProcess(int argc, char* argv[])
 
 	calcCore.Run();
 	//**************************************************
-	// 7: Une fois tout les threads de calculs fermés on compile les fichiers de resultats
+	// 7: Une fois tout les threads de calculs fermÃ©s on compile les fichiers de resultats
 
 
 	if(!configManager.CalculationForOutsideCore())
@@ -119,13 +119,13 @@ int MainProcess(int argc, char* argv[])
 				lblTh="Sabine";
 			else
 				lblTh="Eyring";
-			globalColsLbl.push_back("A_"+lblTh+ret+"m²");
+			globalColsLbl.push_back("A_"+lblTh+ret+"mÂ²");
 			globalColsLbl.push_back("TR_"+lblTh+ret+"s");
 			globalColsLbl.push_back("L_"+lblTh+ret+"dB");
 
 		}
 		/////////////
-		// Colonnes des récepteurs ponctuels
+		// Colonnes des rÃ©cepteurs ponctuels
 		std::vector<CoreString> colsLbl;
 		colsLbl.push_back("Direct"+CoreString(ret)+"dB SPL");
 		colsLbl.push_back("Total (Sabine)"+CoreString(ret)+"dB SPL");
@@ -143,13 +143,13 @@ int MainProcess(int argc, char* argv[])
 		}
 		ReportManager::SauveTCGlobalsValues(fileGlobalName,reportFreqLbl,globalColsLbl,calcCore.mainData);
 	}else{
-		//Sauvegarde des données pour les autres code de calculs
+		//Sauvegarde des donnÃ©es pour les autres code de calculs
 		CoreString exportcoredir=*configManager.FastGetConfigValue(Core_Configuration::SPROP_CORE_WORKING_DIRECTORY);
 		exportcoredir+=*configManager.FastGetConfigValue(Core_Configuration::SPROP_OTHER_CORE_OUTPUT_PATH)+"\\";
 		st_mkdir(exportcoredir.c_str());
-		//Export du fichier des récepteurs ponctuels
+		//Export du fichier des rÃ©cepteurs ponctuels
 		ReportManager::SauveFusionTCRecepteursPonctuels(exportcoredir,calcCore.recepteurPList);
-		//Export des fichiers des récepteurs surfaciques
+		//Export des fichiers des rÃ©cepteurs surfaciques
 		ReportManager::SauveFusionRecepteursSurfaciques(exportcoredir,configManager.recepteur_s_List);
 	}
 	return 0;

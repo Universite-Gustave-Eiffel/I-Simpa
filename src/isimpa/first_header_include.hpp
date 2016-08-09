@@ -36,8 +36,3 @@
 #define DEBUG_NEW new
 #endif
 #endif
-#ifdef WXINTL_NO_GETTEXT_MACRO
-#ifdef _UNIX
-#define _(s) wxGetTranslation((s))
-#endif
-#endif

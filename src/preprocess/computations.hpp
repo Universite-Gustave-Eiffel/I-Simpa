@@ -30,10 +30,10 @@
 
 /**
  * @file computations.hpp 
- * @brief Ces méthodes regroupent les méthodes permettant l'adaptation d'un modèle non conforme à tetgen.
+ * @brief Ces mÃ©thodes regroupent les mÃ©thodes permettant l'adaptation d'un modÃ¨le non conforme Ã  tetgen.
  */
 #include "input_output/poly.h"
-#include "input_output/progressioninfo.h"
+#include "input_output/progressionInfo.h"
 #include <tools/octree44.hpp>
 #include <tools/octree44_triangleElement.hpp>
 
@@ -75,11 +75,11 @@ private:
 	//Retourne -1 si aucun point correspondant
 	int FindIndexWithPosition( const vec3& position );
 	//return vrai si la division a eu lieu
-	//addedFaceOne -1 ou idface (si inséré)
-	//addedFaceTwo -1 ou idface (si inséré)
+	//addedFaceOne -1 ou idface (si insÃ©rÃ©)
+	//addedFaceTwo -1 ou idface (si insÃ©rÃ©)
 	bool SplitTriangleByThree( formatPOLY::t_face& triangleToSplit , const int& splitCentre,int* addedFaceOne,int* addedFaceTwo  );
 
-	//return faux si aucun traitement effectué
+	//return faux si aucun traitement effectuÃ©
 	bool OnCollisionDetectedSplitIt( formatPOLY::t_face& triangleOne, formatPOLY::t_face& triangleTwo, const vec3& position );
 	bool OnCollisionDetectedDestroyIt( formatPOLY::t_face& triangleOne, formatPOLY::t_face& triangleTwo, const vec3& position );
 	void PushNewFace(const formatPOLY::t_face& newFace);
@@ -91,8 +91,8 @@ public:
 
 	void mergeVertices();
 	/**
-	 * Correction d'une erreur dans le modèle
-	 * @return Vrai si le modèle a été modifié à cause de collision ou de superposition de triangles
+	 * Correction d'une erreur dans le modÃ¨le
+	 * @return Vrai si le modÃ¨le a Ã©tÃ© modifiÃ© Ã  cause de collision ou de superposition de triangles
 	 */
 	bool MeshReconstruction();
 	/**
@@ -100,10 +100,10 @@ public:
 	 */
 	bool MeshDestroyIntersectingTriangles();
 	/**
-	 *  Supprime les faces ayant une aire égale à 0 m²
+	 *  Supprime les faces ayant une aire Ã©gale Ã  0 mÂ²
 	 */
 	void DestroyNoAreaFaces();
-	//Les faces définies dans la structure en tant que faces à tester sont transférées dans la liste des faces standart.
+	//Les faces dÃ©finies dans la structure en tant que faces Ã  tester sont transfÃ©rÃ©es dans la liste des faces standart.
 	void TransferUserFaceToGlobalFaces();
 	bool MeshDestroyCoplanarFaces();
 	void ShowStats();

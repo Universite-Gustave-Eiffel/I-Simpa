@@ -28,7 +28,7 @@
 * or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
-#include <Core/Mathlib.h> //Mathlib de libinterface
+#include <Core/mathlib.h> //Mathlib de libinterface
 
 
 #ifndef __INTERSECTIONTRITRI__

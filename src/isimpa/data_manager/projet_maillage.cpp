@@ -263,7 +263,7 @@ bool ProjectManager::RunTetGenMaillage(param_TetGenMaillage& paramMaillage)
 		{
             progDialog.Update(50, _("Loading mesh ASCII file ..."));
 			wxLogInfo(_("Loading mesh ASCII file ..."));
-			sceneMesh.LoadMaillage(WXSTRINGTOSTDWSTRING(face),WXSTRINGTOSTDWSTRING(ele),WXSTRINGTOSTDWSTRING(node),WXSTRINGTOSTDWSTRING(neigh));
+			sceneMesh.LoadMaillage(WXSTRINGTOSTDSTRING(face),WXSTRINGTOSTDSTRING(ele),WXSTRINGTOSTDSTRING(node),WXSTRINGTOSTDSTRING(neigh));
 			wxLogInfo(_("Loading ASCII files from mesh generator complete"));
 		}else{
 			std::vector<int>& faces=logger->GetFaces();

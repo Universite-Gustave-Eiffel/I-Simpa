@@ -40,22 +40,32 @@ source_group("" FILES ${SPPS_SOURCES})
 #    DEPENDENCY & EXECUTABLE (OR LIB)
 #---------------------------------------#
 
-set(Boost_USE_STATIC_LIBS   ON) 
+set(Boost_USE_STATIC_LIBS ON)
+set(Boost_USE_MULTITHREADED ON)
+set(Boost_USE_STATIC_RUNTIME OFF)
+
 find_package(Boost REQUIRED COMPONENTS thread random system filesystem)
-link_directories( ${Boost_LIBRARY_DIRS} )  
-include_directories( ${Boost_INCLUDE_DIRS} ) 
+link_directories( ${Boost_LIBRARY_DIRS} )
+include_directories( ${Boost_INCLUDE_DIRS} )
 
 # Set Properties->General->Configuration Type to Application(.exe)
 # Creates spps.exe with the listed sources
 # Adds sources to the Solution Explorer
-add_executable(spps 
-    ${DATA_MANAGER_SOURCES} 
-    ${IO_SOURCES} 
-    ${TOOLS_SOURCES} 
+add_executable(spps
+    ${DATA_MANAGER_SOURCES}
+    ${IO_SOURCES}
+    ${TOOLS_SOURCES}
     ${SPPS_SOURCES})
 
 # Creates a folder "executables" and adds target project (spps.vcproj) under it
 set_property(TARGET spps PROPERTY FOLDER "executables")
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  add_definitions(-D_DEBUG)
+  message(STATUS " SPPS debug build disable multi threading")
+else()
+  message(STATUS " SPPS release build enable multi threading")
+endif()
 
 # Properties->Linker->Input->Additional Dependencies
 target_link_libraries (spps lib_interface)
@@ -88,7 +98,7 @@ set(SPPS_TESTS
     tests/spps_directivity_test.cpp)
 
 add_executable(TEST_spps ${SPPS_TESTS})
-target_link_libraries (TEST_spps 
+target_link_libraries (TEST_spps
     lib_interface
     ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 set_property(TARGET TEST_spps PROPERTY FOLDER "tests")
@@ -105,13 +115,13 @@ set_property(TARGET TEST_spps_pre PROPERTY FOLDER "tests")
 enable_testing()
 
 add_test( NAME spps_directivity_clean
-    WORKING_DIRECTORY ${TEST_DATA_DIR} 
+    WORKING_DIRECTORY ${TEST_DATA_DIR}
     COMMAND TEST_spps_pre )
 
-add_test( NAME spps_directivity_exec 
-    WORKING_DIRECTORY ${TEST_DATA_DIR} 
+add_test( NAME spps_directivity_exec
+    WORKING_DIRECTORY ${TEST_DATA_DIR}
     COMMAND spps "${SPPS_TEST_DIR}/config.xml")
 
-add_test( NAME spps_directivity_check 
+add_test( NAME spps_directivity_check
     WORKING_DIRECTORY ${TEST_DATA_DIR}
     COMMAND TEST_spps )

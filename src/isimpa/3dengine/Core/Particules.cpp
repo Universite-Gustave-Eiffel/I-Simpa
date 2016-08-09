@@ -171,7 +171,8 @@ void ParticulesControler::SaveToPBin(wxString fileName)
 		if(!tabInfoParticles[pIndex].tabSteps)
 			return;
 		unsigned long nbStepPart=tabInfoParticles[pIndex].nbStep;
-		particleFile.write((char*)&binaryPHeader(nbStepPart,tabInfoParticles[pIndex].firstStep),sizeof(binaryPHeader));
+		binaryPHeader header = binaryPHeader(nbStepPart,tabInfoParticles[pIndex].firstStep);
+		particleFile.write((char*)&header,sizeof(binaryPHeader));
 		for(unsigned long pTimeIndex=0;pTimeIndex<nbStepPart;pTimeIndex++)
 		{
 		    vec3 poststep(tabInfoParticles[pIndex].tabSteps[pTimeIndex].pos);

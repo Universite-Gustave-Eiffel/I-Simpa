@@ -27,7 +27,7 @@
 * Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
 * or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
-
+#include <wx/intl.h> 
 #include "GL/opengl_inc.h"
 #include "wx/log.h"
 #include "Objet3D.h"
@@ -53,7 +53,7 @@ bool Vec3Contains(ivec3 &leftIndex,ivec3 &rightIndex)
 	return (Contains(leftIndex.a,rightIndex) && Contains(leftIndex.b,rightIndex) && Contains(leftIndex.c,rightIndex));
 }
 
-bool LoadNodeFile(vec4 UnitizeVar, vec3** tabNodes, unsigned long &nodes_mesh_size, const std::wstring& nodeFilePath)
+bool LoadNodeFile(vec4 UnitizeVar, vec3** tabNodes, unsigned long &nodes_mesh_size, const std::string& nodeFilePath)
 {
 	using namespace std;
 	using namespace formatPLY;
@@ -73,7 +73,7 @@ bool LoadNodeFile(vec4 UnitizeVar, vec3** tabNodes, unsigned long &nodes_mesh_si
     wxStringTokenizer string_tokenizer(line);
     if(!string_tokenizer.HasMoreTokens())
     {
-        wxLogError(_("Expected node size got {0}", line));
+        wxLogError(_("Expected node size got %s"), line);
         return false;
     }
 	unsigned int nbNodes=Convertor::ToInt(string_tokenizer.GetNextToken());
@@ -88,7 +88,7 @@ bool LoadNodeFile(vec4 UnitizeVar, vec3** tabNodes, unsigned long &nodes_mesh_si
 		{
             string_tokenizer.SetString(line);
             if(string_tokenizer.CountTokens() < 4) {
-                wxLogError(_("Expected node id, x, y and z got {0}", line));
+                wxLogError(_("Expected node id, x, y and z got %s"), line);
                 return false;
             }
 			idNode=Convertor::ToInt(string_tokenizer.GetNextToken());
@@ -134,7 +134,7 @@ bool LoadEleFile(tetrahedre** tabTetra, unsigned long &tabTetraSize, wxString te
     }
     wxStringTokenizer string_tokenizer(line);
     if (!string_tokenizer.HasMoreTokens()) {
-        wxLogError(_("Expected tetra size got {0}", line));
+        wxLogError(_("Expected tetra size got %s"), line);
         return false;
     }
 	unsigned int nbTetra=Convertor::ToInt(string_tokenizer.GetNextToken());
@@ -149,7 +149,7 @@ bool LoadEleFile(tetrahedre** tabTetra, unsigned long &tabTetraSize, wxString te
 		{
             string_tokenizer.SetString(line);
             if (string_tokenizer.CountTokens() < 6) {
-                wxLogError(_("Expected idtetra a b c d idvolume got {0}", line));
+                wxLogError(_("Expected idtetra a b c d idvolume got %s"), line);
                 return false;
             }
 			idTetra=Convertor::ToInt(string_tokenizer.GetNextToken());
@@ -209,7 +209,7 @@ bool LoadFaceListe(std::vector<ivec3>& tabFace, wxString faceFilePath)
     }
     wxStringTokenizer string_tokenizer(line);
     if (string_tokenizer.CountTokens() < 2) {
-        wxLogError(_("Expected tetra size and marker got {0}", line));
+        wxLogError(_("Expected tetra size and marker got %s"), line);
         return false;
     }
 
@@ -224,7 +224,7 @@ bool LoadFaceListe(std::vector<ivec3>& tabFace, wxString faceFilePath)
 		{
             string_tokenizer.SetString(line);
             if (string_tokenizer.CountTokens() < (4 + has_marker)) {
-                wxLogError(_("Expected idface a b c [marker] got {0}", line));
+                wxLogError(_("Expected idface a b c [marker] got %s"), line);
                 return false;
             }
             idFaceTetra = Convertor::ToInt(string_tokenizer.GetNextToken());
@@ -274,7 +274,7 @@ bool LoadFaceFile(tetrahedre** tabTetra, unsigned long &tabTetraSize, wxString f
     }
     wxStringTokenizer string_tokenizer(line);
     if (string_tokenizer.CountTokens() < 2) {
-        wxLogError(_("Expected face size and dimension got {0}", line));
+        wxLogError(_("Expected face size and dimension got %s"), line);
         infile.close();
         delete[] vertex_list;
         return false;
@@ -289,7 +289,7 @@ bool LoadFaceFile(tetrahedre** tabTetra, unsigned long &tabTetraSize, wxString f
 		{
             string_tokenizer.SetString(line);
             if (string_tokenizer.CountTokens() < 5) {
-                wxLogError(_("Expected idface a b c marker {0}", line));
+                wxLogError(_("Expected idface a b c marker %s"), line);
                 infile.close();
                 delete[] vertex_list;
                 return false;
@@ -342,7 +342,7 @@ bool LoadNeighFile(tetrahedre** tabTetra, unsigned long &tabTetraSize, wxString 
     }
     wxStringTokenizer string_tokenizer(line);
     if (string_tokenizer.CountTokens() < 2) {
-        wxLogError(_("Expected node size and dimension got {0}", line));
+        wxLogError(_("Expected node size and dimension got %s"), line);
         infile.close();
         return false;
     }
@@ -355,7 +355,7 @@ bool LoadNeighFile(tetrahedre** tabTetra, unsigned long &tabTetraSize, wxString 
 
             string_tokenizer.SetString(line);
             if (string_tokenizer.CountTokens() < 5) {
-                wxLogError(_("Expected idtetra a b c d got {0}", line));
+                wxLogError(_("Expected idtetra a b c d got %s"), line);
                 return false;
             }
 
@@ -379,7 +379,7 @@ bool LoadNeighFile(tetrahedre** tabTetra, unsigned long &tabTetraSize, wxString 
 	return true;
 }
 
-bool CObjet3D::LoadMaillage(const std::wstring& facePath,const std::wstring& elePath,const std::wstring& nodePath,const std::wstring& neighPath)
+bool CObjet3D::LoadMaillage(const std::string& facePath,const std::string& elePath,const std::string& nodePath,const std::string& neighPath)
 {
 	if(!(this->GetNumFaces()>0))
 		return false;
@@ -996,7 +996,7 @@ bool CObjet3D::_LoadFaceFile(const char *filename)
 	// Chargement des noeuds des tetrahèdres
 	////////////////////////////////////////
 	this->_Destroy();
-	if(LoadNodeFile(UnitizeVar,&nodesFaces,nodesSize,WXSTRINGTOSTDWSTRING(nodePath.GetFullPath())))
+	if(LoadNodeFile(UnitizeVar,&nodesFaces,nodesSize,WXSTRINGTOSTDSTRING(nodePath.GetFullPath())))
 	{
 		////////////////////////////////////////
 		// Chargement des faces

@@ -51,7 +51,7 @@
 	Convertir n'importe quel valeur vers une chaîne de caractere ( soumis à la définition du séparateur de decimal)
 */
 template <class T>
-std::wstring toString( T value )
+std::string toString( T value )
 {
    std::ostringstream oss;
 
@@ -64,7 +64,7 @@ std::wstring toString( T value )
  Concatenation de deux données et convertion en chaîne de caractères.
 */
 template <class T,class U>
-std::wstring Concatenate( T valuel, U valuer )
+std::string Concatenate( T valuel, U valuer )
 {
    std::ostringstream oss;
 
