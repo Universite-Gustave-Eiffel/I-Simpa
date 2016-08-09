@@ -23,7 +23,3 @@ else
 	mkdir $HOME/boost-install
 	cd  boost_1_61_0 && ./bootstrap.sh --with-libraries=filesystem,system,test,regex,python,random,thread --prefix=$HOME/boost-install && ./b2 --build-type=complete install --layout=tagged
 fi
-
-export BOOST_LIBRARYDIR=$HOME/boost-install/lib/
-export BOOST_INCLUDEDIR=$HOME/boost-install/include/
-export BOOST_ROOT=$HOME/boost-install/
