@@ -1,4 +1,6 @@
-if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
+
+export CXX=g++
+export CC=gcc
 
 mkdir build
 cd build
