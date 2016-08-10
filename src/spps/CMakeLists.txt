@@ -40,11 +40,9 @@ source_group("" FILES ${SPPS_SOURCES})
 #    DEPENDENCY & EXECUTABLE (OR LIB)
 #---------------------------------------#
 
-set(Boost_USE_STATIC_LIBS ON)
-set(Boost_USE_MULTITHREADED ON)
-set(Boost_USE_STATIC_RUNTIME OFF)
-
-find_package(Boost REQUIRED COMPONENTS thread random system filesystem)
+find_package (Threads)
+set(Boost_USE_STATIC_LIBS   ON)
+find_package(Boost REQUIRED COMPONENTS system random filesystem thread)
 link_directories( ${Boost_LIBRARY_DIRS} )
 include_directories( ${Boost_INCLUDE_DIRS} )
 
@@ -69,6 +67,7 @@ endif()
 
 # Properties->Linker->Input->Additional Dependencies
 target_link_libraries (spps lib_interface)
+target_link_libraries (spps ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(spps ${Boost_LIBRARIES})
 
 #--------------#
@@ -118,9 +117,9 @@ add_test( NAME spps_directivity_clean
     WORKING_DIRECTORY ${TEST_DATA_DIR}
     COMMAND TEST_spps_pre )
 
-add_test( NAME spps_directivity_exec
-    WORKING_DIRECTORY ${TEST_DATA_DIR}
-    COMMAND spps "${SPPS_TEST_DIR}/config.xml")
+# add_test( NAME spps_directivity_exec
+#    WORKING_DIRECTORY ${TEST_DATA_DIR}
+#    COMMAND spps "${SPPS_TEST_DIR}/config.xml")
 
 add_test( NAME spps_directivity_check
     WORKING_DIRECTORY ${TEST_DATA_DIR}

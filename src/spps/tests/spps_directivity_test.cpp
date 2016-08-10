@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE(directivity_test_scene_result, *utf::tolerance(boost::test_
 	GABE_Data_Float* right = dynamic_cast<GABE_Data_Float*>(r_right.GetCol(1));
 	GABE_Data_Float* top = dynamic_cast<GABE_Data_Float*>(r_top.GetCol(1));
 	GABE_Data_Float* bot = dynamic_cast<GABE_Data_Float*>(r_bot.GetCol(1));
-	
+
 	// attenuation order
 	BOOST_TEST(front->GetValue(0) > left->GetValue(0));
 	BOOST_TEST(left->GetValue(0) > bot->GetValue(0));
