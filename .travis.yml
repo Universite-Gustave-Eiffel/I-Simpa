@@ -7,9 +7,6 @@ group: legacy
 os:
   - linux
 
-compiler:
-  - gcc
-
 git:
   depth: 30
 
