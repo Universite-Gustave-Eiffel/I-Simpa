@@ -1,9 +1,15 @@
 
-export CXX=g++
-export CC=gcc
+export CXX="g++-6"
+export CC="gcc-6"
+
+cmake --version
+${CC} --version
+${CXX} --version
 
 mkdir build
 cd build
+
+CLANG_WARNINGS=""
 
 # wxWidget path (only in script scope)
 export PATH=$HOME/wxWidgets-install/bin/:$PATH
