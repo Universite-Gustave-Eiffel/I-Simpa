@@ -38,7 +38,7 @@ namespace formatRPLY
 	{
 		parsing_instance(t_model& _currentModel):currentModel(_currentModel),lastFaceSplited(false) {}
 		t_model& currentModel;
-		bool lastFaceSplited; /*!< La dernière face avait 4 sommets et a été éclaté en deux triangles */
+		bool lastFaceSplited; /*!< La derniï¿½re face avait 4 sommets et a ï¿½tï¿½ ï¿½clatï¿½ en deux triangles */
 	};
 
 
@@ -79,7 +79,7 @@ namespace formatRPLY
 				model->modelFaces.back().indicesSommets[idvert]=(int)ply_get_argument_value(argument);
 				break;
 			case 3:
-				//Polygone à quatre sommets
+				//Polygone ï¿½ quatre sommets
 				const ivec3& lastTri(model->modelFaces.back().indicesSommets);
 				model->modelFaces.push_back(t_face(ivec3(lastTri[0],lastTri[2],(int)ply_get_argument_value(argument))));
 				curInstance->lastFaceSplited=true;
@@ -138,7 +138,7 @@ namespace formatRPLY
 
 		sceneconst.modelFaces.clear();
 		sceneconst.modelVertices.clear();
-		p_ply plyFile=ply_open(mfilename.c_str(),NULL);
+		p_ply plyFile=ply_open(mfilename.c_str(),NULL, 0, NULL);
 		if(!plyFile)
 			return false;
 		CloseHandle plyCloseObj(plyFile);
@@ -167,7 +167,7 @@ namespace formatRPLY
 	{
 		EnglishTemporaryLocale dotNumericOnly;
 		p_ply oply;
-		oply = ply_create(mfilename.c_str(), PLY_BIG_ENDIAN, NULL);
+		oply = ply_create(mfilename.c_str(), PLY_BIG_ENDIAN, NULL, 0, NULL);
 		if (!oply) return false;
 		CloseHandle plyCloseObj(oply);
 		std::size_t faceCount(scene.modelFaces.size());
