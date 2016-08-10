@@ -93,8 +93,6 @@ set(TEST_DATA_DIR "${PROJECT_BINARY_DIR}/Testing")
 set(SPPS_TEST_DIR "${TEST_DATA_DIR}/")
 configure_file(tests/config.xml ${SPPS_TEST_DIR})
 file(COPY
-    tests/mesh.cbin
-    tests/tetramesh.mbin
     tests/speaker-test3.txt
     DESTINATION ${TEST_DATA_DIR})
 
