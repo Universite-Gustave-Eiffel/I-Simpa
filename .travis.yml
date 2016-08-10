@@ -11,11 +11,7 @@ git:
 compiler: gcc
 addons:
   apt:
-    sources:
-    - ubuntu-toolchain-r-test
     packages:
-    - gcc-6
-    - g++-6
     - cmake
     - cmake-data
     - python
@@ -44,9 +40,9 @@ cache:
   - $HOME/boost-install
 
 notifications:
-  email: false
-#     recipients:
-#       - "i-simpa@ifsttar.fr"
+  email:
+     recipients:
+       - "i-simpa@ifsttar.fr"
 
 before_install:
   - ./ci/travis/${TRAVIS_OS_NAME}/before_install.sh

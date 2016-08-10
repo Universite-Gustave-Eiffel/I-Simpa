@@ -13,14 +13,30 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 option(SKIPISIMPA "skip-gui" FALSE)
 
 # Set compiler flags and options.
-IF (CMAKE_COMPILER_IS_GNUCXX)
-  SET (CMAKE_CXX_FLAGS "-std=gnu++11")
-ELSEIF (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-  SET (CMAKE_CXX_FLAGS "-std=c++11")
-ELSEIF (MSVC)
-  # Here it is setting the Visual Studio warning level to 4
-  # set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
-ENDIF ()
+#############################################################
+# enable use of c++11 features where available
+# full c++11 support in clang 3.3+: http://clang.llvm.org/cxx_status.html
+# for Mac, this is probably Apple LLVM 4.2 (based on LLVM 3.2svn, in XCode 4.6+)
+#   or definitely Apple LLVM 5.0 (based on LLVM 3.3svn, in Xcode 5+):
+#   https://gist.github.com/yamaya/2924292
+
+IF (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+    EXECUTE_PROCESS(COMMAND ${CMAKE_CXX_COMPILER} -dumpversion OUTPUT_VARIABLE GCC_VERSION)
+    IF (GCC_VERSION VERSION_GREATER 4.7 OR GCC_VERSION VERSION_EQUAL 4.7)
+        SET(USE_CXX_11 TRUE)
+        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+    ENDIF()
+ELSEIF (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    IF ((NOT APPLE AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER "3.2")
+            OR (APPLE AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER "4.1"))
+        SET(USE_CXX_11 TRUE)
+        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wno-error=c++11-narrowing")
+    ENDIF()
+ELSEIF (MSVC AND MSVC_VERSION GREATER 1600)
+    SET(USE_CXX_11 TRUE)
+ELSE()
+    SET(USE_CXX_11 FALSE)
+ENDIF()
 
 
 # Command to output information to the console
