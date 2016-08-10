@@ -40,9 +40,15 @@ source_group("" FILES ${SPPS_SOURCES})
 #    DEPENDENCY & EXECUTABLE (OR LIB)
 #---------------------------------------#
 
-find_package (Threads)
 set(Boost_USE_STATIC_LIBS   ON)
-find_package(Boost REQUIRED COMPONENTS system random filesystem thread)
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  find_package(Boost REQUIRED COMPONENTS system random filesystem)
+else()
+  find_package (Threads)
+  find_package(Boost REQUIRED COMPONENTS system random filesystem thread)
+endif()
+
 link_directories( ${Boost_LIBRARY_DIRS} )
 include_directories( ${Boost_INCLUDE_DIRS} )
 
@@ -63,11 +69,11 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   message(STATUS " SPPS debug build disable multi threading")
 else()
   message(STATUS " SPPS release build enable multi threading")
+  target_link_libraries (spps ${CMAKE_THREAD_LIBS_INIT})
 endif()
 
 # Properties->Linker->Input->Additional Dependencies
 target_link_libraries (spps lib_interface)
-target_link_libraries (spps ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(spps ${Boost_LIBRARIES})
 
 #--------------#
@@ -117,10 +123,6 @@ add_test( NAME spps_directivity_clean
     WORKING_DIRECTORY ${TEST_DATA_DIR}
     COMMAND TEST_spps_pre )
 
-# add_test( NAME spps_directivity_exec
+#add_test( NAME spps_directivity_check
 #    WORKING_DIRECTORY ${TEST_DATA_DIR}
-#    COMMAND spps "${SPPS_TEST_DIR}/config.xml")
-
-add_test( NAME spps_directivity_check
-    WORKING_DIRECTORY ${TEST_DATA_DIR}
-    COMMAND TEST_spps )
+#    COMMAND TEST_spps )

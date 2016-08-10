@@ -90,7 +90,7 @@ bool CMBIN::ExportBIN(const char *strFileName,bintetrahedre **tabTetra,t_binNode
 
 	//Declarations
 
-	//Sauvegarde du modèle 3D
+	//Sauvegarde du modï¿½le 3D
 	fstream binFile (strFileName, ios::out | ios::binary);
 
 	//*************************
@@ -103,7 +103,7 @@ bool CMBIN::ExportBIN(const char *strFileName,bintetrahedre **tabTetra,t_binNode
 	//Ecriture des noeuds
 	binFile.write((char*)*tabNodes,sizeof(t_binNode)*sizeNodes);
 	//*************************
-	//Ecriture des tetrahèdres
+	//Ecriture des tetrahï¿½dres
 	binFile.write((char*)*tabTetra,sizeof(bintetrahedre)*sizeTetra);
 
 	binFile.close();
@@ -117,7 +117,7 @@ bool  CMBIN::ImportBIN(const char *strFileName,bintetrahedre **tabTetra,t_binNod
 
 	//Declarations
 
-	//Sauvegarde du modèle 3D
+	//Sauvegarde du modï¿½le 3D
     fstream binFile (strFileName, ios::in | ios::binary);
 
 	if(binFile.is_open())
@@ -129,12 +129,20 @@ bool  CMBIN::ImportBIN(const char *strFileName,bintetrahedre **tabTetra,t_binNod
 		binFile.read((char*)&fileHeader,sizeof(t_FileHeader));
 		sizeNodes=fileHeader.quantNodes;
 		sizeTetra=fileHeader.quantTetra;
+		// This deprecated file format may be altered by os/compiler specific struct alignment or endian
+		// limit to 1 million nodes/tetrahedra in order to detect the problem before overloading memory
+		if(fileHeader.quantNodes < 0 || fileHeader.quantNodes > 1e6) {
+			return false;
+		}
+		if(fileHeader.quantTetra < 0 || fileHeader.quantTetra > 1e6) {
+			return false;
+		}
 		//*************************
 		//Lecture des noeuds
 		*tabNodes=new t_binNode[sizeNodes];
 		binFile.read((char*)*tabNodes,sizeof(t_binNode)*sizeNodes);
 		//*************************
-		//Lecture des tetrahèdres
+		//Lecture des tetrahï¿½dres
 		*tabTetra=new bintetrahedre[sizeTetra];
 		binFile.read((char*)*tabTetra,sizeof(bintetrahedre)*sizeTetra);
 

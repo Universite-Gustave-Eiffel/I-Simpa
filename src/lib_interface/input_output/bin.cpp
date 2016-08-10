@@ -33,6 +33,9 @@
 
 namespace formatCoreBIN
 {
+	const int DEFAULT_MAJOR = 1;
+	const int DEFAULT_MINOR = 0;
+
 	//Types du fichier
 	typedef unsigned short bShort;
 	typedef uint32_t bInt;
@@ -42,7 +45,7 @@ namespace formatCoreBIN
 	typedef uint32_t bLong;
 	typedef bool bBool;
 	/*!
-	 *	\brief Cette structure définit une section de données du fichier Binaire
+	 *	\brief Cette structure dï¿½finit une section de donnï¿½es du fichier Binaire
 	 */
 	struct binaryNode {
 		bShort nodeType;
@@ -51,14 +54,14 @@ namespace formatCoreBIN
 	};
 
 	/*!
-	 *	\brief Cette structure définit une section de données du fichier Binaire
+	 *	\brief Cette structure dï¿½finit une section de donnï¿½es du fichier Binaire
 	 */
 	struct binaryVertices {
 		bLong nbVertex;
 	};
 
 	/*!
-	 *	\brief Cette structure définit une section de données du fichier Binaire
+	 *	\brief Cette structure dï¿½finit une section de donnï¿½es du fichier Binaire
 	 */
 	struct binaryVertex {
 		bFloat x;
@@ -67,7 +70,7 @@ namespace formatCoreBIN
 	};
 
 	/*!
-	 *	\brief Cette structure définit une section de données du fichier Binaire
+	 *	\brief Cette structure dï¿½finit une section de donnï¿½es du fichier Binaire
 	 */
 	struct binaryGroup {
 		bString groupName[255];
@@ -75,19 +78,19 @@ namespace formatCoreBIN
 	};
 
 	/*!
-	 *	\brief Cette structure définit une section de données du fichier Binaire
+	 *	\brief Cette structure dï¿½finit une section de donnï¿½es du fichier Binaire
 	 */
 	struct binaryFace {
 		bInt a;
 		bInt b;
 		bInt c;
-		bInt idMaterial;	/*!< Identifiant du matériau associé à la face */
-		bsInt idRs;			/*!< Identifiant du récepteur surfacique (aucun -1) */
+		bInt idMaterial;	/*!< Identifiant du matï¿½riau associï¿½ ï¿½ la face */
+		bsInt idRs;			/*!< Identifiant du rï¿½cepteur surfacique (aucun -1) */
 		bsInt idEn;			/*!< Identifiant de l'encombrement (aucun -1)*/
 	};
 
 	/*!
-	 *	\brief Cette structure définit une section de données du fichier Binaire
+	 *	\brief Cette structure dï¿½finit une section de donnï¿½es du fichier Binaire
 	 */
 	struct binaryHeader{
 		bInt majorVersion; //Version du format
@@ -115,6 +118,10 @@ namespace formatCoreBIN
 
 		binaryHeader enteteFichier;
 		binFile.read((char*)&enteteFichier, sizeof (binaryHeader));
+		if(enteteFichier.majorVersion != DEFAULT_MAJOR ||
+				enteteFichier.minorVersion != DEFAULT_MINOR) {
+			return false;
+		}
 		//La version du format se trouve dans enteteFichier
 
 		this->ProcessNode(binFile,modelImport);
@@ -133,14 +140,14 @@ namespace formatCoreBIN
 
 		//Declarations
 		unsigned long sizeVERTICES=(nbVertex*sizeof(binaryVertex))+sizeof(binaryNode)+sizeof(binaryVertices);
-		//Sauvegarde du modèle 3D
+		//Sauvegarde du modï¿½le 3D
 		fstream binFile (strFileName, ios::out | ios::binary);
 
 		//*************************
 		//Ecriture de l'entete du fichier
 		binaryHeader fileHeader;
-		fileHeader.majorVersion=1;
-		fileHeader.minorVersion=0;
+		fileHeader.majorVersion=DEFAULT_MAJOR;
+		fileHeader.minorVersion=DEFAULT_MINOR;
 		binFile.write((char*)&fileHeader,sizeof(binaryHeader));
 
 		//*************************
