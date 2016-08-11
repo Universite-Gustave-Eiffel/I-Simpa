@@ -1,6 +1,6 @@
 
-export CXX="g++-6"
-export CC="gcc-6"
+export CXX="g++-5"
+export CC="gcc-5"
 
 cmake --version
 ${CC} --version
@@ -13,8 +13,8 @@ CLANG_WARNINGS=""
 
 # wxWidget path (only in script scope)
 export PATH=$HOME/wxWidgets-install/bin/:$PATH
-#export BOOST_LIBRARYDIR=$HOME/boost-install/lib/
-#export BOOST_INCLUDEDIR=$HOME/boost-install/include/
-#export BOOST_ROOT=$HOME/boost-install/
+export BOOST_LIBRARYDIR=$HOME/boost-install/lib/
+export BOOST_INCLUDEDIR=$HOME/boost-install/include/
+export BOOST_ROOT=$HOME/boost-install/
 
 cmake ..
