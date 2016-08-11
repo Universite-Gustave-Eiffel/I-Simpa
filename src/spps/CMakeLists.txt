@@ -73,17 +73,21 @@ add_executable(spps
 # Creates a folder "executables" and adds target project (spps.vcproj) under it
 set_property(TARGET spps PROPERTY FOLDER "executables")
 
+
+# Properties->Linker->Input->Additional Dependencies
+target_link_libraries (spps lib_interface ${Boost_LIBRARIES})
+
+
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   add_definitions(-D_DEBUG)
   message(STATUS " SPPS debug build disable multi threading")
 else()
   message(STATUS " SPPS release build enable multi threading")
   target_link_libraries (spps ${CMAKE_THREAD_LIBS_INIT})
+  if(UNIX)
+    target_link_libraries (spps rt)
+  endif(UNIX)
 endif()
-
-# Properties->Linker->Input->Additional Dependencies
-target_link_libraries (spps lib_interface)
-target_link_libraries(spps ${Boost_LIBRARIES})
 
 #--------------#
 #    INSTALL
