@@ -27,5 +27,6 @@ else
 	wget https://sourceforge.net/projects/boost/files/boost/1.61.0/boost_1_61_0.tar.bz2
 	tar -xjf boost_1_61_0.tar.bz2
 	mkdir $HOME/boost-install
-	cd  $HOME/boost_1_61_0 && ./bootstrap.sh toolset=gcc-4.8 link=static variant=release address-model=64 cxxflags="-std=c++14 -fPIC" boost.locale.icu=off --with-libraries=filesystem,system,test,regex,python,random,thread --prefix=$HOME/boost-install && ./b2 install
+	echo "using gcc : 4.8 : gcc-4.8 ;" > ~/user-config.jam
+	cd  $HOME/boost_1_61_0 && ./bootstrap.sh link=static variant=release address-model=64 cxxflags="-std=c++11 -fPIC" boost.locale.icu=off --with-libraries=filesystem,system,test,regex,python,random,thread --prefix=$HOME/boost-install && ./b2 install
 fi
