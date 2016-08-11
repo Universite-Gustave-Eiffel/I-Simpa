@@ -5,7 +5,7 @@ export CXX="g++-4.8"
 export CC="gcc-4.8"
 
 #
-## Swig install
+# Swig install
 if [ -d $HOME/swig-install/include ] ; then
 	echo "Swig already built (and in travis cache)"
 else
@@ -13,7 +13,7 @@ else
 	wget https://github.com/swig/swig/archive/rel-3.0.10.tar.gz
 	tar zxvf rel-3.0.10.tar.gz
 	mkdir $HOME/swig-install
-	cd  $HOME/swig-rel-3.0.10 && ./configure --prefix=$HOME/swig-install && make && make install
+	cd  $HOME/swig-rel-3.0.10 && ./autogen.sh && ./configure --prefix=$HOME/swig-install && make && make install
 fi
 
 #
