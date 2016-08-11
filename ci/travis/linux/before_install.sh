@@ -16,12 +16,12 @@ echo "wxWidget version : "
 wx-config --version
 
 
-if [ -d $HOME/boost-install/include ] ; then
-	echo "Boost already builded (and in travis cache)"
-else
-	cd
-	wget https://sourceforge.net/projects/boost/files/boost/1.61.0/boost_1_61_0.tar.bz2
-	tar -xjf boost_1_61_0.tar.bz2
-	mkdir $HOME/boost-install
-	cd  $HOME/boost_1_61_0 && ./bootstrap.sh --with-libraries=filesystem,system,test,regex,python,random,thread --prefix=$HOME/boost-install && ./b2 install
-fi
+#if [ -d $HOME/boost-install/include ] ; then
+#	echo "Boost already builded (and in travis cache)"
+#else
+#	cd
+#	wget https://sourceforge.net/projects/boost/files/boost/1.61.0/boost_1_61_0.tar.bz2
+#	tar -xjf boost_1_61_0.tar.bz2
+#	mkdir $HOME/boost-install
+#	cd  $HOME/boost_1_61_0 && ./bootstrap.sh --with-libraries=filesystem,system,test,regex,python,random,thread --prefix=$HOME/boost-install && ./b2 install
+#fi
