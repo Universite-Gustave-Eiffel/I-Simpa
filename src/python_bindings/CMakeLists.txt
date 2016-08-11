@@ -5,6 +5,7 @@ message(STATUS " SWIG_EXECUTABLE     - $ENV{SWIG_EXECUTABLE}")
 #    DEPENDENCY & EXECUTABLE (OR LIB)
 #---------------------------------------#
 
+# require swig > v3
 FIND_PACKAGE(SWIG REQUIRED)
 INCLUDE(${SWIG_USE_FILE})
 

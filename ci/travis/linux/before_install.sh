@@ -4,8 +4,23 @@ export DEBIAN_FRONTEND=noninteractive
 export CXX="g++-4.8"
 export CC="gcc-4.8"
 
+#
+## Swig install
+if [ -d $HOME/swig-install/include ] ; then
+	echo "Swig already built (and in travis cache)"
+else
+	cd
+	wget https://github.com/swig/swig/archive/rel-3.0.10.tar.gz
+	tar zxvf rel-3.0.10.tar.gz
+	mkdir $HOME/swig-install
+	cd  $HOME/swig-rel-3.0.10 && ./configure --prefix=$HOME/swig-install && make && make install
+fi
+
+#
+# Boost install
+
 if [ -d $HOME/boost-install/include ] ; then
-	echo "Boost already builded (and in travis cache)"
+	echo "Boost already built (and in travis cache)"
 else
 	cd
 	wget https://sourceforge.net/projects/boost/files/boost/1.61.0/boost_1_61_0.tar.bz2
@@ -15,10 +30,11 @@ else
 	cd  $HOME/boost_1_61_0 && ./bootstrap.sh link=static variant=release address-model=64 cxxflags="-std=c++11 -fPIC" boost.locale.icu=off --with-libraries=filesystem,system,test,regex,python,random,thread --prefix=$HOME/boost-install && ./b2 install
 fi
 
-
+#
+# WXWidget install
 
 if [ -d $HOME/wxWidgets-install/include ] ; then
-	echo "wxWidget already builded (and in travis cache)"
+	echo "wxWidget already built (and in travis cache)"
 else
 	cd
 	wget https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.0/wxWidgets-3.1.0.tar.bz2
