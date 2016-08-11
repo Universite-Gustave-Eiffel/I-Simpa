@@ -6,7 +6,7 @@ export CC="gcc-4.8"
 
 #
 # Swig install
-if [ -d $HOME/swig-install/include ] ; then
+if [ -d $HOME/swig-install/bin/swig ] ; then
 	echo "Swig already built (and in travis cache)"
 else
 	cd

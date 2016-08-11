@@ -83,7 +83,9 @@ endif()
 
 # Properties->Linker->Input->Additional Dependencies
 target_link_libraries (spps lib_interface)
-target_link_libraries(spps rt)
+if(UNIX)
+  target_link_libraries(spps rt.a)
+endif(UNIX)
 target_link_libraries(spps ${Boost_LIBRARIES})
 
 #--------------#
