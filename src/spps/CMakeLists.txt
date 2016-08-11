@@ -52,6 +52,15 @@ endif()
 link_directories( ${Boost_LIBRARY_DIRS} )
 include_directories( ${Boost_INCLUDE_DIRS} )
 
+# Check for clock_gettime function
+if (UNIX)
+  include(CheckLibraryExists)
+  check_library_exists(rt clock_gettime "time.h" HAVE_CLOCK_GETTIME )
+  if(NOT HAVE_CLOCK_GETTIME)
+    message(FATAL_ERROR "clock_gettime not found")
+  endif(NOT HAVE_CLOCK_GETTIME)
+endif(UNIX)
+
 # Set Properties->General->Configuration Type to Application(.exe)
 # Creates spps.exe with the listed sources
 # Adds sources to the Solution Explorer
@@ -74,6 +83,7 @@ endif()
 
 # Properties->Linker->Input->Additional Dependencies
 target_link_libraries (spps lib_interface)
+target_link_libraries(spps rt)
 target_link_libraries(spps ${Boost_LIBRARIES})
 
 #--------------#
