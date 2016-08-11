@@ -1,5 +1,10 @@
 export DEBIAN_FRONTEND=noninteractive
 
+
+export CXX="g++-4.8"
+export CC="gcc-4.8"
+
+
 if [ -d $HOME/wxWidgets-install/include ] ; then
 	echo "wxWidget already builded (and in travis cache)"
 else
@@ -22,5 +27,5 @@ else
 	wget https://sourceforge.net/projects/boost/files/boost/1.61.0/boost_1_61_0.tar.bz2
 	tar -xjf boost_1_61_0.tar.bz2
 	mkdir $HOME/boost-install
-	cd  $HOME/boost_1_61_0 && ./bootstrap.sh toolset=gcc-5 link=static variant=release address-model=64 cxxflags="-std=c++14 -fPIC" boost.locale.icu=off --with-libraries=filesystem,system,test,regex,python,random,thread --prefix=$HOME/boost-install && ./b2 install
+	cd  $HOME/boost_1_61_0 && ./bootstrap.sh toolset=gcc-4.8 link=static variant=release address-model=64 cxxflags="-std=c++14 -fPIC" boost.locale.icu=off --with-libraries=filesystem,system,test,regex,python,random,thread --prefix=$HOME/boost-install && ./b2 install
 fi

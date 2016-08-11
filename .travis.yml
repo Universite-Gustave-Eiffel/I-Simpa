@@ -13,10 +13,9 @@ addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
-      - sourceline: 'ppa:ginggs/boost160 '
     packages:
-    - gcc-5
-    - g++-5
+    - gcc-4.8
+    - g++-4.8
     - cmake
     - cmake-data
     - python
@@ -32,7 +31,6 @@ addons:
     - libxrandr-dev
     - mesa-common-dev
     - mesa-utils
-    - mesa-utils-extra
     - libgl1-mesa-dev
     - libglapi-mesa
     - libgtk-3-dev

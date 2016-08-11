@@ -1,4 +1,4 @@
 cd build
 pwd
-make
+make VERBOSE=1
 
