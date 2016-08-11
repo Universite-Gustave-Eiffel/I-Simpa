@@ -109,8 +109,8 @@ public:
 			pymodule=module;
 			pyclass=_pyclass;
 		}else{
-			noeudCourant->GetPropVal("m",&pymodule);
-			noeudCourant->GetPropVal("c",&pyclass);
+			noeudCourant->GetAttribute("m",&pymodule);
+			noeudCourant->GetAttribute("c",&pyclass);
 		}
 		if(!ins_pyelement(this->pyelement,this->elementInfo.xmlIdElement,pymodule,pyclass))
 			this->elementInfo.userDestroyable=true;
@@ -124,12 +124,12 @@ public:
 	{
 		wxXmlNode* thisNode = ElementBase::SaveXMLDoc(NoeudParent);
 		thisNode->SetName(this->pyclass);
-		if(!thisNode->HasProp("m"))
-			thisNode->AddProperty("m",this->pymodule);
-		if(!thisNode->HasProp("c"))
-			thisNode->AddProperty("c",this->pyclass);
-		if(!thisNode->HasProp("beid"))
-			thisNode->AddProperty("beid",Convertor::ToString((int)baseType));
+		if(!thisNode->HasAttribute("m"))
+			thisNode->AddAttribute("m",this->pymodule);
+		if(!thisNode->HasAttribute("c"))
+			thisNode->AddAttribute("c",this->pyclass);
+		if(!thisNode->HasAttribute("beid"))
+			thisNode->AddAttribute("beid",Convertor::ToString((int)baseType));
 		return thisNode;
 	}
 

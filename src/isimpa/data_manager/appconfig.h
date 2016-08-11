@@ -32,6 +32,7 @@
 
 #include "generic_element/e_gammefrequence.h"
 #include "generic_element/e_materiau.h"
+#include "generic_element/e_directivity.h"
 #include <wx/fileconf.h>
 #include "manager/smart_ptr.h"
 #include <wx/hashmap.h>
@@ -132,6 +133,7 @@ private:
 	static wxXmlDocument appConfig;						/*!< Document XML de l'application. Contient la base de données de référence. */
 	static std::vector<E_GammeFrequence*> allSpectrum;	/*!< Tableau contenant un pointeur vers les élément de la base de données de spectre (référence et utilisateur confondu) */
 	static std::vector<E_Materiau*> allMaterial;		/*!< Tableau contenant un pointeur vers les élément de la base de données de matériaux (référence et utilisateur confondu) */
+	static std::vector<E_Directivity*> allDirectivity;	/*!< Tableau contenant un pointeur vers les élément de la base de données de directivités (référence et utilisateur confondu) */
 	static smart_ptr<wxFileConfig> projectConfig;		/*!< wxFileConfig est une classe de wxWidgets permettant d'enregistrer des informations sur la session utilisateur (unix,windows) */
 	static std::vector<t_freq> tabFreq;					/*!< Tableau contenant toutes les bandes de fréquences utilisées dans le logiciel. */
 	static std::vector<t_ponderation> tabPonderation;	/*!< Tableau contenant toutes les pondérations dB->dBa utilisées dans le logiciel. */
@@ -157,8 +159,10 @@ private:
 	static void AddParam(VECPARAM_ELEMENT param,vec3 Value);					/*!< Ajoute un vecteur dans le tableau */
 	static bool orderSpectrums(E_GammeFrequence* lSp,E_GammeFrequence* rSp);	/*!< Trie les spectres au sein d'un tableau */
 	static bool orderMateriaux(E_Materiau* lSp,E_Materiau* rSp);				/*!< Trie les matériaux au sein d'un tableau */
+	static bool orderDirectivity(E_Directivity* lSp, E_Directivity* rSp);		/*!< Trie les matériaux au sein d'un tableau */
 	static wxString nameNodeSpectre;											/*!< Nom du noeud xml contenant les spectre de références */
 	static wxString nameNodeMateriaux;											/*!< Nom du noeud xml contenant les matériaux de références */
+	static wxString nameNodeDirectivity;										/*!< Nom du noeud xml contenant les directivités de références */
 	static Element* rootScene;													/*!< Pointeur vers l'élément source de la scène du projet */
 	static smart_ptr<Element> rootUserConfig;									/*!< Element racine des préférences de l'utilisateur */
 public:
@@ -185,6 +189,7 @@ public:
 	static const wxString CONST_REPORT_RECEPTEURSS_CUT_FILENAME;
 	static const wxString CONST_REPORT_RECEPTEURSS_FILENAME_TR;
 	static const wxString CONST_REPORT_RECEPTEURSS_FILENAME_EDT;
+	static const wxString CONST_REPORT_DIRECTIVITIES_FOLDER_PATH;
 	static const wxString CONST_MODEL_SCENE_FILENAME;
 	static const wxString CONST_TETGEN_EXE_FILENAME;
 	static const wxString CONST_TETGEN_EXE_PATH;
@@ -195,6 +200,7 @@ public:
 	static const wxString CONST_RESOURCE_FOLDER; /*<! Dossier racine où se trouve les données du programme*/
 	static const wxString CONST_RESOURCE_DATA_FOLDER; /*<! Dossier racine où se trouve les données du programme*/
 	static const wxString CONST_RESOURCE_ISO_FOLDER; /*<! Dossier racine où se trouve les données du programme*/
+	static const wxString CONST_RESOURCE_DIRECTIVITY_FOLDER;  /*<! Dossier racine où se trouve les directivités de référence du programme*/
 	//static const wxString CONST_RESOURCE_LNG_FOLDER; /*<! Dossier racine où se trouve les dossiers de langue*/
 	static const wxString CONST_CORE_PATH; /*<! Dossier racine où se trouve les données du programme*/
 	static const wxString CONST_STATIC_XML_FILE; /*<! fichier xml de configuration d'application (materiaux et spectres application)*/
@@ -228,6 +234,7 @@ public:
 	struct t_GLOBAL_VAR
 	{
 		wxString cacheFolderPath;
+		wxString workingFolderPath;
 		bool drawMaterialColors;
 	} static GLOBAL_VAR;
 	/** @} */
@@ -433,6 +440,83 @@ public:
 	 * @return Une liste de t_lstMat
 	 */
 	static std::vector<t_lstMat> GetLstMateriaux();
+	/** @} */
+	/** @defgroup appconfigdirectiv Méthodes liées aux directivités
+	*  @{
+	*/
+
+	/**
+	*	\brief Enregistrement correspondant à une directivité du projet (Référence ou Utilisateur)
+	*	@see AddDirectivity()
+	*	@see DeleteDirectivity()
+	*	@see GetDirectivity()
+	*	@see GetFreeDirectivityId()
+	*	@see IsIdDirectivityExist()
+	*	@see GetLstDirectivity()
+	*	@see E_Directivity
+	*/
+	struct t_lstDirectiv {
+		int idDirectivity;
+		Element::ELEMENT_TYPE typeDirectivity;
+		wxString nom;
+	};
+
+	/**
+	* Ajoute une directivité dans la liste des spectres
+	* @param elToAdd Adresse de la directivité à ajouter
+	* @see DeleteDirectivity()
+	* @see E_Directivity
+	*/
+	static void AddDirectivity(E_Directivity* elToAdd);
+
+	/**
+	* Supprime une directivité de la liste des directivités
+	* @param xmlId Identifiant de la directivité à supprimer
+	* @see AddDirectivity()
+	* @see Element::t_elementInfo::xmlIdElement
+	*/
+	static void DeleteDirectivity(int xmlId);
+	/**
+	* Retourne la directivité ayant le numéro de directivité idDirectivity
+	* @param idDirectivity Un entier désignant le n° de directivité (ce n'est PAS xmlIdElement)
+	* @see E_Directivity::GetIdDirectivity()
+	* @return La directivité si existant, NULL si inexistant
+	*/
+	static E_Directivity* GetDirectivity(int idDirectivity);
+	/**
+	* Retrouve l'indice de la directivité en indiquant l'adresse d'un élément contenant une directivité
+	* @param pereEle Element ayant une directivité dans ses fils
+	* @return L'indice de la directivité, -1 si non trouvé.
+	*/
+	static int GetDirectivityId(Element* pereEle);
+	/**
+	* Appelé uniquement par le constructeur de E_Directivity, cette méthode permet d'obtenir un indice unique de directivité
+	* @see E_Directivity
+	* @return Un numéro de directivité non utilisé
+	*/
+	static int GetFreeDirectivityId();
+	/**
+	* Méthode appelé par le constructeur de E_Directivity lors de l'importation XML afin de s'assurer de l'unicité de son indice
+	* @param idDirectivity Indice de la directivité (ce n'est PAS xmlIdElement)
+	* @see E_Directivity::GetIdDirectivity()
+	* @see E_Directivity
+	* @return Vrai si cet indice correspond a une directivité
+	*/
+	static bool IsIdDirectivityExist(int idDirectivity);
+	/**
+	* Utilisé dans les listes de directivités afin d'obtenir les noms des directivités et leurs indices
+	* @see AddDirectivity()
+	* @see t_lstDirectiv
+	* @return Une liste de t_lstDirectiv
+	*/
+	static std::vector<t_lstDirectiv> GetLstDirectivity();
+
+	/**
+	* Cette méthode retourne le noeud XML correspondant à la BDD de référence de directivités du projet
+	* @see E_Scene_Bdd_Directivity_Application()
+	* @return wxXmlNode Noeud Xml
+	*/
+	static wxXmlNode* GetAppDirectivityNode();
 	/** @} */
 		/** @defgroup appconfigrefelement Méthodes de gestion des données
 	 *  @{

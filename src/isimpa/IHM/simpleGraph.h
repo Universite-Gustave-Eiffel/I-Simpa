@@ -657,7 +657,6 @@ namespace sgSpace
 		AREA_TYPE areaType;
 		simpleGraph     *m_owner;
 		DECLARE_EVENT_TABLE()
-		wxSize lastCalculatedSize;
 		wxBufferedDC* backingStoreDc;
 		wxSize backingStoreSize;
 	};
@@ -672,18 +671,22 @@ namespace sgSpace
 	class SG_Legend : public wxControl
 	{
 	public:
-		SG_Legend(simpleGraph* parent,LEGEND_PLACEMENT whereToInsert, wxWindowID id=-1,const wxSizerFlags& sizerParams=wxSizerFlags(0), const wxPoint& pos = wxDefaultPosition,
+		SG_Legend(simpleGraph* parent,LEGEND_PLACEMENT whereToInsert, wxWindowID id=-1, const wxPoint& pos = wxDefaultPosition,
 			const wxSize& size = wxDefaultSize, long style = 0);
-
+        /** Attach Legend with graph before other components */
+        static void Prepend(SG_Legend* legend, const wxSizerFlags& sizerParams);
+        /** Attach Legend with graph after other components */
+        static void Add(SG_Legend* legend, const wxSizerFlags& sizerParams);
 		void OnPaint( wxPaintEvent &event );
-		virtual wxSize DoGetBestSize() const;
+	    wxSize DoGetBestSize() const override;
 		void OnMouse( wxMouseEvent &event );
+        /** @return Legend's sizer */
+        LEGEND_PLACEMENT GetLegendPlacement() const;
 	protected:
 		virtual void drawLegend(wxDC& drawDC);
 		void OnErase(wxEraseEvent& evt);
 		simpleGraph* m_owner;
 		DECLARE_EVENT_TABLE()
-		wxSize calculatedAreaSize;
 		LEGEND_PLACEMENT whereToInsert;
 	};
 

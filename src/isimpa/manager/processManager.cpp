@@ -128,10 +128,13 @@ bool uiRunExe(wxFrame* parent,const wxString& path,const wxString& labelOutput, 
 		wxLogInfo("Program execution failed");
 		delete process;
 		return false;
+	} else
+	{
+        process->SetPid(processId);
 	}
 	float percFinish=0;
 	wxDateTime lastProgShow=wxDateTime::UNow();
-	while(process->IsRunning())
+	do
 	{
 		hasOutput=true;
 		wxMilliSleep(50);
@@ -178,7 +181,7 @@ bool uiRunExe(wxFrame* parent,const wxString& path,const wxString& labelOutput, 
 				return false;
 			}
 		}
-	}
+    } while (wxProcess::Exists(processId));
 	// On récupère les derniers messages
 	wxMilliSleep(150);
 	process->LogOutput(hasOutput,labelOutput,&percFinish);

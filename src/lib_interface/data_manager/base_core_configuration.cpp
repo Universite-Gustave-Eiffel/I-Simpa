@@ -32,6 +32,7 @@
 #include "base_core_configuration.h"
 #include <iostream>
 #include <string.h>
+#include "input_output/directivity/directivityParser.h"
 
 using namespace CalculsGenerauxThermodynamique;
 using namespace CGTconst;
@@ -47,7 +48,7 @@ Base_Core_Configuration::Base_Core_Configuration( )
 
 
 
-bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
+bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml, bool verbose_mode)
 {
 	bool force_abs_atmo=false;
 	l_decimal abs_atmo=0;
@@ -59,7 +60,7 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
 		SetConfigInformation(SPROP_CORE_WORKING_DIRECTORY,root->GetProperty("workingdirectory"));
 	
 
-		cout<<"Loading of the atmospheric condition.."<<endl;
+		if (verbose_mode) { cout << "Loading of the atmospheric condition.." << endl; }
 		CXmlNode* atmoNode=root->GetChild("condition_atmospherique");
 		if(atmoNode)
 		{
@@ -77,7 +78,7 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
 			abs_atmo=atmoNode->GetProperty("absatmo").ToFloat();
 		}
 
-		cout<<"Loading of the simulation configuration.."<<endl;
+		if (verbose_mode) { cout << "Loading of the simulation configuration.." << endl; }
 		CXmlNode* simuNode=root->GetChild("simulation");
 		if(simuNode)
 		{
@@ -98,6 +99,8 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
 			SetConfigInformation(FPROP_TIME_STEP,simuNode->GetProperty("pasdetemps").ToFloat());
 			SetConfigInformation(FPROP_SIMULATION_TIME,simuNode->GetProperty("duree_simulation").ToFloat());
 			SetConfigInformation(IPROP_QUANT_TIMESTEP,(entier)(ceil((*FastGetConfigValue(FPROP_SIMULATION_TIME))/(*FastGetConfigValue(FPROP_TIME_STEP)))));
+
+			SetConfigInformation(SPROP_DIRECTIVITY_FOLDER_PATH, simuNode->GetProperty("directivities_directory"));
 
 			CXmlNode* frequNode=simuNode->GetChild("freq_enum");
 			if(frequNode)
@@ -121,7 +124,7 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
 				}
 			}
 		}
-		cout<<"Loading of the emitter list.."<<endl;
+		if (verbose_mode) { cout << "Loading of the emitter list.." << endl; }
 		CXmlNode* srcNode=root->GetChild("sources");
 		if(srcNode)
 		{
@@ -136,7 +139,7 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
 				(*nvSource).type=(SOURCE_TYPE)(*iterateurNoeuds)->GetProperty("directivite").ToInt();
 				(*nvSource).sourceDelay=(*iterateurNoeuds)->GetProperty("delay").ToFloat();
 				nvSource->sourceName=(*iterateurNoeuds)->GetProperty("name");
-				if((*nvSource).type==SOURCE_TYPE_UNIDIRECTION)
+				if((*nvSource).type==SOURCE_TYPE_UNIDIRECTION || (*nvSource).type == SOURCE_TYPE_DIRECTION)
 				{
 					vec3 uvwSrc((*iterateurNoeuds)->GetProperty("u").ToFloat(),(*iterateurNoeuds)->GetProperty("v").ToFloat(),(*iterateurNoeuds)->GetProperty("w").ToFloat());
 					(*nvSource).Direction=(uvwSrc/uvwSrc.length());
@@ -156,12 +159,38 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
 				}
 				nvSource->idsource=srcList.size();
 
+				if ((*nvSource).type == SOURCE_TYPE_DIRECTION)
+				{
+					string directivityFile = (*iterateurNoeuds)->GetProperty("directivity_file");
+					if (!directivityFile.empty())
+					{
+						if ( directivityList.find(directivityFile) == directivityList.end() )
+						{
+							string directivityFile_path = *FastGetConfigValue(SPROP_CORE_WORKING_DIRECTORY);
+							directivityFile_path += *FastGetConfigValue(SPROP_DIRECTIVITY_FOLDER_PATH);
+							directivityFile_path += directivityFile;
+
+							t_DirectivityBalloon *directivity = new t_DirectivityBalloon();
+							xhn_DirectivityParser fileparser;
+							fileparser.parse(directivityFile_path, directivity);
+							nvSource->directivity = directivity;
+							directivityList[directivityFile] = nvSource->directivity;
+							if (verbose_mode) { cout << "Directivity loaded : " << directivityFile_path << endl; }
+						}
+						else
+						{
+							nvSource->directivity = directivityList[directivityFile];
+							if (verbose_mode) { cout << "Directivity linked to source : " << directivityFile << endl; }
+						}
+					}
+				}
+
 				srcList.push_back(nvSource);
 			}
 		}
-		cout<<srcList.size()<<" emitters has been loaded."<<endl;
+		if (verbose_mode) { cout << srcList.size() << " emitters has been loaded." << endl; }
 		CXmlNode* surfacesNode=root->GetChild("surface_absorption_enum");
-		cout<<"Loading of the materials.."<<endl;
+		if (verbose_mode) { cout << "Loading of the materials.." << endl; }
 		if(surfacesNode)
 		{
 			//Pour chaque matériaux
@@ -203,9 +232,9 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
 				materialList.push_back(nvMaterial);
 			}
 		}
-		cout<<materialList.size()<<" materials has been loaded."<<endl;
+		if (verbose_mode) { cout << materialList.size() << " materials has been loaded." << endl; }
 		CXmlNode* recepteurspNode=root->GetChild("recepteursp");
-		cout<<"Loading of the punctual receivers"<<endl;
+		if (verbose_mode) { cout << "Loading of the punctual receivers" << endl; }
 		if(recepteurspNode)
 		{
 			//Pour chaque récepteur ponctuel
@@ -239,7 +268,7 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
 			}
 		}
 		CXmlNode* recepteurssNode=root->GetChild("recepteurss");
-		cout<<"Loading of the surfaces receivers"<<endl;
+		if (verbose_mode) { cout << "Loading of the surfaces receivers" << endl; }
 		if(recepteurssNode)
 		{
 			//Pour chaque récepteur surfacique
@@ -279,7 +308,7 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml  )
 			}
 		}
 		CXmlNode* encombrementNode=root->GetChild("encombrement_enum");
-		cout<<"Loading of the obstructions"<<endl;
+		if (verbose_mode) { cout << "Loading of the obstructions" << endl; }
 		if(encombrementNode)
 		{
 			//Pour chaque encombrement
@@ -322,6 +351,8 @@ Base_Core_Configuration::~Base_Core_Configuration( )
 		delete srcList[i];
 	for(uentier i=0;i<freqList.size();i++)
 		delete freqList[i];
+	for (std::map<std::string, t_DirectivityBalloon*>::iterator it = directivityList.begin(); it != directivityList.end(); ++it)
+		delete it->second;
 	for(uentier i=0;i<recepteur_p_List.size();i++)
 		delete recepteur_p_List[i];
 	for(uentier i=0;i<recepteur_s_List.size();i++)

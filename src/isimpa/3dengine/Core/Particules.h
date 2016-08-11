@@ -159,6 +159,7 @@ struct t_ParticuleInfo
 	t_ParticuleInfo() { tabSteps = NULL; }
 	~t_ParticuleInfo() { delete[] tabSteps;}
 };
+t_EnergyParticule max_energy, min_energy;
 vec4 particleColor;
 float timeStep;
 unsigned int nbStep;

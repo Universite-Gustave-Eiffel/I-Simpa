@@ -60,7 +60,7 @@ public:
 			wxString propValue;
 			while(currentChild!=NULL)
 			{
-				if(currentChild->GetPropVal("eid",&propValue))
+				if(currentChild->GetAttribute("eid",&propValue))
 				{
 					long typeEle;
 					propValue.ToLong(&typeEle);
@@ -68,10 +68,10 @@ public:
 					{
 
 						//maj version 1.0.3
-						if(currentChild->GetPropVal("filepath",&propValue) && propValue==wxString("current")+wxFileName::GetPathSeparator()+wxString("report")+wxFileName::GetPathSeparator())
+						if(currentChild->GetAttribute("filepath",&propValue) && propValue==wxString("current")+wxFileName::GetPathSeparator()+wxString("report")+wxFileName::GetPathSeparator())
 						{
-							currentChild->DeleteProperty("filepath");
-							currentChild->AddProperty("filepath",ApplicationConfiguration::CONST_REPORT_FOLDER_PATH);
+							currentChild->DeleteAttribute("filepath");
+							currentChild->AddAttribute("filepath",ApplicationConfiguration::CONST_REPORT_FOLDER_PATH);
 						}
 						//fin maj version < 1.0.3
 						this->AppendFils(new E_Report_Folder(this,currentChild));

@@ -1,4 +1,4 @@
-﻿#----------------------------------------------------------------------
+﻿# ----------------------------------------------------------------------
 # I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
 #
 # I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
@@ -30,12 +30,13 @@
 
 # -*- coding: utf-8 -*-
 import libsimpa as ls
+import sys
 
 ##############################################
 # Table
- 
+
 # Make a cube, 8 vertices
-vertices=[   [5.0, 0.0, 0.0],
+vertices = [[5.0, 0.0, 0.0],
             [0.0, 0.0, 0.0],
             [0.0, 5.0, 0.0],
             [5.0, 5.0, 0.0],
@@ -43,40 +44,70 @@ vertices=[   [5.0, 0.0, 0.0],
             [5.0, 5.0, 5.0],
             [0.0, 0.0, 5.0],
             [5.0, 0.0, 5.0]
-        ]
+            ]
 # 12 triangular faces
 # [ vertex1, vertexB, vertexC, vertexD, materialID, receiversurf_id ]
-faces=  [   [0, 1, 2, -1, 66, -1],
-        [0, 2, 3, -1, 66, -1],
-        [2, 4, 5, -1, 100, -1],
-        [2, 5, 3, -1, 100, -1],
-        [2, 6, 4, -1, 100, -1],
-        [2, 1, 6, -1, 100, -1],
-        [1, 0, 7, -1, 100, -1],
-        [6, 1, 7, -1, 100, -1],
-        [0, 3, 5, -1, 100, -1],
-        [7, 0, 5, -1, 100, -1],
-        [7, 5, 4, -1, 66, -1],
-        [6, 7, 4, -1, 66, -1]
-        ]
+faces = [[0, 1, 2, -1, 66, -1],
+         [0, 2, 3, -1, 66, -1],
+         [2, 4, 5, -1, 100, -1],
+         [2, 5, 3, -1, 100, -1],
+         [2, 6, 4, -1, 100, -1],
+         [2, 1, 6, -1, 100, -1],
+         [1, 0, 7, -1, 100, -1],
+         [6, 1, 7, -1, 100, -1],
+         [0, 3, 5, -1, 100, -1],
+         [7, 0, 5, -1, 100, -1],
+         [7, 5, 4, -1, 66, -1],
+         [6, 7, 4, -1, 66, -1]
+         ]
+
+
 ############################################
 ## Build 3D model
 
-def BuildModel(filepath):
-    model=ls.ioModel()
-    #Add vertices
+def build_model(filepath):
+    model = ls.ioModel()
+    # Add vertices
     for vertex in vertices:
-        model.vertices.append(ls.t_pos(vertex[0],vertex[1],vertex[2]))
-    #Add faces
+        model.vertices.append(ls.t_pos(vertex[0], vertex[1], vertex[2]))
+    # Add faces
     for face in faces:
-        newface=ls.ioFace()
-        newface.a=face[0]
-        newface.b=face[1]
-        newface.c=face[2]
-        newface.idEn=face[3]
-        newface.idMat=face[4]
-        newface.idRs=face[5]
+        newface = ls.ioFace()
+        newface.a = face[0]
+        newface.b = face[1]
+        newface.c = face[2]
+        newface.idEn = face[3]
+        newface.idMat = face[4]
+        newface.idRs = face[5]
         model.faces.append(newface)
-    #Save 3D model
-    ls.CformatBIN().ExportBIN(filepath,model)
-BuildModel("test_model.bin")
+    # Save 3D model
+    ls.CformatBIN().ExportBIN(filepath, model)
+
+
+def check_model(filepath):
+    model = ls.ioModel()
+    assert ls.CformatBIN().ImportBIN(model, filepath), "Cannot import model"
+    # Check if vertex in expected vertices
+    model_vertices = []
+    for vertex in model.vertices:
+        model_vertex = [vertex[0], vertex[1], vertex[2]]
+        model_vertices.append(model_vertex)
+        assert model_vertex in vertices, "wrong vertex"
+
+    # Check if expected vertex in vertices   
+    for vertex in vertices:
+        assert vertex in model_vertices, "missing vertex"
+
+    modelfaces = []
+    for face in model.faces:
+        new_face = [face.a, face.b, face.c, face.idEn, face.idMat, face.idRs]
+        assert new_face in faces, "wrong face"
+        modelfaces.append(new_face)
+    for face in faces:
+        assert face in modelfaces, "missing face"
+
+
+# Write test model	
+build_model(sys.argv[1] + "test_model.bin")
+# Read test model
+check_model(sys.argv[1] + "test_model.bin")

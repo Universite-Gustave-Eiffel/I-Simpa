@@ -66,7 +66,7 @@ public:
 			wxString propValue;
 			while(currentChild!=NULL)
 			{
-				if(currentChild->GetPropVal("eid",&propValue))
+				if(currentChild->GetAttribute("eid",&propValue))
 				{
 					long typeEle;
 					propValue.ToLong(&typeEle);
@@ -118,9 +118,9 @@ public:
 	wxXmlNode* SaveXMLCoreDoc(wxXmlNode* NoeudParent)
 	{
 		wxXmlNode* thisNode = new wxXmlNode(NoeudParent,wxXML_ELEMENT_NODE,"recepteur_surfacique");
-		thisNode->AddProperty("id",Convertor::ToString(elementInfo.xmlIdElement));
+		thisNode->AddAttribute("id",Convertor::ToString(elementInfo.xmlIdElement));
 		
-		thisNode->AddProperty("name",elementInfo.libelleElement);
+		thisNode->AddAttribute("name",elementInfo.libelleElement);
 		return thisNode;
 	}
 

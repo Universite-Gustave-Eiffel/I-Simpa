@@ -42,11 +42,11 @@ E_GammeFrequence::E_GammeFrequence(Element* parent,wxString Nom,ELEMENT_TYPE _ty
 	wxString propVal;
 	//Affecte la valeur de l'element
 
-	if(nodeElement!=NULL) // && nodeElement->GetPropVal("wxid",&propVal)
+	if(nodeElement!=NULL) // && nodeElement->GetAttribute("wxid",&propVal)
 	{
 		//Element initialisé AVEC Xml
 		long lval;
-		if(nodeElement->GetPropVal("idspectre",&propVal))
+		if(nodeElement->GetAttribute("idspectre",&propVal))
 		{
 			propVal.ToLong(&lval);
 			if(ApplicationConfiguration::IsIdSpectrumExist(lval))
@@ -60,7 +60,7 @@ E_GammeFrequence::E_GammeFrequence(Element* parent,wxString Nom,ELEMENT_TYPE _ty
 		currentChild = nodeElement->GetChildren();
 		while(currentChild!=NULL)
 		{
-			if(currentChild->GetPropVal("eid",&propValue))
+			if(currentChild->GetAttribute("eid",&propValue))
 			{
 				long typeEle;
 				propValue.ToLong(&typeEle);
@@ -181,8 +181,8 @@ wxXmlNode* E_GammeFrequence::SaveXMLDoc(wxXmlNode* NoeudParent)
 {
 	wxXmlNode* thisNode = Element::SaveXMLDoc(NoeudParent);
 	thisNode->SetName("frequences"); // Nom de la balise xml ( pas d'espace autorise )
-	thisNode->DeleteProperty("idspectre");
-	thisNode->AddProperty("idspectre",Convertor::ToString(idSpectre));	
+	thisNode->DeleteAttribute("idspectre");
+	thisNode->AddAttribute("idspectre",Convertor::ToString(idSpectre));	
 	return thisNode;
 }
 

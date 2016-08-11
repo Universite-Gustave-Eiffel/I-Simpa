@@ -92,7 +92,7 @@ wxXmlNode* E_GammeAbsorption::SaveXMLCoreDoc(wxXmlNode* NoeudParent)
 		if(infoEl.libelleElement!="moyenne" && infoEl.typeElement==ELEMENT_TYPE_ROW)
 		{
 			wxXmlNode* NoeudCourant=new wxXmlNode(NoeudParent,wxXML_ELEMENT_NODE,"bfreq");
-			NoeudCourant->AddProperty("freq",infoEl.libelleElement);
+			NoeudCourant->AddAttribute("freq",infoEl.libelleElement);
 			(*itfils)->SaveXMLCoreDoc(NoeudCourant);
 		}
 	}

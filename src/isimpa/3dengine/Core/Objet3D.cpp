@@ -44,7 +44,7 @@
 
 //#include "ply.h"				// gestion du format PLY stanford
 #include <input_output/ply/rply_interface.hpp>	// gestion du format PLY stanford (Librairie externe)
-#include "coreSrc/preprocess/input_output/poly.h"	// gestion du format POLY tetgen
+#include "../preprocess/input_output/poly.h"	// gestion du format POLY tetgen
 
 #include "data_manager/tree_scene/e_scene_encombrements_encombrement_cuboide.h"
 #include "data_manager/appconfig.h"
@@ -64,14 +64,14 @@ CMaterial *materials;
 #ifdef _DEBUG
 	void DrawBox(const vec3& center,const float& halfsize)
 	{
-		vec3 HA=center+(vec3(-1,-1,1)*halfsize);
-		vec3 HB=center+(vec3(1,-1,1)*halfsize);
-		vec3 HC=center+(vec3(1,1,1)*halfsize);
-		vec3 HD=center+(vec3(-1,1,1)*halfsize);
-		vec3 BA=center+(vec3(-1,-1,-1)*halfsize);
-		vec3 BB=center+(vec3(1,-1,-1)*halfsize);
-		vec3 BC=center+(vec3(1,1,-1)*halfsize);
-		vec3 BD=center+(vec3(-1,1,-1)*halfsize);
+		vec3 HA = center + (vec3(-1, -1, 1) * halfsize);
+		vec3 HB = center + (vec3(1, -1, 1) * halfsize);
+		vec3 HC = center + (vec3(1, 1, 1) * halfsize);
+		vec3 HD = center + (vec3(-1, 1, 1) * halfsize);
+		vec3 BA = center + (vec3(-1, -1, -1) * halfsize);
+		vec3 BB = center + (vec3(1, -1, -1) * halfsize);
+		vec3 BC = center + (vec3(1, 1, -1) * halfsize);
+		vec3 BD = center + (vec3(-1, 1, -1) * halfsize);
 
 
 		glColor3f(1,1,1);
@@ -297,16 +297,25 @@ inline void CObjet3D::GetPathFromFilename( const char* string, char* result)
 
 long CObjet3D::GetNumFaces(long g)
 { //retourne le nombre de face pour un groupe, cumul si g=-1
-	if(this->_pGroups.size()==0)
+	if (this->_pGroups.size() == 0)
 		return 0;
-	if(g>=0)
+	if (g >= 0)
 	{
-		if(g < this->_pGroups.size()) return this->_pGroups[g].pFaces.size();
+		if (g < this->_pGroups.size())
+		{
+			return this->_pGroups[g].pFaces.size();
+		}
 		else
-			return this->_pGroups[this->_pGroups.size()-1].pFaces.size();
+		{
+			return this->_pGroups[this->_pGroups.size() - 1].pFaces.size();
+		}
 	}
-	long n=0;
-	for(g=0; g < this->_pGroups.size(); n+=this->_pGroups[g++].pFaces.size());
+	long n = 0;
+	for (g = 0; g < this->_pGroups.size(); g++)
+	{
+		n += this->_pGroups[g].pFaces.size();
+	}
+
 	return n;
 }
 

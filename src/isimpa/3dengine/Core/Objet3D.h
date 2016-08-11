@@ -294,7 +294,7 @@ public:
 	 * @param[in] params Valeur de configuration du mailleur
 	 * @return Vrai si le maillage s'est executé avec succès
 	 */
-	bool LoadMaillage(const std::wstring& facePath,const std::wstring& elePath,const std::wstring& nodePath,const std::wstring& neighPath);
+	bool LoadMaillage(const std::string& facePath,const std::string& elePath,const std::string& nodePath,const std::string& neighPath);
 	/**
 	 * Execute les commandes OpenGL de rendu du maillage
 	 * @param modeRendu GL_LINES ou GL_TRIANGLES, rendu des tétrahedres

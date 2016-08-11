@@ -73,7 +73,7 @@ public:
 				#ifdef _DEBUG
 				curId++;
 				#endif
-				if(currentChild->GetPropVal("eid",&propValue))
+				if(currentChild->GetAttribute("eid",&propValue))
 				{
 					long typeEle;
 					propValue.ToLong(&typeEle);
@@ -146,24 +146,24 @@ public:
 		wxString propValue;
 		while(currentChild!=NULL)
 		{
-			if(currentChild->GetPropVal("eid",&propValue))
+			if(currentChild->GetAttribute("eid",&propValue))
 			{
 				long typeEle;
 				propValue.ToLong(&typeEle);
 				if(typeEle==Element::ELEMENT_TYPE_SCENE_SOURCES_SOURCE)
 				{
 					wxString elName;
-					currentChild->GetPropVal("name",&elName);
-					currentChild->DeleteProperty("name");
-					currentChild->AddProperty("name",wxString::Format(_("Copy of %s"),elName));
+					currentChild->GetAttribute("name",&elName);
+					currentChild->DeleteAttribute("name");
+					currentChild->AddAttribute("name",wxString::Format(_("Copy of %s"),elName));
 					this->AppendFils(new E_Scene_Sources_Source(currentChild,this))->ForceBottomModified();
 					somethingAdded=true;
 				}else if(typeEle==Element::ELEMENT_TYPE_SCENE_SOURCES)
 				{
 					wxString elName;
-					currentChild->GetPropVal("name",&elName);
-					currentChild->DeleteProperty("name");
-					currentChild->AddProperty("name",wxString::Format(_("Copy of %s"),elName));
+					currentChild->GetAttribute("name",&elName);
+					currentChild->DeleteAttribute("name");
+					currentChild->AddAttribute("name",wxString::Format(_("Copy of %s"),elName));
 					E_Scene_Sources* newfils=new E_Scene_Sources(currentChild,this);
 					this->AppendFils(newfils);
 					newfils->SetUserGroup();

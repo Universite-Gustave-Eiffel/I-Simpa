@@ -52,9 +52,9 @@ public:
 	{
 		wxString propVal;
 		//Affecte la couleur de l'element
-		if(noeudCourant->GetPropVal("textValue",&propVal))
+		if(noeudCourant->GetAttribute("textValue",&propVal))
 			textElement=propVal;
-		if(noeudCourant->GetPropVal("readonly",&propVal))
+		if(noeudCourant->GetAttribute("readonly",&propVal))
 			readOnly=true;
 	}
 
@@ -91,8 +91,8 @@ public:
 	wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)
 	{
 		wxXmlNode* thisNode = E_Data::SaveXMLDoc(NoeudParent);
-		thisNode->DeleteProperty("textValue");
-		thisNode->AddProperty("textValue",textElement);
+		thisNode->DeleteAttribute("textValue");
+		thisNode->AddAttribute("textValue",textElement);
 		return thisNode;
 	}
 	/**
@@ -112,8 +112,8 @@ public:
 	{
 		if(exportToCore)
 		{
-			NoeudParent->DeleteProperty(this->elementInfo.libelleElement);
-			NoeudParent->AddProperty(this->elementInfo.libelleElement,textElement);
+			NoeudParent->DeleteAttribute(this->elementInfo.libelleElement);
+			NoeudParent->AddAttribute(this->elementInfo.libelleElement,textElement);
 		}
 		return NoeudParent;
 	}

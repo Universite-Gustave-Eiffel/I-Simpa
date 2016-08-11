@@ -61,17 +61,17 @@ public:
 		wxString propVal;
 		//Affecte la valeur de l'element
 		long lval;
-		if(noeudCourant->GetPropVal("value",&propVal))
+		if(noeudCourant->GetAttribute("value",&propVal))
 		{
 			propVal.ToLong(&lval);
 			elementValue=lval;
 		}
-		if(noeudCourant->GetPropVal("maxValue",&propVal))
+		if(noeudCourant->GetAttribute("maxValue",&propVal))
 		{
 			maxValue=StringToInt(propVal);
 			isMaxValue=true;
 		}
-		if(noeudCourant->GetPropVal("minValue",&propVal))
+		if(noeudCourant->GetAttribute("minValue",&propVal))
 		{
 			minValue=StringToInt(propVal);
 			isMinValue=true;
@@ -142,19 +142,19 @@ public:
 	wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)
 	{
 		wxXmlNode* thisNode = E_Data::SaveXMLDoc(NoeudParent);
-		thisNode->DeleteProperty("value");
+		thisNode->DeleteAttribute("value");
 		wxString sval;
 		sval<<elementValue;
-		thisNode->AddProperty("value",sval);		
-		thisNode->DeleteProperty("maxValue");
-		thisNode->DeleteProperty("minValue");
+		thisNode->AddAttribute("value",sval);		
+		thisNode->DeleteAttribute("maxValue");
+		thisNode->DeleteAttribute("minValue");
 		if(isMinValue)
 		{
-			thisNode->AddProperty("minValue",IntToString(minValue));	
+			thisNode->AddAttribute("minValue",IntToString(minValue));	
 		}
 		if(isMaxValue)
 		{
-			thisNode->AddProperty("maxValue",IntToString(maxValue));
+			thisNode->AddAttribute("maxValue",IntToString(maxValue));
 		}
 		return thisNode;
 	}
@@ -162,8 +162,8 @@ public:
 	{
 		if(exportToCore)
 		{
-			NoeudParent->DeleteProperty(this->elementInfo.libelleElement);
-			NoeudParent->AddProperty(this->elementInfo.libelleElement,IntToString(elementValue));
+			NoeudParent->DeleteAttribute(this->elementInfo.libelleElement);
+			NoeudParent->AddAttribute(this->elementInfo.libelleElement,IntToString(elementValue));
 		}
 		return NoeudParent;
 	}

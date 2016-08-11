@@ -98,7 +98,9 @@ LanguageSelector::LanguageSelector(wxWindow *parent,
 
 	wxDirList traverser(lngFolders);
 	wxDir folderRoot(rootLngFolder);
-	folderRoot.Traverse(traverser);
+	if (folderRoot.Open(rootLngFolder)) {
+		folderRoot.Traverse(traverser);
+	}
 	wxDir::GetAllFiles(flagsFolder,&flagsFileName,"*.png",wxDIR_FILES);
 
 
@@ -106,7 +108,8 @@ LanguageSelector::LanguageSelector(wxWindow *parent,
 	{
 		if(wxLocale::IsAvailable(idlang))
 		{
-			Canonical_lng=wxLocale(idlang).GetCanonicalName();
+			wxLanguageInfo langInfo = *wxLocale::GetLanguageInfo(idlang);
+			Canonical_lng = langInfo.CanonicalName;
 			ISO3166_lng=Canonical_lng.Mid(Canonical_lng.rfind("_")+1).Lower();
 			ISO639_lng=Canonical_lng.Left(Canonical_lng.rfind("_")).Lower();
  			if(lngFolders.Index(ressourceFolder+Canonical_lng)>=0)//lngFolders.Index(ressourceFolder+ISO639_lng)>=0 || lngFolders.Index(ressourceFolder+Canonical_lng)>=0 )

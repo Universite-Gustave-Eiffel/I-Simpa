@@ -124,7 +124,7 @@ wxCustomEntryDialog::wxCustomEntryDialog(wxWindow *parent,
 	//newGrid->SetMinSize(wxSize(300,200));
 	newGrid->AppendCols();
 	newGrid->SetColLabelValue(0,_("Value"));
-	newGrid->SetLabelAlignment(wxVERTICAL,wxALIGN_LEFT);
+	newGrid->SetColLabelAlignment(wxVERTICAL,wxALIGN_LEFT);
 
     SetSizer( topsizer );
     SetAutoLayout( true );
@@ -146,7 +146,7 @@ void wxCustomEntryDialog::AddListBox( const wxString& label,	const wxString& def
 	if(dialogGrid)
 	{
 		dialogGrid->AppendRows(1);
-		std::size_t idrow(dialogGrid->GetRows()-1);
+		std::size_t idrow(dialogGrid->GetNumberRows()-1);
 		dialogGrid->SetRowLabelValue(idrow,label);
 		dialogGrid->SetCellEditor(idrow,0,new wxGridCellChoiceEditor(values));
 		dialogGrid->SetCellValue(idrow,0,defaultValue);
@@ -177,7 +177,7 @@ void wxCustomEntryDialog::AddTextControl( const wxString& label, const wxString&
 	if(dialogGrid)
 	{
 		dialogGrid->AppendRows(1);
-		std::size_t idrow(dialogGrid->GetRows()-1);
+		std::size_t idrow(dialogGrid->GetNumberRows()-1);
 		dialogGrid->SetRowLabelValue(idrow,label);
 		dialogGrid->SetCellValue(idrow,0,defaultvalue);
 		dialogGrid->AutoSizeColumns(false);
@@ -192,8 +192,8 @@ void wxCustomEntryDialog::GetValues(std::vector<wxString> &values)
 	PropGrid* dialogGrid=wxDynamicCast(this->FindWindowById(wxCustomEntryDialog::CUSTOM_DIALOG_CTRLS_GRID),PropGrid);
 	if(dialogGrid)
 	{
-		values.reserve(dialogGrid->GetRows());
-		for(int i=0;i<dialogGrid->GetRows();i++)
+		values.reserve(dialogGrid->GetNumberRows());
+		for(int i=0;i<dialogGrid->GetNumberRows();i++)
 			values.push_back(dialogGrid->GetCellValue(i,0));
 	}
 }

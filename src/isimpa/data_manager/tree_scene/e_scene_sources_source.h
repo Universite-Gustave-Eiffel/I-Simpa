@@ -30,6 +30,7 @@
 
 #include "first_header_include.hpp"
 
+#include <wx/filename.h>
 #include "data_manager/drawable_element.h"
 #include "e_scene_sources_source_rendu.h"
 #include "e_scene_sources_source_proprietes.h"
@@ -63,7 +64,7 @@ public:
 			wxString propValue;
 			while(currentChild!=NULL)
 			{
-				if(currentChild->GetPropVal("eid",&propValue))
+				if(currentChild->GetAttribute("eid",&propValue))
 				{
 					long typeEle;
 					propValue.ToLong(&typeEle);
@@ -115,8 +116,28 @@ public:
 		if(useThisSource)
 		{
 			wxXmlNode* thisNode = new wxXmlNode(NoeudParent,wxXML_ELEMENT_NODE,"source");
-			thisNode->AddProperty("id",Convertor::ToString(elementInfo.xmlIdElement));
-			thisNode->AddProperty("name",elementInfo.libelleElement);
+			thisNode->AddAttribute("id",Convertor::ToString(elementInfo.xmlIdElement));
+			thisNode->AddAttribute("name",elementInfo.libelleElement);
+
+			// copy directivity file into simulation folder and export to config
+			int iddirectivity = elFilsProperty->GetEntierConfig("iddirectivity");
+			E_Directivity* directivity = ApplicationConfiguration::GetDirectivity(iddirectivity);
+			if (directivity != NULL)
+			{
+				wxFileName directivityFile = directivity->GetAssociatedFile();
+
+				wxFileName storageFolder(ApplicationConfiguration::GLOBAL_VAR.workingFolderPath);
+				storageFolder.AppendDir("loudspeakers");
+				if (!storageFolder.DirExists())
+				{
+					storageFolder.Mkdir();
+				}
+				storageFolder.SetFullName(directivityFile.GetFullName());
+				wxCopyFile(directivityFile.GetFullPath(), storageFolder.GetFullPath());
+
+				thisNode->AddAttribute("directivity_file", directivityFile.GetFullName());
+			}
+
 			return Element::SaveXMLCoreDoc(thisNode);
 		}else{
 			return NoeudParent;
@@ -139,7 +160,8 @@ public:
 		{
 			destinationFleche.set(-elFilsProperty->GetDecimalConfig("u"),-elFilsProperty->GetDecimalConfig("v"),-elFilsProperty->GetDecimalConfig("w"));
 			destinationFleche=position+(destinationFleche/destinationFleche.length())/unitizeValue.w*.1f*destinationFleche.length();
-			showArrow=elFilsProperty->GetListConfig("directivite")==E_Scene_Sources_Source_Proprietes::DIRECTIVITE_SOURCE_UNIDIRECTIONNEL;
+			showArrow = (elFilsProperty->GetListConfig("directivite") == E_Scene_Sources_Source_Proprietes::DIRECTIVITE_SOURCE_UNIDIRECTIONNEL)
+				|| (elFilsProperty->GetListConfig("directivite") == E_Scene_Sources_Source_Proprietes::DIRECTIVITE_SOURCE_DIRECTIONNEL);
 			showSource=elFilsProperty->GetBoolConfig("enable");
 		}
 		labelInfo.clear();

@@ -27,18 +27,19 @@
 * Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
 * or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
-
+#include <wx/intl.h> 
 #include "GL/opengl_inc.h"
 #include "wx/log.h"
 #include "Objet3D.h"
 #include "ply.h"	// gestion du format PLY stanford
 #include "var.h"
 #include "data_manager/appconfig.h"
-#include "coreSrc/preprocess/input_output/poly.h" // gestion du format POLY tetgen
+#include "../preprocess/input_output/poly.h" // gestion du format POLY tetgen
 #include "data_manager/drawable_element.h"
 #include <wx/filename.h>
 #include "data_manager/python_interface/instanceManager.hpp"
 #include <tools/vol_splitter.hpp>
+#include <wx/tokenzr.h>
 //#include <tools/collision.h>
 #include "last_cpp_include.hpp"
 
@@ -52,7 +53,7 @@ bool Vec3Contains(ivec3 &leftIndex,ivec3 &rightIndex)
 	return (Contains(leftIndex.a,rightIndex) && Contains(leftIndex.b,rightIndex) && Contains(leftIndex.c,rightIndex));
 }
 
-bool LoadNodeFile(vec4 UnitizeVar, vec3** tabNodes, unsigned long &nodesMaillageSize, const std::wstring& nodeFilePath)
+bool LoadNodeFile(vec4 UnitizeVar, vec3** tabNodes, unsigned long &nodes_mesh_size, const std::string& nodeFilePath)
 {
 	using namespace std;
 	using namespace formatPLY;
@@ -60,32 +61,41 @@ bool LoadNodeFile(vec4 UnitizeVar, vec3** tabNodes, unsigned long &nodesMaillage
 	if(!wxFileExists(nodeFilePath))
 		return false;
 
-	FILE *infile;
-	char mefilename[250];
-	char buffer[250];
-	infile = fopen(STDWSTRINGTOCONSTCHAR(nodeFilePath), "r+");
+    ifstream infile;
+    infile.open(nodeFilePath);
 
-	//Lecture de l'entête
-	char snbnode[20];
-	char sdim[5];
-	fscanf(infile,"%20s %5s %5s %5s\n",snbnode,sdim,buffer,buffer);
-	unsigned int nbNodes=Convertor::ToInt(snbnode);
+	// Read header
+    //snbnode sdim
+    std::string line;
+    if(!getline(infile, line)) {
+        return false;
+    }
+    wxStringTokenizer string_tokenizer(line);
+    if(!string_tokenizer.HasMoreTokens())
+    {
+        wxLogError(_("Expected node size got %s"), line);
+        return false;
+    }
+	unsigned int nbNodes=Convertor::ToInt(string_tokenizer.GetNextToken());
 	if(nbNodes>0)
 	{
 		delete[] *tabNodes;
 		*tabNodes = new vec3[nbNodes];
-		nodesMaillageSize=nbNodes;
+		nodes_mesh_size=nbNodes;
 
 		unsigned int idNode=0;
-		char sidNode[12];
-		char sx[25];
-		char sy[25];
-		char sz[25];
-		while(idNode<nbNodes && !feof(infile))
+		while(idNode<nbNodes && getline(infile, line))
 		{
-			fscanf(infile,"%12s %25s %25s %25s\n",sidNode,sx,sy,sz);
-			idNode=Convertor::ToInt(sidNode);
-			vec3 position(Convertor::ToFloat(wxString(sx)),Convertor::ToFloat(wxString(sy)),Convertor::ToFloat(wxString(sz)));
+            string_tokenizer.SetString(line);
+            if(string_tokenizer.CountTokens() < 4) {
+                wxLogError(_("Expected node id, x, y and z got %s"), line);
+                return false;
+            }
+			idNode=Convertor::ToInt(string_tokenizer.GetNextToken());
+            float x = Convertor::ToFloat(string_tokenizer.GetNextToken());
+            float y = Convertor::ToFloat(string_tokenizer.GetNextToken());
+            float z = Convertor::ToFloat(string_tokenizer.GetNextToken());
+			vec3 position(x, y, z);
 			position=coordsOperation::CommonCoordsToGlCoords(UnitizeVar,position);
 			if(idNode>0 && idNode<=nbNodes)
 			{
@@ -93,7 +103,7 @@ bool LoadNodeFile(vec4 UnitizeVar, vec3** tabNodes, unsigned long &nodesMaillage
 			}
 		}
 	}
-    fclose(infile);
+    infile.close();
 	if(nbNodes>0)
 	{
 		return true;
@@ -104,7 +114,7 @@ bool LoadNodeFile(vec4 UnitizeVar, vec3** tabNodes, unsigned long &nodesMaillage
 
 bool LoadEleFile(tetrahedre** tabTetra, unsigned long &tabTetraSize, wxString tetraFilePath, vec3* tabNodes,vec4 UnitizeVar)
 {
-			//Mise à jour du volume total
+    //Reset total volume
 	ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.volScene=0;
 	using namespace std;
 	using namespace formatPLY;
@@ -112,16 +122,22 @@ bool LoadEleFile(tetrahedre** tabTetra, unsigned long &tabTetraSize, wxString te
 	if(!wxFileExists(tetraFilePath))
 		return false;
 
-	FILE *infile;
-	char mefilename[250];
-	char buffer[250];
-	infile = fopen(tetraFilePath, "r+");
 
-	//Lecture de l'entête
-	char snbnode[20];
-	char sdim[5];
-	fscanf(infile,"%20s %5s %5s\n",snbnode,sdim,buffer);
-	unsigned int nbTetra=Convertor::ToInt(snbnode);
+    ifstream infile;
+    infile.open(tetraFilePath.ToStdString());
+
+	//Read header
+
+    std::string line;
+    if (!getline(infile, line)) {
+        return false;
+    }
+    wxStringTokenizer string_tokenizer(line);
+    if (!string_tokenizer.HasMoreTokens()) {
+        wxLogError(_("Expected tetra size got %s"), line);
+        return false;
+    }
+	unsigned int nbTetra=Convertor::ToInt(string_tokenizer.GetNextToken());
 	if(nbTetra>0)
 	{
 		delete[] *tabTetra;
@@ -129,23 +145,23 @@ bool LoadEleFile(tetrahedre** tabTetra, unsigned long &tabTetraSize, wxString te
 		tabTetraSize=nbTetra;
 
 		unsigned int idTetra=0;
-		char sidTetra[12];
-		char sa[12];
-		char sb[12];
-		char sc[12];
-		char sd[12];
-		char svolume[12];
-		while(idTetra<nbTetra && !feof(infile))
+		while(idTetra<nbTetra && getline(infile, line))
 		{
-			fscanf(infile,"%12s %12s %12s %12s %12s    %12s\n",sidTetra,sa,sb,sc,sd,svolume);
-
-			idTetra=Convertor::ToInt(sidTetra);
-	    	(*tabTetra)[idTetra-1].idVolume=Convertor::ToInt(svolume);
-			ivec4 sommets(Convertor::ToInt(sa)-1,Convertor::ToInt(sb)-1,Convertor::ToInt(sc)-1,Convertor::ToInt(sd)-1);
+            string_tokenizer.SetString(line);
+            if (string_tokenizer.CountTokens() < 6) {
+                wxLogError(_("Expected idtetra a b c d idvolume got %s"), line);
+                return false;
+            }
+			idTetra=Convertor::ToInt(string_tokenizer.GetNextToken());
+            ivec4 sommets(Convertor::ToInt(string_tokenizer.GetNextToken()) - 1,
+                Convertor::ToInt(string_tokenizer.GetNextToken()) - 1,
+                Convertor::ToInt(string_tokenizer.GetNextToken()) - 1,
+                Convertor::ToInt(string_tokenizer.GetNextToken()) - 1);
+	    	(*tabTetra)[idTetra-1].idVolume=Convertor::ToInt(string_tokenizer.GetNextToken());
 			if(idTetra>0 && idTetra<=nbTetra)
 			{
 				////////////////
-				// Sommets du tetrahedre
+				// tetrahedra vertex
 				//    D
 				//   /|\
 				//  / | \
@@ -154,7 +170,7 @@ bool LoadEleFile(tetrahedre** tabTetra, unsigned long &tabTetraSize, wxString te
 				//    B
 				////////////////
 				(*tabTetra)[idTetra-1].sommets=sommets;
-						//Mise à jour du volume total
+				//Update total volume
 				ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.volScene+=CalcTetraVolume(tabNodes[sommets.a]/UnitizeVar.w,tabNodes[sommets.b]/UnitizeVar.w,tabNodes[sommets.c]/UnitizeVar.w,tabNodes[sommets.d]/UnitizeVar.w);
 				(*tabTetra)[idTetra-1].tetrafaces[0].sommets.set(sommets.b,sommets.d,sommets.c); //neighbors.a
 				(*tabTetra)[idTetra-1].tetrafaces[1].sommets.set(sommets.c,sommets.d,sommets.a); //neighbors.b
@@ -167,7 +183,7 @@ bool LoadEleFile(tetrahedre** tabTetra, unsigned long &tabTetraSize, wxString te
 			}
 		}
 	}
-    fclose(infile);
+    infile.close();
 	return true;
 }
 
@@ -183,37 +199,43 @@ bool LoadFaceListe(std::vector<ivec3>& tabFace, wxString faceFilePath)
 	if(!wxFileExists(faceFilePath))
 		return false;
 
-	FILE *infile;
-	char mefilename[250];
-	char buffer[250];
-	infile = fopen(faceFilePath, "r+");
+    ifstream infile;
+    infile.open(faceFilePath.ToStdString());
 
-	//Lecture de l'entête
-	char snbnode[20];
-	int ismarker;
-	fscanf(infile,"%20s %i\n",snbnode,&ismarker);
-	unsigned int nbFaceTetra=Convertor::ToInt(snbnode);
+	// Read header
+    std::string line;
+    if (!getline(infile, line)) {
+        return false;
+    }
+    wxStringTokenizer string_tokenizer(line);
+    if (string_tokenizer.CountTokens() < 2) {
+        wxLogError(_("Expected tetra size and marker got %s"), line);
+        return false;
+    }
+
+	unsigned int nbFaceTetra=Convertor::ToInt(string_tokenizer.GetNextToken());
+    int has_marker = Convertor::ToInt(string_tokenizer.GetNextToken());
 	if(nbFaceTetra>0)
 	{
 
 		unsigned int idFaceTetra=0;
-		char sidFace[12];
-		char sa[12];
-		char sb[12];
-		char sc[12];
-		char smarker[12];
 		tabFace.reserve(nbFaceTetra);
-		while(idFaceTetra<nbFaceTetra && !feof(infile))
+		while(idFaceTetra<nbFaceTetra && getline(infile, line))
 		{
-			if(ismarker==1)
-				fscanf(infile,"%12s %12s %12s %12s %12s\n",sidFace,sa,sb,sc,smarker);
-			else
-				fscanf(infile,"%12s %12s %12s %12s\n",sidFace,sa,sb,sc);
-			tabFace.push_back(ivec3(Convertor::ToInt(sc)-1,Convertor::ToInt(sb)-1,Convertor::ToInt(sa)-1));
+            string_tokenizer.SetString(line);
+            if (string_tokenizer.CountTokens() < (4 + has_marker)) {
+                wxLogError(_("Expected idface a b c [marker] got %s"), line);
+                return false;
+            }
+            idFaceTetra = Convertor::ToInt(string_tokenizer.GetNextToken());
+            int sa = Convertor::ToInt(string_tokenizer.GetNextToken());
+            int sb = Convertor::ToInt(string_tokenizer.GetNextToken());
+            int sc = Convertor::ToInt(string_tokenizer.GetNextToken());
+            tabFace.push_back(ivec3(sc - 1, sb - 1, sa - 1));
 			idFaceTetra++;
 		}
 	}
-    fclose(infile);
+    infile.close();
 	return true;
 
 
@@ -226,8 +248,8 @@ bool LoadFaceFile(tetrahedre** tabTetra, unsigned long &tabTetraSize, wxString f
 	if(!wxFileExists(faceFilePath))
 		return false;
 
-	//Construction d'une structure de données afin de lier 1 sommet à une liste de tetraèdres
-	t_sommet* sommetsLst= new t_sommet[nbNodes];
+    // Build a structure in order to link on vertice to a list of tetrahedra
+	t_sommet* vertex_list= new t_sommet[nbNodes];
 
 	for(unsigned int idTetra=0;idTetra<tabTetraSize;idTetra++)
 	{
@@ -237,39 +259,48 @@ bool LoadFaceFile(tetrahedre** tabTetra, unsigned long &tabTetraSize, wxString f
 			{
 				wxInt32 idnode=(*tabTetra)[idTetra].sommets[idsommet];
 				if(idnode<nbNodes)
-					sommetsLst[idnode].linkedTetra.push_back(&(*tabTetra)[idTetra]);
+					vertex_list[idnode].linkedTetra.push_back(&(*tabTetra)[idTetra]);
 			}
 		}
 	}
 
+    // Read header
+    ifstream infile;
+    infile.open(faceFilePath.ToStdString());
 
-	FILE *infile;
-	char mefilename[250];
-	char buffer[250];
-	infile = fopen(faceFilePath, "r+");
+    std::string line;
+    if (!getline(infile, line)) {
+        return false;
+    }
+    wxStringTokenizer string_tokenizer(line);
+    if (string_tokenizer.CountTokens() < 2) {
+        wxLogError(_("Expected face size and dimension got %s"), line);
+        infile.close();
+        delete[] vertex_list;
+        return false;
+    }
 
-	//Lecture de l'entête
-	char snbnode[20];
-	unsigned int  sdim;
-	fscanf(infile,"%20s %i\n",snbnode,&sdim);
-	unsigned int nbFaceTetra=Convertor::ToInt(snbnode);
+	unsigned int nbFaceTetra=Convertor::ToInt(string_tokenizer.GetNextToken());
+    unsigned int  sdim = Convertor::ToInt(string_tokenizer.GetNextToken());
 	if(nbFaceTetra>0 && sdim==1)
 	{
-
 		unsigned int idFaceTetra=0;
-		char sidFace[12];
-		char sa[12];
-		char sb[12];
-		char sc[12];
-		char smarker[12];
-		while(idFaceTetra<nbFaceTetra && !feof(infile))
+		while(idFaceTetra<nbFaceTetra && getline(infile, line))
 		{
-			fscanf(infile,"%12s %12s %12s %12s %12s\n",sidFace,sa,sb,sc,smarker);
+            string_tokenizer.SetString(line);
+            if (string_tokenizer.CountTokens() < 5) {
+                wxLogError(_("Expected idface a b c marker %s"), line);
+                infile.close();
+                delete[] vertex_list;
+                return false;
+            }
+            idFaceTetra = Convertor::ToInt(string_tokenizer.GetNextToken());
+			ivec3 sommets(Convertor::ToInt(string_tokenizer.GetNextToken())-1,
+                Convertor::ToInt(string_tokenizer.GetNextToken())-1,
+                Convertor::ToInt(string_tokenizer.GetNextToken())-1);
 
-			ivec3 sommets(Convertor::ToInt(sa)-1,Convertor::ToInt(sb)-1,Convertor::ToInt(sc)-1);
-			idFaceTetra=Convertor::ToInt(sidFace);
-			unsigned int marker=Convertor::ToInt(smarker);
-			std::vector<tetrahedre*>* vecTetras=&sommetsLst[sommets.a].linkedTetra;
+			unsigned int marker=Convertor::ToInt(string_tokenizer.GetNextToken());
+			std::vector<tetrahedre*>* vecTetras=&vertex_list[sommets.a].linkedTetra;
 			for(unsigned int idTetra=0;idTetra<vecTetras->size();idTetra++)
 			{
 				tetrahedre* tetratest=(*vecTetras)[idTetra];
@@ -284,12 +315,12 @@ bool LoadFaceFile(tetrahedre** tabTetra, unsigned long &tabTetraSize, wxString f
 			}
 		}
 	}else{
-		fclose(infile);
-		delete[] sommetsLst;
+        infile.close();
+		delete[] vertex_list;
 		return false;
 	}
-    fclose(infile);
-	delete[] sommetsLst;
+    infile.close();
+	delete[] vertex_list;
 	return true;
 }
 
@@ -301,43 +332,54 @@ bool LoadNeighFile(tetrahedre** tabTetra, unsigned long &tabTetraSize, wxString 
 	if(!wxFileExists(faceFilePath))
 		return false;
 
-	FILE *infile;
-	char mefilename[250];
-	char buffer[250];
-	infile = fopen(faceFilePath, "r+");
+    // Read header
+    ifstream infile;
+    infile.open(faceFilePath.ToStdString());
 
-	//Lecture de l'entête
-	char snbnode[20];
-	char sdim[5];
-	fscanf(infile,"%20s %5s\n",snbnode,sdim);
-	unsigned int nbTetra=Convertor::ToInt(snbnode);
+    std::string line;
+    if (!getline(infile, line)) {
+        return false;
+    }
+    wxStringTokenizer string_tokenizer(line);
+    if (string_tokenizer.CountTokens() < 2) {
+        wxLogError(_("Expected node size and dimension got %s"), line);
+        infile.close();
+        return false;
+    }
+	unsigned int nbTetra=Convertor::ToInt(string_tokenizer.GetNextToken());
 	if(nbTetra>0)
 	{
-		unsigned int idTetra=0;
-		char sidTetra[12];
-		char sa[12];
-		char sb[12];
-		char sc[12];
-		char sd[12];
-		while(idTetra<nbTetra && !feof(infile))
+		while(getline(infile, line))
 		{
-			fscanf(infile,"%12s %12s %12s %12s %12s\n",sidTetra,sa,sb,sc,sd);
+			//fscanf(infile,"%12s %12s %12s %12s %12s\n",sidTetra,sa,sb,sc,sd);
 
-			unsigned int idTetra=Convertor::ToInt(sidTetra)-1;
+            string_tokenizer.SetString(line);
+            if (string_tokenizer.CountTokens() < 5) {
+                wxLogError(_("Expected idtetra a b c d got %s"), line);
+                return false;
+            }
 
-			ivec4 neighbors(Convertor::ToInt(sa)-1,Convertor::ToInt(sb)-1,Convertor::ToInt(sc)-1,Convertor::ToInt(sd)-1);
+			unsigned int idTetra = Convertor::ToInt(string_tokenizer.GetNextToken())-1;
+
+			ivec4 neighbors(Convertor::ToInt(string_tokenizer.GetNextToken())-1,
+                Convertor::ToInt(string_tokenizer.GetNextToken())-1,
+                Convertor::ToInt(string_tokenizer.GetNextToken())-1,
+                Convertor::ToInt(string_tokenizer.GetNextToken())-1);
 
 			if(idTetra>=0 && idTetra<tabTetraSize)
 			{
 				(*tabTetra)[idTetra].tetraNeighboor=neighbors;
 			}
+            if(idTetra == nbTetra - 1) {
+                break;
+            }
 		}
 	}
-    fclose(infile);
+    infile.close();
 	return true;
 }
 
-bool CObjet3D::LoadMaillage(const std::wstring& facePath,const std::wstring& elePath,const std::wstring& nodePath,const std::wstring& neighPath)
+bool CObjet3D::LoadMaillage(const std::string& facePath,const std::string& elePath,const std::string& nodePath,const std::string& neighPath)
 {
 	if(!(this->GetNumFaces()>0))
 		return false;
@@ -420,7 +462,6 @@ void CObjet3D::_RenderMaillageTriangles(t_cutPlane cutPlane)
 	glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS, 1.f);
 
 	//Debug comptage du nombre de faces dans la scène
-	unsigned int nbfaces=this->GetNumFaces();
 	if(!this->tabVertexMaillage)
 		return;
 	//Rendu d'un tetrahedre
@@ -430,7 +471,6 @@ void CObjet3D::_RenderMaillageTriangles(t_cutPlane cutPlane)
 	//glDisable(GL_DEPTH_TEST);
 	glCullFace(GL_FRONT );
 	glBegin(GL_TRIANGLES);
-	long anstetranum=0;
 	srand ( 0 );
 	bool showTetra=true;
 	int oldVol=-1;
@@ -537,7 +577,6 @@ void CObjet3D::_RenderMaillageTriangles(t_cutPlane cutPlane)
 			for(int idface=0;idface<4;idface++)
 			{
 				ivec3 index=this->tabVertexMaillage[tetranum].tetrafaces[idface].sommets;
-				bool colorChange=false;
 
 				glNormal3fv(-FaceNormal(this->nodesMaillage[index.a],
 										this->nodesMaillage[index.b],
@@ -566,7 +605,6 @@ void CObjet3D::_RenderMaillageLines(t_cutPlane cutPlane)
 	vec4 couleur_ambient(.5, .5, .5, 1);
 
 	glColor3fv(couleur_ambient);
-	long anstetranum=0;
 	bool showTetra=true;
 	for(long tetranum=0; tetranum < this->tabVertexMaillageSize ;tetranum++)
 	{
@@ -958,14 +996,13 @@ bool CObjet3D::_LoadFaceFile(const char *filename)
 	// Chargement des noeuds des tetrahèdres
 	////////////////////////////////////////
 	this->_Destroy();
-	if(LoadNodeFile(UnitizeVar,&nodesFaces,nodesSize,WXSTRINGTOSTDWSTRING(nodePath.GetFullPath())))
+	if(LoadNodeFile(UnitizeVar,&nodesFaces,nodesSize,WXSTRINGTOSTDSTRING(nodePath.GetFullPath())))
 	{
 		////////////////////////////////////////
 		// Chargement des faces
 		////////////////////////////////////////
 		if(LoadFaceListe(faces,filename))
 		{
-			vec4 transfo=UnitizeVar;
 			//Supprime le modèle ouvert
 			//Transfert  de tabMaillage vers la scène
 			//Transfert des vertices

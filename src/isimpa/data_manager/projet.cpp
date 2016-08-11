@@ -605,6 +605,9 @@ void ProjectManager::ElementEvent(wxCommandEvent& eventElement,eventCtrl fromCtr
 			case Element::IDEVENT_CONVERT_VOL_TO_FITTING:
 				this->OnConvertSubVolumeToFitting(elementSelected);
 				break;
+			case Element::IDEVENT_NEW_USERDIRECTIV:
+				this->OnMenuNewUserDirectiv(elementSelected);
+				break;
 			default:
 				wxLogDebug("Event not generated %i ",idEvenementElement);
 			};
@@ -613,7 +616,9 @@ void ProjectManager::ElementEvent(wxCommandEvent& eventElement,eventCtrl fromCtr
 	}
 }
 
-
+wxString ProjectManager::GetCurrentFolder() {
+	return this->dossierCourant;
+}
 
 void ProjectManager::CloseApp()
 {
@@ -741,6 +746,7 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	if(!wxFileExists(reportFolderName))
 		wxMkdir(reportFolderName);
 	wxString workingDir=reportFolderName;//this->PathCores+corePath+tempFolder;
+	ApplicationConfiguration::GLOBAL_VAR.workingFolderPath = workingDir;
 	///////////////////////////////////////////
 	///	Verifications de l'existance du coeur de calcul
 	///////////////////////////////////////////
@@ -772,7 +778,7 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	wxXmlNode* rootConfig = new wxXmlNode(wxXML_ELEMENT_NODE,"configuration");
 
 	LastComputationFolder=workingDir;
-	rootConfig->AddProperty("workingdirectory",workingDir);
+	rootConfig->AddAttribute("workingdirectory",workingDir);
 
 
 	xmlCoreDocument.SetRoot(rootConfig);
@@ -1274,6 +1280,18 @@ void ProjectManager::OnMenuNewUserFreq(Element* searchResult)
 	}
 }
 
+void ProjectManager::OnMenuNewUserDirectiv(Element* searchResult)
+{
+	Element* newSon = searchResult->AppendFilsByType(Element::ELEMENT_TYPE_DIRECTIVITIES_USER);
+	newSon->FillWxTree(this->treeScene);
+	if (!pyeventmode)
+	{
+		this->treeScene->Expand(searchResult->GetElementInfos().idElement);
+		this->treeScene->UnselectAll();
+		this->treeScene->SelectItem(newSon->GetElementInfos().idElement);
+		this->OnMenuRenameElement(treeScene, this->rootScene, newSon);
+	}
+}
 
 void ProjectManager::OnMenuNewMatGroup(Element* searchResult)
 {
@@ -1828,7 +1846,7 @@ void ProjectManager::LoadCurrentProject(bool reloadXmlFile)
 		wxXmlNode* currentNode = rootNode->GetChildren();
 		while( currentNode!=NULL)
 		{
-			if(currentNode->GetPropVal("eid",&propVal))
+			if(currentNode->GetAttribute("eid",&propVal))
 			{
 				long typeEle;
 				propVal.ToLong(&typeEle);
@@ -1974,8 +1992,7 @@ void ProjectManager::SetControlPointer(	wxTextCtrl* _logControl,uiTreeCtrl* _tre
 	InitPythonEngine(); //Initialisation de python
 
 	//Chargement de l'arbre de préférence (peut contenir des élément implémenté en python
-	wxStandardPaths stdpathreader;
-	UserPreferenceXmlFilePath=stdpathreader.GetUserDataDir()+wxFileName::GetPathSeparator()+ApplicationConfiguration::CONST_USER_PREFERENCE_FILE_NAME;
+	UserPreferenceXmlFilePath= wxStandardPaths::Get().GetUserDataDir()+wxFileName::GetPathSeparator()+ApplicationConfiguration::CONST_USER_PREFERENCE_FILE_NAME;
 	if(!wxFileExists(UserPreferenceXmlFilePath))
 	{
 		this->CreateUserPreferenceTree();
@@ -2458,7 +2475,8 @@ bool ProjectManager::UnZipFolder(const wxString&zipfilename,const wxString&folde
 				// read 'zip' to access the entry's data
 				out<<zip;
 				out.Close();
-				fichToCreate.SetTimes(NULL,&entry->GetDateTime(),&entry->GetDateTime());
+				wxDateTime entryTime = entry->GetDateTime();
+				fichToCreate.SetTimes(NULL,&entryTime,&entryTime);
 			}
 		}
     }
@@ -2800,7 +2818,7 @@ void ProjectManager::OnSelectVertex PARAM_BOUND_ON_SELECT_FACES
 	}
 	//On sélectionne l'élément dans l'arbre
 	Element* targetElement=this->rootScene->GetElementByType(Element::ELEMENT_TYPE_SCENE_GROUPESURFACES);
-	if(targetElement!=NULL)
+	if(targetElement != NULL)
 	{
 		E_Scene_Groupesurfaces* groupeSurfaces=dynamic_cast<E_Scene_Groupesurfaces*>(targetElement);
 		if(!ctrlDown)
@@ -3082,11 +3100,11 @@ void ProjectManager::UpdateXmlFile(wxString toFolder,bool saveToFile)
 	wxXmlNode* noeudRacine=this->projetConfig.GetRoot();
 	if(!noeudRacine)
 		return;
-	noeudRacine->DeleteProperty("appversion");
+	noeudRacine->DeleteAttribute("appversion");
 
 	wxString Appversion;
 	Appversion<<ApplicationConfiguration::SPPS_UI_VERSION_MAJOR<<"."<<ApplicationConfiguration::SPPS_UI_VERSION_MINOR<<"."<<ApplicationConfiguration::SPPS_UI_VERSION_REVISION;
-	noeudRacine->AddProperty("appversion",Appversion);
+	noeudRacine->AddAttribute("appversion",Appversion);
 	Element* eleInfos=this->rootScene->GetElementByType(Element::ELEMENT_TYPE_SCENE_PROJET_INFORMATION);
 	if(eleInfos)
 		eleInfos->InitProp();

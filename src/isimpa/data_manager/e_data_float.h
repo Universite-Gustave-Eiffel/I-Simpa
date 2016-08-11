@@ -65,19 +65,19 @@ public:
 
 		wxString propVal;
 		//Affecte la valeur de l'element
-		if(noeudCourant->GetPropVal("value",&propVal))
+		if(noeudCourant->GetAttribute("value",&propVal))
 			elementValue=StringToFloat(propVal);
-		if(noeudCourant->GetPropVal("maxValue",&propVal))
+		if(noeudCourant->GetAttribute("maxValue",&propVal))
 		{
 			maxValue=StringToFloat(propVal);
 			isMaxValue=true;
 		}
-		if(noeudCourant->GetPropVal("minValue",&propVal))
+		if(noeudCourant->GetAttribute("minValue",&propVal))
 		{
 			minValue=StringToFloat(propVal);
 			isMinValue=true;
 		}
-		if(noeudCourant->GetPropVal("pr",&propVal))
+		if(noeudCourant->GetAttribute("pr",&propVal))
 			precision=propVal;
 	}
 
@@ -107,8 +107,8 @@ public:
 	{
 		if(exportToCore)
 		{
-			NoeudParent->DeleteProperty(this->elementInfo.libelleElement);
-			NoeudParent->AddProperty(this->elementInfo.libelleElement,FloatToString(elementValue));
+			NoeudParent->DeleteAttribute(this->elementInfo.libelleElement);
+			NoeudParent->AddAttribute(this->elementInfo.libelleElement,FloatToString(elementValue));
 		}
 		return NoeudParent;
 	}
@@ -162,22 +162,22 @@ public:
 	wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)
 	{
 		wxXmlNode* thisNode = E_Data::SaveXMLDoc(NoeudParent);
-		thisNode->DeleteProperty("value");
-		thisNode->AddProperty("value",FloatToString(elementValue));	
+		thisNode->DeleteAttribute("value");
+		thisNode->AddAttribute("value",FloatToString(elementValue));	
 
-		thisNode->DeleteProperty("pr");
+		thisNode->DeleteAttribute("pr");
 		wxString sPrecision;
 		sPrecision<<precision;
-		thisNode->AddProperty("pr",sPrecision);	
-		thisNode->DeleteProperty("maxValue");
-		thisNode->DeleteProperty("minValue");
+		thisNode->AddAttribute("pr",sPrecision);	
+		thisNode->DeleteAttribute("maxValue");
+		thisNode->DeleteAttribute("minValue");
 		if(isMinValue)
 		{
-			thisNode->AddProperty("minValue",FloatToString(minValue));	
+			thisNode->AddAttribute("minValue",FloatToString(minValue));	
 		}
 		if(isMaxValue)
 		{
-			thisNode->AddProperty("maxValue",FloatToString(maxValue));
+			thisNode->AddAttribute("maxValue",FloatToString(maxValue));
 		}
 		return thisNode;
 	}

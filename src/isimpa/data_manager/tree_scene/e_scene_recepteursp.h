@@ -58,7 +58,7 @@ public:
 			wxString propValue;
 			while(currentChild!=NULL)
 			{
-				if(currentChild->GetPropVal("eid",&propValue))
+				if(currentChild->GetAttribute("eid",&propValue))
 				{
 					long typeEle;
 					propValue.ToLong(&typeEle);
@@ -86,24 +86,24 @@ public:
 		wxString propValue;
 		while(currentChild!=NULL)
 		{
-			if(currentChild->GetPropVal("eid",&propValue))
+			if(currentChild->GetAttribute("eid",&propValue))
 			{
 				long typeEle;
 				propValue.ToLong(&typeEle);
 				if(typeEle==Element::ELEMENT_TYPE_SCENE_RECEPTEURSP_RECEPTEUR)
 				{
 					wxString recpName;
-					currentChild->GetPropVal("name",&recpName);
-					currentChild->DeleteProperty("name");
-					currentChild->AddProperty("name",wxString::Format(_("Copy of %s"),recpName));
+					currentChild->GetAttribute("name",&recpName);
+					currentChild->DeleteAttribute("name");
+					currentChild->AddAttribute("name",wxString::Format(_("Copy of %s"),recpName));
 					this->AppendFils(new E_Scene_Recepteursp_Recepteur(currentChild,this))->ForceBottomModified();
 					somethingAdded=true;
 				}else if(typeEle==Element::ELEMENT_TYPE_SCENE_RECEPTEURSP)
 				{
 					wxString recpName;
-					currentChild->GetPropVal("name",&recpName);
-					currentChild->DeleteProperty("name");
-					currentChild->AddProperty("name",wxString::Format(_("Copy of %s"),recpName));
+					currentChild->GetAttribute("name",&recpName);
+					currentChild->DeleteAttribute("name");
+					currentChild->AddAttribute("name",wxString::Format(_("Copy of %s"),recpName));
 					E_Scene_Recepteursp* newel=new E_Scene_Recepteursp(currentChild,this);
 					newel->SetUserGroup();
 					newel->ForceBottomModified();

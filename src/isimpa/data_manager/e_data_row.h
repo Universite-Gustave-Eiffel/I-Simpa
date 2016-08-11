@@ -125,8 +125,8 @@ public:
 		//std::sort(this->fils.begin( ), this->fils.end( ), OrderById );
 		this->fils.sort(OrderById);
 		std::size_t nbfils(this->fils.size());
-		if(gridToFeed->GetCols()<nbfils)
-			gridToFeed->AppendCols(nbfils-gridToFeed->GetCols());
+		if(gridToFeed->GetNumberCols()<nbfils)
+			gridToFeed->AppendCols(nbfils-gridToFeed->GetNumberCols());
 
 		int i=0;
 		for(std::list<Element*>::iterator itfils=this->fils.begin();itfils!=this->fils.end();itfils++)

@@ -42,13 +42,12 @@
  */
 namespace gabe_io
 {
-	using namespace std;
 	typedef formatGABE::GABE_OBJECTTYPE COLTYPE;
 
-	typedef vector<string> stringarray;
-	typedef vector<int> intarray;
-	typedef vector<float> floatarray;
-	typedef vector<COLTYPE> typearray;
+	typedef std::vector<std::string> stringarray;
+	typedef std::vector<int> intarray;
+	typedef std::vector<float> floatarray;
+	typedef std::vector<COLTYPE> typearray;
 
 
 	/**
@@ -70,29 +69,29 @@ namespace gabe_io
 		 * Chargement du tableau
 		 * @param strFileName Chemin du fichier
 		 */
-		bool Load(const string& fileName);
+		bool Load(const std::string& fileName);
 		/**
 		 * Sauvegarde du tableau
 		 * @param strFileName Chemin du fichier
 		 */
-		bool Save(const string& fileName);
+		bool Save(const std::string& fileName);
 
 		/**
 		 * Ajoute une colonne de chaine de caractères à la fin du tableau
 		 */
-		void AppendStrCol( const stringarray& coldata, const string& coltitle );
+		void AppendStrCol( const stringarray& coldata, const std::string& coltitle );
 		/**
 		 * Ajoute une colonne d'entier à la fin du tableau
 		 */
-		void AppendIntCol( const intarray& coldata, const string& coltitle );
+		void AppendIntCol( const intarray& coldata, const std::string& coltitle );
 		/**
 		 * Ajoute une colonne de nombres flottants à la fin du tableau
 		 */
-		void AppendFloatCol( const floatarray& coldata, const string& coltitle, const int& precision=12 );
+		void AppendFloatCol( const floatarray& coldata, const std::string& coltitle, const int& precision=12 );
 		/**
 		 * Lecture du titre d'une colonne
 		 */
-		string GetColTitle(const std::size_t& idcol);
+		std::string GetColTitle(const std::size_t& idcol);
 		/**
 		 * Retourne les types de données sur les colonnes
 		 */

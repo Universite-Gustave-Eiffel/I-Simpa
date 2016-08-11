@@ -5,7 +5,7 @@
 
 
 
-#define SPPS_VERSION "Spps 2.1.4 version december 13 2013"
+#define SPPS_VERSION "Spps 2.2.0 version june 2016"
 #define __USE_BOOST_RANDOM_GENERATOR__
 #define UTILISER_MAILLAGE_OPTIMISATION
 
@@ -76,9 +76,9 @@ struct CONF_PARTICULE
 	decimal distanceToNextEncombrementEle;		/*!< Distance par rapport à la prochaine collision */
 	PARTICULE_STATE stateParticule;				/*!< Etat de la particule, utilisé uniquement pour les statistiques à la fin du calcul */
 	l_decimal energie_epsilon;					/*!< Limite d'energie pour laquelle où dû a la transmission la duplication de la particule est impossible (=Energie initiale*Paramètre de limite de transmission) */
-	decimal tempsEcoule;						/*!< Temps écoulé depuis le début du pas de temps actuel pasCourant*/
+	decimal elapsedTime;						/*!< Temps écoulé depuis le début du pas de temps actuel pasCourant*/
 	unsigned int sourceid;						/*!< Indice de la source d'où cette particule a été tirée */
-	CONF_PARTICULE(){sourceid=0;currentTetra=NULL;distanceToNextEncombrementEle=0.f;stateParticule=PARTICULE_STATE_ALIVE;tempsEcoule=0.;reflectionOrder=0;}
+	CONF_PARTICULE(){sourceid=0;currentTetra=NULL;distanceToNextEncombrementEle=0.f;stateParticule=PARTICULE_STATE_ALIVE;elapsedTime=0.;reflectionOrder=0;}
 };
 
 

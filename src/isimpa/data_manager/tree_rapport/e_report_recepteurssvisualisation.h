@@ -126,12 +126,12 @@ public:
 		onlySum=false;
 		_("Surface receivers display");
 		wxString propVal;
-		if(nodeElement!=NULL && nodeElement->GetPropVal("wxid",&propVal))
+		if(nodeElement!=NULL && nodeElement->GetAttribute("wxid",&propVal))
 		{
 			//Element initialisé AVEC Xml
-			if(nodeElement->GetPropVal("onlysum",&propVal))
+			if(nodeElement->GetAttribute("onlysum",&propVal))
 				onlySum=true;
-			if(!nodeElement->HasProp("showisolvl"))
+			if(!nodeElement->HasAttribute("showisolvl"))
 				this->AppendCurvesParameters();
 
 		}
@@ -204,8 +204,8 @@ public:
 		thisNode->SetName("folder"); // Nom de la balise xml ( pas d'espace autorise )
 		if(onlySum)
 		{
-			thisNode->DeleteProperty("onlysum");
-			thisNode->AddProperty("onlysum","1");
+			thisNode->DeleteAttribute("onlysum");
+			thisNode->AddAttribute("onlysum","1");
 		}
 		return thisNode;
 	}	

@@ -131,7 +131,7 @@ r_Surf::r_Surf(r_Surf& copyFrom)
 	idRecepteurS=copyFrom.idRecepteurS;
 	nbFaces=copyFrom.nbFaces;
 
-	//Création à partir d'une copie
+	//Crï¿½ation ï¿½ partir d'une copie
 	if(copyFrom.nbFaces==0)
 	{
 		faces=NULL;
@@ -183,7 +183,9 @@ bool t_TetraMesh::LoadFile(const char * fileName, t_Mesh &sceneMesh,uentier nbFr
 	unsigned int binsizeTetra=0;
 	unsigned int binsizeNodes=0;
 
-	binImporter.ImportBIN(fileName,&tabtetra,&tabNodes,binsizeTetra,binsizeNodes);
+	if(!binImporter.ImportBIN(fileName,&tabtetra,&tabNodes,binsizeTetra,binsizeNodes)) {
+		return false;
+	}
 
 	if(binsizeTetra>0 && binsizeNodes>0)
 	{
@@ -191,7 +193,7 @@ bool t_TetraMesh::LoadFile(const char * fileName, t_Mesh &sceneMesh,uentier nbFr
 		//Copie des noeuds
 		nodes=new vec3[nodesSize];
 		memcpy(nodes,tabNodes,sizeof(vec3)*nodesSize);
-		//Copie des tetrahèdres
+		//Copie des tetrahï¿½dres
 		tetraedres=new t_Tetra[binsizeTetra];
 		tetraedresSize=binsizeTetra;
 

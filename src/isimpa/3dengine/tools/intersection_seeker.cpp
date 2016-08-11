@@ -114,10 +114,10 @@ namespace ui_tools
 
 
 		#ifdef _DEBUG
-		wxLogDebug("Arbre octree construit. Nombre total de noeuds %i, élément ajoutés %i.",modelOctree->GetNodesSize(),modelOctree->GetElementLstSize());
+		wxLogDebug("Arbre octree construit. Nombre total de noeuds %i, élément ajoutés %i.",(int) modelOctree->GetNodesSize(),(int) modelOctree->GetElementLstSize());
 
 		wxLongLong durationCalculation=wxDateTime::UNow().GetValue()-timeDebCalculation.GetValue();
-		wxLogDebug("Arbre octree construit en %i ms",durationCalculation.GetValue());
+		wxLogDebug("Arbre octree construit en %lld ms",durationCalculation.GetValue());
 		#endif
 
 	}

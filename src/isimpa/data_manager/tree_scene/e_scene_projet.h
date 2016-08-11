@@ -70,7 +70,7 @@ public:
 			wxString propValue;
 			while(currentChild!=NULL)
 			{
-				if(currentChild->GetPropVal("eid",&propValue))
+				if(currentChild->GetAttribute("eid",&propValue))
 				{
 					long typeEle;
 					propValue.ToLong(&typeEle);

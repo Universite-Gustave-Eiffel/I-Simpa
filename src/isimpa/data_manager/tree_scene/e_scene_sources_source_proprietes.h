@@ -31,6 +31,8 @@
 #include "first_header_include.hpp"
 
 #include "data_manager/element.h"
+#include "data_manager/appconfig.h"
+#include "data_manager/e_data_tree.h"
 
 /**  \file e_scene_sources_source_proprietes.h
  *   \brief Propriétés d'une source sonore ponctuelle de la scène
@@ -60,6 +62,7 @@ private:
 		vDirectivite.push_back("XY plan");
 		vDirectivite.push_back("XY plan");
 		vDirectivite.push_back("XZ plan");
+		vDirectivite.push_back("Directivity balloon");
 		_("Omnidirectional");
 		_("Unidirectional");
 		_("XY plan");
@@ -67,6 +70,9 @@ private:
 		_("XZ plan");
 		this->AppendPropertyList("directivite","Directivity",vDirectivite,DIRECTIVITE_SOURCE_OMINIDIRECTIONNEL,false,1,iDirectivite,true);
 		_("Directivity");
+
+		this->AppendPropertyEntier("iddirectivity", "iddirectivity", 0, false)->Hide();
+
 		this->AppendPropertyDecimal("u","Direction X",1,true,2,false,false,0,0,true);
 		this->AppendPropertyDecimal("v","Direction Y",1,true,2,false,false,0,0,true);
 		this->AppendPropertyDecimal("w","Direction Z",1,true,2,false,false,0,0,true);
@@ -77,6 +83,32 @@ private:
 		_("Time delay (s)");
 		InitNewProperties();
 	}
+
+	void InitProp() {
+		if (this->pere != NULL)
+		{
+			if (this->pere->GetElementInfos().typeElement == ELEMENT_TYPE_SCENE_SOURCES_SOURCE)
+			{
+				this->DeleteAllElementByType(ELEMENT_TYPE_TREE_LIST);
+				Element* rootDirectivities = ApplicationConfiguration::GetRootScene()->GetElementByType(Element::ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES);
+				if (rootDirectivities)
+				{
+					Element* defaultEle = ApplicationConfiguration::GetDirectivity(this->GetEntierConfig("iddirectivity"));
+					std::list<Element::ELEMENT_TYPE> filterTree;
+					filterTree.push_back(ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES);
+					filterTree.push_back(ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES_APP);
+					filterTree.push_back(ELEMENT_TYPE_DIRECTIVITIES_APP);
+					filterTree.push_back(ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES_USER);
+					filterTree.push_back(ELEMENT_TYPE_DIRECTIVITIES_USER);
+					this->AppendFils(new E_Data_Tree(this, "directivity-balloon", "Directivity Balloon", rootDirectivities, filterTree, defaultEle, false, 1));
+					if (this->GetListConfig("directivite") != DIRECTIVITE_SOURCE_DIRECTIONNEL)
+					{
+						this->SetReadOnlyConfig("directivity-balloon");
+					}
+				}
+			}
+		}
+	}
 public:
 	enum DIRECTIVITE_SOURCE
 	{
@@ -84,7 +116,8 @@ public:
 		DIRECTIVITE_SOURCE_UNIDIRECTIONNEL,
 		DIRECTIVITE_SOURCE_XY,
 		DIRECTIVITE_SOURCE_YZ,
-		DIRECTIVITE_SOURCE_XZ
+		DIRECTIVITE_SOURCE_XZ,
+		DIRECTIVITE_SOURCE_DIRECTIONNEL
 	};
 	E_Scene_Sources_Source_Proprietes( wxXmlNode* noeudCourant ,  Element* parent)
 		:Element(parent,"Properties",Element::ELEMENT_TYPE_SCENE_SOURCES_SOURCE_PROPRIETES,noeudCourant)
@@ -124,18 +157,32 @@ public:
 	void Modified(Element* eModif)
 	{
 		t_elementInfo filsInfo=eModif->GetElementInfos();
+		// si l'on a changé de ballon de directivité
+		if (filsInfo.typeElement == ELEMENT_TYPE_TREE_LIST && filsInfo.libelleElement == "directivity-balloon")
+		{
+			E_Data_Tree* ElementTree = dynamic_cast<E_Data_Tree*>(eModif);
+			if (ElementTree)
+			{
+				this->UpdateEntierConfig("iddirectivity", ApplicationConfiguration::GetDirectivityId(ElementTree->GetChoice()));
+			}
+		}
+		// si l'on a changé de type de directivité
 		if(filsInfo.libelleElement=="directivite")
 		{
 			bool newStateCoord=false;
-			if(this->GetListConfig("directivite")!=DIRECTIVITE_SOURCE_UNIDIRECTIONNEL)
+			if(this->GetListConfig("directivite") == DIRECTIVITE_SOURCE_UNIDIRECTIONNEL 
+				|| this->GetListConfig("directivite") == DIRECTIVITE_SOURCE_DIRECTIONNEL)
 			{
-				newStateCoord=true;
-			}else{
 				newStateCoord=false;
+			}else{
+				newStateCoord=true;
 			}
 			this->SetReadOnlyConfig("u",newStateCoord);
 			this->SetReadOnlyConfig("v",newStateCoord);
 			this->SetReadOnlyConfig("w",newStateCoord);
+			
+			bool newStateBalloon = (this->GetListConfig("directivite") == DIRECTIVITE_SOURCE_DIRECTIONNEL) ? false : true;
+			this->SetReadOnlyConfig("directivity-balloon", newStateBalloon);
 		}else if(!ignore_count_change && filsInfo.libelleElement=="enable")
 		{
 			if(this->GetBoolConfig("enable"))

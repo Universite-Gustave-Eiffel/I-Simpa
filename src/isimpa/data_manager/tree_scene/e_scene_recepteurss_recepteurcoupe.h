@@ -66,7 +66,7 @@ public:
 			wxString propValue;
 			while(currentChild!=NULL)
 			{
-				if(currentChild->GetPropVal("eid",&propValue))
+				if(currentChild->GetAttribute("eid",&propValue))
 				{
 					long typeEle;
 					propValue.ToLong(&typeEle);
@@ -205,17 +205,17 @@ public:
 			vec3 Bvert=this->GetPositionConfig("vertb");
 			vec3 Cvert=this->GetPositionConfig("vertc");
 			wxXmlNode* thisNode = new wxXmlNode(NoeudParent,wxXML_ELEMENT_NODE,"recepteur_surfacique_coupe");
-			thisNode->AddProperty("id",Convertor::ToString(elementInfo.xmlIdElement));
-			thisNode->AddProperty("name",elementInfo.libelleElement);
-			thisNode->AddProperty("ax",Convertor::ToString(Avert.x));
-			thisNode->AddProperty("ay",Convertor::ToString(Avert.y));
-			thisNode->AddProperty("az",Convertor::ToString(Avert.z));
-			thisNode->AddProperty("bx",Convertor::ToString(Bvert.x));
-			thisNode->AddProperty("by",Convertor::ToString(Bvert.y));
-			thisNode->AddProperty("bz",Convertor::ToString(Bvert.z));
-			thisNode->AddProperty("cx",Convertor::ToString(Cvert.x));
-			thisNode->AddProperty("cy",Convertor::ToString(Cvert.y));
-			thisNode->AddProperty("cz",Convertor::ToString(Cvert.z));
+			thisNode->AddAttribute("id",Convertor::ToString(elementInfo.xmlIdElement));
+			thisNode->AddAttribute("name",elementInfo.libelleElement);
+			thisNode->AddAttribute("ax",Convertor::ToString(Avert.x));
+			thisNode->AddAttribute("ay",Convertor::ToString(Avert.y));
+			thisNode->AddAttribute("az",Convertor::ToString(Avert.z));
+			thisNode->AddAttribute("bx",Convertor::ToString(Bvert.x));
+			thisNode->AddAttribute("by",Convertor::ToString(Bvert.y));
+			thisNode->AddAttribute("bz",Convertor::ToString(Bvert.z));
+			thisNode->AddAttribute("cx",Convertor::ToString(Cvert.x));
+			thisNode->AddAttribute("cy",Convertor::ToString(Cvert.y));
+			thisNode->AddAttribute("cz",Convertor::ToString(Cvert.z));
 			return E_Drawable::SaveXMLCoreDoc(thisNode);
 		}else{
 			return E_Drawable::SaveXMLCoreDoc(NoeudParent);

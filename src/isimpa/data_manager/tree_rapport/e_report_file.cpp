@@ -175,10 +175,10 @@ E_Report_File::E_Report_File(Element* parent,wxString Nom,wxString Path,ELEMENT_
 	SetIcon(GRAPH_STATE_ALL,GRAPH_DISK_DEFAULT_FILE);
 	blockUpdateNotification=false;
 	wxString propVal;
-	if(nodeElement!=NULL && nodeElement->GetPropVal("wxid",&propVal))
+	if(nodeElement!=NULL && nodeElement->GetAttribute("wxid",&propVal))
 	{
 		//Element initialisé AVEC Xml
-		if(nodeElement->GetPropVal("filepath",&propVal) && propVal!="")
+		if(nodeElement->GetAttribute("filepath",&propVal) && propVal!="")
 		{
 			filePath=propVal;
 		}
@@ -188,7 +188,7 @@ E_Report_File::E_Report_File(Element* parent,wxString Nom,wxString Path,ELEMENT_
 		wxString propValue;
 		while(currentChild!=NULL)
 		{
-			if(currentChild->GetPropVal("eid",&propValue))
+			if(currentChild->GetAttribute("eid",&propValue))
 			{
 				long typeEle;
 				propValue.ToLong(&typeEle);
@@ -413,8 +413,8 @@ void E_Report_File::BuildFullPath(wxString& fullPath)
 void E_Report_File::SaveProperties(wxXmlNode* thisNode)
 {
 	thisNode->SetName("file"); // Nom de la balise xml ( pas d'espace autorise )
-	thisNode->DeleteProperty("filepath");
-	thisNode->AddProperty("filepath",filePath);
+	thisNode->DeleteAttribute("filepath");
+	thisNode->AddAttribute("filepath",filePath);
 }
 
 wxXmlNode* E_Report_File::SaveXMLDoc(wxXmlNode* NoeudParent)

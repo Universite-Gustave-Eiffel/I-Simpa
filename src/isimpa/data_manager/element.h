@@ -31,6 +31,7 @@
 #include "first_header_include.hpp"
 
 #include <wx/treectrl.h>
+#include <wx/filename.h>
 #include <vector>
 #include <list>
 #include <wx/xml/xml.h>
@@ -188,7 +189,13 @@ class Element
 			ELEMENT_TYPE_USER_PREFERENCE_NODE,					 /*!< \~french élément de noeud des préférences utilisateurs \~english User preference node, in the user prefrence tree*/
 			ELEMENT_TYPE_USER_PREFERENCE_ITEM,					/*!< \~french élément des préférences utilisateurs \~english User preference item, in the user prefrence tree*/
 			ELEMENT_TYPE_USER_PREFERENCE_ITEM_ISOTEMPLATE,		/*!< \~french élément des préférences utilisateurs qui liste les palettes de couleurs iso \~english User preference item, in the user prefrence tree where user can choose iso palette.*/
-			ELEMENT_TYPE_ROW_EXTBFREQ							/*!< \~french élément ligne de frequence contenant également une attenuation \~english Extanded freq row property */
+			ELEMENT_TYPE_ROW_EXTBFREQ,							/*!< \~french élément ligne de frequence contenant également une attenuation \~english Extanded freq row property */
+			ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES,
+			ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES_APP,
+			ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES_USER,
+			ELEMENT_TYPE_DIRECTIVITIES_APP,
+			ELEMENT_TYPE_DIRECTIVITIES_USER,
+			ELEMENT_TYPE_FILE
 		};
 		/**
 		 * Indice des états des images
@@ -283,6 +290,9 @@ class Element
 			GRAPH_USER_PREF_MAINCONFIGURATION_OPEN,
 			GRAPH_USER_PREF_MAINCONFIGURATION_CLOSE,
 			GRAPH_USER_PREF_HISTORY,
+			GRAPH_DIRECTIVITY,
+			GRAPH_USER_DIRECTIVITY_OPEN,
+			GRAPH_USER_DIRECTIVITY_CLOSE,
 			GRAPH_LAST_STATIC_GRAPH		/*!< \~french Dernier icône \~english Last graph id */
 		};
 		/**
@@ -342,7 +352,8 @@ class Element
 			IDEVENT_CONVERT_VOL_TO_FITTING,				/*!< \~english built-in event \~french Converti le volume en encombrement scène */
 			IDEVENT_NEW_RECEPTEUR_S_COUPE,				/*!< \~english Add a cutting plan receiver event \~french Ajouter une récepteur en coupe */
 			IDEVENT_BFREQ_PRESELECTION_ALL,		        /*!< \~english built-in event \~french Séléction automatique des bandes de fréquences */
-			IDEVENT_LAST_FIXED
+			IDEVENT_NEW_USERDIRECTIV,
+			IDEVENT_LAST_FIXED /* !! This event must be the last, those before are "built-in" and those after are send to python */
 		};
 		/**
 		 * @brief Structure de données de base d'un élément
@@ -721,6 +732,12 @@ class Element
 		 * @return Valeur de la propriété
 		 */
 		wxFont GetFontConfig(const wxString& name);
+		/**
+		* Obtient la valeur courante de la propriété
+		* @param name Nom de la propriété
+		* @return Valeur de la propriété
+		*/
+		wxFileName GetFileConfig(wxString name);
 		/** @} */
 
 		/** @defgroup addprop Ajout de propriétés
@@ -770,6 +787,13 @@ class Element
 		 * @see E_Data_Color
 		 */
 		Element* AppendPropertyColor(wxString propertyName,wxString propertyLabel,long defaultRed,long defaultGreen,long defaultBlue);
+		/**
+		 * Ajoute un champ de choix de fichier dans la feuille de propriété de cet élément
+		 * @param propertyName Nom de la propriété, non visible par l'utilisateur, de préférence se limiter aux caractères alphabétique sans accents
+		 * @param propertyLabel Libellé du champ, le libellé ne doit PAS être passé par la méthode de traduction pendant sa création,  Méthode _("") .Il sera traduit par la suite automatiquement à l'affichage.
+		 * @see E_Data_File
+		 */
+		Element* AppendPropertyFile(wxString propertyName, wxString propertyLabel, wxString storageFolder, wxString _dialogTitle, wxString _fileExtension);
 		/**
 		 * Ajoute un champ de saisie de nombre dans la feuille de propriété de cet élément
 		 * @param propertyName Nom de la propriété, non visible par l'utilisateur, de préférence se limiter aux caractères alphabétique sans accents

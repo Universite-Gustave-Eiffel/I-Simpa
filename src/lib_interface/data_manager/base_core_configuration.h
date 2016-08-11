@@ -64,6 +64,7 @@ public:
 		SPROP_PONCTUAL_RECEIVER_FILE_PATH,				/*!< Nom du fichier de récepteur ponctuel */
 		SPROP_ADV_PONCTUAL_RECEIVER_FILE_PATH,			/*!< Nom du fichier avancé de récepteur ponctuel */
 		SPROP_CUMUL_FILE_PATH,							/*!< Nom du ficher contenant le niveau global du domaine */
+		SPROP_DIRECTIVITY_FOLDER_PATH,
 		SPROP_LAST										/*!< Dernière énumération (Insérer les nouveaux éléments avant celui-ci) */
 	};
 	/**
@@ -105,13 +106,14 @@ public:
 	 */
 	virtual ~Base_Core_Configuration( );
 
-	std::vector<t_Source*> srcList;							/*!< Tableau de sources */
-	std::vector<t_Material*> materialList;					/*!< Tableau de matériaux */
-	std::vector<t_FreqUsage*> freqList;						/*!< Tableau contenant les informations propres aux fréquences */
-	std::vector<t_Recepteur_P*> recepteur_p_List;			/*!< Tableau contenant les récepteurs ponctuels */
-	std::vector<r_Surf*> recepteur_s_List;					/*!< Tableau contenant les recepteurs surfaciques */
-	std::vector<r_SurfCut*> recepteur_scut_List;			/*!< Tableau contenant les recepteurs surfaciques plan */
-	std::vector<t_Encombrement*> encombrement_List;			/*!< Tableau contenant les encombrements */
+	std::vector<t_Source*> srcList;								/*!< Tableau de sources */
+	std::map<std::string, t_DirectivityBalloon*> directivityList;/*!< Tableau de directivité */ 
+	std::vector<t_Material*> materialList;						/*!< Tableau de matériaux */
+	std::vector<t_FreqUsage*> freqList;							/*!< Tableau contenant les informations propres aux fréquences */
+	std::vector<t_Recepteur_P*> recepteur_p_List;				/*!< Tableau contenant les récepteurs ponctuels */
+	std::vector<r_Surf*> recepteur_s_List;						/*!< Tableau contenant les recepteurs surfaciques */
+	std::vector<r_SurfCut*> recepteur_scut_List;				/*!< Tableau contenant les recepteurs surfaciques plan */
+	std::vector<t_Encombrement*> encombrement_List;				/*!< Tableau contenant les encombrements */
 
 	/////////////////////////////////////////////////////////
 	//	Trés rapide
@@ -140,7 +142,7 @@ protected:
 	 * Chargement des paramètres à partir d'un fichier XML
 	 * @param fichierXml Objet contenant les données
 	 */
-	bool LoadCfgFile( CXml& fichierXml );
+	bool LoadCfgFile( CXml& fichierXml, bool verbose_mode = false);
 
 	decimal *tabFloatProp;
 	entier *tabIntProp;

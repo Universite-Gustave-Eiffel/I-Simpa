@@ -114,21 +114,11 @@ void DataWindow::OnDataSrcChange()
 {
 	if(this->GetPageCount()==0)
 	{
-		wxWindow* NoteBookWindowParent=this->GetParent();
-		if(NoteBookWindowParent)
+		wxAuiManager* currentManager=wxAuiManager::GetManager(this);
+		if(currentManager)
 		{
-			wxAuiFloatingFrame* parentMng=dynamic_cast<wxAuiFloatingFrame*>(NoteBookWindowParent);
-			if(parentMng)
-			{
-				parentMng->Close();
-			}else{
-				wxAuiManager* currentManager=wxAuiManager::GetManager(this);
-				if(currentManager)
-				{
-					currentManager->ClosePane(currentManager->GetPane(this));
-					currentManager->Update();
-				}
-			}
+			currentManager->ClosePane(currentManager->GetPane(this));
+			currentManager->Update();
 		}
 	}
 }

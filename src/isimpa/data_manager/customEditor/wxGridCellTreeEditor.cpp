@@ -104,17 +104,6 @@ Element* wxGridCellTreeEditor::GetSelection()
 		grid->SetCellValue(row,col,GetValue());
 	}
 
-void wxGridCellTreeEditor::PaintBackground(const wxRect& rectCell,
-                                             wxGridCellAttr * attr)
-{
-    // as we fill the entire client area, don't do anything here to minimize
-    // flicker
-
-    // TODO: It doesn't actually fill the client area since the height of a
-    // combo always defaults to the standard.  Until someone has time to
-    // figure out the right rectangle to paint, just do it the normal way.
-    wxGridCellEditor::PaintBackground(rectCell, attr);
-}
 
 wxGridCellEditor *wxGridCellTreeEditor::Clone() const
 {

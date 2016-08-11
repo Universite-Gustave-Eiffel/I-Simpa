@@ -54,7 +54,7 @@ public:
 		wxString propVal;
 		//Affecte la valeur de l'element
 
-		if(nodeElement!=NULL && nodeElement->GetPropVal("wxid",&propVal))
+		if(nodeElement!=NULL && nodeElement->GetAttribute("wxid",&propVal))
 		{
 			wxString propValue;
 
@@ -63,7 +63,7 @@ public:
 			currentChild = nodeElement->GetChildren();
 			while(currentChild!=NULL)
 			{
-				if(currentChild->GetPropVal("eid",&propValue))
+				if(currentChild->GetAttribute("eid",&propValue))
 				{
 					long typeEle;
 					propValue.ToLong(&typeEle);

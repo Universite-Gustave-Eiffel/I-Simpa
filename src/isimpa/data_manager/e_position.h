@@ -63,16 +63,16 @@ public:
 		ignoreModification=false;
 		//Maj version < 06/11/2008
 		wxString propVal;
-		if(noeudCourant->GetPropVal("strId",&propVal) && propVal!="")
+		if(noeudCourant->GetAttribute("strId",&propVal) && propVal!="")
 		{
 			propertyLabel=this->elementInfo.libelleElement;
 			this->elementInfo.libelleElement=propVal;
-			noeudCourant->DeleteProperty("strId");
+			noeudCourant->DeleteAttribute("strId");
 		}
-		if(noeudCourant->GetPropVal("expcore",&propVal) && propVal!="")
+		if(noeudCourant->GetAttribute("expcore",&propVal) && propVal!="")
 		{
 			this->exportToCore=true;
-			noeudCourant->DeleteProperty("expcore");
+			noeudCourant->DeleteAttribute("expcore");
 		}
 		//Fin Maj version < 06/11/2008
 	}

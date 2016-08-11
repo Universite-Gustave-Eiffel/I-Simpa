@@ -35,6 +35,7 @@
 #include "IHM/ComboTreeCtrl.h"
 #include "e_data_text.h"
 #include "e_data_color.h"
+#include "e_data_file.h"
 #include "e_data_list.h"
 #include "e_data_entier.h"
 #include "e_data_float.h"
@@ -89,14 +90,14 @@ void SortChildrensByProperty(wxXmlNode* node,const wxString& propertyName)
 		nodeSwap=false;
 		childrenNode=node->GetChildren();
 		wxXmlNode* previousNode=NULL;
-		childrenNode->GetPropVal(propertyName,&buffer);
+		childrenNode->GetAttribute(propertyName,&buffer);
 		buffer.ToLong(&currentid);
 		while(childrenNode)
 		{
 			wxXmlNode* nextNode=childrenNode->GetNext();
 			if(nextNode)
 			{
-				nextNode->GetPropVal(propertyName,&buffer);
+				nextNode->GetAttribute(propertyName,&buffer);
 				buffer.ToLong(&nextid);
 				if(nextid<currentid)
 				{
@@ -113,11 +114,11 @@ void SortChildrensByProperty(wxXmlNode* node,const wxString& propertyName)
 					//On met à jour les pointeurs
 					childrenNode=nextNode;
 					nextid=currentid;
+					currentid = nextid;
 				}
 			}
 			previousNode=childrenNode;
 			childrenNode=childrenNode->GetNext();
-			currentid=nextid;
 		}
 	}
 }
@@ -156,11 +157,11 @@ Element::Element(Element* parent,const wxString& Nom,ELEMENT_TYPE _type,wxXmlNod
 		this->needUpdate=true;
 		this->elementInfo.expanded=false;
 	}else{
-		nodeElement->DeleteProperty("wxid");
-		nodeElement->AddProperty("wxid",Convertor::ToString(this->elementInfo.xmlIdElement));
+		nodeElement->DeleteAttribute("wxid");
+		nodeElement->AddAttribute("wxid",Convertor::ToString(this->elementInfo.xmlIdElement));
 		//Element initialisé AVEC Xml
 		this->needUpdate=false;
-		if(nodeElement->GetPropVal("name",&propVal))
+		if(nodeElement->GetAttribute("name",&propVal))
 			this->elementInfo.libelleElement=propVal;
 
 		//Temporaire
@@ -176,14 +177,14 @@ Element::Element(Element* parent,const wxString& Nom,ELEMENT_TYPE _type,wxXmlNod
 		*/
 		//Fin temporaire
 
-		if(nodeElement->GetPropVal("exp",&propVal))
+		if(nodeElement->GetAttribute("exp",&propVal))
 		{
 			this->elementInfo.expanded=true;
 			//if(this->elementInfo.graphElement==Element::GRAPH_FOLDER)
 			//	this->elementInfo.graphElement=Element::GRAPH_FOLDER_OPEN;
 		}
 
-		if(nodeElement->GetPropVal("hid",&propVal))
+		if(nodeElement->GetAttribute("hid",&propVal))
 		{
 			this->elementInfo.hidden=true;
 		}
@@ -198,7 +199,7 @@ Element::Element(Element* parent,const wxString& Nom,ELEMENT_TYPE _type,wxXmlNod
 		wxString propValue;
 		while(currentChild!=NULL)
 		{
-			if(currentChild->GetPropVal("eid",&propValue))
+			if(currentChild->GetAttribute("eid",&propValue))
 			{
 				long typeEle;
 				propValue.ToLong(&typeEle);
@@ -318,7 +319,7 @@ wxXmlNode* Element::SeekParentNodeToThisNode(wxXmlNode* noeudParent)
 	long xid;
 	while(noeudCourant!=NULL && noeudRecherche==NULL)
 	{
-		if(noeudCourant->GetPropVal("wxid",&PropVal))
+		if(noeudCourant->GetAttribute("wxid",&PropVal))
 		{
 			PropVal.ToLong(&xid);
 			if(xid==this->elementInfo.xmlIdElement)
@@ -633,27 +634,27 @@ wxXmlNode* Element::GenericSaveXmlDoc(wxXmlNode* NoeudParent)
 	//Mise à jour des données
 	/*wxXmlProperty* proprietes=NoeudCourant->GetProperties();
 	proprietes->*/
-	NoeudCourant->DeleteProperty("name");
-	NoeudCourant->AddProperty("name",this->elementInfo.libelleElement);
-	NoeudCourant->DeleteProperty("eid");
-	NoeudCourant->AddProperty("eid",Convertor::ToString(this->elementInfo.typeElement));
+	NoeudCourant->DeleteAttribute("name");
+	NoeudCourant->AddAttribute("name",this->elementInfo.libelleElement);
+	NoeudCourant->DeleteAttribute("eid");
+	NoeudCourant->AddAttribute("eid",Convertor::ToString(this->elementInfo.typeElement));
 
-	NoeudCourant->DeleteProperty("wxid");
-	NoeudCourant->AddProperty("wxid",Convertor::ToString(this->elementInfo.xmlIdElement));
-	NoeudCourant->DeleteProperty("exp");
+	NoeudCourant->DeleteAttribute("wxid");
+	NoeudCourant->AddAttribute("wxid",Convertor::ToString(this->elementInfo.xmlIdElement));
+	NoeudCourant->DeleteAttribute("exp");
 	if(this->elementInfo.expanded)
-		NoeudCourant->AddProperty("exp","1");
+		NoeudCourant->AddAttribute("exp","1");
 	if(this->elementInfo.hidden)
 	{
-		NoeudCourant->DeleteProperty("hid");
-		NoeudCourant->AddProperty("hid","1");
+		NoeudCourant->DeleteAttribute("hid");
+		NoeudCourant->AddAttribute("hid","1");
 	}
 	return NoeudCourant;
 }
 wxXmlNode* Element::SaveXMLCoreDoc(wxXmlNode* NoeudParent)
 {
 	if(this->elementInfo.exportLblToCore)
-		NoeudParent->AddProperty("lbl",this->elementInfo.libelleElement);
+		NoeudParent->AddAttribute("lbl",this->elementInfo.libelleElement);
 	for(std::list<Element*>::iterator itfils=this->fils.begin();itfils!=this->fils.end();itfils++)
 	{
 		(*itfils)->SaveXMLCoreDoc(NoeudParent);
@@ -758,7 +759,7 @@ void Element::SaveChildren(wxXmlNode* NoeudCourant)
 		while(NoeudCurseur!=NULL)
 		{
 			nodeToDelete=NULL;
-			if(NoeudCurseur->GetPropVal("wxid",&propVal))
+			if(NoeudCurseur->GetAttribute("wxid",&propVal))
 				if(!lstSon.Contains("|"+propVal+"|"))
 					nodeToDelete=NoeudCurseur;
 			NoeudCurseur=NoeudCurseur->GetNext();
@@ -1195,6 +1196,23 @@ wxFont Element::GetFontConfig(const wxString& name)
 	wxLogDebug(_("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
 	return wxFont();
 }
+
+wxFileName Element::GetFileConfig(wxString name)
+{
+	//On recherche les éléments qui porte le nom name
+	for (std::list<Element*>::iterator itfils = this->fils.begin(); itfils != this->fils.end(); itfils++)
+	{
+		const Element::t_elementInfo& infoEl = (*itfils)->GetElementInfos();
+		if (infoEl.typeElement == Element::ELEMENT_TYPE_FILE && infoEl.libelleElement == name)
+		{
+			E_Data_File* dataEl = dynamic_cast<E_Data_File*>((*itfils));
+			return dataEl->GetFile() ;
+		}
+	}
+	wxLogDebug(_("This field does not exist!\nName of element: %s Name of the field: %s"), this->elementInfo.libelleElement, name);
+	return wxFileName();
+}
+
 vec3 Element::GetColorConfig(wxString name)
 {
 	//On recherche les éléments qui porte le nom name
@@ -1391,6 +1409,15 @@ Element* Element::AppendPropertyColor(wxString propertyName,wxString propertyLab
 	Element* alreadyExist=NULL;
 	if(!IsPropertyExist(propertyName,&alreadyExist))
 		return this->AppendFils(new E_Data_Color(this,propertyName,propertyLabel,wxColor(defaultRed,defaultGreen,defaultBlue)));
+	else
+		return alreadyExist;
+}
+
+Element* Element::AppendPropertyFile(wxString propertyName, wxString propertyLabel, wxString storageFolder, wxString _dialogTitle, wxString _fileExtension)
+{
+	Element* alreadyExist = NULL;
+	if (!IsPropertyExist(propertyName, &alreadyExist))
+		return this->AppendFils(new E_Data_File(this, propertyName, propertyLabel, storageFolder, _dialogTitle, _fileExtension));
 	else
 		return alreadyExist;
 }

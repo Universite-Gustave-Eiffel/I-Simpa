@@ -1,5 +1,6 @@
 #include "reportmanager.h"
 #include "tools/collision.h"
+#include <cmath>
 
 const l_decimal p_0=1/pow((float)(20*pow(10.f,(int)-6)),(int)2);
 
@@ -73,8 +74,9 @@ ReportManager::ReportManager(t_ParamReport& _paramReport)
 		lst_rp_lef[idrp].Init(_paramReport.nbTimeStep,nbSource, timeStepInSourceOutput);
 	}
 
-	particleFile=NULL;
-	particleCSVFile=NULL;
+	particleFile = NULL;
+	particleSurfaceCSVFile = NULL;
+    particleReceiverCSVFile = NULL;
 	lastParticuleFileHeaderInfo=0;
 
 	if(paramReport.nbParticles!=0)
@@ -86,20 +88,29 @@ void ReportManager::writeParticleFile()
 {
 	if(particleFile)
 		delete particleFile;
-	if(particleCSVFile)
-		delete particleCSVFile;
-	//Création du dossier de particule
+	if(particleSurfaceCSVFile)
+		delete particleSurfaceCSVFile;
+    if (particleReceiverCSVFile)
+        delete particleReceiverCSVFile;
+	//Crï¿½ation du dossier de particule
 	//_mkdir(paramReport._particlePath.c_str());
 	st_mkdir(paramReport._particlePath.c_str());
 	stringClass freqFolder;
 	freqFolder=paramReport._particlePath+stringClass::FromInt(paramReport.freqValue)+stringClass("\\");
-	//Création du dossier de fréquence
+	//Crï¿½ation du dossier de frï¿½quence
 	//_mkdir(freqFolder.c_str());
 	st_mkdir(freqFolder.c_str());
 	stringClass fileNamePath=freqFolder+paramReport._particleFileName;
 	particleFile = new fstream(fileNamePath.c_str() , ios::out | ios::binary);
-	stringClass fileCSVNamePath=freqFolder+"particle_collision_statistic.csv";
-	particleCSVFile = new fstream(fileCSVNamePath.c_str() , ios::out);
+	stringClass fileCSVNamePath=freqFolder+"particle_surface_collision_statistics.csv";
+    stringClass fileReceiversCSVNamePath = freqFolder + "particle_receivers_collision_statistics.csv";
+    if(*(this->paramReport.configManager->FastGetConfigValue(Core_Configuration::I_PROP_SAVE_SURFACE_INTERSECTION))) {
+	    particleSurfaceCSVFile = new fstream(fileCSVNamePath.c_str() , ios::out);
+    }
+    if (*(this->paramReport.configManager->FastGetConfigValue(Core_Configuration::I_PROP_SAVE_RECEIVER_INTERSECTION))) {
+        particleReceiverCSVFile = new fstream(fileReceiversCSVNamePath.c_str(), ios::out);
+    }
+
 	enteteSortie.nbParticles=paramReport.nbParticles;
 	enteteSortie.nbTimeStepMax=paramReport.nbTimeStep;
 	nbPasDeTempsMax=paramReport.nbTimeStep;
@@ -110,7 +121,8 @@ void ReportManager::writeParticleFile()
 	enteteSortie.timeStep=paramReport.timeStep;
 	lastParticuleFileHeaderInfo=particleFile->tellp();
 	particleFile->write((char*)&enteteSortie,sizeof(binaryFHeader));
-	*particleCSVFile<<"id,collision coordinate,face normal,reflection order,incident vector,energy"<<std::endl;
+	*particleSurfaceCSVFile<<"id,collision coordinate,face normal,reflection order,incident vector,energy"<<std::endl;
+    *particleReceiverCSVFile << "time(s),receiver name,incident vector x,incident vector y,incident vector z,energy * dist" << std::endl;
 	realNbParticle=0;
 
 }
@@ -139,7 +151,7 @@ void ReportManager::RecordTimeStep(CONF_PARTICULE& particleInfos)
 void ReportManager::ParticuleFreeTranslation(CONF_PARTICULE& particleInfos, const vec3& nextPosition)
 {
 	vec3 direction(nextPosition-particleInfos.position);
-	//Si dans le modèle un récepteur plan a été déclaré
+	//Si dans le modï¿½le un rï¿½cepteur plan a ï¿½tï¿½ dï¿½clarï¿½
 
 
 	if(particleInfos.currentTetra->linkedCutMap)
@@ -152,7 +164,7 @@ void ReportManager::ParticuleFreeTranslation(CONF_PARTICULE& particleInfos, cons
 				uentier CellRow=(uentier)floorf(u*(*itrs)->NbCellU);
 				uentier CellCol=(uentier)floorf(v*(*itrs)->NbCellV);
 				vec3 normal=(*itrs)->planeNormal;
-				if(particleInfos.direction.dot(normal)<0) //si la face du recepteur est orientée dans l'autre direction on inverse la normal
+				if(particleInfos.direction.dot(normal)<0) //si la face du recepteur est orientï¿½e dans l'autre direction on inverse la normal
 					normal*=-1;
 				if(*(this->paramReport.configManager->FastGetConfigValue(Core_Configuration::I_PROP_SURFACE_RECEIVER_MODE))==0)
 					(*itrs)->data[particleInfos.frequenceIndex][CellRow][CellCol][particleInfos.pasCourant]+=particleInfos.energie*cosf(normal.angle(particleInfos.direction));
@@ -162,7 +174,7 @@ void ReportManager::ParticuleFreeTranslation(CONF_PARTICULE& particleInfos, cons
 		}
 	}
 
-	//Si le prochain tetrahèdre contient un ou des recepteurs ponctuel
+	//Si le prochain tetrahï¿½dre contient un ou des recepteurs ponctuel
 	if(particleInfos.currentTetra->linkedRecepteurP)
 	{
 
@@ -203,6 +215,12 @@ void ReportManager::ParticuleFreeTranslation(CONF_PARTICULE& particleInfos, cons
 						} else {
 							lst_rp_lef[currentRecp->idrp].SrcContrib[particleInfos.sourceid]+=energy;
 						}
+                        if (particleInfos.outputToParticleFile && *(this->paramReport.configManager->FastGetConfigValue(Core_Configuration::I_PROP_SAVE_RECEIVER_INTERSECTION)))
+                        {
+                            //Add intersection to history
+                            decimal time = particleInfos.pasCourant * *this->paramReport.configManager->FastGetConfigValue(Base_Core_Configuration::FPROP_TIME_STEP) + particleInfos.elapsedTime;
+                            this->receiverCollisionHistory.push_back(t_receiver_collision_history(time, particleInfos.direction, energy * currentRecp->cdt_vol, currentRecp->idrp));
+                        }
 					}
 				}
 			}
@@ -224,9 +242,9 @@ void ReportManager::ParticuleCollideWithSceneMesh(CONF_PARTICULE& particleInfos)
 	//Retrieve face data ptr
 	#ifdef UTILISER_MAILLAGE_OPTIMISATION
 	t_Tetra_Faces* face=&particleInfos.currentTetra->faces[particleInfos.nextModelIntersection.idface];
-	//Si la face est associée à un récepteur surfacique
+	//Si la face est associï¿½e ï¿½ un rï¿½cepteur surfacique
 	vec3& normal=face->face_scene->normal;
-	if(particleInfos.outputToParticleFile && face->face_scene!=NULL)
+	if(particleInfos.outputToParticleFile && *(this->paramReport.configManager->FastGetConfigValue(Core_Configuration::I_PROP_SAVE_SURFACE_INTERSECTION)) && face->face_scene!=NULL)
 	{
 		particleInfos.reflectionOrder++;
 		//Add intersection to history
@@ -239,9 +257,9 @@ void ReportManager::ParticuleCollideWithSceneMesh(CONF_PARTICULE& particleInfos)
 
 	if(face->recepteurS)
 	{
-		if(particleInfos.direction.dot(normal)<0) //si la face du recepteur est orienté dans l'autre direction on inverse la normal
+		if(particleInfos.direction.dot(normal)<0) //si la face du recepteur est orientï¿½ dans l'autre direction on inverse la normal
 			normal*=-1;
-		//Ajout de l'energie à la face
+		//Ajout de l'energie ï¿½ la face
 		if(*(this->paramReport.configManager->FastGetConfigValue(Core_Configuration::I_PROP_SURFACE_RECEIVER_MODE))==0)
 			face->recepteurS->energieRecu[particleInfos.frequenceIndex][particleInfos.pasCourant]+=particleInfos.energie*cosf(normal.angle(particleInfos.direction));
 		else
@@ -267,12 +285,12 @@ void ReportManager::CloseLastParticleHeader()
 	if(!this->collisionHistory.empty())
 	{
 		//Update CSV file
-		if(this->particleCSVFile!=NULL)
+		if(this->particleSurfaceCSVFile!=NULL)
 		{
 			while(!this->collisionHistory.empty())
 			{
 				t_collision_history& part_event=this->collisionHistory.front();
-				*this->particleCSVFile<<this->realNbParticle<<","
+				*this->particleSurfaceCSVFile<<this->realNbParticle<<","
 					<<part_event.collisionCoordinate.x<<" "<<part_event.collisionCoordinate.y<<" "<<part_event.collisionCoordinate.z<<","
 					<<part_event.faceNormal.x<<" "<<part_event.faceNormal.y<<" "<<part_event.faceNormal.z<<","
 					<<part_event.reflexionOrder<<","
@@ -282,6 +300,20 @@ void ReportManager::CloseLastParticleHeader()
 			}
 		}
 	}
+    if (!this->receiverCollisionHistory.empty())
+    {
+        //Update CSV file
+        if (this->particleReceiverCSVFile != NULL)
+        {
+            while (!this->receiverCollisionHistory.empty())
+            {
+                t_receiver_collision_history& part_event = this->receiverCollisionHistory.front();
+                *this->particleReceiverCSVFile << part_event.time << "," << this->paramReport.configManager->recepteur_p_List.at(part_event.idrp)->lblRp << "," << part_event.incidentVector.x << "," << part_event.incidentVector.y << "," << part_event.incidentVector.z << "," << part_event.energy
+                    << std::endl;
+                this->receiverCollisionHistory.pop_front();
+            }
+        }
+    }
 }
 
 void ReportManager::CloseLastParticleFileHeader()
@@ -310,7 +342,7 @@ formatGABE::GABE_Object* ReportManager::GetColStats()
 void ReportManager::FillWithLefData(t_sppsThreadParam& data)
 {
 	using namespace formatGABE;
-	//Pour chaque récepteur ponctuel rempli les données récoltés au cours de la propagation
+	//Pour chaque rï¿½cepteur ponctuel rempli les donnï¿½es rï¿½coltï¿½s au cours de la propagation
 	data.GabeSumEnergyCosPhi.reserve(lst_rp_lef.size());
 	data.GabeSumEnergyCosSqrtPhi.reserve(lst_rp_lef.size());
 	for(uentier idrecp=0;idrecp<lst_rp_lef.size();idrecp++)
@@ -388,7 +420,7 @@ formatGABE::GABE_Data_Float* ReportManager::GetSumEnergy()
 }
 void ReportManager::SaveAndCloseParticleFile()
 {
-	//On complète l'entete du fichier
+	//On complï¿½te l'entete du fichier
 	if(particleFile!=NULL)
 	{
 		CloseLastParticleFileHeader();
@@ -401,13 +433,20 @@ void ReportManager::SaveAndCloseParticleFile()
 			delete tmp;
 		}
 	}
-	if(particleCSVFile!=NULL)
+	if(particleSurfaceCSVFile!=NULL)
 	{
-		particleCSVFile->close();
-		fstream* tmp=particleCSVFile;
-		particleCSVFile=NULL;
+		particleSurfaceCSVFile->close();
+		fstream* tmp=particleSurfaceCSVFile;
+		particleSurfaceCSVFile=NULL;
 		delete tmp;
 	}
+    if (particleReceiverCSVFile != NULL)
+    {
+        particleReceiverCSVFile->close();
+        fstream* tmp = particleReceiverCSVFile;
+        particleReceiverCSVFile = NULL;
+        delete tmp;
+    }
 }
 
 void ReportManager::NewParticule(CONF_PARTICULE& particleInfos)
@@ -425,16 +464,16 @@ void ReportManager::NewParticule(CONF_PARTICULE& particleInfos)
 void ReportManager::SaveThreadsStats(const CoreString& filename,const CoreString& filenamedBLvl,std::vector<t_sppsThreadParam>& cols,const t_ParamReport& params)
 {
 	/////////////////////////////////////
-	// 1: Sauvegarde des statistiques des états finaux des particules
+	// 1: Sauvegarde des statistiques des ï¿½tats finaux des particules
 
 	using namespace formatGABE;
 
 	GABE_Data_ShortString* statLbl=new GABE_Data_ShortString(7);
-	/* statLbl->SetString(0,"Particules absorbées par l'atmosphère");
-	statLbl->SetString(1,"Particules absorbées par les matériaux");
-	statLbl->SetString(2,"Particules absorbées par les encombrements");
-	statLbl->SetString(3,"Particules perdues dû aux boucles infinies");
-	statLbl->SetString(4,"Particules perdues dû au maillage incorrect");
+	/* statLbl->SetString(0,"Particules absorbï¿½es par l'atmosphï¿½re");
+	statLbl->SetString(1,"Particules absorbï¿½es par les matï¿½riaux");
+	statLbl->SetString(2,"Particules absorbï¿½es par les encombrements");
+	statLbl->SetString(3,"Particules perdues dï¿½ aux boucles infinies");
+	statLbl->SetString(4,"Particules perdues dï¿½ au maillage incorrect");
 	statLbl->SetString(5,"Particules restantes");
 	statLbl->SetString(6,"Total"); */
 	statLbl->SetString(0,"Particles absorbed by the atmosphere");
@@ -468,9 +507,9 @@ void ReportManager::SaveThreadsStats(const CoreString& filename,const CoreString
 
 
 	/////////////////////////////////////
-	// 2: Sauvegarde des statistiques du niveau sonore en fonction du temps (même forme que pour un récepteur ponctuel)
-	GABE exportdBLevelTab(nbfreqUsed+1); //+1 pour la colonne des libellés
-	//Création de la colonne des libellés
+	// 2: Sauvegarde des statistiques du niveau sonore en fonction du temps (mï¿½me forme que pour un rï¿½cepteur ponctuel)
+	GABE exportdBLevelTab(nbfreqUsed+1); //+1 pour la colonne des libellï¿½s
+	//Crï¿½ation de la colonne des libellï¿½s
 	GABE_Data_ShortString* statdBLbl=new GABE_Data_ShortString(params.nbTimeStep);
 	for(uentier idstep=0;idstep<params.nbTimeStep;idstep++)
 		statdBLbl->SetString(idstep,(CoreString::FromInt((int)(params.timeStep*(idstep+1)*1000))+" ms").c_str());
@@ -538,14 +577,14 @@ void ReportManager::SaveSoundLevelBySource(const CoreString& filename,std::vecto
 	}
 
 	////////////////////////////////////////////
-	// Série Libellé des sources
+	// Sï¿½rie Libellï¿½ des sources
 	////////////////////////////////////////////
 	GABE_Data_ShortString collbl(params.configManager->srcList.size());
 	for(uentier idsrc=0;idsrc<collbl.GetSize();idsrc++)
 		collbl.SetString(idsrc,params.configManager->srcList[idsrc]->sourceName.c_str());
 	collbl.SetLabel("SPL");
 
-	//Pour chaque récepteur ponctuel
+	//Pour chaque rï¿½cepteur ponctuel
 	for(uentier idrecp=0;idrecp<params.configManager->recepteur_p_List.size();idrecp++)
 	{
 		t_Recepteur_P* currentRP=params.configManager->recepteur_p_List[idrecp];
@@ -569,14 +608,14 @@ void ReportManager::SaveSoundLevelBySource(const CoreString& filename,std::vecto
 	/////////////////////////////////////
 	if(*params.configManager->FastGetConfigValue(Core_Configuration::I_PROP_OUTPUT_RECEIVER_BY_SOURCE) != 0) {
 		int srcCount = params.configManager->srcList.size();
-		//Instanciation du tableau des libellé des champs de fréquences
+		//Instanciation du tableau des libellï¿½ des champs de frï¿½quences
 		std::vector<CoreString> reportFreqLbl;
-		//Instanciation du tableau des libellé des pas de temps
+		//Instanciation du tableau des libellï¿½ des pas de temps
 		std::vector<CoreString> reportStepLbl;
 		BaseReportManager::InitHeaderArrays(*params.configManager, reportFreqLbl, reportStepLbl);
 		CoreString workingDir = *params.configManager->FastGetConfigValue(Core_Configuration::SPROP_CORE_WORKING_DIRECTORY);
 		for(int idsource=0; idsource < srcCount; idsource++) {
-			//Pour chaque récepteur ponctuel
+			//Pour chaque rï¿½cepteur ponctuel
 			for(uentier idrecp=0;idrecp<params.configManager->recepteur_p_List.size();idrecp++)
 			{
 				CoreString rootRp=workingDir+CoreString(*params.configManager->FastGetConfigValue(Base_Core_Configuration::SPROP_PONCTUAL_RECEIVER_FOLDER_PATH)+"/");
@@ -609,8 +648,8 @@ void ReportManager::SaveRecpIntensity(const CoreString& filename,std::vector<t_s
 {
 	using namespace formatGABE;
 
-	// Dans le format GABE on doit préciser le nombre de colonnes à la construction
-	// et le nombre de colonne correspond au nombre de bande de fréquence*3+1
+	// Dans le format GABE on doit prï¿½ciser le nombre de colonnes ï¿½ la construction
+	// et le nombre de colonne correspond au nombre de bande de frï¿½quence*3+1
 	//
 	uentier nbfreqUsed=0;
 	uentier nbfreqMax=params.configManager->freqList.size();
@@ -621,7 +660,7 @@ void ReportManager::SaveRecpIntensity(const CoreString& filename,std::vector<t_s
 	}
 
 	////////////////////////////////////////////
-	// Série Libellé des pas de temps
+	// Sï¿½rie Libellï¿½ des pas de temps
 	////////////////////////////////////////////
 	GABE_Data_ShortString collbl(params.nbTimeStep+1); //+1 pour le cumul
 	GABE_Data_ShortString* statdBLbl=&collbl;
@@ -660,16 +699,16 @@ void ReportManager::SaveRecpIntensity(const CoreString& filename,std::vector<t_s
 	GABE_Data_Float serie_float_parameter(1);
 	gabe_cols.push_back(&serie_int_parameter);
 	gabe_cols.push_back(&serie_float_parameter);
-	serie_int_parameter.Set(0,params.configManager->recepteur_p_List.size());	//Nombre de récepteur ponctuel
+	serie_int_parameter.Set(0,params.configManager->recepteur_p_List.size());	//Nombre de rï¿½cepteur ponctuel
 	serie_int_parameter.Set(1,params.nbTimeStep);								//Nombre de pas de temps
-	serie_int_parameter.Set(2,3);												//Nombre de colonne définissant un récepteur ponctuel
-	serie_int_parameter.Set(3,gabe_cols.size());						    	//Numéro de la colonne du premier récepteur ponctuel
+	serie_int_parameter.Set(2,3);												//Nombre de colonne dï¿½finissant un rï¿½cepteur ponctuel
+	serie_int_parameter.Set(3,gabe_cols.size());						    	//Numï¿½ro de la colonne du premier rï¿½cepteur ponctuel
 	serie_float_parameter.Set(0,params.timeStep);								//Pas de temps (s)
 
 	CoreString workpath=params.working_Path+"IntensityAnimation\\";
 	//mkdir(workpath.c_str());
 	st_mkdir(workpath.c_str());
-	//Pour chaque bande de fréquence
+	//Pour chaque bande de frï¿½quence
 
 	for(std::size_t idfreq=0;idfreq<cols.size();idfreq++)
 	{
@@ -688,7 +727,7 @@ void ReportManager::SaveRecpIntensity(const CoreString& filename,std::vector<t_s
 					unsigned int nbrecords=rp_data->GetSize();
 					GABE_Data_Float* serie_pos=new GABE_Data_Float(nbrecords+1);
 					freq_gabe_cols.push_back(serie_pos);
-					//Position du récepteur
+					//Position du rï¿½cepteur
 					serie_pos->Set(0,currentRP->position[dim]);
 					for(unsigned int idstep=0;idstep<nbrecords;idstep++)
 						serie_pos->Set(idstep+1,rp_data->GetValue(idstep));
@@ -699,7 +738,7 @@ void ReportManager::SaveRecpIntensity(const CoreString& filename,std::vector<t_s
 			std::size_t nbheaders_cols=gabe_cols.size();
 			GABE recorder(nbheaders_cols+freq_gabe_cols.size());
 			for(std::size_t idcol=0;idcol<nbheaders_cols;idcol++)
-				recorder.SetCol(idcol,*gabe_cols[idcol]); //créé une copie
+				recorder.SetCol(idcol,*gabe_cols[idcol]); //crï¿½ï¿½ une copie
 			for(std::size_t idcol=0;idcol<freq_gabe_cols.size();idcol++)
 				recorder.SetCol(nbheaders_cols+idcol,freq_gabe_cols[idcol]);
 			recorder.LockData();
@@ -719,37 +758,37 @@ void ReportManager::SaveRecpAcousticParamsAdvance(const CoreString& filename,std
 			nbfreqUsed++;
 	}
 
-	const uentier nbFixedCols=4;		//Colonne Index,Paramètres,Source,Fréquences
+	const uentier nbFixedCols=4;		//Colonne Index,Paramï¿½tres,Source,Frï¿½quences
 	const uentier nbRecpHeaderCols=1; //Colonne bruit
 	const uentier nbColsByFreq=3;		//Colonne energie,LF,LFC
 	const uentier nbCols=nbFixedCols+nbRecpHeaderCols+nbfreqUsed*nbColsByFreq; //Nombre de colonne dans chaque fichier gabe
 
 	////////////////////////////////////////////
-	// Série Index et paramètres entier [Col 0]
+	// Sï¿½rie Index et paramï¿½tres entier [Col 0]
 	////////////////////////////////////////////
 	GABE_Data_Integer indexCol(8);
-	indexCol.Set(0,1);								//Numéro de la colonne de la série des paramètres à décimal
-	indexCol.Set(1,2);								//Numéro de la colonne de la série source
-	indexCol.Set(2,3);								//Numéro de la colonne de la série valeurs de fréquences
-	indexCol.Set(3,nbFixedCols);					//Numéro de la colonne du bruit
-	indexCol.Set(4,nbFixedCols+nbRecpHeaderCols);	//Numéro de la colonne de la série de la première bande de fréquences
-	indexCol.Set(5,nbfreqUsed);						//Nombre de bande de fréquences [1-27]
-	indexCol.Set(6,nbColsByFreq);					//Nombre de colonne composant une bande de fréquence
+	indexCol.Set(0,1);								//Numï¿½ro de la colonne de la sï¿½rie des paramï¿½tres ï¿½ dï¿½cimal
+	indexCol.Set(1,2);								//Numï¿½ro de la colonne de la sï¿½rie source
+	indexCol.Set(2,3);								//Numï¿½ro de la colonne de la sï¿½rie valeurs de frï¿½quences
+	indexCol.Set(3,nbFixedCols);					//Numï¿½ro de la colonne du bruit
+	indexCol.Set(4,nbFixedCols+nbRecpHeaderCols);	//Numï¿½ro de la colonne de la sï¿½rie de la premiï¿½re bande de frï¿½quences
+	indexCol.Set(5,nbfreqUsed);						//Nombre de bande de frï¿½quences [1-27]
+	indexCol.Set(6,nbColsByFreq);					//Nombre de colonne composant une bande de frï¿½quence
 	indexCol.Set(7,params.nbTimeStep);				//Nombre de pas de temps
 
 	////////////////////////////////////////////
-	// Série paramètres à décimal [Col 1]
+	// Sï¿½rie paramï¿½tres ï¿½ dï¿½cimal [Col 1]
 	////////////////////////////////////////////
 	GABE_Data_Float decimalParam(2);
 	decimalParam.Set(0,params.timeStep);					//Pas de temps ms
-	decimalParam.Set(1,params.nbTimeStep*params.timeStep);	//Durée
+	decimalParam.Set(1,params.nbTimeStep*params.timeStep);	//Durï¿½e
 
 	////////////////////////////////////////////
-	// Série source [Col 2]
+	// Sï¿½rie source [Col 2]
 	////////////////////////////////////////////v
 	GABE_Data_Float sourceCol(nbfreqUsed);
 	////////////////////////////////////////////
-	// Série valeurs de fréquences [Col 3]
+	// Sï¿½rie valeurs de frï¿½quences [Col 3]
 	////////////////////////////////////////////
 	GABE_Data_Integer freqCol(nbfreqUsed);
 	uentier idfreqligne=0;
@@ -757,7 +796,7 @@ void ReportManager::SaveRecpAcousticParamsAdvance(const CoreString& filename,std
 	{
 		if(params.configManager->freqList[idfreq]->doCalculation)
 		{
-			//Pour cette bande de fréquence cumul de l'énérgie de toute les sources actives
+			//Pour cette bande de frï¿½quence cumul de l'ï¿½nï¿½rgie de toute les sources actives
 			decimal cumulFreqSources=0;
 			for(uentier idsource=0;idsource<params.configManager->srcList.size();idsource++)
 			{
@@ -779,7 +818,7 @@ void ReportManager::SaveRecpAcousticParamsAdvance(const CoreString& filename,std
 		recepteurPonctData.SetCol(3,freqCol);
 
 		////////////////////////////////////////////
-		// Série bruit  [Col nbFixedCols]
+		// Sï¿½rie bruit  [Col nbFixedCols]
 		////////////////////////////////////////////
 		GABE_Data_Float* bruitCol=new GABE_Data_Float(nbfreqUsed);
 		idfreqligne=0;
@@ -798,7 +837,7 @@ void ReportManager::SaveRecpAcousticParamsAdvance(const CoreString& filename,std
 			if(currentRP->energy_sum[idfreq])
 			{
 				////////////////////////////////////////////
-				// Série énérgie recu   [Col nbFixedCols+nbRecpHeaderCols+(idfreqcol*nbColsByFreq)]
+				// Sï¿½rie ï¿½nï¿½rgie recu   [Col nbFixedCols+nbRecpHeaderCols+(idfreqcol*nbColsByFreq)]
 				////////////////////////////////////////////
 				GABE_Data_Float* e_col=new GABE_Data_Float(params.nbTimeStep);
 				for(uentier idstep=0;idstep<params.nbTimeStep;idstep++)
@@ -807,12 +846,12 @@ void ReportManager::SaveRecpAcousticParamsAdvance(const CoreString& filename,std
 				}
 				recepteurPonctData.SetCol(nbFixedCols+nbRecpHeaderCols+(idfreqcol*nbColsByFreq),e_col);
 				////////////////////////////////////////////
-				// Série énérgie recu LF  [Col nbFixedCols+nbRecpHeaderCols+(idfreqcol*nbColsByFreq)+1]
+				// Sï¿½rie ï¿½nï¿½rgie recu LF  [Col nbFixedCols+nbRecpHeaderCols+(idfreqcol*nbColsByFreq)+1]
 				////////////////////////////////////////////
 				// Copie de la colonne
 				recepteurPonctData.SetCol(nbFixedCols+nbRecpHeaderCols+(idfreqcol*nbColsByFreq)+1,*cols[idfreq].GabeSumEnergyCosPhi[idrecp]);
 				////////////////////////////////////////////
-				// Série énérgie recu LFC  [Col nbFixedCols+nbRecpHeaderCols+(idfreqcol*nbColsByFreq)+2]
+				// Sï¿½rie ï¿½nï¿½rgie recu LFC  [Col nbFixedCols+nbRecpHeaderCols+(idfreqcol*nbColsByFreq)+2]
 				////////////////////////////////////////////
 				// Copie de la colonne
 				recepteurPonctData.SetCol(nbFixedCols+nbRecpHeaderCols+(idfreqcol*nbColsByFreq)+2,*cols[idfreq].GabeSumEnergyCosSqrtPhi[idrecp]);

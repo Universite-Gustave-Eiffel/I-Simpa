@@ -1,24 +1,24 @@
-#include "data_manager\base_core_configuration.h"
+#include "data_manager/base_core_configuration.h"
 /**
  * @file core_configuration.h
- * @brief Gestion des données de configuration
+ * @brief Gestion des donnÃ©es de configuration
  *
- * Cette classe permet d'acceder aux informations de la scène de facon optimisé et simple
+ * Cette classe permet d'acceder aux informations de la scÃ¨ne de facon optimisÃ© et simple
  */
 
 #ifndef __CORE_CONFIGURATION__
 #define __CORE_CONFIGURATION__
 
 /**
- * @brief Gestion des données de configuration
+ * @brief Gestion des donnÃ©es de configuration
  *
- * Cette classe permet d'acceder aux informations de la scène de facon optimisé et simple
+ * Cette classe permet d'acceder aux informations de la scÃ¨ne de facon optimisÃ© et simple
  */
 class Core_Configuration : public Base_Core_Configuration
 {
 public:
 	/**
-	 * Enumeration des propriétés de type chaine
+	 * Enumeration des propriÃ©tÃ©s de type chaine
 	 */
 	enum SPROP
 	{
@@ -28,24 +28,24 @@ public:
 		SPROP_OTHER_CORE_OUTPUT_PATH
 	};
 	/**
-	 * Enumeration des propriétés de type float
+	 * Enumeration des propriÃ©tÃ©s de type float
 	 */
 	enum FPROP
 	{
 		FPROP_NONE							/*!<  */
 	};
 	/**
-	 * Enumeration des propriétés de type entier
+	 * Enumeration des propriÃ©tÃ©s de type entier
 	 */
 	enum IPROP
 	{
-		IPROP_DO_CALC_ABS_ATMO,						/*!< Calcul de l'absorption atmosphérique */
-		IPROP_CALC_TO_EXT_CORE,						/*!< Calcul à destination d'un autre code de calcul et non pour l'utilisateur */
-		IPROP_OUTPUT_RECEPTEURS_SURF_BY_FREQ,	/*!< Sortie des récepteurs de surface par bande de fréquence */
-		IPROP_DO_SURFACE_ANGULAR_WEIGHTING    /*!< Pondération de l'énergie selon l'angle d'incidence sur les récepteurs de surfaces*/
+		IPROP_DO_CALC_ABS_ATMO,						/*!< Calcul de l'absorption atmosphÃ©rique */
+		IPROP_CALC_TO_EXT_CORE,						/*!< Calcul Ã  destination d'un autre code de calcul et non pour l'utilisateur */
+		IPROP_OUTPUT_RECEPTEURS_SURF_BY_FREQ,	/*!< Sortie des rÃ©cepteurs de surface par bande de frÃ©quence */
+		IPROP_DO_SURFACE_ANGULAR_WEIGHTING    /*!< PondÃ©ration de l'Ã©nergie selon l'angle d'incidence sur les rÃ©cepteurs de surfaces*/
 	};
 	/**
-	 * Initialisation des paramètres du coeur de calcul à partir d'un fichier XML
+	 * Initialisation des paramÃ¨tres du coeur de calcul Ã  partir d'un fichier XML
 	 * @param xmlFilePath Chemin du fichier XML
 	 */
 	Core_Configuration( CoreString xmlFilePath );
@@ -54,7 +54,7 @@ public:
 	 */
 	~Core_Configuration( );
 	/////////////////////////////////////////////////////////
-	//	Trés rapide
+	//	TrÃ©s rapide
 	/////////////////////////////////////////////////////////
 	inline decimal* FastGetConfigValue(FPROP propertyIndex){return (tabFloatProp+propertyIndex); }
 	inline CoreString* FastGetConfigValue(SPROP propertyIndex){return (tabStringProp+propertyIndex); }

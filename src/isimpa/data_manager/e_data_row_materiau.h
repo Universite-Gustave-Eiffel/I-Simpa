@@ -64,10 +64,10 @@ public:
 		wxString loi;
 		bool transmission;
 
-		noeudCourant->GetPropVal("loi", &loi);
-		transmission=noeudCourant->GetPropVal("affaiblissement", &affaiblissement);
-		noeudCourant->GetPropVal("diffusion",&diffusion);
-		noeudCourant->GetPropVal("absorb", &absorb);
+		noeudCourant->GetAttribute("loi", &loi);
+		transmission=noeudCourant->GetAttribute("affaiblissement", &affaiblissement);
+		noeudCourant->GetAttribute("diffusion",&diffusion);
+		noeudCourant->GetAttribute("absorb", &absorb);
 
 
 		InitPropMat(Convertor::ToFloat(absorb),
@@ -103,17 +103,17 @@ public:
 		}
 		bool transmission=this->GetBoolConfig("transmission");
 		if(!transmission)
-			thisNode->DeleteProperty("affaiblissement");
+			thisNode->DeleteAttribute("affaiblissement");
 		return NULL;
 	}
 	wxXmlNode* SaveXMLCoreDoc(wxXmlNode* NoeudParent)
 	{
 		wxXmlNode* NoeudCourant=new wxXmlNode(NoeudParent,wxXML_ELEMENT_NODE,"bfreq");
-		NoeudCourant->AddProperty("freq",this->elementInfo.libelleElement);
+		NoeudCourant->AddAttribute("freq",this->elementInfo.libelleElement);
 		bool transmission=this->GetBoolConfig("transmission");
 		Element::SaveXMLCoreDoc(NoeudCourant);
 		if(!transmission)
-			NoeudCourant->DeleteProperty("affaiblissement");
+			NoeudCourant->DeleteAttribute("affaiblissement");
 		return NoeudCourant;
 	}
 protected:
