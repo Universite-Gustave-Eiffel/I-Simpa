@@ -13,7 +13,7 @@ addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
-      p- sourceline: 'pa:ginggs/boost161'
+      - sourceline: 'pa:ginggs/boost161'
     packages:
     - gcc-6
     - g++-6
