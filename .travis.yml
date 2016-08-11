@@ -16,8 +16,6 @@ addons:
     packages:
     - gcc-4.8
     - g++-4.8
-    - cmake
-    - cmake-data
     - python
     - freeglut3-dev
     - libxmu-dev
