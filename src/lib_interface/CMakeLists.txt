@@ -152,9 +152,11 @@ set(LIBINTERFACE_TESTS
     tests/balloon_test.cpp)
 
 add_executable(TEST_lib_interface ${LIBINTERFACE_TESTS})
+
 target_link_libraries (TEST_lib_interface 
     lib_interface
-    ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+    ${Boost_LIBRARIES})
+
 set_property(TARGET TEST_lib_interface PROPERTY FOLDER "tests")
 
 # Add to test suite
