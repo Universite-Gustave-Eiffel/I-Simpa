@@ -50,6 +50,6 @@ wx-config --version
 
 # Download CMake
 cd
-wget https://cmake.org/files/v3.6/cmake-3.6.1-Linux-x86_64.tar.gz
+wget --no-check-certificate https://cmake.org/files/v3.6/cmake-3.6.1-Linux-x86_64.tar.gz
 mkdir $HOME/cmake-install
 tar zxvf cmake-3.6.1-Linux-x86_64.tar.gz -C $HOME/cmake-install --strip 1
