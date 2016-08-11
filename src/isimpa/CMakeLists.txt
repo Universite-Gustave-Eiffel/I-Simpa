@@ -471,10 +471,6 @@ ${ISIMPA_RESSOURCES}/UserScript
 ${ISIMPA_RESSOURCES}/Directivities
 DESTINATION  ${PROJECT_BINARY_DIR}/bin)
 
-if(WIN32)
-  install(DIRECTORY ${ISIMPA_RESSOURCES}/meshing DESTINATION  ${PROJECT_BINARY_DIR}/bin)
-ENDIF()
-
 install (FILES
 ${ISIMPA_RESSOURCES}/libsimpa/__init__.py
          DESTINATION  ${PROJECT_BINARY_DIR}/bin/libsimpa)
