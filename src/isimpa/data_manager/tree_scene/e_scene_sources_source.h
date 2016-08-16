@@ -33,7 +33,7 @@
 #include <wx/filename.h>
 #include "data_manager/drawable_element.h"
 #include "e_scene_sources_source_rendu.h"
-#include "e_scene_sources_source_proprietes.h"
+#include "e_scene_sources_source_properties.h"
 #include "data_manager/generic_element/e_property_freq.h"
 
 /**  \file e_scene_sources_source.h
@@ -74,7 +74,7 @@ public:
 						this->AppendFils(new E_Scene_Sources_Source_Rendu(currentChild,this));
 					}else if(typeEle==Element::ELEMENT_TYPE_SCENE_SOURCES_SOURCE_PROPRIETES)
 					{
-						this->AppendFils(new E_Scene_Sources_Source_Proprietes(currentChild,this));
+						this->AppendFils(new E_Scene_Sources_Source_Properties(currentChild,this));
 					}else if(typeEle==Element::ELEMENT_TYPE_PROPERTY_FREQ)
 					{
 						this->AppendFils(new E_Property_Freq(currentChild,this));
@@ -93,7 +93,7 @@ public:
 		this->AllowMultipleSelection();
 		this->elementInfo.userDestroyable=true;
 		ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Sources++;
-		this->AppendFils(new E_Scene_Sources_Source_Proprietes(this));
+		this->AppendFils(new E_Scene_Sources_Source_Properties(this));
 		this->AppendFils(new E_Scene_Sources_Source_Rendu(this));
 		this->AppendFils(new E_Property_Freq(this,"Sound power"));
 		_("Sound power");
@@ -160,8 +160,8 @@ public:
 		{
 			destinationFleche.set(-elFilsProperty->GetDecimalConfig("u"),-elFilsProperty->GetDecimalConfig("v"),-elFilsProperty->GetDecimalConfig("w"));
 			destinationFleche=position+(destinationFleche/destinationFleche.length())/unitizeValue.w*.1f*destinationFleche.length();
-			showArrow = (elFilsProperty->GetListConfig("directivite") == E_Scene_Sources_Source_Proprietes::DIRECTIVITE_SOURCE_UNIDIRECTIONNEL)
-				|| (elFilsProperty->GetListConfig("directivite") == E_Scene_Sources_Source_Proprietes::DIRECTIVITE_SOURCE_DIRECTIONNEL);
+			showArrow = (elFilsProperty->GetListConfig("directivite") == E_Scene_Sources_Source_Properties::DIRECTIVITE_SOURCE_UNIDIRECTIONNEL)
+				|| (elFilsProperty->GetListConfig("directivite") == E_Scene_Sources_Source_Properties::DIRECTIVITE_SOURCE_DIRECTIONNEL);
 			showSource=elFilsProperty->GetBoolConfig("enable");
 		}
 		labelInfo.clear();
