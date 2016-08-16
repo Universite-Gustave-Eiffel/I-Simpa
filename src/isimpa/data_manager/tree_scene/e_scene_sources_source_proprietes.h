@@ -51,6 +51,10 @@ private:
 		this->AppendPropertyBool("enable","Active source",true);
 		_("Active source");
 	}
+
+	void InitDirectivityProperties() {
+		this->AppendPropertyEntier("iddirectivity", "iddirectivity", 0, false)->Hide();
+	}
 	void InitProperties()
 	{
 		this->AppendPropertyText("description","Description","");
@@ -71,8 +75,6 @@ private:
 		this->AppendPropertyList("directivite","Directivity",vDirectivite,DIRECTIVITE_SOURCE_OMINIDIRECTIONNEL,false,1,iDirectivite,true);
 		_("Directivity");
 
-		this->AppendPropertyEntier("iddirectivity", "iddirectivity", 0, false)->Hide();
-
 		this->AppendPropertyDecimal("u","Direction X",1,true,2,false,false,0,0,true);
 		this->AppendPropertyDecimal("v","Direction Y",1,true,2,false,false,0,0,true);
 		this->AppendPropertyDecimal("w","Direction Z",1,true,2,false,false,0,0,true);
@@ -82,6 +84,7 @@ private:
 		this->AppendPropertyDecimal("delay","Time delay (s)",0.f,false,4,false,true,0,0,true);
 		_("Time delay (s)");
 		InitNewProperties();
+		InitDirectivityProperties();
 	}
 
 	void InitProp() {
@@ -124,8 +127,12 @@ public:
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
 		ignore_count_change=true;
-		if(!this->IsPropertyExist("enable"))
-			InitNewProperties();
+		if(!this->IsPropertyExist("enable")) {
+            InitNewProperties();
+        }
+		if(!this->IsPropertyExist("iddirectivity")) {
+			InitDirectivityProperties();
+		}
 		if(this->GetBoolConfig("enable"))
 			ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Sources_Actives++;
 		ignore_count_change=false;
