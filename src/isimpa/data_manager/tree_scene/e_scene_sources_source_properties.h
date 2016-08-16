@@ -42,7 +42,7 @@
  *   \brief Propriétés d'une source sonore ponctuelle de la scène
  * 
  */
-class E_Scene_Sources_Source_Proprietes: public Element
+class E_Scene_Sources_Source_Properties: public Element
 {
 private:
 	//v1.01
@@ -122,7 +122,7 @@ public:
 		DIRECTIVITE_SOURCE_XZ,
 		DIRECTIVITE_SOURCE_DIRECTIONNEL
 	};
-	E_Scene_Sources_Source_Proprietes( wxXmlNode* noeudCourant ,  Element* parent)
+	E_Scene_Sources_Source_Properties( wxXmlNode* noeudCourant ,  Element* parent)
 		:Element(parent,"Properties",Element::ELEMENT_TYPE_SCENE_SOURCES_SOURCE_PROPRIETES,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
@@ -139,7 +139,7 @@ public:
 		_("Properties");
 	}
 
-	E_Scene_Sources_Source_Proprietes( Element* parent)
+	E_Scene_Sources_Source_Properties( Element* parent)
 		:Element(parent,"Properties",Element::ELEMENT_TYPE_SCENE_SOURCES_SOURCE_PROPRIETES)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
@@ -149,7 +149,7 @@ public:
 			ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Sources_Actives++;
 		ignore_count_change=false;
 	}
-	~E_Scene_Sources_Source_Proprietes()
+	~E_Scene_Sources_Source_Properties()
 	{
 		if(this->GetBoolConfig("enable"))
 			ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Sources_Actives--;

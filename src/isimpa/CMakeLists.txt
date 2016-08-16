@@ -288,7 +288,7 @@ set(DATA_MANAGER_TREESCENE_SOURCES
     data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_rendu.h
     data_manager/tree_scene/e_scene_sources.h
     data_manager/tree_scene/e_scene_sources_source.h
-    data_manager/tree_scene/e_scene_sources_source_proprietes.h
+        data_manager/tree_scene/e_scene_sources_source_properties.h
     data_manager/tree_scene/e_scene_sources_source_rendu.h
     data_manager/tree_scene/e_scene_volumes.cpp
     data_manager/tree_scene/e_scene_volumes.h
