@@ -99,7 +99,7 @@ public:
 
 
 		this->AppendPropertyText("modelName","","mesh.cbin",true,true)->Hide();
-		this->AppendPropertyText("exeName","","TheorieClassique.exe")->Hide();
+		this->AppendPropertyText("exeName","","TheorieClassique")->Hide();
 		this->AppendPropertyText("corePath","",wxString("theorie_classique")+wxFileName::GetPathSeparator())->Hide();
 		this->AppendPropertyText("tetrameshFileName","","tetramesh.mbin",true,true)->Hide();
 	}

@@ -135,8 +135,9 @@ wxCommandEvent evtMenu;
 void uiTreeCtrl::InitTree()
 {
 
-	wxString ressourceFolder=ApplicationConfiguration::CONST_RESOURCE_FOLDER;
+	wxString ressourceFolder=ApplicationConfiguration::getResourcesFolder();
 	wxImageList *imglist = new wxImageList(16, 16, true, 2);
+	wxASSERT_MSG((bool)wxDirExists(ressourceFolder), _("I-SIMPA resource folder does not exists"));
 
 	for(std::size_t graph_id=0;graph_id<Element::GRAPH_LAST_STATIC_GRAPH;graph_id++)
 	{

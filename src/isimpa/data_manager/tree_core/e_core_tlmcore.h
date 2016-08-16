@@ -65,7 +65,7 @@ public:
 		
 		
 		this->AppendPropertyText("modelName","","mesh.cbin",true,true)->Hide();
-		this->AppendPropertyText("exeName","","TLM.exe")->Hide();
+		this->AppendPropertyText("exeName","","TLM")->Hide();
 		this->AppendPropertyText("corePath","","tlm\\")->Hide();
 		this->AppendPropertyText("tetrameshFileName","","tetramesh.mbin",true,true)->Hide();
 	}

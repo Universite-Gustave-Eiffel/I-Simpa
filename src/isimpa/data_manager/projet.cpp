@@ -809,7 +809,7 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	wxFileName corefilename(exeName);
 	wxString ext=corefilename.GetExt();
 	if(ext=="py" || ext=="pyc")
-		cmd="python.exe -u \""+rootCorePath+exeName+"\" \""+workingDir+xmlCoreFileName+"\"";
+		cmd="python -u \""+rootCorePath+exeName+"\" \""+workingDir+xmlCoreFileName+"\"";
 	else
 		cmd=rootCorePath+exeName+" \""+workingDir+xmlCoreFileName+"\"";
 

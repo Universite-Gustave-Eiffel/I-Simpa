@@ -47,20 +47,6 @@
 class E_Core_Core: public Element
 {
 
-	/** 
-	 * Initialisation des propriétés du coeur de calcul. Seulement lors de la création d'un nouveau projet
-	 * @param[in] coreData Données du coeur de calcul
-	 */
-	/*
-	void InitHiddenConfig()
-	{
-		this->AppendPropertyText("modelName","",coreData.modelName,true,true)->Hide();
-		this->AppendPropertyText("exeName","",coreData.exeName)->Hide();
-		this->AppendPropertyText("corePath","",coreData.corePath)->Hide();
-		this->AppendPropertyText("tetrameshFileName","",coreData.tetrahedraMeshFileName,true,true)->Hide();
-	}
-	*/
-
 public:
 
 

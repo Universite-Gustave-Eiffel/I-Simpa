@@ -61,8 +61,8 @@ if (UNIX)
   endif(NOT HAVE_CLOCK_GETTIME)
 endif(UNIX)
 
-# Set Properties->General->Configuration Type to Application(.exe)
-# Creates spps.exe with the listed sources
+# Set Properties->General->Configuration Type to Application
+# Creates spps with the listed sources
 # Adds sources to the Solution Explorer
 add_executable(spps
     ${DATA_MANAGER_SOURCES}
@@ -93,7 +93,7 @@ endif()
 #    INSTALL
 #--------------#
 
-# Adds logic to INSTALL.vcproj to copy spps.exe to destination directory
+# Adds logic to INSTALL.vcproj to copy spps to destination directory
 install (TARGETS spps
         RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin/core/spps)
 

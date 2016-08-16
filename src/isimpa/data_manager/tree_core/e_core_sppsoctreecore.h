@@ -109,7 +109,7 @@ public:
 		this->AppendFils(new E_Core_Core_Bfreqselection(this));
 		coreData.modelName="mesh.cbin";
 		coreData.corePath="sppsOctree"+wxFileName::GetPathSeparator();
-		coreData.exeName="spps.exe";
+		coreData.exeName="spps";
 		coreData.tetrahedraMeshFileName="";
 		coreData.particleOutputName="particle.cpbin";
 

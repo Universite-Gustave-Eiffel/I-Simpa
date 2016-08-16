@@ -370,8 +370,8 @@ ADD_CUSTOM_COMMAND(
 # Before using element_pywrap.cpp build enum_def.cpp
 set_property(SOURCE data_manager/python_interface/py_ui_module/element_pywrap.cpp APPEND PROPERTY OBJECT_DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/enum_def.cpp)
 
-# Set Properties->General->Configuration Type to Application(.exe)
-# Creates isimpa.exe with the listed sources
+# Set Properties->General->Configuration Type to Application
+# Creates isimpa with the listed sources
 # Adds sources to the Solution Explorer
 add_executable(isimpa
     ${3DENGINE_SOURCES}
@@ -404,7 +404,7 @@ find_package(Boost REQUIRED COMPONENTS system python)
 
 IF(CMAKE_BUILD_TYPE STREQUAL "Debug")
     SET(wxWidgets_USE_DEBUG ON)
-    SET(wxWidgets_USE_STATIC OFF)
+    SET(wxWidgets_USE_STATIC ON)
     MESSAGE(STATUS "Using debug version of wxWidgets")
 ELSE()
     SET(wxWidgets_USE_DEBUG OFF)
@@ -449,7 +449,7 @@ ENDIF()
 #    INSTALL
 #--------------#
 
-# Adds logic to INSTALL.vcproj to copy isimpa.exe to destination directory
+# Adds logic to INSTALL.vcproj to copy isimpa to destination directory
 install (TARGETS isimpa
         RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin)
 
@@ -471,6 +471,3 @@ ${ISIMPA_RESSOURCES}/UserScript
 ${ISIMPA_RESSOURCES}/Directivities
 DESTINATION  ${PROJECT_BINARY_DIR}/bin)
 
-install (FILES
-${ISIMPA_RESSOURCES}/libsimpa/__init__.py
-         DESTINATION  ${PROJECT_BINARY_DIR}/bin/libsimpa)

@@ -6,7 +6,7 @@ add_executable(tetgen tetgen.cxx predicates.cxx)
 #    INSTALL
 #--------------#
 
-# Adds logic to INSTALL.vcproj to copy spps.exe to destination directory
+# Adds logic to INSTALL.vcproj to copy tetgen to destination directory
 install (TARGETS tetgen
         RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin/meshing/tetgen)
 

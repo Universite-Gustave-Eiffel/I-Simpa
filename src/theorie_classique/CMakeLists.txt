@@ -19,8 +19,8 @@ find_package(Boost REQUIRED)
 link_directories( ${Boost_LIBRARY_DIRS} )  
 include_directories( ${Boost_INCLUDE_DIRS} ) 
 
-# Set Properties->General->Configuration Type to Application(.exe)
-# Creates spps.exe with the listed sources
+# Set Properties->General->Configuration Type to Application
+# Creates spps with the listed sources
 # Adds sources to the Solution Explorer
 add_executable(TheorieClassique ${CT_SOURCE_FILES})
 
@@ -35,6 +35,6 @@ target_link_libraries(TheorieClassique ${Boost_LIBRARIES})
 #    INSTALL
 #--------------#
 
-# Adds logic to INSTALL.vcproj to copy spps.exe to destination directory
+# Adds logic to INSTALL.vcproj to copy spps to destination directory
 install (TARGETS TheorieClassique
         RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin/core/theorie_classique)

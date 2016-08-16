@@ -442,7 +442,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	visualisation->SetToolBitmapSize(wxSize(16,20));
 	tbProjet->SetToolBitmapSize(wxSize(16,20));
 
-	wxString ressourceFolder=ApplicationConfiguration::CONST_RESOURCE_FOLDER;
+	wxString ressourceFolder=ApplicationConfiguration::getResourcesFolder();
 
 	tbProjet->AddTool(ID_nouveau_projet, _("New project"), wxImage(ressourceFolder+"/Bitmaps/toolbar_newproject.png", wxBITMAP_TYPE_PNG), _("New project"));
 	tbProjet->AddTool(ID_ouvrir, _("Open project"), wxImage(ressourceFolder+"/Bitmaps/toolbar_openproject.png", wxBITMAP_TYPE_PNG), _("Open project"));
@@ -493,7 +493,8 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 */
 
 	m_mgr.AddPane(&(*(GlFrame)), wxAuiPaneInfo().Name("3Dview").Caption(_("Main window")).
-					CenterPane().Show());
+					CenterPane());
+
     m_mgr.AddPane(tbProjet, wxAuiPaneInfo().
                   Name(wxT("projetTb")).Caption(_("Project toolbar")).
                   ToolbarPane().Position(0).Top().CloseButton(false));
@@ -549,6 +550,9 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 
 	//Lie les éléments du menu avec les éléments du projet en cours
 	AttachElementsWithMenuItems();
+
+	// Render 3D view
+	m_mgr.GetPane("3Dview").Show();
 }
 
 void MainUiFrame::OnClearConsole(wxCommandEvent& event)
@@ -931,12 +935,12 @@ void MainUiFrame::OnFileLicence(wxCommandEvent& event)
 
 void MainUiFrame::OnFileIsimpaDoc(wxCommandEvent& event)
 {
-	wxString docpath = ApplicationConfiguration::CONST_RESOURCE_FOLDER+wxString("doc")+wxFileName::GetPathSeparator()+wxString("documentation")+wxFileName::GetPathSeparator()+"manuel_I_Simpa.pdf";
+	wxString docpath = ApplicationConfiguration::getResourcesFolder()+wxString("doc")+wxFileName::GetPathSeparator()+wxString("documentation")+wxFileName::GetPathSeparator()+"manuel_I_Simpa.pdf";
 	wxLaunchDefaultApplication(docpath);
 }
 void MainUiFrame::OnFileSppsDoc(wxCommandEvent& event)
 {
-	wxString docpath = ApplicationConfiguration::CONST_RESOURCE_FOLDER+wxString("doc")+wxFileName::GetPathSeparator()+wxString("documentation")+wxFileName::GetPathSeparator()+"SPPS_manuel.pdf";
+	wxString docpath = ApplicationConfiguration::getResourcesFolder()+wxString("doc")+wxFileName::GetPathSeparator()+wxString("documentation")+wxFileName::GetPathSeparator()+"SPPS_manuel.pdf";
 	wxLaunchDefaultApplication(docpath);
 }
 
@@ -1042,7 +1046,7 @@ int MainUiFrame::AskApplicationLanguage(int defaultLanguage)
 {
 	int choosenLanguage=defaultLanguage;
 //	LanguageSelector langSelection(NULL,_("Please choose language:"),_("Language"),ApplicationConfiguration::CONST_RESOURCE_FOLDER,ApplicationConfiguration::CONST_RESOURCE_FOLDER+ApplicationConfiguration::CONST_RESOURCE_DATA_FOLDER+wxString("flags")+wxFileName::GetPathSeparator());
-	LanguageSelector langSelection(NULL,_("Please choose language:"),_("Language"),ApplicationConfiguration::CONST_RESOURCE_FOLDER+wxString("locale")+wxFileName::GetPathSeparator(),ApplicationConfiguration::CONST_RESOURCE_FOLDER+ApplicationConfiguration::CONST_RESOURCE_DATA_FOLDER+wxString("flags")+wxFileName::GetPathSeparator());
+	LanguageSelector langSelection(NULL,_("Please choose language:"),_("Language"),ApplicationConfiguration::getResourcesFolder()+wxString("locale")+wxFileName::GetPathSeparator(),ApplicationConfiguration::getResourcesFolder()+ApplicationConfiguration::CONST_RESOURCE_BITMAP_FOLDER+wxString("flags")+wxFileName::GetPathSeparator());
 	wxInt32 choice=langSelection.ShowModal();
 	if(choice==wxID_OK)
 	{
@@ -1153,6 +1157,7 @@ void MainUiFrame::ExitProgram(wxCloseEvent& event)
 	if(!event.GetVeto())
 	{
 		projetCourant->CloseApp();
+        m_mgr.UnInit();
 		this->OnCloseWindow(event);
 	}
 }
@@ -1164,8 +1169,6 @@ MainUiFrame::~MainUiFrame()
 	//Reiinit the wxLogOutput
 
 	delete wxLog::SetActiveTarget(new wxLogStderr(NULL));
-	// deinitialize the frame manager
-	m_mgr.UnInit();
 
 }
 
