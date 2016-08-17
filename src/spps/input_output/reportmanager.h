@@ -84,8 +84,8 @@ public:
 	 * @brief Structure décrivant les paramètres d'un objet de rapport
 	 */
 	struct t_ParamReport{
-		uentier nbParticles;
-		uentier nbTimeStep;
+		size_t nbParticles;
+		entier nbTimeStep;
 		uentier freqIndex;
 		uentier freqValue;
 		decimal timeStep;

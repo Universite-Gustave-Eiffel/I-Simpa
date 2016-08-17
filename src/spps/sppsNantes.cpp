@@ -298,9 +298,9 @@ int MainProcess(int argc, char* argv[])
 	CoreString sceneMeshPath=*configManager.FastGetConfigValue(Core_Configuration::SPROP_MODEL_FILE_PATH);
 	sceneMeshPath=workingDir+sceneMeshPath;
 	// Chargement du Random SEED
-	unsigned long seedValue = *configManager.FastGetConfigValue(Core_Configuration::I_PROP_RANDOM_SEED);
+	entier seedValue = *configManager.FastGetConfigValue(Core_Configuration::I_PROP_RANDOM_SEED);
 	if(seedValue!=0) {
-		SetRandSeed(seedValue);
+		SetRandSeed((uint32_t)seedValue);
 	}
 
 	//**************************************************

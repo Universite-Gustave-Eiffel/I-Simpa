@@ -8,7 +8,7 @@
 #include <boost/random/variate_generator.hpp>
 
 
-//base_generator_type correspond au générateur aléatoire choisi
+//base_generator_type correspond au gï¿½nï¿½rateur alï¿½atoire choisi
 typedef boost::lagged_fibonacci607 base_generator_type;
 
 base_generator_type generator;
@@ -22,7 +22,7 @@ float GetRandValue()
 	return uni();
 }
 
-void SetRandSeed(unsigned long seed) {
+void SetRandSeed(uint32_t seed) {
 	generator.seed(seed);
 }
 
