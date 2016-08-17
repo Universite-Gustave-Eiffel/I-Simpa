@@ -40,7 +40,7 @@ BEGIN_EVENT_TABLE( PyConsole, wxTextCtrl )
 END_EVENT_TABLE()
 
 PyConsole::PyConsole(wxWindow* parent)
-: wxTextCtrl(parent,-1, "",wxDefaultPosition, wxSize(200,150), wxTE_RICH | wxNO_BORDER | wxTE_MULTILINE | wxTE_PROCESS_TAB   )
+: wxTextCtrl(parent,-1, "",wxDefaultPosition, wxSize(200,150), wxTE_RICH | wxNO_BORDER | wxTE_MULTILINE | wxTE_PROCESS_TAB | wxTE_PROCESS_ENTER   )
 {
 	waitingForNextPrompt=true;
 	promptSize=0;
@@ -93,17 +93,8 @@ void PyConsole::OnTextEnter(wxCommandEvent& txtEvent)
 	command.Replace("\n","\\n");
 	PostPythonCodeUpdate.SetString(command);
 	wxPostEvent(this, PostPythonCodeUpdate);
+	AppendText("\n");
 	waitingForNextPrompt=true;
-	/*
-	wxArrayString commands;
-	SplitString(command,"\n",commands);
-	for(size_t i=0;i<commands.size();i++)
-	{
-		PostPythonCodeUpdate.SetString(commands[i]);
-		wxPostEvent(this, PostPythonCodeUpdate);
-		waitingForNextPrompt=true;
-	}
-	*/
 }
 void PyConsole::OnKeyDown(wxKeyEvent& txtEvent)
 {

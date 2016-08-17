@@ -99,7 +99,6 @@ public:
 protected:
 	boost::python::object main_module;
 	boost::python::object main_namespace;
-	boost::python::object inspect_module;
 	wxString cmd;
 	wxString oldcmd;
 	wxString promptNewCmd;
