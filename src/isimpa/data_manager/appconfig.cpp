@@ -74,7 +74,13 @@ const wxString ApplicationConfiguration::CONST_RESOURCE_DIRECTIVITY_FOLDER = wxS
 
 
 const wxString ApplicationConfiguration::CONST_TETROOT_PATH=wxString("meshing")+wxFileName::GetPathSeparator();
-const wxString ApplicationConfiguration::CONST_TETGEN_EXE_FILENAME="tetgen";
+
+#ifndef _WIN32
+const wxString ApplicationConfiguration::CONST_TETGEN_EXE_FILENAME = "tetgen";
+#else
+const wxString ApplicationConfiguration::CONST_TETGEN_EXE_FILENAME = "tetgen.exe";
+#endif
+
 const wxString ApplicationConfiguration::CONST_TETGEN_EXE_PATH=ApplicationConfiguration::CONST_TETROOT_PATH+wxString("tetgen")+wxFileName::GetPathSeparator();
 const wxString ApplicationConfiguration::CONST_CORE_PATH=wxString("core") + wxFileName::GetPathSeparator();
 const wxString ApplicationConfiguration::CONST_PREPROCESS_EXE_PATH=ApplicationConfiguration::CONST_TETROOT_PATH+"tetgen"+wxFileName::GetPathSeparator();

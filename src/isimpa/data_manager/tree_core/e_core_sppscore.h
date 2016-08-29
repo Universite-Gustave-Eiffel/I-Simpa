@@ -123,6 +123,9 @@ public:
 			InitExportRs(confCore);
 		}
 		InitNewProperties();
+        if(GetStringConfig("exeName").EndsWith(".exe")) {
+            UpdateStringConfig("exeName", "spps");
+        }
 	}
 
 	E_Core_Spps( Element* parent)
@@ -157,7 +160,7 @@ public:
 		InitTransmission(confCore);
 
 		/* #if 0
-		    // Code source à destination de PoEdit
+		    // Translation keys, do not remove
 			_("SPPS");
 			_("Random");
 			_("Energetic");

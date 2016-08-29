@@ -492,7 +492,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	glFrameNotebook->AddPage(&(*(GlFrame)), _("Vue 3D") , true);
 */
 
-	m_mgr.AddPane(&(*(GlFrame)), wxAuiPaneInfo().Name("3Dview").Caption(_("Main window")).
+	m_mgr.AddPane(GlFrame.get(), wxAuiPaneInfo().Name("3Dview").Caption(_("Main window")).
 					CenterPane());
 
     m_mgr.AddPane(tbProjet, wxAuiPaneInfo().

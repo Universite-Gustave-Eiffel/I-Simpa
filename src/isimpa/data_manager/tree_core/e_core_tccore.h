@@ -75,6 +75,9 @@ public:
 		}else{
 			InitExportRs(coreConf);
 		}
+        if (GetStringConfig("exeName").EndsWith(".exe")) {
+            UpdateStringConfig("exeName", "TheorieClassique");
+        }
 	}
 
 	E_Core_Tc( Element* parent)
