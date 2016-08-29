@@ -322,7 +322,7 @@ void CalculationCore::Movement(CONF_PARTICULE &configurationP)
 							faceDirection=-faceInfo->normal;
 						else
 							faceDirection=faceInfo->normal;
-						nouvDirection=ReflectionLaws::SolveReflection(configurationP.direction,*materialInfo,faceDirection,configurationP);
+						nouvDirection=ReflectionLaws::SolveReflection(configurationP.direction,*materialInfo,faceDirection);
 					}else{
 						nouvDirection=ReflectionLaws::SpecularReflection(configurationP.direction,faceInfo->normal);
 					}
