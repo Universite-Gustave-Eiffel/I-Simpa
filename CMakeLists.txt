@@ -4,6 +4,13 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8.6)
 # have all targets (exe, lib, dll) as projects (.vcproj)
 project (isimpa)
 
+if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+    set(CMAKE_INSTALL_PREFIX "${PROJECT_BINARY_DIR}/bin" CACHE PATH "default install path" FORCE )
+	message (STATUS "Default install path is set: " ${CMAKE_INSTALL_PREFIX})
+else()
+    message (STATUS "Install path already defined: " ${CMAKE_INSTALL_PREFIX})
+endif()
+
 # Turn on the ability to create folders to organize projects (.vcproj)
 # It creates "CMakePredefinedTargets" folder by default and adds CMake
 # defined projects like INSTALL.vcproj and ZERO_CHECK.vcproj
@@ -59,3 +66,31 @@ endif()
 set(TEST_DATA_DIR "${PROJECT_BINARY_DIR}/Testing")
 file(MAKE_DIRECTORY ${TEST_DATA_DIR})
 enable_testing()
+
+
+INCLUDE(InstallRequiredSystemLibraries)
+
+SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "I-SIMPA")
+SET(CPACK_PACKAGE_VENDOR "Ifsttar")
+SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/DESCRIPTION.txt")
+SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE.md")
+SET(CPACK_PACKAGE_VERSION_MAJOR "1")
+SET(CPACK_PACKAGE_VERSION_MINOR "3")
+SET(CPACK_PACKAGE_VERSION_PATCH "0")
+SET(CPACK_PACKAGE_INSTALL_DIRECTORY "I-SIMPA")
+IF(WIN32 AND NOT UNIX)
+  # There is a bug in NSI that does not handle full unix paths properly. Make
+  # sure there is at least one set of four (4) backlasshes.
+  SET(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}/CurrentRelease\\\\isimpa.ico")
+  SET(CPACK_NSIS_INSTALLED_ICON_NAME "isimpa.exe")
+  SET(CPACK_NSIS_DISPLAY_NAME "I-SIMPA")
+  SET(CPACK_NSIS_HELP_LINK "http:\\\\\\\\i-simpa-wiki.readthedocs.io")
+  SET(CPACK_NSIS_URL_INFO_ABOUT "http:\\\\\\\\i-simpa.ifsttar.fr")
+  SET(CPACK_NSIS_CONTACT "i-simpa@ifsttar.fr")
+  SET(CPACK_NSIS_MODIFY_PATH ON)
+ELSE(WIN32 AND NOT UNIX)
+  SET(CPACK_STRIP_FILES "isimpa.exe")
+  SET(CPACK_SOURCE_STRIP_FILES "")
+ENDIF(WIN32 AND NOT UNIX)
+SET(CPACK_PACKAGE_EXECUTABLES "isimpa" "I-SIMPA")
+INCLUDE(CPack)

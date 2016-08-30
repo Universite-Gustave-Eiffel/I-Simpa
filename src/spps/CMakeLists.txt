@@ -98,7 +98,7 @@ endif()
 
 # Adds logic to INSTALL.vcproj to copy spps to destination directory
 install (TARGETS spps
-        RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin/core/spps)
+        RUNTIME DESTINATION core/spps)
 
 #------------#
 #    TEST

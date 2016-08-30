@@ -42,16 +42,16 @@ set(ISIMPA_RESSOURCES ${PROJECT_SOURCE_DIR}/currentRelease)
 
 # Adds logic to INSTALL.vcproj to copy _libsimpa.pyd to the destination directory
 install (TARGETS ${SWIG_MODULE_libsimpa_REAL_NAME}
-      ARCHIVE DESTINATION ${CMAKE_SWIG_OUTDIR}
-      LIBRARY DESTINATION ${CMAKE_SWIG_OUTDIR}
-      RUNTIME DESTINATION ${CMAKE_SWIG_OUTDIR}
+      ARCHIVE DESTINATION libsimpa/
+      LIBRARY DESTINATION libsimpa/
+      RUNTIME DESTINATION libsimpa/
       COMPONENT library
 )
 
 install (FILES
         ${ISIMPA_RESSOURCES}/libsimpa/vec3.py
         ${ISIMPA_RESSOURCES}/libsimpa/__init__.py
-        DESTINATION  ${PROJECT_BINARY_DIR}/bin/libsimpa/)
+        DESTINATION libsimpa/)
 #------------#
 #    TEST
 #------------#

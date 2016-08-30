@@ -451,7 +451,7 @@ ENDIF()
 
 # Adds logic to INSTALL.vcproj to copy isimpa to destination directory
 install (TARGETS isimpa
-        RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin)
+        RUNTIME DESTINATION .)
 
 set(ISIMPA_RESSOURCES ${PROJECT_SOURCE_DIR}/currentRelease)
 
@@ -460,7 +460,7 @@ ${ISIMPA_RESSOURCES}/appconst.xml
 ${ISIMPA_RESSOURCES}/isimpa.ico
 ${ISIMPA_RESSOURCES}/Licence.pdf
 ${ISIMPA_RESSOURCES}/Licence.rtf
-         DESTINATION  ${PROJECT_BINARY_DIR}/bin)
+         DESTINATION .)
 
 install(DIRECTORY
 ${ISIMPA_RESSOURCES}/Bitmaps
@@ -469,5 +469,13 @@ ${ISIMPA_RESSOURCES}/locale
 ${ISIMPA_RESSOURCES}/SystemScript
 ${ISIMPA_RESSOURCES}/UserScript
 ${ISIMPA_RESSOURCES}/Directivities
-DESTINATION  ${PROJECT_BINARY_DIR}/bin)
+DESTINATION .)
 
+# Copy python ressources required by boost python runtime
+if(WIN32) # Check if we are on Windows
+    get_filename_component(PYTHON_ROOT_FOLDER ${PYTHON_EXECUTABLE} PATH)
+	set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
+	install(DIRECTORY
+	${PYTHON_ROOT_FOLDER}/Lib
+	DESTINATION .)
+endif()
