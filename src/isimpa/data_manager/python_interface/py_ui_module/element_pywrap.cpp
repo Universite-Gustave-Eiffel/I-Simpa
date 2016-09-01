@@ -433,7 +433,7 @@ int element::appendpropertycolor(const std::wstring& propertyName,const std::wst
 int element::appendpropertyentier(const std::wstring& propertyName,const std::wstring& propertyLabel,int propertyDefaultValue,bool exportToCore,bool isMaxValue,bool isMinValue,int maxValue,int minValue)
 {
 	Element* self=GetElement(xmlId);
-	Element* newobj=self->AppendPropertyEntier(propertyName,propertyLabel,propertyDefaultValue,exportToCore,isMaxValue,isMinValue,maxValue,minValue);
+	Element* newobj=self->AppendPropertyInteger(propertyName,propertyLabel,propertyDefaultValue,exportToCore,isMaxValue,isMinValue,maxValue,minValue);
 	if(newobj)
 	{
 		return newobj->GetXmlId();
@@ -511,7 +511,7 @@ bool element::getboolconfig(const std::wstring& name)
 int element::getentierconfig(const std::wstring& name)
 {
 	Element* self=GetElement(xmlId);
-	return self->GetEntierConfig(name);
+	return self->GetIntegerConfig(name);
 }
 boost::python::list element::getcolorconfig(const std::wstring& name)
 {

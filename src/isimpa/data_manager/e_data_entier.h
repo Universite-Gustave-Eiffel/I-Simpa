@@ -44,7 +44,7 @@ bool GetFormulaEvaluation(const wxString& formula,double& evalResult);
 	\brief Classe spécialisant E_Data afin de représenter un entier
 	@see MainPropGrid
 */
-class E_Data_Entier: public E_Data
+class E_Data_Integer: public E_Data
 {
 protected:
 	int elementValue;
@@ -53,7 +53,7 @@ protected:
 	bool isMaxValue;
 	bool isMinValue;
 public:
-	E_Data_Entier( wxXmlNode* noeudCourant ,  Element* parent)
+	E_Data_Integer( wxXmlNode* noeudCourant ,  Element* parent)
 		:E_Data(parent,"Unnamedprop","",Element::ELEMENT_TYPE_INTEGER,noeudCourant)
 	{
 		isMaxValue=false;
@@ -79,13 +79,13 @@ public:
 	}
 
 	/**
-		@param parent Element parent
-		@param dataName Nom du champ ( non visible par l'utilisateur)
-		@param dataLabel Libellé du champ
-		@param defaultDataValue Valeur par défaut
-	* @see Element::AppendPropertyEntier()
+		@param parent Parent element
+		@param dataName Field name ( hidden from user)
+		@param dataLabel Field label
+		@param defaultDataValue Default field value
+	* @see Element::AppendPropertyInteger()
 	*/
-		E_Data_Entier( Element* parent, wxString dataName,wxString dataLabel, int defaultDataValue)
+		E_Data_Integer( Element* parent, wxString dataName,wxString dataLabel, int defaultDataValue)
 		:E_Data(parent,dataName,dataLabel,Element::ELEMENT_TYPE_INTEGER)
 	{
 		isMaxValue=false;

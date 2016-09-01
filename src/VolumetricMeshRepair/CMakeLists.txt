@@ -21,8 +21,8 @@ set(VMR_SOURCE_FILES
 #    DEPENDENCY & EXECUTABLE (OR LIB)
 #---------------------------------------#
 
-# Set Properties->General->Configuration Type to Application(.exe)
-# Creates spps.exe with the listed sources
+# Set Properties->General->Configuration Type to Application
+# Creates spps with the listed sources
 # Adds sources to the Solution Explorer
 add_executable(vmr ${VMR_SOURCE_FILES})
 
@@ -36,6 +36,6 @@ target_link_libraries (vmr lib_interface)
 #    INSTALL
 #--------------#
 
-# Adds logic to INSTALL.vcproj to copy vmr.exe to destination directory
+# Adds logic to INSTALL.vcproj to copy vmr to destination directory
 install (TARGETS vmr
-        RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin/meshing/vmr)
+        RUNTIME DESTINATION meshing/vmr)

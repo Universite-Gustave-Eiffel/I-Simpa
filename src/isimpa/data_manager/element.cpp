@@ -210,7 +210,7 @@ Element::Element(Element* parent,const wxString& Nom,ELEMENT_TYPE _type,wxXmlNod
 						newEle=new E_Data_Float(currentChild,this);
 						break;
 					case ELEMENT_TYPE_INTEGER:
-						newEle=new E_Data_Entier(currentChild,this);
+						newEle=new E_Data_Integer(currentChild,this);
 						break;
 					case ELEMENT_TYPE_BOOL:
 						newEle=new E_Data_Bool(currentChild,this);
@@ -1089,7 +1089,7 @@ bool Element::UpdateEntierConfig(wxString name,int newValue)
 		const Element::t_elementInfo& infoEl=(*itfils)->GetElementInfos();
 		if(infoEl.typeElement==Element::ELEMENT_TYPE_INTEGER && infoEl.libelleElement==name)
 		{
-			E_Data_Entier* dataEl=dynamic_cast<E_Data_Entier*>((*itfils));
+			E_Data_Integer* dataEl=dynamic_cast<E_Data_Integer*>((*itfils));
 			dataEl->SetValue(newValue);
 			return true;
 		}
@@ -1260,7 +1260,7 @@ float Element::GetDecimalConfig(wxString name)
 	return 0;
 }
 
-int Element::GetEntierConfig(wxString name)
+int Element::GetIntegerConfig(wxString name)
 {
 	//On recherche les éléments qui porte le nom name
 	for(std::list<Element*>::iterator itfils=this->fils.begin();itfils!=this->fils.end();itfils++)
@@ -1268,7 +1268,7 @@ int Element::GetEntierConfig(wxString name)
 		const Element::t_elementInfo& infoEl=(*itfils)->GetElementInfos();
 		if(infoEl.typeElement==Element::ELEMENT_TYPE_INTEGER && infoEl.libelleElement==name)
 		{
-			E_Data_Entier* dataEl=dynamic_cast<E_Data_Entier*>((*itfils));
+			E_Data_Integer* dataEl=dynamic_cast<E_Data_Integer*>((*itfils));
 			return dataEl->GetValue();
 		}
 	}
@@ -1422,12 +1422,12 @@ Element* Element::AppendPropertyFile(wxString propertyName, wxString propertyLab
 		return alreadyExist;
 }
 
-Element* Element::AppendPropertyEntier(wxString propertyName,wxString propertyLabel,int propertyDefaultValue,bool exportToCore,bool isMaxValue,bool isMinValue,int maxValue,int minValue)
+Element* Element::AppendPropertyInteger(wxString propertyName,wxString propertyLabel,int propertyDefaultValue,bool exportToCore,bool isMaxValue,bool isMinValue,int maxValue,int minValue)
 {
 	Element* alreadyExist=NULL;
 	if(!IsPropertyExist(propertyName,&alreadyExist))
 	{
-		E_Data_Entier *nouvfils=new E_Data_Entier(this,propertyName,propertyLabel,propertyDefaultValue);
+		E_Data_Integer *nouvfils=new E_Data_Integer(this,propertyName,propertyLabel,propertyDefaultValue);
 		nouvfils->SetXmlCoreVisibility(exportToCore);
 		if(isMaxValue)
 			nouvfils->SetMaxValue(maxValue);

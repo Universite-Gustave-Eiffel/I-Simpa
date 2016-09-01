@@ -1,4 +1,5 @@
 #include "coreTypes.h"
+#include "sppsTypes.h"
 
 
 /**
@@ -17,7 +18,7 @@ public:
 	 * @param AB Vecteur perpendiculaire à la normal de la face
 	 * @return Vecteur réflexion normalisé
 	 */
-	static vec3 SolveReflection(vec3 &vectorDirection,t_Material_BFreq &materialInfo,vec3& faceNormal, CONF_PARTICULE& particuleInfo)
+	static vec3 SolveReflection(vec3 &vectorDirection,t_Material_BFreq &materialInfo,vec3& faceNormal)
 	{
 		switch(materialInfo.reflectionLaw)
 		{
@@ -25,19 +26,19 @@ public:
 				return SpecularReflection(vectorDirection,faceNormal);
 				break;
 			case REFLECTION_LAW_LAMBERT:
-				return BaseWnReflection(vectorDirection,faceNormal,1,particuleInfo);
+				return BaseWnReflection(vectorDirection,faceNormal,1);
 				break;
 			case REFLECTION_LAW_UNIFORM:
-				return BaseWnReflection(vectorDirection,faceNormal,0,particuleInfo);
+				return BaseWnReflection(vectorDirection,faceNormal,0);
 				break;
 			case REFLECTION_LAW_W2:
-				return BaseWnReflection(vectorDirection,faceNormal,2,particuleInfo);
+				return BaseWnReflection(vectorDirection,faceNormal,2);
 				break;
 			case REFLECTION_LAW_W3:
-				return BaseWnReflection(vectorDirection,faceNormal,3,particuleInfo);
+				return BaseWnReflection(vectorDirection,faceNormal,3);
 				break;
 			case REFLECTION_LAW_W4:
-				return BaseWnReflection(vectorDirection,faceNormal,4,particuleInfo);
+				return BaseWnReflection(vectorDirection,faceNormal,4);
 				break;
 			default:
 				return SpecularReflection(vectorDirection,faceNormal);
@@ -62,7 +63,7 @@ public:
 	 * @param expo Exposant de phi
 	 * @return Vecteur vitesse réfléchie normalisé
 	 */
-	static vec3 BaseWnReflection(vec3 &vecteurVitesse,vec3 &faceNormal,decimal expo, CONF_PARTICULE& particuleInfo)
+	static vec3 BaseWnReflection(vec3 &vecteurVitesse,vec3 &faceNormal,decimal expo)
 	{
 		decimal theta=GetRandValue() * M_2PI;
 		decimal phi=acos(pow((float)1-GetRandValue(),(float)(1./(expo+1.))));//pow((float)acos(1-GetRandValue()),(float)(1./(expo+1.)));
@@ -120,6 +121,6 @@ private:
 		}
 		retVal=faceNormal.Rotation(retVal,phi);
 		retVal=retVal.Rotation(faceNormal,theta);
-		return retVal;
+		return retVal / retVal.length();
 	}
 };

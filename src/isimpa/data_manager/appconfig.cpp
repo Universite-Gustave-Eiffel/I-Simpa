@@ -64,28 +64,27 @@ const wxString ApplicationConfiguration::CONST_REPORT_DIRECTIVITIES_FOLDER_PATH 
 const wxString ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME="sceneMesh.bin";
 
 
-const wxString ApplicationConfiguration::CONST_PREPROCESS_EXE_FILENAME="preprocess.exe";
+const wxString ApplicationConfiguration::CONST_PREPROCESS_EXE_FILENAME="preprocess";
 const wxString ApplicationConfiguration::CONST_GRAPH_CONFIG_PATH="SIMPLEGRAPH";
 const wxString ApplicationConfiguration::CONST_USER_PREFERENCE_FILE_NAME="isimpa_pref.xml";
 
-const wxString ApplicationConfiguration::CONST_RESOURCE_FOLDER= wxString(".") + wxFileName::GetPathSeparator();
-const wxString ApplicationConfiguration::CONST_RESOURCE_DATA_FOLDER=wxString("Bitmaps")+wxFileName::GetPathSeparator();
+const wxString ApplicationConfiguration::CONST_RESOURCE_BITMAP_FOLDER=wxString("Bitmaps")+wxFileName::GetPathSeparator();
 const wxString ApplicationConfiguration::CONST_RESOURCE_ISO_FOLDER=wxString("iso")+wxFileName::GetPathSeparator();
 const wxString ApplicationConfiguration::CONST_RESOURCE_DIRECTIVITY_FOLDER = wxString("Directivities") + wxFileName::GetPathSeparator();
 
 
-const wxString ApplicationConfiguration::CONST_TETROOT_PATH=CONST_RESOURCE_FOLDER+wxString("meshing")+wxFileName::GetPathSeparator();
-#ifdef __WXMSW__
-const wxString ApplicationConfiguration::CONST_TETGEN_EXE_FILENAME="tetgen.exe";
+const wxString ApplicationConfiguration::CONST_TETROOT_PATH=wxString("meshing")+wxFileName::GetPathSeparator();
+
+#ifndef _WIN32
+const wxString ApplicationConfiguration::CONST_TETGEN_EXE_FILENAME = "tetgen";
+#else
+const wxString ApplicationConfiguration::CONST_TETGEN_EXE_FILENAME = "tetgen.exe";
+#endif
+
 const wxString ApplicationConfiguration::CONST_TETGEN_EXE_PATH=ApplicationConfiguration::CONST_TETROOT_PATH+wxString("tetgen")+wxFileName::GetPathSeparator();
-#endif
-#ifdef __LINUX__
-const wxString ApplicationConfiguration::CONST_TETGEN_EXE_FILENAME="tetgen"; //Use global command
-const wxString ApplicationConfiguration::CONST_TETGEN_EXE_PATH="";
-#endif
-const wxString ApplicationConfiguration::CONST_CORE_PATH=CONST_RESOURCE_FOLDER+"core"+wxFileName::GetPathSeparator();
+const wxString ApplicationConfiguration::CONST_CORE_PATH=wxString("core") + wxFileName::GetPathSeparator();
 const wxString ApplicationConfiguration::CONST_PREPROCESS_EXE_PATH=ApplicationConfiguration::CONST_TETROOT_PATH+"tetgen"+wxFileName::GetPathSeparator();
-const wxString ApplicationConfiguration::CONST_STATIC_XML_FILE=CONST_RESOURCE_FOLDER+"appconst.xml";
+const wxString ApplicationConfiguration::CONST_STATIC_XML_FILE="appconst.xml";
 //const unsigned long ApplicationConfiguration::CONST_WORKINGLIMIT=1325329200;
 const int ApplicationConfiguration::SPPS_UI_VERSION_MAJOR=1;
 const int ApplicationConfiguration::SPPS_UI_VERSION_MINOR=3;
@@ -637,6 +636,10 @@ bool ApplicationConfiguration::IsIdDirectivityExist(int idDirectivity)
 		}
 	}
 	return false;
+}
+
+wxString ApplicationConfiguration::getResourcesFolder() {
+    return wxPathOnly(wxStandardPaths::Get().GetExecutablePath());
 }
 
 std::vector<ApplicationConfiguration::t_lstDirectiv> ApplicationConfiguration::GetLstDirectivity()

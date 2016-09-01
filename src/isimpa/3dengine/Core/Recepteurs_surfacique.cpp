@@ -248,7 +248,7 @@ bool RecepteursSControler::LoadRecepteursSFile(wxArrayString& recepteurSFiles, v
 		minValue=elConf->GetDecimalConfig("mininterval");
 		smoothColour=elConf->GetBoolConfig("smooth_color");
 		renderIsoCurves=elConf->GetBoolConfig("showisolvl");
-		iso_smooth=elConf->GetEntierConfig("isosmoothlvl");
+		iso_smooth=elConf->GetIntegerConfig("isosmoothlvl");
 		wxString isolvllst=elConf->GetStringConfig("isolvllist").Trim();
 		if(isolvllst.size()>0)
 		{
@@ -259,7 +259,7 @@ bool RecepteursSControler::LoadRecepteursSFile(wxArrayString& recepteurSFiles, v
 				isolvls.push_back(Convertor::ToFloat(*itiso));
 			}
 		}
-		RecordRecepteurSurfType=elConf->GetEntierConfig("rstype");
+		RecordRecepteurSurfType=elConf->GetIntegerConfig("rstype");
 		libellLegends.unit=_("dB");
 		if(RecordRecepteurSurfType==(int)RECEPTEURS_RECORD_TYPE_TR ||
 			RecordRecepteurSurfType==(int)RECEPTEURS_RECORD_TYPE_EDT ||

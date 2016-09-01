@@ -4,6 +4,13 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8.6)
 # have all targets (exe, lib, dll) as projects (.vcproj)
 project (isimpa)
 
+if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+    set(CMAKE_INSTALL_PREFIX "${PROJECT_BINARY_DIR}/bin" CACHE PATH "default install path" FORCE )
+	message (STATUS "Default install path is set: " ${CMAKE_INSTALL_PREFIX})
+else()
+    message (STATUS "Install path already defined: " ${CMAKE_INSTALL_PREFIX})
+endif()
+
 # Turn on the ability to create folders to organize projects (.vcproj)
 # It creates "CMakePredefinedTargets" folder by default and adds CMake
 # defined projects like INSTALL.vcproj and ZERO_CHECK.vcproj

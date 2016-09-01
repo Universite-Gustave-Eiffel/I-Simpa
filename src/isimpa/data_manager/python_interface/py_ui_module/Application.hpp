@@ -143,14 +143,14 @@ public:
 	 * \~english Import an outside defined model. Supported file format is *.3ds;*.ply;*.bin;*.poly,*.stl
 	 * @param path Model file path
 	 * @param keepexistingfacegroup If True, it will try to fill face groups with the new faces thanks to old-new faces position.
-	 * @param docorrection Execute preprocess.exe to split or destroy triangle faces if needed.
+	 * @param docorrection Execute preprocess to split or destroy triangle faces if needed.
 	 * @param domeshsurface Remesh the surface of the scene. This operation may increase the number of facets and destroy material color and textures data.
 	 * @param paramTetgen User defined parameter for the mesh software. Useless parameter if domeshsurface at False.
 	 * @return True on success, false if import fails, see message log for details
 	 * \~french  Importe un model 3D qui remplacera le modèle du projet courant. Les formats de model supportés sont *.3ds;*.ply;*.bin;*.poly,*.stl
 	 * @param path Chemin du fichier de modèle
 	 * @param keepexistingfacegroup A vrai, Le groupes seront conservés grâce aux coordonnées similaires entre les anciennes et nouvelles faces.
-	 * @param docorrection Exécute preprocess.exe pour éclater ou supprimer les faces afin de tente de rendre possible le maillage.
+	 * @param docorrection Exécute preprocess pour éclater ou supprimer les faces afin de tente de rendre possible le maillage.
 	 * @param domeshsurface Tente de mailler la surface du modèle. Cette opération peut augmenter le nombre de faces et elle détruira les informations de couleurs et de textures.
 	 * @param paramTetgen Paramètres de maillage. Inutile si domeshsurface à faux.
 	 * @return Vrai en cas de succès. Faux si l'importation a échoué, se référer à la fenêtre de message pour plus d'information.

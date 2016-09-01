@@ -1,5 +1,5 @@
 # -*- coding: cp1252 -*-
-from _libsimpa import *
+from libsimpa import *
 from vec3 import vec3
 
 

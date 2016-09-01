@@ -40,7 +40,7 @@ class user_core(ui.element):
 			#Nom du maillage tétraèdrique
             ui.element(self.appendpropertytext("tetrameshFileName","","tetramesh.mbin",True,True)).hide()
 			#Nom et type (exe,py ou pyc) du fichier executable
-            ui.element(self.appendpropertytext("exeName","","user_core.exe")).hide()
+            ui.element(self.appendpropertytext("exeName","","user_core")).hide()
             ui.element(self.appendpropertytext("corePath","","usercore\\")).hide()
             
             #Création des paramètres de calculs

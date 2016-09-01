@@ -750,9 +750,20 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	///////////////////////////////////////////
 	///	Verifications de l'existance du coeur de calcul
 	///////////////////////////////////////////
+
+    wxFileName corefilename(exeName);
+    wxString ext = corefilename.GetExt();
+
+    #ifdef _WIN32
+    if(ext=="") {
+        exeName += ".exe";
+        corefilename = wxFileName(exeName);
+        ext = "exe";
+    }
+    #endif
 	if(!wxFileExists(this->PathCores+corePath+exeName))
 	{
-		wxLogError(_("Calculation .exe file not found."));
+		wxLogError(_("Calculation program file not found."));
 		return;
 	}
 	///////////////////////////////////////////
@@ -806,10 +817,8 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 
 	wxDateTime timeDebCalculation=wxDateTime::UNow();
 
-	wxFileName corefilename(exeName);
-	wxString ext=corefilename.GetExt();
 	if(ext=="py" || ext=="pyc")
-		cmd="python.exe -u \""+rootCorePath+exeName+"\" \""+workingDir+xmlCoreFileName+"\"";
+		cmd="python -u \""+rootCorePath+exeName+"\" \""+workingDir+xmlCoreFileName+"\"";
 	else
 		cmd=rootCorePath+exeName+" \""+workingDir+xmlCoreFileName+"\"";
 

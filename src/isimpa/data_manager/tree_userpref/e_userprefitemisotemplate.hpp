@@ -57,7 +57,7 @@ public:
 		,folder_parsed(false)
 	{
 		if(!nodeElement)
-			this->AppendPropertyText("path_isofile","path_isofile",ApplicationConfiguration::CONST_RESOURCE_DATA_FOLDER+ApplicationConfiguration::CONST_RESOURCE_ISO_FOLDER+"jet.gpl")->Hide();
+			this->AppendPropertyText("path_isofile","path_isofile",ApplicationConfiguration::CONST_RESOURCE_BITMAP_FOLDER+ApplicationConfiguration::CONST_RESOURCE_ISO_FOLDER+"jet.gpl")->Hide();
 		
 	}
 
@@ -70,7 +70,7 @@ public:
 		if(!folder_parsed)
 		{
 			wxArrayString files_found;
-			wxString folderiso(ApplicationConfiguration::CONST_RESOURCE_FOLDER+ApplicationConfiguration::CONST_RESOURCE_DATA_FOLDER+ApplicationConfiguration::CONST_RESOURCE_ISO_FOLDER);
+			wxString folderiso(ApplicationConfiguration::getResourcesFolder()+ApplicationConfiguration::CONST_RESOURCE_BITMAP_FOLDER+ApplicationConfiguration::CONST_RESOURCE_ISO_FOLDER);
 			int defaultIso(0);
 			Element* isoprop(NULL);
 			wxStringHash strHash;

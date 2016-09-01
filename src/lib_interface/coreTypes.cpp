@@ -31,6 +31,7 @@
 #include "coreTypes.h"
 #include "input_output/importExportMaillage/mbin.h"
 #include <iostream>
+#include <assert.h>
 
 //////////////////////////////////////////
 // t_Recepteur_P
@@ -131,7 +132,7 @@ r_Surf::r_Surf(r_Surf& copyFrom)
 	idRecepteurS=copyFrom.idRecepteurS;
 	nbFaces=copyFrom.nbFaces;
 
-	//Cr�ation � partir d'une copie
+	//Create from a copy
 	if(copyFrom.nbFaces==0)
 	{
 		faces=NULL;
@@ -190,10 +191,10 @@ bool t_TetraMesh::LoadFile(const char * fileName, t_Mesh &sceneMesh,uentier nbFr
 	if(binsizeTetra>0 && binsizeNodes>0)
 	{
 		this->nodesSize=binsizeNodes;
-		//Copie des noeuds
+		// Copy vertex
 		nodes=new vec3[nodesSize];
 		memcpy(nodes,tabNodes,sizeof(vec3)*nodesSize);
-		//Copie des tetrah�dres
+		// Copy tetrahedrons
 		tetraedres=new t_Tetra[binsizeTetra];
 		tetraedresSize=binsizeTetra;
 
@@ -201,8 +202,13 @@ bool t_TetraMesh::LoadFile(const char * fileName, t_Mesh &sceneMesh,uentier nbFr
 		{
 			tetraedres[idTetra].index=idTetra;
 			tetraedres[idTetra].idVolume=tabtetra[idTetra].idVolume;
-			//Copie des sommets
-			memcpy(&tetraedres[idTetra].sommets,&tabtetra[idTetra].sommets,sizeof(ivec4));
+			//Copy vertex
+            tetraedres[idTetra].sommets.set(tabtetra[idTetra].sommets[0], tabtetra[idTetra].sommets[1],
+                                                    tabtetra[idTetra].sommets[2], tabtetra[idTetra].sommets[3]);
+			assert(tetraedres[idTetra].sommets.a < nodesSize &&
+                           tetraedres[idTetra].sommets.b < nodesSize &&
+                           tetraedres[idTetra].sommets.c < nodesSize &&
+                           tetraedres[idTetra].sommets.d < nodesSize);
 			tetraedres[idTetra].g=GetGTetra(nodes[tetraedres[idTetra].sommets.a],nodes[tetraedres[idTetra].sommets.b],nodes[tetraedres[idTetra].sommets.c],nodes[tetraedres[idTetra].sommets.d]);
 			for(int idFace=0;idFace<4;idFace++)
 			{
@@ -210,7 +216,9 @@ bool t_TetraMesh::LoadFile(const char * fileName, t_Mesh &sceneMesh,uentier nbFr
 				{
 					tetraedres[idTetra].faces[idFace].face_scene=&sceneMesh.pfaces[tabtetra[idTetra].tetrafaces[idFace].marker];
 				}
-				memcpy(&tetraedres[idTetra].faces[idFace].indiceSommets,&tabtetra[idTetra].tetrafaces[idFace].sommets,sizeof(ivec3));
+                tetraedres[idTetra].faces[idFace].indiceSommets.set(tabtetra[idTetra].tetrafaces[idFace].sommets[0],
+                                                                    tabtetra[idTetra].tetrafaces[idFace].sommets[1],
+                                                                    tabtetra[idTetra].tetrafaces[idFace].sommets[2]);
 				if(tabtetra[idTetra].tetrafaces[idFace].neighboor>=0)
 					tetraedres[idTetra].voisins[idFace]=&tetraedres[tabtetra[idTetra].tetrafaces[idFace].neighboor];
 				ivec3 cFaceSommets=tetraedres[idTetra].faces[idFace].indiceSommets;
@@ -222,7 +230,7 @@ bool t_TetraMesh::LoadFile(const char * fileName, t_Mesh &sceneMesh,uentier nbFr
 		delete[] tabNodes;
 		return true;
 	}else{
-		std::cout<<fileName<<std::endl<<_("Tetrahedalization file is empty, the calculation can't be done !")<<std::endl;
+		std::cout<<fileName<<std::endl<<_("Tetrahedron file is empty, the calculation can't be done !")<<std::endl;
 		return false;
 	}
 }

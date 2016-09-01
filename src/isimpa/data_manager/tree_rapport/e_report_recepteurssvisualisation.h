@@ -100,7 +100,7 @@ public:
 			vmin=0;
 			vmax=0;
 		}
-		this->AppendPropertyEntier("rstype","rs",recordType)->Hide();
+		this->AppendPropertyInteger("rstype","rs",recordType)->Hide();
 		this->AppendPropertyBool("smooth_color",wxTRANSLATE("Smooth colors"),true);
 		this->AppendPropertyDecimal("maxinterval",libelMax,vmax);
 		this->AppendPropertyDecimal("mininterval",libelMin,vmin);
@@ -141,13 +141,13 @@ public:
 	{
 		this->AppendPropertyBool("showisolvl",wxTRANSLATE("Show iso-curves"),true);
 		this->AppendPropertyText("isolvllist",wxTRANSLATE("Iso level list"),"");
-		this->AppendPropertyEntier("isosmoothlvl",wxTRANSLATE("Smooth level"),0,false,false,true,0,0);
+		this->AppendPropertyInteger("isosmoothlvl",wxTRANSLATE("Smooth level"),0,false,false,true,0,0);
 	}
 		
 	virtual bool IsFittingWithThisType( const ELEMENT_TYPE& typeTest )
 	{
 		using namespace formatRSBIN;
-		RECEPTEURS_RECORD_TYPE recordType=(RECEPTEURS_RECORD_TYPE)this->GetEntierConfig("rstype");
+		RECEPTEURS_RECORD_TYPE recordType=(RECEPTEURS_RECORD_TYPE)this->GetIntegerConfig("rstype");
 		if(typeTest==ELEMENT_TYPE_REPORT_RECEPTEURSSVISUALISATION)
 			return true;
 		else if ( typeTest==ELEMENT_TYPE_REPORT_RECEPTEURSSVISUALISATION_STANDART && recordType==RECEPTEURS_RECORD_TYPE_SPL_STANDART)
@@ -168,7 +168,7 @@ public:
 	void OnRightClic( wxMenu* leMenu )
 	{
 		using namespace formatRSBIN;
-		RECEPTEURS_RECORD_TYPE recordType=(RECEPTEURS_RECORD_TYPE)this->GetEntierConfig("rstype");
+		RECEPTEURS_RECORD_TYPE recordType=(RECEPTEURS_RECORD_TYPE)this->GetIntegerConfig("rstype");
 		wxMenu* subMenuSimu = new wxMenu;
 		if(!onlySum)
 		{

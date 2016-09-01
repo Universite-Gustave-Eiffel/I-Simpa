@@ -197,8 +197,7 @@ public:
 	static const wxString CONST_PREPROCESS_EXE_FILENAME;
 	static const wxString CONST_PREPROCESS_EXE_PATH;
 	static const wxString CONST_GRAPH_CONFIG_PATH;
-	static const wxString CONST_RESOURCE_FOLDER; /*<! Dossier racine où se trouve les données du programme*/
-	static const wxString CONST_RESOURCE_DATA_FOLDER; /*<! Dossier racine où se trouve les données du programme*/
+	static const wxString CONST_RESOURCE_BITMAP_FOLDER; /*<! Dossier racine où se trouve les données du programme*/
 	static const wxString CONST_RESOURCE_ISO_FOLDER; /*<! Dossier racine où se trouve les données du programme*/
 	static const wxString CONST_RESOURCE_DIRECTIVITY_FOLDER;  /*<! Dossier racine où se trouve les directivités de référence du programme*/
 	//static const wxString CONST_RESOURCE_LNG_FOLDER; /*<! Dossier racine où se trouve les dossiers de langue*/
@@ -503,6 +502,11 @@ public:
 	* @return Vrai si cet indice correspond a une directivité
 	*/
 	static bool IsIdDirectivityExist(int idDirectivity);
+
+	/**
+	 * @return Application ressources path
+	 */
+	static wxString getResourcesFolder();
 	/**
 	* Utilisé dans les listes de directivités afin d'obtenir les noms des directivités et leurs indices
 	* @see AddDirectivity()
