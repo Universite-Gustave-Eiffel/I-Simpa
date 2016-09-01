@@ -33,6 +33,7 @@
 #include "data_manager/element.h"
 #include "data_manager/appconfig.h"
 #include "data_manager/e_data_tree.h"
+#include "data_manager/e_data_list.h"
 
 /**  \file e_scene_sources_source_proprietes.h
  *   \brief Propriétés d'une source sonore ponctuelle de la scène
@@ -53,7 +54,8 @@ private:
 	}
 
 	void InitDirectivityProperties() {
-		this->AppendPropertyEntier("iddirectivity", "iddirectivity", 0, false)->Hide();
+		this->AppendPropertyInteger("iddirectivity", "iddirectivity", 0, false)->Hide();
+        dynamic_cast<E_Data_List*>(this->GetElementByLibelle("directivite"))->AppendItem("Directivity balloon", 5);
 	}
 	void InitProperties()
 	{
@@ -96,7 +98,7 @@ private:
 				Element* rootDirectivities = ApplicationConfiguration::GetRootScene()->GetElementByType(Element::ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES);
 				if (rootDirectivities)
 				{
-					Element* defaultEle = ApplicationConfiguration::GetDirectivity(this->GetEntierConfig("iddirectivity"));
+					Element* defaultEle = ApplicationConfiguration::GetDirectivity(this->GetIntegerConfig("iddirectivity"));
 					std::list<Element::ELEMENT_TYPE> filterTree;
 					filterTree.push_back(ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES);
 					filterTree.push_back(ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES_APP);

@@ -74,6 +74,7 @@ if(WIN32) # Check if we are on Windows
   set(WIN32_SOURCES
     GL/offScreenRendering.cpp
     GL/offScreenRendering.h
+	resources/isimpa.rc
       )
 else()
   set(WIN32_SOURCES )
@@ -479,3 +480,38 @@ if(WIN32) # Check if we are on Windows
 	${PYTHON_ROOT_FOLDER}/Lib
 	DESTINATION .)
 endif()
+
+# Package creation instructions, NSIS under windows
+
+SET(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION ".")
+SET(CPACK_NSIS_EXECUTABLES_DIRECTORY ".")
+
+INCLUDE(InstallRequiredSystemLibraries)
+
+
+SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "I-SIMPA")
+SET(CPACK_PACKAGE_VENDOR "Ifsttar")
+SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/DESCRIPTION.txt")
+SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE.md")
+SET(CPACK_PACKAGE_VERSION_MAJOR "1")
+SET(CPACK_PACKAGE_VERSION_MINOR "3")
+SET(CPACK_PACKAGE_VERSION_PATCH "0")
+SET(CPACK_PACKAGE_INSTALL_DIRECTORY "I-SIMPA")
+IF(WIN32 AND NOT UNIX)
+  # There is a bug in NSI that does not handle full unix paths properly. Make
+  # sure there is at least one set of four (4) backlasshes.    # Create the desktop link
+  set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "  CreateShortCut '$DESKTOP\\\\I_SIMPA.lnk' '$INSTDIR\\\\isimpa.exe' ")
+  set(CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS "Delete '$DESKTOP\\\\I_SIMPA.lnk'")
+  SET(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}\\\\CurrentRelease\\\\isimpa.ico")
+  SET(CPACK_NSIS_INSTALLED_ICON_NAME "isimpa.exe")
+  SET(CPACK_NSIS_DISPLAY_NAME "I-SIMPA")
+  SET(CPACK_NSIS_HELP_LINK "http:\\\\\\\\i-simpa-wiki.readthedocs.io")
+  SET(CPACK_NSIS_URL_INFO_ABOUT "http:\\\\\\\\i-simpa.ifsttar.fr")
+  SET(CPACK_NSIS_CONTACT "i-simpa@ifsttar.fr")
+  SET(CPACK_NSIS_MODIFY_PATH ON)
+ELSE(WIN32 AND NOT UNIX)
+  SET(CPACK_STRIP_FILES TRUE)
+  SET(CPACK_SOURCE_STRIP_FILES "")
+ENDIF(WIN32 AND NOT UNIX)
+SET(CPACK_PACKAGE_EXECUTABLES "isimpa" "I-SIMPA")
+INCLUDE(CPack)

@@ -93,7 +93,7 @@ E_Scene_Groupesurfaces_Groupe::E_Scene_Groupesurfaces_Groupe( Element* parent,wx
 		this->elementInfo.userDestroyable=true;
 		ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_SurfGroup++;
 		ApplicationConfiguration::AppendRefElement(this,ApplicationConfiguration::ELEMENT_REF_TYPE_FACEGROUP);
-		this->AppendPropertyEntier("idmat","idmateriau",0,true)->Hide();
+		this->AppendPropertyInteger("idmat","idmateriau",0,true)->Hide();
 	}
 	this->Modified(this);
 }
@@ -209,7 +209,7 @@ void E_Scene_Groupesurfaces_Groupe::InitProp()
 			Element* rootMateriaux=ApplicationConfiguration::GetRootScene()->GetElementByType(Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX);
 			if(rootMateriaux)
 			{
-				Element* defaultEle=ApplicationConfiguration::GetMateriau(this->GetEntierConfig("idmat"));
+				Element* defaultEle=ApplicationConfiguration::GetMateriau(this->GetIntegerConfig("idmat"));
 				if(defaultEle)
 					defaultEle=defaultEle->GetElementParent();
 				std::list<Element::ELEMENT_TYPE> filterTree;
@@ -242,7 +242,7 @@ void E_Scene_Groupesurfaces_Groupe::PushFace(std::vector<std::vector<Application
 	}
 	//Il faut renseigner l'element de la face en fonction du type de groupe
 	if(!isPointerGroup)
-		vectorToFeed[faceIndex.group][faceIndex.face].idMaterial=this->GetEntierConfig("idmat");
+		vectorToFeed[faceIndex.group][faceIndex.face].idMaterial=this->GetIntegerConfig("idmat");
 	else
 	{
 		if(this->pere)
@@ -258,7 +258,7 @@ void E_Scene_Groupesurfaces_Groupe::PushFace(std::vector<std::vector<Application
 
 void E_Scene_Groupesurfaces_Groupe::GetMaterialsLink( std::vector<std::vector<ApplicationConfiguration::t_PropFace> > &matFacesAssociations)
 {
-	if(!isPointerGroup && !ApplicationConfiguration::IsIdMateriauExist(this->GetEntierConfig("idmat")))
+	if(!isPointerGroup && !ApplicationConfiguration::IsIdMateriauExist(this->GetIntegerConfig("idmat")))
 		wxLogError(_("Material of the surface group %s has not be defined: the default material is applied"),this->elementInfo.libelleElement);
 	if(vertexInFile)
 	{
@@ -695,7 +695,7 @@ void E_Scene_Groupesurfaces_Groupe::DrawTriangles(vec4 unitizeValue,std::vector<
 		vec3 couleurMat;
 		/////////////////////////////////
 		// Récupération du matériau correspondant
-		E_Materiau* defaultEle=ApplicationConfiguration::GetMateriau(this->GetEntierConfig("idmat"));
+		E_Materiau* defaultEle=ApplicationConfiguration::GetMateriau(this->GetIntegerConfig("idmat"));
 		if(defaultEle)
 		{
 			Element* renduEle=defaultEle->GetElementParent()->GetElementByType(Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_MATERIAU_RENDER);

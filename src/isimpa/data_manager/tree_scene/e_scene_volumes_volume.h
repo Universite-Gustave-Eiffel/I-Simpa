@@ -106,7 +106,7 @@ public:
 		this->AppendFils(new E_Scene_Volumes_Volume_Rendu(this));
 		this->AppendFils(new E_Scene_Groupesurfaces_Groupe(this,"Volume boundary",true));
 		this->AppendPropertyPosition("volpos","Inside position",vec3(),true);
-		this->AppendPropertyEntier("idvol","idvol",GetFreeId(parent),true)->Hide();
+		this->AppendPropertyInteger("idvol","idvol",GetFreeId(parent),true)->Hide();
 
 		_("Inside position");
 	}
@@ -124,7 +124,7 @@ public:
 		{
 			if((*itfils)->IsPropertyExist("idvol"))
 			{
-				int idvol=(*itfils)->GetEntierConfig("idvol");
+				int idvol=(*itfils)->GetIntegerConfig("idvol");
 				if(idvol>freeid)
 					freeid=idvol+1;
 			}

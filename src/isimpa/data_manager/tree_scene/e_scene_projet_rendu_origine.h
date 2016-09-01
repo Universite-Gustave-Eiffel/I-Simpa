@@ -59,7 +59,7 @@ private:
 		this->AppendPropertyBool("showgxz","XZ Grid",false);
 		this->AppendPropertyBool("showgyz","YZ Grid",false);
 		this->AppendPropertyColor("couleurgrille","Grid color",90,90,90);
-		this->AppendPropertyEntier("echellegrille","Grid scale",1);
+		this->AppendPropertyInteger("echellegrille","Grid scale",1);
 		_("Arrow length");
 		_("Arrow width");
 		_("Arrow color (x)");
@@ -99,7 +99,7 @@ public:
 	}
 	void DrawItem( vec4 unitizeValue )
 	{
-		int echelle=this->GetEntierConfig("echellegrille");
+		int echelle=this->GetIntegerConfig("echellegrille");
 		if(echelle<=0)
 			return;
 		vec3 minVar=ApplicationConfiguration::GetVecParam(ApplicationConfiguration::PARAM_MODEL_MINBOX);

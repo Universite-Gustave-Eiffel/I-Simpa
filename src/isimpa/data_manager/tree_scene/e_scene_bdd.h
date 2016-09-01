@@ -73,6 +73,10 @@ public:
 				}
 				currentChild = currentChild->GetNext();
 			}
+            // New property ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES
+            if(GetElementByType(Element::ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES) == NULL) {
+                this->AppendFils(new E_Scene_Bdd_Directivities(this));            
+            }
 		}
 	}
 

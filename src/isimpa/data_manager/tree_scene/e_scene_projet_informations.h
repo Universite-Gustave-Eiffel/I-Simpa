@@ -66,8 +66,8 @@ public:
 	void AppendNewProperties()
 	{
 
-		this->AppendPropertyEntier("nbencombrementenable","Number of active fitting zones",0);
-		this->AppendPropertyEntier("nbsourcesenable","Number of active sound sources",0);
+		this->AppendPropertyInteger("nbencombrementenable","Number of active fitting zones",0);
+		this->AppendPropertyInteger("nbsourcesenable","Number of active sound sources",0);
 		_("Number of active fitting zones");
 		_("Number of active sound sources");
 	}
@@ -76,12 +76,12 @@ public:
 	 */
 	void InitProperties() 
 	{
-		this->AppendPropertyEntier("nbfacemodel","Model face count",0);
-		this->AppendPropertyEntier("nbencombrement","Number of fitting zones",0);
-		this->AppendPropertyEntier("nbrecepteurp","Number of punctual receivers",0);
-		this->AppendPropertyEntier("nbrecepteurs","Number of surfaces receivers",0);
-		this->AppendPropertyEntier("nbsources","Number of sound sources",0);
-		this->AppendPropertyEntier("nbsurfacegroup","Number of surface groups",0);
+		this->AppendPropertyInteger("nbfacemodel","Model face count",0);
+		this->AppendPropertyInteger("nbencombrement","Number of fitting zones",0);
+		this->AppendPropertyInteger("nbrecepteurp","Number of punctual receivers",0);
+		this->AppendPropertyInteger("nbrecepteurs","Number of surfaces receivers",0);
+		this->AppendPropertyInteger("nbsources","Number of sound sources",0);
+		this->AppendPropertyInteger("nbsurfacegroup","Number of surface groups",0);
 		this->AppendPropertyDecimal("volmodel","Scene volume (m3)",0.f,true,1);
 		this->AppendPropertyDecimal("surfscene","Scene surface (m2)",0.f,true,1);
 		AppendNewProperties();

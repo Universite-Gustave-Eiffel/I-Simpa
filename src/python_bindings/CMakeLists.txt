@@ -25,6 +25,9 @@ SET_SOURCE_FILES_PROPERTIES(libsimpa.i PROPERTIES CPLUSPLUS ON)
 SWIG_ADD_MODULE(libsimpa python libsimpa.i)
 SWIG_LINK_LIBRARIES(libsimpa ${PYTHON_LIBRARIES} lib_interface)
 
+# Creates a folder "libraries" and adds target project (lib_interface.vcproj) under it
+set_property(TARGET ${SWIG_MODULE_libsimpa_REAL_NAME} PROPERTY FOLDER "libraries")
+
 if(WIN32) # Check if we are on Windows
  if(MSVC) # Check if we are using the Visual Studio compiler
    # A 'Debug' build of the wrappers requires a debug build of the Python interpreter.

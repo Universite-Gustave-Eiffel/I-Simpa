@@ -713,7 +713,7 @@ class Element
 		 * @param name Nom de la propriété
 		 * @return Valeur de la propriété, 0 si inexistant
 		 */
-		int GetEntierConfig(wxString name);
+		int GetIntegerConfig(wxString name);
 		/**
 		 * Obtient la valeur courante de la propriété
 		 * @param name Nom de la propriété
@@ -800,9 +800,9 @@ class Element
 		 * @param propertyLabel Libellé du champ, le libellé ne doit PAS être passé par la méthode de traduction pendant sa création,  Méthode _("") .Il sera traduit par la suite automatiquement à l'affichage.
 		 * @param propertyDefaultValue Valeur par défaut du champ. C'est la valeur qu'il y aura lors de la création d'un nouveau projet
 		 * @param exportToCore A vrai cette propriété sera exporté dans les propriétés du noeud supérieur lors de la génération du code XML à destination des coeurs de calculs.
-		 * @see E_Data_Entier
+		 * @see E_Data_Integer
 		 */
-		Element* AppendPropertyEntier(wxString propertyName,wxString propertyLabel,int propertyDefaultValue,bool exportToCore=false,bool isMaxValue=false,bool isMinValue=false,int maxValue=0,int minValue=0);
+		Element* AppendPropertyInteger(wxString propertyName,wxString propertyLabel,int propertyDefaultValue,bool exportToCore=false,bool isMaxValue=false,bool isMinValue=false,int maxValue=0,int minValue=0);
 		/**
 		 * Ajoute un champ de saisie de nombre décimal dans la feuille de propriété de cet élément
 		 * @param propertyName Nom de la propriété, non visible par l'utilisateur, de préférence se limiter aux caractères alphabétique sans accents
