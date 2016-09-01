@@ -18,7 +18,8 @@ BOOST_AUTO_TEST_CASE(test_dot_reflection_specular)
     material.dotransmission = false;
     material.reflectionLaw = REFLECTION_LAW_SPECULAR;
     material.tau = 0;
-    vec3 result = ReflectionLaws::SolveReflection(vecDir, material, vec3(0, -1, 0));
+    vec3 normal(0, -1, 0);
+    vec3 result = ReflectionLaws::SolveReflection(vecDir, material, normal);
     BOOST_CHECK_EQUAL(1., result.length());
 }
 
