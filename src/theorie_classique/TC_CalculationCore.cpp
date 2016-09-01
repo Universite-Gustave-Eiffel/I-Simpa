@@ -45,10 +45,10 @@ CalculationCore::~CalculationCore()
 bool CalculationCore::Run()
 {
 	///////////////////////////////////////////
-	// Calcul du volume de la scène
+	// Calcul du volume de la scï¿½ne
 	mainData.sceneVolume=Get_Volume_Scene();
 	///////////////////////////////////////////
-	// Calcul globaux pour chaque théories de calcul
+	// Calcul globaux pour chaque thï¿½ories de calcul
 	std::cout<<"Step 1/3 : Main calculation."<<std::endl;
 	if(NB_THEORIES>0)
 		progressOperation stepOneOp(progressOutput.GetMainOperation());
@@ -59,7 +59,7 @@ bool CalculationCore::Run()
 	}
 	progressOutput.OutputCurrentProgression();
 	///////////////////////////////////////////
-	// Calcul pour chaque récepteurs ponctuels
+	// Calcul pour chaque rï¿½cepteurs ponctuels
 	if(configurationTool->recepteur_p_List.size()>0)
 	{
 		std::cout<<"Step 2/3 : Punctual receivers calculation."<<std::endl;
@@ -85,7 +85,7 @@ bool CalculationCore::Run()
 decimal CalculationCore::Get_A_Sabine ( entier idFreq )
 {
 	decimal A_Sabine=0.f;
-	//Pour chaque surface composant la scène
+	//Pour chaque surface composant la scï¿½ne
 	for(uentier idface=0;idface<this->sceneMesh->pface_size;idface++)
 	{
 		//Si la surface n'est pas une surface d'un encombrement
@@ -103,7 +103,7 @@ decimal CalculationCore::Get_A_Eyring ( entier idFreq )
 {
 	decimal A_Eyring=0.f;
 	decimal A_Moyen=0.f;
-	//Pour chaque surface composant la scène
+	//Pour chaque surface composant la scï¿½ne
 
 	double aireTot=0.;
 	for(uentier idface=0;idface<this->sceneMesh->pface_size;idface++)
@@ -167,7 +167,7 @@ decimal CalculationCore::Get_Champ_Direct_Lin( entier idFreq, vec3 positionRecep
 			receiveEnergie=this->configurationTool->srcList[idsource]->bandeFreqSource[idFreq].w_j/ ( 4 * M_PI * pow((vecSrcToReceiver).length(),2));
 			if(angleAttenuation)
 			{
-				if(vecSrcToReceiver.dot(dotNormal)<0) //si la face du recepteur est orienté dans l'autre direction on inverse la normal
+				if(vecSrcToReceiver.dot(dotNormal)<0) //si la face du recepteur est orientï¿½ dans l'autre direction on inverse la normal
 					dotNormal*=-1;
 				receiveEnergie*=cosf(dotNormal.angle(vecSrcToReceiver));
 			}
@@ -213,11 +213,11 @@ void CalculationCore::RunStep1( MODE_CALCUL modeCalcul )
 {
 
 	///////////////////////////////////////////
-	// Calcul pour chaque bande de fréquence
+	// Calcul pour chaque bande de frï¿½quence
 	for(std::size_t idFreq=0;idFreq<this->configurationTool->freqList.size();idFreq++)
 	{
 		///////////////////////////////////////////
-		// Calcul de l'aire d'absorption équivalente (m²)
+		// Calcul de l'aire d'absorption ï¿½quivalente (mï¿½)
 		float AireAbsorptionEquivalente;
 		if(modeCalcul==MODE_CALCUL_SABINE)
 			AireAbsorptionEquivalente=Get_A_Sabine(idFreq);
@@ -226,25 +226,25 @@ void CalculationCore::RunStep1( MODE_CALCUL modeCalcul )
 		mainData.frequencyDependentValues[idFreq].modeCalcul[modeCalcul].AireAbsorptionEquivalente=AireAbsorptionEquivalente;
 
 		///////////////////////////////////////////
-		// Calcul du temps de réverberation (s)
+		// Calcul du temps de rï¿½verberation (s)
 		mainData.frequencyDependentValues[idFreq].modeCalcul[modeCalcul].TR=Get_TR_(AireAbsorptionEquivalente,idFreq);
 
 		///////////////////////////////////////////
-		// Calcul du niveau sonore du champ reverbéré linéaire
+		// Calcul du niveau sonore du champ reverbï¿½rï¿½ linï¿½aire
 		mainData.frequencyDependentValues[idFreq].modeCalcul[modeCalcul].NiveauSonoreChampReverbereLineaire=Get_L_lin(AireAbsorptionEquivalente,idFreq);
 
 		///////////////////////////////////////////
-		// Calcul du niveau sonore du champ reverbéré
+		// Calcul du niveau sonore du champ reverbï¿½rï¿½
 		mainData.frequencyDependentValues[idFreq].modeCalcul[modeCalcul].NiveauSonoreChampReverbere=Get_L(mainData.frequencyDependentValues[idFreq].modeCalcul[modeCalcul].NiveauSonoreChampReverbereLineaire);
 	}
 }
 /*
- * Calcul des valeurs par récepteurs ponctuels
+ * Calcul des valeurs par rï¿½cepteurs ponctuels
  */
 void CalculationCore::RunStep2( progressOperation* parentProgressOp )
 {
 	///////////////////////////////////////////
-	// Initialisation des données des récepteurs ponctuels
+	// Initialisation des donnï¿½es des rï¿½cepteurs ponctuels
 	progressOperation Step2op(parentProgressOp,recepteurPList.size());
 	for(std::size_t idRp=0;idRp<recepteurPList.size();idRp++)
 	{
@@ -254,7 +254,7 @@ void CalculationCore::RunStep2( progressOperation* parentProgressOp )
 		currentRecepteurP->init(this->configurationTool->freqList.size());
 		currentRecepteurP->linkedRecepteurP=this->configurationTool->recepteur_p_List[idRp];
 		///////////////////////////////////////////
-		// Calcul pour chaque bande de fréquence
+		// Calcul pour chaque bande de frï¿½quence
 
 		for(int idFreq=0;idFreq<currentRecepteurP->nbFreq;idFreq++)
 		{
@@ -265,7 +265,7 @@ void CalculationCore::RunStep2( progressOperation* parentProgressOp )
 			currentRecepteurP->tabDataByFreq[idFreq].ChampDirect=Get_Recepteur_P_Direct(ChampDirectLineaire);
 
 			///////////////////////////////////////////
-			// Calcul pour chaque théorie
+			// Calcul pour chaque thï¿½orie
 			for(int idTheorie=0;idTheorie<NB_THEORIES;idTheorie++)
 			{
 				///////////////////////////////////////////
@@ -277,17 +277,17 @@ void CalculationCore::RunStep2( progressOperation* parentProgressOp )
 	}
 }
 /*
- * Calcul des valeurs par récepteurs de surface
+ * Calcul des valeurs par rï¿½cepteurs de surface
  */
 void CalculationCore::RunStep3( progressOperation* parentProgressOp )
 {
 
 
 	///////////////////////////////
-	// Création des dossiers pour chaque méthode de calcul
+	// Crï¿½ation des dossiers pour chaque mï¿½thode de calcul
 	CoreString rootFolder=*this->configurationTool->FastGetConfigValue(Core_Configuration::SPROP_CORE_WORKING_DIRECTORY);
 	/////////////////////////////////////////////////////
-	// Pour chaque mode de calcul, création des dossiers
+	// Pour chaque mode de calcul, crï¿½ation des dossiers
 	for(int idTheorie=0;idTheorie<NB_THEORIES;idTheorie++)
 	{
 		CoreString modeCalculFolder=rootFolder;
@@ -296,20 +296,20 @@ void CalculationCore::RunStep3( progressOperation* parentProgressOp )
 		else
 			modeCalculFolder+=*this->configurationTool->FastGetConfigValue(Core_Configuration::SPROP_EYRING_RECEPTEUR_S_FILE_PATH);
 		if(!configurationTool->CalculationForOutsideCore())
-			st_mkdir(modeCalculFolder.c_str());
+			st_mkdir(modeCalculFolder);
 		modeCalculFolder+=*this->configurationTool->FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FOLDER_PATH);
 		if(!configurationTool->CalculationForOutsideCore())
-			st_mkdir(modeCalculFolder.c_str());
+			st_mkdir(modeCalculFolder);
 	}
 	/////////////////////////////////////////////////////
-	// Création des dossiers pour le mode de calcul direct
+	// Crï¿½ation des dossiers pour le mode de calcul direct
 	CoreString modeCalculFolderDirect=rootFolder;
 	modeCalculFolderDirect+=*this->configurationTool->FastGetConfigValue(Core_Configuration::SPROP_DIRECT_RECEPTEUR_S_FILE_PATH);
 	if(!configurationTool->CalculationForOutsideCore())
-			st_mkdir(modeCalculFolderDirect.c_str());
+			st_mkdir(modeCalculFolderDirect);
 	modeCalculFolderDirect+=*this->configurationTool->FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FOLDER_PATH);
 	if(!configurationTool->CalculationForOutsideCore())
-			st_mkdir(modeCalculFolderDirect.c_str());
+			st_mkdir(modeCalculFolderDirect);
 
 
 
@@ -323,7 +323,7 @@ void CalculationCore::RunStep3( progressOperation* parentProgressOp )
 	progressOperation thisOperation(parentProgressOp,this->configurationTool->freqList.size());
 
 	///////////////////////////////////////////////////////////////////////////
-	// Création de NB_THEORIES copies des récepteurs de surface
+	// Crï¿½ation de NB_THEORIES copies des rï¿½cepteurs de surface
 	std::vector<r_Surf*> recepteurSLin[NB_THEORIES];
 	std::vector<r_SurfCut*> recepteurSCutLin[NB_THEORIES];
 
@@ -336,28 +336,28 @@ void CalculationCore::RunStep3( progressOperation* parentProgressOp )
 		}
 	}
 	///////////////////////////////////////////
-	// Calcul pour chaque bande de fréquence
+	// Compute for each frequency band
 	for(std::size_t idFreq=0;idFreq<this->configurationTool->freqList.size();idFreq++)
 	{
 		if(this->configurationTool->freqList[idFreq]->doCalculation)
 		{
 			progressOperation thisFreq(&thisOperation,NB_THEORIES);
 
-			this->confEnv.reportParameter.freqIndex=idFreq;
+			this->confEnv.reportParameter.freqIndex=(int)idFreq;
 			this->confEnv.reportParameter.freqValue=this->configurationTool->freqList[idFreq]->freqValue;
 			CoreString pathFreq;
-			pathFreq=stringClass::FromInt(this->confEnv.reportParameter.freqValue)+stringClass(" Hz\\");
+			pathFreq=stringClass::FromInt(this->confEnv.reportParameter.freqValue)+stringClass(" Hz/");
 			////////////////////////
-			// Création des dossier pour la fréquence en cours
+			// Crï¿½ation des dossier pour la frï¿½quence en cours
 			if(!configurationTool->CalculationForOutsideCore() && this->configurationTool->FastGetConfigValue(Core_Configuration::IPROP_OUTPUT_RECEPTEURS_SURF_BY_FREQ))
 			{
-				st_mkdir((directFolder+pathFreq).c_str());
-				st_mkdir((SabineFolder+pathFreq).c_str());
-				st_mkdir((EyringFolder+pathFreq).c_str());
+				st_mkdir((directFolder+pathFreq));
+				st_mkdir((SabineFolder+pathFreq));
+				st_mkdir((EyringFolder+pathFreq));
 			}
 
 			///////////////////////////////////////////
-			// paramètre gestionnaire de sortie de données
+			// paramï¿½tre gestionnaire de sortie de donnï¿½es
 			ReportManager::t_ParamReport thCfgDir=this->confEnv.reportParameter;
 			thCfgDir._recepteur_surf_Path=directFolder+pathFreq;
 			//thCfgDir._recepteur_surf_Path+=*this->configurationTool->FastGetConfigValue(Core_Configuration::SPROP_DIRECT_RECEPTEUR_S_FILE_PATH);
@@ -366,7 +366,7 @@ void CalculationCore::RunStep3( progressOperation* parentProgressOp )
 			SetEnergyDirectCut(idFreq, configurationTool->recepteur_scut_List );
 
 			///////////////////////////////////////////
-			// Calcul pour chaque théorie
+			// Calcul pour chaque thï¿½orie
 			ReportManager::t_ParamReport thCfg=this->confEnv.reportParameter;
 			if(!configurationTool->CalculationForOutsideCore())
 			{
@@ -407,19 +407,19 @@ void CalculationCore::RunStep3( progressOperation* parentProgressOp )
 		{
 			stringClass filePath;
 			if((MODE_CALCUL)idTheorie==MODE_CALCUL_SABINE)
-				filePath=SabineFolder+"Global\\";
+				filePath=SabineFolder+"Global/";
 			else
-				filePath=EyringFolder+"Global\\";
-			st_mkdir(filePath.c_str());
+				filePath=EyringFolder+"Global/";
+			st_mkdir(filePath);
 			ReportManager::SauveGlobalRecepteursSurfaciques(filePath+*this->configurationTool->FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FILE_PATH),recepteurSLin[idTheorie],*sceneTetraMesh,*this->configurationTool->FastGetConfigValue(Core_Configuration::FPROP_TIME_STEP),false);
 			ReportManager::SauveRecepteursSurfaciquesCoupe(filePath+*this->configurationTool->FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FILE_CUT_PATH),configurationTool->recepteur_scut_List,*this->configurationTool->FastGetConfigValue(Core_Configuration::FPROP_TIME_STEP),false);
 		}
-		st_mkdir((directFolder+"Global\\").c_str());
-		ReportManager::SauveGlobalRecepteursSurfaciques(directFolder+"Global\\"+*this->configurationTool->FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FILE_PATH),configurationTool->recepteur_s_List,*sceneTetraMesh,*this->configurationTool->FastGetConfigValue(Core_Configuration::FPROP_TIME_STEP),false);
-		ReportManager::SauveRecepteursSurfaciquesCoupe(directFolder+"Global\\"+*this->configurationTool->FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FILE_CUT_PATH),configurationTool->recepteur_scut_List,*this->configurationTool->FastGetConfigValue(Core_Configuration::FPROP_TIME_STEP),false);
+		st_mkdir((directFolder+"Global/"));
+		ReportManager::SauveGlobalRecepteursSurfaciques(directFolder+"Global/"+*this->configurationTool->FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FILE_PATH),configurationTool->recepteur_s_List,*sceneTetraMesh,*this->configurationTool->FastGetConfigValue(Core_Configuration::FPROP_TIME_STEP),false);
+		ReportManager::SauveRecepteursSurfaciquesCoupe(directFolder+"Global/"+*this->configurationTool->FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FILE_CUT_PATH),configurationTool->recepteur_scut_List,*this->configurationTool->FastGetConfigValue(Core_Configuration::FPROP_TIME_STEP),false);
 	}
 	///////////////////////////////////////////
-	// Libération de l'espace mémoire
+	// Libï¿½ration de l'espace mï¿½moire
 	for(int idTheorie=0;idTheorie<NB_THEORIES;idTheorie++)
 	{
 		for(std::size_t idRs=0;idRs<recepteurSLin[idTheorie].size();idRs++)
@@ -456,11 +456,11 @@ void CalculationCore::SetEnergyDirect( entier idFreq, std::vector<r_Surf*>& rece
 		for(std::size_t idFace=0;idFace<recepteurS[idRs]->nbFaces;idFace++)
 		{
 			r_Surf_Face* currentFace=&recepteurS[idRs]->faces[idFace];
-			//Calcul du point G centre de gravité des sommets du triangle du récepteur surfacique
+			//Calcul du point G centre de gravitï¿½ des sommets du triangle du rï¿½cepteur surfacique
 			vec3 G=GetGTriangle(currentFace->sommets[0],currentFace->sommets[1],currentFace->sommets[2]);
 			//Calcul de la normale de la face
 			vec3 v_faceNormal=FaceNormal(currentFace->sommets[0],currentFace->sommets[1],currentFace->sommets[2]);
-			//Translation du Point G d'une distance d'EPSILON le long de la normal de la face afin de ne pas être occulté par la face elle même lors du test de collision.
+			//Translation du Point G d'une distance d'EPSILON le long de la normal de la face afin de ne pas ï¿½tre occultï¿½ par la face elle mï¿½me lors du test de collision.
 			G+=v_faceNormal*BARELY_EPSILON;
 			currentFace->energieRecu[idFreq][0]=Get_Champ_Direct_Lin(idFreq,G,*this->configurationTool->FastGetConfigValue(Core_Configuration::IPROP_DO_SURFACE_ANGULAR_WEIGHTING),v_faceNormal);
 		}
@@ -515,7 +515,7 @@ bool CalculationCore::IsCollisionWithScene(vec3 from,vec3 to)
 	{
 		uentier cface=(*it);
 		t_cFace& facetest=sceneMesh->pfaces[cface];
-		if(!isTransparent(facetest)) //les encombrements sont ignorés
+		if(!isTransparent(facetest)) //les encombrements sont ignorï¿½s
 		{
 			float t,u,v;
 

@@ -49,9 +49,9 @@ class t_rp_lef
 public:
 	t_rp_lef(){Lf=NULL;Lfc=NULL;intensity=NULL;SrcContrib=NULL;}
 	~t_rp_lef(){delete[] Lf;delete[] Lfc;delete[] intensity;delete[] SrcContrib;}
-	void Init(const uentier& nbTimeStep,const uentier& nbsources, const bool& sourceLvlByTimeStep)
+	void Init(const int & nbTimeStep,const size_t & nbsources, const bool& sourceLvlByTimeStep)
 	{
-		int sourceContribCols;
+		size_t sourceContribCols;
 		if(sourceLvlByTimeStep) {
 			sourceContribCols = nbsources * nbTimeStep;
 		} else {
@@ -143,7 +143,7 @@ private:
 	binaryFHeader enteteSortie;
 	uentier_long nbPasDeTempsMax;
 	uentier_long realNbParticle;
-	uentier nbSource;
+	size_t nbSource;
 	bool timeStepInSourceOutput;
 	entier firstTimeStep;
 	std::vector<binaryPTimeStep> positionsCurrentParticule;

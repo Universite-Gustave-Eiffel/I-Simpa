@@ -99,12 +99,12 @@ source_group( "Core" FILES ${CORE_SOURCES} )
 source_group( "data_manager" FILES ${DATA_MANAGER_SOURCES} )
 
 source_group( "input_output" FILES ${IO_SOURCES} )
-source_group( "input_output\\exportRecepeteurSurf" FILES ${IO_RECSURF_SOURCES} )
-source_group( "input_output\\gabe" FILES ${IO_GABE_SOURCES} )
-source_group( "input_output\\importExportMaillage" FILES ${IO_MAILLAGE_SOURCES} )
-source_group( "input_output\\particles" FILES ${IO_PARTICLES_SOURCES} )
-source_group( "input_output\\ply" FILES ${IO_PLY_SOURCES} )
-source_group( "input_output\\directivity" FILES ${IO_DIRECTIVITY_SOURCES} )
+source_group( "input_output/exportRecepeteurSurf" FILES ${IO_RECSURF_SOURCES} )
+source_group( "input_output/gabe" FILES ${IO_GABE_SOURCES} )
+source_group( "input_output/importExportMaillage" FILES ${IO_MAILLAGE_SOURCES} )
+source_group( "input_output/particles" FILES ${IO_PARTICLES_SOURCES} )
+source_group( "input_output/ply" FILES ${IO_PLY_SOURCES} )
+source_group( "input_output/directivity" FILES ${IO_DIRECTIVITY_SOURCES} )
 
 source_group( "tools" FILES ${TOOLS_SOURCES} )
 

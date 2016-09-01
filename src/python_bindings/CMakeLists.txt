@@ -23,7 +23,7 @@ SET(CMAKE_SWIG_OUTDIR ${PROJECT_BINARY_DIR}/bin/libsimpa)
 
 SET_SOURCE_FILES_PROPERTIES(libsimpa.i PROPERTIES CPLUSPLUS ON)
 SWIG_ADD_MODULE(libsimpa python libsimpa.i)
-SWIG_LINK_LIBRARIES(libsimpa ${PYTHON_LIBRARIES} lib_interface)
+SWIG_LINK_LIBRARIES(libsimpa lib_interface ${Boost_LIBRARIES} ${PYTHON_LIBRARIES})
 
 if(WIN32) # Check if we are on Windows
  if(MSVC) # Check if we are using the Visual Studio compiler

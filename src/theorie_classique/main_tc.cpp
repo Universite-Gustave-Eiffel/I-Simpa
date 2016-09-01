@@ -138,7 +138,7 @@ int MainProcess(int argc, char* argv[])
 		if(calcCore.recepteurPList.size()>0)
 		{
 			rpsFolder+=_("Punctual receivers\\");
-			st_mkdir(rpsFolder.c_str());
+			st_mkdir(rpsFolder);
 			ReportManager::SauveTCRecepteursPonctuels(rpsFolder,reportFreqLbl,colsLbl,&calcCore.recepteurPList);
 		}
 		ReportManager::SauveTCGlobalsValues(fileGlobalName,reportFreqLbl,globalColsLbl,calcCore.mainData);
@@ -146,7 +146,7 @@ int MainProcess(int argc, char* argv[])
 		//Sauvegarde des données pour les autres code de calculs
 		CoreString exportcoredir=*configManager.FastGetConfigValue(Core_Configuration::SPROP_CORE_WORKING_DIRECTORY);
 		exportcoredir+=*configManager.FastGetConfigValue(Core_Configuration::SPROP_OTHER_CORE_OUTPUT_PATH)+"\\";
-		st_mkdir(exportcoredir.c_str());
+		st_mkdir(exportcoredir);
 		//Export du fichier des récepteurs ponctuels
 		ReportManager::SauveFusionTCRecepteursPonctuels(exportcoredir,calcCore.recepteurPList);
 		//Export des fichiers des récepteurs surfaciques

@@ -28,7 +28,7 @@
 * or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
-// sppsNantes.cpp : définit le point d'entrée pour l'application console.
+// sppsNantes.cppï¿½: dï¿½finit le point d'entrï¿½e pour l'application console.
 //
 
 
@@ -67,8 +67,8 @@ void genprintVec(vec3 inf)
 
 
 /**
- * Initialise la propriété de tétraèdre courant des sources
- * @param tetraMesh Maillage tétraèdrique de la scène
+ * Initialise la propriï¿½tï¿½ de tï¿½traï¿½dre courant des sources
+ * @param tetraMesh Maillage tï¿½traï¿½drique de la scï¿½ne
  * @param lstSources Liste des sources
  */
 void InitSourcesTetraLocalisation(t_TetraMesh* tetraMesh,std::vector<t_Source*>* lstSources)
@@ -83,7 +83,7 @@ void InitSourcesTetraLocalisation(t_TetraMesh* tetraMesh,std::vector<t_Source*>*
 			for(int idFace=0;idFace<4;idFace++)
 			{
 				t_Tetra_Faces* currentFace=&tetraMesh->tetraedres[idtetra].faces[idFace];
-				//Calcul du vecteur entre la position de la source et le premier sommet de la face du tétrahèdre
+				//Calcul du vecteur entre la position de la source et le premier sommet de la face du tï¿½trahï¿½dre
 				vec3 pSrcA=tetraMesh->nodes[currentFace->indiceSommets.a]-(*currentSource).Position;
 				if(pSrcA.dot(currentFace->normal)>0)//si normal de la face va vers la position de la source
 				{
@@ -99,7 +99,7 @@ void InitSourcesTetraLocalisation(t_TetraMesh* tetraMesh,std::vector<t_Source*>*
 }
 
 /**
- * Retourne la longueur entre la position Z du tetraèdre en paramètre et la position Z du centre de la face la plus haute
+ * Retourne la longueur entre la position Z du tetraï¿½dre en paramï¿½tre et la position Z du centre de la face la plus haute
  */
 decimal GetHeight( t_TetraMesh* tetraMesh, t_Tetra* currentTetra )
 {
@@ -125,7 +125,7 @@ decimal GetHeight( t_TetraMesh* tetraMesh, t_Tetra* currentTetra )
 			}
 		}
 		currentTetra=z_min_neigh;
-		if(currentTetra && currentTetra->z!=-1) //Si ce tétraèdre a déjà été testé
+		if(currentTetra && currentTetra->z!=-1) //Si ce tï¿½traï¿½dre a dï¿½jï¿½ ï¿½tï¿½ testï¿½
 		{
 			z_min=currentTetra->g.z-currentTetra->z;
 			break;
@@ -137,7 +137,7 @@ void InitTetraCelerite(t_TetraMesh* tetraMesh,Base_Core_Configuration& configMan
 {
 	decimal alog=*configManager.FastGetConfigValue(Base_Core_Configuration::FPROP_ALOG);
 	decimal blin=*configManager.FastGetConfigValue(Base_Core_Configuration::FPROP_BLIN);
-	if(!(alog==0 && blin==0)) //si milieu non homogène
+	if(!(alog==0 && blin==0)) //si milieu non homogï¿½ne
 	{
 		std::cout<<"Compute of z ground inside each tetra."<<std::endl;
 		for(uentier idtetra=0;idtetra<tetraMesh->tetraedresSize;idtetra++)
@@ -166,7 +166,7 @@ void InitEncombrementTetraLocalisation(t_TetraMesh* tetraMesh,Base_Core_Configur
 		if(tetraMesh->tetraedres[idtetra].idVolume!=0)
 		{
 			tetraMesh->tetraedres[idtetra].volumeEncombrement=lastEncombrementUsedPt;
-			//Sur chaque face du tétrahèdre associer à l'encombrement
+			//Sur chaque face du tï¿½trahï¿½dre associer ï¿½ l'encombrement
 			for(int idface=0;idface<4;idface++)
 			{
 				if(tetraMesh->tetraedres[idtetra].faces[idface].face_scene)
@@ -190,7 +190,7 @@ void InitRecepteurPTetraLocalisation(t_TetraMesh* tetraMesh,std::vector<t_Recept
 			for(int idFace=0;idFace<4;idFace++)
 			{
 				t_Tetra_Faces* currentFace=&tetraMesh->tetraedres[idtetra].faces[idFace];
-				//Calcul du vecteur entre la position de la source et le premier sommet de la face du tétrahèdre
+				//Calcul du vecteur entre la position de la source et le premier sommet de la face du tï¿½trahï¿½dre
 				vec3 pRcpA=tetraMesh->nodes[currentFace->indiceSommets.a]-(*currentRecepteurp).position;
 				if(pRcpA.dot(currentFace->normal)>0)//si normal de la face va vers la position du recepteur ponctuel
 				{
@@ -241,7 +241,7 @@ void InitCutMapTetraLocalisation(t_TetraMesh* tetraMesh,std::vector<r_SurfCut*>*
 	}
 }
 /**
- * Réserve l'espace mémoire correspondant à une bande de fréquence.
+ * Rï¿½serve l'espace mï¿½moire correspondant ï¿½ une bande de frï¿½quence.
  */
 void InitRecepteurSBfreq(std::vector<r_Surf*>& recepteursSurfaciques,uentier idFreq,uentier nbTimeStep)
 {
@@ -292,7 +292,7 @@ void InitRecepteurS(t_TetraMesh* tetraModel,std::vector<r_Surf*>& recepteursSurf
 			if(tetraModel->tetraedres[idtetra].faces[i].face_scene)
 			{
 				int idRs=tetraModel->tetraedres[idtetra].faces[i].face_scene->idRecepteurS;
-				if(idRs!=-1 && tetraModel->tetraedres[idtetra].faces[i].face_scene->normal.barelyEqual(-tetraModel->tetraedres[idtetra].faces[i].normal)) //added  && tetraModel->tetraedres[idtetra].faces[i].face_scene->normal==tetraModel->tetraedres[idtetra].faces[i].normal 21 aout 2008 (pour les recepteurs de surface placé entre deux tétraèdres, associer uniquement à la face ayant la même normal que la face de tetraèdre)
+				if(idRs!=-1 && tetraModel->tetraedres[idtetra].faces[i].face_scene->normal.barelyEqual(-tetraModel->tetraedres[idtetra].faces[i].normal)) //added  && tetraModel->tetraedres[idtetra].faces[i].face_scene->normal==tetraModel->tetraedres[idtetra].faces[i].normal 21 aout 2008 (pour les recepteurs de surface placï¿½ entre deux tï¿½traï¿½dres, associer uniquement ï¿½ la face ayant la mï¿½me normal que la face de tetraï¿½dre)
 				{
 					int localIdRecept;
 					if(last_xmlIdRecept!=idRs)
@@ -305,7 +305,7 @@ void InitRecepteurS(t_TetraMesh* tetraModel,std::vector<r_Surf*>& recepteursSurf
 					RsIndex.push_back(localIdRecept);
 					tetraFaceRs.push_back(&tetraModel->tetraedres[idtetra].faces[i]);
 					recepteursSurfaciques[localIdRecept]->nbFaces++;
-					//De l'autre coté, c'est à dire sur l'autre tétraèdre il faut lier sa face au récepteur surfacique
+					//De l'autre cotï¿½, c'est ï¿½ dire sur l'autre tï¿½traï¿½dre il faut lier sa face au rï¿½cepteur surfacique
 					if(tetraModel->tetraedres[idtetra].voisins[i])
 					{
 						entier_court ifacemirror=GetTetraFaceWithNormal(tetraModel->tetraedres[idtetra].voisins[i],tetraModel->tetraedres[idtetra].faces[i].normal*-1);
@@ -385,13 +385,13 @@ void InitRecepteurS(t_Mesh* sceneMesh,std::vector<r_Surf*>& recepteursSurfacique
 	}
 }
 /**
- * Chargement des faces dans les structures appropriées
+ * Chargement des faces dans les structures appropriï¿½es
  */
 bool initMesh(t_Mesh &sceneMesh,CoreString workingDir,CoreString sceneMeshPath,Base_Core_Configuration& configManager, bool verbose_mode)
 {
 	formatCoreBIN::ioModel modelEntree;
 	//**************************************************
-	// 1: Lire le fichier de modèle en entrée
+	// 1: Lire le fichier de modï¿½le en entrï¿½e
 	if (verbose_mode) { cout << "Scene mesh is currently loading .." << endl; }
 	formatCoreBIN::CformatBIN binImporter;
 	if(!binImporter.ImportBIN(modelEntree,sceneMeshPath.c_str()) || modelEntree.vertices.size()==0)
@@ -402,7 +402,7 @@ bool initMesh(t_Mesh &sceneMesh,CoreString workingDir,CoreString sceneMeshPath,B
 		if (verbose_mode) { cout << "Opening " << sceneMeshPath << endl << "Load of the scene mesh file has been completed successfully." << endl; }
 	}
 	//**************************************************
-	// Chargement des faces dans les structures appropriées
+	// Chargement des faces dans les structures appropriï¿½es
 	sceneMesh.pvert_size=modelEntree.vertices.size();
 	sceneMesh.pvertices=new vec3[sceneMesh.pvert_size];
 	for(unsigned int i=0;i<modelEntree.vertices.size();i++)
@@ -424,12 +424,12 @@ bool initMesh(t_Mesh &sceneMesh,CoreString workingDir,CoreString sceneMeshPath,B
 		sceneMesh.pfaces[idface].idencombrement=modelEntree.faces[idface].idEn;
 		sceneMesh.pfaces[idface].normal=FaceNormal(sceneMesh.pvertices[sceneMesh.pfaces[idface].sommets.a],sceneMesh.pvertices[sceneMesh.pfaces[idface].sommets.b],sceneMesh.pvertices[sceneMesh.pfaces[idface].sommets.c]);
 		///////////////////////////////////////////////
-		// Association matériau, face
+		// Association matï¿½riau, face
 		if(modelEntree.faces[idface].idMat!=lastMaterialUsedOutsideIndex)
 		{
 			lastMaterialUsedOutsideIndex=modelEntree.faces[idface].idMat;
 			lastMaterialUsedPt=configManager.GetMaterialByOutsideIndex(lastMaterialUsedOutsideIndex);
-			if(!lastMaterialUsedPt) //Si une face n'a pas de matériaux associé
+			if(!lastMaterialUsedPt) //Si une face n'a pas de matï¿½riaux associï¿½
 				configManager.materialList[0];
 		}
 		sceneMesh.pfaces[idface].faceMaterial=lastMaterialUsedPt;
@@ -460,7 +460,7 @@ bool initTetraMesh(CoreString tetraMeshFilePath,t_Mesh &sceneMesh,int nbFreq,t_T
 		if (verbose_mode) { cout << "Load of the tetrahedalization scene mesh file has been completed successfully." << endl; }
 	}
 	//**************************************************
-	// Initialisation des Liens avec le maillage et leurs paramètres (pré-calcul)
+	// Initialisation des Liens avec le maillage et leurs paramï¿½tres (prï¿½-calcul)
 	InitSourcesTetraLocalisation(&sceneTetraMesh,&configManager.srcList);
 	InitRecepteurPTetraLocalisation(&sceneTetraMesh,&configManager.recepteur_p_List,configManager);
 	InitCutMapTetraLocalisation(&sceneTetraMesh,&configManager.recepteur_scut_List,configManager);
@@ -476,14 +476,14 @@ void reportCompilation(Base_Core_Configuration& configManager,CoreString working
 	//**************************************************
 	// 6: Compilation des fichiers de resultats
 	cout<<"Output results files."<<endl;
-	//Instanciation du tableau des libellé des champs de fréquences
+	//Instanciation du tableau des libellï¿½ des champs de frï¿½quences
 	std::vector<CoreString> reportFreqLbl;
-	//Instanciation du tableau des libellé des pas de temps
+	//Instanciation du tableau des libellï¿½ des pas de temps
 	std::vector<CoreString> reportStepLbl;
 	BaseReportManager::InitHeaderArrays(configManager, reportFreqLbl, reportStepLbl);
 	CoreString rootRaw=workingDir;
-	CoreString rootRp=rootRaw+CoreString(*configManager.FastGetConfigValue(Base_Core_Configuration::SPROP_PONCTUAL_RECEIVER_FOLDER_PATH)+"\\");
-	st_mkdir(rootRaw.c_str());
-	st_mkdir(rootRp.c_str());
+	CoreString rootRp=rootRaw+CoreString(*configManager.FastGetConfigValue(Base_Core_Configuration::SPROP_PONCTUAL_RECEIVER_FOLDER_PATH)+"/");
+	st_mkdir(rootRaw);
+	st_mkdir(rootRp);
 	BaseReportManager::SauveRecepteursPonctuels(rootRp,*configManager.FastGetConfigValue(Base_Core_Configuration::SPROP_PONCTUAL_RECEIVER_FILE_PATH),reportFreqLbl,reportStepLbl,&configManager.recepteur_p_List);
 }

@@ -1365,6 +1365,7 @@ void ProjectManager::OnMenuCopy(uiTreeCtrl* fromCtrl,Element* eRoot)
 		tmpDocXml.Save(tmpStr);
 		wxTextDataObject* data=new wxTextDataObject;
 		data->SetText(tmpStr.GetString());
+        wxTheClipboard->Open();
 		wxTheClipboard->SetData(data);
 		wxTheClipboard->Flush();
 		wxTheClipboard->Close();

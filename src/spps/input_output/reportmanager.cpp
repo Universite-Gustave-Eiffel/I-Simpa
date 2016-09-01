@@ -65,7 +65,7 @@ ReportManager::ReportManager(t_ParamReport& _paramReport)
 {
 	paramReport=_paramReport;
 	nbSource = paramReport.configManager->srcList.size();
-	timeStepInSourceOutput = *paramReport.configManager->FastGetConfigValue(Core_Configuration::I_PROP_OUTPUT_RECEIVER_BY_SOURCE);
+	timeStepInSourceOutput = (bool)*paramReport.configManager->FastGetConfigValue(Core_Configuration::I_PROP_OUTPUT_RECEIVER_BY_SOURCE);
 	tabEnergyByTimeStep=new l_decimal[_paramReport.nbTimeStep];
 	memset(tabEnergyByTimeStep,0,sizeof(l_decimal)*_paramReport.nbTimeStep);
 	lst_rp_lef.insert(lst_rp_lef.begin(),_paramReport.configManager->recepteur_p_List.size(),t_rp_lef());
@@ -92,14 +92,12 @@ void ReportManager::writeParticleFile()
 		delete particleSurfaceCSVFile;
     if (particleReceiverCSVFile)
         delete particleReceiverCSVFile;
-	//Cr�ation du dossier de particule
-	//_mkdir(paramReport._particlePath.c_str());
-	st_mkdir(paramReport._particlePath.c_str());
+    // Create particules folder
+	st_mkdir(paramReport._particlePath);
 	stringClass freqFolder;
-	freqFolder=paramReport._particlePath+stringClass::FromInt(paramReport.freqValue)+stringClass("\\");
-	//Cr�ation du dossier de fr�quence
-	//_mkdir(freqFolder.c_str());
-	st_mkdir(freqFolder.c_str());
+	freqFolder=paramReport._particlePath+stringClass::FromInt(paramReport.freqValue)+stringClass("/");
+
+	st_mkdir(freqFolder);
 	stringClass fileNamePath=freqFolder+paramReport._particleFileName;
 	particleFile = new fstream(fileNamePath.c_str() , ios::out | ios::binary);
 	stringClass fileCSVNamePath=freqFolder+"particle_surface_collision_statistics.csv";
@@ -637,7 +635,7 @@ void ReportManager::SaveSoundLevelBySource(const CoreString& filename,std::vecto
 				receiverData.lblRp = currentRP->lblRp;
 				receiverData.cdt_vol = currentRP->cdt_vol;
 				CoreString file = rootRp + receiverData.lblRp + "/" + params.configManager->srcList[idsource]->sourceName + "/";
-				st_mkdir(file.c_str());
+				st_mkdir(file);
 				file += *params.configManager->FastGetConfigValue(Base_Core_Configuration::SPROP_PONCTUAL_RECEIVER_FILE_PATH);
 				BaseReportManager::SauveRecepteurPonctuel(file, reportFreqLbl, reportStepLbl, &receiverData); 
 			}
@@ -705,9 +703,8 @@ void ReportManager::SaveRecpIntensity(const CoreString& filename,std::vector<t_s
 	serie_int_parameter.Set(3,gabe_cols.size());						    	//Num�ro de la colonne du premier r�cepteur ponctuel
 	serie_float_parameter.Set(0,params.timeStep);								//Pas de temps (s)
 
-	CoreString workpath=params.working_Path+"IntensityAnimation\\";
-	//mkdir(workpath.c_str());
-	st_mkdir(workpath.c_str());
+	CoreString workpath=params.working_Path+"IntensityAnimation/";
+	st_mkdir(workpath);
 	//Pour chaque bande de fr�quence
 
 	for(std::size_t idfreq=0;idfreq<cols.size();idfreq++)
@@ -715,9 +712,9 @@ void ReportManager::SaveRecpIntensity(const CoreString& filename,std::vector<t_s
 		if(params.configManager->freqList[idfreq]->doCalculation)
 		{
 			std::vector<GABE_Object*> freq_gabe_cols;
-			CoreString freqdir=workpath+CoreString::FromInt(params.configManager->freqList[idfreq]->freqValue)+" Hz\\";
-			//mkdir(freqdir.c_str());
-			st_mkdir(freqdir.c_str());
+			CoreString freqdir=workpath+CoreString::FromInt(params.configManager->freqList[idfreq]->freqValue)+" Hz/";
+
+			st_mkdir(freqdir);
 			for(uentier idrecp=0;idrecp<params.configManager->recepteur_p_List.size();idrecp++)
 			{
 				t_Recepteur_P* currentRP=params.configManager->recepteur_p_List[idrecp];

@@ -31,6 +31,7 @@
 #include "baseReportManager.h"
 #include "exportRecepteurSurf/rsbin.h"
 #include "gabe/gabe.h"
+#include <boost/filesystem.hpp>
 
 using namespace std;
 
@@ -54,7 +55,7 @@ void ExportTouteBande(formatRSBIN::t_ExchangeData& mainData,std::vector<r_Surf*>
 			for(int idTimeStep=0;idTimeStep<mainData.nbTimeStep;idTimeStep++)
 			{
 				bool somethingRecordedAtThisTimeStep=false;
-				//On enregistre uniquement les pas de temps où un niveau sonore a été enregistré afin de limiter les données à enregistrer
+				//On enregistre uniquement les pas de temps oï¿½ un niveau sonore a ï¿½tï¿½ enregistrï¿½ afin de limiter les donnï¿½es ï¿½ enregistrer
 				//Calcul du nombre de pas de temps a enregistrer
 				for(uentier idfreq=0;idfreq<tabRecepteurS[idRs]->faces[idFace].nbfreq && !somethingRecordedAtThisTimeStep;idfreq++)
 				{
@@ -159,25 +160,25 @@ void BaseReportManager::SauveRecepteurPonctuel(const stringClass& recpFolder, co
 		if(currentRecP->energy_sum[idfreq])
 			nbFreqUsed++;
 
-	GABE binExporter(nbFreqUsed+1); //+1 pour le libellé
-	binExporter.LockData(); //L'utilisateur ne pourra pas modifier les données
-	//Ajout du libellé
+	GABE binExporter(nbFreqUsed+1); //+1 pour le libellï¿½
+	binExporter.LockData(); //L'utilisateur ne pourra pas modifier les donnï¿½es
+	//Ajout du libellï¿½
 	GABE_Data_ShortString* lblCol = new GABE_Data_ShortString(nbTimeStep);
 	for(int idstep=0;idstep<nbTimeStep;idstep++)
 		lblCol->SetString(idstep,timeStepLst[idstep].c_str());
 	lblCol->SetLabel("SPL");
 	binExporter.SetCol(0,lblCol);
-	//Pour chaque bande de frequence utilisé
+	//Pour chaque bande de frequence utilisï¿½
 	int idcol=1;
 	for(int idfreq=0;idfreq<nbFreq;idfreq++)
 	{
 		if(currentRecP->energy_sum[idfreq])
 		{
 			//////////////////////////////////
-			// Copie des données de densité d'énergie J
+			// Copie des donnï¿½es de densitï¿½ d'ï¿½nergie J
 			GABE_Data_Float* freqCol = new GABE_Data_Float(nbTimeStep);
 			(*freqCol).SetLabel(freqLst[idfreq].c_str());
-			//Copie rapide des données
+			//Copie rapide des donnï¿½es
 			//(*freqCol).FastCopy(currentRecP->energy_sum[idfreq]);
 
 			for(int timeStp=0;timeStp<nbTimeStep;timeStp++)
@@ -193,15 +194,16 @@ void BaseReportManager::SauveRecepteurPonctuel(const stringClass& recpFolder, co
 }
 void BaseReportManager::SauveRecepteursPonctuels(stringClass rootFolder,const stringClass& fileName, const std::vector<stringClass>& freqLst,const std::vector<stringClass>& timeStepLst,std::vector<t_Recepteur_P*>* tabRecepteurP)
 {
-	//Créé un fichier pour chaque récépteur
-	for(std::size_t idrp=0;idrp<tabRecepteurP->size();idrp++)
-	{
-		t_Recepteur_P* currentRecP=(*tabRecepteurP)[idrp];
+	//Create a new file for each receiver
+	for(std::size_t idrp=0;idrp<tabRecepteurP->size();idrp++) {
+		t_Recepteur_P *currentRecP = (*tabRecepteurP)[idrp];
 		stringClass recpFolder;
-		uentier counter=0;
-		recpFolder=(rootFolder+currentRecP->lblRp);
-		while(-1==st_mkdir(recpFolder.c_str()) && counter<20) //renomme les dossiers au cas où deux recepteur ont le même nom
-			recpFolder=(rootFolder+currentRecP->lblRp+stringClass::FromInt(counter++));
+		uentier counter = 0;
+		recpFolder = (rootFolder + currentRecP->lblRp);
+		// Rename path if receivers have the same names
+		while (boost::filesystem::exists(recpFolder) && counter < 20) {
+			recpFolder = (rootFolder + currentRecP->lblRp + stringClass::FromInt(counter++));
+		}
 		currentRecP->pathRp=recpFolder+"/";
 		recpFolder=recpFolder+"/"+fileName;
 		SauveRecepteurPonctuel(recpFolder, freqLst, timeStepLst, currentRecP); 
@@ -247,7 +249,7 @@ void BaseReportManager::SauveRecepteursSurfaciquesCoupe(stringClass rootFolder,s
 			}
 		}
 
-		//Ajout d'un récepteur surfacique
+		//Ajout d'un rï¿½cepteur surfacique
 		mainData.tabRs[idRs].dataRec.xmlIndex=(**itrs).idRecepteurS;
 		mainData.tabRs[idRs].dataRec.quantFaces=(**itrs).nbrows*(**itrs).nbcols*2;
 		tabRecepteurS[idRs]->name.copy(mainData.tabRs[idRs].dataRec.recepteurSName,STRING_SIZE-1);
@@ -259,7 +261,7 @@ void BaseReportManager::SauveRecepteursSurfaciquesCoupe(stringClass rootFolder,s
 		{
 			for(uentier idcol=0;idcol<(*itrs)->nbcols;idcol++)
 			{
-				//Affectation des données pour la surface, divisé en 2 faces
+				//Affectation des donnï¿½es pour la surface, divisï¿½ en 2 faces
 				int idFace=(idcol+(idrow*(*itrs)->nbcols))*2;
 				mainData.tabRs[idRs].dataFaces[idFace].dataFace.nbRecords=0;
 				//Indices de sommets
@@ -418,10 +420,10 @@ void BaseReportManager::SauveGlobalRecepteursSurfaciques(stringClass rootFolder,
 
 void BaseReportManager::InitHeaderArrays(Base_Core_Configuration& configManager, std::vector<CoreString>& lblFreq, std::vector<CoreString>& lblTime) {
 
-	//Instanciation du tableau des libellé des champs de fréquences
+	//Instanciation du tableau des libellï¿½ des champs de frï¿½quences
 	for(std::size_t idfreq=0;idfreq<configManager.freqList.size();idfreq++)
 		lblFreq.push_back(CoreString::FromInt(configManager.freqList[idfreq]->freqValue)+" Hz");
-	//Instanciation du tableau des libellé des pas de temps
+	//Instanciation du tableau des libellï¿½ des pas de temps
 	decimal pasdetemps=(*configManager.FastGetConfigValue(Base_Core_Configuration::FPROP_TIME_STEP));
 	int nbpasdetemps=(*configManager.FastGetConfigValue(Base_Core_Configuration::IPROP_QUANT_TIMESTEP));
 	for(entier idstep=0;idstep<nbpasdetemps;idstep++)
