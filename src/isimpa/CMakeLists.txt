@@ -371,6 +371,8 @@ ADD_CUSTOM_COMMAND(
 # Before using element_pywrap.cpp build enum_def.cpp
 set_property(SOURCE data_manager/python_interface/py_ui_module/element_pywrap.cpp APPEND PROPERTY OBJECT_DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/enum_def.cpp)
 
+configure_file(data_manager/appconfig_version.cpp.in ${CMAKE_CURRENT_BINARY_DIR}/generated/appconfig_version.cpp )
+
 # Set Properties->General->Configuration Type to Application
 # Creates isimpa with the listed sources
 # Adds sources to the Solution Explorer
@@ -394,7 +396,8 @@ add_executable(isimpa
     ${MAIN_SOURCES}
     ${MANAGER_SOURCES}
     ${ISIMPA_SOURCES}
-    ${CMAKE_CURRENT_BINARY_DIR}/enum_def.cpp)
+    ${CMAKE_CURRENT_BINARY_DIR}/enum_def.cpp
+	${CMAKE_CURRENT_BINARY_DIR}/generated/appconfig_version.cpp)
 
 # Creates a folder "executables" and adds target
 # project (isimpa.vcproj) under it
@@ -474,11 +477,24 @@ DESTINATION .)
 
 # Copy python ressources required by boost python runtime
 if(WIN32) # Check if we are on Windows
+	SET(CMAKE_FIND_LIBRARY_PREFIXES "")
+	SET(CMAKE_FIND_LIBRARY_SUFFIXES ".dll")
+
+	find_library(
+		PYTHON_DLL
+		NAMES Python27.dll
+	)
+
+	MESSAGE(STATUS "Python dll ${PYTHON_DLL}")
     get_filename_component(PYTHON_ROOT_FOLDER ${PYTHON_EXECUTABLE} PATH)
 	set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
 	install(DIRECTORY
 	${PYTHON_ROOT_FOLDER}/Lib
 	DESTINATION .)
+
+	install (FILES
+             ${PYTHON_DLL}
+			 DESTINATION .)
 endif()
 
 # Package creation instructions, NSIS under windows
@@ -493,9 +509,9 @@ SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "I-SIMPA")
 SET(CPACK_PACKAGE_VENDOR "Ifsttar")
 SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/DESCRIPTION.txt")
 SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE.md")
-SET(CPACK_PACKAGE_VERSION_MAJOR "1")
-SET(CPACK_PACKAGE_VERSION_MINOR "3")
-SET(CPACK_PACKAGE_VERSION_PATCH "0")
+SET(CPACK_PACKAGE_VERSION_MAJOR ${isimpa_VERSION_MAJOR})
+SET(CPACK_PACKAGE_VERSION_MINOR ${isimpa_VERSION_MINOR})
+SET(CPACK_PACKAGE_VERSION_PATCH ${isimpa_VERSION_PATCH})
 SET(CPACK_PACKAGE_INSTALL_DIRECTORY "I-SIMPA")
 IF(WIN32 AND NOT UNIX)
   # There is a bug in NSI that does not handle full unix paths properly. Make

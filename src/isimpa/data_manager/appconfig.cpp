@@ -86,9 +86,6 @@ const wxString ApplicationConfiguration::CONST_CORE_PATH=wxString("core") + wxFi
 const wxString ApplicationConfiguration::CONST_PREPROCESS_EXE_PATH=ApplicationConfiguration::CONST_TETROOT_PATH+"tetgen"+wxFileName::GetPathSeparator();
 const wxString ApplicationConfiguration::CONST_STATIC_XML_FILE="appconst.xml";
 //const unsigned long ApplicationConfiguration::CONST_WORKINGLIMIT=1325329200;
-const int ApplicationConfiguration::SPPS_UI_VERSION_MAJOR=1;
-const int ApplicationConfiguration::SPPS_UI_VERSION_MINOR=3;
-const int ApplicationConfiguration::SPPS_UI_VERSION_REVISION=0;
 
 
 
@@ -639,7 +636,7 @@ bool ApplicationConfiguration::IsIdDirectivityExist(int idDirectivity)
 }
 
 wxString ApplicationConfiguration::getResourcesFolder() {
-    return wxPathOnly(wxStandardPaths::Get().GetExecutablePath());
+    return wxPathOnly(wxStandardPaths::Get().GetExecutablePath())+wxFileName::GetPathSeparator();
 }
 
 std::vector<ApplicationConfiguration::t_lstDirectiv> ApplicationConfiguration::GetLstDirectivity()

@@ -1,0 +1,5 @@
+#include "data_manager/appconfig.h"
+
+const int ApplicationConfiguration::SPPS_UI_VERSION_MAJOR=@isimpa_VERSION_MAJOR@;
+const int ApplicationConfiguration::SPPS_UI_VERSION_MINOR=@isimpa_VERSION_MINOR@;
+const int ApplicationConfiguration::SPPS_UI_VERSION_REVISION=@isimpa_VERSION_PATCH@;
