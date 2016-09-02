@@ -886,14 +886,14 @@ void MainUiFrame::OnShowPreferenceTree(wxCommandEvent& event)
 void MainUiFrame::OnShowAboutDialog(wxCommandEvent& event)
 {
 	wxAboutDialogInfo aboutDlg;
-	aboutDlg.SetVersion(wxString::Format("2014 [%i.%i.%i]",ApplicationConfiguration::SPPS_UI_VERSION_MAJOR,ApplicationConfiguration::SPPS_UI_VERSION_MINOR,ApplicationConfiguration::SPPS_UI_VERSION_REVISION));
+	aboutDlg.SetVersion(wxString::Format("[%i.%i.%i]",ApplicationConfiguration::SPPS_UI_VERSION_MAJOR,ApplicationConfiguration::SPPS_UI_VERSION_MINOR,ApplicationConfiguration::SPPS_UI_VERSION_REVISION));
 	aboutDlg.SetName(APPLICATION_NAME);
 	aboutDlg.SetWebSite(wxT("http://i-simpa.ifsttar.fr"));
 	//aboutDlg.SetLicence(GetLicenseText());
 	aboutDlg.SetLicence("I-Simpa is an open source software (GPL v3).");
 	aboutDlg.AddDeveloper("Nicolas FORTIN (Ifsttar)");
 	aboutDlg.AddDeveloper("Judicaël PICAUT (Ifsttar)");
-	aboutDlg.SetCopyright("(c) 2014 - Ifsttar <i-simpa@ifsttar.fr>");
+	aboutDlg.SetCopyright("(c) Ifsttar <i-simpa@ifsttar.fr>");
 
 	//wxArraySting devs;
 	//devs.
