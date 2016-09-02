@@ -26,15 +26,17 @@ set(SPPS_SOURCES
     CalculationCore.cpp
     sppsInitialisation.h
     sppsInitialisation.cpp
-    sppsNantes.cpp
     sppsTypes.h
     sppsTypes.cpp)
+	
+set(SPPS_MAIN_SOURCES
+    sppsNantes.cpp)
 
 # Sources groups (folders)
 source_group("data_manager" FILES ${DATA_MANAGER_SOURCES})
 source_group("input_output" FILES ${IO_SOURCES})
 source_group("tools" FILES ${TOOLS_SOURCES})
-source_group("" FILES ${SPPS_SOURCES})
+source_group("" FILES ${SPPS_SOURCES} $(SPPS_MAIN_SOURCES))
 
 #---------------------------------------#
 #    DEPENDENCY & EXECUTABLE (OR LIB)
@@ -68,7 +70,8 @@ add_executable(spps
     ${DATA_MANAGER_SOURCES}
     ${IO_SOURCES}
     ${TOOLS_SOURCES}
-    ${SPPS_SOURCES})
+    ${SPPS_SOURCES}
+	${SPPS_MAIN_SOURCES})
 
 # Creates a folder "executables" and adds target project (spps.vcproj) under it
 set_property(TARGET spps PROPERTY FOLDER "executables")
@@ -95,7 +98,7 @@ endif()
 
 # Adds logic to INSTALL.vcproj to copy spps to destination directory
 install (TARGETS spps
-        RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin/core/spps)
+        RUNTIME DESTINATION core/spps)
 
 #------------#
 #    TEST
@@ -111,29 +114,22 @@ file(COPY
 
 # Test executable and folder
 set(SPPS_TESTS
-    tests/spps_directivity_test.cpp)
+    tests/spps_core_test.cpp)
 
-add_executable(TEST_spps ${SPPS_TESTS})
+add_executable(TEST_spps ${SPPS_TESTS}
+    ${DATA_MANAGER_SOURCES}
+    ${IO_SOURCES}
+    ${TOOLS_SOURCES}
+    ${SPPS_SOURCES})
+
 target_link_libraries (TEST_spps
     lib_interface
     ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 set_property(TARGET TEST_spps PROPERTY FOLDER "tests")
 
-set(SPPS_TESTS_PRE
-    tests/spps_directivity_pre.cpp)
-add_executable(TEST_spps_pre ${SPPS_TESTS_PRE})
-target_link_libraries (TEST_spps_pre
-    ${Boost_FILESYSTEM_LIBRARY}
-    ${Boost_SYSTEM_LIBRARY})
-set_property(TARGET TEST_spps_pre PROPERTY FOLDER "tests")
-
 # Add to test suite
 enable_testing()
 
-add_test( NAME spps_directivity_clean
+add_test( NAME spps_core_test
     WORKING_DIRECTORY ${TEST_DATA_DIR}
-    COMMAND TEST_spps_pre )
-
-#add_test( NAME spps_directivity_check
-#    WORKING_DIRECTORY ${TEST_DATA_DIR}
-#    COMMAND TEST_spps )
+    COMMAND TEST_spps )

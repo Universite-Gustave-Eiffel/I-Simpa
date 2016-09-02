@@ -81,8 +81,8 @@ public:
 		computationMethods.push_back("Aléatoire");
 		computationMethods.push_back("Énergétique");
 
-		confCore->AppendPropertyEntier("nbparticules","Particules par source",1000000,true,false,true,0,1);
-		confCore->AppendPropertyEntier("nbparticules_rendu","Particules par source (rendu)",0,true,false,true,0,0);
+		confCore->AppendPropertyInteger("nbparticules","Particules par source",1000000,true,false,true,0,1);
+		confCore->AppendPropertyInteger("nbparticules_rendu","Particules par source (rendu)",0,true,false,true,0,0);
 		confCore->AppendPropertyBool("abs_atmo_calc","Calcul Absorption atmosphérique",true,true);
 		confCore->AppendPropertyBool("enc_calc","Calcul Encombrement",true,true);
 		confCore->AppendPropertyBool("direct_calc","Calcul du Champ Direct uniquement",false,true);
@@ -126,14 +126,14 @@ public:
 		t_elementInfo filsInfo=eModif->GetElementInfos();
 		if(filsInfo.libelleElement=="nbparticules" && eModif->GetElementParent()->IsPropertyExist("nbparticules_rendu"))
 		{
-			int nbpart=eModif->GetElementParent()->GetEntierConfig("nbparticules");
-			int nbpartrendu=eModif->GetElementParent()->GetEntierConfig("nbparticules_rendu");
+			int nbpart=eModif->GetElementParent()->GetIntegerConfig("nbparticules");
+			int nbpartrendu=eModif->GetElementParent()->GetIntegerConfig("nbparticules_rendu");
 			if(nbpart<nbpartrendu)
 				eModif->GetElementParent()->UpdateEntierConfig("nbparticules_rendu",nbpart);
 		}else if(filsInfo.libelleElement=="nbparticules_rendu" && eModif->GetElementParent()->IsPropertyExist("nbparticules"))
 		{
-			int nbpart=eModif->GetElementParent()->GetEntierConfig("nbparticules");
-			int nbpartrendu=eModif->GetElementParent()->GetEntierConfig("nbparticules_rendu");
+			int nbpart=eModif->GetElementParent()->GetIntegerConfig("nbparticules");
+			int nbpartrendu=eModif->GetElementParent()->GetIntegerConfig("nbparticules_rendu");
 			if(nbpart<nbpartrendu)
 				eModif->GetElementParent()->UpdateEntierConfig("nbparticules",nbpartrendu);
 		}

@@ -277,7 +277,7 @@ private:
 	void LoadGlModelList(bool useLists=true);
 	void Destroy();
 	void LoadAnimatorLst(ptAnimatorManager& managerToCompile);
-	CObjet3D *m_Object;
+	CObjet3D *m_Object = nullptr;
 	char m_filename[256];
 
 	bool m_IsObjetLoaded;

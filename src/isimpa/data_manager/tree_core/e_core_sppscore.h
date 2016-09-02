@@ -93,7 +93,7 @@ protected:
 		confCore->AppendPropertyBool("output_recp_bysource", wxTRANSLATE("Echogram per source"), false, true);
 	}
 	void InitRandomSeed(Element* confCore) {
-		confCore->AppendPropertyEntier("random_seed",wxTRANSLATE("Random seed"), 0,true, false, true);
+		confCore->AppendPropertyInteger("random_seed",wxTRANSLATE("Random seed"), 0,true, false, true);
 	}
 public:
 
@@ -123,6 +123,12 @@ public:
 			InitExportRs(confCore);
 		}
 		InitNewProperties();
+        if(GetStringConfig("exeName").EndsWith(".exe")) {
+            UpdateStringConfig("exeName", "spps");
+        }
+        if (GetStringConfig("corePath").IsSameAs(wxString("sppsNantes") + wxFileName::GetPathSeparator())) {
+            UpdateStringConfig("corePath", wxString("spps") + wxFileName::GetPathSeparator());
+        }
 	}
 
 	E_Core_Spps( Element* parent)
@@ -147,8 +153,8 @@ public:
 		computationMethods.push_back("Random");
 		computationMethods.push_back("Energetic");
 
-		confCore->AppendPropertyEntier("nbparticules",wxTRANSLATE("Number of sound particles per source"),150000,true,false,true,0,1);
-		confCore->AppendPropertyEntier("nbparticules_rendu",wxTRANSLATE("Number of sound particles per source (display)"),0,true,false,true,0,0);
+		confCore->AppendPropertyInteger("nbparticules",wxTRANSLATE("Number of sound particles per source"),150000,true,false,true,0,1);
+		confCore->AppendPropertyInteger("nbparticules_rendu",wxTRANSLATE("Number of sound particles per source (display)"),0,true,false,true,0,0);
 		confCore->AppendPropertyBool("abs_atmo_calc",wxTRANSLATE("Active calculation of atmospheric absorption"),true,true);
 		confCore->AppendPropertyBool("enc_calc",wxTRANSLATE("Active calculation of diffusion by fitting objects"),true,true);
 		confCore->AppendPropertyBool("direct_calc",wxTRANSLATE("Active calculation of direct field only"),false,true);
@@ -157,7 +163,7 @@ public:
 		InitTransmission(confCore);
 
 		/* #if 0
-		    // Code source à destination de PoEdit
+		    // Translation keys, do not remove
 			_("SPPS");
 			_("Random");
 			_("Energetic");
@@ -195,14 +201,14 @@ public:
 			t_elementInfo filsInfo=eModif->GetElementInfos();
 			if(filsInfo.libelleElement=="nbparticules" && eModif->GetElementParent()->IsPropertyExist("nbparticules_rendu"))
 			{
-				int nbpart=elConf->GetEntierConfig("nbparticules");
-				int nbpartrendu=elConf->GetEntierConfig("nbparticules_rendu");
+				int nbpart=elConf->GetIntegerConfig("nbparticules");
+				int nbpartrendu=elConf->GetIntegerConfig("nbparticules_rendu");
 				if(nbpart<nbpartrendu)
 					elConf->UpdateEntierConfig("nbparticules_rendu",nbpart);
 			}else if(filsInfo.libelleElement=="nbparticules_rendu" && elConf->IsPropertyExist("nbparticules"))
 			{
-				int nbpart=elConf->GetEntierConfig("nbparticules");
-				int nbpartrendu=elConf->GetEntierConfig("nbparticules_rendu");
+				int nbpart=elConf->GetIntegerConfig("nbparticules");
+				int nbpartrendu=elConf->GetIntegerConfig("nbparticules_rendu");
 				if(nbpart<nbpartrendu)
 					elConf->UpdateEntierConfig("nbparticules",nbpartrendu);
 				if(nbpartrendu>0)

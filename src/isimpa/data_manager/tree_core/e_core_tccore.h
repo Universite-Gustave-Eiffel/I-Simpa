@@ -36,12 +36,12 @@
 #define __E_CORE_TC__
 
 /*! \file e_core_tccore.h
-    \brief Element correspondant au moteur de calcul "Théorie classique"
+    \brief Classical theroy computation core declaration
 */
 
 
 /**
-    \brief Element correspondant au moteur de calcul "Théorie classique"
+    \brief Classical theroy computation core declaration
 */
 class E_Core_Tc: public E_Core_Core
 {
@@ -75,6 +75,9 @@ public:
 		}else{
 			InitExportRs(coreConf);
 		}
+        if (GetStringConfig("exeName").EndsWith(".exe")) {
+            UpdateStringConfig("exeName", "classicalTheory");
+        }
 	}
 
 	E_Core_Tc( Element* parent)
@@ -99,8 +102,8 @@ public:
 
 
 		this->AppendPropertyText("modelName","","mesh.cbin",true,true)->Hide();
-		this->AppendPropertyText("exeName","","TheorieClassique")->Hide();
-		this->AppendPropertyText("corePath","",wxString("theorie_classique")+wxFileName::GetPathSeparator())->Hide();
+		this->AppendPropertyText("exeName","","classicalTheory")->Hide();
+		this->AppendPropertyText("corePath","",wxString("classical_theory")+wxFileName::GetPathSeparator())->Hide();
 		this->AppendPropertyText("tetrameshFileName","","tetramesh.mbin",true,true)->Hide();
 	}
 

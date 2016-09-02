@@ -74,6 +74,7 @@ if(WIN32) # Check if we are on Windows
   set(WIN32_SOURCES
     GL/offScreenRendering.cpp
     GL/offScreenRendering.h
+	resources/isimpa.rc
       )
 else()
   set(WIN32_SOURCES )
@@ -370,6 +371,8 @@ ADD_CUSTOM_COMMAND(
 # Before using element_pywrap.cpp build enum_def.cpp
 set_property(SOURCE data_manager/python_interface/py_ui_module/element_pywrap.cpp APPEND PROPERTY OBJECT_DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/enum_def.cpp)
 
+configure_file(data_manager/appconfig_version.cpp.in ${CMAKE_CURRENT_BINARY_DIR}/generated/appconfig_version.cpp )
+
 # Set Properties->General->Configuration Type to Application
 # Creates isimpa with the listed sources
 # Adds sources to the Solution Explorer
@@ -393,7 +396,8 @@ add_executable(isimpa
     ${MAIN_SOURCES}
     ${MANAGER_SOURCES}
     ${ISIMPA_SOURCES}
-    ${CMAKE_CURRENT_BINARY_DIR}/enum_def.cpp)
+    ${CMAKE_CURRENT_BINARY_DIR}/enum_def.cpp
+	${CMAKE_CURRENT_BINARY_DIR}/generated/appconfig_version.cpp)
 
 # Creates a folder "executables" and adds target
 # project (isimpa.vcproj) under it
@@ -451,7 +455,7 @@ ENDIF()
 
 # Adds logic to INSTALL.vcproj to copy isimpa to destination directory
 install (TARGETS isimpa
-        RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin)
+        RUNTIME DESTINATION .)
 
 set(ISIMPA_RESSOURCES ${PROJECT_SOURCE_DIR}/currentRelease)
 
@@ -460,7 +464,7 @@ ${ISIMPA_RESSOURCES}/appconst.xml
 ${ISIMPA_RESSOURCES}/isimpa.ico
 ${ISIMPA_RESSOURCES}/Licence.pdf
 ${ISIMPA_RESSOURCES}/Licence.rtf
-         DESTINATION  ${PROJECT_BINARY_DIR}/bin)
+         DESTINATION .)
 
 install(DIRECTORY
 ${ISIMPA_RESSOURCES}/Bitmaps
@@ -469,5 +473,61 @@ ${ISIMPA_RESSOURCES}/locale
 ${ISIMPA_RESSOURCES}/SystemScript
 ${ISIMPA_RESSOURCES}/UserScript
 ${ISIMPA_RESSOURCES}/Directivities
-DESTINATION  ${PROJECT_BINARY_DIR}/bin)
+DESTINATION .)
 
+# Copy python ressources required by boost python runtime
+if(WIN32) # Check if we are on Windows
+	SET(CMAKE_FIND_LIBRARY_PREFIXES "")
+	SET(CMAKE_FIND_LIBRARY_SUFFIXES ".dll")
+
+	find_library(
+		PYTHON_DLL
+		NAMES Python27.dll
+	)
+
+	MESSAGE(STATUS "Python dll ${PYTHON_DLL}")
+    get_filename_component(PYTHON_ROOT_FOLDER ${PYTHON_EXECUTABLE} PATH)
+	set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
+	install(DIRECTORY
+	${PYTHON_ROOT_FOLDER}/Lib
+	DESTINATION .)
+
+	install (FILES
+             ${PYTHON_DLL}
+			 DESTINATION .)
+endif()
+
+# Package creation instructions, NSIS under windows
+
+SET(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION ".")
+SET(CPACK_NSIS_EXECUTABLES_DIRECTORY ".")
+
+INCLUDE(InstallRequiredSystemLibraries)
+
+
+SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "I-SIMPA")
+SET(CPACK_PACKAGE_VENDOR "Ifsttar")
+SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/DESCRIPTION.txt")
+SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE.md")
+SET(CPACK_PACKAGE_VERSION_MAJOR ${isimpa_VERSION_MAJOR})
+SET(CPACK_PACKAGE_VERSION_MINOR ${isimpa_VERSION_MINOR})
+SET(CPACK_PACKAGE_VERSION_PATCH ${isimpa_VERSION_PATCH})
+SET(CPACK_PACKAGE_INSTALL_DIRECTORY "I-SIMPA")
+IF(WIN32 AND NOT UNIX)
+  # There is a bug in NSI that does not handle full unix paths properly. Make
+  # sure there is at least one set of four (4) backlasshes.    # Create the desktop link
+  set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "  CreateShortCut '$DESKTOP\\\\I_SIMPA.lnk' '$INSTDIR\\\\isimpa.exe' ")
+  set(CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS "Delete '$DESKTOP\\\\I_SIMPA.lnk'")
+  SET(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}\\\\CurrentRelease\\\\isimpa.ico")
+  SET(CPACK_NSIS_INSTALLED_ICON_NAME "isimpa.exe")
+  SET(CPACK_NSIS_DISPLAY_NAME "I-SIMPA")
+  SET(CPACK_NSIS_HELP_LINK "http:\\\\\\\\i-simpa-wiki.readthedocs.io")
+  SET(CPACK_NSIS_URL_INFO_ABOUT "http:\\\\\\\\i-simpa.ifsttar.fr")
+  SET(CPACK_NSIS_CONTACT "i-simpa@ifsttar.fr")
+  SET(CPACK_NSIS_MODIFY_PATH ON)
+ELSE(WIN32 AND NOT UNIX)
+  SET(CPACK_STRIP_FILES TRUE)
+  SET(CPACK_SOURCE_STRIP_FILES "")
+ENDIF(WIN32 AND NOT UNIX)
+SET(CPACK_PACKAGE_EXECUTABLES "isimpa" "I-SIMPA")
+INCLUDE(CPack)

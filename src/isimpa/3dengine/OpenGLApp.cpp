@@ -168,19 +168,15 @@ void OpenGLApp::ResetAll(void)
 
 void OpenGLApp::Init(CObjet3D *im_Object)
 { 
-	m_Object=im_Object;
-	m_IsObjetLoaded = true;
-	ResetAll();
-	InitCutPlane();
-
-	InitGl();
-
-	if(IsObjetLoaded())
-	{
+    if(m_Object != im_Object) {
+	    m_Object=im_Object;
+	    ResetAll();
+        m_IsObjetLoaded = true;
+	    InitCutPlane();
+	    InitGl();
 		LoadGlMaillageList();
 		LoadGlModelList();
-	}
-
+    }
 }
 
 
@@ -665,16 +661,6 @@ void OpenGLApp::InitAnimatorLst()
 }
 void OpenGLApp::ClearAnimatorLst()
 {
-	/*
-	for(int idanimatormanager=0;idanimatormanager<animators.size();idanimatormanager++)
-	{
-		AnimatorManager* curManager=animators[idanimatormanager];
-		for(int idstep=0;idstep<curManager->gl_compilation_array_size;idstep++)
-			glDeleteLists(curManager->gl_compilation_array[idstep],1);
-		animators[idanimatormanager]=NULL;
-		delete curManager;
-	}
-	*/
 	animators.clear();
 }
 void OpenGLApp::AddAnimator(Animator* newAnimator)

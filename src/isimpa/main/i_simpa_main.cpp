@@ -409,7 +409,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 
 	toolbarGl = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTB_FLAT | wxTB_NODIVIDER);
 
-	slPlan = new wxSlider(toolbarGl, ID_slPlan, 0, 0, 1000,wxDefaultPosition,wxSize(100,-1));
+	slPlan = new wxSlider(toolbarGl, ID_slPlan, 0, 0, 1000,wxDefaultPosition,wxSize(100,16));
 	xPlan = new wxRadioButton(toolbarGl,ID_xPlan,"x",wxDefaultPosition,wxDefaultSize,wxRB_GROUP );
 	yPlan = new wxRadioButton(toolbarGl,ID_yPlan,"y");
 	zPlan = new wxRadioButton(toolbarGl,ID_zPlan,"z");
@@ -419,11 +419,11 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	wxToolBar* tbProjet= new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTB_FLAT | wxTB_NODIVIDER );
 	mousetool= new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTB_FLAT | wxTB_NODIVIDER);
 
-	mousetool->SetToolBitmapSize(wxSize(16,20));
-	toolbarGl->SetToolBitmapSize(wxSize(16,20));
-	simulation->SetToolBitmapSize(wxSize(16,20));
-	visualisation->SetToolBitmapSize(wxSize(16,20));
-	tbProjet->SetToolBitmapSize(wxSize(16,20));
+    mousetool->SetToolBitmapSize(wxSize(16,16));
+    toolbarGl->SetToolBitmapSize(wxSize(16,16));
+	simulation->SetToolBitmapSize(wxSize(16,16));
+	visualisation->SetToolBitmapSize(wxSize(16,16));
+	tbProjet->SetToolBitmapSize(wxSize(16,16));
 
 	wxString ressourceFolder=ApplicationConfiguration::getResourcesFolder();
 
@@ -467,15 +467,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	visualisation->Realize();
 	tbProjet->Realize();
 	mousetool->Realize();
-/*
-	wxAuiNotebook* glFrameNotebook = new wxAuiNotebook(this, wxID_ANY,
-									wxDefaultPosition,
-									wxDefaultSize,
-                                    wxAUI_NB_TOP | wxAUI_NB_TAB_SPLIT | wxAUI_NB_TAB_MOVE | wxAUI_NB_SCROLL_BUTTONS );
-	glFrameNotebook->AddPage(&(*(GlFrame)), _("Vue 3D") , true);
-*/
-
-	m_mgr.AddPane(&(*(GlFrame)), wxAuiPaneInfo().Name("3Dview").Caption(_("Main window")).
+	m_mgr.AddPane(GlFrame.get(), wxAuiPaneInfo().Name("3Dview").Caption(_("Main window")).
 					CenterPane());
 
     m_mgr.AddPane(tbProjet, wxAuiPaneInfo().
@@ -877,14 +869,14 @@ void MainUiFrame::OnShowPreferenceTree(wxCommandEvent& event)
 void MainUiFrame::OnShowAboutDialog(wxCommandEvent& event)
 {
 	wxAboutDialogInfo aboutDlg;
-	aboutDlg.SetVersion(wxString::Format("2014 [%i.%i.%i]",ApplicationConfiguration::SPPS_UI_VERSION_MAJOR,ApplicationConfiguration::SPPS_UI_VERSION_MINOR,ApplicationConfiguration::SPPS_UI_VERSION_REVISION));
+	aboutDlg.SetVersion(wxString::Format("[%i.%i.%i]",ApplicationConfiguration::SPPS_UI_VERSION_MAJOR,ApplicationConfiguration::SPPS_UI_VERSION_MINOR,ApplicationConfiguration::SPPS_UI_VERSION_REVISION));
 	aboutDlg.SetName(APPLICATION_NAME);
 	aboutDlg.SetWebSite(wxT("http://i-simpa.ifsttar.fr"));
 	//aboutDlg.SetLicence(GetLicenseText());
 	aboutDlg.SetLicence("I-Simpa is an open source software (GPL v3).");
 	aboutDlg.AddDeveloper("Nicolas FORTIN (Ifsttar)");
 	aboutDlg.AddDeveloper("Judicaël PICAUT (Ifsttar)");
-	aboutDlg.SetCopyright("(c) 2014 - Ifsttar <i-simpa@ifsttar.fr>");
+	aboutDlg.SetCopyright("(c) Ifsttar <i-simpa@ifsttar.fr>");
 
 	//wxArraySting devs;
 	//devs.
@@ -1028,7 +1020,6 @@ void MainUiFrame::OnSaveToProject(wxCommandEvent& event)
 int MainUiFrame::AskApplicationLanguage(int defaultLanguage)
 {
 	int choosenLanguage=defaultLanguage;
-//	LanguageSelector langSelection(NULL,_("Please choose language:"),_("Language"),ApplicationConfiguration::CONST_RESOURCE_FOLDER,ApplicationConfiguration::CONST_RESOURCE_FOLDER+ApplicationConfiguration::CONST_RESOURCE_DATA_FOLDER+wxString("flags")+wxFileName::GetPathSeparator());
 	LanguageSelector langSelection(NULL,_("Please choose language:"),_("Language"),ApplicationConfiguration::getResourcesFolder()+wxString("locale")+wxFileName::GetPathSeparator(),ApplicationConfiguration::getResourcesFolder()+ApplicationConfiguration::CONST_RESOURCE_BITMAP_FOLDER+wxString("flags")+wxFileName::GetPathSeparator());
 	wxInt32 choice=langSelection.ShowModal();
 	if(choice==wxID_OK)

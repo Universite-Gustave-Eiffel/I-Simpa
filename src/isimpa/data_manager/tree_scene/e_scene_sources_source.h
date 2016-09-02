@@ -120,7 +120,7 @@ public:
 			thisNode->AddAttribute("name",elementInfo.libelleElement);
 
 			// copy directivity file into simulation folder and export to config
-			int iddirectivity = elFilsProperty->GetEntierConfig("iddirectivity");
+			int iddirectivity = elFilsProperty->GetIntegerConfig("iddirectivity");
 			E_Directivity* directivity = ApplicationConfiguration::GetDirectivity(iddirectivity);
 			if (directivity != NULL)
 			{

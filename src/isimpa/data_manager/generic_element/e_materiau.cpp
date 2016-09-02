@@ -123,7 +123,7 @@ wxXmlNode* E_Materiau::SaveXMLCoreDoc(wxXmlNode* NoeudParent)
 	t_HashElement::iterator itEnd=ApplicationConfiguration::EndRef(ApplicationConfiguration::ELEMENT_REF_TYPE_FACEGROUP);
 	for( 	t_HashElement::iterator it=ApplicationConfiguration::BeginRef(ApplicationConfiguration::ELEMENT_REF_TYPE_FACEGROUP); it!=itEnd && !isUsedInProject;it++)
 	{
-		if(it->second->GetEntierConfig("idmat")==idMateriau)
+		if(it->second->GetIntegerConfig("idmat")==idMateriau)
 		{
 			isUsedInProject=true;
 			break;
