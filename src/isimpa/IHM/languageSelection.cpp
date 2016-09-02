@@ -112,12 +112,11 @@ LanguageSelector::LanguageSelector(wxWindow *parent,
 			Canonical_lng = langInfo.CanonicalName;
 			ISO3166_lng=Canonical_lng.Mid(Canonical_lng.rfind("_")+1).Lower();
 			ISO639_lng=Canonical_lng.Left(Canonical_lng.rfind("_")).Lower();
- 			if(lngFolders.Index(ressourceFolder+Canonical_lng)>=0)//lngFolders.Index(ressourceFolder+ISO639_lng)>=0 || lngFolders.Index(ressourceFolder+Canonical_lng)>=0 )
+ 			if(lngFolders.Index(ressourceFolder+Canonical_lng)>=0)
 			{
                 if(systemLanguage==idlang)
                     defaultSelection=flagList->GetItemCount();
 				wxString flag_filepath=flagsFolder+wxString::Format("%s.png",ISO3166_lng);
-				//if(wxFileExists(flag_filepath))
 				if(flagsFileName.Index(flag_filepath)>=0)
 				{
 					wxIcon flagImage(flag_filepath, wxBITMAP_TYPE_PNG);

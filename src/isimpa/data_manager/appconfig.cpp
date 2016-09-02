@@ -639,7 +639,7 @@ bool ApplicationConfiguration::IsIdDirectivityExist(int idDirectivity)
 }
 
 wxString ApplicationConfiguration::getResourcesFolder() {
-    return wxPathOnly(wxStandardPaths::Get().GetExecutablePath());
+    return wxPathOnly(wxStandardPaths::Get().GetExecutablePath())+wxFileName::GetPathSeparator();
 }
 
 std::vector<ApplicationConfiguration::t_lstDirectiv> ApplicationConfiguration::GetLstDirectivity()

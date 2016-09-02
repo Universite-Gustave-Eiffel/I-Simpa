@@ -474,11 +474,24 @@ DESTINATION .)
 
 # Copy python ressources required by boost python runtime
 if(WIN32) # Check if we are on Windows
+	SET(CMAKE_FIND_LIBRARY_PREFIXES "")
+	SET(CMAKE_FIND_LIBRARY_SUFFIXES ".dll")
+
+	find_library(
+		PYTHON_DLL
+		NAMES Python27.dll
+	)
+
+	MESSAGE(STATUS "Python dll ${PYTHON_DLL}")
     get_filename_component(PYTHON_ROOT_FOLDER ${PYTHON_EXECUTABLE} PATH)
 	set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
 	install(DIRECTORY
 	${PYTHON_ROOT_FOLDER}/Lib
 	DESTINATION .)
+
+	install (FILES
+             ${PYTHON_DLL}
+			 DESTINATION .)
 endif()
 
 # Package creation instructions, NSIS under windows
