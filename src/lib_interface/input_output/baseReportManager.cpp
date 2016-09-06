@@ -197,16 +197,16 @@ void BaseReportManager::SauveRecepteursPonctuels(stringClass rootFolder,const st
 	//Create a new file for each receiver
 	for(std::size_t idrp=0;idrp<tabRecepteurP->size();idrp++) {
 		t_Recepteur_P *currentRecP = (*tabRecepteurP)[idrp];
-		stringClass recpFolder;
+		boost::filesystem::path recpFolder;
 		uentier counter = 0;
 		recpFolder = (rootFolder + currentRecP->lblRp);
 		// Rename path if receivers have the same names
-		while (boost::filesystem::exists(recpFolder) && counter < 20) {
+        while (boost::filesystem::exists(recpFolder) && counter < 20) {
 			recpFolder = (rootFolder + currentRecP->lblRp + stringClass::FromInt(counter++));
 		}
-		currentRecP->pathRp=recpFolder+"/";
-		recpFolder=recpFolder+"/"+fileName;
-		SauveRecepteurPonctuel(recpFolder, freqLst, timeStepLst, currentRecP); 
+		currentRecP->pathRp=recpFolder.string() + "/";
+		recpFolder=recpFolder.string() + "/"+fileName;
+		SauveRecepteurPonctuel(recpFolder.string(), freqLst, timeStepLst, currentRecP); 
 	}
 
 }
