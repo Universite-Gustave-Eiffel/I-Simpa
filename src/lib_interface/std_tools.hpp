@@ -41,5 +41,6 @@
 bool st_mkdir(const std::string& path);
 bool st_isfinite(const float& value);
 
+std::string st_path_separator();
 
 #endif
