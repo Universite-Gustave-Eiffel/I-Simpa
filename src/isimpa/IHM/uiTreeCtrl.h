@@ -29,7 +29,6 @@
 * ----------------------------------------------------------------------*/
 
 #include "first_header_include.hpp"
-
 #include <wx/window.h>
 #include <wx/imaglist.h>
 #include <wx/artprov.h>
@@ -53,6 +52,8 @@
  *
  * Surcharge de wxTreeCtrl afin d'intéragir avec les instances de la classe Element 
  */
+wxDECLARE_EVENT(MENU_ITEM_SELECTED, wxCommandEvent);
+
 class uiTreeCtrl : public wxTreeCtrl
 {
 	private : 
@@ -73,6 +74,7 @@ class uiTreeCtrl : public wxTreeCtrl
 		void InitTree();
 		smart_ptr<bool> alive;
 	protected :
+
 		DECLARE_EVENT_TABLE()
 
 		Element* rootItem;
@@ -87,6 +89,7 @@ class uiTreeCtrl : public wxTreeCtrl
 		void OnExpanding(wxTreeEvent& treeEvent);
 		void OnCollapsing(wxTreeEvent& treeEvent);
 		void OnKeyUp(wxKeyEvent&); 
+        void OnMenuItemClosed(wxCommandEvent& commandEvent);
 	public :
 		/**
 		 * Constructeur de la fenêtre

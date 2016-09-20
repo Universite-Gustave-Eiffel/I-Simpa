@@ -34,6 +34,8 @@
 #include "data_manager/appconfig.h"
 #include "last_cpp_include.hpp"
 
+wxDEFINE_EVENT(MENU_ITEM_SELECTED, wxCommandEvent);
+
 BEGIN_EVENT_TABLE(uiTreeCtrl, wxTreeCtrl)
 	EVT_TREE_BEGIN_DRAG(-1, uiTreeCtrl::BeginDrag)
 	EVT_TREE_END_DRAG(-1, uiTreeCtrl::EndDrag)
@@ -46,6 +48,7 @@ BEGIN_EVENT_TABLE(uiTreeCtrl, wxTreeCtrl)
 	EVT_TREE_ITEM_EXPANDING(-1, uiTreeCtrl::OnExpanding)
 	EVT_TREE_ITEM_COLLAPSED(-1, uiTreeCtrl::OnCollapsing)
 	EVT_MENU(-1, uiTreeCtrl::OnElementEvent)
+    EVT_COMMAND(wxID_ANY, MENU_ITEM_SELECTED, uiTreeCtrl::OnMenuItemClosed)
     EVT_TIMER(100, uiTreeCtrl::OnTimer)
 	EVT_MOTION(uiTreeCtrl::OnMouseMove)
 	EVT_KEY_UP(uiTreeCtrl::OnKeyUp)
@@ -399,6 +402,12 @@ uiTreeCtrl::uiTreeCtrl(wxWindow* parent, wxWindowID id, const wxPoint& pos, cons
 {
 	InitTree();
 }
+
+void uiTreeCtrl::OnMenuItemClosed(wxCommandEvent& commandEvent) {
+    if (this->pointeurElementEvent)
+        this->pointeurElementEvent(commandEvent);
+}
+
 uiTreeCtrl::uiTreeCtrl()
 :wxTreeCtrl(),alive(new bool(true))
 {
@@ -494,8 +503,10 @@ void uiTreeCtrl::OnCollapsing(wxTreeEvent& treeEvent)
 
 void uiTreeCtrl::OnElementEvent(wxCommandEvent& eventElement)
 {
-	if(this->pointeurElementEvent)
-		this->pointeurElementEvent(eventElement);
+    wxThreadEvent evt;
+    evt.SetId(eventElement.GetId());
+    evt.SetEventType(MENU_ITEM_SELECTED);
+    QueueEvent(evt.Clone());
 }
 
 void uiTreeCtrl::BindElementEvent(void (*fevent)(wxCommandEvent&))
