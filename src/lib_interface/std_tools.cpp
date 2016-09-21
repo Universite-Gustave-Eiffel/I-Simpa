@@ -46,6 +46,12 @@ bool st_mkdir(const std::string& pathname)
 	return boost::filesystem::create_directory(pathname);
 }
 
+std::string st_path_separator() {
+    boost::filesystem::path path("");
+    path += boost::filesystem::path::preferred_separator;
+    return path.string();
+}
+
 
 bool st_isfinite(const float& value)
 {
