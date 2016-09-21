@@ -4,6 +4,13 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.6.0)
 # have all targets (exe, lib, dll) as projects (.vcproj)
 project (isimpa VERSION 1.3.1)
 
+
+macro(COPY_LIB LIBPATH DESTINATION)
+    get_filename_component(UT_SHARED_FILE ${LIBPATH} NAME)
+    configure_file(${LIBPATH}
+            ${DESTINATION}/${UT_SHARED_FILE} COPYONLY)
+endmacro(COPY_LIB)
+
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
     set(CMAKE_INSTALL_PREFIX "${PROJECT_BINARY_DIR}/bin" CACHE PATH "default install path" FORCE )
 	message (STATUS "Default install path is set: " ${CMAKE_INSTALL_PREFIX})

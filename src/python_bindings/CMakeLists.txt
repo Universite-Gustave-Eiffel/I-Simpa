@@ -22,7 +22,7 @@ SET(CMAKE_SWIG_FLAGS "")
 
 SET_SOURCE_FILES_PROPERTIES(libsimpa.i PROPERTIES CPLUSPLUS ON)
 SWIG_ADD_MODULE(libsimpa python libsimpa.i)
-SWIG_LINK_LIBRARIES(libsimpa lib_interface ${Boost_LIBRARIES} ${PYTHON_LIBRARIES})
+SWIG_LINK_LIBRARIES(libsimpa lib_interface ${PYTHON_LIBRARIES})
 
 # Creates a folder "libraries" and adds target project (lib_interface.vcproj) under it
 set_property(TARGET ${SWIG_MODULE_libsimpa_REAL_NAME} PROPERTY FOLDER "libraries")
@@ -59,11 +59,14 @@ install (FILES
 enable_testing()
 # If you add tests, do not forget to add the name to set_property(TEST ..
 
+
+MESSAGE(STATUS "Run test in ${CMAKE_CURRENT_BINARY_DIR}")
+
 add_test(NAME test_modelio
   COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/model_io.py ${PROJECT_BINARY_DIR}/Testing/Temporary/
-  WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/bin/libsimpa)
+  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
   
   
 set_property(TEST test_modelio
- PROPERTY ENVIRONMENT "PYTHONPATH=${PROJECT_BINARY_DIR}/bin/libsimpa"
+ PROPERTY ENVIRONMENT "PYTHONPATH=${CMAKE_CURRENT_BINARY_DIR}"
 )

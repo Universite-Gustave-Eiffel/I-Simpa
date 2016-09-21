@@ -403,8 +403,8 @@ add_executable(isimpa
 # project (isimpa.vcproj) under it
 set_property(TARGET isimpa PROPERTY FOLDER "executables")
 
-set(Boost_USE_STATIC_LIBS   ON)
-find_package(Boost REQUIRED COMPONENTS system python)
+set(Boost_USE_STATIC_LIBS   OFF)
+find_package(Boost REQUIRED COMPONENTS system python filesystem)
 
 IF(CMAKE_BUILD_TYPE STREQUAL "Debug")
     SET(wxWidgets_USE_DEBUG ON)
@@ -459,12 +459,17 @@ install (TARGETS isimpa
 
 set(ISIMPA_RESSOURCES ${PROJECT_SOURCE_DIR}/currentRelease)
 
+
+GET_FILENAME_COMPONENT(FILESYS ${Boost_FILESYSTEM_LIBRARY_RELEASE})
 install (FILES
 ${ISIMPA_RESSOURCES}/appconst.xml
 ${ISIMPA_RESSOURCES}/isimpa.ico
 ${ISIMPA_RESSOURCES}/Licence.pdf
 ${ISIMPA_RESSOURCES}/Licence.rtf
-         DESTINATION .)
+${Boost_FILESYSTEM_LIBRARY_RELEASE}
+${Boost_SYSTEM_LIBRARY_RELEASE}
+${Boost_PYTHON_LIBRARY_RELEASE}
+        DESTINATION .)
 
 install(DIRECTORY
 ${ISIMPA_RESSOURCES}/Bitmaps

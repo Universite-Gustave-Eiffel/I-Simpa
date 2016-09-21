@@ -112,8 +112,8 @@ source_group( "tools" FILES ${TOOLS_SOURCES} )
 #    DEPENDENCY & EXECUTABLE (OR LIB)
 #---------------------------------------#
 
-set(Boost_USE_STATIC_LIBS   ON) 
-find_package(Boost COMPONENTS system filesystem unit_test_framework regex REQUIRED)
+set(Boost_USE_STATIC_LIBS   OFF)
+find_package(Boost COMPONENTS system filesystem regex REQUIRED)
 link_directories( ${Boost_LIBRARY_DIRS} ) 
 include_directories( ${Boost_INCLUDE_DIRS} )
 
@@ -158,6 +158,14 @@ target_link_libraries (TEST_lib_interface
     ${Boost_LIBRARIES})
 
 set_property(TARGET TEST_lib_interface PROPERTY FOLDER "tests")
+
+# Fetch unit test dependencies
+
+find_package(Boost COMPONENTS unit_test_framework timer chrono REQUIRED)
+
+COPY_LIB(${Boost_UNIT_TEST_FRAMEWORK_LIBRARY_RELEASE} ${CMAKE_CURRENT_BINARY_DIR})
+COPY_LIB(${Boost_TIMER_LIBRARY_RELEASE} ${CMAKE_CURRENT_BINARY_DIR})
+COPY_LIB(${Boost_CHRONO_LIBRARY_RELEASE} ${CMAKE_CURRENT_BINARY_DIR})
 
 # Add to test suite
 enable_testing()
