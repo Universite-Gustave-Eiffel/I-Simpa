@@ -21,6 +21,11 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 SET(CMAKE_SWIG_FLAGS "")
 
 SET_SOURCE_FILES_PROPERTIES(libsimpa.i PROPERTIES CPLUSPLUS ON)
+
+set(Boost_USE_STATIC_LIBS   OFF)
+find_package(Boost COMPONENTS system filesystem regex REQUIRED)
+link_directories( ${Boost_LIBRARY_DIRS} ) 
+
 SWIG_ADD_MODULE(libsimpa python libsimpa.i)
 SWIG_LINK_LIBRARIES(libsimpa lib_interface ${PYTHON_LIBRARIES})
 
