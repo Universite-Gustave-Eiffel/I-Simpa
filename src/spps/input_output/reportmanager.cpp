@@ -95,7 +95,7 @@ void ReportManager::writeParticleFile()
     // Create particules folder
 	st_mkdir(paramReport._particlePath);
 	stringClass freqFolder;
-	freqFolder=paramReport._particlePath+stringClass::FromInt(paramReport.freqValue)+stringClass("/");
+	freqFolder=paramReport._particlePath+stringClass::FromInt(paramReport.freqValue)+st_path_separator();
 
 	st_mkdir(freqFolder);
 	stringClass fileNamePath=freqFolder+paramReport._particleFileName;
@@ -616,7 +616,7 @@ void ReportManager::SaveSoundLevelBySource(const CoreString& filename,std::vecto
 			//Pour chaque r�cepteur ponctuel
 			for(uentier idrecp=0;idrecp<params.configManager->recepteur_p_List.size();idrecp++)
 			{
-				CoreString rootRp=workingDir+CoreString(*params.configManager->FastGetConfigValue(Base_Core_Configuration::SPROP_PONCTUAL_RECEIVER_FOLDER_PATH)+"/");
+				CoreString rootRp=workingDir+CoreString(*params.configManager->FastGetConfigValue(Base_Core_Configuration::SPROP_PONCTUAL_RECEIVER_FOLDER_PATH)+st_path_separator());
 				t_Recepteur_P* currentRP=params.configManager->recepteur_p_List[idrecp];
 				t_Recepteur_P receiverData(nbfreqMax,params.nbTimeStep);
 				// Create the content
@@ -634,7 +634,7 @@ void ReportManager::SaveSoundLevelBySource(const CoreString& filename,std::vecto
 				}
 				receiverData.lblRp = currentRP->lblRp;
 				receiverData.cdt_vol = currentRP->cdt_vol;
-				CoreString file = rootRp + receiverData.lblRp + "/" + params.configManager->srcList[idsource]->sourceName + "/";
+				CoreString file = rootRp + receiverData.lblRp + "/" + params.configManager->srcList[idsource]->sourceName + st_path_separator();
 				st_mkdir(file);
 				file += *params.configManager->FastGetConfigValue(Base_Core_Configuration::SPROP_PONCTUAL_RECEIVER_FILE_PATH);
 				BaseReportManager::SauveRecepteurPonctuel(file, reportFreqLbl, reportStepLbl, &receiverData); 

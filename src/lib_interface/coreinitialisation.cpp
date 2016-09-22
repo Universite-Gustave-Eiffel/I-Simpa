@@ -482,7 +482,7 @@ void reportCompilation(Base_Core_Configuration& configManager,CoreString working
 	std::vector<CoreString> reportStepLbl;
 	BaseReportManager::InitHeaderArrays(configManager, reportFreqLbl, reportStepLbl);
 	CoreString rootRaw=workingDir;
-	CoreString rootRp=rootRaw+CoreString(*configManager.FastGetConfigValue(Base_Core_Configuration::SPROP_PONCTUAL_RECEIVER_FOLDER_PATH)+"/");
+	CoreString rootRp=rootRaw+CoreString(*configManager.FastGetConfigValue(Base_Core_Configuration::SPROP_PONCTUAL_RECEIVER_FOLDER_PATH)+st_path_separator());
 	st_mkdir(rootRaw);
 	st_mkdir(rootRp);
 	BaseReportManager::SauveRecepteursPonctuels(rootRp,*configManager.FastGetConfigValue(Base_Core_Configuration::SPROP_PONCTUAL_RECEIVER_FILE_PATH),reportFreqLbl,reportStepLbl,&configManager.recepteur_p_List);

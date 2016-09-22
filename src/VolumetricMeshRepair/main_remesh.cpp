@@ -304,9 +304,7 @@ int MainRemesh(int argc, char* argv[])
 		//if(FromTriangleRemesh.GetVolumeValue(i)>volumeSelectionInfo.minimalVol && (!(volumeSelectionInfo.selectionFilter==VolumeSelectionInfo_t::FILTER_SKIP_EXT) || i!=2) && (!(volumeSelectionInfo.selectionFilter==VolumeSelectionInfo_t::FILTER_EXT_ONLY) || i==2))
 		if(i>1 && i<FromTriangleRemesh.GetVolumeCount())
 		{
-			std::size_t lastPathSeparatorPosition(fileOutput.rfind("\\"));
-			if(lastPathSeparatorPosition==std::string::npos)
-				lastPathSeparatorPosition=fileOutput.rfind("/");
+			std::size_t lastPathSeparatorPosition(fileOutput.rfind(st_path_separator()));
 			std::string basePath;
 			std::string fileName;
 			if(lastPathSeparatorPosition!=std::string::npos)

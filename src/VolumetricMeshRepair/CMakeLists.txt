@@ -21,6 +21,9 @@ set(VMR_SOURCE_FILES
 #    DEPENDENCY & EXECUTABLE (OR LIB)
 #---------------------------------------#
 
+find_package(Boost COMPONENTS system filesystem regex REQUIRED)
+link_directories( ${Boost_LIBRARY_DIRS} ) 
+
 # Set Properties->General->Configuration Type to Application
 # Creates spps with the listed sources
 # Adds sources to the Solution Explorer
