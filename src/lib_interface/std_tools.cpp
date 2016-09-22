@@ -31,6 +31,8 @@
 #include "std_tools.hpp"
 #include <math.h>
 #include <float.h>
+#include <boost/filesystem.hpp>
+
 #ifdef _WIN32
 	#include <direct.h>
 #endif
@@ -39,14 +41,15 @@
     #include <sys/types.h>
 #endif
 
-int st_mkdir(const char* pathname, int perm)
+bool st_mkdir(const std::string& pathname)
 {
-	#ifdef _WIN32
-		return mkdir(pathname);
-	#endif
-	#ifdef _UNIX
-		return mkdir(pathname,perm);
-	#endif
+	return boost::filesystem::create_directories(pathname);
+}
+
+std::string st_path_separator() {
+    boost::filesystem::path path("");
+    path += boost::filesystem::path::preferred_separator;
+    return path.string();
 }
 
 
@@ -55,6 +58,6 @@ bool st_isfinite(const float& value)
 	#ifdef _MSC_VER
 		return _finite(value);
 	#else
-		return isfinite(value);
+		return std::isfinite(value);
 	#endif
 }

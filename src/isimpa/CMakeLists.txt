@@ -1,5 +1,17 @@
 include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
 
+
+# convert path of a .lib file into a .dll file
+# findboost does not store .dll locations
+macro(LIB_TO_DLL LIBPATH DLL_PATH)
+    get_filename_component(DLL_FILENAME ${LIBPATH}  NAME_WE)
+    get_filename_component(DLL_DIR ${LIBPATH} DIRECTORY)
+	set(${DLL_PATH} "${DLL_DIR}/${DLL_FILENAME}.dll")	
+	if(NOT EXISTS "${DLL_DIR}/${DLL_FILENAME}.dll")	
+      MESSAGE(ERROR " Dll file does not exists ${DLL_DIR}/${DLL_FILENAME}.dll")
+	endif()
+endmacro(LIB_TO_DLL)
+
 #--------------#
 #    SOURCES
 #--------------#
@@ -373,6 +385,10 @@ set_property(SOURCE data_manager/python_interface/py_ui_module/element_pywrap.cp
 
 configure_file(data_manager/appconfig_version.cpp.in ${CMAKE_CURRENT_BINARY_DIR}/generated/appconfig_version.cpp )
 
+set(Boost_USE_STATIC_LIBS   OFF)
+find_package(Boost REQUIRED COMPONENTS system python filesystem regex)
+link_directories( ${Boost_LIBRARY_DIRS} ) 
+
 # Set Properties->General->Configuration Type to Application
 # Creates isimpa with the listed sources
 # Adds sources to the Solution Explorer
@@ -402,9 +418,6 @@ add_executable(isimpa
 # Creates a folder "executables" and adds target
 # project (isimpa.vcproj) under it
 set_property(TARGET isimpa PROPERTY FOLDER "executables")
-
-set(Boost_USE_STATIC_LIBS   ON)
-find_package(Boost REQUIRED COMPONENTS system python)
 
 IF(CMAKE_BUILD_TYPE STREQUAL "Debug")
     SET(wxWidgets_USE_DEBUG ON)
@@ -464,7 +477,10 @@ ${ISIMPA_RESSOURCES}/appconst.xml
 ${ISIMPA_RESSOURCES}/isimpa.ico
 ${ISIMPA_RESSOURCES}/Licence.pdf
 ${ISIMPA_RESSOURCES}/Licence.rtf
-         DESTINATION .)
+#${Boost_FILESYSTEM_LIBRARY_RELEASE_REAL}
+#${Boost_SYSTEM_LIBRARY_RELEASE_REAL}
+#${Boost_PYTHON_LIBRARY_RELEASE_REAL}
+        DESTINATION .)
 
 install(DIRECTORY
 ${ISIMPA_RESSOURCES}/Bitmaps
@@ -491,9 +507,19 @@ if(WIN32) # Check if we are on Windows
 	install(DIRECTORY
 	${PYTHON_ROOT_FOLDER}/Lib
 	DESTINATION .)
+	
+	# Resolve symbolic link
+	LIB_TO_DLL(${Boost_FILESYSTEM_LIBRARY_RELEASE} Boost_FILESYSTEM_LIBRARY_RELEASE_REAL)
+	LIB_TO_DLL(${Boost_SYSTEM_LIBRARY_RELEASE} Boost_SYSTEM_LIBRARY_RELEASE_REAL)
+	LIB_TO_DLL(${Boost_PYTHON_LIBRARY_RELEASE} Boost_PYTHON_LIBRARY_RELEASE_REAL)
+	LIB_TO_DLL(${Boost_REGEX_LIBRARY_RELEASE} Boost_REGEX_LIBRARY_RELEASE_REAL)
 
 	install (FILES
-             ${PYTHON_DLL}
+            ${PYTHON_DLL}
+            ${Boost_FILESYSTEM_LIBRARY_RELEASE_REAL}
+            ${Boost_SYSTEM_LIBRARY_RELEASE_REAL}
+            ${Boost_PYTHON_LIBRARY_RELEASE_REAL}
+            ${Boost_REGEX_LIBRARY_RELEASE_REAL}
 			 DESTINATION .)
 endif()
 
@@ -530,4 +556,6 @@ ELSE(WIN32 AND NOT UNIX)
   SET(CPACK_SOURCE_STRIP_FILES "")
 ENDIF(WIN32 AND NOT UNIX)
 SET(CPACK_PACKAGE_EXECUTABLES "isimpa" "I-SIMPA")
+SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "Nicolas Fortin")
+
 INCLUDE(CPack)

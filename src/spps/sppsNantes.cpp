@@ -181,10 +181,10 @@ void runFrequenceCalculation(  progressOperation* parentOperation, ReportManager
 	if((applicationTools.configurationTool->recepteur_s_List.size()>0 || applicationTools.configurationTool->recepteur_scut_List.size()>0 ) && *applicationTools.configurationTool->FastGetConfigValue(Core_Configuration::IPROP_OUTPUT_RECEPTEURS_SURF_BY_FREQ))
 	{
 		//Création du dossier pour le récepteur surfacique à cette fréquence
-		reportParameter._recepteur_surf_Path+=stringClass::FromInt(reportParameter.freqValue)+stringClass(" Hz\\");
+		reportParameter._recepteur_surf_Path+=stringClass::FromInt(reportParameter.freqValue)+stringClass(" Hz/");
 		reportParameter._recepteur_surf_cut_Path=reportParameter._recepteur_surf_Path;
 		//Création du dossier de fréquence
-		st_mkdir(reportParameter._recepteur_surf_Path.c_str());
+		st_mkdir(reportParameter._recepteur_surf_Path);
 		//Ajout du nom du fichier à la fin
 		reportParameter._recepteur_surf_Path+=*applicationTools.configurationTool->FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FILE_PATH);
 		reportParameter._recepteur_surf_cut_Path+=*applicationTools.configurationTool->FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FILE_CUT_PATH);
@@ -298,9 +298,9 @@ int MainProcess(int argc, char* argv[])
 	CoreString sceneMeshPath=*configManager.FastGetConfigValue(Core_Configuration::SPROP_MODEL_FILE_PATH);
 	sceneMeshPath=workingDir+sceneMeshPath;
 	// Chargement du Random SEED
-	unsigned long seedValue = *configManager.FastGetConfigValue(Core_Configuration::I_PROP_RANDOM_SEED);
+	entier seedValue = *configManager.FastGetConfigValue(Core_Configuration::I_PROP_RANDOM_SEED);
 	if(seedValue!=0) {
-		SetRandSeed(seedValue);
+		SetRandSeed((uint32_t)seedValue);
 	}
 
 	//**************************************************
@@ -331,7 +331,7 @@ int MainProcess(int argc, char* argv[])
 
 	//Création du dossier contenant les recepteurs surfaciques
 	if(configManager.recepteur_s_List.size()>0 || configManager.recepteur_scut_List.size()>0 )
-		st_mkdir(reportParameter._recepteur_surf_Path.c_str());
+		st_mkdir(reportParameter._recepteur_surf_Path);
 
 
 	//**************************************************
@@ -397,9 +397,10 @@ int MainProcess(int argc, char* argv[])
 	if (verbose_mode) { cout << "Saving sound level for each Ponctual Receiver per source..." << endl; }
 	ReportManager::SaveSoundLevelBySource("Sound level per source.recp",threadsData,reportParameter);
 	if (verbose_mode) { cout << "End of save sound level for each Ponctual Receiver per source." << endl; }
-	stringClass globalRecSurfPath=workingDir+*configManager.FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FOLDER_PATH)+"Global\\";
+    st_mkdir(workingDir + *configManager.FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FOLDER_PATH));
+    stringClass globalRecSurfPath=workingDir+*configManager.FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FOLDER_PATH)+"Global"+ st_path_separator();
 	//Création du dossier Global
-	st_mkdir(globalRecSurfPath.c_str());
+	st_mkdir(globalRecSurfPath);
     stringClass globalSurfCutPath=globalRecSurfPath+*configManager.FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FILE_CUT_PATH);
 	globalRecSurfPath+=*configManager.FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FILE_PATH);
 	if (verbose_mode) { cout << "Saving Global Surface Receiver Data..." << endl; }

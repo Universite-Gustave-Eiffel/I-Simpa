@@ -18,7 +18,7 @@
 	 * @return Decimal de 0 à 1
 	 */
 	float GetRandValue();
-	void SetRandSeed(unsigned long seed);
+	void SetRandSeed(uint32_t seed);
 #else
 	/**
 	 * Cette méthode permet le tirage aléatoire d'un nombre décimal
@@ -28,7 +28,7 @@
 	{
 		return ((float)rand()) / (float)RAND_MAX;
 	}
-	inline void SetRandSeed(unsigned long seed) {
+	inline void SetRandSeed(uint32_t seed) {
 		srand(seed);
 	}
 #endif

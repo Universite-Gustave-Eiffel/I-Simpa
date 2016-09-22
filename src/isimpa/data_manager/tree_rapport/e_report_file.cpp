@@ -294,7 +294,7 @@ void E_Report_File::RefreshFolderContents()
 					wxArrayString dirs=childFile.GetDirs();
 					wxString dirName=dirs[dirs.size()-1];
 					//Type inconnue, création d'un élément dossier générique
-					E_Report_Folder* newFolder=new E_Report_Folder(this,dirName,dirName+"\\");
+					E_Report_Folder* newFolder=new E_Report_Folder(this,dirName,dirName+wxFileName::GetPathSeparator());
 					this->AppendFils(newFolder);
 					newFolder->RefreshFolderContents();
 				} else if(wxFileExists(childFile.GetFullPath()))

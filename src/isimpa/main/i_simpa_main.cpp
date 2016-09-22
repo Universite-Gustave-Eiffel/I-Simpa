@@ -256,23 +256,6 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	view_line_menu->Check(ID_wireframe_none,true);
 	view_menu->Append(ID_fold_wireframe, _("Lines"),view_line_menu);
 
-
-
-/*
-	view_menu->AppendSeparator();
-
-	wxMenu* affichage_simulation_menu = new wxMenu;
-
-	LinkMenuItemWithElement(affichage_simulation_menu->Append(ID_simulation_particle, _("Rendu des particules"),"",wxITEM_CHECK),
-		Element::ELEMENT_TYPE_SCENE_PROJET_RENDU_PARTICULES,
-		"showparticle");
-	LinkMenuItemWithElement(affichage_simulation_menu->Append(ID_simulation_recepteurss, _("Rendu des récepteurs surfaciques"),"",wxITEM_CHECK),
-		Element::ELEMENT_TYPE_SCENE_PROJET_RENDU_PARTICULES,
-		"showrecepteurss");
-	view_menu->Append(ID_fold_simulation, _("Simulation"),affichage_simulation_menu);
-*/
-
-
 	view_menu->AppendSeparator();
 
 	view_menu->Append(ID_ShowHideMailler, _("Hide meshing"),"Hide meshing",wxITEM_CHECK);

@@ -60,14 +60,11 @@ PythonShell::PythonShell(PyConsole* pyCtrl)
 	outputRedirectIn=NULL;
 
 	main_module = import("__main__");
-	inspect_module = import("inspect");
 	main_namespace = main_module.attr("__dict__");
 
 	//Enregistrement des modules
 	PyImport_AppendInittab("uictrl", inituictrl);
-    //throw std::runtime_error(_("Impossible d'importer le module de psps dans l'interpreteur python.").t_str());
-
-	//Python va copier les objets passés en paramètre
+	//
 
 	main_namespace["PythonStdIoRedirect"] = class_<PythonStdIoRedirect>("PythonStdIoRedirect", no_init)
 	.def("write", &PythonStdIoRedirect::Write)
@@ -86,6 +83,7 @@ PythonShell::PythonShell(PyConsole* pyCtrl)
 	outputRedirectIn=extract<PythonStdIoRedirect*>(sys.attr("stdin"));
 
 	//Ajout du dossier de script
+    boost::python::import("site").attr("addsitedir")("");
 	boost::python::import("site").attr("addsitedir")("UserScript");
 	boost::python::import("site").attr("addsitedir")("SystemScript");
 }
@@ -249,13 +247,14 @@ void PythonShell::call_event(const int& eventid,const int& elementid)
 			//Il faut définir si la méthode attent 1 ou 2 argument
 			//On utilise le module inspect afin d'obtenir le nombre d'argument
 			boost::python::object event_function=event_lst[eventid];
-			boost::python::list arglist=extract_or_throw<boost::python::list>(inspect_module.attr("getargspec")(event_function).attr("args"));
+			boost::python::list arglist=extract_or_throw<boost::python::list>(event_function.attr("func_code").
+                    attr("co_argnames"));
 			boost::python::ssize_t argCount=len(arglist);
 			//Self ne doit pas être pris en compte dans le nombre d'argument
 			if(extract_or_throw<bool>(arglist.attr("__contains__")("self")))
 				argCount--;
 			if(argCount==2)
-				event_function(elementid,eventid);
+				event_function(elementid, eventid);
 			else
 				event_function(elementid);
 		} catch( error_already_set ) {

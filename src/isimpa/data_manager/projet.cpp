@@ -839,7 +839,18 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	///////////////////////////////////////////
 	wxLogInfo(_("Refreshing onglet 'Report'"));
 
+    bool resetHistoryBackup = false;
+    // Refresh of report folder is not a user action and should not trigger tree backup
+    if(rootUserConfig->GetElementByLibelle("mainpref")->GetElementByLibelle("history")->GetBoolConfig("keep_modification_history")) {
+        rootUserConfig->GetElementByLibelle("mainpref")->GetElementByLibelle("history")->UpdateBoolConfig("keep_modification_history", false);
+        resetHistoryBackup = true;
+    }
+
 	RefreshReportFolder();
+
+    if(resetHistoryBackup) {
+        rootUserConfig->GetElementByLibelle("mainpref")->GetElementByLibelle("history")->UpdateBoolConfig("keep_modification_history", true);
+    }
 
 	wxLongLong durationOperation=wxDateTime::UNow().GetValue()-timeDebOperation.GetValue();
 	wxLogInfo(_("Total time calculation: %i ms"),durationOperation.GetValue());
@@ -1374,6 +1385,7 @@ void ProjectManager::OnMenuCopy(uiTreeCtrl* fromCtrl,Element* eRoot)
 		tmpDocXml.Save(tmpStr);
 		wxTextDataObject* data=new wxTextDataObject;
 		data->SetText(tmpStr.GetString());
+        wxTheClipboard->Open();
 		wxTheClipboard->SetData(data);
 		wxTheClipboard->Flush();
 		wxTheClipboard->Close();
@@ -1933,7 +1945,7 @@ void ProjectManager::Init( )
 {
 	if(this->rootCore==NULL || this->rootScene==NULL || this->rootResult==NULL)
 		return;
-
+    
 	treeCore->Init(this->rootCore);
 	treeScene->Init(this->rootScene);
 	treeResult->Init(this->rootResult);

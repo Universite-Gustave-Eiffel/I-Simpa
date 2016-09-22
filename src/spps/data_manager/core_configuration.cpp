@@ -6,13 +6,6 @@ Core_Configuration::Core_Configuration( CoreString xmlFilePath, bool verbose_mod
 {
 	CXml fichierXml(xmlFilePath);
 	LoadCfgFile( fichierXml, verbose_mode );
-
-	#ifdef _PROFILE_
-		SetConfigInformation(SPROP_CORE_WORKING_DIRECTORY,"tmp\\");
-	#endif
-	#ifdef _DEBUG
-		//SetConfigInformation(SPROP_CORE_WORKING_DIRECTORY,"tmp\\");
-	#endif
 	CXmlNode* root=fichierXml.GetRoot();
 	if(root)
 	{

@@ -34,7 +34,6 @@
  */
 #include "python_interface/pythonshell.hpp"
 #include "projet.h"
-#include <wx/arrstr.h>
 #include "last_cpp_include.hpp"
 
 
@@ -90,7 +89,7 @@ void ProjectManager::InitPythonEngine()
 	{
 		Py_Initialize();
 		
-		pyShell=new PythonShell(shellControl);
+		pyShell = new PythonShell(shellControl);
 
 		pyShell->Init();
 		
