@@ -43,7 +43,7 @@
 
 bool st_mkdir(const std::string& pathname)
 {
-	return boost::filesystem::create_directory(pathname);
+	return boost::filesystem::create_directories(pathname);
 }
 
 std::string st_path_separator() {

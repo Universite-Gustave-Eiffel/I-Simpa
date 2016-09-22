@@ -204,8 +204,9 @@ void BaseReportManager::SauveRecepteursPonctuels(stringClass rootFolder,const st
         while (boost::filesystem::exists(recpFolder) && counter < 20) {
 			recpFolder = (rootFolder + currentRecP->lblRp + stringClass::FromInt(counter++));
 		}
-		currentRecP->pathRp=recpFolder.string() + "/";
-		recpFolder=recpFolder.string() + "/"+fileName;
+		currentRecP->pathRp=recpFolder.string() + st_path_separator();
+        st_mkdir(recpFolder.string());
+		recpFolder=recpFolder.string() + st_path_separator() + fileName;
 		SauveRecepteurPonctuel(recpFolder.string(), freqLst, timeStepLst, currentRecP); 
 	}
 
