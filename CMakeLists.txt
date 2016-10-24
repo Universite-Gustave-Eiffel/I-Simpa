@@ -5,6 +5,17 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.6.0)
 project (isimpa VERSION 1.3.2)
 
 
+# convert path of a .lib file into a .dll file
+# findboost does not store .dll locations
+macro(LIB_TO_DLL LIBPATH DLL_PATH)
+    get_filename_component(DLL_FILENAME ${LIBPATH}  NAME_WE)
+    get_filename_component(DLL_DIR ${LIBPATH} DIRECTORY)
+	set(${DLL_PATH} "${DLL_DIR}/${DLL_FILENAME}.dll")	
+	if(NOT EXISTS "${DLL_DIR}/${DLL_FILENAME}.dll")	
+      MESSAGE(ERROR " Dll file does not exists ${DLL_DIR}/${DLL_FILENAME}.dll")
+	endif()
+endmacro(LIB_TO_DLL)
+
 macro(COPY_LIB LIBPATH DESTINATION)
     get_filename_component(UT_SHARED_FILE ${LIBPATH} NAME)
     configure_file(${LIBPATH}

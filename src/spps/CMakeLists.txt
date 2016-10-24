@@ -1,5 +1,5 @@
 include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
-
+include( InstallRequiredSystemLibraries )
 message(STATUS " Boost path - $ENV{BOOST_INCLUDEDIR}")
 message(STATUS " Boost lib path - $ENV{BOOST_LIBRARYDIR}")
 
@@ -42,7 +42,7 @@ source_group("" FILES ${SPPS_SOURCES} $(SPPS_MAIN_SOURCES))
 #    DEPENDENCY & EXECUTABLE (OR LIB)
 #---------------------------------------#
 
-set(Boost_USE_STATIC_LIBS   ON)
+set(Boost_USE_STATIC_LIBS   OFF)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   find_package(Boost REQUIRED COMPONENTS system random filesystem)
@@ -96,14 +96,32 @@ endif()
 #    INSTALL
 #--------------#
 
+# Resolve symbolic link
+LIB_TO_DLL(${Boost_FILESYSTEM_LIBRARY_RELEASE} Boost_FILESYSTEM_LIBRARY_RELEASE_REAL)
+LIB_TO_DLL(${Boost_SYSTEM_LIBRARY_RELEASE} Boost_SYSTEM_LIBRARY_RELEASE_REAL)
+LIB_TO_DLL(${Boost_RANDOM_LIBRARY_RELEASE} Boost_RANDOM_LIBRARY_RELEASE_REAL)
+LIB_TO_DLL(${Boost_REGEX_LIBRARY_RELEASE} Boost_REGEX_LIBRARY_RELEASE_REAL)
+LIB_TO_DLL(${Boost_THREAD_LIBRARY_RELEASE} Boost_THREAD_LIBRARY_RELEASE_REAL)
+		
+
 # Adds logic to INSTALL.vcproj to copy spps to destination directory
 install (TARGETS spps
         RUNTIME DESTINATION core/spps)
+		
+install (FILES
+        ${Boost_FILESYSTEM_LIBRARY_RELEASE_REAL}
+        ${Boost_SYSTEM_LIBRARY_RELEASE_REAL}
+        ${Boost_REGEX_LIBRARY_RELEASE_REAL}
+        ${Boost_RANDOM_LIBRARY_RELEASE_REAL}
+        ${Boost_TREAD_LIBRARY_RELEASE_REAL}
+			DESTINATION core/spps)
 
+if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
+    install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION core/spps COMPONENT System )
+endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
 #------------#
 #    TEST
 #------------#
-
 # Data files
 set(TEST_DATA_DIR "${PROJECT_BINARY_DIR}/Testing")
 set(SPPS_TEST_DIR "${TEST_DATA_DIR}/")
@@ -111,6 +129,7 @@ configure_file(tests/config.xml ${SPPS_TEST_DIR})
 file(COPY
     tests/speaker-test3.txt
     DESTINATION ${TEST_DATA_DIR})
+	
 
 # Test executable and folder
 set(SPPS_TESTS

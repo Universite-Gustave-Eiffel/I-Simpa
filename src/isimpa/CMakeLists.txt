@@ -1,16 +1,6 @@
 include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
 
 
-# convert path of a .lib file into a .dll file
-# findboost does not store .dll locations
-macro(LIB_TO_DLL LIBPATH DLL_PATH)
-    get_filename_component(DLL_FILENAME ${LIBPATH}  NAME_WE)
-    get_filename_component(DLL_DIR ${LIBPATH} DIRECTORY)
-	set(${DLL_PATH} "${DLL_DIR}/${DLL_FILENAME}.dll")	
-	if(NOT EXISTS "${DLL_DIR}/${DLL_FILENAME}.dll")	
-      MESSAGE(ERROR " Dll file does not exists ${DLL_DIR}/${DLL_FILENAME}.dll")
-	endif()
-endmacro(LIB_TO_DLL)
 
 #--------------#
 #    SOURCES

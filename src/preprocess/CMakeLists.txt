@@ -1,5 +1,5 @@
 include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
-
+include( InstallRequiredSystemLibraries )
 #--------------#
 #    SOURCES
 #--------------#
@@ -32,6 +32,22 @@ target_link_libraries (preprocess lib_interface)
 #    INSTALL
 #--------------#
 
+
+# Resolve symbolic link
+LIB_TO_DLL(${Boost_FILESYSTEM_LIBRARY_RELEASE} Boost_FILESYSTEM_LIBRARY_RELEASE_REAL)
+LIB_TO_DLL(${Boost_SYSTEM_LIBRARY_RELEASE} Boost_SYSTEM_LIBRARY_RELEASE_REAL)
+LIB_TO_DLL(${Boost_REGEX_LIBRARY_RELEASE} Boost_REGEX_LIBRARY_RELEASE_REAL)
+
 # Adds logic to INSTALL.vcproj to copy preprocess to destination directory
 install (TARGETS preprocess
         RUNTIME DESTINATION meshing/tetgen)
+		
+install (FILES
+        ${Boost_FILESYSTEM_LIBRARY_RELEASE_REAL}
+        ${Boost_SYSTEM_LIBRARY_RELEASE_REAL}
+        ${Boost_REGEX_LIBRARY_RELEASE_REAL}
+			DESTINATION meshing/tetgen)
+
+if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
+    install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION meshing/tetgen COMPONENT System )
+endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
