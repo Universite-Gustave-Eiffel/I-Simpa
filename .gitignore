@@ -40,3 +40,5 @@ I-Simpa.workspace
 Makefile
 isimpa.mk
 isimpa.project
+build/
+make.bat
