@@ -142,7 +142,7 @@ public:
 		float currentProgression;
 		mainOperation.GetState(&currentProgression);
 		currentProgression*=100;
-		if((currentProgression - lastOutputProgression) >= 5.0 && currentProgression<100)
+		if ((int)(currentProgression * 100)>(int)(lastOutputProgression * 100) && currentProgression<100)
 		{
 			lastOutputProgression=currentProgression;
 			DoShowProgression(currentProgression);
