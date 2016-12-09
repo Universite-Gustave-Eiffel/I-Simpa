@@ -829,7 +829,7 @@ void Element::Reparent( Element* newParent )
 		Element* nvParent=this->GetElementByTreeId(newParent->GetElementInfos().idElement);
 		if(nvParent!=NULL)
 		{
-			wxLogInfo(_("Operation not allowed"));
+			wxLogMessage(_("Operation not allowed"));
 			return;
 		}
 	}

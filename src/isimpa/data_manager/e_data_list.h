@@ -227,7 +227,7 @@ public:
 				{
 					SetValue(iList[id],sValue);
 				}else{
-					wxLogInfo(_("Unauthorized data"));
+					wxLogMessage(_("Unauthorized data"));
 				}
 				Modified(this);
 				return;

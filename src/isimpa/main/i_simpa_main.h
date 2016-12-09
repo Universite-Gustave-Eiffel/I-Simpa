@@ -347,7 +347,7 @@ public:
 	/**
 	 *	@brief A l'événement de génération d'un message, le message est redirigé
 	 *
-	 *	Pour faire appel à cette méthode n'importe où dans le logiciel, utiliser : wxLogInfo()
+	 *	Pour faire appel à cette méthode n'importe où dans le logiciel, utiliser : wxLogMessage()
 	 *	Se référer au document développeur de wxWidgets
 	*/
 	void DoLogRecord(wxLogLevel level,

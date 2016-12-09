@@ -719,24 +719,24 @@ bool RecepteursSControler::UserWantToKnowAcousticLevelAtPosition( vec3 extractPo
 			if(RecordRecepteurSurfType==(int)formatRSBIN::RECEPTEURS_RECORD_TYPE_SPL_STANDART || RecordRecepteurSurfType==(int)formatRSBIN::RECEPTEURS_RECORD_TYPE_SPL_GAIN)
 			{
 				if(wxFinite(energyValue))
-					wxLogInfo(_("Sound level at pointer s %.2f ")+libellLegends.unit,energyValue);
+					wxLogMessage(_("Sound level at pointer s %.2f ")+libellLegends.unit,energyValue);
 				else
-					wxLogInfo(_("Sound level is not given"));
+					wxLogMessage(_("Sound level is not given"));
 			}else{
 					if(RecordRecepteurSurfType==(int)formatRSBIN::RECEPTEURS_RECORD_TYPE_TR)
-						wxLogInfo(_("RT at pointer is %.2f ")+libellLegends.unit,energyValue);
+						wxLogMessage(_("RT at pointer is %.2f ")+libellLegends.unit,energyValue);
 					else if(RecordRecepteurSurfType==(int)formatRSBIN::RECEPTEURS_RECORD_TYPE_CLARITY)
-						wxLogInfo(_("The clarity value at this coordinate is %.2f")+libellLegends.unit,energyValue);
+						wxLogMessage(_("The clarity value at this coordinate is %.2f")+libellLegends.unit,energyValue);
 					else if(RecordRecepteurSurfType==(int)formatRSBIN::RECEPTEURS_RECORD_TYPE_DEFINITION)
-						wxLogInfo(_("The D value at this coordinate is %.2f")+libellLegends.unit,energyValue);
+						wxLogMessage(_("The D value at this coordinate is %.2f")+libellLegends.unit,energyValue);
 					else if(RecordRecepteurSurfType==(int)formatRSBIN::RECEPTEURS_RECORD_TYPE_EDT)
-						wxLogInfo(_("The TS value at this coordinate is %.2f")+libellLegends.unit,energyValue);
+						wxLogMessage(_("The TS value at this coordinate is %.2f")+libellLegends.unit,energyValue);
 					else if(RecordRecepteurSurfType==(int)formatRSBIN::RECEPTEURS_RECORD_TYPE_EDT)
-						wxLogInfo(_("The ST value at this coordinate is %.2f")+libellLegends.unit,energyValue);
+						wxLogMessage(_("The ST value at this coordinate is %.2f")+libellLegends.unit,energyValue);
 					else if(RecordRecepteurSurfType==(int)formatRSBIN::RECEPTEURS_RECORD_TYPE_PRESSURE)
-						wxLogInfo(_("The pressure value at this coordinate is %.2f")+libellLegends.unit,energyValue);
+						wxLogMessage(_("The pressure value at this coordinate is %.2f")+libellLegends.unit,energyValue);
 					else if(RecordRecepteurSurfType==(int)formatRSBIN::RECEPTEURS_RECORD_TYPE_EDT)
-						wxLogInfo(_("EDT at pointer is %.2f ")+libellLegends.unit,energyValue);
+						wxLogMessage(_("EDT at pointer is %.2f ")+libellLegends.unit,energyValue);
 			}
 		}
 	}else{

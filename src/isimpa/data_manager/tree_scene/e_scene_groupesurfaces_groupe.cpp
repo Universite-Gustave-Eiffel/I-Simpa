@@ -383,7 +383,7 @@ void E_Scene_Groupesurfaces_Groupe::EndDrag(wxTreeEvent& treeEvent,wxTreeCtrl* t
 				if(!isPointerGroup) //On ne supprime pas de l'element source si nous sommes un pointeur
 					ansGroup->DeleteElementByTreeId(infosDragEl.idElement);
 			}else{
-				wxLogInfo(_("The drag and drop of vertex is allowed only from surface groups"));
+				wxLogMessage(_("The drag and drop of vertex is allowed only from surface groups"));
 			}
 		}else if(infosDragEl.typeElement==Element::ELEMENT_TYPE_SCENE_GROUPESURFACES_GROUPE && infosDragEl.idElement!=this->elementInfo.idElement)
 		{
@@ -410,7 +410,7 @@ void E_Scene_Groupesurfaces_Groupe::EndDrag(wxTreeEvent& treeEvent,wxTreeCtrl* t
 					draggingGroup->ClearGroup();
 				}
 			}else{
-				wxLogInfo(_("The drag and drop of a group is allowed only from main surface groups"));
+				wxLogMessage(_("The drag and drop of a group is allowed only from main surface groups"));
 			}
 
 		}

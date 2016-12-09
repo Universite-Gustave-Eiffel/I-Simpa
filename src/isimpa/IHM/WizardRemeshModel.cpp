@@ -239,7 +239,7 @@ namespace ModelReconstructionUI
 			volumesValues.clear();
 			//Appel de la fonction de lecture des volumes
 			this->modelReconstructionManager->GetAvaibleVolumes(reconstructionPreferences,volumesIds,volumesValues);
-			//wxLogInfo(wxString::Format("%i volumes",volumesIds.size()));
+			//wxLogMessage(wxString::Format("%i volumes",volumesIds.size()));
 			wxListBox* volumesLst=wxDynamicCast(wxWindow::FindWindowById(WIZARD_CTRL_VOLUMES_LIST,this),wxListBox);
 			if(volumesLst)
 			{

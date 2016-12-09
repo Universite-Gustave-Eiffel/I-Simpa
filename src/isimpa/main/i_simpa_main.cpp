@@ -854,7 +854,7 @@ void MainUiFrame::OnChangeLanguage(wxCommandEvent& event)
 {
 	MainUiFrame::AskApplicationLanguage(wxLocale::GetSystemLanguage());
 	this->saveManagerConfig=false;
-	wxLogInfo(_("Language will be changed after restarting I-Simpa"));
+	wxLogMessage(_("Language will be changed after restarting I-Simpa"));
 }
 
 void MainUiFrame::OnShowPreferenceTree(wxCommandEvent& event)

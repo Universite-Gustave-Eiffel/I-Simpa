@@ -257,7 +257,7 @@ void ParticulesControler::LoadPBin(wxString fileName, bool doCoordsTransformatio
 				{
 					//Annulation du chargement du fichier par l'utilisateur
 					Init();
-					wxLogInfo(_("Cancel loading particles files"));
+					wxLogMessage(_("Cancel loading particles files"));
 					binFile.close();
 					return;
 				}

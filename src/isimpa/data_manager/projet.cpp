@@ -374,7 +374,7 @@ void ProjectManager::CopyGlToFile()
 		{
 			wxString filename(wxString(saveFileDialog.GetPath()));
 			glImage.SaveFile(filename);
-			wxLogInfo(_("Image saved successfully"));
+			wxLogMessage(_("Image saved successfully"));
 
 		}
 	}
@@ -404,7 +404,7 @@ void ProjectManager::CopyGlToFileWithDim()
 			{
 				wxString filename(wxString(saveFileDialog.GetPath()));
 				glImage.SaveFile(filename);
-				wxLogInfo(_("Image saved successfully"));
+				wxLogMessage(_("Image saved successfully"));
 
 			}
 		}
@@ -825,19 +825,19 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	bool result=uiRunExe(mainFrame,cmd,labelOutput,&progDialog);
 	wxLongLong durationCalculation=wxDateTime::UNow().GetValue()-timeDebCalculation.GetValue();
 
-	wxLogInfo(_("Calculation time: %i ms"),durationCalculation.GetValue());
+	wxLogMessage(_("Calculation time: %lld ms"),durationCalculation.GetValue());
 
 	///////////////////////////////////////////
 	// Copie du fichier de projet XML dans le dossier de rapport de calcul
 	///////////////////////////////////////////
-	wxLogInfo(_("Copy of calculation parameters"));
+	wxLogMessage(_("Copy of calculation parameters"));
 	this->UpdateXmlFile(reportFolderName+wxFileName::GetPathSeparator());
 
 
 	///////////////////////////////////////////
 	///	On ajoute un enregistrement des résultats de calcul dans les éléments
 	///////////////////////////////////////////
-	wxLogInfo(_("Refreshing onglet 'Report'"));
+	wxLogMessage(_("Refreshing onglet 'Report'"));
 
     bool resetHistoryBackup = false;
     // Refresh of report folder is not a user action and should not trigger tree backup
@@ -853,7 +853,7 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
     }
 
 	wxLongLong durationOperation=wxDateTime::UNow().GetValue()-timeDebOperation.GetValue();
-	wxLogInfo(_("Total time calculation: %i ms"),durationOperation.GetValue());
+	wxLogMessage(_("Total time calculation: %lld ms"),durationOperation.GetValue());
 
 
 }
@@ -962,7 +962,7 @@ void ProjectManager::ImportMaterial(wxString fromFile)
 		{
 			ImportMaterialCatt(fromFile);
 		}else{
-			wxLogInfo(_("Unknown file format"));
+			wxLogMessage(_("Unknown file format"));
 		}
 	}else{
 		wxLogError(_("File does not exist"));
@@ -972,7 +972,7 @@ void ProjectManager::ImportMaterial(wxString fromFile)
 void ProjectManager::ImportMaterialCatt(wxString fromFile)
 {
 	wxFileName nomDeFichier(fromFile);
-	wxLogInfo(_("Import from CATT-Acoustic file"));
+	wxLogMessage(_("Import from CATT-Acoustic file"));
 
 	//Ajout du groupe dans l'arbre du projet
 	Element* searchResult=rootScene->GetElementByType(Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_USER);
@@ -1165,7 +1165,7 @@ void ProjectManager::ImportMaterialCatt(wxString fromFile)
 					importedMaterial->UpdateDiffusionValue(16000,diffValue);
 					importedMaterial->UpdateDiffusionValue(20000,diffValue);
 				}
-				wxLogInfo(_("Importation of material %s"),absName);
+				wxLogMessage(_("Importation of material %s"),absName);
 				mainFrame->Update();
 				ligne=lecteur.GetLine();
 			}else{
@@ -1192,7 +1192,7 @@ void ProjectManager::ImportMaterialCatt(wxString fromFile)
 
 void ProjectManager::ImportMaterialOdeon(wxString fromFile)
 {
-	wxLogInfo(_("Import from Odeon file"));
+	wxLogMessage(_("Import from Odeon file"));
 	wxFileName nomDeFichier(fromFile);
 
 	//Ajout du groupe dans l'arbre du projet
@@ -1227,7 +1227,7 @@ void ProjectManager::ImportMaterialOdeon(wxString fromFile)
 				tabAbs.push_back(lineParser.GetNextFloat());
 			if(tabAbs.size()==8)
 			{
-				wxLogInfo(_("Importation of material %s"),absName);
+				wxLogMessage(_("Importation of material %s"),absName);
 				//Ajout du matériau dans le groupe
 				E_Scene_Bdd_Materiaux_User_Materiau* importedMaterial=nvGroup->AppendUserMateriau(absName);
 				//*************************************************
@@ -1806,7 +1806,7 @@ void ProjectManager::OnAskSelectPosition()
 	eventUpdate.SetInt(ApplicationConfiguration::MAIN_EVENT_SWITCH_TO_CAMERA_TOOL);
 	wxPostEvent(mainFrame, eventUpdate);
 	GlFrame->modeSelectionPoint=true;
-	wxLogInfo(_("Please click on the 3D view to update the coordinates")+wxString(" :"));
+	wxLogMessage(_("Please click on the 3D view to update the coordinates")+wxString(" :"));
 }
 
 
@@ -2527,7 +2527,7 @@ bool ProjectManager::Open(const wxString&filename)
 			elementCible->UpdateStringConfig("urlsave",filename);
 		}
 		//logControl->Clear();
-		wxLogInfo(_("Loading project: %s"), fProjet.GetFullName());
+		wxLogMessage(_("Loading project: %s"), fProjet.GetFullName());
 		return true;
 	}else{
 		return false;
@@ -2604,7 +2604,7 @@ bool ProjectManager::SaveTo( const wxString& filename , bool updateConfig)
 		SetMainFrameName(pathSauvegarde.GetName(),false);
 	}
 	bool res=ZipFolder(this->dossierCourant,filename);
-	wxLogInfo(_("Save finished"));
+	wxLogMessage(_("Save finished"));
 	return res;
 }
 
@@ -2767,7 +2767,7 @@ void ProjectManager::OnCameraTool(wxCommandEvent& event)
 void ProjectManager::OnSwitchSelectionMode(wxCommandEvent& event)
 {
 	this->GlFrame->SetCurrentTool(OpenGlViewer::TOOL_MODE_SELECTION);
-	wxLogInfo(_("Select face: Left Click on the 3D view 3D to select a face; Double left Click+Ctrl to select a face entirely"));
+	wxLogMessage(_("Select face: Left Click on the 3D view 3D to select a face; Double left Click+Ctrl to select a face entirely"));
 }
 
 
