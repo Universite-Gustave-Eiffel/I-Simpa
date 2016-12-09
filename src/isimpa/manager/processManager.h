@@ -51,7 +51,7 @@ public:
 	 * @param cmd Chemin de l'exécutable
 	 */
 	processManager(wxFrame *parent, const wxString& cmd, const wxString& labelOutput, wxWindow* progressDialog)
-		: wxProcess(reinterpret_cast<wxEvtHandler*>(parent)), m_cmd(cmd), labelOutput(labelOutput), m_timer(this), progressDialog(progressDialog)
+		: wxProcess(reinterpret_cast<wxEvtHandler*>(parent)), m_cmd(cmd), labelOutput(labelOutput), m_timer(this), progressDialog(progressDialog), parent(parent), outputProgression(0)
 	{
         Redirect();
 		run=true;
@@ -92,6 +92,8 @@ private:
 	wxString m_cmd;
 	wxTimer m_timer;
 	wxWindow* progressDialog;
+	wxFrame *parent;
+	float outputProgression;
 	const wxString labelOutput;
 	std::vector<smart_ptr<InterfLogger> > outlogs;
 	wxDECLARE_EVENT_TABLE();

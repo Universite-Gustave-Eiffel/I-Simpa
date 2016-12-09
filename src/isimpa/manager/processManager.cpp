@@ -85,7 +85,7 @@ void processManager::HandleOutput() {
 			}
 			else {
 				wxString prog = output.Right(output.Len() - 1).Strip();
-				float outputProgression = Convertor::ToFloat(prog);
+				outputProgression = Convertor::ToFloat(prog);
 			}
 		}
 		if (IsErrorAvailable()) {
@@ -118,6 +118,41 @@ void processManager::HandleOutput() {
 
 void processManager::OnTimer(wxTimerEvent& WXUNUSED(event)) {
 	HandleOutput();
+	if (parent)
+		parent->Update();
+	if (outputProgression>99.f)
+		outputProgression = 99;
+	wxProgressDialog * progDialog = wxDynamicCast(progressDialog, wxProgressDialog);
+	if (progDialog && !progDialog->Update(outputProgression * 100))
+	{
+		int pid = GetPid();
+		if(pid > 0) {
+			wxKillError killerror = wxProcess::Kill(pid, wxSIGKILL);
+			wxLogMessage(_("External code execution canceled"));
+			wxLogMessage(_("Process answer:"));
+			switch (killerror)
+			{
+			case wxKILL_OK:              // no error
+				wxLogMessage(_("No error"));
+				break;
+			case wxKILL_BAD_SIGNAL:      // no such signal
+				wxLogError(_("Signal doesn't exist"));
+				break;
+			case wxKILL_ACCESS_DENIED:   // permission denied
+				wxLogError(_("Unauthorized closing process"));
+				break;
+			case wxKILL_NO_PROCESS:      // no such process
+				wxLogError(_("Process doesn't exist"));
+				break;
+			case wxKILL_ERROR:           // another, unspecified error
+				wxLogError(_("Non-specified process output"));
+				break;
+			default:
+				wxLogError(_("Unknown output process"));
+				break;
+			}
+		}
+	}
 	m_timer.StartOnce(150); // Message refresh time
 }
 
