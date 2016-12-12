@@ -54,7 +54,6 @@ public:
 		: wxProcess(reinterpret_cast<wxEvtHandler*>(parent)), m_cmd(cmd), labelOutput(labelOutput), m_timer(this), progressDialog(progressDialog), parent(parent), outputProgression(0)
 	{
         Redirect();
-		run=true;
 		m_timer.StartOnce(150); // Message refresh time
     }
 
@@ -64,14 +63,9 @@ public:
 		{
 			m_timer.Stop();
 		}
+		HandleOutput();
 	}
-
-	/**
-	 * Permet de connaître l'etat de l'execution
-	 * @return Vrai si l'application est en cours d'exécution
-	 */
-	bool IsRunning();
-
+	
 	/**
 	* Process log messages from external exe
 	*/
@@ -82,13 +76,8 @@ public:
 	*/
 	void AddLogger(smart_ptr<InterfLogger> logger);
 
-    /**
-    * Fin de l'execution de l'application externe
-    */
-    virtual void OnTerminate(int pid, int status);
 private:
 	void HandleOutput();
-	bool run;
 	wxString m_cmd;
 	wxTimer m_timer;
 	wxWindow* progressDialog;

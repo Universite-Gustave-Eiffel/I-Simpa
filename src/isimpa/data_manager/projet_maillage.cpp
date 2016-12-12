@@ -120,11 +120,7 @@ bool ProjectManager::RunTetGenBoundaryMesh( wxString cmd, wxString cacheFolder,w
 	wxString face=cacheFolder+sceneName+".1.face";
 	wxString node=cacheFolder+sceneName+".1.node";
 
-
-	wxRemoveFile(face);
-	wxRemoveFile(node);
-
-
+	
 	///////////////////////////////////////////
 	///	On execute le logiciel de calcul
 	///////////////////////////////////////////
@@ -143,12 +139,7 @@ bool ProjectManager::RunTetGenBoundaryMesh( wxString cmd, wxString cacheFolder,w
 		sceneMesh._LoadFaceFile(face);
 		wxLogMessage(_("Loading ASCII files from mesh generator complete"));
 	}
-
-
-	wxRemoveFile(face);
-	wxRemoveFile(node);
-	wxRemoveFile(meshFilePath);
-
+	
 	wxLongLong durationOperation=wxDateTime::UNow().GetValue()-timeDebOperation.GetValue();
 	wxLogMessage(_("Total time of meshing: %lld ms"),durationOperation.GetValue());
 	if(!result)
@@ -212,13 +203,6 @@ bool ProjectManager::RunTetGenMaillage(param_TetGenMaillage& paramMaillage)
 	wxString node=cacheFolder+sceneName+".1.node";
 	wxString neigh=cacheFolder+sceneName+".1.neigh";
 
-
-	wxRemoveFile(face);
-	wxRemoveFile(ele);
-	wxRemoveFile(node);
-	wxRemoveFile(neigh);
-	wxRemoveFile(meshFilePath);
-	wxRemoveFile(constraintFilePath);
 	///////////////////////////////////////////
 	///	Conversion de la scène au format POLY
 	///////////////////////////////////////////
@@ -285,15 +269,7 @@ bool ProjectManager::RunTetGenMaillage(param_TetGenMaillage& paramMaillage)
 			this->OnSelectVertex(faceInErr,false);
 		}
 	}
-
-	wxRemoveFile(face);
-	wxRemoveFile(ele);
-	wxRemoveFile(node);
-	wxRemoveFile(neigh);
-	wxRemoveFile(meshFilePath);
-	wxRemoveFile(constraintFilePath);
-
-
+	
 	wxLongLong durationOperation=wxDateTime::UNow().GetValue()-timeDebOperation.GetValue();
 	wxLogMessage(_("Total time of meshing: %lld ms"),durationOperation.GetValue());
 	if(!result)

@@ -85,7 +85,7 @@ void E_Report_Unknown::FillWxTree(wxTreeCtrl* treeToFeed,const wxTreeItemId& par
 			if(ft->GetIcon(&iconLocation))
 			{
 				wxIcon appIcon(iconLocation);
-				if(appIcon.Ok())
+				if(wxFileExists(iconLocation.GetFileName()) && appIcon.IsOk())
 					this->elementInfo.graphElement=treeToFeed->GetImageList()->Add(appIcon);	
 			}
 			delete ft;

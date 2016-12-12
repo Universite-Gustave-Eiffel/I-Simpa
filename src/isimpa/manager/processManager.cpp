@@ -42,16 +42,6 @@ wxBEGIN_EVENT_TABLE(processManager, wxProcess)
 wxEND_EVENT_TABLE()
 
 
-void processManager::OnTerminate(int pid, int status)
-{
-	if (m_timer.IsRunning())
-	{
-		m_timer.Stop();
-	}
-	HandleOutput();
-	run = false;
-}
-
 void processManager::HandleOutput() {
 	wxString warningMessage;
 	wxString message;
@@ -160,12 +150,6 @@ void processManager::AddLogger(smart_ptr<InterfLogger> logger)
 {
 	this->outlogs.push_back(logger);
 }
-
-bool processManager::IsRunning()
-{
-	return run;
-}
-
 
 bool uiRunExe(wxFrame* parent,const wxString& path,const wxString& labelOutput, wxWindow* progressDialog,smart_ptr<InterfLogger> extLogger)
 {
