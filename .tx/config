@@ -1,3 +1,9 @@
 [main]
 host = https://www.transifex.com
 
+[i-simpa.i-simpa-en]
+source_file = src/isimpa/lang/internat.pot
+source_lang = en
+type = PO
+file_filter = currentRelease/locale/<lang>/internat.po
+minimum_perc = 90
