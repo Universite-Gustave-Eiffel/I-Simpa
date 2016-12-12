@@ -361,6 +361,13 @@ source_group( "" FILES ${ISIMPA_SOURCES} )
 # Build auto-generated source files
 # Find package for generation
 FIND_PACKAGE(PythonInterp REQUIRED)
+# to convert .po files into .mo files
+FIND_PACKAGE(Gettext)
+IF( GETTEXT_FOUND )
+  set(ISIMPA_LANG ${PROJECT_SOURCE_DIR}/currentRelease/locale)
+  MESSAGE(STATUS "Gettext convert PO files")
+  GETTEXT_CREATE_TRANSLATIONS(${ISIMPA_LANG}/fr/internat.mo ALL internat.po)
+ENDIF()
 
 # Ask make to call python in order to use element.h to produce enum_def.cpp
 ADD_CUSTOM_COMMAND(
@@ -377,7 +384,7 @@ configure_file(data_manager/appconfig_version.cpp.in ${CMAKE_CURRENT_BINARY_DIR}
 
 set(Boost_USE_STATIC_LIBS   OFF)
 find_package(Boost REQUIRED COMPONENTS system python filesystem regex)
-link_directories( ${Boost_LIBRARY_DIRS} ) 
+link_directories( ${Boost_LIBRARY_DIRS} )
 
 # Set Properties->General->Configuration Type to Application
 # Creates isimpa with the listed sources
@@ -497,7 +504,7 @@ if(WIN32) # Check if we are on Windows
 	install(DIRECTORY
 	${PYTHON_ROOT_FOLDER}/Lib
 	DESTINATION .)
-	
+
 	# Resolve symbolic link
 	LIB_TO_DLL(${Boost_FILESYSTEM_LIBRARY_RELEASE} Boost_FILESYSTEM_LIBRARY_RELEASE_REAL)
 	LIB_TO_DLL(${Boost_SYSTEM_LIBRARY_RELEASE} Boost_SYSTEM_LIBRARY_RELEASE_REAL)
