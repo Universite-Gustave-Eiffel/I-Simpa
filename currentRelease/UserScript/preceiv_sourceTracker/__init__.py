@@ -5,8 +5,8 @@
 #
 import uilocale
 import uictrl as ui
-
-ScriptFolder=ui.application.getapplicationpath()["userscript"]+"preceiv_sourceTracker\\"
+import os
+ScriptFolder=ui.application.getapplicationpath()["userscript"]+"preceiv_sourceTracker"+os.sep
 #Déclaration de la méthode de traduction
 _=uilocale.InstallUiModule(ScriptFolder,ui.application.getlocale())
 ##
