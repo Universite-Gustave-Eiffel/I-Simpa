@@ -236,6 +236,8 @@ set(DATA_MANAGER_TREERAPPORT_SOURCES
     data_manager/tree_rapport/e_report_gabe_gap.h
     data_manager/tree_rapport/e_report_gabe_recp.cpp
     data_manager/tree_rapport/e_report_gabe_recp.h
+    data_manager/tree_rapport/e_report_gabe_recps.cpp
+    data_manager/tree_rapport/e_report_gabe_recps.h
     data_manager/tree_rapport/e_report_partvisualisation.h
     data_manager/tree_rapport/e_report_recepteurssvisualisation.h
     data_manager/tree_rapport/e_report_rpi.h
@@ -361,14 +363,17 @@ source_group( "" FILES ${ISIMPA_SOURCES} )
 # Build auto-generated source files
 # Find package for generation
 FIND_PACKAGE(PythonInterp REQUIRED)
-# to convert .po files into .mo files
-FIND_PACKAGE(Gettext)
-IF(NOT WIN32 AND GETTEXT_FOUND )
-  set(ISIMPA_LANG ${PROJECT_SOURCE_DIR}/currentRelease/locale)
-  MESSAGE(STATUS "Gettext convert PO files")
-  GETTEXT_CREATE_TRANSLATIONS(${ISIMPA_LANG}/fr/internat.mo ALL internat.po)
-ENDIF()
 
+#MSGMERGE crash under win32 for no reason
+IF(NOT WIN32)
+    # to convert .po files into .mo files
+    FIND_PACKAGE(Gettext)
+    IF(GETTEXT_FOUND )
+      set(ISIMPA_LANG ${PROJECT_SOURCE_DIR}/currentRelease/locale)
+      MESSAGE(STATUS "Gettext convert PO files")
+      GETTEXT_CREATE_TRANSLATIONS(${ISIMPA_LANG}/fr/internat.mo ALL internat.po)
+    ENDIF()
+ENDIF()
 # Ask make to call python in order to use element.h to produce enum_def.cpp
 ADD_CUSTOM_COMMAND(
   OUTPUT "enum_def.cpp"

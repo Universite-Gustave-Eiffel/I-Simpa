@@ -195,7 +195,8 @@ class Element
 			ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES_USER,
 			ELEMENT_TYPE_DIRECTIVITIES_APP,
 			ELEMENT_TYPE_DIRECTIVITIES_USER,
-			ELEMENT_TYPE_FILE
+			ELEMENT_TYPE_FILE,
+			ELEMENT_TYPE_REPORT_GABE_RECPS /*!< Receiver sound level by source */
 		};
 		/**
 		 * Indice des états des images

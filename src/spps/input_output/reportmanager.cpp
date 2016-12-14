@@ -575,14 +575,14 @@ void ReportManager::SaveSoundLevelBySource(const CoreString& filename,std::vecto
 	}
 
 	////////////////////////////////////////////
-	// S�rie Libell� des sources
+	// Source labels
 	////////////////////////////////////////////
 	GABE_Data_ShortString collbl(params.configManager->srcList.size());
 	for(uentier idsrc=0;idsrc<collbl.GetSize();idsrc++)
 		collbl.SetString(idsrc,params.configManager->srcList[idsrc]->sourceName.c_str());
 	collbl.SetLabel("SPL");
 
-	//Pour chaque r�cepteur ponctuel
+	//For each punctual receiver
 	for(uentier idrecp=0;idrecp<params.configManager->recepteur_p_List.size();idrecp++)
 	{
 		t_Recepteur_P* currentRP=params.configManager->recepteur_p_List[idrecp];
@@ -606,14 +606,14 @@ void ReportManager::SaveSoundLevelBySource(const CoreString& filename,std::vecto
 	/////////////////////////////////////
 	if(*params.configManager->FastGetConfigValue(Core_Configuration::I_PROP_OUTPUT_RECEIVER_BY_SOURCE) != 0) {
 		int srcCount = params.configManager->srcList.size();
-		//Instanciation du tableau des libell� des champs de fr�quences
+		//Instanciate the array of frequency labels
 		std::vector<CoreString> reportFreqLbl;
-		//Instanciation du tableau des libell� des pas de temps
+		//Instanciate the array of time steps labels
 		std::vector<CoreString> reportStepLbl;
 		BaseReportManager::InitHeaderArrays(*params.configManager, reportFreqLbl, reportStepLbl);
 		CoreString workingDir = *params.configManager->FastGetConfigValue(Core_Configuration::SPROP_CORE_WORKING_DIRECTORY);
 		for(int idsource=0; idsource < srcCount; idsource++) {
-			//Pour chaque r�cepteur ponctuel
+			//For each punctual receiver
 			for(uentier idrecp=0;idrecp<params.configManager->recepteur_p_List.size();idrecp++)
 			{
 				CoreString rootRp=workingDir+CoreString(*params.configManager->FastGetConfigValue(Base_Core_Configuration::SPROP_PONCTUAL_RECEIVER_FOLDER_PATH)+st_path_separator());
