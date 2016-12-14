@@ -363,7 +363,7 @@ source_group( "" FILES ${ISIMPA_SOURCES} )
 FIND_PACKAGE(PythonInterp REQUIRED)
 # to convert .po files into .mo files
 FIND_PACKAGE(Gettext)
-IF( GETTEXT_FOUND )
+IF(NOT WIN32 AND GETTEXT_FOUND )
   set(ISIMPA_LANG ${PROJECT_SOURCE_DIR}/currentRelease/locale)
   MESSAGE(STATUS "Gettext convert PO files")
   GETTEXT_CREATE_TRANSLATIONS(${ISIMPA_LANG}/fr/internat.mo ALL internat.po)
