@@ -365,15 +365,14 @@ source_group( "" FILES ${ISIMPA_SOURCES} )
 FIND_PACKAGE(PythonInterp REQUIRED)
 
 #MSGMERGE crash under win32 for no reason
-IF(NOT WIN32)
+#IF(NOT WIN32)
     # to convert .po files into .mo files
     FIND_PACKAGE(Gettext)
     IF(GETTEXT_FOUND )
-      set(ISIMPA_LANG ${PROJECT_SOURCE_DIR}/currentRelease/locale)
-      MESSAGE(STATUS "Gettext convert PO files")
-      GETTEXT_CREATE_TRANSLATIONS(${ISIMPA_LANG}/fr/internat.mo ALL internat.po)
+      MESSAGE(STATUS "Gettext convert PO files ${_po_files}")
+      add_subdirectory (lang/fr)
     ENDIF()
-ENDIF()
+#ENDIF()
 # Ask make to call python in order to use element.h to produce enum_def.cpp
 ADD_CUSTOM_COMMAND(
   OUTPUT "enum_def.cpp"
@@ -487,7 +486,6 @@ ${ISIMPA_RESSOURCES}/Licence.rtf
 install(DIRECTORY
 ${ISIMPA_RESSOURCES}/Bitmaps
 ${ISIMPA_RESSOURCES}/doc
-${ISIMPA_RESSOURCES}/locale
 ${ISIMPA_RESSOURCES}/SystemScript
 ${ISIMPA_RESSOURCES}/UserScript
 ${ISIMPA_RESSOURCES}/Directivities
