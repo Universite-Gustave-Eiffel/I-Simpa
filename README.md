@@ -1,5 +1,6 @@
 
 [![Build Status](https://travis-ci.org/Ifsttar/I-Simpa.svg?branch=master)](https://travis-ci.org/Ifsttar/I-Simpa)
+[![Doc Status](https://i-simpa-wiki.readthedocs.io/en/latest/?badge=latest)
 
 <IMG SRC="http://i-simpa.ifsttar.fr/typo3temp/pics/b06522ab44.jpg" WIDTH=500 ALT="I-Simpa logo" TITLE="I-Simpa logo">
 
