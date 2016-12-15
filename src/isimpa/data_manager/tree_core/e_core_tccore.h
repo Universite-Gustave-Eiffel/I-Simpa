@@ -78,6 +78,9 @@ public:
         if (GetStringConfig("exeName").EndsWith(".exe")) {
             UpdateStringConfig("exeName", "classicalTheory");
         }
+		if (GetStringConfig("corePath").StartsWith("theorie_classique")) {
+			UpdateStringConfig("corePath", wxString("classical_theory") + wxFileName::GetPathSeparator());
+		}
 	}
 
 	E_Core_Tc( Element* parent)

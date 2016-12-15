@@ -35,6 +35,7 @@
 #include "e_report_recepteurssvisualisation.h"
 #include "e_report_gabe.h"
 #include "e_report_gabe_recp.h"
+#include "e_report_gabe_recps.h"
 #include "e_report_gabe_gap.h"
 #include "e_report_unknown_file.h"
 #include "e_report_rpi.h"
@@ -216,6 +217,8 @@ E_Report_File::E_Report_File(Element* parent,wxString Nom,wxString Path,ELEMENT_
 				}else if(typeEle==ELEMENT_TYPE_REPORT_UNKNOWN)
 				{
 					this->AppendFils(new E_Report_Unknown(this,currentChild));
+				} else if(typeEle==ELEMENT_TYPE_REPORT_GABE_RECPS) {
+					this->AppendFils(new E_Report_Gabe_Recps(this, currentChild));
 				}
 			}
 			currentChild = currentChild->GetNext();
@@ -313,7 +316,12 @@ void E_Report_File::RefreshFolderContents()
 					{
 						E_Report_Gabe_Recp* newGabeFile=new E_Report_Gabe_Recp(this,fileName,childFile.GetFullName());
 						this->AppendFils(newGabeFile);
-					}else if(fileExt=="csbin")
+					}else if (fileExt == "recps")
+					{
+						E_Report_Gabe_Recps* newGabeFile = new E_Report_Gabe_Recps(this, fileName, childFile.GetFullName());
+						this->AppendFils(newGabeFile);
+					}
+					else if(fileExt=="csbin")
 					{
 						E_Report_RecepteurSurfaciqueVisualisation* newRssFolder=new E_Report_RecepteurSurfaciqueVisualisation(this,fileName,childFile.GetFullName());
 						this->AppendFils(newRssFolder);

@@ -1,5 +1,5 @@
 include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
-
+include( InstallRequiredSystemLibraries )
 #--------------#
 #    SOURCES
 #--------------#
@@ -14,8 +14,8 @@ set(CT_SOURCE_FILES
 #    DEPENDENCY & EXECUTABLE (OR LIB)
 #---------------------------------------#
 
-set(Boost_USE_STATIC_LIBS   ON) 
-find_package(Boost REQUIRED)
+set(Boost_USE_STATIC_LIBS   OFF) 
+find_package(Boost COMPONENTS system filesystem regex REQUIRED)
 link_directories( ${Boost_LIBRARY_DIRS} )  
 include_directories( ${Boost_INCLUDE_DIRS} ) 
 
@@ -35,6 +35,24 @@ target_link_libraries(classicalTheory ${Boost_LIBRARIES})
 #    INSTALL
 #--------------#
 
+
+
 # Adds logic to INSTALL.vcproj to copy spps to destination directory
 install (TARGETS classicalTheory
         RUNTIME DESTINATION core/classical_theory)
+
+if (WIN32)
+	# Resolve symbolic link
+	LIB_TO_DLL(${Boost_FILESYSTEM_LIBRARY_RELEASE} Boost_FILESYSTEM_LIBRARY_RELEASE_REAL)
+	LIB_TO_DLL(${Boost_SYSTEM_LIBRARY_RELEASE} Boost_SYSTEM_LIBRARY_RELEASE_REAL)
+	LIB_TO_DLL(${Boost_REGEX_LIBRARY_RELEASE} Boost_REGEX_LIBRARY_RELEASE_REAL)
+	install (FILES
+			${Boost_FILESYSTEM_LIBRARY_RELEASE_REAL}
+			${Boost_SYSTEM_LIBRARY_RELEASE_REAL}
+			${Boost_REGEX_LIBRARY_RELEASE_REAL}
+			DESTINATION core/classical_theory)
+endif ()
+
+if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
+    install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION core/classical_theory COMPONENT System )
+endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )

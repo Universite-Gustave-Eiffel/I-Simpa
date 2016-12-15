@@ -32,7 +32,8 @@ addons:
     - libglapi-mesa
     - libgtk-3-dev
     - byacc
-
+    - xgettext
+    
 cache:
   apt: true
   directories:

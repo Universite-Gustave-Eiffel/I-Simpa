@@ -3,9 +3,9 @@
 import uictrl as ui
 import uilocale
 from libsimpa import *
-ScriptFolder=ui.application.getapplicationpath()["userscript"]+"SppsReportSample\\"
-import recsurf_report_stats
 import os
+ScriptFolder=ui.application.getapplicationpath()["userscript"]+"SppsReportSample"+os.sep
+import recsurf_report_stats
 import math
 import csv
 

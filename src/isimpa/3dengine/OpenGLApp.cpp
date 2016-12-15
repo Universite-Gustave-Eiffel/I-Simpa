@@ -299,7 +299,7 @@ t_faceIndex OpenGLApp::SelectVertex(unsigned int x, unsigned int y) //retourne l
 	#ifdef OPTIMIZE_TEST
 	float diff=duration;
 	float diff2=duration2;
-	wxLogInfo("Test Collision en %.3f s (Collision vecteur en %.3f s)",diff,diff2);
+	wxLogMessage("Test Collision en %.3f s (Collision vecteur en %.3f s)",diff,diff2);
 	timeEndPeriod(1);
 	#endif
 	return faceSelectionne;
@@ -389,7 +389,7 @@ int OpenGLApp::GetImage(wxImage& aimage, const int awidth, const int aheight,voi
 		switch(idError)
 		{
 			case OffScreenRendering::OffScreen::OUTSCREENERROR_Could_not_create_the_pbuffer:
-				wxLogInfo(_("Resolution is too high, your graphic card is enable to manage this size. Please choose a lower export resolution"));
+				wxLogMessage(_("Resolution is too high, your graphic card is enable to manage this size. Please choose a lower export resolution"));
 				break;
 			case OffScreenRendering::OffScreen::OUTSCREENERROR_Could_not_make_the_pbuffer_context_current:
 				break;
@@ -408,7 +408,7 @@ int OpenGLApp::GetImage(wxImage& aimage, const int awidth, const int aheight,voi
 			default:
 				wxLogError(_("Unknown OpenGL error, try to set a lower resolution or use another exportation method."));
 		}
-		wxLogInfo(_("Error code : %i"),(int)idError);
+		wxLogMessage(_("Error code : %i"),(int)idError);
 		isOk=false;
 	}
 	catch( ... ) 

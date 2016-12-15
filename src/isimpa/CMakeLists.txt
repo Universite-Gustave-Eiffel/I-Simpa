@@ -1,16 +1,6 @@
 include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
 
 
-# convert path of a .lib file into a .dll file
-# findboost does not store .dll locations
-macro(LIB_TO_DLL LIBPATH DLL_PATH)
-    get_filename_component(DLL_FILENAME ${LIBPATH}  NAME_WE)
-    get_filename_component(DLL_DIR ${LIBPATH} DIRECTORY)
-	set(${DLL_PATH} "${DLL_DIR}/${DLL_FILENAME}.dll")	
-	if(NOT EXISTS "${DLL_DIR}/${DLL_FILENAME}.dll")	
-      MESSAGE(ERROR " Dll file does not exists ${DLL_DIR}/${DLL_FILENAME}.dll")
-	endif()
-endmacro(LIB_TO_DLL)
 
 #--------------#
 #    SOURCES
@@ -246,6 +236,8 @@ set(DATA_MANAGER_TREERAPPORT_SOURCES
     data_manager/tree_rapport/e_report_gabe_gap.h
     data_manager/tree_rapport/e_report_gabe_recp.cpp
     data_manager/tree_rapport/e_report_gabe_recp.h
+    data_manager/tree_rapport/e_report_gabe_recps.cpp
+    data_manager/tree_rapport/e_report_gabe_recps.h
     data_manager/tree_rapport/e_report_partvisualisation.h
     data_manager/tree_rapport/e_report_recepteurssvisualisation.h
     data_manager/tree_rapport/e_report_rpi.h
@@ -387,7 +379,7 @@ configure_file(data_manager/appconfig_version.cpp.in ${CMAKE_CURRENT_BINARY_DIR}
 
 set(Boost_USE_STATIC_LIBS   OFF)
 find_package(Boost REQUIRED COMPONENTS system python filesystem regex)
-link_directories( ${Boost_LIBRARY_DIRS} ) 
+link_directories( ${Boost_LIBRARY_DIRS} )
 
 # Set Properties->General->Configuration Type to Application
 # Creates isimpa with the listed sources
@@ -418,6 +410,15 @@ add_executable(isimpa
 # Creates a folder "executables" and adds target
 # project (isimpa.vcproj) under it
 set_property(TARGET isimpa PROPERTY FOLDER "executables")
+
+# to convert .po files into .mo files
+FIND_PACKAGE(Gettext)
+IF(GETTEXT_FOUND )
+  MESSAGE(STATUS "Found Gettext")
+  add_subdirectory (lang/fr)
+  # Building isimpa require building pofiles
+  add_dependencies(isimpa pofiles)
+ENDIF()
 
 IF(CMAKE_BUILD_TYPE STREQUAL "Debug")
     SET(wxWidgets_USE_DEBUG ON)
@@ -485,7 +486,6 @@ ${ISIMPA_RESSOURCES}/Licence.rtf
 install(DIRECTORY
 ${ISIMPA_RESSOURCES}/Bitmaps
 ${ISIMPA_RESSOURCES}/doc
-${ISIMPA_RESSOURCES}/locale
 ${ISIMPA_RESSOURCES}/SystemScript
 ${ISIMPA_RESSOURCES}/UserScript
 ${ISIMPA_RESSOURCES}/Directivities
@@ -507,7 +507,7 @@ if(WIN32) # Check if we are on Windows
 	install(DIRECTORY
 	${PYTHON_ROOT_FOLDER}/Lib
 	DESTINATION .)
-	
+
 	# Resolve symbolic link
 	LIB_TO_DLL(${Boost_FILESYSTEM_LIBRARY_RELEASE} Boost_FILESYSTEM_LIBRARY_RELEASE_REAL)
 	LIB_TO_DLL(${Boost_SYSTEM_LIBRARY_RELEASE} Boost_SYSTEM_LIBRARY_RELEASE_REAL)

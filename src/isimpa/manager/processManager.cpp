@@ -36,75 +36,120 @@
 #include <wx/frame.h>
 #include "last_cpp_include.hpp"
 
-void processManager::OnTerminate(int pid, int status)
-{
-	run=false;
+
+wxBEGIN_EVENT_TABLE(processManager, wxProcess)
+	EVT_TIMER(wxID_ANY, processManager::OnTimer)
+wxEND_EVENT_TABLE()
+
+
+void processManager::HandleOutput() {
+	wxString warningMessage;
+	wxString message;
+	wxString errorMessage;
+	while (IsInputAvailable() || IsErrorAvailable())
+	{
+		if (IsInputAvailable()) {
+			wxTextInputStream tis(*GetInputStream());
+
+			// this assumes that the output is always line buffered
+			wxString msg;
+			wxString output = tis.ReadLine();
+			if (!this->outlogs.empty())
+			{
+				for (std::vector<smart_ptr<InterfLogger> >::iterator itlogs = this->outlogs.begin(); itlogs != this->outlogs.end(); itlogs++)
+				{
+					itlogs->get()->LogMessage(output);
+				}
+			}
+			if (output.Left(1) != "#")
+			{
+				msg << labelOutput << output;
+				msg.Replace("%", "%%"); //wxLog expect this character used for parameters, then add another % to escape it
+				if (output.Left(1) == "!")
+				{
+					warningMessage += msg + "\n";
+				}
+				else {
+					message += msg + "\n";
+				}
+			}
+			else {
+				wxString prog = output.Right(output.Len() - 1).Strip();
+				outputProgression = Convertor::ToFloat(prog);
+			}
+		}
+		if (IsErrorAvailable()) {
+			wxTextInputStream tis(*GetErrorStream());
+			const wxString& errMsg(tis.ReadLine());
+			if (!this->outlogs.empty())
+			{
+				for (std::vector<smart_ptr<InterfLogger> >::iterator itlogs = this->outlogs.begin(); itlogs != this->outlogs.end(); itlogs++)
+				{
+					(*(*itlogs)).LogError(errMsg);
+				}
+			}
+			// this assumes that the output is always line buffered
+			wxString msg;
+			msg << _("Calculation code error:") << errMsg;
+			msg.Replace("%", "%%"); //wxLog expect this character used for parameters, then add another % to escape it
+			errorMessage += msg + "\n";
+		}
+	}
+	if (!message.IsEmpty()) {
+		wxLogMessage(message);
+	}
+	if (!warningMessage.IsEmpty()) {
+		wxLogWarning(warningMessage);
+	}
+	if (!errorMessage.IsEmpty()) {
+		wxLogError(errorMessage);
+	}
 }
+
+void processManager::OnTimer(wxTimerEvent& WXUNUSED(event)) {
+	HandleOutput();
+	if (parent)
+		parent->Update();
+	if (outputProgression>99.f)
+		outputProgression = 99;
+	wxProgressDialog * progDialog = wxDynamicCast(progressDialog, wxProgressDialog);
+	if (progDialog && !progDialog->Update(outputProgression * 100))
+	{
+		int pid = GetPid();
+		if(pid > 0) {
+			wxKillError killerror = wxProcess::Kill(pid, wxSIGKILL);
+			wxLogMessage(_("External code execution canceled"));
+			wxLogMessage(_("Process answer:"));
+			switch (killerror)
+			{
+			case wxKILL_OK:              // no error
+				wxLogMessage(_("No error"));
+				break;
+			case wxKILL_BAD_SIGNAL:      // no such signal
+				wxLogError(_("Signal doesn't exist"));
+				break;
+			case wxKILL_ACCESS_DENIED:   // permission denied
+				wxLogError(_("Unauthorized closing process"));
+				break;
+			case wxKILL_NO_PROCESS:      // no such process
+				wxLogError(_("Process doesn't exist"));
+				break;
+			case wxKILL_ERROR:           // another, unspecified error
+				wxLogError(_("Non-specified process output"));
+				break;
+			default:
+				wxLogError(_("Unknown output process"));
+				break;
+			}
+		}
+	}
+	m_timer.StartOnce(150); // Message refresh time
+}
+
 void processManager::AddLogger(smart_ptr<InterfLogger> logger)
 {
 	this->outlogs.push_back(logger);
 }
-void processManager::LogOutput(bool &hasOutput, const wxString &label,float *outputProgression)
-{
-   hasOutput = false;
-
-    if ( IsInputAvailable() )
-    {
-        wxTextInputStream tis(*GetInputStream());
-
-        // this assumes that the output is always line buffered
-        wxString msg;
-		wxString output= tis.ReadLine();
-		if(!this->outlogs.empty())
-		{
-			for(std::vector<smart_ptr<InterfLogger> >::iterator itlogs=this->outlogs.begin();itlogs!=this->outlogs.end();itlogs++)
-			{
-				(*(*itlogs)).LogMessage(output);
-			}
-		}
-		if(outputProgression==NULL || output.Left(1)!="#")
-		{
-			msg << label << output;
-			msg.Replace("%","%%"); //si il y a un seul % alors un bug apparait wxString attend un format du type %s ou %i par exemple
-			if(output.Left(1)=="!")
-			{
-				wxLogWarning(msg);
-			}else{
-				wxLogMessage(msg);
-			}
-		}else{
-			wxString prog=output.Right(output.Len()-1).Strip();
-			*outputProgression=Convertor::ToFloat(prog);
-		}
-
-        hasOutput = true;
-    }
-
-    while ( IsErrorAvailable() )
-    {
-        wxTextInputStream tis(*GetErrorStream());
-		const wxString& errMsg(tis.ReadLine());
-		if(!this->outlogs.empty())
-		{
-			for(std::vector<smart_ptr<InterfLogger> >::iterator itlogs=this->outlogs.begin();itlogs!=this->outlogs.end();itlogs++)
-			{
-				(*(*itlogs)).LogError(errMsg);
-			}
-		}
-        // this assumes that the output is always line buffered
-        wxString msg;
-		msg << _("Calculation code error:") << errMsg;
-		msg.Replace("%","%%"); //si il y a un seul % alors un bug apparait wxString attend un format du type %s ou %i par exemple
-		wxLogError(msg);
-
-        hasOutput = true;
-    }
-}
-bool processManager::IsRunning()
-{
-	return run;
-}
-
 
 bool uiRunExe(wxFrame* parent,const wxString& path,const wxString& labelOutput, wxWindow* progressDialog,smart_ptr<InterfLogger> extLogger)
 {
@@ -114,79 +159,21 @@ bool uiRunExe(wxFrame* parent,const wxString& path,const wxString& labelOutput, 
 	_("Cancel");
 	_("Unknown");
 	wxProgressDialog * progDialog=wxDynamicCast(progressDialog,wxProgressDialog);
-	bool hasOutput=true;
-	processManager* process = new processManager(parent,path);
-	if(extLogger.get()!=NULL)
-		process->AddLogger(extLogger);
 
-	wxLogInfo(_("External code execution"));
-	wxLogInfo(path);
+	processManager process(parent, path, labelOutput, progDialog);
+	if (extLogger.get() != NULL)
+		process.AddLogger(extLogger);
 
-	int processId=wxExecute(path,wxEXEC_ASYNC,process);
-	if(!processId)
+	wxLogMessage(_("External code execution"));
+	wxLogMessage(path);
+
+	int processId = wxExecute(path, wxEXEC_SYNC, &process);
+	if (processId < 0)
 	{
-		wxLogInfo("Program execution failed");
-		delete process;
+		wxLogMessage("Program execution failed");
 		return false;
-	} else
-	{
-        process->SetPid(processId);
 	}
-	float percFinish=0;
-	wxDateTime lastProgShow=wxDateTime::UNow();
-	do
-	{
-		hasOutput=true;
-		wxMilliSleep(50);
-		while(hasOutput) //&& (!progDialog || progDialog->Update(percFinish*100))
-		{
-			process->LogOutput(hasOutput,labelOutput,&percFinish);
-		}
-		if(wxDateTime::UNow().GetValue()-lastProgShow.GetValue()>500)
-		{
-			lastProgShow=wxDateTime::UNow();
-			if(parent)
-				parent->Update();
-			if(percFinish>99.f)
-				percFinish=99;
-			if(progDialog && !progDialog->Update(percFinish*100))
-			{
-				wxKillError killerror=wxProcess::Kill(processId,wxSIGKILL);
-				wxLogInfo(_("External code execution canceled"));
-				wxLogInfo(_("Process answer:"));
-				switch(killerror)
-				{
-				case wxKILL_OK:              // no error
-					wxLogInfo(_("No error"));
-					break;
-				case wxKILL_BAD_SIGNAL:      // no such signal
-					wxLogError(_("Signal doesn't exist"));
-					break;
-				case wxKILL_ACCESS_DENIED:   // permission denied
-					wxLogError(_("Unauthorized closing process"));
-					break;
-				case wxKILL_NO_PROCESS:      // no such process
-					wxLogError(_("Process doesn't exist"));
-					break;
-				case wxKILL_ERROR :           // another, unspecified error
-					wxLogError(_("Non-specified process output"));
-					break;
-				default:
-					wxLogError(_("Unknown output process"));
-					break;
-				}
-				//Si on supprime le processus maintenant on aura une erreur
-				//Si on ne le supprime pas il y a une fuite mémoire
-				//delete process;
-				return false;
-			}
-		}
-    } while (wxProcess::Exists(processId));
-	// On récupère les derniers messages
-	wxMilliSleep(150);
-	process->LogOutput(hasOutput,labelOutput,&percFinish);
-	while(hasOutput)
-		process->LogOutput(hasOutput,labelOutput,&percFinish);
-	delete process;
-	return true;
+	else {
+		return true;
+	}
 }

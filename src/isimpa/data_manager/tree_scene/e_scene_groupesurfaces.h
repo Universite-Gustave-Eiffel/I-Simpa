@@ -106,7 +106,7 @@ public:
 				E_Scene_Groupesurfaces_Groupe* eGroupe=dynamic_cast<E_Scene_Groupesurfaces_Groupe*>(grFils);
 				if(!eGroupe->IsEmpty())
 				{
-					wxLogInfo(_("The group is not empty. You can't delete it!"));
+					wxLogMessage(_("The group is not empty. You can't delete it!"));
 					return true;
 				}
 			}

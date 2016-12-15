@@ -29,6 +29,7 @@
 * ----------------------------------------------------------------------*/
 
 #include "first_header_include.hpp"
+#include <wx/timer.h>
 #include "manager/smart_ptr.h"
 #include "interf_logger.hpp"
 #include <wx/process.h>
@@ -49,45 +50,42 @@ public:
 	 * @param parent Fenêtre parente
 	 * @param cmd Chemin de l'exécutable
 	 */
-    processManager(wxFrame *parent, const wxString& cmd)
-        : wxProcess(reinterpret_cast<wxEvtHandler*>(parent)), m_cmd(cmd)
-    {
-        m_parent = parent;
+	processManager(wxFrame *parent, const wxString& cmd, const wxString& labelOutput, wxWindow* progressDialog)
+		: wxProcess(reinterpret_cast<wxEvtHandler*>(parent)), m_cmd(cmd), labelOutput(labelOutput), m_timer(this), progressDialog(progressDialog), parent(parent), outputProgression(0)
+	{
         Redirect();
-		run=true;
+		m_timer.StartOnce(150); // Message refresh time
     }
 
-    // instead of overriding this virtual function we might as well process the
-    // event from it in the frame class - this might be more convenient in some
-    // cases
+
+	~processManager() {
+		if (m_timer.IsRunning())
+		{
+			m_timer.Stop();
+		}
+		HandleOutput();
+	}
+	
 	/**
-	 * Utilise les messages de la pile de sortie de l'executable externe afin de les afficher vers la sortie wxLog
-	 * @param[out] hasOutput Passe à vrai si il reste encore des lignes dans la pile mémoire.
-	 * @param[in] label Libellé du message qui précede le texte de sortie
-	 * @param[out] Si une des sortie est de la forme "#entier" alors affecte cet entier dans cette variable
-	 */
-	void LogOutput(bool &hasOutput, const wxString &label=wxString(_("Calculation output:")),float *outputProgression=NULL);
+	* Process log messages from external exe
+	*/
+	void OnTimer(wxTimerEvent& WXUNUSED(event));
 	/**
-	 * Permet de connaître l'etat de l'execution
-	 * @return Vrai si l'application est en cours d'exécution
-	 */
-	bool IsRunning();
-    /**
-	 * Add a logger object
-	 * @param logger Instance of log object
-	 */
+	* Add a logger object
+	* @param logger Instance of log object
+	*/
 	void AddLogger(smart_ptr<InterfLogger> logger);
 
-
-    /**
-    * Fin de l'execution de l'application externe
-    */
-    virtual void OnTerminate(int pid, int status);
 private:
-	bool run;
-    wxString m_cmd;
-	wxFrame* m_parent;
+	void HandleOutput();
+	wxString m_cmd;
+	wxTimer m_timer;
+	wxWindow* progressDialog;
+	wxFrame *parent;
+	float outputProgression;
+	const wxString labelOutput;
 	std::vector<smart_ptr<InterfLogger> > outlogs;
+	wxDECLARE_EVENT_TABLE();
 };
 
 

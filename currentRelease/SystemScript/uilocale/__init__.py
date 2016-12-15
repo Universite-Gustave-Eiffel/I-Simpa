@@ -1,5 +1,6 @@
 import traceback
 import sys
+import os
 
 def dummy_notranslation(msg):
     return msg
@@ -7,10 +8,10 @@ def dummy_notranslation(msg):
 
 def InstallUiModule(pathname,language):
     import gettext
-    localdir=pathname + "\\locale"
+    localdir=pathname + os.sep + "locale"
     
     try:
-        locale_dict=gettext.translation("messages",localdir,languages=[language])
+        locale_dict=gettext.translation("messages",localdir,languages=[language],fallback=True)
     except IOError:
         sys.stderr.write("Language %s is not avaible for this module :\n%s\n" % (language,pathname))
         exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()

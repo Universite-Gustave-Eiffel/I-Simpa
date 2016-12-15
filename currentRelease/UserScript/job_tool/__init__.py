@@ -2,7 +2,8 @@
 import uictrl as ui
 import operator
 import uilocale
-ScriptFolder=ui.application.getapplicationpath()["userscript"]+"job_tool\\"
+import os
+ScriptFolder=ui.application.getapplicationpath()["userscript"]+"job_tool"+os.sep
 _=uilocale.InstallUiModule(ScriptFolder,ui.application.getlocale())
 
 def _(msg):

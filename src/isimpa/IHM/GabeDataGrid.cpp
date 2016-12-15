@@ -334,7 +334,7 @@ void GabeDataGrid::SendRefreshFolderEvent()
 	if(ptDataWindow && ptDataWindow->GetParent())
 		wxPostEvent(ptDataWindow->GetParent(), eventUpdate);
 	else
-		wxLogInfo(_("Please, refresh root folder of the data tree")); //en attendant de pouvoir propager correctement l'évenement de réactualisation de l'arbre report
+		wxLogMessage(_("Please, refresh root folder of the data tree")); //en attendant de pouvoir propager correctement l'évenement de réactualisation de l'arbre report
 
 }
 bool GabeDataGrid::AskUserWhereToSaveData(wxString& out_filePath)

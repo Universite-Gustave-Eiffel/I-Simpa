@@ -42,3 +42,7 @@ isimpa.mk
 isimpa.project
 build/
 make.bat
+files.txt
+*.pot
+# cmake should convert .po files into .mo files if necessary
+*.mo

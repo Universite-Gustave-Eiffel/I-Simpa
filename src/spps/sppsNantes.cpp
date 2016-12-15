@@ -395,7 +395,7 @@ int MainProcess(int argc, char* argv[])
 	if (verbose_mode) { cout << "End of save of Ponctual Receiver intensity." << endl; }
 
 	if (verbose_mode) { cout << "Saving sound level for each Ponctual Receiver per source..." << endl; }
-	ReportManager::SaveSoundLevelBySource("Sound level per source.recp",threadsData,reportParameter);
+	ReportManager::SaveSoundLevelBySource("Sound level per source.recps",threadsData,reportParameter);
 	if (verbose_mode) { cout << "End of save sound level for each Ponctual Receiver per source." << endl; }
     st_mkdir(workingDir + *configManager.FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FOLDER_PATH));
     stringClass globalRecSurfPath=workingDir+*configManager.FastGetConfigValue(Core_Configuration::SPROP_RECEPTEUR_SURFACIQUE_FOLDER_PATH)+"Global"+ st_path_separator();

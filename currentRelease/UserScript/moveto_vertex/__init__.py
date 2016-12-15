@@ -2,7 +2,9 @@
 
 import uictrl as ui
 import uilocale
-ScriptFolder=ui.application.getapplicationpath()["userscript"]+"moveto_vertex\\"
+import os
+
+ScriptFolder=ui.application.getapplicationpath()["userscript"]+"moveto_vertex"+os.sep
 _=uilocale.InstallUiModule(ScriptFolder,ui.application.getlocale())
 
 class manager:
