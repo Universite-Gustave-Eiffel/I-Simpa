@@ -28,7 +28,7 @@ set(SPPS_SOURCES
     sppsInitialisation.cpp
     sppsTypes.h
     sppsTypes.cpp)
-	
+
 set(SPPS_MAIN_SOURCES
     sppsNantes.cpp)
 
@@ -96,16 +96,14 @@ endif()
 #    INSTALL
 #--------------#
 
-		
+
 
 # Adds logic to INSTALL.vcproj to copy spps to destination directory
 install (TARGETS spps
         RUNTIME DESTINATION core/spps)
-		
 
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-  find_package(Boost REQUIRED COMPONENTS system random filesystem)
-else()
+
+if(WIN32)
 	# Resolve symbolic link
 	LIB_TO_DLL(${Boost_FILESYSTEM_LIBRARY_RELEASE} Boost_FILESYSTEM_LIBRARY_RELEASE_REAL)
 	LIB_TO_DLL(${Boost_SYSTEM_LIBRARY_RELEASE} Boost_SYSTEM_LIBRARY_RELEASE_REAL)

@@ -27,7 +27,7 @@ else
 	tar -xjf boost_1_61_0.tar.bz2
 	mkdir $HOME/boost-install
 	echo "using gcc : 4.8 : gcc-4.8 ;" > ~/user-config.jam
-	cd  $HOME/boost_1_61_0 && ./bootstrap.sh link=static variant=release address-model=64 cxxflags="-std=c++11 -fPIC" boost.locale.icu=off --with-libraries=filesystem,system,test,regex,python,random,thread --prefix=$HOME/boost-install && ./b2 install
+	cd  $HOME/boost_1_61_0 && ./bootstrap.sh link=static variant=release address-model=64 cxxflags="-std=c++11 -fPIC" boost.locale.icu=off --with-libraries=filesystem,system,test,regex,python,random,thread,date_time --prefix=$HOME/boost-install && ./b2 install
 fi
 
 #

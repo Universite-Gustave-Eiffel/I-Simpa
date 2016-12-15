@@ -364,15 +364,6 @@ source_group( "" FILES ${ISIMPA_SOURCES} )
 # Find package for generation
 FIND_PACKAGE(PythonInterp REQUIRED)
 
-#MSGMERGE crash under win32 for no reason
-#IF(NOT WIN32)
-    # to convert .po files into .mo files
-    FIND_PACKAGE(Gettext)
-    IF(GETTEXT_FOUND )
-      MESSAGE(STATUS "Gettext convert PO files ${_po_files}")
-      add_subdirectory (lang/fr)
-    ENDIF()
-#ENDIF()
 # Ask make to call python in order to use element.h to produce enum_def.cpp
 ADD_CUSTOM_COMMAND(
   OUTPUT "enum_def.cpp"
@@ -419,6 +410,15 @@ add_executable(isimpa
 # Creates a folder "executables" and adds target
 # project (isimpa.vcproj) under it
 set_property(TARGET isimpa PROPERTY FOLDER "executables")
+
+# to convert .po files into .mo files
+FIND_PACKAGE(Gettext)
+IF(GETTEXT_FOUND )
+  MESSAGE(STATUS "Found Gettext")
+  add_subdirectory (lang/fr)
+  # Building isimpa require building pofiles
+  add_dependencies(isimpa pofiles)
+ENDIF()
 
 IF(CMAKE_BUILD_TYPE STREQUAL "Debug")
     SET(wxWidgets_USE_DEBUG ON)
