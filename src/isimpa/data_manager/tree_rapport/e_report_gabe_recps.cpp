@@ -83,8 +83,7 @@ bool E_Report_Gabe_Recps::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle
 
 
 	//////////////////////////////////////
-	//Cumul sur les lignes
-	std::vector<wxFloat32> schroederGraph(nbrow-1); //Création du tableau qui va contenir les valeurs cumulé
+	// Row sum
 
 	for(int idrow=0;idrow<nbrow-1;idrow++)
 	{
@@ -99,20 +98,10 @@ bool E_Report_Gabe_Recps::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle
 		}
 		if(totPression>0)
 		{
-			schroederGraph[idrow]=totPression;
 			cellsValue[((nbcol-1)*nbrow)+idrow]=totPression;
 		}else{
 			cellsValue[((nbcol-1)*nbrow)+idrow]=0;
 		}
-	}
-
-	//Par la méthode de schroeder, compilation des pressions
-
-	float sumW=0;
-	for(int idStep=nbrow-2;idStep>=0;idStep--)
-	{
-			sumW+=schroederGraph[idStep];
-			schroederGraph[idStep]=sumW;
 	}
 
 	//////////////////////////////////////
@@ -149,11 +138,6 @@ bool E_Report_Gabe_Recps::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle
 			(*wVal)=dbVal;
 			cells[(idcol*nbrow)+idrow]=wxString::Format("%.1f",dbVal); //Précision de 1 chiffre aprés la virgule
 		}
-	}
-	for(int idrow=0;idrow<nbrow-1;idrow++)
-	{
-		float dbVal=10*log10f(schroederGraph[idrow]*p_0);
-		schroederGraph[idrow]=dbVal;
 	}
 
 	//Intervertir les lignes et les colonnes
