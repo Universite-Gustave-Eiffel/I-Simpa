@@ -2,7 +2,7 @@
 
 find src/isimpa -type f -regex '.*/.*\.\(c\|cpp\|h\|hpp\)$' > files.txt
 mkdir -p src/isimpa/lang/
-xgettext --keyword=_  --from-code=UTF-8 -s --no-wrap  -no-hash --escape -ffiles.txt -osrc/isimpa/lang/internat.pot
+xgettext --keyword=_ --keyword=wxTRANSLATE --from-code=UTF-8 -s --no-wrap  -no-hash --escape -ffiles.txt -osrc/isimpa/lang/internat.pot
 
 find currentRelease/UserScript/job_tool -type f -name "*.py" > files.txt
 mkdir -p currentRelease/UserScript/job_tool/locale/en/
