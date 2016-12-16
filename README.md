@@ -5,7 +5,7 @@
 
 * **For more information**, [visit the offical I-Simpa website](http://i-simpa.ifsttar.fr).
 * **For build instructions**, see [the instructions](https://github.com/Ifsttar/I-Simpa/blob/master/Docs/Building.md)
-* **For using I-Simpa**, see [the wiki](https://github.com/Ifsttar/I-Simpa/wiki).
+* **For using I-Simpa**, see [the wiki](http://i-simpa-wiki.readthedocs.io/en/latest/).
 
 <IMG ALIGN="right" SRC="https://raw.githubusercontent.com/Ifsttar/I-Simpa/master/Docs/images/wiki%20pictures/illustration_i_simpa_room-Home_page.png" WIDTH=350 ALT="Room illustration" TITLE="Room illustration">
 
