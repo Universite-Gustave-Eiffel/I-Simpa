@@ -377,20 +377,22 @@ namespace uictrl
 		ProjectManager* self=GetManager();
 		wxCustomEntryDialog parametersDialog(self->mainFrame,_(wxString(msg)),_(wxString(title)));
 
-		std::vector<std::wstring> keys;
-		boost::python::list lstkeys=rows.keys();
-		lstkeys.sort();
-		extract_array<std::wstring>(lstkeys,&keys);
-		std::size_t sizedict=keys.size();
-
 		//Ne pas traduire ici les libellés des champs
-		for(std::size_t idk=0;idk<sizedict;idk++)
-		{
-			if(hasattr(rows[keys[idk]],"append"))
+		object iter = rows.iteritems();
+		wxArrayString arrayKeys;
+		do {
+			tuple item;
+			try {
+				item = extract_or_throw<tuple>(iter.attr("next")());
+			} catch(error_already_set) {
+				break;
+			}
+			arrayKeys.push_back(extract_wxstring(item[0]));
+			if(hasattr(item[1],"append"))
 			{
 				//Liste
 				std::list<std::wstring> cArrValues;
-				if(extract_array<std::wstring,std::list<std::wstring> >(rows[keys[idk]],&cArrValues))
+				if(extract_array<std::wstring,std::list<std::wstring> >(item[1],&cArrValues))
 				{
 					wxArrayString arrayValues;
 					arrayValues.reserve(cArrValues.size());
@@ -401,13 +403,13 @@ namespace uictrl
 					wxString defaultValue;
 					if(!cArrValues.empty())
 						defaultValue=arrayValues[0];
-					parametersDialog.AddListBox(wxString(keys[idk]),defaultValue,arrayValues);
+					parametersDialog.AddListBox(extract_wxstring(item[0]),defaultValue,arrayValues);
 				}
 			}else{
 				//Chaine de caractère
-				parametersDialog.AddTextControl(wxString(keys[idk]),extract_wxstring(rows[keys[idk]]));
+				parametersDialog.AddTextControl(extract_wxstring(item[0]),extract_wxstring(item[1]));
 			}
-		}
+		} while (true);
 
 
 		if (parametersDialog.ShowModal() == wxID_OK)
@@ -417,7 +419,9 @@ namespace uictrl
 			parametersDialog.GetValues(valeursChamps);
 			for(std::size_t idchamp=0;idchamp<valeursChamps.size();idchamp++)
 			{
-				values[keys[idchamp]]=WXSTRINGTOSTDWSTRING(valeursChamps[idchamp]);
+				str key(arrayKeys.Item(idchamp).ToStdWstring());
+				str value(valeursChamps.at(idchamp).ToStdWstring());
+				values[key] = value;
 			}
 			return boost::python::make_tuple(true,values);
 		}else{
