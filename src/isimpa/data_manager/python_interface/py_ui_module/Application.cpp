@@ -415,12 +415,12 @@ namespace uictrl
 		if (parametersDialog.ShowModal() == wxID_OK)
 		{
 			dict values;
-			std::vector<wxString> valeursChamps;
-			parametersDialog.GetValues(valeursChamps);
-			for(std::size_t idchamp=0;idchamp<valeursChamps.size();idchamp++)
+			std::vector<wxString> fieldsValue;
+			parametersDialog.GetValues(fieldsValue);
+			for(std::size_t idchamp=0;idchamp<fieldsValue.size();idchamp++)
 			{
-				str key(arrayKeys.Item(idchamp).ToStdWstring());
-				str value(valeursChamps.at(idchamp).ToStdWstring());
+				str key(arrayKeys.Item(idchamp).ToStdString().c_str());
+				str value(fieldsValue.at(idchamp).ToStdString().c_str());
 				values[key] = value;
 			}
 			return boost::python::make_tuple(true,values);
