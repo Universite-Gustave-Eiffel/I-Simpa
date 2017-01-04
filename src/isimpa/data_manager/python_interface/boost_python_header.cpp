@@ -93,18 +93,15 @@ void impl_templates()
 }
 wxString extract_wxstring(const boost::python::object& from)
 {
-	boost::python::extract<std::string> valtype(boost::python::str(from.attr("__class__")));
-	if (valtype.check())
+	std::string object_classname = boost::python::extract<std::string>(from.attr("__class__").attr("__name__"));
+	if(object_classname == "str")
 	{
-		if(valtype()=="<type 'str'>")
-		{
-			//standart string
-			return extract_or_throw<std::string>(from);
-		}else if(valtype()=="<type 'unicode'>")
-		{
-			//Unicode
-			return extract_or_throw<std::wstring>(from);
-		}
+		//standart string
+		return extract_or_throw<std::string>(from);
+	}else if(object_classname =="unicode")
+	{
+		//Unicode
+		return extract_or_throw<std::wstring>(from);
 	}
 	//Unknown type format
 	return extract_or_throw<std::string>(from);

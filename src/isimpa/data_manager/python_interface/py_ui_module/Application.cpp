@@ -376,10 +376,37 @@ namespace uictrl
 	{
 		ProjectManager* self=GetManager();
 		wxCustomEntryDialog parametersDialog(self->mainFrame,_(wxString(msg)),_(wxString(title)));
-
+		std::vector<object> arrayKeys;
 		//Ne pas traduire ici les libellés des champs
+		int numItems = boost::python::len(rows.keys());
 		object iter = rows.iteritems();
-		wxArrayString arrayKeys;
+		for(int idItem = 0;idItem<numItems;idItem++) {
+			tuple item = extract_or_throw<tuple>(iter.attr("next")());
+			arrayKeys.push_back(item[0]);
+			std::string object_classname = boost::python::extract<std::string>(item[1].attr("__class__").attr("__name__"));
+			if(object_classname == "str") {
+				// String cell
+				parametersDialog.AddTextControl(extract_wxstring(item[0]), extract_wxstring(item[1]));
+			
+			} else if(object_classname == "list") {
+				//choice cell
+				std::list<std::wstring> cArrValues;
+				if (extract_array<std::wstring, std::list<std::wstring> >(item[1], &cArrValues))
+				{
+					wxArrayString arrayValues;
+					arrayValues.reserve(cArrValues.size());
+					for (std::list<std::wstring>::iterator itvals = cArrValues.begin(); itvals != cArrValues.end(); itvals++)
+					{
+						arrayValues.push_back(*itvals);
+					}
+					wxString defaultValue;
+					if (!cArrValues.empty())
+						defaultValue = arrayValues[0];
+					parametersDialog.AddListBox(extract_wxstring(item[0]), defaultValue, arrayValues);
+				}
+			}
+		}
+		/*
 		do {
 			tuple item;
 			try {
@@ -387,7 +414,7 @@ namespace uictrl
 			} catch(error_already_set) {
 				break;
 			}
-			arrayKeys.push_back(extract_wxstring(item[0]));
+			arrayKeys.push_back(item[0]);
 			if(hasattr(item[1],"append"))
 			{
 				//Liste
@@ -411,17 +438,15 @@ namespace uictrl
 			}
 		} while (true);
 
-
+		*/
 		if (parametersDialog.ShowModal() == wxID_OK)
 		{
 			dict values;
 			std::vector<wxString> fieldsValue;
 			parametersDialog.GetValues(fieldsValue);
-			for(std::size_t idchamp=0;idchamp<fieldsValue.size();idchamp++)
+			for(int fieldId=0;fieldId<fieldsValue.size();fieldId++)
 			{
-				str key(arrayKeys.Item(idchamp).ToStdString().c_str());
-				str value(fieldsValue.at(idchamp).ToStdString().c_str());
-				values[key] = value;
+				values[arrayKeys[fieldId]] = fieldsValue.at(fieldId).ToStdWstring();
 			}
 			return boost::python::make_tuple(true,values);
 		}else{
