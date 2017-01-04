@@ -153,8 +153,8 @@ void processManager::AddLogger(smart_ptr<InterfLogger> logger)
 
 bool uiRunExe(wxFrame* parent,const wxString& path,const wxString& labelOutput, wxWindow* progressDialog,smart_ptr<InterfLogger> extLogger)
 {
-    _("Elapsed time : ");
-	_("Remaining time : ");
+    _("Elapsed time: ");
+	_("Remaining time: ");
 	_("Close");
 	_("Cancel");
 	_("Unknown");

@@ -1,7 +1,9 @@
 cd ..
+cd ..
 
-dir /S /B *.c* *.h* > files.txt
+dir /S /B *.c *.cpp *.h *.hpp > isimpa\lang\files.txt
 
-xgettext --keyword=_ --keyword=wxTRANSLATE  --from-code=ISO-8859-15 -s --no-wrap  -no-hash --escape -ffiles.txt -olang\internat.pot
+cd isimpa\lang\
+xgettext --keyword=_ --keyword=wxTRANSLATE  --from-code=UTF-8 -s --no-wrap  -no-hash --escape -ffiles.txt -ointernat.pot
 
 pause

@@ -406,39 +406,6 @@ namespace uictrl
 				}
 			}
 		}
-		/*
-		do {
-			tuple item;
-			try {
-				item = extract_or_throw<tuple>(iter.attr("next")());
-			} catch(error_already_set) {
-				break;
-			}
-			arrayKeys.push_back(item[0]);
-			if(hasattr(item[1],"append"))
-			{
-				//Liste
-				std::list<std::wstring> cArrValues;
-				if(extract_array<std::wstring,std::list<std::wstring> >(item[1],&cArrValues))
-				{
-					wxArrayString arrayValues;
-					arrayValues.reserve(cArrValues.size());
-					for(std::list<std::wstring>::iterator itvals=cArrValues.begin();itvals!=cArrValues.end();itvals++)
-					{
-						arrayValues.push_back(*itvals);
-					}
-					wxString defaultValue;
-					if(!cArrValues.empty())
-						defaultValue=arrayValues[0];
-					parametersDialog.AddListBox(extract_wxstring(item[0]),defaultValue,arrayValues);
-				}
-			}else{
-				//Chaine de caractère
-				parametersDialog.AddTextControl(extract_wxstring(item[0]),extract_wxstring(item[1]));
-			}
-		} while (true);
-
-		*/
 		if (parametersDialog.ShowModal() == wxID_OK)
 		{
 			dict values;

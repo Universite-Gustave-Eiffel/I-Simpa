@@ -93,20 +93,11 @@ protected:
 	*/
 	void InitProperties()
 	{
-		/**this->AppendPropertyDecimal("maxvol","Contrainte de volume (m3)",100);
-		this->AppendPropertyDecimal("minratio","Rapport Rayon/arête",2,false,2,false,true,0,1);
-		this->AppendPropertyText("appendparams","Paramétres supplémentaires","");
-		this->AppendPropertyText("userdefineparams","Paramétres utilisateur","");
-		this->AppendPropertyDecimal("constraintrecepteurss","Contrainte d'aire des récepteurs surfaciques (m²)",5.f,true,3,false,true,0,0.001f);
-		this->AppendPropertyBool("isareaconstraint","Contrainte d'aire des récepteurs surfaciques",false);
-		this->AppendPropertyBool("ismaxvol","Contrainte de volume",false);
-		this->AppendPropertyBool("preprocess","Correction du modèle avant maillage",true);
-		this->AppendPropertyBool("debugmode","Test mesh topology",false);*/
         this->AppendPropertyDecimal("maxvol","Volume constraint (m3)",100);
 		this->AppendPropertyDecimal("minratio","Radius/Edge ratio",2,false,2,false,true,0,1);
 		this->AppendPropertyText("appendparams","Additional parameters","");
 		this->AppendPropertyText("userdefineparams","User-defined parameters","");
-		this->AppendPropertyDecimal("constraintrecepteurss","Surface receivers constraint (m2)",5.f,true,3,false,true,0,0.001f);
+		this->AppendPropertyDecimal("constraintrecepteurss","Surface receivers constraint (m²)",5.f,true,3,false,true,0,0.001f);
 		this->AppendPropertyBool("isareaconstraint","Surface receivers constraint",false);
 		this->AppendPropertyBool("ismaxvol","Volume constraint",false);
 		this->AppendPropertyBool("preprocess","Scene correction before meshing",true);

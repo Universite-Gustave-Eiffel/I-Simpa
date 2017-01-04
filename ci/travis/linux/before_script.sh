@@ -1,6 +1,10 @@
 # Update translation key files
 
 find src/isimpa -type f -regex '.*/.*\.\(c\|cpp\|h\|hpp\)$' > files.txt
+find src/spps -type f -regex '.*/.*\.\(c\|cpp\|h\|hpp\)$' >> files.txt
+find src/theorie_classique -type f -regex '.*/.*\.\(c\|cpp\|h\|hpp\)$' >> files.txt
+find src/lib_interface -type f -regex '.*/.*\.\(c\|cpp\|h\|hpp\)$' >> files.txt
+
 mkdir -p src/isimpa/lang/
 xgettext --keyword=_ --keyword=wxTRANSLATE --from-code=UTF-8 -s --no-wrap  -no-hash --escape -ffiles.txt -osrc/isimpa/lang/internat.pot
 

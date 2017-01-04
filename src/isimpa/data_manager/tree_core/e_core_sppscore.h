@@ -52,8 +52,8 @@ class E_Core_Spps: public E_Core_Core
 protected:
 	void InitTransmission(E_Core_Core_Configuration* confCore)
 	{
-		confCore->AppendPropertyDecimal("trans_epsilon",wxTRANSLATE("Active calculation transmission (limit)"),5,true,1,true,true,10,0,true);
-		confCore->AppendPropertyBool("trans_calc",wxTRANSLATE("Active calculation transmission"),true,true);
+		confCore->AppendPropertyDecimal("trans_epsilon",wxTRANSLATE("Limit value of the particle extinction (Energetic method) : ratio 10^n"),5,true,1,true,true,10,0,true);
+		confCore->AppendPropertyBool("trans_calc",wxTRANSLATE("Active calculation of transmission"),true,true);
 		confCore->AppendPropertyDecimal("rayon_recepteurp",wxTRANSLATE("Receiver radius"),.31f,false,5,false,true,0,EPSILON,true);
 	}
 	void InitSurfaceReceiverMethod(E_Core_Core_Configuration* confCore)
@@ -68,11 +68,10 @@ protected:
 	}
 	void InitNewProperties() //Nouvelle proprietes 07/04/2009
 	{
-		/* this->AppendPropertyText("stats_filename",wxString(_("SPPS calculation statistics"))+wxString(".gabe"),true,true)->Hide(); */ 
-		this->AppendPropertyText("stats_filename","stats",wxTRANSLATE("statsSPPS")+wxString(".gabe"),true,true)->Hide();
-		this->AppendPropertyText("intensity_folder","intensity_folder",wxTRANSLATE("IntensityAnimation"),true,true)->Hide();
+		this->AppendPropertyText("stats_filename","stats",wxTRANSLATE("SPPS particle statistics")+wxString(".gabe"),true,true)->Hide();
+		this->AppendPropertyText("intensity_folder","intensity_folder",wxTRANSLATE("Intensity animation"),true,true)->Hide();
 		this->AppendPropertyText("intensity_filename","intensity_filename",wxTRANSLATE("Intensity vector")+wxString(".rpi"),true,true)->Hide();
-		this->AppendPropertyText("intensity_rp_filename","intensity_rp_filename","ponct_intensity.gabe",true,true)->Hide();
+		this->AppendPropertyText("intensity_rp_filename","intensity_rp_filename", wxTRANSLATE("Receiver intensity") + wxString(".gabe"),true,true)->Hide();
 		    
 		// Code source à destination de PoEdit
 		wxTRANSLATE("Punctual receiver intensity");
@@ -93,7 +92,7 @@ protected:
 		confCore->AppendPropertyBool("output_recp_bysource", wxTRANSLATE("Echogram per source"), false, true);
 	}
 	void InitRandomSeed(Element* confCore) {
-		confCore->AppendPropertyInteger("random_seed",wxTRANSLATE("Random seed"), 0,true, false, true);
+		confCore->AppendPropertyInteger("random_seed",wxTRANSLATE("Random initialization number"), 0,true, false, true);
 	}
 public:
 
