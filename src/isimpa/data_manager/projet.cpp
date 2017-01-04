@@ -2210,7 +2210,7 @@ bool ProjectManager::UpdateZip(wxString folderfrom,wxString zipfilename)
 				if(!inputFile.IsDir())
 				{
 
-					progInfo.Update((int)((nbUpdated/(float)nbToUpdate)*100),wxString::Format(_("Copy of the file\n%s"),GetFittedString(progInfo,inputFile.GetFullPath())));
+					progInfo.Update((int)((nbUpdated/(float)nbToUpdate)*100),_("Copy of the file\n%s",GetFittedString(progInfo,inputFile.GetFullPath())));
 				}
 				//progInfo.Fit();
 				//progInfo.Update();
@@ -2221,7 +2221,7 @@ bool ProjectManager::UpdateZip(wxString folderfrom,wxString zipfilename)
 				//Le fichier a été modifié on compacte ce nouveau fichier dans l'archive
 				if(inputFile.IsFileReadable())
 				{
-					progInfo.Update((int)((nbUpdated/(float)nbToUpdate)*100),_(wxString::Format("Compression of file\n%s",GetFittedString(progInfo,showPath.GetFullPath()))));
+					progInfo.Update((int)((nbUpdated/(float)nbToUpdate)*100),_("Compression of file\n%s",GetFittedString(progInfo,showPath.GetFullPath())));
 					wxFileStream fstr(elementName);
 					outzip.PutNextEntry(entryName,realFileDate);
 					outzip<<fstr;
@@ -2249,7 +2249,7 @@ bool ProjectManager::UpdateZip(wxString folderfrom,wxString zipfilename)
 			if(wxFileExists(tabFichiers[i]))
 			{
 				wxFileName nouvFich(tabFichiers[i]);
-				progInfo.Update((int)((i/(float)nbfichier)*100),_(wxString::Format("Compression of file\n%s",nouvFich.GetFullName())));
+				progInfo.Update((int)((i/(float)nbfichier)*100),_("Compression of file\n%s", nouvFich.GetFullName()));
 				wxDateTime fileTime=nouvFich.GetModificationTime();
 				outzip.PutNextEntry(entryName,fileTime);
 				wxFFileInputStream fstr(tabFichiers[i]);
@@ -2319,7 +2319,7 @@ bool ProjectManager::ZipFolder(const wxString&folderfrom,const wxString&zipfilen
 			if(wxFileExists(tabFichiers[i]))
 			{
 				wxFileName nouvFich(tabFichiers[i]);
-				progInfo.Update((int)((i/(float)nbfichier)*100),wxString::Format(_("Compression of file\n%s"),GetFittedString(progInfo,nouvFich.GetFullPath())));
+				progInfo.Update((int)((i/(float)nbfichier)*100),_("Compression of file\n%s", GetFittedString(progInfo,nouvFich.GetFullPath())));
 				//progInfo.Fit();
 				//progInfo.Update();
 				zip.PutNextEntry(entryName,nouvFich.GetModificationTime());
