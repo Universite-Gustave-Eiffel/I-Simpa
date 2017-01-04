@@ -85,8 +85,7 @@ protected:
 	}
 	void InitExportRs(Element* confCore)
 	{
-		confCore->AppendPropertyBool("output_recs_byfreq","Export surface receivers for each frequency band",true,true);
-		_("Export surface receivers for each frequency band");
+		confCore->AppendPropertyBool("output_recs_byfreq", wxTRANSLATE("Export surface receivers for each frequency band"),true,true);
 	}
 	void InitOutputRecpBySource(Element* confCore) {
 		confCore->AppendPropertyBool("output_recp_bysource", wxTRANSLATE("Echogram per source"), false, true);
@@ -214,7 +213,7 @@ public:
 				{
 					unsigned int nbpasdetemps=elConf->GetDecimalConfig("duree_simulation")/elConf->GetDecimalConfig("pasdetemps");
 					unsigned int total_data=nbpartrendu*nbpasdetemps*sizeof(float)*4*ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Sources_Actives;
-					wxLogWarning(wxTRANSLATE("The size of the particle file, for each frequency band, is around %.2f Mo"),float(total_data)/pow(10.f,6.f));
+					wxLogWarning(_("The size of the particle file, for each frequency band, is around %.2f Mo"),float(total_data)/pow(10.f,6.f));
 				}
 			}else if(filsInfo.libelleElement=="computation_method")
 			{

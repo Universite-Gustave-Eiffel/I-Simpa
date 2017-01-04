@@ -1,85 +1,35 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: module_recp_tools\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-30 13:07+0100\n"
-"PO-Revision-Date: \n"
+"POT-Creation-Date: 2017-01-04 11:26+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Nicolas Fortin <github@nettrader.fr>, 2017\n"
 "Language-Team: French (https://www.transifex.com/LAE/teams/23470/fr/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.5.7\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: ../../..\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 
-#: ../../../__init__.py:45
-msgid "Enable"
-msgstr ""
+#: D:\fortin\github\I-Simpa\currentRelease\UserScript\moveto_vertex\__init__.py:26
+msgid "(Please select the group of destination:"
+msgstr "(Veuillez sélectionner le groupe de destination :"
 
-#: ../../../__init__.py:46
-msgid "Disable"
-msgstr ""
+#: D:\fortin\github\I-Simpa\currentRelease\UserScript\moveto_vertex\__init__.py:24
+msgid "Label"
+msgstr "Libellé"
 
-#: ../../../__init__.py:48
-msgid "Rotation"
-msgstr ""
+#: D:\fortin\github\I-Simpa\currentRelease\UserScript\moveto_vertex\__init__.py:26
+msgid "Move faces"
+msgstr "Déplacement de faces"
 
-#: ../../../__init__.py:49
-msgid "Translation"
-msgstr ""
-
-#: ../../../__init__.py:51
-msgid "All sources"
-msgstr ""
-
-#: ../../../__init__.py:53 ../../../__init__.py:59
-msgid "Create a line of sound sources"
-msgstr ""
-
-#: ../../../__init__.py:56
-msgid "Starting position [x,y,z] (m)"
-msgstr ""
-
-#: ../../../__init__.py:57
-msgid "Number of sources"
-msgstr ""
-
-#: ../../../__init__.py:58
-msgid "Step [x,y,z] (m)"
-msgstr ""
-
-#: ../../../__init__.py:60
-msgid "Please fill the following fields to create the sound source line"
-msgstr ""
-
-#: ../../../__init__.py:71 ../../../__init__.py:113 ../../../__init__.py:134
-msgid "Wrong parameters"
-msgstr ""
-
-#: ../../../__init__.py:86
-msgid "Vector of rotation"
-msgstr ""
-
-#: ../../../__init__.py:87
-msgid "Angle (degrees)"
-msgstr ""
-
-#: ../../../__init__.py:88
-msgid "Rotation centre"
-msgstr ""
-
-#: ../../../__init__.py:101
-msgid "Rotation of a group of sound sources"
-msgstr ""
-
-#: ../../../__init__.py:125
-msgid "Direction (m)"
-msgstr ""
-
-#: ../../../__init__.py:126
-msgid "Translation of a group of sound sources"
-msgstr ""
+#: D:\fortin\github\I-Simpa\currentRelease\UserScript\moveto_vertex\__init__.py:16
+msgid "Move to an existing group"
+msgstr "Déplacer vers un groupe existant"
