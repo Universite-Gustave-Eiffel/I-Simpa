@@ -159,25 +159,7 @@ public:
 		confCore->AppendPropertyList("computation_method",wxTRANSLATE("Calculation method"),computationMethods,0,false,1,computationMethodsIndex,true);
 
 		InitTransmission(confCore);
-
-		/* #if 0
-		    // Translation keys, do not remove
-			_("SPPS");
-			_("Random");
-			_("Energetic");
-			_("Export surface receivers for each frequency band");
-			_("Calculation method");
-			_("Number of sound particles per source");
-			_("Number of sound particles per source (display)");
-			_("Active calculation of atmospheric absorption");
-			_("Active calculation of diffusion by fitting objects");
-			_("Active calculation of direct field only");
-			_("Radius of receivers (m)");
-			_("Limit of propagation (10^n)");
-			_("Active calculation of acoustic transmission");
-			_("Punctual intensity");
-		#endif */
-
+		
 		this->AppendFils(new E_Core_Core_Bfreqselection(this));
 
 		this->AppendPropertyText("modelName","","mesh.cbin",true,true)->Hide();

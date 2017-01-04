@@ -18,7 +18,7 @@ def GetMixedLevel(folderwxid):
     for idrecp in recplist:
         #recp devient l'objet ayant comme indice idrecp (entier)
         recp=ui.element(idrecp)
-        if recp.getinfos()["name"]=="soundpressure":
+        if recp.getinfos()["name"]=="Sound level":
             #on demande le calcul des paramètres sonores
             ui.application.sendevent(recp,ui.idevent.IDEVENT_RECP_COMPUTE_ACOUSTIC_PARAMETERS,{"TR":"15;30", "EDT":"", "D":""})
             #on recupere l'element parent (le dossier de récepteur ponctuel)
@@ -26,7 +26,7 @@ def GetMixedLevel(folderwxid):
             #application.sendevent(pere,idevent.IDEVENT_RELOAD_FOLDER)
             nomrecp=pere.getinfos()["label"]
             #on recupere les données calculées
-            params=ui.element(pere.getelementbylibelle('acoustic_param'))
+            params=ui.element(pere.getelementbylibelle('Acoustic parameters'))
             #on stocke dans gridspl le tableau des niveaux de pression
             gridparam=ui.application.getdataarray(params)
             #on ajoute la colonne
@@ -42,7 +42,6 @@ def SaveLevel(tab,path):
     labelcol=stringarray()
     for cell in tab[0][1:]:
         labelcol.append(cell.encode('cp1252'))
-    gabewriter.AppendStrCol(labelcol,"TR-30")
     for col in tab[1:]:
         datacol=floatarray()
         for cell in col[1:]:
