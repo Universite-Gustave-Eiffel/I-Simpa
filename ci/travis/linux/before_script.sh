@@ -33,5 +33,15 @@ find currentRelease/UserScript/SppsReportSample -type f -name "*.py" > files.txt
 xgettext --keyword=_  --from-code=UTF-8 -s --no-wrap  -no-hash --escape -ffiles.txt -ocurrentRelease/UserScript/SppsReportSample/internat.pot
 msginit --no-translator --input currentRelease/UserScript/SppsReportSample/internat.pot -o currentRelease/UserScript/SppsReportSample/internat.pot -l en.UTF-8
 
-# Now replace all ASCII charset by UTf-8 in pot files
+# Now replace all ASCII charset by UTF-8 in pot files
 find . -type f -name "*.pot" -exec sed -i 's/charset=ASCII/charset=UTF-8/g' {} +
+
+# Push translation keys to transifex
+
+if [ -z "$TRANSIFEXPWD" ]; then
+    echo "Not in master branch do not push transifex keys"
+else
+    # Write transifex config file
+    printf "[https://www.transifex.com]\nhostname = https://www.transifex.com\npassword = $TRANSIFEXPWD\ntoken =\nusername = travis_lae\n" > ~/.transifexrc
+    tx push -s
+fi
