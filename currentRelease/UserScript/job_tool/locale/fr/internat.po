@@ -1,7 +1,7 @@
 # English translations for PACKAGE package.
 # Copyright (C) 2017 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# <EMAIL@ADDRESS>, 2017.
+# Automatically generated, 2017.
 # 
 # Translators:
 # Picaut <judicael.picaut@ifsttar.fr>, 2016
@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-05 11:44+0100\n"
-"PO-Revision-Date: 2017-01-05 11:44+0100\n"
+"POT-Creation-Date: 2017-01-05 14:53+0100\n"
+"PO-Revision-Date: 2017-01-05 14:53+0100\n"
 "Last-Translator: Picaut <judicael.picaut@ifsttar.fr>, 2016\n"
 "Language-Team: French (https://www.transifex.com/LAE/teams/23470/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -19,31 +19,31 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\job_tool\__init__.py:129
+#: currentRelease/UserScript/job_tool/__init__.py:129
 #, python-format
 msgid "%i tasks:"
 msgstr "%i tâches :"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\job_tool\__init__.py:142
+#: currentRelease/UserScript/job_tool/__init__.py:142
 msgid "Add calculation in the job list"
 msgstr "Ajouter le calcul dans la liste des tâches"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\job_tool\__init__.py:144
+#: currentRelease/UserScript/job_tool/__init__.py:144
 msgid "Clear job list"
 msgstr "Effacer la liste des tâches"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\job_tool\__init__.py:144
+#: currentRelease/UserScript/job_tool/__init__.py:144
 msgid "Confirmation"
 msgstr "Confirmation"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\job_tool\__init__.py:148
+#: currentRelease/UserScript/job_tool/__init__.py:148
 msgid "Job list"
 msgstr "Liste des tâches"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\job_tool\__init__.py:145
+#: currentRelease/UserScript/job_tool/__init__.py:145
 msgid "Run job list"
 msgstr "Exécuter la liste des tâches"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\job_tool\__init__.py:146
+#: currentRelease/UserScript/job_tool/__init__.py:146
 msgid "Show job list"
 msgstr "Afficher la liste des tâches"

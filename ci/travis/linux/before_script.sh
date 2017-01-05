@@ -28,3 +28,10 @@ msginit --no-translator --input currentRelease/UserScript/recp_tool/internat.pot
 find currentRelease/UserScript/source_tools -type f -name "*.py" > files.txt
 xgettext --keyword=_  --from-code=UTF-8 -s --no-wrap  -no-hash --escape -ffiles.txt -ocurrentRelease/UserScript/source_tools/internat.pot
 msginit --no-translator --input currentRelease/UserScript/source_tools/internat.pot -o currentRelease/UserScript/source_tools/internat.pot -l en.UTF-8
+
+find currentRelease/UserScript/SppsReportSample -type f -name "*.py" > files.txt
+xgettext --keyword=_  --from-code=UTF-8 -s --no-wrap  -no-hash --escape -ffiles.txt -ocurrentRelease/UserScript/SppsReportSample/internat.pot
+msginit --no-translator --input currentRelease/UserScript/SppsReportSample/internat.pot -o currentRelease/UserScript/SppsReportSample/internat.pot -l en.UTF-8
+
+# Now replace all ASCII charset by UTf-8 in pot files
+find . -type f -name "*.pot" -exec sed -i 's/charset=ASCII/charset=UTF-8/g' {} +

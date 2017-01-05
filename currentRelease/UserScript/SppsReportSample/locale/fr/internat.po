@@ -1,7 +1,7 @@
 # English translations for PACKAGE package.
 # Copyright (C) 2017 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# <EMAIL@ADDRESS>, 2017.
+# Automatically generated, 2017.
 # 
 # Translators:
 # Nicolas Fortin <github@nettrader.fr>, 2017
@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-05 11:55+0100\n"
-"PO-Revision-Date: 2017-01-05 11:55+0100\n"
+"POT-Creation-Date: 2017-01-05 14:53+0100\n"
+"PO-Revision-Date: 2017-01-05 14:53+0100\n"
 "Last-Translator: Nicolas Fortin <github@nettrader.fr>, 2017\n"
 "Language-Team: French (https://www.transifex.com/LAE/teams/23470/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -19,57 +19,57 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\SppsReportSample\buildhtmlreport.py:80
+#: currentRelease/UserScript/SppsReportSample/buildhtmlreport.py:80
 msgid "Acoustic parameters"
 msgstr "Paramètres acoustique"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\SppsReportSample\__init__.py:63
+#: currentRelease/UserScript/SppsReportSample/__init__.py:63
 msgid "EDT (s)"
 msgstr "EDT (s)"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\SppsReportSample\testlocale.py:8
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\SppsReportSample\__init__.py:164
+#: currentRelease/UserScript/SppsReportSample/__init__.py:164
+#: currentRelease/UserScript/SppsReportSample/testlocale.py:8
 msgid "Make report"
 msgstr "Créer un rapport"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\SppsReportSample\buildhtmlreport.py:78
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\SppsReportSample\buildhtmlreport.py:217
+#: currentRelease/UserScript/SppsReportSample/buildhtmlreport.py:78
+#: currentRelease/UserScript/SppsReportSample/buildhtmlreport.py:217
 msgid "Punctual receivers"
 msgstr "Récepteurs ponctuels"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\SppsReportSample\buildhtmlreport.py:161
+#: currentRelease/UserScript/SppsReportSample/buildhtmlreport.py:161
 msgid "RT30"
 msgstr "RT30"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\SppsReportSample\buildhtmlreport.py:81
+#: currentRelease/UserScript/SppsReportSample/buildhtmlreport.py:81
 msgid "Reverberation time"
 msgstr "Temps de réverbération"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\SppsReportSample\buildhtmlreport.py:97
+#: currentRelease/UserScript/SppsReportSample/buildhtmlreport.py:97
 msgid "SPL"
 msgstr "SPL"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\SppsReportSample\buildhtmlreport.py:77
+#: currentRelease/UserScript/SppsReportSample/buildhtmlreport.py:77
 msgid "Sound level"
 msgstr "Niveau sonore"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\SppsReportSample\buildhtmlreport.py:218
+#: currentRelease/UserScript/SppsReportSample/buildhtmlreport.py:218
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\SppsReportSample\buildhtmlreport.py:79
+#: currentRelease/UserScript/SppsReportSample/buildhtmlreport.py:79
 msgid "Surface receivers"
 msgstr "Récepteurs de surface"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\SppsReportSample\buildhtmlreport.py:216
+#: currentRelease/UserScript/SppsReportSample/buildhtmlreport.py:216
 msgid "Synthesis"
 msgstr "Synthèse"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\SppsReportSample\__init__.py:62
+#: currentRelease/UserScript/SppsReportSample/__init__.py:62
 #, python-format
 msgid "TR-%g (s)"
 msgstr "TR-%g (s)"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\SppsReportSample\buildhtmlreport.py:219
+#: currentRelease/UserScript/SppsReportSample/buildhtmlreport.py:219
 msgid "Terms of Use"
 msgstr "Conditions d'utilisation"

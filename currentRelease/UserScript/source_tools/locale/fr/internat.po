@@ -1,7 +1,7 @@
 # English translations for PACKAGE package.
 # Copyright (C) 2017 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# <EMAIL@ADDRESS>, 2017.
+# Automatically generated, 2017.
 # 
 # Translators:
 # Picaut <judicael.picaut@ifsttar.fr>, 2016
@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-05 11:54+0100\n"
-"PO-Revision-Date: 2017-01-05 11:54+0100\n"
+"POT-Creation-Date: 2017-01-05 14:53+0100\n"
+"PO-Revision-Date: 2017-01-05 14:53+0100\n"
 "Last-Translator: Picaut <judicael.picaut@ifsttar.fr>, 2016\n"
 "Language-Team: French (https://www.transifex.com/LAE/teams/23470/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -19,74 +19,74 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\source_tools\__init__.py:52
+#: currentRelease/UserScript/source_tools/__init__.py:52
 msgid "All sources"
 msgstr "Toutes les sources"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\source_tools\__init__.py:88
+#: currentRelease/UserScript/source_tools/__init__.py:88
 msgid "Angle (degrees)"
 msgstr "Angle (degrés)"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\source_tools\__init__.py:54
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\source_tools\__init__.py:60
+#: currentRelease/UserScript/source_tools/__init__.py:54
+#: currentRelease/UserScript/source_tools/__init__.py:60
 msgid "Create a line of sound sources"
 msgstr "Créer une grille de sources sonores"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\source_tools\__init__.py:126
+#: currentRelease/UserScript/source_tools/__init__.py:126
 msgid "Direction (m)"
 msgstr "Direction (m)"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\source_tools\__init__.py:47
+#: currentRelease/UserScript/source_tools/__init__.py:47
 msgid "Disable"
 msgstr "Désactiver"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\source_tools\__init__.py:46
+#: currentRelease/UserScript/source_tools/__init__.py:46
 msgid "Enable"
 msgstr "Activer"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\source_tools\__init__.py:58
+#: currentRelease/UserScript/source_tools/__init__.py:58
 msgid "Number of sources"
 msgstr "Nombre de sources"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\source_tools\__init__.py:61
+#: currentRelease/UserScript/source_tools/__init__.py:61
 msgid "Please fill the following fields to create the sound source line"
 msgstr ""
 "Veuillez saisir les informations pour créer la ligne de sources sonores"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\source_tools\__init__.py:49
+#: currentRelease/UserScript/source_tools/__init__.py:49
 msgid "Rotation"
 msgstr "Rotation"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\source_tools\__init__.py:89
+#: currentRelease/UserScript/source_tools/__init__.py:89
 msgid "Rotation centre"
 msgstr "Centre de rotation"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\source_tools\__init__.py:102
+#: currentRelease/UserScript/source_tools/__init__.py:102
 msgid "Rotation of a group of sound sources"
 msgstr "Rotation d'un groupe de sources sonores"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\source_tools\__init__.py:57
+#: currentRelease/UserScript/source_tools/__init__.py:57
 msgid "Starting position [x,y,z] (m)"
 msgstr "Point de départ [x,y,z] (m)"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\source_tools\__init__.py:59
+#: currentRelease/UserScript/source_tools/__init__.py:59
 msgid "Step [x,y,z] (m)"
 msgstr "Pas [x,y,z] (m)"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\source_tools\__init__.py:50
+#: currentRelease/UserScript/source_tools/__init__.py:50
 msgid "Translation"
 msgstr "Translation"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\source_tools\__init__.py:127
+#: currentRelease/UserScript/source_tools/__init__.py:127
 msgid "Translation of a group of sound sources"
 msgstr "Translation d'un groupe de sources sonores"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\source_tools\__init__.py:87
+#: currentRelease/UserScript/source_tools/__init__.py:87
 msgid "Vector of rotation"
 msgstr "Vecteur de rotation"
 
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\source_tools\__init__.py:72
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\source_tools\__init__.py:114
-#: D:\fortin\github\I-Simpa\currentRelease\UserScript\source_tools\__init__.py:135
+#: currentRelease/UserScript/source_tools/__init__.py:72
+#: currentRelease/UserScript/source_tools/__init__.py:114
+#: currentRelease/UserScript/source_tools/__init__.py:135
 msgid "Wrong parameters"
 msgstr "Erreur de saisie des paramètres"

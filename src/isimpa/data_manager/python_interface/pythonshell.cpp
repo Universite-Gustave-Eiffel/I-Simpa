@@ -280,7 +280,7 @@ void PythonShell::call_event(const int& eventid,const int& elementid)
 
 int PythonShell::GetCountEventTable()
 {
-	return extract_or_throw<int>(event_lst.attr("__len__")());
+    return int(len(event_lst));
 }
 bool PythonShell::GetPythonManagedMenu(const int& element_type,const int& elementId,boost::python::list& pymenu)
 {
