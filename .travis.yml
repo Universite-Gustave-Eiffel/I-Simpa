@@ -32,7 +32,7 @@ addons:
     - libglapi-mesa
     - libgtk-3-dev
     - byacc
-    - xgettext
+    - gettext
     
 cache:
   apt: true

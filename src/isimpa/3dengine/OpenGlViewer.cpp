@@ -72,8 +72,9 @@ static void CheckGLError()
 		}
 
 		errLast = err;
-
-		wxLogError(wxT("OpenGL error %d"), err);
+		if(err != 1280) { // Ignore error 1280 (context not ready)
+			wxLogError(wxT("OpenGL error %d"), err);
+		}
 	}
 }
 
