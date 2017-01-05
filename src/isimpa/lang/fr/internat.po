@@ -1,5 +1,5 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# English translations for PACKAGE package.
+# Copyright (C) 2017 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: I-Simpa\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-04 11:04+0100\n"
-"PO-Revision-Date: 2017-01-04 14:20+0000\n"
+"POT-Creation-Date: 2017-01-05 11:58+0100\n"
+"PO-Revision-Date: 2017-01-05 11:00+0000\n"
 "Last-Translator: Nicolas Fortin <github@nettrader.fr>\n"
 "Language-Team: French (http://www.transifex.com/LAE/i-simpa/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -69,7 +69,7 @@ msgstr "Vue 3D"
 msgid "3D display"
 msgstr "Rendu 3D"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2346
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2343
 msgid "3drendering"
 msgstr "Rendu 3D"
 
@@ -336,7 +336,7 @@ msgstr "Bilatéral"
 msgid "Borders"
 msgstr "Bordures"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2980
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2977
 msgid "Build of a 3D scene.\n"
 msgstr "Changement du modèle de la scène 3D, création d'un nouveau modèle\n"
 
@@ -511,7 +511,7 @@ msgstr "Exécution du code de génération de maillage"
 msgid "Color"
 msgstr "Couleur"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2395
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2392
 msgid "Color of particles"
 msgstr "Couleur des particules"
 
@@ -528,7 +528,9 @@ msgstr "Vue combinée"
 msgid "Compare surface receivers"
 msgstr "Différencier les récepteurs de surfaces"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2322
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2223
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2251
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2321
 #, c-format
 msgid ""
 "Compression of file\n"
@@ -587,7 +589,7 @@ msgstr "Copie de %s"
 msgid "Copy of calculation parameters"
 msgstr "Copie des paramètres de calcul"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2213
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2212
 #, c-format
 msgid ""
 "Copy of the file\n"
@@ -600,8 +602,8 @@ msgstr "Fichier corrompu ou non existant."
 
 #: D:\fortin\github\I-Simpa\src\isimpa\doxDoc\demos\demos_add_element_drawable.h:59
 #: D:\fortin\github\I-Simpa\src\isimpa\doxDoc\demos\demos_add_element_withprop.h:59
-msgid "Couleur de d\\303\\251monstration"
-msgstr "Couleur de d\\303\\251monstration"
+msgid "Couleur de démonstration"
+msgstr "Couleur de démonstration"
 
 #: D:\fortin\github\I-Simpa\src\isimpa\data_manager\tree_scene\e_scene_volumes.cpp:98
 msgid "Create a volume"
@@ -689,7 +691,7 @@ msgstr "Date"
 msgid "Debug mode mesh, nothing will be done"
 msgstr "Utilisation du mode débuggage, aucun maillage ne sera produit !"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2358
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2355
 msgid "Default color"
 msgstr "Couleur par défaut"
 
@@ -768,7 +770,7 @@ msgstr "Destination volume"
 msgid "Developers >>"
 msgstr "Développeurs >>"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2487
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2484
 #, c-format
 msgid ""
 "Dezip of file\n"
@@ -823,7 +825,7 @@ msgstr "Rendu"
 msgid "Display back"
 msgstr "Mettre en arrière"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\3dengine\OpenGlViewer.cpp:271
+#: D:\fortin\github\I-Simpa\src\isimpa\3dengine\OpenGlViewer.cpp:272
 msgid "Display error unknown"
 msgstr "Erreur de rendu inconnue"
 
@@ -831,7 +833,7 @@ msgstr "Erreur de rendu inconnue"
 msgid "Display front"
 msgstr "Mettre en avant"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2744
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2741
 msgid "Display mesh"
 msgstr "Prévisualisation du maillage"
 
@@ -942,7 +944,7 @@ msgstr "Active/Désactive la possibilité de modifier tous les champs pour l'uti
 msgid "Energetic"
 msgstr "Énergétique"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2293
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2292
 #, c-format
 msgid "Enough memory. %li Mo required, %li Mo free on the corresponding disk"
 msgstr "Espace disque insuffisant. %li Mo requis et seulement %li Mo libre sur le disque spécifié."
@@ -1451,7 +1453,7 @@ msgstr "Liste des niveaux iso"
 msgid "Iso-levels color"
 msgstr "Palette des niveaux"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2389
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2386
 msgid "Iso-lines color"
 msgstr "Couleur des lignes iso"
 
@@ -1459,8 +1461,8 @@ msgstr "Couleur des lignes iso"
 msgid "Keep existing groups"
 msgstr "Garder les groupes existants"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2407
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2460
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2404
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2457
 msgid "Keep modification history"
 msgstr "Conserver l'historique des modifications"
 
@@ -1478,7 +1480,7 @@ msgstr "LFC%i"
 msgid "LG (dB)"
 msgstr "LG (dB)"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2368
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2365
 msgid "Label color"
 msgstr "Couleur du texte de la légende"
 
@@ -1552,16 +1554,16 @@ msgstr "Charger la simulation"
 msgid "Load image"
 msgstr "Charger une image"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2951
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2948
 msgid "Loading 3D scene"
 msgstr "Chargement d'un modèle"
 
 #: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:1900
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2906
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2903
 msgid "Loading 3D scene ..."
 msgstr "Chargement du modèle 3D"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2922
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2919
 #, c-format
 msgid "Loading 3D scene: %s\n"
 msgstr "Changement du modèle de la scène 3D : %s\n"
@@ -1584,7 +1586,7 @@ msgstr "Chargement de la face %i/%i"
 msgid "Loading faces"
 msgstr "Chargement des faces"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2921
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2918
 #: D:\fortin\github\I-Simpa\src\isimpa\data_manager\tree_scene\e_scene_groupesurfaces_groupe.cpp:488
 msgid "Loading faces of 3D scene"
 msgstr "Chargement des faces du modèle 3D"
@@ -1612,7 +1614,7 @@ msgstr "Chargement du fichier de particules"
 msgid "Loading project"
 msgstr "Chargement du projet"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2530
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2527
 #, c-format
 msgid "Loading project: %s"
 msgstr "Ouverture du projet : %s"
@@ -1751,8 +1753,8 @@ msgstr "Utilisation des paramètres utilisateurs !"
 
 #: D:\fortin\github\I-Simpa\src\isimpa\doxDoc\demos\demo_translation_1.h:36
 #, c-format
-msgid "Message en francais \\303\\240 traduire"
-msgstr "Message en français \\303\\240 traduire"
+msgid "Message en francais à traduire"
+msgstr "Message en francais à traduire"
 
 #: D:\fortin\github\I-Simpa\src\isimpa\main\i_simpa_main.cpp:348
 msgid "Messages"
@@ -1877,8 +1879,8 @@ msgstr "Pas d'erreur."
 
 #: D:\fortin\github\I-Simpa\src\isimpa\doxDoc\demos\demos_add_element_drawable.h:57
 #: D:\fortin\github\I-Simpa\src\isimpa\doxDoc\demos\demos_add_element_withprop.h:57
-msgid "Nom de la d\\303\\251mo"
-msgstr "Nom de la d\\303\\251mo"
+msgid "Nom de la démo"
+msgstr "Nom de la démo"
 
 #: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:382
 #: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:412
@@ -2033,7 +2035,7 @@ msgstr "Particules absorbées par les matériaux"
 msgid "Particles animation"
 msgstr "Animation des particules"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2370
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2367
 #: D:\fortin\github\I-Simpa\src\isimpa\data_manager\tree_rapport\e_report_partvisualisation.h:75
 msgid "Particles display"
 msgstr "Visualisation des particules"
@@ -2105,7 +2107,7 @@ msgstr "Veuillez choisir la langue :"
 msgid "Please choose the application instance"
 msgstr "Veuillez choisir l'instance à charger"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2744
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2741
 msgid "Please chose a calculation code"
 msgstr "Veuillez choisir le moteur de calcul associé au mailleur"
 
@@ -2153,7 +2155,7 @@ msgstr "Veuillez entrer les paramètres acoustiques à calculer.\nLe caractère 
 msgid "Please, refresh root folder of the data tree"
 msgstr "Veuillez actualiser le dossier racine de l'arbre de résultat."
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2951
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2948
 msgid "Please, select 3D scene importation options"
 msgstr "Veuillez spécifier les options d'importation d'un modèle 3D."
 
@@ -2173,7 +2175,7 @@ msgstr "Point"
 msgid "Pointer toolbar"
 msgstr "Barre d'outils Pointeur"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2380
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2377
 msgid "Police font"
 msgstr "Police"
 
@@ -2227,7 +2229,7 @@ msgstr "Projet"
 msgid "Project (*.proj)|*.proj"
 msgstr "Projet (*.proj)|*.proj"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2303
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2302
 msgid "Project compression"
 msgstr "Compression du projet"
 
@@ -2235,7 +2237,7 @@ msgstr "Compression du projet"
 msgid "Project database"
 msgstr "Base de données du projet"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2465
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2462
 msgid "Project decompression"
 msgstr "Décompression du projet"
 
@@ -2243,11 +2245,11 @@ msgstr "Décompression du projet"
 msgid "Project description"
 msgstr "Description du projet"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2303
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2302
 msgid "Project files compression in progress ..."
 msgstr "Compression des fichiers du projet en cours..."
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2465
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2462
 msgid "Project files decompression in progress ..."
 msgstr "Décompression des fichiers du projet en cours..."
 
@@ -2313,8 +2315,8 @@ msgstr "Impossible de gérer une erreur de l'implémentation Python"
 
 #: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet_python.cpp:183
 #, c-format
-msgid "Python(TM) parameter %s not found"
-msgstr "Python parameter %s not found"
+msgid "Python(TM) plugin event parameter %s not found"
+msgstr "Paramètre d’événement %s du plugin Python(TM) non trouvé"
 
 #: D:\fortin\github\I-Simpa\src\isimpa\IHM\WizardRemeshModel.cpp:140
 msgid "Quality constraint"
@@ -2437,7 +2439,7 @@ msgstr "Méthode d'adaptation au modèle d'origine"
 msgid "Rename"
 msgstr "Renommer"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2367
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2364
 msgid "Render frequency (Hz)"
 msgstr "Fréquence d'affichage (Hz)"
 
@@ -2541,7 +2543,7 @@ msgstr "Sauvegarder les données sous..."
 msgid "Save document"
 msgstr "Enregistrer le document"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2607
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2604
 msgid "Save finished"
 msgstr "Sauvegarde terminée"
 
@@ -2559,12 +2561,12 @@ msgstr "Enregistrer le projet\tCtrl+S"
 msgid "Save project as ..."
 msgstr "Enregistrer le projet sous..."
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2928
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2925
 msgid "Saving 3D scene"
 msgstr "Sauvegarde du modèle 3D"
 
 #: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2160
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2592
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2589
 msgid "Saving project"
 msgstr "Sauvegarde du projet"
 
@@ -2605,7 +2607,7 @@ msgstr "Nuage de marqueurs"
 msgid "Scene"
 msgstr "Scène"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2357
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2354
 msgid "Scene background"
 msgstr "Fond de la scène"
 
@@ -2621,7 +2623,7 @@ msgstr "Modèle non existant !"
 msgid "Scene file"
 msgstr "Fichier de modèle"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2355
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2352
 msgid "Scene lines"
 msgstr "Lignes de la scène"
 
@@ -2662,13 +2664,13 @@ msgstr "Recherche des volumes du modèle en cours..."
 msgid "Select all"
 msgstr "Tout sélectionner"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2770
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2767
 msgid ""
 "Select face: Left Click on the 3D view 3D to select a face; Double left "
 "Click+Ctrl to select a face entirely"
 msgstr "Outil de sélection des faces. Click gauche sur la vue 3D pour sélectionner une face. Ctrl+ double Click gauche pour sélectionner toute la surface."
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2356
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2353
 msgid "Selection"
 msgstr "Sélection"
 
@@ -2848,7 +2850,7 @@ msgstr "Spéculaire"
 msgid "Spline"
 msgstr "Courbe arrondi (méthode des splines)"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:3175
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:3172
 #: D:\fortin\github\I-Simpa\src\isimpa\IHM\GabeDataGrid.cpp:308
 #: D:\fortin\github\I-Simpa\src\isimpa\IHM\MainPropGrid.cpp:167
 msgid "Spreadsheet"
@@ -2922,7 +2924,7 @@ msgstr "Contrainte d'aire des récepteurs surfaciques"
 msgid "Surface receivers constraint (m2)"
 msgstr "Contrainte d'aire des récepteurs surfaciques (m²)"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2371
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2368
 #: D:\fortin\github\I-Simpa\src\isimpa\data_manager\tree_rapport\e_report_recepteurssvisualisation.h:127
 msgid "Surface receivers display"
 msgstr "Visualisation récepteurs surfaciques"
@@ -2952,8 +2954,8 @@ msgid "Tab name:"
 msgstr "Libellé Onglet :"
 
 #: D:\fortin\github\I-Simpa\src\isimpa\data_manager\tree_scene\e_scene_projet_environnement.h:136
-msgid "Temperature (\\302\\260C)"
-msgstr "Condition atmosphérique - Température (\\302\\260C)"
+msgid "Temperature (°C)"
+msgstr "Température (°C)"
 
 #: D:\fortin\github\I-Simpa\src\isimpa\data_manager\tree_core\e_core_core_tetconf.h:113
 msgid "Test mesh topology"
@@ -2967,11 +2969,11 @@ msgstr "Paramètres du mailleur"
 msgid "Tetrahedron file is empty, the calculation can't be done !"
 msgstr "Le fichier de maillage est vide, le calcul ne peut être réalisé."
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2382
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2379
 msgid "Text background color"
 msgstr "Couleur de fond du texte"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2381
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2378
 msgid "Text color"
 msgstr "Couleur du texte"
 
@@ -3065,7 +3067,7 @@ msgstr "Le chemin du fichier XML de configuration doit être spécifié"
 msgid "The pressure value at this coordinate is %.2f"
 msgstr "La valeur de la pression à cet endroit est de %.2f "
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\tree_core\e_core_sppscore.h:216
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\tree_core\e_core_sppscore.h:198
 #, c-format
 msgid ""
 "The size of the particle file, for each frequency band, is around %.2f Mo"
@@ -3199,7 +3201,7 @@ msgstr "Transmission"
 msgid "Transparent"
 msgstr "Transparent"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2383
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2380
 msgid "Transparent text background"
 msgstr "Fond du texte transparent"
 
@@ -3220,7 +3222,7 @@ msgstr "Type"
 msgid "Unable to init the Python(TM) element %s of the %s module"
 msgstr "Impossible d'initialiser l'élément Python utilisateur %s du module %s"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2942
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2939
 msgid "Unable to load the 3D model"
 msgstr "Impossible de charger le modèle 3D !"
 
@@ -3322,7 +3324,7 @@ msgstr "Retour du processus inconnu"
 msgid "Unselect all"
 msgstr "Tout désélectionner"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2592
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2589
 msgid "Updating XML file"
 msgstr "Mise à jour du fichier XML"
 
@@ -3572,7 +3574,7 @@ msgstr "Vous devez sélectionner un fichier de résultat du type récepteur de s
 msgid "Your model doesn't have any face. Please create or import a model."
 msgstr "Votre modèle ne comporte aucune face. Veuillez créer ou importer une scène."
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2362
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2359
 msgid "animations"
 msgstr "Animations"
 
@@ -3586,25 +3588,25 @@ msgstr "dB"
 msgid "dB(A)"
 msgstr "dB(A)"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2350
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2347
 msgid "general"
 msgstr "Général"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2405
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2458
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2402
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2455
 msgid "history"
 msgstr "Historique"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2375
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2372
 msgid "legend"
 msgstr "Légende"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2401
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2454
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2398
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2451
 msgid "mainpref"
 msgstr "Préférences"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2396
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2393
 msgid "particle"
 msgstr "Particule"
 
@@ -3624,7 +3626,7 @@ msgstr "Récepteurs surfaciques"
 msgid "s"
 msgstr "s"
 
-#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2390
+#: D:\fortin\github\I-Simpa\src\isimpa\data_manager\projet.cpp:2387
 msgid "soundmap"
 msgstr "Carte des niveaux sonores"
 
