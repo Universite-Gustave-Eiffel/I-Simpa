@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: I-Simpa\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-04 11:04+0100\n"
-"PO-Revision-Date: 2017-01-04 10:43+0000\n"
+"PO-Revision-Date: 2017-01-04 14:20+0000\n"
 "Last-Translator: Nicolas Fortin <github@nettrader.fr>\n"
 "Language-Team: French (http://www.transifex.com/LAE/i-simpa/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -2361,7 +2361,7 @@ msgstr "Récepteur"
 #: D:\fortin\github\I-Simpa\src\isimpa\data_manager\tree_scene\e_scene_recepteursp_recepteur.h:125
 #, c-format
 msgid "Receiver %i"
-msgstr "Récepteur %i"
+msgstr "R%i"
 
 #: D:\fortin\github\I-Simpa\src\isimpa\data_manager\tree_core\e_core_sppscore.h:74
 msgid "Receiver intensity"

@@ -180,7 +180,7 @@ bool ProjectManager::GetParameter(const wxString& name,wxString& value)
 		value=it->second;
 		return true;
 	}else{
-		wxLogError(_("Python(TM) parameter %s not found"),name);
+		wxLogDebug(_("Python(TM) plugin event parameter %s not found"),name);
 		return false;
 	}
 }
