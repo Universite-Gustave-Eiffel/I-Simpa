@@ -133,7 +133,7 @@ int MainProcess(int argc, char* argv[])
 
 
 		CoreString fileGlobalName=*configManager.FastGetConfigValue(Core_Configuration::SPROP_CORE_WORKING_DIRECTORY);
-		fileGlobalName+=_("main_calculation");
+		fileGlobalName+=_("Main results");
 		CoreString rpsFolder=*configManager.FastGetConfigValue(Core_Configuration::SPROP_CORE_WORKING_DIRECTORY);
 		if(calcCore.recepteurPList.size()>0)
 		{

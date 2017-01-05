@@ -9,9 +9,9 @@ def dummy_notranslation(msg):
 def InstallUiModule(pathname,language):
     import gettext
     localdir=pathname + os.sep + "locale"
-    
+
     try:
-        locale_dict=gettext.translation("messages",localdir,languages=[language],fallback=True)
+        locale_dict=gettext.translation("internat",localdir,languages=[language],fallback=True)
     except IOError:
         sys.stderr.write("Language %s is not avaible for this module :\n%s\n" % (language,pathname))
         exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()

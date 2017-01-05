@@ -62,12 +62,10 @@ public:
 		_("Atmospheric absorption calculation");
 	}
 	E_Core_Tc( Element* parent, wxXmlNode* noeudCourant)
-		:E_Core_Core(parent,"Classical theory of reverberation",ELEMENT_TYPE_CORE_TC,noeudCourant)
+		:E_Core_Core(parent, wxTRANSLATE("Classical theory of reverberation (TCR)"),ELEMENT_TYPE_CORE_TC,noeudCourant)
 	{
-
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_STANDARTCORE_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_STANDARTCORE_CLOSE);
-		_("Classical theory of reverberation");
 		Element* coreConf=this->GetElementByType(Element::ELEMENT_TYPE_CORE_CORE_CONFIG);
 		if(!coreConf) //Maj version < 05/11/2008
 		{

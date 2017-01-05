@@ -122,7 +122,7 @@ wxCustomEntryDialog::wxCustomEntryDialog(wxWindow *parent,
 	PropGrid* newGrid=new PropGrid(this,wxCustomEntryDialog::CUSTOM_DIALOG_CTRLS_GRID);
 	vinputsizer->Add( newGrid,1,wxEXPAND);
 	//newGrid->SetMinSize(wxSize(300,200));
-	newGrid->AppendCols();
+	//newGrid->AppendCols();
 	newGrid->SetColLabelValue(0,_("Value"));
 	newGrid->SetColLabelAlignment(wxVERTICAL,wxALIGN_LEFT);
 
@@ -158,21 +158,6 @@ void wxCustomEntryDialog::AddListBox( const wxString& label,	const wxString& def
 }
 void wxCustomEntryDialog::AddTextControl( const wxString& label, const wxString& defaultvalue	)
 {
-	//todo remplacer par un wxgrid
-	//wxBoxSizer *inputsizer= new wxBoxSizer( wxHORIZONTAL );
-
-	/*
-	vinputsizer->Add( new wxStaticText( this, wxID_ANY, label ), 0, wxLEFT, 10 );
-	wxTextCtrl* textControl = new wxTextCtrl(this,wxID_ANY,defaultvalue);
-	m_controls.push_back(textControl);
-	vinputsizer->Add( textControl );
-	topsizer->Fit( this );
-	if(m_controls.size()==1)
-	{
-		textControl->SetSelection(-1, -1);
-		textControl->SetFocus();
-	}
-	*/
 	PropGrid* dialogGrid=wxDynamicCast(this->FindWindowById(wxCustomEntryDialog::CUSTOM_DIALOG_CTRLS_GRID),PropGrid);
 	if(dialogGrid)
 	{

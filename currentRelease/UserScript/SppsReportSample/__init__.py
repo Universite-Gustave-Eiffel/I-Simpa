@@ -42,7 +42,7 @@ def GetPonctualReceiversData(folderwxid):
         #recp devient l'objet ayant comme indice idrecp (entier)
         recp=ui.element(idrecp)
         recpinfos=recp.getinfos()
-        if recpinfos["name"]=="soundpressure":
+        if recpinfos["name"]=="Sound level":
             recpdata={}
             #on recupere l'element parent (le dossier de récepteur ponctuel)
             pere=ui.element(recp.getinfos()["parentid"])
@@ -54,7 +54,7 @@ def GetPonctualReceiversData(folderwxid):
             #application.sendevent(pere,idevent.IDEVENT_RELOAD_FOLDER)
             nomrecp=pere.getinfos()["label"]
             #on recupere les données calculées
-            params=ui.element(pere.getelementbylibelle('acoustic_param'))
+            params=ui.element(pere.getelementbylibelle('Acoustic parameters'))
             #on stocke dans gridspl le tableau des niveaux de pression
             gridparam=ui.application.getdataarray(params)
             rotated=zip(*gridparam)

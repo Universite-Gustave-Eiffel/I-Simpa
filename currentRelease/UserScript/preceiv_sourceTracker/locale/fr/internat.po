@@ -19,18 +19,20 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: currentRelease/UserScript/moveto_vertex/__init__.py:26
-msgid "(Please select the group of destination:"
-msgstr "(Veuillez sélectionner le groupe de destination :"
+#: currentRelease/UserScript/preceiv_sourceTracker/__init__.py:169
+msgid "Delete the link with the source"
+msgstr "Supprimer le lien avec la source"
 
-#: currentRelease/UserScript/moveto_vertex/__init__.py:24
-msgid "Label"
-msgstr "Libellé"
+#: currentRelease/UserScript/preceiv_sourceTracker/__init__.py:140
+#: currentRelease/UserScript/preceiv_sourceTracker/__init__.py:166
+#: currentRelease/UserScript/preceiv_sourceTracker/__init__.py:172
+msgid "Please choose the source:"
+msgstr "Veuillez choisir une source"
 
-#: currentRelease/UserScript/moveto_vertex/__init__.py:26
-msgid "Move faces"
-msgstr "Déplacement de faces"
+#: currentRelease/UserScript/preceiv_sourceTracker/__init__.py:139
+msgid "Source name"
+msgstr "Nom de la source"
 
-#: currentRelease/UserScript/moveto_vertex/__init__.py:16
-msgid "Move to an existing group"
-msgstr "Déplacer vers un groupe existant"
+#: currentRelease/UserScript/preceiv_sourceTracker/__init__.py:140
+msgid "Source selection"
+msgstr "Sélection de la source"

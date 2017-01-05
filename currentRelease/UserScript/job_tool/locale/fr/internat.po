@@ -1,11 +1,16 @@
+# English translations for PACKAGE package.
+# Copyright (C) 2017 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2017.
+# 
 # Translators:
 # Picaut <judicael.picaut@ifsttar.fr>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: module_recp_tools\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-30 12:22+0100\n"
-"PO-Revision-Date: \n"
+"POT-Creation-Date: 2017-01-05 14:53+0100\n"
+"PO-Revision-Date: 2017-01-05 14:53+0100\n"
 "Last-Translator: Picaut <judicael.picaut@ifsttar.fr>, 2016\n"
 "Language-Team: French (https://www.transifex.com/LAE/teams/23470/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -13,36 +18,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.5.7\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: ../../..\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 
-#: ../../../__init__.py:128
+#: currentRelease/UserScript/job_tool/__init__.py:129
 #, python-format
 msgid "%i tasks:"
 msgstr "%i tâches :"
 
-#: ../../../__init__.py:141
+#: currentRelease/UserScript/job_tool/__init__.py:142
 msgid "Add calculation in the job list"
 msgstr "Ajouter le calcul dans la liste des tâches"
 
-#: ../../../__init__.py:143
+#: currentRelease/UserScript/job_tool/__init__.py:144
 msgid "Clear job list"
 msgstr "Effacer la liste des tâches"
 
-#: ../../../__init__.py:143
+#: currentRelease/UserScript/job_tool/__init__.py:144
 msgid "Confirmation"
 msgstr "Confirmation"
 
-#: ../../../__init__.py:144
+#: currentRelease/UserScript/job_tool/__init__.py:148
+msgid "Job list"
+msgstr "Liste des tâches"
+
+#: currentRelease/UserScript/job_tool/__init__.py:145
 msgid "Run job list"
 msgstr "Exécuter la liste des tâches"
 
-#: ../../../__init__.py:145
+#: currentRelease/UserScript/job_tool/__init__.py:146
 msgid "Show job list"
 msgstr "Afficher la liste des tâches"
-
-#: ../../../__init__.py:147
-msgid "Job list"
-msgstr "Liste des tâches"

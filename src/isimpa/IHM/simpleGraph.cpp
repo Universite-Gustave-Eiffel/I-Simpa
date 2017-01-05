@@ -1404,7 +1404,6 @@ namespace sgSpace
 
 #ifdef __SG_PROFILING__
 		wxLongLong durationOperation = wxDateTime::UNow().GetValue() - beginT.GetValue();
-		//wxLogMessage(_("Temps total de l'opération de dessin %i ms"),durationOperation.GetValue());
 #endif
 
 	}
@@ -1431,7 +1430,7 @@ namespace sgSpace
 		directDc.DrawBitmap(operationObject, 0, 0);
 #ifdef __SG_PROFILING__
 		wxLongLong durationOperation = wxDateTime::UNow().GetValue() - beginT.GetValue();
-		wxLogMessage(_("Temps total de l'opération de dessin %i ms"), durationOperation.GetValue());
+		wxLogMessage(_("Total draw time %i ms"), durationOperation.GetValue());
 #endif
 	}
 

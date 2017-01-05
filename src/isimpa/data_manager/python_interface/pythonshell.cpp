@@ -247,11 +247,13 @@ void PythonShell::call_event(const int& eventid,const int& elementid)
 			//Il faut définir si la méthode attent 1 ou 2 argument
 			//On utilise le module inspect afin d'obtenir le nombre d'argument
 			boost::python::object event_function=event_lst[eventid];
-			boost::python::list arglist=extract_or_throw<boost::python::list>(event_function.attr("func_code").
-                    attr("co_argnames"));
-			boost::python::ssize_t argCount=len(arglist);
+
+			boost::python::object user_module = import("inspect");
+			object argsTuple = user_module.attr("getargspec")(event_function);
+			boost::python::list args = extract_or_throw<boost::python::list>(argsTuple[0]);
+			boost::python::ssize_t argCount=len(args);
 			//Self ne doit pas être pris en compte dans le nombre d'argument
-			if(extract_or_throw<bool>(arglist.attr("__contains__")("self")))
+			if(args.contains("self"))
 				argCount--;
 			if(argCount==2)
 				event_function(elementid, eventid);
@@ -262,6 +264,12 @@ void PythonShell::call_event(const int& eventid,const int& elementid)
 			{
 				PyErr_Print();
 			}
+		} catch( elementException ex) {
+			if (PyErr_Occurred())
+			{
+				PyErr_Print();
+			}
+			wxLogError(ex.msg());
 		}
 		if(ShowMsgStack())
 		   m_py_ctrl->AddPrompt(promptNewCmd);
@@ -272,7 +280,7 @@ void PythonShell::call_event(const int& eventid,const int& elementid)
 
 int PythonShell::GetCountEventTable()
 {
-	return extract_or_throw<int>(event_lst.attr("__len__")());
+    return int(len(event_lst));
 }
 bool PythonShell::GetPythonManagedMenu(const int& element_type,const int& elementId,boost::python::list& pymenu)
 {

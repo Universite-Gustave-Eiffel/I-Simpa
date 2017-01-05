@@ -1,11 +1,16 @@
+# English translations for PACKAGE package.
+# Copyright (C) 2017 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2017.
+# 
 # Translators:
 # Picaut <judicael.picaut@ifsttar.fr>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: module_recp_tools\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-30 13:07+0100\n"
-"PO-Revision-Date: \n"
+"POT-Creation-Date: 2017-01-05 14:53+0100\n"
+"PO-Revision-Date: 2017-01-05 14:53+0100\n"
 "Last-Translator: Picaut <judicael.picaut@ifsttar.fr>, 2016\n"
 "Language-Team: French (https://www.transifex.com/LAE/teams/23470/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -13,76 +18,75 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.5.7\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: ../../..\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 
-#: ../../../__init__.py:45
-msgid "Enable"
-msgstr "Activer"
-
-#: ../../../__init__.py:46
-msgid "Disable"
-msgstr "Désactiver"
-
-#: ../../../__init__.py:48
-msgid "Rotation"
-msgstr "Rotation"
-
-#: ../../../__init__.py:49
-msgid "Translation"
-msgstr "Translation"
-
-#: ../../../__init__.py:51
+#: currentRelease/UserScript/source_tools/__init__.py:52
 msgid "All sources"
 msgstr "Toutes les sources"
 
-#: ../../../__init__.py:53 ../../../__init__.py:59
+#: currentRelease/UserScript/source_tools/__init__.py:88
+msgid "Angle (degrees)"
+msgstr "Angle (degrés)"
+
+#: currentRelease/UserScript/source_tools/__init__.py:54
+#: currentRelease/UserScript/source_tools/__init__.py:60
 msgid "Create a line of sound sources"
 msgstr "Créer une grille de sources sonores"
 
-#: ../../../__init__.py:56
-msgid "Starting position [x,y,z] (m)"
-msgstr "Point de départ [x,y,z] (m)"
+#: currentRelease/UserScript/source_tools/__init__.py:126
+msgid "Direction (m)"
+msgstr "Direction (m)"
 
-#: ../../../__init__.py:57
+#: currentRelease/UserScript/source_tools/__init__.py:47
+msgid "Disable"
+msgstr "Désactiver"
+
+#: currentRelease/UserScript/source_tools/__init__.py:46
+msgid "Enable"
+msgstr "Activer"
+
+#: currentRelease/UserScript/source_tools/__init__.py:58
 msgid "Number of sources"
 msgstr "Nombre de sources"
 
-#: ../../../__init__.py:58
-msgid "Step [x,y,z] (m)"
-msgstr "Pas [x,y,z] (m)"
-
-#: ../../../__init__.py:60
+#: currentRelease/UserScript/source_tools/__init__.py:61
 msgid "Please fill the following fields to create the sound source line"
 msgstr ""
 "Veuillez saisir les informations pour créer la ligne de sources sonores"
 
-#: ../../../__init__.py:71 ../../../__init__.py:113 ../../../__init__.py:134
-msgid "Wrong parameters"
-msgstr "Erreur de saisie des paramètres"
+#: currentRelease/UserScript/source_tools/__init__.py:49
+msgid "Rotation"
+msgstr "Rotation"
 
-#: ../../../__init__.py:86
-msgid "Vector of rotation"
-msgstr "Vecteur de rotation"
-
-#: ../../../__init__.py:87
-msgid "Angle (degrees)"
-msgstr "Angle (degrés)"
-
-#: ../../../__init__.py:88
+#: currentRelease/UserScript/source_tools/__init__.py:89
 msgid "Rotation centre"
 msgstr "Centre de rotation"
 
-#: ../../../__init__.py:101
+#: currentRelease/UserScript/source_tools/__init__.py:102
 msgid "Rotation of a group of sound sources"
 msgstr "Rotation d'un groupe de sources sonores"
 
-#: ../../../__init__.py:125
-msgid "Direction (m)"
-msgstr "Direction (m)"
+#: currentRelease/UserScript/source_tools/__init__.py:57
+msgid "Starting position [x,y,z] (m)"
+msgstr "Point de départ [x,y,z] (m)"
 
-#: ../../../__init__.py:126
+#: currentRelease/UserScript/source_tools/__init__.py:59
+msgid "Step [x,y,z] (m)"
+msgstr "Pas [x,y,z] (m)"
+
+#: currentRelease/UserScript/source_tools/__init__.py:50
+msgid "Translation"
+msgstr "Translation"
+
+#: currentRelease/UserScript/source_tools/__init__.py:127
 msgid "Translation of a group of sound sources"
 msgstr "Translation d'un groupe de sources sonores"
+
+#: currentRelease/UserScript/source_tools/__init__.py:87
+msgid "Vector of rotation"
+msgstr "Vecteur de rotation"
+
+#: currentRelease/UserScript/source_tools/__init__.py:72
+#: currentRelease/UserScript/source_tools/__init__.py:114
+#: currentRelease/UserScript/source_tools/__init__.py:135
+msgid "Wrong parameters"
+msgstr "Erreur de saisie des paramètres"

@@ -943,7 +943,7 @@ void MainUiFrame::OnCreateModel(wxCommandEvent & event)
 	bool widthOk=false;
 	while(!lengthOk || !heightOk || !widthOk)
 	{
-		wxCustomEntryDialog textDialog(this,_("Please enter scene dimensions"),_("Creating scene"));
+		wxCustomEntryDialog textDialog(this,_("Please enter scene dimensions (m)"),_("Creating scene"));
 		textDialog.AddTextControl(_("Width (x)"),"5.0");
 		textDialog.AddTextControl(_("Length (y)"),"5.0");
 		textDialog.AddTextControl(_("Height (z)"),"5.0");

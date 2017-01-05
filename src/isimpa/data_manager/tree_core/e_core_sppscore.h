@@ -52,8 +52,8 @@ class E_Core_Spps: public E_Core_Core
 protected:
 	void InitTransmission(E_Core_Core_Configuration* confCore)
 	{
-		confCore->AppendPropertyDecimal("trans_epsilon",wxTRANSLATE("Active calculation transmission (limit)"),5,true,1,true,true,10,0,true);
-		confCore->AppendPropertyBool("trans_calc",wxTRANSLATE("Active calculation transmission"),true,true);
+		confCore->AppendPropertyDecimal("trans_epsilon",wxTRANSLATE("Limit value of the particle extinction (Energetic method) : ratio 10^n"),5,true,1,true,true,10,0,true);
+		confCore->AppendPropertyBool("trans_calc",wxTRANSLATE("Active calculation of transmission"),true,true);
 		confCore->AppendPropertyDecimal("rayon_recepteurp",wxTRANSLATE("Receiver radius"),.31f,false,5,false,true,0,EPSILON,true);
 	}
 	void InitSurfaceReceiverMethod(E_Core_Core_Configuration* confCore)
@@ -68,11 +68,10 @@ protected:
 	}
 	void InitNewProperties() //Nouvelle proprietes 07/04/2009
 	{
-		/* this->AppendPropertyText("stats_filename",wxString(_("SPPS calculation statistics"))+wxString(".gabe"),true,true)->Hide(); */ 
-		this->AppendPropertyText("stats_filename","stats",wxTRANSLATE("statsSPPS")+wxString(".gabe"),true,true)->Hide();
-		this->AppendPropertyText("intensity_folder","intensity_folder",wxTRANSLATE("IntensityAnimation"),true,true)->Hide();
+		this->AppendPropertyText("stats_filename","stats",wxTRANSLATE("SPPS particle statistics")+wxString(".gabe"),true,true)->Hide();
+		this->AppendPropertyText("intensity_folder","intensity_folder",wxTRANSLATE("Intensity animation"),true,true)->Hide();
 		this->AppendPropertyText("intensity_filename","intensity_filename",wxTRANSLATE("Intensity vector")+wxString(".rpi"),true,true)->Hide();
-		this->AppendPropertyText("intensity_rp_filename","intensity_rp_filename","ponct_intensity.gabe",true,true)->Hide();
+		this->AppendPropertyText("intensity_rp_filename","intensity_rp_filename", wxTRANSLATE("Receiver intensity") + wxString(".gabe"),true,true)->Hide();
 		    
 		// Code source à destination de PoEdit
 		wxTRANSLATE("Punctual receiver intensity");
@@ -86,14 +85,13 @@ protected:
 	}
 	void InitExportRs(Element* confCore)
 	{
-		confCore->AppendPropertyBool("output_recs_byfreq","Export surface receivers for each frequency band",true,true);
-		_("Export surface receivers for each frequency band");
+		confCore->AppendPropertyBool("output_recs_byfreq", wxTRANSLATE("Export surface receivers for each frequency band"),true,true);
 	}
 	void InitOutputRecpBySource(Element* confCore) {
 		confCore->AppendPropertyBool("output_recp_bysource", wxTRANSLATE("Echogram per source"), false, true);
 	}
 	void InitRandomSeed(Element* confCore) {
-		confCore->AppendPropertyInteger("random_seed",wxTRANSLATE("Random seed"), 0,true, false, true);
+		confCore->AppendPropertyInteger("random_seed",wxTRANSLATE("Random initialization number"), 0,true, false, true);
 	}
 public:
 
@@ -161,25 +159,7 @@ public:
 		confCore->AppendPropertyList("computation_method",wxTRANSLATE("Calculation method"),computationMethods,0,false,1,computationMethodsIndex,true);
 
 		InitTransmission(confCore);
-
-		/* #if 0
-		    // Translation keys, do not remove
-			_("SPPS");
-			_("Random");
-			_("Energetic");
-			_("Export surface receivers for each frequency band");
-			_("Calculation method");
-			_("Number of sound particles per source");
-			_("Number of sound particles per source (display)");
-			_("Active calculation of atmospheric absorption");
-			_("Active calculation of diffusion by fitting objects");
-			_("Active calculation of direct field only");
-			_("Radius of receivers (m)");
-			_("Limit of propagation (10^n)");
-			_("Active calculation of acoustic transmission");
-			_("Punctual intensity");
-		#endif */
-
+		
 		this->AppendFils(new E_Core_Core_Bfreqselection(this));
 
 		this->AppendPropertyText("modelName","","mesh.cbin",true,true)->Hide();
@@ -215,7 +195,7 @@ public:
 				{
 					unsigned int nbpasdetemps=elConf->GetDecimalConfig("duree_simulation")/elConf->GetDecimalConfig("pasdetemps");
 					unsigned int total_data=nbpartrendu*nbpasdetemps*sizeof(float)*4*ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Sources_Actives;
-					wxLogWarning(wxTRANSLATE("The size of the particle file, for each frequency band, is around %.2f Mo"),float(total_data)/pow(10.f,6.f));
+					wxLogWarning(_("The size of the particle file, for each frequency band, is around %.2f Mo"),float(total_data)/pow(10.f,6.f));
 				}
 			}else if(filsInfo.libelleElement=="computation_method")
 			{

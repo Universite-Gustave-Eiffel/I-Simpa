@@ -415,7 +415,15 @@ set_property(TARGET isimpa PROPERTY FOLDER "executables")
 FIND_PACKAGE(Gettext)
 IF(GETTEXT_FOUND )
   MESSAGE(STATUS "Found Gettext")
+  # Main isimpa locale
   add_subdirectory (lang/fr)
+  # Plugins locale
+  add_subdirectory(../../currentRelease/UserScript/job_tool/locale/fr ${CMAKE_BINARY_DIR}/src/job_tool)
+  add_subdirectory(../../currentRelease/UserScript/recp_tool/locale/fr ${CMAKE_BINARY_DIR}/src/recp_tool)
+  add_subdirectory(../../currentRelease/UserScript/source_tools/locale/fr ${CMAKE_BINARY_DIR}/src/source_tools)
+  add_subdirectory(../../currentRelease/UserScript/moveto_vertex/locale/fr ${CMAKE_BINARY_DIR}/src/moveto_vertex)
+  add_subdirectory(../../currentRelease/UserScript/preceiv_sourceTracker/locale/fr ${CMAKE_BINARY_DIR}/src/preceiv_sourceTracker)
+  add_subdirectory(../../currentRelease/UserScript/SppsReportSample/locale/fr ${CMAKE_BINARY_DIR}/src/SppsReportSample)
   # Building isimpa require building pofiles
   add_dependencies(isimpa pofiles)
 ENDIF()
@@ -504,9 +512,12 @@ if(WIN32) # Check if we are on Windows
 	MESSAGE(STATUS "Python dll ${PYTHON_DLL}")
     get_filename_component(PYTHON_ROOT_FOLDER ${PYTHON_EXECUTABLE} PATH)
 	set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
+
 	install(DIRECTORY
 	${PYTHON_ROOT_FOLDER}/Lib
-	DESTINATION .)
+	${PYTHON_ROOT_FOLDER}/DLLs
+	DESTINATION .
+    PATTERN "Lib/site-packages" EXCLUDE)
 
 	# Resolve symbolic link
 	LIB_TO_DLL(${Boost_FILESYSTEM_LIBRARY_RELEASE} Boost_FILESYSTEM_LIBRARY_RELEASE_REAL)

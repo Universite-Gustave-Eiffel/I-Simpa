@@ -1,4 +1,4 @@
-# -*- coding: cp1252 -*-
+# -*- coding: UTF-8 -*-
 import uictrl as ui
 import operator
 import uilocale
@@ -15,8 +15,8 @@ job_types={}
 
 class job(object):
     """
-        Cette classe représente un travail
-        Elle peut être importée et exportée sous forme de chaînes de caractères
+        Cette classe reprÃ©sente un travail
+        Elle peut Ãªtre importÃ©e et exportÃ©e sous forme de chaÃ®nes de caractÃ¨res
     """
     def __init__(self,params):
         self.jobname=params[0]
@@ -32,13 +32,13 @@ class job(object):
         pass
     def from_str(self,params):
         """
-        Initialisation à partir d'un tableau de chaînes params
+        Initialisation Ã  partir d'un tableau de chaÃ®nes params
         """
         pass
 
 class job_run(job):
     """
-    Exécution d'un code de calcul
+    ExÃ©cution d'un code de calcul
     """
     def _jobinit_(self,idel):
         self.typecore=ui.element(idel).getinfos()["name"]
@@ -50,7 +50,7 @@ class job_run(job):
         ui.application.sendevent(core,ui.idevent.IDEVENT_RUN_CALCULATION)
     def from_str(self,params):
         """
-        Initialisation à partir d'un tableau de chaînes params
+        Initialisation Ã  partir d'un tableau de chaÃ®nes params
         """
         self.typecore=params[1]
 job_types["RUN"]=job_run
@@ -68,7 +68,7 @@ class job_openproject(job):
             ui.application.loadproject(self.path)
     def from_str(self,params):
         """
-        Initialisation à partir d'un tableau de chaînes params
+        Initialisation Ã  partir d'un tableau de chaÃ®nes params
         """
         fullpath=""
         for piece in params[1:]:
@@ -89,14 +89,14 @@ class job_saveproject(job):
         ui.application.saveproject()
     def from_str(self,params):
         """
-        Initialisation à partir d'un tableau de chaînes params
+        Initialisation Ã  partir d'un tableau de chaÃ®nes params
         """
         pass
 job_types["SAVE_PROJECT"]=job_saveproject
 
 class JobManager(object):
     """
-        Cette classe permet la gestion des travaux renseignés par l'utilisateur
+        Cette classe permet la gestion des travaux renseignÃ©s par l'utilisateur
     """
     def appendjob(self,jobname,identifier):
         if operator.isSequenceType(identifier):
