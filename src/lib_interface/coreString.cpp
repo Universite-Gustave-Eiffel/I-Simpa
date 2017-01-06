@@ -77,7 +77,7 @@ std::string CoreString::FromFloat(decimal nombreDecimal,entier digits)
 	//std::string fromStr=buffer;
     std::string form;
     std::stringstream form_stream;
-    form_stream<<"%"<<digits<<"f";
+    form_stream<<"%."<<digits<<"f";
     form_stream>>form;
     sprintf(buffer,form.c_str(),nombreDecimal);
     std::string fromStr=buffer;

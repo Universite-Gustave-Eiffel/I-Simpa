@@ -64,12 +64,12 @@ public:
 	E_Report_Gabe(Element* parent,wxXmlNode* nodeElement,ELEMENT_TYPE etype=ELEMENT_TYPE_REPORT_GABE);
 
 	/**
-	 *	Initialise les données en paramètres avec des valeurs pouvant être soumis à un tableau
-	 * @param[out] arrayTitle Titre du tableau
-	 * @param[out] lblCols Libellé des colonnes
-	 * @param[out] lblRows Libellé des lignes
-	 * @param[out] cells Valeur texte des cellules
-	 * @param[out] cellsValue Valeur en nombre décimal des cellules (0 si aucun)
+	 * Read the gabe content using extension specific method
+	 * @param[out] arrayTitle Title of the window
+	 * @param[out] lblCols Columns labels
+	 * @param[out] lblRows Rows labels
+	 * @param[out] cells (optional) Cells content in text (can be used to custom format the cells values)
+	 * @param[out] cellsValue (optional) Cells content in numeric
 	 */
 	virtual bool GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,std::vector<wxString>& lblCols,std::vector<wxString>& lblRows,std::vector<wxString>& cells,std::vector<float>& cellsValue);
 

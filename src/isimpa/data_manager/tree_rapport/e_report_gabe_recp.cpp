@@ -147,7 +147,7 @@ bool E_Report_Gabe_Recp::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,
 			float* wVal=&cellsValue[((idcol)*nbrow)+idrow];
 			float dbVal=10*log10f((*wVal)*p_0);
 			(*wVal)=dbVal;
-			cells[(idcol*nbrow)+idrow]=wxString::Format("%.1f",dbVal); //Précision de 1 chiffre aprés la virgule
+			cells[(idcol*nbrow)+idrow]=wxString::Format("%."+ wxString::Format(wxT("%i"), COMMA_PRECISION_DB) +"f",dbVal); //Précision de 1 chiffre aprés la virgule
 		}
 	}
 	for(int idrow=0;idrow<nbrow-1;idrow++)

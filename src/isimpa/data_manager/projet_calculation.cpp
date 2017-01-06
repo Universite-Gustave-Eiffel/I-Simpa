@@ -197,10 +197,10 @@ formatGABE::GABE_Data_Float* Compute_TR_Param(wxFloat32 fromdbL,wxFloat32 todbL,
 	if(fromdbL==0)
 	{
 		newParameter->SetLabel(_("EDT (s)"));
-		newParameter->headerData.numOfDigits=3;
+		newParameter->headerData.numOfDigits=COMMA_PRECISION_TIME_S;
 	}else{
 		newParameter->SetLabel(wxString::Format(_("RT-%g (s)"),todbL-5));
-		newParameter->headerData.numOfDigits=3;
+		newParameter->headerData.numOfDigits=COMMA_PRECISION_TIME_S;
 	}
 
 	return newParameter;
@@ -222,7 +222,7 @@ formatGABE::GABE_Data_Float* dB_Sum_Param(const std::vector<wxFloat32>& timeTabl
 	}
 
 	newParameter->SetLabel(_("Sound level (dB)"));
-	newParameter->headerData.numOfDigits=3;
+	newParameter->headerData.numOfDigits= COMMA_PRECISION_DB;
 	return newParameter;
 
 }
@@ -262,7 +262,7 @@ formatGABE::GABE_Data_Float* dBa_Sum_Param(const std::vector<wxFloat32>& timeTab
 	}
 
 	newParameter->SetLabel(_("Sound level (dBA)"));
-	newParameter->headerData.numOfDigits=3;
+	newParameter->headerData.numOfDigits= COMMA_PRECISION_DB;
 	return newParameter;
 
 }
@@ -302,7 +302,7 @@ formatGABE::GABE_Data_Float* Compute_ST_Param(wxFloat32 t1,wxFloat32 t2,wxFloat3
 	}
 	newParameter->Set(newParameter->GetSize()-1,sum/(tab_wj.size()-1));
 	newParameter->SetLabel(_("ST (dB)"));
-	newParameter->headerData.numOfDigits=4;
+	newParameter->headerData.numOfDigits= COMMA_PRECISION_DB;
 	return newParameter;
 }
 /**
@@ -336,7 +336,7 @@ formatGABE::GABE_Data_Float* Compute_C_Param(wxFloat32 te,const std::vector<wxFl
 
 	newParameter->Set(newParameter->GetSize()-1,sum/(tab_wj.size()-1));
 	newParameter->SetLabel(wxString::Format(_("C-%g (dB)"),te));
-	newParameter->headerData.numOfDigits=4;
+	newParameter->headerData.numOfDigits= COMMA_PRECISION_DB;
 	return newParameter;
 }
 /**
@@ -366,7 +366,7 @@ formatGABE::GABE_Data_Float* Compute_D_Param(wxFloat32 te,const std::vector<wxFl
 
 	newParameter->Set(newParameter->GetSize()-1,sum/(tab_wj.size()-1));
 	newParameter->SetLabel(wxString::Format(_("D-%g (%%)"),te));
-	newParameter->headerData.numOfDigits=3;
+	newParameter->headerData.numOfDigits= COMMA_PRECISION_PERCENT;
 	return newParameter;
 }
 
@@ -395,7 +395,7 @@ formatGABE::GABE_Data_Float* Compute_TS_Param(const std::vector<wxFloat32>& time
 
 	newParameter->Set(newParameter->GetSize()-1,sum/(tab_wj.size()-1));
 	newParameter->SetLabel(_("Ts (ms)"));
-	newParameter->headerData.numOfDigits=4;
+	newParameter->headerData.numOfDigits= COMMA_PRECISION_TIME_MS;
 	return newParameter;
 }
 
@@ -702,7 +702,7 @@ void ProjectManager::OnMenuDoAcousticParametersComputation(uiTreeCtrl* fromCtrl,
 			{
 				GABE_Data_Float* colTimeStep=new GABE_Data_Float(nbBandeFreq+1);
 				colTimeStep->SetLabel(dataLbl->GetStringEquiv(idstep));
-				colTimeStep->headerData.numOfDigits=4;
+				colTimeStep->headerData.numOfDigits= COMMA_PRECISION_DB;
 				for(int idFreq=0;idFreq<tab_schroeder.size();idFreq++)
 				{
 					colTimeStep->Set(idFreq,tab_schroeder[idFreq][idstep]);
