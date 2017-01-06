@@ -685,8 +685,16 @@ void ProjectManager::OnMenuDoAcousticParametersComputation(uiTreeCtrl* fromCtrl,
 			//////////////////////////////////////////
 			// Enregistrement des données des courbes de shroeder
 			//Pour chaque pas de temps on créé un enregistrement
-
-			GABE_Data_ShortString* cpRowLbls= new GABE_Data_ShortString(*rowLbls);
+			
+			GABE_Data_ShortString* cpRowLbls = new GABE_Data_ShortString(nbBandeFreq + 1);
+			//Transfert des données du fichier vers les tableaux
+			for (int idbFreq = 1; idbFreq <= nbBandeFreq; idbFreq++)
+			{
+				GABE_Data_Float* dataFloat;
+				tabReader.GetCol(idbFreq, &dataFloat);
+				cpRowLbls->SetString(idbFreq - 1, dataFloat->GetLabel());
+			}
+			cpRowLbls->SetString(nbBandeFreq, _("Global"));
 			GABE tabSchroederWriter(nbTimeStep+1);
 			tabSchroederWriter.LockData(); //lecture seule pour l'utilisateur
 			tabSchroederWriter.SetCol(0,cpRowLbls);
