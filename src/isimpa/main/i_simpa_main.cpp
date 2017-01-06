@@ -888,19 +888,16 @@ void MainUiFrame::OnShowAboutDialog(wxCommandEvent& event)
 
 void MainUiFrame::OnLinkWebForum(wxCommandEvent& event)
 {
-	//ShellExecute( NULL,TEXT("open"), TEXT("http://i-simpa.ifsttar.fr/community/forum/"), NULL, NULL, SW_SHOWNORMAL);
-	wxLaunchDefaultBrowser("http://i-simpa.ifsttar.fr/community/forum/");
+	wxLaunchDefaultBrowser("http://i-simpa.ifsttar.fr/community/mailing-lists-and-forum/");
 }
 
 void MainUiFrame::OnLinkWebIsimpa(wxCommandEvent& event)
 {
-	//ShellExecute( NULL,TEXT("open"), TEXT("http://i-simpa.ifsttar.fr/"), NULL, NULL, SW_SHOWNORMAL);
 	wxLaunchDefaultBrowser("http://i-simpa.ifsttar.fr/");
 }
 void MainUiFrame::OnLinkWebDoc(wxCommandEvent& event)
 {
-	//ShellExecute( NULL,TEXT("open"), TEXT("http://i-simpa.ifsttar.fr/wiki/"), NULL, NULL, SW_SHOWNORMAL);
-	wxLaunchDefaultBrowser("https://github.com/Ifsttar/I-Simpa/wiki");
+	wxLaunchDefaultBrowser("http://i-simpa-wiki.readthedocs.io");
 }
 
 void MainUiFrame::OnFileLicence(wxCommandEvent& event)

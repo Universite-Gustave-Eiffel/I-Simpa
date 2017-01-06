@@ -53,7 +53,7 @@ enum WindowLanguageSelectorId
 class wxDirList : public wxDirTraverser
 {
 public:
-    wxDirList(wxSortedArrayString& _folderlst) : folderlst(_folderlst) { }
+    wxDirList(std::vector<wxString>& _folderlst) : folderlst(_folderlst) { }
 
     virtual wxDirTraverseResult OnFile(const wxString& filename)
     {
@@ -67,7 +67,7 @@ public:
     }
 
 private:
-	wxSortedArrayString& folderlst;
+	std::vector<wxString>& folderlst;
 };
 
 LanguageSelector::LanguageSelector(wxWindow *parent,
@@ -94,7 +94,7 @@ LanguageSelector::LanguageSelector(wxWindow *parent,
 	int defaultSelection=0;
 	int systemLanguage=wxLocale::GetSystemLanguage();
 	wxSortedArrayString flagsFileName;
-	wxSortedArrayString lngFolders;
+	std::vector<wxString> lngFolders;
 
 	wxDirList traverser(lngFolders);
 	wxDir folderRoot(rootLngFolder);
@@ -102,32 +102,34 @@ LanguageSelector::LanguageSelector(wxWindow *parent,
 		folderRoot.Traverse(traverser);
 	}
 	wxDir::GetAllFiles(flagsFolder,&flagsFileName,"*.png",wxDIR_FILES);
-
-
-	for(int idlang=wxLANGUAGE_UNKNOWN+1;idlang<wxLANGUAGE_USER_DEFINED;idlang++)
-	{
-		if(wxLocale::IsAvailable(idlang))
-		{
-			wxLanguageInfo langInfo = *wxLocale::GetLanguageInfo(idlang);
-			Canonical_lng = langInfo.CanonicalName;
-			ISO3166_lng=Canonical_lng.Mid(Canonical_lng.rfind("_")+1).Lower();
-			ISO639_lng=Canonical_lng.Left(Canonical_lng.rfind("_")).Lower();
- 			if(lngFolders.Index(ressourceFolder+Canonical_lng)>=0)
+	// Add key language
+	lngFolders.push_back(ressourceFolder + "en");
+	// Iterate over language sub-folder
+	for(std::vector<wxString>::iterator it = lngFolders.begin(); it != lngFolders.end(); ++it) {
+		// Extract folder name
+		wxString langName = (*it).SubString(ressourceFolder.size(), (*it).size());
+		const wxLanguageInfo* lngInfo = wxLocale::FindLanguageInfo(langName);
+		if(lngInfo != nullptr && wxLocale::IsAvailable(lngInfo->Language)) {
+			// Is system default
+			if (systemLanguage == lngInfo->Language)
+				defaultSelection = flagList->GetItemCount();
+			// Fetch flag if available
+			Canonical_lng = lngInfo->CanonicalName;
+			ISO3166_lng = Canonical_lng.Mid(Canonical_lng.rfind("_") + 1).Lower();
+			ISO639_lng = Canonical_lng.Left(Canonical_lng.rfind("_")).Lower();
+			wxString flag_filepath = flagsFolder + wxString::Format("%s.png", ISO3166_lng);
+			if (flagsFileName.Index(flag_filepath) >= 0)
 			{
-                if(systemLanguage==idlang)
-                    defaultSelection=flagList->GetItemCount();
-				wxString flag_filepath=flagsFolder+wxString::Format("%s.png",ISO3166_lng);
-				if(flagsFileName.Index(flag_filepath)>=0)
+				wxIcon flagImage(flag_filepath, wxBITMAP_TYPE_PNG);
+				if (flagImage.IsOk())
 				{
-					wxIcon flagImage(flag_filepath, wxBITMAP_TYPE_PNG);
-					if(flagImage.IsOk())
-					{
-						int indexico=icoLst->Add(flagImage);
-						flagList->SetItemData(flagList->InsertItem(flagList->GetItemCount(),wxLocale::GetLanguageName(idlang),indexico),idlang);
-					}
-				}else{
-					flagList->SetItemData(flagList->InsertItem(flagList->GetItemCount(),wxLocale::GetLanguageName(idlang)),idlang);
+					int indexico = icoLst->Add(flagImage);
+					flagList->SetItemData(flagList->InsertItem(flagList->GetItemCount(), wxLocale::GetLanguageName(lngInfo->Language), indexico), lngInfo->Language);
+				} else {
+					flagList->SetItemData(flagList->InsertItem(flagList->GetItemCount(), lngInfo->Description), lngInfo->Language);
 				}
+			} else {
+				flagList->SetItemData(flagList->InsertItem(flagList->GetItemCount(), lngInfo->Description), lngInfo->Language);
 			}
 		}
 	}
