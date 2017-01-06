@@ -240,7 +240,7 @@ void ReportManager::ParticuleCollideWithSceneMesh(CONF_PARTICULE& particleInfos)
 	//Retrieve face data ptr
 	#ifdef UTILISER_MAILLAGE_OPTIMISATION
 	t_Tetra_Faces* face=&particleInfos.currentTetra->faces[particleInfos.nextModelIntersection.idface];
-	//Si la face est associ�e � un r�cepteur surfacique
+	//If the associated face is a surface receiver
 	vec3& normal=face->face_scene->normal;
 	if(particleInfos.outputToParticleFile && *(this->paramReport.configManager->FastGetConfigValue(Core_Configuration::I_PROP_SAVE_SURFACE_INTERSECTION)) && face->face_scene!=NULL)
 	{
@@ -255,9 +255,9 @@ void ReportManager::ParticuleCollideWithSceneMesh(CONF_PARTICULE& particleInfos)
 
 	if(face->recepteurS)
 	{
-		if(particleInfos.direction.dot(normal)<0) //si la face du recepteur est orient� dans l'autre direction on inverse la normal
+		if(particleInfos.direction.dot(normal)<0) //If the receiver surface is on the other side then revert the normal
 			normal*=-1;
-		//Ajout de l'energie � la face
+		//Add particle energy to receiver
 		if(*(this->paramReport.configManager->FastGetConfigValue(Core_Configuration::I_PROP_SURFACE_RECEIVER_MODE))==0)
 			face->recepteurS->energieRecu[particleInfos.frequenceIndex][particleInfos.pasCourant]+=particleInfos.energie*cosf(normal.angle(particleInfos.direction));
 		else
@@ -340,7 +340,7 @@ formatGABE::GABE_Object* ReportManager::GetColStats()
 void ReportManager::FillWithLefData(t_sppsThreadParam& data)
 {
 	using namespace formatGABE;
-	//Pour chaque r�cepteur ponctuel rempli les donn�es r�colt�s au cours de la propagation
+	//For each punctual receiver fill the recorded data collected while propagating
 	data.GabeSumEnergyCosPhi.reserve(lst_rp_lef.size());
 	data.GabeSumEnergyCosSqrtPhi.reserve(lst_rp_lef.size());
 	for(uentier idrecp=0;idrecp<lst_rp_lef.size();idrecp++)
@@ -755,37 +755,37 @@ void ReportManager::SaveRecpAcousticParamsAdvance(const CoreString& filename,std
 			nbfreqUsed++;
 	}
 
-	const uentier nbFixedCols=4;		//Colonne Index,Param�tres,Source,Fr�quences
-	const uentier nbRecpHeaderCols=1; //Colonne bruit
-	const uentier nbColsByFreq=3;		//Colonne energie,LF,LFC
-	const uentier nbCols=nbFixedCols+nbRecpHeaderCols+nbfreqUsed*nbColsByFreq; //Nombre de colonne dans chaque fichier gabe
+	const uentier nbFixedCols=4;		//Columns Index,Parameters,Source,Frequencies
+	const uentier nbRecpHeaderCols=1; //Column noise
+	const uentier nbColsByFreq=3;		//Column energy,LF,LFC
+	const uentier nbCols=nbFixedCols+nbRecpHeaderCols+nbfreqUsed*nbColsByFreq; //Number of columns in each .gap files
 
 	////////////////////////////////////////////
-	// S�rie Index et param�tres entier [Col 0]
+	// Index and meta-data int [Col 0]
 	////////////////////////////////////////////
 	GABE_Data_Integer indexCol(8);
-	indexCol.Set(0,1);								//Num�ro de la colonne de la s�rie des param�tres � d�cimal
-	indexCol.Set(1,2);								//Num�ro de la colonne de la s�rie source
-	indexCol.Set(2,3);								//Num�ro de la colonne de la s�rie valeurs de fr�quences
-	indexCol.Set(3,nbFixedCols);					//Num�ro de la colonne du bruit
-	indexCol.Set(4,nbFixedCols+nbRecpHeaderCols);	//Num�ro de la colonne de la s�rie de la premi�re bande de fr�quences
-	indexCol.Set(5,nbfreqUsed);						//Nombre de bande de fr�quences [1-27]
-	indexCol.Set(6,nbColsByFreq);					//Nombre de colonne composant une bande de fr�quence
-	indexCol.Set(7,params.nbTimeStep);				//Nombre de pas de temps
+	indexCol.Set(0,1);								//Number of the column of the decimal parameter
+	indexCol.Set(1,2);								//Number of the source column
+	indexCol.Set(2,3);								//Number of the column of the frequencies values
+	indexCol.Set(3,nbFixedCols);					//Number of the column of noise
+	indexCol.Set(4,nbFixedCols+nbRecpHeaderCols);	//Number of the column of first frequency
+	indexCol.Set(5,nbfreqUsed);						//Number of frequency bands [1-27]
+	indexCol.Set(6,nbColsByFreq);					//Number of the column by frequency
+	indexCol.Set(7,params.nbTimeStep);				//Number of time steps
 
 	////////////////////////////////////////////
-	// S�rie param�tres � d�cimal [Col 1]
+	// Decimal meta-data [Col 1]
 	////////////////////////////////////////////
 	GABE_Data_Float decimalParam(2);
-	decimalParam.Set(0,params.timeStep);					//Pas de temps ms
-	decimalParam.Set(1,params.nbTimeStep*params.timeStep);	//Dur�e
+	decimalParam.Set(0,params.timeStep);					//Time step in s
+	decimalParam.Set(1,params.nbTimeStep*params.timeStep);	//Time length
 
 	////////////////////////////////////////////
-	// S�rie source [Col 2]
+	// source [Col 2]
 	////////////////////////////////////////////v
 	GABE_Data_Float sourceCol(nbfreqUsed);
 	////////////////////////////////////////////
-	// S�rie valeurs de fr�quences [Col 3]
+	// frequencies [Col 3]
 	////////////////////////////////////////////
 	GABE_Data_Integer freqCol(nbfreqUsed);
 	uentier idfreqligne=0;
@@ -834,7 +834,7 @@ void ReportManager::SaveRecpAcousticParamsAdvance(const CoreString& filename,std
 			if(currentRP->energy_sum[idfreq])
 			{
 				////////////////////////////////////////////
-				// S�rie �n�rgie recu   [Col nbFixedCols+nbRecpHeaderCols+(idfreqcol*nbColsByFreq)]
+				// Column received energy   [Col nbFixedCols+nbRecpHeaderCols+(idfreqcol*nbColsByFreq)]
 				////////////////////////////////////////////
 				GABE_Data_Float* e_col=new GABE_Data_Float(params.nbTimeStep);
 				for(uentier idstep=0;idstep<params.nbTimeStep;idstep++)
@@ -843,14 +843,14 @@ void ReportManager::SaveRecpAcousticParamsAdvance(const CoreString& filename,std
 				}
 				recepteurPonctData.SetCol(nbFixedCols+nbRecpHeaderCols+(idfreqcol*nbColsByFreq),e_col);
 				////////////////////////////////////////////
-				// S�rie �n�rgie recu LF  [Col nbFixedCols+nbRecpHeaderCols+(idfreqcol*nbColsByFreq)+1]
+				// Column received energy LF  [Col nbFixedCols+nbRecpHeaderCols+(idfreqcol*nbColsByFreq)+1]
 				////////////////////////////////////////////
-				// Copie de la colonne
+				// Copy column
 				recepteurPonctData.SetCol(nbFixedCols+nbRecpHeaderCols+(idfreqcol*nbColsByFreq)+1,*cols[idfreq].GabeSumEnergyCosPhi[idrecp]);
 				////////////////////////////////////////////
-				// S�rie �n�rgie recu LFC  [Col nbFixedCols+nbRecpHeaderCols+(idfreqcol*nbColsByFreq)+2]
+				// Column received energy LFC  [Col nbFixedCols+nbRecpHeaderCols+(idfreqcol*nbColsByFreq)+2]
 				////////////////////////////////////////////
-				// Copie de la colonne
+				// Copy column
 				recepteurPonctData.SetCol(nbFixedCols+nbRecpHeaderCols+(idfreqcol*nbColsByFreq)+2,*cols[idfreq].GabeSumEnergyCosSqrtPhi[idrecp]);
 				idfreqcol++;
 			}
