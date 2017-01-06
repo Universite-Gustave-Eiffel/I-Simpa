@@ -79,7 +79,6 @@ class uiTreeCtrl : public wxTreeCtrl
 
 		Element* rootItem;
 		void BeginDrag(wxTreeEvent&);
-		void OnDoubleClic(wxTreeEvent&);
 		void OnRightClic(wxTreeEvent&);
 		void OnLeftClic(wxMouseEvent&); 
 		void OnSelectTreeItem(wxTreeEvent&);
