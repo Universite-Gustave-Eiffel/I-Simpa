@@ -86,12 +86,11 @@ bool E_Report_Gabe_Gap::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,s
 	////////////////////////
 	// Construction des libellés des colonnes, Temps
 	float timeStep=lstFloatParam->GetValue(0)*1000; //Recuperation de deltaT
-	float firstTimeStep=lstFloatParam->GetValue(1)*1000; //Recuperation de t0
 	int nbtimeStep=indexCol->GetValue(7);
 	lblCols.reserve(nbtimeStep);
 	for(int idstep=0;idstep<nbtimeStep;idstep++)
 	{
-		float currentTimeStep=firstTimeStep+idstep*timeStep;
+		float currentTimeStep= timeStep+idstep*timeStep;
 		lblCols.push_back(Convertor::ToString((int)currentTimeStep)+_(" ms"));
 	}
 	////////////////////////
