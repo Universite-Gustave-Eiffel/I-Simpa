@@ -72,6 +72,7 @@ PropGrid::PropGrid(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wx
 	entries[1].Set(wxACCEL_CTRL,  (int) 'V',     ID_COLLER);
 	wxAcceleratorTable accel(2, entries);
 	this->SetAcceleratorTable(accel);
+	SetRowLabelAlignment(wxALIGN_LEFT, wxALIGN_CENTRE);
 }
 
 void PropGrid::OnLostFocus( wxFocusEvent& ev)
