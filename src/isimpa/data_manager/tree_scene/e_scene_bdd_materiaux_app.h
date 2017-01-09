@@ -49,10 +49,8 @@ public:
    */
 
 	E_Scene_Bdd_Materiaux_Application( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Reference materials",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_APP,noeudCourant)
+		:Element(parent,wxTRANSLATE("Reference materials"),Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_APP,noeudCourant)
 	{
-		_("Reference materials");
-
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_APPLICATION_MATERIALS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_APPLICATION_MATERIALS_CLOSE);
 		wxXmlNode* noeudCfg=ApplicationConfiguration::GetAppMateriauNode();
@@ -81,7 +79,7 @@ public:
 	}
 
 	E_Scene_Bdd_Materiaux_Application( Element* parent)
-		:Element(parent,"Reference",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_APP)
+		:Element(parent,wxTRANSLATE("Reference materials"),Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_APP)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_APPLICATION_MATERIALS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_APPLICATION_MATERIALS_CLOSE);
