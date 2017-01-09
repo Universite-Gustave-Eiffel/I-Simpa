@@ -2,13 +2,13 @@
 <configuration>
   <appdirectivities>
     <directivities name="spk3" eid="107" wxid="3305" iddirectivity="3">
-      <p name="file" eid="109" wxid="3306" readonly="1" label="loudspeaker" value="speaker-test3.txt"/>
+      <p name="file" eid="109" wxid="3306" readonly="1" label="Directivity file" value="speaker-test3.txt"/>
     </directivities>
     <directivities name="spk2" eid="107" wxid="3145" iddirectivity="2">
-      <p name="file" eid="109" wxid="3146" readonly="1" label="loudspeaker" value="speaker-test2.txt"/>
+      <p name="file" eid="109" wxid="3146" readonly="1" label="Directivity file" value="speaker-test2.txt"/>
     </directivities>
     <directivities name="spk1" eid="107" wxid="3143" iddirectivity="1">
-      <p name="file" eid="109" wxid="3144" readonly="1" label="loudspeaker" value="speaker-test1.txt"/>
+      <p name="file" eid="109" wxid="3144" readonly="1" label="Directivity file" value="speaker-test1.txt"/>
     </directivities>
   </appdirectivities>
   <appmaterials>

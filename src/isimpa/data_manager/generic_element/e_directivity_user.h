@@ -48,13 +48,13 @@ class E_Directivity_User : public E_Directivity
 {
 public:
 	E_Directivity_User(wxXmlNode* noeudCourant, Element* parent)
-		:E_Directivity(parent, "User directivity", Element::ELEMENT_TYPE_DIRECTIVITIES_USER, noeudCourant)
+		:E_Directivity(parent, wxTRANSLATE("User directivity"), Element::ELEMENT_TYPE_DIRECTIVITIES_USER, noeudCourant)
 	{
 		this->elementInfo.userDestroyable = true;
 	}
 
 	E_Directivity_User(Element* parent)
-		:E_Directivity(parent, "User directivity", Element::ELEMENT_TYPE_DIRECTIVITIES_USER)
+		:E_Directivity(parent, wxTRANSLATE("User directivity"), Element::ELEMENT_TYPE_DIRECTIVITIES_USER)
 	{
 		this->elementInfo.userDestroyable = true;
 		InitProperties();

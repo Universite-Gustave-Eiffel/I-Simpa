@@ -123,8 +123,11 @@ public:
 	}
 	void AppendItem(const wxString& itemLabel,const int& itemId)
 	{
-		eList.push_back(itemLabel);
-		iList.push_back(itemId);
+		// If the data list does not already contains this item
+		if (std::find(iList.begin(), iList.end(), itemId) == iList.end()) { 
+			eList.push_back(itemLabel);
+			iList.push_back(itemId);
+		}
 	}
 	wxXmlNode* SaveXMLCoreDoc(wxXmlNode* NoeudParent)
 	{

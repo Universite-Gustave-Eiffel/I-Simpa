@@ -122,7 +122,6 @@ public:
 			{
 				file.Assign(newFile.GetFullPath());
 			}
-			readOnly = true;
 			Modified(this);
 		}
 	}

@@ -48,14 +48,14 @@ class E_Scene_Sources_Source: public E_Drawable
 {
 public:
 	E_Scene_Sources_Source( wxXmlNode* noeudCourant ,  Element* parent)
-		:E_Drawable(parent,"Source",Element::ELEMENT_TYPE_SCENE_SOURCES_SOURCE,noeudCourant)
+		:E_Drawable(parent,wxTRANSLATE("Source"),Element::ELEMENT_TYPE_SCENE_SOURCES_SOURCE,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_SOUND_SOURCE_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_SOUND_SOURCE_CLOSE);
 		this->AllowMultipleSelection();
 		this->elementInfo.userDestroyable=true;
 		ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Sources++;
-		_("Source");
+
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;
@@ -95,10 +95,8 @@ public:
 		ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Sources++;
 		this->AppendFils(new E_Scene_Sources_Source_Properties(this));
 		this->AppendFils(new E_Scene_Sources_Source_Rendu(this));
-		this->AppendFils(new E_Property_Freq(this,"Sound power"));
-		_("Sound power");
-		this->AppendPropertyPosition("pos_source","Position",vec3(0,0,0),true);
-		_("Position");
+		this->AppendFils(new E_Property_Freq(this,wxTRANSLATE("Sound power")));
+		this->AppendPropertyPosition("pos_source",wxTRANSLATE("Position"),vec3(0,0,0),true);
 	}
 
 	~E_Scene_Sources_Source()
