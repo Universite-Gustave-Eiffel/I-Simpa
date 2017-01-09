@@ -74,10 +74,14 @@ wxString wxGridCellGabeFloatRenderer::GetString(const wxGrid& grid, int row, int
 		{
 			text=wxString::Format("%."+wxString::Format("%i",m_precision)+"f",val);
 		}else{
-			if(val>0)
-				text="+Inf";
-			else
-				text="-Inf";
+			if(isnan(val)) {
+				text = _("NaN"); // Not a number
+			} else {
+				if(!signbit(val))
+					text=_("+Inf");
+				else
+					text=_("-Inf");
+			}
 		}
     }
     //else: text already contains the string

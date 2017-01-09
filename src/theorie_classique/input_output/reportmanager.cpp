@@ -172,7 +172,7 @@ void ReportManager::SauveTCGlobalsValues(stringClass filePath, const std::vector
 			if(idData==2)
 				dataCol->Set(nbFreq,10*log10f(globalValue));
 			else
-				dataCol->Set(nbFreq,0);
+				dataCol->Set(nbFreq, NAN); // Not energetic value, no global value
 			binExporter.SetCol((idModeCalcul*NB_COLS_BY_THEORIE)+idData+1,dataCol);
 		}
 	}
