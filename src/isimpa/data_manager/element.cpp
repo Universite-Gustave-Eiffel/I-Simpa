@@ -1357,6 +1357,7 @@ bool Element::IsPropertyExist(wxString propertyName,Element** found)
 	}
 	return false;
 }
+
 Element* Element::GetElementParent()
 {
 	return this->pere;

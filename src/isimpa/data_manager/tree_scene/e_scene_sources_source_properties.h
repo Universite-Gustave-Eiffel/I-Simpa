@@ -95,11 +95,8 @@ private:
 					filterTree.push_back(ELEMENT_TYPE_DIRECTIVITIES_APP);
 					filterTree.push_back(ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES_USER);
 					filterTree.push_back(ELEMENT_TYPE_DIRECTIVITIES_USER);
-					this->AppendFils(new E_Data_Tree(this, "directivity-balloon", "Directivity Balloon", rootDirectivities, filterTree, defaultEle, false, 1));
-					if (this->GetListConfig("directivite") != DIRECTIVITE_SOURCE_DIRECTIONNEL)
-					{
-						this->SetReadOnlyConfig("directivity-balloon");
-					}
+					this->AppendFils(new E_Data_Tree(this, "directivity-balloon", wxTRANSLATE("Directivity Balloon"), rootDirectivities, filterTree, defaultEle, false, 1));
+					this->SetReadOnlyConfig("directivity-balloon", this->GetListConfig("directivite") != DIRECTIVITE_SOURCE_DIRECTIONNEL);
 				}
 			}
 		}

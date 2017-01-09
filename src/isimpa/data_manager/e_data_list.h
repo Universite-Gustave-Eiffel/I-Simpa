@@ -77,9 +77,7 @@ public:
 						propValue.ToLong(&id);
 						if(currentChild->GetAttribute("value",&propValue))
 						{
-
-							eList.push_back(propValue);
-							iList.push_back(id);
+							AppendItem(propValue, id);
 						}
 
 					}
