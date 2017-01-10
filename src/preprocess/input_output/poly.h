@@ -70,7 +70,7 @@ namespace formatPOLY
 		bool saveFaceIndex;
 		std::vector<t_face> userDefinedFaces; //Faces rajoutés au modèle
 		std::vector<t_face> modelFaces;
-		std::vector<vec3> modelVertices;
+		std::vector<dvec3> modelVertices;
 		std::vector<t_region> modelRegions; /*!< Liste des régions du modèle */
 	};
 

@@ -71,7 +71,7 @@ bool SeperatedTri( const ivec3& firstTri ,const ivec3& secondTri,int* commonVert
 		return true;
 }
 
-int GetIndiceByCoord( const vec3& a,const vec3& b,const vec3& c, const vec3& testCoord)
+int GetIndiceByCoord( const dvec3& a,const dvec3& b,const dvec3& c, const dvec3& testCoord)
 {
 	if(a.barelyEqual(testCoord))
 		return 0;
@@ -82,7 +82,7 @@ int GetIndiceByCoord( const vec3& a,const vec3& b,const vec3& c, const vec3& tes
 	else
 		return -1;
 }
-bool IsDotInTriangle( const vec3& a,const vec3& b,const vec3& c, const vec3& testCoord)
+bool IsDotInTriangle( const dvec3& a,const dvec3& b,const dvec3& c, const dvec3& testCoord)
 {
 	if(GetIndiceByCoord(a,b,c,testCoord)==-1)
 	{
@@ -91,7 +91,7 @@ bool IsDotInTriangle( const vec3& a,const vec3& b,const vec3& c, const vec3& tes
 		return true;
 	}
 }
-void genprintVec(vec3 inf)
+void genprintVec(dvec3 inf)
 {
 	using namespace std;
 	std::string retStr;
@@ -153,7 +153,7 @@ void meshOperation::ReBuildOctree()
 	for(elementSize idface=0;idface<sizeOfFace;idface++)
 	{
 		sommets=modelData.modelFaces[idface].indicesSommets;
-		lstFaces[idface]=new triangleElement(modelData.modelVertices[sommets.a],modelData.modelVertices[sommets.b],modelData.modelVertices[sommets.c]);
+		lstFaces[idface]=new triangleElement(dvec3_to_vec3(modelData.modelVertices[sommets.a]), dvec3_to_vec3(modelData.modelVertices[sommets.b]), dvec3_to_vec3(modelData.modelVertices[sommets.c]));
 	}
 	modelOctree = new octreeTool::Octree44(lstFaces,6);
 }
@@ -175,7 +175,7 @@ bool meshOperation::IsOk()
 {
 	return modelOctree!=NULL;
 }
-int meshOperation::FindIndexWithPosition( const vec3& position )
+int meshOperation::FindIndexWithPosition( const dvec3& position )
 {
 
 	unsigned int sizeOf=modelData.modelVertices.size();
@@ -218,21 +218,21 @@ bool meshOperation::MeshDestroyCoplanarFaces()
 	for(int idface=0;idface<sizeOfUserFace;idface++)
 	{
 		ivec3* faceSommets=&modelData.userDefinedFaces[idface].indicesSommets;
-		vec3* faceA=&modelData.modelVertices[faceSommets->a];
-		vec3* faceB=&modelData.modelVertices[faceSommets->b];
-		vec3* faceC=&modelData.modelVertices[faceSommets->c];
+		dvec3* faceA=&modelData.modelVertices[faceSommets->a];
+		dvec3* faceB=&modelData.modelVertices[faceSommets->b];
+		dvec3* faceC=&modelData.modelVertices[faceSommets->c];
 		int coplanar=0;
-		vec3 isecA;
-		vec3 isecB;
-		vec3 face_1g=GetGTriangle(*faceA,*faceB,*faceC);
+		dvec3 isecA;
+		dvec3 isecB;
+		dvec3 face_1g=GetGTriangle(*faceA,*faceB,*faceC);
 		for(int idfaceTest=0;idfaceTest<sizeOfFace;idfaceTest++)
 		{
 			result=0;
 			coplanar=0;
 			ivec3* faceTestSommets=&modelData.modelFaces[idfaceTest].indicesSommets;
-			vec3* faceA_Test=&modelData.modelVertices[faceTestSommets->a];
-			vec3* faceB_Test=&modelData.modelVertices[faceTestSommets->b];
-			vec3* faceC_Test=&modelData.modelVertices[faceTestSommets->c];
+			dvec3* faceA_Test=&modelData.modelVertices[faceTestSommets->a];
+			dvec3* faceB_Test=&modelData.modelVertices[faceTestSommets->b];
+			dvec3* faceC_Test=&modelData.modelVertices[faceTestSommets->c];
 			/*
 			result=tri_tri_intersect_with_isectline(*faceA,*faceB,*faceC,
 					modelData.modelVertices[faceTestSommets->a],modelData.modelVertices[faceTestSommets->b],modelData.modelVertices[faceTestSommets->c],
@@ -240,7 +240,7 @@ bool meshOperation::MeshDestroyCoplanarFaces()
 					isecA
 					,isecB);
 			*/
-			vec3 face_2g=GetGTriangle(*faceA_Test,*faceB_Test,*faceC_Test);
+			dvec3 face_2g=GetGTriangle(*faceA_Test,*faceB_Test,*faceC_Test);
 			float ecart1;
 			float ecart2;
 			bool face1_in_face2=DotIsInVertex(face_1g,*faceA_Test,*faceB_Test,*faceC_Test,&ecart1);
@@ -279,9 +279,9 @@ void meshOperation::DestroyNoAreaFaces()
 	for(int idface=0;idface<sizeOfFace;idface++)
 	{
 		ivec3* faceSommets=&modelData.modelFaces[idface].indicesSommets;
-		vec3* faceA=&modelData.modelVertices[faceSommets->a];
-		vec3* faceB=&modelData.modelVertices[faceSommets->b];
-		vec3* faceC=&modelData.modelVertices[faceSommets->c];
+		dvec3* faceA=&modelData.modelVertices[faceSommets->a];
+		dvec3* faceB=&modelData.modelVertices[faceSommets->b];
+		dvec3* faceC=&modelData.modelVertices[faceSommets->c];
 		float aireTri=GetAireTriangle(*faceA,*faceB,*faceC);
 		if(aireTri>BARELY_EPSILON)
 			newTabFace.push_back(modelData.modelFaces[idface]);
@@ -300,20 +300,20 @@ bool meshOperation::MeshDestroyIntersectingTriangles()
 	for(int idface=0;idface<sizeOfFace;idface++)
 	{
 		ivec3* faceSommets=&modelData.modelFaces[idface].indicesSommets;
-		vec3* faceA=&modelData.modelVertices[faceSommets->a];
-		vec3* faceB=&modelData.modelVertices[faceSommets->b];
-		vec3* faceC=&modelData.modelVertices[faceSommets->c];
+		dvec3* faceA=&modelData.modelVertices[faceSommets->a];
+		dvec3* faceB=&modelData.modelVertices[faceSommets->b];
+		dvec3* faceC=&modelData.modelVertices[faceSommets->c];
 		int coplanar=0;
-		vec3 isecA;
-		vec3 isecB;
+		dvec3 isecA;
+		dvec3 isecB;
 		for(int idfaceTest=idface+1;idfaceTest<sizeOfFace;idfaceTest++)
 		{
 			ivec3* faceTestSommets=&modelData.modelFaces[idfaceTest].indicesSommets;
 			//Si le deux faces n'ont pas de sommets en commun
 			int common_vertices=0;
-			vec3* faceA_Test=&modelData.modelVertices[faceTestSommets->a];
-			vec3* faceB_Test=&modelData.modelVertices[faceTestSommets->b];
-			vec3* faceC_Test=&modelData.modelVertices[faceTestSommets->c];
+			dvec3* faceA_Test=&modelData.modelVertices[faceTestSommets->a];
+			dvec3* faceB_Test=&modelData.modelVertices[faceTestSommets->b];
+			dvec3* faceC_Test=&modelData.modelVertices[faceTestSommets->c];
 			//modelData.modelFaces[idface].indicesSommets[sommet]=indexCorrespondance[modelData.modelFaces[idface].indicesSommets[sommet]];
 			result=tri_tri_intersect_with_isectline(*faceA,*faceB,*faceC,
 					*faceA_Test,*faceB_Test,*faceC_Test,
@@ -384,12 +384,12 @@ bool meshOperation::coplanarIntersection(int idface,int idfaceTest)
 		if(commonVerticesCount==2)
 			break;
 	}
-	//vec3::closestPointOnSegment
+	//dvec3::closestPointOnSegment
 	if(commonVerticesCount!=2)
 	{
 		for(short idcommonvert=0;idcommonvert<3;idcommonvert++)
 		{
-			vec3& faceVert=modelData.modelVertices.at(faceSommets->i[idcommonvert]);
+			dvec3& faceVert=modelData.modelVertices.at(faceSommets->i[idcommonvert]);
 			if(commonVertices[idcommonvert]==-1)
 			{
 				//On fait une projection sur chaque segment de l'autre triangle
@@ -397,7 +397,7 @@ bool meshOperation::coplanarIntersection(int idface,int idfaceTest)
 				for(short side=0;side<3;side++)
 				{
 					ivec2 side_vertices=faceTestSommets->sideVertices(side);
-					vec3 closest=faceVert.closestPointOnSegment(modelData.modelVertices.at(side_vertices.a),modelData.modelVertices.at(side_vertices.b));
+					dvec3 closest=faceVert.closestPointOnSegment(modelData.modelVertices.at(side_vertices.a),modelData.modelVertices.at(side_vertices.b));
 					if(closest.barelyEqual(faceVert))
 					{
 						//std::cout<<"Intersection At ["<<closest.x<<","<<closest.y<<","<<closest.z<<"]"<<" (#"<<idface<<"& #"<<idfaceTest<<") "<<commonVerticesCount<<std::endl;
@@ -422,16 +422,16 @@ bool meshOperation::MeshReconstruction()
 	for(int idface=0;idface<sizeOfFace;idface++)
 	{
 		ivec3* faceSommets=&modelData.modelFaces[idface].indicesSommets;
-		vec3* faceA=&modelData.modelVertices[faceSommets->a];
-		vec3* faceB=&modelData.modelVertices[faceSommets->b];
-		vec3* faceC=&modelData.modelVertices[faceSommets->c];
+		dvec3* faceA=&modelData.modelVertices[faceSommets->a];
+		dvec3* faceB=&modelData.modelVertices[faceSommets->b];
+		dvec3* faceC=&modelData.modelVertices[faceSommets->c];
 		int coplanar=0;
 		//Test octree et récuperation des résultats
 		
 		using namespace octreeTool;
 		OctreeResult instanceCalcul(idface);
 		modelOctree->GetDynamicCollisionCandidates(*lstFaces[idface],&instanceCalcul,&OctreeResult::DotTriangleCollisionTest);
-		vec3 rootFace=FaceNormal(*faceA,*faceB,*faceC);
+		dvec3 rootFace=FaceNormal(*faceA,*faceB,*faceC);
 		for(elementSize resultIndex=0;resultIndex<instanceCalcul.results.size();resultIndex++)
 		{
 			int idfaceTest=instanceCalcul.results[resultIndex];
@@ -440,11 +440,11 @@ bool meshOperation::MeshReconstruction()
 			ivec3* faceTestSommets=&modelData.modelFaces[idfaceTest].indicesSommets;
 			//Si le deux faces n'ont pas de sommets en commun
 			int common_vertices=0;
-			vec3* faceA_Test=&modelData.modelVertices[faceTestSommets->a];
-			vec3* faceB_Test=&modelData.modelVertices[faceTestSommets->b];
-			vec3* faceC_Test=&modelData.modelVertices[faceTestSommets->c];
-			vec3 isecA;
-			vec3 isecB;
+			dvec3* faceA_Test=&modelData.modelVertices[faceTestSommets->a];
+			dvec3* faceB_Test=&modelData.modelVertices[faceTestSommets->b];
+			dvec3* faceC_Test=&modelData.modelVertices[faceTestSommets->c];
+			dvec3 isecA;
+			dvec3 isecB;
 			//if(CollisionAlgo::IntersectionTriTri(*faceA,*faceB,*faceC,
 			//		*faceA_Test,*faceB_Test,*faceC_Test,&isecA,&isecB))
 			result=tri_tri_intersect_with_isectline(*faceA,*faceB,*faceC,
@@ -507,12 +507,12 @@ bool meshOperation::MeshReconstruction()
 	for(int idface=0;idface<sizeOfFace;idface++)
 	{
 		ivec3* faceSommets=&modelData.modelFaces[idface].indicesSommets;
-		vec3* faceA=&modelData.modelVertices[faceSommets->a];
-		vec3* faceB=&modelData.modelVertices[faceSommets->b];
-		vec3* faceC=&modelData.modelVertices[faceSommets->c];
+		dvec3* faceA=&modelData.modelVertices[faceSommets->a];
+		dvec3* faceB=&modelData.modelVertices[faceSommets->b];
+		dvec3* faceC=&modelData.modelVertices[faceSommets->c];
 		int coplanar=0;
-		vec3 isecA;
-		vec3 isecB;
+		dvec3 isecA;
+		dvec3 isecB;
 		//Test octree et récuperation des résultats
 		
 		using namespace octreeTool;
@@ -526,9 +526,9 @@ bool meshOperation::MeshReconstruction()
 			ivec3* faceTestSommets=&modelData.modelFaces[idfaceTest].indicesSommets;
 			//Si le deux faces n'ont pas de sommets en commun
 			int common_vertices=0;
-			vec3* faceA_Test=&modelData.modelVertices[faceTestSommets->a];
-			vec3* faceB_Test=&modelData.modelVertices[faceTestSommets->b];
-			vec3* faceC_Test=&modelData.modelVertices[faceTestSommets->c];
+			dvec3* faceA_Test=&modelData.modelVertices[faceTestSommets->a];
+			dvec3* faceB_Test=&modelData.modelVertices[faceTestSommets->b];
+			dvec3* faceC_Test=&modelData.modelVertices[faceTestSommets->c];
 			result=tri_tri_intersect_with_isectline(*faceA,*faceB,*faceC,
 					*faceA_Test,*faceB_Test,*faceC_Test,
 					&coplanar,
@@ -572,15 +572,15 @@ bool meshOperation::MeshReconstruction()
 	return sceneSplited;
 }
 */
-bool meshOperation::OnCollisionDetectedDestroyIt( formatPOLY::t_face& triangleOne, formatPOLY::t_face& triangleTwo, const vec3& position )
+bool meshOperation::OnCollisionDetectedDestroyIt( formatPOLY::t_face& triangleOne, formatPOLY::t_face& triangleTwo, const dvec3& position )
 {
 	using namespace formatPOLY;
-	vec3* nodeA_triangleOne=&modelData.modelVertices[triangleOne.indicesSommets.a];
-	vec3* nodeB_triangleOne=&modelData.modelVertices[triangleOne.indicesSommets.b];
-	vec3* nodeC_triangleOne=&modelData.modelVertices[triangleOne.indicesSommets.c];
-	vec3* nodeA_triangleTwo=&modelData.modelVertices[triangleTwo.indicesSommets.a];
-	vec3* nodeB_triangleTwo=&modelData.modelVertices[triangleTwo.indicesSommets.b];
-	vec3* nodeC_triangleTwo=&modelData.modelVertices[triangleTwo.indicesSommets.c];
+	dvec3* nodeA_triangleOne=&modelData.modelVertices[triangleOne.indicesSommets.a];
+	dvec3* nodeB_triangleOne=&modelData.modelVertices[triangleOne.indicesSommets.b];
+	dvec3* nodeC_triangleOne=&modelData.modelVertices[triangleOne.indicesSommets.c];
+	dvec3* nodeA_triangleTwo=&modelData.modelVertices[triangleTwo.indicesSommets.a];
+	dvec3* nodeB_triangleTwo=&modelData.modelVertices[triangleTwo.indicesSommets.b];
+	dvec3* nodeC_triangleTwo=&modelData.modelVertices[triangleTwo.indicesSommets.c];
 
 	int idSommet_triangleOne=GetIndiceByCoord(*nodeA_triangleOne,*nodeB_triangleOne,*nodeC_triangleOne,position);
 	int idSommet_triangleTwo=GetIndiceByCoord(*nodeA_triangleTwo,*nodeB_triangleTwo,*nodeC_triangleTwo,position);
@@ -613,15 +613,15 @@ bool meshOperation::OnCollisionDetectedDestroyIt( formatPOLY::t_face& triangleOn
 
 	return true;
 }
-bool meshOperation::OnCollisionDetectedSplitIt( formatPOLY::t_face& triangleOne, formatPOLY::t_face& triangleTwo, const vec3& position )
+bool meshOperation::OnCollisionDetectedSplitIt( formatPOLY::t_face& triangleOne, formatPOLY::t_face& triangleTwo, const dvec3& position )
 {
 	using namespace formatPOLY;
-	vec3* nodeA_triangleOne=&modelData.modelVertices[triangleOne.indicesSommets.a];
-	vec3* nodeB_triangleOne=&modelData.modelVertices[triangleOne.indicesSommets.b];
-	vec3* nodeC_triangleOne=&modelData.modelVertices[triangleOne.indicesSommets.c];
-	vec3* nodeA_triangleTwo=&modelData.modelVertices[triangleTwo.indicesSommets.a];
-	vec3* nodeB_triangleTwo=&modelData.modelVertices[triangleTwo.indicesSommets.b];
-	vec3* nodeC_triangleTwo=&modelData.modelVertices[triangleTwo.indicesSommets.c];
+	dvec3* nodeA_triangleOne=&modelData.modelVertices[triangleOne.indicesSommets.a];
+	dvec3* nodeB_triangleOne=&modelData.modelVertices[triangleOne.indicesSommets.b];
+	dvec3* nodeC_triangleOne=&modelData.modelVertices[triangleOne.indicesSommets.c];
+	dvec3* nodeA_triangleTwo=&modelData.modelVertices[triangleTwo.indicesSommets.a];
+	dvec3* nodeB_triangleTwo=&modelData.modelVertices[triangleTwo.indicesSommets.b];
+	dvec3* nodeC_triangleTwo=&modelData.modelVertices[triangleTwo.indicesSommets.c];
 
 	int idSommet_triangleOne=GetIndiceByCoord(*nodeA_triangleOne,*nodeB_triangleOne,*nodeC_triangleOne,position);
 	int idSommet_triangleTwo=GetIndiceByCoord(*nodeA_triangleTwo,*nodeB_triangleTwo,*nodeC_triangleTwo,position);
@@ -671,10 +671,10 @@ bool meshOperation::SplitTriangleByThree( formatPOLY::t_face& triangleToSplit , 
 	using namespace formatPOLY;
 	ivec3 splitSommets=triangleToSplit.indicesSommets;
 
-	vec3 A_tri=modelData.modelVertices[splitSommets.a];
-	vec3 B_tri=modelData.modelVertices[splitSommets.b];
-	vec3 C_tri=modelData.modelVertices[splitSommets.c];
-	vec3 I_tri=modelData.modelVertices[splitCentre];
+	dvec3 A_tri=modelData.modelVertices[splitSommets.a];
+	dvec3 B_tri=modelData.modelVertices[splitSommets.b];
+	dvec3 C_tri=modelData.modelVertices[splitSommets.c];
+	dvec3 I_tri=modelData.modelVertices[splitCentre];
 	
 	std::cout<<"Split Triangle for the "<<stat_NbFaceSplitting<<" times. ["<<I_tri.x<<";"<<I_tri.y<<";"<<I_tri.z<<"]"<<std::endl;
 
@@ -718,7 +718,7 @@ bool meshOperation::SplitTriangleByThree( formatPOLY::t_face& triangleToSplit , 
 void meshOperation::PushNewFace(const formatPOLY::t_face& newFace)
 {
 	modelData.modelFaces.push_back(newFace);
-	lstFaces.push_back(new octreeTool::triangleElement(modelData.modelVertices[newFace.indicesSommets.a],modelData.modelVertices[newFace.indicesSommets.b],modelData.modelVertices[newFace.indicesSommets.c]));
+	lstFaces.push_back(new octreeTool::triangleElement(dvec3_to_vec3(modelData.modelVertices[newFace.indicesSommets.a]),dvec3_to_vec3(modelData.modelVertices[newFace.indicesSommets.b]),dvec3_to_vec3(modelData.modelVertices[newFace.indicesSommets.c])));
 	modelOctree->PushNewSpaceElement(lstFaces[lstFaces.size()-1],lstFaces.size()-1,6);
 }
 void meshOperation::Save(const char* polyFileName)
@@ -736,13 +736,13 @@ void meshOperation::mergeVertices()
 	using namespace std;
 	unsigned int sizeOf=modelData.modelVertices.size();
 	std::vector<std::size_t> indexCorrespondance(sizeOf);
-	std::multimap<double,std::pair<std::size_t,vec3>> mergedVertices;
-	typedef std::multimap<double,std::pair<std::size_t,vec3>>::iterator mapIterator;
-	typedef std::pair<double,std::pair<std::size_t,vec3>> mapValue;
+	std::multimap<double,std::pair<std::size_t,dvec3>> mergedVertices;
+	typedef std::multimap<double,std::pair<std::size_t,dvec3>>::iterator mapIterator;
+	typedef std::pair<double,std::pair<std::size_t,dvec3>> mapValue;
 
 	for(std::size_t idVertice=0;idVertice<sizeOf;idVertice++)
 	{
-		const vec3& vecValue(modelData.modelVertices[idVertice]);
+		const dvec3& vecValue(modelData.modelVertices[idVertice]);
 		double vecLength(vecValue.length());
 		bool foundDuplicate(false);
 		for(mapIterator itfound=mergedVertices.find(vecLength);itfound!=mergedVertices.end() && itfound->first==vecLength;itfound++)
@@ -758,7 +758,7 @@ void meshOperation::mergeVertices()
 		if(!foundDuplicate)
 		{
 			indexCorrespondance[idVertice]=mergedVertices.size();
-			mergedVertices.insert(mapValue(vecLength,std::pair<std::size_t,vec3>(indexCorrespondance[idVertice],vecValue)));
+			mergedVertices.insert(mapValue(vecLength,std::pair<std::size_t,dvec3>(indexCorrespondance[idVertice],vecValue)));
 		}
 	}
 

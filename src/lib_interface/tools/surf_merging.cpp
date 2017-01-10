@@ -162,7 +162,7 @@ namespace surf_merge
 		{
 			const formatCoreBIN::ioFace& currentFace=model.faces[faceId];
 			(*it).idmat=currentFace.idMat;
-			(*it).normal=FaceNormal((const float*)&model.vertices[currentFace.a],(const float*)&model.vertices[currentFace.b],(const float*)&model.vertices[currentFace.c]);
+			(*it).normal=FaceNormal<float>((const float*)&model.vertices[currentFace.a],(const float*)&model.vertices[currentFace.b],(const float*)&model.vertices[currentFace.c]);
 			faceId++;
 		}
 		//Initialisation des faces voisines

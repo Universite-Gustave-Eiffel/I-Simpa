@@ -335,7 +335,7 @@ public:
 		{
 			vec3 posDeb=this->GetPositionConfig("ba");
 			vec3 posFin=this->GetPositionConfig("hc");
-			drawableElementInformations.dotInsideVol=posDeb+(posFin-posDeb)*EPSILON;
+			drawableElementInformations.dotInsideVol=posFin-(posFin-posDeb)*BARELY_EPSILON;
 			return true;
 		}else{
 			return E_Drawable::GetMaillageVolumeInfos(drawableElementInformations);

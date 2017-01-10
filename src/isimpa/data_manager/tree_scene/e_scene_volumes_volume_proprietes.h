@@ -69,18 +69,6 @@ public:
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
 		AppendPropertyText("description", wxTRANSLATE("Description"), "");
-		_("Calculate the mean free path");
-		_("Mean free path");
-	}
-
-	void Modified(Element* eModif)
-	{
-		t_elementInfo filsInfo=eModif->GetElementInfos();
-		if(filsInfo.libelleElement=="fcompute_mean_free_path")
-		{
-			this->SetReadOnlyConfig("mean_free_path",this->GetBoolConfig("fcompute_mean_free_path"));
-		}
-		Element::Modified(eModif);
 	}
 	
 	wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)

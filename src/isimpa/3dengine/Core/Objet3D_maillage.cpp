@@ -889,7 +889,7 @@ bool CObjet3D::_SavePOLY(const char *filename,bool exportUserModel,bool separate
 	modelExport.modelVertices.reserve(this->_pVertices.size());
 	for(unsigned int i=0;i<this->_pVertices.size();i++)
 	{
-		modelExport.modelVertices.push_back(coordsOperation::GlCoordsToCommonCoords(UnitizeVar,this->_pVertices[i]));
+		modelExport.modelVertices.push_back(vec3_to_dvec3(coordsOperation::GlCoordsToCommonCoords(UnitizeVar,this->_pVertices[i])));
 	}
 	unsigned long faceIndex=0;
 	///////////////////////////////////////
@@ -931,9 +931,9 @@ bool CObjet3D::_SavePOLY(const char *filename,bool exportUserModel,bool separate
 					for(int idface=0;idface<consistentModel.size();idface++)
 					{
 						int indexVertice=modelExport.modelVertices.size();
-						modelExport.modelVertices.push_back(coordsOperation::GlCoordsToCommonCoords(UnitizeVar,consistentModel[idface].a));
-						modelExport.modelVertices.push_back(coordsOperation::GlCoordsToCommonCoords(UnitizeVar,consistentModel[idface].b));
-						modelExport.modelVertices.push_back(coordsOperation::GlCoordsToCommonCoords(UnitizeVar,consistentModel[idface].c));
+						modelExport.modelVertices.push_back(vec3_to_dvec3(coordsOperation::GlCoordsToCommonCoords(UnitizeVar,consistentModel[idface].a)));
+						modelExport.modelVertices.push_back(vec3_to_dvec3(coordsOperation::GlCoordsToCommonCoords(UnitizeVar,consistentModel[idface].b)));
+						modelExport.modelVertices.push_back(vec3_to_dvec3(coordsOperation::GlCoordsToCommonCoords(UnitizeVar,consistentModel[idface].c)));
 						formatPOLY::t_face nvFace;
 						nvFace.indicesSommets.set(indexVertice,indexVertice+1,indexVertice+2);
 						nvFace.faceIndex=faceIndex;

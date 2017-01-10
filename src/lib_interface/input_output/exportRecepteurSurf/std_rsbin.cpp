@@ -171,7 +171,7 @@ namespace formatRSBIN
 	{
 		CheckFaceParameter(rsIndex,faceIndex);
 		Intb* vertices(this->localData->tabRs[rsIndex].dataFaces[faceIndex].dataFace.sommetsIndex);
-		return GetAireTriangle(this->localData->tabNodes[vertices[0]].node,this->localData->tabNodes[vertices[1]].node,this->localData->tabNodes[vertices[2]].node);
+		return GetAireTriangle<float>(this->localData->tabNodes[vertices[0]].node,this->localData->tabNodes[vertices[1]].node,this->localData->tabNodes[vertices[2]].node);
 	}
 	float rsurf_data::GetFaceSumEnergy(const std::size_t& rsIndex,const std::size_t& faceIndex)
 	{

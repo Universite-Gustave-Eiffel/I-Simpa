@@ -153,11 +153,10 @@ namespace formatPOLY
 		return atoi(charArray);
 	}
 
-	float ToFloat(const char* charArray)
+	double ToFloat(const char* charArray)
 	{
 		return atof(charArray);
 	}
-
 
 	CPoly::CPoly()
 	{
@@ -193,7 +192,7 @@ bool CPoly::ExportPOLY(t_model& scene, const char* mfilename)
   unsigned int sizeVertices=scene.modelVertices.size();
   fprintf(outfile, "# Part 1 - node list\n");
   fprintf(outfile, "%i  3  0  0\n",sizeVertices);
-  vec3 realCoords;
+  dvec3 realCoords;
   for(int v=0; v < sizeVertices ;v++)
   {
 	realCoords=scene.modelVertices[v];
@@ -303,7 +302,7 @@ bool CPoly::ImportPOLY(t_model& scene,const char* mfilename)
   scene.modelVertices.reserve(sizeVertices*2);
   while(idvec<sizeVertices && !feof(infile))
   {
-	vec3 newVec;
+	dvec3 newVec;
 	fscanf(infile,"%i %20s %20s %20s\n",tmpBuffer,x,y,z);
 	newVec[0]=ToFloat(x);
 	newVec[1]=ToFloat(y);

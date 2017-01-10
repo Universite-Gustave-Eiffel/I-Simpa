@@ -358,7 +358,7 @@ void CObjet3D::LoadPolyWithoutLostCurrentModelGroupAndMaterials(const char *file
 	//Transfert des vertices
 	this->_pVertices.clear();
 	for(int idvert=0;idvert<modelpoly.modelVertices.size();idvert++)
-		this->_pVertices.push_back(coordsOperation::CommonCoordsToGlCoords(vec4(0,0,0,1), modelpoly.modelVertices[idvert]));
+		this->_pVertices.push_back(coordsOperation::CommonCoordsToGlCoords(vec4(0,0,0,1), dvec3_to_vec3(modelpoly.modelVertices[idvert])));
 
 	//Création du tableau de correspondance
 	std::vector<t_faceIndex> oldFaceCorrspondance(this->GetNumFaces());
@@ -1094,7 +1094,7 @@ bool CObjet3D::_LoadPOLY(const char *filename)
 	//Transfert des vertices
 	this->_pVertices.clear();
 	for(int idvert=0;idvert<modelpoly.modelVertices.size();idvert++)
-		this->_pVertices.push_back(coordsOperation::CommonCoordsToGlCoords(vec4(0,0,0,1), modelpoly.modelVertices[idvert]));
+		this->_pVertices.push_back(coordsOperation::CommonCoordsToGlCoords(vec4(0,0,0,1), dvec3_to_vec3(modelpoly.modelVertices[idvert])));
 
 	//Transfer des groupes
 	SGroup3D grp;
@@ -1714,7 +1714,7 @@ void CObjet3D::GetRealVertice(const unsigned long verticeId,vec3* outVert)
 }
 void CObjet3D::SelectVertex(const t_faceIndex& faceid)
 {
-	if(faceid.f>=0 && faceid.f<this->GetNumFaces(faceid.g))
+	if(faceid.f>=0 && faceid.g >=0 && faceid.f<this->GetNumFaces(faceid.g))
 	{
 		this->_pGroups[faceid.group].pFaces[faceid.face].selected=true;
 		selectionChange=true;

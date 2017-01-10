@@ -230,6 +230,15 @@ public:
 typedef base_vec3<decimal> vec3;
 typedef base_vec3<double> dvec3;
 
+
+inline vec3 dvec3_to_vec3(const dvec3 &v1) {
+	return vec3(v1.x, v1.y, v1.z);
+}
+
+inline dvec3 vec3_to_dvec3(const vec3 &v1) {
+	return dvec3(v1.x, v1.y, v1.z);
+}
+
 /*****************************************************************************/
 /*                                                                           */
 /* vec2                                                                      */
@@ -321,8 +330,10 @@ inline void Cross(const vec3 &v1,const vec3 &v2,vec3 &vout) {
 	vout.y=v1.z * v2.x - v1.x * v2.z;
 	vout.z=v1.x * v2.y - v1.y * v2.x;
 }
-inline vec3 Cross_r(const vec3 &v1,const vec3 &v2) {
-	return vec3(v1.y * v2.z - v1.z * v2.y,v1.z * v2.x - v1.x * v2.z,v1.x * v2.y - v1.y * v2.x);
+
+template<typename base_t>
+inline base_vec3<base_t> Cross_r(const base_vec3<base_t> &v1,const base_vec3<base_t> &v2) {
+	return base_vec3<base_t>(v1.y * v2.z - v1.z * v2.y,v1.z * v2.x - v1.x * v2.z,v1.x * v2.y - v1.y * v2.x);
 }
 template<typename base_t>
 inline base_vec3<base_t>::base_vec3(const vec2 &_v,base_t _z)
@@ -336,15 +347,18 @@ inline vec2::vec2(const vec3 &_v) {
 }
 
 // This calculates a vector between 2 points and returns the result
-inline void Vector(const vec3 &vp1, const vec3 &vp2,vec3 &vout) {
+template<typename base_t>
+inline void Vector(const  base_vec3<base_t> &vp1, const  base_vec3<base_t> &vp2, base_vec3<base_t> &vout) {
 
 	vout.x=vp1.x - vp2.x;
 	vout.y=vp1.y - vp2.y;
 	vout.z=vp1.z - vp2.z;
 }
-inline vec3 Vector_r(const vec3 &vp1, const vec3 &vp2)
+
+template<typename base_t>
+inline base_vec3<base_t> Vector_r(const base_vec3<base_t> &vp1, const base_vec3<base_t> &vp2)
 {
-	return vec3(vp1.x - vp2.x,vp1.y - vp2.y,vp1.z - vp2.z);
+	return base_vec3<base_t>(vp1.x - vp2.x,vp1.y - vp2.y,vp1.z - vp2.z);
 }
 /**
  * This calculates determinant 3*3
@@ -364,10 +378,11 @@ inline decimal Determinant(const vec3 &vp1, const vec3 &vp2, const vec3 &vp3) {
 /*                                                                           */
 /*****************************************************************************/
 
-inline vec3 FaceNormal(const vec3 &vp1, const vec3 &vp2, const vec3 &vp3)
+template<typename base_t>
+inline base_vec3<base_t> FaceNormal(const base_vec3<base_t> &vp1, const base_vec3<base_t> &vp2, const base_vec3<base_t> &vp3)
 {
 
-	vec3 vret=Cross_r(Vector_r(vp1, vp2),Vector_r(vp2, vp3));
+	base_vec3<base_t> vret=Cross_r(Vector_r(vp1, vp2),Vector_r(vp2, vp3));
 	vret.normalize();
 	return vret;
 }
@@ -462,12 +477,13 @@ inline vec2::vec2(const vec4 &_v) {
 	this->x = _v.x;
 	this->y = _v.y;
 }
-inline bool colinear( const vec3& A, const vec3& B, const vec3& C, const decimal& aproximation)
+
+template<typename base_t>
+inline bool colinear( const base_vec3<base_t>& A, const base_vec3<base_t>& B, const base_vec3<base_t>& C, const decimal& aproximation)
 {
-	vec3 AB=B-A;
-	vec3 AC=C-A;
-	decimal diff=(AB/AB.length()-AC/AC.length()).length();
-	return diff<aproximation;
+	base_vec3<base_t> AB=B-A;
+	base_vec3<base_t> AC=C-A;
+	return (AB / AB.length() - AC / AC.length()).length() < aproximation;
 }
 /*****************************************************************************/
 /*                                                                           */
@@ -668,36 +684,39 @@ inline decimal CalcTetraVolume(vec3 A,vec3 B,vec3 C,vec3 D)
 /**
  * @return La position du point central d'un triangle
  */
-inline vec3 GetGTriangle(const vec3& A,const vec3& B,const vec3& C)
+template<typename base_t>
+inline base_vec3<base_t> GetGTriangle(const base_vec3<base_t>& A,const base_vec3<base_t>& B,const base_vec3<base_t>& C)
 {
-	vec3 I=(B+C)/2;
-	vec3 AG=(I-A)*(2.f/3.f);
+	base_vec3<base_t> I=(B+C)/2;
+	base_vec3<base_t> AG=(I-A)*(2.f/3.f);
 	return A+AG;
 }
 inline vec3 GetGTetra(const vec3& A,const vec3& B,const vec3& C,const vec3& D)
 {
 	return (A+B+C+D)/4;
 }
-inline decimal GetAireTriangle(const vec3& a,const vec3& b,const vec3& c)
+template<typename base_t>
+inline decimal GetAireTriangle(const base_vec3<base_t>& a,const base_vec3<base_t>& b,const base_vec3<base_t>& c)
 {
-		vec3 ab;
-		vec3 ac;
+	    base_vec3<base_t> ab;
+		base_vec3<base_t> ac;
 		Vector(a,b,ab);
 		Vector(a,c,ac);
 		ab.cross(ac);
-		return .5f*ab.length();
+		return .5*ab.length();
 }
 /*
  * @param ecart Au maximum 2*PI au minimum 0
  * @return Vrai si Si ecart==0 ou ecart>0.1
  */
-inline bool DotIsInVertex(const vec3& dot,const vec3& va,const vec3& vb,const vec3& vc,decimal* ecart=NULL)
+template<typename base_t>
+inline bool DotIsInVertex(const base_vec3<base_t>& dot,const base_vec3<base_t>& va,const base_vec3<base_t>& vb,const base_vec3<base_t>& vc,decimal* ecart=NULL)
 { //retourne vrai si le point est dans un triangle, le total à la fin correspond à environ 2PI si c'est le cas
 	decimal totangle=0;
 	// calcul des vecteurs des cotés
-	vec3 vda(dot-va);
-	vec3 vdb(dot-vb);
-	vec3 vdc(dot-vc);
+	base_vec3<base_t> vda(dot-va);
+	base_vec3<base_t> vdb(dot-vb);
+	base_vec3<base_t> vdc(dot-vc);
 	//Calcul de la somme des angles sur le plan xy
 	totangle+=vda.angle(vdb);
 	totangle+=vda.angle(vdc);
