@@ -397,11 +397,10 @@ void uiTreeCtrl::InitTree()
 	highlightEl.compteurHl=0;
 
 }
-uiTreeCtrl::uiTreeCtrl(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style, bool openOnSimpleClick)
-:wxTreeCtrl(parent, id, pos, size, style),alive(new bool(true))
+uiTreeCtrl::uiTreeCtrl(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style, bool _openOnSimpleClick)
+:wxTreeCtrl(parent, id, pos, size, style),alive(new bool(true)), openOnSimpleClick(_openOnSimpleClick)
 {
 	InitTree();
-	this->openOnSimpleClick = openOnSimpleClick;
 }
 
 void uiTreeCtrl::OnMenuItemClosed(wxCommandEvent& commandEvent) {
@@ -410,7 +409,7 @@ void uiTreeCtrl::OnMenuItemClosed(wxCommandEvent& commandEvent) {
 }
 
 uiTreeCtrl::uiTreeCtrl()
-:wxTreeCtrl(),alive(new bool(true))
+:wxTreeCtrl(),alive(new bool(true)), openOnSimpleClick(true)
 {
 	InitTree();
 }

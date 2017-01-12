@@ -73,7 +73,7 @@ class uiTreeCtrl : public wxTreeCtrl
 		wxPoint mousePos;
 		void InitTree();
 		smart_ptr<bool> alive;
-		bool openOnSimpleClick;
+		const bool openOnSimpleClick;
 	protected :
 
 		DECLARE_EVENT_TABLE()
