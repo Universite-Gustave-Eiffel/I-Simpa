@@ -41,6 +41,7 @@ BEGIN_EVENT_TABLE(uiTreeCtrl, wxTreeCtrl)
 	EVT_TREE_END_DRAG(-1, uiTreeCtrl::EndDrag)
 	EVT_LEFT_DOWN(uiTreeCtrl::OnLeftClic)
 	EVT_TREE_SEL_CHANGED(-1, uiTreeCtrl::OnSelectTreeItem)
+	EVT_TREE_ITEM_ACTIVATED(-1, uiTreeCtrl::OnDoubleClic)
 	EVT_TREE_ITEM_RIGHT_CLICK(-1, uiTreeCtrl::OnRightClic)
 	EVT_TREE_BEGIN_LABEL_EDIT(-1, uiTreeCtrl::OnBeginLabelEdit)
 	EVT_TREE_END_LABEL_EDIT(-1, uiTreeCtrl::OnEndLabelEdit)
@@ -396,10 +397,11 @@ void uiTreeCtrl::InitTree()
 	highlightEl.compteurHl=0;
 
 }
-uiTreeCtrl::uiTreeCtrl(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
+uiTreeCtrl::uiTreeCtrl(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style, bool openOnSimpleClick)
 :wxTreeCtrl(parent, id, pos, size, style),alive(new bool(true))
 {
 	InitTree();
+	this->openOnSimpleClick = openOnSimpleClick;
 }
 
 void uiTreeCtrl::OnMenuItemClosed(wxCommandEvent& commandEvent) {
@@ -552,6 +554,24 @@ void uiTreeCtrl::AddElement(Element* newElement)
 	newElement->AppendWitness(LifeTimeWitness(new UiTreeWitness(this,this->alive,idElement)));
 }
 
+void uiTreeCtrl::OnDoubleClic(wxTreeEvent& treeEvent)
+{
+	treeEvent.Skip();
+	if(!openOnSimpleClick) {
+		Element* elementDest;
+		//On récupère lidentifiant de l'element correspondant dans l'événement
+		wxTreeItemId idElement = treeEvent.GetItem();
+		//On extrait l'élément du map
+		elementDest = GetElement(idElement);
+		if (elementDest != NULL) //si on a bien récupéré l'element
+		{
+			wxCommandEvent cmdEv;
+			cmdEv.SetId(Element::IDEVENT_GETPROPERTIES);
+			this->OnElementEvent(cmdEv);
+		}
+	}
+}
+
 void uiTreeCtrl::OnEndLabelEdit(wxTreeEvent& treeEvent)
 {
 	Element* elementDest;
@@ -649,10 +669,12 @@ void uiTreeCtrl::OnLeftClic(wxMouseEvent& evt)
 	{
 		wxTreeEvent treeev(wxEVT_COMMAND_TREE_SEL_CHANGED,this,itId);
 		this->OnSelectTreeItem(treeev);
-		// Open item properties
-		wxCommandEvent cmdEv;
-		cmdEv.SetId(Element::IDEVENT_GETPROPERTIES);
-		this->OnElementEvent(cmdEv);
+		if(openOnSimpleClick) {
+			// Open item properties
+			wxCommandEvent cmdEv;
+			cmdEv.SetId(Element::IDEVENT_GETPROPERTIES);
+			this->OnElementEvent(cmdEv);
+		}
 	}
 	evt.Skip(true);
 }

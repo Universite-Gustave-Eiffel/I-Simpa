@@ -363,10 +363,10 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 
 
 	// Creation des 3 arbres de gestion du projet
-	this->treeCore = new uiTreeCtrl(ctrlNotebook.get(), -1, wxPoint(0,0), wxSize(-1,250),wxTR_EDIT_LABELS | wxNO_BORDER | wxTR_MULTIPLE | wxTR_HAS_BUTTONS  | wxTR_HIDE_ROOT); //wxTR_MULTIPLE |
-	this->treeResult = new uiTreeCtrl(ctrlNotebook.get(), -1, wxPoint(0,0), wxSize(-1,250), wxTR_EDIT_LABELS | wxNO_BORDER | wxTR_MULTIPLE | wxTR_HAS_BUTTONS | wxTR_HIDE_ROOT );
-	this->treeScene = new uiTreeCtrl(ctrlNotebook.get(), -1, wxPoint(0,0), wxSize(-1,250), wxTR_EDIT_LABELS | wxNO_BORDER | wxTR_MULTIPLE | wxTR_HAS_BUTTONS | wxTR_HIDE_ROOT ); //
-	this->treeUserPref = new uiTreeCtrl(this, -1, wxPoint(0,0), wxSize(-1,250), wxTR_EDIT_LABELS | wxNO_BORDER | wxTR_MULTIPLE | wxTR_HAS_BUTTONS | wxTR_HIDE_ROOT ); //
+	this->treeCore = new uiTreeCtrl(ctrlNotebook.get(), -1, wxPoint(0,0), wxSize(-1,250),wxTR_EDIT_LABELS | wxNO_BORDER | wxTR_MULTIPLE | wxTR_HAS_BUTTONS  | wxTR_HIDE_ROOT, true); //wxTR_MULTIPLE |
+	this->treeResult = new uiTreeCtrl(ctrlNotebook.get(), -1, wxPoint(0,0), wxSize(-1,250), wxTR_EDIT_LABELS | wxNO_BORDER | wxTR_MULTIPLE | wxTR_HAS_BUTTONS | wxTR_HIDE_ROOT, true );
+	this->treeScene = new uiTreeCtrl(ctrlNotebook.get(), -1, wxPoint(0,0), wxSize(-1,250), wxTR_EDIT_LABELS | wxNO_BORDER | wxTR_MULTIPLE | wxTR_HAS_BUTTONS | wxTR_HIDE_ROOT, false ); //
+	this->treeUserPref = new uiTreeCtrl(this, -1, wxPoint(0,0), wxSize(-1,250), wxTR_EDIT_LABELS | wxNO_BORDER | wxTR_MULTIPLE | wxTR_HAS_BUTTONS | wxTR_HIDE_ROOT, true ); //
 
 	treeCore->BindElementEvent(&OnCoreElementEvent);
 	treeResult->BindElementEvent(&OnReportElementEvent);
