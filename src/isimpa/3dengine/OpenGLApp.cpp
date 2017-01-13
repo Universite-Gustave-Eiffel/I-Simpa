@@ -161,7 +161,6 @@ void OpenGLApp::ResetAll(void)
 
 	m_PosLight       = vec4(0.0f, 0.0f, 4.0f, 1.0f);
 	m_DirectionLight = vec3(0.0f, 0.0f, -1.0f);
-	m_ShineLight =	128.0f;
 	m_SpotAngle =  45.0f;
 	
 }
