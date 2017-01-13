@@ -55,7 +55,7 @@
 class MainPropGrid: public PropGrid
 {
 private:
-	typedef enum MAINPROP_EVENT_MENU
+	enum MAINPROP_EVENT_MENU
 	{
 		ID_CREATE_DIAGRAM=PropGrid::EVENT_MENU_LAST+1
 	};

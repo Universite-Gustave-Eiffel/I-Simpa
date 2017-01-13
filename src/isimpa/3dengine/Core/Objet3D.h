@@ -449,7 +449,7 @@ private:
 	vec3 colorModelLines;
 	vec3 colorModelBackground;
 	vec3 colorModelDefault;
-	tetrahedre *tabVertexMaillage;			//Tableau de faces du maillage 
+	tetrahedre *tabVertexMaillage = nullptr;			//Tableau de faces du maillage
 	unsigned long tabVertexMaillageSize;	// Nombre de tetrahedre
 	vec3* nodesMaillage;					//Tableau de noeud 
 	unsigned long nodesMaillageSize;		//Nombre de noeuds

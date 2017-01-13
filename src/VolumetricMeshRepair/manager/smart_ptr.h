@@ -31,7 +31,7 @@
 // Smart Pointer
 // par Christophe [Groove] Riccio
 // www.g-truc.net
-// Modification ULR VALOR accès d'un pointeur tableau
+// Modification ULR VALOR accÃ¨s d'un pointeur tableau
 
 #ifndef __SMART_PTR_H__
 #define __SMART_PTR_H__
@@ -40,9 +40,9 @@
  * 
  *  \brief Classe de gestion de pointeur
  *
- *	Cette classe permet de gérer les pointeurs
- *	L'utilité est de ne pas avoir besoin de supprimer l'objet à la fin de son utilisation.
- *  La fonction est donc de ne plus avoir de fuites mémoire.
+ *	Cette classe permet de gÃ©rer les pointeurs
+ *	L'utilitÃ© est de ne pas avoir besoin de supprimer l'objet Ã  la fin de son utilisation.
+ *  La fonction est donc de ne plus avoir de fuites mÃ©moire.
  * 
  */
 /*
@@ -58,11 +58,11 @@ public:
     smart_ptr& operator=(const smart_ptr& SmartPtr);
     smart_ptr& operator=(T* Pointer);
 
-	T& operator[](unsigned i); //Ajout 13/07/2007 pour gérer l'utilisation du array à base de smart_ptr
+	T& operator[](unsigned i); //Ajout 13/07/2007 pour gÃ©rer l'utilisation du array Ã  base de smart_ptr
 	
     T& operator*();
     T* operator->();
-	T* get() const; //Ajout 27/07/2009 pour accéder à l'élément.
+	T* get() const; //Ajout 27/07/2009 pour accÃ©der Ã  l'Ã©lÃ©ment.
     const T& operator*() const;
     const T* operator->() const;
 
@@ -90,7 +90,7 @@ public:
 
     T& operator*();
     T* operator->();
-	T* get() const; //Ajout 27/07/2009 pour accéder à l'élément.
+	T* get() const; //Ajout 27/07/2009 pour accÃ©der Ã  l'Ã©lÃ©ment.
     const T& operator*() const;
     const T* operator->() const;
 
@@ -117,11 +117,11 @@ public:
     smart_ptr_ar& operator=(const smart_ptr_ar& SmartPtr);
     smart_ptr_ar& operator=(T* Pointer);
 
-	T& operator[](unsigned i); //Ajout 13/07/2007 pour gérer l'utilisation du array à base de smart_ptr
+	T& operator[](unsigned i); //Ajout 13/07/2007 pour gÃ©rer l'utilisation du array Ã  base de smart_ptr
 	
     T& operator*();
     T* operator->();
-	T* get() const; //Ajout 27/07/2009 pour accéder à l'élément.
+	T* get() const; //Ajout 27/07/2009 pour accÃ©der Ã  l'Ã©lÃ©ment.
     const T& operator*() const;
     const T* operator->() const;
 

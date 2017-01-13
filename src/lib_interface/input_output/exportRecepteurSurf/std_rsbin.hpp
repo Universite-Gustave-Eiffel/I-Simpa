@@ -68,8 +68,7 @@ public:
 	 * Affecte directement les données à cette classe à partir de la structure correspondance.
 	 * @warning Cette classe supprimera ces données, à moins que NULL soit passé en parémètre avant la suppression de rsurf_data
 	 * @python Non disponible en python
-	 */
-	void SetRsBinData(t_ExchangeData* rsData);
+	 */;
 	void SetRsBinData(t_ExchangeData& rsData);
 	/**
 	 * @return le nombre de récepteurs surfaciques.

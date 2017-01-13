@@ -29,13 +29,6 @@ namespace formatRSBIN
 		if(manageDelete)
 			delete this->localData;
 	}
-	void rsurf_data::SetRsBinData(t_ExchangeData* rsData)
-	{
-		if(manageDelete)
-			delete this->localData;
-		this->localData=rsData;
-		manageDelete=true;
-	}
 	void rsurf_data::SetRsBinData(t_ExchangeData& rsData)
 	{
 		if(manageDelete)
@@ -45,7 +38,7 @@ namespace formatRSBIN
 	}
 	std::size_t rsurf_data::GetRsCount()
 	{
-		return this->localData->tabRsSize;
+		return (size_t) this->localData->tabRsSize;
 	}
 	void rsurf_data::Make(const std::size_t& tabNodesSize,const std::size_t& tabRsSize,const int& nbtimestep,const float& timestep,const std::string& record_type)
 	{
@@ -54,7 +47,7 @@ namespace formatRSBIN
 		this->localData->tabNodes=new t_nodesPosition[tabNodesSize];
 		this->localData->tabRs=new t_ExchangeData_Recepteurs[tabRsSize];
 		this->localData->nbTimeStep=nbtimestep;
-		this->localData->tabNodesSize=tabNodesSize;
+		this->localData->tabNodesSize= (Intb) tabNodesSize;
 		this->localData->tabRsSize=tabRsSize;
 		this->localData->timeStep=timestep;
 		if(record_type=="SPL_STANDART")
@@ -218,7 +211,7 @@ namespace formatRSBIN
 	}
 
 	/**
-	 * Contient les données propre aux sommets des triangles
+	 * Contient les donnï¿½es propre aux sommets des triangles
 	 */
 	struct t_tri_data
 	{
@@ -357,7 +350,7 @@ namespace formatRSBIN
 				//        / \  / \
 				//2 (C)  /___\/___\ 1 (B)
 				//          MBC
-				//Calcul des valeurs intermédiaires
+				//Calcul des valeurs intermï¿½diaires
 				const vec3 A=(*itface).vertices[0];
 				const vec3 B=(*itface).vertices[1];
 				const vec3 C=(*itface).vertices[2];

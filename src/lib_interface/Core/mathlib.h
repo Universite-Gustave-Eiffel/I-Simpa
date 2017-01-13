@@ -551,6 +551,7 @@ public:
 	ivec3(void) : a(0), b(0), c(0) { }
 	ivec3(long _a,long _b,long _c) : a(_a), b(_b), c(_c) { }
 	ivec3(const long *iv) : a(iv[0]), b(iv[1]), c(iv[2]) { }
+	ivec3(const int *iv) : a(iv[0]), b(iv[1]), c(iv[2]) { }
 	ivec3(const ivec3 &iv) : a(iv.a), b(iv.b), c(iv.c) { }
 	ivec3(const ivec4 &iv);
 
@@ -623,6 +624,7 @@ public:
 	ivec4(void) : a(0), b(0), c(0), d(1) { }
 	ivec4(long _a,long _b,long _c,long _d) : a(_a), b(_b), c(_c), d(_d) { }
 	ivec4(const long *iv) : a(iv[0]), b(iv[1]), c(iv[2]), d(iv[3]) { }
+	ivec4(const int *iv) : a(iv[0]), b(iv[1]), c(iv[2]), d(iv[3]) { }
 	ivec4(const ivec3 &iv) : a(iv.a), b(iv.b), c(iv.c), d(1) { }
 	ivec4(const ivec3 &iv,long _d) : a(iv.a), b(iv.b), c(iv.c), d(_d) { }
 	ivec4(const ivec4 &iv) : a(iv.a), b(iv.b), c(iv.c), d(iv.d) { }
@@ -647,8 +649,8 @@ public:
 
 	operator long*() { return this->i; }
 	operator const long*() const { return this->i; }
-//	long &operator[](int _i) { return this->i[_i]; }
-//	const long &operator[](int _i) const { return this->i[_i]; }
+	long &operator[](int _i) { return this->i[_i]; }
+	const long &operator[](int _i) const { return this->i[_i]; }
 
 	void set(long _a,long _b,long _c,long _d) { this->a = _a; this->b = _b; this->c = _c; this->d = _d; }
 	void reset(void) { this->a = this->b = this->c = this->d = 0; }

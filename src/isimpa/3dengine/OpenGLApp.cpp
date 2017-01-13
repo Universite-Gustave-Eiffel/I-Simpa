@@ -339,7 +339,6 @@ void OpenGLApp::InitGl()
 	glLightfv(GL_LIGHT0, GL_AMBIENT, m_AmbientLight);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, m_DiffuseLight);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, m_SpecularLight);
-	glLightfv(GL_LIGHT0, GL_SHININESS, &m_ShineLight);
 	glLightfv(GL_LIGHT0, GL_POSITION, m_PosLight);
 	glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, m_DirectionLight);
 	glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, m_SpotAngle);
@@ -605,7 +604,7 @@ void OpenGLApp::InitLst(int index)
 }
 void OpenGLApp::DeleteLst(int index)
 {
-	if(m_list_isinit[index]==true)
+	if(m_list_isinit[index])
 		glDeleteLists(m_list[index],1);
 }
 void OpenGLApp::LoadAnimatorLst(ptAnimatorManager& managerToCompile)
@@ -619,7 +618,7 @@ void OpenGLApp::LoadAnimatorLst(ptAnimatorManager& managerToCompile)
 		progDialog.Update(0);
 		for(int tStep=0;tStep<nbStep;tStep++)
 		{
-			int prog=((float)tStep/nbStep)*100;
+			int prog=int(((float)tStep/nbStep)*100);
 			if(prog>0 && prog<100)
 			{
 				progDialog.Update(prog,wxString::Format(_("Loading time step %i/%i"),tStep+1,nbStep));

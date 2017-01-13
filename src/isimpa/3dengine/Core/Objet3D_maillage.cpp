@@ -418,8 +418,8 @@ void CObjet3D::SetInternalFaceState(const formatCoreBIN::ioModel& modelExport,co
 
 	for(int g=0; g < this->_pGroups.size(); g++)
 	{
-		int fGsize=this->_pGroups[g].pFaces.size();
-		for(long f=0; f < fGsize ;f++)
+        std::size_t fGsize=this->_pGroups[g].pFaces.size();
+		for(std::size_t f=0; f < fGsize ;f++)
 		{
 			this->_pGroups[g].pFaces[f].internalFace=false;
 		}
@@ -429,17 +429,17 @@ void CObjet3D::SetInternalFaceState(const formatCoreBIN::ioModel& modelExport,co
 	std::vector<std::size_t> internFaces;
 	internalFaceFinder.GetInternalFaces(internFaces);
 	t_faceIndex faceIndex;
-	bool propmodified=false;
+	bool propertyModified=false;
 	for(std::vector<std::size_t>::iterator it=internFaces.begin();it!=internFaces.end();it++)
 	{
 		 faceIndex=FindFaceGroupWithFaceIndex((*it));
-		 if(!this->_pGroups[faceIndex.g].pFaces[faceIndex.f].internalFace==true)
+		 if(!this->_pGroups[faceIndex.g].pFaces[faceIndex.f].internalFace)
 		 {
 			 this->_pGroups[faceIndex.g].pFaces[faceIndex.f].internalFace=true;
-			 propmodified=true;
+			 propertyModified=true;
 		 }
 	}
-	if(propmodified)
+	if(propertyModified)
 		this->Save(ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath+ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME);
 }
 
@@ -772,14 +772,17 @@ void CObjet3D::GetTetraMesh(formatMBIN::trimeshmodel& trimesh,bool toRealCoords)
 	trimesh.tetrahedres.insert(trimesh.tetrahedres.begin(),tabVertexMaillageSize,bintetrahedre());
 	for(int idTetra=0;idTetra<tabVertexMaillageSize;idTetra++)
 	{
-		memcpy(&trimesh.tetrahedres[idTetra].sommets,&tabVertexMaillage[idTetra].sommets,sizeof(formatMBIN::Intb)*4);
-
+        trimesh.tetrahedres[idTetra].vertices[0] = (int)tabVertexMaillage[idTetra].sommets.a;
+        trimesh.tetrahedres[idTetra].vertices[1] = (int)tabVertexMaillage[idTetra].sommets.b;
+        trimesh.tetrahedres[idTetra].vertices[2] = (int)tabVertexMaillage[idTetra].sommets.c;
 		trimesh.tetrahedres[idTetra].idVolume=tabVertexMaillage[idTetra].idVolume;
 		for(int idFace=0;idFace<4;idFace++)
 		{
-			trimesh.tetrahedres[idTetra].tetrafaces[idFace].marker=tabVertexMaillage[idTetra].tetrafaces[idFace].marker;
-			memcpy(&trimesh.tetrahedres[idTetra].tetrafaces[idFace].sommets,&tabVertexMaillage[idTetra].tetrafaces[idFace].sommets,sizeof(ivec3));
-			trimesh.tetrahedres[idTetra].tetrafaces[idFace].neighboor=tabVertexMaillage[idTetra].tetraNeighboor[idFace];
+			trimesh.tetrahedres[idTetra].tetrafaces[idFace].marker = tabVertexMaillage[idTetra].tetrafaces[idFace].marker;
+			trimesh.tetrahedres[idTetra].tetrafaces[idFace].vertices[0] = (int)tabVertexMaillage[idTetra].tetrafaces[idFace].sommets.a;
+            trimesh.tetrahedres[idTetra].tetrafaces[idFace].vertices[1] = (int)tabVertexMaillage[idTetra].tetrafaces[idFace].sommets.b;
+            trimesh.tetrahedres[idTetra].tetrafaces[idFace].vertices[2] = (int)tabVertexMaillage[idTetra].tetrafaces[idFace].sommets.c;
+			trimesh.tetrahedres[idTetra].tetrafaces[idFace].neighbor = (int)tabVertexMaillage[idTetra].tetraNeighboor[idFace];
 		}
 
 	}
@@ -817,7 +820,9 @@ bool CObjet3D::LoadMaillage(const char *filename)
 		delete[] nodesMaillage;
 		nodesMaillage=new vec3[sizeNodes];
 		nodesMaillageSize=sizeNodes;
-		memcpy(nodesMaillage,tabNodes,sizeNodes);
+        for(int idNode = 0; idNode < sizeNodes; idNode++) {
+            nodesMaillage[idNode] = vec3(tabNodes[idNode].node);
+        }
 		//Copie des tetrahèdres
 		delete[] tabVertexMaillage;
 		tabVertexMaillage=new tetrahedre[sizeTetra];
@@ -825,12 +830,12 @@ bool CObjet3D::LoadMaillage(const char *filename)
 
 		for(int idTetra=0;idTetra<sizeTetra;idTetra++)
 		{
-			memcpy(&tabVertexMaillage[idTetra].sommets,&tabtetra[idTetra].sommets,4);
+            tabVertexMaillage[idTetra].sommets = tabtetra[idTetra].vertices;
 			for(int idFace=0;idFace<4;idFace++)
 			{
-				tabVertexMaillage[idTetra].tetrafaces[idFace].marker=tabtetra[idTetra].tetrafaces[idFace].marker;
-				memcpy(&tabVertexMaillage[idTetra].tetrafaces[idFace].sommets,&tabtetra[idTetra].tetrafaces[idFace].sommets,3);
-				tabVertexMaillage[idTetra].tetraNeighboor[idFace]=tabtetra[idTetra].tetrafaces[idFace].neighboor;
+				tabVertexMaillage[idTetra].tetrafaces[idFace].marker= (unsigned int) tabtetra[idTetra].tetrafaces[idFace].marker;
+                tabVertexMaillage[idTetra].tetrafaces[idFace].sommets = tabtetra[idTetra].tetrafaces[idFace].vertices;
+				tabVertexMaillage[idTetra].tetraNeighboor[idFace]=tabtetra[idTetra].tetrafaces[idFace].neighbor;
 			}
 
 		}

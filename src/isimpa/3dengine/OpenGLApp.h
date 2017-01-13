@@ -43,6 +43,8 @@
 #include <string.h>
 #include <wx/image.h>
 #include <list>
+#include <GL/gl.h>
+
 /**
  * Contient les information d'un animateur
  */
@@ -287,7 +289,7 @@ private:
 	vec2 m_Abs;
 	vec3 m_DirectionLight, m_Rot, m_Trans, m_Focal, m_RotLight,  m_Model_Rot, m_Model_Trans;
 	vec4 m_AmbientLight, m_DiffuseLight, m_SpecularLight, m_PosLight;
-	float m_ShineLight, m_SpotAngle;
+	float m_SpotAngle;
 
 	/**
 	 *	m_list Indice instructions openGl :
@@ -296,8 +298,8 @@ private:
 	 *		2: Elements (E_Drawable)
 	 *		3: Sélection
 	*/
-	std::size_t m_list[4];
-	bool m_list_isinit[4];
+	GLuint m_list[4] {0, 0, 0, 0};
+	bool m_list_isinit[4] {false, false, false, false};
 	int CurrentTimeStep;
 	int winHeight,winWidth;
 };

@@ -329,7 +329,7 @@ void ProjectManager::OnFindSubVolumes(Element* volumes_el)
 			{
 				if((*ittet).idVolume==xmlidvol)
 				{
-					centre_vol=GetGTetra(tet_model.nodes[(*ittet).sommets[0]].node,tet_model.nodes[(*ittet).sommets[1]].node,tet_model.nodes[(*ittet).sommets[2]].node,tet_model.nodes[(*ittet).sommets[3]].node);
+					centre_vol=GetGTetra(tet_model.nodes[(*ittet).vertices[0]].node,tet_model.nodes[(*ittet).vertices[1]].node,tet_model.nodes[(*ittet).vertices[2]].node,tet_model.nodes[(*ittet).vertices[3]].node);
 					break;
 				}else{
 					idtetra++;

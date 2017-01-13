@@ -775,20 +775,21 @@ void RecepteursSControler::RedrawLegend()
 	// Generation de la barre de légende de niveaux sonore
 	for(int idligne=0;idligne<LevelGraphHeight;idligne++)
 	{
-		int index=(1-(float)idligne/LevelGraphHeight)*(float)colorPaletteCount;
+		int index= (int) ((1 - (float)idligne / LevelGraphHeight) * (float)colorPaletteCount);
 		if(index==colorPaletteCount)
 			index-=1;
 
 		if(colorPalette.get())
 		{
-			int color[3]={colorPalette[index].r*255,colorPalette[index].g*255,colorPalette[index].b*255};
+			int color[3]={(int) (colorPalette[index].r * 255), (int) (colorPalette[index].g * 255),
+						  (int) (colorPalette[index].b * 255)};
 			int lineoffset(idligne*LevelGraphWidth*LevelGraphBpp);
 			for(int idcol=0;idcol<LevelGraphWidth;idcol++)
 			{
 				int coloffset=idcol*LevelGraphBpp;
-				LevelGraphbytes[lineoffset + coloffset]=color[0];
-				LevelGraphbytes[lineoffset + coloffset + 1]=color[1];
-				LevelGraphbytes[lineoffset + coloffset + 2]=color[2];
+				LevelGraphbytes[lineoffset + coloffset]= (unsigned char) color[0];
+				LevelGraphbytes[lineoffset + coloffset + 1]= (unsigned char) color[1];
+				LevelGraphbytes[lineoffset + coloffset + 2]= (unsigned char) color[2];
 			}
 		}
 	}

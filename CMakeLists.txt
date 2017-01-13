@@ -80,6 +80,14 @@ if(NOT SKIPISIMPA)
    add_subdirectory (src/isimpa)
 endif()
 
+# custom target for CLion "make install"
+if(UNIX)
+    add_custom_target(install_${PROJECT_NAME}
+            $(MAKE) install
+            DEPENDS ${PROJECT_NAME}
+            COMMENT "Installing ${PROJECT_NAME}")
+endif()
+
 # Turn on CMake testing capabilities
 set(TEST_DATA_DIR "${PROJECT_BINARY_DIR}/Testing")
 file(MAKE_DIRECTORY ${TEST_DATA_DIR})
