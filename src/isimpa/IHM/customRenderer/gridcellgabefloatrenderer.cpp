@@ -77,7 +77,7 @@ wxString wxGridCellGabeFloatRenderer::GetString(const wxGrid& grid, int row, int
 			if(isnan(val)) {
 				text = _("NaN"); // Not a number
 			} else {
-				if(!signbit(val))
+				if(!std::signbit(val))
 					text=_("+Inf");
 				else
 					text=_("-Inf");
