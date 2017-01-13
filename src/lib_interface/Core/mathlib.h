@@ -128,6 +128,16 @@ public:
 	base_t operator*(const base_vec3 &_v) const { return this->x * _v.x + this->y * _v.y + this->z * _v.z; }
 	base_t operator*(const vec4 &_v) const;
 
+	/**
+	 * Copy this vector into the float array in parameter
+	 * @param arr[out] External array
+	 */
+	void copyTo(float* arr) {
+		arr[0] = x;
+		arr[1] = y;
+		arr[2] = z;
+	}
+
 	operator base_t*() { return this->v; }
 	operator const base_t*() const { return this->v; }
 	base_t &operator[](int _i) { return this->v[_i]; }

@@ -89,7 +89,7 @@ class GabeDataGrid: public PropGrid
 {
 protected:
 	
-typedef enum GABE_EVENT_MENU
+enum GABE_EVENT_MENU
 {
 	ID_CREATE_DIAGRAM=PropGrid::EVENT_MENU_LAST+1,
 	ID_CREATE_DOCUMENT,

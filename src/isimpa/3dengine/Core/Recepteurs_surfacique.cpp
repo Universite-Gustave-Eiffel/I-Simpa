@@ -529,10 +529,9 @@ bool RecepteursSControler::LoadRecepteursSFile(wxArrayString& recepteurSFiles, v
 
 					for(std::list<formatRSBIN::t_curve>::iterator itsegments=new_isocurve.segments.begin();itsegments!=new_isocurve.segments.end();itsegments++)
 					{
-						memcpy((*itsegments).A,coordsOperation::CommonCoordsToGlCoords(UnitizeVal,vec3((*itsegments).A)),sizeof(vec3));
-						memcpy((*itsegments).B,coordsOperation::CommonCoordsToGlCoords(UnitizeVal,vec3((*itsegments).B)),sizeof(vec3));
+                        coordsOperation::CommonCoordsToGlCoords(UnitizeVal,vec3((*itsegments).A)).copyTo((*itsegments).A);
+                        coordsOperation::CommonCoordsToGlCoords(UnitizeVal,vec3((*itsegments).B)).copyTo((*itsegments).B);
 					}
-
 				}
 			}
 		}

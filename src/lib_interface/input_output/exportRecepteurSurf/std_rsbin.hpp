@@ -49,8 +49,8 @@ typedef std::size_t t_index[3];
 struct t_iso_contouring_data;
 struct t_curve //std::pair accepté par py++ ???
 {
-	t_pos A;
-	t_pos B;
+	t_pos A {0,0,0};
+	t_pos B {0,0,0};
 };
 /**
  * @brief Contient les données d'un fichier de résultat de récepteur de surfaces
