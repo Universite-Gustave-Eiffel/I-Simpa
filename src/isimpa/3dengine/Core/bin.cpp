@@ -265,8 +265,8 @@ void CformatBIN::writeNode(std::fstream &binFile,bShort nodeType,bLong nodeHeadS
 {
 	binaryNode currentNode;
 	currentNode.nodeType=nodeType;
-	currentNode.firtSon= (size_t) (binFile.tellp() + nodeHeadSize);
-	currentNode.nextBrother= (size_t) (binFile.tellp() + nodeSize);
+	currentNode.firtSon= (bLong) binFile.tellp() + nodeHeadSize;
+	currentNode.nextBrother= (bLong) binFile.tellp() + nodeSize;
 	if(nodeHeadSize==0)
 		currentNode.firtSon=0;
 	if(nodeSize==0)

@@ -134,8 +134,8 @@ struct t3DModel
 */
 struct binaryNode {
 	bShort nodeType;	/**< Type de noeud */
-	std::size_t firtSon;		/**< Adresse de fichier pour le premier fils du noeud */
-	std::size_t  nextBrother;	/**< Adresse de fichier pour le prochain frère */
+	bLong firtSon;		/**< Adresse de fichier pour le premier fils du noeud */
+	bLong nextBrother;	/**< Adresse de fichier pour le prochain frère */
 };
 
 /*! 
