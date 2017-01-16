@@ -29,26 +29,17 @@
 * ----------------------------------------------------------------------*/
 
 #include "triang_marching_cube.hpp"
-#include <iostream>
-#include <list>
-#include <stdio.h>
 #include <string.h>
 namespace PolygoniseAlgo
 {
 	//http://local.wasp.uwa.edu.au/~pbourke/geometry/polygonise/
 
-	typedef decimal decimal;
-
 	typedef struct {
-	   decimal x,y,z;
-	} XYZ;
-
-	typedef struct {
-	   XYZ p[3];
+	   vec3 p[3];
 	} TRIANGLE;
 
 	typedef struct {
-	   XYZ p[8];
+	   vec3 p[8];
 	   decimal val[8];
 	} GRIDCELL;
 
@@ -59,16 +50,16 @@ namespace PolygoniseAlgo
 	   Linearly interpolate the position where an isosurface cuts
 	   an edge between two vertices, each with their own scalar value
 	*/
-	XYZ VertexInterp(const decimal& isolevel,const XYZ& p1,const XYZ& p2,const decimal& valp1,const decimal& valp2)
+	vec3 VertexInterp(const decimal& isolevel,const vec3& p1,const vec3& p2,const decimal& valp1,const decimal& valp2)
 	{
 	   decimal mu;
-	   XYZ p;
+	   vec3 p;
 
-	   if (ABS(isolevel-valp1) < 0.00001)
+	   if (fabs(isolevel-valp1) < 0.00001)
 		  return(p1);
-	   if (ABS(isolevel-valp2) < 0.00001)
+	   if (fabs(isolevel-valp2) < 0.00001)
 		  return(p2);
-	   if (ABS(valp1-valp2) < 0.00001)
+	   if (fabs(valp1-valp2) < 0.00001)
 		  return(p1);
 	   mu = (isolevel - valp1) / (valp2 - valp1);
 	   p.x = p1.x + mu * (p2.x - p1.x);
@@ -382,7 +373,7 @@ namespace PolygoniseAlgo
 	{
 	   int i,ntriang;
 	   int cubeindex;
-	   XYZ vertlist[12];
+	   vec3 vertlist[12];
 
 
 
@@ -485,9 +476,7 @@ namespace Triangulators
 		if(min!=max || min!=ansWeight)
 			return true;
 		inData.GetMinMaxOnZ(zeroCell+ivec2(1,0),min,max);
-		if(min!=max || min!=ansWeight)
-			return true;
-		return false;
+		return min != max || min != ansWeight;
 	}
 
 	void MarchingCubeTriangulator::Triangulate(ScalarFieldBuilders::ScalarFieldCreator& inData,const SpatialDiscretization::weight_t& volId, progressOperation& mainProcess)
@@ -509,7 +498,7 @@ namespace Triangulators
 		PolygoniseAlgo::GRIDCELL grid;
 		PolygoniseAlgo::TRIANGLE triList[5];
 		int nbtri;
-		progressOperation thisProcess(&mainProcess,cellCount_m_one*cellCount_m_one);
+		progressOperation thisProcess(&mainProcess, (unsigned int) (cellCount_m_one * cellCount_m_one));
 		for(coordinates.x=0;coordinates.x<cellCount_m_one;coordinates.x++)
 		{
 			for(coordinates.y=0;coordinates.y<cellCount_m_one;coordinates.y++)
@@ -517,25 +506,25 @@ namespace Triangulators
 				progressOperation thisSubProcess(&thisProcess,1);
 				if(VariationWithinFourZ(ivec2(coordinates.x,coordinates.y),inData))
 				{
-					memcpy(&(grid.p[3]),inData.GetCenterCellCoordinates(coordinates+i3),sizeof(vec3));
-					memcpy(&(grid.p[2]),inData.GetCenterCellCoordinates(coordinates+i2),sizeof(vec3));
-					memcpy(&(grid.p[7]),inData.GetCenterCellCoordinates(coordinates+i7),sizeof(vec3));
-					memcpy(&(grid.p[6]),inData.GetCenterCellCoordinates(coordinates+i6),sizeof(vec3));
+					grid.p[3] = inData.GetCenterCellCoordinates(coordinates+i3);
+					grid.p[2] = inData.GetCenterCellCoordinates(coordinates+i2);
+					grid.p[7] = inData.GetCenterCellCoordinates(coordinates+i7);
+					grid.p[6] = inData.GetCenterCellCoordinates(coordinates+i6);
 					grid.val[3]=WeightEvaluation(inData.GetMatrixValue(coordinates),weigh_parameters);
 					grid.val[2]=WeightEvaluation(inData.GetMatrixValue(coordinates+i1),weigh_parameters);
 					grid.val[7]=WeightEvaluation(inData.GetMatrixValue(coordinates+i4),weigh_parameters);
 					grid.val[6]=WeightEvaluation(inData.GetMatrixValue(coordinates+i5),weigh_parameters);
 					for(coordinates.z=0;coordinates.z<cellCount_m_one;coordinates.z++)
 					{
-						//Todo passer le calcul des coordonnées sur les boucle x,y (optimisation)
-						memcpy(&(grid.p[0]),&(grid.p[3]),sizeof(vec3));
-						memcpy(&(grid.p[1]),&(grid.p[2]),sizeof(vec3));
-						memcpy(&(grid.p[4]),&(grid.p[7]),sizeof(vec3));
-						memcpy(&(grid.p[5]),&(grid.p[6]),sizeof(vec3));
-						memcpy(&(grid.p[2]),inData.GetCenterCellCoordinates(coordinates+i2),sizeof(vec3));
-						memcpy(&(grid.p[3]),inData.GetCenterCellCoordinates(coordinates+i3),sizeof(vec3));
-						memcpy(&(grid.p[6]),inData.GetCenterCellCoordinates(coordinates+i6),sizeof(vec3));
-						memcpy(&(grid.p[7]),inData.GetCenterCellCoordinates(coordinates+i7),sizeof(vec3));
+						//TODO Computation on x,y loop
+						grid.p[0] = grid.p[3];
+						grid.p[1] = grid.p[2];
+						grid.p[4]=  grid.p[7];
+						grid.p[5] = grid.p[6];
+						grid.p[2] = inData.GetCenterCellCoordinates(coordinates+i2);
+						grid.p[3] = inData.GetCenterCellCoordinates(coordinates+i3);
+						grid.p[6] = inData.GetCenterCellCoordinates(coordinates+i6);
+						grid.p[7] = inData.GetCenterCellCoordinates(coordinates+i7);
 
 
 						grid.val[0]=grid.val[3];
@@ -564,80 +553,3 @@ namespace Triangulators
 		FinishFeedingFaces();
 	}
 }
-/*
-std::size_t tricount(0);
-
-
-
-		std::ofstream stlFile("model.stl");
-		stlFile<<"solid vcg"<<std::endl;
-
-
-		ivec3 coordinates;
-		long cellCount_m_one(inData.GetDomainSize()-1);
-		ivec3 i1(1,0,0),
-			  i2(1,0,1),
-			  i3(0,0,1),
-			  i4(0,1,0),
-			  i5(1,1,0),
-			  i6(1,1,1),
-			  i7(0,1,1);
-		PolygoniseAlgo::GRIDCELL grid;
-		PolygoniseAlgo::TRIANGLE triList[5];
-		int nbtri;
-		for(coordinates.x=0;coordinates.x<cellCount_m_one;coordinates.x++)
-		{
-			for(coordinates.y=0;coordinates.y<cellCount_m_one;coordinates.y++)
-			{
-				for(coordinates.z=0;coordinates.z<cellCount_m_one;coordinates.z++)
-				{
-					//Todo passer le calcul des coordonnées sur les boucle x,y (optimisation)
-					memcpy(&(grid.p[0]),inData.GetCenterCellCoordinates(coordinates),sizeof(vec3));
-					memcpy(&(grid.p[1]),inData.GetCenterCellCoordinates(coordinates+i1),sizeof(vec3));
-					memcpy(&(grid.p[2]),inData.GetCenterCellCoordinates(coordinates+i2),sizeof(vec3));
-					memcpy(&(grid.p[3]),inData.GetCenterCellCoordinates(coordinates+i3),sizeof(vec3));
-					memcpy(&(grid.p[4]),inData.GetCenterCellCoordinates(coordinates+i4),sizeof(vec3));
-					memcpy(&(grid.p[5]),inData.GetCenterCellCoordinates(coordinates+i5),sizeof(vec3));
-					memcpy(&(grid.p[6]),inData.GetCenterCellCoordinates(coordinates+i6),sizeof(vec3));
-					memcpy(&(grid.p[7]),inData.GetCenterCellCoordinates(coordinates+i7),sizeof(vec3));
-
-
-					grid.val[0]=WeightEvaluation(inData.GetMatrixValue(coordinates));
-					grid.val[1]=WeightEvaluation(inData.GetMatrixValue(coordinates+i1));
-					grid.val[2]=WeightEvaluation(inData.GetMatrixValue(coordinates+i2));
-					grid.val[3]=WeightEvaluation(inData.GetMatrixValue(coordinates+i3));
-					grid.val[4]=WeightEvaluation(inData.GetMatrixValue(coordinates+i4));
-					grid.val[5]=WeightEvaluation(inData.GetMatrixValue(coordinates+i5));
-					grid.val[6]=WeightEvaluation(inData.GetMatrixValue(coordinates+i6));
-					grid.val[7]=WeightEvaluation(inData.GetMatrixValue(coordinates+i7));
-
-
-
-
-					nbtri=PolygoniseAlgo::Polygonise(grid,50.,triList);
-					if(nbtri>0)
-					{
-						for(int idtri=0;idtri<nbtri;idtri++)
-						{
-							vec3 A((const decimal *)&(triList[idtri].p[2]));
-							vec3 B((const decimal *)&(triList[idtri].p[1]));
-							vec3 C((const decimal *)&(triList[idtri].p[0]));
-							vec3 faceNormal(FaceNormal(A,B,C));
-							tricount++;
-
-							stlFile<<"  facet normal "<<faceNormal.x<<" "<<faceNormal.y<<" "<<faceNormal.z<<std::endl;
-							stlFile<<"    outer loop"<<std::endl;
-							stlFile<<"      vertex  "<<A.x<<" "<<A.y<<" "<<A.z<<std::endl;
-							stlFile<<"      vertex  "<<B.x<<" "<<B.y<<" "<<B.z<<std::endl;
-							stlFile<<"      vertex  "<<C.x<<" "<<C.y<<" "<<C.z<<std::endl;
-							stlFile<<"    end loop"<<std::endl;
-							stlFile<<"  end facet"<<std::endl;
-						}
-					}
-				}
-			}
-		}
-		std::cout<<tricount<<"triangles"<<std::endl;
-		stlFile<<"endsolid vcg"<<std::endl;
-		stlFile.close();
-*/

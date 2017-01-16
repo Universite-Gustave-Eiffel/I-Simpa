@@ -45,7 +45,7 @@
  */
 namespace boxtri_test
 {
-	int triBoxOverlap(float boxcenter[3],float boxhalfsize[3],float triverts[3][3]);
+	int triBoxOverlap(const float boxcenter[3],const float boxhalfsize[3],const float A[3],const float B[3],const float C[3]);
 }
 namespace octreeTool
 {

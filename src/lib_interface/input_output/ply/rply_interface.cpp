@@ -76,14 +76,19 @@ namespace formatRPLY
 				break;
 			case 1:
 			case 2:
-				model->modelFaces.back().indicesSommets[idvert]=(int)ply_get_argument_value(argument);
+				model->modelFaces.back().indicesSommets.set((int) idvert, (long) ply_get_argument_value(argument));
 				break;
-			case 3:
-				//Polygone � quatre sommets
-				const ivec3& lastTri(model->modelFaces.back().indicesSommets);
-				model->modelFaces.push_back(t_face(ivec3(lastTri[0],lastTri[2],(int)ply_get_argument_value(argument))));
-				curInstance->lastFaceSplited=true;
-				break;
+			case 3: {
+                // Polygon with 4 vertices
+                const ivec3 &lastTri(model->modelFaces.back().indicesSommets);
+                model->modelFaces.push_back(
+                        t_face(ivec3(lastTri.i[0], lastTri.i[2], (int) ply_get_argument_value(argument))));
+                curInstance->lastFaceSplited = true;
+                break;
+            }
+			default:
+				// unhandled case for the moment
+				fprintf(stderr, "Unhandled polygon with %li vertices", idvert);
 		}
 		return 1;
 	}
@@ -92,9 +97,9 @@ namespace formatRPLY
 		ply_get_argument_user_data(argument, &ptr, NULL);
 		parsing_instance* curInstance((parsing_instance*)ptr);
 		t_model* model=&(curInstance->currentModel);
-		model->modelFacesLayerIndex.push_back((int)ply_get_argument_value(argument));
+		model->modelFacesLayerIndex.push_back((std::size_t) ply_get_argument_value(argument));
 		if(curInstance->lastFaceSplited)
-			model->modelFacesLayerIndex.push_back((int)ply_get_argument_value(argument));
+			model->modelFacesLayerIndex.push_back((std::size_t) ply_get_argument_value(argument));
 		return 1;
 	}
 
@@ -107,10 +112,10 @@ namespace formatRPLY
 		t_model* model=&(curInstance->currentModel);
 		if(idchar==-1)
 		{
-			std::size_t sizeOfString((int)ply_get_argument_value(argument));
+			std::size_t sizeOfString((std::size_t) ply_get_argument_value(argument));
 			model->modelLayers.push_back(std::string(sizeOfString,' '));
 		}else{
-			model->modelLayers.back().layerName.replace(idchar,1,1,(unsigned char)ply_get_argument_value(argument));
+			model->modelLayers.back().layerName.replace((std::size_t) idchar, 1, 1, (unsigned char)ply_get_argument_value(argument));
 		}
 		return 1;
 	}

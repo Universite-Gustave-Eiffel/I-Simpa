@@ -440,7 +440,7 @@ void CObjet3D::SetInternalFaceState(const formatCoreBIN::ioModel& modelExport,co
 		 }
 	}
 	if(propertyModified)
-		this->Save(ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath+ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME);
+		this->Save((ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath+ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME).ToStdString());
 }
 
 void CObjet3D::RenderMaillage(std::size_t modeRendu,t_cutPlane cutPlane)
@@ -733,13 +733,13 @@ void CObjet3D::ToCBINFormat(formatCoreBIN::ioModel& modelExport)
 
 
 }
-bool CObjet3D::_SaveCBIN(const char *filename)
+bool CObjet3D::_SaveCBIN(const std::string& filename)
 {
 	using namespace formatCoreBIN;
 	CformatBIN classExport;
 	ioModel modelExport;
 	ToCBINFormat(modelExport);
-	return classExport.ExportBIN(filename,modelExport);
+	return classExport.ExportBIN(filename.c_str(),modelExport);
 }
 void CObjet3D::GetTetraMesh(formatMBIN::trimeshmodel& trimesh,bool toRealCoords)
 {
@@ -787,13 +787,13 @@ void CObjet3D::GetTetraMesh(formatMBIN::trimeshmodel& trimesh,bool toRealCoords)
 
 	}
 }
-bool CObjet3D::SaveMaillage(const char *filename,bool toRealCoords)
+bool CObjet3D::SaveMaillage(const std::string& filename,bool toRealCoords)
 {
 	using namespace formatMBIN;
 	trimeshmodel trimesh;
 	GetTetraMesh(trimesh,toRealCoords);
 	CMBIN binExporter;
-	binExporter.SaveMesh(filename,trimesh);
+	binExporter.SaveMesh(filename.c_str(),trimesh);
 	if(!wxFileExists(filename))
 	{
 		wxLogError(_("Failed to export meshing"));
@@ -802,53 +802,7 @@ bool CObjet3D::SaveMaillage(const char *filename,bool toRealCoords)
 	return true;
 }
 
-bool CObjet3D::LoadMaillage(const char *filename)
-{
-	using namespace formatMBIN;
-	bintetrahedre* tabtetra;
-	t_binNode* tabNodes;
-
-	CMBIN binImporter;
-	unsigned int sizeTetra=0;
-	unsigned int sizeNodes=0;
-
-	binImporter.ImportBIN(filename,&tabtetra,&tabNodes,sizeTetra,sizeNodes);
-
-	if(sizeTetra>0 && sizeNodes>0)
-	{
-		//Copie des noeuds
-		delete[] nodesMaillage;
-		nodesMaillage=new vec3[sizeNodes];
-		nodesMaillageSize=sizeNodes;
-        for(int idNode = 0; idNode < sizeNodes; idNode++) {
-            nodesMaillage[idNode] = vec3(tabNodes[idNode].node);
-        }
-		//Copie des tetrahèdres
-		delete[] tabVertexMaillage;
-		tabVertexMaillage=new tetrahedre[sizeTetra];
-		tabVertexMaillageSize=sizeTetra;
-
-		for(int idTetra=0;idTetra<sizeTetra;idTetra++)
-		{
-            tabVertexMaillage[idTetra].sommets = tabtetra[idTetra].vertices;
-			for(int idFace=0;idFace<4;idFace++)
-			{
-				tabVertexMaillage[idTetra].tetrafaces[idFace].marker= (unsigned int) tabtetra[idTetra].tetrafaces[idFace].marker;
-                tabVertexMaillage[idTetra].tetrafaces[idFace].sommets = tabtetra[idTetra].tetrafaces[idFace].vertices;
-				tabVertexMaillage[idTetra].tetraNeighboor[idFace]=tabtetra[idTetra].tetrafaces[idFace].neighbor;
-			}
-
-		}
-
-		delete[] tabtetra;
-		delete[] tabNodes;
-		return true;
-	}else{
-		return true;
-	}
-}
-
-bool CObjet3D::BuildVarConstraintFile(const char *filename, float faceAreaContraint)
+bool CObjet3D::BuildVarConstraintFile(const std::string& filename, float faceAreaContraint)
 {
 	using namespace formatVAR;
 
@@ -882,10 +836,10 @@ bool CObjet3D::BuildVarConstraintFile(const char *filename, float faceAreaContra
 
 
 
-	return varExporter.BuildVar(constraintInfos,filename);
+	return varExporter.BuildVar(constraintInfos,filename.c_str());
 }
 
-bool CObjet3D::_SavePOLY(const char *filename,bool exportUserModel,bool separateUserDefinedModel,bool saveFaceIndex,std::vector<t_faceIndex>* fg_to_ind,bool saveFaceIndexAsGroup)
+bool CObjet3D::_SavePOLY(const std::string& filename,bool exportUserModel,bool separateUserDefinedModel,bool saveFaceIndex,std::vector<t_faceIndex>* fg_to_ind,bool saveFaceIndexAsGroup)
 {
 	using namespace formatPOLY;
 	CPoly polySaver;
@@ -990,7 +944,7 @@ bool CObjet3D::_SavePOLY(const char *filename,bool exportUserModel,bool separate
 
 
 
-bool CObjet3D::_LoadFaceFile(const char *filename)
+bool CObjet3D::_LoadFaceFile(const std::string& filename)
 {
 	wxFileName nodePath(filename);
 	nodePath.SetExt("node");

@@ -782,9 +782,9 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	///////////////////////////////////////////
 	if(!wxDirExists(workingDir))
 		wxMkdir(workingDir);
-	this->sceneMesh.Save(workingDir+modelFileName);
+	this->sceneMesh.Save((workingDir+modelFileName).ToStdString());
 	if(!tetraFileName.empty())
-		this->sceneMesh.SaveMaillage(workingDir+tetraFileName,true);
+		this->sceneMesh.SaveMaillage((workingDir+tetraFileName).ToStdString(),true);
 	wxXmlDocument xmlCoreDocument;
 	wxXmlNode* rootConfig = new wxXmlNode(wxXML_ELEMENT_NODE,"configuration");
 
@@ -1698,7 +1698,7 @@ void ProjectManager::OnMenuGetProperties(uiTreeCtrl* fromCtrl,Element* eRoot,Ele
 void ProjectManager::OnMenuFlipFaces()
 {
 	sceneMesh.FlipSelectedFaces();
-	this->sceneMesh.Save(ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath+ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME);
+	this->sceneMesh.Save((ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath+ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME).ToStdString());
 	GlFrame->Refresh();
 }
 
@@ -1907,7 +1907,7 @@ void ProjectManager::LoadCurrentProject(bool reloadXmlFile)
 		{
 			if(wxFileExists(urlScene))
 			{
-				sceneMesh.Load(urlScene);
+				sceneMesh.Load(urlScene.ToStdString());
 			}else{
 				wxLogError(_("Scene does not exist!"));
 			}
@@ -2654,7 +2654,7 @@ void ProjectManager::DoShapeComputation(const bool userEvent,const bool resetFac
 	this->sceneMesh.ComputeFacesBorders(resetFaceOrientation);
 
 	if(userEvent)
-		this->sceneMesh.Save(ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath+ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME);
+		this->sceneMesh.Save((ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath+ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME).ToStdString());
 
 	this->GlFrame->Refresh();
 }
@@ -2867,7 +2867,7 @@ void ProjectManager::OnSelectVertex PARAM_BOUND_ON_SELECT_FACES
 
 void ProjectManager::OnExportModel(wxString& FileName)
 {
-	sceneMesh.Save(FileName);
+	sceneMesh.Save(FileName.ToStdString());
 }
 
 
@@ -2904,7 +2904,7 @@ bool ProjectManager::LoadScene(const t_param_load_model& paramLoading)
 	t_retrieves_groups oldFacesDistribution;
 	if(paramLoading.keepexistingfacegroup)
 		BuildFaceGroupAssociation(oldFacesDistribution);
-	bool loadSuccess=sceneMesh.Load(paramLoading.pathModel);
+	bool loadSuccess=sceneMesh.Load(paramLoading.pathModel.ToStdString());
 	if(loadSuccess)
 	{
 		this->RepairCurrentMesh(paramLoading);
@@ -2923,7 +2923,7 @@ bool ProjectManager::LoadScene(const t_param_load_model& paramLoading)
 			this->LoadFacesFromModel(&progInfo);
 		//On sauvegarde la nouvelle scène3D
 		progInfo.Update(50,_("Saving 3D scene"));
-		this->sceneMesh.Save(this->dossierCourant+ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME);
+		this->sceneMesh.Save((this->dossierCourant+ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME).ToStdString());
 		//Chargement de la surface du modèle
 		ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.surfScene=this->sceneMesh.GetAireScene();
 		ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.volScene=0;
@@ -2976,7 +2976,7 @@ void ProjectManager::BuildModel3d(vec3 debCuboide,vec3 finCuboide)
 	{
 		this->AddLogMessage(_("Build of a 3D scene.\n"));
 		//On sauvegarde la nouvelle scène3D
-		this->sceneMesh.Save(this->dossierCourant+ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME);
+		this->sceneMesh.Save((this->dossierCourant+ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME).ToStdString());
 		this->ChangeModel3d(this->dossierCourant+ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME);
 	}
 }
@@ -3206,9 +3206,9 @@ void ProjectManager::OpenNewDataWindow(Element* linkedElement)
 			{
 				if(paramRepair.domeshsurface)
 				{
-					sceneMesh._SavePOLY(meshName,false,false,true,NULL,true);
+					sceneMesh._SavePOLY(meshName.ToStdString(),false,false,true,NULL,true);
 				}else{
-					sceneMesh._SavePOLY(meshName);
+					sceneMesh._SavePOLY(meshName.ToStdString());
 				}
 			}
 			RunRemeshProcess(meshName);
@@ -3217,7 +3217,7 @@ void ProjectManager::OpenNewDataWindow(Element* linkedElement)
 		if(paramRepair.domeshsurface)
 		{
 			if(!wxFileExists(meshName))
-				sceneMesh._SavePOLY(meshName,false,false,true,NULL,true);
+				sceneMesh._SavePOLY(meshName.ToStdString(),false,false,true,NULL,true);
 			//Save by materials
 			
 			//Maillage de la bordure
@@ -3227,7 +3227,7 @@ void ProjectManager::OpenNewDataWindow(Element* linkedElement)
 		if(paramRepair.docorrection && !paramRepair.domeshsurface)
 		{
 			//3eme étape, charger le fichier .POLY modifié en gardant les groupes existants et les identifiant de matériaux(couleur d'origine par face) (consistant grâce aux marqueurs par face des fichiers POLY)
-			sceneMesh.LoadPolyWithoutLostCurrentModelGroupAndMaterials(meshName);
+			sceneMesh.LoadPolyWithoutLostCurrentModelGroupAndMaterials(meshName.ToStdString());
 		}
 		//Charger les nouvelles faces du modèle
 		if(meshModified)

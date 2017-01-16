@@ -591,6 +591,7 @@ public:
 
 	void set(long _a,long _b,long _c) { this->a = _a; this->b = _b; this->c = _c; }
 	void set(int tab[3]) { this->a = tab[0]; this->b = tab[1]; this->c = tab[2]; }
+	void set(int index, const long& value) { i[index] = value; }
 	void reset(void) { this->a = this->b = this->c = 0; }
 	void swap(ivec3 &iv) { long tmp=a; a=iv.a; iv.a=tmp; tmp=b; b=iv.b; iv.b=tmp; tmp=c; c=iv.c; iv.c=tmp; }
 	void swap(ivec3 *iv) { this->swap(*iv); }

@@ -32,28 +32,28 @@
 #define _HPOLY
 
 /*! \file poly.h
-    \brief Implémentation de l'interpréteur de fichier modèle Poly (*.poly) 
+    \brief Implï¿½mentation de l'interprï¿½teur de fichier modï¿½le Poly (*.poly) 
 */
 #include "Core/mathlib.h"
 #include <vector>
 
-/*! \brief Implémentation de l'interpréteur de fichier modèle Poly (*.poly) 
+/*! \brief Implï¿½mentation de l'interprï¿½teur de fichier modï¿½le Poly (*.poly) 
 */
 namespace formatPOLY
 {
 
 	/**
-	 * @brief Structure de données de définition d'une région
+	 * @brief Structure de donnï¿½es de dï¿½finition d'une rï¿½gion
 	 */
 	struct t_region
 	{	
-		int regionIndex;					/*!< 0 région par défaut */
-		vec3 dotInRegion;					/*!< Coordonnées d'un point dans la région */
-		float regionRefinement;				/*!< -1 contrainte de volume par défaut (m3) */
+		int regionIndex;					/*!< 0 rï¿½gion par dï¿½faut */
+		vec3 dotInRegion;					/*!< Coordonnï¿½es d'un point dans la rï¿½gion */
+		float regionRefinement;				/*!< -1 contrainte de volume par dï¿½faut (m3) */
 		t_region(){regionRefinement=-1;}
 	};	
 	/**
-	 * @brief Structure de données d'echange avec la classe
+	 * @brief Structure de donnï¿½es d'echange avec la classe
 	 */
 	struct t_face
 	{
@@ -62,16 +62,16 @@ namespace formatPOLY
 	};
 
 	/**
-	 * @brief Structure de données du modèle
+	 * @brief Structure de donnï¿½es du modï¿½le
 	 *
 	 */
 	struct t_model
 	{
 		bool saveFaceIndex;
-		std::vector<t_face> userDefinedFaces; //Faces rajoutés au modèle
+		std::vector<t_face> userDefinedFaces; //Faces rajoutï¿½s au modï¿½le
 		std::vector<t_face> modelFaces;
 		std::vector<dvec3> modelVertices;
-		std::vector<t_region> modelRegions; /*!< Liste des régions du modèle */
+		std::vector<t_region> modelRegions; /*!< Liste des rï¿½gions du modï¿½le */
 	};
 
 /**
@@ -87,13 +87,13 @@ public:
 	 */
 	CPoly();
 	/**
-	 * Méthode d'exportation d'un modèle 3D
+	 * Mï¿½thode d'exportation d'un modï¿½le 3D
 	 */
-	bool ExportPOLY(t_model& sceneconst,const char* mfilename);
+	bool ExportPOLY(t_model& sceneconst,const std::string& mfilename);
 	/**
-	 * Méthode d'importation d'un modèle 3D
+	 * Mï¿½thode d'importation d'un modï¿½le 3D
 	 */
-	bool ImportPOLY(t_model& sceneconst,const char* mfilename);
+	bool ImportPOLY(t_model& sceneconst,const std::string& mfilename);
 
 };
 

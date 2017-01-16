@@ -29,7 +29,7 @@
 * ----------------------------------------------------------------------*/
 
 /*
- * Code source écrit dans le cadre du projet OPALHA contrat ADEME n°06.04.C.0070 (2007)
+ * Code source ï¿½crit dans le cadre du projet OPALHA contrat ADEME nï¿½06.04.C.0070 (2007)
  */
 #include "octree44_triangleElement.hpp"
 
@@ -41,7 +41,7 @@ namespace boxtri_test
 {
 	/********************************************************/
 	/* AABB-triangle overlap test code                      */
-	/* by Tomas Akenine-Möller                              */
+	/* by Tomas Akenine-Mï¿½ller                              */
 	/* Function: int triBoxOverlap(float boxcenter[3],      */
 	/*          float boxhalfsize[3],float triverts[3][3]); */
 	/* History:                                             */
@@ -76,7 +76,7 @@ namespace boxtri_test
 	  if(x2<min) min=x2;\
 	  if(x2>max) max=x2;
 
-	int planeBoxOverlap(float normal[3],float d, float maxbox[3])
+	int planeBoxOverlap(const float normal[3],const float& d, const float maxbox[3])
 	{
 	  int q;
 	  float vmin[3],vmax[3];
@@ -146,7 +146,7 @@ namespace boxtri_test
 		rad = fa * boxhalfsize[X] + fb * boxhalfsize[Y];   \
 		if(min>rad || max<-rad) return 0;
 
-	int triBoxOverlap(float boxcenter[3],float boxhalfsize[3],float triverts[3][3])
+	int triBoxOverlap(const float boxcenter[3],const float boxhalfsize[3],const float A[3], const float B[3], const float C[3])
 	{
 
 	  /*    use separating axis theorem to test overlap between triangle and box */
@@ -158,14 +158,14 @@ namespace boxtri_test
 	  /*       this gives 3x3=9 more tests */
 	   float v0[3],v1[3],v2[3];
 	   float axis[3];
-	   float min,max,d,p0,p1,p2,rad,fex,fey,fez;
+	   double min,max,d,p0,p1,p2,rad,fex,fey,fez;
 	   float normal[3],e0[3],e1[3],e2[3];
 
 	   /* This is the fastest branch on Sun */
 	   /* move everything so that the boxcenter is in (0,0,0) */
-	   SUB(v0,triverts[0],boxcenter);
-	   SUB(v1,triverts[1],boxcenter);
-	   SUB(v2,triverts[2],boxcenter);
+	   SUB(v0,A,boxcenter);
+	   SUB(v1,B,boxcenter);
+	   SUB(v2,C,boxcenter);
 
 	   /* compute triangle edges */
 	   SUB(e0,v1,v0);      /* tri edge 0 */
@@ -218,7 +218,7 @@ namespace boxtri_test
 	   /*  compute plane equation of triangle: normal*x+d=0 */
 	   CROSS(normal,e0,e1);
 	   d=-DOT(normal,v0);  /* plane eq: normal.x+d=0 */
-	   if(!planeBoxOverlap(normal,d,boxhalfsize)) return 0;
+	   if(!planeBoxOverlap(normal, (const float &) d, boxhalfsize)) return 0;
 
 	   return 1;   /* box and triangle overlaps */
 	}
@@ -229,7 +229,7 @@ namespace octreeTool
 
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
-	//// Implémentation de triangleElement
+	//// Implï¿½mentation de triangleElement
 	////////////////////////////////////////////////////////////////////////////////////////////////
 
 	triangleElement::triangleElement(const coordPrecision sommetA[3],const coordPrecision sommetB[3],const coordPrecision sommetC[3])
@@ -263,7 +263,7 @@ namespace octreeTool
 	{
 		coordPrecision boxHalf[3];
 		SETVEC(boxhalfsize,boxHalf);
-		return boxtri_test::triBoxOverlap(boxcenter,boxHalf,sommets)==1;
+		return boxtri_test::triBoxOverlap(boxcenter,boxHalf,sommets[0], sommets[1], sommets[2])==1;
 	}
 	void triangleElement::GetMinMax(coordPrecision xyzMin[3],coordPrecision xyzMax[3])
 	{

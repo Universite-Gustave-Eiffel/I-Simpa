@@ -243,10 +243,9 @@ bool CformatBIN::ProcessNode(std::fstream &binFile,t3DModel *pModel,const binary
 	return true;
 }
 
-bool CformatBIN::ImportBIN(t3DModel *pModel, const char *strFileName)
+bool CformatBIN::ImportBIN(t3DModel *pModel, const std::string& strFileName)
 {
 	using namespace std;
-    char strMessage[255] = {0};
     fstream binFile (strFileName, ios::in | ios::binary);
     if(!binFile.is_open())
 		return false;
@@ -287,7 +286,7 @@ vec4 CformatBIN::GetVectorFromColor(binaryColor colorInfo)
 	return vColor;
 }
 
-bool CformatBIN::ExportBIN(const char *strFileName,vec4 UnitizeVar,std::vector<vec3> &_pVertices,std::vector<vec2> &_pTexCoords,std::vector<SGroup3D> &_pGroups)
+bool CformatBIN::ExportBIN(const std::string& strFileName,vec4 UnitizeVar,std::vector<vec3> &_pVertices,std::vector<vec2> &_pTexCoords,std::vector<SGroup3D> &_pGroups)
 {
 	//Debug, test size des structures, pertes d'octets a cause d'alignement de type
 	//unsigned long binaryFaceSize=sizeof(binaryFace);
@@ -350,8 +349,8 @@ bool CformatBIN::ExportBIN(const char *strFileName,vec4 UnitizeVar,std::vector<v
 		binaryGroup groupNode;
 		//ZeroMemory(groupNode.groupName,255);
 		memset(groupNode.groupName,0,sizeof(char)*255);
-		strcpy(groupNode.groupName,(*itgroup).Name.c_str());
-		groupNode.nbFace=(*itgroup).pFaces.size();
+		strcpy(groupNode.groupName,(*itgroup).Name.substr(0,254).c_str());
+		groupNode.nbFace= (bInt) (*itgroup).pFaces.size();
 		//Calcul de la taille du groupe en octets
 		unsigned long sizeGROUP=0;
 		if(v_materials.size()>0 || g < _pGroups.size() - 1 )

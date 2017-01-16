@@ -288,7 +288,7 @@ public:
 	 * @param strFileName Chemin du fichier
 	 * @return Vrai si l'opération a réussi
 	 */
-    bool ImportBIN(t3DModel *pModel, const char *strFileName);
+    bool ImportBIN(t3DModel *pModel, const std::string& strFileName);
 	/**
 	 * Méthode d'exportation d'un modèle 3D
 	 * @param strFileName Chemin du fichier
@@ -298,7 +298,7 @@ public:
 	 * @param _pGroups Tableau de groupes
 	 * @return Vrai si l'opération a réussi
 	 */
-	bool ExportBIN(const char *strFileName,vec4 UnitizeVar,std::vector<vec3> &_pVertices,std::vector<vec2> &_pTexCoords,std::vector<SGroup3D> &_pGroups);
+	bool ExportBIN(const std::string& strFileName,vec4 UnitizeVar,std::vector<vec3> &_pVertices,std::vector<vec2> &_pTexCoords,std::vector<SGroup3D> &_pGroups);
 private:
 	enum NODE_TYPE{
 		NODE_TYPE_VERTICES,
