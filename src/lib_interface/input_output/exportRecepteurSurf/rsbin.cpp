@@ -38,17 +38,17 @@ namespace formatRSBIN
 	 */
 	struct t_FileHeader
 	{
-		Intb formatVersion;				/*!< Version du format de données */
+		Intb formatVersion;				/*!< Version du format de donnÃ©es */
 		Longb t_FileHeader_Length;		/*!< Taille de la structure */
 		Longb t_nodesPosition_Length;	/*!< Taille de la structure */
 		Longb t_RecepteurS_Length;		/*!< Taille de la structure */
 		Longb t_FaceRS_Length;		    /*!< Taille de la structure */
 		Longb t_faceValue_Length;	 	/*!< Taille de la structure */
 		Intb quantNodes;				/*!< Nombre de noeuds (point liant les faces) */
-		Intb quantRS;					/*!< Nombre de récepteur surfacique */
+		Intb quantRS;					/*!< Nombre de rÃ©cepteur surfacique */
 		Intb nbTimeStep;				/*!< Nombre de pas de temps */
 		Floatb timeStep;				/*!< Pas de temps (s)*/
-		RECEPTEURS_RECORD_TYPE recordType; /*!< Type d'enregistrement de ce récepteur de surface */
+		RECEPTEURS_RECORD_TYPE recordType; /*!< Type d'enregistrement de ce rÃ©cepteur de surface */
 	};
     bool RSBIN::ReadHeaderBIN(const char *strFileName,t_ExchangeData& mainData)
 	{
@@ -91,7 +91,7 @@ namespace formatRSBIN
 		binFile.read((char*)&fileHeader,sizeof(t_FileHeader));
 
 		// Ce booleen permet de rester compatible avec les futurs versions des fichiers
-		// A condition que les données soient rajouté à la fin des structures des données et que la constante de version ai été mis à jour
+		// A condition que les donnÃ©es soient rajoutÃ© Ã  la fin des structures des donnÃ©es et que la constante de version ai Ã©tÃ© mis Ã  jour
 		bool versionConflict=(fileHeader.formatVersion!=(const int)VERSION);
 		mainData.nbTimeStep=fileHeader.nbTimeStep;
 		mainData.tabNodesSize=fileHeader.quantNodes;
@@ -148,7 +148,7 @@ namespace formatRSBIN
 
 		//Declarations
 
-		//Sauvegarde du modèle 3D
+		//Sauvegarde du modÃ¨le 3D
 		fstream binFile (strFileName, ios::out | ios::binary);
 
 		//*************************

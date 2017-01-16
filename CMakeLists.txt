@@ -81,7 +81,7 @@ if(NOT SKIPISIMPA)
 endif()
 
 # custom target for CLion "make install"
-if(UNIX)
+if(CMAKE_GENERATOR STREQUAL "Unix Makefiles")
     add_custom_target(install_${PROJECT_NAME}
             $(MAKE) install
             DEPENDS ${PROJECT_NAME}

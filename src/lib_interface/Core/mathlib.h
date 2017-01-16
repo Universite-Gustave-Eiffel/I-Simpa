@@ -586,8 +586,6 @@ public:
 
 	operator long*() { return this->i; }
 	operator const long*() const { return this->i; }
-//	long &operator[](int _i) { return this->i[_i]; }
-//	const long &operator[](int _i) const { return this->i[_i]; }
 
 	void set(long _a,long _b,long _c) { this->a = _a; this->b = _b; this->c = _c; }
 	void set(int tab[3]) { this->a = tab[0]; this->b = tab[1]; this->c = tab[2]; }

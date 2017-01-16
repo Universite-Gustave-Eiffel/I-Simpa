@@ -342,7 +342,6 @@ bool meshOperation::MeshDestroyIntersectingTriangles()
 									if(OnCollisionDetectedDestroyIt(modelData.modelFaces[idface],modelData.modelFaces[idfaceTest],isecB))
 									{
 										stat_DestroyedFaces++;
-										std::cout<<"Supprime face n°"<<idfaceTest<<std::endl;
 										modelData.modelFaces.erase(modelData.modelFaces.begin()+idfaceTest);
 										return true;
 									}
@@ -350,7 +349,6 @@ bool meshOperation::MeshDestroyIntersectingTriangles()
 							}
 						}else{
 							stat_DestroyedFaces++;
-							std::cout<<"Supprime face n°"<<idface<<std::endl;
 							modelData.modelFaces.erase(modelData.modelFaces.begin()+idface);
 							return true;
 						}
@@ -393,7 +391,7 @@ bool meshOperation::coplanarIntersection(int idface,int idfaceTest)
 			if(commonVertices[idcommonvert]==-1)
 			{
 				//On fait une projection sur chaque segment de l'autre triangle
-				//Si le point projeté correspond au sommet alors il s'agit du point d'intersection
+				//Si le point projetï¿½ correspond au sommet alors il s'agit du point d'intersection
 				for(short side=0;side<3;side++)
 				{
 					ivec2 side_vertices=faceTestSommets->sideVertices(side);
@@ -426,7 +424,7 @@ bool meshOperation::MeshReconstruction()
 		dvec3* faceB=&modelData.modelVertices[faceSommets->b];
 		dvec3* faceC=&modelData.modelVertices[faceSommets->c];
 		int coplanar=0;
-		//Test octree et récuperation des résultats
+		//Test octree et rï¿½cuperation des rï¿½sultats
 		
 		using namespace octreeTool;
 		OctreeResult instanceCalcul(idface);
@@ -494,84 +492,7 @@ bool meshOperation::MeshReconstruction()
 	}
 	return sceneSplited;
 }
-/*
-bool meshOperation::MeshReconstruction()
-{
-	bool sceneSplited=false;
-	using namespace formatPOLY;
-	int result;
-	unsigned int sizeOfFace=modelData.modelFaces.size();
-	//Construction de l'octree
-	
 
-	for(int idface=0;idface<sizeOfFace;idface++)
-	{
-		ivec3* faceSommets=&modelData.modelFaces[idface].indicesSommets;
-		dvec3* faceA=&modelData.modelVertices[faceSommets->a];
-		dvec3* faceB=&modelData.modelVertices[faceSommets->b];
-		dvec3* faceC=&modelData.modelVertices[faceSommets->c];
-		int coplanar=0;
-		dvec3 isecA;
-		dvec3 isecB;
-		//Test octree et récuperation des résultats
-		
-		using namespace octreeTool;
-		OctreeResult instanceCalcul(idface);
-		modelOctree->GetDynamicCollisionCandidates(*lstFaces[idface],&instanceCalcul,&OctreeResult::DotTriangleCollisionTest);
-		for(elementSize resultIndex=0;resultIndex<instanceCalcul.results.size();resultIndex++)
-		{
-			int idfaceTest=instanceCalcul.results[resultIndex];
-			
-			
-			ivec3* faceTestSommets=&modelData.modelFaces[idfaceTest].indicesSommets;
-			//Si le deux faces n'ont pas de sommets en commun
-			int common_vertices=0;
-			dvec3* faceA_Test=&modelData.modelVertices[faceTestSommets->a];
-			dvec3* faceB_Test=&modelData.modelVertices[faceTestSommets->b];
-			dvec3* faceC_Test=&modelData.modelVertices[faceTestSommets->c];
-			result=tri_tri_intersect_with_isectline(*faceA,*faceB,*faceC,
-					*faceA_Test,*faceB_Test,*faceC_Test,
-					&coplanar,
-					isecA
-					,isecB);
-			//Test des points de collision, si ces points de collisions sont simplement les points des sommets en commun alors on passe aux prochains triangles
-			if(result)
-			{
-
-				if(!coplanar)
-				{
-					bool collision_in_face2= IsDotInTriangle(*faceA_Test,*faceB_Test,*faceC_Test,isecA);
-					bool collision_in_face1= IsDotInTriangle(*faceA,*faceB,*faceC,isecA);
-
-					if(collision_in_face2 && collision_in_face1)
-					{
-						if(!OnCollisionDetectedSplitIt(modelData.modelFaces[idface],modelData.modelFaces[idfaceTest],isecA))
-						{
-							if(!isecA.barelyEqual(isecB))
-							{
-								collision_in_face2=IsDotInTriangle(*faceA_Test,*faceB_Test,*faceC_Test,isecB);
-								collision_in_face1= IsDotInTriangle(*faceA,*faceB,*faceC,isecB);
-								if(collision_in_face2 && collision_in_face1)
-								{
-									if(OnCollisionDetectedSplitIt(modelData.modelFaces[idface],modelData.modelFaces[idfaceTest],isecB))
-									{
-										sceneSplited=true;
-										break;//return true;
-									}
-								}
-							}
-						}else{
-							sceneSplited=true;
-							break; //return true;
-						}
-					}	
-				}
-			}
-		}
-	}
-	return sceneSplited;
-}
-*/
 bool meshOperation::OnCollisionDetectedDestroyIt( formatPOLY::t_face& triangleOne, formatPOLY::t_face& triangleTwo, const dvec3& position )
 {
 	using namespace formatPOLY;
@@ -589,18 +510,18 @@ bool meshOperation::OnCollisionDetectedDestroyIt( formatPOLY::t_face& triangleOn
 	if(idSommet_triangleOne!=-1 && idSommet_triangleTwo!=-1)
 		return false;
 
-	int i_intersec;
+	long i_intersec;
 	int addFaceOne,addFaceTwo;
 
 	t_face* triangleToSplit=&triangleOne;
 	if(idSommet_triangleTwo!=-1)
 	{
-		i_intersec=triangleTwo.indicesSommets[idSommet_triangleTwo];
+		i_intersec=triangleTwo.indicesSommets.i[idSommet_triangleTwo];
 	}else if(idSommet_triangleOne!=-1){		
-		i_intersec=triangleOne.indicesSommets[idSommet_triangleOne];
+		i_intersec=triangleOne.indicesSommets.i[idSommet_triangleOne];
 		triangleToSplit=&triangleTwo;
 	}else{
-		//Ce point est inconnu des deux triangles on créé ce nouveau point
+		//Ce point est inconnu des deux triangles on crï¿½ï¿½ ce nouveau point
 		i_intersec=this->FindIndexWithPosition(position);
 		if(i_intersec==-1)
 		{
@@ -641,7 +562,7 @@ bool meshOperation::OnCollisionDetectedSplitIt( formatPOLY::t_face& triangleOne,
 		i_intersec=triangleOne.indicesSommets[idSommet_triangleOne];
 		triangleToSplit=&triangleTwo;
 	}else{
-		//Ce point est inconnu des deux triangles on créé ce nouveau point
+		//Ce point est inconnu des deux triangles on crï¿½ï¿½ ce nouveau point
 		i_intersec=this->FindIndexWithPosition(position);
 		if(i_intersec==-1)
 		{
@@ -772,16 +693,16 @@ void meshOperation::mergeVertices()
 	for(int idface=0;idface<sizeOfFace;idface++)
 	{
 		formatPOLY::t_face& curFace(modelData.modelFaces[idface]);
-		curFace.indicesSommets[0]=indexCorrespondance[curFace.indicesSommets[0]];
-		curFace.indicesSommets[1]=indexCorrespondance[curFace.indicesSommets[1]];
-		curFace.indicesSommets[2]=indexCorrespondance[curFace.indicesSommets[2]];
+		curFace.indicesSommets.i[0]=indexCorrespondance[curFace.indicesSommets.i[0]];
+		curFace.indicesSommets.i[1]=indexCorrespondance[curFace.indicesSommets.i[1]];
+		curFace.indicesSommets.i[2]=indexCorrespondance[curFace.indicesSommets.i[2]];
 	}
-	unsigned int sizeOfUserFace=modelData.userDefinedFaces.size();
+	size_t sizeOfUserFace= modelData.userDefinedFaces.size();
 	for(int idface=0;idface<sizeOfUserFace;idface++)
 	{
 		formatPOLY::t_face& curFace(modelData.userDefinedFaces[idface]);
-		curFace.indicesSommets[0]=indexCorrespondance[curFace.indicesSommets[0]];
-		curFace.indicesSommets[1]=indexCorrespondance[curFace.indicesSommets[1]];
-		curFace.indicesSommets[2]=indexCorrespondance[curFace.indicesSommets[2]];
+		curFace.indicesSommets.i[0]=indexCorrespondance[curFace.indicesSommets.i[0]];
+		curFace.indicesSommets.i[1]=indexCorrespondance[curFace.indicesSommets.i[1]];
+		curFace.indicesSommets.i[2]=indexCorrespondance[curFace.indicesSommets.i[2]];
 	}
 }
