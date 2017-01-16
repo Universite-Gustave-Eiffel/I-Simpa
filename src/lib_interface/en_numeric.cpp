@@ -30,12 +30,18 @@
 
 #include "en_numeric.hpp"
 #include <locale.h>
+#include <assert.h>
+#include <cmath>
 
 
 EnglishTemporaryLocale::EnglishTemporaryLocale()
 {
 	currentLocale=setlocale( LC_NUMERIC, NULL );
-	setlocale(  LC_NUMERIC, "English" );
+	setlocale(  LC_NUMERIC, "C" );
+	// Check
+	if(fabs(strtod("15.35", nullptr) - 15.35) > 0.01) {
+		fprintf(stderr, "Unable to change locale in order to parse using English numeric locale");
+	}
 }
 EnglishTemporaryLocale::~EnglishTemporaryLocale()
 {
