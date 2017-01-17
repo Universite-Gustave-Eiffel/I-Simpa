@@ -70,6 +70,10 @@ namespace formatRPLY
 		parsing_instance* curInstance((parsing_instance*)ptr);
 		t_model* model=&(curInstance->currentModel);
 		switch (idvert) {
+			case -1:
+				// This is the vertex count
+				// int vCount = (int)ply_get_argument_value(argument);
+				break;
 			case 0:
 				curInstance->lastFaceSplited=false;
 				model->modelFaces.push_back(t_face(ivec3((int)ply_get_argument_value(argument),0,0)));
@@ -80,6 +84,7 @@ namespace formatRPLY
 				break;
 			case 3: {
                 // Polygon with 4 vertices
+				// Push an additional triangle
                 const ivec3 &lastTri(model->modelFaces.back().indicesSommets);
                 model->modelFaces.push_back(
                         t_face(ivec3(lastTri.i[0], lastTri.i[2], (int) ply_get_argument_value(argument))));
@@ -88,7 +93,7 @@ namespace formatRPLY
             }
 			default:
 				// unhandled case for the moment
-				fprintf(stderr, "Unhandled polygon with %li vertices", idvert);
+				fprintf(stderr, "Unhandled polygon with %li vertices\n", idvert);
 		}
 		return 1;
 	}

@@ -517,7 +517,8 @@ if(WIN32) # Check if we are on Windows
 	${PYTHON_ROOT_FOLDER}/Lib
 	${PYTHON_ROOT_FOLDER}/DLLs
 	DESTINATION .
-    PATTERN "Lib/site-packages" EXCLUDE)
+    PATTERN "Lib/site-packages" EXCLUDE
+    PATTERN "*.pdb" EXCLUDE)
 
 	# Resolve symbolic link
 	LIB_TO_DLL(${Boost_FILESYSTEM_LIBRARY_RELEASE} Boost_FILESYSTEM_LIBRARY_RELEASE_REAL)
