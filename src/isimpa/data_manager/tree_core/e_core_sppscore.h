@@ -132,7 +132,7 @@ public:
 	E_Core_Spps( Element* parent)
 		:E_Core_Core(parent,"SPPS",ELEMENT_TYPE_CORE_SPPS)
 	{
-
+		this->elementInfo.expanded = true;
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_SPPSCORE_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_SPPSCORE_CLOSE);
 		this->AppendFilsByType(ELEMENT_TYPE_CORE_CORE_CONFMAILLAGE);

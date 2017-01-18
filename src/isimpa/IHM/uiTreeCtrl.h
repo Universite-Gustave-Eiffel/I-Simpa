@@ -73,6 +73,7 @@ class uiTreeCtrl : public wxTreeCtrl
 		wxPoint mousePos;
 		void InitTree();
 		smart_ptr<bool> alive;
+		const bool openOnSimpleClick;
 	protected :
 
 		DECLARE_EVENT_TABLE()
@@ -99,7 +100,7 @@ class uiTreeCtrl : public wxTreeCtrl
 		 * @param size Taille de la fenêtre
 		 * @param style Style de la fenêtre
 		 */
-		uiTreeCtrl(wxWindow* parent, wxWindowID id, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTR_HAS_BUTTONS);
+		uiTreeCtrl(wxWindow* parent, wxWindowID id, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTR_HAS_BUTTONS, bool openOnSimpleClick = true);
 		uiTreeCtrl();
 		/**
 		 * Destructeur

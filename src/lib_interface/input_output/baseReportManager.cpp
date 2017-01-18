@@ -428,7 +428,7 @@ void BaseReportManager::InitHeaderArrays(Base_Core_Configuration& configManager,
 	decimal pasdetemps=(*configManager.FastGetConfigValue(Base_Core_Configuration::FPROP_TIME_STEP));
 	int nbpasdetemps=(*configManager.FastGetConfigValue(Base_Core_Configuration::IPROP_QUANT_TIMESTEP));
 	for(entier idstep=0;idstep<nbpasdetemps;idstep++)
-		lblTime.push_back(CoreString::FromFloat((pasdetemps*(float)(idstep+1)*1000.f))+" ms");
+		lblTime.push_back(CoreString::FromFloat((pasdetemps*(float)(idstep+1)*1000.f), COMMA_PRECISION_TIME_MS)+" ms");
 }
 void BaseReportManager::SauveGlobalRecepteursSurfaciques(stringClass rootFolder,std::vector<r_Surf*>& tabRecepteurS,t_Mesh& sceneModel,decimal timeStep,bool divBySurface)
 {

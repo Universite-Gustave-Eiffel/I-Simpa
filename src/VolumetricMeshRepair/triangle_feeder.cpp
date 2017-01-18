@@ -44,19 +44,19 @@
 #endif
 
 /**
- * Calcul la liste des coordonnées de cubes en intersection avec ce triangle
+ * Calcul la liste des coordonnï¿½es de cubes en intersection avec ce triangle
  * @param[in] boxCellCount Nombre de cellules dans les axes x,y,z
  * @param[in] boxCenter Position x,y,z de la boite englobante
  * @param[in] cellSize Taille d'une cellule
  * @param[in] triA Position du sommet A du triangle
  * @param[in] triB Position du sommet B du triangle
  * @param[in] triC Position du sommet C du triangle
- * @param[out] minRange Indice de début de l'intervalle
+ * @param[out] minRange Indice de dï¿½but de l'intervalle
  * @param[out] maxRange Indice de fin de l'intervalle
  */
 void GetRangeIntersectedBoundingCubeByTri(const SpatialDiscretization::cell_id_t& boxCellCount,const vec3& boxCenter,const decimal& cellSize,const vec3& triA,const vec3& triB,const vec3& triC, ivec3& minRange,ivec3& maxRange)
 {
-	//Ancienne méthode
+	//Ancienne mï¿½thode
 	vec3 bmin(MIN(MIN(triA.x,triB.x),triC.x),MIN(MIN(triA.y,triB.y),triC.y),MIN(MIN(triA.z,triB.z),triC.z));
 	vec3 bmax(MAX(MAX(triA.x,triB.x),triC.x),MAX(MAX(triA.y,triB.y),triC.y),MAX(MAX(triA.z,triB.z),triC.z));
 	vec3 tmpvec=((bmin-boxCenter)/cellSize);
@@ -84,23 +84,20 @@ namespace ScalarFieldBuilders
 		using namespace SpatialDiscretization;
 		ivec3 minRange,maxRange;
 		GetRangeIntersectedBoundingCubeByTri(this->volumeInfo.cellCount,this->volumeInfo.mainVolumeCenter,this->volumeInfo.cellSize,A,B,C,minRange,maxRange);
-		decimal boxhalfsize[3],triverts[3][3];
+		vec3 triverts[3];
 
-		memcpy(boxhalfsize,&this->volumeInfo.cellHalfSize,sizeof(vec3));
-		memcpy(triverts[0],&A,sizeof(vec3));
-		memcpy(triverts[1],&B,sizeof(vec3));
-		memcpy(triverts[2],&C,sizeof(vec3));
+		vec3 boxhalfsize = this->volumeInfo.cellHalfSize;
 
 		//Todo multi-thread sur X ou X,Y
 		vec3 boxcenter;
-		for(cell_id_t cell_x=minRange.x;cell_x<=(cell_id_t)maxRange.x;cell_x++)
+		for(long cell_x=minRange.x;cell_x<=(cell_id_t)maxRange.x;cell_x++)
 		{
-			for(cell_id_t cell_y=minRange.y;cell_y<=(cell_id_t)maxRange.y;cell_y++)
+			for(long cell_y=minRange.y;cell_y<=(cell_id_t)maxRange.y;cell_y++)
 			{
-				for(cell_id_t cell_z=minRange.z;cell_z<=(cell_id_t)maxRange.z;cell_z++)
+				for(long cell_z=minRange.z;cell_z<=(cell_id_t)maxRange.z;cell_z++)
 				{
 					boxcenter=CellIdToCenterCoordinate(ivec3(cell_x,cell_y,cell_z),this->volumeInfo.cellSize,this->volumeInfo.zeroCellCenter);
-					if(boxtri_test::triBoxOverlap(boxcenter,boxhalfsize,triverts)==1)
+					if(boxtri_test::triBoxOverlap(boxcenter,boxhalfsize,A, B, C)==1)
 					{
 						//currentCell->SetData(cell_z_offset,this->domainInformation,weight_t(1));
 						(*this->fieldData)[cell_x][cell_y].SetData(cell_z,this->domainInformation,weight_t(1));

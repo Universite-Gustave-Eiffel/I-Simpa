@@ -86,7 +86,7 @@ public:
 	 * @param nbVertices Nombre de points
 	 * @param nbFaces Nombre de faces
 	 */
-	void ExportMESH(vec4 UnitizeValue,std::vector<SGroup3D> &pModel, std::vector<vec3> &Vertices, const char *mfilename,long nbVertices, long nbFaces);
+	void ExportMESH(vec4 UnitizeValue,std::vector<SGroup3D> &pModel, std::vector<vec3> &Vertices, const std::string& mfilename, long nbFaces);
 
 
 private:

@@ -41,14 +41,14 @@ namespace volumes_splitter
 			{\
 				faces[tetraface.marker].volid_norm=(*ittetra).idVolume;\
 				faces[tetraface.marker].processed=true;\
-				if(tetraface.neighboor>=0 && (std::size_t)tetraface.neighboor<quanttetra)\
+				if(tetraface.neighbor>=0 && (std::size_t)tetraface.neighbor<quanttetra)\
 				{\
-					faces[tetraface.marker].volid_invnorm=tetramodel.tetrahedres[tetraface.neighboor].idVolume;\
+					faces[tetraface.marker].volid_invnorm=tetramodel.tetrahedres[tetraface.neighbor].idVolume;\
 					faces[tetraface.marker].isInternalFace=true;\
 				}\
 			}
 
-#define GET_SOMMET_COORDS(idsommet) tetramodel.nodes[(*ittetra).sommets[idsommet]].node
+#define GET_SOMMET_COORDS(idsommet) tetramodel.nodes[(*ittetra).vertices[idsommet]].node
 	class TetraFinder
 	{
 	public:
@@ -63,7 +63,7 @@ namespace volumes_splitter
 			//ref http://jgt.akpeters.com/papers/GuigueDevillers03/addendum.html
 			const formatMBIN::bintetrahedre& tettest=tetramodel.tetrahedres[staticCandidateIndex];
 
-			if(DotInTetra(dotTest,tetramodel.nodes[tettest.sommets[0]].node,tetramodel.nodes[tettest.sommets[1]].node,tetramodel.nodes[tettest.sommets[2]].node,tetramodel.nodes[tettest.sommets[3]].node))
+			if(DotInTetra(dotTest,tetramodel.nodes[tettest.vertices[0]].node,tetramodel.nodes[tettest.vertices[1]].node,tetramodel.nodes[tettest.vertices[2]].node,tetramodel.nodes[tettest.vertices[3]].node))
 			{
 				idtetra=staticCandidateIndex;
 				return false;
@@ -147,12 +147,12 @@ namespace volumes_splitter
 		vol_t* lastvol=NULL;
 		for(std::vector<formatMBIN::bintetrahedre>::const_iterator ittetra=tetramodel.tetrahedres.begin();ittetra!=tetramodel.tetrahedres.end();ittetra++)
 		{
-			//Mise à jour Lien, face<->volume
+			//Mise Ã  jour Lien, face<->volume
 			SET_FACE_STATE((*ittetra).tetrafaces[0])
 			SET_FACE_STATE((*ittetra).tetrafaces[1])
 			SET_FACE_STATE((*ittetra).tetrafaces[2])
 			SET_FACE_STATE((*ittetra).tetrafaces[3])
-			//Mise à jour du volume
+			//Mise Ã  jour du volume
 			if((*ittetra).idVolume!=lastvolid)
 				FindOrCreateVol((*ittetra).idVolume,lastvolid,&lastvol);
 

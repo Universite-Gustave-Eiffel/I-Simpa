@@ -49,6 +49,7 @@ public:
 	{
 		SetIcon(GRAPH_STATE_EXPANDED, GRAPH_USER_DIRECTIVITY_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL, GRAPH_USER_DIRECTIVITY_CLOSE);
+		insertPasteMenu = true;
 
 		if (noeudCourant != NULL)
 		{
@@ -64,6 +65,7 @@ public:
 	{
 		SetIcon(GRAPH_STATE_EXPANDED, GRAPH_ITEM);
 		SetIcon(GRAPH_STATE_NORMAL, GRAPH_ITEM);
+		insertPasteMenu = true;
 	}
 
 	bool InsertChildrens(wxXmlNode* currentChild)
@@ -87,9 +89,35 @@ public:
 		return childAdded;
 	}
 
-	void OnPaste(wxXmlNode* nodeElement)
+	static void RemoveDirectivityId(wxXmlNode* nodeElement)
 	{
-		// TODO : gestion du copier-coller sur les directivités utilisateurs
+		if (nodeElement != NULL)
+		{
+			nodeElement->DeleteAttribute("iddirectivity");
+			wxXmlNode* childElement = nodeElement->GetChildren();
+			while (childElement != NULL)
+			{
+				RemoveDirectivityId(childElement);
+				childElement = childElement->GetNext();
+			}
+		}
+	}
+
+	void OnPaste(wxXmlNode* nodeElement) {
+	
+		RemoveDirectivityId(nodeElement);
+		wxXmlNode* firstChild = nodeElement->GetChildren();
+		if (!InsertChildrens(firstChild))
+		{
+			Element::OnPaste(nodeElement);
+		}
+		else
+		{
+			Element::FillWxTree(); //ajout dans l'arbre des données
+								   //Indique la modification de cette branche
+			this->ForceBottomModified();
+			this->Modified(this);
+		}
 	}
 
 	void OnRightClic(wxMenu* leMenu)

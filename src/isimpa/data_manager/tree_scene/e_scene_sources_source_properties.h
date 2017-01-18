@@ -49,13 +49,12 @@ private:
 	//v1.01
 	void InitNewProperties()
 	{
-		this->AppendPropertyBool("enable","Active source",true);
-		_("Active source");
+		this->AppendPropertyBool("enable",wxTRANSLATE("Active source"),true);
 	}
 
 	void InitDirectivityProperties() {
 		this->AppendPropertyInteger("iddirectivity", "iddirectivity", 0, false)->Hide();
-        dynamic_cast<E_Data_List*>(this->GetElementByLibelle("directivite"))->AppendItem("Directivity balloon", 5);
+        dynamic_cast<E_Data_List*>(this->GetElementByLibelle("directivite"))->AppendItem(wxTRANSLATE("Directivity balloon"), 5);
 	}
 	void InitProperties()
 	{
@@ -63,28 +62,19 @@ private:
 		_("Description");
 		std::vector<wxString> vDirectivite;
 		std::vector<int> iDirectivite;
-		vDirectivite.push_back("Omnidirectional");
-		vDirectivite.push_back("Unidirectional");
-		vDirectivite.push_back("XY plan");
-		vDirectivite.push_back("XY plan");
-		vDirectivite.push_back("XZ plan");
-		vDirectivite.push_back("Directivity balloon");
-		_("Omnidirectional");
-		_("Unidirectional");
-		_("XY plan");
-		_("YZ plan");
-		_("XZ plan");
-		this->AppendPropertyList("directivite","Directivity",vDirectivite,DIRECTIVITE_SOURCE_OMINIDIRECTIONNEL,false,1,iDirectivite,true);
-		_("Directivity");
+		vDirectivite.push_back(wxTRANSLATE("Omnidirectional"));
+		vDirectivite.push_back(wxTRANSLATE("Unidirectional"));
+		vDirectivite.push_back(wxTRANSLATE("XY plan"));
+		vDirectivite.push_back(wxTRANSLATE("XY plan"));
+		vDirectivite.push_back(wxTRANSLATE("XZ plan"));
+		vDirectivite.push_back(wxTRANSLATE("Directivity balloon"));
+		this->AppendPropertyList("directivite",wxTRANSLATE("Directivity"),vDirectivite,DIRECTIVITE_SOURCE_OMINIDIRECTIONNEL,false,1,iDirectivite,true);
 
-		this->AppendPropertyDecimal("u","Direction X",1,true,2,false,false,0,0,true);
-		this->AppendPropertyDecimal("v","Direction Y",1,true,2,false,false,0,0,true);
-		this->AppendPropertyDecimal("w","Direction Z",1,true,2,false,false,0,0,true);
-		_("Direction X");
-		_("Direction Y");
-		_("Direction Z");
-		this->AppendPropertyDecimal("delay","Time delay (s)",0.f,false,4,false,true,0,0,true);
-		_("Time delay (s)");
+		this->AppendPropertyDecimal("u", wxTRANSLATE("Direction X"),1,true,2,false,false,0,0,true);
+		this->AppendPropertyDecimal("v", wxTRANSLATE("Direction Y"),1,true,2,false,false,0,0,true);
+		this->AppendPropertyDecimal("w", wxTRANSLATE("Direction Z"),1,true,2,false,false,0,0,true);
+		this->AppendPropertyDecimal("delay", wxTRANSLATE("Time delay (s)"),0.f,false,4,false,true,0,0,true);
+
 		InitNewProperties();
 		InitDirectivityProperties();
 	}
@@ -105,11 +95,8 @@ private:
 					filterTree.push_back(ELEMENT_TYPE_DIRECTIVITIES_APP);
 					filterTree.push_back(ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES_USER);
 					filterTree.push_back(ELEMENT_TYPE_DIRECTIVITIES_USER);
-					this->AppendFils(new E_Data_Tree(this, "directivity-balloon", "Directivity Balloon", rootDirectivities, filterTree, defaultEle, false, 1));
-					if (this->GetListConfig("directivite") != DIRECTIVITE_SOURCE_DIRECTIONNEL)
-					{
-						this->SetReadOnlyConfig("directivity-balloon");
-					}
+					this->AppendFils(new E_Data_Tree(this, "directivity-balloon", wxTRANSLATE("Directivity Balloon"), rootDirectivities, filterTree, defaultEle, false, 1));
+					this->SetReadOnlyConfig("directivity-balloon", this->GetListConfig("directivite") != DIRECTIVITE_SOURCE_DIRECTIONNEL);
 				}
 			}
 		}

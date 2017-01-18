@@ -63,7 +63,7 @@ struct RecepteurSUpdater : public t_baseEvtCatcher
 };
 
 RecepteursSControler::RecepteursSControler()
-: Animator(), colorPaletteCount(0)
+: Animator()
 {
 	idStep=0;
 	timeStep=0;
@@ -186,26 +186,22 @@ void RecepteursSControler::SetTimeStep(const int& _timeStp)
 	}
 
 
-bool RecepteursSControler::LoadGplFile(const wxString& gplFileName)
-{
+bool RecepteursSControler::LoadGplFile(const wxString &gplFileName) {
 	using namespace GPL_IO;
 	GPL_FileExchange gplReader;
-	int retval=gplReader.Read(WXSTRINGTOSTDSTRING(gplFileName));
-	if(retval==0)
-	{
-		colorPaletteCount=gplReader.GetColorsCount();
-		colorPalette=new vec3[colorPaletteCount];
-		unsigned short r,g,b;
+	int retval = gplReader.Read(WXSTRINGTOSTDSTRING(gplFileName));
+	if (retval == 0) {
+		colorPalette.reserve(gplReader.GetColorsCount());
+		unsigned short r, g, b;
 		std::string colorname;
-		for(int icolor=0;icolor<colorPaletteCount;icolor++)
-		{
+		for (int icolor = 0; icolor < gplReader.GetColorsCount(); icolor++) {
 
-			gplReader.GetNextColor(r,g,b,colorname);
-			colorPalette[icolor].set(r/255.f,g/255.f,b/255.f);
+			gplReader.GetNextColor(r, g, b, colorname);
+			colorPalette.push_back(vec3(r / 255.f, g / 255.f, b / 255.f));
 		}
 		Refresh(NULL);
 		return true;
-	}else{
+	} else {
 		return false;
 	}
 }
@@ -313,7 +309,7 @@ bool RecepteursSControler::LoadRecepteursSFile(wxArrayString& recepteurSFiles, v
 			t_recepteurS* newRecepteurss=&recepteursS[recepteursS.size()-1];
 
 			//Pour chaque face composant le récepteur surfacique
-			newRecepteurss->faces.reserve(currentRS.dataRec.quantFaces);
+			newRecepteurss->faces.reserve((unsigned long) currentRS.dataRec.quantFaces);
 			for(int idFace=0;idFace<currentRS.dataRec.quantFaces;idFace++)
 			{
 				formatRSBIN::t_ExchangeData_Face& curFace=currentRS.dataFaces[idFace];
@@ -529,10 +525,9 @@ bool RecepteursSControler::LoadRecepteursSFile(wxArrayString& recepteurSFiles, v
 
 					for(std::list<formatRSBIN::t_curve>::iterator itsegments=new_isocurve.segments.begin();itsegments!=new_isocurve.segments.end();itsegments++)
 					{
-						memcpy((*itsegments).A,coordsOperation::CommonCoordsToGlCoords(UnitizeVal,vec3((*itsegments).A)),sizeof(vec3));
-						memcpy((*itsegments).B,coordsOperation::CommonCoordsToGlCoords(UnitizeVal,vec3((*itsegments).B)),sizeof(vec3));
+                        coordsOperation::CommonCoordsToGlCoords(UnitizeVal,vec3((*itsegments).A)).copyTo((*itsegments).A);
+                        coordsOperation::CommonCoordsToGlCoords(UnitizeVal,vec3((*itsegments).B)).copyTo((*itsegments).B);
 					}
-
 				}
 			}
 		}
@@ -565,12 +560,12 @@ float RecepteursSControler::Ponderate(const float& val)
 
 vec4 RecepteursSControler::GetColor(const float& val)
 {
-	if(colorPalette.get())
+	if(!colorPalette.empty())
 	{
 		float baseValue(Ponderate(val));
-		int index=baseValue*(float)colorPaletteCount;
-		if(index==colorPaletteCount)
-			index-=1;
+		int index=(int) (baseValue * colorPalette.size());
+		if(index >= colorPalette.size())
+			index=(int)(colorPalette.size() - 1);
 		vec4 color(colorPalette[index],opacity);
 		return color;
 	}else{
@@ -644,16 +639,16 @@ void RecepteursSControler::Render(const int& _timeStp)
 			if((*itface).render)
 			{
 				if(!smoothColour)
-					glColor4fv(GetColor((*itface).energy[timeStp]));
+					glColor4fv(GetColor((*itface).energy[timeStp]).v);
 				if(smoothColour)
-					glColor4fv(GetColor(nodesData[(*itface).sommets[0]].energy[timeStp]));
-				glVertex3fv(nodesData[(*itface).sommets[0]].position);
+					glColor4fv(GetColor(nodesData[(*itface).sommets.i[0]].energy[timeStp]).v);
+				glVertex3fv(nodesData[(*itface).sommets.i[0]].position.v);
 				if(smoothColour)
-					glColor4fv(GetColor(nodesData[(*itface).sommets[1]].energy[timeStp]));
-				glVertex3fv(nodesData[(*itface).sommets[1]].position);
+					glColor4fv(GetColor(nodesData[(*itface).sommets.i[1]].energy[timeStp]).v);
+				glVertex3fv(nodesData[(*itface).sommets.i[1]].position.v);
 				if(smoothColour)
-					glColor4fv(GetColor(nodesData[(*itface).sommets[2]].energy[timeStp]));
-				glVertex3fv(nodesData[(*itface).sommets[2]].position);
+					glColor4fv(GetColor(nodesData[(*itface).sommets.i[2]].energy[timeStp]).v);
+				glVertex3fv(nodesData[(*itface).sommets.i[2]].position.v);
 			}
 		}
 	}
@@ -775,20 +770,21 @@ void RecepteursSControler::RedrawLegend()
 	// Generation de la barre de légende de niveaux sonore
 	for(int idligne=0;idligne<LevelGraphHeight;idligne++)
 	{
-		int index=(1-(float)idligne/LevelGraphHeight)*(float)colorPaletteCount;
-		if(index==colorPaletteCount)
-			index-=1;
+		int index= (int) ((1 - (float)idligne / LevelGraphHeight) * (float)colorPalette.size());
+		if(index >= colorPalette.size())
+			index = (int) (colorPalette.size() - 1);
 
-		if(colorPalette.get())
+		if(!colorPalette.empty())
 		{
-			int color[3]={colorPalette[index].r*255,colorPalette[index].g*255,colorPalette[index].b*255};
+			int color[3]={(int) (colorPalette[index].r * 255), (int) (colorPalette[index].g * 255),
+						  (int) (colorPalette[index].b * 255)};
 			int lineoffset(idligne*LevelGraphWidth*LevelGraphBpp);
 			for(int idcol=0;idcol<LevelGraphWidth;idcol++)
 			{
 				int coloffset=idcol*LevelGraphBpp;
-				LevelGraphbytes[lineoffset + coloffset]=color[0];
-				LevelGraphbytes[lineoffset + coloffset + 1]=color[1];
-				LevelGraphbytes[lineoffset + coloffset + 2]=color[2];
+				LevelGraphbytes[lineoffset + coloffset]= (unsigned char) color[0];
+				LevelGraphbytes[lineoffset + coloffset + 1]= (unsigned char) color[1];
+				LevelGraphbytes[lineoffset + coloffset + 2]= (unsigned char) color[2];
 			}
 		}
 	}

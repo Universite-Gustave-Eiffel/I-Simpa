@@ -115,8 +115,7 @@ virtual wxString GetRendererLabel();
 private:
 	float Ponderate(const float& val);
 	vec4 GetColor(const float& val);
-	smart_ptr_ar<vec3> colorPalette;
-	unsigned int colorPaletteCount;
+	std::vector<vec3> colorPalette;
 	struct t_RssLegend
 	{
 		wxString maxValue;

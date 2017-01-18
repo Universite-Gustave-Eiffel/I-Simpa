@@ -195,7 +195,7 @@ namespace formatCoreBIN
 	float CformatBIN::GetSurfAire( const ioModel& model, const int& indiceface )
 	{
 		ivec3 sommets(model.faces[indiceface].a,model.faces[indiceface].b,model.faces[indiceface].c);
-		return GetAireTriangle(model.vertices[sommets.a].v,(float*)model.vertices[sommets.b].v,(float*)model.vertices[sommets.c].v);
+		return GetAireTriangle<float>(model.vertices[sommets.a].v,(float*)model.vertices[sommets.b].v,(float*)model.vertices[sommets.c].v);
 	}
 	bool CformatBIN::ProcessNode(std::fstream &binFile,ioModel &modelImport)
 	{ //Lecture d'un noeud du fichier binaire

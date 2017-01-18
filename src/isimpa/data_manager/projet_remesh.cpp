@@ -182,7 +182,7 @@ void ProjectManager::OnStartRemeshWizard()
 	if(!wxDirExists(tmpFolder))
 		wxMkDir(tmpFolder,0777);
 	wxString plyFilePath(tmpFolder+"sourceRecons.ply");
-	if(!this->sceneMesh.Save(plyFilePath))
+	if(!this->sceneMesh.Save(plyFilePath.ToStdString()))
 	{
 		wxLogError(_("Unable to save the file under the PLY format"));
 		return;
@@ -195,7 +195,7 @@ void ProjectManager::OnStartRemeshWizard()
 	if(reconstructionWiz.RunWizard(reconstructionWiz.GetFirstPage()))
 	{
 		wxString reconstructedSceneFilePath(reconstructionManager.GetFinalModelFilePath());
-		this->sceneMesh.Load(reconstructedSceneFilePath);
+		this->sceneMesh.Load(reconstructedSceneFilePath.ToStdString());
 		//this->sceneMesh.Save(meshName);
 		wxRemoveFile(plyFilePath);
 		wxRemoveFile(reconstructedSceneFilePath);

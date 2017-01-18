@@ -60,7 +60,7 @@ namespace sgSpace
 
 
 
-		t1 = (wxFloat32)log10(abs(vmax - vmin));
+		t1 = (wxFloat32)log10(fabs((vmax - vmin)));
 		np = (wxInt32)floor(t1);
 		t1 = t1 - np;
 
@@ -97,7 +97,7 @@ namespace sgSpace
 	}
 	inline bool isInside(const wxRealPoint& areaMin, const wxRealPoint& areaMax, const wxRealPoint& pointTest)
 	{
-		return (((pointTest.x >= areaMin.x) && (pointTest.y >= areaMin.y) && (pointTest.y <= areaMax.y) && (pointTest.x <= areaMax.x)) ? (true) : (false));
+		return (pointTest.x >= areaMin.x) && (pointTest.y >= areaMin.y) && (pointTest.y <= areaMax.y) && (pointTest.x <= areaMax.x);
 	}
 	inline bool isIntersect(const wxRect& areaOne, const wxRect& areaTwo)
 	{
@@ -117,15 +117,16 @@ namespace sgSpace
 
 	void GetRotatedTextCorners(wxSize baseTextSize, wxFloat32 rotationDegree, wxPoint& newTopLeftCorner, wxPoint& newBottomRightCorner)
 	{
-		double radian = M_PI * 2 / 360 * rotationDegree;
+		wxFloat32 radian = (wxFloat32) (M_PI * 2 / 360 * rotationDegree);
 		wxRealPoint topRightCorner = GetPointCoordAfterRotation(wxRealPoint(baseTextSize.GetWidth(), 0), radian);
 		wxRealPoint bottomLeftCorner = GetPointCoordAfterRotation(wxRealPoint(0, baseTextSize.GetHeight()), radian);
 		wxRealPoint bottomRightCorner = GetPointCoordAfterRotation(wxRealPoint(baseTextSize.GetWidth(), baseTextSize.GetHeight()), radian);
-		newTopLeftCorner = wxPoint(wxMin(wxMin(topRightCorner.x, bottomRightCorner.x), wxMin(0, bottomLeftCorner.x))
-			, wxMin(wxMin(topRightCorner.y, bottomRightCorner.y), wxMin(0, bottomLeftCorner.y))
+		newTopLeftCorner = wxPoint((int) wxMin(wxMin(topRightCorner.x, bottomRightCorner.x), wxMin(0, bottomLeftCorner.x))
+			, (int) wxMin(wxMin(topRightCorner.y, bottomRightCorner.y), wxMin(0, bottomLeftCorner.y))
 			);
-		newBottomRightCorner = wxPoint(wxMax(wxMax(topRightCorner.x, bottomRightCorner.x), wxMax(0, bottomLeftCorner.x))
-			, wxMax(wxMax(topRightCorner.y, bottomRightCorner.y), wxMax(0, bottomLeftCorner.y))
+		newBottomRightCorner = wxPoint(
+                (int) wxMax(wxMax(topRightCorner.x, bottomRightCorner.x), wxMax(0, bottomLeftCorner.x))
+			, (int) wxMax(wxMax(topRightCorner.y, bottomRightCorner.y), wxMax(0, bottomLeftCorner.y))
 			);
 	}
 
@@ -276,10 +277,10 @@ namespace sgSpace
 			this->drawPen.SetColour(value);
 		}
 		else if (name == "pen_width") {
-			this->drawPen.SetWidth(ToInt(value));
+			this->drawPen.SetWidth((int) ToInt(value));
 		}
 		else if (name == "pen_style") {
-			this->drawPen.SetStyle(ToInt(value));
+			this->drawPen.SetStyle((wxPenStyle) ToInt(value));
 		}
 		else if (name == "font") {
 			this->textFont.SetNativeFontInfo(RetrieveDelimiters(value));
@@ -288,7 +289,7 @@ namespace sgSpace
 			this->drawFill.SetColour(value);
 		}
 		else if (name == "brush_style") {
-			this->drawFill.SetStyle(ToInt(value));
+			this->drawFill.SetStyle((wxBrushStyle) ToInt(value));
 		}
 		else if (name == "text_foreground") {
 			this->textForegroundColor.Set(value);
@@ -297,7 +298,7 @@ namespace sgSpace
 			this->textBackgroundColor.Set(value);
 		}
 		else if (name == "drawing_marker") {
-			DRAWING_MARKER markerIndex = (DRAWING_MARKER)ToInt(value);
+			DRAWING_MARKER markerIndex = (DRAWING_MARKER) ToInt(value);
 			this->params.drawingMarker = markerIndex;
 		}
 		else if (name == "text_orientation") {
@@ -377,8 +378,10 @@ namespace sgSpace
 		const int nbBrushStyle = 7;
 		wxInt32 penStyle[nbPenStyle] = { wxSOLID,wxSOLID,wxSOLID,wxDOT,wxBDIAGONAL_HATCH,wxCROSSDIAG_HATCH,wxFDIAGONAL_HATCH,wxCROSS_HATCH,wxHORIZONTAL_HATCH,wxVERTICAL_HATCH };
 		wxInt32 brushStyle[nbBrushStyle] = { wxSOLID,wxBDIAGONAL_HATCH,wxCROSSDIAG_HATCH,wxFDIAGONAL_HATCH,wxCROSS_HATCH,wxHORIZONTAL_HATCH,wxVERTICAL_HATCH };
-		this->drawPen = wxPen(wxColour(GetRandValue() * 245, GetRandValue() * 245, GetRandValue() * 245), GetRandValue() * 4, penStyle[wxInt32(GetRandValue()*nbPenStyle)]);
-		this->drawFill = wxBrush(wxColour(GetRandValue() * 245, GetRandValue() * 245, GetRandValue() * 245), brushStyle[wxInt32(GetRandValue()*nbBrushStyle)]);
+		this->drawPen = wxPen(wxColour((wxColourBase::ChannelType) (GetRandValue() * 245),(wxColourBase::ChannelType) (GetRandValue() * 245),(wxColourBase::ChannelType) (GetRandValue() * 245)),
+							  (int) (GetRandValue() * 4), (wxPenStyle) penStyle[wxInt32(GetRandValue() * nbPenStyle)]);
+		this->drawFill = wxBrush(wxColour((wxColourBase::ChannelType) (GetRandValue() * 245),(wxColourBase::ChannelType) (GetRandValue() * 245),(wxColourBase::ChannelType) (GetRandValue() * 245)),
+								 (wxBrushStyle) brushStyle[wxInt32(GetRandValue()*nbBrushStyle)]);
 	}
 
 	void SG_El_Params::RandomizeMarker()
@@ -733,7 +736,7 @@ namespace sgSpace
 			wxInt32 yCoord = 0;
 			while (labelValue <= xMax)
 			{
-				wxPoint deviceCoord = renderer.LogicalToDeviceCoord(labelValue, 0.f);
+				wxPoint deviceCoord = renderer.LogicalToDeviceCoord((wxFloat32) labelValue, 0.f);
 				if (deviceCoord.x >= 0)
 					this->AddTic(renderer, wxPoint(deviceCoord.x, yCoord), wxPoint(deviceCoord.x, yCoord + ticSize), labelValue);
 				labelValue += intervalLabel;
@@ -743,14 +746,13 @@ namespace sgSpace
 		else {
 			wxFloat32 yMin = renderer.GetMainStyle()->GetCfg(F_PARAM_Y_MIN);
 			wxFloat32 yMax = renderer.GetMainStyle()->GetCfg(F_PARAM_Y_MAX);
-			wxInt16 nbLabels = floor((wxFloat32)((yMax - yMin) / intervalLabel));
 			wxFloat64 labelValue = (yMin)-(wxFloat32)fmod((yMin), intervalLabel);
 			wxInt32 xCoord = sizeOfArea.GetWidth() - 1;
 			if (labelValue<EPSILON && labelValue>-EPSILON)
 				labelValue = 0.f;
 			while (labelValue <= yMax)
 			{
-				wxPoint deviceCoord = renderer.LogicalToDeviceCoord(0.f, labelValue);
+				wxPoint deviceCoord = renderer.LogicalToDeviceCoord(0.f, (wxFloat32) labelValue);
 				if (deviceCoord.y >= 0 && sizeOfArea.GetHeight()>deviceCoord.y)
 					this->AddTic(renderer, wxPoint(xCoord, deviceCoord.y), wxPoint(xCoord - ticSize, deviceCoord.y), labelValue);
 				labelValue += intervalLabel;

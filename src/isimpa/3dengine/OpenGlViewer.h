@@ -277,4 +277,4 @@ private:
 	void Display();
 };
 
-#endif __OPENGLVIEWER_H__
+#endif

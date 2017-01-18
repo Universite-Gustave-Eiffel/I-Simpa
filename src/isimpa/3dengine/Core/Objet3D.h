@@ -103,13 +103,13 @@ public:
 	 * @param filename Chemin et nom du fichier de modèle compatible
 	 * @return Vrai si le chargement du fichier s'est déroulé avec succès
 	 */
-	bool Load(const char *filename);
+	bool Load(const std::string& filename);
 
 	/**
 	 * Charge le fichier de modèle en conservant les propriété de groupe et de matériaux du modèle déjà chargé
 	 * @param filename Chemin et nom du fichier de modèle compatible
 	 */
-	void LoadPolyWithoutLostCurrentModelGroupAndMaterials(const char *filename);
+	void LoadPolyWithoutLostCurrentModelGroupAndMaterials(const std::string& filename);
 	/**
 	 * Supprimer le modèle de la scène courante et construire un cuboïde comme nouvelle scène
 	 * @param debCuboide Position x,y,z du coin inférieur du volume
@@ -121,7 +121,7 @@ public:
 	 * @param filename Chemin et nom du fichier de modèle (le format est défini par l'extension)
 	 * @return Vrai si l'exportation du modèle s'est déroulée avec succès
 	 */
-	bool Save(const char *filename);
+	bool Save(const std::string& filename);
 	/**
 	 * Exporte la scène vers le format de structure de données CBIN
 	 * @param[out] modelExport Structure de donnée de CBIN
@@ -132,24 +132,19 @@ public:
 	 * @param filename Chemin et nom du fichier de maillage
 	 * @param faceAreaContraint Contrainte de surface des tetrahèdres en m²
 	 */
-	bool BuildVarConstraintFile(const char *filename, float faceAreaContraint);
+	bool BuildVarConstraintFile(const std::string& filename, float faceAreaContraint);
 	/**
 	 * Exporte le maillage vers un fichier au format MBIN
 	 * @param filename Chemin et nom du fichier de maillage
 	 * @param toRealCoords A vrai converti les coordonées opengl vers les coordonées de la scène
 	 * @return Vrai si l'exportation s'est déroulée avec succès
 	 */
-	bool SaveMaillage(const char *filename,bool toRealCoords=false);
+	bool SaveMaillage(const std::string& filename,bool toRealCoords=false);
 	/**
 	 * Retourne le maillage en mémoire sous la structure de données MBIN
 	 */
 	void GetTetraMesh(formatMBIN::trimeshmodel& trimesh,bool toRealCoords);
-	/**
-	 * Importe le maillage à partir d'un fichier au format MBIN
-	 * @param filename Chemin et nom du fichier de maillage
-	 * @return Vrai si l'importation s'est déroulée avec succès
-	 */
-	bool LoadMaillage(const char *filename);
+
 	/**
 	 * Redimensionne et recentre le modèle courant pour un rendu 3D correct quelque soit les coordonnées du modèle
 	 * @see coordsOperation::CommonCoordsToGlCoords()
@@ -341,7 +336,7 @@ public:
 	/**
 	 * Chargement du fichier face provenant de tetgen en tant que modèle
 	 */
-	bool _LoadFaceFile(const char *filename);
+	bool _LoadFaceFile(const std::string& filename);
 	/**
 	 * Export au format poly supporté par tetgen avec des paramètres spéciaux
 	 * @param exportUserModel A vrai les objets ajoutés par l'utilisateurs ( faces dynamiques) sont exportés dans ce fichier
@@ -351,7 +346,7 @@ public:
 	 * @param saveFaceIndexAsGroup Les marqeurs correspondent aux groupes de surfaces
 	 * @see http://tetgen.berlios.de/fformats.poly.html
 	 */
-	bool _SavePOLY(const char *filename,bool exportUserModel=false,bool separateUserDefinedModel=false,bool saveFaceIndex=false,std::vector<t_faceIndex>* fg_to_ind=NULL,bool saveFaceIndexAsGroup=false);
+	bool _SavePOLY(const std::string& filename,bool exportUserModel=false,bool separateUserDefinedModel=false,bool saveFaceIndex=false,std::vector<t_faceIndex>* fg_to_ind=NULL,bool saveFaceIndexAsGroup=false);
 
 
 
@@ -421,26 +416,25 @@ private:
 	 */
 	void SetInternalFaceState(const formatCoreBIN::ioModel& modelExport,const formatMBIN::trimeshmodel& tetramodel);
 	void _RenderMaillageLines(t_cutPlane cutPlane);
-	bool _SaveMESH(const char *filename);
+	bool _SaveMESH(const std::string& filename);
 	/**
 	 * Save model.mat.ply , model with project defined groups
 	 */
-	bool _SavePLYProjectGroup(const char *filename);
-	bool _SavePLY(const char *filename);
-	bool _SaveASC(const char *filename);
-	bool _SaveNFF(const char *filename);
-	bool _SaveBIN(const char *filename);
-	bool _SaveCBIN(const char *filename);
+	bool _SavePLYProjectGroup(const std::string& filename);
+	bool _SavePLY(const std::string& filename);
+	bool _SaveASC(const std::string& filename);
+	bool _SaveNFF(const std::string& filename);
+	bool _SaveBIN(const std::string& filename);
+	bool _SaveCBIN(const std::string& filename);
 	bool faceConnecte(t_faceIndex _f);
-	bool _SaveNFFMaillage(const char *filename);
-	inline void GetPathFromFilename( const char* string, char* result);
+	bool _SaveNFFMaillage(const std::string& filename);
 	long _RenderGroupTexture(long g, bool blendRendering);
 	long _RenderGroupLines(long g,bool hideLines);
-	bool _Load3DS(const char *filename);
-	bool _LoadBIN(const char *filename);
-	bool _LoadPLY(const char *filename);
-	bool _LoadPOLY(const char *filename);
-	bool _LoadSTL(const char *filename);
+	bool _Load3DS(const std::string& filename);
+	bool _LoadBIN(const std::string& filename);
+	bool _LoadPLY(const std::string& filename);
+	bool _LoadPOLY(const std::string& filename);
+	bool _LoadSTL(const std::string& filename);
 	void _Destroy(void); 
 	long _nbMaterials;
 	bool _hasTexture;
@@ -449,7 +443,7 @@ private:
 	vec3 colorModelLines;
 	vec3 colorModelBackground;
 	vec3 colorModelDefault;
-	tetrahedre *tabVertexMaillage;			//Tableau de faces du maillage 
+	tetrahedre *tabVertexMaillage = nullptr;			//Tableau de faces du maillage
 	unsigned long tabVertexMaillageSize;	// Nombre de tetrahedre
 	vec3* nodesMaillage;					//Tableau de noeud 
 	unsigned long nodesMaillageSize;		//Nombre de noeuds

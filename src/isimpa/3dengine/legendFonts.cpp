@@ -102,7 +102,8 @@ namespace legendRendering
 	void legendText::DoAppendText(const wxString& text,int x,int y, bool overwrite,int maxLength)
 	{
 		//Todo utiliser uniquement l'espace nécessaire à la chaine de caractère
-		wxMemoryDC textDrawer;
+        wxBitmap bmp(1,1);
+		wxMemoryDC textDrawer(bmp);
 		textDrawer.SetBrush( *wxGREEN_BRUSH );
 		textDrawer.SetTextBackground(textBackground);
 		textDrawer.SetTextForeground(textForeground);
@@ -159,8 +160,8 @@ namespace legendRendering
 	
 	wxSize legendText::GetTextSize(const wxString& text)
 	{
-		
-		wxMemoryDC textDrawer;
+		wxBitmap bmp( 1, 1 );
+		wxMemoryDC textDrawer(bmp);
 		textDrawer.SetBrush( *wxGREEN_BRUSH );
 		textDrawer.SetTextBackground(textBackground);
 		textDrawer.SetTextForeground(textForeground);

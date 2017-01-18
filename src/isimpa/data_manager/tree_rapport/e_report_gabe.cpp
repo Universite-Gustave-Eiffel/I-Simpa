@@ -114,27 +114,33 @@ bool E_Report_Gabe::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,std::
 		{
 			int rows=newCol->GetSize();			 
 			lblCols[idcol-firstDataColIndex]=newCol->GetLabel();
-			for(int idrow=0;idrow<rows;idrow++)
-			{	
-				cells[((idcol-firstDataColIndex)*rows)+idrow]=(*newCol).GetStringEquiv(idrow);
-			}
+			bool feedValue = false;
 			//Si cette colonne de données peut être interprété en nombre décimal
 			GABE_Data_Float* floatCol;
 			if(binImport.GetCol(idcol,&floatCol))
 			{
+				feedValue = true;
 				for(int idrow=0;idrow<rows;idrow++)
 				{	
 					cellsValue[((idcol-firstDataColIndex)*rows)+idrow]=*(*floatCol)[idrow];
 				}
-			}
-			//Si cette colonne de données peut être interprété en nombre entier
-			GABE_Data_Integer* intCol;
-			if(binImport.GetCol(idcol,&intCol))
-			{
-				for(int idrow=0;idrow<rows;idrow++)
-				{	
-					cellsValue[((idcol-firstDataColIndex)*rows)+idrow]=(float)*(*intCol)[idrow];
+			} else {
+				//Si cette colonne de données peut être interprété en nombre entier
+				GABE_Data_Integer* intCol;
+				if(binImport.GetCol(idcol,&intCol))
+				{
+					for(int idrow=0;idrow<rows;idrow++)
+					{	
+						cellsValue[((idcol-firstDataColIndex)*rows)+idrow]=(float)*(*intCol)[idrow];
+					}
 				}
+			}
+			// Numeric value cannot be extracted then extract as a string cells
+			if(!feedValue) {
+				for (int idrow = 0; idrow<rows; idrow++)
+				{
+					cells[((idcol - firstDataColIndex)*rows) + idrow] = (*newCol).GetStringEquiv(idrow);
+				}			
 			}
 		}else{
 			return false;

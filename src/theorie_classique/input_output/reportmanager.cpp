@@ -109,7 +109,7 @@ void ReportManager::SauveTCRecepteursPonctuels(stringClass rootFolder, const std
 				dataCol->Set(idfreq,rowVal);
 			}
 			dataCol->Set(nbFreq,10*log10f(globalValue));
-			dataCol->headerData.numOfDigits=4;
+			dataCol->headerData.numOfDigits= COMMA_PRECISION_DB;
 			binExporter.SetCol(idcol+1,dataCol);
 		}
 		stringClass fileName=rootFolder+stringClass(currentRecP->linkedRecepteurP->lblRp)+".gabe";
@@ -154,14 +154,15 @@ void ReportManager::SauveTCGlobalsValues(stringClass filePath, const std::vector
 				{
 					case 0:
 						rowVal=mainData.frequencyDependentValues[idfreq].modeCalcul[idModeCalcul].AireAbsorptionEquivalente;
+						(*dataCol).headerData.numOfDigits = COMMA_PRECISION_AREA;
 						break;
 					case 1:
 						rowVal=mainData.frequencyDependentValues[idfreq].modeCalcul[idModeCalcul].TR;
-						(*dataCol).headerData.numOfDigits=4;
+						(*dataCol).headerData.numOfDigits= COMMA_PRECISION_TIME_S;
 						break;
 					case 2:
 						rowVal=mainData.frequencyDependentValues[idfreq].modeCalcul[idModeCalcul].NiveauSonoreChampReverbere;
-						(*dataCol).headerData.numOfDigits=5;
+						(*dataCol).headerData.numOfDigits= COMMA_PRECISION_DB;
 						break;
 				};
 				globalValue+=pow(10,rowVal/10.f);
@@ -171,7 +172,7 @@ void ReportManager::SauveTCGlobalsValues(stringClass filePath, const std::vector
 			if(idData==2)
 				dataCol->Set(nbFreq,10*log10f(globalValue));
 			else
-				dataCol->Set(nbFreq,0);
+				dataCol->Set(nbFreq, NAN); // Not energetic value, no global value
 			binExporter.SetCol((idModeCalcul*NB_COLS_BY_THEORIE)+idData+1,dataCol);
 		}
 	}

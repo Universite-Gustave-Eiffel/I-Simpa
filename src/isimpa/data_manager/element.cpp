@@ -58,20 +58,6 @@ bool ElementSortPredicate(Element* lEl,Element* rEl)
 	return *lEl<*rEl;
 }
 
-unsigned int CountXmlSubNodes(wxXmlNode* parent)
-{
-	wxXmlNode* currentChild;
-	currentChild = parent->GetChildren();
-	unsigned int sizeOfChilds=0;
-	while(currentChild!=NULL)
-	{
-		sizeOfChilds++;
-		currentChild = currentChild->GetNext();
-	}
-	return sizeOfChilds;
-}
-
-
 #ifdef USE_PYTHON
 Element* New_E_Python_Extension( Element* parent,wxXmlNode* noeudCourant);
 #endif
@@ -91,34 +77,31 @@ void SortChildrensByProperty(wxXmlNode* node,const wxString& propertyName)
 		childrenNode=node->GetChildren();
 		wxXmlNode* previousNode=NULL;
 		childrenNode->GetAttribute(propertyName,&buffer);
-		buffer.ToLong(&currentid);
-		while(childrenNode)
-		{
-			wxXmlNode* nextNode=childrenNode->GetNext();
-			if(nextNode)
-			{
-				nextNode->GetAttribute(propertyName,&buffer);
-				buffer.ToLong(&nextid);
-				if(nextid<currentid)
-				{
-					nodeSwap=true;
-					//On doit intervertir les deux noeuds
-					//Le noeud suivant du noeud precedent change
-					if(previousNode)
-						previousNode->SetNext(nextNode);
-					else
-						node->SetChildren(nextNode);
-					//Le noeud suivant de next node est le noeud courant
-					childrenNode->SetNext(nextNode->GetNext());
-					nextNode->SetNext(childrenNode);
-					//On met à jour les pointeurs
-					childrenNode=nextNode;
-					nextid=currentid;
-					currentid = nextid;
+		if(buffer.ToLong(&currentid)) {
+			while (childrenNode) {
+				wxXmlNode *nextNode = childrenNode->GetNext();
+				if (nextNode) {
+					nextNode->GetAttribute(propertyName, &buffer);
+					if (buffer.ToLong(&nextid) && nextid < currentid) {
+						nodeSwap = true;
+						//On doit intervertir les deux noeuds
+						//Le noeud suivant du noeud precedent change
+						if (previousNode)
+							previousNode->SetNext(nextNode);
+						else
+							node->SetChildren(nextNode);
+						//Le noeud suivant de next node est le noeud courant
+						childrenNode->SetNext(nextNode->GetNext());
+						nextNode->SetNext(childrenNode);
+						//On met à jour les pointeurs
+						childrenNode = nextNode;
+						nextid = currentid;
+						currentid = nextid;
+					}
 				}
+				previousNode = childrenNode;
+				childrenNode = childrenNode->GetNext();
 			}
-			previousNode=childrenNode;
-			childrenNode=childrenNode->GetNext();
 		}
 	}
 }
@@ -1357,6 +1340,7 @@ bool Element::IsPropertyExist(wxString propertyName,Element** found)
 	}
 	return false;
 }
+
 Element* Element::GetElementParent()
 {
 	return this->pere;

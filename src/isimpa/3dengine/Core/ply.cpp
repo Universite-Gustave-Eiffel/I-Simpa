@@ -135,7 +135,7 @@ namespace formatPLY
 	}
 
 
-	int equal_strings(char *s1, char *s2)
+	int equal_strings(const char *s1,const char *s2)
 	{
 	  int i;
 
@@ -241,10 +241,10 @@ bool CPly::ImportPly(t_model& scene, const char* mfilename)
 		//Le premier mot de la ligne est element
 		if (equal_strings (words[1], "vertex")) //Nous indique le nombre de
 		{
-			sizeVertices=Convertor::ToInt(words[2]);
+			sizeVertices= (unsigned int) Convertor::ToInt(words[2]);
 		}else if(equal_strings (words[1], "face"))
 		{
-			sizeFaces=Convertor::ToInt(words[2]);
+			sizeFaces= (unsigned int) Convertor::ToInt(words[2]);
 		}
 	}
 	if (equal_strings (words[0], "end_header")) //Fin du bloc d'entete

@@ -159,7 +159,7 @@ bool  CMBIN::ImportBIN(const char *strFileName,bintetrahedre **tabTetra,t_binNod
 	std::size_t sizeTetra=trimesh.tetrahedres.size();
 	for( std::size_t idtetra=0;idtetra<sizeTetra;idtetra++)
 	{
-		ivec4 isommets((const long *)(trimesh.tetrahedres[idtetra].sommets));
+		ivec4 isommets((const long *)(trimesh.tetrahedres[idtetra].vertices));
 		vec3 sommets[4];
 		for(short i=0;i<4;i++)
 			sommets[i]=trimesh.nodes[isommets[i]].node;

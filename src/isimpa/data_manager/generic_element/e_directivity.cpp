@@ -78,10 +78,19 @@ E_Directivity::E_Directivity(Element* parent, wxString Nom, ELEMENT_TYPE _type, 
 				propValue.ToLong(&typeEle);
 				if (typeEle == Element::ELEMENT_TYPE_FILE)
 				{
-					this->AppendFils(new E_Data_File(currentChild, this, storageFolder.GetPath(), "Open loudspeaker file", "TXT files (*.TXT)|*.TXT"));
+					if(currentChild->GetAttribute("label","") != "Directivity file") {
+						currentChild->DeleteAttribute("label");
+						currentChild->AddAttribute("label", wxTRANSLATE("Directivity file"));
+					}
+					E_Data_File* dirFile = new E_Data_File(currentChild, this, storageFolder.GetPath(), _("Open loudspeaker file"), _("TXT files (*.TXT)|*.TXT"));
+					this->AppendFils(dirFile);
 				}
 			}
 			currentChild = currentChild->GetNext();
+		}
+		// Init new properties
+		if(!IsPropertyExist("description")) {
+			this->AppendPropertyText("description", wxTRANSLATE("Description"), "");
 		}
 	}else{
 		idDirectivity = ApplicationConfiguration::GetFreeDirectivityId();
@@ -108,7 +117,8 @@ void E_Directivity::InitProperties()
 	{
 		storageFolder.Mkdir();
 	}
-	this->AppendPropertyFile("file", "loudspeaker", storageFolder.GetPath(), "Open loudspeaker file", "TXT files (*.TXT)|*.TXT");
+	this->AppendPropertyFile("file", wxTRANSLATE("Directivity file"), storageFolder.GetPath(), _("Open loudspeaker file"), _("TXT files (*.TXT)|*.TXT"));
+	this->AppendPropertyText("description", wxTRANSLATE("Description"), "");
 }
 
 int E_Directivity::GetIdDirectivity()

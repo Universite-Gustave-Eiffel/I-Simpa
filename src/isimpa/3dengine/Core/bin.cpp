@@ -207,7 +207,7 @@ bool CformatBIN::ProcessNode(std::fstream &binFile,t3DModel *pModel,const binary
 { //Lecture d'un noeud du fichier binaire
 	binaryNode elementNode;
 	elementNode.nextBrother=1;
-	while(!binFile.eof() && elementNode.nextBrother!=NULL)
+	while(!binFile.eof() && elementNode.nextBrother != 0l)
 	{
 		binFile.read((char*)&elementNode, sizeof (binaryNode));
 		switch(elementNode.nodeType)
@@ -236,17 +236,16 @@ bool CformatBIN::ProcessNode(std::fstream &binFile,t3DModel *pModel,const binary
 				return false;
 				break;
 		}
-		if(elementNode.nextBrother!=NULL)
+		if(elementNode.nextBrother != 0)
 			binFile.seekg(elementNode.nextBrother);
 	}
 
 	return true;
 }
 
-bool CformatBIN::ImportBIN(t3DModel *pModel, const char *strFileName)
+bool CformatBIN::ImportBIN(t3DModel *pModel, const std::string& strFileName)
 {
 	using namespace std;
-    char strMessage[255] = {0};
     fstream binFile (strFileName, ios::in | ios::binary);
     if(!binFile.is_open())
 		return false;
@@ -266,12 +265,12 @@ void CformatBIN::writeNode(std::fstream &binFile,bShort nodeType,bLong nodeHeadS
 {
 	binaryNode currentNode;
 	currentNode.nodeType=nodeType;
-	currentNode.firtSon=(long)binFile.tellp()+nodeHeadSize;
-	currentNode.nextBrother=(long)binFile.tellp()+nodeSize;
-	if(nodeHeadSize==NULL)
-		currentNode.firtSon=NULL;
-	if(nodeSize==NULL)
-		currentNode.nextBrother=NULL;
+	currentNode.firtSon= (bLong) binFile.tellp() + nodeHeadSize;
+	currentNode.nextBrother= (bLong) binFile.tellp() + nodeSize;
+	if(nodeHeadSize==0)
+		currentNode.firtSon=0;
+	if(nodeSize==0)
+		currentNode.nextBrother=0;
 	binFile.write((char*)&currentNode,sizeof(binaryNode));
 }
 
@@ -287,7 +286,7 @@ vec4 CformatBIN::GetVectorFromColor(binaryColor colorInfo)
 	return vColor;
 }
 
-bool CformatBIN::ExportBIN(const char *strFileName,vec4 UnitizeVar,std::vector<vec3> &_pVertices,std::vector<vec2> &_pTexCoords,std::vector<SGroup3D> &_pGroups)
+bool CformatBIN::ExportBIN(const std::string& strFileName,vec4 UnitizeVar,std::vector<vec3> &_pVertices,std::vector<vec2> &_pTexCoords,std::vector<SGroup3D> &_pGroups)
 {
 	//Debug, test size des structures, pertes d'octets a cause d'alignement de type
 	//unsigned long binaryFaceSize=sizeof(binaryFace);
@@ -318,7 +317,7 @@ bool CformatBIN::ExportBIN(const char *strFileName,vec4 UnitizeVar,std::vector<v
 	binaryVertices verticeGroup={0};
 	//Compte le nombre de vertex
 	verticeGroup.nbVertex=_pVertices.size();
-	this->writeNode(binFile,NODE_TYPE_VERTICES,NULL,sizeVERTICES);
+	this->writeNode(binFile,NODE_TYPE_VERTICES,0,sizeVERTICES);
 	binFile.write((char*)&verticeGroup,sizeof(binaryVertices));
 	//Ecriture des vertices
 	for(unsigned long v=0; v < _pVertices.size(); v++)
@@ -333,7 +332,7 @@ bool CformatBIN::ExportBIN(const char *strFileName,vec4 UnitizeVar,std::vector<v
 	binaryTexCoords txGroup={0};
 	//Compte le nombre de vertex
 	txGroup.nbTexCoords=_pTexCoords.size();
-	this->writeNode(binFile,NODE_TYPE_TEXCOORDS,NULL,sizeTEX);
+	this->writeNode(binFile,NODE_TYPE_TEXCOORDS,0,sizeTEX);
 	binFile.write((char*)&txGroup,sizeof(binaryTexCoords));
 	//Ecriture des coordonnées de textures
 	for(unsigned long v=0; v < _pTexCoords.size(); v++)
@@ -350,14 +349,14 @@ bool CformatBIN::ExportBIN(const char *strFileName,vec4 UnitizeVar,std::vector<v
 		binaryGroup groupNode;
 		//ZeroMemory(groupNode.groupName,255);
 		memset(groupNode.groupName,0,sizeof(char)*255);
-		strcpy(groupNode.groupName,(*itgroup).Name.c_str());
-		groupNode.nbFace=(*itgroup).pFaces.size();
+		strcpy(groupNode.groupName,(*itgroup).Name.substr(0,254).c_str());
+		groupNode.nbFace= (bInt) (*itgroup).pFaces.size();
 		//Calcul de la taille du groupe en octets
-		unsigned long sizeGROUP=NULL;
+		unsigned long sizeGROUP=0;
 		if(v_materials.size()>0 || g < _pGroups.size() - 1 )
 			sizeGROUP=sizeof(binaryNode)+sizeof(binaryGroup)+(groupNode.nbFace*sizeof(binaryFace));
 		//Ecriture dans le fichier
-		this->writeNode(binFile,NODE_TYPE_GROUP,NULL,sizeGROUP);
+		this->writeNode(binFile,NODE_TYPE_GROUP,0,sizeGROUP);
 		binFile.write((char*)&groupNode,sizeof(binaryGroup));
 		//for(long f=0; f < (*itgroup).pFaces.size() ;f++)
 		for(std::vector<SFace3D>::iterator itface=(*itgroup).pFaces.begin();itface!=(*itgroup).pFaces.end();itface++)
@@ -366,7 +365,7 @@ bool CformatBIN::ExportBIN(const char *strFileName,vec4 UnitizeVar,std::vector<v
 				(*itface).Vertices.a,
 				(*itface).Vertices.b,
 				(*itface).Vertices.c,
-				(*itface).idMaterial,
+                (bShort) (*itface).idMaterial,
 				(*itface).Diff[0],
 				(*itface).Diff[1],
 				(*itface).Diff[2],
@@ -402,7 +401,7 @@ bool CformatBIN::ExportBIN(const char *strFileName,vec4 UnitizeVar,std::vector<v
 		bLong nextMaterial=0;
 		if(m<v_materials.size()-1)
 			nextMaterial=sizeof(binaryNode)+sizeof(binaryMaterial);
-		this->writeNode(binFile,NODE_TYPE_MATERIAL,NULL,nextMaterial);
+		this->writeNode(binFile,NODE_TYPE_MATERIAL,0,nextMaterial);
 		binFile.write((char*)&materialNode,sizeof(binaryMaterial));
 	}
 

@@ -418,8 +418,8 @@ void CObjet3D::SetInternalFaceState(const formatCoreBIN::ioModel& modelExport,co
 
 	for(int g=0; g < this->_pGroups.size(); g++)
 	{
-		int fGsize=this->_pGroups[g].pFaces.size();
-		for(long f=0; f < fGsize ;f++)
+        std::size_t fGsize=this->_pGroups[g].pFaces.size();
+		for(std::size_t f=0; f < fGsize ;f++)
 		{
 			this->_pGroups[g].pFaces[f].internalFace=false;
 		}
@@ -429,18 +429,18 @@ void CObjet3D::SetInternalFaceState(const formatCoreBIN::ioModel& modelExport,co
 	std::vector<std::size_t> internFaces;
 	internalFaceFinder.GetInternalFaces(internFaces);
 	t_faceIndex faceIndex;
-	bool propmodified=false;
+	bool propertyModified=false;
 	for(std::vector<std::size_t>::iterator it=internFaces.begin();it!=internFaces.end();it++)
 	{
 		 faceIndex=FindFaceGroupWithFaceIndex((*it));
-		 if(!this->_pGroups[faceIndex.g].pFaces[faceIndex.f].internalFace==true)
+		 if(!this->_pGroups[faceIndex.g].pFaces[faceIndex.f].internalFace)
 		 {
 			 this->_pGroups[faceIndex.g].pFaces[faceIndex.f].internalFace=true;
-			 propmodified=true;
+			 propertyModified=true;
 		 }
 	}
-	if(propmodified)
-		this->Save(ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath+ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME);
+	if(propertyModified)
+		this->Save((ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath+ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME).ToStdString());
 }
 
 void CObjet3D::RenderMaillage(std::size_t modeRendu,t_cutPlane cutPlane)
@@ -733,13 +733,13 @@ void CObjet3D::ToCBINFormat(formatCoreBIN::ioModel& modelExport)
 
 
 }
-bool CObjet3D::_SaveCBIN(const char *filename)
+bool CObjet3D::_SaveCBIN(const std::string& filename)
 {
 	using namespace formatCoreBIN;
 	CformatBIN classExport;
 	ioModel modelExport;
 	ToCBINFormat(modelExport);
-	return classExport.ExportBIN(filename,modelExport);
+	return classExport.ExportBIN(filename.c_str(),modelExport);
 }
 void CObjet3D::GetTetraMesh(formatMBIN::trimeshmodel& trimesh,bool toRealCoords)
 {
@@ -772,25 +772,28 @@ void CObjet3D::GetTetraMesh(formatMBIN::trimeshmodel& trimesh,bool toRealCoords)
 	trimesh.tetrahedres.insert(trimesh.tetrahedres.begin(),tabVertexMaillageSize,bintetrahedre());
 	for(int idTetra=0;idTetra<tabVertexMaillageSize;idTetra++)
 	{
-		memcpy(&trimesh.tetrahedres[idTetra].sommets,&tabVertexMaillage[idTetra].sommets,sizeof(formatMBIN::Intb)*4);
-
+        trimesh.tetrahedres[idTetra].vertices[0] = (int)tabVertexMaillage[idTetra].sommets.a;
+        trimesh.tetrahedres[idTetra].vertices[1] = (int)tabVertexMaillage[idTetra].sommets.b;
+        trimesh.tetrahedres[idTetra].vertices[2] = (int)tabVertexMaillage[idTetra].sommets.c;
 		trimesh.tetrahedres[idTetra].idVolume=tabVertexMaillage[idTetra].idVolume;
 		for(int idFace=0;idFace<4;idFace++)
 		{
-			trimesh.tetrahedres[idTetra].tetrafaces[idFace].marker=tabVertexMaillage[idTetra].tetrafaces[idFace].marker;
-			memcpy(&trimesh.tetrahedres[idTetra].tetrafaces[idFace].sommets,&tabVertexMaillage[idTetra].tetrafaces[idFace].sommets,sizeof(ivec3));
-			trimesh.tetrahedres[idTetra].tetrafaces[idFace].neighboor=tabVertexMaillage[idTetra].tetraNeighboor[idFace];
+			trimesh.tetrahedres[idTetra].tetrafaces[idFace].marker = tabVertexMaillage[idTetra].tetrafaces[idFace].marker;
+			trimesh.tetrahedres[idTetra].tetrafaces[idFace].vertices[0] = (int)tabVertexMaillage[idTetra].tetrafaces[idFace].sommets.a;
+            trimesh.tetrahedres[idTetra].tetrafaces[idFace].vertices[1] = (int)tabVertexMaillage[idTetra].tetrafaces[idFace].sommets.b;
+            trimesh.tetrahedres[idTetra].tetrafaces[idFace].vertices[2] = (int)tabVertexMaillage[idTetra].tetrafaces[idFace].sommets.c;
+			trimesh.tetrahedres[idTetra].tetrafaces[idFace].neighbor = (int)tabVertexMaillage[idTetra].tetraNeighboor[idFace];
 		}
 
 	}
 }
-bool CObjet3D::SaveMaillage(const char *filename,bool toRealCoords)
+bool CObjet3D::SaveMaillage(const std::string& filename,bool toRealCoords)
 {
 	using namespace formatMBIN;
 	trimeshmodel trimesh;
 	GetTetraMesh(trimesh,toRealCoords);
 	CMBIN binExporter;
-	binExporter.SaveMesh(filename,trimesh);
+	binExporter.SaveMesh(filename.c_str(),trimesh);
 	if(!wxFileExists(filename))
 	{
 		wxLogError(_("Failed to export meshing"));
@@ -799,51 +802,7 @@ bool CObjet3D::SaveMaillage(const char *filename,bool toRealCoords)
 	return true;
 }
 
-bool CObjet3D::LoadMaillage(const char *filename)
-{
-	using namespace formatMBIN;
-	bintetrahedre* tabtetra;
-	t_binNode* tabNodes;
-
-	CMBIN binImporter;
-	unsigned int sizeTetra=0;
-	unsigned int sizeNodes=0;
-
-	binImporter.ImportBIN(filename,&tabtetra,&tabNodes,sizeTetra,sizeNodes);
-
-	if(sizeTetra>0 && sizeNodes>0)
-	{
-		//Copie des noeuds
-		delete[] nodesMaillage;
-		nodesMaillage=new vec3[sizeNodes];
-		nodesMaillageSize=sizeNodes;
-		memcpy(nodesMaillage,tabNodes,sizeNodes);
-		//Copie des tetrahèdres
-		delete[] tabVertexMaillage;
-		tabVertexMaillage=new tetrahedre[sizeTetra];
-		tabVertexMaillageSize=sizeTetra;
-
-		for(int idTetra=0;idTetra<sizeTetra;idTetra++)
-		{
-			memcpy(&tabVertexMaillage[idTetra].sommets,&tabtetra[idTetra].sommets,4);
-			for(int idFace=0;idFace<4;idFace++)
-			{
-				tabVertexMaillage[idTetra].tetrafaces[idFace].marker=tabtetra[idTetra].tetrafaces[idFace].marker;
-				memcpy(&tabVertexMaillage[idTetra].tetrafaces[idFace].sommets,&tabtetra[idTetra].tetrafaces[idFace].sommets,3);
-				tabVertexMaillage[idTetra].tetraNeighboor[idFace]=tabtetra[idTetra].tetrafaces[idFace].neighboor;
-			}
-
-		}
-
-		delete[] tabtetra;
-		delete[] tabNodes;
-		return true;
-	}else{
-		return true;
-	}
-}
-
-bool CObjet3D::BuildVarConstraintFile(const char *filename, float faceAreaContraint)
+bool CObjet3D::BuildVarConstraintFile(const std::string& filename, float faceAreaContraint)
 {
 	using namespace formatVAR;
 
@@ -877,10 +836,10 @@ bool CObjet3D::BuildVarConstraintFile(const char *filename, float faceAreaContra
 
 
 
-	return varExporter.BuildVar(constraintInfos,filename);
+	return varExporter.BuildVar(constraintInfos,filename.c_str());
 }
 
-bool CObjet3D::_SavePOLY(const char *filename,bool exportUserModel,bool separateUserDefinedModel,bool saveFaceIndex,std::vector<t_faceIndex>* fg_to_ind,bool saveFaceIndexAsGroup)
+bool CObjet3D::_SavePOLY(const std::string& filename,bool exportUserModel,bool separateUserDefinedModel,bool saveFaceIndex,std::vector<t_faceIndex>* fg_to_ind,bool saveFaceIndexAsGroup)
 {
 	using namespace formatPOLY;
 	CPoly polySaver;
@@ -889,7 +848,7 @@ bool CObjet3D::_SavePOLY(const char *filename,bool exportUserModel,bool separate
 	modelExport.modelVertices.reserve(this->_pVertices.size());
 	for(unsigned int i=0;i<this->_pVertices.size();i++)
 	{
-		modelExport.modelVertices.push_back(coordsOperation::GlCoordsToCommonCoords(UnitizeVar,this->_pVertices[i]));
+		modelExport.modelVertices.push_back(vec3_to_dvec3(coordsOperation::GlCoordsToCommonCoords(UnitizeVar,this->_pVertices[i])));
 	}
 	unsigned long faceIndex=0;
 	///////////////////////////////////////
@@ -931,9 +890,9 @@ bool CObjet3D::_SavePOLY(const char *filename,bool exportUserModel,bool separate
 					for(int idface=0;idface<consistentModel.size();idface++)
 					{
 						int indexVertice=modelExport.modelVertices.size();
-						modelExport.modelVertices.push_back(coordsOperation::GlCoordsToCommonCoords(UnitizeVar,consistentModel[idface].a));
-						modelExport.modelVertices.push_back(coordsOperation::GlCoordsToCommonCoords(UnitizeVar,consistentModel[idface].b));
-						modelExport.modelVertices.push_back(coordsOperation::GlCoordsToCommonCoords(UnitizeVar,consistentModel[idface].c));
+						modelExport.modelVertices.push_back(vec3_to_dvec3(coordsOperation::GlCoordsToCommonCoords(UnitizeVar,consistentModel[idface].a)));
+						modelExport.modelVertices.push_back(vec3_to_dvec3(coordsOperation::GlCoordsToCommonCoords(UnitizeVar,consistentModel[idface].b)));
+						modelExport.modelVertices.push_back(vec3_to_dvec3(coordsOperation::GlCoordsToCommonCoords(UnitizeVar,consistentModel[idface].c)));
 						formatPOLY::t_face nvFace;
 						nvFace.indicesSommets.set(indexVertice,indexVertice+1,indexVertice+2);
 						nvFace.faceIndex=faceIndex;
@@ -985,7 +944,7 @@ bool CObjet3D::_SavePOLY(const char *filename,bool exportUserModel,bool separate
 
 
 
-bool CObjet3D::_LoadFaceFile(const char *filename)
+bool CObjet3D::_LoadFaceFile(const std::string& filename)
 {
 	wxFileName nodePath(filename);
 	nodePath.SetExt("node");

@@ -63,32 +63,33 @@ struct t_binNode
 		return node[0]==_f.node[0] && node[1]==_f.node[1] && node[2]==_f.node[2];
 	}
 };
+
 /**
- * @brief Structure d'une face d'un tetrahedre
+ * @brief Tetrahedra face structure
  */
-struct bintetraface
-{
-	Intb sommets[3];
-	Intb marker;	/*!< Face du modèle -1 aucune */
-	Intb neighboor; /*!< Indice de tetraHedre 0 à n. -2 pour aucun voisin sur cette face */
-};
+	struct bintetraface {
+		Intb vertices[3]{0, 0, 0};
+		Intb marker = -1;    /*!< Associated model face -1 nothing */
+		Intb neighbor = -2; /*!< Tetrahedra neighbor index [0-n]. -2 no neighbor */
+	};
 
 /**
  * @brief Structure d'un tétrahedre du maillage
  *
  */
-struct bintetrahedre
-{
-	Intb sommets[4];
-	Intb idVolume;
-	bintetraface tetrafaces[4];
-	int operator==(const bintetrahedre &_f) {
-		return sommets[0]==_f.sommets[0] &&
-			sommets[1]==_f.sommets[1] &&
-			sommets[2]==_f.sommets[2] &&
-			sommets[3]==_f.sommets[3];
-	}
-};
+	struct bintetrahedre {
+
+		Intb vertices[4]{0, 0, 0, 0};
+		Intb idVolume = 0;
+		bintetraface tetrafaces[4]{bintetraface(), bintetraface(), bintetraface()};
+
+		int operator==(const bintetrahedre &_f) {
+			return vertices[0] == _f.vertices[0] &&
+				   vertices[1] == _f.vertices[1] &&
+				   vertices[2] == _f.vertices[2] &&
+				   vertices[3] == _f.vertices[3];
+		}
+	};
 
 struct trimeshmodel
 {

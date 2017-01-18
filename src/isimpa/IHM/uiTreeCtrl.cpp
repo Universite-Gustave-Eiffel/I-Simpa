@@ -397,8 +397,8 @@ void uiTreeCtrl::InitTree()
 	highlightEl.compteurHl=0;
 
 }
-uiTreeCtrl::uiTreeCtrl(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
-:wxTreeCtrl(parent, id, pos, size, style),alive(new bool(true))
+uiTreeCtrl::uiTreeCtrl(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style, bool _openOnSimpleClick)
+:wxTreeCtrl(parent, id, pos, size, style),alive(new bool(true)), openOnSimpleClick(_openOnSimpleClick)
 {
 	InitTree();
 }
@@ -409,7 +409,7 @@ void uiTreeCtrl::OnMenuItemClosed(wxCommandEvent& commandEvent) {
 }
 
 uiTreeCtrl::uiTreeCtrl()
-:wxTreeCtrl(),alive(new bool(true))
+:wxTreeCtrl(),alive(new bool(true)), openOnSimpleClick(true)
 {
 	InitTree();
 }
@@ -555,17 +555,19 @@ void uiTreeCtrl::AddElement(Element* newElement)
 
 void uiTreeCtrl::OnDoubleClic(wxTreeEvent& treeEvent)
 {
-	Element* elementDest;
 	treeEvent.Skip();
-	//On récupère lidentifiant de l'element correspondant dans l'événement
-	wxTreeItemId idElement=treeEvent.GetItem();
-	//On extrait l'élément du map
-	elementDest=GetElement(idElement);
-	if(elementDest!=NULL) //si on a bien récupéré l'element
-	{
-		wxCommandEvent cmdEv;
-		cmdEv.SetId(Element::IDEVENT_GETPROPERTIES);
-		this->OnElementEvent(cmdEv);
+	if(!openOnSimpleClick) {
+		Element* elementDest;
+		//On récupère lidentifiant de l'element correspondant dans l'événement
+		wxTreeItemId idElement = treeEvent.GetItem();
+		//On extrait l'élément du map
+		elementDest = GetElement(idElement);
+		if (elementDest != NULL) //si on a bien récupéré l'element
+		{
+			wxCommandEvent cmdEv;
+			cmdEv.SetId(Element::IDEVENT_GETPROPERTIES);
+			this->OnElementEvent(cmdEv);
+		}
 	}
 }
 
@@ -666,6 +668,12 @@ void uiTreeCtrl::OnLeftClic(wxMouseEvent& evt)
 	{
 		wxTreeEvent treeev(wxEVT_COMMAND_TREE_SEL_CHANGED,this,itId);
 		this->OnSelectTreeItem(treeev);
+		if(openOnSimpleClick) {
+			// Open item properties
+			wxCommandEvent cmdEv;
+			cmdEv.SetId(Element::IDEVENT_GETPROPERTIES);
+			this->OnElementEvent(cmdEv);
+		}
 	}
 	evt.Skip(true);
 }

@@ -59,11 +59,11 @@ namespace volume_identifier
 				{
 					if(cur_tetra.tetrafaces[vol_neigh.back()].marker==-1)
 					{
-						const Intb& neigh_id=cur_tetra.tetrafaces[vol_neigh.back()].neighboor;
+						const Intb& neigh_id=cur_tetra.tetrafaces[vol_neigh.back()].neighbor;
 						if(neigh_id!=-2)
 						{
-							//Ce voisin n'est pas coupé avec nous par une face du modèle et il y en a un
-							if(tetramodel.tetrahedres[neigh_id].idVolume==-1) //Si le voisin n'a pas été traité
+							//Ce voisin n'est pas coupï¿½ avec nous par une face du modï¿½le et il y en a un
+							if(tetramodel.tetrahedres[neigh_id].idVolume==-1) //Si le voisin n'a pas ï¿½tï¿½ traitï¿½
 							{
 								//On va traiter le voisin
 								vol_arb.push_back(neigh_id);
@@ -72,7 +72,7 @@ namespace volume_identifier
 						}
 					}
 				}else{
-					//On va traiter le prochain fils du père
+					//On va traiter le prochain fils du pï¿½re
 					vol_neigh.pop_back();
 					vol_arb.pop_back();
 				}
@@ -81,6 +81,6 @@ namespace volume_identifier
 				start_tetra++;
 			volcount++;
 		}
-		//Tout les tétraèdres ont été marqués
+		//Tout les tï¿½traï¿½dres ont ï¿½tï¿½ marquï¿½s
 	}
 };

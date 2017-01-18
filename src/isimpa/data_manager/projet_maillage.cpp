@@ -136,7 +136,7 @@ bool ProjectManager::RunTetGenBoundaryMesh( wxString cmd, wxString cacheFolder,w
 		///	On transfert les données vers l'objet de la scène
 		///////////////////////////////////////////
 		wxLogMessage(_("Loading mesh ASCII file ..."));
-		sceneMesh._LoadFaceFile(face);
+		sceneMesh._LoadFaceFile(face.ToStdString());
 		wxLogMessage(_("Loading ASCII files from mesh generator complete"));
 	}
 	
@@ -207,7 +207,7 @@ bool ProjectManager::RunTetGenMaillage(param_TetGenMaillage& paramMaillage)
 	///	Conversion de la scène au format POLY
 	///////////////////////////////////////////
 
-	if(!sceneMesh._SavePOLY(meshFilePath,true,paramMaillage.doMeshRepair,true,&faceInd))
+	if(!sceneMesh._SavePOLY(meshFilePath.ToStdString(),true,paramMaillage.doMeshRepair,true,&faceInd))
 	{
 		wxLogError(_("No 3D scene for meshing"));
 		return false;
@@ -220,7 +220,7 @@ bool ProjectManager::RunTetGenMaillage(param_TetGenMaillage& paramMaillage)
 	///////////////////////////////////////////
 	if(paramMaillage.isAreaConstraint && !paramMaillage.debugMode)
 	{
-		if(!sceneMesh.BuildVarConstraintFile(constraintFilePath,paramMaillage.maxAreaOnRecepteurss))
+		if(!sceneMesh.BuildVarConstraintFile(constraintFilePath.ToStdString(),paramMaillage.maxAreaOnRecepteurss))
 		{
 			wxLogError(_("Constraint file can not be created"));
 			return false;
@@ -329,7 +329,7 @@ void ProjectManager::OnFindSubVolumes(Element* volumes_el)
 			{
 				if((*ittet).idVolume==xmlidvol)
 				{
-					centre_vol=GetGTetra(tet_model.nodes[(*ittet).sommets[0]].node,tet_model.nodes[(*ittet).sommets[1]].node,tet_model.nodes[(*ittet).sommets[2]].node,tet_model.nodes[(*ittet).sommets[3]].node);
+					centre_vol=GetGTetra(tet_model.nodes[(*ittet).vertices[0]].node,tet_model.nodes[(*ittet).vertices[1]].node,tet_model.nodes[(*ittet).vertices[2]].node,tet_model.nodes[(*ittet).vertices[3]].node);
 					break;
 				}else{
 					idtetra++;

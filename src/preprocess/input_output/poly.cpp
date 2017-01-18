@@ -153,11 +153,10 @@ namespace formatPOLY
 		return atoi(charArray);
 	}
 
-	float ToFloat(const char* charArray)
+	double ToFloat(const char* charArray)
 	{
 		return atof(charArray);
 	}
-
 
 	CPoly::CPoly()
 	{
@@ -175,7 +174,7 @@ namespace formatPOLY
 // 'tetgenbehavior' will be used. The output file will have the suffix .mesh.//
 //                                                                           //
 ///////////////////////////////////////////////////////////////////////////////
-bool CPoly::ExportPOLY(t_model& scene, const char* mfilename)
+bool CPoly::ExportPOLY(t_model& scene, const std::string& mfilename)
 {
   EnglishTemporaryLocale dotNumericOnly;
 
@@ -184,29 +183,29 @@ bool CPoly::ExportPOLY(t_model& scene, const char* mfilename)
 
   FILE *outfile;
 
-  outfile = fopen(mfilename, "w");
+  outfile = fopen(mfilename.c_str(), "w");
   if (outfile == (FILE *) NULL) {
-    printf("File I/O Error:  Cannot create file %s.\n", mfilename);
+    printf("File I/O Error:  Cannot create file %s.\n", mfilename.c_str());
     return false;
   }
 
-  unsigned int sizeVertices=scene.modelVertices.size();
+  unsigned int sizeVertices= (unsigned int) scene.modelVertices.size();
   fprintf(outfile, "# Part 1 - node list\n");
   fprintf(outfile, "%i  3  0  0\n",sizeVertices);
-  vec3 realCoords;
+  dvec3 realCoords;
   for(int v=0; v < sizeVertices ;v++)
   {
 	realCoords=scene.modelVertices[v];
 	fprintf(outfile, "%i  %.8g  %.8g  %.8g\n",
 	v+1,
-	realCoords.x, //On remet les points à leur etat d'origine est l'on exporte
+	realCoords.x, //On remet les points ï¿½ leur etat d'origine est l'on exporte
 	realCoords.y,
 	realCoords.z);
   }
   fprintf(outfile, "\n");
   fprintf(outfile, "# Part 2 - facet list\n");
 
-  unsigned int sizeFacets=scene.modelFaces.size();
+  unsigned int sizeFacets= (unsigned int) scene.modelFaces.size();
   if(scene.saveFaceIndex)
 	fprintf(outfile, "%i  1\n",sizeFacets);
   else
@@ -241,7 +240,7 @@ bool CPoly::ExportPOLY(t_model& scene, const char* mfilename)
   fprintf(outfile, "\n");
   fprintf(outfile, "# Part 5 - user facet list\n");
 
-  unsigned int sizeUserFacets=scene.userDefinedFaces.size();
+  unsigned int sizeUserFacets= (unsigned int) scene.userDefinedFaces.size();
   fprintf(outfile, "%i  1\n",sizeUserFacets);
   for(int v=0; v < sizeUserFacets ;v++)
   {
@@ -262,13 +261,13 @@ struct words_destroyer
 	~words_destroyer(){ free(words);}
 	char **words;
 };
-bool CPoly::ImportPOLY(t_model& scene,const char* mfilename)
+bool CPoly::ImportPOLY(t_model& scene,const std::string& mfilename)
 {
   EnglishTemporaryLocale dotNumericOnly;
 
   char tmpBuffer[250];
   FILE *infile;
-  infile = fopen(mfilename, "r+");
+  infile = fopen(mfilename.c_str(), "r+");
   if (infile == (FILE *) NULL) {
     //throw -1; //("File I/O Error:  Cannot open file.\n");
     return false;
@@ -287,7 +286,8 @@ bool CPoly::ImportPOLY(t_model& scene,const char* mfilename)
   {
 	if(!fgets( tmpBuffer, 250, infile ) || (tmpBuffer[0]!=35 && tmpBuffer[0]!=10))
 	{
-		sscanf(tmpBuffer,"%i 3 %i %i\n",&sizeVertices,tmpBuffer,tmpBuffer);
+		int unused1, unused2;
+		sscanf(tmpBuffer,"%i 3 %i %i\n",&sizeVertices,&unused1,&unused2);
 		break;
 	}
   }
@@ -303,7 +303,7 @@ bool CPoly::ImportPOLY(t_model& scene,const char* mfilename)
   scene.modelVertices.reserve(sizeVertices*2);
   while(idvec<sizeVertices && !feof(infile))
   {
-	vec3 newVec;
+	dvec3 newVec;
 	fscanf(infile,"%i %20s %20s %20s\n",tmpBuffer,x,y,z);
 	newVec[0]=ToFloat(x);
 	newVec[1]=ToFloat(y);

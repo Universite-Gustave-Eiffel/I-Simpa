@@ -295,7 +295,7 @@ void BuildGraphSheetDialog::OnOK(wxCommandEvent& event)
 				if(idCurve==0) //Le premier style doit etre une ligne continue
 				{
 					wxPen firstCurvePen=drawingEl->el_style.GetPen();
-					firstCurvePen.SetStyle(wxSOLID);
+					firstCurvePen.SetStyle(wxPENSTYLE_SOLID);
 					drawingEl->el_style.SetPen(&firstCurvePen);
 				}
 				for(int idValue=0;idValue<nbValues;idValue++)

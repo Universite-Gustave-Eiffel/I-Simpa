@@ -52,7 +52,7 @@ class PropGrid: public wxGrid
 {
 protected:
 	void setCellValueWithEvt(int row,int col,const wxString& val);
-	typedef enum EVENT_MENU
+	enum EVENT_MENU
 	{
 		ID_COPIER,
 		ID_COLLER,

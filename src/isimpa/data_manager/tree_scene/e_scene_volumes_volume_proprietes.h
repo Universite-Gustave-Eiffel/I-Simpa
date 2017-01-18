@@ -47,26 +47,28 @@ public:
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
 		_("Properties");
+
+		// delete unused properties
+		Element* fcompute_mean_free_path(nullptr);
+		if(IsPropertyExist("fcompute_mean_free_path", &fcompute_mean_free_path)) {
+			DeleteElementByXmlId(fcompute_mean_free_path->GetXmlId());
+		}
+
+		Element* mean_free_path(nullptr);
+		if (IsPropertyExist("mean_free_path", &mean_free_path)) {
+			DeleteElementByXmlId(mean_free_path->GetXmlId());
+		}
+
+		if(!IsPropertyExist("description")) {
+			AppendPropertyText("description", wxTRANSLATE("Description"), "");
+		}
 	}
 
 	E_Scene_Volumes_Volume_Proprietes( Element* parent)
 		:Element(parent,"Properties",Element::ELEMENT_TYPE_SCENE_VOLUMES_VOLUME_PROPRIETES)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
-		this->AppendPropertyBool("fcompute_mean_free_path","Calculate the mean free path",true,true);
-		this->AppendPropertyDecimal("mean_free_path","Mean free path",1,true,2,false,true,0,.01f,true);
-		_("Calculate the mean free path");
-		_("Mean free path");
-	}
-
-	void Modified(Element* eModif)
-	{
-		t_elementInfo filsInfo=eModif->GetElementInfos();
-		if(filsInfo.libelleElement=="fcompute_mean_free_path")
-		{
-			this->SetReadOnlyConfig("mean_free_path",this->GetBoolConfig("fcompute_mean_free_path"));
-		}
-		Element::Modified(eModif);
+		AppendPropertyText("description", wxTRANSLATE("Description"), "");
 	}
 	
 	wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)

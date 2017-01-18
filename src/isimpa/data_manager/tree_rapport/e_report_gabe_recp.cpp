@@ -147,7 +147,7 @@ bool E_Report_Gabe_Recp::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,
 			float* wVal=&cellsValue[((idcol)*nbrow)+idrow];
 			float dbVal=10*log10f((*wVal)*p_0);
 			(*wVal)=dbVal;
-			cells[(idcol*nbrow)+idrow]=wxString::Format("%.1f",dbVal); //Précision de 1 chiffre aprés la virgule
+			cells[(idcol*nbrow)+idrow]=wxString::Format("%."+ wxString::Format(wxT("%i"), COMMA_PRECISION_DB) +"f",dbVal); //Précision de 1 chiffre aprés la virgule
 		}
 	}
 	for(int idrow=0;idrow<nbrow-1;idrow++)
@@ -184,8 +184,8 @@ bool E_Report_Gabe_Recp::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,
 
 		MainSimpleGraphWindow* graphPage;
 		//Ajout des données au graphique
-		int nbrowel=lblRows.size();
-		int nbcolel=lblCols.size();
+		std::size_t nbrowel=lblRows.size();
+		std::size_t nbcolel=lblCols.size();
 
 		graphPage=new MainSimpleGraphWindow(noteBookWin,-1);
 		wxString gabeFolder;
@@ -194,21 +194,16 @@ bool E_Report_Gabe_Recp::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,
 
 		noteBookWin->AddPage(graphPage,_("Spectrum"));
 		SG_Element_List* drawingEl;
-		//Ajout du spectre total
-		if(true)
+		size_t idcol=nbcolel-1;
+		drawingEl=new SG_Element_List(graphPage,lblCols[idcol]);
+		drawingEl->el_style.SetDrawingMethod(DRAWING_METHOD_COLS);
+		drawingEl->el_style.SetPen(wxWHITE_PEN);
+		wxBrush brush =wxBrush(*wxBLACK, wxBRUSHSTYLE_FDIAGONAL_HATCH);
+		drawingEl->el_style.SetBrush(&brush);
+		for(int idrow=0;idrow<nbrowel-1;idrow++)
 		{
-			int idcol=nbcolel-1;
-			drawingEl=new SG_Element_List(graphPage,lblCols[idcol]);
-			drawingEl->el_style.SetDrawingMethod(DRAWING_METHOD_COLS);
-			drawingEl->el_style.SetPen(wxWHITE_PEN);
-			wxBrush brush =wxBrush(*wxBLACK,wxFDIAGONAL_HATCH );
-			drawingEl->el_style.SetBrush(&brush);
-			for(int idrow=0;idrow<nbrowel-1;idrow++)
-			{
-				drawingEl->PushValue(cellsValue[(idcol*nbrowel)+idrow]);
-			}
+			drawingEl->PushValue(cellsValue[(idcol*nbrowel)+idrow]);
 		}
-
 
 		//////////////////
 		// Ajout des axes
@@ -248,35 +243,34 @@ bool E_Report_Gabe_Recp::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,
 		SG_Legend::Add(new SG_Legend(graphPage,LEGEND_PLACEMENT_HORIZONTAL,-1), wxSizerFlags(0).Align(wxALIGN_TOP));
 
 		//Ajout Toute bande
-		for(int idrow=nbrowel-1;idrow<nbrowel;idrow++)
+		for(size_t idrow=nbrowel-1;idrow<nbrowel;idrow++)
 		{
-			SG_Element_Data* drawingElDat=new SG_Element_Data(graphPage,lblRows[idrow],nbcolel-1);
+			SG_Element_Data* drawingElDat=new SG_Element_Data(graphPage, lblRows[idrow],
+															  (const wxInt32 &) (nbcolel - 1));
 			drawingElDat->el_style.SetDrawingMethod(DRAWING_METHOD_ECHOGRAM);
-			wxPen pen = wxPen(*wxGREEN,1,wxSOLID);
+			wxPen pen = wxPen(*wxGREEN,1,wxPENSTYLE_SOLID);
 			drawingElDat->el_style.SetPen(&pen);
 
 			bool lastIsZeroVal=false;
-			for(int idcol=0;idcol<nbcolel-1;idcol++)
+			for(size_t colId=0;colId<nbcolel-1;colId++)
 			{
-				char  *stopstring;
-				unsigned long xVal =strtoul(lblCols[idcol].c_str(),&stopstring,10);
-				wxInt32 indice=(idcol*nbrowel)+idrow;
-				drawingElDat->PushValue(xVal,cellsValue[indice]);
+				char  *stopString;
+				unsigned long xVal =strtoul(lblCols[colId].c_str(),&stopString,10);
+				size_t cellIndex=(colId*nbrowel)+idrow;
+				drawingElDat->PushValue(xVal,cellsValue[cellIndex]);
 			}
 		}
-		if(true)
+		SG_Element_Data* drawingElDat=new SG_Element_Data(graphPage, _("Schroeder's curve"),
+														  (const wxInt32 &) (nbcolel - 1));
+		drawingElDat->el_style.SetDrawingMethod(DRAWING_METHOD_LINE);
+		wxPen pen = wxPen(*wxBLACK,2,wxPENSTYLE_SOLID);
+		drawingElDat->el_style.SetPen(&pen);
+		//Ajout de schroeder
+		for(int idcol=0;idcol<nbcolel-1;idcol++)
 		{
-			SG_Element_Data* drawingElDat=new SG_Element_Data(graphPage,_("Schroeder's curve"),nbcolel-1);
-			drawingElDat->el_style.SetDrawingMethod(DRAWING_METHOD_LINE);
-			wxPen pen = wxPen(*wxBLACK,2,wxSOLID);
-			drawingElDat->el_style.SetPen(&pen);
-			//Ajout de schroeder
-			for(int idcol=0;idcol<nbcolel-1;idcol++)
-			{
-				char  *stopstring;
-				unsigned long xVal =strtoul(lblCols[idcol].c_str(),&stopstring,10);
-				drawingElDat->PushValue(xVal,schroederGraph[idcol]);
-			}
+			char  *stopstring;
+			unsigned long xVal =strtoul(lblCols[idcol].c_str(),&stopstring,10);
+			drawingElDat->PushValue(xVal,schroederGraph[idcol]);
 		}
 		graphPage->ZoomFit();
 		graphPage->LoadConfig(ApplicationConfiguration::GetFileConfig(),ApplicationConfiguration::CONST_GRAPH_CONFIG_PATH,true);

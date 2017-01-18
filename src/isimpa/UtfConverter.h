@@ -38,7 +38,7 @@
 //#define WXSTRINGTOCHARPTR(wxstr) UtfConverter::ToUtf8(wxstr.t_str()).c_str()
 //#define WXSTRINGTOSTDSTRING(wxstr) UtfConverter::ToUtf8(wxstr.t_str())
 #define WXSTRINGTOCHARPTR(wxstr) ((const char*)wxstr.mb_str())
-#define WXSTRINGTOSTDSTRING(wxstr) std::string((const char*)wxstr.mb_str())
+#define WXSTRINGTOSTDSTRING(wxstr) wxstr.ToStdString()
 #define WXSTRINGTOSTDWSTRING(wxstr) std::wstring(wxstr.wc_str())
 #define STDWSTRINGTOCONSTCHAR(stdwstr) UtfConverter::ToUtf8(stdwstr).c_str()
 

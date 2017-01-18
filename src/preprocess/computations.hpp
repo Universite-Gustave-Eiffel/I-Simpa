@@ -73,15 +73,15 @@ private:
 	
 	int FindFaceWithSommet( const ivec3& sommetsSearch );
 	//Retourne -1 si aucun point correspondant
-	int FindIndexWithPosition( const vec3& position );
+	int FindIndexWithPosition( const dvec3& position );
 	//return vrai si la division a eu lieu
 	//addedFaceOne -1 ou idface (si inséré)
 	//addedFaceTwo -1 ou idface (si inséré)
 	bool SplitTriangleByThree( formatPOLY::t_face& triangleToSplit , const int& splitCentre,int* addedFaceOne,int* addedFaceTwo  );
 
 	//return faux si aucun traitement effectué
-	bool OnCollisionDetectedSplitIt( formatPOLY::t_face& triangleOne, formatPOLY::t_face& triangleTwo, const vec3& position );
-	bool OnCollisionDetectedDestroyIt( formatPOLY::t_face& triangleOne, formatPOLY::t_face& triangleTwo, const vec3& position );
+	bool OnCollisionDetectedSplitIt( formatPOLY::t_face& triangleOne, formatPOLY::t_face& triangleTwo, const dvec3& position );
+	bool OnCollisionDetectedDestroyIt( formatPOLY::t_face& triangleOne, formatPOLY::t_face& triangleTwo, const dvec3& position );
 	void PushNewFace(const formatPOLY::t_face& newFace);
 	void ReBuildOctree();
 	bool coplanarIntersection(int idface,int idfaceTest);

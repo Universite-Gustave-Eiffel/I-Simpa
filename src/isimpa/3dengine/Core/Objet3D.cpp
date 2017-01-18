@@ -268,10 +268,10 @@ void CObjet3D::glPrint(vec3 pos,vec3 color,const char *fmt, ...)			// Custom GL 
 	va_end(ap);											// Results Are Stored In Text
 
 	glPushAttrib(GL_LIST_BIT);							// Pushes The Display List Bits
-	glListBase(base - 32);								// Sets The Base Character to 32
+	glListBase((GLuint) (base - 32));								// Sets The Base Character to 32
 
 
-	glCallLists(strlen(text), GL_UNSIGNED_BYTE, text);	// Draws The Display List Text
+	glCallLists((GLsizei) strlen(text), GL_UNSIGNED_BYTE, text);	// Draws The Display List Text
 	glPopAttrib();										// Pops The Display List Bits
 
 
@@ -281,18 +281,6 @@ void CObjet3D::glPrint(vec3 pos,vec3 color,const char *fmt, ...)			// Custom GL 
 		glEnable(GL_LIGHTING);
 	glLineWidth(.5);
 
-}
-
-inline void CObjet3D::GetPathFromFilename( const char* string, char* result)
-{ //extrait le dossier du nom de fichier
-    char *path;
-
-    strcpy(result, string);
-    path=strrchr(result, wxFileName::GetPathSeparator());
-    if (path==NULL)
-        return;
-    else
-        *(path+1)=0;
 }
 
 long CObjet3D::GetNumFaces(long g)
@@ -345,11 +333,8 @@ void CObjet3D::FillVectorWithRealVertices(std::vector<vec3>* vectorToFeed)
 	}
 }
 
-void CObjet3D::LoadPolyWithoutLostCurrentModelGroupAndMaterials(const char *filename)
+void CObjet3D::LoadPolyWithoutLostCurrentModelGroupAndMaterials(const std::string& filename)
 {
-	//this->_Destroy();
-	char m_filepathname[256];
-	this->GetPathFromFilename( filename, m_filepathname);
 	using namespace formatPOLY;
 
 	CPoly LoadPoly;
@@ -358,10 +343,10 @@ void CObjet3D::LoadPolyWithoutLostCurrentModelGroupAndMaterials(const char *file
 	//Transfert des vertices
 	this->_pVertices.clear();
 	for(int idvert=0;idvert<modelpoly.modelVertices.size();idvert++)
-		this->_pVertices.push_back(coordsOperation::CommonCoordsToGlCoords(vec4(0,0,0,1), modelpoly.modelVertices[idvert]));
+		this->_pVertices.push_back(coordsOperation::CommonCoordsToGlCoords(vec4(0,0,0,1), dvec3_to_vec3(modelpoly.modelVertices[idvert])));
 
 	//Création du tableau de correspondance
-	std::vector<t_faceIndex> oldFaceCorrspondance(this->GetNumFaces());
+	std::vector<t_faceIndex> oldFaceCorrspondance((unsigned long) this->GetNumFaces());
 	unsigned int counter=0;
 	std::vector<SGroup3D> localGroups;
 
@@ -379,7 +364,7 @@ void CObjet3D::LoadPolyWithoutLostCurrentModelGroupAndMaterials(const char *file
 
 	//Transfer des groupes
 
-	unsigned int nbfaces=modelpoly.modelFaces.size();
+	unsigned int nbfaces= (unsigned int) modelpoly.modelFaces.size();
 	for(long base_f=0;base_f<nbfaces;base_f++)
 	{
 		if(modelpoly.modelFaces[base_f].faceIndex<oldFaceCorrspondance.size())
@@ -409,14 +394,13 @@ void CObjet3D::LoadPolyWithoutLostCurrentModelGroupAndMaterials(const char *file
 	IntersectionTool=new ui_tools::IntersectionSeeker(_pVertices,_pGroups);
 }
 
-bool CObjet3D::Load(const char *filename)
+bool CObjet3D::Load(const std::string& filename)
 { //chargement d'un fichier contenant un modèle 3D
 	bool isLoadOk=false;
 	this->_Destroy();
 	wxString fullName(filename);
 	wxString Extension=fullName.Mid(fullName.rfind(".")+1);
 	Extension.MakeLower();
-	//const char *Extension = &filename[strlen(filename) - 3];
 	if(Extension=="3ds")
 	{
 		if(this->_Load3DS(filename))
@@ -464,7 +448,7 @@ bool CObjet3D::BuildModel(vec3 debCuboide,vec3 finCuboide)
 	SGroup3D nvGroupe;
 	for(int i=0;i<allTriangles.size();i++)
 	{
-		int nextIndex=_pVertices.size();
+		int nextIndex= (int) _pVertices.size();
 		SFace3D nvFace;
 		nvFace.Vertices.a=nextIndex;
 		nvFace.Vertices.b=nextIndex+1;
@@ -491,57 +475,43 @@ bool CObjet3D::BuildModel(vec3 debCuboide,vec3 finCuboide)
 
 	return true;
 }
-bool CObjet3D::Save(const char *filename)
+bool CObjet3D::Save(const std::string& filename)
 { //Sauvegarde d'un fichier, determination du type via l'extension dans le nom du fichier
-	const char *Extension = &filename[strlen(filename) - 4];
-	if ((!strcmp(Extension, "MESH"))||(!strcmp(Extension, "mesh")))
-	{
-		if(!this->_SaveMESH(filename))
-			return false;
-		else return true;
+	std::string ext = wxFileName(filename).GetExt().Lower().ToStdString();
+	if(ext.empty()) {
+		return false;
 	}
-	else if ((!strcmp(Extension, ".ASC"))||(!strcmp(Extension, ".asc")))
+	if (ext == "mesh")
 	{
-		if(!this->_SaveASC(filename))
-			return false;
-		else return true;
+		return this->_SaveMESH(filename);
 	}
-	else if ((!strcmp(Extension, ".NFF"))||(!strcmp(Extension, ".nff")))
+	else if (ext == "asc")
 	{
-		if(!this->_SaveNFF(filename))
-			return false;
-		else return true;
+		return this->_SaveASC(filename);
 	}
-	else if ((!strcmp(Extension, "POLY"))||(!strcmp(Extension, "poly")))
+	else if (ext=="nff")
 	{
-		if(!this->_SavePOLY(filename))
-			return false;
-		else return true;
+        return this->_SaveNFF(filename);
 	}
-	else if ((!strcmp(Extension, ".PLY"))||(!strcmp(Extension, ".ply")))
+	else if (ext=="poly")
 	{
-		if(wxString(filename).Contains(".mat."))
+		return this->_SavePOLY(filename);
+	}
+	else if (ext == "ply")
+	{
+		if(wxString(filename).EndsWith(".mat.ply"))
 		{
 			return this->_SavePLYProjectGroup(filename);
 		}else{
-			if(!this->_SavePLY(filename))
-				return false;
-			else
-				return true;
+			return this->_SavePLY(filename);
 		}
 	}
-	else if ((!strcmp(Extension, ".BIN"))||(!strcmp(Extension, ".bin")))
+	else if (ext == "bin")
 	{
-		if(!this->_SaveBIN(filename))
-			return false;
-		else return true;
-
-
-	}else if ((!strcmp(Extension, "CBIN"))||(!strcmp(Extension, "cbin")))
+		return this->_SaveBIN(filename);
+	}else if (ext == "cbin")
 	{
-		if(!this->_SaveCBIN(filename))
-			return false;
-		else return true;
+		return this->_SaveCBIN(filename);
 	}else
 		return false;
 }
@@ -902,34 +872,34 @@ long CObjet3D::_RenderGroupLines(long g,bool hideLines)
 	return this->_pGroups[g].pFaces.size();
 }
 
-bool CObjet3D::_SaveMESH(const char *filename)
+bool CObjet3D::_SaveMESH(const std::string& filename)
 {
 	using namespace formatMESH;
 	formatMESH::CMesh classExport;
-	classExport.ExportMESH(this->UnitizeVar,this->_pGroups,this->_pVertices,filename,this->GetNumVertices(),this->GetNumFaces());
+	classExport.ExportMESH(this->UnitizeVar,this->_pGroups,this->_pVertices,filename,this->GetNumFaces());
 	return true;
 }
 
-bool CObjet3D::_SaveASC(const char *filename)
+bool CObjet3D::_SaveASC(const std::string&filename)
 {
 	formatASC::CAsc classExport;
 	//classExport.ExportASC(this->UnitizeVar,this->tabVertexMaillage, filename, this->tabVertexMaillageNbFace);
-	classExport.ExportASC(this->UnitizeVar,this->_pGroups,this->_pVertices,filename,this->GetNumVertices(),this->GetNumFaces());
+	classExport.ExportASC(this->UnitizeVar,this->_pGroups,this->_pVertices,filename.c_str(),this->GetNumVertices(),this->GetNumFaces());
 	return true;
 }
-bool CObjet3D::_SaveNFF(const char *filename)
+bool CObjet3D::_SaveNFF(const std::string&filename)
 {
 	formatNFF::CNff classExport;
-	classExport.ExportNFF(this->UnitizeVar,this->_pGroups,this->_pVertices,filename,this->GetNumVertices(),this->GetNumFaces());
+	classExport.ExportNFF(this->UnitizeVar,this->_pGroups,this->_pVertices,filename.c_str(),this->GetNumVertices(),this->GetNumFaces());
 	return true;
 }
-bool CObjet3D::_SaveBIN(const char *filename)
+bool CObjet3D::_SaveBIN(const std::string& filename)
 {
 	formatBIN::CformatBIN classExport;
 	return classExport.ExportBIN(filename,this->UnitizeVar,this->_pVertices,this->_pTexCoords,this->_pGroups);
 }
 
-bool CObjet3D::_SavePLYProjectGroup(const char *filename)
+bool CObjet3D::_SavePLYProjectGroup(const std::string&filename)
 {
 
 	formatRPLY::t_model modelExport;
@@ -1000,7 +970,7 @@ bool CObjet3D::_SavePLYProjectGroup(const char *filename)
 	
 	return formatRPLY::CPly::ExportPly(modelExport,filename);
 }
-bool CObjet3D::_SavePLY(const char *filename)
+bool CObjet3D::_SavePLY(const std::string&filename)
 {
 
 	formatRPLY::t_model modelExport;
@@ -1033,22 +1003,20 @@ bool CObjet3D::_SavePLY(const char *filename)
 
 
 
-bool CObjet3D::_SaveNFFMaillage(const char *filename)
+bool CObjet3D::_SaveNFFMaillage(const std::string&filename)
 {
 	formatNFF::CNff classExport;
 	//classExport.ExportTetraNFF(this->UnitizeVar,this->tabVertexMaillage, filename, this->tabVertexMaillageNbFace);
 	return true;
 }
 
-bool CObjet3D::_LoadSTL(const char *filename)
+bool CObjet3D::_LoadSTL(const std::string&filename)
 {
-	char m_filepathname[256];
-	this->GetPathFromFilename( filename, m_filepathname);
 	using namespace formatSTL;
 
 	CStl LoadStl;
 	t_model modelstl;
-	if(!LoadStl.ImportSTL(modelstl,filename)) return false;
+	if(!LoadStl.ImportSTL(modelstl,filename.c_str())) return false;
 	//Transfert des vertices
 	this->_pVertices.clear();
 	this->_pVertices.reserve(modelstl.modelVertices.size());
@@ -1059,7 +1027,7 @@ bool CObjet3D::_LoadSTL(const char *filename)
 	SGroup3D grp;
 	this->_pGroups.push_back(grp);
 	int g=0;
-	unsigned int nbfaces=modelstl.modelFaces.size();
+	unsigned int nbfaces= (unsigned int) modelstl.modelFaces.size();
 	SFace3D nvface;
 	this->_pGroups[g].Name="model";
 	this->_pGroups[g].Material=-1;
@@ -1082,10 +1050,8 @@ bool CObjet3D::_LoadSTL(const char *filename)
 	this->Unitize();
 	return true;
 }
-bool CObjet3D::_LoadPOLY(const char *filename)
+bool CObjet3D::_LoadPOLY(const std::string& filename)
 {
-	char m_filepathname[256];
-	this->GetPathFromFilename( filename, m_filepathname);
 	using namespace formatPOLY;
 
 	CPoly LoadPoly;
@@ -1094,13 +1060,13 @@ bool CObjet3D::_LoadPOLY(const char *filename)
 	//Transfert des vertices
 	this->_pVertices.clear();
 	for(int idvert=0;idvert<modelpoly.modelVertices.size();idvert++)
-		this->_pVertices.push_back(coordsOperation::CommonCoordsToGlCoords(vec4(0,0,0,1), modelpoly.modelVertices[idvert]));
+		this->_pVertices.push_back(coordsOperation::CommonCoordsToGlCoords(vec4(0,0,0,1), dvec3_to_vec3(modelpoly.modelVertices[idvert])));
 
 	//Transfer des groupes
 	SGroup3D grp;
 	this->_pGroups.push_back(grp);
 	int g=0;
-	unsigned int nbfaces=modelpoly.modelFaces.size();
+	unsigned int nbfaces= (unsigned int) modelpoly.modelFaces.size();
 	SFace3D nvface;
 	this->_pGroups[g].Name="model";
 	this->_pGroups[g].Material=-1;
@@ -1123,7 +1089,7 @@ bool CObjet3D::_LoadPOLY(const char *filename)
 	this->Unitize();
 	return true;
 }
-bool CObjet3D::_LoadPLY(const char *filename)
+bool CObjet3D::_LoadPLY(const std::string& filename)
 {
 	formatRPLY::t_model modelImport;
 	if(!formatRPLY::CPly::ImportPly(modelImport,filename))
@@ -1141,7 +1107,7 @@ bool CObjet3D::_LoadPLY(const char *filename)
 
 	std::size_t layerCount(modelImport.modelLayers.size());
 	std::size_t facetLayerInfoCount(modelImport.modelFacesLayerIndex.size());
-	unsigned int nbfaces=modelImport.modelFaces.size();
+	unsigned int nbfaces= (unsigned int) modelImport.modelFaces.size();
 
 	if(layerCount>0 && facetLayerInfoCount==nbfaces)
 	{
@@ -1202,7 +1168,7 @@ bool CObjet3D::_LoadPLY(const char *filename)
 }
 
 //#define OPTIMIZE_TEST
-bool CObjet3D::_LoadBIN(const char *filename)
+bool CObjet3D::_LoadBIN(const std::string& filename)
 {
 	#ifdef OPTIMIZE_TEST
 	TIMECAPS resolution;
@@ -1212,8 +1178,7 @@ bool CObjet3D::_LoadBIN(const char *filename)
     start = timeGetTime ();
 	#endif
 
-	char m_filepathname[256];
-	this->GetPathFromFilename( filename, m_filepathname);
+    wxString m_filepathname = wxFileName(filename).GetPath() + wxFileName::GetPathSeparator();
 	using namespace formatBIN;
 	CformatBIN loadBin;
 	t3DModel modelbin={0};
@@ -1253,7 +1218,7 @@ bool CObjet3D::_LoadBIN(const char *filename)
 		SGroup3D grp;
 		(*itgroupdest).Name=(*itgroup).strName;
 		(*itgroupdest).Material=(*itgroup).materialID;
-		(*itgroupdest).pFaces.insert((*itgroupdest).pFaces.end(),(*itgroup).numOfFaces,SFace3D());
+		(*itgroupdest).pFaces.insert((*itgroupdest).pFaces.end(), (unsigned long) (*itgroup).numOfFaces, SFace3D());
 		std::vector<SFace3D>::iterator itfacedest=(*itgroupdest).pFaces.begin();
 		for(long f=0;f<(*itgroup).numOfFaces;f++)
 		{
@@ -1287,7 +1252,7 @@ bool CObjet3D::_LoadBIN(const char *filename)
 
 		if(strlen(modelbin.pMaterials[idmat].strFile) > 0)
 		{
-			wxString pathTexture=wxString(m_filepathname)+modelbin.pMaterials[idmat].strFile;
+			wxString pathTexture=m_filepathname+modelbin.pMaterials[idmat].strFile;
 			mat.idTex = textures->Load(WXSTRINGTOSTDSTRING(pathTexture));
 			this->_hasTexture=true;
 			if(mat.idTex!=-1)
@@ -1310,12 +1275,11 @@ bool CObjet3D::_LoadBIN(const char *filename)
 	return true;
 }
 
-bool CObjet3D::_Load3DS(const char *filename)
+bool CObjet3D::_Load3DS(const std::string& filename)
 {
 	wxString m_filepathname;
 	wxFileName filename_op(filename);
 	m_filepathname=filename_op.GetPath()+wxFileName::GetPathSeparator();
-	//this->GetPathFromFilename( filename, m_filepathname);
 
 	using namespace format3DS;
 	long g,f,j,m;
@@ -1323,18 +1287,16 @@ bool CObjet3D::_Load3DS(const char *filename)
 	SFace3D face;
 	CLoad3DS Load3ds;
 	t3DModel model3ds;
-	if(!Load3ds.Import3DS(&model3ds, filename))
+	if(!Load3ds.Import3DS(&model3ds, filename.c_str()))
 		return false;
 	long Voffset = 0, Toffset = 0;
-	this->_pGroups.reserve(model3ds.numOfObjects);
+	this->_pGroups.reserve((std::size_t) model3ds.numOfObjects);
 	//Creation des matériaux
 	long matId;
 	for(short idmat=0;idmat<model3ds.numOfMaterials;idmat++)
 	{
 			SMaterial mat;
 			m = idmat;
-			//mat.Name = new char[255];
-			//strcpy(&(*mat.Name),model3ds.pMaterials[m].strName);
 			mat.Name=std::string(model3ds.pMaterials[m].strName,255);
 			mat.Shininess = 128.0f - model3ds.pMaterials[m].Shininess[0] * 1.28f;
 			if (model3ds.pMaterials[m].Transparency[0] > 0.0f)
@@ -1452,15 +1414,15 @@ void AppendCoplanarFace( const float& coplanarEpsilon, std::vector<vec3>& vertic
 	alreadyProcessedFaces[faceToProcess.GetHashValue()]=true;
 	dstLst.push_back(faceToProcess);
 	std::vector<t_faceIndex> dotToFace;
-	for(wxInt16 idsommet=0;idsommet<3;idsommet++)
+	for(wxInt16 vertexId=0;vertexId<3;vertexId++)
 	{
 		dotToFace.clear();
-		wxInt32 idPt=lstFaces[faceToProcess.g].pFaces[faceToProcess.f].Vertices[idsommet];
+        long idPt= lstFaces[faceToProcess.g].pFaces[faceToProcess.f].Vertices[vertexId];
 		intersectionSeeker.GetSommetFaceNeighboors(verticesLst[idPt],dotToFace);
 
-		wxInt16 sizeFaceVoisins=dotToFace.size();
+        std::size_t neighFaceCount=dotToFace.size();
 		//Pour chaque face lié au sommet
-		for(wxUint32 idlface=0;idlface<sizeFaceVoisins;idlface++)
+		for(std::size_t idlface=0;idlface<neighFaceCount;idlface++)
 		{
 			const t_faceIndex* currentFace=&dotToFace[idlface];
 			if(alreadyProcessedFaces.find(currentFace->GetHashValue())==alreadyProcessedFaces.end()) //Si la face n'a pas déjà été traité
@@ -1714,7 +1676,7 @@ void CObjet3D::GetRealVertice(const unsigned long verticeId,vec3* outVert)
 }
 void CObjet3D::SelectVertex(const t_faceIndex& faceid)
 {
-	if(faceid.f>=0 && faceid.f<this->GetNumFaces(faceid.g))
+	if(faceid.f>=0 && faceid.g >=0 && faceid.f<this->GetNumFaces(faceid.g))
 	{
 		this->_pGroups[faceid.group].pFaces[faceid.face].selected=true;
 		selectionChange=true;

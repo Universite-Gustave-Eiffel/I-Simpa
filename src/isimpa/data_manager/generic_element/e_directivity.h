@@ -36,11 +36,11 @@
 #define __E_DIRECTIVITY__
 
 /** \file e_directivity.h
-\brief Classe correspondant a la directivité d'une source
+\brief Directivity database node implementation
 */
 
 /**
-\brief Classe correspondant a la directivité d'une source
+\brief Directivity database node implementation
 */
 
 class E_Directivity : public Element

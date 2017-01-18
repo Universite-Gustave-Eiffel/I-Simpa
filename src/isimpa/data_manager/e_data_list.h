@@ -77,9 +77,7 @@ public:
 						propValue.ToLong(&id);
 						if(currentChild->GetAttribute("value",&propValue))
 						{
-
-							eList.push_back(propValue);
-							iList.push_back(id);
+							AppendItem(propValue, id);
 						}
 
 					}
@@ -123,8 +121,11 @@ public:
 	}
 	void AppendItem(const wxString& itemLabel,const int& itemId)
 	{
-		eList.push_back(itemLabel);
-		iList.push_back(itemId);
+		// If the data list does not already contains this item
+		if (std::find(iList.begin(), iList.end(), itemId) == iList.end()) { 
+			eList.push_back(itemLabel);
+			iList.push_back(itemId);
+		}
 	}
 	wxXmlNode* SaveXMLCoreDoc(wxXmlNode* NoeudParent)
 	{
