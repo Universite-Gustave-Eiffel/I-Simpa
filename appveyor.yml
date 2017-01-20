@@ -49,7 +49,7 @@ before_build:
   #- set wxWidgets_ROOT_DIR=%WXWIN%
   #- set wxWidgets_LIB_DIR=%WXWIN%\lib\vc140_dll
   - cmd: SET PATH=%PATH%;C:\Program Files (x86)\Poedit\Gettexttools\bin;
-  - cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%P% -DSWIG_DIR="%SWIG_DIR%" -DSWIG_EXECUTABLE="%SWIG_EXECUTABLE%"
+  - cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%P%
   
 artifacts:
   - path: 'c:\projects\isimpax64\*.exe'
