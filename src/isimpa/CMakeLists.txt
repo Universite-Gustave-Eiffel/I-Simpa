@@ -362,7 +362,7 @@ source_group( "" FILES ${ISIMPA_SOURCES} )
 
 # Build auto-generated source files
 # Find package for generation
-FIND_PACKAGE(PythonInterp REQUIRED)
+FIND_PACKAGE(PythonInterp 2.7 REQUIRED)
 
 # Ask make to call python in order to use element.h to produce enum_def.cpp
 ADD_CUSTOM_COMMAND(
@@ -435,7 +435,7 @@ IF(CMAKE_BUILD_TYPE STREQUAL "Debug")
 ELSE()
     SET(wxWidgets_USE_DEBUG OFF)
     SET(wxWidgets_USE_STATIC ON)
-    MESSAGE(STATUS "Using static wxWidgets library")
+    MESSAGE(STATUS "Using static wxWidgets library  lib:${wxWidgets_LIBRARIES} include:${wxWidgets_INCLUDE_DIRS}")
 ENDIF()
 
 find_package(wxWidgets COMPONENTS core base xml gl aui adv REQUIRED)
