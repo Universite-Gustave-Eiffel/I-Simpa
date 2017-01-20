@@ -8,7 +8,6 @@ environment:
     BOOST_LIBRARYDIR: C:\Libraries\boost_1_60_0\lib64-msvc-14.0
     PYTHON_LIBRARY: C:\Python27-x64
     PYTHON_INCLUDE_DIR: C:\Python27-x64\include
-    PYTHON_INCLUDE_DIR: C:\Python27-x64\include
     WXWIN: C:\wxWidgets-3.1.0\
     wxWidgets_ROOT_DIR: C:\wxWidgets-3.1.0\
     wxWidgets_INCLUDE_DIRS: C:\wxWidgets-3.1.0\include
