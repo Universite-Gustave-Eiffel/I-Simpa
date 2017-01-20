@@ -68,7 +68,11 @@ public:
 		wxString propFile;
 		if (noeudCourant->GetAttribute("value", &propFile))
 		{
-			this->file.Assign(storageFolder, propFile);
+			wxFileName import;
+			import.Assign(storageFolder, propFile);
+			if(import.IsOk()) {
+				this->file = import;
+			}
 			this->storageFolder.AssignDir(storageFolder);
 			copyToFolder = true;
 		}
@@ -78,9 +82,7 @@ public:
 		:E_Data(parent, dataName, dataLabel, Element::ELEMENT_TYPE_FILE)
 	{
 		dialogTitle = _dialogTitle;
-		fileExtension = _fileExtension;
-		
-		this->file.Assign("Choose a file");
+		fileExtension = _fileExtension;		
 		this->storageFolder.AssignDir(storageFolder);
 		copyToFolder = true;
 	}
@@ -95,7 +97,7 @@ public:
 	{
 		wxXmlNode* thisNode = E_Data::SaveXMLDoc(NoeudParent);
 		thisNode->DeleteAttribute("value");
-		thisNode->AddAttribute("value", file.GetFullName());
+		thisNode->AddAttribute("value", file.IsOk() ? file.GetFullPath() : "");
 		return thisNode;
 	}
 
@@ -104,7 +106,7 @@ public:
 		E_Data::FillWxGrid(gridToFeed, col);
 		int row = gridToFeed->GetNumberRows() - 1;
 		gridToFeed->SetCellEditor(row, col, new wxGridCellFileEditor(dialogTitle, fileExtension));
-		gridToFeed->SetCellValue(row, col, file.GetFullName());
+		gridToFeed->SetCellValue(row, col, file.IsOk() ? file.GetFullName() : _("Choose a file"));
 	}
 
 	void SetValue(const wxString& newFilePath)
@@ -112,14 +114,11 @@ public:
 		wxFileName newFile(newFilePath);
 
 		// if the choosen file is "ok", we can paste it in our storage folder and the field become readOnly
-		if (newFile != file)
-		{
-			if (copyToFolder)
-			{
+		if (newFile != file && newFile.IsOk()) {
+			if (copyToFolder) {
 				file.Assign(storageFolder.GetPath() + wxFileName::GetPathSeparator() + newFile.GetFullName());
 				wxCopyFile(newFile.GetFullPath(), file.GetFullPath());
-			} else 
-			{
+			} else {
 				file.Assign(newFile.GetFullPath());
 			}
 			Modified(this);
