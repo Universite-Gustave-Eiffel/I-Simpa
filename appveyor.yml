@@ -42,13 +42,15 @@ build:
 
 # scripts to run before build
 before_build:
-  - ps: echo Download wxWidgets lib
+  - echo Download wxWidgets lib
   - ps: Start-FileDownload 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.0/wxMSW-3.1.0_vc140_Dev.7z' -FileName 'c:\Libraries\wxMSW-3.1.0_vc140_Dev.7z' -Timeout 15000 
   - ps: 7z x c:\Libraries\wxMSW-3.1.0_vc140_Dev.7z -oC:\Libraries\wxWidgets -r -y
   - ps: Start-FileDownload 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.0/wxWidgets-3.1.0.7z' -FileName 'c:\Libraries\wxWidgets-3.1.0.7z' -Timeout 15000 
   - ps: 7z x c:\Libraries\wxWidgets-3.1.0.7z -oC:\Libraries\wxWidgets -r -y
+  - echo Download SWIG
   - ps: Start-FileDownload 'https://kent.dl.sourceforge.net/project/swig/swigwin/swigwin-3.0.11/swigwin-3.0.11.zip' -FileName 'c:\Libraries\swigwin-3.0.11.zip' -Timeout 15000 
   - ps: 7z x c:\Libraries\swigwin-3.0.11.zip -oC:\Libraries -r -y
+  - ps: C:\Libraries\swigwin-3.0.11\swig.exe -v
   - echo Running cmake...
   - cd c:\projects\isimpa
   - cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%P%
