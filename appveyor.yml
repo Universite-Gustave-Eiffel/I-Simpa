@@ -53,7 +53,7 @@ before_build:
   - ps: C:\Libraries\swigwin-3.0.11\swig.exe -version
   - echo Running cmake...
   - cd c:\projects\isimpa
-  - cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%P% -DSWIG_DIR="%SWIG_DIR%" -DSWIG_EXECUTABLE="%SWIG_EXECUTABLE%"
+  - cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%P% -DSWIG_DIR="%SWIG_DIR%" -DSWIG_EXECUTABLE="%SWIG_EXECUTABLE%" -DwxWidgets_ROOT_DIR="%wxWidgets_ROOT_DIR%" -DwxWidgets_INCLUDE_DIRS="%wxWidgets_INCLUDE_DIRS%" -DwxWidgets_LIBRARIES="%wxWidgets_LIBRARIES%" -DPYTHON_LIBRARY="%PYTHON_LIBRARY%" -DPYTHON_INCLUDE_DIR="%PYTHON_INCLUDE_DIR%"
   
 artifacts:
   - path: 'c:\projects\isimpax64\*.exe'
