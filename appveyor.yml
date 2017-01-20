@@ -6,6 +6,13 @@ environment:
     MSVC_DEFAULT_OPTIONS: ON
     BOOST_ROOT: C:\Libraries\boost_1_60_0
     BOOST_LIBRARYDIR: C:\Libraries\boost_1_60_0\lib64-msvc-14.0
+    PYTHON_LIBRARY: C:\Python27-x64
+    PYTHON_INCLUDE_DIR: C:\Python27-x64\include
+    PYTHON_INCLUDE_DIR: C:\Python27-x64\include
+    WXWIN: C:\wxWidgets-3.1.0\
+    wxWidgets_ROOT_DIR: C:\wxWidgets-3.1.0\
+    wxWidgets_INCLUDE_DIRS: C:\wxWidgets-3.1.0\include
+    wxWidgets_LIBRARIES: C:\wxWidgets-3.1.0\lib\vc140_dll
     
 # branches to build
 branches:
@@ -40,22 +47,27 @@ before_build:
   - set WXWIN=C:\wxWidgets-3.1.0\
   - set wxWidgets_ROOT_DIR=%WXWIN%
   - set wxWidgets_LIB_DIR=%WXWIN%\lib\vc_dll
+  - echo Download wxWidgets lib
+  - ps: Start-FileDownload 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.0/wxWidgets-3.1.0.7z'
+  - ps: Start-FileDownload 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.0/wxMSW-3.1.0_vc140_Dev.7z'
+  - cmd: 7z x wxWidgets-3.1.0.7z -oC:\wxWidgets-3.1.0
+  - cmd: 7z x wxMSW-3.1.0_vc140_Dev.7z -oC:\wxWidgets-3.1.0
+  - cmd: dir C:\wxWidgets-3.1.0
   # install dependencies:
-  - choco install poedit nsis wxwidgets swig -x64
-  #- echo Download SWIG
-  #- ps: Start-FileDownload 'https://kent.dl.sourceforge.net/project/swig/swigwin/swigwin-3.0.11/swigwin-3.0.11.zip' -FileName 'c:\Libraries\swigwin-3.0.11.zip' -Timeout 15000 
-  #- ps: 7z x c:\Libraries\swigwin-3.0.11.zip -oC:\Libraries -r -y
+  - choco install poedit nsis swig -x64
   - ps: swig.exe -version
   - echo Running cmake...
   - cd c:\projects\isimpa
-  #- set wxWidgets_ROOT_DIR=%WXWIN%
-  #- set wxWidgets_LIB_DIR=%WXWIN%\lib\vc140_dll
   - cmd: SET PATH=%PATH%;%WXWIN%;%wxWidgets_LIB_DIR%;C:\Program Files (x86)\Poedit\Gettexttools\bin;
   - cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%P%
   
 artifacts:
   - path: 'c:\projects\isimpax64\*.exe'
     name: isimpa-win64
+  - path: 'C:/projects/isimpa/CMakeFiles/CMakeOutput.log'
+    name: cmake_output_log
+  - path: 'C:/projects/isimpa/CMakeFiles/CMakeError.log'
+    name: cmake_output_log
   
   
   
