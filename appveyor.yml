@@ -54,7 +54,7 @@ before_build:
   - cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%P%
   
 artifacts:
-  - path: *.exe
+  - path: 'c:\projects\isimpax64\*.exe'
     name: isimpa-win64
   
   
