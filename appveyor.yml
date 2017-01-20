@@ -50,10 +50,10 @@ before_build:
   - echo Download SWIG
   - ps: Start-FileDownload 'https://kent.dl.sourceforge.net/project/swig/swigwin/swigwin-3.0.11/swigwin-3.0.11.zip' -FileName 'c:\Libraries\swigwin-3.0.11.zip' -Timeout 15000 
   - ps: 7z x c:\Libraries\swigwin-3.0.11.zip -oC:\Libraries -r -y
-  - ps: C:\Libraries\swigwin-3.0.11\swig.exe -v
+  - ps: C:\Libraries\swigwin-3.0.11\swig.exe -version
   - echo Running cmake...
   - cd c:\projects\isimpa
-  - cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%P%
+  - cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%P% -DSWIG_DIR="%SWIG_DIR%" -DSWIG_EXECUTABLE="%SWIG_EXECUTABLE%"
   
 artifacts:
   - path: 'c:\projects\isimpax64\*.exe'
