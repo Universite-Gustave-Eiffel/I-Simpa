@@ -11,6 +11,8 @@ environment:
     wxWidgets_ROOT_DIR: C:\Libraries\wxWidgets
     wxWidgets_INCLUDE_DIRS: C:\Libraries\wxWidgets\include
     wxWidgets_LIBRARIES: C:\Libraries\wxWidgets\lib\vc140_dll
+    SWIG_DIR: C:\Libraries\swig
+    SWIG_EXECUTABLE: C:\Libraries\swig\swig.exe
     
 # branches to build
 branches:
@@ -40,11 +42,13 @@ build:
 
 # scripts to run before build
 before_build:
-  - echo Download wxWidgets lib
+  - ps: echo Download wxWidgets lib
   - ps: Start-FileDownload 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.0/wxMSW-3.1.0_vc140_Dev.7z' -FileName 'c:\Libraries\wxMSW-3.1.0_vc140_Dev.7z' -Timeout 15000 
   - ps: 7z x c:\Libraries\wxMSW-3.1.0_vc140_Dev.7z -oC:\Libraries\wxWidgets -r -y
   - ps: Start-FileDownload 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.0/wxWidgets-3.1.0.7z' -FileName 'c:\Libraries\wxWidgets-3.1.0.7z' -Timeout 15000 
   - ps: 7z x c:\Libraries\wxWidgets-3.1.0.7z -oC:\Libraries\wxWidgets -r -y
+  - ps: Start-FileDownload 'https://downloads.sourceforge.net/project/swig/swigwin/swigwin-3.0.11/swigwin-3.0.11.zip?r=http%3A%2F%2Fwww.swig.org%2Fdownload.html&ts=1484919823&use_mirror=heanet' -FileName 'c:\Libraries\swigwin-3.0.11.zip' -Timeout 15000 
+  - ps: 7z x c:\Libraries\swigwin-3.0.11.zip -oC:\Libraries\swig -r -y
   - echo Running cmake...
   - cd c:\projects\isimpa
   - cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%P%
