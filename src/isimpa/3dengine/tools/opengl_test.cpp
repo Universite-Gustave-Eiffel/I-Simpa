@@ -51,7 +51,7 @@ namespace gltest
 		extensions = (GLubyte *)glGetString(GL_EXTENSIONS);
 
 		start = extensions;
-		for (;;)
+		for (;start;)
 			{
 			where = (GLubyte *) strstr((const char *) start, extension);
 
