@@ -179,6 +179,13 @@ public:
 	}
 
 	/**
+	 * Update the non-translated value of label
+	 */
+	virtual void SetPropertyLabel(const wxString& label) {
+		propertyLabel = label;
+	}
+
+	/**
 	 * Cette méthode est surchargé afin de ne pas afficher cet élément dans l'arbre du projet
 	 */
 	

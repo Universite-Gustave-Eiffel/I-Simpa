@@ -45,7 +45,7 @@ CalculationCore::~CalculationCore()
 bool CalculationCore::Run()
 {
 	///////////////////////////////////////////
-	// Calcul du volume de la sc�ne
+	// Compute model area using tetrahedric mesh
 	mainData.sceneVolume=Get_Volume_Scene();
 	///////////////////////////////////////////
 	// Calcul globaux pour chaque th�ories de calcul
@@ -197,7 +197,7 @@ decimal CalculationCore::Get_Recepteur_S_Champ_Total ( decimal  Champ_Direct_Lin
 decimal CalculationCore::Get_Volume_Scene( )
 {
 	decimal vol_scene=0.f;
-	//Pour chaque tetrah_dre
+	//For each tetrahedra
 	for(uentier idtetra=0;idtetra<this->sceneTetraMesh->tetraedresSize;idtetra++)
 	{
 		ivec4 sommetsTetra=this->sceneTetraMesh->tetraedres[idtetra].sommets;

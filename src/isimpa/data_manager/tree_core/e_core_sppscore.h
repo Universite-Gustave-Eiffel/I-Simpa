@@ -75,12 +75,6 @@ protected:
 		    
 		// Code source à destination de PoEdit
 		wxTRANSLATE("Punctual receiver intensity");
-		wxTRANSLATE("Particles absorbed by the atmosphere");
-		wxTRANSLATE("Particles absorbed by the materials");
-		wxTRANSLATE("Particles absorbed by the fittings");
-		wxTRANSLATE("Particles lost by infinite loops");
-		wxTRANSLATE("Particles lost by meshing problems");
-		wxTRANSLATE("Particles remaining at the end of the calculation");
 		wxTRANSLATE("Sound level per source");
 	}
 	void InitExportRs(Element* confCore)
@@ -92,6 +86,16 @@ protected:
 	}
 	void InitRandomSeed(Element* confCore) {
 		confCore->AppendPropertyInteger("random_seed",wxTRANSLATE("Random initialization number"), 0,true, false, true);
+	}
+
+	void initPropLabel(E_Core_Core_Configuration* confCore, const wxString& propName, const wxString& propLabel) {
+    	Element* propElement;
+		if(confCore->IsPropertyExist(propName, &propElement)) {
+			E_Data* data = dynamic_cast<E_Data*>(propElement);
+			if(data) {
+				data->SetPropertyLabel(propLabel);
+			}
+		}
 	}
 public:
 
@@ -105,7 +109,7 @@ public:
 		{
 			if(!confCore->IsPropertyExist("trans_epsilon")) //mise à jour projet < 12/11/2008
 				InitTransmission(confCore);
-			Element* proptodel=NULL;
+            Element* proptodel=NULL;
 			if(confCore->IsPropertyExist("outpout_recs_byfreq",&proptodel))//mise à jour projet < 10/04/2009
 			{
 				confCore->DeleteElementByXmlId(proptodel->GetXmlId());
@@ -127,7 +131,12 @@ public:
         if (GetStringConfig("corePath").IsSameAs(wxString("sppsNantes") + wxFileName::GetPathSeparator())) {
             UpdateStringConfig("corePath", wxString("spps") + wxFileName::GetPathSeparator());
         }
+		// Update labels whose keys have changed
+		initPropLabel(confCore, "trans_epsilon", wxTRANSLATE("Limit value of the particle extinction (Energetic method) : ratio 10^n"));
+		initPropLabel(confCore, "trans_calc", wxTRANSLATE("Active calculation of transmission"));
+		initPropLabel(confCore, "random_seed", wxTRANSLATE("Random initialization number"));
 	}
+
 
 	E_Core_Spps( Element* parent)
 		:E_Core_Core(parent,"SPPS",ELEMENT_TYPE_CORE_SPPS)

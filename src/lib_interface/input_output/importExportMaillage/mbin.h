@@ -143,7 +143,7 @@ public:
 	 * @param strFileName Chemin du fichier
 	 * @param trimesh Le maillage
 	 */
-	void SaveMesh(const char *strFileName,trimeshmodel& trimesh);
+	bool SaveMesh(const char *strFileName,trimeshmodel& trimesh);
 	/*
 	 * Calcul la somme des volumes des tetrahèdre contenu de le modèle
 	 * @return Volume m3

@@ -524,7 +524,7 @@ struct t_Source
 const char* translate( const char* strToTranslate );
 
 #ifndef _
-#define _(s)                     translate(s)
+#define _(s) s
 #endif
 
 #endif

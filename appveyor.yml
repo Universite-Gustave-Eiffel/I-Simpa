@@ -41,6 +41,7 @@ build:
 
 # scripts to run before build
 before_build:
+  - ps: git rev-parse HEAD
   - '"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64'
   # sent environment variables for wxWidgets
   - set WXWIN=C:\wxWidgets-3.1.0\

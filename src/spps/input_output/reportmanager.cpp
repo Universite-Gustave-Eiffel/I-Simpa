@@ -467,20 +467,13 @@ void ReportManager::SaveThreadsStats(const CoreString& filename,const CoreString
 	using namespace formatGABE;
 
 	GABE_Data_ShortString* statLbl=new GABE_Data_ShortString(7);
-	/* statLbl->SetString(0,"Particules absorb�es par l'atmosph�re");
-	statLbl->SetString(1,"Particules absorb�es par les mat�riaux");
-	statLbl->SetString(2,"Particules absorb�es par les encombrements");
-	statLbl->SetString(3,"Particules perdues d� aux boucles infinies");
-	statLbl->SetString(4,"Particules perdues d� au maillage incorrect");
-	statLbl->SetString(5,"Particules restantes");
-	statLbl->SetString(6,"Total"); */
-	statLbl->SetString(0,"Particles absorbed by the atmosphere");
-	statLbl->SetString(1,"Particles absorbed by the materials");
-	statLbl->SetString(2,"Particles absorbed by the fittings");
-	statLbl->SetString(3,"Particles lost by infinite loops");
-	statLbl->SetString(4,"Particles lost by meshing problems");
-	statLbl->SetString(5,"Particles remaining at the end of the calculation");
-	statLbl->SetString(6,"Total");
+	statLbl->SetString(0,_("Particles absorbed by the atmosphere"));
+	statLbl->SetString(1,_("Particles absorbed by the materials"));
+	statLbl->SetString(2,_("Particles absorbed by the fittings"));
+	statLbl->SetString(3,_("Particles lost by infinite loops"));
+	statLbl->SetString(4,_("Particles lost by meshing problems"));
+	statLbl->SetString(5,_("Particles remaining at the end of the calculation"));
+	statLbl->SetString(6,_("Total"));
 	uentier nbfreqUsed=0;
 	for(std::size_t idfreq=0;idfreq<cols.size();idfreq++)
 	{
@@ -703,9 +696,9 @@ void ReportManager::SaveRecpIntensity(const CoreString& filename,std::vector<t_s
 	serie_int_parameter.Set(3,gabe_cols.size());						    	//Num�ro de la colonne du premier r�cepteur ponctuel
 	serie_float_parameter.Set(0,params.timeStep);								//Pas de temps (s)
 
-	CoreString workpath=params.working_Path+"IntensityAnimation/";
+	CoreString workpath=params.working_Path+_("IntensityAnimation")+"/";
 	st_mkdir(workpath);
-	//Pour chaque bande de fr�quence
+	//For each frequency band
 
 	for(std::size_t idfreq=0;idfreq<cols.size();idfreq++)
 	{

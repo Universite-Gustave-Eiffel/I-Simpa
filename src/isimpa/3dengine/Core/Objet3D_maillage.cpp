@@ -775,6 +775,7 @@ void CObjet3D::GetTetraMesh(formatMBIN::trimeshmodel& trimesh,bool toRealCoords)
         trimesh.tetrahedres[idTetra].vertices[0] = (int)tabVertexMaillage[idTetra].sommets.a;
         trimesh.tetrahedres[idTetra].vertices[1] = (int)tabVertexMaillage[idTetra].sommets.b;
         trimesh.tetrahedres[idTetra].vertices[2] = (int)tabVertexMaillage[idTetra].sommets.c;
+        trimesh.tetrahedres[idTetra].vertices[3] = (int)tabVertexMaillage[idTetra].sommets.d;
 		trimesh.tetrahedres[idTetra].idVolume=tabVertexMaillage[idTetra].idVolume;
 		for(int idFace=0;idFace<4;idFace++)
 		{
@@ -793,8 +794,7 @@ bool CObjet3D::SaveMaillage(const std::string& filename,bool toRealCoords)
 	trimeshmodel trimesh;
 	GetTetraMesh(trimesh,toRealCoords);
 	CMBIN binExporter;
-	binExporter.SaveMesh(filename.c_str(),trimesh);
-	if(!wxFileExists(filename))
+	if(binExporter.SaveMesh(filename.c_str(), trimesh) && !wxFileExists(filename))
 	{
 		wxLogError(_("Failed to export meshing"));
 		return false;

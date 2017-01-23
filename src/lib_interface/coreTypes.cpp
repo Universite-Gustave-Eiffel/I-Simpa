@@ -209,6 +209,17 @@ bool t_TetraMesh::LoadFile(const char * fileName, t_Mesh &sceneMesh,uentier nbFr
                            tetraedres[idTetra].sommets.b < nodesSize &&
                            tetraedres[idTetra].sommets.c < nodesSize &&
                            tetraedres[idTetra].sommets.d < nodesSize);
+            for(int idvertLeft = 0; idvertLeft < 4; idvertLeft++) {
+                for (int idvertRight = 0; idvertRight < 4; idvertRight++) {
+                    if(idvertLeft != idvertRight) {
+                        if(tabtetra[idTetra].vertices[idvertLeft] == tabtetra[idTetra].vertices[idvertRight]) {
+                            fprintf(stderr, _("Error in input mesh, a tetrahedra have at least the same two vertices idTetra:%i vertices:%li %li %li %li"),
+                                idTetra, tetraedres[idTetra].sommets.a, tetraedres[idTetra].sommets.b, tetraedres[idTetra].sommets.c, tetraedres[idTetra].sommets.d);
+                            exit(1);
+                        }
+                    }
+                }
+            }
 			tetraedres[idTetra].g=GetGTetra(nodes[tetraedres[idTetra].sommets.a],nodes[tetraedres[idTetra].sommets.b],nodes[tetraedres[idTetra].sommets.c],nodes[tetraedres[idTetra].sommets.d]);
 			for(int idFace=0;idFace<4;idFace++)
 			{
