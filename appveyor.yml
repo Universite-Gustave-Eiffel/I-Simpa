@@ -52,7 +52,7 @@ before_build:
   - ps: Start-FileDownload 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.0/wxMSW-3.1.0_vc140_Dev.7z'
   - cmd: 7z x wxWidgets-3.1.0.7z -oC:\wxWidgets-3.1.0
   - cmd: 7z x wxMSW-3.1.0_vc140_Dev.7z -oC:\wxWidgets-3.1.0
-  - cmd: dir C:\wxWidgets-3.1.0
+  - cmd: dir %wxWidgets_LIBRARIES%
   # install dependencies:
   - choco install poedit nsis swig -x64
   - ps: swig.exe -version
