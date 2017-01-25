@@ -59,11 +59,11 @@ before_build:
   - echo Running cmake...
   - cd c:\projects\isimpa
   - cmd: SET PATH=%PATH%;%WXWIN%;%wxWidgets_LIB_DIR%;C:\Program Files (x86)\Poedit\Gettexttools\bin;
-  - cmd: @echo wxWidgets_CONFIGURATION:STRING=mswu > CMakeCache.txt
-  - cmd: @echo wxWidgets_LIB_DIR:PATH=%wxWidgets_LIBRARIES% >> CMakeCache.txt
-  - cmd: @echo wxWidgets_ROOT_DIR:PATH=%wxWidgets_ROOT_DIR% >> CMakeCache.txt
-  - cmd: @echo WX_LIB_DIR:INTERNAL=%wxWidgets_LIBRARIES% >> CMakeCache.txt
-  - cmd: @echo WX_ROOT_DIR:INTERNAL=%wxWidgets_ROOT_DIR% >> CMakeCache.txt
+  - cmd: '@echo wxWidgets_CONFIGURATION:STRING=mswu > CMakeCache.txt'
+  - cmd: '@echo wxWidgets_LIB_DIR:PATH=%wxWidgets_LIBRARIES% >> CMakeCache.txt'
+  - cmd: '@echo wxWidgets_ROOT_DIR:PATH=%wxWidgets_ROOT_DIR% >> CMakeCache.txt'
+  - cmd: '@echo WX_LIB_DIR:INTERNAL=%wxWidgets_LIBRARIES% >> CMakeCache.txt'
+  - cmd: '@echo WX_ROOT_DIR:INTERNAL=%wxWidgets_ROOT_DIR% >> CMakeCache.txt'
   - cmake --debug-output -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%P%
   
 artifacts:
