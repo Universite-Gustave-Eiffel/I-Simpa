@@ -6,7 +6,7 @@ environment:
     MSVC_DEFAULT_OPTIONS: ON
     BOOST_ROOT: C:\Libraries\boost_1_60_0
     BOOST_LIBRARYDIR: C:\Libraries\boost_1_60_0\lib64-msvc-14.0
-    PYTHON_LIBRARY: C:\Python27-x64
+    PYTHON_LIBRARY: C:\Python27-x64\libs\python27.lib
     PYTHON_INCLUDE_DIR: C:\Python27-x64\include
     WXWIN: C:\wxWidgets-3.1.0\
     wxWidgets_ROOT_DIR: C:\wxWidgets-3.1.0\
@@ -59,7 +59,7 @@ before_build:
   - echo Running cmake...
   - cd c:\projects\isimpa
   - cmd: SET PATH=%PATH%;%WXWIN%;%wxWidgets_LIB_DIR%;C:\Program Files (x86)\Poedit\Gettexttools\bin;
-  - cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%P% -DwxWidgets_LIBRARIES=%wxWidgets_LIBRARIES% -DwxWidgets_INCLUDE_DIRS=%wxWidgets_INCLUDE_DIRS% -DwxWidgets_ROOT_DIR=%wxWidgets_ROOT_DIR%
+  - cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%P% -DwxWidgets_LIB_DIR=%wxWidgets_LIBRARIES% -DwxWidgets_INCLUDE_DIRS=%wxWidgets_INCLUDE_DIRS% -DwxWidgets_ROOT_DIR=%wxWidgets_ROOT_DIR%
   
 artifacts:
   - path: 'c:\projects\isimpax64\*.exe'
