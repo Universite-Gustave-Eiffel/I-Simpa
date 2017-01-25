@@ -57,7 +57,7 @@ before_build:
   - choco install poedit nsis swig -x64
   - ps: swig.exe -version
   - echo Running cmake...
-  - cd %P%
+  - cmd: cd C:\projects\isimpax64
   - cmd: SET PATH=%PATH%;%WXWIN%;%wxWidgets_LIB_DIR%;C:\Program Files (x86)\Poedit\Gettexttools\bin;
   - cmd: echo wxWidgets_CONFIGURATION:STRING=mswu > CMakeCache.txt
   - cmd: echo wxWidgets_LIB_DIR:PATH=%wxWidgets_LIBRARIES% >> CMakeCache.txt
