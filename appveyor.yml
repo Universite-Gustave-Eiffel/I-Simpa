@@ -2,6 +2,7 @@
 # specify custom environment variables
 environment:
   P: "c:/projects/isimpax64"
+  CLONE: "c:\projects\isimpa"
   global:
     MSVC_DEFAULT_OPTIONS: ON
     BOOST_ROOT: C:\Libraries\boost_1_60_0
@@ -28,7 +29,7 @@ init:
 
 
 # clone directory
-clone_folder: c:\projects\isimpa
+clone_folder: %CLONE%
 
 platform: x64
 configuration: Release
@@ -57,14 +58,14 @@ before_build:
   - choco install poedit nsis swig -x64
   - ps: swig.exe -version
   - echo Running cmake...
-  - cd c:\projects\isimpa
+  - cd %P%
   - cmd: SET PATH=%PATH%;%WXWIN%;%wxWidgets_LIB_DIR%;C:\Program Files (x86)\Poedit\Gettexttools\bin;
   - cmd: echo wxWidgets_CONFIGURATION:STRING=mswu > CMakeCache.txt
   - cmd: echo wxWidgets_LIB_DIR:PATH=%wxWidgets_LIBRARIES% >> CMakeCache.txt
   - cmd: echo wxWidgets_ROOT_DIR:PATH=%wxWidgets_ROOT_DIR% >> CMakeCache.txt
   - cmd: echo WX_LIB_DIR:INTERNAL=%wxWidgets_LIBRARIES% >> CMakeCache.txt
   - cmd: echo WX_ROOT_DIR:INTERNAL=%wxWidgets_ROOT_DIR% >> CMakeCache.txt
-  - cmake --debug-output -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%P%
+  - cmake --debug-output -G "Visual Studio 14 2015 Win64" %CLONE%
   
 artifacts:
   - path: 'c:\projects\isimpax64\*.exe'
