@@ -59,7 +59,7 @@ before_build:
   - echo Running cmake...
   - cd c:\projects\isimpa
   - cmd: SET PATH=%PATH%;%WXWIN%;%wxWidgets_LIB_DIR%;C:\Program Files (x86)\Poedit\Gettexttools\bin;
-  - cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%P% -DwxWidgets_LIB_DIR=%wxWidgets_LIBRARIES% -DwxWidgets_INCLUDE_DIRS=%wxWidgets_INCLUDE_DIRS% -DwxWidgets_ROOT_DIR=%wxWidgets_ROOT_DIR%
+  - cmake --debug-output -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%P% -DwxWidgets_LIB_DIR=%wxWidgets_LIBRARIES% -DwxWidgets_LIBRARIES=%wxWidgets_LIBRARIES% -DwxWidgets_INCLUDE_DIRS=%wxWidgets_INCLUDE_DIRS% -DwxWidgets_ROOT_DIR=%wxWidgets_ROOT_DIR%
   
 artifacts:
   - path: 'c:\projects\isimpax64\*.exe'
