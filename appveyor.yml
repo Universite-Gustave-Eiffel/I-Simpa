@@ -1,8 +1,7 @@
 
 # specify custom environment variables
 environment:
-  P: "c:/projects/isimpax64"
-  CLONE: "c:\projects\isimpa"
+  P: C:\projects\isimpax64
   global:
     MSVC_DEFAULT_OPTIONS: ON
     BOOST_ROOT: C:\Libraries\boost_1_60_0
@@ -29,7 +28,7 @@ init:
 
 
 # clone directory
-clone_folder: %CLONE%
+clone_folder: c:\projects\isimpa
 
 platform: x64
 configuration: Release
@@ -65,7 +64,7 @@ before_build:
   - cmd: echo wxWidgets_ROOT_DIR:PATH=%wxWidgets_ROOT_DIR% >> CMakeCache.txt
   - cmd: echo WX_LIB_DIR:INTERNAL=%wxWidgets_LIBRARIES% >> CMakeCache.txt
   - cmd: echo WX_ROOT_DIR:INTERNAL=%wxWidgets_ROOT_DIR% >> CMakeCache.txt
-  - cmake --debug-output -G "Visual Studio 14 2015 Win64" %CLONE%
+  - cmake --debug-output -G "Visual Studio 14 2015 Win64" c:\projects\isimpa
   
 artifacts:
   - path: 'c:\projects\isimpax64\*.exe'
