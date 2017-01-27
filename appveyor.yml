@@ -6,7 +6,6 @@ environment:
       platform: x64
       configuration: Release
       vcvarsall_platform: "x64"
-  P: C:\projects\isimpax64
   global:
     MSVC_DEFAULT_OPTIONS: ON
     BOOST_ROOT: C:\Libraries\boost_1_60_0
@@ -40,11 +39,6 @@ clone_folder: c:\projects\isimpa
 platform: x64
 configuration: Release
 
-install:
-  # by default, all script lines are interpreted as batch
-
-build:
-  project: c:\projects\isimpax64\isimpa.sln      # path to Visual Studio solution or project
 
 # scripts to run before build
 before_build:
@@ -70,8 +64,8 @@ before_build:
   - cmd: SET PATH=%PATH%;%WXWIN%;%SWIG_DIR%;%wxWidgets_LIB_DIR%;C:\Program Files (x86)\Poedit\Gettexttools\bin;
   - ps: swig.exe -version
   - echo Running cmake...
-  - cmd: mkdir C:\projects\isimpax64
-  - cmd: cd C:\projects\isimpax64
+  - cmd: mkdir c:\projects\isimpa\build
+  - cmd: cd c:\projects\isimpa\build
   - cmd: echo wxWidgets_CONFIGURATION:STRING=mswu > CMakeCache.txt
   - cmd: echo wxWidgets_LIB_DIR:PATH=%wxWidgets_LIBRARIES% >> CMakeCache.txt
   - cmd: echo wxWidgets_ROOT_DIR:PATH=%wxWidgets_ROOT_DIR% >> CMakeCache.txt
@@ -80,7 +74,7 @@ before_build:
   - cmake --debug-output -G "Visual Studio 14 2015 Win64" c:\projects\isimpa
 
 build_script:
-  - cd c:\projects\isimpax64
+  - cd c:\projects\isimpa\build
   - ECHO Building %configuration% %platform% with MSVC %VisualStudioVersion% using %PlatformToolset% PlatformToolset
   - dir
   - 'CALL "C:\Program Files (x86)\Microsoft Visual Studio %VisualStudioVersion%\VC\vcvarsall.bat" %vcvarsall_platform%'
@@ -88,11 +82,11 @@ build_script:
 
   
 artifacts:
-  - path: '..\isimpax64\*.exe'
+  - path: 'build\*.exe'
     name: isimpa-win64
-  - path: '..\isimpax64\CMakeFiles\CMakeOutput.log'
+  - path: 'build\CMakeFiles\CMakeOutput.log'
     name: cmake_output_log
-  - path: '..\isimpax64\CMakeFiles\CMakeError.log'
+  - path: 'build\CMakeFiles\CMakeError.log'
     name: cmake_output_log
   
   
