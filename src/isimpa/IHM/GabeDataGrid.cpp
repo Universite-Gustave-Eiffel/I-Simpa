@@ -46,9 +46,10 @@
 #include "customRenderer/gridcellgabefloatrenderer.hpp"
 #include "last_cpp_include.hpp"
 
+WX_DEFINE_OBJARRAY(ArrayOfDouble)
 WX_DEFINE_OBJARRAY(wxGridDoubleArray)
 
-IMPLEMENT_DYNAMIC_CLASS( wxGridMixedTable, wxGridStringTable )
+wxIMPLEMENT_DYNAMIC_CLASS( wxGridMixedTable, wxGridStringTable )
 
 wxGridMixedTable::wxGridMixedTable()
 	:wxGridStringTable()
@@ -190,7 +191,7 @@ bool wxGridMixedTable::InsertCols( size_t pos , size_t numCols  )
     {
         for ( col = pos; col < pos + numCols; col++ )
         {
-            m_datadouble[row].Insert( 0, col );
+            m_datadouble[row].Insert( 0., col );
         }
     }
 	return wxGridStringTable::InsertCols(pos,numCols);

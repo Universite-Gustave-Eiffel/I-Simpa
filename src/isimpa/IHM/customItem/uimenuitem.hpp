@@ -23,7 +23,7 @@
 //wxString keys and values
 WX_DECLARE_STRING_HASH_MAP( wxString, StringHashMap );
 
-class WXDLLIMPEXP_CORE wxUiMenuItem : public wxMenuItem
+class wxUiMenuItem : public wxMenuItem
 {
 public:
     // ctor & dtor

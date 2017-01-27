@@ -57,7 +57,7 @@ WX_DECLARE_HASH_MAP( int, Element*, wxIntegerHash, wxIntegerEqual, t_HashElement
 /**
  *  Evenement à générer afin de raffraichir l'arbre report
  */
-DECLARE_EVENT_TYPE( wxEVT_PSPS_MAIN_EVENT, wxEVT_USER_FIRST )
+wxDECLARE_EVENT(wxEVT_PSPS_MAIN_EVENT, wxCommandEvent);
 
 /*! \class ApplicationConfiguration
 	\brief Classe de configuration du projet.

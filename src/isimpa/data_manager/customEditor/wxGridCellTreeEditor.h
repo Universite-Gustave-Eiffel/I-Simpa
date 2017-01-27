@@ -49,7 +49,7 @@
 #if wxUSE_TREECOMBOBOX
 
 // the editor for string data allowing to choose from the list of strings
-class WXDLLIMPEXP_ADV wxGridCellTreeEditor : public wxGridCellEditor
+class wxGridCellTreeEditor : public wxGridCellEditor
 {
 public:
     // if !allowOthers, user can't type a string not in choices array

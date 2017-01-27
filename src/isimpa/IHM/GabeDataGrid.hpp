@@ -29,7 +29,8 @@
 * ----------------------------------------------------------------------*/
 
 #include "first_header_include.hpp"
-
+#include <wx/object.h>
+#include <wx/dynarray.h>
 #include "PropGrid.h"
 #include <vector>
 
@@ -45,17 +46,17 @@
 // ------ wxGridDoubleArray
 // A 2-dimensional array of strings for data values
 //
-WX_DEFINE_ARRAY_DOUBLE(double, ArrayOfDouble);
-WX_DECLARE_OBJARRAY_WITH_DECL(ArrayOfDouble, wxGridDoubleArray,
-                              class WXDLLIMPEXP_ADV);
+WX_DECLARE_OBJARRAY(double, ArrayOfDouble);
+WX_DECLARE_OBJARRAY(ArrayOfDouble, wxGridDoubleArray);
 
 
 /**
  * Grille de données pouvant contenir à la fois des chaines de caractères ainsi que des nombres
  */
 
-class WXDLLIMPEXP_ADV wxGridMixedTable : public wxGridStringTable
+class wxGridMixedTable : public wxGridStringTable
 {
+    wxDECLARE_DYNAMIC_CLASS(wxGridMixedTable);
 public:
     wxGridMixedTable();
     wxGridMixedTable( int numRows, int numCols );
@@ -74,7 +75,6 @@ public:
 	double GetValueAsDouble(int row, int col);
 private:
 	wxGridDoubleArray m_datadouble;
-    DECLARE_DYNAMIC_CLASS_NO_COPY( wxGridMixedTable )
 };
 
 

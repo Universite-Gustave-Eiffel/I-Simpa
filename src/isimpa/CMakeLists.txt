@@ -430,12 +430,12 @@ ENDIF()
 
 IF(CMAKE_BUILD_TYPE STREQUAL "Debug")
     SET(wxWidgets_USE_DEBUG ON)
-    SET(wxWidgets_USE_STATIC ON)
+    SET(wxWidgets_USE_STATIC OFF)
     MESSAGE(STATUS "Using debug version of wxWidgets")
 ELSE()
     SET(wxWidgets_USE_DEBUG OFF)
-    SET(wxWidgets_USE_STATIC ON)
-    MESSAGE(STATUS "Using static wxWidgets library  lib:${wxWidgets_LIBRARIES} include:${wxWidgets_INCLUDE_DIRS}")
+    SET(wxWidgets_USE_STATIC OFF)
+    MESSAGE(STATUS "Using dynamic wxWidgets library  lib:${wxWidgets_LIB_DIR} include:${wxWidgets_ROOT_DIR}")
 ENDIF()
 
 find_package(wxWidgets COMPONENTS core base xml gl aui adv REQUIRED)
@@ -483,7 +483,6 @@ set(ISIMPA_RESSOURCES ${PROJECT_SOURCE_DIR}/currentRelease)
 
 install (FILES
 ${ISIMPA_RESSOURCES}/appconst.xml
-${ISIMPA_RESSOURCES}/isimpa.ico
 ${ISIMPA_RESSOURCES}/Licence.pdf
 ${ISIMPA_RESSOURCES}/Licence.rtf
 #${Boost_FILESYSTEM_LIBRARY_RELEASE_REAL}
@@ -503,6 +502,7 @@ DESTINATION .)
 if(WIN32) # Check if we are on Windows
 	SET(CMAKE_FIND_LIBRARY_PREFIXES "")
 	SET(CMAKE_FIND_LIBRARY_SUFFIXES ".dll")
+
 
 	find_library(
 		PYTHON_DLL
@@ -525,7 +525,14 @@ if(WIN32) # Check if we are on Windows
 	LIB_TO_DLL(${Boost_SYSTEM_LIBRARY_RELEASE} Boost_SYSTEM_LIBRARY_RELEASE_REAL)
 	LIB_TO_DLL(${Boost_PYTHON_LIBRARY_RELEASE} Boost_PYTHON_LIBRARY_RELEASE_REAL)
 	LIB_TO_DLL(${Boost_REGEX_LIBRARY_RELEASE} Boost_REGEX_LIBRARY_RELEASE_REAL)
-
+	
+	# Copy wxWidgets Dll's
+	# extract folder path
+    file(GLOB wxwidgets_dlls "${wxWidgets_LIB_DIR}/*.dll")
+	install(FILES
+			${wxwidgets_dlls}
+			DESTINATION .)
+	
 	install (FILES
             ${PYTHON_DLL}
             ${Boost_FILESYSTEM_LIBRARY_RELEASE_REAL}
@@ -556,7 +563,7 @@ IF(WIN32 AND NOT UNIX)
   # sure there is at least one set of four (4) backlasshes.    # Create the desktop link
   set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "  CreateShortCut '$DESKTOP\\\\I_SIMPA.lnk' '$INSTDIR\\\\isimpa.exe' ")
   set(CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS "Delete '$DESKTOP\\\\I_SIMPA.lnk'")
-  SET(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}\\\\CurrentRelease\\\\isimpa.ico")
+  SET(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}\\\\src\\\\isimpa\\\\isimpa.ico")
   SET(CPACK_NSIS_INSTALLED_ICON_NAME "isimpa.exe")
   SET(CPACK_NSIS_DISPLAY_NAME "I-SIMPA")
   SET(CPACK_NSIS_HELP_LINK "http:\\\\\\\\i-simpa-wiki.readthedocs.io")
