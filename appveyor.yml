@@ -58,11 +58,11 @@ before_build:
   - ps: Start-FileDownload 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.0/wxWidgets-3.1.0.7z'
   - ps: Start-FileDownload 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.0/wxMSW-3.1.0_vc140_x64_Dev.7z'
   - cmd: 7z x wxWidgets-3.1.0.7z -oC:\wxWidgets-3.1.0
-  - cmd: 7z x wxMSW-3.1.0_vc140_Dev.7z -oC:\wxWidgets-3.1.0
+  - cmd: 7z x wxMSW-3.1.0_vc140_x64_Dev.7z -oC:\wxWidgets-3.1.0
   - cmd: dir %wxWidgets_LIBRARIES%
   # Download Release wxWidgets DLL's
   - ps: Start-FileDownload 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.0/wxMSW-3.1.0_vc140_x64_ReleaseDLL.7z' -FileName 'c:\Libraries\wxMSW-3.1.0_vc140_x64_ReleaseDLL.7z' -Timeout 15000
-  - cmd: 7z x wxWidgets-3.1.0.7z -oC:\wxWidgets-3.1.0  
+  - cmd: 7z x wxMSW-3.1.0_vc140_x64_ReleaseDLL.7z -oC:\wxWidgets-3.1.0  
   # install dependencies:
   - choco install poedit nsis
   - ps: Start-FileDownload 'https://kent.dl.sourceforge.net/project/swig/swigwin/swigwin-3.0.11/swigwin-3.0.11.zip' -FileName 'c:\Libraries\swigwin-3.0.11.zip' -Timeout 15000 
