@@ -1,5 +1,10 @@
+#I-Simpa
 
+Travis Linux build status:
 [![Build Status](https://travis-ci.org/Ifsttar/I-Simpa.svg?branch=master)](https://travis-ci.org/Ifsttar/I-Simpa)
+
+AppVeyor Windows build status:
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/Ifsttar/I-Simpa?svg=true)](https://ci.appveyor.com/project/nicolas-f/I-Simpa)
 
 <IMG SRC="http://i-simpa.ifsttar.fr/typo3temp/pics/b06522ab44.jpg" WIDTH=500 ALT="I-Simpa logo" TITLE="I-Simpa logo">
 
