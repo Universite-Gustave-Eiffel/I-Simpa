@@ -95,7 +95,7 @@ ApplicationConfiguration::t_App_Info ApplicationConfiguration::GLOBAL_CURRENT_AP
 
 ApplicationConfiguration::t_GLOBAL_VAR ApplicationConfiguration::GLOBAL_VAR={"current","current",false};
 
-DEFINE_EVENT_TYPE( wxEVT_PSPS_MAIN_EVENT )
+wxDEFINE_EVENT(wxEVT_PSPS_MAIN_EVENT, wxCommandEvent);
 
 const std::vector<wxString>& ApplicationConfiguration::GetLstLoisReff( )
 {

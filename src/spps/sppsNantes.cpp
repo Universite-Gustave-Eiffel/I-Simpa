@@ -28,7 +28,8 @@
 
 	boost::mutex mutex; /*!< Variable permettant la synchronisation des processus */
 #endif
-
+    // Print warning if particle lost is superior than this ratio
+const double PARTICLE_LOST_WARNING_RATIO = 0.05;
 bool verbose_mode = false;
 
 /**
@@ -225,6 +226,7 @@ void runFrequenceCalculation(  progressOperation* parentOperation, ReportManager
 		outputTool.SaveAndCloseParticleFile();				//Finalisation du fichier de particule
 		threadData->GabeColData=outputTool.GetColStats();	//Recupere les données des etats de particules
 		threadData->GabeSumEnergyFreq=outputTool.GetSumEnergy();//Recupere les données du niveau sonore global
+        threadData->particleStats = outputTool.statReport;  // Copy particle statistics
 		outputTool.FillWithLefData(*threadData); //Recupere les données du lef (utilisé pour le calcul du LF et LFC)
 		if (verbose_mode) { cout << "End of calculation at " << threadData->freqInfos->freqValue << " Hz." << endl; }
 
@@ -413,6 +415,22 @@ int MainProcess(int argc, char* argv[])
 		ReportManager::SauveRecepteursSurfaciquesCoupe(globalSurfCutPath,configManager.recepteur_scut_List,*configManager.FastGetConfigValue(Core_Configuration::FPROP_TIME_STEP));
 	#endif
 		if (verbose_mode) { cout << "End of save Global Surface Receiver Data." << endl; }
+
+    // Check lost particle in error and show a warning if there is too many lost particles
+    long totalLost = 0l;
+    long total = 0l;
+    for (std::size_t idfreq = 0; idfreq<configManager.freqList.size(); idfreq++)
+    {
+        if (configManager.freqList[idfreq]->doCalculation)
+        {
+            const t_sppsThreadParam& tdata = threadsData.at(idfreq);
+            totalLost += tdata.particleStats.partLost + tdata.particleStats.partLoop;
+            total += tdata.particleStats.partTotal;
+        }
+    }
+    if((double)totalLost / (double)total > PARTICLE_LOST_WARNING_RATIO) {
+        fprintf(stderr, _("Warning %il particles has been in error on %il particles. The computation result may be wrong, please check the particles statitics file for more details."), totalLost, total);
+    }    
 	//**************************************************
 	// 9: Libère l'espace mémoire
 	for(std::size_t idfreq=0;idfreq<threadsData.size();idfreq++)

@@ -34,7 +34,7 @@
 #ifndef __GRID_CELL_GABE_RENDERER__
 #define __GRID_CELL_GABE_RENDERER__
 
-class WXDLLIMPEXP_ADV wxGridCellGabeFloatRenderer : public wxGridCellStringRenderer
+class wxGridCellGabeFloatRenderer : public wxGridCellStringRenderer
 {
 public:
     wxGridCellGabeFloatRenderer(int precision = -1);
