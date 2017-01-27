@@ -429,7 +429,7 @@ int MainProcess(int argc, char* argv[])
         }
     }
     if((double)totalLost / (double)total > PARTICLE_LOST_WARNING_RATIO) {
-        fprintf(stderr, _("Warning %il particles has been in error on %il particles. The computation result may be wrong, please check the particles statitics file for more details.", totalLost, total));
+        fprintf(stderr, _("Warning %il particles has been in error on %il particles. The computation result may be wrong, please check the particles statitics file for more details."), totalLost, total);
     }    
 	//**************************************************
 	// 9: Libère l'espace mémoire
