@@ -88,11 +88,11 @@ build_script:
 
   
 artifacts:
-  - path: 'c:\projects\isimpax64\*.exe'
+  - path: '..\isimpax64\*.exe'
     name: isimpa-win64
-  - path: 'c:\projects\isimpax64\CMakeFiles\CMakeOutput.log'
+  - path: '..\isimpax64\CMakeFiles\CMakeOutput.log'
     name: cmake_output_log
-  - path: 'c:\projects\isimpax64\CMakeFiles\CMakeError.log'
+  - path: '..\isimpax64\CMakeFiles\CMakeError.log'
     name: cmake_output_log
   
   
