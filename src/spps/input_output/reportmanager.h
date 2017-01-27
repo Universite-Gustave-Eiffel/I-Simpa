@@ -16,6 +16,17 @@
  * Certains fichiers de résultats nécessitent une sortie comprenant toutes les bande de fréquences
  * ainsi on doit stocker les données propres aux bandes de fréquence en dehors du thread de la bande sonore actuelle
  */
+struct t_Stats
+{
+    uentier_long partLost;
+    uentier_long partAbsAtmo;
+    uentier_long partAbsSurf;
+    uentier_long partAbsEncombrement;
+    uentier_long partLoop;
+    uentier_long partAlive;
+    uentier_long partTotal;
+    t_Stats() { memset(this, 0, sizeof(t_Stats)); }
+};
 
 struct t_sppsThreadParam
 {
@@ -28,6 +39,7 @@ struct t_sppsThreadParam
 	std::vector<formatGABE::GABE_Data_Float*> GabeIntensity[3];			/*!< Vecteur d'intensité en X,Y,Z \f$frac{W_{n}.Isec.\frac{\overrightarrow{Dir}}{\Vert\overrightarrow{Dir}\Vert}}{V}\f$ */
 	std::vector<formatGABE::GABE_Data_Float*> GabeSlPerSrc;				/*!< Niveau sonore par source */
 	std::vector<l_decimal*> SrcContrib;									/*!< For each receiver, If timeStepInSourceOutput is true, contains the source contrib by time step */
+    t_Stats particleStats;
 	void clearMem()
 	{
 		for(uentier idrecp=0;idrecp<GabeSumEnergyCosPhi.size();idrecp++)
@@ -206,17 +218,7 @@ public:
 	 * Exporte le cumul du niveau sonore
 	 */
 	formatGABE::GABE_Data_Float* GetSumEnergy();
-	struct t_Stats
-	{
-		uentier_long partLost;
-		uentier_long partAbsAtmo;
-		uentier_long partAbsSurf;
-		uentier_long partAbsEncombrement;
-		uentier_long partLoop;
-		uentier_long partAlive;
-		uentier_long partTotal;
-		t_Stats() { memset(this,0,sizeof(t_Stats)); }
-	} statReport;
+	t_Stats statReport;
 
 	/**
 	 * Sauvegarde le tableau de statistique des états de particules et les données de niveaux sonores globaux
