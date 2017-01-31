@@ -50,14 +50,13 @@ class E_Scene_Recepteurss_Recepteur: public E_Drawable
 {
 public:
 	E_Scene_Recepteurss_Recepteur( wxXmlNode* noeudCourant ,  Element* parent)
-		:E_Drawable(parent,"Récepteur scène",Element::ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEUR,noeudCourant)
+		:E_Drawable(parent,wxTRANSLATE("Scene receiver"),Element::ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEUR,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_SURFACE_RECEIVER_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_SURFACE_RECEIVER_CLOSE);
 		this->AllowMultipleSelection();
 		this->elementInfo.userDestroyable=true;
 		ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_RecepteurS++;
-		_("Scene receiver");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;

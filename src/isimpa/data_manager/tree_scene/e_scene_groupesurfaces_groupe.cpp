@@ -245,12 +245,18 @@ void E_Scene_Groupesurfaces_Groupe::PushFace(std::vector<std::vector<Application
 		vectorToFeed[faceIndex.group][faceIndex.face].idMaterial=this->GetIntegerConfig("idmat");
 	else
 	{
+        // gather parent element of the surface group
 		if(this->pere)
 		{
+            // If it is a scene surface receiver
 			t_elementInfo parentInfos(this->pere->GetElementInfos());
-			if(parentInfos.typeElement==ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEUR)
-				vectorToFeed[faceIndex.group][faceIndex.face].idRecepteurSurfacique=parentInfos.xmlIdElement;
-			else if(parentInfos.typeElement==ELEMENT_TYPE_SCENE_ENCOMBREMENTS_ENCOMBREMENT || parentInfos.typeElement==ELEMENT_TYPE_SCENE_VOLUMES_VOLUME)
+			if(parentInfos.typeElement==ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEUR) {
+                Element* propertyEl = this->pere->GetElementByType(ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEUR_PROPRIETES);
+                // If the scene surface receiver is enabled
+                if(propertyEl && propertyEl->GetBoolConfig("enabled")) {
+                    vectorToFeed[faceIndex.group][faceIndex.face].idRecepteurSurfacique = parentInfos.xmlIdElement;
+                }
+            } else if(parentInfos.typeElement==ELEMENT_TYPE_SCENE_ENCOMBREMENTS_ENCOMBREMENT || parentInfos.typeElement==ELEMENT_TYPE_SCENE_VOLUMES_VOLUME)
 				vectorToFeed[faceIndex.group][faceIndex.face].idEncombrement=parentInfos.xmlIdElement;
 		}
 	}
