@@ -44,10 +44,14 @@ class E_Scene_Recepteurss_Recepteur_Proprietes: public Element
 {
 private:
 
+    void AddActiveProp()
+    {
+        this->AppendPropertyBool("enabled", wxTRANSLATE("Enabled"), true, false);
+    }
 	void InitProperties()
 	{
-		this->AppendPropertyText("description","Description","");
-		_("Description");
+		this->AppendPropertyText("description",wxTRANSLATE("Description"),"");
+        AddActiveProp();
 	}
 public:
 	E_Scene_Recepteurss_Recepteur_Proprietes( wxXmlNode* noeudCourant ,  Element* parent)
@@ -55,6 +59,9 @@ public:
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
 		_("Properties");
+        if(!IsPropertyExist("enabled")) {
+            AddActiveProp();
+        }
 	}
 
 	E_Scene_Recepteurss_Recepteur_Proprietes( Element* parent)

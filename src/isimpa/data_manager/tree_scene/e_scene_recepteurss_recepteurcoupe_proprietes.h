@@ -46,9 +46,7 @@ private:
 
 	void AddActiveProp()
 	{
-		/*this->AppendPropertyBool("enabled","Activé",true,false);*/
-		this->AppendPropertyBool("enabled","Enabled",true,false);
-		_("Enabled");
+		this->AppendPropertyBool("enabled",wxTRANSLATE("Enabled"),true,false);
 	}
 	void InitProperties()
 	{

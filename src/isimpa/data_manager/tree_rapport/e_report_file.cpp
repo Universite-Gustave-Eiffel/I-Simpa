@@ -84,38 +84,24 @@ void GetAllFolderItems(wxString rootFolder,wxArrayString& folderDir)
 
 bool FuncDeleteFolder( wxString folderToDelete )
 {
-	if(wxFileExists(folderToDelete)) //Si le chemin correspond à un fichier existant
+    wxFileName pathToDelete(folderToDelete);
+	if(!pathToDelete.IsDir()) //Si le chemin correspond à un fichier existant
 	{
-		wxRemoveFile(folderToDelete);
-		return true;
-	}
-	wxArrayString tabFichiers;
-	GetAllFolderItems(folderToDelete,tabFichiers);
-	long nbfichier=tabFichiers.Count();
-	if(nbfichier>0)
-	{
-		//Suppression des fichiers
-		for(long i=0;i<nbfichier;i++)
-		{
-			wxString fichierdel = tabFichiers[i];
-			if(wxFileExists(fichierdel))
-			{
-				wxRemoveFile(fichierdel);
-			}
-		}
-		//Suppression des repertoires
-		for(long i=nbfichier-1;i>=0;i--)
-		{
-			wxString fichierdel = tabFichiers[i];
-			if(wxDirExists(fichierdel))
-			{
-				wxRmdir(fichierdel);
-			}
-		}
-	}
-	tabFichiers.clear();
-	wxRmdir(folderToDelete);
-	return true;
+		if(!wxRemoveFile(folderToDelete)) {
+            wxLogError(_("Cannot remove file/directory"));
+            return false;
+        } else {
+		    return true;
+        }
+	} else {
+        //Delete folder
+        if(!pathToDelete.Rmdir(wxPATH_RMDIR_RECURSIVE)) {
+            wxLogError(_("Cannot remove file/directory"));
+            return false;            
+        } else {
+            return true;
+        }
+    }
 }
 
 
@@ -249,6 +235,7 @@ void E_Report_File::DeleteFolder()
 	wxString FullPath;
 	this->BuildFullPath(FullPath);
 	FuncDeleteFolder(FullPath);
+    RefreshFolderContents();
 }
 
 void E_Report_File::RefreshFolderContents()
