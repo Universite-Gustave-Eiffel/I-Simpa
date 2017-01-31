@@ -56,6 +56,7 @@ install (FILES
         ${ISIMPA_RESSOURCES}/libsimpa/vec3.py
         ${ISIMPA_RESSOURCES}/libsimpa/__init__.py
 		${CMAKE_CURRENT_BINARY_DIR}/libsimpa.py
+		${CMAKE_CURRENT_SOURCE_DIR}/tests/model_io.py
         DESTINATION libsimpa/)
 #------------#
 #    TEST
@@ -68,8 +69,7 @@ enable_testing()
 MESSAGE(STATUS "Run test in ${CMAKE_CURRENT_BINARY_DIR}")
 
 add_test(NAME test_modelio
-  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/model_io.py ${PROJECT_BINARY_DIR}/Testing/Temporary/
-  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
+  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_INSTALL_PREFIX}/libsimpa/model_io.py ${PROJECT_BINARY_DIR}/Testing/Temporary/)
   
   
 set_property(TEST test_modelio
