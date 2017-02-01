@@ -1,4 +1,5 @@
 include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
+set(CMAKE_INSTALL_MFC_LIBRARIES ON) 
 include( InstallRequiredSystemLibraries )
 message(STATUS " Boost path - $ENV{BOOST_INCLUDEDIR}")
 message(STATUS " Boost lib path - $ENV{BOOST_LIBRARYDIR}")

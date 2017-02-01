@@ -1,5 +1,6 @@
 include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
-
+set(CMAKE_INSTALL_MFC_LIBRARIES ON) 
+include( InstallRequiredSystemLibraries )
 
 
 #--------------#
@@ -521,6 +522,10 @@ if(WIN32) # Check if we are on Windows
     PATTERN "Lib/site-packages" EXCLUDE
     PATTERN "*.pdb" EXCLUDE)
 
+    if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
+        install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION . COMPONENT Runtime )
+    endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
+
 	# Resolve symbolic link
 	LIB_TO_DLL(${Boost_FILESYSTEM_LIBRARY_RELEASE} Boost_FILESYSTEM_LIBRARY_RELEASE_REAL)
 	LIB_TO_DLL(${Boost_SYSTEM_LIBRARY_RELEASE} Boost_SYSTEM_LIBRARY_RELEASE_REAL)
@@ -545,11 +550,7 @@ endif()
 
 # Package creation instructions, NSIS under windows
 
-SET(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION ".")
 SET(CPACK_NSIS_EXECUTABLES_DIRECTORY ".")
-
-INCLUDE(InstallRequiredSystemLibraries)
-
 
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "I-SIMPA")
 SET(CPACK_PACKAGE_VENDOR "Ifsttar")
