@@ -18,6 +18,7 @@ environment:
     wxWidgets_LIBRARIES: C:\wxWidgets-3.1.0\lib\vc140_x64_dll
     SWIG_DIR: C:\Libraries\swigwin-3.0.11
     SWIG_EXECUTABLE: C:\Libraries\swigwin-3.0.11\swig.exe    
+    PYTHON_EXECUTABLE: C:\Python27-x64\python.exe
     
 # branches to build
 branches:
@@ -71,6 +72,7 @@ before_build:
   - cmd: echo wxWidgets_ROOT_DIR:PATH=%wxWidgets_ROOT_DIR% >> CMakeCache.txt
   - cmd: echo WX_LIB_DIR:INTERNAL=%wxWidgets_LIBRARIES% >> CMakeCache.txt
   - cmd: echo WX_ROOT_DIR:INTERNAL=%wxWidgets_ROOT_DIR% >> CMakeCache.txt
+  - cmd: echo PYTHON_EXECUTABLE:FILEPATH=%PYTHON_EXECUTABLE% >> CMakeCache.txt
   - cmake --debug-output -G "Visual Studio 14 2015 Win64" c:\projects\isimpa
 
 build_script:
