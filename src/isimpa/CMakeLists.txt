@@ -533,11 +533,17 @@ if(WIN32) # Check if we are on Windows
 	LIB_TO_DLL(${Boost_REGEX_LIBRARY_RELEASE} Boost_REGEX_LIBRARY_RELEASE_REAL)
 	
 	# Copy wxWidgets Dll's
-	# extract folder path
+	# extract folder path    
     file(GLOB wxwidgets_dlls "${wxWidgets_LIB_DIR}/*.dll")
-	install(FILES
-			${wxwidgets_dlls}
-			DESTINATION .)
+    list(APPEND WXWidgets_DLL_Slash "")
+    foreach(WXWidgets_DLL ${wxwidgets_dlls})
+        string(REPLACE "\\" "/" WXWidgets_DLL ${WXWidgets_DLL})
+        list(APPEND WXWidgets_DLL_Slash ${WXWidgets_DLL})
+    endforeach(WXWidgets_DLL)    
+    install(FILES
+            ${WXWidgets_DLL_Slash}
+            DESTINATION .)
+    
 	
 	install (FILES
             ${PYTHON_DLL}
