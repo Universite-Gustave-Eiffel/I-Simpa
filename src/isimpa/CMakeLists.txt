@@ -1,5 +1,6 @@
 include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
-
+set(CMAKE_INSTALL_MFC_LIBRARIES ON) 
+include( InstallRequiredSystemLibraries )
 
 
 #--------------#
@@ -521,6 +522,10 @@ if(WIN32) # Check if we are on Windows
     PATTERN "Lib/site-packages" EXCLUDE
     PATTERN "*.pdb" EXCLUDE)
 
+    if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
+        install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION . COMPONENT Runtime )
+    endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
+
 	# Resolve symbolic link
 	LIB_TO_DLL(${Boost_FILESYSTEM_LIBRARY_RELEASE} Boost_FILESYSTEM_LIBRARY_RELEASE_REAL)
 	LIB_TO_DLL(${Boost_SYSTEM_LIBRARY_RELEASE} Boost_SYSTEM_LIBRARY_RELEASE_REAL)
@@ -528,11 +533,17 @@ if(WIN32) # Check if we are on Windows
 	LIB_TO_DLL(${Boost_REGEX_LIBRARY_RELEASE} Boost_REGEX_LIBRARY_RELEASE_REAL)
 	
 	# Copy wxWidgets Dll's
-	# extract folder path
+	# extract folder path    
     file(GLOB wxwidgets_dlls "${wxWidgets_LIB_DIR}/*.dll")
-	install(FILES
-			${wxwidgets_dlls}
-			DESTINATION .)
+    list(APPEND WXWidgets_DLL_Slash "")
+    foreach(WXWidgets_DLL ${wxwidgets_dlls})
+        string(REPLACE "\\" "/" WXWidgets_DLL ${WXWidgets_DLL})
+        list(APPEND WXWidgets_DLL_Slash ${WXWidgets_DLL})
+    endforeach(WXWidgets_DLL)    
+    install(FILES
+            ${WXWidgets_DLL_Slash}
+            DESTINATION .)
+    
 	
 	install (FILES
             ${PYTHON_DLL}
@@ -545,11 +556,7 @@ endif()
 
 # Package creation instructions, NSIS under windows
 
-SET(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION ".")
 SET(CPACK_NSIS_EXECUTABLES_DIRECTORY ".")
-
-INCLUDE(InstallRequiredSystemLibraries)
-
 
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "I-SIMPA")
 SET(CPACK_PACKAGE_VENDOR "Ifsttar")

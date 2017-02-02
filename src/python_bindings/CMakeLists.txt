@@ -1,6 +1,7 @@
 # Libsimpa
 message(STATUS " SWIG_EXECUTABLE     - $ENV{SWIG_EXECUTABLE}")
-
+set(CMAKE_INSTALL_MFC_LIBRARIES ON) 
+include( InstallRequiredSystemLibraries )
 #---------------------------------------#
 #    DEPENDENCY & EXECUTABLE (OR LIB)
 #---------------------------------------#
@@ -51,6 +52,10 @@ set(ISIMPA_RESSOURCES ${PROJECT_SOURCE_DIR}/currentRelease)
 install (TARGETS ${SWIG_MODULE_libsimpa_REAL_NAME}
       LIBRARY DESTINATION libsimpa/
 )
+
+if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
+    install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION libsimpa COMPONENT System )
+endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
 
 install (FILES
         ${ISIMPA_RESSOURCES}/libsimpa/vec3.py
