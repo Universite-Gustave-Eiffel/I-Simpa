@@ -96,7 +96,7 @@ after_build:
 #  - msbuild "RUN_TESTS.vcxproj" /target:Build  /p:Configuration=%configuration% /p:Platform=%platform% /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
 on_finish:
-  - type c:\projects\isimpa\build\Testing\Temporary\LastTest.log
+    - if exist c:\projects\isimpa\build\Testing\Temporary\LastTest.log ( type c:\projects\isimpa\build\Testing\Temporary\LastTest.log )
 artifacts:
   - path: 'build\*.exe'
     name: isimpa-win64
