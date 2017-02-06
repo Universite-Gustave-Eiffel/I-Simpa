@@ -19,6 +19,7 @@ environment:
     SWIG_DIR: C:\Libraries\swigwin-3.0.11
     SWIG_EXECUTABLE: C:\Libraries\swigwin-3.0.11\swig.exe    
     PYTHON_EXECUTABLE: C:\Python27-x64\python.exe
+    CTEST_OUTPUT_ON_FAILURE: 1
     
 # branches to build
 branches:
@@ -60,8 +61,6 @@ before_build:
   - cmd: 7z x wxMSW-3.1.0_vc140_x64_ReleaseDLL.7z -oC:\wxWidgets-3.1.0  
   # install dependencies:
   - choco install poedit nsis
-  - choco install dependencywalker -y --allow-empty-checksums  
-  #- choco install vcredist2015 -i
   - ps: Start-FileDownload 'https://kent.dl.sourceforge.net/project/swig/swigwin/swigwin-3.0.11/swigwin-3.0.11.zip' -FileName 'c:\Libraries\swigwin-3.0.11.zip' -Timeout 15000 
   - ps: 7z x c:\Libraries\swigwin-3.0.11.zip -oC:\Libraries -r -y
   - cmd: SET PATH=%PATH%;%WXWIN%;%SWIG_DIR%;%wxWidgets_LIB_DIR%;C:\Program Files (x86)\Poedit\Gettexttools\bin;
@@ -92,7 +91,8 @@ after_build:
 
 # Test script disabled, don't know why python can't find libsimpa under Appveyor  
 test_script:
-  - depends.exe /c /oc:c:\projects\isimpa\build\depends.txt c:\projects\isimpa\build\bin\libsimpa\_libsimpa.pyd
+  #- choco install dependencywalker -y --allow-empty-checksums  
+  #- depends.exe /c /oc:c:\projects\isimpa\build\depends.txt c:\projects\isimpa\build\bin\libsimpa\_libsimpa.pyd
   - cd c:\projects\isimpa\build
   - 'CALL "C:\Program Files (x86)\Microsoft Visual Studio %VisualStudioVersion%\VC\vcvarsall.bat" %vcvarsall_platform%'
   - ECHO Test I-SIMPA %configuration% %platform% with MSVC %VisualStudioVersion% using %PlatformToolset% PlatformToolset
