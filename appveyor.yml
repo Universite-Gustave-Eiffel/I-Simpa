@@ -59,7 +59,8 @@ before_build:
   - ps: Start-FileDownload 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.0/wxMSW-3.1.0_vc140_x64_ReleaseDLL.7z' -Timeout 15000
   - cmd: 7z x wxMSW-3.1.0_vc140_x64_ReleaseDLL.7z -oC:\wxWidgets-3.1.0  
   # install dependencies:
-  - choco install poedit nsis dependencywalker 
+  - choco install poedit nsis
+  - choco install dependencywalker -y --allow-empty-checksums  
   #- choco install vcredist2015 -i
   - ps: Start-FileDownload 'https://kent.dl.sourceforge.net/project/swig/swigwin/swigwin-3.0.11/swigwin-3.0.11.zip' -FileName 'c:\Libraries\swigwin-3.0.11.zip' -Timeout 15000 
   - ps: 7z x c:\Libraries\swigwin-3.0.11.zip -oC:\Libraries -r -y
