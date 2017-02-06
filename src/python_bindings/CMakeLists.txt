@@ -63,6 +63,21 @@ install (FILES
 		${CMAKE_CURRENT_BINARY_DIR}/libsimpa.py
 		${CMAKE_CURRENT_SOURCE_DIR}/tests/model_io.py
         DESTINATION libsimpa/)
+        
+        
+
+if(WIN32)
+	# Resolve symbolic link
+	LIB_TO_DLL(${Boost_FILESYSTEM_LIBRARY_RELEASE} Boost_FILESYSTEM_LIBRARY_RELEASE_REAL)
+	LIB_TO_DLL(${Boost_SYSTEM_LIBRARY_RELEASE} Boost_SYSTEM_LIBRARY_RELEASE_REAL)
+	LIB_TO_DLL(${Boost_REGEX_LIBRARY_RELEASE} Boost_REGEX_LIBRARY_RELEASE_REAL)
+	install (FILES
+        ${Boost_FILESYSTEM_LIBRARY_RELEASE_REAL}
+        ${Boost_SYSTEM_LIBRARY_RELEASE_REAL}
+        ${Boost_REGEX_LIBRARY_RELEASE_REAL}
+			DESTINATION libsimpa/)
+endif()
+
 #------------#
 #    TEST
 #------------#
