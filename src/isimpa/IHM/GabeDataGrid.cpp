@@ -701,7 +701,7 @@ void GabeDataGrid::LoadData(wxString gabeFilePath)
 						{	
 							this->GetTable()->SetValueAsDouble(idrow,idcol-firstgabecol,*(*floatCol)[idrow]);
 						}
-						wxGridCellAttr* attrCol=GetOrCreateCellAttr(idcol-firstgabecol,0);
+						wxGridCellAttr* attrCol=GetOrCreateCellAttr(0, idcol - firstgabecol);
 						attrCol->SetEditor(new wxGridCellFloatEditor(-1, floatCol->headerData.numOfDigits));
 						attrCol->SetRenderer(new wxGridCellGabeFloatRenderer(floatCol->headerData.numOfDigits));
 						SetColAttr(idcol-firstgabecol,attrCol);
@@ -716,7 +716,7 @@ void GabeDataGrid::LoadData(wxString gabeFilePath)
 					GABE_Data_Integer* intCol;
 					if(binImport.GetCol(idcol,&intCol))
 					{
-						wxGridCellAttr* attrCol=GetOrCreateCellAttr(idcol-firstgabecol,0);
+						wxGridCellAttr* attrCol=GetOrCreateCellAttr(0, idcol - firstgabecol);
 						attrCol->SetEditor(new wxGridCellNumberEditor());
 						attrCol->SetRenderer(new wxGridCellNumberRenderer());
 						SetColAttr(idcol-firstgabecol,attrCol);
@@ -773,7 +773,7 @@ void GabeDataGrid::LoadData(std::vector<wxString>& lblCols,std::vector<wxString>
 	{
 		if((colsAttr==NULL || colsAttr->size()<idcol) && (cellsValue.size() == nbrowel*nbcolel && cells.empty()))
 		{
-			wxGridCellAttr* attrCol=GetOrCreateCellAttr(idcol,0);
+			wxGridCellAttr* attrCol=GetOrCreateCellAttr(0, idcol);
 			attrCol->SetEditor(new wxGridCellFloatEditor());
 			attrCol->SetRenderer(new wxGridCellGabeFloatRenderer(4));
 			SetColAttr(idcol,attrCol);

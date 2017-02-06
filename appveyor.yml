@@ -19,6 +19,7 @@ environment:
     SWIG_DIR: C:\Libraries\swigwin-3.0.11
     SWIG_EXECUTABLE: C:\Libraries\swigwin-3.0.11\swig.exe    
     PYTHON_EXECUTABLE: C:\Python27-x64\python.exe
+    CTEST_OUTPUT_ON_FAILURE: 1
     
 # branches to build
 branches:
@@ -62,7 +63,7 @@ before_build:
   - choco install poedit nsis
   - ps: Start-FileDownload 'https://kent.dl.sourceforge.net/project/swig/swigwin/swigwin-3.0.11/swigwin-3.0.11.zip' -FileName 'c:\Libraries\swigwin-3.0.11.zip' -Timeout 15000 
   - ps: 7z x c:\Libraries\swigwin-3.0.11.zip -oC:\Libraries -r -y
-  - cmd: SET PATH=%PATH%;%WXWIN%;%SWIG_DIR%;%wxWidgets_LIB_DIR%;C:\Program Files (x86)\Poedit\Gettexttools\bin;
+  - cmd: SET PATH=%PATH%;%WXWIN%;%SWIG_DIR%;%wxWidgets_LIB_DIR%;C:\Program Files (x86)\Poedit\Gettexttools\bin;%BOOST_LIBRARYDIR%;
   - ps: swig.exe -version
   - echo Running cmake...
   - cmd: mkdir c:\projects\isimpa\build
@@ -89,13 +90,16 @@ after_build:
   - msbuild "PACKAGE.vcxproj" /consoleloggerparameters:Verbosity=minimal /target:Build  /p:Configuration=%configuration% /p:Platform=%platform% /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
 # Test script disabled, don't know why python can't find libsimpa under Appveyor  
-#test_script:
-#  - cd c:\projects\isimpa\build
-#  - 'CALL "C:\Program Files (x86)\Microsoft Visual Studio %VisualStudioVersion%\VC\vcvarsall.bat" %vcvarsall_platform%'
-#  - ECHO Test I-SIMPA %configuration% %platform% with MSVC %VisualStudioVersion% using %PlatformToolset% PlatformToolset
-#  - msbuild "RUN_TESTS.vcxproj" /target:Build  /p:Configuration=%configuration% /p:Platform=%platform% /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+test_script:
+  #- choco install dependencywalker -y --allow-empty-checksums  
+  #- depends.exe /c /oc:c:\projects\isimpa\build\depends.txt c:\projects\isimpa\build\bin\libsimpa\_libsimpa.pyd
+  - cd c:\projects\isimpa\build
+  - 'CALL "C:\Program Files (x86)\Microsoft Visual Studio %VisualStudioVersion%\VC\vcvarsall.bat" %vcvarsall_platform%'
+  - ECHO Test I-SIMPA %configuration% %platform% with MSVC %VisualStudioVersion% using %PlatformToolset% PlatformToolset
+  - msbuild "RUN_TESTS.vcxproj" /target:Build  /p:Configuration=%configuration% /p:Platform=%platform% /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
 on_finish:
+    - if exist c:\projects\isimpa\build\depends.txt ( type c:\projects\isimpa\build\depends.txt )
     - if exist c:\projects\isimpa\build\Testing\Temporary\LastTest.log ( type c:\projects\isimpa\build\Testing\Temporary\LastTest.log )
 artifacts:
   - path: 'build\*.exe'

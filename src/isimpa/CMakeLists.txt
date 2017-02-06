@@ -537,8 +537,14 @@ if(WIN32) # Check if we are on Windows
     file(GLOB wxwidgets_dlls "${wxWidgets_LIB_DIR}/*.dll")
     list(APPEND WXWidgets_DLL_Slash "")
     foreach(WXWidgets_DLL ${wxwidgets_dlls})
-        string(REPLACE "\\" "/" WXWidgets_DLL ${WXWidgets_DLL})
-        list(APPEND WXWidgets_DLL_Slash ${WXWidgets_DLL})
+        # Check if dll does not contain "ud" for debug dll
+        get_filename_component(DLL_FILENAME ${WXWidgets_DLL}  NAME_WE)
+        string(FIND ${DLL_FILENAME} "ud" debug_annot)
+        if(${debug_annot} LESS 0)
+            string(REPLACE "\\" "/" WXWidgets_DLL ${WXWidgets_DLL})
+            MESSAGE(STATUS "Install ${WXWidgets_DLL}")
+            list(APPEND WXWidgets_DLL_Slash ${WXWidgets_DLL})
+        endif()
     endforeach(WXWidgets_DLL)    
     install(FILES
             ${WXWidgets_DLL_Slash}
