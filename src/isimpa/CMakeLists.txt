@@ -487,9 +487,6 @@ ${ISIMPA_RESSOURCES}/appconst.xml
 ${ISIMPA_RESSOURCES}/Licence.pdf
 ${ISIMPA_RESSOURCES}/Licence.rtf
 isimpa.ico
-#${Boost_FILESYSTEM_LIBRARY_RELEASE_REAL}
-#${Boost_SYSTEM_LIBRARY_RELEASE_REAL}
-#${Boost_PYTHON_LIBRARY_RELEASE_REAL}
         DESTINATION .)
 
 install(DIRECTORY
@@ -500,21 +497,12 @@ ${ISIMPA_RESSOURCES}/UserScript
 ${ISIMPA_RESSOURCES}/Directivities
 DESTINATION .)
 
-# Copy python ressources required by boost python runtime
 if(WIN32) # Check if we are on Windows
-	SET(CMAKE_FIND_LIBRARY_PREFIXES "")
-	SET(CMAKE_FIND_LIBRARY_SUFFIXES ".dll")
 
-
-	find_library(
-		PYTHON_DLL
-		NAMES Python27.dll
-	)
-
-	MESSAGE(STATUS "Python dll ${PYTHON_DLL}")
+    # Copy python libraries
     get_filename_component(PYTHON_ROOT_FOLDER ${PYTHON_EXECUTABLE} PATH)
 	set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
-
+    
 	install(DIRECTORY
 	${PYTHON_ROOT_FOLDER}/Lib
 	${PYTHON_ROOT_FOLDER}/DLLs
@@ -525,39 +513,27 @@ if(WIN32) # Check if we are on Windows
     if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
         install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION . COMPONENT Runtime )
     endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
-
-	# Resolve symbolic link
-	LIB_TO_DLL(${Boost_FILESYSTEM_LIBRARY_RELEASE} Boost_FILESYSTEM_LIBRARY_RELEASE_REAL)
-	LIB_TO_DLL(${Boost_SYSTEM_LIBRARY_RELEASE} Boost_SYSTEM_LIBRARY_RELEASE_REAL)
-	LIB_TO_DLL(${Boost_PYTHON_LIBRARY_RELEASE} Boost_PYTHON_LIBRARY_RELEASE_REAL)
-	LIB_TO_DLL(${Boost_REGEX_LIBRARY_RELEASE} Boost_REGEX_LIBRARY_RELEASE_REAL)
-	
-	# Copy wxWidgets Dll's
-	# extract folder path    
-    file(GLOB wxwidgets_dlls "${wxWidgets_LIB_DIR}/*.dll")
-    list(APPEND WXWidgets_DLL_Slash "")
-    foreach(WXWidgets_DLL ${wxwidgets_dlls})
-        # Check if dll does not contain "ud" for debug dll
-        get_filename_component(DLL_FILENAME ${WXWidgets_DLL}  NAME_WE)
-        string(FIND ${DLL_FILENAME} "ud" debug_annot)
-        if(${debug_annot} LESS 0)
-            string(REPLACE "\\" "/" WXWidgets_DLL ${WXWidgets_DLL})
-            MESSAGE(STATUS "Install ${WXWidgets_DLL}")
-            list(APPEND WXWidgets_DLL_Slash ${WXWidgets_DLL})
-        endif()
-    endforeach(WXWidgets_DLL)    
-    install(FILES
-            ${WXWidgets_DLL_Slash}
-            DESTINATION .)
+    # $<TARGET_FILE:isimpa>
+    #;$ENV{PATH}
+    #Fetch required Dll's for GUI
+    string(REPLACE "\\" "/" wxWidgets_LIB_DIR_SLASH ${wxWidgets_LIB_DIR})
+    set(DIRS ${Boost_LIBRARY_DIR_DEBUG}
+             ${Boost_LIBRARY_DIR_RELEASE}
+             ${wxWidgets_LIB_DIR_SLASH}
+    )
+    install(CODE "
+    include(BundleUtilities)   
     
-	
-	install (FILES
-            ${PYTHON_DLL}
-            ${Boost_FILESYSTEM_LIBRARY_RELEASE_REAL}
-            ${Boost_SYSTEM_LIBRARY_RELEASE_REAL}
-            ${Boost_PYTHON_LIBRARY_RELEASE_REAL}
-            ${Boost_REGEX_LIBRARY_RELEASE_REAL}
-			 DESTINATION .)
+    GET_BUNDLE_MAIN_EXECUTABLE(<bundle> isimpa_bundle)
+    fixup_bundle(\"${CMAKE_INSTALL_PREFIX}/isimpa.exe\" \"\"   \"${DIRS}\")
+    file(GLOB dynamic_libs \"\${CMAKE_INSTALL_PREFIX}/${RUNTIME_DIR}/*${CMAKE_SHARED_LIBRARY_SUFFIX}*\")
+    message(STATUS \"GLOB: \${dynamic_libs}\")
+    foreach(dll IN LISTS dynamic_libs)
+        if(\"${CMAKE_STRIP}\")
+            execute_process(COMMAND ${CMAKE_STRIP} \"-s\" \${dll})
+        endif()
+    endforeach(dll)
+")
 endif()
 
 # Package creation instructions, NSIS under windows
