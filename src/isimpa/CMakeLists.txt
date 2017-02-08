@@ -503,6 +503,8 @@ if(WIN32) # Check if we are on Windows
     get_filename_component(PYTHON_ROOT_FOLDER ${PYTHON_EXECUTABLE} PATH)
 	set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
     
+    install(FILES ${PYTHON_DLL} DESTINATION .)
+    
 	install(DIRECTORY
 	${PYTHON_ROOT_FOLDER}/Lib
 	${PYTHON_ROOT_FOLDER}/DLLs
@@ -521,18 +523,12 @@ if(WIN32) # Check if we are on Windows
              ${Boost_LIBRARY_DIR_RELEASE}
              ${wxWidgets_LIB_DIR_SLASH}
     )
+    
     install(CODE "
     include(BundleUtilities)   
     
     GET_BUNDLE_MAIN_EXECUTABLE(<bundle> isimpa_bundle)
-    fixup_bundle(\"${CMAKE_INSTALL_PREFIX}/isimpa.exe\" \"\"   \"${DIRS}\")
-    file(GLOB dynamic_libs \"\${CMAKE_INSTALL_PREFIX}/${RUNTIME_DIR}/*${CMAKE_SHARED_LIBRARY_SUFFIX}*\")
-    message(STATUS \"GLOB: \${dynamic_libs}\")
-    foreach(dll IN LISTS dynamic_libs)
-        if(\"${CMAKE_STRIP}\")
-            execute_process(COMMAND ${CMAKE_STRIP} \"-s\" \${dll})
-        endif()
-    endforeach(dll)
+    fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/isimpa.exe\" \"\"   \"${DIRS}\")
 ")
 endif()
 
