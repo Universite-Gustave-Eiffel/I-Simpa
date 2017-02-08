@@ -92,7 +92,7 @@ after_build:
 # Test script disabled, don't know why python can't find libsimpa under Appveyor  
 test_script:
   - choco install dependencywalker -y --allow-empty-checksums  
-  - depends.exe /c /oc:c:\projects\isimpa\build\depends.txt c:\projects\isimpa\build\bin\isimpa.exe
+  - depends.exe /f:1 /c /oc:c:\projects\isimpa\build\depends.txt c:\projects\isimpa\build\bin\isimpa.exe
   - cd c:\projects\isimpa\build
   - 'CALL "C:\Program Files (x86)\Microsoft Visual Studio %VisualStudioVersion%\VC\vcvarsall.bat" %vcvarsall_platform%'
   - ECHO Test I-SIMPA %configuration% %platform% with MSVC %VisualStudioVersion% using %PlatformToolset% PlatformToolset
