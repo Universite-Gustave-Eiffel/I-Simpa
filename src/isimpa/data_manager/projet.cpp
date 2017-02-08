@@ -33,6 +33,7 @@
 */
 #include "projet.h"
 
+#include "python_interface/pythonstdioredirect.hpp"
 #include "e_data_color.h"
 #include "e_data_text.h"
 #include "e_position.h"
@@ -817,12 +818,30 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 
 	wxDateTime timeDebCalculation=wxDateTime::UNow();
 
-	if(ext=="py" || ext=="pyc")
-		cmd="python -u \""+rootCorePath+exeName+"\" \""+workingDir+xmlCoreFileName+"\"";
-	else
-		cmd=rootCorePath+exeName+" \""+workingDir+xmlCoreFileName+"\"";
+	if(ext=="py" || ext=="pyc") {
+#ifdef USE_PYTHON
+        const std::string arg = (workingDir + xmlCoreFileName).ToStdString();
+        char** args = new char*[1];
+        args[0] = new char[arg.length() + 1];
+        memcpy(&args[0], arg.c_str(), arg.length() + 1);
+        PySys_SetArgv(1, args);
+        boost::python::exec_file((rootCorePath + exeName).ToStdString().c_str());
+        delete args[0];
+        delete args;
+    } else {
+        cmd = rootCorePath + exeName + " \"" + workingDir + xmlCoreFileName + "\"";
+        uiRunExe(mainFrame, cmd, labelOutput, &progDialog);
+    }
 
-	bool result=uiRunExe(mainFrame,cmd,labelOutput,&progDialog);
+#else
+        cmd = "python -u \"" + rootCorePath + exeName + "\" \"" + workingDir + xmlCoreFileName + "\"";
+    }
+    else {
+        cmd = rootCorePath + exeName + " \"" + workingDir + xmlCoreFileName + "\"";
+    }
+
+    bool result = uiRunExe(mainFrame, cmd, labelOutput, &progDialog);
+#endif // USE_PYTHON
 	wxLongLong durationCalculation=wxDateTime::UNow().GetValue()-timeDebCalculation.GetValue();
 
 	wxLogMessage(_("Calculation time: %lld ms"),durationCalculation.GetValue());
