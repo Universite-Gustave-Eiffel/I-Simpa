@@ -506,6 +506,8 @@ if(WIN32) # Check if we are on Windows
     # Try to fetch x64 version of python dll
     
     get_filename_component(PYTHON_DLL_FILENAME ${PYTHON_LIBRARY}  NAME_WE)
+    # Dont know why but pythonXX.dll x64 is upper case on AppVeyor 
+    string(TOUPPER ${PYTHON_LIBRARY} PYTHON_LIBRARY)
     set(PYTHON_DLL "c:/windows/system32/${PYTHON_DLL_FILENAME}.DLL" CACHE FILEPATH "Python x64 dll")
     if(NOT EXISTS ${PYTHON_DLL})
         find_library(
@@ -541,7 +543,8 @@ if(WIN32) # Check if we are on Windows
     install(CODE "
     include(BundleUtilities)   
     
-    GET_BUNDLE_MAIN_EXECUTABLE(<bundle> isimpa_bundle)
+    GET_PREREQUISITES(\"\${CMAKE_INSTALL_PREFIX}/isimpa.exe\" ISIMPA_DEPENDENCIES 1 0 \${CMAKE_INSTALL_PREFIX} \"${DIRS}\" )
+        MESSAGE(STATUS \"Dependencies \${ISIMPA_DEPENDENCIES}\")
     fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/isimpa.exe\" \"\"   \"${DIRS}\")
 ")
 endif()
