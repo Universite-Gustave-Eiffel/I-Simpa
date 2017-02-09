@@ -513,6 +513,8 @@ if(WIN32) # Check if we are on Windows
             NAMES "${PYTHON_DLL_FILENAME}.DLL"
         )
         MESSAGE(STATUS "Python not found at system32 path but found here ${PYTHON_DLL}")
+    else()
+        MESSAGE(STATUS "Python found here ${PYTHON_DLL}")
     endif()
     
     install(FILES ${PYTHON_DLL} DESTINATION .)
