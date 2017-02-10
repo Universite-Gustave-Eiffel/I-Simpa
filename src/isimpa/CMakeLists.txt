@@ -502,25 +502,7 @@ if(WIN32) # Check if we are on Windows
     # Copy python libraries
     get_filename_component(PYTHON_ROOT_FOLDER ${PYTHON_EXECUTABLE} PATH)
 	set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
-    
-    # Try to fetch x64 version of python dll
-    
-    get_filename_component(PYTHON_DLL_FILENAME ${PYTHON_LIBRARY}  NAME_WE)
-    # Dont know why but pythonXX.dll x64 is upper case on AppVeyor 
-    string(TOUPPER ${PYTHON_DLL_FILENAME} PYTHON_DLL_FILENAME)
-    set(PYTHON_DLL "c:/windows/system32/${PYTHON_DLL_FILENAME}.DLL" CACHE FILEPATH "Python x64 dll")
-    if(NOT EXISTS ${PYTHON_DLL})
-        find_library(
-            PYTHON_DLL
-            NAMES "${PYTHON_DLL_FILENAME}.DLL"
-        )
-        MESSAGE(STATUS "Python not found at system32 path but found here ${PYTHON_DLL}")
-    else()
-        MESSAGE(STATUS "Python found here ${PYTHON_DLL}")
-    endif()
-    
-    install(FILES ${PYTHON_DLL} DESTINATION .)
-    
+        
 	install(DIRECTORY
 	${PYTHON_ROOT_FOLDER}/Lib
 	${PYTHON_ROOT_FOLDER}/DLLs
@@ -547,6 +529,25 @@ if(WIN32) # Check if we are on Windows
         MESSAGE(STATUS \"Dependencies \${ISIMPA_DEPENDENCIES}\")
     fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/isimpa.exe\" \"\"   \"${DIRS}\")
 ")
+
+
+
+    # Try to fetch x64 version of python dll    
+    get_filename_component(PYTHON_DLL_FILENAME ${PYTHON_LIBRARY}  NAME_WE)
+    # Dont know why but pythonXX.dll x64 is upper case on AppVeyor 
+    string(TOUPPER ${PYTHON_DLL_FILENAME} PYTHON_DLL_FILENAME)
+    set(PYTHON_DLL "c:/windows/system32/${PYTHON_DLL_FILENAME}.DLL")
+    if(NOT EXISTS ${PYTHON_DLL})
+        find_library(
+            PYTHON_DLL
+            NAMES "${PYTHON_DLL_FILENAME}.DLL"
+        )
+        MESSAGE(STATUS "Python not found at system32 path but found here ${PYTHON_DLL}")
+    else()
+        MESSAGE(STATUS "Python found here ${PYTHON_DLL}")
+    endif()
+    
+    install(FILES ${PYTHON_DLL} DESTINATION .)
 endif()
 
 # Package creation instructions, NSIS under windows
