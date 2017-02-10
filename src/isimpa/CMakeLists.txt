@@ -498,23 +498,6 @@ ${ISIMPA_RESSOURCES}/Directivities
 DESTINATION .)
 
 if(WIN32) # Check if we are on Windows
-
-    # Copy python libraries
-    get_filename_component(PYTHON_ROOT_FOLDER ${PYTHON_EXECUTABLE} PATH)
-	set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
-        
-	install(DIRECTORY
-	${PYTHON_ROOT_FOLDER}/Lib
-	${PYTHON_ROOT_FOLDER}/DLLs
-	DESTINATION .
-    PATTERN "Lib/site-packages" EXCLUDE
-    PATTERN "*.pdb" EXCLUDE)
-
-    if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
-        install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION . COMPONENT Runtime )
-    endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
-    # $<TARGET_FILE:isimpa>
-    #;$ENV{PATH}
     #Fetch required Dll's for GUI
     string(REPLACE "\\" "/" wxWidgets_LIB_DIR_SLASH ${wxWidgets_LIB_DIR})
     set(DIRS ${Boost_LIBRARY_DIR_DEBUG}
@@ -531,7 +514,20 @@ if(WIN32) # Check if we are on Windows
 ")
 
 
+    # Copy python libraries
+    get_filename_component(PYTHON_ROOT_FOLDER ${PYTHON_EXECUTABLE} PATH)
+	set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
+        
+	install(DIRECTORY
+	${PYTHON_ROOT_FOLDER}/Lib
+	${PYTHON_ROOT_FOLDER}/DLLs
+	DESTINATION .
+    PATTERN "Lib/site-packages" EXCLUDE
+    PATTERN "*.pdb" EXCLUDE)
 
+    if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
+        install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION . COMPONENT Runtime )
+    endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
     # Try to fetch x64 version of python dll    
     get_filename_component(PYTHON_DLL_FILENAME ${PYTHON_LIBRARY}  NAME_WE)
     # Dont know why but pythonXX.dll x64 is upper case on AppVeyor 
