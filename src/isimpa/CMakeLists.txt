@@ -507,7 +507,7 @@ if(WIN32) # Check if we are on Windows
     
     get_filename_component(PYTHON_DLL_FILENAME ${PYTHON_LIBRARY}  NAME_WE)
     # Dont know why but pythonXX.dll x64 is upper case on AppVeyor 
-    string(TOUPPER ${PYTHON_LIBRARY} PYTHON_LIBRARY)
+    string(TOUPPER ${PYTHON_DLL_FILENAME} PYTHON_DLL_FILENAME)
     set(PYTHON_DLL "c:/windows/system32/${PYTHON_DLL_FILENAME}.DLL" CACHE FILEPATH "Python x64 dll")
     if(NOT EXISTS ${PYTHON_DLL})
         find_library(
