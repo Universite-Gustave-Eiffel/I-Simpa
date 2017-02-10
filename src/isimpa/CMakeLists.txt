@@ -544,6 +544,15 @@ if(WIN32) # Check if we are on Windows
     endif()
     
     install(FILES ${PYTHON_DLL} DESTINATION .)
+    
+    install(CODE "
+    file(SHA512 ${PYTHON_DLL} WIN_PYTHON_HASH)
+    MESSAGE(STATUS \"WINPYTHONHASH \${WIN_PYTHON_HASH}\")
+    
+    set(INSTALL_DLL \"\${CMAKE_INSTALL_PREFIX}/${PYTHON_DLL_FILENAME}.DLL\")
+    file(SHA512 \${INSTALL_DLL} INSTALL_DLL_HASH)
+    MESSAGE(STATUS \"INSTALL_DLL_HASH \${INSTALL_DLL_HASH}\")
+    ")
 endif()
 
 # Package creation instructions, NSIS under windows
