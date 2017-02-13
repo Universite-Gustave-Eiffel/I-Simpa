@@ -538,6 +538,8 @@ if(WIN32) # Check if we are on Windows
         PYTHON_DLL
         NAMES ${PYTHON_DLL_FILENAME}
         PATHS ${PYTHON_ROOT_FOLDER} 
+        NO_DEFAULT_PATH
+        NO_SYSTEM_ENVIRONMENT_PATH
         NO_CMAKE_SYSTEM_PATH
     )
     if(NOT EXISTS ${PYTHON_DLL})
