@@ -45,7 +45,10 @@ configuration: Release
 # scripts to run before build
 before_build:
   - ps: git rev-parse HEAD
+  # msbuild will use x64 visual studio compiler
   - '"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64'
+  # Copy x64 dll from system32 to python27 x64
+  - cmd: copy c:\windows\system32\PYTHON27.DLL C:\Python27-x64\python27.dll
   # sent environment variables for wxWidgets
   - set WXWIN=C:\wxWidgets-3.1.0\
   - set wxWidgets_ROOT_DIR=%WXWIN%
@@ -91,8 +94,8 @@ after_build:
 
 # Test script disabled, don't know why python can't find libsimpa under Appveyor  
 test_script:
-  #- choco install dependencywalker -y --allow-empty-checksums  
-  #- depends.exe /c /oc:c:\projects\isimpa\build\depends.txt c:\projects\isimpa\build\bin\libsimpa\_libsimpa.pyd
+  - choco install dependencywalker -y --allow-empty-checksums  
+  - depends.exe /f:1 /c /oc:c:\projects\isimpa\build\depends.txt c:\projects\isimpa\build\bin\isimpa.exe
   - cd c:\projects\isimpa\build
   - 'CALL "C:\Program Files (x86)\Microsoft Visual Studio %VisualStudioVersion%\VC\vcvarsall.bat" %vcvarsall_platform%'
   - ECHO Test I-SIMPA %configuration% %platform% with MSVC %VisualStudioVersion% using %PlatformToolset% PlatformToolset

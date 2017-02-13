@@ -27,7 +27,14 @@ set(Boost_USE_STATIC_LIBS   OFF)
 find_package(Boost COMPONENTS system filesystem regex REQUIRED)
 link_directories( ${Boost_LIBRARY_DIRS} ) 
 
-SWIG_ADD_MODULE(libsimpa python libsimpa.i)
+IF ((${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION} GREATER 3.8) OR (${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION} EQUAL 3.8))
+  SWIG_ADD_LIBRARY(libsimpa LANGUAGE python SOURCES libsimpa.i)
+ELSE()
+  SWIG_ADD_MODULE(libsimpa python libsimpa.i)
+ENDIF ()
+
+
+
 SWIG_LINK_LIBRARIES(libsimpa lib_interface ${PYTHON_LIBRARIES})
 
 # Creates a folder "libraries" and adds target project (lib_interface.vcproj) under it

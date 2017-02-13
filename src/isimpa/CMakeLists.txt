@@ -487,9 +487,6 @@ ${ISIMPA_RESSOURCES}/appconst.xml
 ${ISIMPA_RESSOURCES}/Licence.pdf
 ${ISIMPA_RESSOURCES}/Licence.rtf
 isimpa.ico
-#${Boost_FILESYSTEM_LIBRARY_RELEASE_REAL}
-#${Boost_SYSTEM_LIBRARY_RELEASE_REAL}
-#${Boost_PYTHON_LIBRARY_RELEASE_REAL}
         DESTINATION .)
 
 install(DIRECTORY
@@ -500,21 +497,27 @@ ${ISIMPA_RESSOURCES}/UserScript
 ${ISIMPA_RESSOURCES}/Directivities
 DESTINATION .)
 
-# Copy python ressources required by boost python runtime
 if(WIN32) # Check if we are on Windows
-	SET(CMAKE_FIND_LIBRARY_PREFIXES "")
-	SET(CMAKE_FIND_LIBRARY_SUFFIXES ".dll")
+    #Fetch required Dll's for GUI
+    string(REPLACE "\\" "/" wxWidgets_LIB_DIR_SLASH ${wxWidgets_LIB_DIR})
+    set(DIRS ${Boost_LIBRARY_DIR_DEBUG}
+             ${Boost_LIBRARY_DIR_RELEASE}
+             ${wxWidgets_LIB_DIR_SLASH}
+    )
+    
+    install(CODE "
+    include(BundleUtilities)   
+    
+    GET_PREREQUISITES(\"\${CMAKE_INSTALL_PREFIX}/isimpa.exe\" ISIMPA_DEPENDENCIES 1 0 \${CMAKE_INSTALL_PREFIX} \"${DIRS}\" )
+        MESSAGE(STATUS \"Dependencies \${ISIMPA_DEPENDENCIES}\")
+    fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/isimpa.exe\" \"\"   \"${DIRS}\")
+")
 
 
-	find_library(
-		PYTHON_DLL
-		NAMES Python27.dll
-	)
-
-	MESSAGE(STATUS "Python dll ${PYTHON_DLL}")
+    # Copy python libraries
     get_filename_component(PYTHON_ROOT_FOLDER ${PYTHON_EXECUTABLE} PATH)
 	set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
-
+        
 	install(DIRECTORY
 	${PYTHON_ROOT_FOLDER}/Lib
 	${PYTHON_ROOT_FOLDER}/DLLs
@@ -525,39 +528,33 @@ if(WIN32) # Check if we are on Windows
     if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
         install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION . COMPONENT Runtime )
     endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
-
-	# Resolve symbolic link
-	LIB_TO_DLL(${Boost_FILESYSTEM_LIBRARY_RELEASE} Boost_FILESYSTEM_LIBRARY_RELEASE_REAL)
-	LIB_TO_DLL(${Boost_SYSTEM_LIBRARY_RELEASE} Boost_SYSTEM_LIBRARY_RELEASE_REAL)
-	LIB_TO_DLL(${Boost_PYTHON_LIBRARY_RELEASE} Boost_PYTHON_LIBRARY_RELEASE_REAL)
-	LIB_TO_DLL(${Boost_REGEX_LIBRARY_RELEASE} Boost_REGEX_LIBRARY_RELEASE_REAL)
-	
-	# Copy wxWidgets Dll's
-	# extract folder path    
-    file(GLOB wxwidgets_dlls "${wxWidgets_LIB_DIR}/*.dll")
-    list(APPEND WXWidgets_DLL_Slash "")
-    foreach(WXWidgets_DLL ${wxwidgets_dlls})
-        # Check if dll does not contain "ud" for debug dll
-        get_filename_component(DLL_FILENAME ${WXWidgets_DLL}  NAME_WE)
-        string(FIND ${DLL_FILENAME} "ud" debug_annot)
-        if(${debug_annot} LESS 0)
-            string(REPLACE "\\" "/" WXWidgets_DLL ${WXWidgets_DLL})
-            MESSAGE(STATUS "Install ${WXWidgets_DLL}")
-            list(APPEND WXWidgets_DLL_Slash ${WXWidgets_DLL})
-        endif()
-    endforeach(WXWidgets_DLL)    
-    install(FILES
-            ${WXWidgets_DLL_Slash}
-            DESTINATION .)
+    # Try to fetch x64 version of python dll    
+    get_filename_component(PYTHON_DLL_FILENAME ${PYTHON_LIBRARY}  NAME_WE)
     
-	
-	install (FILES
-            ${PYTHON_DLL}
-            ${Boost_FILESYSTEM_LIBRARY_RELEASE_REAL}
-            ${Boost_SYSTEM_LIBRARY_RELEASE_REAL}
-            ${Boost_PYTHON_LIBRARY_RELEASE_REAL}
-            ${Boost_REGEX_LIBRARY_RELEASE_REAL}
-			 DESTINATION .)
+    SET(CMAKE_FIND_LIBRARY_PREFIXES "")
+    SET(CMAKE_FIND_LIBRARY_SUFFIXES ".lib" ".dll")
+
+    find_library(
+        PYTHON_DLL
+        NAMES ${PYTHON_DLL_FILENAME}
+        PATHS ${PYTHON_ROOT_FOLDER} 
+        NO_DEFAULT_PATH
+        NO_SYSTEM_ENVIRONMENT_PATH
+        NO_CMAKE_SYSTEM_PATH
+    )
+    if(NOT EXISTS ${PYTHON_DLL})
+        MESSAGE(FATAL_ERROR "Python not found here ${PYTHON_DLL_FILENAME}.DLL")
+    else()
+        MESSAGE(STATUS "Python dll found here ${PYTHON_DLL}")
+    endif()
+    
+    install(FILES ${PYTHON_DLL} DESTINATION .)
+    
+    install(CODE "
+    set(INSTALL_DLL \"\${CMAKE_INSTALL_PREFIX}/${PYTHON_DLL_FILENAME}.DLL\")
+    file(SHA512 \${INSTALL_DLL} INSTALL_DLL_HASH)
+    MESSAGE(STATUS \"INSTALL_DLL_HASH \${INSTALL_DLL_HASH}\")
+    ")
 endif()
 
 # Package creation instructions, NSIS under windows
