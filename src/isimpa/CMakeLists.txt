@@ -530,25 +530,25 @@ if(WIN32) # Check if we are on Windows
     endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
     # Try to fetch x64 version of python dll    
     get_filename_component(PYTHON_DLL_FILENAME ${PYTHON_LIBRARY}  NAME_WE)
-    # Dont know why but pythonXX.dll x64 is upper case on AppVeyor 
-    string(TOUPPER ${PYTHON_DLL_FILENAME} PYTHON_DLL_FILENAME)
-    set(PYTHON_DLL "c:/windows/system32/${PYTHON_DLL_FILENAME}.DLL")
+    
+    SET(CMAKE_FIND_LIBRARY_PREFIXES "")
+    SET(CMAKE_FIND_LIBRARY_SUFFIXES ".lib" ".dll")
+
+    find_library(
+        PYTHON_DLL
+        NAMES ${PYTHON_DLL_FILENAME}
+        PATHS ${PYTHON_ROOT_FOLDER} 
+        NO_CMAKE_SYSTEM_PATH
+    )
     if(NOT EXISTS ${PYTHON_DLL})
-        find_library(
-            PYTHON_DLL
-            NAMES "${PYTHON_DLL_FILENAME}.DLL"
-        )
-        MESSAGE(STATUS "Python not found at system32 path but found here ${PYTHON_DLL}")
+        MESSAGE(FATAL_ERROR "Python not found here ${PYTHON_DLL_FILENAME}.DLL")
     else()
-        MESSAGE(STATUS "Python found here ${PYTHON_DLL}")
+        MESSAGE(STATUS "Python dll found here ${PYTHON_DLL}")
     endif()
     
     install(FILES ${PYTHON_DLL} DESTINATION .)
     
     install(CODE "
-    file(SHA512 ${PYTHON_DLL} WIN_PYTHON_HASH)
-    MESSAGE(STATUS \"WINPYTHONHASH \${WIN_PYTHON_HASH}\")
-    
     set(INSTALL_DLL \"\${CMAKE_INSTALL_PREFIX}/${PYTHON_DLL_FILENAME}.DLL\")
     file(SHA512 \${INSTALL_DLL} INSTALL_DLL_HASH)
     MESSAGE(STATUS \"INSTALL_DLL_HASH \${INSTALL_DLL_HASH}\")
