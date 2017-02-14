@@ -142,6 +142,9 @@ file(COPY
 # Test executable and folder
 set(SPPS_TESTS
     tests/spps_core_test.cpp)
+	
+set(Boost_USE_STATIC_LIBS   ON)
+find_package(Boost COMPONENTS filesystem regex unit_test_framework timer chrono REQUIRED)
 
 add_executable(TEST_spps ${SPPS_TESTS}
     ${DATA_MANAGER_SOURCES}
@@ -151,7 +154,7 @@ add_executable(TEST_spps ${SPPS_TESTS}
 
 target_link_libraries (TEST_spps
     lib_interface
-    ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+    ${Boost_LIBRARIES})
 set_property(TARGET TEST_spps PROPERTY FOLDER "tests")
 
 # Add to test suite

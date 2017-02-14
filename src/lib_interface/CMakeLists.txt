@@ -113,7 +113,7 @@ source_group( "tools" FILES ${TOOLS_SOURCES} )
 #---------------------------------------#
 
 set(Boost_USE_STATIC_LIBS   OFF)
-find_package(Boost COMPONENTS REQUIRED system filesystem regex)
+find_package(Boost COMPONENTS REQUIRED system filesystem)
 link_directories( ${Boost_LIBRARY_DIRS} ) 
 include_directories( ${Boost_INCLUDE_DIRS} )
 
@@ -151,6 +151,9 @@ file(COPY tests/speaker-test1.txt tests/speaker-test2.txt
 set(LIBINTERFACE_TESTS
     tests/balloon_test.cpp)
 
+set(Boost_USE_STATIC_LIBS   ON)
+find_package(Boost COMPONENTS regex unit_test_framework timer chrono REQUIRED)
+
 add_executable(TEST_lib_interface ${LIBINTERFACE_TESTS})
 
 target_link_libraries (TEST_lib_interface 
@@ -161,11 +164,7 @@ set_property(TARGET TEST_lib_interface PROPERTY FOLDER "tests")
 
 # Fetch unit test dependencies
 
-find_package(Boost COMPONENTS unit_test_framework timer chrono REQUIRED)
 
-COPY_LIB(${Boost_UNIT_TEST_FRAMEWORK_LIBRARY_RELEASE} ${CMAKE_CURRENT_BINARY_DIR})
-COPY_LIB(${Boost_TIMER_LIBRARY_RELEASE} ${CMAKE_CURRENT_BINARY_DIR})
-COPY_LIB(${Boost_CHRONO_LIBRARY_RELEASE} ${CMAKE_CURRENT_BINARY_DIR})
 
 # Add to test suite
 enable_testing()

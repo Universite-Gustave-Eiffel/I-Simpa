@@ -68,21 +68,23 @@ install (FILES
         ${ISIMPA_RESSOURCES}/libsimpa/vec3.py
         ${ISIMPA_RESSOURCES}/libsimpa/__init__.py
 		${CMAKE_CURRENT_BINARY_DIR}/libsimpa.py
-		${CMAKE_CURRENT_SOURCE_DIR}/tests/model_io.py
         DESTINATION libsimpa/)
         
         
 
 if(WIN32)
-	# Resolve symbolic link
-	LIB_TO_DLL(${Boost_FILESYSTEM_LIBRARY_RELEASE} Boost_FILESYSTEM_LIBRARY_RELEASE_REAL)
-	LIB_TO_DLL(${Boost_SYSTEM_LIBRARY_RELEASE} Boost_SYSTEM_LIBRARY_RELEASE_REAL)
-	LIB_TO_DLL(${Boost_REGEX_LIBRARY_RELEASE} Boost_REGEX_LIBRARY_RELEASE_REAL)
-	install (FILES
-        ${Boost_FILESYSTEM_LIBRARY_RELEASE_REAL}
-        ${Boost_SYSTEM_LIBRARY_RELEASE_REAL}
-        ${Boost_REGEX_LIBRARY_RELEASE_REAL}
-			DESTINATION libsimpa/)
+    #Fetch required Dll's 
+    set(DIRS ${Boost_LIBRARY_DIR_DEBUG}
+             ${Boost_LIBRARY_DIR_RELEASE}
+    )
+    
+    install(CODE "
+    include(BundleUtilities)   
+    # Rename to .exe as cmake check if the file ends with .exe in windows before gathering dependencies..
+    file(RENAME \"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.pyd\" \"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.exe\")    
+    fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.exe\" \"\"   \"${DIRS}\")
+    file(RENAME \"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.exe\" \"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.pyd\") 
+")
 endif()
 
 #------------#
@@ -96,7 +98,11 @@ enable_testing()
 MESSAGE(STATUS "Run test in ${CMAKE_CURRENT_BINARY_DIR}")
 
 add_test(NAME test_modelio
-  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_INSTALL_PREFIX}/libsimpa/model_io.py ${PROJECT_BINARY_DIR}/Testing/Temporary/)
+  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/model_io.py ${PROJECT_BINARY_DIR}/Testing/Temporary/
+   WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX}/libsimpa/)
+  
+add_test(NAME check_retrocompat
+  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_retrocompat.py ${CMAKE_CURRENT_SOURCE_DIR}/tests/mesh.cbin ${PROJECT_BINARY_DIR}/Testing/Temporary/ WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX}/libsimpa/)
   
   
 set_property(TEST test_modelio
