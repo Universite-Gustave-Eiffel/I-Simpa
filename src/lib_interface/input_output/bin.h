@@ -73,6 +73,13 @@ struct ioFace {
 	int operator==(const ioFace &_f) {
 		return a==_f.a && b==_f.b && c==_f.c && idMat==_f.idMat && idRs==_f.idRs && idEn==_f.idEn;
 	}
+	ioFace() {
+	
+	}
+	ioFace(indiceV _a, indiceV _b, indiceV _c, indiceMat _idMat, indiceRS _idRs, indiceEN _idEn)
+	: a(_a), b(_b), c(_c), idMat(_idMat), idRs(_idRs), idEn(_idEn) {
+		
+	}
 	indiceV a;/*!<  Indice du sommet */
 	indiceV b;/*!<  Indice du sommet */
 	indiceV c; /*!<  Indice du sommet */

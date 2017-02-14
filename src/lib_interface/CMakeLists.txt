@@ -139,7 +139,7 @@ target_link_libraries (lib_interface
     ${Boost_REGEX_LIBRARY})
 
 #------------#
-#    TEST
+#    TEST 1
 #------------#
 
 # Data files
@@ -171,6 +171,24 @@ enable_testing()
 add_test( NAME lib_interface
     WORKING_DIRECTORY ${TEST_DATA_DIR}
     COMMAND TEST_lib_interface )
+    
+    
+#------------#
+#    TEST 2
+#------------#
+add_executable(TEST_io_lib_interface tests/cbin_io_test.cpp )
+
+
+target_link_libraries (TEST_io_lib_interface 
+    lib_interface
+    ${Boost_LIBRARIES})
+    
+    
+set_property(TARGET TEST_io_lib_interface PROPERTY FOLDER "tests")
+   
+add_test( NAME io_lib_interface
+    WORKING_DIRECTORY ${TEST_DATA_DIR}
+    COMMAND TEST_io_lib_interface )
 
 #------------#
 #    FIX

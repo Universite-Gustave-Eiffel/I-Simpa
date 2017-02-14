@@ -117,7 +117,8 @@ namespace formatCoreBIN
 			return false;
 
 		binaryHeader enteteFichier;
-		binFile.read((char*)&enteteFichier, sizeof (binaryHeader));
+		binFile.read((char*)&enteteFichier.majorVersion, sizeof(bInt));
+		binFile.read((char*)&enteteFichier.minorVersion, sizeof(bInt));
 		if(enteteFichier.majorVersion != DEFAULT_MAJOR ||
 				enteteFichier.minorVersion != DEFAULT_MINOR) {
 			return false;
@@ -139,7 +140,6 @@ namespace formatCoreBIN
 		unsigned long nbVertex=modelImport.vertices.size();
 
 		//Declarations
-		unsigned long sizeVERTICES=(nbVertex*sizeof(binaryVertex))+sizeof(binaryNode)+sizeof(binaryVertices);
 		//Sauvegarde du mod�le 3D
 		fstream binFile (strFileName, ios::out | ios::binary);
 
@@ -148,21 +148,31 @@ namespace formatCoreBIN
 		binaryHeader fileHeader;
 		fileHeader.majorVersion=DEFAULT_MAJOR;
 		fileHeader.minorVersion=DEFAULT_MINOR;
-		binFile.write((char*)&fileHeader,sizeof(binaryHeader));
+		binFile.write((char*)&fileHeader.majorVersion, sizeof(bInt));
+		binFile.write((char*)&fileHeader.minorVersion, sizeof(bInt));
 
 		//*************************
 		//Ecriture du noeud VERTICE
 		binaryVertices verticeGroup={0};
 		//Compte le nombre de vertex
 		verticeGroup.nbVertex=nbVertex;
-		this->writeNode(binFile,NODE_TYPE_VERTICES,0,sizeVERTICES);
-		binFile.write((char*)&verticeGroup,sizeof(binaryVertices));
+		streampos posIndex = binFile.tellp();
+		this->writeNode(binFile,NODE_TYPE_VERTICES,0,0);
+		binFile.write((char*)&verticeGroup.nbVertex, sizeof(bLong));
 		//Ecriture des vertices
 		for(unsigned long v=0; v < nbVertex; v++)
 		{
 			binaryVertex currentVertex={modelImport.vertices[v][0],modelImport.vertices[v][1],modelImport.vertices[v][2]};
-			binFile.write((char*)&currentVertex,sizeof(binaryVertex));
+			binFile.write((char*)&currentVertex.x, sizeof(bFloat));
+			binFile.write((char*)&currentVertex.y, sizeof(bFloat));
+			binFile.write((char*)&currentVertex.z, sizeof(bFloat));
 		}
+		streampos pos = binFile.tellp();
+		// Rewind to index
+		binFile.seekp(posIndex);
+		this->writeNode(binFile, NODE_TYPE_VERTICES, 0, pos - posIndex);
+		binFile.seekp(pos);
+
 
 		//*************************
 		//Ecriture du noeud GROUP
@@ -173,7 +183,9 @@ namespace formatCoreBIN
 		unsigned long sizeGROUP=0;
 		//Ecriture dans le fichier
 		this->writeNode(binFile,NODE_TYPE_GROUP,0,sizeGROUP);
-		binFile.write((char*)&groupNode,sizeof(binaryGroup));
+		binFile.write((char*)&groupNode.groupName, sizeof(bString[255]));
+		binFile.write((char*)&groupNode.nbFace, sizeof(bInt));
+
 		for(unsigned long f=0; f < groupNode.nbFace ;f++)
 		{
 			binaryFace faceElement;
@@ -183,7 +195,12 @@ namespace formatCoreBIN
 			faceElement.idRs=modelImport.faces[f].idRs;
 			faceElement.idEn=modelImport.faces[f].idEn;
 			faceElement.idMaterial=modelImport.faces[f].idMat;
-			binFile.write((char*)&faceElement,sizeof(binaryFace));
+			binFile.write((char*)&faceElement.a, sizeof(bInt));
+			binFile.write((char*)&faceElement.b, sizeof(bInt));
+			binFile.write((char*)&faceElement.c, sizeof(bInt));
+			binFile.write((char*)&faceElement.idMaterial, sizeof(bInt));
+			binFile.write((char*)&faceElement.idRs, sizeof(bsInt));
+			binFile.write((char*)&faceElement.idEn, sizeof(bsInt));
 		}
 
 		binFile.close();
@@ -203,7 +220,10 @@ namespace formatCoreBIN
 		elementNode.nextBrother=1;
 		while(!binFile.eof() && elementNode.nextBrother!=0)
 		{
-			binFile.read((char*)&elementNode, sizeof (binaryNode));
+			binFile.read((char*)&elementNode.nodeType, sizeof(bShort));
+			binFile.read((char*)&elementNode.firtSon, sizeof(bLong));
+			binFile.read((char*)&elementNode.nextBrother, sizeof(bLong));
+
 			switch(elementNode.nodeType)
 			{
 				case NODE_TYPE_VERTICES:
@@ -216,7 +236,7 @@ namespace formatCoreBIN
 					return false;
 					break;
 			}
-			if(elementNode.nextBrother!=0)
+			if(elementNode.nextBrother!=0 && elementNode.nextBrother > binFile.tellg())
 				binFile.seekg(elementNode.nextBrother);
 		}
 
@@ -229,11 +249,13 @@ namespace formatCoreBIN
 		binaryVertex vertexElement;
 		if(!binFile.is_open() || binFile.eof())
 			return false;
-		binFile.read((char*)&elementNode, sizeof (binaryVertices));
+		binFile.read((char*)&elementNode.nbVertex, sizeof(bLong));
 		modelImport.vertices.reserve(elementNode.nbVertex);
 		for(unsigned long v=0;v<elementNode.nbVertex;v++)
 		{
-			binFile.read((char*)&vertexElement, sizeof (binaryVertex));
+			binFile.read((char*)&vertexElement.x, sizeof(bFloat));
+			binFile.read((char*)&vertexElement.y, sizeof(bFloat));
+			binFile.read((char*)&vertexElement.z, sizeof(bFloat));
 			modelImport.vertices.push_back(t_pos(vertexElement.x,vertexElement.y,vertexElement.z));
 		}
 		return true;
@@ -245,12 +267,18 @@ namespace formatCoreBIN
 		binaryFace faceElement;
 		if(!binFile.is_open() || binFile.eof())
 			return false;
-		binFile.read((char*)&elementNode, sizeof (binaryGroup));
+		binFile.read((char*)&elementNode.groupName, sizeof(bString[255]));
+		binFile.read((char*)&elementNode.nbFace, sizeof(bInt));
 		modelImport.faces.reserve(elementNode.nbFace);
 
 		for(unsigned long f=0;f<elementNode.nbFace;f++)
 		{
-			binFile.read((char*)&faceElement, sizeof (binaryFace));
+			binFile.read((char*)&faceElement.a, sizeof(bInt));
+			binFile.read((char*)&faceElement.b, sizeof(bInt));
+			binFile.read((char*)&faceElement.c, sizeof(bInt));
+			binFile.read((char*)&faceElement.idMaterial, sizeof(bInt));
+			binFile.read((char*)&faceElement.idRs, sizeof(bsInt));
+			binFile.read((char*)&faceElement.idEn, sizeof(bInt));
 			ioFace nvFace;
 			nvFace.a=faceElement.a;
 			nvFace.b=faceElement.b;
@@ -273,7 +301,8 @@ namespace formatCoreBIN
 			currentNode.firtSon=0;
 		if(nodeSize==0)
 			currentNode.nextBrother=0;
-		binFile.write((char*)&currentNode,sizeof(binaryNode));
+		binFile.write((char*)&currentNode.nodeType, sizeof(bShort));
+		binFile.write((char*)&currentNode.firtSon, sizeof(bLong));
+		binFile.write((char*)&currentNode.nextBrother, sizeof(bLong));
 	}
-
 }
