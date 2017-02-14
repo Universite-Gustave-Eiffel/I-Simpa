@@ -73,6 +73,7 @@ namespace formatCoreBIN
 	 *	\brief Cette structure d�finit une section de donn�es du fichier Binaire
 	 */
 	struct binaryGroup {
+		binaryGroup() : groupName("") {}
 		bString groupName[255];
 		bInt nbFace;
 	};
@@ -125,7 +126,9 @@ namespace formatCoreBIN
 		}
 		//La version du format se trouve dans enteteFichier
 
-		this->ProcessNode(binFile,modelImport);
+		if(!this->ProcessNode(binFile,modelImport)) {
+			return false;
+		}
 
 
 		binFile.close();
@@ -184,6 +187,7 @@ namespace formatCoreBIN
 		//Ecriture dans le fichier
 		this->writeNode(binFile,NODE_TYPE_GROUP,0,sizeGROUP);
 		binFile.write((char*)&groupNode.groupName, sizeof(bString[255]));
+		binFile.write((char*)&"\0", 1);
 		binFile.write((char*)&groupNode.nbFace, sizeof(bInt));
 
 		for(unsigned long f=0; f < groupNode.nbFace ;f++)
@@ -221,6 +225,7 @@ namespace formatCoreBIN
 		while(!binFile.eof() && elementNode.nextBrother!=0)
 		{
 			binFile.read((char*)&elementNode.nodeType, sizeof(bShort));
+			binFile.seekg(2, std::ios_base::cur);
 			binFile.read((char*)&elementNode.firtSon, sizeof(bLong));
 			binFile.read((char*)&elementNode.nextBrother, sizeof(bLong));
 
@@ -236,8 +241,15 @@ namespace formatCoreBIN
 					return false;
 					break;
 			}
-			if(elementNode.nextBrother!=0 && elementNode.nextBrother > binFile.tellg())
-				binFile.seekg(elementNode.nextBrother);
+			if(elementNode.nextBrother!=0) {
+				std::streampos curPos = binFile.tellg();
+				if(elementNode.nextBrother > curPos) {
+					binFile.seekg(elementNode.nextBrother);
+					if(binFile.tellg() != (std::streampos)elementNode.nextBrother) {
+						return false;
+					}
+				}
+			}
 		}
 
 		return true;
@@ -268,6 +280,7 @@ namespace formatCoreBIN
 		if(!binFile.is_open() || binFile.eof())
 			return false;
 		binFile.read((char*)&elementNode.groupName, sizeof(bString[255]));
+		binFile.seekg(1, std::ios_base::cur);
 		binFile.read((char*)&elementNode.nbFace, sizeof(bInt));
 		modelImport.faces.reserve(elementNode.nbFace);
 
@@ -302,6 +315,7 @@ namespace formatCoreBIN
 		if(nodeSize==0)
 			currentNode.nextBrother=0;
 		binFile.write((char*)&currentNode.nodeType, sizeof(bShort));
+		binFile.write((char*)&"\0", sizeof(bShort));
 		binFile.write((char*)&currentNode.firtSon, sizeof(bLong));
 		binFile.write((char*)&currentNode.nextBrother, sizeof(bLong));
 	}

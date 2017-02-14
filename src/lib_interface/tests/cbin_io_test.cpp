@@ -42,3 +42,17 @@ BOOST_AUTO_TEST_CASE(constructor_test1)
 
 	// Check content
 }
+
+
+BOOST_AUTO_TEST_CASE(retrocompat_test1)
+{
+	using namespace formatCoreBIN;
+	ioModel modelTest;
+	CformatBIN driver;
+
+	BOOST_TEST(driver.ImportBIN(modelTest, "cube.cbin"));
+
+	// Check content
+	BOOST_TEST(modelTest.faces.size() == 12);
+	BOOST_TEST(modelTest.vertices.size() == 8);
+}
