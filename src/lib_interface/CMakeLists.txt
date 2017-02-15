@@ -178,7 +178,7 @@ add_test( NAME lib_interface
 #------------#
 
 
-file(COPY tests/cube.cbin
+file(COPY tests/cube.cbin tests/cube_mesh.mbin
     DESTINATION ${TEST_DATA_DIR})
     
 add_executable(TEST_io_lib_interface tests/cbin_io_test.cpp )

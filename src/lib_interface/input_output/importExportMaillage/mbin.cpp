@@ -143,27 +143,38 @@ bool  CMBIN::ImportBIN(const char *strFileName,bintetrahedre **tabTetra,t_binNod
 		//*************************
 		//Lecture de l'entete du fichier
 		t_FileHeader fileHeader;
-		memset(&fileHeader,0,sizeof(t_FileHeader));
-		binFile.read((char*)&fileHeader,sizeof(t_FileHeader));
+		binFile.read((char*)&fileHeader.quantTetra,sizeof(Longb));
+		binFile.read((char*)&fileHeader.quantNodes, sizeof(Longb));
 		sizeNodes=fileHeader.quantNodes;
 		sizeTetra=fileHeader.quantTetra;
-		// This deprecated file format may be altered by os/compiler specific struct alignment or endian
-		// limit to 1 million nodes/tetrahedra in order to detect the problem before overloading memory
-		if(fileHeader.quantNodes < 0 || fileHeader.quantNodes > 1e6) {
-			return false;
-		}
-		if(fileHeader.quantTetra < 0 || fileHeader.quantTetra > 1e6) {
-			return false;
-		}
-		//*************************
-		//Lecture des noeuds
-		*tabNodes=new t_binNode[sizeNodes];
-		binFile.read((char*)*tabNodes,sizeof(t_binNode)*sizeNodes);
-		//*************************
-		//Lecture des tetrah�dres
-		*tabTetra=new bintetrahedre[sizeTetra];
-		binFile.read((char*)*tabTetra,sizeof(bintetrahedre)*sizeTetra);
 
+		//*************************
+		// Read nodes
+		*tabNodes=new t_binNode[sizeNodes];
+		for(int idNode=0; idNode<sizeNodes; idNode++) {
+			binFile.read((char*)&((*tabNodes)[idNode].node[0]), sizeof(Floatb));
+			binFile.read((char*)&((*tabNodes)[idNode].node[1]), sizeof(Floatb));
+			binFile.read((char*)&((*tabNodes)[idNode].node[2]), sizeof(Floatb));
+		}		
+		//*************************
+		// Read tetrahedras
+		*tabTetra=new bintetrahedre[sizeTetra];
+		for(int idTetra = 0; idTetra < sizeTetra; idTetra++) {
+			bintetrahedre& tetra = (*tabTetra)[idTetra];
+			binFile.read((char*)&(tetra.vertices[0]), sizeof(Intb));
+			binFile.read((char*)&(tetra.vertices[1]), sizeof(Intb));
+			binFile.read((char*)&(tetra.vertices[2]), sizeof(Intb));
+			binFile.read((char*)&(tetra.vertices[3]), sizeof(Intb));
+			binFile.read((char*)&(tetra.idVolume), sizeof(Intb));
+			for(int idFace = 0; idFace < 4; idFace++) {
+				bintetraface& face = tetra.tetrafaces[idFace];
+				binFile.read((char*)&(face.vertices[0]), sizeof(Intb));
+				binFile.read((char*)&(face.vertices[1]), sizeof(Intb));
+				binFile.read((char*)&(face.vertices[2]), sizeof(Intb));
+				binFile.read((char*)&(face.marker), sizeof(Intb));
+				binFile.read((char*)&(face.neighbor), sizeof(Intb));				
+			}
+		}
 		binFile.close();
 		return true;
 	}else{
