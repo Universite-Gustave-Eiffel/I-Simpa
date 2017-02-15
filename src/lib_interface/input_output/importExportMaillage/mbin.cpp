@@ -78,7 +78,7 @@ bool CMBIN::SaveMesh(const char *strFileName,trimeshmodel& trimesh)
 	for( unsigned int idtetra=0;idtetra<sizeTetra;idtetra++)
 		tabTetra[idtetra]=trimesh.tetrahedres[idtetra];
 
-	bool result = ExportBIN(strFileName,&tabTetra,&tabNodes,sizeTetra,sizeNodes);
+	bool result = ExportBIN(strFileName,tabTetra,tabNodes,sizeTetra,sizeNodes);
 
 	delete[] tabTetra;
 	delete[] tabNodes;
@@ -86,7 +86,7 @@ bool CMBIN::SaveMesh(const char *strFileName,trimeshmodel& trimesh)
     return result;
 }
 
-bool CMBIN::ExportBIN(const char *strFileName,bintetrahedre **tabTetra,t_binNode **tabNodes,unsigned int sizeTetra,unsigned int sizeNodes)
+bool CMBIN::ExportBIN(const char *strFileName,const bintetrahedre* tabTetra,const t_binNode* tabNodes,unsigned int sizeTetra,unsigned int sizeNodes)
 {
 	//Namespace
 	using namespace std;
@@ -101,13 +101,19 @@ bool CMBIN::ExportBIN(const char *strFileName,bintetrahedre **tabTetra,t_binNode
 	t_FileHeader fileHeader;
 	fileHeader.quantNodes=sizeNodes;
 	fileHeader.quantTetra=sizeTetra;
-	binFile.write((char*)&fileHeader,sizeof(t_FileHeader));
+	binFile.write((char*)&fileHeader.quantTetra,sizeof(Longb));
+	binFile.write((char*)&fileHeader.quantNodes, sizeof(Longb));
 	//*************************
 	//Ecriture des noeuds
-	binFile.write((char*)*tabNodes,sizeof(t_binNode)*sizeNodes);
+	for (int idNode = 0; idNode<sizeNodes; idNode++) {
+		binFile.write((char*)&(tabNodes[idNode]).node[0], sizeof(Floatb));
+		binFile.write((char*)&(tabNodes[idNode]).node[1], sizeof(Floatb));
+		binFile.write((char*)&(tabNodes[idNode]).node[2], sizeof(Floatb));		
+	}
+
     // Check tetrahedra
     for(int idTetra = 0; idTetra < sizeTetra; idTetra++) {
-        const bintetrahedre& tetra = (*tabTetra)[idTetra];
+        const bintetrahedre& tetra = tabTetra[idTetra];
         for (int idvertLeft = 0; idvertLeft < 4; idvertLeft++) {
             for (int idvertRight = 0; idvertRight < 4; idvertRight++) {
                 if (idvertLeft != idvertRight) {
@@ -120,10 +126,26 @@ bool CMBIN::ExportBIN(const char *strFileName,bintetrahedre **tabTetra,t_binNode
             }
         }
     }
+
+
     //*************************
 	//Write tetrahedra
-	binFile.write((char*)*tabTetra,sizeof(bintetrahedre)*sizeTetra);
-
+	for (int idTetra = 0; idTetra < sizeTetra; idTetra++) {
+		const bintetrahedre& tetra = tabTetra[idTetra];
+		binFile.write((char*)&tetra.vertices[0], sizeof(Intb));
+		binFile.write((char*)&tetra.vertices[1], sizeof(Intb));
+		binFile.write((char*)&tetra.vertices[2], sizeof(Intb));
+		binFile.write((char*)&tetra.vertices[3], sizeof(Intb));
+		binFile.write((char*)&tetra.idVolume, sizeof(Intb));
+		for (int idFace = 0; idFace < 4; idFace++) {
+			const bintetraface& face = tetra.tetrafaces[idFace];
+			binFile.write((char*)&face.vertices[0], sizeof(Intb));
+			binFile.write((char*)&face.vertices[1], sizeof(Intb));
+			binFile.write((char*)&face.vertices[2], sizeof(Intb));
+			binFile.write((char*)&face.marker, sizeof(Intb));
+			binFile.write((char*)&face.neighbor, sizeof(Intb));
+		}
+	}
 	binFile.close();
 	return true;
 }

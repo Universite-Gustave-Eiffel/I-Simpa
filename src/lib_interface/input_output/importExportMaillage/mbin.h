@@ -154,7 +154,7 @@ public:
 	 * @param sizeNodes Taille du tableau de tetrahèdre
 	 * @return Vrai si l'opération a réussi
 	 */
-	bool ExportBIN(const char *strFileName,bintetrahedre **tabTetra,t_binNode **tabNodes,unsigned int sizeTetra,unsigned int sizeNodes);
+	bool ExportBIN(const char *strFileName,const bintetrahedre* tabTetra,const t_binNode* tabNodes,unsigned int sizeTetra,unsigned int sizeNodes);
 	/// @endcond
 	/**
 	 * Méthode d'importation d'un fichier binaire

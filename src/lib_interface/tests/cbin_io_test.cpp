@@ -116,8 +116,6 @@ BOOST_AUTO_TEST_CASE(retrocompat_test2)
 
 	CMBIN driver;
 
-	trimeshmodel model;
-
 	bintetrahedre *tabTetra = NULL;
 	t_binNode *tabNodes = NULL;
 	unsigned int sizeTetra = 0;
@@ -151,6 +149,76 @@ BOOST_AUTO_TEST_CASE(retrocompat_test2)
 	BOOST_TEST((tabTetra[4] == bintetrahedre(4, 2, 7, 6, 1,
 		 bintetraface(2, 6, 7, -1,1 ), bintetraface(7, 6, 4, 11, -2), bintetraface(4, 6, 2, 4, -2), bintetraface(2, 7,4 , -1, 0))));
 	BOOST_TEST((tabTetra[5] == bintetrahedre(5,0 ,7 ,2 ,1 ,
+		bintetraface(0, 2, 7, -1, 2), bintetraface(7, 2, 5, -1, 0), bintetraface(5, 2, 0, -1, 3), bintetraface(0, 7, 5, 9, -2))));
+
+
+	delete[] tabTetra;
+	delete[] tabNodes;
+}
+
+
+BOOST_AUTO_TEST_CASE(write_read_mbin1_test1)
+{
+	using namespace formatMBIN;
+
+
+	CMBIN driver;
+
+
+	t_binNode tabNodesRef[] = {t_binNode(5, 0, 0),t_binNode(0, 0, 0),t_binNode(0, 5, 0),t_binNode(5, 5, 0),t_binNode(0, 5, 5),t_binNode(5, 5, 5)
+		,t_binNode(0, 0, 5), t_binNode(5, 0, 5)};
+
+	bintetrahedre tabTetraRef[] = {bintetrahedre(4, 5, 7, 2, 1,
+		bintetraface(5, 2, 7, -1, 5), bintetraface(7, 2, 4, -1, 4), bintetraface(4, 2, 5, 2, -2), bintetraface(5, 7, 4, 10, -2)),
+		bintetrahedre(6, 2, 7, 1, 1,
+		bintetraface(2, 1, 7, -1, 2), bintetraface(7, 1, 6, 7, -2), bintetraface(6, 1, 2, 5, -2), bintetraface(2, 7, 6, -1, 4)),
+		bintetrahedre(0, 2, 1, 7, 1,
+		bintetraface(2, 7, 1, -1, 1), bintetraface(1, 7, 0, 6, -2), bintetraface(0, 7, 2, -1, 5), bintetraface(2, 1, 0, 0, -2)),
+		bintetrahedre(0, 3, 2, 5, 1,
+		bintetraface(3, 5, 2, 3, -2), bintetraface(2, 5, 0, -1, 5), bintetraface(0, 5, 3, 8, -2), bintetraface(3, 2, 0, 1, -2)),
+		bintetrahedre(4, 2, 7, 6, 1,
+		bintetraface(2, 6, 7, -1, 1), bintetraface(7, 6, 4, 11, -2), bintetraface(4, 6, 2, 4, -2), bintetraface(2, 7, 4, -1, 0)),
+		bintetrahedre(5, 0, 7, 2, 1,
+			bintetraface(0, 2, 7, -1, 2), bintetraface(7, 2, 5, -1, 0), bintetraface(5, 2, 0, -1, 3), bintetraface(0, 7, 5, 9, -2))};
+	
+
+	BOOST_REQUIRE(driver.ExportBIN("output_cube_mesh.mbin", tabTetraRef, tabNodesRef, sizeof(tabTetraRef) / sizeof(bintetrahedre), sizeof(tabNodesRef) / sizeof(t_binNode)));
+
+
+
+	bintetrahedre *tabTetra = NULL;
+	t_binNode *tabNodes = NULL;
+	unsigned int sizeTetra = 0;
+	unsigned int sizeNodes = 0;
+
+	BOOST_REQUIRE(driver.ImportBIN("output_cube_mesh.mbin", &tabTetra, &tabNodes, sizeTetra, sizeNodes));
+
+	// Check content
+	BOOST_REQUIRE(sizeNodes == 8);
+
+
+	BOOST_TEST((tabNodes[0] == t_binNode(5, 0, 0)));
+	BOOST_TEST((tabNodes[1] == t_binNode(0, 0, 0)));
+	BOOST_TEST((tabNodes[2] == t_binNode(0, 5, 0)));
+	BOOST_TEST((tabNodes[3] == t_binNode(5, 5, 0)));
+	BOOST_TEST((tabNodes[4] == t_binNode(0, 5, 5)));
+	BOOST_TEST((tabNodes[5] == t_binNode(5, 5, 5)));
+	BOOST_TEST((tabNodes[6] == t_binNode(0, 0, 5)));
+	BOOST_TEST((tabNodes[7] == t_binNode(5, 0, 5)));
+
+	BOOST_REQUIRE(sizeTetra == 6);
+
+	BOOST_TEST((tabTetra[0] == bintetrahedre(4, 5, 7, 2, 1,
+		bintetraface(5, 2, 7, -1, 5), bintetraface(7, 2, 4, -1, 4), bintetraface(4, 2, 5, 2, -2), bintetraface(5, 7, 4, 10, -2))));
+	BOOST_TEST((tabTetra[1] == bintetrahedre(6, 2, 7, 1, 1,
+		bintetraface(2, 1, 7, -1, 2), bintetraface(7, 1, 6, 7, -2), bintetraface(6, 1, 2, 5, -2), bintetraface(2, 7, 6, -1, 4))));
+	BOOST_TEST((tabTetra[2] == bintetrahedre(0, 2, 1, 7, 1,
+		bintetraface(2, 7, 1, -1, 1), bintetraface(1, 7, 0, 6, -2), bintetraface(0, 7, 2, -1, 5), bintetraface(2, 1, 0, 0, -2))));
+	BOOST_TEST((tabTetra[3] == bintetrahedre(0, 3, 2, 5, 1,
+		bintetraface(3, 5, 2, 3, -2), bintetraface(2, 5, 0, -1, 5), bintetraface(0, 5, 3, 8, -2), bintetraface(3, 2, 0, 1, -2))));
+	BOOST_TEST((tabTetra[4] == bintetrahedre(4, 2, 7, 6, 1,
+		bintetraface(2, 6, 7, -1, 1), bintetraface(7, 6, 4, 11, -2), bintetraface(4, 6, 2, 4, -2), bintetraface(2, 7, 4, -1, 0))));
+	BOOST_TEST((tabTetra[5] == bintetrahedre(5, 0, 7, 2, 1,
 		bintetraface(0, 2, 7, -1, 2), bintetraface(7, 2, 5, -1, 0), bintetraface(5, 2, 0, -1, 3), bintetraface(0, 7, 5, 9, -2))));
 
 
