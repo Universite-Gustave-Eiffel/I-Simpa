@@ -73,7 +73,10 @@ namespace formatCoreBIN
 	 *	\brief Cette structure d�finit une section de donn�es du fichier Binaire
 	 */
 	struct binaryGroup {
-		binaryGroup() : groupName("") {}
+		binaryGroup() 
+		{
+			memset(groupName, '\0', sizeof(bString)*255);
+		}
 		bString groupName[255];
 		bInt nbFace;
 	};

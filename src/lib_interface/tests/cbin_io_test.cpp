@@ -179,7 +179,7 @@ BOOST_AUTO_TEST_CASE(write_read_mbin1_test1)
 		bintetrahedre(4, 2, 7, 6, 1,
 		bintetraface(2, 6, 7, -1, 1), bintetraface(7, 6, 4, 11, -2), bintetraface(4, 6, 2, 4, -2), bintetraface(2, 7, 4, -1, 0)),
 		bintetrahedre(5, 0, 7, 2, 1,
-			bintetraface(0, 2, 7, -1, 2), bintetraface(7, 2, 5, -1, 0), bintetraface(5, 2, 0, -1, 3), bintetraface(0, 7, 5, 9, -2))};
+		bintetraface(0, 2, 7, -1, 2), bintetraface(7, 2, 5, -1, 0), bintetraface(5, 2, 0, -1, 3), bintetraface(0, 7, 5, 9, -2))};
 	
 
 	BOOST_REQUIRE(driver.ExportBIN("output_cube_mesh.mbin", tabTetraRef, tabNodesRef, sizeof(tabTetraRef) / sizeof(bintetrahedre), sizeof(tabNodesRef) / sizeof(t_binNode)));
