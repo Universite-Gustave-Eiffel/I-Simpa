@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE(constructor_test1)
 	modelRef.faces.push_back(ioFace(6, 7, 4, -1, 66, -1));
 
 	CformatBIN driver;
-	BOOST_REQUIRE(driver.ExportBIN("test_io_wr.cbin", modelRef), "Failed to write .bin file");
+	BOOST_REQUIRE(driver.ExportBIN("test_io_wr.cbin", modelRef));
 
 	ioModel modelTest;
 	
