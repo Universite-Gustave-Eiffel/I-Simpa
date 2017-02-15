@@ -30,6 +30,7 @@
 
 #include "bin.h"
 #include "Core/mathlib.h"
+#include <cstring>
 
 namespace formatCoreBIN
 {
