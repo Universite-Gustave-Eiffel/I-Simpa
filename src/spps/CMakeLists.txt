@@ -46,10 +46,10 @@ source_group("" FILES ${SPPS_SOURCES} $(SPPS_MAIN_SOURCES))
 set(Boost_USE_STATIC_LIBS   OFF)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-  find_package(Boost REQUIRED COMPONENTS system random filesystem)
+  find_package(Boost REQUIRED COMPONENTS system random filesystem regex)
 else()
   find_package (Threads)
-  find_package(Boost REQUIRED COMPONENTS system random filesystem thread chrono date_time)
+  find_package(Boost REQUIRED COMPONENTS system random filesystem regex thread chrono date_time)
 endif()
 
 link_directories( ${Boost_LIBRARY_DIRS} )

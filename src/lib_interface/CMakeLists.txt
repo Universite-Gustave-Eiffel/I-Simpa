@@ -113,7 +113,7 @@ source_group( "tools" FILES ${TOOLS_SOURCES} )
 #---------------------------------------#
 
 set(Boost_USE_STATIC_LIBS   OFF)
-find_package(Boost COMPONENTS REQUIRED system filesystem)
+find_package(Boost COMPONENTS REQUIRED system filesystem regex)
 link_directories( ${Boost_LIBRARY_DIRS} ) 
 include_directories( ${Boost_INCLUDE_DIRS} )
 
