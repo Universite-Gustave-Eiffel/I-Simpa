@@ -4,6 +4,7 @@ SWIG Python lib interface module declaration
 
 %module libsimpa
 %{
+#include "../lib_interface/Core/mathlib.h"
 #include "../lib_interface/input_output/bin.h"
 #include "../lib_interface/input_output/importExportMaillage/mbin.h"
 #include "../lib_interface/input_output/gabe/stdgabe.h"
@@ -33,6 +34,77 @@ namespace std {
    %template(typearray) vector<formatGABE::GABE_OBJECTTYPE>;
 }
 
+%typemap(out) float [ANY] {
+   int i;
+   $result = PyList_New($1_dim0);
+   for (i = 0; i < $1_dim0; i++) {
+     PyObject *o = PyFloat_FromDouble((double) $1[i]);
+     PyList_SetItem($result,i,o);
+   }
+} 
+
+
+%typemap(out) long [ANY] {
+   int i;
+   $result = PyList_New($1_dim0);
+   for (i = 0; i < $1_dim0; i++) {
+     PyObject *o = PyFloat_FromLong((long) $1[i]);
+     PyList_SetItem($result,i,o);
+   }
+} 
+
+%extend core_mathlib::ivec3 {
+	%rename(Index) operator[](int) const;
+	%ignore operator long*;
+    long __getitem__(int i) {
+        return (*($self))[i];
+    }
+	int __len__() {
+		return 3;
+	}
+    %pythoncode %{
+		def __repr__(self):
+		  return "[%s,%s,%s]" % (self[0],self[1],self[2])
+	%}
+}
+
+%extend core_mathlib::ivec4 {
+	%rename(Index) operator[](int) const;
+	%ignore operator long*;
+    long __getitem__(int i) {
+        return (*($self))[i];
+    }
+	int __len__() {
+		return 4;
+	}
+}
+
+%extend core_mathlib::base_vec3 {
+	%rename(Index) operator[](int) const;
+	%ignore operator double*;
+    double __getitem__(int i) {
+        return (*($self))[i];
+    }
+	int __len__() {
+		return 3;
+	}
+    %pythoncode %{
+		def __repr__(self):
+		  return "[%f,%f,%f]" % (self[0],self[1],self[2])
+	%}
+}
+
+%extend formatMBIN::t_binNode {
+	%rename(Index) operator[](int) const;
+	%ignore operator float*;
+    float __getitem__(int i) {
+        return (*($self))[i];
+    }
+	int __len__() {
+		return 3;
+	}
+}
+
 %extend formatCoreBIN::t_pos {
 	%rename(Index) operator[](int) const;
 	%ignore operator float*;
@@ -58,6 +130,7 @@ namespace CalculsGenerauxThermodynamique {
 	};
 }
 
+%include "../lib_interface/Core/mathlib.h"
 %include "../lib_interface/input_output/bin.h"
 %include "../lib_interface/input_output/importExportMaillage/mbin.h"
 %include "../lib_interface/input_output/bin.h"
@@ -72,3 +145,4 @@ namespace CalculsGenerauxThermodynamique {
 
 
 
+%template(vec3) base_vec3<float>;

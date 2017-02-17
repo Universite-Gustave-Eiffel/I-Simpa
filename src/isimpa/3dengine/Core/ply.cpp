@@ -168,7 +168,11 @@ namespace formatPLY
 
 bool CPly::ExportPly(t_model& scene, const char* mfilename)
 {
-  EnglishTemporaryLocale();
+  EnglishTemporaryLocale dotLocale;
+
+  if(!dotLocale.check()) {
+	  return false;
+  }
   FILE *outfile;
   char mefilename[FILENAMESIZE];
 

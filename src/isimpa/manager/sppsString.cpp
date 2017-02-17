@@ -30,6 +30,8 @@
 
 #include "stringTools.h"
 #include <wx/tokenzr.h>
+#include <wx/log.h> 
+#include <wx/intl.h> 
 #include "last_cpp_include.hpp"
 
 wxString Convertor::fromConvDecimal=' ';
@@ -37,18 +39,11 @@ wxString Convertor::toConvDecimal=' ';
 
 float Convertor::ToFloat( const wxString& sval )
 {
-		double rval(0.);
-		if(sval.ToDouble(&rval))
-			return rval;
-		else
-		{
-			if(toConvDecimal==' ')
-				updateDecimalChar(); //Conversion decimal si necessaire
-			wxString convDecimal(sval);
-			convDecimal.Replace( fromConvDecimal,toConvDecimal,false);
-			convDecimal.ToDouble(&rval);
-			return rval;
-		}
+	float value(0.f);
+	if(sscanf(sval.ToStdString().c_str(), "%f", &value) != 1) {
+		wxLogError(_("Cannot convert \"%s\" to decimal value"), sval);
+	}
+	return value;
 }
 char Convertor::getConvFrom()
 {

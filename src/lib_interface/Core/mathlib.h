@@ -28,7 +28,7 @@
 * or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
-#include "std_tools.hpp"
+#include "../std_tools.hpp"
 #include <math.h>
 #include <stdlib.h>
 #include <float.h>

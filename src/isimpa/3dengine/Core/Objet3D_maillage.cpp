@@ -40,8 +40,10 @@
 #include "data_manager/python_interface/instanceManager.hpp"
 #include <tools/vol_splitter.hpp>
 #include <wx/tokenzr.h>
+#include "en_numeric.hpp"
 //#include <tools/collision.h>
 #include "last_cpp_include.hpp"
+
 
 inline bool Contains(long &index,ivec3 &rightIndex)
 {
@@ -60,6 +62,14 @@ bool LoadNodeFile(vec4 UnitizeVar, vec3** tabNodes, unsigned long &nodes_mesh_si
 
 	if(!wxFileExists(nodeFilePath))
 		return false;
+	
+	EnglishTemporaryLocale englishTempLocale;
+
+	if (!englishTempLocale.check()) {
+		wxLogError(_("Error while loading the 3d mesh"));
+		return false;
+	}
+
 
     ifstream infile;
     infile.open(nodeFilePath);
@@ -95,6 +105,7 @@ bool LoadNodeFile(vec4 UnitizeVar, vec3** tabNodes, unsigned long &nodes_mesh_si
             float x = Convertor::ToFloat(string_tokenizer.GetNextToken());
             float y = Convertor::ToFloat(string_tokenizer.GetNextToken());
             float z = Convertor::ToFloat(string_tokenizer.GetNextToken());
+			wxLogInfo("Debug: parse %s, result is %f %f %f", line, x, y, z);
 			vec3 position(x, y, z);
 			position=coordsOperation::CommonCoordsToGlCoords(UnitizeVar,position);
 			if(idNode>0 && idNode<=nbNodes)
@@ -383,6 +394,7 @@ bool CObjet3D::LoadMaillage(const std::string& facePath,const std::string& elePa
 {
 	if(!(this->GetNumFaces()>0))
 		return false;
+
 	////////////////////////////////////////
 	// Chargement des noeuds des tetrahèdres
 	////////////////////////////////////////
@@ -403,6 +415,8 @@ bool CObjet3D::LoadMaillage(const std::string& facePath,const std::string& elePa
 	////////////////////////////////////////
 	if(!LoadNeighFile(&this->tabVertexMaillage,this->tabVertexMaillageSize,neighPath))
 		return false;
+
+
 	formatMBIN::trimeshmodel trimodel;
 	formatCoreBIN::ioModel model;
 	this->GetTetraMesh(trimodel,true);

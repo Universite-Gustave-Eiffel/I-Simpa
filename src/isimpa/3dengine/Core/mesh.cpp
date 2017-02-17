@@ -48,14 +48,18 @@ namespace formatMESH
 // ExportMESH()    Format mesh créé par INRIA
 //                                                                           //
 ///////////////////////////////////////////////////////////////////////////////
-void CMesh::ExportMESH(vec4 UnitizeValue,std::vector<SGroup3D> &pModel, std::vector<vec3> &Vertices, const std::string& mfilename, long nbFaces)
+bool CMesh::ExportMESH(vec4 UnitizeValue,std::vector<SGroup3D> &pModel, std::vector<vec3> &Vertices, const std::string& mfilename, long nbFaces)
 {
   FILE *outfile;
-  EnglishTemporaryLocale();
+  EnglishTemporaryLocale eng;
+
+  if(!eng.check()) {
+	  return false;
+  }
   outfile = fopen(mfilename.c_str(), "w");
   if (outfile == (FILE *) NULL) {
     printf("File I/O Error:  Cannot create file %s.\n", mfilename.c_str());
-    return;
+    return false;
   }
 
   fprintf(outfile, "MeshVersionFormatted 1\n");
@@ -96,6 +100,7 @@ void CMesh::ExportMESH(vec4 UnitizeValue,std::vector<SGroup3D> &pModel, std::vec
 
   fprintf(outfile, "\nEnd\n");
   fclose(outfile);
+  return true;
 }
 
 } //fin namespace

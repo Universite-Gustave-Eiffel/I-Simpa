@@ -875,9 +875,8 @@ long CObjet3D::_RenderGroupLines(long g,bool hideLines)
 bool CObjet3D::_SaveMESH(const std::string& filename)
 {
 	using namespace formatMESH;
-	formatMESH::CMesh classExport;
-	classExport.ExportMESH(this->UnitizeVar,this->_pGroups,this->_pVertices,filename,this->GetNumFaces());
-	return true;
+	formatMESH::CMesh classExport;	
+	return classExport.ExportMESH(this->UnitizeVar, this->_pGroups, this->_pVertices, filename, this->GetNumFaces());
 }
 
 bool CObjet3D::_SaveASC(const std::string&filename)

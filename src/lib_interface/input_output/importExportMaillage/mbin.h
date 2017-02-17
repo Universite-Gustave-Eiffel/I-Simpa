@@ -31,6 +31,7 @@
 #include <vector>
 #include <string.h>
 #include <cstdint>
+#include "../../Core/mathlib.h"
 
 #ifndef __MBIN__
 #define __MBIN__
@@ -67,6 +68,8 @@ struct t_binNode
 	int operator==(const t_binNode &_f) {
 		return node[0]==_f.node[0] && node[1]==_f.node[1] && node[2]==_f.node[2];
 	}
+	operator float*() { return this->node; }
+	const float &operator[](int _i) const { return this->node[_i]; }
 };
 
 /**
@@ -75,15 +78,13 @@ struct t_binNode
 	struct bintetraface {
 		bintetraface() {}
 		bintetraface(Intb a, Intb b, Intb c, Intb _marker, Intb _neighboor) 
-			: vertices {a,b,c}, marker(_marker), neighbor(_neighboor) {
+			: vertices(a,b,c), marker(_marker), neighbor(_neighboor) {
 		}
-		Intb vertices[3]{0, 0, 0};
+		ivec3 vertices;
 		Intb marker = -1;    /*!< Associated model face -1 nothing */
 		Intb neighbor = -2; /*!< Tetrahedra neighbor index [0-n]. -2 no neighbor */
 		int operator==(const bintetraface &_f) {
-			return vertices[0] == _f.vertices[0] &&
-				vertices[1] == _f.vertices[1] &&
-				vertices[2] == _f.vertices[2] && _f.marker == marker && _f.neighbor == neighbor;
+			return vertices == _f.vertices && _f.marker == marker && _f.neighbor == neighbor;
 		}
 	};
 
@@ -94,19 +95,16 @@ struct t_binNode
 	struct bintetrahedre {
 		bintetrahedre(const Intb& _a, const Intb& _b, const Intb& _c, const Intb& _d, const Intb& _idVolume, 
 			const bintetraface& faceA, const bintetraface& faceB, const bintetraface& faceC, const bintetraface& faceD)
-			: vertices{ _a, _b, _c, _d }, idVolume(_idVolume), tetrafaces { faceA , faceB , faceC , faceD }
+			: vertices( _a, _b, _c, _d ), idVolume(_idVolume), tetrafaces { faceA , faceB , faceC , faceD }
 		{
 		 }
 		bintetrahedre() {}
-		Intb vertices[4]{0, 0, 0, 0};
+		ivec4 vertices;
 		Intb idVolume = 0;
 		bintetraface tetrafaces[4]{bintetraface(), bintetraface(), bintetraface(), bintetraface() };
 
 		int operator==(const bintetrahedre &_f) {
-			return vertices[0] == _f.vertices[0] &&
-				   vertices[1] == _f.vertices[1] &&
-				   vertices[2] == _f.vertices[2] &&
-				   vertices[3] == _f.vertices[3] &&
+			return vertices == _f.vertices &&
 				   idVolume == _f.idVolume &&
 				   tetrafaces[0] == _f.tetrafaces[0] &&
 				   tetrafaces[1] == _f.tetrafaces[1] &&

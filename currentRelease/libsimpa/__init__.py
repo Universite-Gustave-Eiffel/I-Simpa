@@ -1,16 +1,14 @@
-# -*- coding: cp1252 -*-
+ï»¿# -*- coding: utf-8 -*-
 from libsimpa import *
-from vec3 import vec3
 
-
-#Ajout de fonctionnalité par rapport à la librairie en C++
+# Add new functionalities
 
 ###########################################################
 ## Gabe_rw
 
 def ToList(self):
     """
-        Retourne les données sous forme de listes python
+        Return data using python array
     """
     lstret=[]
     coltypes=list(self.GetTabTypes())

@@ -43,6 +43,7 @@
 		std::string currentLocale;
 	public:
 		EnglishTemporaryLocale();
+		bool check();
 		~EnglishTemporaryLocale();
 	};
 

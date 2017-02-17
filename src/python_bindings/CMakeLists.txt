@@ -65,7 +65,6 @@ if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
 endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
 
 install (FILES
-        ${ISIMPA_RESSOURCES}/libsimpa/vec3.py
         ${ISIMPA_RESSOURCES}/libsimpa/__init__.py
 		${CMAKE_CURRENT_BINARY_DIR}/libsimpa.py
         DESTINATION libsimpa/)

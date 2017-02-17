@@ -48,7 +48,7 @@ namespace formatNFF
 	///////////////////////////////////////////////////////////////////////////////
 	void CNff::ExportNFF(vec4 UnitizeValue,std::vector<SGroup3D> &pModel, std::vector<vec3> &Vertices, const char *mfilename,long nbVertices, long nbFaces)
 	{
-	  EnglishTemporaryLocale();
+	  EnglishTemporaryLocale dotLocale;
 	  FILE *outfile;
 
 	  outfile = fopen(mfilename, "w");
@@ -88,7 +88,7 @@ namespace formatNFF
 
 	void CNff::ExportTetraNFF(vec4 UnitizeValue,triangleFace *tabVertexMaillage, const char *mfilename, long nbFaces)
 	{
-	    EnglishTemporaryLocale();
+	    EnglishTemporaryLocale dotLocale;
 		if(nbFaces<4)
 			return;
 		FILE *outfile;
