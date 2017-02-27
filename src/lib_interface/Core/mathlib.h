@@ -103,7 +103,9 @@ public:
 	base_vec3(const base_vec3 &_v) : x(_v.x), y(_v.y), z(_v.z) { }
 	base_vec3(const vec4 &_v);
 
-	int operator==(const base_vec3 &_v) { return (fabs(this->x - _v.x) < EPSILON && fabs(this->y - _v.y) < EPSILON && fabs(this->z - _v.z) < EPSILON); }
+	int operator==(const base_vec3 &_v) {
+		return (fabs(this->x - _v.x) < EPSILON && fabs(this->y - _v.y) < EPSILON && fabs(this->z - _v.z) < EPSILON);
+	}
 	int operator!=(const base_vec3 &_v) { return !(*this == _v); }
 
 	base_vec3 &operator=(base_t _f) { this->x=_f; this->y=_f; this->z=_f; return (*this); }
@@ -565,7 +567,9 @@ public:
 	ivec3(const ivec3 &iv) : a(iv.a), b(iv.b), c(iv.c) { }
 	ivec3(const ivec4 &iv);
 
-	int operator==(const ivec3 &iv) { return ((this->a == iv.a) && (this->b == iv.b) && (this->c == iv.c)); }
+	int operator==(const ivec3 &iv) { 
+		return ((this->a == iv.a) && (this->b == iv.b) && (this->c == iv.c));
+	}
 	int operator!=(const ivec3 &iv) { return !(*this == iv); }
 
 	ivec3 &operator=(long _i) { this->x=_i; this->y=_i; this->z=_i; return (*this); }

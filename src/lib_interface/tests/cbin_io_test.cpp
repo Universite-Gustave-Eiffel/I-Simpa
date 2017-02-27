@@ -2,6 +2,7 @@
 #include <boost/test/included/unit_test.hpp>
 #include <iostream>
 #include <input_output/bin.h>
+#include <input_output/poly/poly.h>
 #include <input_output/importExportMaillage/mbin.h>
 #include <Core/mathlib.h>
 
@@ -224,4 +225,249 @@ BOOST_AUTO_TEST_CASE(write_read_mbin1_test1)
 
 	delete[] tabTetra;
 	delete[] tabNodes;
+}
+
+
+
+
+
+BOOST_AUTO_TEST_CASE(read_poly_test1)
+{
+	using namespace formatPOLY;
+	t_model model;
+	CPoly reader;
+
+	BOOST_REQUIRE(reader.ImportPOLY(model, "test_import1.poly"));
+
+	BOOST_REQUIRE(model.modelVertices.size() == 19);
+	
+	BOOST_CHECK(model.modelVertices[0] == dvec3(5.5, 0, 0));
+	BOOST_CHECK(model.modelVertices[1] == dvec3(0, -0, 0));
+	BOOST_CHECK(model.modelVertices[2] == dvec3(0, 8.1000004, 0));
+	BOOST_CHECK(model.modelVertices[3] == dvec3(5.5, 8.1000004, 0));
+	BOOST_CHECK(model.modelVertices[4] == dvec3(0, 8.1000004, 3.2));
+	BOOST_CHECK(model.modelVertices[5] == dvec3(5.5, 8.1000004, 3.2));
+	BOOST_CHECK(model.modelVertices[6] == dvec3(0, -0, 3.2));
+	BOOST_CHECK(model.modelVertices[7] == dvec3(5.5, -0, 3.2));
+	BOOST_CHECK(model.modelVertices[8] == dvec3(3.7532663, 2.4895077, 0));
+	BOOST_CHECK(model.modelVertices[9] == dvec3(1.7356972, 2.4895077, 0));
+	BOOST_CHECK(model.modelVertices[10] == dvec3(1.7356972, 5.795608, 0));
+	BOOST_CHECK(model.modelVertices[11] == dvec3(3.7532663, 5.795608, 0));
+	BOOST_CHECK(model.modelVertices[12] == dvec3(1.7356972, 5.795608, 1.1));
+	BOOST_CHECK(model.modelVertices[13] == dvec3(3.7532663, 5.795608, 1.1));
+	BOOST_CHECK(model.modelVertices[14] == dvec3(1.7356972, 2.4895077, 1.1));
+	BOOST_CHECK(model.modelVertices[15] == dvec3(3.7532663, 2.4895077, 1.1));
+	BOOST_CHECK(model.modelVertices[16] == dvec3(3.7532661, 2.5724626, 0));
+	BOOST_CHECK(model.modelVertices[17] == dvec3(1.7356973, 5.5437918, 0));
+	BOOST_CHECK(model.modelVertices[18] == dvec3(1.7356972, 5.5054293, 0));
+
+	BOOST_REQUIRE(model.modelFaces.size() == 39);
+
+	BOOST_CHECK(model.modelFaces[0] == t_face(0, 1, 9, 0));
+	BOOST_CHECK(model.modelFaces[1] == t_face(0, 16, 3, 1));
+	BOOST_CHECK(model.modelFaces[2] == t_face(2, 4, 5, 2));
+	BOOST_CHECK(model.modelFaces[3] == t_face(2, 5, 3, 3));
+	BOOST_CHECK(model.modelFaces[4] == t_face(2, 6, 4, 4));
+	BOOST_CHECK(model.modelFaces[5] == t_face(2, 1, 6, 5));
+	BOOST_CHECK(model.modelFaces[6] == t_face(1, 0, 7, 6));
+	BOOST_CHECK(model.modelFaces[7] == t_face(6, 1, 7, 7));
+	BOOST_CHECK(model.modelFaces[8] == t_face(0, 3, 5, 8));
+	BOOST_CHECK(model.modelFaces[9] == t_face(7, 0, 5, 9));
+	BOOST_CHECK(model.modelFaces[10] == t_face(7, 5, 4, 10));
+	BOOST_CHECK(model.modelFaces[11] == t_face(6, 7, 4, 11));
+	BOOST_CHECK(model.modelFaces[12] == t_face(10, 12, 13, 14));
+	BOOST_CHECK(model.modelFaces[13] == t_face(10, 13, 11, 15));
+	BOOST_CHECK(model.modelFaces[14] == t_face(10, 14, 12, 16));
+	BOOST_CHECK(model.modelFaces[15] == t_face(10, 17, 14, 17));
+	BOOST_CHECK(model.modelFaces[16] == t_face(9, 8, 15, 18));
+	BOOST_CHECK(model.modelFaces[17] == t_face(14, 9, 15, 19));
+	BOOST_CHECK(model.modelFaces[18] == t_face(8, 16, 13, 20));
+	BOOST_CHECK(model.modelFaces[19] == t_face(15, 8, 13, 21));
+	BOOST_CHECK(model.modelFaces[20] == t_face(15, 13, 12, 22));
+	BOOST_CHECK(model.modelFaces[21] == t_face(14, 15, 12, 23));
+	BOOST_CHECK(model.modelFaces[22] == t_face(0, 9, 8, 0));
+	BOOST_CHECK(model.modelFaces[23] == t_face(9, 1, 2, 0));
+	BOOST_CHECK(model.modelFaces[24] == t_face(16, 17, 10, 1));
+	BOOST_CHECK(model.modelFaces[25] == t_face(16, 10, 11, 1));
+	BOOST_CHECK(model.modelFaces[26] == t_face(10, 2, 3, 1));
+	BOOST_CHECK(model.modelFaces[27] == t_face(16, 11, 3, 1));
+	BOOST_CHECK(model.modelFaces[28] == t_face(11, 10, 3, 1));
+	BOOST_CHECK(model.modelFaces[29] == t_face(17, 18, 14, 17));
+	BOOST_CHECK(model.modelFaces[30] == t_face(0, 8, 16, 0));
+	BOOST_CHECK(model.modelFaces[31] == t_face(8, 9, 18, 0));
+	BOOST_CHECK(model.modelFaces[32] == t_face(16, 11, 13, 20));
+	BOOST_CHECK(model.modelFaces[33] == t_face(16, 8, 17, 0));
+	BOOST_CHECK(model.modelFaces[34] == t_face(17, 2, 10, 1));
+	BOOST_CHECK(model.modelFaces[35] == t_face(17, 8, 18, 0));
+	BOOST_CHECK(model.modelFaces[36] == t_face(18, 9, 14, 17));
+	BOOST_CHECK(model.modelFaces[37] == t_face(18, 9, 2, 0));
+	BOOST_CHECK(model.modelFaces[38] == t_face(18, 2, 17, 0));
+
+	BOOST_REQUIRE(model.modelRegions.size() == 1);
+
+	BOOST_CHECK(model.modelRegions[0].dotInRegion == vec3(3.7530646, 5.7952776, 1.09989));
+	BOOST_CHECK(model.modelRegions[0].regionIndex == 3119);
+	BOOST_CHECK(model.modelRegions[0].regionRefinement == -1);
+
+}
+
+
+
+
+BOOST_AUTO_TEST_CASE(write_read_poly_test1)
+{
+	using namespace formatPOLY;
+	t_model model;
+
+	model.modelVertices.push_back(dvec3(5.5, 0, 0));
+	model.modelVertices.push_back(dvec3(0, -0, 0));
+	model.modelVertices.push_back(dvec3(0, 8.1000004, 0));
+	model.modelVertices.push_back(dvec3(5.5, 8.1000004, 0));
+	model.modelVertices.push_back(dvec3(0, 8.1000004, 3.2));
+	model.modelVertices.push_back(dvec3(5.5, 8.1000004, 3.2));
+	model.modelVertices.push_back(dvec3(0, -0, 3.2));
+	model.modelVertices.push_back(dvec3(5.5, -0, 3.2));
+	model.modelVertices.push_back(dvec3(3.7532663, 2.4895077, 0));
+	model.modelVertices.push_back(dvec3(1.7356972, 2.4895077, 0));
+	model.modelVertices.push_back(dvec3(1.7356972, 5.795608, 0));
+	model.modelVertices.push_back(dvec3(3.7532663, 5.795608, 0));
+	model.modelVertices.push_back(dvec3(1.7356972, 5.795608, 1.1));
+	model.modelVertices.push_back(dvec3(3.7532663, 5.795608, 1.1));
+	model.modelVertices.push_back(dvec3(1.7356972, 2.4895077, 1.1));
+	model.modelVertices.push_back(dvec3(3.7532663, 2.4895077, 1.1));
+	model.modelVertices.push_back(dvec3(3.7532661, 2.5724626, 0));
+	model.modelVertices.push_back(dvec3(1.7356973, 5.5437918, 0));
+	model.modelVertices.push_back(dvec3(1.7356972, 5.5054293, 0));
+
+
+
+	model.modelFaces.push_back(t_face(0, 1, 9, 0));
+	model.modelFaces.push_back(t_face(0, 16, 3, 1));
+	model.modelFaces.push_back(t_face(2, 4, 5, 2));
+	model.modelFaces.push_back(t_face(2, 5, 3, 3));
+	model.modelFaces.push_back(t_face(2, 6, 4, 4));
+	model.modelFaces.push_back(t_face(2, 1, 6, 5));
+	model.modelFaces.push_back(t_face(1, 0, 7, 6));
+	model.modelFaces.push_back(t_face(6, 1, 7, 7));
+	model.modelFaces.push_back(t_face(0, 3, 5, 8));
+	model.modelFaces.push_back(t_face(7, 0, 5, 9));
+	model.modelFaces.push_back(t_face(7, 5, 4, 10));
+	model.modelFaces.push_back(t_face(6, 7, 4, 11));
+	model.modelFaces.push_back(t_face(10, 12, 13, 14));
+	model.modelFaces.push_back(t_face(10, 13, 11, 15));
+	model.modelFaces.push_back(t_face(10, 14, 12, 16));
+	model.modelFaces.push_back(t_face(10, 17, 14, 17));
+	model.modelFaces.push_back(t_face(9, 8, 15, 18));
+	model.modelFaces.push_back(t_face(14, 9, 15, 19));
+	model.modelFaces.push_back(t_face(8, 16, 13, 20));
+	model.modelFaces.push_back(t_face(15, 8, 13, 21));
+	model.modelFaces.push_back(t_face(15, 13, 12, 22));
+	model.modelFaces.push_back(t_face(14, 15, 12, 23));
+	model.modelFaces.push_back(t_face(0, 9, 8, 0));
+	model.modelFaces.push_back(t_face(9, 1, 2, 0));
+	model.modelFaces.push_back(t_face(16, 17, 10, 1));
+	model.modelFaces.push_back(t_face(16, 10, 11, 1));
+	model.modelFaces.push_back(t_face(10, 2, 3, 1));
+	model.modelFaces.push_back(t_face(16, 11, 3, 1));
+	model.modelFaces.push_back(t_face(11, 10, 3, 1));
+	model.modelFaces.push_back(t_face(17, 18, 14, 17));
+	model.modelFaces.push_back(t_face(0, 8, 16, 0));
+	model.modelFaces.push_back(t_face(8, 9, 18, 0));
+	model.modelFaces.push_back(t_face(16, 11, 13, 20));
+	model.modelFaces.push_back(t_face(16, 8, 17, 0));
+	model.modelFaces.push_back(t_face(17, 2, 10, 1));
+	model.modelFaces.push_back(t_face(17, 8, 18, 0));
+	model.modelFaces.push_back(t_face(18, 9, 14, 17));
+	model.modelFaces.push_back(t_face(18, 9, 2, 0));
+	model.modelFaces.push_back(t_face(18, 2, 17, 0));
+
+	t_region region;
+	region.dotInRegion = vec3(3.7530646, 5.7952776, 1.09989);
+	region.regionIndex = 3119;
+	region.regionRefinement = -1;
+	model.modelRegions.push_back(region);
+
+	CPoly driver;
+
+	driver.ExportPOLY(model, "test_write1.poly");
+
+	model.modelVertices.clear();
+	model.modelFaces.clear();
+	model.modelRegions.clear();
+	model.saveFaceIndex = false;
+	model.userDefinedFaces.clear();
+
+
+
+	BOOST_REQUIRE(driver.ImportPOLY(model, "test_write1.poly"));
+
+	BOOST_REQUIRE(model.modelVertices.size() == 19);
+
+	BOOST_CHECK(model.modelVertices[0] == dvec3(5.5, 0, 0));
+	BOOST_CHECK(model.modelVertices[1] == dvec3(0, -0, 0));
+	BOOST_CHECK(model.modelVertices[2] == dvec3(0, 8.1000004, 0));
+	BOOST_CHECK(model.modelVertices[3] == dvec3(5.5, 8.1000004, 0));
+	BOOST_CHECK(model.modelVertices[4] == dvec3(0, 8.1000004, 3.2));
+	BOOST_CHECK(model.modelVertices[5] == dvec3(5.5, 8.1000004, 3.2));
+	BOOST_CHECK(model.modelVertices[6] == dvec3(0, -0, 3.2));
+	BOOST_CHECK(model.modelVertices[7] == dvec3(5.5, -0, 3.2));
+	BOOST_CHECK(model.modelVertices[8] == dvec3(3.7532663, 2.4895077, 0));
+	BOOST_CHECK(model.modelVertices[9] == dvec3(1.7356972, 2.4895077, 0));
+	BOOST_CHECK(model.modelVertices[10] == dvec3(1.7356972, 5.795608, 0));
+	BOOST_CHECK(model.modelVertices[11] == dvec3(3.7532663, 5.795608, 0));
+	BOOST_CHECK(model.modelVertices[12] == dvec3(1.7356972, 5.795608, 1.1));
+	BOOST_CHECK(model.modelVertices[13] == dvec3(3.7532663, 5.795608, 1.1));
+	BOOST_CHECK(model.modelVertices[14] == dvec3(1.7356972, 2.4895077, 1.1));
+	BOOST_CHECK(model.modelVertices[15] == dvec3(3.7532663, 2.4895077, 1.1));
+	BOOST_CHECK(model.modelVertices[16] == dvec3(3.7532661, 2.5724626, 0));
+	BOOST_CHECK(model.modelVertices[17] == dvec3(1.7356973, 5.5437918, 0));
+	BOOST_CHECK(model.modelVertices[18] == dvec3(1.7356972, 5.5054293, 0));
+
+	BOOST_REQUIRE(model.modelFaces.size() == 39);
+
+	BOOST_CHECK(model.modelFaces[0] == t_face(0, 1, 9, 0));
+	BOOST_CHECK(model.modelFaces[1] == t_face(0, 16, 3, 1));
+	BOOST_CHECK(model.modelFaces[2] == t_face(2, 4, 5, 2));
+	BOOST_CHECK(model.modelFaces[3] == t_face(2, 5, 3, 3));
+	BOOST_CHECK(model.modelFaces[4] == t_face(2, 6, 4, 4));
+	BOOST_CHECK(model.modelFaces[5] == t_face(2, 1, 6, 5));
+	BOOST_CHECK(model.modelFaces[6] == t_face(1, 0, 7, 6));
+	BOOST_CHECK(model.modelFaces[7] == t_face(6, 1, 7, 7));
+	BOOST_CHECK(model.modelFaces[8] == t_face(0, 3, 5, 8));
+	BOOST_CHECK(model.modelFaces[9] == t_face(7, 0, 5, 9));
+	BOOST_CHECK(model.modelFaces[10] == t_face(7, 5, 4, 10));
+	BOOST_CHECK(model.modelFaces[11] == t_face(6, 7, 4, 11));
+	BOOST_CHECK(model.modelFaces[12] == t_face(10, 12, 13, 14));
+	BOOST_CHECK(model.modelFaces[13] == t_face(10, 13, 11, 15));
+	BOOST_CHECK(model.modelFaces[14] == t_face(10, 14, 12, 16));
+	BOOST_CHECK(model.modelFaces[15] == t_face(10, 17, 14, 17));
+	BOOST_CHECK(model.modelFaces[16] == t_face(9, 8, 15, 18));
+	BOOST_CHECK(model.modelFaces[17] == t_face(14, 9, 15, 19));
+	BOOST_CHECK(model.modelFaces[18] == t_face(8, 16, 13, 20));
+	BOOST_CHECK(model.modelFaces[19] == t_face(15, 8, 13, 21));
+	BOOST_CHECK(model.modelFaces[20] == t_face(15, 13, 12, 22));
+	BOOST_CHECK(model.modelFaces[21] == t_face(14, 15, 12, 23));
+	BOOST_CHECK(model.modelFaces[22] == t_face(0, 9, 8, 0));
+	BOOST_CHECK(model.modelFaces[23] == t_face(9, 1, 2, 0));
+	BOOST_CHECK(model.modelFaces[24] == t_face(16, 17, 10, 1));
+	BOOST_CHECK(model.modelFaces[25] == t_face(16, 10, 11, 1));
+	BOOST_CHECK(model.modelFaces[26] == t_face(10, 2, 3, 1));
+	BOOST_CHECK(model.modelFaces[27] == t_face(16, 11, 3, 1));
+	BOOST_CHECK(model.modelFaces[28] == t_face(11, 10, 3, 1));
+	BOOST_CHECK(model.modelFaces[29] == t_face(17, 18, 14, 17));
+	BOOST_CHECK(model.modelFaces[30] == t_face(0, 8, 16, 0));
+	BOOST_CHECK(model.modelFaces[31] == t_face(8, 9, 18, 0));
+	BOOST_CHECK(model.modelFaces[32] == t_face(16, 11, 13, 20));
+	BOOST_CHECK(model.modelFaces[33] == t_face(16, 8, 17, 0));
+	BOOST_CHECK(model.modelFaces[34] == t_face(17, 2, 10, 1));
+	BOOST_CHECK(model.modelFaces[35] == t_face(17, 8, 18, 0));
+	BOOST_CHECK(model.modelFaces[36] == t_face(18, 9, 14, 17));
+	BOOST_CHECK(model.modelFaces[37] == t_face(18, 9, 2, 0));
+	BOOST_CHECK(model.modelFaces[38] == t_face(18, 2, 17, 0));
+
+	BOOST_REQUIRE(model.modelRegions.size() == 1);
+
+	BOOST_CHECK(model.modelRegions[0].dotInRegion == vec3(3.7530646, 5.7952776, 1.09989));
+	BOOST_CHECK(model.modelRegions[0].regionIndex == 3119);
+	BOOST_CHECK(model.modelRegions[0].regionRefinement == -1);
 }

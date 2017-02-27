@@ -34,6 +34,7 @@
 #include <fstream>
 #include <sstream>
 #include "en_numeric.hpp"
+#include <limits>
 
 namespace formatPOLY
 {
@@ -181,6 +182,7 @@ bool CPoly::ExportPOLY(t_model& scene, const std::string& mfilename)
 {
 	std::ofstream os;
 	os.imbue(std::locale::classic());
+	os.precision(std::numeric_limits< double >::max_digits10);
 	os.open(mfilename);
 	if(!os.is_open()) {
 		return false;
@@ -210,7 +212,7 @@ bool CPoly::ExportPOLY(t_model& scene, const std::string& mfilename)
 		os << "1  0  " << scene.modelFaces[v].faceIndex << "\n";
 		// [vertices count] [index 1] [index 2] [index 3]
 		os << "3  " << scene.modelFaces[v].indicesSommets.a + 1 << " " << scene.modelFaces[v].indicesSommets.b + 1 << " " <<
-			scene.modelFaces[v].indicesSommets.c + 1) << "\n";
+			scene.modelFaces[v].indicesSommets.c + 1 << "\n";
 	}
 
 	os << "\n";
@@ -265,7 +267,8 @@ bool CPoly::ImportPOLY(t_model& scene,const std::string& mfilename)
 	if (!is.is_open()) {
 		return false;
 	}
-	enum PARSE_PART {NODE_HEADER, NODE_CONTENT, FACET_HEADER, FACET_CONTENT_INFO, FACET_CONTENT_VALUE, HOLE_HEADER, HOLE_CONTENT, REGION_HEADER, REGION_CONTENT};
+	enum PARSE_PART {NODE_HEADER, NODE_CONTENT, FACET_HEADER, FACET_CONTENT_INFO, FACET_CONTENT_VALUE, HOLE_HEADER, HOLE_CONTENT, REGION_HEADER,
+		REGION_CONTENT, USER_FACE_HEADER, USER_FACE_CONTENT_INFO, USER_FACE_CONTENT_VALUE };
 	PARSE_PART state = NODE_HEADER;
 	std::string line;
 
@@ -274,8 +277,24 @@ bool CPoly::ImportPOLY(t_model& scene,const std::string& mfilename)
 	unsigned int sizeFaces=0;
 	unsigned int parsedFaces = 0;
 	unsigned int useFacesIndex=0;
+	int nbUseFace = 0;
+	int parsedUserFace = 0;
 	scene.saveFaceIndex = false;
 	t_face newFace;
+	t_region newRegion;
+	int idvert;
+	int unused1, unused2;
+	dvec3 pt;
+	int polygon, hole;
+	int holeNb;
+	int parsedHoles = 0;
+	int parsedRegion = 0;
+	int vertcount, nbHoles;
+	int nbRegion = -1;
+	ivec4 quadFace;
+	int regionNb;
+	int regionId;
+	int regionAttr;
 
 	while(std::getline(is, line)) {
 		// Skip comments
@@ -283,16 +302,18 @@ bool CPoly::ImportPOLY(t_model& scene,const std::string& mfilename)
 			std::istringstream iss(line);
 			switch(state) {
 			case NODE_HEADER:
-				int unused1, unused2;
 				if(iss >> sizeVertices >> unused1 >> unused2) {
 					scene.modelVertices.reserve(sizeVertices);
-					state = NODE_CONTENT;
+					if(sizeVertices > 0) {
+						state = NODE_CONTENT;
+					} else {
+						state = FACET_HEADER;
+					}
 				}
 				break;			
 			case NODE_CONTENT:
-				int idvert;
-				dvec3 pt;
 				if (iss >> idvert >> pt.x >> pt.y >> pt.z) {
+					scene.modelVertices.push_back(pt);
 					parsedVertices++;
 				}
 				if(parsedVertices >= sizeVertices) {
@@ -304,193 +325,111 @@ bool CPoly::ImportPOLY(t_model& scene,const std::string& mfilename)
 					if(useFacesIndex==1)
 						scene.saveFaceIndex=true;
 					scene.modelFaces.reserve(sizeFaces);
-					state = FACET_CONTENT_INFO;
+					if(sizeFaces > 0) {
+						state = FACET_CONTENT_INFO;	
+					} else {
+						state = HOLE_HEADER;
+					}
 				}
 				break;
 			case FACET_CONTENT_INFO:
-				int polygon, hole;
 				if (iss >> polygon  >> hole >> newFace.faceIndex) {
 					state = FACET_CONTENT_VALUE;
 				}
 				break;
 			case FACET_CONTENT_VALUE:
-				int vertcount;
-				if (iss >> vertcount >> newFace.indicesSommets.a >> newFace.indicesSommets.b >> newFace.indicesSommets.c) {
+				if (iss >> vertcount) {
+					if(vertcount==3 && iss >> quadFace.a >> quadFace.b >> quadFace.c) {
+						newFace.indicesSommets.set(quadFace.a - 1, quadFace.b - 1, quadFace.c - 1);
+						scene.modelFaces.push_back(newFace);
+					} else if(vertcount==4 && iss >> quadFace.a >> quadFace.b >> quadFace.c >> quadFace.d) {
+						newFace.indicesSommets.set(quadFace.a-1,quadFace.b-1,quadFace.c-1);
+						scene.modelFaces.push_back(newFace);
+						newFace.indicesSommets.set(quadFace.c-1,quadFace.d-1,quadFace.a-1);
+						scene.modelFaces.push_back(newFace);
+					}
 					parsedFaces++;
 					if(parsedFaces < sizeFaces) {
 						state = FACET_CONTENT_INFO;
 					} else {
-						state = FACET_HEADER;
+						state = HOLE_HEADER;
 					}
 				}
 				break;
-
+			case HOLE_HEADER:
+				if (iss >> nbHoles) {
+					if(nbHoles > 0) {
+						state = HOLE_CONTENT;
+					} else {
+						state = REGION_HEADER;
+					}
+				}
+				break;
+			case HOLE_CONTENT:
+				if (iss >> holeNb >> pt.x >> pt.y >> pt.z) {
+					parsedHoles++;
+				}
+				if(parsedHoles >= nbHoles) {
+					state = REGION_HEADER;
+				}
+				break;
+			case REGION_HEADER:
+				if (iss >> nbRegion) {
+					if(nbRegion>0) {
+						state = REGION_CONTENT;
+					} else {
+						state = USER_FACE_HEADER;
+					}
+				}
+				break;
+			case REGION_CONTENT:
+				if (iss >> regionNb >> newRegion.dotInRegion.x >> newRegion.dotInRegion.y >> newRegion.dotInRegion.z >> newRegion.regionIndex >> newRegion.regionRefinement) {
+					scene.modelRegions.push_back(newRegion);
+					parsedRegion++;
+				}
+				if (parsedRegion >= nbRegion) {
+					state = USER_FACE_HEADER;
+				}
+				break;
+			case USER_FACE_HEADER:
+				if (iss >> nbUseFace) {
+					if (nbUseFace>0) {
+						state = USER_FACE_CONTENT_INFO;
+					}
+					else {
+						break;
+					}
+				}
+				break;
+			case USER_FACE_CONTENT_INFO:
+				if (iss >> polygon >> hole >> newFace.faceIndex) {
+					state = USER_FACE_CONTENT_VALUE;
+				}
+				break;
+			case USER_FACE_CONTENT_VALUE:
+				if (iss >> vertcount) {
+					if (vertcount == 3 && iss >> newFace.indicesSommets.a >> newFace.indicesSommets.b >> newFace.indicesSommets.c) {
+						scene.userDefinedFaces.push_back(newFace);
+					}
+					else if (vertcount == 4 && iss >> quadFace.a >> quadFace.b >> quadFace.c >> quadFace.d) {
+						newFace.indicesSommets.set(quadFace.a - 1, quadFace.b - 1, quadFace.c - 1);
+						scene.userDefinedFaces.push_back(newFace);
+						newFace.indicesSommets.set(quadFace.c - 1, quadFace.d - 1, quadFace.a - 1);
+						scene.userDefinedFaces.push_back(newFace);
+					}
+					parsedFaces++;
+					if (parsedFaces < sizeFaces) {
+						state = USER_FACE_CONTENT_INFO;
+					}
+					else {
+						break;
+					}
+				}
+				break;
 			}
 		}	
 	}
 
-
-		
-	//	
-	//	
- // EnglishTemporaryLocale dotNumericOnly;
-
- // char tmpBuffer[250];
- // FILE *infile;
- // infile = fopen(mfilename.c_str(), "r+");
- // if (infile == (FILE *) NULL) {
- //   //throw -1; //("File I/O Error:  Cannot open file.\n");
- //   return false;
- // }
- // int nwords=0;
- // char **words;
- // char *orig_line;
- // unsigned int sizeVertices=0;
- // unsigned int sizeFaces=0;
- // unsigned int useFacesIndex=0;
-
- // /* Lecture du fichier d'entete */
-
- // //On passe les commentaires
- // while(!feof(infile))
- // {
-	//if(!fgets( tmpBuffer, 250, infile ) || (tmpBuffer[0]!=35 && tmpBuffer[0]!=10))
-	//{
-	//	int unused1, unused2;
-	//	sscanf(tmpBuffer,"%i 3 %i %i\n",&sizeVertices,&unused1,&unused2);
-	//	break;
-	//}
- // }
-	//  
-
-
- // //Lecture des vertices
- // unsigned int idvec=0;
- // 
- // char x[20];
- // char y[20];
- // char z[20];
- // scene.modelVertices.reserve(sizeVertices*2);
- // while(idvec<sizeVertices && !feof(infile))
- // {
-	//dvec3 newVec;
-	//fscanf(infile,"%i %20s %20s %20s\n",tmpBuffer,x,y,z);
-	//newVec[0]=ToFloat(x);
-	//newVec[1]=ToFloat(y);
-	//newVec[2]=ToFloat(z);
-	//scene.modelVertices.push_back(newVec);
-	//idvec++;
- // }
- // //On passe les commentaires
- // while(!feof(infile))
- // {
-	//if(!fgets( tmpBuffer, 250, infile ) || (tmpBuffer[0]!=35 && tmpBuffer[0]!=10))
-	//{
-	//	sscanf(tmpBuffer,"%i %i\n",&sizeFaces,&useFacesIndex);
-	//	break;
-	//}
- // }
- // scene.saveFaceIndex=false;
- // if(useFacesIndex==1)
-	//  scene.saveFaceIndex=true;
- // //Lectures des triangles
-
- // unsigned int idtri=0;
- // 
- // int marker=0;
- // unsigned int nbsommets=0;
- // unsigned int a=0;
- // unsigned int b=0;
- // unsigned int c=0;
- // scene.modelFaces.reserve(sizeFaces*2);
- // while(idtri<sizeFaces && !feof(infile))
- // {
-	//t_face newFace;
-	//fscanf(infile,"%i %i %i\n",tmpBuffer,tmpBuffer,&marker);
-
-	////fscanf(infile,"%i %i %i %i\n",tmpBuffer,&a,&b,&c);
-	//
- //   words = get_words (infile, &nwords, &orig_line);
-	//words_destroyer free_words(words);
-	//nbsommets=ToInt(words[0]);
-	//newFace.faceIndex=marker;
-	//if(nbsommets==3)
-	//{
-	//	newFace.indicesSommets.set(ToInt(words[1])-1,ToInt(words[2])-1,ToInt(words[3])-1);
-	//	scene.modelFaces.push_back(newFace);
-	//}else if(nbsommets==4)
-	//{
-	//	newFace.indicesSommets.set(ToInt(words[1])-1,ToInt(words[2])-1,ToInt(words[3])-1);
-	//	scene.modelFaces.push_back(newFace);
-	//	newFace.indicesSommets.set(ToInt(words[3])-1,ToInt(words[4])-1,ToInt(words[1])-1);
-	//	scene.modelFaces.push_back(newFace);
-	//}
-	//idtri++;
- // }
- // // Hole list
- // //On passe les commentaires
- // int nbHoles=-1;
- // while(!feof(infile))
- // {
-	//if(!fgets( tmpBuffer, 250, infile ) || (tmpBuffer[0]!=35 && tmpBuffer[0]!=10))
-	//{
-	//	sscanf(tmpBuffer,"%i\n",&nbHoles);
-	//	break;
-	//}
- // }
- // //Region list
- // int nbRegion=-1;
- // while(!feof(infile))
- // {
-	//if(!fgets( tmpBuffer, 250, infile ) || (tmpBuffer[0]!=35 && tmpBuffer[0]!=10))
-	//{
-	//	sscanf(tmpBuffer,"%i\n",&nbRegion);
-	//	break;
-	//}
- // }
- // int idregion=0;
- // char refinement[20];
- // int regionIndex=0;
- // while(idregion<nbRegion && !feof(infile))
- // {
-	//t_region newRegion;
-	//vec3 newVec;
-	//fscanf(infile,"%i %20s %20s %20s %i %20s\n",tmpBuffer,x,y,z,&regionIndex,refinement);
-	//newRegion.dotInRegion[0]=ToFloat(x);
-	//newRegion.dotInRegion[1]=ToFloat(y);
-	//newRegion.dotInRegion[2]=ToFloat(z);
-	//newRegion.regionIndex=regionIndex;
-	//newRegion.regionRefinement=ToFloat(refinement);
-	//scene.modelRegions.push_back(newRegion);
-	//idregion++;
- // }
-	////////////////////////////////
- //   // User Defined Faces
-	//int sizeUserFaces=0;
-	////On passe les commentaires
-	//while(!feof(infile))
-	//{
-	//if(!fgets( tmpBuffer, 250, infile ) || (tmpBuffer[0]!=35 && tmpBuffer[0]!=10))
-	//{
-	//	sscanf(tmpBuffer,"%i %i\n",&sizeUserFaces,tmpBuffer);
-	//	break;
-	//}
-	//}
-	//scene.userDefinedFaces.reserve(sizeUserFaces*2);
-	//idtri=0;
-	//while(idtri<sizeUserFaces && !feof(infile))
-	//{
-	//	t_face newFace;
-	//	fscanf(infile,"%i %i %i\n",tmpBuffer,tmpBuffer,&marker);
-	//	fscanf(infile,"%i %i %i %i\n",tmpBuffer,&a,&b,&c);
-	//	newFace.indicesSommets.set(a-1,b-1,c-1);
-	//	newFace.faceIndex=marker;
-	//	scene.userDefinedFaces.push_back(newFace);
-	//	idtri++;
-	//}
- // fclose(infile);
-
- // return true;
 }
 
 } //fin namespace

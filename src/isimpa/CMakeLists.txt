@@ -327,8 +327,6 @@ set(MANAGER_SOURCES
 set(ISIMPA_SOURCES
     first_header_include.hpp
     last_cpp_include.hpp
-    ../preprocess/input_output/poly.cpp
-    ../preprocess/input_output/poly.h
     UtfConverter.cpp
     UtfConverter.h
     ConvertUTF.c
