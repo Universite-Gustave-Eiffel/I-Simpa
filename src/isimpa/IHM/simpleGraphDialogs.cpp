@@ -685,7 +685,7 @@ wxPanel* SG_PropertySheetDialog::CreateCurvesSettingsPage(wxWindow* parent)
 	// Ajout de l'apercu
 	//topSizer->Add(new wxStaticText(panel,wxID_ANY,_("Aperçu :")), 1, wxGROW|wxTOP, 2);
 	topSizer->AddSpacer(3);
-	topSizer->Add(new SG_SampleArea(panel,this,ID_CURVE_CONTROL_SAMPLE_AREA,"",wxDefaultPosition,wxSize(-1,20)), 0, wxGROW|wxBOTTOM, 2);
+	topSizer->Add(new SG_SampleArea(panel,this,ID_CURVE_CONTROL_SAMPLE_AREA,"",wxDefaultPosition,FromDIP(wxSize(-1,20))), 0, wxGROW|wxBOTTOM, 2);
 		
 	///////////////////////
 	// Ajout du sous-panneau Paramètres généraux
