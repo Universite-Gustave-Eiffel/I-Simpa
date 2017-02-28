@@ -6,6 +6,7 @@ SWIG Python lib interface module declaration
 %{
 #include "../lib_interface/Core/mathlib.h"
 #include "../lib_interface/input_output/bin.h"
+#include "../lib_interface/input_output/poly/poly.h"
 #include "../lib_interface/input_output/importExportMaillage/mbin.h"
 #include "../lib_interface/input_output/gabe/stdgabe.h"
 #include "../lib_interface/input_output/progressionInfo.h"
@@ -32,6 +33,11 @@ namespace std {
    %template(intarray) vector<int>;
    %template(floatarray) vector<float>;
    %template(typearray) vector<formatGABE::GABE_OBJECTTYPE>;
+
+   
+   %template(polyFaceList) vector<formatPOLY::t_face>;
+   %template(polyRegionList) vector<formatPOLY::t_region>;
+   %template(dvec3List) vector<core_mathlib::base_vec3<double>>;
 }
 
 %typemap(out) float [ANY] {
@@ -133,8 +139,7 @@ namespace CalculsGenerauxThermodynamique {
 %include "../lib_interface/Core/mathlib.h"
 %include "../lib_interface/input_output/bin.h"
 %include "../lib_interface/input_output/importExportMaillage/mbin.h"
-%include "../lib_interface/input_output/bin.h"
-%include "../lib_interface/input_output/importExportMaillage/mbin.h"
+%include "../lib_interface/input_output/poly/poly.h"
 %include "../lib_interface/input_output/gabe/stdgabe.h"
 %include "../lib_interface/input_output/progressionInfo.h"
 %include "../lib_interface/input_output/exportRecepteurSurf/std_rsbin.hpp"
@@ -144,5 +149,5 @@ namespace CalculsGenerauxThermodynamique {
 
 
 
-
-%template(vec3) base_vec3<float>;
+%template(vec3) core_mathlib::base_vec3<float>;
+%template(dvec3) core_mathlib::base_vec3<double>;

@@ -32,7 +32,7 @@
  * @file computations.hpp 
  * @brief Ces méthodes regroupent les méthodes permettant l'adaptation d'un modèle non conforme à tetgen.
  */
-#include "input_output/poly.h"
+#include "input_output/poly/poly.h"
 #include "input_output/progressionInfo.h"
 #include <tools/octree44.hpp>
 #include <tools/octree44_triangleElement.hpp>
