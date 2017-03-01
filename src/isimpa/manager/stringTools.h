@@ -124,11 +124,11 @@ public:
 		@param fval Nombre à décimale à convertir
 		@param decimal Renseigne le caractère à utiliser comme séparateur de décimal, si non renseigné la décimale du language sera utilisé
 	*/
-	static wxString ToString( double fval , int precision= 15);
+	static std::string ToString( double fval , int precision= 15);
 	/**
 		Convertir un entier en chaîne de caractères
 	*/
-	static wxString ToString( int ival);
+	static std::string ToString( int ival);
 	/**
 		Convertir une chaîne de caractère en entier	
 	*/

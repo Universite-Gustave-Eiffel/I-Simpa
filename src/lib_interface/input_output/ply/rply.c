@@ -15,6 +15,10 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <stddef.h>
+#ifdef __linux__
+#include <xlocale.h>
+#endif
+
 
 #include "rply.h"
 #include "rplyfile.h"

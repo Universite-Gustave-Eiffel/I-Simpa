@@ -111,7 +111,7 @@ add_test(NAME check_retrocompat_mesh
   
   
 add_test(NAME check_retrocompat_gabe
-  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_retrocompat_gabe.py ${CMAKE_CURRENT_SOURCE_DIR}/testsretrocompat_test.gabe ${PROJECT_BINARY_DIR}/Testing/Temporary/ WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX})
+  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_retrocompat_gabe.py ${CMAKE_CURRENT_SOURCE_DIR}/tests/retrocompat_test.gabe ${PROJECT_BINARY_DIR}/Testing/Temporary/ WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX})
   
   
 set_property(TEST test_modelio check_retrocompat check_retrocompat_mesh check_retrocompat_gabe

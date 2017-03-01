@@ -53,6 +53,7 @@ double Convertor::ToFloat(const std::string& sval) {
 	}
 	else {
 		wxLogError(_("Cannot convert \"%s\" to decimal value"), sval);
+		return strtod(sval.c_str(), NULL);
 	}
 }
 char Convertor::getConvFrom()
@@ -85,7 +86,7 @@ char Convertor::getConvTo()
 		updateDecimalChar();
 	return toConvDecimal.GetChar(0);
 }
-wxString Convertor::ToString( double fval , int precision)
+std::string Convertor::ToString( double fval , int precision)
 {
 		std::ostringstream oss;
 		oss.imbue(std::locale::classic());
@@ -94,7 +95,7 @@ wxString Convertor::ToString( double fval , int precision)
 		return oss.str();
 }
 
-wxString Convertor::ToString( int ival)
+std::string Convertor::ToString( int ival)
 {
 		if(toConvDecimal==' ')
 			updateDecimalChar();
