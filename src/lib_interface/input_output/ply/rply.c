@@ -1355,12 +1355,21 @@ static int oascii_uint32(p_ply ply, double value) {
 
 static int oascii_float32(p_ply ply, double value) {
     if (value < -FLT_MAX || value > FLT_MAX) return 0;
-    return fprintf(ply->fp, "%g", (float) value) > 0;
+
+	#ifdef _MSC_VER
+		return _fprintf_l(ply->fp, "%g","C", (float)value) > 0;
+	#else
+		return fprintf_l(ply->fp, "%g", "C", (float)value) > 0;
+	#endif
 }
 
 static int oascii_float64(p_ply ply, double value) {
     if (value < -DBL_MAX || value > DBL_MAX) return 0;
-    return fprintf(ply->fp, "%g", value) > 0;
+	#ifdef _MSC_VER
+		return _fprintf_l(ply->fp, "%g", "C", value) > 0;
+	#else
+		return fprintf_l(ply->fp, "%g", "C", value) > 0;
+	#endif
 }
 
 static int obinary_int8(p_ply ply, double value) {
@@ -1463,7 +1472,13 @@ static int iascii_uint32(p_ply ply, double *value) {
 static int iascii_float32(p_ply ply, double *value) {
     char *end;
     if (!ply_read_word(ply)) return 0;
-    *value = strtod(BWORD(ply), &end);
+
+
+	#ifdef _MSC_VER
+	*value = _strtod_l(BWORD(ply), &end, "C");
+	#else
+	*value = strtod_l(BWORD(ply), &end, "C");
+	#endif
     if (*end || *value < -FLT_MAX || *value > FLT_MAX) return 0;
     return 1;
 }
@@ -1471,8 +1486,14 @@ static int iascii_float32(p_ply ply, double *value) {
 static int iascii_float64(p_ply ply, double *value) {
     char *end;
     if (!ply_read_word(ply)) return 0;
-    *value = strtod(BWORD(ply), &end);
-    if (*end || *value < -DBL_MAX || *value > DBL_MAX) return 0;
+	
+	#ifdef _MSC_VER
+		*value = _strtod_l(BWORD(ply), &end, "C");
+	#else
+		*value = strtod_l(BWORD(ply), &end, "C");
+	#endif
+	
+	if (*end || *value < -DBL_MAX || *value > DBL_MAX) return 0;
     return 1;
 }
 
