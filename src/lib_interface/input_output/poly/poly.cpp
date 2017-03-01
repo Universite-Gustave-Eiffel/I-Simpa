@@ -300,6 +300,7 @@ bool CPoly::ImportPOLY(t_model& scene,const std::string& mfilename)
 		// Skip comments
 		if(line.find("#") == std::string::npos) {
 			std::istringstream iss(line);
+			iss.imbue(std::locale::classic());
 			switch(state) {
 			case NODE_HEADER:
 				if(iss >> sizeVertices >> unused1 >> unused2) {

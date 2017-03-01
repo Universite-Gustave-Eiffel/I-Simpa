@@ -32,18 +32,28 @@
 #include <wx/tokenzr.h>
 #include <wx/log.h> 
 #include <wx/intl.h> 
+#include <sstream>
 #include "last_cpp_include.hpp"
 
 wxString Convertor::fromConvDecimal=' ';
 wxString Convertor::toConvDecimal=' ';
 
-float Convertor::ToFloat( const wxString& sval )
+double Convertor::ToFloat( const wxString& sval )
 {
+	return ToFloat(sval.ToStdString());
+}
+
+double Convertor::ToFloat(const std::string& sval) {
+	std::istringstream iss(sval);
+	iss.imbue(std::locale::classic());
+
 	float value(0.f);
-	if(sscanf(sval.ToStdString().c_str(), "%f", &value) != 1) {
+	if (iss >> value) {
+		return value;
+	}
+	else {
 		wxLogError(_("Cannot convert \"%s\" to decimal value"), sval);
 	}
-	return value;
 }
 char Convertor::getConvFrom()
 {
@@ -74,13 +84,6 @@ char Convertor::getConvTo()
 	if(toConvDecimal==' ')
 		updateDecimalChar();
 	return toConvDecimal.GetChar(0);
-}
-float Convertor::ToFloat(char* String)
-{
-	double val;
-	val=atof( String );
-	return val;
-
 }
 wxString Convertor::ToString( float fval ,wxString decimal, int nbdecimal)
 {

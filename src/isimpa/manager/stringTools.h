@@ -114,11 +114,11 @@ public:
 	/**
 		Convertir une chaîne en flottant
 	*/
-	static float ToFloat( const wxString& sval );
+	static double ToFloat( const wxString& sval );
 	/**
 		Convertir une chaîne en flottant
 	*/
-	static float ToFloat(char* String);
+	static double ToFloat(const std::string& sval);
 	/**
 		Convertir un flottant en chaîne
 		@param fval Nombre à décimale à convertir

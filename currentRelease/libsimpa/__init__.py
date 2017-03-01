@@ -12,9 +12,9 @@ def ToList(self):
     """
     lstret=[]
     coltypes=list(self.GetTabTypes())
-    func_binding={ GABE_OBJECTTYPE.GABE_OBJECTTYPE_SHORTSTRING : self.ReadColStr,
-                   GABE_OBJECTTYPE.GABE_OBJECTTYPE_INT : self.ReadColInt,
-                   GABE_OBJECTTYPE.GABE_OBJECTTYPE_FLOAT : self.ReadColFloat
+    func_binding={ GABE_OBJECTTYPE_SHORTSTRING : self.ReadColStr,
+                   GABE_OBJECTTYPE_INT : self.ReadColInt,
+                   GABE_OBJECTTYPE_FLOAT : self.ReadColFloat
                  }
     for idcol in range(0,len(self)):
         lstret.append([ self.GetColTitle(idcol)] + list(func_binding[coltypes[idcol]](idcol)))

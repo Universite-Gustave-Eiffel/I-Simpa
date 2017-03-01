@@ -20,25 +20,7 @@ SWIG Python lib interface module declaration
 %include "std_vector.i"
 %include "stl.i"
 %include "std_wstring.i"
-// Following configuration is for special bindings to Python like array access or ignoring some operator overriding
-// Instantiate templates used by libinterface
-namespace std {
-   %template(ioFaceVector) vector<formatCoreBIN::ioFace>;
-   %template(t_posVector) vector<formatCoreBIN::t_pos>;
-
-   %template(bintetrahedreVector) vector<formatMBIN::bintetrahedre>;
-   %template(t_binNodeVector) vector<formatMBIN::t_binNode>;
-
-   %template(stringarray) vector<std::string>;
-   %template(intarray) vector<int>;
-   %template(floatarray) vector<float>;
-   %template(typearray) vector<formatGABE::GABE_OBJECTTYPE>;
-
-   
-   %template(polyFaceList) vector<formatPOLY::t_face>;
-   %template(polyRegionList) vector<formatPOLY::t_region>;
-   %template(dvec3List) vector<core_mathlib::base_vec3<double>>;
-}
+%include "typemaps.i"
 
 %typemap(out) float [ANY] {
    int i;
@@ -48,7 +30,6 @@ namespace std {
      PyList_SetItem($result,i,o);
    }
 } 
-
 
 %typemap(out) long [ANY] {
    int i;
@@ -124,6 +105,34 @@ namespace std {
 
 %extend gabe_io::Gabe_rw {
 	%rename(Index) operator[](std::size_t indicecol);
+	%ignore ReadColStr(const std::size_t& idcol,stringarray& coldata);
+	%ignore ReadColInt(const std::size_t& idcol,intarray& coldata);
+	%ignore ReadColFloat(const std::size_t& idcol,floatarray& coldata);
+
+	gabe_io::stringarray ReadColStr(const std::size_t& idcol) {
+		gabe_io::stringarray ar;
+		(*($self)).ReadColStr(idcol, ar);
+		return ar;
+	}
+	
+	gabe_io::intarray ReadColInt(const std::size_t& idcol) {
+		gabe_io::intarray ar;
+		(*($self)).ReadColInt(idcol, ar);
+		return ar;
+	}
+	
+	gabe_io::floatarray ReadColFloat(const std::size_t& idcol) {
+		gabe_io::floatarray ar;
+		(*($self)).ReadColFloat(idcol, ar);
+		return ar;
+	}
+
+	int __len__() {
+		return (*($self)).size();
+	}
+    gabe_io::stringarray __getitem__(int i) {
+        return (*($self))[i];
+    }
 }
 
 namespace CalculsGenerauxThermodynamique {
@@ -140,6 +149,7 @@ namespace CalculsGenerauxThermodynamique {
 %include "../lib_interface/input_output/bin.h"
 %include "../lib_interface/input_output/importExportMaillage/mbin.h"
 %include "../lib_interface/input_output/poly/poly.h"
+%include "../lib_interface/input_output/gabe/gabe.h"
 %include "../lib_interface/input_output/gabe/stdgabe.h"
 %include "../lib_interface/input_output/progressionInfo.h"
 %include "../lib_interface/input_output/exportRecepteurSurf/std_rsbin.hpp"
@@ -148,6 +158,25 @@ namespace CalculsGenerauxThermodynamique {
 %include "../lib_interface/tools/surf_merging.hpp"
 
 
-
 %template(vec3) core_mathlib::base_vec3<float>;
 %template(dvec3) core_mathlib::base_vec3<double>;
+
+// Following configuration is for special bindings to Python like array access or ignoring some operator overriding
+// Instantiate templates used by libinterface
+namespace std {
+   %template(ioFaceVector) vector<formatCoreBIN::ioFace>;
+   %template(t_posVector) vector<formatCoreBIN::t_pos>;
+
+   %template(bintetrahedreVector) vector<formatMBIN::bintetrahedre>;
+   %template(t_binNodeVector) vector<formatMBIN::t_binNode>;
+
+   %template(stringarray) vector<std::string>;
+   %template(intarray) vector<int>;
+   %template(floatarray) vector<float>;
+   %template(typearray) vector<formatGABE::GABE_OBJECTTYPE>;
+
+   
+   %template(polyFaceList) vector<formatPOLY::t_face>;
+   %template(polyRegionList) vector<formatPOLY::t_region>;
+   %template(dvec3List) vector<core_mathlib::base_vec3<double>>;
+}
