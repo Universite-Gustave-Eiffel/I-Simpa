@@ -64,7 +64,7 @@ before_build:
   - cmd: 7z x wxMSW-3.1.0_vc140_x64_ReleaseDLL.7z -oC:\wxWidgets-3.1.0  
   # install dependencies:
   - choco install poedit nsis
-  - ps: Start-FileDownload 'https://kent.dl.sourceforge.net/project/swig/swigwin/swigwin-3.0.11/swigwin-3.0.11.zip' -FileName 'c:\Libraries\swigwin-3.0.11.zip' -Timeout 15000 
+  - ps: Start-FileDownload 'https://github.com/nicolas-f/build_resources/raw/master/swigwin-3.0.11.zip' -FileName 'c:\Libraries\swigwin-3.0.11.zip' -Timeout 15000 
   - ps: 7z x c:\Libraries\swigwin-3.0.11.zip -oC:\Libraries -r -y
   - cmd: SET PATH=%PATH%;%WXWIN%;%SWIG_DIR%;%wxWidgets_LIB_DIR%;C:\Program Files (x86)\Poedit\Gettexttools\bin;%BOOST_LIBRARYDIR%;
   - ps: swig.exe -version
