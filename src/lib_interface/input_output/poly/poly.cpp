@@ -33,7 +33,6 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "en_numeric.hpp"
 #include <limits>
 
 namespace formatPOLY

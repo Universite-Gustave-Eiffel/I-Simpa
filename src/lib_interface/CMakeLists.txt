@@ -12,8 +12,6 @@ set(LIBINTERFACE_SOURCES
     coreString.cpp
     coreTypes.h
     coreTypes.cpp
-    en_numeric.hpp
-    en_numeric.cpp
     std_tools.hpp
     std_tools.cpp)
 

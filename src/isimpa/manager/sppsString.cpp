@@ -85,24 +85,13 @@ char Convertor::getConvTo()
 		updateDecimalChar();
 	return toConvDecimal.GetChar(0);
 }
-wxString Convertor::ToString( float fval ,wxString decimal, int nbdecimal)
+wxString Convertor::ToString( double fval , int precision)
 {
-		wxString toD=toConvDecimal;
-		if(toConvDecimal==' ')
-			updateDecimalChar();
-		if(decimal!=' ')
-		{
-			decimal=fromConvDecimal;
-			if(decimal==".")
-				toD=",";
-			else
-				toD=".";
-		}
-		wxString sval;
-		sval.Printf("%."+ToString(nbdecimal)+"f",fval); //<<fval;
-		if(decimal!=' ')
-			sval.Replace(toD, decimal,false);
-		return sval;
+		std::ostringstream oss;
+		oss.imbue(std::locale::classic());
+		oss.precision(precision);
+		oss << fval;
+		return oss.str();
 }
 
 wxString Convertor::ToString( int ival)

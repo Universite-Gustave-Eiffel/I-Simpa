@@ -29,7 +29,6 @@
 * ----------------------------------------------------------------------*/
 
 #include "mesh.h"
-#include "en_numeric.hpp"
 #include "manager/stringTools.h"
 #include <locale.h>
 #include "last_cpp_include.hpp"
@@ -51,11 +50,7 @@ namespace formatMESH
 bool CMesh::ExportMESH(vec4 UnitizeValue,std::vector<SGroup3D> &pModel, std::vector<vec3> &Vertices, const std::string& mfilename, long nbFaces)
 {
   FILE *outfile;
-  EnglishTemporaryLocale eng;
 
-  if(!eng.check()) {
-	  return false;
-  }
   outfile = fopen(mfilename.c_str(), "w");
   if (outfile == (FILE *) NULL) {
     printf("File I/O Error:  Cannot create file %s.\n", mfilename.c_str());
@@ -76,10 +71,10 @@ bool CMesh::ExportMESH(vec4 UnitizeValue,std::vector<SGroup3D> &pModel, std::vec
   {
 	// Face j Point coordinates. Vertice 1 of 3
 	vec3 realCoords=coordsOperation::GlCoordsToCommonCoords(UnitizeValue,Vertices[v]);
-	fprintf(outfile, "%f    %f    %f ",
-	realCoords.x, //On remet les points à leur etat d'origine est l'on exporte
-	realCoords.y,
-	realCoords.z);
+	fprintf(outfile, "%s    %s    %s ",
+	Convertor::ToString(realCoords.x), //On remet les points à leur etat d'origine est l'on exporte
+	Convertor::ToString(realCoords.y),
+	Convertor::ToString(realCoords.z));
 	fprintf(outfile, "    0\n");
   }
   fprintf(outfile, "\n# Set of Triangles\n");

@@ -30,7 +30,6 @@
 
 #include "rply_interface.hpp"
 #include "rply.h"
-#include "en_numeric.hpp"
 
 namespace formatRPLY
 {
@@ -144,8 +143,6 @@ namespace formatRPLY
 
 	bool CPly::ImportPly(t_model& sceneconst, std::string mfilename)
 	{
-		EnglishTemporaryLocale dotNumericOnly;
-
 		sceneconst.modelFaces.clear();
 		sceneconst.modelVertices.clear();
 		p_ply plyFile=ply_open(mfilename.c_str(),NULL, 0, NULL);
@@ -175,7 +172,6 @@ namespace formatRPLY
 
 	bool CPly::ExportPly(t_model& scene, std::string mfilename)
 	{
-		EnglishTemporaryLocale dotNumericOnly;
 		p_ply oply;
 		oply = ply_create(mfilename.c_str(), PLY_BIG_ENDIAN, NULL, 0, NULL);
 		if (!oply) return false;
