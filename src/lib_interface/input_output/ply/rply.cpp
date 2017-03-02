@@ -1367,15 +1367,11 @@ static int oascii_float32(p_ply ply, double value) {
 
 static int oascii_float64(p_ply ply, double value) {
     if (value < -DBL_MAX || value > DBL_MAX) return 0;
-	#ifdef _MSC_VER
-		return _fprintf_l(ply->fp, "%g", "C", value) > 0;
-	#endif
-    #ifdef _OSX_
-        return fprintf_l(ply->fp, "%g", "C", value) > 0;
-    #endif
-    #ifdef __linux__
-        return fprintf(ply->fp, "%g", value) > 0;
-    #endif
+    std::ostringstream oss;
+    oss.imbue(std::locale::classic());
+    oss.precision(std::numeric_limits< double >::max_digits10);
+    oss << value;
+    return fprintf(ply->fp, "%s", oss.str().c_str()) > 0;
 }
 
 static int obinary_int8(p_ply ply, double value) {
