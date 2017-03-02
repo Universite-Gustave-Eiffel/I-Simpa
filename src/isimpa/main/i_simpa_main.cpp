@@ -874,8 +874,10 @@ void MainUiFrame::OnShowAboutDialog(wxCommandEvent& event)
 	aboutDlg.SetWebSite(wxT("http://i-simpa.ifsttar.fr"));
 	//aboutDlg.SetLicence(GetLicenseText());
 	aboutDlg.SetLicence("I-Simpa is an open source software (GPL v3).");
-	aboutDlg.AddDeveloper("Nicolas FORTIN (Ifsttar)");
-	aboutDlg.AddDeveloper("Judicaël PICAUT (Ifsttar)");
+	aboutDlg.AddDeveloper("Nicolas Fortin (Ifsttar)");
+	aboutDlg.AddDeveloper("Judicaël Picaut (Ifsttar)");
+	aboutDlg.AddDeveloper("Contributor - Wojciech Binek (AGH)");
+	aboutDlg.AddTranslator("Wojciech Binek (AGH)");
 	aboutDlg.SetCopyright("(c) Ifsttar <i-simpa@ifsttar.fr>");
 
 	//wxArraySting devs;
