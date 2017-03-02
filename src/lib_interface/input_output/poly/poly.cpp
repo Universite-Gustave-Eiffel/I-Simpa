@@ -408,7 +408,8 @@ bool CPoly::ImportPOLY(t_model& scene,const std::string& mfilename)
 				break;
 			case USER_FACE_CONTENT_VALUE:
 				if (iss >> vertcount) {
-					if (vertcount == 3 && iss >> newFace.indicesSommets.a >> newFace.indicesSommets.b >> newFace.indicesSommets.c) {
+					if (vertcount == 3 && iss >> quadFace.a >> quadFace.b >> quadFace.c) {
+						newFace.indicesSommets.set(quadFace.a - 1, quadFace.b - 1, quadFace.c - 1);
 						scene.userDefinedFaces.push_back(newFace);
 					}
 					else if (vertcount == 4 && iss >> quadFace.a >> quadFace.b >> quadFace.c >> quadFace.d) {

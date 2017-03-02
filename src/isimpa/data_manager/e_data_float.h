@@ -108,7 +108,7 @@ public:
 		if(exportToCore)
 		{
 			NoeudParent->DeleteAttribute(this->elementInfo.libelleElement);
-			NoeudParent->AddAttribute(this->elementInfo.libelleElement,FloatToString(elementValue));
+			NoeudParent->AddAttribute(this->elementInfo.libelleElement, Convertor::ToString(elementValue));
 		}
 		return NoeudParent;
 	}
@@ -246,52 +246,43 @@ private:
 	
 	void SetGridValue(wxGrid* gridCtrl, int row, int col)
 	{
-		gridCtrl->SetCellValue(row,col,FloatToString(elementValue,true));
+		gridCtrl->SetCellValue(row,col, wxString::FromDouble(elementValue,Convertor::ToInt(precision)));
 	}
 
 	wxString FloatToString(float val,bool setPrecision=false)
 	{
-		wxString sval;
-		if(setPrecision)
-		{
-			sval.Printf("%."+precision+"f",val);
-			if(StringToFloat(precision)>0)
-				sval=sval.Left(sval.find_last_not_of("0")+1);
-		}else{
-			sval.Printf("%f",val);
-		}
-		return sval;
+		std::ostringstream oss;
+		oss.imbue(std::locale::classic());
+		if (setPrecision)
+			oss.precision(Convertor::ToInt(precision));
+		oss << val;
+		return oss.str();
 	}
 	
 	float StringToFloat(wxString sval,bool* ok=NULL)
 	{
-		if(ok)
-			*ok=true;
-		double rval(0.f);
-		if(sval.ToDouble(&rval))
-		{
-			return (float)rval;
-		}
-		else
-		{ //Conversion decimal si necessaire
-			if(sval.Contains("."))
-				sval.Replace(wxT("."), ",");
-			else
-				sval.Replace(wxT(","), ".");
-			if(sval.ToDouble(&rval))
-			{
-				Modified(this); //A la prochaine sauvegarde tout les float seront convertie en local
-				return (float)rval;
-			}else{
-				sval.Replace(wxT(","), ".");
-				if(GetFormulaEvaluation(sval,rval))
-					return (float)rval;
+		// Try using locale independent
+		std::istringstream iss(sval.ToStdString());
+		iss.imbue(std::locale::classic());
+
+		double value;
+		if (iss >> value && iss.eof()) {
+			if(ok)
+				*ok = true;
+			return value;
+		} else {
+			// Try using current locale
+			if(sval.ToDouble(&value)) {
+				if (ok)
+					*ok = true;
+				return value;
+			} else {
+				wxLogError(_("Cannot convert string \"%s\" to decimal number"), sval);
+				if (ok)
+					*ok = false;
+				return 0.f;
 			}
 		}
-		
-		if(ok)
-			*ok=false;
-		return 0.f;
 	}
 };
 

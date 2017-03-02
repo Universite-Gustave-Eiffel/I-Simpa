@@ -47,12 +47,17 @@ double Convertor::ToFloat(const std::string& sval) {
 	std::istringstream iss(sval);
 	iss.imbue(std::locale::classic());
 
-	float value(0.f);
-	if (iss >> value) {
+	double value(0.f);
+	if (iss >> value && iss.eof()) {
 		return value;
 	}
 	else {
-		wxLogError(_("Cannot convert \"%s\" to decimal value"), sval);
+		// Try using current locale
+		if (wxString(sval).ToDouble(&value)) {
+			return value;
+		} else {
+			wxLogError(_("Cannot convert \"%s\" to decimal value"), sval);
+		}
 		return strtod(sval.c_str(), NULL);
 	}
 }
