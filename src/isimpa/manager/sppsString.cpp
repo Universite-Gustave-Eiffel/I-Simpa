@@ -97,11 +97,10 @@ std::string Convertor::ToString( double fval , int precision)
 
 std::string Convertor::ToString( int ival)
 {
-		if(toConvDecimal==' ')
-			updateDecimalChar();
-		wxString sval;
-		sval<<ival;
-		return sval;
+	std::ostringstream oss;
+	oss.imbue(std::locale::classic());
+	oss << ival;
+	return oss.str();
 }
 int Convertor::ToInt( const wxString& sval )
 {

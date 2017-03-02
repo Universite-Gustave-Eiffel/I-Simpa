@@ -29,7 +29,7 @@
 * ----------------------------------------------------------------------*/
 
 #include "rply_interface.hpp"
-#include "rply.h"
+#include "rply.hpp"
 
 namespace formatRPLY
 {

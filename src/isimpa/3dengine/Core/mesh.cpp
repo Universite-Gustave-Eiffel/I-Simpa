@@ -72,9 +72,9 @@ bool CMesh::ExportMESH(vec4 UnitizeValue,std::vector<SGroup3D> &pModel, std::vec
 	// Face j Point coordinates. Vertice 1 of 3
 	vec3 realCoords=coordsOperation::GlCoordsToCommonCoords(UnitizeValue,Vertices[v]);
 	fprintf(outfile, "%s    %s    %s ",
-	Convertor::ToString(realCoords.x), //On remet les points à leur etat d'origine est l'on exporte
-	Convertor::ToString(realCoords.y),
-	Convertor::ToString(realCoords.z));
+	Convertor::ToString(realCoords.x).c_str(), //On remet les points à leur etat d'origine est l'on exporte
+	Convertor::ToString(realCoords.y).c_str(),
+	Convertor::ToString(realCoords.z).c_str());
 	fprintf(outfile, "    0\n");
   }
   fprintf(outfile, "\n# Set of Triangles\n");

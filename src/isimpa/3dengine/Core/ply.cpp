@@ -192,9 +192,9 @@ bool CPly::ExportPly(t_model& scene, const char* mfilename)
   {
 	vec3 realCoords=scene.modelVertices[v];
 	fprintf(outfile, "%s  %s  %s \n",
-	Convertor::ToString(realCoords.x), //On remet les points à leur etat d'origine est l'on exporte
-	Convertor::ToString(realCoords.y),
-	Convertor::ToString(realCoords.z));
+	Convertor::ToString(realCoords.x).c_str(), //On remet les points à leur etat d'origine est l'on exporte
+	Convertor::ToString(realCoords.y).c_str(),
+	Convertor::ToString(realCoords.z).c_str());
   }
   for(int v=0; v < sizeFacets ;v++)
   {

@@ -73,11 +73,11 @@ namespace formatNFF
 				vec3 realCoordsa=coordsOperation::GlCoordsToCommonCoords(UnitizeValue,Vertices[pModel[g].pFaces[j].Vertices.a]);
 				fprintf(outfile, "p 3\n");
 				fprintf(outfile, "%s  %s  %s\n",
-				Convertor::ToString(realCoordsa.x), Convertor::ToString(realCoordsa.y), Convertor::ToString(realCoordsa.z));
+				Convertor::ToString(realCoordsa.x).c_str(), Convertor::ToString(realCoordsa.y).c_str(), Convertor::ToString(realCoordsa.z).c_str());
 				vec3 realCoordsb=coordsOperation::GlCoordsToCommonCoords(UnitizeValue,Vertices[pModel[g].pFaces[j].Vertices.b]);
-				fprintf(outfile, "%s  %s  %s\n", Convertor::ToString(realCoordsb.x), Convertor::ToString(realCoordsb.y), Convertor::ToString(realCoordsb.z));
+				fprintf(outfile, "%s  %s  %s\n", Convertor::ToString(realCoordsb.x).c_str(), Convertor::ToString(realCoordsb.y).c_str(), Convertor::ToString(realCoordsb.z).c_str());
 				vec3 realCoordsc=coordsOperation::GlCoordsToCommonCoords(UnitizeValue,Vertices[pModel[g].pFaces[j].Vertices.c]);
-				fprintf(outfile, "%s  %s  %s\n", Convertor::ToString(realCoordsc.x), Convertor::ToString(realCoordsc.y), Convertor::ToString(realCoordsc.z));
+				fprintf(outfile, "%s  %s  %s\n", Convertor::ToString(realCoordsc.x).c_str(), Convertor::ToString(realCoordsc.y).c_str(), Convertor::ToString(realCoordsc.z).c_str());
 			}
 	  }
 	  fclose(outfile);
@@ -112,17 +112,17 @@ namespace formatNFF
 		{
 			fprintf(outfile, "p 3\n");
 			fprintf(outfile, "%s  %s  %s\n",
-				Convertor::ToString((tabVertexMaillage[f].a[0]/UnitizeValue.w)+UnitizeValue.x),
-				Convertor::ToString((tabVertexMaillage[f].a[1]/UnitizeValue.w)+UnitizeValue.y),
-				Convertor::ToString((tabVertexMaillage[f].a[2]/UnitizeValue.w)+UnitizeValue.z));
+				Convertor::ToString((tabVertexMaillage[f].a[0]/UnitizeValue.w)+UnitizeValue.x).c_str(),
+				Convertor::ToString((tabVertexMaillage[f].a[1]/UnitizeValue.w)+UnitizeValue.y).c_str(),
+				Convertor::ToString((tabVertexMaillage[f].a[2]/UnitizeValue.w)+UnitizeValue.z).c_str());
 			fprintf(outfile, "%s  %s  %s\n",
-				Convertor::ToString((tabVertexMaillage[f].b[0]/UnitizeValue.w)+UnitizeValue.x),
-				Convertor::ToString((tabVertexMaillage[f].b[1]/UnitizeValue.w)+UnitizeValue.y),
-				Convertor::ToString((tabVertexMaillage[f].b[2]/UnitizeValue.w)+UnitizeValue.z));
+				Convertor::ToString((tabVertexMaillage[f].b[0]/UnitizeValue.w)+UnitizeValue.x).c_str(),
+				Convertor::ToString((tabVertexMaillage[f].b[1]/UnitizeValue.w)+UnitizeValue.y).c_str(),
+				Convertor::ToString((tabVertexMaillage[f].b[2]/UnitizeValue.w)+UnitizeValue.z).c_str());
 			fprintf(outfile, "%s  %s  %s\n",
-			Convertor::ToString((tabVertexMaillage[f].c[0]/UnitizeValue.w)+UnitizeValue.x),
-			Convertor::ToString((tabVertexMaillage[f].c[1]/UnitizeValue.w)+UnitizeValue.y),
-			Convertor::ToString((tabVertexMaillage[f].c[2]/UnitizeValue.w)+UnitizeValue.z));
+			Convertor::ToString((tabVertexMaillage[f].c[0]/UnitizeValue.w)+UnitizeValue.x).c_str(),
+			Convertor::ToString((tabVertexMaillage[f].c[1]/UnitizeValue.w)+UnitizeValue.y).c_str(),
+			Convertor::ToString((tabVertexMaillage[f].c[2]/UnitizeValue.w)+UnitizeValue.z).c_str());
 		}
 
 		fclose(outfile);
