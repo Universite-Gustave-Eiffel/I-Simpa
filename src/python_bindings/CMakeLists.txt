@@ -17,6 +17,8 @@ FIND_PACKAGE(PythonInterp 2.7 REQUIRED)
 
 INCLUDE_DIRECTORIES(${PYTHON_INCLUDE_PATH})
 
+INCLUDE_DIRECTORIES("${PROJECT_SOURCE_DIR}/src/lib_interface")
+
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 
 SET(CMAKE_SWIG_FLAGS "")
@@ -65,24 +67,25 @@ if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
 endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
 
 install (FILES
-        ${ISIMPA_RESSOURCES}/libsimpa/vec3.py
         ${ISIMPA_RESSOURCES}/libsimpa/__init__.py
 		${CMAKE_CURRENT_BINARY_DIR}/libsimpa.py
-		${CMAKE_CURRENT_SOURCE_DIR}/tests/model_io.py
         DESTINATION libsimpa/)
         
         
 
 if(WIN32)
-	# Resolve symbolic link
-	LIB_TO_DLL(${Boost_FILESYSTEM_LIBRARY_RELEASE} Boost_FILESYSTEM_LIBRARY_RELEASE_REAL)
-	LIB_TO_DLL(${Boost_SYSTEM_LIBRARY_RELEASE} Boost_SYSTEM_LIBRARY_RELEASE_REAL)
-	LIB_TO_DLL(${Boost_REGEX_LIBRARY_RELEASE} Boost_REGEX_LIBRARY_RELEASE_REAL)
-	install (FILES
-        ${Boost_FILESYSTEM_LIBRARY_RELEASE_REAL}
-        ${Boost_SYSTEM_LIBRARY_RELEASE_REAL}
-        ${Boost_REGEX_LIBRARY_RELEASE_REAL}
-			DESTINATION libsimpa/)
+    #Fetch required Dll's 
+    set(DIRS ${Boost_LIBRARY_DIR_DEBUG}
+             ${Boost_LIBRARY_DIR_RELEASE}
+    )
+    
+    install(CODE "
+    include(BundleUtilities)   
+    # Rename to .exe as cmake check if the file ends with .exe in windows before gathering dependencies..
+    file(RENAME \"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.pyd\" \"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.exe\")    
+    fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.exe\" \"\"   \"${DIRS}\")
+    file(RENAME \"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.exe\" \"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.pyd\") 
+")
 endif()
 
 #------------#
@@ -96,9 +99,21 @@ enable_testing()
 MESSAGE(STATUS "Run test in ${CMAKE_CURRENT_BINARY_DIR}")
 
 add_test(NAME test_modelio
-  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_INSTALL_PREFIX}/libsimpa/model_io.py ${PROJECT_BINARY_DIR}/Testing/Temporary/)
+  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/model_io.py ${PROJECT_BINARY_DIR}/Testing/Temporary/
+   WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX}/libsimpa/)
+  
+add_test(NAME check_retrocompat
+  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_retrocompat.py ${CMAKE_CURRENT_SOURCE_DIR}/tests/mesh.cbin ${PROJECT_BINARY_DIR}/Testing/Temporary/ WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX})
   
   
-set_property(TEST test_modelio
- PROPERTY ENVIRONMENT "PYTHONPATH=${CMAKE_CURRENT_BINARY_DIR}"
+add_test(NAME check_retrocompat_mesh
+  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_retrocompat_mesh.py ${CMAKE_CURRENT_SOURCE_DIR}/tests/tetramesh.mbin ${PROJECT_BINARY_DIR}/Testing/Temporary/ WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX})
+  
+  
+add_test(NAME check_retrocompat_gabe
+  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_retrocompat_gabe.py ${CMAKE_CURRENT_SOURCE_DIR}/tests/retrocompat_test.gabe ${PROJECT_BINARY_DIR}/Testing/Temporary/ WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX})
+  
+  
+set_property(TEST test_modelio check_retrocompat check_retrocompat_mesh check_retrocompat_gabe
+ PROPERTY ENVIRONMENT "PYTHONPATH=${CMAKE_INSTALL_PREFIX}"
 )

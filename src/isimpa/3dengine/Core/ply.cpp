@@ -29,7 +29,6 @@
 * ----------------------------------------------------------------------*/
 
 #include "ply.h"
-#include "en_numeric.hpp"
 #include "manager/stringTools.h"
 #include <wx/log.h>
 #include <wx/intl.h>
@@ -168,7 +167,6 @@ namespace formatPLY
 
 bool CPly::ExportPly(t_model& scene, const char* mfilename)
 {
-  EnglishTemporaryLocale();
   FILE *outfile;
   char mefilename[FILENAMESIZE];
 
@@ -193,10 +191,10 @@ bool CPly::ExportPly(t_model& scene, const char* mfilename)
   for(int v=0; v < sizeVertices ;v++)
   {
 	vec3 realCoords=scene.modelVertices[v];
-	fprintf(outfile, "%f  %f  %f \n",
-	realCoords.x, //On remet les points à leur etat d'origine est l'on exporte
-	realCoords.y,
-	realCoords.z);
+	fprintf(outfile, "%s  %s  %s \n",
+	Convertor::ToString(realCoords.x).c_str(), //On remet les points à leur etat d'origine est l'on exporte
+	Convertor::ToString(realCoords.y).c_str(),
+	Convertor::ToString(realCoords.z).c_str());
   }
   for(int v=0; v < sizeFacets ;v++)
   {

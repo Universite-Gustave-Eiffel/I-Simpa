@@ -8,7 +8,6 @@ include( InstallRequiredSystemLibraries )
 set(PREPROCESS_SOURCE_FILES
 		"computations.cpp"
         "tools/intersection_tri.cpp"
-        "input_output/poly.cpp"
         "Preprocess.cpp")
 
 #---------------------------------------#

@@ -29,7 +29,6 @@
 * ----------------------------------------------------------------------*/
 
 #include "mesh.h"
-#include "en_numeric.hpp"
 #include "manager/stringTools.h"
 #include <locale.h>
 #include "last_cpp_include.hpp"
@@ -48,14 +47,14 @@ namespace formatMESH
 // ExportMESH()    Format mesh créé par INRIA
 //                                                                           //
 ///////////////////////////////////////////////////////////////////////////////
-void CMesh::ExportMESH(vec4 UnitizeValue,std::vector<SGroup3D> &pModel, std::vector<vec3> &Vertices, const std::string& mfilename, long nbFaces)
+bool CMesh::ExportMESH(vec4 UnitizeValue,std::vector<SGroup3D> &pModel, std::vector<vec3> &Vertices, const std::string& mfilename, long nbFaces)
 {
   FILE *outfile;
-  EnglishTemporaryLocale();
+
   outfile = fopen(mfilename.c_str(), "w");
   if (outfile == (FILE *) NULL) {
     printf("File I/O Error:  Cannot create file %s.\n", mfilename.c_str());
-    return;
+    return false;
   }
 
   fprintf(outfile, "MeshVersionFormatted 1\n");
@@ -72,10 +71,10 @@ void CMesh::ExportMESH(vec4 UnitizeValue,std::vector<SGroup3D> &pModel, std::vec
   {
 	// Face j Point coordinates. Vertice 1 of 3
 	vec3 realCoords=coordsOperation::GlCoordsToCommonCoords(UnitizeValue,Vertices[v]);
-	fprintf(outfile, "%f    %f    %f ",
-	realCoords.x, //On remet les points à leur etat d'origine est l'on exporte
-	realCoords.y,
-	realCoords.z);
+	fprintf(outfile, "%s    %s    %s ",
+	Convertor::ToString(realCoords.x).c_str(), //On remet les points à leur etat d'origine est l'on exporte
+	Convertor::ToString(realCoords.y).c_str(),
+	Convertor::ToString(realCoords.z).c_str());
 	fprintf(outfile, "    0\n");
   }
   fprintf(outfile, "\n# Set of Triangles\n");
@@ -96,6 +95,7 @@ void CMesh::ExportMESH(vec4 UnitizeValue,std::vector<SGroup3D> &pModel, std::vec
 
   fprintf(outfile, "\nEnd\n");
   fclose(outfile);
+  return true;
 }
 
 } //fin namespace

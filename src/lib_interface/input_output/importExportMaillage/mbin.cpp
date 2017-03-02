@@ -78,7 +78,7 @@ bool CMBIN::SaveMesh(const char *strFileName,trimeshmodel& trimesh)
 	for( unsigned int idtetra=0;idtetra<sizeTetra;idtetra++)
 		tabTetra[idtetra]=trimesh.tetrahedres[idtetra];
 
-	bool result = ExportBIN(strFileName,&tabTetra,&tabNodes,sizeTetra,sizeNodes);
+	bool result = ExportBIN(strFileName,tabTetra,tabNodes,sizeTetra,sizeNodes);
 
 	delete[] tabTetra;
 	delete[] tabNodes;
@@ -86,7 +86,7 @@ bool CMBIN::SaveMesh(const char *strFileName,trimeshmodel& trimesh)
     return result;
 }
 
-bool CMBIN::ExportBIN(const char *strFileName,bintetrahedre **tabTetra,t_binNode **tabNodes,unsigned int sizeTetra,unsigned int sizeNodes)
+bool CMBIN::ExportBIN(const char *strFileName,const bintetrahedre* tabTetra,const t_binNode* tabNodes,unsigned int sizeTetra,unsigned int sizeNodes)
 {
 	//Namespace
 	using namespace std;
@@ -101,13 +101,19 @@ bool CMBIN::ExportBIN(const char *strFileName,bintetrahedre **tabTetra,t_binNode
 	t_FileHeader fileHeader;
 	fileHeader.quantNodes=sizeNodes;
 	fileHeader.quantTetra=sizeTetra;
-	binFile.write((char*)&fileHeader,sizeof(t_FileHeader));
+	binFile.write((char*)&fileHeader.quantTetra,sizeof(Longb));
+	binFile.write((char*)&fileHeader.quantNodes, sizeof(Longb));
 	//*************************
 	//Ecriture des noeuds
-	binFile.write((char*)*tabNodes,sizeof(t_binNode)*sizeNodes);
+	for (int idNode = 0; idNode<sizeNodes; idNode++) {
+		binFile.write((char*)&(tabNodes[idNode]).node[0], sizeof(Floatb));
+		binFile.write((char*)&(tabNodes[idNode]).node[1], sizeof(Floatb));
+		binFile.write((char*)&(tabNodes[idNode]).node[2], sizeof(Floatb));		
+	}
+
     // Check tetrahedra
     for(int idTetra = 0; idTetra < sizeTetra; idTetra++) {
-        const bintetrahedre& tetra = (*tabTetra)[idTetra];
+        const bintetrahedre& tetra = tabTetra[idTetra];
         for (int idvertLeft = 0; idvertLeft < 4; idvertLeft++) {
             for (int idvertRight = 0; idvertRight < 4; idvertRight++) {
                 if (idvertLeft != idvertRight) {
@@ -120,10 +126,28 @@ bool CMBIN::ExportBIN(const char *strFileName,bintetrahedre **tabTetra,t_binNode
             }
         }
     }
+
+
     //*************************
 	//Write tetrahedra
-	binFile.write((char*)*tabTetra,sizeof(bintetrahedre)*sizeTetra);
-
+	for (int idTetra = 0; idTetra < sizeTetra; idTetra++) {
+		const bintetrahedre& tetra = tabTetra[idTetra];
+		Intb ta(tetra.vertices[0]), tb(tetra.vertices[1]), tc(tetra.vertices[2]), td(tetra.vertices[3]);
+		binFile.write((char*)&ta, sizeof(Intb));
+		binFile.write((char*)&tb, sizeof(Intb));
+		binFile.write((char*)&tc, sizeof(Intb));
+		binFile.write((char*)&td, sizeof(Intb));
+		binFile.write((char*)&tetra.idVolume, sizeof(Intb));
+		for (int idFace = 0; idFace < 4; idFace++) {
+			const bintetraface& face = tetra.tetrafaces[idFace];
+			Intb fa(face.vertices[0]), fb(face.vertices[1]), fc(face.vertices[2]);
+			binFile.write((char*)&fa, sizeof(Intb));
+			binFile.write((char*)&fb, sizeof(Intb));
+			binFile.write((char*)&fc, sizeof(Intb));
+			binFile.write((char*)&face.marker, sizeof(Intb));
+			binFile.write((char*)&face.neighbor, sizeof(Intb));
+		}
+	}
 	binFile.close();
 	return true;
 }
@@ -143,27 +167,42 @@ bool  CMBIN::ImportBIN(const char *strFileName,bintetrahedre **tabTetra,t_binNod
 		//*************************
 		//Lecture de l'entete du fichier
 		t_FileHeader fileHeader;
-		memset(&fileHeader,0,sizeof(t_FileHeader));
-		binFile.read((char*)&fileHeader,sizeof(t_FileHeader));
+		binFile.read((char*)&fileHeader.quantTetra,sizeof(Longb));
+		binFile.read((char*)&fileHeader.quantNodes, sizeof(Longb));
 		sizeNodes=fileHeader.quantNodes;
 		sizeTetra=fileHeader.quantTetra;
-		// This deprecated file format may be altered by os/compiler specific struct alignment or endian
-		// limit to 1 million nodes/tetrahedra in order to detect the problem before overloading memory
-		if(fileHeader.quantNodes < 0 || fileHeader.quantNodes > 1e6) {
-			return false;
-		}
-		if(fileHeader.quantTetra < 0 || fileHeader.quantTetra > 1e6) {
-			return false;
-		}
-		//*************************
-		//Lecture des noeuds
-		*tabNodes=new t_binNode[sizeNodes];
-		binFile.read((char*)*tabNodes,sizeof(t_binNode)*sizeNodes);
-		//*************************
-		//Lecture des tetrah�dres
-		*tabTetra=new bintetrahedre[sizeTetra];
-		binFile.read((char*)*tabTetra,sizeof(bintetrahedre)*sizeTetra);
 
+		//*************************
+		// Read nodes
+		*tabNodes=new t_binNode[sizeNodes];
+		for(int idNode=0; idNode<sizeNodes; idNode++) {
+			binFile.read((char*)&((*tabNodes)[idNode].node[0]), sizeof(Floatb));
+			binFile.read((char*)&((*tabNodes)[idNode].node[1]), sizeof(Floatb));
+			binFile.read((char*)&((*tabNodes)[idNode].node[2]), sizeof(Floatb));
+		}		
+		//*************************
+		// Read tetrahedras
+		*tabTetra=new bintetrahedre[sizeTetra];
+		for(int idTetra = 0; idTetra < sizeTetra; idTetra++) {
+			bintetrahedre& tetra = (*tabTetra)[idTetra];
+			Intb ta, tb, tc, td;
+			binFile.read((char*)&ta, sizeof(Intb));
+			binFile.read((char*)&tb, sizeof(Intb));
+			binFile.read((char*)&tc, sizeof(Intb));
+			binFile.read((char*)&td, sizeof(Intb));
+			binFile.read((char*)&(tetra.idVolume), sizeof(Intb));
+			tetra.vertices.set(ta,tb,tc,td);
+			for(int idFace = 0; idFace < 4; idFace++) {
+				bintetraface& face = tetra.tetrafaces[idFace];
+				Intb fa, fb, fc;
+				binFile.read((char*)&fa, sizeof(Intb));
+				binFile.read((char*)&fb, sizeof(Intb));
+				binFile.read((char*)&fc, sizeof(Intb));
+				binFile.read((char*)&(face.marker), sizeof(Intb));
+				binFile.read((char*)&(face.neighbor), sizeof(Intb));
+				face.vertices.set(fa, fb, fc);
+			}
+		}
 		binFile.close();
 		return true;
 	}else{

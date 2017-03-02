@@ -57,10 +57,10 @@ void CAsc::ExportASC(vec4 UnitizeValue,std::vector<SGroup3D> &pModel, std::vecto
   for(int v=0; v < Vertices.size() ;v++)
   {
 	vec3 realCoords=coordsOperation::GlCoordsToCommonCoords(UnitizeValue,Vertices[v]);
-	fprintf(outfile, "%.17g %.17g %.17g\n",
-	realCoords.x, //On remet les points à leur etat d'origine est l'on exporte
-	realCoords.y,
-	realCoords.z);
+	fprintf(outfile, "%s %s %s\n",
+	Convertor::ToString(realCoords.x).c_str(), //On remet les points à leur etat d'origine est l'on exporte
+	Convertor::ToString(realCoords.y).c_str(),
+	Convertor::ToString(realCoords.z).c_str());
   }
   fprintf(outfile, "\n# Faces\n");
   fprintf(outfile, "Triangles\n");
@@ -133,10 +133,10 @@ void CAsc::ExportTetraASC(vec4 UnitizeValue,triangleFace *tabVertexMaillage, con
 					Vertices=tabVertexMaillage[f].c;
 				if(i==3)
 					Vertices=tabVertexMaillage[f+1].b;
-				fprintf(outfile, "Vertex %i: X: %.17g     Y: %.17g     Z: %.17g\n",verticenum,
-					(Vertices.x/UnitizeValue.w)+UnitizeValue.x, //On remet les points à leur etat d'origine
-					(Vertices.y/UnitizeValue.w)+UnitizeValue.y,
-					(Vertices.z/UnitizeValue.w)+UnitizeValue.z);
+				fprintf(outfile, "Vertex %i: X: %s     Y: %s     Z: %s\n",verticenum,
+				Convertor::ToString((Vertices.x/UnitizeValue.w)+UnitizeValue.x).c_str(), //On remet les points à leur etat d'origine
+				Convertor::ToString((Vertices.y/UnitizeValue.w)+UnitizeValue.y).c_str(),
+				Convertor::ToString((Vertices.z/UnitizeValue.w)+UnitizeValue.z).c_str());
 				verticenum++;
 			}
 		}

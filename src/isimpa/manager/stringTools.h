@@ -114,21 +114,21 @@ public:
 	/**
 		Convertir une chaîne en flottant
 	*/
-	static float ToFloat( const wxString& sval );
+	static double ToFloat( const wxString& sval );
 	/**
 		Convertir une chaîne en flottant
 	*/
-	static float ToFloat(char* String);
+	static double ToFloat(const std::string& sval);
 	/**
 		Convertir un flottant en chaîne
 		@param fval Nombre à décimale à convertir
 		@param decimal Renseigne le caractère à utiliser comme séparateur de décimal, si non renseigné la décimale du language sera utilisé
 	*/
-	static wxString ToString( float fval ,wxString decimal=' ', int nbdecimal=3 );
+	static std::string ToString( double fval , int precision= 15);
 	/**
 		Convertir un entier en chaîne de caractères
 	*/
-	static wxString ToString( int ival);
+	static std::string ToString( int ival);
 	/**
 		Convertir une chaîne de caractère en entier	
 	*/

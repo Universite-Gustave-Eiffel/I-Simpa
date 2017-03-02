@@ -57,21 +57,30 @@ namespace formatPOLY
 	 */
 	struct t_face
 	{
+		t_face() {};
+		t_face(const int& a, const int& b, const int& c, const unsigned int& _faceIndex) :
+			indicesSommets(ivec3(a,b,c)), faceIndex(_faceIndex) {
+			
+		}
+		int operator==(const t_face &_f) {
+			return _f.faceIndex == faceIndex && (indicesSommets == _f.indicesSommets);
+		}
+
 		ivec3 indicesSommets;
 		unsigned int faceIndex;
 	};
 
 	/**
-	 * @brief Structure de donn�es du mod�le
+	 * @brief Model structure
 	 *
 	 */
 	struct t_model
 	{
 		bool saveFaceIndex;
-		std::vector<t_face> userDefinedFaces; //Faces rajout�s au mod�le
+		std::vector<t_face> userDefinedFaces; // Added faces
 		std::vector<t_face> modelFaces;
 		std::vector<dvec3> modelVertices;
-		std::vector<t_region> modelRegions; /*!< Liste des r�gions du mod�le */
+		std::vector<t_region> modelRegions; /*!< Region list */
 	};
 
 /**

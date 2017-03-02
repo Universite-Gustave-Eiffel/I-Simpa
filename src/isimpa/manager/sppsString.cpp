@@ -30,25 +30,36 @@
 
 #include "stringTools.h"
 #include <wx/tokenzr.h>
+#include <wx/log.h> 
+#include <wx/intl.h> 
+#include <sstream>
 #include "last_cpp_include.hpp"
 
 wxString Convertor::fromConvDecimal=' ';
 wxString Convertor::toConvDecimal=' ';
 
-float Convertor::ToFloat( const wxString& sval )
+double Convertor::ToFloat( const wxString& sval )
 {
-		double rval(0.);
-		if(sval.ToDouble(&rval))
-			return rval;
-		else
-		{
-			if(toConvDecimal==' ')
-				updateDecimalChar(); //Conversion decimal si necessaire
-			wxString convDecimal(sval);
-			convDecimal.Replace( fromConvDecimal,toConvDecimal,false);
-			convDecimal.ToDouble(&rval);
-			return rval;
+	return ToFloat(sval.ToStdString());
+}
+
+double Convertor::ToFloat(const std::string& sval) {
+	std::istringstream iss(sval);
+	iss.imbue(std::locale::classic());
+
+	double value(0.f);
+	if (iss >> value && iss.eof()) {
+		return value;
+	}
+	else {
+		// Try using current locale
+		if (wxString(sval).ToDouble(&value)) {
+			return value;
+		} else {
+			wxLogError(_("Cannot convert \"%s\" to decimal value"), sval);
 		}
+		return strtod(sval.c_str(), NULL);
+	}
 }
 char Convertor::getConvFrom()
 {
@@ -80,40 +91,21 @@ char Convertor::getConvTo()
 		updateDecimalChar();
 	return toConvDecimal.GetChar(0);
 }
-float Convertor::ToFloat(char* String)
+std::string Convertor::ToString( double fval , int precision)
 {
-	double val;
-	val=atof( String );
-	return val;
-
-}
-wxString Convertor::ToString( float fval ,wxString decimal, int nbdecimal)
-{
-		wxString toD=toConvDecimal;
-		if(toConvDecimal==' ')
-			updateDecimalChar();
-		if(decimal!=' ')
-		{
-			decimal=fromConvDecimal;
-			if(decimal==".")
-				toD=",";
-			else
-				toD=".";
-		}
-		wxString sval;
-		sval.Printf("%."+ToString(nbdecimal)+"f",fval); //<<fval;
-		if(decimal!=' ')
-			sval.Replace(toD, decimal,false);
-		return sval;
+		std::ostringstream oss;
+		oss.imbue(std::locale::classic());
+		oss.precision(precision);
+		oss << fval;
+		return oss.str();
 }
 
-wxString Convertor::ToString( int ival)
+std::string Convertor::ToString( int ival)
 {
-		if(toConvDecimal==' ')
-			updateDecimalChar();
-		wxString sval;
-		sval<<ival;
-		return sval;
+	std::ostringstream oss;
+	oss.imbue(std::locale::classic());
+	oss << ival;
+	return oss.str();
 }
 int Convertor::ToInt( const wxString& sval )
 {

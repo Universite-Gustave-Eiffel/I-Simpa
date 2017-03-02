@@ -170,8 +170,8 @@ bool ProjectManager::RunTetGenMaillage(param_TetGenMaillage& paramMaillage)
 		if(!paramMaillage.debugMode)
 		{
 			if(paramMaillage.isMaxVolume)
-				cmd+=" -a"+Convertor::ToString(paramMaillage.maxVolume,".");
-			cmd+=" -pq"+Convertor::ToString(paramMaillage.quality,".");
+				cmd+=" -a"+Convertor::ToString(paramMaillage.maxVolume);
+			cmd+=" -pq"+Convertor::ToString(paramMaillage.quality);
 			cmd+=" -A -n "+paramMaillage.cmd_append;
 		}else{
 			cmd+=" -d";

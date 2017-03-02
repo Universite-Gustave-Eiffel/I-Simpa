@@ -34,7 +34,7 @@
 #include "ply.h"	// gestion du format PLY stanford
 #include "var.h"
 #include "data_manager/appconfig.h"
-#include "../preprocess/input_output/poly.h" // gestion du format POLY tetgen
+#include <input_output/poly/poly.h> // gestion du format POLY tetgen
 #include "data_manager/drawable_element.h"
 #include <wx/filename.h>
 #include "data_manager/python_interface/instanceManager.hpp"
@@ -42,6 +42,7 @@
 #include <wx/tokenzr.h>
 //#include <tools/collision.h>
 #include "last_cpp_include.hpp"
+
 
 inline bool Contains(long &index,ivec3 &rightIndex)
 {
@@ -60,7 +61,7 @@ bool LoadNodeFile(vec4 UnitizeVar, vec3** tabNodes, unsigned long &nodes_mesh_si
 
 	if(!wxFileExists(nodeFilePath))
 		return false;
-
+	
     ifstream infile;
     infile.open(nodeFilePath);
 
@@ -95,6 +96,7 @@ bool LoadNodeFile(vec4 UnitizeVar, vec3** tabNodes, unsigned long &nodes_mesh_si
             float x = Convertor::ToFloat(string_tokenizer.GetNextToken());
             float y = Convertor::ToFloat(string_tokenizer.GetNextToken());
             float z = Convertor::ToFloat(string_tokenizer.GetNextToken());
+
 			vec3 position(x, y, z);
 			position=coordsOperation::CommonCoordsToGlCoords(UnitizeVar,position);
 			if(idNode>0 && idNode<=nbNodes)
@@ -383,6 +385,7 @@ bool CObjet3D::LoadMaillage(const std::string& facePath,const std::string& elePa
 {
 	if(!(this->GetNumFaces()>0))
 		return false;
+
 	////////////////////////////////////////
 	// Chargement des noeuds des tetrahèdres
 	////////////////////////////////////////
@@ -403,6 +406,8 @@ bool CObjet3D::LoadMaillage(const std::string& facePath,const std::string& elePa
 	////////////////////////////////////////
 	if(!LoadNeighFile(&this->tabVertexMaillage,this->tabVertexMaillageSize,neighPath))
 		return false;
+
+
 	formatMBIN::trimeshmodel trimodel;
 	formatCoreBIN::ioModel model;
 	this->GetTetraMesh(trimodel,true);

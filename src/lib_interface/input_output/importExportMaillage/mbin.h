@@ -30,6 +30,8 @@
 
 #include <vector>
 #include <string.h>
+#include <cstdint>
+#include "../../Core/mathlib.h"
 
 #ifndef __MBIN__
 #define __MBIN__
@@ -46,31 +48,44 @@ namespace formatMBIN
 
 //Types Import/Export
 
-typedef unsigned short bCourt;
-typedef int Intb;
+typedef uint16_t bCourt;
+typedef int32_t Intb;
 typedef float Floatb;
-typedef unsigned long Longb ;
+typedef uint32_t Longb ;
 typedef bool Boolb ;
+
+	
 struct t_binNode
 {
 	t_binNode()
+		: node {0,0,0}
 	{
-		memset(node,0,sizeof(node));
 	}
-	t_binNode(const Floatb& x,const Floatb& y,const Floatb& z){node[0]=x;node[1]=y;node[2]=z;}
+	t_binNode(const Floatb& x,const Floatb& y,const Floatb& z): node {x,y,z}
+	{
+	}
 	Floatb node[3];
 	int operator==(const t_binNode &_f) {
 		return node[0]==_f.node[0] && node[1]==_f.node[1] && node[2]==_f.node[2];
 	}
+	operator float*() { return this->node; }
+	const float &operator[](int _i) const { return this->node[_i]; }
 };
 
 /**
  * @brief Tetrahedra face structure
  */
 	struct bintetraface {
-		Intb vertices[3]{0, 0, 0};
+		bintetraface() {}
+		bintetraface(Intb a, Intb b, Intb c, Intb _marker, Intb _neighboor) 
+			: vertices(a,b,c), marker(_marker), neighbor(_neighboor) {
+		}
+		ivec3 vertices;
 		Intb marker = -1;    /*!< Associated model face -1 nothing */
 		Intb neighbor = -2; /*!< Tetrahedra neighbor index [0-n]. -2 no neighbor */
+		int operator==(const bintetraface &_f) {
+			return vertices == _f.vertices && _f.marker == marker && _f.neighbor == neighbor;
+		}
 	};
 
 /**
@@ -78,16 +93,23 @@ struct t_binNode
  *
  */
 	struct bintetrahedre {
-
-		Intb vertices[4]{0, 0, 0, 0};
+		bintetrahedre(const Intb& _a, const Intb& _b, const Intb& _c, const Intb& _d, const Intb& _idVolume, 
+			const bintetraface& faceA, const bintetraface& faceB, const bintetraface& faceC, const bintetraface& faceD)
+			: vertices( _a, _b, _c, _d ), idVolume(_idVolume), tetrafaces { faceA , faceB , faceC , faceD }
+		{
+		 }
+		bintetrahedre() {}
+		ivec4 vertices;
 		Intb idVolume = 0;
-		bintetraface tetrafaces[4]{bintetraface(), bintetraface(), bintetraface()};
+		bintetraface tetrafaces[4]{bintetraface(), bintetraface(), bintetraface(), bintetraface() };
 
 		int operator==(const bintetrahedre &_f) {
-			return vertices[0] == _f.vertices[0] &&
-				   vertices[1] == _f.vertices[1] &&
-				   vertices[2] == _f.vertices[2] &&
-				   vertices[3] == _f.vertices[3];
+			return vertices == _f.vertices &&
+				   idVolume == _f.idVolume &&
+				   tetrafaces[0] == _f.tetrafaces[0] &&
+				   tetrafaces[1] == _f.tetrafaces[1] &&
+				   tetrafaces[2] == _f.tetrafaces[2] &&
+				   tetrafaces[3] == _f.tetrafaces[3];
 		}
 	};
 
@@ -130,7 +152,7 @@ public:
 	 * @param sizeNodes Taille du tableau de tetrahèdre
 	 * @return Vrai si l'opération a réussi
 	 */
-	bool ExportBIN(const char *strFileName,bintetrahedre **tabTetra,t_binNode **tabNodes,unsigned int sizeTetra,unsigned int sizeNodes);
+	bool ExportBIN(const char *strFileName,const bintetrahedre* tabTetra,const t_binNode* tabNodes,unsigned int sizeTetra,unsigned int sizeNodes);
 	/// @endcond
 	/**
 	 * Méthode d'importation d'un fichier binaire

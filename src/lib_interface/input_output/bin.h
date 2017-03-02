@@ -60,7 +60,7 @@ public :
 	t_pos(float _x, float _y, float _z) : v{ _x, _y, _z } { }
 	t_pos() : v{ 0, 0, 0 } { }
 	operator float*() { return this->v; }
-	int operator==(const t_pos &_v) {
+	bool operator==(const t_pos &_v) {
 		return (fabs(v[0] - _v[0]) < EPSILON && fabs(v[1] - _v[1]) < EPSILON && fabs(v[2] - _v[2]) < EPSILON);
 	}
 
@@ -70,8 +70,15 @@ public :
  * @brief Structure d'une face, déstiné à l'echange fichier<->CObjet3D
  */
 struct ioFace {
-	int operator==(const ioFace &_f) {
+	bool operator==(const ioFace &_f) {
 		return a==_f.a && b==_f.b && c==_f.c && idMat==_f.idMat && idRs==_f.idRs && idEn==_f.idEn;
+	}
+	ioFace() {
+	
+	}
+	ioFace(indiceV _a, indiceV _b, indiceV _c, indiceMat _idMat, indiceRS _idRs, indiceEN _idEn)
+	: a(_a), b(_b), c(_c), idMat(_idMat), idRs(_idRs), idEn(_idEn) {
+		
 	}
 	indiceV a;/*!<  Indice du sommet */
 	indiceV b;/*!<  Indice du sommet */

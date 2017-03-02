@@ -783,7 +783,10 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	///////////////////////////////////////////
 	if(!wxDirExists(workingDir))
 		wxMkdir(workingDir);
-	this->sceneMesh.Save((workingDir+modelFileName).ToStdString());
+	if(!this->sceneMesh.Save((workingDir+modelFileName).ToStdString())) {
+		wxLogError(_("Error while saving the 3d model"));
+		return;
+	}
 	if(!tetraFileName.empty())
 		this->sceneMesh.SaveMaillage((workingDir+tetraFileName).ToStdString(),true);
 	wxXmlDocument xmlCoreDocument;
@@ -2995,7 +2998,9 @@ void ProjectManager::BuildModel3d(vec3 debCuboide,vec3 finCuboide)
 	{
 		this->AddLogMessage(_("Build of a 3D scene.\n"));
 		//On sauvegarde la nouvelle scène3D
-		this->sceneMesh.Save((this->dossierCourant+ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME).ToStdString());
+		if(!this->sceneMesh.Save((this->dossierCourant+ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME).ToStdString())) {
+			wxLogError(_("Error while saving the 3d model"));
+		}
 		this->ChangeModel3d(this->dossierCourant+ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME);
 	}
 }

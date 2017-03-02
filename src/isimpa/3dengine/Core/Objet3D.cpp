@@ -44,7 +44,7 @@
 
 //#include "ply.h"				// gestion du format PLY stanford
 #include <input_output/ply/rply_interface.hpp>	// gestion du format PLY stanford (Librairie externe)
-#include "../preprocess/input_output/poly.h"	// gestion du format POLY tetgen
+#include <input_output/poly/poly.h>	// gestion du format POLY tetgen
 
 #include "data_manager/tree_scene/e_scene_encombrements_encombrement_cuboide.h"
 #include "data_manager/appconfig.h"
@@ -875,9 +875,8 @@ long CObjet3D::_RenderGroupLines(long g,bool hideLines)
 bool CObjet3D::_SaveMESH(const std::string& filename)
 {
 	using namespace formatMESH;
-	formatMESH::CMesh classExport;
-	classExport.ExportMESH(this->UnitizeVar,this->_pGroups,this->_pVertices,filename,this->GetNumFaces());
-	return true;
+	formatMESH::CMesh classExport;	
+	return classExport.ExportMESH(this->UnitizeVar, this->_pGroups, this->_pVertices, filename, this->GetNumFaces());
 }
 
 bool CObjet3D::_SaveASC(const std::string&filename)

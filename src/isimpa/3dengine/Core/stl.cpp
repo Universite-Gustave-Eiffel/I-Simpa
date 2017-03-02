@@ -29,12 +29,11 @@
 * ----------------------------------------------------------------------*/
 
 #include "stl.hpp"
-#include "en_numeric.hpp"
 #include <stdio.h>
 #include <list>
 #include <string>
 #include <string.h>
-
+#include "manager/stringTools.h"
 namespace formatSTL
 {
 	char **get_words(FILE *fp, int *nwords, char **orig_line)
@@ -158,7 +157,7 @@ namespace formatSTL
 
 	float ToFloat(const char* charArray)
 	{
-		return atof(charArray);
+		return Convertor::ToFloat(std::string(charArray));
 	}
 
 
@@ -171,10 +170,6 @@ namespace formatSTL
 
 bool CStl::ExportSTL(t_model& scene, const char* mfilename)
 {
-  EnglishTemporaryLocale dotNumericOnly;
-
-
-
 
   FILE *outfile;
 
@@ -195,7 +190,6 @@ struct words_destroyer
 };
 bool CStl::ImportSTL(t_model& scene,const char* mfilename)
 {
-  EnglishTemporaryLocale dotNumericOnly;
 
   char tmpBuffer[250];
   strcpy(tmpBuffer,"Empty buffer");
@@ -254,9 +248,9 @@ bool CStl::ImportSTL(t_model& scene,const char* mfilename)
 		words_destroyer free_words_va(words);
 		if(nwords==4)
 		{
-			sscanf(words[1],"%f",&(a.x));
-			sscanf(words[2],"%f",&(a.y));
-			sscanf(words[3],"%f",&(a.z));
+			a.x = Convertor::ToFloat(std::string(words[1]));
+			a.y = Convertor::ToFloat(std::string(words[2]));
+			a.z = Convertor::ToFloat(std::string(words[3]));
 		}
 		//
 		// VERTEX B
@@ -264,9 +258,9 @@ bool CStl::ImportSTL(t_model& scene,const char* mfilename)
 		words_destroyer free_words_vb(words);
 		if(nwords==4)
 		{
-			sscanf(words[1],"%f",&(b.x));
-			sscanf(words[2],"%f",&(b.y));
-			sscanf(words[3],"%f",&(b.z));
+			b.x = Convertor::ToFloat(std::string(words[1]));
+			b.y = Convertor::ToFloat(std::string(words[2]));
+			b.z = Convertor::ToFloat(std::string(words[3]));
 		}
 		//
 		// VERTEX C
@@ -274,9 +268,9 @@ bool CStl::ImportSTL(t_model& scene,const char* mfilename)
 		words_destroyer free_words_vc(words);
 		if(nwords==4)
 		{
-			sscanf(words[1],"%f",&(c.x));
-			sscanf(words[2],"%f",&(c.y));
-			sscanf(words[3],"%f",&(c.z));
+			c.x = Convertor::ToFloat(std::string(words[1]));
+			c.y = Convertor::ToFloat(std::string(words[2]));
+			c.z = Convertor::ToFloat(std::string(words[3]));
 		}
 		//Append face
 		ivec3 face(vsize,vsize+1,vsize+2);

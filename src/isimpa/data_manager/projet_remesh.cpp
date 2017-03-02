@@ -33,7 +33,6 @@
 #include "manager/processManager.h"
 #include <wx/progdlg.h>
 #include <wx/textfile.h>
-#include <en_numeric.hpp>
 #include "last_cpp_include.hpp"
 
 namespace ModelReconstructionUI
@@ -52,7 +51,6 @@ namespace ModelReconstructionUI
 			}
 			wxString GetArgFromPreferences(const ReconstructionUserPreferences_t& preferences)
 			{
-				EnglishTemporaryLocale dotNumericOnly;
 				wxString argChain(ApplicationConfiguration::CONST_TETROOT_PATH+"vmr"+wxFileName::GetPathSeparator()+"vmr");
 				argChain+=wxString::Format(" -depth%i",(int)(preferences.depth));
 
@@ -62,8 +60,8 @@ namespace ModelReconstructionUI
 				}else{
 					if(preferences.meshSimplificationMethod==ReconstructionUserPreferences_t::MESH_SIMPLIFICATION_METHOD_EDGE_COLLAPSE)
 					{
-						argChain+=wxString::Format(" -q%f",preferences.minTriangleQuality);
-						argChain+=wxString::Format(" -mq%f",preferences.mergeEpsilon);
+						argChain+=wxString::Format(" -q%s", Convertor::ToString(preferences.minTriangleQuality));
+						argChain+=wxString::Format(" -mq%s", Convertor::ToString(preferences.mergeEpsilon));
 					}
 					if(preferences.adaptativeMeshMethod==ReconstructionUserPreferences_t::ADAPTATIVE_MESH_METHOD_NONE)
 						argChain+=" -noadaptative";

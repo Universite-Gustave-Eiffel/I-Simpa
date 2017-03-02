@@ -1023,7 +1023,7 @@ int MainUiFrame::AskApplicationLanguage(int defaultLanguage)
 	{
 		int sel=langSelection.GetSelectedLanguage();
 		choosenLanguage=(wxLanguage)sel;
-		ApplicationConfiguration::GetFileConfig()->Write("interface/language",Convertor::ToString(sel));
+		ApplicationConfiguration::GetFileConfig()->Write("interface/language",wxString(Convertor::ToString(sel)));
 		ApplicationConfiguration::GetFileConfig()->Write("interface/generalPerspective",""); //Nettoyage du positionnement de l'interface
 	}
 	return choosenLanguage;

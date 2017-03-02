@@ -5,15 +5,13 @@ include_directories (.)
 #--------------#
 
 # Sources files
-set(LIBINTERFACE_SOURCES 
+set(LIBINTERFACE_SOURCES
     coreinitialisation.h
     coreinitialisation.cpp
     coreString.h
     coreString.cpp
     coreTypes.h
     coreTypes.cpp
-    en_numeric.hpp
-    en_numeric.cpp
     std_tools.hpp
     std_tools.cpp)
 
@@ -35,6 +33,8 @@ set(IO_SOURCES
     input_output/bin.cpp
     input_output/cxml.h
     input_output/cxml.cpp
+    input_output/poly/poly.h
+    input_output/poly/poly.cpp
     input_output/gpl_io.hpp
     input_output/gpl_io.cpp
     input_output/progressionInfo.h)
@@ -62,8 +62,8 @@ set(IO_PARTICLES_SOURCES
     input_output/particles/part_io.cpp)
 
 set(IO_PLY_SOURCES
-    input_output/ply/rply.h
-    input_output/ply/rply.c
+    input_output/ply/rply.hpp
+    input_output/ply/rply.cpp
     input_output/ply/rply_interface.hpp
     input_output/ply/rply_interface.cpp)
 
@@ -94,7 +94,7 @@ set(TOOLS_SOURCES
     tools/octree44_cylinderElement.cpp)
 
 # Sources groups (folders)
-source_group( "" FILES ${LIBINTERFACE_SOURCES} ) 
+source_group( "" FILES ${LIBINTERFACE_SOURCES} )
 source_group( "Core" FILES ${CORE_SOURCES} )
 source_group( "data_manager" FILES ${DATA_MANAGER_SOURCES} )
 
@@ -114,10 +114,10 @@ source_group( "tools" FILES ${TOOLS_SOURCES} )
 
 set(Boost_USE_STATIC_LIBS   OFF)
 find_package(Boost COMPONENTS REQUIRED system filesystem regex)
-link_directories( ${Boost_LIBRARY_DIRS} ) 
+link_directories( ${Boost_LIBRARY_DIRS} )
 include_directories( ${Boost_INCLUDE_DIRS} )
 
-add_library(lib_interface 
+add_library(lib_interface
     ${LIBINTERFACE_SOURCES}
     ${CORE_SOURCES}
     ${DATA_MANAGER_SOURCES}
@@ -139,7 +139,7 @@ target_link_libraries (lib_interface
     ${Boost_REGEX_LIBRARY})
 
 #------------#
-#    TEST
+#    TEST 1
 #------------#
 
 # Data files
@@ -151,9 +151,12 @@ file(COPY tests/speaker-test1.txt tests/speaker-test2.txt
 set(LIBINTERFACE_TESTS
     tests/balloon_test.cpp)
 
+set(Boost_USE_STATIC_LIBS   ON)
+find_package(Boost COMPONENTS regex unit_test_framework timer chrono REQUIRED)
+
 add_executable(TEST_lib_interface ${LIBINTERFACE_TESTS})
 
-target_link_libraries (TEST_lib_interface 
+target_link_libraries (TEST_lib_interface
     lib_interface
     ${Boost_LIBRARIES})
 
@@ -161,17 +164,36 @@ set_property(TARGET TEST_lib_interface PROPERTY FOLDER "tests")
 
 # Fetch unit test dependencies
 
-find_package(Boost COMPONENTS unit_test_framework timer chrono REQUIRED)
 
-COPY_LIB(${Boost_UNIT_TEST_FRAMEWORK_LIBRARY_RELEASE} ${CMAKE_CURRENT_BINARY_DIR})
-COPY_LIB(${Boost_TIMER_LIBRARY_RELEASE} ${CMAKE_CURRENT_BINARY_DIR})
-COPY_LIB(${Boost_CHRONO_LIBRARY_RELEASE} ${CMAKE_CURRENT_BINARY_DIR})
 
 # Add to test suite
 enable_testing()
 add_test( NAME lib_interface
     WORKING_DIRECTORY ${TEST_DATA_DIR}
     COMMAND TEST_lib_interface )
+
+
+#------------#
+#    TEST 2
+#------------#
+
+
+file(COPY tests/cube.cbin tests/cube_mesh.mbin tests/test_import1.poly
+    DESTINATION ${TEST_DATA_DIR})
+
+add_executable(TEST_io_lib_interface tests/cbin_io_test.cpp )
+
+
+target_link_libraries (TEST_io_lib_interface
+    lib_interface
+    ${Boost_LIBRARIES})
+
+
+set_property(TARGET TEST_io_lib_interface PROPERTY FOLDER "tests")
+
+add_test( NAME io_lib_interface
+    WORKING_DIRECTORY ${TEST_DATA_DIR}
+    COMMAND TEST_io_lib_interface )
 
 #------------#
 #    FIX
@@ -184,4 +206,3 @@ add_test( NAME lib_interface
 IF( CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64" )
   SET_TARGET_PROPERTIES(lib_interface PROPERTIES COMPILE_FLAGS "-fPIC")
 ENDIF( CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64" )
-
