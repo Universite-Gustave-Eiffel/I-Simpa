@@ -58,7 +58,7 @@ E_GammeAbsorption::E_GammeAbsorption(wxXmlNode* nodeElement,Element* parent)
 				if(datalst->GetItemsLabel().size()==1)
 				{
 					datalst->AppendItem(_("Uniform Collision"),1);
-					datalst->AppendItem(_("Lambert Collision)"),2);
+					datalst->AppendItem(_("Lambert Collision"),2);
 					somethingUpdated=true;
 				}else{
 					break;
@@ -126,15 +126,11 @@ void E_GammeAbsorption::InitProperties()
 	}
 	//Ajout du cumul
 	int i=tabfreq.size();
-	E_Data_Row* nouvLigne=new E_Data_Row(this,"moyenne","Average");
+	E_Data_Row* nouvLigne=new E_Data_Row(this,"moyenne",wxTRANSLATE("Average"));
 	nouvLigne->SetXmlCoreVisibility(false); //Ne pas exporter
-	nouvLigne->AppendPropertyDecimal("alpha","Alpha",0,false,precisionDecimal,true,true,1.f,0.f,true);
-	nouvLigne->AppendPropertyDecimal("lambda","Lambda",1.f,false,precisionDecimal,false,true,0,.01f,true);
-	nouvLigne->AppendPropertyText("l_diff","Diffusion law","",true);
-	_("Average");
-	_("Alpha");
-	_("Lambda");
-	_("Diffusion law");
+	nouvLigne->AppendPropertyDecimal("alpha",wxTRANSLATE("Alpha"),0,false,precisionDecimal,true,true,1.f,0.f,true);
+	nouvLigne->AppendPropertyDecimal("lambda",wxTRANSLATE("Lambda"),1.f,false,precisionDecimal,false,true,0,.01f,true);
+	nouvLigne->AppendPropertyText("l_diff",wxTRANSLATE("Diffusion law"),"",true);
 	this->AppendFils(nouvLigne);
 }
 
