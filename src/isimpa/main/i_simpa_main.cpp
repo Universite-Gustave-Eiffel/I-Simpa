@@ -873,7 +873,7 @@ void MainUiFrame::OnShowAboutDialog(wxCommandEvent& event)
 	aboutDlg.SetName(APPLICATION_NAME);
 	aboutDlg.SetWebSite(wxT("http://i-simpa.ifsttar.fr"));
 	//aboutDlg.SetLicence(GetLicenseText());
-	aboutDlg.SetLicence("I-Simpa is an open source software (GPL v3).");
+	aboutDlg.SetLicence(_("I-Simpa is an open source software (GPL v3)."));
 	aboutDlg.AddDeveloper("Nicolas Fortin (Ifsttar)");
 	aboutDlg.AddDeveloper("Judicaël Picaut (Ifsttar)");
 	aboutDlg.AddDeveloper("Contributor - Wojciech Binek (AGH)");

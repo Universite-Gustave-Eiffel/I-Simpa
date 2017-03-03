@@ -45,7 +45,7 @@ class E_Scene_Bdd_Directivities : public Element
 {
 public:
 	E_Scene_Bdd_Directivities(wxXmlNode* noeudCourant, Element* parent)
-		:Element(parent, "Directivities", Element::ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES, noeudCourant)
+		:Element(parent, wxTRANSLATE("Directivities"), Element::ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES, noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED, GRAPH_USER_DIRECTIVITY_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL, GRAPH_USER_DIRECTIVITY_CLOSE);
@@ -74,7 +74,7 @@ public:
 	}
 
 	E_Scene_Bdd_Directivities(Element* parent)
-		:Element(parent, "Directivities", Element::ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES)
+		:Element(parent, wxTRANSLATE("Directivities"), Element::ELEMENT_TYPE_SCENE_BDD_DIRECTIVITIES)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED, GRAPH_ITEM);
 		SetIcon(GRAPH_STATE_NORMAL, GRAPH_ITEM);
