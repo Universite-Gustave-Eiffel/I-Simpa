@@ -57,8 +57,8 @@ E_GammeAbsorption::E_GammeAbsorption(wxXmlNode* nodeElement,Element* parent)
 				E_Data_List* datalst=dynamic_cast<E_Data_List*>(listel);
 				if(datalst->GetItemsLabel().size()==1)
 				{
-					datalst->AppendItem("Collision uniforme",1);
-					datalst->AppendItem("Collision Lambert",2);
+					datalst->AppendItem(_("Uniform Collision"),1);
+					datalst->AppendItem(_("Lambert Collision)"),2);
 					somethingUpdated=true;
 				}else{
 					break;
@@ -102,12 +102,7 @@ wxXmlNode* E_GammeAbsorption::SaveXMLCoreDoc(wxXmlNode* NoeudParent)
 void E_GammeAbsorption::InitProperties()
 {
 	std::vector<wxString> Lstlois;
-	Lstlois.push_back("Uniforme");
-	//Lstlois.push_back("Collision uniforme");
-	//Lstlois.push_back("Collision Lambert");
-	_("Uniform");
-	//_("Collision uniforme");
-	//_("Collision Lambert");
+	Lstlois.push_back(wxTRANSLATE("Uniform"));
 	std::vector<int> LstloisIndex(Lstlois.size());
 
 	for(int i=0;i<LstloisIndex.size();i++)
@@ -124,9 +119,9 @@ void E_GammeAbsorption::InitProperties()
 		name<<tabfreq[i];
 		E_Data_Row* nouvLigne=new E_Data_Row(this,name,label);
 		nouvLigne->SetXmlCoreVisibility(true); //Exporter
-		nouvLigne->AppendPropertyDecimal("alpha","Alpha",0.f,false,precisionDecimal,true,true,1.f,0.f,true);
-		nouvLigne->AppendPropertyDecimal("lambda","Lambda",1.f,false,precisionDecimal,false,true,0,.01f,true);
-		nouvLigne->AppendPropertyList("loi_diff","Diffusion law",Lstlois,0,false,1,LstloisIndex,true);
+		nouvLigne->AppendPropertyDecimal("alpha",wxTRANSLATE("Alpha"),0.f,false,precisionDecimal,true,true,1.f,0.f,true);
+		nouvLigne->AppendPropertyDecimal("lambda",wxTRANSLATE("Lambda"),1.f,false,precisionDecimal,false,true,0,.01f,true);
+		nouvLigne->AppendPropertyList("loi_diff",wxTRANSLATE("Diffusion law"),Lstlois,0,false,1,LstloisIndex,true);
 		this->AppendFils(nouvLigne);
 	}
 	//Ajout du cumul
