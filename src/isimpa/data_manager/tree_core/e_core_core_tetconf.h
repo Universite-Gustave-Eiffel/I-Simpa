@@ -93,25 +93,15 @@ protected:
 	*/
 	void InitProperties()
 	{
-        this->AppendPropertyDecimal("maxvol","Volume constraint (m3)",100);
-		this->AppendPropertyDecimal("minratio","Radius/Edge ratio",2,false,2,false,true,0,1);
-		this->AppendPropertyText("appendparams","Additional parameters","");
-		this->AppendPropertyText("userdefineparams","User-defined parameters","");
-		this->AppendPropertyDecimal("constraintrecepteurss","Surface receivers constraint (m²)",5.f,true,3,false,true,0,0.001f);
-		this->AppendPropertyBool("isareaconstraint","Surface receivers constraint",false);
-		this->AppendPropertyBool("ismaxvol","Volume constraint",false);
-		this->AppendPropertyBool("preprocess","Scene correction before meshing",true);
-		this->AppendPropertyBool("debugmode","Test mesh topology",false);
-		_("Volume constraint (m3)");
-		_("Radius/Edge ratio");
-		_("Additional parameters");
-		_("User-defined parameters");
-		_("Surface receivers constraint (m2)");
-		_("Surface receivers constraint");
-		_("Volume constraint");
-		_("Scene correction before meshing");
-		_("Test mesh topology");
-		/*_("Meshing");*/
+        this->AppendPropertyDecimal("maxvol", wxTRANSLATE("Volume constraint (m3)"),100);
+		this->AppendPropertyDecimal("minratio", wxTRANSLATE("Radius/Edge ratio"),2,false,2,false,true,0,1);
+		this->AppendPropertyText("appendparams", wxTRANSLATE("Additional parameters"),"");
+		this->AppendPropertyText("userdefineparams", wxTRANSLATE("User-defined parameters"),"");
+		this->AppendPropertyDecimal("constraintrecepteurss",wxTRANSLATE("Surface receivers constraint (m2)"),5.f,true,3,false,true,0,0.001f);
+		this->AppendPropertyBool("isareaconstraint", wxTRANSLATE("Surface receivers constraint"),false);
+		this->AppendPropertyBool("ismaxvol", wxTRANSLATE("Volume constraint"),false);
+		this->AppendPropertyBool("preprocess", wxTRANSLATE("Scene correction before meshing"),true);
+		this->AppendPropertyBool("debugmode", wxTRANSLATE("Test mesh topology"),false);
 
 	}
 	

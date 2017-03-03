@@ -43,10 +43,9 @@ class E_Scene_Projet_Information: public Element
 {
 public:
 	E_Scene_Projet_Information( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Information",Element::ELEMENT_TYPE_SCENE_PROJET_INFORMATION,noeudCourant)
+		:Element(parent,wxTRANSLATE("Informations"),Element::ELEMENT_TYPE_SCENE_PROJET_INFORMATION,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_INFORMATION);
-		_("Information");
 		if(!this->IsPropertyExist("nbencombrementenable"))
 		{
 			AppendNewProperties();
@@ -55,7 +54,7 @@ public:
 	}
 
 	E_Scene_Projet_Information( Element* parent)
-		:Element(parent,"Informations",Element::ELEMENT_TYPE_SCENE_PROJET_INFORMATION)
+		:Element(parent, wxTRANSLATE("Informations"),Element::ELEMENT_TYPE_SCENE_PROJET_INFORMATION)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_INFORMATION);
 		InitProperties();
@@ -66,34 +65,24 @@ public:
 	void AppendNewProperties()
 	{
 
-		this->AppendPropertyInteger("nbencombrementenable","Number of active fitting zones",0);
-		this->AppendPropertyInteger("nbsourcesenable","Number of active sound sources",0);
-		_("Number of active fitting zones");
-		_("Number of active sound sources");
+		this->AppendPropertyInteger("nbencombrementenable",wxTRANSLATE("Number of active fitting zones"),0);
+		this->AppendPropertyInteger("nbsourcesenable",wxTRANSLATE("Number of active sound sources"),0);
 	}
 	/*
 	 * Ajoute les éléments de configuration tel que l'emplacement du fichier de modèle et le chemin de sauvegarde par défaut du projet
 	 */
 	void InitProperties() 
 	{
-		this->AppendPropertyInteger("nbfacemodel","Model face count",0);
-		this->AppendPropertyInteger("nbencombrement","Number of fitting zones",0);
-		this->AppendPropertyInteger("nbrecepteurp","Number of punctual receivers",0);
-		this->AppendPropertyInteger("nbrecepteurs","Number of surfaces receivers",0);
-		this->AppendPropertyInteger("nbsources","Number of sound sources",0);
-		this->AppendPropertyInteger("nbsurfacegroup","Number of surface groups",0);
-		this->AppendPropertyDecimal("volmodel","Scene volume (m3)",0.f,true,1);
-		this->AppendPropertyDecimal("surfscene","Scene surface (m2)",0.f,true,1);
+		this->AppendPropertyInteger("nbfacemodel",wxTRANSLATE("Model face count"),0);
+		this->AppendPropertyInteger("nbencombrement",wxTRANSLATE("Number of fitting zones"),0);
+		this->AppendPropertyInteger("nbrecepteurp",wxTRANSLATE("Number of punctual receivers"),0);
+		this->AppendPropertyInteger("nbrecepteurs",wxTRANSLATE("Number of surfaces receivers"),0);
+		this->AppendPropertyInteger("nbsources",wxTRANSLATE("Number of sound sources"),0);
+		this->AppendPropertyInteger("nbsurfacegroup",wxTRANSLATE("Number of surface groups"),0);
+		this->AppendPropertyDecimal("volmodel",wxTRANSLATE("Scene volume (m3)"),0.f,true,1);
+		this->AppendPropertyDecimal("surfscene",wxTRANSLATE("Scene surface (m2)"),0.f,true,1);
 		AppendNewProperties();
 		this->SetReadOnlyAllConfig();
-		_("Model face count");
-		_("Number of fitting zones");
-		_("Number of punctual receivers");
-		_("Number of surfaces receivers");
-		_("Number of sound sources");
-		_("Number of surface groups");
-		_("Scene volume (m3)");
-		_("Scene surface (m2)");
 	}
 		
 	void InitProp()

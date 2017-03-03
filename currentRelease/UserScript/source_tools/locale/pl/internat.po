@@ -4,89 +4,88 @@
 # Automatically generated, 2017.
 # 
 # Translators:
-# PICAUT Judicael <judicael.picaut@ifsttar.fr>, 2016
+# Wojciech Binek <wojciech.binek@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-02 17:05+0000\n"
 "PO-Revision-Date: 2017-03-02 17:05+0000\n"
-"Last-Translator: PICAUT Judicael <judicael.picaut@ifsttar.fr>, 2016\n"
-"Language-Team: French (https://www.transifex.com/LAE/teams/23470/fr/)\n"
+"Last-Translator: Wojciech Binek <wojciech.binek@gmail.com>, 2017\n"
+"Language-Team: Polish (https://www.transifex.com/LAE/teams/23470/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: pl\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #: currentRelease/UserScript/source_tools/__init__.py:52
 msgid "All sources"
-msgstr "Toutes les sources"
+msgstr "Wszystkie źródła"
 
 #: currentRelease/UserScript/source_tools/__init__.py:88
 msgid "Angle (degrees)"
-msgstr "Angle (degrés)"
+msgstr "Kąt (stopnie)"
 
 #: currentRelease/UserScript/source_tools/__init__.py:54
 #: currentRelease/UserScript/source_tools/__init__.py:60
 msgid "Create a line of sound sources"
-msgstr "Créer une grille de sources sonores"
+msgstr "Utwórz źródła dźwieku na linii"
 
 #: currentRelease/UserScript/source_tools/__init__.py:126
 msgid "Direction (m)"
-msgstr "Direction (m)"
+msgstr "Kierunek (m)"
 
 #: currentRelease/UserScript/source_tools/__init__.py:47
 msgid "Disable"
-msgstr "Désactiver"
+msgstr "Wyłącz"
 
 #: currentRelease/UserScript/source_tools/__init__.py:46
 msgid "Enable"
-msgstr "Activer"
+msgstr "Włącz"
 
 #: currentRelease/UserScript/source_tools/__init__.py:58
 msgid "Number of sources"
-msgstr "Nombre de sources"
+msgstr "Ilość źródeł"
 
 #: currentRelease/UserScript/source_tools/__init__.py:61
 msgid "Please fill the following fields to create the sound source line"
-msgstr ""
-"Veuillez saisir les informations pour créer la ligne de sources sonores"
+msgstr "Proszę uzupełnij poniższe pola aby utworzyć linię źródeł dźwięku"
 
 #: currentRelease/UserScript/source_tools/__init__.py:49
 msgid "Rotation"
-msgstr "Rotation"
+msgstr "Obrót"
 
 #: currentRelease/UserScript/source_tools/__init__.py:89
 msgid "Rotation centre"
-msgstr "Centre de rotation"
+msgstr "Środek obrotu"
 
 #: currentRelease/UserScript/source_tools/__init__.py:102
 msgid "Rotation of a group of sound sources"
-msgstr "Rotation d'un groupe de sources sonores"
+msgstr "Obrót grupy źródeł dźwięu"
 
 #: currentRelease/UserScript/source_tools/__init__.py:57
 msgid "Starting position [x,y,z] (m)"
-msgstr "Point de départ [x,y,z] (m)"
+msgstr "Pozycja początkowa [x,y,z] (m)"
 
 #: currentRelease/UserScript/source_tools/__init__.py:59
 msgid "Step [x,y,z] (m)"
-msgstr "Pas [x,y,z] (m)"
+msgstr "Krok [x,y,z] (m)"
 
 #: currentRelease/UserScript/source_tools/__init__.py:50
 msgid "Translation"
-msgstr "Translation"
+msgstr "Przesunięcie"
 
 #: currentRelease/UserScript/source_tools/__init__.py:127
 msgid "Translation of a group of sound sources"
-msgstr "Translation d'un groupe de sources sonores"
+msgstr "Przesunięcie grupy źródeł dźwięku"
 
 #: currentRelease/UserScript/source_tools/__init__.py:87
 msgid "Vector of rotation"
-msgstr "Vecteur de rotation"
+msgstr "Oś obrotu"
 
 #: currentRelease/UserScript/source_tools/__init__.py:72
 #: currentRelease/UserScript/source_tools/__init__.py:114
 #: currentRelease/UserScript/source_tools/__init__.py:135
 msgid "Wrong parameters"
-msgstr "Erreur de saisie des paramètres"
+msgstr "Błędne parametry"
