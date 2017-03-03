@@ -50,17 +50,12 @@ private:
 
 	void InitProperties() 
 	{
-		this->AppendPropertyText("projectname","Project name","New project");
-		_("Project name");
-		_("New project");
-		this->AppendPropertyText("projectdesc","Project description","");
-		_("Project description");
-		this->AppendPropertyText("projectuser","Author","");
-		_("Author");
+		this->AppendPropertyText("projectname",wxTRANSLATE("Project name"),_("New project"));
+		this->AppendPropertyText("projectdesc",wxTRANSLATE("Project description"),"");
+		this->AppendPropertyText("projectuser",wxTRANSLATE("Author"),"");
 		wxDateTime maintenant=wxDateTime::UNow();
 		wxString folderDated=maintenant.Format("%d-%m-%Y %Hh%Mm");
-		this->AppendPropertyText("projectdate","Date",folderDated);
-		_("Date");
+		this->AppendPropertyText("projectdate",wxTRANSLATE("Date"),folderDated);
 	}
 public:
 	E_Scene_UserConfiguration( wxXmlNode* noeudCourant ,  Element* parent)

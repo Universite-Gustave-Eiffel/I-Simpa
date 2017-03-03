@@ -95,7 +95,7 @@ wxCustomEntryDialog::wxCustomEntryDialog(wxWindow *parent,
 				   pos, wxDefaultSize,wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX | wxRESIZE_BORDER)
 {
 
-	this->SetMinSize(wxSize(320,320));
+	this->SetMinSize(FromDIP(wxSize(320,320)));
     wxBeginBusyCursor();
 
 	wxBoxSizer* topsizer = new wxBoxSizer( wxVERTICAL );
@@ -121,7 +121,7 @@ wxCustomEntryDialog::wxCustomEntryDialog(wxWindow *parent,
 
 	PropGrid* newGrid=new PropGrid(this,wxCustomEntryDialog::CUSTOM_DIALOG_CTRLS_GRID);
 	vinputsizer->Add( newGrid,1,wxEXPAND);
-	//newGrid->SetMinSize(wxSize(300,200));
+	//newGrid->SetMinSize(FromDIP(wxSize(300,200)));
 	//newGrid->AppendCols();
 	newGrid->SetColLabelValue(0,_("Value"));
 	newGrid->SetColLabelAlignment(wxVERTICAL,wxALIGN_LEFT);

@@ -2,6 +2,15 @@ include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
 set(CMAKE_INSTALL_MFC_LIBRARIES ON) 
 include( InstallRequiredSystemLibraries )
 
+MACRO(ADDMULTIPLE_LANG curdir bindir)
+  FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)
+  FOREACH(child ${children})
+    IF(IS_DIRECTORY ${curdir}/${child})
+        MESSAGE(STATUS "Add lang ${curdir}/${child}  ${bindir}${child}")
+        add_subdirectory(${curdir}/${child} ${bindir}${child})
+    ENDIF()
+  ENDFOREACH()
+ENDMACRO()
 
 #--------------#
 #    SOURCES
@@ -416,13 +425,14 @@ IF(GETTEXT_FOUND )
   MESSAGE(STATUS "Found Gettext")
   # Main isimpa locale
   add_subdirectory (lang/fr)
+  add_subdirectory (lang/pl)
   # Plugins locale
-  add_subdirectory(../../currentRelease/UserScript/job_tool/locale/fr ${CMAKE_BINARY_DIR}/src/job_tool)
-  add_subdirectory(../../currentRelease/UserScript/recp_tool/locale/fr ${CMAKE_BINARY_DIR}/src/recp_tool)
-  add_subdirectory(../../currentRelease/UserScript/source_tools/locale/fr ${CMAKE_BINARY_DIR}/src/source_tools)
-  add_subdirectory(../../currentRelease/UserScript/moveto_vertex/locale/fr ${CMAKE_BINARY_DIR}/src/moveto_vertex)
-  add_subdirectory(../../currentRelease/UserScript/preceiv_sourceTracker/locale/fr ${CMAKE_BINARY_DIR}/src/preceiv_sourceTracker)
-  add_subdirectory(../../currentRelease/UserScript/SppsReportSample/locale/fr ${CMAKE_BINARY_DIR}/src/SppsReportSample)
+  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/UserScript/job_tool/locale ${CMAKE_BINARY_DIR}/src/job_tool)
+  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/UserScript/recp_tool/locale ${CMAKE_BINARY_DIR}/src/recp_tool)
+  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/UserScript/source_tools/locale ${CMAKE_BINARY_DIR}/src/source_tools)
+  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/UserScript/moveto_vertex/locale ${CMAKE_BINARY_DIR}/src/moveto_vertex)
+  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/UserScript/preceiv_sourceTracker/locale ${CMAKE_BINARY_DIR}/src/preceiv_sourceTracker)
+  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/UserScript/SppsReportSample/locale ${CMAKE_BINARY_DIR}/src/SppsReportSample)
   # Building isimpa require building pofiles
   add_dependencies(isimpa pofiles)
 ENDIF()

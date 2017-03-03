@@ -46,27 +46,23 @@ private:
 	void InitDirectivite()
 	{
 		
-		this->AppendPropertyDecimal("u","Direction x",1,false,2,false,false,0,0,true);
-		this->AppendPropertyDecimal("v","Direction y",0,false,2,false,false,0,0,true);
-		this->AppendPropertyDecimal("w","Direction z",0,false,2,false,false,0,0,true);
+		this->AppendPropertyDecimal("u",wxTRANSLATE("Direction X"),1,false,2,false,false,0,0,true);
+		this->AppendPropertyDecimal("v",wxTRANSLATE("Direction Y"),0,false,2,false,false,0,0,true);
+		this->AppendPropertyDecimal("w",wxTRANSLATE("Direction Z"),0,false,2,false,false,0,0,true);
 	}
 	void InitProperties()
 	{
 		std::vector<wxString> typesrecepteursp;
-		typesrecepteursp.push_back("Omnidirectionnel");
-		_("Omnidirectional");
-		this->AppendPropertyList("typereception","Type",typesrecepteursp,0);
-		_("Type");
-		this->AppendPropertyText("description","Description","");
-		_("Description");
+		typesrecepteursp.push_back(wxTRANSLATE("Omnidirectional"));
+		this->AppendPropertyList("typereception",wxTRANSLATE("Type"),typesrecepteursp,0);
+		this->AppendPropertyText("description",wxTRANSLATE("Description"),"");
 		InitDirectivite();
 	}
 public:
 	E_Scene_Recepteursp_Recepteur_Proprietes( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Properties",Element::ELEMENT_TYPE_SCENE_RECEPTEURSP_RECEPTEUR_PROPRIETES,noeudCourant)
+		:Element(parent,wxTRANSLATE("Properties"),Element::ELEMENT_TYPE_SCENE_RECEPTEURSP_RECEPTEUR_PROPRIETES,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
-		_("Properties");
 		if(!this->IsPropertyExist("u")) //maj versions < 06/11/2008
 		{
 			InitDirectivite();

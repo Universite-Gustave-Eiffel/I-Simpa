@@ -165,7 +165,7 @@ wxString GetLicenseText()
 }
 
 MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APPLICATION_NAME,
-									wxDefaultPosition, wxSize(1024,768),
+									wxDefaultPosition, FromDIP(wxSize(1024,768)),
 									wxDEFAULT_FRAME_STYLE),m_locale(lang)
 {
 	saveManagerConfig=true;
@@ -337,12 +337,12 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	// Creation du contrôle texte d'historique des opérations
 	shellNotebook= new wxAuiNotebook(this, wxID_ANY,
                                     wxPoint(client_size.x, client_size.y),
-                                    wxSize(430,200),
+                                    FromDIP(wxSize(430,200)),
                                     wxAUI_NB_TOP | wxAUI_NB_TAB_SPLIT | wxAUI_NB_TAB_MOVE | wxAUI_NB_SCROLL_BUTTONS );
 	shellNotebook->SetName("console");
 
 	logWindow = new wxTextCtrl(this, -1, "",
-							wxDefaultPosition, wxSize(200,150),
+							wxDefaultPosition, FromDIP(wxSize(200,150)),
 							wxTE_RICH | wxNO_BORDER | wxTE_MULTILINE | wxTE_READONLY);
 
     shellNotebook->AddPage(logWindow, _("Messages") , true);
@@ -358,15 +358,15 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 
 	ctrlNotebook = new wxAuiNotebook(this, wxID_ANY,
                                     wxPoint(client_size.x, client_size.y),
-                                    wxSize(430,200),
+                                    FromDIP(wxSize(430,200)),
                                     wxAUI_NB_TOP | wxAUI_NB_TAB_SPLIT | wxAUI_NB_TAB_MOVE | wxAUI_NB_SCROLL_BUTTONS );
 
 
 	// Creation des 3 arbres de gestion du projet
-	this->treeCore = new uiTreeCtrl(ctrlNotebook.get(), -1, wxPoint(0,0), wxSize(-1,250),wxTR_EDIT_LABELS | wxNO_BORDER | wxTR_MULTIPLE | wxTR_HAS_BUTTONS  | wxTR_HIDE_ROOT, true); //wxTR_MULTIPLE |
-	this->treeResult = new uiTreeCtrl(ctrlNotebook.get(), -1, wxPoint(0,0), wxSize(-1,250), wxTR_EDIT_LABELS | wxNO_BORDER | wxTR_MULTIPLE | wxTR_HAS_BUTTONS | wxTR_HIDE_ROOT, false );
-	this->treeScene = new uiTreeCtrl(ctrlNotebook.get(), -1, wxPoint(0,0), wxSize(-1,250), wxTR_EDIT_LABELS | wxNO_BORDER | wxTR_MULTIPLE | wxTR_HAS_BUTTONS | wxTR_HIDE_ROOT, true ); //
-	this->treeUserPref = new uiTreeCtrl(this, -1, wxPoint(0,0), wxSize(-1,250), wxTR_EDIT_LABELS | wxNO_BORDER | wxTR_MULTIPLE | wxTR_HAS_BUTTONS | wxTR_HIDE_ROOT, true ); //
+	this->treeCore = new uiTreeCtrl(ctrlNotebook.get(), -1, wxPoint(0,0), FromDIP(wxSize(-1,250)),wxTR_EDIT_LABELS | wxNO_BORDER | wxTR_MULTIPLE | wxTR_HAS_BUTTONS  | wxTR_HIDE_ROOT, true); //wxTR_MULTIPLE |
+	this->treeResult = new uiTreeCtrl(ctrlNotebook.get(), -1, wxPoint(0,0), FromDIP(wxSize(-1,250)), wxTR_EDIT_LABELS | wxNO_BORDER | wxTR_MULTIPLE | wxTR_HAS_BUTTONS | wxTR_HIDE_ROOT, false );
+	this->treeScene = new uiTreeCtrl(ctrlNotebook.get(), -1, wxPoint(0,0), FromDIP(wxSize(-1,250)), wxTR_EDIT_LABELS | wxNO_BORDER | wxTR_MULTIPLE | wxTR_HAS_BUTTONS | wxTR_HIDE_ROOT, true ); //
+	this->treeUserPref = new uiTreeCtrl(this, -1, wxPoint(0,0), FromDIP(wxSize(-1,250)), wxTR_EDIT_LABELS | wxNO_BORDER | wxTR_MULTIPLE | wxTR_HAS_BUTTONS | wxTR_HIDE_ROOT, true ); //
 
 	treeCore->BindElementEvent(&OnCoreElementEvent);
 	treeResult->BindElementEvent(&OnReportElementEvent);
@@ -409,7 +409,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 
 	toolbarGl = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTB_FLAT | wxTB_NODIVIDER);
 
-	slPlan = new wxSlider(toolbarGl, ID_slPlan, 0, 0, 1000,wxDefaultPosition,wxSize(100,16));
+	slPlan = new wxSlider(toolbarGl, ID_slPlan, 0, 0, 1000,wxDefaultPosition,FromDIP(wxSize(100,16)));
 	xPlan = new wxRadioButton(toolbarGl,ID_xPlan,"x",wxDefaultPosition,wxDefaultSize,wxRB_GROUP );
 	yPlan = new wxRadioButton(toolbarGl,ID_yPlan,"y");
 	zPlan = new wxRadioButton(toolbarGl,ID_zPlan,"z");
@@ -419,11 +419,11 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	wxToolBar* tbProjet= new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTB_FLAT | wxTB_NODIVIDER );
 	mousetool= new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTB_FLAT | wxTB_NODIVIDER);
 
-    mousetool->SetToolBitmapSize(wxSize(16,16));
-    toolbarGl->SetToolBitmapSize(wxSize(16,16));
-	simulation->SetToolBitmapSize(wxSize(16,16));
-	visualisation->SetToolBitmapSize(wxSize(16,16));
-	tbProjet->SetToolBitmapSize(wxSize(16,16));
+    mousetool->SetToolBitmapSize(FromDIP(wxSize(16,16)));
+    toolbarGl->SetToolBitmapSize(FromDIP(wxSize(16,16)));
+	simulation->SetToolBitmapSize(FromDIP(wxSize(16,16)));
+	visualisation->SetToolBitmapSize(FromDIP(wxSize(16,16)));
+	tbProjet->SetToolBitmapSize(FromDIP(wxSize(16,16)));
 
 	wxString ressourceFolder=ApplicationConfiguration::getResourcesFolder();
 
@@ -494,7 +494,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
                   ToolbarPane().Position(4).Top().CloseButton(false));
 	//Feuille de propriétés
 
-	propertiesGrid = new MainPropGrid(this,-1,wxDefaultPosition,wxSize(200,300),262144,_("Properties"));
+	propertiesGrid = new MainPropGrid(this,-1,wxDefaultPosition,FromDIP(wxSize(200,300)),262144,_("Properties"));
 
 
 	m_mgr.AddPane(&(*(propertiesGrid)), wxAuiPaneInfo().
@@ -632,7 +632,7 @@ void MainUiFrame::OnSetDockStatus(wxCommandEvent& event)
 			paneInfo.Dockable();
 			paneInfo.CaptionVisible();
 			paneInfo.Floatable( );
-			paneInfo.MinSize(wxSize(320,240));
+			paneInfo.MinSize(FromDIP(wxSize(320,240)));
 		}
 		this->m_mgr.Update();
 	}
@@ -873,9 +873,11 @@ void MainUiFrame::OnShowAboutDialog(wxCommandEvent& event)
 	aboutDlg.SetName(APPLICATION_NAME);
 	aboutDlg.SetWebSite(wxT("http://i-simpa.ifsttar.fr"));
 	//aboutDlg.SetLicence(GetLicenseText());
-	aboutDlg.SetLicence("I-Simpa is an open source software (GPL v3).");
-	aboutDlg.AddDeveloper("Nicolas FORTIN (Ifsttar)");
-	aboutDlg.AddDeveloper("Judicaël PICAUT (Ifsttar)");
+	aboutDlg.SetLicence(_("I-Simpa is an open source software (GPL v3)."));
+	aboutDlg.AddDeveloper("Nicolas Fortin (Ifsttar)");
+	aboutDlg.AddDeveloper("Judicaël Picaut (Ifsttar)");
+	aboutDlg.AddDeveloper("Contributor - Wojciech Binek (AGH)");
+	aboutDlg.AddTranslator("Wojciech Binek (AGH)");
 	aboutDlg.SetCopyright("(c) Ifsttar <i-simpa@ifsttar.fr>");
 
 	//wxArraySting devs;
