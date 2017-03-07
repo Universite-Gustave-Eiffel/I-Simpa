@@ -9,7 +9,7 @@ AppVeyor Windows build status:
 * **For general information**, [visit the offical I-Simpa website](http://i-simpa.ifsttar.fr)
 * **For using I-Simpa**, see [the User Guide](http://i-simpa-wiki.readthedocs.io/en/latest/)
 * **For build instructions**, see [the instructions](https://github.com/Ifsttar/I-Simpa/blob/master/Docs/Building.md)
-* **For Contributing to I-Simpa**, see [the wiki](http://i-simpa-wiki.readthedocs.io/en/latest/)
+* **For contributing to I-Simpa**, see [the wiki](http://i-simpa-wiki.readthedocs.io/en/latest/)
 
 <IMG ALIGN="right" SRC="https://raw.githubusercontent.com/Ifsttar/I-Simpa/master/Docs/images/wiki%20pictures/illustration_i_simpa_room-Home_page.png" WIDTH=350 ALT="Room illustration" TITLE="Room illustration">
 
