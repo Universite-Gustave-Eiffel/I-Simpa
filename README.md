@@ -1,5 +1,3 @@
-#I-Simpa
-
 Travis Linux build status:
 [![Build Status](https://travis-ci.org/Ifsttar/I-Simpa.svg?branch=master)](https://travis-ci.org/Ifsttar/I-Simpa)
 
@@ -9,7 +7,7 @@ AppVeyor Windows build status:
 <IMG SRC="https://github.com/Ifsttar/I-Simpa/blob/master/Docs/images/I-Simpa-logo.jpg" WIDTH=500 ALT="I-Simpa logo" TITLE="I-Simpa logo">
 
 * **For general information**, [visit the offical I-Simpa website](http://i-simpa.ifsttar.fr)
-* **For using I-Simpa, see [the User Guide](http://i-simpa-wiki.readthedocs.io/en/latest/)
+* **For using I-Simpa**, see [the User Guide](http://i-simpa-wiki.readthedocs.io/en/latest/)
 * **For build instructions**, see [the instructions](https://github.com/Ifsttar/I-Simpa/blob/master/Docs/Building.md)
 * **For Contributing to I-Simpa**, see [the wiki](http://i-simpa-wiki.readthedocs.io/en/latest/)
 
@@ -34,8 +32,6 @@ for its own applications… All have been done in order you can extend I-Simpa e
 
 
 I-Simpa has been initially developed as a research tool (i.e. for research laboratories), but can also be a very efficient tool for a professional or commercial use.
-
-**IMPORTANT NOTE:** although the source code is available, it is not ready to fork. Works are in progress to correct minor bugs and to propose a first stable release. We suggest to contributors to wait this first release before contributtting to the development of I-Simpa.
 
 ## **License**
 
