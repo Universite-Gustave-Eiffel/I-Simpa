@@ -130,7 +130,7 @@ private:
 		_("Roughness - z0 (m)");
 		this->AppendPropertyDecimal("alog","Meteorological effect - Celerity gradient a_log",0,false,4,false,false,0,0,true);
 		_("Meteorological effect - Celerity gradient a_log");
-		this->AppendPropertyDecimal("blin","Meteorological effect - Celerity gradient b_linn",0,false,4,false,false,0,0,true);
+		this->AppendPropertyDecimal("blin","Meteorological effect - Celerity gradient b_lin",0,false,4,false,false,0,0,true);
 		_("Meteorological effect - Celerity gradient b_lin");
 		this->AppendPropertyDecimal("temperature","Temperature (°C)",20,false,2,false,false,0,0,true);
 		_("Temperature (°C)");
