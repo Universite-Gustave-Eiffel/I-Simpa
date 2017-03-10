@@ -57,7 +57,7 @@ public:
 	E_Data_Row_Materiau( wxXmlNode* noeudCourant,  Element* parent)
 		:E_Data_Row( noeudCourant ,  parent,ELEMENT_TYPE_ROW_MATERIAU)
 	{
-		ignoreNextUpdate=true; //Empeche la modification par le programme de l'un, affecter l'autre
+
 		wxString absorb;
 		wxString diffusion;
 		wxString affaiblissement="0";
@@ -70,12 +70,18 @@ public:
 		noeudCourant->GetAttribute("absorb", &absorb);
 
 
-		InitPropMat(Convertor::ToFloat(absorb),
-			Convertor::ToFloat(diffusion),
+		float fabsorb = StringToFloat(absorb, NULL, true);
+		float fdiffusion = StringToFloat(diffusion, NULL, true);
+		float faffaiblissement = StringToFloat(affaiblissement, NULL, true);
+
+
+		ignoreNextUpdate = true; //Empeche la modification par le programme de l'un, affecter l'autre
+		InitPropMat(fabsorb,
+			fdiffusion,
 			transmission,
-			Convertor::ToFloat(affaiblissement),
-			Convertor::ToFloat(loi));
-		ignoreNextUpdate=false;
+			faffaiblissement,
+			Convertor::ToInt(loi));
+		ignoreNextUpdate = false;
 
 	}
 	/**

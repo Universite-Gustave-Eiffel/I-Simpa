@@ -65,6 +65,7 @@ public:
 		:E_Data(parent,dataName,dataLabel,etype)
 	{
 	}
+
 	/**
 	 * @return Etat des droits de modification de l'utilisateur. Vrai=en lecture seule
 	 */
