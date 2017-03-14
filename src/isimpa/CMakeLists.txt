@@ -506,25 +506,35 @@ ${ISIMPA_RESSOURCES}/Directivities
 DESTINATION .)
 
 if(WIN32) # Check if we are on Windows
+    # Copy python libraries
+    get_filename_component(PYTHON_ROOT_FOLDER ${PYTHON_EXECUTABLE} PATH)
+	set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
+    
     #Fetch required Dll's for GUI
     string(REPLACE "\\" "/" wxWidgets_LIB_DIR_SLASH ${wxWidgets_LIB_DIR})
     set(DIRS ${Boost_LIBRARY_DIR_DEBUG}
              ${Boost_LIBRARY_DIR_RELEASE}
              ${wxWidgets_LIB_DIR_SLASH}
+             ${PYTHON_ROOT_FOLDER}
     )
     
     install(CODE "
     include(BundleUtilities)   
     
-    GET_PREREQUISITES(\"\${CMAKE_INSTALL_PREFIX}/isimpa.exe\" ISIMPA_DEPENDENCIES 1 0 \${CMAKE_INSTALL_PREFIX} \"${DIRS}\" )
-        MESSAGE(STATUS \"Dependencies \${ISIMPA_DEPENDENCIES}\")
-    fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/isimpa.exe\" \"\"   \"${DIRS}\")
+    # Print all dependencies
+    #GET_PREREQUISITES(\"\${CMAKE_CURRENT_LIST_DIR}/\${BUILD_TYPE}/isimpa.exe\" ISIMPA_DEPENDENCIES 1 0 \${CMAKE_INSTALL_PREFIX} \"${DIRS}\" )
+    #    MESSAGE(STATUS \"Dependencies \${ISIMPA_DEPENDENCIES}\")
+        
+    # Use this to print all available variables      
+    #get_cmake_property(_variableNames VARIABLES)
+    #foreach (_variableName \${_variableNames})
+    #    message(STATUS \"\${_variableName}=\${\${_variableName}}\")
+    #endforeach()
+    
+    fixup_bundle(\"\${CMAKE_CURRENT_LIST_DIR}/\${BUILD_TYPE}/isimpa.exe\" \"\"   \"${DIRS}\")
 ")
 
 
-    # Copy python libraries
-    get_filename_component(PYTHON_ROOT_FOLDER ${PYTHON_EXECUTABLE} PATH)
-	set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
         
 	install(DIRECTORY
 	${PYTHON_ROOT_FOLDER}/Lib
