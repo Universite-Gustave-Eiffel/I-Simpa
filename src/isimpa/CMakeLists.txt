@@ -1,6 +1,6 @@
 include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
 set(CMAKE_INSTALL_MFC_LIBRARIES ON) 
-include( InstallRequiredSystemLibraries )
+#include( InstallRequiredSystemLibraries )
 
 MACRO(ADDMULTIPLE_LANG curdir bindir)
   FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)
@@ -515,7 +515,6 @@ if(WIN32) # Check if we are on Windows
     set(DIRS ${Boost_LIBRARY_DIR_DEBUG}
              ${Boost_LIBRARY_DIR_RELEASE}
              ${wxWidgets_LIB_DIR_SLASH}
-             ${PYTHON_ROOT_FOLDER}
     )
     
     install(CODE "
@@ -531,7 +530,13 @@ if(WIN32) # Check if we are on Windows
     #    message(STATUS \"\${_variableName}=\${\${_variableName}}\")
     #endforeach()
     
-    fixup_bundle(\"\${CMAKE_CURRENT_LIST_DIR}/\${BUILD_TYPE}/isimpa.exe\" \"\"   \"${DIRS}\")
+    FIXUP_BUNDLE(\"\${CMAKE_CURRENT_LIST_DIR}/\${BUILD_TYPE}/isimpa.exe\" \"\"   \"${DIRS}\")
+
+	# Install copied dlls
+	FILE(GLOB children \"\${CMAKE_CURRENT_LIST_DIR}/\${BUILD_TYPE}/*.dll\")
+	file(INSTALL DESTINATION \"\${CMAKE_INSTALL_PREFIX}/.\" TYPE PROGRAM FILES
+    \${children}
+    )
 ")
 
 

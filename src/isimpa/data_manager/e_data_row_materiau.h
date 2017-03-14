@@ -52,36 +52,38 @@
 class E_Data_Row_Materiau: public E_Data_Row
 {
 private:
-	bool ignoreNextUpdate; /*!< Vrai si l'événement de mise à jour ne doit pas être propagé à l'élément parent*/
+	bool ignoreNextUpdate = false; /*!< Vrai si l'événement de mise à jour ne doit pas être propagé à l'élément parent*/
 public:
 	E_Data_Row_Materiau( wxXmlNode* noeudCourant,  Element* parent)
 		:E_Data_Row( noeudCourant ,  parent,ELEMENT_TYPE_ROW_MATERIAU)
 	{
+		// Projects version < 1.3.4
+		if(noeudCourant->HasAttribute("absorb")) {
+			wxString absorb;
+			wxString diffusion;
+			wxString affaiblissement = "0";
+			wxString loi;
+			bool transmission;
 
-		wxString absorb;
-		wxString diffusion;
-		wxString affaiblissement="0";
-		wxString loi;
-		bool transmission;
-
-		noeudCourant->GetAttribute("loi", &loi);
-		transmission=noeudCourant->GetAttribute("affaiblissement", &affaiblissement);
-		noeudCourant->GetAttribute("diffusion",&diffusion);
-		noeudCourant->GetAttribute("absorb", &absorb);
-
-
-		float fabsorb = StringToFloat(absorb, NULL, true);
-		float fdiffusion = StringToFloat(diffusion, NULL, true);
-		float faffaiblissement = StringToFloat(affaiblissement, NULL, true);
+			noeudCourant->GetAttribute("loi", &loi);
+			transmission = noeudCourant->GetAttribute("affaiblissement", &affaiblissement);
+			noeudCourant->GetAttribute("diffusion", &diffusion);
+			noeudCourant->GetAttribute("absorb", &absorb);
 
 
-		ignoreNextUpdate = true; //Empeche la modification par le programme de l'un, affecter l'autre
-		InitPropMat(fabsorb,
-			fdiffusion,
-			transmission,
-			faffaiblissement,
-			Convertor::ToInt(loi));
-		ignoreNextUpdate = false;
+			float fabsorb = StringToFloat(absorb, NULL, true);
+			float fdiffusion = StringToFloat(diffusion, NULL, true);
+			float faffaiblissement = StringToFloat(affaiblissement, NULL, true);
+			InitPropMat(fabsorb,
+				fdiffusion,
+				transmission,
+				faffaiblissement,
+				Convertor::ToInt(loi));
+			noeudCourant->DeleteAttribute("absorb");
+			noeudCourant->DeleteAttribute("diffusion");
+			noeudCourant->DeleteAttribute("loi");
+			noeudCourant->DeleteAttribute("affaiblissement");
+		}
 
 	}
 	/**
@@ -93,25 +95,9 @@ public:
 	E_Data_Row_Materiau( Element* parent, wxString dataName,wxString dataLabel)
 		:E_Data_Row( parent, dataName, dataLabel,ELEMENT_TYPE_ROW_MATERIAU)
 	{
-		ignoreNextUpdate=false;
 		InitPropMat(0,0,false,0,0);
 	}
-	wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)
-	{
-		wxString tmpVal;
-		wxXmlNode* thisNode = E_Data::SaveXMLDocWithoutChildren(NoeudParent);
-		thisNode->SetName("bfreq"); // Nom de la balise xml ( pas d'espace autorise )
 
-		//Sauvegarde des données enfants vers nos propriétés
-		for(std::list<Element*>::iterator itfils=this->fils.begin();itfils!=this->fils.end();itfils++)
-		{
-			(*itfils)->SaveXMLCoreDoc(thisNode);
-		}
-		bool transmission=this->GetBoolConfig("transmission");
-		if(!transmission)
-			thisNode->DeleteAttribute("affaiblissement");
-		return NULL;
-	}
 	wxXmlNode* SaveXMLCoreDoc(wxXmlNode* NoeudParent)
 	{
 		wxXmlNode* NoeudCourant=new wxXmlNode(NoeudParent,wxXML_ELEMENT_NODE,"bfreq");
@@ -195,6 +181,9 @@ protected:
 						else
 							wxLogWarning(_("Before set a transmission value, please set an absorption higher than 0"));
 					}
+				} else {
+					this->SetReadOnlyConfig("affaiblissement", !transmission);
+					this->UpdateDecimalConfig("affaiblissement", 0.0f);
 				}
 			}else if(filsInfo.libelleElement=="affaiblissement")
 			{

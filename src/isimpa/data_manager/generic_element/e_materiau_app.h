@@ -58,10 +58,12 @@ public:
 		_("Reference material");
 		const std::vector<ApplicationConfiguration::t_freq> tabfreq=ApplicationConfiguration::GetAllFrequencies();
 		//Les champs de saisies sont en lectures seules pour les matériaux d'application
+		ignoreModification = true;
 		for(int i=0;i<tabfreq.size();i++)
 		{
 			this->SetReadOnlyConfig(wxString::Format("%i",tabfreq[i]),true,-1); //-1 toute la ligne
 		}
+		ignoreModification = false;
 	}
 	virtual wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)
 	{

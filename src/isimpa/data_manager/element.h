@@ -1095,7 +1095,7 @@ class Element
 		 * Pointeur vers l'élément parent. Initialiser à NULL
 		 * @see GetElementParent
 		 */
-		Element* pere;
+		Element* pere = NULL;
 		/**
 		 * Liste des éléments fils
 		 *
