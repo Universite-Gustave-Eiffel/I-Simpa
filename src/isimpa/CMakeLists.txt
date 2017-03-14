@@ -1,6 +1,6 @@
 include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
 set(CMAKE_INSTALL_MFC_LIBRARIES ON) 
-#include( InstallRequiredSystemLibraries )
+include( InstallRequiredSystemLibraries )
 
 MACRO(ADDMULTIPLE_LANG curdir bindir)
   FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)

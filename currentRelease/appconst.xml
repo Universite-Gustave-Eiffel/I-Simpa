@@ -14,7 +14,7 @@
   <appmaterials>
     <appgroup wxid="339" name="I-SIMPA" eid="36">
   <appmateriau name="Default" eid="40" wxid="9742" exp="1">
-      <materiau name="Material spectrum" eid="44" wxid="9743" idmateriau="112">
+      <materiau name="Material spectrum" eid="44" wxid="9743" idmateriau="0">
         <p name="20000" eid="52" wxid="9744" label="20000 Hz">
           <p name="loi" eid="23" wxid="9749" readonly="1" label="Diffusion law" ex="1" nb="7" choice="0">
             <enumeration id="6" value="Semi-diffuse"/>
@@ -436,8 +436,8 @@
       </matcolor>
     </appmateriau>
     <groupmat name="Absorbing materials" eid="39" wxid="7849">
-      <appmateriau name="100% absorbing" eid="40" wxid="9226">
-        <materiau name="Material spectrum" eid="44" wxid="9227" idmateriau="109">
+      <appmateriau name="100% absorbing" eid="37" wxid="701">
+        <materiau name="Material spectrum" eid="44" wxid="9227" idmateriau="24">
           <p name="20000" eid="52" wxid="9228" label="20000 Hz">
             <p name="loi" eid="23" wxid="9233" readonly="1" label="Diffusion law" ex="1" nb="7" choice="0">
               <enumeration id="6" value="Semi-diffuse"/>
@@ -858,8 +858,8 @@
           <p name="mat_color" eid="21" wxid="9391" readonly="1" label="Color" r="5" g="5" b="5"/>
         </matcolor>
       </appmateriau>
-      <appmateriau name="90% absorbing" eid="40" wxid="7850">
-        <materiau name="Material spectrum" eid="44" wxid="7851" idmateriau="101">
+      <appmateriau name="90% absorbing" eid="37" wxid="7850">
+        <materiau name="Material spectrum" eid="44" wxid="7851" idmateriau="15">
           <p name="20000" eid="52" wxid="7852" label="20000 Hz">
             <p name="loi" eid="23" wxid="7857" readonly="1" label="Diffusion law" ex="1" nb="7" choice="0">
               <enumeration id="6" value="Semi-diffuse"/>
@@ -1280,8 +1280,8 @@
           <p name="mat_color" eid="21" wxid="8015" readonly="1" label="Color" r="25" g="25" b="25"/>
         </matcolor>
       </appmateriau>
-      <appmateriau name="80% absorbing" eid="40" wxid="8022">
-        <materiau name="Material spectrum" eid="44" wxid="8023" idmateriau="102">
+      <appmateriau name="80% absorbing" eid="37" wxid="8022">
+        <materiau name="Material spectrum" eid="44" wxid="8023" idmateriau="16">
           <p name="20000" eid="52" wxid="8024" label="20000 Hz">
             <p name="loi" eid="23" wxid="8029" readonly="1" label="Diffusion law" ex="1" nb="7" choice="0">
               <enumeration id="6" value="Semi-diffuse"/>
@@ -1702,8 +1702,8 @@
           <p name="mat_color" eid="21" wxid="8187" readonly="1" label="Color" r="51" g="51" b="51"/>
         </matcolor>
       </appmateriau>
-      <appmateriau name="70% absorbing" eid="40" wxid="8194">
-        <materiau name="Material spectrum" eid="44" wxid="8195" idmateriau="103">
+      <appmateriau name="70% absorbing" eid="37" wxid="8194">
+        <materiau name="Material spectrum" eid="44" wxid="8195" idmateriau="17">
           <p name="20000" eid="52" wxid="8196" label="20000 Hz">
             <p name="loi" eid="23" wxid="8201" readonly="1" label="Diffusion law" ex="1" nb="7" choice="0">
               <enumeration id="6" value="Semi-diffuse"/>
@@ -2124,8 +2124,8 @@
           <p name="mat_color" eid="21" wxid="8359" readonly="1" label="Color" r="76" g="76" b="76"/>
         </matcolor>
       </appmateriau>
-      <appmateriau name="60% absorbing" eid="40" wxid="8366">
-        <materiau name="Material spectrum" eid="44" wxid="8367" idmateriau="104">
+      <appmateriau name="60% absorbing" eid="37" wxid="8366">
+        <materiau name="Material spectrum" eid="44" wxid="8367" idmateriau="18">
           <p name="20000" eid="52" wxid="8368" label="20000 Hz">
             <p name="loi" eid="23" wxid="8373" readonly="1" label="Diffusion law" ex="1" nb="7" choice="0">
               <enumeration id="6" value="Semi-diffuse"/>
@@ -2547,7 +2547,7 @@
         </matcolor>
       </appmateriau>
       <appmateriau name="50% absorbing" eid="40" wxid="8538">
-        <materiau name="Material spectrum" eid="44" wxid="8539" idmateriau="105">
+        <materiau name="Material spectrum" eid="44" wxid="8539" idmateriau="19">
           <p name="20000" eid="52" wxid="8540" label="20000 Hz">
             <p name="loi" eid="23" wxid="8545" readonly="1" label="Diffusion law" ex="1" nb="7" choice="0">
               <enumeration id="6" value="Semi-diffuse"/>
@@ -2968,8 +2968,8 @@
           <p name="mat_color" eid="21" wxid="8703" readonly="1" label="Color" r="127" g="127" b="127"/>
         </matcolor>
       </appmateriau>
-      <appmateriau name="40% absorbing" eid="40" wxid="8710">
-        <materiau name="Material spectrum" eid="44" wxid="8711" idmateriau="106">
+      <appmateriau name="40% absorbing" eid="37" wxid="8710">
+        <materiau name="Material spectrum" eid="44" wxid="8711" idmateriau="20">
           <p name="20000" eid="52" wxid="8712" label="20000 Hz">
             <p name="loi" eid="23" wxid="8717" readonly="1" label="Diffusion law" ex="1" nb="7" choice="0">
               <enumeration id="6" value="Semi-diffuse"/>
@@ -3391,7 +3391,7 @@
         </matcolor>
       </appmateriau>
       <appmateriau name="30% absorbing" eid="40" wxid="8882">
-        <materiau name="Material spectrum" eid="44" wxid="8883" idmateriau="107">
+        <materiau name="Material spectrum" eid="44" wxid="8883" idmateriau="21">
           <p name="20000" eid="52" wxid="8884" label="20000 Hz">
             <p name="loi" eid="23" wxid="8889" readonly="1" label="Diffusion law" ex="1" nb="7" choice="0">
               <enumeration id="6" value="Semi-diffuse"/>
@@ -3813,7 +3813,7 @@
         </matcolor>
       </appmateriau>
       <appmateriau name="20% absorbing" eid="40" wxid="9054">
-        <materiau name="Material spectrum" eid="44" wxid="9055" idmateriau="108">
+        <materiau name="Material spectrum" eid="44" wxid="9055" idmateriau="22">
           <p name="20000" eid="52" wxid="9056" label="20000 Hz">
             <p name="loi" eid="23" wxid="9061" readonly="1" label="Diffusion law" ex="1" nb="7" choice="0">
               <enumeration id="6" value="Semi-diffuse"/>
@@ -4234,8 +4234,8 @@
           <p name="mat_color" eid="21" wxid="9219" readonly="1" label="Color" r="204" g="204" b="204"/>
         </matcolor>
       </appmateriau>
-      <appmateriau name="10% absorbing" eid="40" wxid="9570">
-        <materiau name="Material spectrum" eid="44" wxid="9571" idmateriau="111">
+      <appmateriau name="10% absorbing" eid="37" wxid="9570">
+        <materiau name="Material spectrum" eid="44" wxid="9571" idmateriau="25">
           <p name="20000" eid="52" wxid="9572" label="20000 Hz">
             <p name="loi" eid="23" wxid="9577" readonly="1" label="Diffusion law" ex="1" nb="7" choice="0">
               <enumeration id="6" value="Semi-diffuse"/>
@@ -4656,8 +4656,8 @@
           <p name="mat_color" eid="21" wxid="9735" readonly="1" label="Color" r="230" g="230" b="230"/>
         </matcolor>
       </appmateriau>
-      <appmateriau name="0% absorbing" eid="40" wxid="9398">
-        <materiau name="Material spectrum" eid="44" wxid="9399" idmateriau="110">
+      <appmateriau name="0% absorbing" eid="37" wxid="9398">
+        <materiau name="Material spectrum" eid="44" wxid="9399" idmateriau="23">
           <p name="20000" eid="52" wxid="9400" label="20000 Hz">
             <p name="loi" eid="23" wxid="9405" readonly="1" label="Diffusion law" ex="1" nb="7" choice="0">
               <enumeration id="6" value="Semi-diffuse"/>
