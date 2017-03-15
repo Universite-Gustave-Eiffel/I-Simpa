@@ -429,8 +429,10 @@ bool initMesh(t_Mesh &sceneMesh,CoreString workingDir,CoreString sceneMeshPath,B
 		{
 			lastMaterialUsedOutsideIndex=modelEntree.faces[idface].idMat;
 			lastMaterialUsedPt=configManager.GetMaterialByOutsideIndex(lastMaterialUsedOutsideIndex);
-			if(!lastMaterialUsedPt) //Si une face n'a pas de mat�riaux associ�
-				configManager.materialList[0];
+			if(!lastMaterialUsedPt) { //face without materials is not supported
+				cerr << _("Wrong project configuration, a face is defined but no materials are attached to it ! Check your group/material associations") << endl;
+				exit(-1);
+			}				
 		}
 		sceneMesh.pfaces[idface].faceMaterial=lastMaterialUsedPt;
 		///////////////////////////////////////////////
