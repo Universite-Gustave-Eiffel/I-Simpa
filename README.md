@@ -33,10 +33,10 @@ for its own applications… All have been done in order you can extend I-Simpa e
 
 I-Simpa has been initially developed as a research tool (i.e. for research laboratories), but can also be a very efficient tool for a professional or commercial use.
 
-## **License for usesr**
+## **License for users**
 
 I-Simpa is an application developped by Ifsttar under the GENERAL PUBLIC LICENSE Version 3, please refere to [GPLv3](https://github.com/Ifsttar/I-Simpa/blob/master/LICENSE.md) for more details about it and [here](https://github.com/Ifsttar/I-Simpa/blob/master/Docs/License.txt) for Ifsttar information.
 
-## ** License Agreement for contributers**
+## **License Agreement for contributers**
 
 For legal reasons, contributors are asked to agree with a Contributor License Agreement (for Individual or for Entity). Contributors will be added in the 'About' dialog box of I-Simpa. For more information visit the following page: http://i-simpa.ifsttar.fr/contribute/contribute/
