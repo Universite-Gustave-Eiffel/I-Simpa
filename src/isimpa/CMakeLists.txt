@@ -546,7 +546,9 @@ if(WIN32) # Check if we are on Windows
 	${PYTHON_ROOT_FOLDER}/DLLs
 	DESTINATION .
     PATTERN "Lib/site-packages" EXCLUDE
-    PATTERN "*.pdb" EXCLUDE)
+    PATTERN "*.pdb" EXCLUDE)    
+    
+    install(FILES "${PYTHON_ROOT_FOLDER}/python.exe" DESTINATION .)
 
     if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
         install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION . COMPONENT Runtime )
