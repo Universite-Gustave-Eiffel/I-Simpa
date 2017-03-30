@@ -92,9 +92,13 @@ class manager:
                 recp=ui.element(recpid)
                 recp.updatepositionconfig("direction_dot",topt)
     def rotate(self,idgrp):
-        lbl_vec=_(u"Vector of rotation (m)")
+        lbl_vecx=_(u"Vector of rotation x [0 1]")
+        lbl_vecy=_(u"Vector of rotation y [0 1]")
+        lbl_vecz=_(u"Vector of rotation z [0 1]")
         lbl_angle=_(u"Angle of rotation (degrees)")
-        lbl_rotation_pos=_(u"Rotation center (m)")
+        lbl_rotation_posx=_(u"Rotation center x (m)")
+        lbl_rotation_posy=_(u"Rotation center y (m)")
+        lbl_rotation_posz=_(u"Rotation center z (m)")
 
         #on recupere le groupe des rp
         rpgroup=ui.element(idgrp)
@@ -104,36 +108,46 @@ class manager:
         for rp in rplst:
             rpEl=ui.element(rp)
             #On recupere la position du récepteur ponctuel
-            centregroup+=vec3(rpEl.getpositionconfig("pos_recepteur"))
+            pos = rpEl.getpositionconfig("pos_recepteur")
+            centregroup += vec3(pos[0], pos[1], pos[2])
         centregroup/=len(rplst)
         res=ui.application.getuserinput(_(u"Rotation of a group of receivers"),
                                     "",
-                                    { lbl_vec : "[0.,0.,1.]",
+                                    { lbl_vecx : "0.",
+                                      lbl_vecy : "0.",
+                                      lbl_vecz : "1.",
                                       lbl_angle : "90",
-                                      lbl_rotation_pos : str(centregroup)
+                                      lbl_rotation_posx : "%0.8g" % centregroup[0],
+                                      lbl_rotation_posy : "%0.8g" % centregroup[1],
+                                      lbl_rotation_posz : "%0.8g" % centregroup[2]
                                         })
         if res[0]:
             try:
-                vecrotation=vec3(eval(res[1][lbl_vec]))
+                vecrotation=vec3(float(res[1][lbl_vecx]), float(res[1][lbl_vecy]), float(res[1][lbl_vecz]))
                 anglerotation=float(res[1][lbl_angle])
-                centregroup=vec3(eval(res[1][lbl_rotation_pos]))
+                centregroup=vec3(float(res[1][lbl_rotation_posx]),float(res[1][lbl_rotation_posy]),float(res[1][lbl_rotation_posz]))
             except:
                 print(_(u"Wrong parameters"),file=sys.stderr)
                 return
             for rp in rplst:
                 rpEl=ui.element(rp)
-                rotatedpos=vec3(rpEl.getpositionconfig("pos_recepteur"))-centregroup
-                rotatedpos=rotatedpos.rotate(vecrotation,math.radians(anglerotation))+centregroup
-                rpEl.updatepositionconfig("pos_recepteur",[rotatedpos.x,rotatedpos.y,rotatedpos.z])
+                rppos = rpEl.getpositionconfig("pos_recepteur")
+                rotatedpos=vec3(rppos[0], rppos[1], rppos[2])-centregroup
+                rotatedpos=rotatedpos.Rotation(vecrotation,math.radians(anglerotation))+centregroup
+                rpEl.updatepositionconfig("pos_recepteur",[rotatedpos[0],rotatedpos[1],rotatedpos[2]])
     def translate(self,idgrp):
-        lbl_vec=_(u"Direction (m)")
+        lbl_vecx=_(u"Direction x (m)")
+        lbl_vecy=_(u"Direction y (m)")
+        lbl_vecz=_(u"Direction z (m)")
         res=ui.application.getuserinput(_(u"Translation of a group of receivers"),
                                     "",
-                                    { lbl_vec : "[1.,0.,0.]"
+                                    { lbl_vecx : "1.",
+                                      lbl_vecy : "0.",
+                                      lbl_vecz : "0.",
                                         })
         if res[0]:
             try:
-                vectranslation=vec3(eval(res[1][lbl_vec]))
+                vectranslation=vec3(float(res[1][lbl_vecx]),float(res[1][lbl_vecy]),float(res[1][lbl_vecz]))
             except:
                 print(_(u"Wrong parameters"),file=sys.stderr)
                 return
