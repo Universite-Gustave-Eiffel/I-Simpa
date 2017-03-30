@@ -98,7 +98,8 @@ class base_vec3 {
 public:
 	base_vec3(void) : x(0), y(0), z(0) { }
 	base_vec3(const base_t& _x,const base_t& _y,const base_t& _z) : x(_x), y(_y), z(_z) { }
-	base_vec3(const base_t *_v) : x(_v[0]), y(_v[1]), z(_v[2]) { }
+	base_vec3(const double _v[3]) : x(_v[0]), y(_v[1]), z(_v[2]) { }
+	base_vec3(const float _v[3]) : x(_v[0]), y(_v[1]), z(_v[2]) { }
 	base_vec3(const vec2 &_v,base_t _z);
 	base_vec3(const base_vec3 &_v) : x(_v.x), y(_v.y), z(_v.z) { }
 	base_vec3(const vec4 &_v);
