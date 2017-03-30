@@ -37,4 +37,4 @@ I-Simpa is an application developped by Ifsttar under the GENERAL PUBLIC LICENSE
 
 ## **License Agreement for contributors**
 
-For legal reasons, contributors are asked to agree with a Contributor License Agreement (for Individual or for Entity). Contributors will be added in the 'About' dialog box of I-Simpa. For more information visit the following page: http://i-simpa.ifsttar.fr/contribute/contribute/
+For legal reasons, contributors are asked to agree with a Contributor License Agreement (for Individual or for Entity). Contributors will be added in the 'About' dialog box of I-Simpa. For more information visit the following page: http://i-simpa.ifsttar.fr/community/contribute/contribute-to-the-code/
