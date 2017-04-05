@@ -36,6 +36,7 @@
 #include <list>
 #include <wx/xml/xml.h>
 #include <wx/menu.h> //menu de popup
+#include <atomic>
 #include "3dengine/Core/Mathlib.h"
 #include "manager/stringTools.h"
 #include "manager/lifetimeWitness.hpp"
@@ -62,10 +63,10 @@ class Element
 {
 	private:
 		std::string   bitmapPath;
-		static long nbElement;
+		static std::atomic_long nbElement;
 		void SaveChildren(wxXmlNode* NoeudCourant);
 		wxXmlNode* GenericSaveXmlDoc(wxXmlNode* NoeudParent);
-		void SetXmlId(int newXmlId=-1);
+		void SetXmlId();
 	protected:
 		wxTreeCtrl* treeCtrl; /*!< Contrôle lié à cet élément */
 	public :
@@ -1015,13 +1016,18 @@ class Element
 		 * Retourne l'indice courant représentant le nombre d'élément (XmlId le plus grand du projet)
 		 * @return Indice
 		 */
-		static int GetCompteur();
+		static long GetElementCount();
 		/**
-		 * Retourne l'indice courant représentant le nombre d'élément (XmlId le plus grand du projet)
+		 * Increment the value and return the old count
 		 * @warning La valeur est automatiquement incrémenté à chaque ajout d'un élément. Cette méthode peut être appelé uniquement si aucun élément n'a la valeur xmlIdElement > au paramètre indiqué !
 		 * @param newValue Nouvelle valeur de la variable statique nbElement de la classe Element.
 		 */
-		static void SetCompteur(int newValue);
+		static long IncElementCount();
+
+		/*
+		* Set the element count, called only by project.cpp when starting a new project
+		*/
+		static void SetElementCount(long elCount);
 		/**
 		 * Supprime le lien Pere(this)->Enfant(ChildToSeparate)
 		 * @warning Ce lien permet notamment de libérer l'espace mémoire lors de la fermeture du projet. Vous devez absolument relier cet objet a un autre père sinon cela générera une fuite mémoire ! De préférence utilisez la méthode Reparent() .

@@ -650,7 +650,7 @@ void ProjectManager::CloseApp()
 
 
 	ApplicationConfiguration::SetRootScene(NULL);
-	Element::SetCompteur(InstanceManager::GetElementCount()+1);
+	Element::SetElementCount(InstanceManager::GetElementCount()+1);
 
 
 	ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS=ApplicationConfiguration::t_App_Info();
@@ -1935,7 +1935,7 @@ bool ProjectManager::BuildEmptyProject(wxXmlNode* noeudRacine)
 {
 	if(noeudRacine!=NULL)
 	{
-		Element::SetCompteur(InstanceManager::GetElementCount()+1);
+		Element::SetElementCount(InstanceManager::GetElementCount()+1);
 
 		//On va créer les trois racines du projet Scene,Core,Report
 		E_Core elementCore;
