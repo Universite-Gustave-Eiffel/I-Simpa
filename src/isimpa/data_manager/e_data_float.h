@@ -66,15 +66,15 @@ public:
 		wxString propVal;
 		//Affecte la valeur de l'element
 		if(noeudCourant->GetAttribute("value",&propVal))
-			elementValue=StringToFloat(propVal);
+			elementValue=StringToFloat(propVal, NULL, true);
 		if(noeudCourant->GetAttribute("maxValue",&propVal))
 		{
-			maxValue=StringToFloat(propVal);
+			maxValue=StringToFloat(propVal, NULL, true);
 			isMaxValue=true;
 		}
 		if(noeudCourant->GetAttribute("minValue",&propVal))
 		{
-			minValue=StringToFloat(propVal);
+			minValue=StringToFloat(propVal, NULL, true);
 			isMinValue=true;
 		}
 		if(noeudCourant->GetAttribute("pr",&propVal))
@@ -257,33 +257,7 @@ private:
 			oss.precision(Convertor::ToInt(precision));
 		oss << val;
 		return oss.str();
-	}
-	
-	float StringToFloat(wxString sval,bool* ok=NULL)
-	{
-		// Try using locale independent
-		std::istringstream iss(sval.ToStdString());
-		iss.imbue(std::locale::classic());
-
-		double value;
-		if (iss >> value && iss.eof()) {
-			if(ok)
-				*ok = true;
-			return value;
-		} else {
-			// Try using current locale
-			if(sval.ToDouble(&value)) {
-				if (ok)
-					*ok = true;
-				return value;
-			} else {
-				wxLogError(_("Cannot convert string \"%s\" to decimal number"), sval);
-				if (ok)
-					*ok = false;
-				return 0.f;
-			}
-		}
-	}
+	}	
 };
 
 #endif

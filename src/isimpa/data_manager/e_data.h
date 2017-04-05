@@ -33,6 +33,8 @@
 #include "data_manager/element.h"
 #include <wx/grid.h>
 #include <wx/settings.h>
+#include <wx/log.h> 
+
 #ifndef __ELEMENT_DATA__
 #define __ELEMENT_DATA__
 
@@ -207,6 +209,41 @@ public:
 			Modified(this);
 		}
 	}
+
+
+
+	float StringToFloat(wxString sval, bool* ok = NULL, bool setModifiedWithIncorrectLocale = false)
+	{
+		// Try using locale independent
+		std::istringstream iss(sval.ToStdString());
+		iss.imbue(std::locale::classic());
+
+		double value;
+		if (iss >> value && iss.eof()) {
+			if (ok)
+				*ok = true;
+			return value;
+		}
+		else {
+			// Try using current locale
+			if (sval.ToDouble(&value)) {
+				if (ok)
+					*ok = true;
+				// Must overwrite this node in xml file
+				// because this file is not locale independent
+				if (setModifiedWithIncorrectLocale)
+					Modified(this);
+				return value;
+			}
+			else {
+				wxLogError(_("Cannot convert string \"%s\" to decimal number"), sval);
+				if (ok)
+					*ok = false;
+				return 0.f;
+			}
+		}
+	}
+
 	/**
 	 * @return Etat des droits de modification de l'utilisateur. Vrai=en lecture seule
 	 */

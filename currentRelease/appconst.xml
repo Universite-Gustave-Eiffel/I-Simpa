@@ -16,482 +16,482 @@
       <appgroup wxid="376" name="Absorbing materials" eid="36">
         <appmateriau wxid="701" name="100% absorbing" eid="37">
           <materiau wxid="702" name="Material spectrum" eid="43" idmateriau="24">
-            <bfreq wxid="703" name="20000" eid="52" label="20000 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="704" name="16000" eid="52" label="16000 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="705" name="12500" eid="52" label="12500 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="706" name="10000" eid="52" label="10000 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="707" name="8000" eid="52" label="8000 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="708" name="6300" eid="52" label="6300 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="709" name="5000" eid="52" label="5000 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="710" name="4000" eid="52" label="4000 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="711" name="3150" eid="52" label="3150 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="712" name="2500" eid="52" label="2500 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="713" name="2000" eid="52" label="2000 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="714" name="1600" eid="52" label="1600 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="715" name="1250" eid="52" label="1250 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="716" name="1000" eid="52" label="1000 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="717" name="800" eid="52" label="800 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="718" name="630" eid="52" label="630 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="719" name="500" eid="52" label="500 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="720" name="400" eid="52" label="400 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="721" name="315" eid="52" label="315 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="722" name="250" eid="52" label="250 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="723" name="200" eid="52" label="200 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="724" name="160" eid="52" label="160 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="725" name="125" eid="52" label="125 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="726" name="100" eid="52" label="100 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="727" name="80" eid="52" label="80 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="728" name="63" eid="52" label="63 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="729" name="50" eid="52" label="50 Hz" absorb="1,00" diffusion="0,00" loi="0"/>
+            <bfreq wxid="703" name="20000" eid="52" label="20000 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="704" name="16000" eid="52" label="16000 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="705" name="12500" eid="52" label="12500 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="706" name="10000" eid="52" label="10000 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="707" name="8000" eid="52" label="8000 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="708" name="6300" eid="52" label="6300 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="709" name="5000" eid="52" label="5000 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="710" name="4000" eid="52" label="4000 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="711" name="3150" eid="52" label="3150 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="712" name="2500" eid="52" label="2500 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="713" name="2000" eid="52" label="2000 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="714" name="1600" eid="52" label="1600 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="715" name="1250" eid="52" label="1250 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="716" name="1000" eid="52" label="1000 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="717" name="800" eid="52" label="800 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="718" name="630" eid="52" label="630 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="719" name="500" eid="52" label="500 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="720" name="400" eid="52" label="400 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="721" name="315" eid="52" label="315 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="722" name="250" eid="52" label="250 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="723" name="200" eid="52" label="200 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="724" name="160" eid="52" label="160 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="725" name="125" eid="52" label="125 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="726" name="100" eid="52" label="100 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="727" name="80" eid="52" label="80 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="728" name="63" eid="52" label="63 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="729" name="50" eid="52" label="50 Hz" absorb="1.00" diffusion="0.00" loi="0"/>
           </materiau>
           <matcolor wxid="730" name="Display" eid="78">
             <p wxid="731" name="mat_color" eid="21" readonly="1" label="Color" r="5" g="5" b="5"/>
           </matcolor>
           <property wxid="732" name="Material description" eid="41">
-            <p wxid="733" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+            <p wxid="733" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100.0" pr="4"/>
             <p wxid="734" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
-            <p wxid="735" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
+            <p wxid="735" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0.0000" pr="4"/>
             <p wxid="736" name="description" eid="20" readonly="1" label="Description" textValue="100% absorbing"/>
           </property>
         </appmateriau>
         <appmateriau wxid="377" name="90% absorbing" eid="37">
           <materiau wxid="378" name="Material spectrum" eid="43" idmateriau="15">
-            <bfreq wxid="379" name="20000" eid="52" label="20000 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="380" name="16000" eid="52" label="16000 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="381" name="12500" eid="52" label="12500 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="382" name="10000" eid="52" label="10000 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="383" name="8000" eid="52" label="8000 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="384" name="6300" eid="52" label="6300 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="385" name="5000" eid="52" label="5000 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="386" name="4000" eid="52" label="4000 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="387" name="3150" eid="52" label="3150 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="388" name="2500" eid="52" label="2500 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="389" name="2000" eid="52" label="2000 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="390" name="1600" eid="52" label="1600 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="391" name="1250" eid="52" label="1250 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="392" name="1000" eid="52" label="1000 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="393" name="800" eid="52" label="800 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="394" name="630" eid="52" label="630 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="395" name="500" eid="52" label="500 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="396" name="400" eid="52" label="400 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="397" name="315" eid="52" label="315 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="398" name="250" eid="52" label="250 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="399" name="200" eid="52" label="200 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="400" name="160" eid="52" label="160 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="401" name="125" eid="52" label="125 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="402" name="100" eid="52" label="100 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="403" name="80" eid="52" label="80 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="404" name="63" eid="52" label="63 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
-            <bfreq wxid="405" name="50" eid="52" label="50 Hz" absorb="0,90" diffusion="0,00" loi="0"/>
+            <bfreq wxid="379" name="20000" eid="52" label="20000 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="380" name="16000" eid="52" label="16000 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="381" name="12500" eid="52" label="12500 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="382" name="10000" eid="52" label="10000 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="383" name="8000" eid="52" label="8000 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="384" name="6300" eid="52" label="6300 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="385" name="5000" eid="52" label="5000 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="386" name="4000" eid="52" label="4000 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="387" name="3150" eid="52" label="3150 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="388" name="2500" eid="52" label="2500 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="389" name="2000" eid="52" label="2000 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="390" name="1600" eid="52" label="1600 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="391" name="1250" eid="52" label="1250 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="392" name="1000" eid="52" label="1000 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="393" name="800" eid="52" label="800 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="394" name="630" eid="52" label="630 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="395" name="500" eid="52" label="500 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="396" name="400" eid="52" label="400 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="397" name="315" eid="52" label="315 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="398" name="250" eid="52" label="250 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="399" name="200" eid="52" label="200 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="400" name="160" eid="52" label="160 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="401" name="125" eid="52" label="125 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="402" name="100" eid="52" label="100 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="403" name="80" eid="52" label="80 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="404" name="63" eid="52" label="63 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
+            <bfreq wxid="405" name="50" eid="52" label="50 Hz" absorb="0.90" diffusion="0.00" loi="0"/>
           </materiau>
           <matcolor wxid="406" name="Display" eid="78">
             <p wxid="407" name="mat_color" eid="21" readonly="1" label="Color" r="25" g="25" b="25"/>
           </matcolor>
           <property wxid="408" name="Material description" eid="41">
-            <p wxid="409" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+            <p wxid="409" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100.0" pr="4"/>
             <p wxid="410" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
-            <p wxid="411" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
+            <p wxid="411" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0.0000" pr="4"/>
             <p wxid="412" name="description" eid="20" readonly="1" label="Description" textValue="90% absorbing"/>
           </property>
         </appmateriau>
         <appmateriau wxid="413" name="80% absorbing" eid="37">
           <materiau wxid="414" name="Material spectrum" eid="43" idmateriau="16">
-            <bfreq wxid="415" name="20000" eid="52" label="20000 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="416" name="16000" eid="52" label="16000 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="417" name="12500" eid="52" label="12500 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="418" name="10000" eid="52" label="10000 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="419" name="8000" eid="52" label="8000 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="420" name="6300" eid="52" label="6300 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="421" name="5000" eid="52" label="5000 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="422" name="4000" eid="52" label="4000 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="423" name="3150" eid="52" label="3150 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="424" name="2500" eid="52" label="2500 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="425" name="2000" eid="52" label="2000 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="426" name="1600" eid="52" label="1600 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="427" name="1250" eid="52" label="1250 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="428" name="1000" eid="52" label="1000 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="429" name="800" eid="52" label="800 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="430" name="630" eid="52" label="630 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="431" name="500" eid="52" label="500 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="432" name="400" eid="52" label="400 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="433" name="315" eid="52" label="315 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="434" name="250" eid="52" label="250 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="435" name="200" eid="52" label="200 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="436" name="160" eid="52" label="160 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="437" name="125" eid="52" label="125 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="438" name="100" eid="52" label="100 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="439" name="80" eid="52" label="80 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="440" name="63" eid="52" label="63 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
-            <bfreq wxid="441" name="50" eid="52" label="50 Hz" absorb="0,80" diffusion="0,00" loi="0"/>
+            <bfreq wxid="415" name="20000" eid="52" label="20000 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="416" name="16000" eid="52" label="16000 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="417" name="12500" eid="52" label="12500 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="418" name="10000" eid="52" label="10000 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="419" name="8000" eid="52" label="8000 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="420" name="6300" eid="52" label="6300 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="421" name="5000" eid="52" label="5000 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="422" name="4000" eid="52" label="4000 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="423" name="3150" eid="52" label="3150 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="424" name="2500" eid="52" label="2500 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="425" name="2000" eid="52" label="2000 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="426" name="1600" eid="52" label="1600 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="427" name="1250" eid="52" label="1250 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="428" name="1000" eid="52" label="1000 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="429" name="800" eid="52" label="800 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="430" name="630" eid="52" label="630 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="431" name="500" eid="52" label="500 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="432" name="400" eid="52" label="400 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="433" name="315" eid="52" label="315 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="434" name="250" eid="52" label="250 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="435" name="200" eid="52" label="200 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="436" name="160" eid="52" label="160 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="437" name="125" eid="52" label="125 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="438" name="100" eid="52" label="100 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="439" name="80" eid="52" label="80 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="440" name="63" eid="52" label="63 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
+            <bfreq wxid="441" name="50" eid="52" label="50 Hz" absorb="0.80" diffusion="0.00" loi="0"/>
           </materiau>
           <matcolor wxid="442" name="Display" eid="78">
             <p wxid="443" name="mat_color" eid="21" readonly="1" label="Color" r="51" g="51" b="51"/>
           </matcolor>
           <property wxid="444" name="Material description" eid="41">
-            <p wxid="445" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+            <p wxid="445" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100.0" pr="4"/>
             <p wxid="446" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
-            <p wxid="447" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
+            <p wxid="447" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0.0000" pr="4"/>
             <p wxid="448" name="description" eid="20" readonly="1" label="Description" textValue="80% absorbing"/>
           </property>
         </appmateriau>
         <appmateriau wxid="449" name="70% absorbing" eid="37">
           <materiau wxid="450" name="Material spectrum" eid="43" idmateriau="17">
-            <bfreq wxid="451" name="20000" eid="52" label="20000 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="452" name="16000" eid="52" label="16000 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="453" name="12500" eid="52" label="12500 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="454" name="10000" eid="52" label="10000 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="455" name="8000" eid="52" label="8000 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="456" name="6300" eid="52" label="6300 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="457" name="5000" eid="52" label="5000 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="458" name="4000" eid="52" label="4000 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="459" name="3150" eid="52" label="3150 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="460" name="2500" eid="52" label="2500 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="461" name="2000" eid="52" label="2000 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="462" name="1600" eid="52" label="1600 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="463" name="1250" eid="52" label="1250 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="464" name="1000" eid="52" label="1000 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="465" name="800" eid="52" label="800 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="466" name="630" eid="52" label="630 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="467" name="500" eid="52" label="500 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="468" name="400" eid="52" label="400 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="469" name="315" eid="52" label="315 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="470" name="250" eid="52" label="250 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="471" name="200" eid="52" label="200 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="472" name="160" eid="52" label="160 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="473" name="125" eid="52" label="125 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="474" name="100" eid="52" label="100 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="475" name="80" eid="52" label="80 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="476" name="63" eid="52" label="63 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
-            <bfreq wxid="477" name="50" eid="52" label="50 Hz" absorb="0,70" diffusion="0,00" loi="0"/>
+            <bfreq wxid="451" name="20000" eid="52" label="20000 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="452" name="16000" eid="52" label="16000 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="453" name="12500" eid="52" label="12500 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="454" name="10000" eid="52" label="10000 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="455" name="8000" eid="52" label="8000 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="456" name="6300" eid="52" label="6300 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="457" name="5000" eid="52" label="5000 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="458" name="4000" eid="52" label="4000 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="459" name="3150" eid="52" label="3150 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="460" name="2500" eid="52" label="2500 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="461" name="2000" eid="52" label="2000 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="462" name="1600" eid="52" label="1600 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="463" name="1250" eid="52" label="1250 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="464" name="1000" eid="52" label="1000 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="465" name="800" eid="52" label="800 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="466" name="630" eid="52" label="630 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="467" name="500" eid="52" label="500 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="468" name="400" eid="52" label="400 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="469" name="315" eid="52" label="315 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="470" name="250" eid="52" label="250 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="471" name="200" eid="52" label="200 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="472" name="160" eid="52" label="160 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="473" name="125" eid="52" label="125 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="474" name="100" eid="52" label="100 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="475" name="80" eid="52" label="80 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="476" name="63" eid="52" label="63 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
+            <bfreq wxid="477" name="50" eid="52" label="50 Hz" absorb="0.70" diffusion="0.00" loi="0"/>
           </materiau>
           <matcolor wxid="478" name="Display" eid="78">
             <p wxid="479" name="mat_color" eid="21" readonly="1" label="Color" r="76" g="76" b="76"/>
           </matcolor>
           <property wxid="480" name="Material description" eid="41">
-            <p wxid="481" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+            <p wxid="481" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100.0" pr="4"/>
             <p wxid="482" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
-            <p wxid="483" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
+            <p wxid="483" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0.0000" pr="4"/>
             <p wxid="484" name="description" eid="20" readonly="1" label="Description" textValue="70% absorbing"/>
           </property>
         </appmateriau>
         <appmateriau wxid="485" name="60% absorbing" eid="37">
           <materiau wxid="486" name="Material spectrum" eid="43" idmateriau="18">
-            <bfreq wxid="487" name="20000" eid="52" label="20000 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="488" name="16000" eid="52" label="16000 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="489" name="12500" eid="52" label="12500 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="490" name="10000" eid="52" label="10000 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="491" name="8000" eid="52" label="8000 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="492" name="6300" eid="52" label="6300 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="493" name="5000" eid="52" label="5000 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="494" name="4000" eid="52" label="4000 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="495" name="3150" eid="52" label="3150 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="496" name="2500" eid="52" label="2500 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="497" name="2000" eid="52" label="2000 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="498" name="1600" eid="52" label="1600 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="499" name="1250" eid="52" label="1250 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="500" name="1000" eid="52" label="1000 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="501" name="800" eid="52" label="800 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="502" name="630" eid="52" label="630 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="503" name="500" eid="52" label="500 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="504" name="400" eid="52" label="400 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="505" name="315" eid="52" label="315 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="506" name="250" eid="52" label="250 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="507" name="200" eid="52" label="200 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="508" name="160" eid="52" label="160 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="509" name="125" eid="52" label="125 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="510" name="100" eid="52" label="100 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="511" name="80" eid="52" label="80 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="512" name="63" eid="52" label="63 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
-            <bfreq wxid="513" name="50" eid="52" label="50 Hz" absorb="0,60" diffusion="0,00" loi="0"/>
+            <bfreq wxid="487" name="20000" eid="52" label="20000 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="488" name="16000" eid="52" label="16000 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="489" name="12500" eid="52" label="12500 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="490" name="10000" eid="52" label="10000 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="491" name="8000" eid="52" label="8000 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="492" name="6300" eid="52" label="6300 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="493" name="5000" eid="52" label="5000 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="494" name="4000" eid="52" label="4000 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="495" name="3150" eid="52" label="3150 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="496" name="2500" eid="52" label="2500 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="497" name="2000" eid="52" label="2000 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="498" name="1600" eid="52" label="1600 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="499" name="1250" eid="52" label="1250 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="500" name="1000" eid="52" label="1000 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="501" name="800" eid="52" label="800 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="502" name="630" eid="52" label="630 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="503" name="500" eid="52" label="500 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="504" name="400" eid="52" label="400 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="505" name="315" eid="52" label="315 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="506" name="250" eid="52" label="250 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="507" name="200" eid="52" label="200 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="508" name="160" eid="52" label="160 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="509" name="125" eid="52" label="125 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="510" name="100" eid="52" label="100 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="511" name="80" eid="52" label="80 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="512" name="63" eid="52" label="63 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
+            <bfreq wxid="513" name="50" eid="52" label="50 Hz" absorb="0.60" diffusion="0.00" loi="0"/>
           </materiau>
           <matcolor wxid="514" name="Display" eid="78">
             <p wxid="515" name="mat_color" eid="21" readonly="1" label="Color" r="102" g="102" b="102"/>
           </matcolor>
           <property wxid="516" name="Material description" eid="41">
-            <p wxid="517" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+            <p wxid="517" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100.0" pr="4"/>
             <p wxid="518" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
-            <p wxid="519" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
+            <p wxid="519" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0.0000" pr="4"/>
             <p wxid="520" name="description" eid="20" readonly="1" label="Description" textValue="60% absorbing"/>
           </property>
         </appmateriau>
         <appmateriau wxid="521" name="50% absorbing" eid="37">
           <materiau wxid="522" name="Material spectrum" eid="43" idmateriau="19">
-            <bfreq wxid="523" name="20000" eid="52" label="20000 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="524" name="16000" eid="52" label="16000 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="525" name="12500" eid="52" label="12500 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="526" name="10000" eid="52" label="10000 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="527" name="8000" eid="52" label="8000 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="528" name="6300" eid="52" label="6300 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="529" name="5000" eid="52" label="5000 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="530" name="4000" eid="52" label="4000 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="531" name="3150" eid="52" label="3150 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="532" name="2500" eid="52" label="2500 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="533" name="2000" eid="52" label="2000 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="534" name="1600" eid="52" label="1600 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="535" name="1250" eid="52" label="1250 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="536" name="1000" eid="52" label="1000 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="537" name="800" eid="52" label="800 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="538" name="630" eid="52" label="630 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="539" name="500" eid="52" label="500 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="540" name="400" eid="52" label="400 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="541" name="315" eid="52" label="315 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="542" name="250" eid="52" label="250 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="543" name="200" eid="52" label="200 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="544" name="160" eid="52" label="160 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="545" name="125" eid="52" label="125 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="546" name="100" eid="52" label="100 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="547" name="80" eid="52" label="80 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="548" name="63" eid="52" label="63 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
-            <bfreq wxid="549" name="50" eid="52" label="50 Hz" absorb="0,50" diffusion="0,00" loi="0"/>
+            <bfreq wxid="523" name="20000" eid="52" label="20000 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="524" name="16000" eid="52" label="16000 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="525" name="12500" eid="52" label="12500 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="526" name="10000" eid="52" label="10000 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="527" name="8000" eid="52" label="8000 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="528" name="6300" eid="52" label="6300 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="529" name="5000" eid="52" label="5000 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="530" name="4000" eid="52" label="4000 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="531" name="3150" eid="52" label="3150 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="532" name="2500" eid="52" label="2500 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="533" name="2000" eid="52" label="2000 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="534" name="1600" eid="52" label="1600 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="535" name="1250" eid="52" label="1250 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="536" name="1000" eid="52" label="1000 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="537" name="800" eid="52" label="800 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="538" name="630" eid="52" label="630 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="539" name="500" eid="52" label="500 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="540" name="400" eid="52" label="400 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="541" name="315" eid="52" label="315 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="542" name="250" eid="52" label="250 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="543" name="200" eid="52" label="200 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="544" name="160" eid="52" label="160 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="545" name="125" eid="52" label="125 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="546" name="100" eid="52" label="100 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="547" name="80" eid="52" label="80 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="548" name="63" eid="52" label="63 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
+            <bfreq wxid="549" name="50" eid="52" label="50 Hz" absorb="0.50" diffusion="0.00" loi="0"/>
           </materiau>
           <matcolor wxid="550" name="Display" eid="78">
             <p wxid="551" name="mat_color" eid="21" readonly="1" label="Color" r="127" g="127" b="127"/>
           </matcolor>
           <property wxid="552" name="Material description" eid="41">
-            <p wxid="553" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+            <p wxid="553" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100.0" pr="4"/>
             <p wxid="554" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
-            <p wxid="555" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
+            <p wxid="555" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0.0000" pr="4"/>
             <p wxid="556" name="description" eid="20" readonly="1" label="Description" textValue="50% absorbing"/>
           </property>
         </appmateriau>
         <appmateriau wxid="557" name="40% absorbing" eid="37">
           <materiau wxid="558" name="Material spectrum" eid="43" idmateriau="20">
-            <bfreq wxid="559" name="20000" eid="52" label="20000 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="560" name="16000" eid="52" label="16000 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="561" name="12500" eid="52" label="12500 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="562" name="10000" eid="52" label="10000 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="563" name="8000" eid="52" label="8000 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="564" name="6300" eid="52" label="6300 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="565" name="5000" eid="52" label="5000 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="566" name="4000" eid="52" label="4000 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="567" name="3150" eid="52" label="3150 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="568" name="2500" eid="52" label="2500 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="569" name="2000" eid="52" label="2000 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="570" name="1600" eid="52" label="1600 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="571" name="1250" eid="52" label="1250 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="572" name="1000" eid="52" label="1000 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="573" name="800" eid="52" label="800 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="574" name="630" eid="52" label="630 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="575" name="500" eid="52" label="500 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="576" name="400" eid="52" label="400 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="577" name="315" eid="52" label="315 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="578" name="250" eid="52" label="250 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="579" name="200" eid="52" label="200 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="580" name="160" eid="52" label="160 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="581" name="125" eid="52" label="125 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="582" name="100" eid="52" label="100 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="583" name="80" eid="52" label="80 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="584" name="63" eid="52" label="63 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
-            <bfreq wxid="585" name="50" eid="52" label="50 Hz" absorb="0,40" diffusion="0,00" loi="0"/>
+            <bfreq wxid="559" name="20000" eid="52" label="20000 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="560" name="16000" eid="52" label="16000 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="561" name="12500" eid="52" label="12500 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="562" name="10000" eid="52" label="10000 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="563" name="8000" eid="52" label="8000 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="564" name="6300" eid="52" label="6300 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="565" name="5000" eid="52" label="5000 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="566" name="4000" eid="52" label="4000 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="567" name="3150" eid="52" label="3150 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="568" name="2500" eid="52" label="2500 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="569" name="2000" eid="52" label="2000 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="570" name="1600" eid="52" label="1600 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="571" name="1250" eid="52" label="1250 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="572" name="1000" eid="52" label="1000 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="573" name="800" eid="52" label="800 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="574" name="630" eid="52" label="630 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="575" name="500" eid="52" label="500 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="576" name="400" eid="52" label="400 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="577" name="315" eid="52" label="315 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="578" name="250" eid="52" label="250 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="579" name="200" eid="52" label="200 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="580" name="160" eid="52" label="160 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="581" name="125" eid="52" label="125 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="582" name="100" eid="52" label="100 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="583" name="80" eid="52" label="80 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="584" name="63" eid="52" label="63 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
+            <bfreq wxid="585" name="50" eid="52" label="50 Hz" absorb="0.40" diffusion="0.00" loi="0"/>
           </materiau>
           <matcolor wxid="586" name="Display" eid="78">
             <p wxid="587" name="mat_color" eid="21" readonly="1" label="Color" r="153" g="153" b="153"/>
           </matcolor>
           <property wxid="588" name="Material description" eid="41">
-            <p wxid="589" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+            <p wxid="589" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100.0" pr="4"/>
             <p wxid="590" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
-            <p wxid="591" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
+            <p wxid="591" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0.0000" pr="4"/>
             <p wxid="592" name="description" eid="20" readonly="1" label="Description" textValue="40% absorbing"/>
           </property>
         </appmateriau>
         <appmateriau wxid="593" name="30% absorbing" eid="37">
           <materiau wxid="594" name="Material spectrum" eid="43" idmateriau="21">
-            <bfreq wxid="595" name="20000" eid="52" label="20000 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="596" name="16000" eid="52" label="16000 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="597" name="12500" eid="52" label="12500 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="598" name="10000" eid="52" label="10000 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="599" name="8000" eid="52" label="8000 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="600" name="6300" eid="52" label="6300 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="601" name="5000" eid="52" label="5000 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="602" name="4000" eid="52" label="4000 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="603" name="3150" eid="52" label="3150 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="604" name="2500" eid="52" label="2500 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="605" name="2000" eid="52" label="2000 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="606" name="1600" eid="52" label="1600 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="607" name="1250" eid="52" label="1250 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="608" name="1000" eid="52" label="1000 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="609" name="800" eid="52" label="800 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="610" name="630" eid="52" label="630 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="611" name="500" eid="52" label="500 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="612" name="400" eid="52" label="400 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="613" name="315" eid="52" label="315 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="614" name="250" eid="52" label="250 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="615" name="200" eid="52" label="200 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="616" name="160" eid="52" label="160 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="617" name="125" eid="52" label="125 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="618" name="100" eid="52" label="100 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="619" name="80" eid="52" label="80 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="620" name="63" eid="52" label="63 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
-            <bfreq wxid="621" name="50" eid="52" label="50 Hz" absorb="0,30" diffusion="0,00" loi="0"/>
+            <bfreq wxid="595" name="20000" eid="52" label="20000 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="596" name="16000" eid="52" label="16000 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="597" name="12500" eid="52" label="12500 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="598" name="10000" eid="52" label="10000 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="599" name="8000" eid="52" label="8000 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="600" name="6300" eid="52" label="6300 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="601" name="5000" eid="52" label="5000 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="602" name="4000" eid="52" label="4000 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="603" name="3150" eid="52" label="3150 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="604" name="2500" eid="52" label="2500 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="605" name="2000" eid="52" label="2000 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="606" name="1600" eid="52" label="1600 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="607" name="1250" eid="52" label="1250 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="608" name="1000" eid="52" label="1000 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="609" name="800" eid="52" label="800 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="610" name="630" eid="52" label="630 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="611" name="500" eid="52" label="500 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="612" name="400" eid="52" label="400 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="613" name="315" eid="52" label="315 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="614" name="250" eid="52" label="250 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="615" name="200" eid="52" label="200 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="616" name="160" eid="52" label="160 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="617" name="125" eid="52" label="125 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="618" name="100" eid="52" label="100 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="619" name="80" eid="52" label="80 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="620" name="63" eid="52" label="63 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
+            <bfreq wxid="621" name="50" eid="52" label="50 Hz" absorb="0.30" diffusion="0.00" loi="0"/>
           </materiau>
           <matcolor wxid="622" name="Display" eid="78">
             <p wxid="623" name="mat_color" eid="21" readonly="1" label="Color" r="178" g="178" b="178"/>
           </matcolor>
           <property wxid="624" name="Material description" eid="41">
-            <p wxid="625" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+            <p wxid="625" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100.0" pr="4"/>
             <p wxid="626" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
-            <p wxid="627" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
+            <p wxid="627" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0.0000" pr="4"/>
             <p wxid="628" name="description" eid="20" readonly="1" label="Description" textValue="30% absorbing"/>
           </property>
         </appmateriau>
         <appmateriau wxid="629" name="20% absorbing" eid="37">
           <materiau wxid="630" name="Material spectrum" eid="43" idmateriau="22">
-            <bfreq wxid="631" name="20000" eid="52" label="20000 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="632" name="16000" eid="52" label="16000 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="633" name="12500" eid="52" label="12500 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="634" name="10000" eid="52" label="10000 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="635" name="8000" eid="52" label="8000 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="636" name="6300" eid="52" label="6300 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="637" name="5000" eid="52" label="5000 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="638" name="4000" eid="52" label="4000 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="639" name="3150" eid="52" label="3150 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="640" name="2500" eid="52" label="2500 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="641" name="2000" eid="52" label="2000 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="642" name="1600" eid="52" label="1600 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="643" name="1250" eid="52" label="1250 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="644" name="1000" eid="52" label="1000 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="645" name="800" eid="52" label="800 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="646" name="630" eid="52" label="630 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="647" name="500" eid="52" label="500 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="648" name="400" eid="52" label="400 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="649" name="315" eid="52" label="315 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="650" name="250" eid="52" label="250 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="651" name="200" eid="52" label="200 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="652" name="160" eid="52" label="160 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="653" name="125" eid="52" label="125 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="654" name="100" eid="52" label="100 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="655" name="80" eid="52" label="80 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="656" name="63" eid="52" label="63 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
-            <bfreq wxid="657" name="50" eid="52" label="50 Hz" absorb="0,20" diffusion="0,00" loi="0"/>
+            <bfreq wxid="631" name="20000" eid="52" label="20000 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="632" name="16000" eid="52" label="16000 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="633" name="12500" eid="52" label="12500 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="634" name="10000" eid="52" label="10000 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="635" name="8000" eid="52" label="8000 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="636" name="6300" eid="52" label="6300 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="637" name="5000" eid="52" label="5000 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="638" name="4000" eid="52" label="4000 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="639" name="3150" eid="52" label="3150 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="640" name="2500" eid="52" label="2500 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="641" name="2000" eid="52" label="2000 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="642" name="1600" eid="52" label="1600 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="643" name="1250" eid="52" label="1250 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="644" name="1000" eid="52" label="1000 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="645" name="800" eid="52" label="800 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="646" name="630" eid="52" label="630 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="647" name="500" eid="52" label="500 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="648" name="400" eid="52" label="400 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="649" name="315" eid="52" label="315 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="650" name="250" eid="52" label="250 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="651" name="200" eid="52" label="200 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="652" name="160" eid="52" label="160 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="653" name="125" eid="52" label="125 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="654" name="100" eid="52" label="100 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="655" name="80" eid="52" label="80 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="656" name="63" eid="52" label="63 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
+            <bfreq wxid="657" name="50" eid="52" label="50 Hz" absorb="0.20" diffusion="0.00" loi="0"/>
           </materiau>
           <matcolor wxid="658" name="Display" eid="78">
             <p wxid="659" name="mat_color" eid="21" readonly="1" label="Color" r="204" g="204" b="204"/>
           </matcolor>
           <property wxid="660" name="Material description" eid="41">
-            <p wxid="661" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+            <p wxid="661" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100.0" pr="4"/>
             <p wxid="662" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
-            <p wxid="663" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
+            <p wxid="663" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0.0000" pr="4"/>
             <p wxid="664" name="description" eid="20" readonly="1" label="Description" textValue="20% absorbing"/>
           </property>
         </appmateriau>
         <appmateriau wxid="737" name="10% absorbing" eid="37">
           <materiau wxid="738" name="Material spectrum" eid="43" idmateriau="25">
-            <bfreq wxid="739" name="20000" eid="52" label="20000 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="740" name="16000" eid="52" label="16000 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="741" name="12500" eid="52" label="12500 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="742" name="10000" eid="52" label="10000 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="743" name="8000" eid="52" label="8000 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="744" name="6300" eid="52" label="6300 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="745" name="5000" eid="52" label="5000 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="746" name="4000" eid="52" label="4000 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="747" name="3150" eid="52" label="3150 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="748" name="2500" eid="52" label="2500 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="749" name="2000" eid="52" label="2000 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="750" name="1600" eid="52" label="1600 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="751" name="1250" eid="52" label="1250 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="752" name="1000" eid="52" label="1000 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="753" name="800" eid="52" label="800 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="754" name="630" eid="52" label="630 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="755" name="500" eid="52" label="500 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="756" name="400" eid="52" label="400 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="757" name="315" eid="52" label="315 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="758" name="250" eid="52" label="250 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="759" name="200" eid="52" label="200 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="760" name="160" eid="52" label="160 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="761" name="125" eid="52" label="125 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="762" name="100" eid="52" label="100 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="763" name="80" eid="52" label="80 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="764" name="63" eid="52" label="63 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
-            <bfreq wxid="765" name="50" eid="52" label="50 Hz" absorb="0,10" diffusion="0,00" loi="0"/>
+            <bfreq wxid="739" name="20000" eid="52" label="20000 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="740" name="16000" eid="52" label="16000 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="741" name="12500" eid="52" label="12500 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="742" name="10000" eid="52" label="10000 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="743" name="8000" eid="52" label="8000 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="744" name="6300" eid="52" label="6300 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="745" name="5000" eid="52" label="5000 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="746" name="4000" eid="52" label="4000 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="747" name="3150" eid="52" label="3150 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="748" name="2500" eid="52" label="2500 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="749" name="2000" eid="52" label="2000 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="750" name="1600" eid="52" label="1600 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="751" name="1250" eid="52" label="1250 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="752" name="1000" eid="52" label="1000 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="753" name="800" eid="52" label="800 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="754" name="630" eid="52" label="630 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="755" name="500" eid="52" label="500 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="756" name="400" eid="52" label="400 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="757" name="315" eid="52" label="315 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="758" name="250" eid="52" label="250 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="759" name="200" eid="52" label="200 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="760" name="160" eid="52" label="160 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="761" name="125" eid="52" label="125 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="762" name="100" eid="52" label="100 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="763" name="80" eid="52" label="80 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="764" name="63" eid="52" label="63 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
+            <bfreq wxid="765" name="50" eid="52" label="50 Hz" absorb="0.10" diffusion="0.00" loi="0"/>
           </materiau>
           <matcolor wxid="766" name="Display" eid="78">
             <p wxid="767" name="mat_color" eid="21" readonly="1" label="Color" r="230" g="230" b="230"/>
           </matcolor>
           <property wxid="768" name="Material description" eid="41">
-            <p wxid="769" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+            <p wxid="769" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100.0" pr="4"/>
             <p wxid="770" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
-            <p wxid="771" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
+            <p wxid="771" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0.0000" pr="4"/>
             <p wxid="772" name="description" eid="20" readonly="1" label="Description" textValue="10% absorbing"/>
           </property>
         </appmateriau>
         <appmateriau wxid="665" name="0% absorbing" eid="37">
           <materiau wxid="666" name="Material spectrum" eid="43" idmateriau="23">
-            <bfreq wxid="667" name="20000" eid="52" label="20000 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="668" name="16000" eid="52" label="16000 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="669" name="12500" eid="52" label="12500 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="670" name="10000" eid="52" label="10000 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="671" name="8000" eid="52" label="8000 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="672" name="6300" eid="52" label="6300 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="673" name="5000" eid="52" label="5000 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="674" name="4000" eid="52" label="4000 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="675" name="3150" eid="52" label="3150 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="676" name="2500" eid="52" label="2500 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="677" name="2000" eid="52" label="2000 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="678" name="1600" eid="52" label="1600 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="679" name="1250" eid="52" label="1250 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="680" name="1000" eid="52" label="1000 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="681" name="800" eid="52" label="800 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="682" name="630" eid="52" label="630 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="683" name="500" eid="52" label="500 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="684" name="400" eid="52" label="400 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="685" name="315" eid="52" label="315 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="686" name="250" eid="52" label="250 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="687" name="200" eid="52" label="200 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="688" name="160" eid="52" label="160 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="689" name="125" eid="52" label="125 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="690" name="100" eid="52" label="100 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="691" name="80" eid="52" label="80 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="692" name="63" eid="52" label="63 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-            <bfreq wxid="693" name="50" eid="52" label="50 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
+            <bfreq wxid="667" name="20000" eid="52" label="20000 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="668" name="16000" eid="52" label="16000 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="669" name="12500" eid="52" label="12500 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="670" name="10000" eid="52" label="10000 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="671" name="8000" eid="52" label="8000 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="672" name="6300" eid="52" label="6300 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="673" name="5000" eid="52" label="5000 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="674" name="4000" eid="52" label="4000 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="675" name="3150" eid="52" label="3150 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="676" name="2500" eid="52" label="2500 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="677" name="2000" eid="52" label="2000 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="678" name="1600" eid="52" label="1600 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="679" name="1250" eid="52" label="1250 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="680" name="1000" eid="52" label="1000 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="681" name="800" eid="52" label="800 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="682" name="630" eid="52" label="630 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="683" name="500" eid="52" label="500 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="684" name="400" eid="52" label="400 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="685" name="315" eid="52" label="315 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="686" name="250" eid="52" label="250 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="687" name="200" eid="52" label="200 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="688" name="160" eid="52" label="160 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="689" name="125" eid="52" label="125 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="690" name="100" eid="52" label="100 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="691" name="80" eid="52" label="80 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="692" name="63" eid="52" label="63 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+            <bfreq wxid="693" name="50" eid="52" label="50 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
           </materiau>
           <matcolor wxid="694" name="Display" eid="78">
             <p wxid="695" name="mat_color" eid="21" readonly="1" label="Color" r="255" g="255" b="255"/>
           </matcolor>
           <property wxid="696" name="Material description" eid="41">
-            <p wxid="697" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+            <p wxid="697" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100.0" pr="4"/>
             <p wxid="698" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
-            <p wxid="699" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
+            <p wxid="699" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0.0000" pr="4"/>
             <p wxid="700" name="description" eid="20" readonly="1" label="Description" textValue="100% reflecting"/>
           </property>
         </appmateriau>
       </appgroup>
       <appmateriau wxid="340" name="Default" eid="37">
         <materiau wxid="341" name="Material spectrum" eid="43" idmateriau="0">
-          <bfreq wxid="342" name="20000" eid="52" label="20000 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="343" name="16000" eid="52" label="16000 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="344" name="12500" eid="52" label="12500 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="345" name="10000" eid="52" label="10000 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="346" name="8000" eid="52" label="8000 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="347" name="6300" eid="52" label="6300 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="348" name="5000" eid="52" label="5000 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="349" name="4000" eid="52" label="4000 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="350" name="3150" eid="52" label="3150 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="351" name="2500" eid="52" label="2500 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="352" name="2000" eid="52" label="2000 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="353" name="1600" eid="52" label="1600 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="354" name="1250" eid="52" label="1250 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="355" name="1000" eid="52" label="1000 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="356" name="800" eid="52" label="800 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="357" name="630" eid="52" label="630 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="358" name="500" eid="52" label="500 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="359" name="400" eid="52" label="400 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="360" name="315" eid="52" label="315 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="361" name="250" eid="52" label="250 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="362" name="200" eid="52" label="200 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="363" name="160" eid="52" label="160 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="364" name="125" eid="52" label="125 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="365" name="100" eid="52" label="100 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="366" name="80" eid="52" label="80 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="367" name="63" eid="52" label="63 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
-          <bfreq wxid="368" name="50" eid="52" label="50 Hz" absorb="0,00" diffusion="0,00" loi="0"/>
+          <bfreq wxid="342" name="20000" eid="52" label="20000 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="343" name="16000" eid="52" label="16000 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="344" name="12500" eid="52" label="12500 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="345" name="10000" eid="52" label="10000 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="346" name="8000" eid="52" label="8000 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="347" name="6300" eid="52" label="6300 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="348" name="5000" eid="52" label="5000 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="349" name="4000" eid="52" label="4000 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="350" name="3150" eid="52" label="3150 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="351" name="2500" eid="52" label="2500 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="352" name="2000" eid="52" label="2000 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="353" name="1600" eid="52" label="1600 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="354" name="1250" eid="52" label="1250 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="355" name="1000" eid="52" label="1000 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="356" name="800" eid="52" label="800 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="357" name="630" eid="52" label="630 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="358" name="500" eid="52" label="500 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="359" name="400" eid="52" label="400 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="360" name="315" eid="52" label="315 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="361" name="250" eid="52" label="250 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="362" name="200" eid="52" label="200 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="363" name="160" eid="52" label="160 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="364" name="125" eid="52" label="125 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="365" name="100" eid="52" label="100 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="366" name="80" eid="52" label="80 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="367" name="63" eid="52" label="63 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
+          <bfreq wxid="368" name="50" eid="52" label="50 Hz" absorb="0.00" diffusion="0.00" loi="0"/>
         </materiau>
         <matcolor wxid="369" name="Display" eid="78">
           <p wxid="370" name="mat_color" eid="21" readonly="1" label="Color" r="255" g="0" b="0"/>
         </matcolor>
         <property wxid="371" name="Material description" eid="41">
-          <p wxid="372" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100,0" pr="4"/>
+          <p wxid="372" name="resistivite" eid="25" readonly="1" label="Resistivity (cgs)" ex="1" value="100.0" pr="4"/>
           <p wxid="373" name="reference" eid="20" readonly="1" label="Reference" textValue=""/>
-          <p wxid="374" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0,0000" pr="4"/>
+          <p wxid="374" name="masse_volumique" eid="25" readonly="1" label="Mass density (kg/m3)" value="0.0000" pr="4"/>
           <p wxid="375" name="description" eid="20" readonly="1" label="Description" textValue="Default material"/>
         </property>
       </appmateriau>
@@ -500,914 +500,914 @@
   <appspectrums>
     <frequences name="ES_VL" eid="45" wxid="41" idspectre="2">
       <p name="cumul" eid="50" wxid="42" label="Global">
-        <p name="dba" eid="25" wxid="44" label="dB(A)" value="82,879982" pr="2"/>
-        <p name="db" eid="25" wxid="43" label="dB" value="83,047241" pr="2"/>
+        <p name="dba" eid="25" wxid="44" label="dB(A)" value="82.879982" pr="2"/>
+        <p name="db" eid="25" wxid="43" label="dB" value="83.047241" pr="2"/>
       </p>
       <p name="20000" eid="51" wxid="177" label="20000 Hz">
-        <p name="dba" eid="25" wxid="179" label="dB(A)" value="48,799999" pr="2"/>
-        <p name="db" eid="25" wxid="178" label="dB" ex="1" value="58,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="179" label="dB(A)" value="48.799999" pr="2"/>
+        <p name="db" eid="25" wxid="178" label="dB" ex="1" value="58.099998" pr="2"/>
       </p>
       <p name="16000" eid="51" wxid="172" label="16000 Hz">
-        <p name="dba" eid="25" wxid="174" label="dB(A)" value="51,399998" pr="2"/>
-        <p name="db" eid="25" wxid="173" label="dB" ex="1" value="58,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="174" label="dB(A)" value="51.399998" pr="2"/>
+        <p name="db" eid="25" wxid="173" label="dB" ex="1" value="58.099998" pr="2"/>
       </p>
       <p name="12500" eid="51" wxid="167" label="12500 Hz">
-        <p name="dba" eid="25" wxid="169" label="dB(A)" value="53,899998" pr="2"/>
-        <p name="db" eid="25" wxid="168" label="dB" ex="1" value="58,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="169" label="dB(A)" value="53.899998" pr="2"/>
+        <p name="db" eid="25" wxid="168" label="dB" ex="1" value="58.099998" pr="2"/>
       </p>
       <p name="10000" eid="51" wxid="162" label="10000 Hz">
-        <p name="dba" eid="25" wxid="164" label="dB(A)" value="55,599998" pr="2"/>
-        <p name="db" eid="25" wxid="163" label="dB" ex="1" value="58,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="164" label="dB(A)" value="55.599998" pr="2"/>
+        <p name="db" eid="25" wxid="163" label="dB" ex="1" value="58.099998" pr="2"/>
       </p>
       <p name="8000" eid="51" wxid="157" label="8000 Hz">
-        <p name="dba" eid="25" wxid="159" label="dB(A)" value="57,000000" pr="2"/>
-        <p name="db" eid="25" wxid="158" label="dB" ex="1" value="58,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="159" label="dB(A)" value="57.000000" pr="2"/>
+        <p name="db" eid="25" wxid="158" label="dB" ex="1" value="58.099998" pr="2"/>
       </p>
       <p name="6300" eid="51" wxid="152" label="6300 Hz">
-        <p name="dba" eid="25" wxid="154" label="dB(A)" value="58,000000" pr="2"/>
-        <p name="db" eid="25" wxid="153" label="dB" ex="1" value="58,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="154" label="dB(A)" value="58.000000" pr="2"/>
+        <p name="db" eid="25" wxid="153" label="dB" ex="1" value="58.099998" pr="2"/>
       </p>
       <p name="5000" eid="51" wxid="147" label="5000 Hz">
-        <p name="dba" eid="25" wxid="149" label="dB(A)" value="58,599998" pr="2"/>
-        <p name="db" eid="25" wxid="148" label="dB" ex="1" value="58,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="149" label="dB(A)" value="58.599998" pr="2"/>
+        <p name="db" eid="25" wxid="148" label="dB" ex="1" value="58.099998" pr="2"/>
       </p>
       <p name="4000" eid="51" wxid="142" label="4000 Hz">
-        <p name="dba" eid="25" wxid="144" label="dB(A)" value="62,299999" pr="2"/>
-        <p name="db" eid="25" wxid="143" label="dB" ex="1" value="61,299999" pr="2"/>
+        <p name="dba" eid="25" wxid="144" label="dB(A)" value="62.299999" pr="2"/>
+        <p name="db" eid="25" wxid="143" label="dB" ex="1" value="61.299999" pr="2"/>
       </p>
       <p name="3150" eid="51" wxid="137" label="3150 Hz">
-        <p name="dba" eid="25" wxid="139" label="dB(A)" value="64,799995" pr="2"/>
-        <p name="db" eid="25" wxid="138" label="dB" ex="1" value="63,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="139" label="dB(A)" value="64.799995" pr="2"/>
+        <p name="db" eid="25" wxid="138" label="dB" ex="1" value="63.599998" pr="2"/>
       </p>
       <p name="2500" eid="51" wxid="132" label="2500 Hz">
-        <p name="dba" eid="25" wxid="134" label="dB(A)" value="67,500000" pr="2"/>
-        <p name="db" eid="25" wxid="133" label="dB" ex="1" value="66,199997" pr="2"/>
+        <p name="dba" eid="25" wxid="134" label="dB(A)" value="67.500000" pr="2"/>
+        <p name="db" eid="25" wxid="133" label="dB" ex="1" value="66.199997" pr="2"/>
       </p>
       <p name="2000" eid="51" wxid="127" label="2000 Hz">
-        <p name="dba" eid="25" wxid="129" label="dB(A)" value="69,799995" pr="2"/>
-        <p name="db" eid="25" wxid="128" label="dB" ex="1" value="68,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="129" label="dB(A)" value="69.799995" pr="2"/>
+        <p name="db" eid="25" wxid="128" label="dB" ex="1" value="68.599998" pr="2"/>
       </p>
       <p name="1600" eid="51" wxid="122" label="1600 Hz">
-        <p name="dba" eid="25" wxid="124" label="dB(A)" value="72,599998" pr="2"/>
-        <p name="db" eid="25" wxid="123" label="dB" ex="1" value="71,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="124" label="dB(A)" value="72.599998" pr="2"/>
+        <p name="db" eid="25" wxid="123" label="dB" ex="1" value="71.599998" pr="2"/>
       </p>
       <p name="1250" eid="51" wxid="117" label="1250 Hz">
-        <p name="dba" eid="25" wxid="119" label="dB(A)" value="76,900002" pr="2"/>
-        <p name="db" eid="25" wxid="118" label="dB" ex="1" value="76,300003" pr="2"/>
+        <p name="dba" eid="25" wxid="119" label="dB(A)" value="76.900002" pr="2"/>
+        <p name="db" eid="25" wxid="118" label="dB" ex="1" value="76.300003" pr="2"/>
       </p>
       <p name="1000" eid="51" wxid="112" label="1000 Hz">
-        <p name="dba" eid="25" wxid="114" label="dB(A)" value="77,699997" pr="2"/>
-        <p name="db" eid="25" wxid="113" label="dB" ex="1" value="77,699997" pr="2"/>
+        <p name="dba" eid="25" wxid="114" label="dB(A)" value="77.699997" pr="2"/>
+        <p name="db" eid="25" wxid="113" label="dB" ex="1" value="77.699997" pr="2"/>
       </p>
       <p name="800" eid="51" wxid="107" label="800 Hz">
-        <p name="dba" eid="25" wxid="109" label="dB(A)" value="74,799995" pr="2"/>
-        <p name="db" eid="25" wxid="108" label="dB" ex="1" value="75,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="109" label="dB(A)" value="74.799995" pr="2"/>
+        <p name="db" eid="25" wxid="108" label="dB" ex="1" value="75.599998" pr="2"/>
       </p>
       <p name="630" eid="51" wxid="102" label="630 Hz">
-        <p name="dba" eid="25" wxid="104" label="dB(A)" value="70,599998" pr="2"/>
-        <p name="db" eid="25" wxid="103" label="dB" ex="1" value="72,500000" pr="2"/>
+        <p name="dba" eid="25" wxid="104" label="dB(A)" value="70.599998" pr="2"/>
+        <p name="db" eid="25" wxid="103" label="dB" ex="1" value="72.500000" pr="2"/>
       </p>
       <p name="500" eid="51" wxid="97" label="500 Hz">
-        <p name="dba" eid="25" wxid="99" label="dB(A)" value="63,399998" pr="2"/>
-        <p name="db" eid="25" wxid="98" label="dB" ex="1" value="66,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="99" label="dB(A)" value="63.399998" pr="2"/>
+        <p name="db" eid="25" wxid="98" label="dB" ex="1" value="66.599998" pr="2"/>
       </p>
       <p name="400" eid="51" wxid="92" label="400 Hz">
-        <p name="dba" eid="25" wxid="94" label="dB(A)" value="59,500004" pr="2"/>
-        <p name="db" eid="25" wxid="93" label="dB" ex="1" value="64,300003" pr="2"/>
+        <p name="dba" eid="25" wxid="94" label="dB(A)" value="59.500004" pr="2"/>
+        <p name="db" eid="25" wxid="93" label="dB" ex="1" value="64.300003" pr="2"/>
       </p>
       <p name="315" eid="51" wxid="87" label="315 Hz">
-        <p name="dba" eid="25" wxid="89" label="dB(A)" value="56,600002" pr="2"/>
-        <p name="db" eid="25" wxid="88" label="dB" ex="1" value="63,200001" pr="2"/>
+        <p name="dba" eid="25" wxid="89" label="dB(A)" value="56.600002" pr="2"/>
+        <p name="db" eid="25" wxid="88" label="dB" ex="1" value="63.200001" pr="2"/>
       </p>
       <p name="250" eid="51" wxid="82" label="250 Hz">
-        <p name="dba" eid="25" wxid="84" label="dB(A)" value="52,400002" pr="2"/>
-        <p name="db" eid="25" wxid="83" label="dB" ex="1" value="61,000000" pr="2"/>
+        <p name="dba" eid="25" wxid="84" label="dB(A)" value="52.400002" pr="2"/>
+        <p name="db" eid="25" wxid="83" label="dB" ex="1" value="61.000000" pr="2"/>
       </p>
       <p name="200" eid="51" wxid="77" label="200 Hz">
-        <p name="dba" eid="25" wxid="79" label="dB(A)" value="46,800003" pr="2"/>
-        <p name="db" eid="25" wxid="78" label="dB" ex="1" value="57,700001" pr="2"/>
+        <p name="dba" eid="25" wxid="79" label="dB(A)" value="46.800003" pr="2"/>
+        <p name="db" eid="25" wxid="78" label="dB" ex="1" value="57.700001" pr="2"/>
       </p>
       <p name="160" eid="51" wxid="72" label="160 Hz">
-        <p name="dba" eid="25" wxid="74" label="dB(A)" value="41,199997" pr="2"/>
-        <p name="db" eid="25" wxid="73" label="dB" ex="1" value="54,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="74" label="dB(A)" value="41.199997" pr="2"/>
+        <p name="db" eid="25" wxid="73" label="dB" ex="1" value="54.599998" pr="2"/>
       </p>
       <p name="125" eid="51" wxid="67" label="125 Hz">
-        <p name="dba" eid="25" wxid="69" label="dB(A)" value="36,199997" pr="2"/>
-        <p name="db" eid="25" wxid="68" label="dB" ex="1" value="52,299999" pr="2"/>
+        <p name="dba" eid="25" wxid="69" label="dB(A)" value="36.199997" pr="2"/>
+        <p name="db" eid="25" wxid="68" label="dB" ex="1" value="52.299999" pr="2"/>
       </p>
       <p name="100" eid="51" wxid="62" label="100 Hz">
-        <p name="dba" eid="25" wxid="64" label="dB(A)" value="30,800001" pr="2"/>
-        <p name="db" eid="25" wxid="63" label="dB" ex="1" value="49,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="64" label="dB(A)" value="30.800001" pr="2"/>
+        <p name="db" eid="25" wxid="63" label="dB" ex="1" value="49.900002" pr="2"/>
       </p>
       <p name="80" eid="51" wxid="57" label="80 Hz">
-        <p name="dba" eid="25" wxid="59" label="dB(A)" value="27,400002" pr="2"/>
-        <p name="db" eid="25" wxid="58" label="dB" ex="1" value="49,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="59" label="dB(A)" value="27.400002" pr="2"/>
+        <p name="db" eid="25" wxid="58" label="dB" ex="1" value="49.900002" pr="2"/>
       </p>
       <p name="63" eid="51" wxid="52" label="63 Hz">
-        <p name="dba" eid="25" wxid="54" label="dB(A)" value="23,700001" pr="2"/>
-        <p name="db" eid="25" wxid="53" label="dB" ex="1" value="49,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="54" label="dB(A)" value="23.700001" pr="2"/>
+        <p name="db" eid="25" wxid="53" label="dB" ex="1" value="49.900002" pr="2"/>
       </p>
       <p name="50" eid="51" wxid="47" label="50 Hz">
-        <p name="dba" eid="25" wxid="49" label="dB(A)" value="19,700001" pr="2"/>
-        <p name="db" eid="25" wxid="48" label="dB" ex="1" value="49,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="49" label="dB(A)" value="19.700001" pr="2"/>
+        <p name="db" eid="25" wxid="48" label="dB" ex="1" value="49.900002" pr="2"/>
       </p>
     </frequences>
     <frequences name="ES_TR" eid="45" wxid="182" idspectre="3">
       <p name="cumul" eid="50" wxid="183" label="Global">
-        <p name="dba" eid="25" wxid="185" label="dB(A)" value="85,195320" pr="2"/>
-        <p name="db" eid="25" wxid="184" label="dB" value="86,286896" pr="2"/>
+        <p name="dba" eid="25" wxid="185" label="dB(A)" value="85.195320" pr="2"/>
+        <p name="db" eid="25" wxid="184" label="dB" value="86.286896" pr="2"/>
       </p>
       <p name="20000" eid="51" wxid="318" label="20000 Hz">
-        <p name="dba" eid="25" wxid="320" label="dB(A)" value="54,299999" pr="2"/>
-        <p name="db" eid="25" wxid="319" label="dB" ex="1" value="63,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="320" label="dB(A)" value="54.299999" pr="2"/>
+        <p name="db" eid="25" wxid="319" label="dB" ex="1" value="63.599998" pr="2"/>
       </p>
       <p name="16000" eid="51" wxid="313" label="16000 Hz">
-        <p name="dba" eid="25" wxid="315" label="dB(A)" value="56,899998" pr="2"/>
-        <p name="db" eid="25" wxid="314" label="dB" ex="1" value="63,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="315" label="dB(A)" value="56.899998" pr="2"/>
+        <p name="db" eid="25" wxid="314" label="dB" ex="1" value="63.599998" pr="2"/>
       </p>
       <p name="12500" eid="51" wxid="308" label="12500 Hz">
-        <p name="dba" eid="25" wxid="310" label="dB(A)" value="59,399998" pr="2"/>
-        <p name="db" eid="25" wxid="309" label="dB" ex="1" value="63,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="310" label="dB(A)" value="59.399998" pr="2"/>
+        <p name="db" eid="25" wxid="309" label="dB" ex="1" value="63.599998" pr="2"/>
       </p>
       <p name="10000" eid="51" wxid="303" label="10000 Hz">
-        <p name="dba" eid="25" wxid="305" label="dB(A)" value="61,099998" pr="2"/>
-        <p name="db" eid="25" wxid="304" label="dB" ex="1" value="63,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="305" label="dB(A)" value="61.099998" pr="2"/>
+        <p name="db" eid="25" wxid="304" label="dB" ex="1" value="63.599998" pr="2"/>
       </p>
       <p name="8000" eid="51" wxid="298" label="8000 Hz">
-        <p name="dba" eid="25" wxid="300" label="dB(A)" value="62,500000" pr="2"/>
-        <p name="db" eid="25" wxid="299" label="dB" ex="1" value="63,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="300" label="dB(A)" value="62.500000" pr="2"/>
+        <p name="db" eid="25" wxid="299" label="dB" ex="1" value="63.599998" pr="2"/>
       </p>
       <p name="6300" eid="51" wxid="293" label="6300 Hz">
-        <p name="dba" eid="25" wxid="295" label="dB(A)" value="63,500000" pr="2"/>
-        <p name="db" eid="25" wxid="294" label="dB" ex="1" value="63,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="295" label="dB(A)" value="63.500000" pr="2"/>
+        <p name="db" eid="25" wxid="294" label="dB" ex="1" value="63.599998" pr="2"/>
       </p>
       <p name="5000" eid="51" wxid="288" label="5000 Hz">
-        <p name="dba" eid="25" wxid="290" label="dB(A)" value="64,099998" pr="2"/>
-        <p name="db" eid="25" wxid="289" label="dB" ex="1" value="63,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="290" label="dB(A)" value="64.099998" pr="2"/>
+        <p name="db" eid="25" wxid="289" label="dB" ex="1" value="63.599998" pr="2"/>
       </p>
       <p name="4000" eid="51" wxid="283" label="4000 Hz">
-        <p name="dba" eid="25" wxid="285" label="dB(A)" value="66,800003" pr="2"/>
-        <p name="db" eid="25" wxid="284" label="dB" ex="1" value="65,800003" pr="2"/>
+        <p name="dba" eid="25" wxid="285" label="dB(A)" value="66.800003" pr="2"/>
+        <p name="db" eid="25" wxid="284" label="dB" ex="1" value="65.800003" pr="2"/>
       </p>
       <p name="3150" eid="51" wxid="278" label="3150 Hz">
-        <p name="dba" eid="25" wxid="280" label="dB(A)" value="68,799995" pr="2"/>
-        <p name="db" eid="25" wxid="279" label="dB" ex="1" value="67,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="280" label="dB(A)" value="68.799995" pr="2"/>
+        <p name="db" eid="25" wxid="279" label="dB" ex="1" value="67.599998" pr="2"/>
       </p>
       <p name="2500" eid="51" wxid="273" label="2500 Hz">
-        <p name="dba" eid="25" wxid="275" label="dB(A)" value="70,600006" pr="2"/>
-        <p name="db" eid="25" wxid="274" label="dB" ex="1" value="69,300003" pr="2"/>
+        <p name="dba" eid="25" wxid="275" label="dB(A)" value="70.600006" pr="2"/>
+        <p name="db" eid="25" wxid="274" label="dB" ex="1" value="69.300003" pr="2"/>
       </p>
       <p name="2000" eid="51" wxid="268" label="2000 Hz">
-        <p name="dba" eid="25" wxid="270" label="dB(A)" value="72,199997" pr="2"/>
-        <p name="db" eid="25" wxid="269" label="dB" ex="1" value="71,000000" pr="2"/>
+        <p name="dba" eid="25" wxid="270" label="dB(A)" value="72.199997" pr="2"/>
+        <p name="db" eid="25" wxid="269" label="dB" ex="1" value="71.000000" pr="2"/>
       </p>
       <p name="1600" eid="51" wxid="263" label="1600 Hz">
-        <p name="dba" eid="25" wxid="265" label="dB(A)" value="73,800003" pr="2"/>
-        <p name="db" eid="25" wxid="264" label="dB" ex="1" value="72,800003" pr="2"/>
+        <p name="dba" eid="25" wxid="265" label="dB(A)" value="73.800003" pr="2"/>
+        <p name="db" eid="25" wxid="264" label="dB" ex="1" value="72.800003" pr="2"/>
       </p>
       <p name="1250" eid="51" wxid="258" label="1250 Hz">
-        <p name="dba" eid="25" wxid="260" label="dB(A)" value="75,099998" pr="2"/>
-        <p name="db" eid="25" wxid="259" label="dB" ex="1" value="74,500000" pr="2"/>
+        <p name="dba" eid="25" wxid="260" label="dB(A)" value="75.099998" pr="2"/>
+        <p name="db" eid="25" wxid="259" label="dB" ex="1" value="74.500000" pr="2"/>
       </p>
       <p name="1000" eid="51" wxid="253" label="1000 Hz">
-        <p name="dba" eid="25" wxid="255" label="dB(A)" value="77,699997" pr="2"/>
-        <p name="db" eid="25" wxid="254" label="dB" ex="1" value="77,699997" pr="2"/>
+        <p name="dba" eid="25" wxid="255" label="dB(A)" value="77.699997" pr="2"/>
+        <p name="db" eid="25" wxid="254" label="dB" ex="1" value="77.699997" pr="2"/>
       </p>
       <p name="800" eid="51" wxid="248" label="800 Hz">
-        <p name="dba" eid="25" wxid="250" label="dB(A)" value="78,399994" pr="2"/>
-        <p name="db" eid="25" wxid="249" label="dB" ex="1" value="79,199997" pr="2"/>
+        <p name="dba" eid="25" wxid="250" label="dB(A)" value="78.399994" pr="2"/>
+        <p name="db" eid="25" wxid="249" label="dB" ex="1" value="79.199997" pr="2"/>
       </p>
       <p name="630" eid="51" wxid="243" label="630 Hz">
-        <p name="dba" eid="25" wxid="245" label="dB(A)" value="78,400002" pr="2"/>
-        <p name="db" eid="25" wxid="244" label="dB" ex="1" value="80,300003" pr="2"/>
+        <p name="dba" eid="25" wxid="245" label="dB(A)" value="78.400002" pr="2"/>
+        <p name="db" eid="25" wxid="244" label="dB" ex="1" value="80.300003" pr="2"/>
       </p>
       <p name="500" eid="51" wxid="238" label="500 Hz">
-        <p name="dba" eid="25" wxid="240" label="dB(A)" value="72,400002" pr="2"/>
-        <p name="db" eid="25" wxid="239" label="dB" ex="1" value="75,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="240" label="dB(A)" value="72.400002" pr="2"/>
+        <p name="db" eid="25" wxid="239" label="dB" ex="1" value="75.599998" pr="2"/>
       </p>
       <p name="400" eid="51" wxid="233" label="400 Hz">
-        <p name="dba" eid="25" wxid="235" label="dB(A)" value="67,699997" pr="2"/>
-        <p name="db" eid="25" wxid="234" label="dB" ex="1" value="72,500000" pr="2"/>
+        <p name="dba" eid="25" wxid="235" label="dB(A)" value="67.699997" pr="2"/>
+        <p name="db" eid="25" wxid="234" label="dB" ex="1" value="72.500000" pr="2"/>
       </p>
       <p name="315" eid="51" wxid="228" label="315 Hz">
-        <p name="dba" eid="25" wxid="230" label="dB(A)" value="64,000000" pr="2"/>
-        <p name="db" eid="25" wxid="229" label="dB" ex="1" value="70,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="230" label="dB(A)" value="64.000000" pr="2"/>
+        <p name="db" eid="25" wxid="229" label="dB" ex="1" value="70.599998" pr="2"/>
       </p>
       <p name="250" eid="51" wxid="223" label="250 Hz">
-        <p name="dba" eid="25" wxid="225" label="dB(A)" value="59,700005" pr="2"/>
-        <p name="db" eid="25" wxid="224" label="dB" ex="1" value="68,300003" pr="2"/>
+        <p name="dba" eid="25" wxid="225" label="dB(A)" value="59.700005" pr="2"/>
+        <p name="db" eid="25" wxid="224" label="dB" ex="1" value="68.300003" pr="2"/>
       </p>
       <p name="200" eid="51" wxid="218" label="200 Hz">
-        <p name="dba" eid="25" wxid="220" label="dB(A)" value="55,799995" pr="2"/>
-        <p name="db" eid="25" wxid="219" label="dB" ex="1" value="66,699997" pr="2"/>
+        <p name="dba" eid="25" wxid="220" label="dB(A)" value="55.799995" pr="2"/>
+        <p name="db" eid="25" wxid="219" label="dB" ex="1" value="66.699997" pr="2"/>
       </p>
       <p name="160" eid="51" wxid="213" label="160 Hz">
-        <p name="dba" eid="25" wxid="215" label="dB(A)" value="49,699997" pr="2"/>
-        <p name="db" eid="25" wxid="214" label="dB" ex="1" value="63,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="215" label="dB(A)" value="49.699997" pr="2"/>
+        <p name="db" eid="25" wxid="214" label="dB" ex="1" value="63.099998" pr="2"/>
       </p>
       <p name="125" eid="51" wxid="208" label="125 Hz">
-        <p name="dba" eid="25" wxid="210" label="dB(A)" value="44,099998" pr="2"/>
-        <p name="db" eid="25" wxid="209" label="dB" ex="1" value="60,200001" pr="2"/>
+        <p name="dba" eid="25" wxid="210" label="dB(A)" value="44.099998" pr="2"/>
+        <p name="db" eid="25" wxid="209" label="dB" ex="1" value="60.200001" pr="2"/>
       </p>
       <p name="100" eid="51" wxid="203" label="100 Hz">
-        <p name="dba" eid="25" wxid="205" label="dB(A)" value="38,000000" pr="2"/>
-        <p name="db" eid="25" wxid="204" label="dB" ex="1" value="57,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="205" label="dB(A)" value="38.000000" pr="2"/>
+        <p name="db" eid="25" wxid="204" label="dB" ex="1" value="57.099998" pr="2"/>
       </p>
       <p name="80" eid="51" wxid="198" label="80 Hz">
-        <p name="dba" eid="25" wxid="200" label="dB(A)" value="34,599998" pr="2"/>
-        <p name="db" eid="25" wxid="199" label="dB" ex="1" value="57,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="200" label="dB(A)" value="34.599998" pr="2"/>
+        <p name="db" eid="25" wxid="199" label="dB" ex="1" value="57.099998" pr="2"/>
       </p>
       <p name="63" eid="51" wxid="193" label="63 Hz">
-        <p name="dba" eid="25" wxid="195" label="dB(A)" value="30,899998" pr="2"/>
-        <p name="db" eid="25" wxid="194" label="dB" ex="1" value="57,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="195" label="dB(A)" value="30.899998" pr="2"/>
+        <p name="db" eid="25" wxid="194" label="dB" ex="1" value="57.099998" pr="2"/>
       </p>
       <p name="50" eid="51" wxid="188" label="50 Hz">
-        <p name="dba" eid="25" wxid="190" label="dB(A)" value="26,899998" pr="2"/>
-        <p name="db" eid="25" wxid="189" label="dB" ex="1" value="57,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="190" label="dB(A)" value="26.899998" pr="2"/>
+        <p name="db" eid="25" wxid="189" label="dB" ex="1" value="57.099998" pr="2"/>
       </p>
     </frequences>
     <frequences name="Pink noise" eid="45" wxid="323" idspectre="1">
       <p name="cumul" eid="50" wxid="324" label="Global">
-        <p name="dba" eid="25" wxid="326" readonly="1" label="dB(A)" value="-2,373854" pr="2"/>
-        <p name="db" eid="25" wxid="325" readonly="1" label="dB" value="0,003638" pr="2"/>
+        <p name="dba" eid="25" wxid="326" readonly="1" label="dB(A)" value="-2.373854" pr="2"/>
+        <p name="db" eid="25" wxid="325" readonly="1" label="dB" value="0.003638" pr="2"/>
       </p>
       <p name="20000" eid="51" wxid="459" label="20000 Hz">
-        <p name="dba" eid="25" wxid="461" label="dB(A)" value="-23,610001" pr="2"/>
-        <p name="db" eid="25" wxid="460" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="461" label="dB(A)" value="-23.610001" pr="2"/>
+        <p name="db" eid="25" wxid="460" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="16000" eid="51" wxid="454" label="16000 Hz">
-        <p name="dba" eid="25" wxid="456" label="dB(A)" value="-21,010000" pr="2"/>
-        <p name="db" eid="25" wxid="455" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="456" label="dB(A)" value="-21.010000" pr="2"/>
+        <p name="db" eid="25" wxid="455" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="12500" eid="51" wxid="449" label="12500 Hz">
-        <p name="dba" eid="25" wxid="451" label="dB(A)" value="-18,510000" pr="2"/>
-        <p name="db" eid="25" wxid="450" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="451" label="dB(A)" value="-18.510000" pr="2"/>
+        <p name="db" eid="25" wxid="450" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="10000" eid="51" wxid="444" label="10000 Hz">
-        <p name="dba" eid="25" wxid="446" label="dB(A)" value="-16,810001" pr="2"/>
-        <p name="db" eid="25" wxid="445" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="446" label="dB(A)" value="-16.810001" pr="2"/>
+        <p name="db" eid="25" wxid="445" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="8000" eid="51" wxid="439" label="8000 Hz">
-        <p name="dba" eid="25" wxid="441" label="dB(A)" value="-15,410001" pr="2"/>
-        <p name="db" eid="25" wxid="440" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="441" label="dB(A)" value="-15.410001" pr="2"/>
+        <p name="db" eid="25" wxid="440" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="6300" eid="51" wxid="434" label="6300 Hz">
-        <p name="dba" eid="25" wxid="436" label="dB(A)" value="-14,410001" pr="2"/>
-        <p name="db" eid="25" wxid="435" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="436" label="dB(A)" value="-14.410001" pr="2"/>
+        <p name="db" eid="25" wxid="435" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="5000" eid="51" wxid="429" label="5000 Hz">
-        <p name="dba" eid="25" wxid="431" label="dB(A)" value="-13,810000" pr="2"/>
-        <p name="db" eid="25" wxid="430" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="431" label="dB(A)" value="-13.810000" pr="2"/>
+        <p name="db" eid="25" wxid="430" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="4000" eid="51" wxid="424" label="4000 Hz">
-        <p name="dba" eid="25" wxid="426" label="dB(A)" value="-13,310000" pr="2"/>
-        <p name="db" eid="25" wxid="425" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="426" label="dB(A)" value="-13.310000" pr="2"/>
+        <p name="db" eid="25" wxid="425" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="3150" eid="51" wxid="419" label="3150 Hz">
-        <p name="dba" eid="25" wxid="421" label="dB(A)" value="-13,110001" pr="2"/>
-        <p name="db" eid="25" wxid="420" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="421" label="dB(A)" value="-13.110001" pr="2"/>
+        <p name="db" eid="25" wxid="420" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="2500" eid="51" wxid="414" label="2500 Hz">
-        <p name="dba" eid="25" wxid="416" label="dB(A)" value="-13,010000" pr="2"/>
-        <p name="db" eid="25" wxid="415" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="416" label="dB(A)" value="-13.010000" pr="2"/>
+        <p name="db" eid="25" wxid="415" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="2000" eid="51" wxid="409" label="2000 Hz">
-        <p name="dba" eid="25" wxid="411" label="dB(A)" value="-13,110001" pr="2"/>
-        <p name="db" eid="25" wxid="410" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="411" label="dB(A)" value="-13.110001" pr="2"/>
+        <p name="db" eid="25" wxid="410" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="1600" eid="51" wxid="404" label="1600 Hz">
-        <p name="dba" eid="25" wxid="406" label="dB(A)" value="-13,310000" pr="2"/>
-        <p name="db" eid="25" wxid="405" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="406" label="dB(A)" value="-13.310000" pr="2"/>
+        <p name="db" eid="25" wxid="405" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="1250" eid="51" wxid="399" label="1250 Hz">
-        <p name="dba" eid="25" wxid="401" label="dB(A)" value="-13,710000" pr="2"/>
-        <p name="db" eid="25" wxid="400" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="401" label="dB(A)" value="-13.710000" pr="2"/>
+        <p name="db" eid="25" wxid="400" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="1000" eid="51" wxid="394" label="1000 Hz">
-        <p name="dba" eid="25" wxid="396" label="dB(A)" value="-14,310000" pr="2"/>
-        <p name="db" eid="25" wxid="395" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="396" label="dB(A)" value="-14.310000" pr="2"/>
+        <p name="db" eid="25" wxid="395" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="800" eid="51" wxid="389" label="800 Hz">
-        <p name="dba" eid="25" wxid="391" label="dB(A)" value="-15,110001" pr="2"/>
-        <p name="db" eid="25" wxid="390" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="391" label="dB(A)" value="-15.110001" pr="2"/>
+        <p name="db" eid="25" wxid="390" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="630" eid="51" wxid="384" label="630 Hz">
-        <p name="dba" eid="25" wxid="386" label="dB(A)" value="-16,210001" pr="2"/>
-        <p name="db" eid="25" wxid="385" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="386" label="dB(A)" value="-16.210001" pr="2"/>
+        <p name="db" eid="25" wxid="385" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="500" eid="51" wxid="379" label="500 Hz">
-        <p name="dba" eid="25" wxid="381" label="dB(A)" value="-17,510000" pr="2"/>
-        <p name="db" eid="25" wxid="380" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="381" label="dB(A)" value="-17.510000" pr="2"/>
+        <p name="db" eid="25" wxid="380" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="400" eid="51" wxid="374" label="400 Hz">
-        <p name="dba" eid="25" wxid="376" label="dB(A)" value="-19,110001" pr="2"/>
-        <p name="db" eid="25" wxid="375" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="376" label="dB(A)" value="-19.110001" pr="2"/>
+        <p name="db" eid="25" wxid="375" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="315" eid="51" wxid="369" label="315 Hz">
-        <p name="dba" eid="25" wxid="371" label="dB(A)" value="-20,910000" pr="2"/>
-        <p name="db" eid="25" wxid="370" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="371" label="dB(A)" value="-20.910000" pr="2"/>
+        <p name="db" eid="25" wxid="370" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="250" eid="51" wxid="364" label="250 Hz">
-        <p name="dba" eid="25" wxid="366" label="dB(A)" value="-22,910000" pr="2"/>
-        <p name="db" eid="25" wxid="365" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="366" label="dB(A)" value="-22.910000" pr="2"/>
+        <p name="db" eid="25" wxid="365" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="200" eid="51" wxid="359" label="200 Hz">
-        <p name="dba" eid="25" wxid="361" label="dB(A)" value="-25,209999" pr="2"/>
-        <p name="db" eid="25" wxid="360" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="361" label="dB(A)" value="-25.209999" pr="2"/>
+        <p name="db" eid="25" wxid="360" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="160" eid="51" wxid="354" label="160 Hz">
-        <p name="dba" eid="25" wxid="356" label="dB(A)" value="-27,709999" pr="2"/>
-        <p name="db" eid="25" wxid="355" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="356" label="dB(A)" value="-27.709999" pr="2"/>
+        <p name="db" eid="25" wxid="355" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="125" eid="51" wxid="349" label="125 Hz">
-        <p name="dba" eid="25" wxid="351" label="dB(A)" value="-30,410000" pr="2"/>
-        <p name="db" eid="25" wxid="350" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="351" label="dB(A)" value="-30.410000" pr="2"/>
+        <p name="db" eid="25" wxid="350" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="100" eid="51" wxid="344" label="100 Hz">
-        <p name="dba" eid="25" wxid="346" label="dB(A)" value="-33,410000" pr="2"/>
-        <p name="db" eid="25" wxid="345" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="346" label="dB(A)" value="-33.410000" pr="2"/>
+        <p name="db" eid="25" wxid="345" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="80" eid="51" wxid="339" label="80 Hz">
-        <p name="dba" eid="25" wxid="341" label="dB(A)" value="-36,810001" pr="2"/>
-        <p name="db" eid="25" wxid="340" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="341" label="dB(A)" value="-36.810001" pr="2"/>
+        <p name="db" eid="25" wxid="340" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="63" eid="51" wxid="334" label="63 Hz">
-        <p name="dba" eid="25" wxid="336" label="dB(A)" value="-40,510002" pr="2"/>
-        <p name="db" eid="25" wxid="335" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="336" label="dB(A)" value="-40.510002" pr="2"/>
+        <p name="db" eid="25" wxid="335" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
       <p name="50" eid="51" wxid="329" label="50 Hz">
-        <p name="dba" eid="25" wxid="331" label="dB(A)" value="-44,510002" pr="2"/>
-        <p name="db" eid="25" wxid="330" label="dB" ex="1" value="-14,310000" pr="2"/>
+        <p name="dba" eid="25" wxid="331" label="dB(A)" value="-44.510002" pr="2"/>
+        <p name="db" eid="25" wxid="330" label="dB" ex="1" value="-14.310000" pr="2"/>
       </p>
     </frequences>
     <frequences name="White noise" eid="45" wxid="464" idspectre="0">
       <p name="cumul" eid="50" wxid="465" label="Global">
-        <p name="dba" eid="25" wxid="467" readonly="1" label="dB(A)" value="-2,431984" pr="2"/>
-        <p name="db" eid="25" wxid="466" readonly="1" label="dB" value="-0,000421" pr="2"/>
+        <p name="dba" eid="25" wxid="467" readonly="1" label="dB(A)" value="-2.431984" pr="2"/>
+        <p name="db" eid="25" wxid="466" readonly="1" label="dB" value="-0.000421" pr="2"/>
       </p>
       <p name="20000" eid="51" wxid="600" label="20000 Hz">
-        <p name="dba" eid="25" wxid="602" label="dB(A)" value="-16,160000" pr="2"/>
-        <p name="db" eid="25" wxid="601" label="dB" ex="1" value="-6,860000" pr="2"/>
+        <p name="dba" eid="25" wxid="602" label="dB(A)" value="-16.160000" pr="2"/>
+        <p name="db" eid="25" wxid="601" label="dB" ex="1" value="-6.860000" pr="2"/>
       </p>
       <p name="16000" eid="51" wxid="595" label="16000 Hz">
-        <p name="dba" eid="25" wxid="597" label="dB(A)" value="-14,559999" pr="2"/>
-        <p name="db" eid="25" wxid="596" label="dB" ex="1" value="-7,860000" pr="2"/>
+        <p name="dba" eid="25" wxid="597" label="dB(A)" value="-14.559999" pr="2"/>
+        <p name="db" eid="25" wxid="596" label="dB" ex="1" value="-7.860000" pr="2"/>
       </p>
       <p name="12500" eid="51" wxid="590" label="12500 Hz">
-        <p name="dba" eid="25" wxid="592" label="dB(A)" value="-13,059999" pr="2"/>
-        <p name="db" eid="25" wxid="591" label="dB" ex="1" value="-8,860000" pr="2"/>
+        <p name="dba" eid="25" wxid="592" label="dB(A)" value="-13.059999" pr="2"/>
+        <p name="db" eid="25" wxid="591" label="dB" ex="1" value="-8.860000" pr="2"/>
       </p>
       <p name="10000" eid="51" wxid="585" label="10000 Hz">
-        <p name="dba" eid="25" wxid="587" label="dB(A)" value="-12,360000" pr="2"/>
-        <p name="db" eid="25" wxid="586" label="dB" ex="1" value="-9,860000" pr="2"/>
+        <p name="dba" eid="25" wxid="587" label="dB(A)" value="-12.360000" pr="2"/>
+        <p name="db" eid="25" wxid="586" label="dB" ex="1" value="-9.860000" pr="2"/>
       </p>
       <p name="8000" eid="51" wxid="580" label="8000 Hz">
-        <p name="dba" eid="25" wxid="582" label="dB(A)" value="-11,960000" pr="2"/>
-        <p name="db" eid="25" wxid="581" label="dB" ex="1" value="-10,860000" pr="2"/>
+        <p name="dba" eid="25" wxid="582" label="dB(A)" value="-11.960000" pr="2"/>
+        <p name="db" eid="25" wxid="581" label="dB" ex="1" value="-10.860000" pr="2"/>
       </p>
       <p name="6300" eid="51" wxid="575" label="6300 Hz">
-        <p name="dba" eid="25" wxid="577" label="dB(A)" value="-11,960000" pr="2"/>
-        <p name="db" eid="25" wxid="576" label="dB" ex="1" value="-11,860000" pr="2"/>
+        <p name="dba" eid="25" wxid="577" label="dB(A)" value="-11.960000" pr="2"/>
+        <p name="db" eid="25" wxid="576" label="dB" ex="1" value="-11.860000" pr="2"/>
       </p>
       <p name="5000" eid="51" wxid="570" label="5000 Hz">
-        <p name="dba" eid="25" wxid="572" label="dB(A)" value="-12,360000" pr="2"/>
-        <p name="db" eid="25" wxid="571" label="dB" ex="1" value="-12,860000" pr="2"/>
+        <p name="dba" eid="25" wxid="572" label="dB(A)" value="-12.360000" pr="2"/>
+        <p name="db" eid="25" wxid="571" label="dB" ex="1" value="-12.860000" pr="2"/>
       </p>
       <p name="4000" eid="51" wxid="565" label="4000 Hz">
-        <p name="dba" eid="25" wxid="567" label="dB(A)" value="-12,860000" pr="2"/>
-        <p name="db" eid="25" wxid="566" label="dB" ex="1" value="-13,860000" pr="2"/>
+        <p name="dba" eid="25" wxid="567" label="dB(A)" value="-12.860000" pr="2"/>
+        <p name="db" eid="25" wxid="566" label="dB" ex="1" value="-13.860000" pr="2"/>
       </p>
       <p name="3150" eid="51" wxid="560" label="3150 Hz">
-        <p name="dba" eid="25" wxid="562" label="dB(A)" value="-13,660000" pr="2"/>
-        <p name="db" eid="25" wxid="561" label="dB" ex="1" value="-14,860000" pr="2"/>
+        <p name="dba" eid="25" wxid="562" label="dB(A)" value="-13.660000" pr="2"/>
+        <p name="db" eid="25" wxid="561" label="dB" ex="1" value="-14.860000" pr="2"/>
       </p>
       <p name="2500" eid="51" wxid="555" label="2500 Hz">
-        <p name="dba" eid="25" wxid="557" label="dB(A)" value="-14,559999" pr="2"/>
-        <p name="db" eid="25" wxid="556" label="dB" ex="1" value="-15,860000" pr="2"/>
+        <p name="dba" eid="25" wxid="557" label="dB(A)" value="-14.559999" pr="2"/>
+        <p name="db" eid="25" wxid="556" label="dB" ex="1" value="-15.860000" pr="2"/>
       </p>
       <p name="2000" eid="51" wxid="550" label="2000 Hz">
-        <p name="dba" eid="25" wxid="552" label="dB(A)" value="-15,660001" pr="2"/>
-        <p name="db" eid="25" wxid="551" label="dB" ex="1" value="-16,860001" pr="2"/>
+        <p name="dba" eid="25" wxid="552" label="dB(A)" value="-15.660001" pr="2"/>
+        <p name="db" eid="25" wxid="551" label="dB" ex="1" value="-16.860001" pr="2"/>
       </p>
       <p name="1600" eid="51" wxid="545" label="1600 Hz">
-        <p name="dba" eid="25" wxid="547" label="dB(A)" value="-16,860001" pr="2"/>
-        <p name="db" eid="25" wxid="546" label="dB" ex="1" value="-17,860001" pr="2"/>
+        <p name="dba" eid="25" wxid="547" label="dB(A)" value="-16.860001" pr="2"/>
+        <p name="db" eid="25" wxid="546" label="dB" ex="1" value="-17.860001" pr="2"/>
       </p>
       <p name="1250" eid="51" wxid="540" label="1250 Hz">
-        <p name="dba" eid="25" wxid="542" label="dB(A)" value="-18,260000" pr="2"/>
-        <p name="db" eid="25" wxid="541" label="dB" ex="1" value="-18,860001" pr="2"/>
+        <p name="dba" eid="25" wxid="542" label="dB(A)" value="-18.260000" pr="2"/>
+        <p name="db" eid="25" wxid="541" label="dB" ex="1" value="-18.860001" pr="2"/>
       </p>
       <p name="1000" eid="51" wxid="535" label="1000 Hz">
-        <p name="dba" eid="25" wxid="537" label="dB(A)" value="-19,860001" pr="2"/>
-        <p name="db" eid="25" wxid="536" label="dB" ex="1" value="-19,860001" pr="2"/>
+        <p name="dba" eid="25" wxid="537" label="dB(A)" value="-19.860001" pr="2"/>
+        <p name="db" eid="25" wxid="536" label="dB" ex="1" value="-19.860001" pr="2"/>
       </p>
       <p name="800" eid="51" wxid="530" label="800 Hz">
-        <p name="dba" eid="25" wxid="532" label="dB(A)" value="-21,660000" pr="2"/>
-        <p name="db" eid="25" wxid="531" label="dB" ex="1" value="-20,860001" pr="2"/>
+        <p name="dba" eid="25" wxid="532" label="dB(A)" value="-21.660000" pr="2"/>
+        <p name="db" eid="25" wxid="531" label="dB" ex="1" value="-20.860001" pr="2"/>
       </p>
       <p name="630" eid="51" wxid="525" label="630 Hz">
-        <p name="dba" eid="25" wxid="527" label="dB(A)" value="-23,760000" pr="2"/>
-        <p name="db" eid="25" wxid="526" label="dB" ex="1" value="-21,860001" pr="2"/>
+        <p name="dba" eid="25" wxid="527" label="dB(A)" value="-23.760000" pr="2"/>
+        <p name="db" eid="25" wxid="526" label="dB" ex="1" value="-21.860001" pr="2"/>
       </p>
       <p name="500" eid="51" wxid="520" label="500 Hz">
-        <p name="dba" eid="25" wxid="522" label="dB(A)" value="-26,060001" pr="2"/>
-        <p name="db" eid="25" wxid="521" label="dB" ex="1" value="-22,860001" pr="2"/>
+        <p name="dba" eid="25" wxid="522" label="dB(A)" value="-26.060001" pr="2"/>
+        <p name="db" eid="25" wxid="521" label="dB" ex="1" value="-22.860001" pr="2"/>
       </p>
       <p name="400" eid="51" wxid="515" label="400 Hz">
-        <p name="dba" eid="25" wxid="517" label="dB(A)" value="-28,660000" pr="2"/>
-        <p name="db" eid="25" wxid="516" label="dB" ex="1" value="-23,860001" pr="2"/>
+        <p name="dba" eid="25" wxid="517" label="dB(A)" value="-28.660000" pr="2"/>
+        <p name="db" eid="25" wxid="516" label="dB" ex="1" value="-23.860001" pr="2"/>
       </p>
       <p name="315" eid="51" wxid="510" label="315 Hz">
-        <p name="dba" eid="25" wxid="512" label="dB(A)" value="-31,460001" pr="2"/>
-        <p name="db" eid="25" wxid="511" label="dB" ex="1" value="-24,860001" pr="2"/>
+        <p name="dba" eid="25" wxid="512" label="dB(A)" value="-31.460001" pr="2"/>
+        <p name="db" eid="25" wxid="511" label="dB" ex="1" value="-24.860001" pr="2"/>
       </p>
       <p name="250" eid="51" wxid="505" label="250 Hz">
-        <p name="dba" eid="25" wxid="507" label="dB(A)" value="-34,459999" pr="2"/>
-        <p name="db" eid="25" wxid="506" label="dB" ex="1" value="-25,860001" pr="2"/>
+        <p name="dba" eid="25" wxid="507" label="dB(A)" value="-34.459999" pr="2"/>
+        <p name="db" eid="25" wxid="506" label="dB" ex="1" value="-25.860001" pr="2"/>
       </p>
       <p name="200" eid="51" wxid="500" label="200 Hz">
-        <p name="dba" eid="25" wxid="502" label="dB(A)" value="-37,760002" pr="2"/>
-        <p name="db" eid="25" wxid="501" label="dB" ex="1" value="-26,860001" pr="2"/>
+        <p name="dba" eid="25" wxid="502" label="dB(A)" value="-37.760002" pr="2"/>
+        <p name="db" eid="25" wxid="501" label="dB" ex="1" value="-26.860001" pr="2"/>
       </p>
       <p name="160" eid="51" wxid="495" label="160 Hz">
-        <p name="dba" eid="25" wxid="497" label="dB(A)" value="-41,260002" pr="2"/>
-        <p name="db" eid="25" wxid="496" label="dB" ex="1" value="-27,860001" pr="2"/>
+        <p name="dba" eid="25" wxid="497" label="dB(A)" value="-41.260002" pr="2"/>
+        <p name="db" eid="25" wxid="496" label="dB" ex="1" value="-27.860001" pr="2"/>
       </p>
       <p name="125" eid="51" wxid="490" label="125 Hz">
-        <p name="dba" eid="25" wxid="492" label="dB(A)" value="-44,959999" pr="2"/>
-        <p name="db" eid="25" wxid="491" label="dB" ex="1" value="-28,860001" pr="2"/>
+        <p name="dba" eid="25" wxid="492" label="dB(A)" value="-44.959999" pr="2"/>
+        <p name="db" eid="25" wxid="491" label="dB" ex="1" value="-28.860001" pr="2"/>
       </p>
       <p name="100" eid="51" wxid="485" label="100 Hz">
-        <p name="dba" eid="25" wxid="487" label="dB(A)" value="-48,959999" pr="2"/>
-        <p name="db" eid="25" wxid="486" label="dB" ex="1" value="-29,860001" pr="2"/>
+        <p name="dba" eid="25" wxid="487" label="dB(A)" value="-48.959999" pr="2"/>
+        <p name="db" eid="25" wxid="486" label="dB" ex="1" value="-29.860001" pr="2"/>
       </p>
       <p name="80" eid="51" wxid="480" label="80 Hz">
-        <p name="dba" eid="25" wxid="482" label="dB(A)" value="-53,360001" pr="2"/>
-        <p name="db" eid="25" wxid="481" label="dB" ex="1" value="-30,860001" pr="2"/>
+        <p name="dba" eid="25" wxid="482" label="dB(A)" value="-53.360001" pr="2"/>
+        <p name="db" eid="25" wxid="481" label="dB" ex="1" value="-30.860001" pr="2"/>
       </p>
       <p name="63" eid="51" wxid="475" label="63 Hz">
-        <p name="dba" eid="25" wxid="477" label="dB(A)" value="-58,060001" pr="2"/>
-        <p name="db" eid="25" wxid="476" label="dB" ex="1" value="-31,860001" pr="2"/>
+        <p name="dba" eid="25" wxid="477" label="dB(A)" value="-58.060001" pr="2"/>
+        <p name="db" eid="25" wxid="476" label="dB" ex="1" value="-31.860001" pr="2"/>
       </p>
       <p name="50" eid="51" wxid="470" label="50 Hz">
-        <p name="dba" eid="25" wxid="472" label="dB(A)" value="-63,060001" pr="2"/>
-        <p name="db" eid="25" wxid="471" label="dB" ex="1" value="-32,860001" pr="2"/>
+        <p name="dba" eid="25" wxid="472" label="dB(A)" value="-63.060001" pr="2"/>
+        <p name="db" eid="25" wxid="471" label="dB" ex="1" value="-32.860001" pr="2"/>
       </p>
     </frequences>
     <frequences name="BBSG_VL" eid="45" wxid="605" idspectre="4">
       <p name="cumul" eid="50" wxid="606" label="Global">
-        <p name="dba" eid="25" wxid="608" label="dB(A)" value="76,773346" pr="2"/>
-        <p name="db" eid="25" wxid="607" label="dB" value="76,576401" pr="2"/>
+        <p name="dba" eid="25" wxid="608" label="dB(A)" value="76.773346" pr="2"/>
+        <p name="db" eid="25" wxid="607" label="dB" value="76.576401" pr="2"/>
       </p>
       <p name="20000" eid="51" wxid="741" label="20000 Hz">
-        <p name="dba" eid="25" wxid="743" label="dB(A)" value="46,299999" pr="2"/>
-        <p name="db" eid="25" wxid="742" label="dB" ex="1" value="55,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="743" label="dB(A)" value="46.299999" pr="2"/>
+        <p name="db" eid="25" wxid="742" label="dB" ex="1" value="55.599998" pr="2"/>
       </p>
       <p name="16000" eid="51" wxid="736" label="16000 Hz">
-        <p name="dba" eid="25" wxid="738" label="dB(A)" value="48,899998" pr="2"/>
-        <p name="db" eid="25" wxid="737" label="dB" ex="1" value="55,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="738" label="dB(A)" value="48.899998" pr="2"/>
+        <p name="db" eid="25" wxid="737" label="dB" ex="1" value="55.599998" pr="2"/>
       </p>
       <p name="12500" eid="51" wxid="731" label="12500 Hz">
-        <p name="dba" eid="25" wxid="733" label="dB(A)" value="51,399998" pr="2"/>
-        <p name="db" eid="25" wxid="732" label="dB" ex="1" value="55,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="733" label="dB(A)" value="51.399998" pr="2"/>
+        <p name="db" eid="25" wxid="732" label="dB" ex="1" value="55.599998" pr="2"/>
       </p>
       <p name="10000" eid="51" wxid="726" label="10000 Hz">
-        <p name="dba" eid="25" wxid="728" label="dB(A)" value="53,099998" pr="2"/>
-        <p name="db" eid="25" wxid="727" label="dB" ex="1" value="55,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="728" label="dB(A)" value="53.099998" pr="2"/>
+        <p name="db" eid="25" wxid="727" label="dB" ex="1" value="55.599998" pr="2"/>
       </p>
       <p name="8000" eid="51" wxid="721" label="8000 Hz">
-        <p name="dba" eid="25" wxid="723" label="dB(A)" value="54,500000" pr="2"/>
-        <p name="db" eid="25" wxid="722" label="dB" ex="1" value="55,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="723" label="dB(A)" value="54.500000" pr="2"/>
+        <p name="db" eid="25" wxid="722" label="dB" ex="1" value="55.599998" pr="2"/>
       </p>
       <p name="6300" eid="51" wxid="716" label="6300 Hz">
-        <p name="dba" eid="25" wxid="718" label="dB(A)" value="55,500000" pr="2"/>
-        <p name="db" eid="25" wxid="717" label="dB" ex="1" value="55,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="718" label="dB(A)" value="55.500000" pr="2"/>
+        <p name="db" eid="25" wxid="717" label="dB" ex="1" value="55.599998" pr="2"/>
       </p>
       <p name="5000" eid="51" wxid="711" label="5000 Hz">
-        <p name="dba" eid="25" wxid="713" label="dB(A)" value="56,099998" pr="2"/>
-        <p name="db" eid="25" wxid="712" label="dB" ex="1" value="55,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="713" label="dB(A)" value="56.099998" pr="2"/>
+        <p name="db" eid="25" wxid="712" label="dB" ex="1" value="55.599998" pr="2"/>
       </p>
       <p name="4000" eid="51" wxid="706" label="4000 Hz">
-        <p name="dba" eid="25" wxid="708" label="dB(A)" value="59,200001" pr="2"/>
-        <p name="db" eid="25" wxid="707" label="dB" ex="1" value="58,200001" pr="2"/>
+        <p name="dba" eid="25" wxid="708" label="dB(A)" value="59.200001" pr="2"/>
+        <p name="db" eid="25" wxid="707" label="dB" ex="1" value="58.200001" pr="2"/>
       </p>
       <p name="3150" eid="51" wxid="701" label="3150 Hz">
-        <p name="dba" eid="25" wxid="703" label="dB(A)" value="62,400002" pr="2"/>
-        <p name="db" eid="25" wxid="702" label="dB" ex="1" value="61,200001" pr="2"/>
+        <p name="dba" eid="25" wxid="703" label="dB(A)" value="62.400002" pr="2"/>
+        <p name="db" eid="25" wxid="702" label="dB" ex="1" value="61.200001" pr="2"/>
       </p>
       <p name="2500" eid="51" wxid="696" label="2500 Hz">
-        <p name="dba" eid="25" wxid="698" label="dB(A)" value="65,099998" pr="2"/>
-        <p name="db" eid="25" wxid="697" label="dB" ex="1" value="63,799999" pr="2"/>
+        <p name="dba" eid="25" wxid="698" label="dB(A)" value="65.099998" pr="2"/>
+        <p name="db" eid="25" wxid="697" label="dB" ex="1" value="63.799999" pr="2"/>
       </p>
       <p name="2000" eid="51" wxid="691" label="2000 Hz">
-        <p name="dba" eid="25" wxid="693" label="dB(A)" value="67,899994" pr="2"/>
-        <p name="db" eid="25" wxid="692" label="dB" ex="1" value="66,699997" pr="2"/>
+        <p name="dba" eid="25" wxid="693" label="dB(A)" value="67.899994" pr="2"/>
+        <p name="db" eid="25" wxid="692" label="dB" ex="1" value="66.699997" pr="2"/>
       </p>
       <p name="1600" eid="51" wxid="686" label="1600 Hz">
-        <p name="dba" eid="25" wxid="688" label="dB(A)" value="69,500000" pr="2"/>
-        <p name="db" eid="25" wxid="687" label="dB" ex="1" value="68,500000" pr="2"/>
+        <p name="dba" eid="25" wxid="688" label="dB(A)" value="69.500000" pr="2"/>
+        <p name="db" eid="25" wxid="687" label="dB" ex="1" value="68.500000" pr="2"/>
       </p>
       <p name="1250" eid="51" wxid="681" label="1250 Hz">
-        <p name="dba" eid="25" wxid="683" label="dB(A)" value="70,099998" pr="2"/>
-        <p name="db" eid="25" wxid="682" label="dB" ex="1" value="69,500000" pr="2"/>
+        <p name="dba" eid="25" wxid="683" label="dB(A)" value="70.099998" pr="2"/>
+        <p name="db" eid="25" wxid="682" label="dB" ex="1" value="69.500000" pr="2"/>
       </p>
       <p name="1000" eid="51" wxid="676" label="1000 Hz">
-        <p name="dba" eid="25" wxid="678" label="dB(A)" value="69,900002" pr="2"/>
-        <p name="db" eid="25" wxid="677" label="dB" ex="1" value="69,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="678" label="dB(A)" value="69.900002" pr="2"/>
+        <p name="db" eid="25" wxid="677" label="dB" ex="1" value="69.900002" pr="2"/>
       </p>
       <p name="800" eid="51" wxid="671" label="800 Hz">
-        <p name="dba" eid="25" wxid="673" label="dB(A)" value="65,199997" pr="2"/>
-        <p name="db" eid="25" wxid="672" label="dB" ex="1" value="66,000000" pr="2"/>
+        <p name="dba" eid="25" wxid="673" label="dB(A)" value="65.199997" pr="2"/>
+        <p name="db" eid="25" wxid="672" label="dB" ex="1" value="66.000000" pr="2"/>
       </p>
       <p name="630" eid="51" wxid="666" label="630 Hz">
-        <p name="dba" eid="25" wxid="668" label="dB(A)" value="61,000000" pr="2"/>
-        <p name="db" eid="25" wxid="667" label="dB" ex="1" value="62,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="668" label="dB(A)" value="61.000000" pr="2"/>
+        <p name="db" eid="25" wxid="667" label="dB" ex="1" value="62.900002" pr="2"/>
       </p>
       <p name="500" eid="51" wxid="661" label="500 Hz">
-        <p name="dba" eid="25" wxid="663" label="dB(A)" value="55,500000" pr="2"/>
-        <p name="db" eid="25" wxid="662" label="dB" ex="1" value="58,700001" pr="2"/>
+        <p name="dba" eid="25" wxid="663" label="dB(A)" value="55.500000" pr="2"/>
+        <p name="db" eid="25" wxid="662" label="dB" ex="1" value="58.700001" pr="2"/>
       </p>
       <p name="400" eid="51" wxid="656" label="400 Hz">
-        <p name="dba" eid="25" wxid="658" label="dB(A)" value="51,400002" pr="2"/>
-        <p name="db" eid="25" wxid="657" label="dB" ex="1" value="56,200001" pr="2"/>
+        <p name="dba" eid="25" wxid="658" label="dB(A)" value="51.400002" pr="2"/>
+        <p name="db" eid="25" wxid="657" label="dB" ex="1" value="56.200001" pr="2"/>
       </p>
       <p name="315" eid="51" wxid="651" label="315 Hz">
-        <p name="dba" eid="25" wxid="653" label="dB(A)" value="48,100002" pr="2"/>
-        <p name="db" eid="25" wxid="652" label="dB" ex="1" value="54,700001" pr="2"/>
+        <p name="dba" eid="25" wxid="653" label="dB(A)" value="48.100002" pr="2"/>
+        <p name="db" eid="25" wxid="652" label="dB" ex="1" value="54.700001" pr="2"/>
       </p>
       <p name="250" eid="51" wxid="646" label="250 Hz">
-        <p name="dba" eid="25" wxid="648" label="dB(A)" value="44,699997" pr="2"/>
-        <p name="db" eid="25" wxid="647" label="dB" ex="1" value="53,299999" pr="2"/>
+        <p name="dba" eid="25" wxid="648" label="dB(A)" value="44.699997" pr="2"/>
+        <p name="db" eid="25" wxid="647" label="dB" ex="1" value="53.299999" pr="2"/>
       </p>
       <p name="200" eid="51" wxid="641" label="200 Hz">
-        <p name="dba" eid="25" wxid="643" label="dB(A)" value="40,699997" pr="2"/>
-        <p name="db" eid="25" wxid="642" label="dB" ex="1" value="51,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="643" label="dB(A)" value="40.699997" pr="2"/>
+        <p name="db" eid="25" wxid="642" label="dB" ex="1" value="51.599998" pr="2"/>
       </p>
       <p name="160" eid="51" wxid="636" label="160 Hz">
-        <p name="dba" eid="25" wxid="638" label="dB(A)" value="35,000000" pr="2"/>
-        <p name="db" eid="25" wxid="637" label="dB" ex="1" value="48,400002" pr="2"/>
+        <p name="dba" eid="25" wxid="638" label="dB(A)" value="35.000000" pr="2"/>
+        <p name="db" eid="25" wxid="637" label="dB" ex="1" value="48.400002" pr="2"/>
       </p>
       <p name="125" eid="51" wxid="631" label="125 Hz">
-        <p name="dba" eid="25" wxid="633" label="dB(A)" value="30,100000" pr="2"/>
-        <p name="db" eid="25" wxid="632" label="dB" ex="1" value="46,200001" pr="2"/>
+        <p name="dba" eid="25" wxid="633" label="dB(A)" value="30.100000" pr="2"/>
+        <p name="db" eid="25" wxid="632" label="dB" ex="1" value="46.200001" pr="2"/>
       </p>
       <p name="100" eid="51" wxid="626" label="100 Hz">
-        <p name="dba" eid="25" wxid="628" label="dB(A)" value="28,800001" pr="2"/>
-        <p name="db" eid="25" wxid="627" label="dB" ex="1" value="47,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="628" label="dB(A)" value="28.800001" pr="2"/>
+        <p name="db" eid="25" wxid="627" label="dB" ex="1" value="47.900002" pr="2"/>
       </p>
       <p name="80" eid="51" wxid="621" label="80 Hz">
-        <p name="dba" eid="25" wxid="623" label="dB(A)" value="25,400002" pr="2"/>
-        <p name="db" eid="25" wxid="622" label="dB" ex="1" value="47,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="623" label="dB(A)" value="25.400002" pr="2"/>
+        <p name="db" eid="25" wxid="622" label="dB" ex="1" value="47.900002" pr="2"/>
       </p>
       <p name="63" eid="51" wxid="616" label="63 Hz">
-        <p name="dba" eid="25" wxid="618" label="dB(A)" value="21,700001" pr="2"/>
-        <p name="db" eid="25" wxid="617" label="dB" ex="1" value="47,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="618" label="dB(A)" value="21.700001" pr="2"/>
+        <p name="db" eid="25" wxid="617" label="dB" ex="1" value="47.900002" pr="2"/>
       </p>
       <p name="50" eid="51" wxid="611" label="50 Hz">
-        <p name="dba" eid="25" wxid="613" label="dB(A)" value="17,700001" pr="2"/>
-        <p name="db" eid="25" wxid="612" label="dB" ex="1" value="47,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="613" label="dB(A)" value="17.700001" pr="2"/>
+        <p name="db" eid="25" wxid="612" label="dB" ex="1" value="47.900002" pr="2"/>
       </p>
     </frequences>
     <frequences name="BBSG_TR" eid="45" wxid="746" idspectre="5">
       <p name="cumul" eid="50" wxid="747" label="Global">
-        <p name="dba" eid="25" wxid="749" label="dB(A)" value="83,973198" pr="2"/>
-        <p name="db" eid="25" wxid="748" label="dB" value="84,428818" pr="2"/>
+        <p name="dba" eid="25" wxid="749" label="dB(A)" value="83.973198" pr="2"/>
+        <p name="db" eid="25" wxid="748" label="dB" value="84.428818" pr="2"/>
       </p>
       <p name="20000" eid="51" wxid="882" label="20000 Hz">
-        <p name="dba" eid="25" wxid="884" label="dB(A)" value="52,900002" pr="2"/>
-        <p name="db" eid="25" wxid="883" label="dB" ex="1" value="62,200001" pr="2"/>
+        <p name="dba" eid="25" wxid="884" label="dB(A)" value="52.900002" pr="2"/>
+        <p name="db" eid="25" wxid="883" label="dB" ex="1" value="62.200001" pr="2"/>
       </p>
       <p name="16000" eid="51" wxid="877" label="16000 Hz">
-        <p name="dba" eid="25" wxid="879" label="dB(A)" value="55,500000" pr="2"/>
-        <p name="db" eid="25" wxid="878" label="dB" ex="1" value="62,200001" pr="2"/>
+        <p name="dba" eid="25" wxid="879" label="dB(A)" value="55.500000" pr="2"/>
+        <p name="db" eid="25" wxid="878" label="dB" ex="1" value="62.200001" pr="2"/>
       </p>
       <p name="12500" eid="51" wxid="872" label="12500 Hz">
-        <p name="dba" eid="25" wxid="874" label="dB(A)" value="58,000000" pr="2"/>
-        <p name="db" eid="25" wxid="873" label="dB" ex="1" value="62,200001" pr="2"/>
+        <p name="dba" eid="25" wxid="874" label="dB(A)" value="58.000000" pr="2"/>
+        <p name="db" eid="25" wxid="873" label="dB" ex="1" value="62.200001" pr="2"/>
       </p>
       <p name="10000" eid="51" wxid="867" label="10000 Hz">
-        <p name="dba" eid="25" wxid="869" label="dB(A)" value="59,700001" pr="2"/>
-        <p name="db" eid="25" wxid="868" label="dB" ex="1" value="62,200001" pr="2"/>
+        <p name="dba" eid="25" wxid="869" label="dB(A)" value="59.700001" pr="2"/>
+        <p name="db" eid="25" wxid="868" label="dB" ex="1" value="62.200001" pr="2"/>
       </p>
       <p name="8000" eid="51" wxid="862" label="8000 Hz">
-        <p name="dba" eid="25" wxid="864" label="dB(A)" value="61,100002" pr="2"/>
-        <p name="db" eid="25" wxid="863" label="dB" ex="1" value="62,200001" pr="2"/>
+        <p name="dba" eid="25" wxid="864" label="dB(A)" value="61.100002" pr="2"/>
+        <p name="db" eid="25" wxid="863" label="dB" ex="1" value="62.200001" pr="2"/>
       </p>
       <p name="6300" eid="51" wxid="857" label="6300 Hz">
-        <p name="dba" eid="25" wxid="859" label="dB(A)" value="62,100002" pr="2"/>
-        <p name="db" eid="25" wxid="858" label="dB" ex="1" value="62,200001" pr="2"/>
+        <p name="dba" eid="25" wxid="859" label="dB(A)" value="62.100002" pr="2"/>
+        <p name="db" eid="25" wxid="858" label="dB" ex="1" value="62.200001" pr="2"/>
       </p>
       <p name="5000" eid="51" wxid="852" label="5000 Hz">
-        <p name="dba" eid="25" wxid="854" label="dB(A)" value="62,700001" pr="2"/>
-        <p name="db" eid="25" wxid="853" label="dB" ex="1" value="62,200001" pr="2"/>
+        <p name="dba" eid="25" wxid="854" label="dB(A)" value="62.700001" pr="2"/>
+        <p name="db" eid="25" wxid="853" label="dB" ex="1" value="62.200001" pr="2"/>
       </p>
       <p name="4000" eid="51" wxid="847" label="4000 Hz">
-        <p name="dba" eid="25" wxid="849" label="dB(A)" value="65,500000" pr="2"/>
-        <p name="db" eid="25" wxid="848" label="dB" ex="1" value="64,500000" pr="2"/>
+        <p name="dba" eid="25" wxid="849" label="dB(A)" value="65.500000" pr="2"/>
+        <p name="db" eid="25" wxid="848" label="dB" ex="1" value="64.500000" pr="2"/>
       </p>
       <p name="3150" eid="51" wxid="842" label="3150 Hz">
-        <p name="dba" eid="25" wxid="844" label="dB(A)" value="68,299995" pr="2"/>
-        <p name="db" eid="25" wxid="843" label="dB" ex="1" value="67,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="844" label="dB(A)" value="68.299995" pr="2"/>
+        <p name="db" eid="25" wxid="843" label="dB" ex="1" value="67.099998" pr="2"/>
       </p>
       <p name="2500" eid="51" wxid="837" label="2500 Hz">
-        <p name="dba" eid="25" wxid="839" label="dB(A)" value="70,400002" pr="2"/>
-        <p name="db" eid="25" wxid="838" label="dB" ex="1" value="69,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="839" label="dB(A)" value="70.400002" pr="2"/>
+        <p name="db" eid="25" wxid="838" label="dB" ex="1" value="69.099998" pr="2"/>
       </p>
       <p name="2000" eid="51" wxid="832" label="2000 Hz">
-        <p name="dba" eid="25" wxid="834" label="dB(A)" value="73,500000" pr="2"/>
-        <p name="db" eid="25" wxid="833" label="dB" ex="1" value="72,300003" pr="2"/>
+        <p name="dba" eid="25" wxid="834" label="dB(A)" value="73.500000" pr="2"/>
+        <p name="db" eid="25" wxid="833" label="dB" ex="1" value="72.300003" pr="2"/>
       </p>
       <p name="1600" eid="51" wxid="827" label="1600 Hz">
-        <p name="dba" eid="25" wxid="829" label="dB(A)" value="74,900002" pr="2"/>
-        <p name="db" eid="25" wxid="828" label="dB" ex="1" value="73,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="829" label="dB(A)" value="74.900002" pr="2"/>
+        <p name="db" eid="25" wxid="828" label="dB" ex="1" value="73.900002" pr="2"/>
       </p>
       <p name="1250" eid="51" wxid="822" label="1250 Hz">
-        <p name="dba" eid="25" wxid="824" label="dB(A)" value="76,099998" pr="2"/>
-        <p name="db" eid="25" wxid="823" label="dB" ex="1" value="75,500000" pr="2"/>
+        <p name="dba" eid="25" wxid="824" label="dB(A)" value="76.099998" pr="2"/>
+        <p name="db" eid="25" wxid="823" label="dB" ex="1" value="75.500000" pr="2"/>
       </p>
       <p name="1000" eid="51" wxid="817" label="1000 Hz">
-        <p name="dba" eid="25" wxid="819" label="dB(A)" value="76,500000" pr="2"/>
-        <p name="db" eid="25" wxid="818" label="dB" ex="1" value="76,500000" pr="2"/>
+        <p name="dba" eid="25" wxid="819" label="dB(A)" value="76.500000" pr="2"/>
+        <p name="db" eid="25" wxid="818" label="dB" ex="1" value="76.500000" pr="2"/>
       </p>
       <p name="800" eid="51" wxid="812" label="800 Hz">
-        <p name="dba" eid="25" wxid="814" label="dB(A)" value="76,299995" pr="2"/>
-        <p name="db" eid="25" wxid="813" label="dB" ex="1" value="77,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="814" label="dB(A)" value="76.299995" pr="2"/>
+        <p name="db" eid="25" wxid="813" label="dB" ex="1" value="77.099998" pr="2"/>
       </p>
       <p name="630" eid="51" wxid="807" label="630 Hz">
-        <p name="dba" eid="25" wxid="809" label="dB(A)" value="74,699997" pr="2"/>
-        <p name="db" eid="25" wxid="808" label="dB" ex="1" value="76,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="809" label="dB(A)" value="74.699997" pr="2"/>
+        <p name="db" eid="25" wxid="808" label="dB" ex="1" value="76.599998" pr="2"/>
       </p>
       <p name="500" eid="51" wxid="802" label="500 Hz">
-        <p name="dba" eid="25" wxid="804" label="dB(A)" value="67,600006" pr="2"/>
-        <p name="db" eid="25" wxid="803" label="dB" ex="1" value="70,800003" pr="2"/>
+        <p name="dba" eid="25" wxid="804" label="dB(A)" value="67.600006" pr="2"/>
+        <p name="db" eid="25" wxid="803" label="dB" ex="1" value="70.800003" pr="2"/>
       </p>
       <p name="400" eid="51" wxid="797" label="400 Hz">
-        <p name="dba" eid="25" wxid="799" label="dB(A)" value="65,699997" pr="2"/>
-        <p name="db" eid="25" wxid="798" label="dB" ex="1" value="70,500000" pr="2"/>
+        <p name="dba" eid="25" wxid="799" label="dB(A)" value="65.699997" pr="2"/>
+        <p name="db" eid="25" wxid="798" label="dB" ex="1" value="70.500000" pr="2"/>
       </p>
       <p name="315" eid="51" wxid="792" label="315 Hz">
-        <p name="dba" eid="25" wxid="794" label="dB(A)" value="59,200005" pr="2"/>
-        <p name="db" eid="25" wxid="793" label="dB" ex="1" value="65,800003" pr="2"/>
+        <p name="dba" eid="25" wxid="794" label="dB(A)" value="59.200005" pr="2"/>
+        <p name="db" eid="25" wxid="793" label="dB" ex="1" value="65.800003" pr="2"/>
       </p>
       <p name="250" eid="51" wxid="787" label="250 Hz">
-        <p name="dba" eid="25" wxid="789" label="dB(A)" value="53,199997" pr="2"/>
-        <p name="db" eid="25" wxid="788" label="dB" ex="1" value="61,799999" pr="2"/>
+        <p name="dba" eid="25" wxid="789" label="dB(A)" value="53.199997" pr="2"/>
+        <p name="db" eid="25" wxid="788" label="dB" ex="1" value="61.799999" pr="2"/>
       </p>
       <p name="200" eid="51" wxid="782" label="200 Hz">
-        <p name="dba" eid="25" wxid="784" label="dB(A)" value="48,599998" pr="2"/>
-        <p name="db" eid="25" wxid="783" label="dB" ex="1" value="59,500000" pr="2"/>
+        <p name="dba" eid="25" wxid="784" label="dB(A)" value="48.599998" pr="2"/>
+        <p name="db" eid="25" wxid="783" label="dB" ex="1" value="59.500000" pr="2"/>
       </p>
       <p name="160" eid="51" wxid="777" label="160 Hz">
-        <p name="dba" eid="25" wxid="779" label="dB(A)" value="43,500000" pr="2"/>
-        <p name="db" eid="25" wxid="778" label="dB" ex="1" value="56,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="779" label="dB(A)" value="43.500000" pr="2"/>
+        <p name="db" eid="25" wxid="778" label="dB" ex="1" value="56.900002" pr="2"/>
       </p>
       <p name="125" eid="51" wxid="772" label="125 Hz">
-        <p name="dba" eid="25" wxid="774" label="dB(A)" value="39,099998" pr="2"/>
-        <p name="db" eid="25" wxid="773" label="dB" ex="1" value="55,200001" pr="2"/>
+        <p name="dba" eid="25" wxid="774" label="dB(A)" value="39.099998" pr="2"/>
+        <p name="db" eid="25" wxid="773" label="dB" ex="1" value="55.200001" pr="2"/>
       </p>
       <p name="100" eid="51" wxid="767" label="100 Hz">
-        <p name="dba" eid="25" wxid="769" label="dB(A)" value="32,800003" pr="2"/>
-        <p name="db" eid="25" wxid="768" label="dB" ex="1" value="51,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="769" label="dB(A)" value="32.800003" pr="2"/>
+        <p name="db" eid="25" wxid="768" label="dB" ex="1" value="51.900002" pr="2"/>
       </p>
       <p name="80" eid="51" wxid="762" label="80 Hz">
-        <p name="dba" eid="25" wxid="764" label="dB(A)" value="29,400002" pr="2"/>
-        <p name="db" eid="25" wxid="763" label="dB" ex="1" value="51,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="764" label="dB(A)" value="29.400002" pr="2"/>
+        <p name="db" eid="25" wxid="763" label="dB" ex="1" value="51.900002" pr="2"/>
       </p>
       <p name="63" eid="51" wxid="757" label="63 Hz">
-        <p name="dba" eid="25" wxid="759" label="dB(A)" value="25,700001" pr="2"/>
-        <p name="db" eid="25" wxid="758" label="dB" ex="1" value="51,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="759" label="dB(A)" value="25.700001" pr="2"/>
+        <p name="db" eid="25" wxid="758" label="dB" ex="1" value="51.900002" pr="2"/>
       </p>
       <p name="50" eid="51" wxid="752" label="50 Hz">
-        <p name="dba" eid="25" wxid="754" label="dB(A)" value="21,700001" pr="2"/>
-        <p name="db" eid="25" wxid="753" label="dB" ex="1" value="51,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="754" label="dB(A)" value="21.700001" pr="2"/>
+        <p name="db" eid="25" wxid="753" label="dB" ex="1" value="51.900002" pr="2"/>
       </p>
     </frequences>
     <frequences name="BBDR_VL" eid="45" wxid="887" idspectre="6">
       <p name="cumul" eid="50" wxid="888" label="Global">
-        <p name="dba" eid="25" wxid="890" label="dB(A)" value="73,749603" pr="2"/>
-        <p name="db" eid="25" wxid="889" label="dB" value="73,742409" pr="2"/>
+        <p name="dba" eid="25" wxid="890" label="dB(A)" value="73.749603" pr="2"/>
+        <p name="db" eid="25" wxid="889" label="dB" value="73.742409" pr="2"/>
       </p>
       <p name="20000" eid="51" wxid="1023" label="20000 Hz">
-        <p name="dba" eid="25" wxid="1025" label="dB(A)" value="44,400002" pr="2"/>
-        <p name="db" eid="25" wxid="1024" label="dB" ex="1" value="53,700001" pr="2"/>
+        <p name="dba" eid="25" wxid="1025" label="dB(A)" value="44.400002" pr="2"/>
+        <p name="db" eid="25" wxid="1024" label="dB" ex="1" value="53.700001" pr="2"/>
       </p>
       <p name="16000" eid="51" wxid="1018" label="16000 Hz">
-        <p name="dba" eid="25" wxid="1020" label="dB(A)" value="47,000000" pr="2"/>
-        <p name="db" eid="25" wxid="1019" label="dB" ex="1" value="53,700001" pr="2"/>
+        <p name="dba" eid="25" wxid="1020" label="dB(A)" value="47.000000" pr="2"/>
+        <p name="db" eid="25" wxid="1019" label="dB" ex="1" value="53.700001" pr="2"/>
       </p>
       <p name="12500" eid="51" wxid="1013" label="12500 Hz">
-        <p name="dba" eid="25" wxid="1015" label="dB(A)" value="49,500000" pr="2"/>
-        <p name="db" eid="25" wxid="1014" label="dB" ex="1" value="53,700001" pr="2"/>
+        <p name="dba" eid="25" wxid="1015" label="dB(A)" value="49.500000" pr="2"/>
+        <p name="db" eid="25" wxid="1014" label="dB" ex="1" value="53.700001" pr="2"/>
       </p>
       <p name="10000" eid="51" wxid="1008" label="10000 Hz">
-        <p name="dba" eid="25" wxid="1010" label="dB(A)" value="51,200001" pr="2"/>
-        <p name="db" eid="25" wxid="1009" label="dB" ex="1" value="53,700001" pr="2"/>
+        <p name="dba" eid="25" wxid="1010" label="dB(A)" value="51.200001" pr="2"/>
+        <p name="db" eid="25" wxid="1009" label="dB" ex="1" value="53.700001" pr="2"/>
       </p>
       <p name="8000" eid="51" wxid="1003" label="8000 Hz">
-        <p name="dba" eid="25" wxid="1005" label="dB(A)" value="52,600002" pr="2"/>
-        <p name="db" eid="25" wxid="1004" label="dB" ex="1" value="53,700001" pr="2"/>
+        <p name="dba" eid="25" wxid="1005" label="dB(A)" value="52.600002" pr="2"/>
+        <p name="db" eid="25" wxid="1004" label="dB" ex="1" value="53.700001" pr="2"/>
       </p>
       <p name="6300" eid="51" wxid="998" label="6300 Hz">
-        <p name="dba" eid="25" wxid="1000" label="dB(A)" value="53,600002" pr="2"/>
-        <p name="db" eid="25" wxid="999" label="dB" ex="1" value="53,700001" pr="2"/>
+        <p name="dba" eid="25" wxid="1000" label="dB(A)" value="53.600002" pr="2"/>
+        <p name="db" eid="25" wxid="999" label="dB" ex="1" value="53.700001" pr="2"/>
       </p>
       <p name="5000" eid="51" wxid="993" label="5000 Hz">
-        <p name="dba" eid="25" wxid="995" label="dB(A)" value="54,200001" pr="2"/>
-        <p name="db" eid="25" wxid="994" label="dB" ex="1" value="53,700001" pr="2"/>
+        <p name="dba" eid="25" wxid="995" label="dB(A)" value="54.200001" pr="2"/>
+        <p name="db" eid="25" wxid="994" label="dB" ex="1" value="53.700001" pr="2"/>
       </p>
       <p name="4000" eid="51" wxid="988" label="4000 Hz">
-        <p name="dba" eid="25" wxid="990" label="dB(A)" value="57,099998" pr="2"/>
-        <p name="db" eid="25" wxid="989" label="dB" ex="1" value="56,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="990" label="dB(A)" value="57.099998" pr="2"/>
+        <p name="db" eid="25" wxid="989" label="dB" ex="1" value="56.099998" pr="2"/>
       </p>
       <p name="3150" eid="51" wxid="983" label="3150 Hz">
-        <p name="dba" eid="25" wxid="985" label="dB(A)" value="58,799999" pr="2"/>
-        <p name="db" eid="25" wxid="984" label="dB" ex="1" value="57,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="985" label="dB(A)" value="58.799999" pr="2"/>
+        <p name="db" eid="25" wxid="984" label="dB" ex="1" value="57.599998" pr="2"/>
       </p>
       <p name="2500" eid="51" wxid="978" label="2500 Hz">
-        <p name="dba" eid="25" wxid="980" label="dB(A)" value="62,200001" pr="2"/>
-        <p name="db" eid="25" wxid="979" label="dB" ex="1" value="60,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="980" label="dB(A)" value="62.200001" pr="2"/>
+        <p name="db" eid="25" wxid="979" label="dB" ex="1" value="60.900002" pr="2"/>
       </p>
       <p name="2000" eid="51" wxid="973" label="2000 Hz">
-        <p name="dba" eid="25" wxid="975" label="dB(A)" value="65,899994" pr="2"/>
-        <p name="db" eid="25" wxid="974" label="dB" ex="1" value="64,699997" pr="2"/>
+        <p name="dba" eid="25" wxid="975" label="dB(A)" value="65.899994" pr="2"/>
+        <p name="db" eid="25" wxid="974" label="dB" ex="1" value="64.699997" pr="2"/>
       </p>
       <p name="1600" eid="51" wxid="968" label="1600 Hz">
-        <p name="dba" eid="25" wxid="970" label="dB(A)" value="67,000000" pr="2"/>
-        <p name="db" eid="25" wxid="969" label="dB" ex="1" value="66,000000" pr="2"/>
+        <p name="dba" eid="25" wxid="970" label="dB(A)" value="67.000000" pr="2"/>
+        <p name="db" eid="25" wxid="969" label="dB" ex="1" value="66.000000" pr="2"/>
       </p>
       <p name="1250" eid="51" wxid="963" label="1250 Hz">
-        <p name="dba" eid="25" wxid="965" label="dB(A)" value="66,299995" pr="2"/>
-        <p name="db" eid="25" wxid="964" label="dB" ex="1" value="65,699997" pr="2"/>
+        <p name="dba" eid="25" wxid="965" label="dB(A)" value="66.299995" pr="2"/>
+        <p name="db" eid="25" wxid="964" label="dB" ex="1" value="65.699997" pr="2"/>
       </p>
       <p name="1000" eid="51" wxid="958" label="1000 Hz">
-        <p name="dba" eid="25" wxid="960" label="dB(A)" value="63,900002" pr="2"/>
-        <p name="db" eid="25" wxid="959" label="dB" ex="1" value="63,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="960" label="dB(A)" value="63.900002" pr="2"/>
+        <p name="db" eid="25" wxid="959" label="dB" ex="1" value="63.900002" pr="2"/>
       </p>
       <p name="800" eid="51" wxid="953" label="800 Hz">
-        <p name="dba" eid="25" wxid="955" label="dB(A)" value="63,600002" pr="2"/>
-        <p name="db" eid="25" wxid="954" label="dB" ex="1" value="64,400002" pr="2"/>
+        <p name="dba" eid="25" wxid="955" label="dB(A)" value="63.600002" pr="2"/>
+        <p name="db" eid="25" wxid="954" label="dB" ex="1" value="64.400002" pr="2"/>
       </p>
       <p name="630" eid="51" wxid="948" label="630 Hz">
-        <p name="dba" eid="25" wxid="950" label="dB(A)" value="61,500000" pr="2"/>
-        <p name="db" eid="25" wxid="949" label="dB" ex="1" value="63,400002" pr="2"/>
+        <p name="dba" eid="25" wxid="950" label="dB(A)" value="61.500000" pr="2"/>
+        <p name="db" eid="25" wxid="949" label="dB" ex="1" value="63.400002" pr="2"/>
       </p>
       <p name="500" eid="51" wxid="943" label="500 Hz">
-        <p name="dba" eid="25" wxid="945" label="dB(A)" value="53,899998" pr="2"/>
-        <p name="db" eid="25" wxid="944" label="dB" ex="1" value="57,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="945" label="dB(A)" value="53.899998" pr="2"/>
+        <p name="db" eid="25" wxid="944" label="dB" ex="1" value="57.099998" pr="2"/>
       </p>
       <p name="400" eid="51" wxid="938" label="400 Hz">
-        <p name="dba" eid="25" wxid="940" label="dB(A)" value="51,100002" pr="2"/>
-        <p name="db" eid="25" wxid="939" label="dB" ex="1" value="55,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="940" label="dB(A)" value="51.100002" pr="2"/>
+        <p name="db" eid="25" wxid="939" label="dB" ex="1" value="55.900002" pr="2"/>
       </p>
       <p name="315" eid="51" wxid="933" label="315 Hz">
-        <p name="dba" eid="25" wxid="935" label="dB(A)" value="48,400002" pr="2"/>
-        <p name="db" eid="25" wxid="934" label="dB" ex="1" value="55,000000" pr="2"/>
+        <p name="dba" eid="25" wxid="935" label="dB(A)" value="48.400002" pr="2"/>
+        <p name="db" eid="25" wxid="934" label="dB" ex="1" value="55.000000" pr="2"/>
       </p>
       <p name="250" eid="51" wxid="928" label="250 Hz">
-        <p name="dba" eid="25" wxid="930" label="dB(A)" value="44,199997" pr="2"/>
-        <p name="db" eid="25" wxid="929" label="dB" ex="1" value="52,799999" pr="2"/>
+        <p name="dba" eid="25" wxid="930" label="dB(A)" value="44.199997" pr="2"/>
+        <p name="db" eid="25" wxid="929" label="dB" ex="1" value="52.799999" pr="2"/>
       </p>
       <p name="200" eid="51" wxid="923" label="200 Hz">
-        <p name="dba" eid="25" wxid="925" label="dB(A)" value="38,599998" pr="2"/>
-        <p name="db" eid="25" wxid="924" label="dB" ex="1" value="49,500000" pr="2"/>
+        <p name="dba" eid="25" wxid="925" label="dB(A)" value="38.599998" pr="2"/>
+        <p name="db" eid="25" wxid="924" label="dB" ex="1" value="49.500000" pr="2"/>
       </p>
       <p name="160" eid="51" wxid="918" label="160 Hz">
-        <p name="dba" eid="25" wxid="920" label="dB(A)" value="34,599998" pr="2"/>
-        <p name="db" eid="25" wxid="919" label="dB" ex="1" value="48,000000" pr="2"/>
+        <p name="dba" eid="25" wxid="920" label="dB(A)" value="34.599998" pr="2"/>
+        <p name="db" eid="25" wxid="919" label="dB" ex="1" value="48.000000" pr="2"/>
       </p>
       <p name="125" eid="51" wxid="913" label="125 Hz">
-        <p name="dba" eid="25" wxid="915" label="dB(A)" value="28,699999" pr="2"/>
-        <p name="db" eid="25" wxid="914" label="dB" ex="1" value="44,799999" pr="2"/>
+        <p name="dba" eid="25" wxid="915" label="dB(A)" value="28.699999" pr="2"/>
+        <p name="db" eid="25" wxid="914" label="dB" ex="1" value="44.799999" pr="2"/>
       </p>
       <p name="100" eid="51" wxid="908" label="100 Hz">
-        <p name="dba" eid="25" wxid="910" label="dB(A)" value="27,499998" pr="2"/>
-        <p name="db" eid="25" wxid="909" label="dB" ex="1" value="46,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="910" label="dB(A)" value="27.499998" pr="2"/>
+        <p name="db" eid="25" wxid="909" label="dB" ex="1" value="46.599998" pr="2"/>
       </p>
       <p name="80" eid="51" wxid="903" label="80 Hz">
-        <p name="dba" eid="25" wxid="905" label="dB(A)" value="24,099998" pr="2"/>
-        <p name="db" eid="25" wxid="904" label="dB" ex="1" value="46,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="905" label="dB(A)" value="24.099998" pr="2"/>
+        <p name="db" eid="25" wxid="904" label="dB" ex="1" value="46.599998" pr="2"/>
       </p>
       <p name="63" eid="51" wxid="898" label="63 Hz">
-        <p name="dba" eid="25" wxid="900" label="dB(A)" value="20,399998" pr="2"/>
-        <p name="db" eid="25" wxid="899" label="dB" ex="1" value="46,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="900" label="dB(A)" value="20.399998" pr="2"/>
+        <p name="db" eid="25" wxid="899" label="dB" ex="1" value="46.599998" pr="2"/>
       </p>
       <p name="50" eid="51" wxid="893" label="50 Hz">
-        <p name="dba" eid="25" wxid="895" label="dB(A)" value="16,399998" pr="2"/>
-        <p name="db" eid="25" wxid="894" label="dB" ex="1" value="46,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="895" label="dB(A)" value="16.399998" pr="2"/>
+        <p name="db" eid="25" wxid="894" label="dB" ex="1" value="46.599998" pr="2"/>
       </p>
     </frequences>
     <frequences name="BBDR_TR" eid="45" wxid="1028" idspectre="7">
       <p name="cumul" eid="50" wxid="1029" label="Global">
-        <p name="dba" eid="25" wxid="1031" readonly="1" label="dB(A)" value="79,025742" pr="2"/>
-        <p name="db" eid="25" wxid="1030" readonly="1" label="dB" value="79,822319" pr="2"/>
+        <p name="dba" eid="25" wxid="1031" readonly="1" label="dB(A)" value="79.025742" pr="2"/>
+        <p name="db" eid="25" wxid="1030" readonly="1" label="dB" value="79.822319" pr="2"/>
       </p>
       <p name="20000" eid="51" wxid="1164" label="20000 Hz">
-        <p name="dba" eid="25" wxid="1166" readonly="1" label="dB(A)" value="50,799999" pr="2"/>
-        <p name="db" eid="25" wxid="1165" readonly="1" label="dB" ex="1" value="60,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="1166" readonly="1" label="dB(A)" value="50.799999" pr="2"/>
+        <p name="db" eid="25" wxid="1165" readonly="1" label="dB" ex="1" value="60.099998" pr="2"/>
       </p>
       <p name="16000" eid="51" wxid="1159" label="16000 Hz">
-        <p name="dba" eid="25" wxid="1161" readonly="1" label="dB(A)" value="53,399998" pr="2"/>
-        <p name="db" eid="25" wxid="1160" readonly="1" label="dB" ex="1" value="60,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="1161" readonly="1" label="dB(A)" value="53.399998" pr="2"/>
+        <p name="db" eid="25" wxid="1160" readonly="1" label="dB" ex="1" value="60.099998" pr="2"/>
       </p>
       <p name="12500" eid="51" wxid="1154" label="12500 Hz">
-        <p name="dba" eid="25" wxid="1156" readonly="1" label="dB(A)" value="55,899998" pr="2"/>
-        <p name="db" eid="25" wxid="1155" readonly="1" label="dB" ex="1" value="60,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="1156" readonly="1" label="dB(A)" value="55.899998" pr="2"/>
+        <p name="db" eid="25" wxid="1155" readonly="1" label="dB" ex="1" value="60.099998" pr="2"/>
       </p>
       <p name="10000" eid="51" wxid="1149" label="10000 Hz">
-        <p name="dba" eid="25" wxid="1151" readonly="1" label="dB(A)" value="57,599998" pr="2"/>
-        <p name="db" eid="25" wxid="1150" readonly="1" label="dB" ex="1" value="60,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="1151" readonly="1" label="dB(A)" value="57.599998" pr="2"/>
+        <p name="db" eid="25" wxid="1150" readonly="1" label="dB" ex="1" value="60.099998" pr="2"/>
       </p>
       <p name="8000" eid="51" wxid="1144" label="8000 Hz">
-        <p name="dba" eid="25" wxid="1146" readonly="1" label="dB(A)" value="59,000000" pr="2"/>
-        <p name="db" eid="25" wxid="1145" readonly="1" label="dB" ex="1" value="60,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="1146" readonly="1" label="dB(A)" value="59.000000" pr="2"/>
+        <p name="db" eid="25" wxid="1145" readonly="1" label="dB" ex="1" value="60.099998" pr="2"/>
       </p>
       <p name="6300" eid="51" wxid="1139" label="6300 Hz">
-        <p name="dba" eid="25" wxid="1141" readonly="1" label="dB(A)" value="60,000000" pr="2"/>
-        <p name="db" eid="25" wxid="1140" readonly="1" label="dB" ex="1" value="60,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="1141" readonly="1" label="dB(A)" value="60.000000" pr="2"/>
+        <p name="db" eid="25" wxid="1140" readonly="1" label="dB" ex="1" value="60.099998" pr="2"/>
       </p>
       <p name="5000" eid="51" wxid="1134" label="5000 Hz">
-        <p name="dba" eid="25" wxid="1136" readonly="1" label="dB(A)" value="60,599998" pr="2"/>
-        <p name="db" eid="25" wxid="1135" readonly="1" label="dB" ex="1" value="60,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="1136" readonly="1" label="dB(A)" value="60.599998" pr="2"/>
+        <p name="db" eid="25" wxid="1135" readonly="1" label="dB" ex="1" value="60.099998" pr="2"/>
       </p>
       <p name="4000" eid="51" wxid="1129" label="4000 Hz">
-        <p name="dba" eid="25" wxid="1131" readonly="1" label="dB(A)" value="63,500000" pr="2"/>
-        <p name="db" eid="25" wxid="1130" readonly="1" label="dB" ex="1" value="62,500000" pr="2"/>
+        <p name="dba" eid="25" wxid="1131" readonly="1" label="dB(A)" value="63.500000" pr="2"/>
+        <p name="db" eid="25" wxid="1130" readonly="1" label="dB" ex="1" value="62.500000" pr="2"/>
       </p>
       <p name="3150" eid="51" wxid="1124" label="3150 Hz">
-        <p name="dba" eid="25" wxid="1126" readonly="1" label="dB(A)" value="65,000000" pr="2"/>
-        <p name="db" eid="25" wxid="1125" readonly="1" label="dB" ex="1" value="63,799999" pr="2"/>
+        <p name="dba" eid="25" wxid="1126" readonly="1" label="dB(A)" value="65.000000" pr="2"/>
+        <p name="db" eid="25" wxid="1125" readonly="1" label="dB" ex="1" value="63.799999" pr="2"/>
       </p>
       <p name="2500" eid="51" wxid="1119" label="2500 Hz">
-        <p name="dba" eid="25" wxid="1121" readonly="1" label="dB(A)" value="66,600006" pr="2"/>
-        <p name="db" eid="25" wxid="1120" readonly="1" label="dB" ex="1" value="65,300003" pr="2"/>
+        <p name="dba" eid="25" wxid="1121" readonly="1" label="dB(A)" value="66.600006" pr="2"/>
+        <p name="db" eid="25" wxid="1120" readonly="1" label="dB" ex="1" value="65.300003" pr="2"/>
       </p>
       <p name="2000" eid="51" wxid="1114" label="2000 Hz">
-        <p name="dba" eid="25" wxid="1116" readonly="1" label="dB(A)" value="69,599998" pr="2"/>
-        <p name="db" eid="25" wxid="1115" readonly="1" label="dB" ex="1" value="68,400002" pr="2"/>
+        <p name="dba" eid="25" wxid="1116" readonly="1" label="dB(A)" value="69.599998" pr="2"/>
+        <p name="db" eid="25" wxid="1115" readonly="1" label="dB" ex="1" value="68.400002" pr="2"/>
       </p>
       <p name="1600" eid="51" wxid="1109" label="1600 Hz">
-        <p name="dba" eid="25" wxid="1111" readonly="1" label="dB(A)" value="70,199997" pr="2"/>
-        <p name="db" eid="25" wxid="1110" readonly="1" label="dB" ex="1" value="69,199997" pr="2"/>
+        <p name="dba" eid="25" wxid="1111" readonly="1" label="dB(A)" value="70.199997" pr="2"/>
+        <p name="db" eid="25" wxid="1110" readonly="1" label="dB" ex="1" value="69.199997" pr="2"/>
       </p>
       <p name="1250" eid="51" wxid="1104" label="1250 Hz">
-        <p name="dba" eid="25" wxid="1106" readonly="1" label="dB(A)" value="70,000000" pr="2"/>
-        <p name="db" eid="25" wxid="1105" readonly="1" label="dB" ex="1" value="69,400002" pr="2"/>
+        <p name="dba" eid="25" wxid="1106" readonly="1" label="dB(A)" value="70.000000" pr="2"/>
+        <p name="db" eid="25" wxid="1105" readonly="1" label="dB" ex="1" value="69.400002" pr="2"/>
       </p>
       <p name="1000" eid="51" wxid="1099" label="1000 Hz">
-        <p name="dba" eid="25" wxid="1101" readonly="1" label="dB(A)" value="68,900002" pr="2"/>
-        <p name="db" eid="25" wxid="1100" readonly="1" label="dB" ex="1" value="68,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="1101" readonly="1" label="dB(A)" value="68.900002" pr="2"/>
+        <p name="db" eid="25" wxid="1100" readonly="1" label="dB" ex="1" value="68.900002" pr="2"/>
       </p>
       <p name="800" eid="51" wxid="1094" label="800 Hz">
-        <p name="dba" eid="25" wxid="1096" readonly="1" label="dB(A)" value="69,099998" pr="2"/>
-        <p name="db" eid="25" wxid="1095" readonly="1" label="dB" ex="1" value="69,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="1096" readonly="1" label="dB(A)" value="69.099998" pr="2"/>
+        <p name="db" eid="25" wxid="1095" readonly="1" label="dB" ex="1" value="69.900002" pr="2"/>
       </p>
       <p name="630" eid="51" wxid="1089" label="630 Hz">
-        <p name="dba" eid="25" wxid="1091" readonly="1" label="dB(A)" value="71,699997" pr="2"/>
-        <p name="db" eid="25" wxid="1090" readonly="1" label="dB" ex="1" value="73,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="1091" readonly="1" label="dB(A)" value="71.699997" pr="2"/>
+        <p name="db" eid="25" wxid="1090" readonly="1" label="dB" ex="1" value="73.599998" pr="2"/>
       </p>
       <p name="500" eid="51" wxid="1084" label="500 Hz">
-        <p name="dba" eid="25" wxid="1086" readonly="1" label="dB(A)" value="64,600006" pr="2"/>
-        <p name="db" eid="25" wxid="1085" readonly="1" label="dB" ex="1" value="67,800003" pr="2"/>
+        <p name="dba" eid="25" wxid="1086" readonly="1" label="dB(A)" value="64.600006" pr="2"/>
+        <p name="db" eid="25" wxid="1085" readonly="1" label="dB" ex="1" value="67.800003" pr="2"/>
       </p>
       <p name="400" eid="51" wxid="1079" label="400 Hz">
-        <p name="dba" eid="25" wxid="1081" readonly="1" label="dB(A)" value="62,100002" pr="2"/>
-        <p name="db" eid="25" wxid="1080" readonly="1" label="dB" ex="1" value="66,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="1081" readonly="1" label="dB(A)" value="62.100002" pr="2"/>
+        <p name="db" eid="25" wxid="1080" readonly="1" label="dB" ex="1" value="66.900002" pr="2"/>
       </p>
       <p name="315" eid="51" wxid="1074" label="315 Hz">
-        <p name="dba" eid="25" wxid="1076" readonly="1" label="dB(A)" value="58,300003" pr="2"/>
-        <p name="db" eid="25" wxid="1075" readonly="1" label="dB" ex="1" value="64,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="1076" readonly="1" label="dB(A)" value="58.300003" pr="2"/>
+        <p name="db" eid="25" wxid="1075" readonly="1" label="dB" ex="1" value="64.900002" pr="2"/>
       </p>
       <p name="250" eid="51" wxid="1069" label="250 Hz">
-        <p name="dba" eid="25" wxid="1071" readonly="1" label="dB(A)" value="52,000000" pr="2"/>
-        <p name="db" eid="25" wxid="1070" readonly="1" label="dB" ex="1" value="60,599998" pr="2"/>
+        <p name="dba" eid="25" wxid="1071" readonly="1" label="dB(A)" value="52.000000" pr="2"/>
+        <p name="db" eid="25" wxid="1070" readonly="1" label="dB" ex="1" value="60.599998" pr="2"/>
       </p>
       <p name="200" eid="51" wxid="1064" label="200 Hz">
-        <p name="dba" eid="25" wxid="1066" readonly="1" label="dB(A)" value="47,000000" pr="2"/>
-        <p name="db" eid="25" wxid="1065" readonly="1" label="dB" ex="1" value="57,900002" pr="2"/>
+        <p name="dba" eid="25" wxid="1066" readonly="1" label="dB(A)" value="47.000000" pr="2"/>
+        <p name="db" eid="25" wxid="1065" readonly="1" label="dB" ex="1" value="57.900002" pr="2"/>
       </p>
       <p name="160" eid="51" wxid="1059" label="160 Hz">
-        <p name="dba" eid="25" wxid="1061" readonly="1" label="dB(A)" value="41,900002" pr="2"/>
-        <p name="db" eid="25" wxid="1060" readonly="1" label="dB" ex="1" value="55,300003" pr="2"/>
+        <p name="dba" eid="25" wxid="1061" readonly="1" label="dB(A)" value="41.900002" pr="2"/>
+        <p name="db" eid="25" wxid="1060" readonly="1" label="dB" ex="1" value="55.300003" pr="2"/>
       </p>
       <p name="125" eid="51" wxid="1054" label="125 Hz">
-        <p name="dba" eid="25" wxid="1056" readonly="1" label="dB(A)" value="37,000000" pr="2"/>
-        <p name="db" eid="25" wxid="1055" readonly="1" label="dB" ex="1" value="53,099998" pr="2"/>
+        <p name="dba" eid="25" wxid="1056" readonly="1" label="dB(A)" value="37.000000" pr="2"/>
+        <p name="db" eid="25" wxid="1055" readonly="1" label="dB" ex="1" value="53.099998" pr="2"/>
       </p>
       <p name="100" eid="51" wxid="1049" label="100 Hz">
-        <p name="dba" eid="25" wxid="1051" readonly="1" label="dB(A)" value="32,300003" pr="2"/>
-        <p name="db" eid="25" wxid="1050" readonly="1" label="dB" ex="1" value="51,400002" pr="2"/>
+        <p name="dba" eid="25" wxid="1051" readonly="1" label="dB(A)" value="32.300003" pr="2"/>
+        <p name="db" eid="25" wxid="1050" readonly="1" label="dB" ex="1" value="51.400002" pr="2"/>
       </p>
       <p name="80" eid="51" wxid="1044" label="80 Hz">
-        <p name="dba" eid="25" wxid="1046" readonly="1" label="dB(A)" value="28,900002" pr="2"/>
-        <p name="db" eid="25" wxid="1045" readonly="1" label="dB" ex="1" value="51,400002" pr="2"/>
+        <p name="dba" eid="25" wxid="1046" readonly="1" label="dB(A)" value="28.900002" pr="2"/>
+        <p name="db" eid="25" wxid="1045" readonly="1" label="dB" ex="1" value="51.400002" pr="2"/>
       </p>
       <p name="63" eid="51" wxid="1039" label="63 Hz">
-        <p name="dba" eid="25" wxid="1041" readonly="1" label="dB(A)" value="25,200001" pr="2"/>
-        <p name="db" eid="25" wxid="1040" readonly="1" label="dB" ex="1" value="51,400002" pr="2"/>
+        <p name="dba" eid="25" wxid="1041" readonly="1" label="dB(A)" value="25.200001" pr="2"/>
+        <p name="db" eid="25" wxid="1040" readonly="1" label="dB" ex="1" value="51.400002" pr="2"/>
       </p>
       <p name="50" eid="51" wxid="1034" label="50 Hz">
-        <p name="dba" eid="25" wxid="1036" readonly="1" label="dB(A)" value="21,200001" pr="2"/>
-        <p name="db" eid="25" wxid="1035" readonly="1" label="dB" ex="1" value="51,400002" pr="2"/>
+        <p name="dba" eid="25" wxid="1036" readonly="1" label="dB(A)" value="21.200001" pr="2"/>
+        <p name="db" eid="25" wxid="1035" readonly="1" label="dB" ex="1" value="51.400002" pr="2"/>
       </p>
     </frequences>
   </appspectrums>
