@@ -190,6 +190,7 @@ namespace CalculsGenerauxThermodynamique {
 %template(vec3) core_mathlib::base_vec3<float>;
 %template(dvec3) core_mathlib::base_vec3<double>;
 
+
 // Following configuration is for special bindings to Python like array access or ignoring some operator overriding
 // Instantiate templates used by libinterface
 namespace std {

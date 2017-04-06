@@ -1,7 +1,6 @@
 #include "rsbin.h"
 #include "std_rsbin.hpp"
 #include <string>
-#include "Core/mathlib.h"
 #include <limits>
 
 
@@ -36,7 +35,7 @@ namespace formatRSBIN
 		this->localData=&rsData;
 		manageDelete=false;
 	}
-	std::size_t rsurf_data::GetRsCount()
+	std::size_t rsurf_data::GetRsCount() const 
 	{
 		return (size_t) this->localData->tabRsSize;
 	}
@@ -119,45 +118,69 @@ namespace formatRSBIN
 		this->localData->tabRs[rsIndex].dataFaces[faceIndex].tabTimeStep[recordIndex].timeStep=idstep;
 	}
 
-	void rsurf_data::GetFileInfos(std::size_t& rs_size,std::size_t& nodes_size,std::size_t& nbtimestep,float& timestep,std::string& record_type) const
+	std::size_t rsurf_data::GetNodesCount() const
 	{
-		rs_size=this->localData->tabRsSize;
-		nodes_size=this->localData->tabNodesSize;
-		nbtimestep=this->localData->nbTimeStep;
-		timestep=this->localData->timeStep;
-		if(this->localData->recordType==RECEPTEURS_RECORD_TYPE_SPL_STANDART)
-			record_type="SPL_STANDART";
-		else if(this->localData->recordType==RECEPTEURS_RECORD_TYPE_SPL_GAIN)
-			record_type="SPL_GAIN";
-		else if(this->localData->recordType==RECEPTEURS_RECORD_TYPE_TR)
-			record_type="TR";
-		else if(this->localData->recordType==RECEPTEURS_RECORD_TYPE_EDT)
-			record_type="EDT";
+		return this->localData->tabNodesSize;
 	}
 
-	void rsurf_data::GetNodePositionValue(const std::size_t& nodeIndex, float& x, float& y, float& z)  const
+	std::size_t rsurf_data::GetTimeStepCount() const
+	{
+		return this->localData->nbTimeStep;
+	}
+
+	float rsurf_data::GetTimeStep() const
+	{
+		return this->localData->timeStep;
+	}
+
+	std::string rsurf_data::getRecordType() const
+	{
+		if (this->localData->recordType == RECEPTEURS_RECORD_TYPE_SPL_STANDART)
+			return "SPL_STANDART";
+		else if (this->localData->recordType == RECEPTEURS_RECORD_TYPE_SPL_GAIN)
+			return "SPL_GAIN";
+		else if (this->localData->recordType == RECEPTEURS_RECORD_TYPE_TR)
+			return "TR";
+		else if (this->localData->recordType == RECEPTEURS_RECORD_TYPE_EDT)
+			return "EDT";
+		else return "";
+	}
+
+	vec3 rsurf_data::GetNodePositionValue(const std::size_t& nodeIndex)  const
 	{
 		CheckNodeParameter(nodeIndex);
-		x=this->localData->tabNodes[nodeIndex].node[0];
-		y=this->localData->tabNodes[nodeIndex].node[1];
-		z=this->localData->tabNodes[nodeIndex].node[2];
+		return vec3(this->localData->tabNodes[nodeIndex].node[0],this->localData->tabNodes[nodeIndex].node[1],this->localData->tabNodes[nodeIndex].node[2]);
 	}
 
-	void rsurf_data::GetRsInfo(const std::size_t& rsIndex, std::size_t& nbfaces, std::string& rs_name, int& xmlid) const
+	std::size_t rsurf_data::GetRsFaceCount(const std::size_t & rsIndex) const
 	{
 		CheckRsParameter(rsIndex);
-		nbfaces=this->localData->tabRs[rsIndex].dataRec.quantFaces;
-		rs_name=std::string(this->localData->tabRs[rsIndex].dataRec.recepteurSName);
-		xmlid=this->localData->tabRs[rsIndex].dataRec.xmlIndex;
+		return this->localData->tabRs[rsIndex].dataRec.quantFaces;
 	}
 
-	void rsurf_data::GetFaceInfo(const std::size_t& rsIndex,const std::size_t& faceIndex,std::size_t& vertexA,std::size_t& vertexB,std::size_t& vertexC,std::size_t& recordCount) const
+	int rsurf_data::GetRsXmlId(const std::size_t & rsIndex) const
 	{
-		CheckFaceParameter(rsIndex,faceIndex);
-		recordCount=this->localData->tabRs[rsIndex].dataFaces[faceIndex].dataFace.nbRecords;
-		vertexA=this->localData->tabRs[rsIndex].dataFaces[faceIndex].dataFace.sommetsIndex[0];
-		vertexB=this->localData->tabRs[rsIndex].dataFaces[faceIndex].dataFace.sommetsIndex[1];
-		vertexC=this->localData->tabRs[rsIndex].dataFaces[faceIndex].dataFace.sommetsIndex[2];
+		CheckRsParameter(rsIndex);
+		return this->localData->tabRs[rsIndex].dataRec.xmlIndex;
+	}
+
+	ivec3 rsurf_data::GetFaceVertices(const std::size_t & rsIndex, const std::size_t & faceIndex) const
+	{
+		CheckFaceParameter(rsIndex, faceIndex);
+		const t_FaceRS& faceRs = this->localData->tabRs[rsIndex].dataFaces[faceIndex].dataFace;
+		return ivec3(faceRs.sommetsIndex[0], faceRs.sommetsIndex[1], faceRs.sommetsIndex[2]);
+	}
+
+	std::size_t rsurf_data::GetFaceRecordCount(const std::size_t & rsIndex, const std::size_t & faceIndex) const
+	{
+		CheckFaceParameter(rsIndex, faceIndex);
+		return this->localData->tabRs[rsIndex].dataFaces[faceIndex].dataFace.nbRecords;
+	}
+
+	std::string rsurf_data::GetRsName(const std::size_t & rsIndex) const
+	{
+		CheckRsParameter(rsIndex);
+		return this->localData->tabRs[rsIndex].dataRec.recepteurSName;
 	}
 
 	float rsurf_data::ComputeFaceArea(const std::size_t& rsIndex,const std::size_t& faceIndex)
@@ -175,11 +198,17 @@ namespace formatRSBIN
 			sumEnergy+=curFace.tabTimeStep[recordIndex].energy;
 		return sumEnergy;
 	}
-	void rsurf_data::GetFaceEnergy(const std::size_t& rsIndex,const std::size_t& faceIndex,const std::size_t& recordIndex,std::size_t& idstep,float& energy) const
+
+	float rsurf_data::GetFaceEnergy(const std::size_t & rsIndex, const std::size_t & faceIndex, const std::size_t & recordIndex) const
 	{
-		CheckRecordParameter(rsIndex,faceIndex,recordIndex);
-		idstep=this->localData->tabRs[rsIndex].dataFaces[faceIndex].tabTimeStep[recordIndex].timeStep;
-		energy=this->localData->tabRs[rsIndex].dataFaces[faceIndex].tabTimeStep[recordIndex].energy;
+		CheckRecordParameter(rsIndex, faceIndex, recordIndex);
+		return this->localData->tabRs[rsIndex].dataFaces[faceIndex].tabTimeStep[recordIndex].energy;
+	}
+
+	std::size_t rsurf_data::GetFaceTimeStep(const std::size_t & rsIndex, const std::size_t & faceIndex, const std::size_t & recordIndex) const
+	{
+		CheckRecordParameter(rsIndex, faceIndex, recordIndex);
+		return this->localData->tabRs[rsIndex].dataFaces[faceIndex].tabTimeStep[recordIndex].timeStep;
 	}
 
 
@@ -251,23 +280,19 @@ namespace formatRSBIN
 		:iso_contouring_data(new t_iso_contouring_data())
 	{
 		//Initialisation
-		std::size_t tsSize(0);
-		std::size_t nodesSize(0);
-		std::size_t nbtimestep(0);
-		std::size_t nbfaces(0);
+		std::size_t tsSize(data.GetRsCount());
+		std::size_t nodesSize(data.GetNodesCount());
+		std::size_t nbtimestep(data.GetTimeStepCount());
+		std::size_t nbfaces(data.GetRsFaceCount(rsIndex));
 		std::size_t idstep(0);
-		std::size_t vertices[3]={0,0,0};
+		ivec3 vertices;
 		std::size_t records(0);
-		float timestep(0.f);
+		float timestep(data.GetTimeStep());
 		float energy(0.f);
 		float totenergy(0.f);
-		std::string rs_name;
-		std::string recordType;
-		int rs_xmlid(0);
+		std::string recordType(data.getRecordType());
 		bool converttodb=false;
-		data.GetRsInfo(rsIndex,nbfaces,rs_name,rs_xmlid);
 
-		data.GetFileInfos(tsSize,nodesSize,nbtimestep,timestep,recordType);
 		if(recordType=="SPL_STANDART" || recordType=="SPL_GAIN")
 			converttodb=true;
 		//Passage de valeur de surface vers des valeurs de sommets
@@ -276,14 +301,14 @@ namespace formatRSBIN
 		std::vector<bool> face_useforcalculation(nbfaces,true);
 		for(std::size_t idface=0;idface<nbfaces;idface++)
 		{
-			data.GetFaceInfo(rsIndex,idface,vertices[0],vertices[1],vertices[2],records);
+			vertices = data.GetFaceVertices(rsIndex, idface);
+			records = data.GetFaceRecordCount(rsIndex, idface);
 
-			//Cumul de l'energie sur le temps
+			//Sum of energy over the time
 			totenergy=0;
 			for(std::size_t idrecord=0;idrecord<records;idrecord++)
 			{
-				data.GetFaceEnergy(rsIndex,idface,idrecord,idstep,energy);
-				totenergy+=energy;
+				totenergy += data.GetFaceEnergy(rsIndex, idface, idrecord);
 			}
 			if(totenergy==0 || totenergy==std::numeric_limits<float>::infinity() || -totenergy==std::numeric_limits<float>::infinity())
 			{
@@ -311,10 +336,11 @@ namespace formatRSBIN
 		vec3 A,B,C;
 		for(std::size_t idface=0;idface<nbfaces;idface++)
 		{
-			data.GetFaceInfo(rsIndex,idface,vertices[0],vertices[1],vertices[2],records);
-			data.GetNodePositionValue(vertices[0],A.x,A.y,A.z);
-			data.GetNodePositionValue(vertices[1],B.x,B.y,B.z);
-			data.GetNodePositionValue(vertices[2],C.x,C.y,C.z);
+			vertices = data.GetFaceVertices(rsIndex, idface);
+			records = data.GetFaceRecordCount(rsIndex, idface);
+			A = data.GetNodePositionValue(vertices[0]);
+			B = data.GetNodePositionValue(vertices[1]);
+			C = data.GetNodePositionValue(vertices[2]);
 			t_tri_data newtri(A,B,C,vertices_lvl[vertices[0]],vertices_lvl[vertices[1]],vertices_lvl[vertices[2]]);
 			newtri.useInIsoLines=face_useforcalculation[idface];
 			iso_contouring_data->tri_grid.push_back(newtri);
