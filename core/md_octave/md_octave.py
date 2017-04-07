@@ -29,20 +29,19 @@ def which(program):
 
     return None
     
+def getMaterial(marker, modelImport):
+    if marker > 0:
+        return modelImport.faces[marker].idMat
+    else:
+        return -1
+        
 def writeInputFiles(cbinpath,cmbinpath,materials, outfolder):
     # Import 3D model
     # This model contains the associated material link to the XML file
     modelImport = ls.ioModel()
     if not ls.CformatBIN().ImportBIN( modelImport, cbinpath):
         print("Error can not load %s model !\n" % cbinpath)
-        return -1
-    #for vertice in modelImport.vertices:
-    #    out.write("%f %f %f\n" % (vertice[0],vertice[1],vertice[2]))
-    #write faces with materials
-    # for face in modelImport.faces:
-    # mat[face.idMat]
-    # face.a,face.b,face.c
-    
+        return -1    
     
     # Import 3D mesh file builded from tetgen output
     meshImport = ls.CMBIN().LoadMesh(cmbinpath)
@@ -63,7 +62,7 @@ def writeInputFiles(cbinpath,cmbinpath,materials, outfolder):
     # Write tetra face file
     with open(outfolder+"scene_tetrafaces.txt", "w") as f:
         for tetra in meshImport.tetrahedres:
-            f.write('{0:>6} {1:>6} {2:>6} {3:>6} {4:>6}'.format(*(modelImport.faces[tetra.getFace(0).marker].idMat, modelImport.faces[tetra.getFace(1).marker].idMat, modelImport.faces[tetra.getFace(2).marker].idMat, modelImport.faces[tetra.getFace(3).marker].idMat, tetra.idVolume)) + "\n")
+            f.write('{0:>6} {1:>6} {2:>6} {3:>6} {4:>6}'.format(*(getMaterial(tetra.getFace(0).marker, modelImport), getMaterial(tetra.getFace(1).marker, modelImport), getMaterial(tetra.getFace(2).marker, modelImport), getMaterial(tetra.getFace(3).marker, modelImport), tetra.idVolume)) + "\n")
 
     # Write boundary material file
     with open(outfolder+"scene_materials_absorption.txt", "w") as f:
