@@ -31,7 +31,7 @@ def which(program):
     
 def processFace(tetraface, modelImport, fileOut):
     if tetraface.marker >= 0:
-        fileOut.write('{0:>6} {1:>6} {2:>6} {3:>6}'.format(*(tetraface.vertices[0], tetraface.vertices[1], tetraface.vertices[2], modelImport.faces[tetraface.marker].idMat)) + "\n")
+        fileOut.write('{0:>6} {1:>6} {2:>6} {3:>6}'.format(*(tetraface.vertices[0] + 1, tetraface.vertices[1] + 1, tetraface.vertices[2] + 1, modelImport.faces[tetraface.marker].idMat)) + "\n")
         
 def writeInputFiles(cbinpath,cmbinpath,materials, sources_lst, outfolder):
     # Import 3D model
