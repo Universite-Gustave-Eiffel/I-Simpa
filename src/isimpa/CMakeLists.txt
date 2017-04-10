@@ -583,7 +583,7 @@ if(WIN32) # Check if we are on Windows
 endif()
 
 # Package creation instructions, NSIS under windows
-
+SET(CPACK_GENERATOR "NSIS;ZIP")
 SET(CPACK_NSIS_EXECUTABLES_DIRECTORY ".")
 
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "I-SIMPA")

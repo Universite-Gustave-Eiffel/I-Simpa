@@ -54,20 +54,28 @@ class manager:
         menu.insert(2,(_(u"Create a line of sound sources"),self.makelinesrcid,"Bitmaps/popup_new.png"))
         return True
     def makeline(self,idel):
-        lbl_startpt=_(u"Starting position [x,y,z] (m)")
+        lbl_startptx=_(u"Starting position x (m)")
+        lbl_startpty=_(u"Starting position y (m)")
+        lbl_startptz=_(u"Starting position z (m)")
         lbl_nbsources=_(u"Number of sources")
-        lbl_step=_(u"Step [x,y,z] (m)")
+        lbl_stepx=_(u"Step x (m)")
+        lbl_stepy=_(u"Step y (m)")
+        lbl_stepz=_(u"Step z (m)")
         res=ui.application.getuserinput(_(u"Create a line of sound sources"),
                                     _(u"Please fill the following fields to create the sound source line"),
-                                    { lbl_startpt : "[0.,0.,0.]",
+                                    { lbl_startptx : "0",
+                                    lbl_startpty : "0",
+                                    lbl_startptz : "0",
                                       lbl_nbsources : "1",
-                                       lbl_step : "[1.,0.,0.]"
+                                       lbl_stepx : "1",
+                                       lbl_stepy : "0",
+                                       lbl_stepz : "0",
                                         })
         if res[0]:
             try:
-                startpoint=eval(res[1][lbl_startpt])
+                startpoint=vec3(float(res[1][lbl_startptx]),float(res[1][lbl_startpty]),float(res[1][lbl_startptz]))
                 nbsources=int(res[1][lbl_nbsources])
-                step=eval(res[1][lbl_step])
+                step=vec3(float(res[1][lbl_stepx]),float(res[1][lbl_stepy]),float(res[1][lbl_stepz]))
             except:
                 print(_(u"Wrong parameters"),file=sys.stderr)
                 return
@@ -96,7 +104,8 @@ class manager:
         for src in srclst:
             sourceEl=ui.element(src)
             #On recupere la position de la source
-            centregroup+=vec3(sourceEl.getpositionconfig("pos_source"))
+            pos = sourceEl.getpositionconfig("pos_source")
+            centregroup+=vec3(pos[0], pos[1], pos[2])
         centregroup/=len(srclst)
         
         res=ui.application.getuserinput(_(u"Rotation of a group of sound sources"),
