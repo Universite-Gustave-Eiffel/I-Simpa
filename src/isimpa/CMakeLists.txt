@@ -427,12 +427,12 @@ IF(GETTEXT_FOUND )
   add_subdirectory (lang/fr)
   add_subdirectory (lang/pl)
   # Plugins locale
-  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/UserScript/job_tool/locale ${CMAKE_BINARY_DIR}/src/job_tool)
-  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/UserScript/recp_tool/locale ${CMAKE_BINARY_DIR}/src/recp_tool)
-  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/UserScript/source_tools/locale ${CMAKE_BINARY_DIR}/src/source_tools)
-  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/UserScript/moveto_vertex/locale ${CMAKE_BINARY_DIR}/src/moveto_vertex)
-  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/UserScript/preceiv_sourceTracker/locale ${CMAKE_BINARY_DIR}/src/preceiv_sourceTracker)
-  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/UserScript/SppsReportSample/locale ${CMAKE_BINARY_DIR}/src/SppsReportSample)
+  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/job_tool/locale ${CMAKE_BINARY_DIR}/src/job_tool)
+  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/recp_tool/locale ${CMAKE_BINARY_DIR}/src/recp_tool)
+  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/source_tools/locale ${CMAKE_BINARY_DIR}/src/source_tools)
+  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/moveto_vertex/locale ${CMAKE_BINARY_DIR}/src/moveto_vertex)
+  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/preceiv_sourceTracker/locale ${CMAKE_BINARY_DIR}/src/preceiv_sourceTracker)
+  #disabled ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/SppsReportSample/locale ${CMAKE_BINARY_DIR}/src/SppsReportSample)
   # Building isimpa require building pofiles
   add_dependencies(isimpa pofiles)
 ENDIF()
@@ -583,7 +583,9 @@ if(WIN32) # Check if we are on Windows
 endif()
 
 # Package creation instructions, NSIS under windows
-SET(CPACK_GENERATOR "NSIS;ZIP")
+if(WIN32 AND NOT DEFINED CPACK_GENERATOR) # Check if we are on Windows
+	SET(CPACK_GENERATOR "NSIS;7z")
+endif()
 SET(CPACK_NSIS_EXECUTABLES_DIRECTORY ".")
 
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "I-SIMPA")

@@ -56,38 +56,54 @@ class manager:
         menu.insert(2,(_(u"Create a receiver grid"),self.makelinerecpid,"Bitmaps/popup_new.png"))
         return True
     def makeline(self,idel):
-        lbl_startpt=_(u"Starting position [x,y,z] (m)")
+        lbl_startptx=_(u"Starting position x (m)")
+        lbl_startpty=_(u"Starting position y (m)")
+        lbl_startptz=_(u"Starting position z (m)")
         lbl_nbrecp=_(u"Number of rows")
         lbl_nbrecpcol=_(u"Number of cols")
-        lbl_step=_(u"Row step [x,y,z] (m)")
-        lbl_stepcol=_(u"Col step [x,y,z] (m)")
-        inputs={ lbl_startpt : "[0.,0.,0.]",
+        lbl_stepx=_(u"Row step x (m)")
+        lbl_stepy=_(u"Row step y (m)")
+        lbl_stepz=_(u"Row step z (m)")
+        lbl_stepcolx=_(u"Col step x (m)")
+        lbl_stepcoly=_(u"Col step y (m)")
+        lbl_stepcolz=_(u"Col step z (m)")
+        inputs={ lbl_startptx : "0",
+                lbl_startpty : "0",
+                lbl_startptz : "0",
                   lbl_nbrecp : "1",
                   lbl_nbrecpcol : "1",
-                   lbl_step : "[1.,0.,0.]",
-                   lbl_stepcol : "[0.,1.,0.]"
+                   lbl_stepx : "1",
+                   lbl_stepy : "0",
+                   lbl_stepz : "0",
+                   lbl_stepcolx : "0",
+                   lbl_stepcoly : "1",
+                   lbl_stepcolz : "0"
                     }
         res=ui.application.getuserinput(_(u"Create a receiver grid"),
                                     _(u"Please fill the following fields to create the receivers points grid"),
                                     inputs)
         if res[0]:
-            startpoint=eval(res[1][lbl_startpt])
+            startpoint=[float(res[1][lbl_startptx]),float(res[1][lbl_startpty]),float(res[1][lbl_startptz])]
             nbrecp=int(res[1][lbl_nbrecp])
             nbrecpcol=int(res[1][lbl_nbrecpcol])
-            step=eval(res[1][lbl_step])
-            stepcol=eval(res[1][lbl_stepcol])
+            step=[float(res[1][lbl_stepx]),float(res[1][lbl_stepy]),float(res[1][lbl_stepz])]
+            stepcol=[float(res[1][lbl_stepcolx]),float(res[1][lbl_stepcoly]),float(res[1][lbl_stepcolz])]
             MakeGridRecp(idel,startpoint,nbrecp,nbrecpcol,step,stepcol)
     def align_on_same_point(self,idel):
         
-        lbl_topt=_(u"Orient to position [x,y,z]")
+        lbl_toptx=_(u"Orient to position x (m)")
+        lbl_topty=_(u"Orient to position y (m)")
+        lbl_toptz=_(u"Orient to position z (m)")
         res=ui.application.getuserinput(_(u"Orient a group of receivers to a point"),
                                     _(u"Please enter the coordinates of the orientation point"),
-                                    { lbl_topt : "[0.,0.,0.]"
+                                    { lbl_toptx : "0",
+                                    lbl_topty : "0",
+                                    lbl_toptz : "0",
                                         })
         if res[0]:
             grprecp=ui.element(idel)
             recplst=grprecp.getallelementbytype(ui.element_type.ELEMENT_TYPE_SCENE_RECEPTEURSP_RECEPTEUR)
-            topt=eval(res[1][lbl_topt])
+            topt=[float(res[1][lbl_topt]), float(res[1][lbl_topty]), float(res[1][lbl_toptz])]
             for recpid in recplst:
                 recp=ui.element(recpid)
                 recp.updatepositionconfig("direction_dot",topt)
@@ -158,7 +174,8 @@ class manager:
             for rp in rplst:
                 rpEl=ui.element(rp)
                 #On recupere la position du rp
-                newpos=vec3(rpEl.getpositionconfig("pos_recepteur"))+vectranslation
+                posrecp = rpEl.getpositionconfig("pos_recepteur")
+                newpos=vec3(posrecp[0], posrecp[1], posrecp[2])+vectranslation
                 rpEl.updatepositionconfig("pos_recepteur",[newpos.x,newpos.y,newpos.z])
 ui.application.register_menu_manager(ui.element_type.ELEMENT_TYPE_SCENE_RECEPTEURSP, manager())
 

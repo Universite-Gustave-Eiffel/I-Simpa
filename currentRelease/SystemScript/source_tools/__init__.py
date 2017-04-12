@@ -73,9 +73,9 @@ class manager:
                                         })
         if res[0]:
             try:
-                startpoint=vec3(float(res[1][lbl_startptx]),float(res[1][lbl_startpty]),float(res[1][lbl_startptz]))
+                startpoint=[float(res[1][lbl_startptx]),float(res[1][lbl_startpty]),float(res[1][lbl_startptz])]
                 nbsources=int(res[1][lbl_nbsources])
-                step=vec3(float(res[1][lbl_stepx]),float(res[1][lbl_stepy]),float(res[1][lbl_stepz]))
+                step=[float(res[1][lbl_stepx]),float(res[1][lbl_stepy]),float(res[1][lbl_stepz])]
             except:
                 print(_(u"Wrong parameters"),file=sys.stderr)
                 return
@@ -92,9 +92,11 @@ class manager:
     def disable_grp_sources(self,idgrp):
         self.set_grp_src_activation(idgrp,False)
     def rotate_src(self,idgrp):
-        lbl_vec=_(u"Vector of rotation")
+        lbl_vecx=_(u"Vector of rotation x")
+        lbl_vecy=_(u"Vector of rotation y")
+        lbl_vecz=_(u"Vector of rotation z")
         lbl_angle=_(u"Angle (degrees)")
-        lbl_rotation_pos=_(u"Rotation centre")
+        lbl_rotation_pos=_(u"Rotation centre x (m)")
         ##Evaluation du centre de rotation
         #on recupere le groupe des sources
         srcgroup=ui.element(idgrp)
@@ -110,15 +112,19 @@ class manager:
         
         res=ui.application.getuserinput(_(u"Rotation of a group of sound sources"),
                                     "",
-                                    { lbl_vec : "[0.,0.,1.]",
+                                    { lbl_vecx : "0",
+                                    lbl_vecy : "0",
+                                    lbl_vecz : "1",
                                       lbl_angle : "90",
-                                      lbl_rotation_pos : str(centregroup)
+                                      lbl_rotation_posx : str(centregroup[0]),
+                                      lbl_rotation_posy : str(centregroup[1]),
+                                      lbl_rotation_posz : str(centregroup[2])
                                         })
         if res[0]:
             try:
-                vecrotation=vec3(eval(res[1][lbl_vec]))
+                vecrotation=vec3(float(res[1][lbl_vecx]), float(res[1][lbl_vecy]), float(res[1][lbl_vecz]))
                 anglerotation=float(res[1][lbl_angle])
-                centregroup=vec3(eval(res[1][lbl_rotation_pos]))
+                centregroup=vec3(float(res[1][lbl_rotation_posx]), float(res[1][lbl_rotation_posy]), float(res[1][lbl_rotation_posz]))
             except:
                 print(_(u"Wrong parameters"),file=sys.stderr)
                 return
@@ -128,18 +134,23 @@ class manager:
             srclst=srcgroup.getallelementbytype(ui.element_type.ELEMENT_TYPE_SCENE_SOURCES_SOURCE)
             for src in srclst:
                 sourceEl=ui.element(src)
-                rotatedpos=vec3(sourceEl.getpositionconfig("pos_source"))-centregroup
+                pos_source = sourceEl.getpositionconfig("pos_source")
+                rotatedpos=vec3(pos_source[0], pos_source[1], pos_source[2])-centregroup
                 rotatedpos=rotatedpos.rotate(vecrotation,math.radians(anglerotation))+centregroup
-                sourceEl.updatepositionconfig("pos_source",[rotatedpos.x,rotatedpos.y,rotatedpos.z])
+                sourceEl.updatepositionconfig("pos_source",[rotatedpos[0],rotatedpos[1], rotatedpos[2])
     def translate_src(self,idgrp):
-        lbl_vec=_(u"Direction (m)")
+        lbl_vecx=_(u"Direction x (m)")
+        lbl_vecy=_(u"Direction y (m)")
+        lbl_vecz=_(u"Direction z (m)")
         res=ui.application.getuserinput(_(u"Translation of a group of sound sources"),
                                     "",
-                                    { lbl_vec : "[1.,0.,0.]"
+                                    { lbl_vecx : "1",
+                                    lbl_vecy : "0",
+                                    lbl_vecz : "0",
                                         })
         if res[0]:
             try:
-                vectranslation=vec3(eval(res[1][lbl_vec]))
+                vectranslation=vec3(float(res[1][lbl_vec]), float(res[1][lbl_vecy]), float(res[1][lbl_vecz]))
             except:
                 print(_(u"Wrong parameters"),file=sys.stderr)
                 return
@@ -150,7 +161,8 @@ class manager:
             for src in srclst:
                 sourceEl=ui.element(src)
                 #On recupere la position de la source
-                newpos=vec3(sourceEl.getpositionconfig("pos_source"))+vectranslation
-                sourceEl.updatepositionconfig("pos_source",[newpos.x,newpos.y,newpos.z])
+                pos_source = sourceEl.getpositionconfig("pos_source")
+                newpos=vec3(pos_source[0], pos_source[1], pos_source[2])+vectranslation
+                sourceEl.updatepositionconfig("pos_source",[newpos[0],newpos[1],newpos[2]])
                 
 ui.application.register_menu_manager(ui.element_type.ELEMENT_TYPE_SCENE_SOURCES, manager())
