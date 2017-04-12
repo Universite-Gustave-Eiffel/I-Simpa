@@ -118,7 +118,7 @@ def main(callOctave=True):
         if octave is None:
             print("Octave program not in system path, however input files are created", file=sys.stderr)
         else:
-            command = ["octave.bat","--persist", outputdir+"MVCEF3D.m"]
+            command = ["octave.bat","--persist", outputdir+"MVCEF3Dtravail.m"]
             print("Run " + " ".join(command))
             call(command, cwd=outputdir, shell=True)
 if __name__ == '__main__':
