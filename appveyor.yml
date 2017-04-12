@@ -106,7 +106,9 @@ on_finish:
     - if exist c:\projects\isimpa\build\Testing\Temporary\LastTest.log ( type c:\projects\isimpa\build\Testing\Temporary\LastTest.log )
 artifacts:
   - path: 'build\*.exe'
-    name: isimpa-win64
+    name: isimpa-win64-install
+  - path: 'build\*.zip'
+    name: isimpa-win64-standalone
   - path: 'build\CMakeFiles\CMakeOutput.log'
     name: cmake_output_log
   - path: 'build\CMakeFiles\CMakeError.log'
