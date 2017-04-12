@@ -96,7 +96,9 @@ class manager:
         lbl_vecy=_(u"Vector of rotation y")
         lbl_vecz=_(u"Vector of rotation z")
         lbl_angle=_(u"Angle (degrees)")
-        lbl_rotation_pos=_(u"Rotation centre x (m)")
+        lbl_rotation_posx=_(u"Rotation centre x (m)")
+        lbl_rotation_posy=_(u"Rotation centre y (m)")
+        lbl_rotation_posz=_(u"Rotation centre z (m)")
         ##Evaluation du centre de rotation
         #on recupere le groupe des sources
         srcgroup=ui.element(idgrp)
@@ -121,6 +123,7 @@ class manager:
                                       lbl_rotation_posz : str(centregroup[2])
                                         })
         if res[0]:
+            vecrotation = vec3()
             try:
                 vecrotation=vec3(float(res[1][lbl_vecx]), float(res[1][lbl_vecy]), float(res[1][lbl_vecz]))
                 anglerotation=float(res[1][lbl_angle])
@@ -136,8 +139,8 @@ class manager:
                 sourceEl=ui.element(src)
                 pos_source = sourceEl.getpositionconfig("pos_source")
                 rotatedpos=vec3(pos_source[0], pos_source[1], pos_source[2])-centregroup
-                rotatedpos=rotatedpos.rotate(vecrotation,math.radians(anglerotation))+centregroup
-                sourceEl.updatepositionconfig("pos_source",[rotatedpos[0],rotatedpos[1], rotatedpos[2])
+                rotatedpos=rotatedpos.Rotation(vecrotation,math.radians(anglerotation))+centregroup
+                sourceEl.updatepositionconfig("pos_source",[rotatedpos[0],rotatedpos[1], rotatedpos[2]])
     def translate_src(self,idgrp):
         lbl_vecx=_(u"Direction x (m)")
         lbl_vecy=_(u"Direction y (m)")
@@ -146,12 +149,12 @@ class manager:
                                     "",
                                     { lbl_vecx : "1",
                                     lbl_vecy : "0",
-                                    lbl_vecz : "0",
+                                    lbl_vecz : "0"
                                         })
         if res[0]:
             try:
-                vectranslation=vec3(float(res[1][lbl_vec]), float(res[1][lbl_vecy]), float(res[1][lbl_vecz]))
-            except:
+                vectranslation=vec3(float(res[1][lbl_vecx]), float(res[1][lbl_vecy]), float(res[1][lbl_vecz]))
+            except ValueError:
                 print(_(u"Wrong parameters"),file=sys.stderr)
                 return
             #on recupere le groupe des sources

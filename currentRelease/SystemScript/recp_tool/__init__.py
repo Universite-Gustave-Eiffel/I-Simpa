@@ -103,7 +103,7 @@ class manager:
         if res[0]:
             grprecp=ui.element(idel)
             recplst=grprecp.getallelementbytype(ui.element_type.ELEMENT_TYPE_SCENE_RECEPTEURSP_RECEPTEUR)
-            topt=[float(res[1][lbl_topt]), float(res[1][lbl_topty]), float(res[1][lbl_toptz])]
+            topt=[float(res[1][lbl_toptx]), float(res[1][lbl_topty]), float(res[1][lbl_toptz])]
             for recpid in recplst:
                 recp=ui.element(recpid)
                 recp.updatepositionconfig("direction_dot",topt)
@@ -176,6 +176,6 @@ class manager:
                 #On recupere la position du rp
                 posrecp = rpEl.getpositionconfig("pos_recepteur")
                 newpos=vec3(posrecp[0], posrecp[1], posrecp[2])+vectranslation
-                rpEl.updatepositionconfig("pos_recepteur",[newpos.x,newpos.y,newpos.z])
+                rpEl.updatepositionconfig("pos_recepteur",[newpos[0],newpos[1],newpos[2]])
 ui.application.register_menu_manager(ui.element_type.ELEMENT_TYPE_SCENE_RECEPTEURSP, manager())
 
