@@ -239,10 +239,10 @@ public:
 				// Some old projects use comma as decimal value, try to change to .
 				wxString svalEn(sval);
 				svalEn.Replace(",", ".");
-				iss = std::istringstream(svalEn.ToStdString());
-				iss.imbue(std::locale::classic());
+				std::istringstream issen(svalEn.ToStdString());
+				issen.imbue(std::locale::classic());
 				double value;
-				if (iss >> value && iss.eof()) {
+				if (issen >> value && issen.eof()) {
 					if (ok)
 						*ok = true;
 					return value;
