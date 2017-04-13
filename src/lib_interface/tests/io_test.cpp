@@ -483,10 +483,15 @@ BOOST_AUTO_TEST_CASE(write_read_gabe_test1)
 	// Create new file
 	Gabe_rw driver;
 
-	driver.AppendStrCol(stringarray({"first row", "second row", "third row"}), "first column");
-	driver.AppendIntCol(intarray({ 1, 2, 3 }), "second column");
-	driver.AppendFloatCol(floatarray({ 1.1f, 2.2f, 3.3f }), "third column", 4);
-	driver.AppendFloatCol(floatarray({ }), "fourth column", 1);
+	stringarray expectedCol0({ "first row", "second row", "third row" });
+	intarray expectedCol1({ 1, 2, 3 });
+	floatarray expectedCol2({ 1.1f, 2.2f, 3.3f });
+	floatarray expectedCol3;
+
+	driver.AppendStrCol(expectedCol0, "first column");
+	driver.AppendIntCol(expectedCol1, "second column");
+	driver.AppendFloatCol(expectedCol2, "third column", 4);
+	driver.AppendFloatCol(expectedCol3, "fourth column", 1);
 
 	driver.SetReadOnly(true);
 
@@ -499,5 +504,26 @@ BOOST_AUTO_TEST_CASE(write_read_gabe_test1)
 	BOOST_REQUIRE(driverLoad.size() == 4);
 
 	BOOST_CHECK(driverLoad.GetColTitle(0) == "first column");
+	BOOST_CHECK(driverLoad.GetColTitle(1) == "second column");
+	BOOST_CHECK(driverLoad.GetColTitle(2) == "third column");
+	BOOST_CHECK(driverLoad.GetColTitle(3) == "fourth column");
+	
+	BOOST_REQUIRE(driverLoad.GetTabTypes() == typearray({ gabe_io::COLTYPE::GABE_OBJECTTYPE_SHORTSTRING, gabe_io::COLTYPE::GABE_OBJECTTYPE_INT, gabe_io::COLTYPE::GABE_OBJECTTYPE_FLOAT,gabe_io::COLTYPE::GABE_OBJECTTYPE_FLOAT }));
+
+
+	stringarray resultCol0;
+	intarray resultCol1;
+	floatarray resultCol2;
+	floatarray resultCol3;
+
+	driverLoad.ReadColStr(0, resultCol0);
+	driverLoad.ReadColInt(1, resultCol1);
+	driverLoad.ReadColFloat(2, resultCol2);
+	driverLoad.ReadColFloat(3, resultCol3);
+
+	BOOST_CHECK(resultCol0 == expectedCol0);
+	BOOST_CHECK(resultCol1 == expectedCol1);
+	BOOST_CHECK(resultCol2 == expectedCol2);
+	BOOST_CHECK(resultCol3 == expectedCol3);
 
 }
