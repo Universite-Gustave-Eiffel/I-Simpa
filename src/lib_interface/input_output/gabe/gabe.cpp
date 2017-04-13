@@ -45,19 +45,19 @@ namespace formatGABE
 	struct t_FileHeader
 	{
 	    t_FileHeader():formatVersion(0),t_FileHeader_Length(0),t_ColHeader_Length(0),cols(0),readOnly(false){}
-		Intb formatVersion;						/*!< Version du format de données */
-		Longb t_FileHeader_Length;		/*!< Taille de la structure */
-		Longb t_ColHeader_Length;		/*!< Taille de la structure */
-		Longb cols;									/*!< Nombre de colonnes enregistré */
+		int32_t formatVersion;						/*!< Version du format de données */
+		int32_t t_FileHeader_Length;		/*!< Taille de la structure */
+		int32_t t_ColHeader_Length;		/*!< Taille de la structure */
+		int32_t cols;									/*!< Nombre de colonnes enregistré */
 		bool readOnly;								/*!< Données en lecture seule */
 	};
 
 	struct t_ColHeader
 	{
-		UShortb colType;												/*!< GABE_OBJECTTYPE Type de la colonne */
-		Longb rows;															/*!< Nombre de lignes */
-		LongLongb sizeofCol;											/*!< Taille en octets de la colonne */
-		LongLongb sizeofHeader;									/*!< Taille en octets de l'entete spécifique de la colonne*/
+		uint16_t colType;												/*!< GABE_OBJECTTYPE Type de la colonne */
+		int32_t rows;															/*!< Nombre de lignes */
+		int64_t sizeofCol;											/*!< Taille en octets de la colonne */
+		int64_t sizeofHeader;									/*!< Taille en octets de l'entete spécifique de la colonne*/
 		char label[STRING_LABEL_LENGTH];			/*!< Libellé de la colonne */
 		t_ColHeader()
 		{
@@ -85,7 +85,7 @@ namespace formatGABE
 	{
 		strcpy(label,_label);
 	}
-
+	
 	const char * GABE_Object::GetStringEquiv(int numRow)
 	{
 		return 0;
@@ -93,6 +93,12 @@ namespace formatGABE
 	/**********************************************
 	 * GABE_Data Class définition
 	 **********************************************/
+
+	template<class Td, class Ts>
+	bool GABE_Data<Td, Ts>::ReadFile(std::fstream & fs)
+	{
+		return false;
+	}
 
 	template<class Td,class Ts> char * GABE_Data<Td,Ts>::GetFirstChar()
 	{
@@ -110,6 +116,13 @@ namespace formatGABE
 		:GABE_Data<Floatb,t_HeaderFloat>(_size,GABE_OBJECTTYPE_FLOAT)
 	{
 		memset(tabData,0,sizeof(float)*_size);
+	}
+	bool GABE_Data_Float::ReadFile(std::fstream& fs) {
+		int32_t numOfDigits;
+		fs.read((char*)&numOfDigits, sizeof(numOfDigits));
+		headerData.numOfDigits = numOfDigits;
+		fs.read((char*)tabData, sizeof(Floatb) * size);
+		return true;
 	}
 	const char * GABE_Data_Float::GetStringEquiv(int numRow)
 	{
@@ -148,6 +161,11 @@ namespace formatGABE
 			strcpy(tabData[numRow].strData,strToCopy);
 	}
 
+	bool GABE_Data_ShortString::ReadFile(std::fstream& fs) {
+		fs.seekg(1, std::ios_base::cur);
+		fs.read((char*)tabData, sizeof(t_StringShort) * size);
+		return true;
+	}
 	GABE_Object* GABE_Data_ShortString::GetCopy() const
 	{
 		return new GABE_Data_ShortString(*this);
@@ -160,6 +178,11 @@ namespace formatGABE
 		:GABE_Data<Intb>(_size,GABE_OBJECTTYPE_INT)
 	{
 		memset(tabData,0,sizeof(int)*_size);
+	}
+	bool GABE_Data_Integer::ReadFile(std::fstream& fs) {
+		fs.seekg(1, std::ios_base::cur);
+		fs.read((char*)tabData, sizeof(int32_t) * size);
+		return true;
 	}
 	const char * GABE_Data_Integer::GetStringEquiv(int numRow)
 	{
@@ -320,69 +343,79 @@ namespace formatGABE
 	{
 		return GetCol(numCol);
 	}
-	bool GABE::Load(const char *strFileName)
+	bool GABE::Load(const std::string& strFileName)
 	{
 		Destroy();
 		//Namespace
 		using namespace std;
-		bool isOtherVersion=false;
-		//Declarations
 
-		fstream binFile (strFileName, ios::in | ios::binary);
-
-		//Ecriture de l'entete du fichier
+		fstream binFile(strFileName, ios::in | ios::binary);
+		if (!binFile.is_open())
+			return false;
+		
+		// Load file header
 		t_FileHeader fileheader;
+		binFile.read((char*)&fileheader.formatVersion, sizeof(t_FileHeader::formatVersion));
+		binFile.read((char*)&fileheader.t_FileHeader_Length, sizeof(t_FileHeader::t_FileHeader_Length));
+		binFile.read((char*)&fileheader.t_ColHeader_Length, sizeof(t_FileHeader::t_ColHeader_Length));
+		binFile.read((char*)&fileheader.cols, sizeof(t_FileHeader::cols));
+		binFile.read((char*)&fileheader.readOnly, sizeof(t_FileHeader::readOnly));
+		// Skip 3 bytes
+		binFile.seekg(3, std::ios_base::cur);
 
-		if(binFile.read((char*)&fileheader ,sizeof(t_FileHeader)))
+
+		if (fileheader.formatVersion > (const int)GABE_VERSION) {
+			return false;
+		}
+
+		readOnly = fileheader.readOnly;
+		cols = fileheader.cols;
+		InitCols();
+		// For each column (Gabe object)
+		for (Longb idcol = 0; idcol<cols; idcol++)
 		{
-			readOnly=fileheader.readOnly;
-			cols=fileheader.cols;
-			InitCols();
-
-			if(fileheader.formatVersion!=(const int)GABE_VERSION) //Si la version du fichier est différente
-				isOtherVersion=true;
-
-			if(isOtherVersion)
-				binFile.seekp((Longb)binFile.tellp()-(Longb)sizeof(t_FileHeader)+fileheader.t_FileHeader_Length);
-			//Pour chaque colonne
-			for(Longb idcol=0;idcol<cols;idcol++)
+			GABE_Object* newObject = NULL;
+			t_ColHeader colHeader;
+			binFile.read((char*)&colHeader.colType, sizeof(t_ColHeader::colType));
+			// Skip 2 bytes
+			binFile.seekg(2, std::ios_base::cur);
+			binFile.read((char*)&colHeader.rows, sizeof(t_ColHeader::rows));
+			binFile.read((char*)&colHeader.sizeofCol, sizeof(t_ColHeader::sizeofCol));
+			binFile.read((char*)&colHeader.sizeofHeader, sizeof(t_ColHeader::sizeofHeader));
+			binFile.read((char*)&colHeader.label, sizeof(t_ColHeader::label));
+			// Skip 1 bytes
+			binFile.seekg(1, std::ios_base::cur);
+			switch ((GABE_OBJECTTYPE)colHeader.colType)
 			{
-				GABE_Object* newObject=NULL;
-				t_ColHeader colHeader;
-				binFile.read((char*)&colHeader ,sizeof(t_ColHeader));
-				if(isOtherVersion)
-					binFile.seekp((Longb)binFile.tellp()-(Longb)sizeof(t_ColHeader)+fileheader.t_ColHeader_Length);
-				switch((GABE_OBJECTTYPE)colHeader.colType)
-				{
-					case GABE_OBJECTTYPE_FLOAT:
-						newObject=new GABE_Data_Float(colHeader.rows);
-						break;
-					case GABE_OBJECTTYPE_SHORTSTRING:
-						newObject=new GABE_Data_ShortString(colHeader.rows);
-						break;
-					case GABE_OBJECTTYPE_INT:
-						newObject=new GABE_Data_Integer(colHeader.rows);
-						break;
-						/*
-					default:
-						newObject=new GABE_Data_Unknown<colHeader.sizeofCol/colHeader.rows,colHeader.sizeofHeader>(colHeader.rows);
-						break;
-						*/
+				case GABE_OBJECTTYPE_FLOAT:
+					newObject = new GABE_Data_Float(colHeader.rows);
+					break;
+				case GABE_OBJECTTYPE_SHORTSTRING:
+					newObject = new GABE_Data_ShortString(colHeader.rows);
+					break;
+				case GABE_OBJECTTYPE_INT:
+					newObject = new GABE_Data_Integer(colHeader.rows);
+					break;
+			}
+			if (newObject)
+			{
+				//Lecture des données génériques
+				newObject->SetLabel(colHeader.label);
+				if(!newObject->ReadFile(binFile)) {
+					Destroy();
+					delete newObject;
+					binFile.close();
+					return false;
 				}
-				if(newObject)
-				{
-					//Lecture des données génériques
-					newObject->SetLabel(colHeader.label);
-					//Lecture de l'entête spécifique de la colonne
-					binFile.read(newObject->GetHeaderFirstChar(),colHeader.sizeofHeader);
-					//Lecture du contenu de la colonne
-					binFile.read(newObject->GetFirstChar(),colHeader.sizeofCol);
-					if(isOtherVersion)
-						binFile.seekp((LongLongb)binFile.tellp()-newObject->GetLength()+colHeader.sizeofCol);
-					this->SetCol(idcol,newObject);
-				}else{
-					//Format de fichier inconnu
-					binFile.seekp((LongLongb)binFile.tellp()+colHeader.sizeofCol);
+				this->SetCol(idcol, newObject);
+			}
+			else {
+				//Unkown column
+				binFile.seekg(colHeader.sizeofCol, std::ios_base::cur);
+				if(binFile.rdstate() != std::ifstream::goodbit) {
+					Destroy();
+					binFile.close();
+					return false;
 				}
 			}
 		}
@@ -405,7 +438,7 @@ namespace formatGABE
 		return readOnly;
 	}
 
-	bool GABE::Save(const char *strFileName)
+	bool GABE::Save(const std::string& strFileName)
 	{
 		//Namespace
 		using namespace std;

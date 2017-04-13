@@ -32,6 +32,7 @@
 #define __GABE__
 #include <memory.h>
 #include <assert.h>
+#include <fstream> 
 /*! @file gabe.h
  *  @brief Generic Array Binary Exchange
  *
@@ -117,6 +118,13 @@ public:
 	 * Retourne l'adresse d'une copie de l'objet
 	 */
 	virtual GABE_Object* GetCopy() const =0;
+
+	/**
+	 * Load the content of this column from 
+	 */
+	virtual bool ReadFile(std::fstream& fs) { return false; }
+
+	virtual bool WriteFile(std::fstream& fs) { return false; }
 };
 /**
  * Structure de données par défaut
@@ -163,7 +171,7 @@ public:
 	}
 	virtual GABE_Object* GetCopy() const=0;
 	virtual const char * GetStringEquiv(int numRow){ return (const char *)&tabData[numRow]; }
-
+	virtual bool ReadFile(std::fstream& fs);
 	virtual const char * GetLabel() const{ return GABE_Object::GetLabel();}
 	virtual void SetLabel(const char * _label) { GABE_Object::SetLabel(_label); }
 	/**
@@ -213,6 +221,7 @@ class GABE_Data_Float: public GABE_Data<Floatb,t_HeaderFloat>
 		{
 		}
 		virtual const char * GetStringEquiv(int numRow);
+		virtual bool ReadFile(std::fstream& fs);
 		virtual GABE_Object* GetCopy() const;
 };
 /**
@@ -234,6 +243,7 @@ class GABE_Data_ShortString: public GABE_Data<t_StringShort>
 		GABE_Data_ShortString(const GABE_Data_ShortString& cpyFrom):GABE_Data<t_StringShort>(cpyFrom){}
 		void SetString(int numRow,const char * strToCopy);
 		virtual GABE_Object* GetCopy() const;
+		virtual bool ReadFile(std::fstream& fs);
 		virtual const char * GetStringEquiv(int numRow){ return this->GetValue(numRow).strData; }
 };
 /**
@@ -247,6 +257,7 @@ class GABE_Data_Integer: public GABE_Data<Intb>
 		GABE_Data_Integer(Longb _size);
 		GABE_Data_Integer(const GABE_Data_Integer& cpyFrom):GABE_Data<Intb>(cpyFrom){}
 		virtual const char * GetStringEquiv(int numRow);
+		virtual bool ReadFile(std::fstream& fs);
 		virtual GABE_Object* GetCopy() const;
 };
 
@@ -332,12 +343,12 @@ public:
 	 * Chargement du tableau
 	 * @param strFileName Chemin du fichier
 	 */
-    bool Load(const char *strFileName);
+    bool Load(const std::string& strFileName);
 	/**
 	 * Sauvegarde du tableau
 	 * @param strFileName Chemin du fichier
 	 */
-	bool Save(const char *strFileName);
+	bool Save(const std::string& strFileName);
 
 	/**
 	 * Le fichier ne sera pas éditable par l'utilisateur

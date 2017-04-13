@@ -51,13 +51,13 @@ namespace gabe_io
 	}
 	bool Gabe_rw::Load(const string& fileName)
 	{
-		bool res=GABE::Load(fileName.c_str());
+		bool res=GABE::Load(fileName);
 		filledcols=GABE::GetCols();
 		return res;
 	}
 	bool Gabe_rw::Save(const string& fileName)
 	{
-		return GABE::Save(fileName.c_str());
+		return GABE::Save(fileName);
 	}
 
 	void Gabe_rw::AppendStrCol( const stringarray& coldata, const string& coltitle )

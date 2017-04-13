@@ -679,8 +679,8 @@ void ProjectManager::OnMenuDoAcousticParametersComputation(uiTreeCtrl* fromCtrl,
 			for(int idparameter=0;idparameter<tabParameters.size();idparameter++)
 				tabWriter.SetCol(idparameter+1,tabParameters[idparameter]);
 
-
-			tabWriter.Save(fileFolder+wxString(wxTRANSLATE("Acoustic parameters"))+wxString(".gabe"));
+			std::string path = fileFolder + wxString(wxTRANSLATE("Acoustic parameters")) + wxString(".gabe");
+			tabWriter.Save(path);
 
 			//////////////////////////////////////////
 			// Enregistrement des données des courbes de shroeder
@@ -709,7 +709,8 @@ void ProjectManager::OnMenuDoAcousticParametersComputation(uiTreeCtrl* fromCtrl,
 				}
 				tabSchroederWriter.SetCol(idstep+1,colTimeStep);
 			}
-			tabSchroederWriter.Save(fileFolder+wxString(wxTRANSLATE("Schroeder curves"))+wxString(".gabe"));
+			std::string Schroederpath = fileFolder + wxString(wxTRANSLATE("Schroeder curves")) + wxString(".gabe");
+			tabSchroederWriter.Save(Schroederpath);
 
 
 			reportFolder->RefreshFolderContents();
@@ -1026,7 +1027,8 @@ void ProjectManager::OnMenuDoAdvancedAcousticParametersComputation(Element* sele
 		tabWriter.LockData(); //lecture seule pour l'utilisateur
 		for(int idparameter=0;idparameter<tabToExport.size();idparameter++)
 			tabWriter.SetCol(idparameter,tabToExport[idparameter]);
-		tabWriter.Save(fileFolder+wxString(wxTRANSLATE("Advanced acoustic parameters"))+wxString(".gabe"));
+		std::string path = fileFolder + wxString(wxTRANSLATE("Advanced acoustic parameters")) + wxString(".gabe");
+		tabWriter.Save(path);
 		gabeFolder->RefreshFolderContents();
 		gabeFolder->FillWxTree(treeResult);
 		}
