@@ -36,7 +36,7 @@ namespace gabe_io
 	using namespace std;
 	using namespace formatGABE;
 
-#define CHECK_GABE_COL_INDICE (int)indicecol<cols && colsContainer[indicecol]!=NULL
+#define CHECK_GABE_COL_INDICE (int)indicecol<colsContainer.size() && colsContainer[indicecol]!=nullptr
 
 	Gabe_rw::Gabe_rw(const size_t& sizeHint)
 		:GABE(sizeHint)
@@ -103,7 +103,7 @@ namespace gabe_io
 		Longb colsiz(this->GetCols());
 		for(Intb idcol=0;idcol<colsiz;idcol++)
 		{
-			if(colsContainer[idcol]==NULL)
+			if(colsContainer[idcol]==nullptr)
 				return idcol;
 		}
 		return -1;

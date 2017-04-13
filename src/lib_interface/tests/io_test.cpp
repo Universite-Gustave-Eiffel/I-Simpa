@@ -2,6 +2,7 @@
 #include <boost/test/included/unit_test.hpp>
 #include <iostream>
 #include <input_output/bin.h>
+#include <input_output/gabe/stdgabe.h>
 #include <input_output/poly/poly.h>
 #include <input_output/importExportMaillage/mbin.h>
 #include <Core/mathlib.h>
@@ -470,4 +471,33 @@ BOOST_AUTO_TEST_CASE(write_read_poly_test1)
 	BOOST_CHECK(model.modelRegions[0].dotInRegion == vec3(3.7530646, 5.7952776, 1.09989));
 	BOOST_CHECK(model.modelRegions[0].regionIndex == 3119);
 	BOOST_CHECK(model.modelRegions[0].regionRefinement == -1);
+}
+
+
+
+
+BOOST_AUTO_TEST_CASE(write_read_gabe_test1)
+{
+	using namespace gabe_io;
+
+	// Create new file
+	Gabe_rw driver;
+
+	driver.AppendStrCol(stringarray({"first row", "second row", "third row"}), "first column");
+	driver.AppendIntCol(intarray({ 1, 2, 3 }), "second column");
+	driver.AppendFloatCol(floatarray({ 1.1f, 2.2f, 3.3f }), "third column", 4);
+	driver.AppendFloatCol(floatarray({ }), "fourth column", 1);
+
+	driver.SetReadOnly(true);
+
+	BOOST_REQUIRE(driver.Save("write_read_gabe_test1.gabe"));
+
+	Gabe_rw driverLoad;
+
+	BOOST_REQUIRE(driverLoad.Load("write_read_gabe_test1.gabe"));
+
+	BOOST_REQUIRE(driverLoad.size() == 4);
+
+	BOOST_CHECK(driverLoad.GetColTitle(0) == "first column");
+
 }
