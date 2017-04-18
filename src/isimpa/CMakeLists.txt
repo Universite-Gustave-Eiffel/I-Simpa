@@ -584,7 +584,7 @@ endif()
 
 # Package creation instructions, NSIS under windows
 if(WIN32 AND NOT DEFINED CPACK_GENERATOR) # Check if we are on Windows
-	SET(CPACK_GENERATOR "NSIS;7z")
+	SET(CPACK_GENERATOR "NSIS;zip")
 endif()
 SET(CPACK_NSIS_EXECUTABLES_DIRECTORY ".")
 
