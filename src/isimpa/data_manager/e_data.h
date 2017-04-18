@@ -236,10 +236,22 @@ public:
 				return value;
 			}
 			else {
-				wxLogError(_("Cannot convert string \"%s\" to decimal number"), sval);
-				if (ok)
-					*ok = false;
-				return 0.f;
+				// Some old projects use comma as decimal value, try to change to .
+				wxString svalEn(sval);
+				svalEn.Replace(",", ".");
+				std::istringstream issen(svalEn.ToStdString());
+				issen.imbue(std::locale::classic());
+				double value;
+				if (issen >> value && issen.eof()) {
+					if (ok)
+						*ok = true;
+					return value;
+				} else {
+					wxLogError(_("Cannot convert string \"%s\" to decimal number"), sval);
+					if (ok)
+						*ok = false;
+					return 0.f;				
+				}
 			}
 		}
 	}

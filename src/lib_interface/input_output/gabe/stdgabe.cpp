@@ -36,7 +36,7 @@ namespace gabe_io
 	using namespace std;
 	using namespace formatGABE;
 
-#define CHECK_GABE_COL_INDICE (int)indicecol<cols && colsContainer[indicecol]!=NULL
+#define CHECK_GABE_COL_INDICE (int)indicecol<colsContainer.size() && colsContainer[indicecol]!=nullptr
 
 	Gabe_rw::Gabe_rw(const size_t& sizeHint)
 		:GABE(sizeHint)
@@ -51,13 +51,13 @@ namespace gabe_io
 	}
 	bool Gabe_rw::Load(const string& fileName)
 	{
-		bool res=GABE::Load(fileName.c_str());
+		bool res=GABE::Load(fileName);
 		filledcols=GABE::GetCols();
 		return res;
 	}
 	bool Gabe_rw::Save(const string& fileName)
 	{
-		return GABE::Save(fileName.c_str());
+		return GABE::Save(fileName);
 	}
 
 	void Gabe_rw::AppendStrCol( const stringarray& coldata, const string& coltitle )
@@ -103,7 +103,7 @@ namespace gabe_io
 		Longb colsiz(this->GetCols());
 		for(Intb idcol=0;idcol<colsiz;idcol++)
 		{
-			if(colsContainer[idcol]==NULL)
+			if(colsContainer[idcol]==nullptr)
 				return idcol;
 		}
 		return -1;

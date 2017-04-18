@@ -610,7 +610,8 @@ void GabeDataGrid::SaveData(wxString gabeFilePath)
 		newCol->SetLabel(this->GetColLabelValue(idcol));
 		binExport.SetCol(idcol+1,newCol);
 	}
-	binExport.Save(gabeFilePath);
+	std::string gabestdfilepath = gabeFilePath.ToStdString();
+	binExport.Save(gabestdfilepath);
 }
 void GabeDataGrid::SaveDataCSV(wxString csvFilePath)
 {

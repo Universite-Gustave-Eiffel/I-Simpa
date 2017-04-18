@@ -181,7 +181,7 @@ add_test( NAME lib_interface
 file(COPY tests/cube.cbin tests/cube_mesh.mbin tests/test_import1.poly
     DESTINATION ${TEST_DATA_DIR})
 
-add_executable(TEST_io_lib_interface tests/cbin_io_test.cpp )
+add_executable(TEST_io_lib_interface tests/io_test.cpp )
 
 
 target_link_libraries (TEST_io_lib_interface

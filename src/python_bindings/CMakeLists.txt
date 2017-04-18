@@ -113,7 +113,14 @@ add_test(NAME check_retrocompat_mesh
 add_test(NAME check_retrocompat_gabe
   COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_retrocompat_gabe.py ${CMAKE_CURRENT_SOURCE_DIR}/tests/retrocompat_test.gabe ${PROJECT_BINARY_DIR}/Testing/Temporary/ WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX})
   
+add_test(NAME test_math
+  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_math.py WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX})
   
-set_property(TEST test_modelio check_retrocompat check_retrocompat_mesh check_retrocompat_gabe
+add_test(NAME check_retrocompat_recsurf
+  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_retrocompat_recsurf.py WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX})
+  
+  
+  
+set_property(TEST test_modelio check_retrocompat check_retrocompat_mesh check_retrocompat_gabe test_math check_retrocompat_recsurf
  PROPERTY ENVIRONMENT "PYTHONPATH=${CMAKE_INSTALL_PREFIX}"
 )

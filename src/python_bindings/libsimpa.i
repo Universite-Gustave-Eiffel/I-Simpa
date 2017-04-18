@@ -19,26 +19,17 @@ SWIG Python lib interface module declaration
 
 %include "std_vector.i"
 %include "stl.i"
+%include "stdint.i"
 %include "std_wstring.i"
 %include "typemaps.i"
+%include "carrays.i"
 
-%typemap(out) float [ANY] {
-   int i;
-   $result = PyList_New($1_dim0);
-   for (i = 0; i < $1_dim0; i++) {
-     PyObject *o = PyFloat_FromDouble((double) $1[i]);
-     PyList_SetItem($result,i,o);
-   }
-} 
+%array_class(double, doubleArray);
+%array_class(float, floatArray);
+%array_class(long, longArray);
 
-%typemap(out) long [ANY] {
-   int i;
-   $result = PyList_New($1_dim0);
-   for (i = 0; i < $1_dim0; i++) {
-     PyObject *o = PyFloat_FromLong((long) $1[i]);
-     PyList_SetItem($result,i,o);
-   }
-} 
+%array_class(formatMBIN::bintetraface, bintetrafaceArray);
+
 
 %extend core_mathlib::ivec3 {
 	%rename(Index) operator[](int) const;
@@ -79,6 +70,30 @@ SWIG Python lib interface module declaration
 		def __repr__(self):
 		  return "[%f,%f,%f]" % (self[0],self[1],self[2])
 	%}
+}
+
+// Map a Python sequence into any sized C double array
+%typemap(in) double[ANY](double temp[$1_dim0]) {
+  int i;
+  if (!PySequence_Check($input)) {
+      PyErr_SetString(PyExc_TypeError,"Expecting a sequence");
+      return NULL;
+  }
+  if (PyObject_Length($input) != $1_dim0) {
+      PyErr_SetString(PyExc_ValueError,"Expecting a sequence with $1_dim0 elements");
+      return NULL;
+  }
+  for (i =0; i < $1_dim0; i++) {
+      PyObject *o = PySequence_GetItem($input,i);
+      if (!PyFloat_Check(o)) {
+         Py_XDECREF(o);
+         PyErr_SetString(PyExc_ValueError,"Expecting a sequence of floats");
+         return NULL;
+      }
+      temp[i] = PyFloat_AsDouble(o);
+      Py_DECREF(o);
+  }
+  $1 = &temp[0];
 }
 
 %extend formatMBIN::t_binNode {
@@ -156,10 +171,25 @@ namespace CalculsGenerauxThermodynamique {
 %include "../lib_interface/input_output/particles/part_io.hpp"
 %include "../lib_interface/tools/vol_splitter.hpp"
 %include "../lib_interface/tools/surf_merging.hpp"
+%include "std_except.i"
 
+%extend formatMBIN::bintetrahedre {
+  %ignore tetrafaces;
+  const formatMBIN::bintetraface& getFace(int i) {  
+    if (i >= 4 || i < 0)
+      throw std::out_of_range("out of bounds access");
+    return $self->tetrafaces[i];
+  }
+  void setFace(int i, const formatMBIN::bintetraface& face) {
+    if (i >= 4 || i < 0)
+      throw std::out_of_range("out of bounds access");
+	$self->tetrafaces[i] = face;
+  }
+}
 
 %template(vec3) core_mathlib::base_vec3<float>;
 %template(dvec3) core_mathlib::base_vec3<double>;
+
 
 // Following configuration is for special bindings to Python like array access or ignoring some operator overriding
 // Instantiate templates used by libinterface

@@ -56,45 +56,65 @@ class manager:
         menu.insert(2,(_(u"Create a receiver grid"),self.makelinerecpid,"Bitmaps/popup_new.png"))
         return True
     def makeline(self,idel):
-        lbl_startpt=_(u"Starting position [x,y,z] (m)")
+        lbl_startptx=_(u"Starting position x (m)")
+        lbl_startpty=_(u"Starting position y (m)")
+        lbl_startptz=_(u"Starting position z (m)")
         lbl_nbrecp=_(u"Number of rows")
         lbl_nbrecpcol=_(u"Number of cols")
-        lbl_step=_(u"Row step [x,y,z] (m)")
-        lbl_stepcol=_(u"Col step [x,y,z] (m)")
-        inputs={ lbl_startpt : "[0.,0.,0.]",
+        lbl_stepx=_(u"Row step x (m)")
+        lbl_stepy=_(u"Row step y (m)")
+        lbl_stepz=_(u"Row step z (m)")
+        lbl_stepcolx=_(u"Col step x (m)")
+        lbl_stepcoly=_(u"Col step y (m)")
+        lbl_stepcolz=_(u"Col step z (m)")
+        inputs={ lbl_startptx : "0",
+                lbl_startpty : "0",
+                lbl_startptz : "0",
                   lbl_nbrecp : "1",
                   lbl_nbrecpcol : "1",
-                   lbl_step : "[1.,0.,0.]",
-                   lbl_stepcol : "[0.,1.,0.]"
+                   lbl_stepx : "1",
+                   lbl_stepy : "0",
+                   lbl_stepz : "0",
+                   lbl_stepcolx : "0",
+                   lbl_stepcoly : "1",
+                   lbl_stepcolz : "0"
                     }
         res=ui.application.getuserinput(_(u"Create a receiver grid"),
                                     _(u"Please fill the following fields to create the receivers points grid"),
                                     inputs)
         if res[0]:
-            startpoint=eval(res[1][lbl_startpt])
+            startpoint=[float(res[1][lbl_startptx]),float(res[1][lbl_startpty]),float(res[1][lbl_startptz])]
             nbrecp=int(res[1][lbl_nbrecp])
             nbrecpcol=int(res[1][lbl_nbrecpcol])
-            step=eval(res[1][lbl_step])
-            stepcol=eval(res[1][lbl_stepcol])
+            step=[float(res[1][lbl_stepx]),float(res[1][lbl_stepy]),float(res[1][lbl_stepz])]
+            stepcol=[float(res[1][lbl_stepcolx]),float(res[1][lbl_stepcoly]),float(res[1][lbl_stepcolz])]
             MakeGridRecp(idel,startpoint,nbrecp,nbrecpcol,step,stepcol)
     def align_on_same_point(self,idel):
         
-        lbl_topt=_(u"Orient to position [x,y,z]")
+        lbl_toptx=_(u"Orient to position x (m)")
+        lbl_topty=_(u"Orient to position y (m)")
+        lbl_toptz=_(u"Orient to position z (m)")
         res=ui.application.getuserinput(_(u"Orient a group of receivers to a point"),
                                     _(u"Please enter the coordinates of the orientation point"),
-                                    { lbl_topt : "[0.,0.,0.]"
+                                    { lbl_toptx : "0",
+                                    lbl_topty : "0",
+                                    lbl_toptz : "0",
                                         })
         if res[0]:
             grprecp=ui.element(idel)
             recplst=grprecp.getallelementbytype(ui.element_type.ELEMENT_TYPE_SCENE_RECEPTEURSP_RECEPTEUR)
-            topt=eval(res[1][lbl_topt])
+            topt=[float(res[1][lbl_toptx]), float(res[1][lbl_topty]), float(res[1][lbl_toptz])]
             for recpid in recplst:
                 recp=ui.element(recpid)
                 recp.updatepositionconfig("direction_dot",topt)
     def rotate(self,idgrp):
-        lbl_vec=_(u"Vector of rotation (m)")
+        lbl_vecx=_(u"Vector of rotation x [0 1]")
+        lbl_vecy=_(u"Vector of rotation y [0 1]")
+        lbl_vecz=_(u"Vector of rotation z [0 1]")
         lbl_angle=_(u"Angle of rotation (degrees)")
-        lbl_rotation_pos=_(u"Rotation center (m)")
+        lbl_rotation_posx=_(u"Rotation center x (m)")
+        lbl_rotation_posy=_(u"Rotation center y (m)")
+        lbl_rotation_posz=_(u"Rotation center z (m)")
 
         #on recupere le groupe des rp
         rpgroup=ui.element(idgrp)
@@ -104,36 +124,46 @@ class manager:
         for rp in rplst:
             rpEl=ui.element(rp)
             #On recupere la position du récepteur ponctuel
-            centregroup+=vec3(rpEl.getpositionconfig("pos_recepteur"))
+            pos = rpEl.getpositionconfig("pos_recepteur")
+            centregroup += vec3(pos[0], pos[1], pos[2])
         centregroup/=len(rplst)
         res=ui.application.getuserinput(_(u"Rotation of a group of receivers"),
                                     "",
-                                    { lbl_vec : "[0.,0.,1.]",
+                                    { lbl_vecx : "0.",
+                                      lbl_vecy : "0.",
+                                      lbl_vecz : "1.",
                                       lbl_angle : "90",
-                                      lbl_rotation_pos : str(centregroup)
+                                      lbl_rotation_posx : "%0.8g" % centregroup[0],
+                                      lbl_rotation_posy : "%0.8g" % centregroup[1],
+                                      lbl_rotation_posz : "%0.8g" % centregroup[2]
                                         })
         if res[0]:
             try:
-                vecrotation=vec3(eval(res[1][lbl_vec]))
+                vecrotation=vec3(float(res[1][lbl_vecx]), float(res[1][lbl_vecy]), float(res[1][lbl_vecz]))
                 anglerotation=float(res[1][lbl_angle])
-                centregroup=vec3(eval(res[1][lbl_rotation_pos]))
+                centregroup=vec3(float(res[1][lbl_rotation_posx]),float(res[1][lbl_rotation_posy]),float(res[1][lbl_rotation_posz]))
             except:
                 print(_(u"Wrong parameters"),file=sys.stderr)
                 return
             for rp in rplst:
                 rpEl=ui.element(rp)
-                rotatedpos=vec3(rpEl.getpositionconfig("pos_recepteur"))-centregroup
-                rotatedpos=rotatedpos.rotate(vecrotation,math.radians(anglerotation))+centregroup
-                rpEl.updatepositionconfig("pos_recepteur",[rotatedpos.x,rotatedpos.y,rotatedpos.z])
+                rppos = rpEl.getpositionconfig("pos_recepteur")
+                rotatedpos=vec3(rppos[0], rppos[1], rppos[2])-centregroup
+                rotatedpos=rotatedpos.Rotation(vecrotation,math.radians(anglerotation))+centregroup
+                rpEl.updatepositionconfig("pos_recepteur",[rotatedpos[0],rotatedpos[1],rotatedpos[2]])
     def translate(self,idgrp):
-        lbl_vec=_(u"Direction (m)")
+        lbl_vecx=_(u"Direction x (m)")
+        lbl_vecy=_(u"Direction y (m)")
+        lbl_vecz=_(u"Direction z (m)")
         res=ui.application.getuserinput(_(u"Translation of a group of receivers"),
                                     "",
-                                    { lbl_vec : "[1.,0.,0.]"
+                                    { lbl_vecx : "1.",
+                                      lbl_vecy : "0.",
+                                      lbl_vecz : "0.",
                                         })
         if res[0]:
             try:
-                vectranslation=vec3(eval(res[1][lbl_vec]))
+                vectranslation=vec3(float(res[1][lbl_vecx]),float(res[1][lbl_vecy]),float(res[1][lbl_vecz]))
             except:
                 print(_(u"Wrong parameters"),file=sys.stderr)
                 return
@@ -144,7 +174,8 @@ class manager:
             for rp in rplst:
                 rpEl=ui.element(rp)
                 #On recupere la position du rp
-                newpos=vec3(rpEl.getpositionconfig("pos_recepteur"))+vectranslation
-                rpEl.updatepositionconfig("pos_recepteur",[newpos.x,newpos.y,newpos.z])
+                posrecp = rpEl.getpositionconfig("pos_recepteur")
+                newpos=vec3(posrecp[0], posrecp[1], posrecp[2])+vectranslation
+                rpEl.updatepositionconfig("pos_recepteur",[newpos[0],newpos[1],newpos[2]])
 ui.application.register_menu_manager(ui.element_type.ELEMENT_TYPE_SCENE_RECEPTEURSP, manager())
 

@@ -51,7 +51,7 @@
 #include "last_cpp_include.hpp"
 #include "manager/alphanum.hpp"
 
-long Element::nbElement=0;
+std::atomic_long Element::nbElement(0);
 
 bool ElementSortPredicate(Element* lEl,Element* rEl)
 {
@@ -244,27 +244,24 @@ bool Element::OnElementRemoved()
 		(*itfils)->OnElementRemoved();
 	return true;
 }
-void Element::SetXmlId(int newXmlId)
+void Element::SetXmlId()
 {
-	if(newXmlId>=0)
-	{
-		if(newXmlId>GetCompteur())
-			SetCompteur(newXmlId);
-		this->elementInfo.xmlIdElement=newXmlId;
-	}else{
-		this->elementInfo.xmlIdElement=GetCompteur()+1;
-		SetCompteur(this->elementInfo.xmlIdElement);
-	}
+	this->elementInfo.xmlIdElement=IncElementCount();
 }
 
-int Element::GetCompteur()
+long Element::GetElementCount()
 {
-	return Element::nbElement;
+	return Element::nbElement.load();
 }
 
-void Element::SetCompteur(int newValue)
+long Element::IncElementCount()
 {
-	Element::nbElement=newValue;
+	return Element::nbElement.fetch_add(1);
+}
+
+void Element::SetElementCount(long elCount)
+{
+	Element::nbElement.exchange(elCount);
 }
 
 //Cet élément est differend que le fichier de sauvegarde dans /current/

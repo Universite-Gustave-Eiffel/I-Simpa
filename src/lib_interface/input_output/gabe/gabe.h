@@ -32,6 +32,8 @@
 #define __GABE__
 #include <memory.h>
 #include <assert.h>
+#include <fstream> 
+#include <vector> 
 /*! @file gabe.h
  *  @brief Generic Array Binary Exchange
  *
@@ -117,6 +119,13 @@ public:
 	 * Retourne l'adresse d'une copie de l'objet
 	 */
 	virtual GABE_Object* GetCopy() const =0;
+
+	/**
+	 * Load the content of this column from 
+	 */
+	virtual bool ReadFile(std::fstream& fs) { return false; }
+
+	virtual bool WriteFile(std::fstream& fs) { return false; }
 };
 /**
  * Structure de données par défaut
@@ -163,7 +172,8 @@ public:
 	}
 	virtual GABE_Object* GetCopy() const=0;
 	virtual const char * GetStringEquiv(int numRow){ return (const char *)&tabData[numRow]; }
-
+	virtual bool ReadFile(std::fstream& fs);
+	virtual bool WriteFile(std::fstream& fs);
 	virtual const char * GetLabel() const{ return GABE_Object::GetLabel();}
 	virtual void SetLabel(const char * _label) { GABE_Object::SetLabel(_label); }
 	/**
@@ -208,11 +218,13 @@ class GABE_Data_Float: public GABE_Data<Floatb,t_HeaderFloat>
 		char buffer[STRING_NUMBER_BUFFER];
 	public:
 		GABE_Data_Float(Longb _size);
+		virtual bool WriteFile(std::fstream & fs);
 		GABE_Data_Float(const GABE_Data_Float& cpyFrom)
 			:GABE_Data<Floatb,t_HeaderFloat>(cpyFrom)
 		{
 		}
 		virtual const char * GetStringEquiv(int numRow);
+		virtual bool ReadFile(std::fstream& fs);
 		virtual GABE_Object* GetCopy() const;
 };
 /**
@@ -234,6 +246,8 @@ class GABE_Data_ShortString: public GABE_Data<t_StringShort>
 		GABE_Data_ShortString(const GABE_Data_ShortString& cpyFrom):GABE_Data<t_StringShort>(cpyFrom){}
 		void SetString(int numRow,const char * strToCopy);
 		virtual GABE_Object* GetCopy() const;
+		virtual bool WriteFile(std::fstream & fs);
+		virtual bool ReadFile(std::fstream& fs);
 		virtual const char * GetStringEquiv(int numRow){ return this->GetValue(numRow).strData; }
 };
 /**
@@ -247,25 +261,11 @@ class GABE_Data_Integer: public GABE_Data<Intb>
 		GABE_Data_Integer(Longb _size);
 		GABE_Data_Integer(const GABE_Data_Integer& cpyFrom):GABE_Data<Intb>(cpyFrom){}
 		virtual const char * GetStringEquiv(int numRow);
+		virtual bool ReadFile(std::fstream& fs);
+		bool WriteFile(std::fstream & fs);
 		virtual GABE_Object* GetCopy() const;
 };
 
-
-/**
- 	\brief Classe contenant des données inconnu par GABE (définit par l'utilisateur)
-template<Intb sizeofEl>
-struct el_Unknown
-{
-	char data[sizeofEl];
-};
-template<Intb sizeofTabEl,Intb sizeofHeaderEl>
-class GABE_Data_Unknown: public GABE_Data<el_Unknown<sizeofTabEl>,el_Unknown<sizeofHeaderEl>>
-{
-	public:
-		GABE_Data_Unknown(Longb _size);
-		virtual const char * GetStringEquiv(int numRow){return &tabData[numRow].data};
-};
- */
 
 /**
  *	\brief Classe de sauvegarde et de chargement d'une serie de listes de format différend
@@ -302,7 +302,7 @@ public:
 	 * @param numCol Numero de la colonne [0,GetCols()-1]
 	 * @param newCol Adresse de l'objet contenant les données ( cette donnée sera déchargé par GABE lors de sa destruction.
 	 */
-	void SetCol(Longb numCol,const GABE_Object& newCol) const;
+	void SetCol(Longb numCol,const GABE_Object& newCol);
 
 	/**
 	 * Récuperation d'une colonne
@@ -332,12 +332,12 @@ public:
 	 * Chargement du tableau
 	 * @param strFileName Chemin du fichier
 	 */
-    bool Load(const char *strFileName);
+    bool Load(const std::string& strFileName);
 	/**
 	 * Sauvegarde du tableau
 	 * @param strFileName Chemin du fichier
 	 */
-	bool Save(const char *strFileName);
+	bool Save(const std::string& strFileName);
 
 	/**
 	 * Le fichier ne sera pas éditable par l'utilisateur
@@ -354,8 +354,7 @@ public:
 protected:
 	void Destroy();
 	void InitCols();
-	GABE_Object** colsContainer; //Tableau 1 dimension, pointeur vers un objet de colonne
-	Longb cols;
+	std::vector<GABE_Object*> colsContainer; //Tableau 1 dimension, pointeur vers un objet de colonne
 	bool readOnly;
 };
 

@@ -406,7 +406,7 @@ bool initMesh(t_Mesh &sceneMesh,CoreString workingDir,CoreString sceneMeshPath,B
 	sceneMesh.pvert_size=modelEntree.vertices.size();
 	sceneMesh.pvertices=new vec3[sceneMesh.pvert_size];
 	for(unsigned int i=0;i<modelEntree.vertices.size();i++)
-		sceneMesh.pvertices[i]=(float*)&modelEntree.vertices[i];
+		sceneMesh.pvertices[i] = vec3(modelEntree.vertices[i].v);
 	sceneMesh.pface_size=modelEntree.faces.size();
 	sceneMesh.pfaces=new t_cFace[sceneMesh.pface_size];
 	//Materiau
@@ -429,8 +429,10 @@ bool initMesh(t_Mesh &sceneMesh,CoreString workingDir,CoreString sceneMeshPath,B
 		{
 			lastMaterialUsedOutsideIndex=modelEntree.faces[idface].idMat;
 			lastMaterialUsedPt=configManager.GetMaterialByOutsideIndex(lastMaterialUsedOutsideIndex);
-			if(!lastMaterialUsedPt) //Si une face n'a pas de mat�riaux associ�
-				configManager.materialList[0];
+			if(!lastMaterialUsedPt) { //face without materials is not supported
+				cerr << _("Wrong project configuration, a face is defined but no materials are attached to it ! Check your group/material associations") << endl;
+				exit(-1);
+			}				
 		}
 		sceneMesh.pfaces[idface].faceMaterial=lastMaterialUsedPt;
 		///////////////////////////////////////////////

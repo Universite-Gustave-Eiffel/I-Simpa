@@ -31,6 +31,7 @@
 #include <vector>
 #include <list>
 #include <string>
+#include "Core/mathlib.h"
 /*! \file std_rsbin.hpp
     \brief Import export de l'animation des recepteurs surfaciques
 */
@@ -44,14 +45,13 @@ namespace formatRSBIN
 struct t_ExchangeData;
 
 class rsurf_io;
-typedef float t_pos[3];
-typedef std::size_t t_index[3];
 struct t_iso_contouring_data;
-struct t_curve //std::pair accepté par py++ ???
+struct t_curve
 {
-	t_pos A {0,0,0};
-	t_pos B {0,0,0};
+	vec3 A;
+	vec3 B;
 };
+
 /**
  * @brief Contient les données d'un fichier de résultat de récepteur de surfaces
  *
@@ -73,7 +73,7 @@ public:
 	/**
 	 * @return le nombre de récepteurs surfaciques.
 	 */
-	std::size_t GetRsCount();
+	std::size_t GetRsCount() const;
 	/**
 	 * 1ere étape Création, Mise en place des récepteurs et des propriétés
 	 * @param[in] tabNodesSize Nombre de sommets de triangles
@@ -119,45 +119,66 @@ public:
 	 */
 	void SetFaceEnergy(const std::size_t& rsIndex,const std::size_t& faceIndex,const std::size_t& recordIndex,const std::size_t& idstep,const float& energy);
 
+
 	/**
-	 * Accesseur propriétés du fichier
-	 * @param[out] rs_size Nombre de sommets de triangles
-	 * @param[out] nodes_size Nombre de récepteurs de surfaces
-	 * @param[out] nbtimestep Nombre de pas de temps maximum
-	 * @param[out] timestep Pas de temps en secondes
-	 * @param[out] record_type Type d'enregistrement. Valeurs possibles "SPL_STANDART" "SPL_GAIN" "TR" "EDT"
-	 * @python Return a tuple containing (rs_size,nodes_size,nbtimestep,timestep,recordType)
+	 * @return The number of vertices
 	 */
-	void GetFileInfos(std::size_t& rs_size,std::size_t& nodes_size,std::size_t& nbtimestep,float& timestep,std::string& recordType) const;
+	std::size_t GetNodesCount() const;
+	/**
+	 * @return the number of time steps
+	 */
+	std::size_t GetTimeStepCount() const;
+
+	/**
+	 * @return The timestep value in second
+	 */
+	float GetTimeStep() const;
+	/**
+	 * @return record type "SPL_STANDART" "SPL_GAIN" "TR" "EDT"
+	 */
+	std::string getRecordType() const;
+
 	/**
 	 * Accesseur valeur d'un noeud
 	 * @param[in] nodeIndex Indice du sommet
-	 * @param[out] x X
-	 * @param[out] y Y
-	 * @param[out] z Z
-	 * @python Return a tuple containing (x,y,z)
+	 * @return node coordinate
 	 */
-	void GetNodePositionValue(const std::size_t& nodeIndex, float& x, float& y, float& z) const;
+	vec3 GetNodePositionValue(const std::size_t& nodeIndex) const;
+	
 	/**
-	 * Accesseur Information sur un récepteur surfacique
-	 * @param[in] rsIndex Indice du récepteur de surface
-	 * @param[out] nbfaces Nombre de surfaces
-	 * @param[out] rs_name Libellé du récepteur de surface
-	 * @param[out] xmlid Indice xml du récepteur
-	 * @python Return a tuple containing (nbfaces,rs_name,xmlid)
+	 * @param[in] rsIndex Receiver index
+	 * @return Surface count 
 	 */
-	void GetRsInfo(const std::size_t& rsIndex, std::size_t& nbfaces, std::string& rs_name, int& xmlid) const;
+	std::size_t GetRsFaceCount(const std::size_t& rsIndex) const;
+
 	/**
-	 * Accesseur Information sur une face
-	 * @param[in] rsIndex Indice du récepteur de surface
-	 * @param[in] faceIndex Indice de la surface
-	 * @param[out] vertexA Indice du sommet
-	 * @param[out] vertexB Indice du sommet
-	 * @param[out] vertexC Indice du sommet
-	 * @param[out] recordCount Nombre d'enregistrement
-	 * @python Return a tuple containing ( vertexA,vertexB,vertexC,recordCount)
-	 */
-	void GetFaceInfo(const std::size_t& rsIndex,const std::size_t& faceIndex,std::size_t& vertexA,std::size_t& vertexB,std::size_t& vertexC,std::size_t& recordCount) const;
+	* @param[in] rsIndex Receiver index
+	* @return Surface receiver name
+	*/
+	std::string GetRsName(const std::size_t& rsIndex) const;
+
+	/**
+	* @param[in] rsIndex Receiver index
+	* @return Surface receiver xmlId
+	*/
+	int GetRsXmlId(const std::size_t& rsIndex) const;
+
+	/**
+	* @param[in] rsIndex Receiver index
+	* @param[in] faceIndex Surface index
+	* @return Triangle vertices index
+	*/
+	ivec3 GetFaceVertices(const std::size_t& rsIndex, const std::size_t& faceIndex) const;
+
+
+	/**
+	* @param[in] rsIndex Receiver index
+	* @param[in] faceIndex Surface index
+	* @return Triangle record count
+	*/
+	std::size_t GetFaceRecordCount(const std::size_t& rsIndex, const std::size_t& faceIndex) const;
+
+
 	/**
 	 * Calcul l'aire d'une surface
 	 * @param[in] rsIndex Indice du récepteur de surface
@@ -165,17 +186,23 @@ public:
 	 * @return Aire de la surface en m²
 	 */
 	float ComputeFaceArea(const std::size_t& rsIndex,const std::size_t& faceIndex);
+	
 	/**
-	 * Accesseur Information sur un enregistrement d'une face
-	 * @param[in] rsIndex Indice du récepteur de surface
-	 * @param[in] faceIndex Indice de la surface
-	 * @param[in] recordIndex Indice de l'enregistrement
-	 * @param[out] idstep Compteur du pas de temps
-	 * @param[out] energy Energie(w) ou temps(s)
-	 * @python Return a tuple containing (idstep,energy)
-	 */
-	void GetFaceEnergy(const std::size_t& rsIndex,const std::size_t& faceIndex,const std::size_t& recordIndex,std::size_t& idstep,float& energy) const;
+	* @param[in] rsIndex Receiver index
+	* @param[in] faceIndex Surface index
+	* @param[in] recordIndex Record index
+	* @return Triangle record energy
+	*/
+	float GetFaceEnergy(const std::size_t& rsIndex, const std::size_t& faceIndex, const std::size_t& recordIndex) const;
 
+	/**
+	* @param[in] rsIndex Receiver index
+	* @param[in] faceIndex Surface index
+	* @param[in] recordIndex Record index
+	* @return Triangle record time step.To compute in seconds multiply by #GetTimeStep()
+	*/
+	std::size_t GetFaceTimeStep(const std::size_t& rsIndex, const std::size_t& faceIndex, const std::size_t& recordIndex) const;
+	
 	/**
 	 * Accesseur Information sur un enregistrement d'une face
 	 * @param[in] rsIndex Indice du récepteur de surface

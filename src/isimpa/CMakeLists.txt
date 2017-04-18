@@ -1,5 +1,5 @@
 include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
-set(CMAKE_INSTALL_MFC_LIBRARIES ON) 
+set(CMAKE_INSTALL_MFC_LIBRARIES ON)
 include( InstallRequiredSystemLibraries )
 
 MACRO(ADDMULTIPLE_LANG curdir bindir)
@@ -427,12 +427,12 @@ IF(GETTEXT_FOUND )
   add_subdirectory (lang/fr)
   add_subdirectory (lang/pl)
   # Plugins locale
-  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/UserScript/job_tool/locale ${CMAKE_BINARY_DIR}/src/job_tool)
-  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/UserScript/recp_tool/locale ${CMAKE_BINARY_DIR}/src/recp_tool)
-  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/UserScript/source_tools/locale ${CMAKE_BINARY_DIR}/src/source_tools)
-  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/UserScript/moveto_vertex/locale ${CMAKE_BINARY_DIR}/src/moveto_vertex)
-  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/UserScript/preceiv_sourceTracker/locale ${CMAKE_BINARY_DIR}/src/preceiv_sourceTracker)
-  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/UserScript/SppsReportSample/locale ${CMAKE_BINARY_DIR}/src/SppsReportSample)
+  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/job_tool/locale ${CMAKE_BINARY_DIR}/src/job_tool)
+  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/recp_tool/locale ${CMAKE_BINARY_DIR}/src/recp_tool)
+  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/source_tools/locale ${CMAKE_BINARY_DIR}/src/source_tools)
+  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/moveto_vertex/locale ${CMAKE_BINARY_DIR}/src/moveto_vertex)
+  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/preceiv_sourceTracker/locale ${CMAKE_BINARY_DIR}/src/preceiv_sourceTracker)
+  #disabled ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/SppsReportSample/locale ${CMAKE_BINARY_DIR}/src/SppsReportSample)
   # Building isimpa require building pofiles
   add_dependencies(isimpa pofiles)
 ENDIF()
@@ -506,26 +506,41 @@ ${ISIMPA_RESSOURCES}/Directivities
 DESTINATION .)
 
 if(WIN32) # Check if we are on Windows
+    # Copy python libraries
+    get_filename_component(PYTHON_ROOT_FOLDER ${PYTHON_EXECUTABLE} PATH)
+	set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
+
     #Fetch required Dll's for GUI
     string(REPLACE "\\" "/" wxWidgets_LIB_DIR_SLASH ${wxWidgets_LIB_DIR})
     set(DIRS ${Boost_LIBRARY_DIR_DEBUG}
              ${Boost_LIBRARY_DIR_RELEASE}
              ${wxWidgets_LIB_DIR_SLASH}
     )
-    
+
     install(CODE "
-    include(BundleUtilities)   
-    
-    GET_PREREQUISITES(\"\${CMAKE_INSTALL_PREFIX}/isimpa.exe\" ISIMPA_DEPENDENCIES 1 0 \${CMAKE_INSTALL_PREFIX} \"${DIRS}\" )
-        MESSAGE(STATUS \"Dependencies \${ISIMPA_DEPENDENCIES}\")
-    fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/isimpa.exe\" \"\"   \"${DIRS}\")
+    include(BundleUtilities)
+
+    # Print all dependencies
+    #GET_PREREQUISITES(\"\${CMAKE_CURRENT_LIST_DIR}/\${BUILD_TYPE}/isimpa.exe\" ISIMPA_DEPENDENCIES 1 0 \${CMAKE_INSTALL_PREFIX} \"${DIRS}\" )
+    #    MESSAGE(STATUS \"Dependencies \${ISIMPA_DEPENDENCIES}\")
+
+    # Use this to print all available variables
+    #get_cmake_property(_variableNames VARIABLES)
+    #foreach (_variableName \${_variableNames})
+    #    message(STATUS \"\${_variableName}=\${\${_variableName}}\")
+    #endforeach()
+
+    FIXUP_BUNDLE(\"\${CMAKE_CURRENT_LIST_DIR}/\${BUILD_TYPE}/isimpa.exe\" \"\"   \"${DIRS}\")
+
+	# Install copied dlls
+	FILE(GLOB children \"\${CMAKE_CURRENT_LIST_DIR}/\${BUILD_TYPE}/*.dll\")
+	file(INSTALL DESTINATION \"\${CMAKE_INSTALL_PREFIX}/.\" TYPE PROGRAM FILES
+    \${children}
+    )
 ")
 
 
-    # Copy python libraries
-    get_filename_component(PYTHON_ROOT_FOLDER ${PYTHON_EXECUTABLE} PATH)
-	set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
-        
+
 	install(DIRECTORY
 	${PYTHON_ROOT_FOLDER}/Lib
 	${PYTHON_ROOT_FOLDER}/DLLs
@@ -533,19 +548,21 @@ if(WIN32) # Check if we are on Windows
     PATTERN "Lib/site-packages" EXCLUDE
     PATTERN "*.pdb" EXCLUDE)
 
+    install(FILES "${PYTHON_ROOT_FOLDER}/python.exe" DESTINATION .)
+
     if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
         install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION . COMPONENT Runtime )
     endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
-    # Try to fetch x64 version of python dll    
+    # Try to fetch x64 version of python dll
     get_filename_component(PYTHON_DLL_FILENAME ${PYTHON_LIBRARY}  NAME_WE)
-    
+
     SET(CMAKE_FIND_LIBRARY_PREFIXES "")
     SET(CMAKE_FIND_LIBRARY_SUFFIXES ".lib" ".dll")
 
     find_library(
         PYTHON_DLL
         NAMES ${PYTHON_DLL_FILENAME}
-        PATHS ${PYTHON_ROOT_FOLDER} 
+        PATHS ${PYTHON_ROOT_FOLDER}
         NO_DEFAULT_PATH
         NO_SYSTEM_ENVIRONMENT_PATH
         NO_CMAKE_SYSTEM_PATH
@@ -555,9 +572,9 @@ if(WIN32) # Check if we are on Windows
     else()
         MESSAGE(STATUS "Python dll found here ${PYTHON_DLL}")
     endif()
-    
+
     install(FILES ${PYTHON_DLL} DESTINATION .)
-    
+
     install(CODE "
     set(INSTALL_DLL \"\${CMAKE_INSTALL_PREFIX}/${PYTHON_DLL_FILENAME}.DLL\")
     file(SHA512 \${INSTALL_DLL} INSTALL_DLL_HASH)
@@ -566,7 +583,9 @@ if(WIN32) # Check if we are on Windows
 endif()
 
 # Package creation instructions, NSIS under windows
-
+if(WIN32 AND NOT DEFINED CPACK_GENERATOR) # Check if we are on Windows
+	SET(CPACK_GENERATOR "NSIS;ZIP")
+endif()
 SET(CPACK_NSIS_EXECUTABLES_DIRECTORY ".")
 
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "I-SIMPA")
