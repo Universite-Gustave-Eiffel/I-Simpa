@@ -2,5 +2,5 @@ cd build
 pwd
 make VERBOSE=1
 make install
-export PATH=$HOME/boost-install:$PATH
+export LD_LIBRARY_PATH=$HOME/boost-install:$LD_LIBRARY_PATH
 CTEST_OUTPUT_ON_FAILURE=1 make test
