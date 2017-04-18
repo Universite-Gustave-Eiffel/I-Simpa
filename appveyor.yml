@@ -17,10 +17,10 @@ environment:
     wxWidgets_INCLUDE_DIRS: C:\wxWidgets-3.1.0\include
     wxWidgets_LIBRARIES: C:\wxWidgets-3.1.0\lib\vc140_x64_dll
     SWIG_DIR: C:\Libraries\swigwin-3.0.11
-    SWIG_EXECUTABLE: C:\Libraries\swigwin-3.0.11\swig.exe    
+    SWIG_EXECUTABLE: C:\Libraries\swigwin-3.0.11\swig.exe
     PYTHON_EXECUTABLE: C:\Python27-x64\python.exe
     CTEST_OUTPUT_ON_FAILURE: 1
-    
+
 # branches to build
 branches:
   # whitelist
@@ -61,10 +61,10 @@ before_build:
   - cmd: dir %wxWidgets_LIBRARIES%
   # Download Release wxWidgets DLL's
   - ps: Start-FileDownload 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.0/wxMSW-3.1.0_vc140_x64_ReleaseDLL.7z' -Timeout 15000
-  - cmd: 7z x wxMSW-3.1.0_vc140_x64_ReleaseDLL.7z -oC:\wxWidgets-3.1.0  
+  - cmd: 7z x wxMSW-3.1.0_vc140_x64_ReleaseDLL.7z -oC:\wxWidgets-3.1.0
   # install dependencies:
-  - choco install poedit nsis
-  - ps: Start-FileDownload 'https://github.com/nicolas-f/build_resources/raw/master/swigwin-3.0.11.zip' -FileName 'c:\Libraries\swigwin-3.0.11.zip' -Timeout 15000 
+  - choco install poedit nsis 7zip.install
+  - ps: Start-FileDownload 'https://github.com/nicolas-f/build_resources/raw/master/swigwin-3.0.11.zip' -FileName 'c:\Libraries\swigwin-3.0.11.zip' -Timeout 15000
   - ps: 7z x c:\Libraries\swigwin-3.0.11.zip -oC:\Libraries -r -y
   - cmd: SET PATH=%PATH%;%WXWIN%;%SWIG_DIR%;%wxWidgets_LIB_DIR%;C:\Program Files (x86)\Poedit\Gettexttools\bin;%BOOST_LIBRARYDIR%;
   - ps: swig.exe -version
@@ -92,9 +92,9 @@ after_build:
   - ECHO Package I-SIMPA %configuration% %platform% with MSVC %VisualStudioVersion% using %PlatformToolset% PlatformToolset
   - msbuild "PACKAGE.vcxproj" /consoleloggerparameters:Verbosity=minimal /target:Build  /p:Configuration=%configuration% /p:Platform=%platform% /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
-# Test script disabled, don't know why python can't find libsimpa under Appveyor  
+# Test script disabled, don't know why python can't find libsimpa under Appveyor
 test_script:
-  - choco install dependencywalker -y --allow-empty-checksums  
+  - choco install dependencywalker -y --allow-empty-checksums
   - depends.exe /f:1 /c /oc:c:\projects\isimpa\build\depends.txt c:\projects\isimpa\build\bin\isimpa.exe
   - cd c:\projects\isimpa\build
   - 'CALL "C:\Program Files (x86)\Microsoft Visual Studio %VisualStudioVersion%\VC\vcvarsall.bat" %vcvarsall_platform%'
@@ -113,6 +113,3 @@ artifacts:
     name: cmake_output_log
   - path: 'build\CMakeFiles\CMakeError.log'
     name: cmake_output_log
-  
-  
-  
