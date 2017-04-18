@@ -1,1 +1,1 @@
-gettext_process_po_files(pl INSTALL_DESTINATION UserScript/source_tools/locale PO_FILES internat.po)
+gettext_process_po_files(pl INSTALL_DESTINATION SystemScript/source_tools/locale PO_FILES internat.po)

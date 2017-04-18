@@ -1,1 +1,1 @@
-gettext_process_po_files(pl INSTALL_DESTINATION UserScript/moveto_vertex/locale PO_FILES internat.po)
+gettext_process_po_files(pl INSTALL_DESTINATION SystemScript/moveto_vertex/locale PO_FILES internat.po)
