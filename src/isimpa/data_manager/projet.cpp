@@ -2710,6 +2710,7 @@ void ProjectManager::OnModeWireFrameFull(wxCommandEvent& event)
 
 void ProjectManager::OnModeWireFrameShape(wxCommandEvent& event)
 {
+	DoShapeComputation();
 	this->GlFrame->ChangeRenderMode(OpenGLApp::renderModelLinesAndConstruction,false);
 	this->GlFrame->ChangeRenderMode(OpenGLApp::renderModelLines,true);
 }

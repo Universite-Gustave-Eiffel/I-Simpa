@@ -1472,7 +1472,7 @@ void CObjet3D::GetAllCoplanarFaces( t_faceIndex firstFace,std::vector<t_faceInde
 void CObjet3D::ComputeFacesBorders( bool ResetFaceOrientation )
 {
 
-	//Création d'un tableau permettant de connaitre rapidement les faces reliées
+	// Build an index of linked triangles (vertex to f
 	std::vector<std::vector<t_faceIndex> > dotToFace(this->_pVertices.size());
 	for(int g=0; g < this->_pGroups.size(); g++)
 	{
@@ -1487,16 +1487,6 @@ void CObjet3D::ComputeFacesBorders( bool ResetFaceOrientation )
 	}
 
 
-	//Procédure principale
-	/*
-	for(int g=0; g < this->_pGroups.size(); g++)
-	{
-		int fGsize=this->_pGroups[g].pFaces.size();
-		for(long f=0; f < fGsize ;f++)
-		{
-			SFace3D* currentFace=&this->_pGroups[g].pFaces[f];
-			t_faceIndex currentFaceIndex(f,g);
-			*/
 	for(int idvert=0;idvert<dotToFace.size();idvert++)
 	{
 		for(int linkedFace=0;linkedFace<dotToFace[idvert].size();linkedFace++)
@@ -1515,22 +1505,6 @@ void CObjet3D::ComputeFacesBorders( bool ResetFaceOrientation )
 				SetDiffSideValue( currentFace, &this->_pGroups[NeighCA.g].pFaces[NeighCA.f], 2 );
 		}
 	}
-	//todo On change l'orientation des faces corrigés
-	/*
-	if(ResetFaceOrientation && false)
-	{
-		for(int g=0; g < this->_pGroups.size(); g++)
-		{
-			int fGsize=this->_pGroups[g].pFaces.size();
-			for(long f=0; f < fGsize ;f++)
-			{
-				SFace3D* currentFace=&this->_pGroups[g].pFaces[f];
-				if(currentFace->dofaceinvertion)
-					currentFace->Vertices.set(currentFace->Vertices.c,currentFace->Vertices.b,currentFace->Vertices.a); //On change l'orientation de la face.
-			}
-		}
-	}
-	*/
 	modelChange=true;
 }
 t_faceIndex CObjet3D::SelectVertex(float x,float y, float z)
