@@ -10,7 +10,6 @@ inline bool ContainsRP(t_Recepteur_P* recepteurTest, std::vector<t_Recepteur_P*>
 	return false;
 }
 
-//Effectue une translation de distTranslation des sources positionnées sur le sommet d'un tédraèdre
 void TranslateSourceAtTetrahedronVertex(std::vector<t_Source*>& lstSource,t_TetraMesh* tetraMesh)
 {
 	float distTranslation(0.005f);
@@ -20,7 +19,7 @@ void TranslateSourceAtTetrahedronVertex(std::vector<t_Source*>& lstSource,t_Tetr
 		{
 			if((*itsrc)->Position.distance(tetraMesh->nodes[(*itsrc)->currentVolume->sommets[idvertex]])<BARELY_EPSILON)
 			{
-				//Translation de distTranslation vers le centre du tétraèdre
+				// Move the sound source of distTranslation m to center of tetrahedron
 				vec3 centerTetra=GetGTetra(tetraMesh->nodes[(*itsrc)->currentVolume->sommets.a],
 					tetraMesh->nodes[(*itsrc)->currentVolume->sommets.b],
 					tetraMesh->nodes[(*itsrc)->currentVolume->sommets.c],
@@ -36,9 +35,9 @@ void TranslateSourceAtTetrahedronVertex(std::vector<t_Source*>& lstSource,t_Tetr
 
 
 /**
- * Méthode récursive de propagation de liaison entre un récepteur ponctuel et les tétraèdres voisins.
- * Pas d'appel récursif si le tétraèdre courant est déjà lié au récepteur ponctuel ou si le récepteur ponctuel ne s'étend pas jusqu'a se volume
- * Si une collision est détecté alors chaque tetraèdre voisin est testé
+ * Mï¿½thode rï¿½cursive de propagation de liaison entre un rï¿½cepteur ponctuel et les tï¿½traï¿½dres voisins.
+ * Pas d'appel rï¿½cursif si le tï¿½traï¿½dre courant est dï¿½jï¿½ liï¿½ au rï¿½cepteur ponctuel ou si le rï¿½cepteur ponctuel ne s'ï¿½tend pas jusqu'a se volume
+ * Si une collision est dï¿½tectï¿½ alors chaque tetraï¿½dre voisin est testï¿½
  * @see ExpandRecepteurPTetraLocalisation
  **/
 void RecursiveTetraTest( t_Recepteur_P* recepteurTest, const decimal& rayon, t_Tetra* currentTetra , t_TetraMesh* tetraMesh)
@@ -49,7 +48,7 @@ void RecursiveTetraTest( t_Recepteur_P* recepteurTest, const decimal& rayon, t_T
 	{
 		if(ContainsRP(recepteurTest,currentTetra->linkedRecepteurP))
 		{
-			return; //Récepteur ponctuel deja associé au sous volume
+			return; //Rï¿½cepteur ponctuel deja associï¿½ au sous volume
 		}
 	}
 	for(int idfaceTri=0;idfaceTri<4;idfaceTri++)
@@ -59,7 +58,7 @@ void RecursiveTetraTest( t_Recepteur_P* recepteurTest, const decimal& rayon, t_T
 			tetraMesh->nodes[currentTetra->faces[idfaceTri].indiceSommets.b],
 			tetraMesh->nodes[currentTetra->faces[idfaceTri].indiceSommets.c],
 			recepteurTest->position,NULL,NULL));
-		if(minLength<=rayon) //Si la face est traversé par la sphere
+		if(minLength<=rayon) //Si la face est traversï¿½ par la sphere
 		{
 			if(!currentTetra->linkedRecepteurP)
 				currentTetra->makeTabRecp();
@@ -82,7 +81,7 @@ void ExpandRecepteurPTetraLocalisation(t_TetraMesh* tetraMesh,std::vector<t_Rece
 		if(lstRecepteurP->at(idrecp)->indexTetra<tetraMesh->tetraedresSize)
 		{
 			t_Tetra* recpTetra=&tetraMesh->tetraedres[lstRecepteurP->at(idrecp)->indexTetra];
-			//Calcul de la nouvelle valeur de normalisation par rapport au volume cdtVol qui n'est plus celui du tétraèdre
+			//Calcul de la nouvelle valeur de normalisation par rapport au volume cdtVol qui n'est plus celui du tï¿½traï¿½dre
 
 			//lstRecepteurP->at(idrecp)->cdt_vol=pow((*configManager.FastGetConfigValue(Base_Core_Configuration::FPROP_CELERITE)),2.f)*(*configManager.FastGetConfigValue(Base_Core_Configuration::FPROP_TIME_STEP))*(*configManager.FastGetConfigValue(Base_Core_Configuration::FPROP_RHO))/(volumeRP);
 			lstRecepteurP->at(idrecp)->cdt_vol=((*configManager.FastGetConfigValue(Base_Core_Configuration::FPROP_CELERITE))*(*configManager.FastGetConfigValue(Base_Core_Configuration::FPROP_RHO)))/volumeRP;
@@ -93,3 +92,22 @@ void ExpandRecepteurPTetraLocalisation(t_TetraMesh* tetraMesh,std::vector<t_Rece
 		}
 	}
 }
+
+bool CheckSourcePosition(std::vector<t_Source *> &lstSource, t_Mesh *model) {
+	for (auto &&item : lstSource) {
+		for(int idface=0; idface < model->pface_size; idface++) {
+			const t_cFace& face = model->pfaces[idface];
+			const vec3& a = model->pvertices[face.sommets.a];
+			const vec3& b = model->pvertices[face.sommets.b];
+			const vec3& c = model->pvertices[face.sommets.c];
+			decimal dist;
+			// Compute distance from this 3D model face
+			// If distance is too close then computation will be canceled
+			if(DotIsInVertex(item->Position, a, b, c, &dist) && dist < BARELY_EPSILON) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
