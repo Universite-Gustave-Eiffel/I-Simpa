@@ -867,20 +867,16 @@ void MainUiFrame::OnShowAboutDialog(wxCommandEvent& event)
 	aboutDlg.SetVersion(wxString::Format("[%i.%i.%i]",ApplicationConfiguration::SPPS_UI_VERSION_MAJOR,ApplicationConfiguration::SPPS_UI_VERSION_MINOR,ApplicationConfiguration::SPPS_UI_VERSION_REVISION));
 	aboutDlg.SetName(APPLICATION_NAME);
 	aboutDlg.SetWebSite(wxT("http://i-simpa.ifsttar.fr"));
-	aboutDlg.SetDescription(wxString::Format(_("Classical Theory [%i.%i.%i]\nSPPS [%i.%i.%i]"),ApplicationConfiguration::CTR_VERSION_MAJOR,ApplicationConfiguration::CTR_VERSION_MINOR,ApplicationConfiguration::CTR_VERSION_REVISION,ApplicationConfiguration::SPPS_VERSION_MAJOR,ApplicationConfiguration::SPPS_VERSION_MINOR,ApplicationConfiguration::SPPS_VERSION_REVISION));
-	//aboutDlg.SetLicence(GetLicenseText());
+	aboutDlg.SetDescription(wxString::Format(_("An Open Source software for 3D sound propagation modelling.\n\nClassical Theory [%i.%i.%i]\nSPPS [%i.%i.%i]"),ApplicationConfiguration::CTR_VERSION_MAJOR,ApplicationConfiguration::CTR_VERSION_MINOR,ApplicationConfiguration::CTR_VERSION_REVISION,ApplicationConfiguration::SPPS_VERSION_MAJOR,ApplicationConfiguration::SPPS_VERSION_MINOR,ApplicationConfiguration::SPPS_VERSION_REVISION));
 	aboutDlg.SetLicence(_("I-Simpa is an open source software (GPL v3)."));
 	aboutDlg.AddDeveloper("Nicolas Fortin (Ifsttar)");
 	aboutDlg.AddDeveloper("Judicaël Picaut (Ifsttar)");
-	aboutDlg.AddDeveloper("Contributor - Wojciech Binek (AGH)");
+	aboutDlg.AddDeveloper("Wojciech Binek (AGH, Contributor)");
 	aboutDlg.AddTranslator("Wojciech Binek (AGH)");
 	aboutDlg.SetCopyright("(c) Ifsttar <i-simpa@ifsttar.fr>");
 
-	//wxArraySting devs;
-	//devs.
 	_("License >>");
 	_("Developers >>");
-	//aboutDlg.SetDescription(_("Outil de prévision acoustique pour l'habitat et le milieu urbain."));
 	wxAboutBox(aboutDlg);
 }
 
