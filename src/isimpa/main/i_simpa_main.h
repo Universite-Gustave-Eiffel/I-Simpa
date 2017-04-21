@@ -198,8 +198,6 @@ class MainUiFrame : public wxFrame
 			//ID_changeLanguage,
 
 			ID_Model3d,
-
-			ID_outil_compute_shape,
 			ID_outil_resultpostprocess,
 			ID_outil_resultpostprocess_substract_recepteursurf,
 			//ID_outil_options,
@@ -306,7 +304,6 @@ class MainUiFrame : public wxFrame
 		void OnRadioX(wxCommandEvent& event);
 		void OnRadioY(wxCommandEvent& event);
 		void OnRadioZ(wxCommandEvent& event);
-		void OnComputeShape(wxCommandEvent& event);
 		void OnSubstractRecepteurS(wxCommandEvent& event);
 		void OnMainEvent(wxCommandEvent& event);
 		void OnShowAboutDialog(wxCommandEvent& event);
