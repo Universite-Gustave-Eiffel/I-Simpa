@@ -1,4 +1,13 @@
-include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
+
+project (spps VERSION 2.2.1)
+
+# Change scope of theses variables in order to be used by I-SIMPA gui project
+
+set(spps_VERSION_MAJOR ${spps_VERSION_MAJOR} PARENT_SCOPE)
+set(spps_VERSION_MINOR ${spps_VERSION_MINOR} PARENT_SCOPE)
+set(spps_VERSION_PATCH ${spps_VERSION_PATCH} PARENT_SCOPE)
+
+include_directories (./ "${CMAKE_SOURCE_DIR}/src/lib_interface" "${CMAKE_CURRENT_BINARY_DIR}/generated/")
 set(CMAKE_INSTALL_MFC_LIBRARIES ON) 
 include( InstallRequiredSystemLibraries )
 message(STATUS " Boost path - $ENV{BOOST_INCLUDEDIR}")
@@ -28,7 +37,8 @@ set(SPPS_SOURCES
     sppsInitialisation.h
     sppsInitialisation.cpp
     sppsTypes.h
-    sppsTypes.cpp)
+    sppsTypes.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/generated/sppsVersion.h)
 
 set(SPPS_MAIN_SOURCES
     sppsNantes.cpp)
@@ -63,6 +73,8 @@ if (UNIX)
     message(FATAL_ERROR "clock_gettime not found")
   endif(NOT HAVE_CLOCK_GETTIME)
 endif(UNIX)
+
+configure_file(sppsVersion.h.in ${CMAKE_CURRENT_BINARY_DIR}/generated/sppsVersion.h )
 
 # Set Properties->General->Configuration Type to Application
 # Creates spps with the listed sources
@@ -133,7 +145,7 @@ endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
 # Data files
 set(TEST_DATA_DIR "${PROJECT_BINARY_DIR}/Testing")
 set(SPPS_TEST_DIR "${TEST_DATA_DIR}/")
-configure_file(tests/config.xml ${SPPS_TEST_DIR})
+configure_file(tests/config.xml ${SPPS_TEST_DIR}/config.xml)
 file(COPY
     tests/speaker-test3.txt
     DESTINATION ${TEST_DATA_DIR})

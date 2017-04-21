@@ -207,6 +207,12 @@ public:
 	static const int SPPS_UI_VERSION_MAJOR;
 	static const int SPPS_UI_VERSION_MINOR;
 	static const int SPPS_UI_VERSION_REVISION;
+	static const int SPPS_VERSION_MAJOR;
+	static const int SPPS_VERSION_MINOR;
+	static const int SPPS_VERSION_REVISION;
+	static const int CTR_VERSION_MAJOR;
+	static const int CTR_VERSION_MINOR;
+	static const int CTR_VERSION_REVISION;
 	static const wxString CONST_USER_PREFERENCE_FILE_NAME;
 
 	/** @} */
