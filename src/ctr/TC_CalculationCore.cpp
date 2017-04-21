@@ -3,6 +3,7 @@
 #include <iostream>
 #include <tools/octree44_triangleElement.hpp>
 #include <tools/octree44_segmentElement.hpp>
+#include "ctrVersion.h"
 
 #define _REF_P_0 20e-6
 #define _REF_I_0 1e-12
@@ -44,6 +45,7 @@ CalculationCore::~CalculationCore()
 }
 bool CalculationCore::Run()
 {
+	std::cout<<"Classical Theory of Reverberation version "<<CTR_VERSION_MAJOR<<"."<<CTR_VERSION_MINOR<<"."<<CTR_VERSION_REVISION<<std::endl;
 	///////////////////////////////////////////
 	// Compute model area using tetrahedric mesh
 	mainData.sceneVolume=Get_Volume_Scene();

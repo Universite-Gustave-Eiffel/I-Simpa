@@ -1,4 +1,4 @@
-﻿#include "sppsTypes.h"	//les types de données sont déclaré ici
+﻿#include "sppsTypes.h"
 						// Il est déconseillé d'utiliser d'autre types que ceux déclaré dans ce fichier dans le programme
 #include "input_output/reportmanager.h"
 #include "data_manager/core_configuration.h"
