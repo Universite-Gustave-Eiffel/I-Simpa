@@ -5,7 +5,8 @@
  * En fonction du rayon des récepteurs ponctuels, les tétraèdres voisin seront liés à celui-ci
  * Réafecte t_Recepteur_P::cdt_vol à (Celerite*Rho)/(volume sphere recepteur Ponctuel)
  */
-void ExpandRecepteurPTetraLocalisation(t_TetraMesh* tetraMesh,std::vector<t_Recepteur_P*>* lstRecepteurP,Core_Configuration& configManager);
+void ExpandPunctualReceiverTetrahedronLocalisation(t_TetraMesh *tetraMesh, std::vector<t_Recepteur_P *> *lstRecepteurP,
+                                                   Core_Configuration &configManager);
 /**
  * Slighty move source that are too near from a tetrahedron vertex
  */

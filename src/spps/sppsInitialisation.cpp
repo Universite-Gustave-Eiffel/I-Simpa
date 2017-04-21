@@ -35,9 +35,9 @@ void TranslateSourceAtTetrahedronVertex(std::vector<t_Source*>& lstSource,t_Tetr
 
 
 /**
- * M�thode r�cursive de propagation de liaison entre un r�cepteur ponctuel et les t�tra�dres voisins.
- * Pas d'appel r�cursif si le t�tra�dre courant est d�j� li� au r�cepteur ponctuel ou si le r�cepteur ponctuel ne s'�tend pas jusqu'a se volume
- * Si une collision est d�tect� alors chaque tetra�dre voisin est test�
+ * Méthode récursive de propagation de liaison entre un récepteur ponctuel et les tétraèdres voisins.
+ * Pas d'appel récursif si le tétraèdre courant est déjà lié au récepteur ponctuel ou si le récepteur ponctuel ne s'étend pas jusqu'a se volume
+ * Si une collision est détecté alors chaque tetraèdre voisin est testé
  * @see ExpandRecepteurPTetraLocalisation
  **/
 void RecursiveTetraTest( t_Recepteur_P* recepteurTest, const decimal& rayon, t_Tetra* currentTetra , t_TetraMesh* tetraMesh)
@@ -48,7 +48,7 @@ void RecursiveTetraTest( t_Recepteur_P* recepteurTest, const decimal& rayon, t_T
 	{
 		if(ContainsRP(recepteurTest,currentTetra->linkedRecepteurP))
 		{
-			return; //R�cepteur ponctuel deja associ� au sous volume
+			return; // Punctual receiver already linked with sub-volume
 		}
 	}
 	for(int idfaceTri=0;idfaceTri<4;idfaceTri++)
@@ -58,7 +58,7 @@ void RecursiveTetraTest( t_Recepteur_P* recepteurTest, const decimal& rayon, t_T
 			tetraMesh->nodes[currentTetra->faces[idfaceTri].indiceSommets.b],
 			tetraMesh->nodes[currentTetra->faces[idfaceTri].indiceSommets.c],
 			recepteurTest->position,NULL,NULL));
-		if(minLength<=rayon) //Si la face est travers� par la sphere
+		if(minLength<=rayon) //If the face is crossed by the sphere
 		{
 			if(!currentTetra->linkedRecepteurP)
 				currentTetra->makeTabRecp();
@@ -72,19 +72,18 @@ void RecursiveTetraTest( t_Recepteur_P* recepteurTest, const decimal& rayon, t_T
 	}
 }
 
-void ExpandRecepteurPTetraLocalisation(t_TetraMesh* tetraMesh,std::vector<t_Recepteur_P*>* lstRecepteurP,Core_Configuration& configManager)
+void ExpandPunctualReceiverTetrahedronLocalisation(t_TetraMesh *tetraMesh, std::vector<t_Recepteur_P *> *lstRecepteurP,
+												   Core_Configuration &configManager)
 {
 	decimal rayonRecepteurP=*configManager.FastGetConfigValue(Core_Configuration::FPROP_RAYON_RECEPTEURP);
-	decimal volumeRP=(pow(*configManager.FastGetConfigValue(Core_Configuration::FPROP_RAYON_RECEPTEURP),3)*M_PI*4.)/3.;
+	double volumeRP=(pow(*configManager.FastGetConfigValue(Core_Configuration::FPROP_RAYON_RECEPTEURP),3)*M_PI*4.)/3.;
 	for(std::size_t idrecp=0;idrecp<lstRecepteurP->size();idrecp++)
 	{
 		if(lstRecepteurP->at(idrecp)->indexTetra<tetraMesh->tetraedresSize)
 		{
 			t_Tetra* recpTetra=&tetraMesh->tetraedres[lstRecepteurP->at(idrecp)->indexTetra];
-			//Calcul de la nouvelle valeur de normalisation par rapport au volume cdtVol qui n'est plus celui du t�tra�dre
-
-			//lstRecepteurP->at(idrecp)->cdt_vol=pow((*configManager.FastGetConfigValue(Base_Core_Configuration::FPROP_CELERITE)),2.f)*(*configManager.FastGetConfigValue(Base_Core_Configuration::FPROP_TIME_STEP))*(*configManager.FastGetConfigValue(Base_Core_Configuration::FPROP_RHO))/(volumeRP);
-			lstRecepteurP->at(idrecp)->cdt_vol=((*configManager.FastGetConfigValue(Base_Core_Configuration::FPROP_CELERITE))*(*configManager.FastGetConfigValue(Base_Core_Configuration::FPROP_RHO)))/volumeRP;
+			// Compute of the normalisation value of the punctual receiver
+			lstRecepteurP->at(idrecp)->cdt_vol=(float)(((*configManager.FastGetConfigValue(Base_Core_Configuration::FPROP_CELERITE))*(*configManager.FastGetConfigValue(Base_Core_Configuration::FPROP_RHO)))/volumeRP);
 			for(int idVoisin=0;idVoisin<4;idVoisin++)
 			{
 				RecursiveTetraTest(lstRecepteurP->at(idrecp), rayonRecepteurP, recpTetra->voisins[idVoisin], tetraMesh);
