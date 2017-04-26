@@ -34,6 +34,7 @@
 #include "IHM/languageSelection.hpp"
 #include <wx/ffile.h>
 #include <wx/evtloop.h>
+#include <IHM/AboutDialog.hpp>
 #include "last_cpp_include.hpp"
 
 
@@ -863,21 +864,27 @@ void MainUiFrame::OnShowPreferenceTree(wxCommandEvent& event)
 }
 void MainUiFrame::OnShowAboutDialog(wxCommandEvent& event)
 {
-	wxAboutDialogInfo aboutDlg;
-	aboutDlg.SetVersion(wxString::Format("[%i.%i.%i]",ApplicationConfiguration::SPPS_UI_VERSION_MAJOR,ApplicationConfiguration::SPPS_UI_VERSION_MINOR,ApplicationConfiguration::SPPS_UI_VERSION_REVISION));
-	aboutDlg.SetName(APPLICATION_NAME);
-	aboutDlg.SetWebSite(wxT("http://i-simpa.ifsttar.fr"));
-	aboutDlg.SetDescription(wxString::Format(_("An Open Source software for 3D sound propagation modelling.\n\nClassical Theory [%i.%i.%i]\nSPPS [%i.%i.%i]"),ApplicationConfiguration::CTR_VERSION_MAJOR,ApplicationConfiguration::CTR_VERSION_MINOR,ApplicationConfiguration::CTR_VERSION_REVISION,ApplicationConfiguration::SPPS_VERSION_MAJOR,ApplicationConfiguration::SPPS_VERSION_MINOR,ApplicationConfiguration::SPPS_VERSION_REVISION));
-	aboutDlg.SetLicence(_("I-Simpa is an open source software (GPL v3)."));
-	aboutDlg.AddDeveloper("Nicolas Fortin (Ifsttar)");
-	aboutDlg.AddDeveloper("Judicaël Picaut (Ifsttar)");
-	aboutDlg.AddDeveloper("Wojciech Binek (AGH, Contributor)");
-	aboutDlg.AddTranslator("Wojciech Binek (AGH)");
-	aboutDlg.SetCopyright("(c) Ifsttar <i-simpa@ifsttar.fr>");
+    AboutDialog aboutDialog;
+    aboutDialog.CreateAboutDialog(this);
+	aboutDialog.ShowModal();
 
-	_("License >>");
-	_("Developers >>");
-	wxAboutBox(aboutDlg);
+
+//	wxAboutDialogInfo aboutDlg;
+//	aboutDlg.SetVersion(wxString::Format("[%i.%i.%i]",ApplicationConfiguration::SPPS_UI_VERSION_MAJOR,ApplicationConfiguration::SPPS_UI_VERSION_MINOR,ApplicationConfiguration::SPPS_UI_VERSION_REVISION));
+//	aboutDlg.SetName(APPLICATION_NAME);
+//	aboutDlg.SetWebSite(wxT("http://i-simpa.ifsttar.fr"));
+//	aboutDlg.SetDescription(wxString::Format(_("An Open Source software for 3D sound propagation modelling.\n\nClassical Theory [%i.%i.%i]\nSPPS [%i.%i.%i]"),ApplicationConfiguration::CTR_VERSION_MAJOR,ApplicationConfiguration::CTR_VERSION_MINOR,ApplicationConfiguration::CTR_VERSION_REVISION,ApplicationConfiguration::SPPS_VERSION_MAJOR,ApplicationConfiguration::SPPS_VERSION_MINOR,ApplicationConfiguration::SPPS_VERSION_REVISION));
+//	aboutDlg.SetLicence(_("I-Simpa is an open source software (GPL v3)."));
+//	aboutDlg.AddDeveloper("Nicolas Fortin (Ifsttar)");
+//	aboutDlg.AddDeveloper("Judicaël Picaut (Ifsttar)");
+//	aboutDlg.AddDeveloper("Wojciech Binek (AGH, Contributor)");
+//	aboutDlg.AddTranslator("Wojciech Binek (AGH)");
+//	aboutDlg.SetCopyright("(c) Ifsttar <i-simpa@ifsttar.fr>");
+//
+//	_("License >>");
+//	_("Developers >>");
+//	wxAboutBox(aboutDlg);
+
 }
 
 void MainUiFrame::OnLinkWebForum(wxCommandEvent& event)
