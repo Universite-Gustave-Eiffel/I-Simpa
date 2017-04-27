@@ -34,10 +34,10 @@
 #include <wx/wxprec.h>
 #ifndef WX_PRECOMP
 #include <wx/wx.h>
+#endif
+
 #include <wx/propdlg.h>
 #include <wx/html/htmlwin.h>
-
-#endif
 
 #ifndef __FRAME_ABOUT_DIALOG__
 #define __FRAME_ABOUT_DIALOG__

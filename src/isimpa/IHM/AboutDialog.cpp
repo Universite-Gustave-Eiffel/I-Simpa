@@ -76,17 +76,17 @@ bool AboutDialog::CreateAboutDialog(wxWindow *parent) {
 
 AboutDialog::AboutDialog()
         : aboutHtml(wxString::Format(
-        "<h2>I-SIMPA %i.%i.%i</h2><p><small>" + _("Built on %s") + "</small></p><p>" +
+        "<html><head> <meta charset=\"UTF-8\"></head><body><h2>I-SIMPA %i.%i.%i</h2><p><small>" + _("Built on %s") + "</small></p><p>" +
         _("An Open Source software for 3D sound propagation modelling.") + "</p>"
                 "<p>" + _("Classical Theory [%i.%i.%i]") + "</p><p>" + _("SPPS [%i.%i.%i]") +
-        "</p><p>Read more on <a href=\"http://i-simpa.ifsttar.fr\">http://i-simpa.ifsttar.fr</a></p>",
+        "</p><p>Read more on <a href=\"http://i-simpa.ifsttar.fr\">http://i-simpa.ifsttar.fr</a></p></body></html>",
         ApplicationConfiguration::SPPS_UI_VERSION_MAJOR, ApplicationConfiguration::SPPS_UI_VERSION_MINOR,
         ApplicationConfiguration::SPPS_UI_VERSION_REVISION, ApplicationConfiguration::BUILD_DATE,
         ApplicationConfiguration::CTR_VERSION_MAJOR,
         ApplicationConfiguration::CTR_VERSION_MINOR, ApplicationConfiguration::CTR_VERSION_REVISION,
         ApplicationConfiguration::SPPS_VERSION_MAJOR, ApplicationConfiguration::SPPS_VERSION_MINOR,
         ApplicationConfiguration::SPPS_VERSION_REVISION)),
-          creditsHtml("<html>\n"
+          creditsHtml("<html><head> <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"></head>\n"
                               "<body>\n"
                               "<table width=\"100%\" border=0>\n"
                               "<tr><td valign=top colspan=2 bgcolor=\"LIGHT BLUE\"><strong>" + _("Developers") +
