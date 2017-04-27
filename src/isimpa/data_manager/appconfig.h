@@ -213,6 +213,7 @@ public:
 	static const int CTR_VERSION_MAJOR;
 	static const int CTR_VERSION_MINOR;
 	static const int CTR_VERSION_REVISION;
+	static const wxString BUILD_DATE;
 	static const wxString CONST_USER_PREFERENCE_FILE_NAME;
 
 	/** @} */

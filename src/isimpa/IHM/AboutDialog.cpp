@@ -59,32 +59,50 @@ bool AboutDialog::CreateAboutDialog(wxWindow *parent) {
     licenseAboutHtml->LoadFile(wxFileName(ApplicationConfiguration::getResourcesFolder(), "license.html"));
     GetBookCtrl()->AddPage(licenseAboutHtml, _("License"));
 
+
+    wxSizer* innerSizer = GetInnerSizer();
+
+    // Add header
+    if(innerSizer) {
+        wxStaticBitmap* dialogBanner = new wxStaticBitmap(this, wxID_ANY, wxBitmap("./Bitmaps/about_banner.png", wxBITMAP_TYPE_PNG));
+        dialogBanner->SetScaleMode(wxStaticBitmap::ScaleMode::Scale_AspectFit);
+        innerSizer->Insert(0, dialogBanner);
+    }
+
     LayoutDialog();
 
     return true;
 }
 
 AboutDialog::AboutDialog()
- : aboutHtml(wxString::Format(_("<p>An Open Source software for 3D sound propagation modelling.</p><p>Classical Theory [%i.%i.%i]</p><p>SPPS [%i.%i.%i]</p>"),ApplicationConfiguration::CTR_VERSION_MAJOR,ApplicationConfiguration::CTR_VERSION_MINOR,ApplicationConfiguration::CTR_VERSION_REVISION,ApplicationConfiguration::SPPS_VERSION_MAJOR,ApplicationConfiguration::SPPS_VERSION_MINOR,ApplicationConfiguration::SPPS_VERSION_REVISION)),
-   creditsHtml("<html>\n"
-                       "<body>\n"
-                       "<table width=\"100%\" border=0>\n"
-                       "<tr><td valign=top colspan=2 bgcolor=\"LIGHT BLUE\"><strong>" + _("Developers") +
-               "</strong></td></tr>\n"
-                       "<tr><td valign=top>Judicaël Picaut</td><td valign=top>Ifsttar</td></tr>\n"
-                       "<tr><td valign=top>Nicolas Fortin</td><td valign=top>Ifsttar</td></tr>\n"
-                       "<tr><td valign=top> &nbsp </td></tr>\n"
-                       "<tr><td valign=top colspan=2 bgcolor=\"LIGHT BLUE\"><strong>" + _("Contributers") +
-               "</strong></td></tr>\n"
-                       "<tr><td valign=top>Wojciech Binek</td><td valign=top>AGH</td></tr>\n"
-                       "<tr><td valign=top> &nbsp </td></tr>\n"
-                       "<tr><td valign=top colspan=2 bgcolor=\"LIGHT BLUE\"><strong>" + _("Translators") +
-               "</strong></td></tr>\n"
-                       "<tr><td valign=top>Wojciech Binek</td><td valign=top>AGH</td></tr>\n"
-                       "</table>\n"
-                       "</body>\n"
-                       "</html>")
- {
+        : aboutHtml(wxString::Format(
+        "<h2>I-SIMPA %i.%i.%i</h2><p><small>" + _("Built on %s") + "</small></p><p>" +
+        _("An Open Source software for 3D sound propagation modelling.") + "</p>"
+                "<p>" + _("Classical Theory [%i.%i.%i]") + "</p><p>" + _("SPPS [%i.%i.%i]") + "</p>",
+        ApplicationConfiguration::SPPS_UI_VERSION_MAJOR, ApplicationConfiguration::SPPS_UI_VERSION_MINOR,
+        ApplicationConfiguration::SPPS_UI_VERSION_REVISION, ApplicationConfiguration::BUILD_DATE,
+        ApplicationConfiguration::CTR_VERSION_MAJOR,
+        ApplicationConfiguration::CTR_VERSION_MINOR, ApplicationConfiguration::CTR_VERSION_REVISION,
+        ApplicationConfiguration::SPPS_VERSION_MAJOR, ApplicationConfiguration::SPPS_VERSION_MINOR,
+        ApplicationConfiguration::SPPS_VERSION_REVISION)),
+          creditsHtml("<html>\n"
+                              "<body>\n"
+                              "<table width=\"100%\" border=0>\n"
+                              "<tr><td valign=top colspan=2 bgcolor=\"LIGHT BLUE\"><strong>" + _("Developers") +
+                      "</strong></td></tr>\n"
+                              "<tr><td valign=top>Judicaël Picaut</td><td valign=top>Ifsttar</td></tr>\n"
+                              "<tr><td valign=top>Nicolas Fortin</td><td valign=top>Ifsttar</td></tr>\n"
+                              "<tr><td valign=top> &nbsp </td></tr>\n"
+                              "<tr><td valign=top colspan=2 bgcolor=\"LIGHT BLUE\"><strong>" + _("Contributors") +
+                      "</strong></td></tr>\n"
+                              "<tr><td valign=top>Wojciech Binek</td><td valign=top>AGH</td></tr>\n"
+                              "<tr><td valign=top> &nbsp </td></tr>\n"
+                              "<tr><td valign=top colspan=2 bgcolor=\"LIGHT BLUE\"><strong>" + _("Translators") +
+                      "</strong></td></tr>\n"
+                              "<tr><td valign=top>Wojciech Binek</td><td valign=top>AGH</td></tr>\n"
+                              "</table>\n"
+                              "</body>\n"
+                              "</html>") {
 
 
 }

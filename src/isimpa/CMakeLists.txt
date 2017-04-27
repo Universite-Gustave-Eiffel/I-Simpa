@@ -2,6 +2,8 @@ include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
 set(CMAKE_INSTALL_MFC_LIBRARIES ON)
 include( InstallRequiredSystemLibraries )
 
+string(TIMESTAMP BUILD_DATE "%Y-%m-%dT%H:%M:%S")
+
 MACRO(ADDMULTIPLE_LANG curdir bindir)
   FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)
   FOREACH(child ${children})
