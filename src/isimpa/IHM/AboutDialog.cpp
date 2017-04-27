@@ -78,7 +78,8 @@ AboutDialog::AboutDialog()
         : aboutHtml(wxString::Format(
         "<h2>I-SIMPA %i.%i.%i</h2><p><small>" + _("Built on %s") + "</small></p><p>" +
         _("An Open Source software for 3D sound propagation modelling.") + "</p>"
-                "<p>" + _("Classical Theory [%i.%i.%i]") + "</p><p>" + _("SPPS [%i.%i.%i]") + "</p>",
+                "<p>" + _("Classical Theory [%i.%i.%i]") + "</p><p>" + _("SPPS [%i.%i.%i]") +
+        "</p><p>Read more on <a href=\"http://i-simpa.ifsttar.fr\">http://i-simpa.ifsttar.fr</a></p>",
         ApplicationConfiguration::SPPS_UI_VERSION_MAJOR, ApplicationConfiguration::SPPS_UI_VERSION_MINOR,
         ApplicationConfiguration::SPPS_UI_VERSION_REVISION, ApplicationConfiguration::BUILD_DATE,
         ApplicationConfiguration::CTR_VERSION_MAJOR,
@@ -95,6 +96,8 @@ AboutDialog::AboutDialog()
                               "<tr><td valign=top> &nbsp </td></tr>\n"
                               "<tr><td valign=top colspan=2 bgcolor=\"LIGHT BLUE\"><strong>" + _("Contributors") +
                       "</strong></td></tr>\n"
+                              "<tr><td valign=top>Augustin Lacour</td><td valign=top>Ifsttar</td></tr>\n"
+                              "<tr><td valign=top>Jimmy Farcy</td><td valign=top>Ifsttar</td></tr>\n"
                               "<tr><td valign=top>Wojciech Binek</td><td valign=top>AGH</td></tr>\n"
                               "<tr><td valign=top> &nbsp </td></tr>\n"
                               "<tr><td valign=top colspan=2 bgcolor=\"LIGHT BLUE\"><strong>" + _("Translators") +
