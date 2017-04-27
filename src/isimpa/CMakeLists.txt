@@ -492,8 +492,7 @@ set(ISIMPA_RESSOURCES ${PROJECT_SOURCE_DIR}/currentRelease)
 
 install (FILES
 ${ISIMPA_RESSOURCES}/appconst.xml
-${ISIMPA_RESSOURCES}/Licence.pdf
-${ISIMPA_RESSOURCES}/Licence.rtf
+${ISIMPA_RESSOURCES}/license.html
 isimpa.ico
         DESTINATION .)
 

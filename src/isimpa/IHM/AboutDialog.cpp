@@ -56,7 +56,7 @@ bool AboutDialog::CreateAboutDialog(wxWindow *parent) {
 
     // Add license
     wxHtmlWindow* licenseAboutHtml = new wxHtmlWindow(GetBookCtrl());
-    licenseAboutHtml->LoadFile(wxFileName(ApplicationConfiguration::getResourcesFolder(), "license.txt"));
+    licenseAboutHtml->LoadFile(wxFileName(ApplicationConfiguration::getResourcesFolder(), "license.html"));
     GetBookCtrl()->AddPage(licenseAboutHtml, _("License"));
 
     LayoutDialog();
