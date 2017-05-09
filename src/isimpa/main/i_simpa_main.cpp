@@ -120,7 +120,6 @@ BEGIN_EVENT_TABLE(MainUiFrame, wxFrame)
 	//EVT_MENU(ID_Help_Forum, MainUiFrame::OnLinkWebForum)
 	EVT_MENU(ID_Help_Web, MainUiFrame::OnLinkWebIsimpa)
 	EVT_MENU(ID_Help_Doc, MainUiFrame::OnLinkWebDoc)
-	EVT_MENU(ID_Help_Licence, MainUiFrame::OnFileLicence)
 	EVT_MENU(ID_Help_Doc_Isimpa_Pdf, MainUiFrame::OnFileIsimpaDoc)
 	EVT_MENU(ID_Help_Doc_Spps_Pdf, MainUiFrame::OnFileSppsDoc)
 	//VT_MENU(ID_changeLanguage, MainUiFrame::OnChangeLanguage)
@@ -153,15 +152,6 @@ void OnCoreElementEvent(wxCommandEvent& eventElement)
 void OnUserConfigElementEvent(wxCommandEvent& eventElement)
 {
 	projetCourant->ElementEvent(eventElement,ProjectManager::EVENT_CTRL_USERCONFIG);
-}
-
-
-wxString GetLicenseText()
-{
-	wxFFile licenseFile("license.txt");
-	wxString fileContent;
-	licenseFile.ReadAll(&fileContent);
-	return fileContent;
 }
 
 MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APPLICATION_NAME,
@@ -317,7 +307,6 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	aide_menu->Append(ID_Help_Doc_Isimpa_Pdf, _("I-Simpa documentation (PDF in French)"));
 	aide_menu->Append(ID_Help_Doc_Spps_Pdf, _("SPPS documentation (PDF in French)"));
 	aide_menu->AppendSeparator();
-	aide_menu->Append(ID_Help_Licence, _("License"));
 	aide_menu->Append(ID_Help_About, _("About ")+APPLICATION_NAME);
 
 
@@ -867,24 +856,6 @@ void MainUiFrame::OnShowAboutDialog(wxCommandEvent& event)
     AboutDialog aboutDialog;
     aboutDialog.CreateAboutDialog(this);
 	aboutDialog.ShowModal();
-
-
-//	wxAboutDialogInfo aboutDlg;
-//	aboutDlg.SetVersion(wxString::Format("[%i.%i.%i]",ApplicationConfiguration::SPPS_UI_VERSION_MAJOR,ApplicationConfiguration::SPPS_UI_VERSION_MINOR,ApplicationConfiguration::SPPS_UI_VERSION_REVISION));
-//	aboutDlg.SetName(APPLICATION_NAME);
-//	aboutDlg.SetWebSite(wxT("http://i-simpa.ifsttar.fr"));
-//	aboutDlg.SetDescription(wxString::Format(_("An Open Source software for 3D sound propagation modelling.\n\nClassical Theory [%i.%i.%i]\nSPPS [%i.%i.%i]"),ApplicationConfiguration::CTR_VERSION_MAJOR,ApplicationConfiguration::CTR_VERSION_MINOR,ApplicationConfiguration::CTR_VERSION_REVISION,ApplicationConfiguration::SPPS_VERSION_MAJOR,ApplicationConfiguration::SPPS_VERSION_MINOR,ApplicationConfiguration::SPPS_VERSION_REVISION));
-//	aboutDlg.SetLicence(_("I-Simpa is an open source software (GPL v3)."));
-//	aboutDlg.AddDeveloper("Nicolas Fortin (Ifsttar)");
-//	aboutDlg.AddDeveloper("Judicaël Picaut (Ifsttar)");
-//	aboutDlg.AddDeveloper("Wojciech Binek (AGH, Contributor)");
-//	aboutDlg.AddTranslator("Wojciech Binek (AGH)");
-//	aboutDlg.SetCopyright("(c) Ifsttar <i-simpa@ifsttar.fr>");
-//
-//	_("License >>");
-//	_("Developers >>");
-//	wxAboutBox(aboutDlg);
-
 }
 
 void MainUiFrame::OnLinkWebForum(wxCommandEvent& event)
