@@ -34,6 +34,7 @@
 #include <wx/tokenzr.h>
 #include <wx/log.h>
 #include <wx/dataobj.h>
+#include <typeinfo>
 #include "IHM/customItem/uimenuitem.hpp"
 
 #ifdef __WXDEBUG__
@@ -244,12 +245,32 @@ void PropGrid::Paste(wxCommandEvent& event)
 void PropGrid::DoFillMenu(wxGridEvent& ev,wxMenu* mainMenu)
 {
 	mainMenu->Append(ID_COPIER, _("Copy"));
-	if(allowPaste)
+	// Check if all row/column editors are the same
+    bool sameColumnEditors = true;
+    bool sameRowEditors = true;
+    std::string refEditor = typeid(*this->GetCellEditor(ev.GetRow(), ev.GetCol())).name();
+    for(int idRow = 0; idRow < this->GetNumberRows(); idRow++) {
+        if(typeid(*this->GetCellEditor(idRow,ev.GetCol())).name() != refEditor) {
+            sameColumnEditors = false;
+            break;
+        }
+    }
+    for(int idCol = 0; idCol < this->GetNumberCols(); idCol++) {
+        if(typeid(*this->GetCellEditor(ev.GetRow(),idCol)).name() != refEditor) {
+            sameRowEditors = false;
+            break;
+        }
+    }
+	if(allowPaste && (sameColumnEditors || sameRowEditors))
 	{
 		mainMenu->Append(ID_COLLER, _("Paste"));
 		wxMenu* subMenu=new wxMenu;
-		subMenu->Append(ID_COPY_ON_COLUMN,_("to the column"));
-		subMenu->Append(ID_COPY_ON_ROW,_("to the row"));
+        if(sameColumnEditors) {
+            subMenu->Append(ID_COPY_ON_COLUMN, _("to the column"));
+        }
+        if(sameRowEditors) {
+            subMenu->Append(ID_COPY_ON_ROW, _("to the row"));
+        }
 		mainMenu->Append(new wxUiMenuItem(mainMenu, -1,_("Set the same value"),"Set the same value",wxITEM_NORMAL,subMenu));
 	}
 }
