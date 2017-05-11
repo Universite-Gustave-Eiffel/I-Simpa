@@ -799,7 +799,6 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	xmlCoreDocument.SetRoot(rootConfig);
 	rootScene->SaveXMLCoreDoc(rootConfig);
 	coreCalculation->SaveXMLCoreDoc(rootConfig);
-	xmlCoreDocument.SetFileEncoding("iso-8859-1"); //tant que libinterface ne gère par l'utf-8 on utilise ca
 	xmlCoreDocument.Save(workingDir+xmlCoreFileName);
 
 	///////////////////////////////////////////
