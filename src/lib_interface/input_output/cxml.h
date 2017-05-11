@@ -31,6 +31,7 @@
 
 #include "../coreString.h"
 #include <vector>
+#include "pugixml/src/pugixml.hpp"
 
 #ifndef __CXML_PARSER__
 #define __CXML_PARSER__
@@ -41,23 +42,6 @@
  */
 
 typedef CoreString xString;
-
-/**
- * Espace de nom propre à l'algorithme interne de CXml
- */
-namespace BasicXmlProcess
-{
-	/** @brief basicxmlnode: simple xml node memory representation */
-	struct basicxmlnode
-	{
-	  char * tag;						/*!< always non-NULL */
-	  char * text;						/*!< body + all whitespace, always non-NULL */
-	  char * * attrs;					/*!< array of strings, NULL marks end */
-	  char * * values;					/*!< array of strings, NULL marks end */
-	  struct basicxmlnode * * children; /*!< similar */
-	  int * childreni;					/*!< children positions in text */
-	};
-}
 
 /**
  * @brief Classe représentant une propriété d'un noeud du fichier XML
@@ -125,7 +109,7 @@ public:
 	 * @param _parent Noeud parent
 	 * @param rowData Données du noeud  (charge les données fils )
 	 */
-	CXmlNode(CXmlNode* _parent=NULL , BasicXmlProcess::basicxmlnode* rowData = NULL);
+	CXmlNode(CXmlNode* _parent , const pugi::xml_node& rowData);
 	~CXmlNode();
 	/**
 	 * Ajouter un fils à cet élément
@@ -218,7 +202,7 @@ private:
 	{
 		xString nodeName;
 		std::vector<CXmlNodeProperty> nodeProperties;
-		std::vector<CXmlNode*> childrens;
+		std::vector<CXmlNode*> children;
 		CXmlNode* parent;
 	}nodeData;
 
