@@ -52,6 +52,7 @@ BEGIN_EVENT_TABLE(MainUiFrame, wxFrame)
 	EVT_MENU(ID_ouvrir, MainUiFrame::OnOpenProject)
 
 	EVT_MENU(ID_preferences_lang, MainUiFrame::OnChangeLanguage)
+    EVT_MENU(ID_preferences_appdata, MainUiFrame::OnChangeAppData)
 	EVT_MENU(ID_preferences_options, MainUiFrame::OnShowPreferenceTree)
 
 	EVT_MENU(ID_Dock3Dwindow, MainUiFrame::OnSetDockStatus)
@@ -197,6 +198,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	wxMenu* file_preferences_menu = new wxMenu;
 	file_preferences_menu->Append(ID_preferences_options, _("Options"));
 	file_preferences_menu->Append(ID_preferences_lang, _("Language"));
+    file_preferences_menu->Append(ID_preferences_appdata, _("Change application data folder"));
 	file_menu->Append(ID_preferences, _("Settings"),file_preferences_menu);
 
 	file_menu->AppendSeparator();
@@ -842,6 +844,13 @@ void MainUiFrame::OnChangeLanguage(wxCommandEvent& event)
 	wxLogMessage(_("Language will be changed after restarting I-Simpa"));
 }
 
+void MainUiFrame::OnChangeAppData(wxCommandEvent& event)
+{
+    MainUiFrame::AskApplicationDataDir(ApplicationConfiguration::GLOBAL_VAR.appDataFolderPath);
+    ApplicationConfiguration::GetFileConfig()->Write("interface/appdata", ApplicationConfiguration::GLOBAL_VAR.appDataFolderPath);
+    wxLogMessage(_("Application data folder will be changed after restarting I-Simpa"));
+}
+
 void MainUiFrame::OnShowPreferenceTree(wxCommandEvent& event)
 {
 	wxAuiPaneInfo& optionPane=m_mgr.GetPane("userpref");
@@ -858,11 +867,6 @@ void MainUiFrame::OnShowAboutDialog(wxCommandEvent& event)
 	aboutDialog.ShowModal();
 }
 
-void MainUiFrame::OnLinkWebForum(wxCommandEvent& event)
-{
-	wxLaunchDefaultBrowser("http://i-simpa.ifsttar.fr/community/mailing-lists-and-forum/");
-}
-
 void MainUiFrame::OnLinkWebIsimpa(wxCommandEvent& event)
 {
 	wxLaunchDefaultBrowser("http://i-simpa.ifsttar.fr/");
@@ -870,11 +874,6 @@ void MainUiFrame::OnLinkWebIsimpa(wxCommandEvent& event)
 void MainUiFrame::OnLinkWebDoc(wxCommandEvent& event)
 {
 	wxLaunchDefaultBrowser("http://i-simpa-wiki.readthedocs.io");
-}
-
-void MainUiFrame::OnFileLicence(wxCommandEvent& event)
-{
-	wxLaunchDefaultApplication("licence.rtf");
 }
 
 void MainUiFrame::OnFileIsimpaDoc(wxCommandEvent& event)
@@ -986,10 +985,30 @@ void MainUiFrame::OnSaveToProject(wxCommandEvent& event)
 		projetCourant->SaveTo(FileName);
 	}
 }
+wxString MainUiFrame::AskApplicationDataDir(wxString defaultApplicationDirectory) {
+
+
+    wxMessageDialog dialog( NULL, wxString::Format(
+                                    _("Do you accept to write the projects into this directory:\n%s"), defaultApplicationDirectory),
+                            _("Application data directory"), wxYES_DEFAULT|wxYES_NO|wxICON_INFORMATION);
+
+	if(dialog.ShowModal()== wxID_YES) {
+		return defaultApplicationDirectory;
+	} else {
+		// User want to select a folder
+		wxDirDialog folderChooser(NULL, _("Select an empty folder that will contain your projects"), defaultApplicationDirectory,  wxDD_DEFAULT_STYLE | wxDD_DIR_MUST_EXIST);
+		if(folderChooser.ShowModal() == wxID_OK) {
+			return folderChooser.GetPath();
+		} else {
+			return defaultApplicationDirectory;
+		}
+	}
+}
+
 int MainUiFrame::AskApplicationLanguage(int defaultLanguage)
 {
 	int choosenLanguage=defaultLanguage;
-	LanguageSelector langSelection(NULL,_("Please choose language:"),_("Language"),ApplicationConfiguration::getResourcesFolder()+wxString("locale")+wxFileName::GetPathSeparator(),ApplicationConfiguration::getResourcesFolder()+ApplicationConfiguration::CONST_RESOURCE_BITMAP_FOLDER+wxString("flags")+wxFileName::GetPathSeparator());
+	LanguageSelector langSelection(NULL, _("Please choose language:"),_("Language"),ApplicationConfiguration::getResourcesFolder()+wxString("locale")+wxFileName::GetPathSeparator(),ApplicationConfiguration::getResourcesFolder()+ApplicationConfiguration::CONST_RESOURCE_BITMAP_FOLDER+wxString("flags")+wxFileName::GetPathSeparator());
 	wxInt32 choice=langSelection.ShowModal();
 	if(choice==wxID_OK)
 	{

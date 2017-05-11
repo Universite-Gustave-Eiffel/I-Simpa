@@ -200,7 +200,7 @@ void PropGrid::setCellValueWithEvt(int row,int col,const wxString& val)
 	{
 		this->SetCellValue(row,col,val);
 		wxGridEvent customGreedEvent(1,wxEVT_GRID_CELL_CHANGED,this,row,col);
-		GetEventHandler()->ProcessEvent( customGreedEvent );
+		ProcessWindowEvent( customGreedEvent );
 	}
 }
 void PropGrid::Paste(wxCommandEvent& event)

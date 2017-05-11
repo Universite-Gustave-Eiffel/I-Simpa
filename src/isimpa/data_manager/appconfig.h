@@ -239,6 +239,7 @@ public:
 
 	struct t_GLOBAL_VAR
 	{
+        wxString appDataFolderPath;
 		wxString cacheFolderPath;
 		wxString workingFolderPath;
 		bool drawMaterialColors;

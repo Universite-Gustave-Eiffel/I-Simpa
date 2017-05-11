@@ -100,6 +100,7 @@ class MainUiFrame : public wxFrame
 			ID_preferences,
 				ID_preferences_options,
 				ID_preferences_lang,
+                ID_preferences_appdata,
 			ID_fermer,
 
 			ID_annuler,
@@ -258,6 +259,8 @@ class MainUiFrame : public wxFrame
 
 
 		static int AskApplicationLanguage(int defaultLanguage);
+
+        static wxString AskApplicationDataDir(wxString defaultApplicationDirectory);
 	private:
 		void OnSaveProject(wxCommandEvent& event);
 		void OnSaveConsoleToFile(wxCommandEvent& event);
@@ -306,13 +309,12 @@ class MainUiFrame : public wxFrame
 		void OnSubstractRecepteurS(wxCommandEvent& event);
 		void OnMainEvent(wxCommandEvent& event);
 		void OnShowAboutDialog(wxCommandEvent& event);
-		void OnLinkWebForum(wxCommandEvent& event);
 		void OnLinkWebIsimpa(wxCommandEvent& event);
 		void OnLinkWebDoc(wxCommandEvent& event);
-		void OnFileLicence(wxCommandEvent& event);
 		void OnFileIsimpaDoc(wxCommandEvent& event);
 		void OnFileSppsDoc(wxCommandEvent& event);
 		void OnChangeLanguage(wxCommandEvent& event);
+        void OnChangeAppData(wxCommandEvent &event);
 		void OnShowPreferenceTree(wxCommandEvent& event);
 		/**
 		 * Menu annuler
@@ -328,6 +330,7 @@ class MainUiFrame : public wxFrame
 
 
 		DECLARE_EVENT_TABLE();
+
 };
 
 
@@ -426,24 +429,17 @@ class ISimpaApp : public wxApp
 		 */
 		bool OnInit()
 		{
-
-			/*
-			if(ApplicationConfiguration::CONST_WORKINGLIMIT!=0 && ApplicationConfiguration::CONST_WORKINGLIMIT<wxGetLocalTime())
-			{
-				//on génére une erreur car le logiciel ne doit plus être utilisé
-				wxMessageBox(_("Date d'utilisation d'I-SIMPA dépassé :"));
-				return false;
-			}
-			*/
 			//Applique le dossier de l'exécutable comme dossier courant
 			wxStandardPaths stPath = wxStandardPaths::Get();
 			wxFileName fPath=stPath.GetExecutablePath();
 			wxString WorkingDir=fPath.GetPath();
 			wxSetWorkingDirectory(WorkingDir);
 
-			//Crée le dossier de préférence de l'utilisateur dans le dossier de session
-			if(!wxDirExists(stPath.GetUserDataDir()))
-				wxMkdir(stPath.GetUserDataDir());
+			// Check if the isimpa data folder exists
+			if(!wxDirExists(stPath.GetUserDataDir())) {
+                // Create this cache folder
+                wxMkdir(stPath.GetUserDataDir());
+            }
 
 			//Charge les gestionnaires de formats d'images
 			wxImage::AddHandler(new wxJPEGHandler); //ajoute le support du format jpeg
@@ -464,8 +460,17 @@ class ISimpaApp : public wxApp
 			lang.Init(choosenLanguage, wxLOCALE_LOAD_DEFAULT);
 			lang.AddCatalog("internat",wxLANGUAGE_DEFAULT,"");
 
+
+            if(ApplicationConfiguration::GetFileConfig()->Read("interface/appdata",&strConf)) {
+                ApplicationConfiguration::GLOBAL_VAR.appDataFolderPath = strConf;
+            } else {
+                // Ask user if the default cache folder is ok
+                ApplicationConfiguration::GLOBAL_VAR.appDataFolderPath = MainUiFrame::AskApplicationDataDir(stPath.GetUserDataDir());
+                ApplicationConfiguration::GetFileConfig()->Write("interface/appdata", ApplicationConfiguration::GLOBAL_VAR.appDataFolderPath);
+            }
+
 			// Réserve ou réutilise le cache du projet
-			ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath= stPath.GetUserDataDir()+wxFileName::GetPathSeparator()+ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath+wxFileName::GetPathSeparator();
+			ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath= ApplicationConfiguration::GLOBAL_VAR.appDataFolderPath+wxFileName::GetPathSeparator()+ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath+wxFileName::GetPathSeparator();
 			m_checker = new wxSingleInstanceChecker(APPLICATION_NAME);
 			wxInt32 instance_count=1;
 			if(!wxDir::Exists(ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath))
