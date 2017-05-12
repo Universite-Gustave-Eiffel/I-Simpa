@@ -31,9 +31,14 @@
 #include "bin.h"
 #include "Core/mathlib.h"
 #include <cstring>
+#ifdef WIN32
+#include "input_output/pugixml/src/pugixml.hpp"
+#endif // WIN32
+
 
 namespace formatCoreBIN
 {
+
 	const int DEFAULT_MAJOR = 1;
 	const int DEFAULT_MINOR = 0;
 
@@ -117,7 +122,12 @@ namespace formatCoreBIN
 
 		using namespace std;
 		char strMessage[255] = {0};
-		fstream binFile (strFileName, ios::in | ios::binary);
+		#ifdef WIN32
+		fstream binFile(pugi::as_wide(strFileName), ios::in | ios::binary);
+		#else
+		fstream binFile(strFileName, ios::in | ios::binary);
+		#endif // WIN
+
 		if(!binFile.is_open())
 			return false;
 
@@ -147,8 +157,12 @@ namespace formatCoreBIN
 		unsigned long nbVertex=modelImport.vertices.size();
 
 		//Declarations
-		//Sauvegarde du mod�le 3D
-		fstream binFile (strFileName, ios::out | ios::binary);
+		//Save 3D model
+		#ifdef WIN32
+				fstream binFile(pugi::as_wide(strFileName), ios::out | ios::binary);
+		#else
+				fstream binFile(strFileName, ios::out | ios::binary);
+		#endif // WIN
 
 		//*************************
 		//Ecriture de l'entete du fichier

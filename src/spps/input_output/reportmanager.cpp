@@ -1,6 +1,9 @@
 #include "reportmanager.h"
 #include "tools/collision.h"
 #include <cmath>
+#ifdef WIN32
+#include "input_output/pugixml/src/pugixml.hpp"
+#endif // WIN32
 
 const l_decimal p_0=1/pow((float)(20*pow(10.f,(int)-6)),(int)2);
 
@@ -99,14 +102,31 @@ void ReportManager::writeParticleFile()
 
 	st_mkdir(freqFolder);
 	stringClass fileNamePath=freqFolder+paramReport._particleFileName;
-	particleFile = new fstream(fileNamePath.c_str() , ios::out | ios::binary);
+	
+	#ifdef WIN32
+		particleFile = new fstream(pugi::as_wide(fileNamePath), ios::out | ios::binary);
+	#else
+		particleFile = new fstream(fileNamePath.c_str(), ios::out | ios::binary);
+	#endif // WIN
+
+
 	stringClass fileCSVNamePath=freqFolder+"particle_surface_collision_statistics.csv";
     stringClass fileReceiversCSVNamePath = freqFolder + "particle_receivers_collision_statistics.csv";
     if(*(this->paramReport.configManager->FastGetConfigValue(Core_Configuration::I_PROP_SAVE_SURFACE_INTERSECTION))) {
-	    particleSurfaceCSVFile = new fstream(fileCSVNamePath.c_str() , ios::out);
+
+		#ifdef WIN32
+		particleSurfaceCSVFile = new fstream(pugi::as_wide(fileCSVNamePath), ios::out);
+		#else
+		particleSurfaceCSVFile = new fstream(fileCSVNamePath.c_str(), ios::out);
+		#endif // WIN
     }
     if (*(this->paramReport.configManager->FastGetConfigValue(Core_Configuration::I_PROP_SAVE_RECEIVER_INTERSECTION))) {
-        particleReceiverCSVFile = new fstream(fileReceiversCSVNamePath.c_str(), ios::out);
+
+		#ifdef WIN32
+		particleReceiverCSVFile = new fstream(pugi::as_wide(fileReceiversCSVNamePath), ios::out);
+		#else
+		particleReceiverCSVFile = new fstream(fileReceiversCSVNamePath.c_str(), ios::out);
+		#endif // WIN
     }
 
 	enteteSortie.nbParticles=paramReport.nbParticles;

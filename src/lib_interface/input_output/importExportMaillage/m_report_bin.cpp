@@ -31,6 +31,9 @@
 #include "m_report_bin.h"
 #include <fstream>
 #include <string.h>
+#ifdef WIN32
+#include "input_output/pugixml/src/pugixml.hpp"
+#endif // WIN32
 
 namespace formatMRENDERBIN
 {
@@ -42,8 +45,13 @@ bool REPORT_MBIN::ExportBIN(const char *strFileName,t_reportbinexchange& reportD
 
 	//Declarations
 
-	//Sauvegarde du modèle 3D
-	fstream binFile (strFileName, ios::out | ios::binary);
+	//Save mesh
+
+	#ifdef WIN32
+		fstream binFile(pugi::as_wide(strFileName), ios::out | ios::binary);
+	#else
+		fstream binFile(strFileName, ios::out | ios::binary);
+	#endif // WIN
 
 	//*************************
 	//Ecriture de l'entete du fichier
@@ -67,7 +75,11 @@ bool  REPORT_MBIN::ImportBIN(const char *strFileName,t_reportbinexchange& report
 	//Declarations
 
 	//Sauvegarde du modèle 3D
-    fstream binFile (strFileName, ios::in | ios::binary);
+	#ifdef WIN32
+		fstream binFile(pugi::as_wide(strFileName), ios::in | ios::binary);
+	#else
+		fstream binFile(strFileName, ios::in | ios::binary);
+	#endif // WIN
 	if(binFile.is_open())
 	{
 		//*************************

@@ -31,6 +31,9 @@
 #include "part_io.hpp"
 #include "part_binary.h"
 #include <string.h>
+#ifdef WIN32
+#include "input_output/pugixml/src/pugixml.hpp"
+#endif // WIN32
 
 namespace particleio
 {
@@ -94,7 +97,12 @@ namespace particleio
 	{
 		readonly=false;
 		CloseAndClear();
-		particleFile = new fstream(fileName.c_str() , ios::out | ios::binary);
+		#ifdef WIN32
+				particleFile = new fstream(pugi::as_wide(fileName), ios::out | ios::binary);
+		#else
+		particleFile = new fstream(fileName.c_str(), ios::out | ios::binary);
+		#endif // WIN
+
 		lastParticuleFileHeaderInfo=particleFile->tellp();
 		currentPartInfo.opened=false;
 		WriteHeader(false);
@@ -174,7 +182,11 @@ namespace particleio
 	{
 		readonly=true;
 		CloseAndClear();
-		particleFile = new fstream(fileName.c_str() , ios::in | ios::binary);
+		#ifdef WIN32
+				particleFile = new fstream(pugi::as_wide(fileName), ios::in | ios::binary);
+		#else
+				particleFile = new fstream(fileName.c_str(), ios::in | ios::binary);
+		#endif // WIN
 		if(IsOpenAndReadyForRead())
 		{
 			binaryFHeader enteteFichier;
