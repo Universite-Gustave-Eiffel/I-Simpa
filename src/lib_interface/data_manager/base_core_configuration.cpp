@@ -46,8 +46,6 @@ Base_Core_Configuration::Base_Core_Configuration( )
 	tabStringProp = new CoreString[SPROP_LAST];
 }
 
-
-
 bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml, bool verbose_mode)
 {
 	bool force_abs_atmo=false;
@@ -57,9 +55,7 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml, bool verbose_mode)
 	CXmlNode* root=fichierXml.GetRoot();
 	if(root)
 	{
-		SetConfigInformation(SPROP_CORE_WORKING_DIRECTORY,root->GetProperty("workingdirectory"));
-	
-
+		SetConfigInformation(SPROP_CORE_WORKING_DIRECTORY, root->GetProperty("workingdirectory"));
 		if (verbose_mode) { cout << "Loading of the atmospheric condition.." << endl; }
 		CXmlNode* atmoNode=root->GetChild("condition_atmospherique");
 		if(atmoNode)

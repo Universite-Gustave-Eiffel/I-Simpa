@@ -744,7 +744,12 @@ bool CObjet3D::_SaveCBIN(const std::string& filename)
 	CformatBIN classExport;
 	ioModel modelExport;
 	ToCBINFormat(modelExport);
-	return classExport.ExportBIN(filename.c_str(),modelExport);
+	#ifdef WIN32
+		return classExport.ExportBIN(wxString(filename).utf8_str(), modelExport);
+	#else
+		return classExport.ExportBIN(filename.c_str(), modelExport);
+	#endif // WIN32
+
 }
 void CObjet3D::GetTetraMesh(formatMBIN::trimeshmodel& trimesh,bool toRealCoords)
 {
@@ -799,7 +804,15 @@ bool CObjet3D::SaveMaillage(const std::string& filename,bool toRealCoords)
 	trimeshmodel trimesh;
 	GetTetraMesh(trimesh,toRealCoords);
 	CMBIN binExporter;
-	if(binExporter.SaveMesh(filename.c_str(), trimesh) && !wxFileExists(filename))
+
+	#ifdef WIN32
+	    wxString wxmeshPath(filename);
+	    std::string meshPath = wxmeshPath.utf8_str();
+	#else
+		std::string meshPath = filename;
+	#endif
+
+	if(binExporter.SaveMesh(meshPath.c_str(), trimesh) && !wxFileExists(filename))
 	{
 		wxLogError(_("Failed to export meshing"));
 		return false;

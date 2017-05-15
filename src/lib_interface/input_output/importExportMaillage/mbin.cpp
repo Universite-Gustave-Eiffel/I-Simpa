@@ -32,6 +32,9 @@
 #include <fstream>
 #include "Core/mathlib.h"
 #include "coreTypes.h"
+#ifdef WIN32
+#include "input_output/pugixml/src/pugixml.hpp"
+#endif // WIN32
 
 namespace formatMBIN
 {
@@ -93,8 +96,13 @@ bool CMBIN::ExportBIN(const char *strFileName,const bintetrahedre* tabTetra,cons
 
 	//Declarations
 
-	//Sauvegarde du mod�le 3D
-	fstream binFile (strFileName, ios::out | ios::binary);
+	//Save 3D mesh
+	#ifdef WIN32
+		fstream binFile(pugi::as_wide(strFileName), ios::out | ios::binary);
+	#else
+		fstream binFile(strFileName, ios::out | ios::binary);
+	#endif // WIN
+	
 
 	//*************************
 	//Ecriture de l'entete du fichier
@@ -157,10 +165,12 @@ bool  CMBIN::ImportBIN(const char *strFileName,bintetrahedre **tabTetra,t_binNod
 	//Namespace
 	using namespace std;
 
-	//Declarations
-
-	//Sauvegarde du mod�le 3D
-    fstream binFile (strFileName, ios::in | ios::binary);
+	//Import 3D mesh file
+	#ifdef WIN32
+		fstream binFile(pugi::as_wide(strFileName), ios::in | ios::binary);
+	#else
+		fstream binFile(strFileName, ios::in | ios::binary);
+	#endif // WIN
 
 	if(binFile.is_open())
 	{

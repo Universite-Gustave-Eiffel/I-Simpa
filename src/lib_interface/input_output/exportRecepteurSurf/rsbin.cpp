@@ -30,6 +30,9 @@
 
 #include "rsbin.h"
 #include <fstream>
+#ifdef WIN32
+#include "input_output/pugixml/src/pugixml.hpp"
+#endif // WIN32
 
 namespace formatRSBIN
 {
@@ -58,7 +61,11 @@ namespace formatRSBIN
 		//Declarations
 
 		//Sauvegarde
-		fstream binFile (strFileName, ios::in | ios::binary);
+		#ifdef WIN32
+			fstream binFile(pugi::as_wide(strFileName), ios::in | ios::binary);
+		#else
+			fstream binFile(strFileName, ios::in | ios::binary);
+		#endif // WIN
 
 		//*************************
 		// Lecture de l'entete du fichier
@@ -83,7 +90,11 @@ namespace formatRSBIN
 		//Declarations
 
 		//Sauvegarde
-		fstream binFile (strFileName, ios::in | ios::binary);
+		#ifdef WIN32
+				fstream binFile(pugi::as_wide(strFileName), ios::in | ios::binary);
+		#else
+				fstream binFile(strFileName, ios::in | ios::binary);
+		#endif // WIN
 
 		//*************************
 		// Lecture de l'entete du fichier
@@ -148,8 +159,12 @@ namespace formatRSBIN
 
 		//Declarations
 
-		//Sauvegarde du modèle 3D
-		fstream binFile (strFileName, ios::out | ios::binary);
+		//Save surface receiver
+		#ifdef WIN32
+		fstream binFile(pugi::as_wide(strFileName), ios::out | ios::binary);
+		#else
+				fstream binFile(strFileName, ios::out | ios::binary);
+		#endif // WIN
 
 		//*************************
 		//Ecriture de l'entete du fichier

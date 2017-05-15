@@ -31,6 +31,9 @@
 #include "gpl_io.hpp"
 #include <fstream>
 #include <iostream>
+#ifdef WIN32
+#include "input_output/pugixml/src/pugixml.hpp"
+#endif // WIN32
 
 namespace GPL_IO
 {
@@ -50,6 +53,14 @@ namespace GPL_IO
 	{
 		std::ifstream gplFile; // On the stack
 		gplFile.open( gpl_filename.c_str(),std::ios::in  );
+
+
+		#ifdef WIN32
+				gplFile.open(pugi::as_wide(gpl_filename), std::ios::in);
+		#else
+				gplFile.open(gpl_filename.c_str(), std::ios::in);
+		#endif // WIN
+
 		if(!gplFile.is_open())
 			return -1;
 
@@ -123,7 +134,14 @@ namespace GPL_IO
 	bool GPL_FileExchange::Write(const std::string& gpl_filename)
 	{
 		std::ofstream gplFile; // On the stack
-		gplFile.open( gpl_filename.c_str(),std::ios::out  );
+
+
+		#ifdef WIN32
+				gplFile.open(pugi::as_wide(gpl_filename), std::ios::out);
+		#else
+				gplFile.open(gpl_filename.c_str(), std::ios::out);
+		#endif // WIN
+
 		if(!gplFile.is_open())
 			return false;
 		gplFile<<"GIMP Palette"<<std::endl;

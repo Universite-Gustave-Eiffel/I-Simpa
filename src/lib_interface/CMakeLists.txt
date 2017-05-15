@@ -31,6 +31,7 @@ set(IO_SOURCES
     input_output/baseReportManager.cpp
     input_output/bin.h
     input_output/bin.cpp
+    input_output/pugixml/src/pugixml.cpp
     input_output/cxml.h
     input_output/cxml.cpp
     input_output/poly/poly.h

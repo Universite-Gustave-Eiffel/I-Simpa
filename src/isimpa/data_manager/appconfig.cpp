@@ -93,7 +93,7 @@ ApplicationConfiguration::t_App_Info ApplicationConfiguration::GLOBAL_CURRENT_AP
 
 
 
-ApplicationConfiguration::t_GLOBAL_VAR ApplicationConfiguration::GLOBAL_VAR={"current","current",false};
+ApplicationConfiguration::t_GLOBAL_VAR ApplicationConfiguration::GLOBAL_VAR={"", "current","current",false};
 
 wxDEFINE_EVENT(wxEVT_PSPS_MAIN_EVENT, wxCommandEvent);
 
@@ -290,10 +290,10 @@ wxXmlNode* ApplicationConfiguration::GetAppSpectreNode()
 
 wxFileConfig* ApplicationConfiguration::GetFileConfig()
 {
-	if(projectConfig==NULL)
+	if(projectConfig.get() == NULL)
 	{
 		wxString userDir = wxStandardPaths::Get().GetUserDataDir();
-		projectConfig=new wxFileConfig("i-simpa","Lcpc", userDir+wxFileName::GetPathSeparator()+"isimpa_conf.ini", userDir+"\\isimpa_conf.ini",wxCONFIG_USE_LOCAL_FILE);
+		projectConfig=new wxFileConfig("i-simpa","Ifsttar", userDir+wxFileName::GetPathSeparator()+"isimpa_conf.ini", userDir+"\\isimpa_conf.ini",wxCONFIG_USE_LOCAL_FILE);
 	}
 	return projectConfig.get();
 }

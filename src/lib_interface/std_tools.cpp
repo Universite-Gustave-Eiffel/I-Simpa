@@ -35,6 +35,7 @@
 
 #ifdef _WIN32
 	#include <direct.h>
+	#include "input_output/pugixml/src/pugixml.hpp"
 #endif
 #ifdef _UNIX
 	#include <sys/stat.h>
@@ -43,7 +44,12 @@
 
 bool st_mkdir(const std::string& pathname)
 {
-	return boost::filesystem::create_directories(pathname);
+    #ifdef _WIN32
+	// convert path to wide char under win32
+		return boost::filesystem::create_directories(pugi::as_wide(pathname));
+	#else
+		return boost::filesystem::create_directories(pathname);
+	#endif
 }
 
 std::string st_path_separator() {

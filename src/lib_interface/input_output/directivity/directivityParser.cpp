@@ -32,12 +32,19 @@
 #include <fstream>
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/regex.hpp>
+#ifdef WIN32
+#include "input_output/pugixml/src/pugixml.hpp"
+#endif // WIN32
 
 using namespace std;
 
 bool xhn_DirectivityParser::parse(std::string filePath, t_DirectivityBalloon *balloon)
 {
-	ifstream file(filePath, ifstream::in);
+	#ifdef WIN32
+		ifstream file(pugi::as_wide(filePath), ifstream::in);
+	#else
+		ifstream file(filePath, ifstream::in);
+	#endif // WIN
 	if (!file.is_open()) {
 		cout << "DirectivityBalloon : File not open" << endl;
 		return false;
