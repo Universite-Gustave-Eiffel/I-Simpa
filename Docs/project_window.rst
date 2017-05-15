@@ -22,7 +22,7 @@ In the definition and the realisation of a calculation, **users should follow th
 Definitions
 ~~~~~~~~~~~
 
-All data, in each tab, are organized in **trees**, each tree containing **folders ** (eventually with subfolders), each folder with **elements**. Each element is defined by several parameters that are showed in the **‘Properties’** window. These elements can be data, check boxes, character chains, scrolling lists, trees…
+All data, in each tab, are organized in **trees**, each tree containing **folders** (eventually with subfolders), each folder with **elements**. Each element is defined by several parameters that are showed in the **‘Properties’** window. These elements can be data, check boxes, character chains, scrolling lists, trees…
 
 .. warning::
 	Data defined in the **‘Scene’** tree depend on the numerical code that will be used in the tab **‘Calculation’** (i.e. depending on the calculation code, it is not necessary to defined all elements. See the user guide/manual of the code for more information).

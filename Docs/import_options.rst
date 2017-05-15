@@ -28,7 +28,7 @@ Mesh correction options:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 -  'Model solving'
-		This option defines the resolution n of the approximation. The volume of the original model is decomposed in 2^n elements in each 3D axis. For example, for n=7, we will have 128x128x128 cubic ceils in the original volume.
+		This option defines the resolution n of the approximation. The volume of the original model is decomposed in :math:`2^n` elements in each 3D axis. For example, for n=7, we will have 128x128x128 cubic ceils in the original volume.
 
 -  'Triangulation method'
 		This option defines the type of method used for approximating model. There is currently only one possible option 'Marching cube'.
@@ -65,7 +65,7 @@ This allows to associate *new* faces of the new geometry to *old* surface groups
 
 .. tip::
 
-	This can be useful, if users want to load a modified geometry (with minor changes from the previous one) without re-affecting all surface materials within I-Simpa
+	This can be useful, if users want to load a modified geometry (with minor changes from the previous one) without re-affecting all surface materials within I-Simpa.
 
 
 .. _TetGen: http://tetgen.berlios.de
