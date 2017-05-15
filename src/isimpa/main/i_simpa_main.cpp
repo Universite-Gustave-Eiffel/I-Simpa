@@ -183,7 +183,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	file_menu->Append(ID_generer, _("New scene"));
 	file_menu->AppendSeparator();
 	file_menu->Append(ID_enregistrer, _("Save project\tCtrl+S"));
-	file_menu->Append(ID_enregistrer_sous, _("Save project as ..."));
+	file_menu->Append(ID_enregistrer_sous, _("Save project as..."));
 	file_menu->Append(ID_enregistrer_copie, _("Save copy of project"));
 	file_menu->AppendSeparator();
 	wxMenu* recent_projet_menu = new wxMenu;
@@ -421,7 +421,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	tbProjet->AddTool(ID_ouvrir, _("Open project"), wxImage(ressourceFolder+"/Bitmaps/toolbar_openproject.png", wxBITMAP_TYPE_PNG), _("Open project"));
 	tbProjet->AddSeparator();
 	tbProjet->AddTool(ID_enregistrer, _("Save project"), wxImage(ressourceFolder+"/Bitmaps/toolbar_saveproject.png", wxBITMAP_TYPE_PNG), _("Save project"));
-	tbProjet->AddTool(ID_enregistrer_sous, _("Save project as ..."), wxImage(ressourceFolder+"/Bitmaps/toolbar_saveprojectas.png", wxBITMAP_TYPE_PNG), _("Save project as ..."));
+	tbProjet->AddTool(ID_enregistrer_sous, _("Save project as..."), wxImage(ressourceFolder+"/Bitmaps/toolbar_saveprojectas.png", wxBITMAP_TYPE_PNG), _("Save project as..."));
 
 	simulation->AddTool(ID_previous_step_simulation, _("Previous time step"), wxImage(ressourceFolder+"/Bitmaps/toolbar_animation_previousstep.png", wxBITMAP_TYPE_PNG), _("Previous time step"));
 	simulation->AddTool(ID_start_simulation, _("Play"), wxImage(ressourceFolder+"/Bitmaps/toolbar_animation_start.png", wxBITMAP_TYPE_PNG), _("Play"));

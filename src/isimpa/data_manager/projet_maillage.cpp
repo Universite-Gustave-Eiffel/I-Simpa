@@ -135,7 +135,7 @@ bool ProjectManager::RunTetGenBoundaryMesh( wxString cmd, wxString cacheFolder,w
 		///////////////////////////////////////////
 		///	On transfert les données vers l'objet de la scène
 		///////////////////////////////////////////
-		wxLogMessage(_("Loading mesh ASCII file ..."));
+		wxLogMessage(_("Loading mesh ASCII file..."));
 		sceneMesh._LoadFaceFile(face.ToStdString());
 		wxLogMessage(_("Loading ASCII files from mesh generator complete"));
 	}
@@ -245,8 +245,8 @@ bool ProjectManager::RunTetGenMaillage(param_TetGenMaillage& paramMaillage)
 		///////////////////////////////////////////
 		if(!paramMaillage.debugMode)
 		{
-            progDialog.Update(50, _("Loading mesh ASCII file ..."));
-			wxLogMessage(_("Loading mesh ASCII file ..."));
+            progDialog.Update(50, _("Loading mesh ASCII file..."));
+			wxLogMessage(_("Loading mesh ASCII file..."));
 			sceneMesh.LoadMaillage(WXSTRINGTOSTDSTRING(face),WXSTRINGTOSTDSTRING(ele),WXSTRINGTOSTDSTRING(node),WXSTRINGTOSTDSTRING(neigh));
 			wxLogMessage(_("Loading ASCII files from mesh generator complete"));
 		}else{

@@ -1908,7 +1908,7 @@ void ProjectManager::LoadCurrentProject(bool reloadXmlFile)
 	}else{
 		return; //Fichier vide
 	}
-	progInfo.Update(25,_("Loading 3D scene ..."));
+	progInfo.Update(25,_("Loading 3D scene..."));
 	// Initialisation de la scène 3D
 	Element* elementCible=this->rootScene->GetElementByType(Element::ELEMENT_TYPE_SCENE_PROJET_CONFIGURATION);
 	if(elementCible!=NULL)
@@ -2310,7 +2310,7 @@ bool ProjectManager::ZipFolder(const wxString&folderfrom,const wxString&zipfilen
 		return UpdateZip(folderfrom,zipfilename);
 
 
-	wxProgressDialog progInfo(_("Project compression"),_("Project files compression in progress ..."),100,mainFrame,wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
+	wxProgressDialog progInfo(_("Project compression"),_("Project files compression in progress..."),100,mainFrame,wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
 	wxArrayString tabFichiers;
 	this->GetAllFolderItems(folderfrom,tabFichiers);
 	wxFFileOutputStream out(zipfilename);
@@ -2349,71 +2349,57 @@ void ProjectManager::CreateUserPreferenceTree()
 	rootUserConfig=new E_UserPreferenceNode(NULL,"userprefroot");
 	/////////////////////////////////////////////////////////////
 	//Dossier Rendu 3D
-	Element* render3d_node=rootUserConfig->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_NODE,"3drendering");
+	Element* render3d_node=rootUserConfig->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_NODE,wxTRANSLATE("3D rendering"));
 
-	_("3drendering");
 	/////////////////////////////////////////////////////////////
 	//Dossier Rendu 3D / Général
-	Element* render3d_general_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"general");
-	_("general");
-	render3d_general_node->AppendPropertyColor("colormodellines","Scene lines",0,0,255);
-	render3d_general_node->AppendPropertyColor("colorselection","Selection",128,0,255);
-	render3d_general_node->AppendPropertyColor("colorbackground","Scene background",255,255,255);
-	render3d_general_node->AppendPropertyColor("colordefaultmodel","Default color",125,125,125);
-	_("Scene lines");
-	_("Selection");
-	_("Scene background");
-	_("Default color");
+	Element* render3d_general_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,wxTRANSLATE("general"));
+
+	render3d_general_node->AppendPropertyColor("colormodellines",wxTRANSLATE("Scene lines"),0,0,255);
+	render3d_general_node->AppendPropertyColor("colorselection",wxTRANSLATE("Selection"),128,0,255);
+	render3d_general_node->AppendPropertyColor("colorbackground",wxTRANSLATE("Scene background"),255,255,255);
+	render3d_general_node->AppendPropertyColor("colordefaultmodel",wxTRANSLATE("Default color"),125,125,125);
+
 	/////////////////////////////////////////////////////////////
 	//Dossier Rendu 3D / Animations
-	Element* render3d_animation_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"animations");
-	_("animations");
-	render3d_animation_node->AppendPropertyDecimal("animation_rate","Render frequency (Hz)",60,false,4,true,true,100,1);
-	render3d_animation_node->AppendPropertyBool("showparticle","Particles display",true);
-	render3d_animation_node->AppendPropertyBool("showrecepteurss","Surface receivers display",true);
-	render3d_animation_node->AppendPropertyColor("legendtextcolour","Label color",0,0,0);
-	_("Render frequency (Hz)");
-	_("Label color");
-	//_("Display time step (s)");
-	_("Particles display");
-	_("Surface receivers display");
+	Element* render3d_animation_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,wxTRANSLATE("animations"));
+
+	render3d_animation_node->AppendPropertyDecimal("animation_rate",wxTRANSLATE("Render frequency (Hz)"),60,false,4,true,true,100,1);
+	render3d_animation_node->AppendPropertyBool("showparticle",wxTRANSLATE("Particles display"),true);
+	render3d_animation_node->AppendPropertyBool("showrecepteurss",wxTRANSLATE("Surface receivers display"),true);
+	render3d_animation_node->AppendPropertyColor("legendtextcolour",wxTRANSLATE("Label color"),0,0,0);
+
 	/////////////////////////////////////////////////////////////
 	//Dossier Rendu 3D / Légendes
-	Element* render3d_legend_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"legend");
-	_("legend");
-	render3d_legend_node->AppendPropertyFont("legend_font","Police font");
-	render3d_legend_node->AppendPropertyColor("legend_text_foreground_color","Text color",0,0,0);
-	render3d_legend_node->AppendPropertyColor("legend_text_background_color","Text background color",255,255,255);
-	render3d_legend_node->AppendPropertyBool("legend_text_background_invisible","Transparent text background",true);
-	_("Police font");
-	_("Text color");
-	_("Text background color");
-	_("Transparent text background");
+	Element* render3d_legend_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,wxTRANSLATE("legend"));
+
+	render3d_legend_node->AppendPropertyFont("legend_font",wxTRANSLATE("Police font"));
+	render3d_legend_node->AppendPropertyColor("legend_text_foreground_color",wxTRANSLATE("Text color"),0,0,0);
+	render3d_legend_node->AppendPropertyColor("legend_text_background_color",wxTRANSLATE("Text background color"),255,255,255);
+	render3d_legend_node->AppendPropertyBool("legend_text_background_invisible",wxTRANSLATE("Transparent text background"),true);
 
 	/////////////////////////////////////////////////////////////
 	//Dossier Rendu 3D / Carte de bruits
-	Element* render3d_soundmap_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM_ISOTEMPLATE,"soundmap");
-	render3d_soundmap_node->AppendPropertyColor("iso_line_color","Iso-lines color",0,0,0);
-	_("Iso-lines color");
-	_("soundmap");
+	Element* render3d_soundmap_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM_ISOTEMPLATE, wxTRANSLATE("soundmap"));
+	render3d_soundmap_node->AppendPropertyColor("iso_line_color", wxTRANSLATE("Iso-lines color"),0,0,0);
+
 	/////////////////////////////////////////////////////////////
 	//Dossier Rendu 3D / Particules
-	Element* render3d_particle_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"particle");
-	render3d_particle_node->AppendPropertyColor("particle_color","Color of particles",15,15,128);
-	_("Color of particles");
-	_("particle");
+	Element* render3d_particle_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM, wxTRANSLATE("particle"));
+	render3d_particle_node->AppendPropertyColor("particle_color", wxTRANSLATE("Color of particles"),15,15,128);
 
 	/////////////////////////////////////////////////////////////
 	//Dossier préférence générale
-	Element* main_node=rootUserConfig->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_NODE,"mainpref");
-	_("mainpref");
+	Element* main_node=rootUserConfig->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_NODE, wxTRANSLATE("Settings"));
+
 	/////////////////////////////////////////////////////////////
 	//Dossier Général / Historique
-	Element* main_history_node=main_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"history");
-	_("history");
-	main_history_node->AppendPropertyBool("keep_modification_history","Keep modification history",true);
-	_("Keep modification history");
+	Element* main_history_node=main_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM, wxTRANSLATE("history"));
+
+	main_history_node->AppendPropertyBool("keep_modification_history", wxTRANSLATE("Keep modification history"),true);
+
 }
+
 void ProjectManager::SaveUserPreferenceTree()
 {
 	//userPreferenceDocument.SetVersion(wxString::Format("%i.%i.%i",ApplicationConfiguration::SPPS_UI_VERSION_MAJOR,ApplicationConfiguration::SPPS_UI_VERSION_MINOR,ApplicationConfiguration::SPPS_UI_VERSION_REVISION));
@@ -2463,14 +2449,13 @@ void ProjectManager::PatchUserPreferenceTree(const wxString& oldVersion)
 		/////////////////////////////////////////////////////////////
 		//Dossier Général / Historique
 		Element* main_history_node=main_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"history");
-		_("history");
+
 		main_history_node->AppendPropertyBool("keep_modification_history","Keep modification history",true);
-		_("Keep modification history");
 	}
 }
 bool ProjectManager::UnZipFolder(const wxString&zipfilename,const wxString&folderTo)
 {
-	wxProgressDialog progInfo(_("Project decompression"),_("Project files decompression in progress ..."),100,mainFrame,wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
+	wxProgressDialog progInfo(_("Project decompression"),_("Project files decompression in progress..."),100,mainFrame,wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
 	wxString fto(folderTo);
     wxZipEntryPtr entry;
     wxFFileInputStream in(zipfilename);
@@ -2912,7 +2897,7 @@ void ProjectManager::OnUpdateEvent(Element* elUpdate)
 }
 bool ProjectManager::LoadScene(const t_param_load_model& paramLoading)
 {
-	wxProgressDialog progInfo(_("Loading 3D scene ..."),_("Loading 3D scene ..."),100,mainFrame,wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
+	wxProgressDialog progInfo(_("Loading 3D scene..."),_("Loading 3D scene..."),100,mainFrame,wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
 	t_retrieves_groups oldFacesDistribution;
 	if(paramLoading.keepexistingfacegroup)
 		BuildFaceGroupAssociation(oldFacesDistribution);
