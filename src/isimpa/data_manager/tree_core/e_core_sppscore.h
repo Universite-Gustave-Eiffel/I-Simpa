@@ -141,6 +141,9 @@ public:
 	E_Core_Spps( Element* parent)
 		:E_Core_Core(parent,"SPPS",ELEMENT_TYPE_CORE_SPPS)
 	{
+		wxTRANSLATE("recepteurss"); // Old projects folder name, do not remove
+		wxTRANSLATE("Sound_level"); // Old projects name, do not remove
+		wxTRANSLATE("IntensityAnimation"); // Old projects folder name, do not remove
 		this->elementInfo.expanded = true;
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_SPPSCORE_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_SPPSCORE_CLOSE);
