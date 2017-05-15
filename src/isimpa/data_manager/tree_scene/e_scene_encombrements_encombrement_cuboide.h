@@ -85,6 +85,11 @@ public:
 			}
 		}
 		needBuild=true;
+		// Change of property name issue #142
+		Element * origin = GetElementByLibelle("ba");
+		if(origin) {
+			dynamic_cast<E_Data*>(origin)->SetPropertyLabel(wxTRANSLATE("Origin volume"));
+		}
 	}
 
 	E_Scene_Encombrements_Encombrement_Cuboide( Element* parent,wxString nom=wxString::Format(_("Fitting zone %i"),ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Encombrement+1))
@@ -102,10 +107,8 @@ public:
 	}
 	void InitEncombrementProp()
 	{
-		this->AppendPropertyPosition("ba","Origin",vec3(0,0,0));
-		this->AppendPropertyPosition("hc","Destination volume",vec3(0,0,0));
-		_("Origin");
-		_("Destination");
+		this->AppendPropertyPosition("ba",wxTRANSLATE("Origin volume"),vec3(0,0,0));
+		this->AppendPropertyPosition("hc",wxTRANSLATE("Destination volume"),vec3(1,1,1));
 	}
 	/**
 	 *  Construction du cuboide
