@@ -33,7 +33,6 @@
 #include <iostream>
 #include <string.h>
 #include "input_output/directivity/directivityParser.h"
-#include <codecvt>
 
 using namespace CalculsGenerauxThermodynamique;
 using namespace CGTconst;
@@ -46,15 +45,6 @@ Base_Core_Configuration::Base_Core_Configuration( )
 	memset(tabFloatProp,0,sizeof(decimal)*FPROP_LAST);
 	tabStringProp = new CoreString[SPROP_LAST];
 }
-
-string ws2s(const std::wstring& wstr)
-{
-	using convert_typeX = std::codecvt_utf8<wchar_t>;
-	std::wstring_convert<convert_typeX, wchar_t> converterX;
-
-	return converterX.to_bytes(wstr);
-}
-
 
 bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml, bool verbose_mode)
 {
