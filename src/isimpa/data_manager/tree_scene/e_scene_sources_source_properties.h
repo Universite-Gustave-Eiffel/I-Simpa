@@ -166,19 +166,13 @@ public:
 		// si l'on a changé de type de directivité
 		if(filsInfo.libelleElement=="directivite")
 		{
-			bool newStateCoord=false;
-			if(this->GetListConfig("directivite") == DIRECTIVITE_SOURCE_UNIDIRECTIONNEL 
-				|| this->GetListConfig("directivite") == DIRECTIVITE_SOURCE_DIRECTIONNEL)
-			{
-				newStateCoord=false;
-			}else{
-				newStateCoord=true;
-			}
+			bool newStateCoord = !(this->GetListConfig("directivite") != DIRECTIVITE_SOURCE_UNIDIRECTIONNEL
+                             || this->GetListConfig("directivite") == DIRECTIVITE_SOURCE_DIRECTIONNEL);
 			this->SetReadOnlyConfig("u",newStateCoord);
 			this->SetReadOnlyConfig("v",newStateCoord);
 			this->SetReadOnlyConfig("w",newStateCoord);
 			
-			bool newStateBalloon = (this->GetListConfig("directivite") == DIRECTIVITE_SOURCE_DIRECTIONNEL) ? false : true;
+			bool newStateBalloon = !(this->GetListConfig("directivite") == DIRECTIVITE_SOURCE_DIRECTIONNEL);
 			this->SetReadOnlyConfig("directivity-balloon", newStateBalloon);
 		}else if(!ignore_count_change && filsInfo.libelleElement=="enable")
 		{
