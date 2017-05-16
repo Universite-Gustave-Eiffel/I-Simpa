@@ -65,7 +65,7 @@ private:
 		vDirectivite.push_back(wxTRANSLATE("Omnidirectional"));
 		vDirectivite.push_back(wxTRANSLATE("Unidirectional"));
 		vDirectivite.push_back(wxTRANSLATE("XY plan"));
-		vDirectivite.push_back(wxTRANSLATE("XY plan"));
+		vDirectivite.push_back(wxTRANSLATE("YZ plan"));
 		vDirectivite.push_back(wxTRANSLATE("XZ plan"));
 		vDirectivite.push_back(wxTRANSLATE("Directivity balloon"));
 		this->AppendPropertyList("directivite",wxTRANSLATE("Directivity"),vDirectivite,DIRECTIVITE_SOURCE_OMINIDIRECTIONNEL,false,1,iDirectivite,true);
@@ -112,7 +112,7 @@ public:
 		DIRECTIVITE_SOURCE_DIRECTIONNEL
 	};
 	E_Scene_Sources_Source_Properties( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Properties",Element::ELEMENT_TYPE_SCENE_SOURCES_SOURCE_PROPRIETES,noeudCourant)
+		:Element(parent,wxTRANSLATE("Properties"),Element::ELEMENT_TYPE_SCENE_SOURCES_SOURCE_PROPRIETES,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
 		ignore_count_change=true;
@@ -125,7 +125,8 @@ public:
 		if(this->GetBoolConfig("enable"))
 			ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Sources_Actives++;
 		ignore_count_change=false;
-		_("Properties");
+		// Change item label #147
+		initPropListItem(this, "directivite", 3, wxTRANSLATE("YZ plan"));
 	}
 
 	E_Scene_Sources_Source_Properties( Element* parent)

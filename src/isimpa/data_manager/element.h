@@ -72,6 +72,7 @@ class Element
 
 
 		void initPropLabel(Element* confCore, const wxString& propName, const wxString& propLabel);
+		void initPropListItem(Element* confCore, const wxString& propName, int itemId, const wxString& propLabel);
 	public :
 
 		/** @defgroup Element Noyau élémentaire composant le projet

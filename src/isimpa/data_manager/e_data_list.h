@@ -110,6 +110,12 @@ public:
 		SetValue(defaultChoice);
 	}
 
+	void SetItemLabel(int itemId, const wxString& newLabel) {
+		if(itemId >= 0 && itemId < eList.size()) {
+			eList[itemId] = newLabel;
+		}
+	}
+
 	const std::vector<wxString>& GetItemsLabel() const
 	{
 		return eList;
