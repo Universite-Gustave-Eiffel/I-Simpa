@@ -34,6 +34,7 @@
 #include "e_scene_encombrements_encombrement_proprietes.h"
 #include "data_manager/generic_element/e_gammeabsorption.h"
 #include "e_scene_encombrements_encombrement_rendu.h"
+#include "data_manager/e_data.h"
 
 /** \file e_scene_encombrements_encombrement_cuboide.h
    \brief Cet élément est un volume d'encombrement défini par l'utilisateur
@@ -61,7 +62,7 @@ public:
 		{
 			wxXmlNode* currentChild;
 			currentChild = noeudCourant->GetChildren();
-			// On va créer les fils de notre noeudCourant
+			// Parse XML to init Element objects
 			wxString propValue;
 			while(currentChild!=NULL)
 			{
@@ -86,10 +87,7 @@ public:
 		}
 		needBuild=true;
 		// Change of property name issue #142
-		Element * origin = GetElementByLibelle("ba");
-		if(origin) {
-			dynamic_cast<E_Data*>(origin)->SetPropertyLabel(wxTRANSLATE("Origin volume"));
-		}
+        initPropLabel(this, "ba", wxTRANSLATE("Origin volume"));
 	}
 
 	E_Scene_Encombrements_Encombrement_Cuboide( Element* parent,wxString nom=wxString::Format(_("Fitting zone %i"),ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Encombrement+1))

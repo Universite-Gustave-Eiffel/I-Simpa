@@ -596,6 +596,16 @@ bool Element::operator<(Element &_rEl)
 		return false;
 }
 
+
+void Element::initPropLabel(Element* confCore, const wxString& propName, const wxString& propLabel) {
+	Element* propElement;
+	if(confCore->IsPropertyExist(propName, &propElement)) {
+		E_Data* data = dynamic_cast<E_Data*>(propElement);
+		if(data) {
+			data->SetPropertyLabel(propLabel);
+		}
+	}
+}
 wxXmlNode* Element::GenericSaveXmlDoc(wxXmlNode* NoeudParent)
 {
 	//Sauvegarde les données de base

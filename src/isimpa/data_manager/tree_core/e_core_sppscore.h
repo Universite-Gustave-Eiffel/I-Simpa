@@ -87,16 +87,6 @@ protected:
 	void InitRandomSeed(Element* confCore) {
 		confCore->AppendPropertyInteger("random_seed",wxTRANSLATE("Random initialization number"), 0,true, false, true);
 	}
-
-	void initPropLabel(E_Core_Core_Configuration* confCore, const wxString& propName, const wxString& propLabel) {
-    	Element* propElement;
-		if(confCore->IsPropertyExist(propName, &propElement)) {
-			E_Data* data = dynamic_cast<E_Data*>(propElement);
-			if(data) {
-				data->SetPropertyLabel(propLabel);
-			}
-		}
-	}
 public:
 
 	E_Core_Spps( Element* parent, wxXmlNode* noeudCourant)

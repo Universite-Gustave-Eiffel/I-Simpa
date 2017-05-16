@@ -69,6 +69,9 @@ class Element
 		void SetXmlId();
 	protected:
 		wxTreeCtrl* treeCtrl; /*!< Contrôle lié à cet élément */
+
+
+		void initPropLabel(Element* confCore, const wxString& propName, const wxString& propLabel);
 	public :
 
 		/** @defgroup Element Noyau élémentaire composant le projet
