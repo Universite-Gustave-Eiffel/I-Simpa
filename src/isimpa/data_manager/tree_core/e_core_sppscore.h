@@ -54,7 +54,7 @@ protected:
 	{
 		confCore->AppendPropertyDecimal("trans_epsilon",wxTRANSLATE("Limit value of the particle extinction (Energetic method) : ratio 10^n"),5,true,1,true,true,10,0,true);
 		confCore->AppendPropertyBool("trans_calc",wxTRANSLATE("Active calculation of transmission"),true,true);
-		confCore->AppendPropertyDecimal("rayon_recepteurp",wxTRANSLATE("Receiver radius"),.31f,false,5,false,true,0,EPSILON,true);
+		confCore->AppendPropertyDecimal("rayon_recepteurp",wxTRANSLATE("Receiver radius (m)"),.31f,false,5,false,true,0,EPSILON,true);
 	}
 	void InitSurfaceReceiverMethod(E_Core_Core_Configuration* confCore)
 	{
@@ -135,6 +135,7 @@ public:
 		initPropLabel(confCore, "trans_epsilon", wxTRANSLATE("Limit value of the particle extinction (Energetic method) : ratio 10^n"));
 		initPropLabel(confCore, "trans_calc", wxTRANSLATE("Active calculation of transmission"));
 		initPropLabel(confCore, "random_seed", wxTRANSLATE("Random initialization number"));
+		initPropLabel(confCore, "rayon_recepteurp", wxTRANSLATE("Receiver radius (m)"));
 	}
 
 
