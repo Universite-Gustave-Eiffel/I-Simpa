@@ -93,7 +93,8 @@ def LinkSourcePositionWithReceiverPosition(sourceId,ReceiverId):
         #Mettre a jour la propriete
         posel.updatestringconfig("linkedsource",source.getinfos()["name"])  
     else:
-        #Ajouter la propriete
+        #Add property
+        _("linkedsource")
         ui.element(posel.appendpropertytext("linkedsource","linkedsource",source.getinfos()["name"])).hide() 
     if not SourcePosToReceiverPosTrackerLst.has_key(ReceiverId):
         SourcePosToReceiverPosTrackerLst[ReceiverId]=PositionUpdater(ReceiverId,True)
