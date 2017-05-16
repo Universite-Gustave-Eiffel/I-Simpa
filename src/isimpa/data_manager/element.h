@@ -387,11 +387,11 @@ public :
     /**
      * Constructeur
      * @param parent		Element parent
-     * @param Nom			Nom de l'élément (libellé dans l'arbre du projet). @ref traductiontuto "Ne pas traduire le libellé".
+     * @param name			Nom de l'élément (libellé dans l'arbre du projet). @ref traductiontuto "Ne pas traduire le libellé".
      * @param _type			Type de l'élément
      * @param nodeElement	Noeud XML si création depuis un fichier XML, sinon Pointeur nul (par défaut)
      */
-    Element(Element *parent, const wxString &Nom, ELEMENT_TYPE _type, wxXmlNode *nodeElement = NULL);
+    Element(Element *parent, const wxString &name, ELEMENT_TYPE _type, wxXmlNode *nodeElement = NULL);
 
     /**
      * Destructeur

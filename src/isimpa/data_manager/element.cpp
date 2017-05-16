@@ -106,7 +106,7 @@ void SortChildrensByProperty(wxXmlNode* node,const wxString& propertyName)
 	}
 }
 
-Element::Element(Element* parent,const wxString& Nom,ELEMENT_TYPE _type,wxXmlNode* nodeElement)
+Element::Element(Element* parent,const wxString& name,ELEMENT_TYPE _type,wxXmlNode* nodeElement)
 {
 	this->elementInfo.userDestroyable=false;
 	this->elementInfo.hidden=false;
@@ -130,7 +130,7 @@ Element::Element(Element* parent,const wxString& Nom,ELEMENT_TYPE _type,wxXmlNod
 	this->elementInfo.graphElementStateOpen=GRAPH_FOLDER_OPEN;
 
 	wxString propVal;
-	this->elementInfo.libelleElement=Nom;
+	this->elementInfo.libelleElement=name;
 
 	SetXmlId();
 
