@@ -7,7 +7,7 @@ import math
 import uilocale
 import os
 
-_=uilocale.InstallUiModule(ui.application.getapplicationpath()["userscript"]+"source_tools"+os.sep,ui.application.getlocale())
+_=uilocale.InstallUiModule(ui.application.getapplicationpath()["systemscript"]+"source_tools"+os.sep,ui.application.getlocale())
 
 
 def MakeLineSrc(srcgroupindice,startpoint=[0,0,0],quantity=1,step=[1,0,0]):

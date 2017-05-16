@@ -452,6 +452,9 @@ namespace uictrl
 		wxFileName userscript("UserScript/");
 		userscript.MakeAbsolute();
 		retdict["userscript"]=WXSTRINGTOSTDWSTRING(userscript.GetFullPath());
+		wxFileName systemscript("SystemScript/");
+		systemscript.MakeAbsolute();
+		retdict["systemscript"]=WXSTRINGTOSTDWSTRING(systemscript.GetFullPath());
 		return retdict;
 	}
 	std::wstring application::getlocale()

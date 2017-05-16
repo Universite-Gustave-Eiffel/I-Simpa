@@ -7,7 +7,7 @@ import math
 import uilocale
 import os
 
-_=uilocale.InstallUiModule(ui.application.getapplicationpath()["userscript"]+"recp_tool"+os.sep,ui.application.getlocale())
+_=uilocale.InstallUiModule(ui.application.getapplicationpath()["systemscript"]+"recp_tool"+os.sep,ui.application.getlocale())
 
 
 def MakeLineRecp(recpgroupindice,startpoint=[0,0,0],quantity=1,step=[1,0,0]):
