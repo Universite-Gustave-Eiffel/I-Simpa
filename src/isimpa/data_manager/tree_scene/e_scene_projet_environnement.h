@@ -96,111 +96,89 @@ private:
 		{
 			case TYPE_SOL_EAU_LIBRE:
 				return .006f;
-				break;
 			case TYPE_SOL_NU:
 				return .02f;
-				break;
 			case TYPE_SOL_GAZON_RAS:
 				return .001f;
-				break;
 			case TYPE_SOL_GAZON_DENSE:
 				return .02f;
-				break;
 			case TYPE_SOL_BLE:
 				return .16f;
-				break;
 			case TYPE_SOL_HABITAT_EPARS:
 				return .6f;
-				break;
 			case TYPE_SOL_PERIURBAIN_PEU_DENSE:
 				return 1.2f;
-				break;
 			case TYPE_SOL_PERIURBAIN_DENSE:
 				return 1.8f;
-				break;
 			case TYPE_SOL_URBAIN_DENSE:
 				return 10.f;
-				break;
 		}
 		return 0.f;
 	}
 	void InitProperties() 
 	{
-		this->AppendPropertyDecimal("z0","Roughness - z0 (m)",0.02f,false,4,false,true,0,0.0001f,true);
-		_("Roughness - z0 (m)");
-		this->AppendPropertyDecimal("alog","Meteorological effect - Celerity gradient a_log",0,false,4,false,false,0,0,true);
-		_("Meteorological effect - Celerity gradient a_log");
-		this->AppendPropertyDecimal("blin","Meteorological effect - Celerity gradient b_lin",0,false,4,false,false,0,0,true);
-		_("Meteorological effect - Celerity gradient b_lin");
-		this->AppendPropertyDecimal("temperature","Temperature (°C)",20,false,2,false,false,0,0,true);
-		_("Temperature (°C)");
-		this->AppendPropertyDecimal("humidite","Relative humidity (%)",50,false,0,true,true,100,0,true);
-		_("Relative humidity (%)");
-		this->AppendPropertyDecimal("pression","Atmospheric pressure (Pa)",101325,false,1,false,false,0,0,true);
-		_("Atmospheric pressure (Pa)");
+		this->AppendPropertyDecimal("z0",wxTRANSLATE("Roughness - z0 (m)"),0.02f,false,4,false,true,0,0.0001f,true);
+
+		this->AppendPropertyDecimal("alog",wxTRANSLATE("Meteorological effect - Celerity gradient a_log"),0,false,4,false,false,0,0,true);
+
+		this->AppendPropertyDecimal("blin",wxTRANSLATE("Meteorological effect - Celerity gradient b_lin"),0,false,4,false,false,0,0,true);
+
+		this->AppendPropertyDecimal("temperature",wxTRANSLATE("Temperature (°C)"),20,false,2,false,false,0,0,true);
+
+		this->AppendPropertyDecimal("humidite",wxTRANSLATE("Relative humidity (%)"),50,false,0,true,true,100,0,true);
+
+		this->AppendPropertyDecimal("pression",wxTRANSLATE("Atmospheric pressure (Pa)"),101325,false,1,false,false,0,0,true);
+
 		std::vector<wxString> effetsMeteo;
 		std::vector<int> effetsMeteoIndex;
-		effetsMeteo.push_back("Very favorable");
-		effetsMeteoIndex.push_back(EFFET_METEO_TRES_FAVORABLE);
-		effetsMeteo.push_back("Favorable");
-		effetsMeteoIndex.push_back(EFFET_METEO_FAVORABLE);
-		effetsMeteo.push_back("Homogeneous");
-		effetsMeteoIndex.push_back(EFFET_METEO_HOMOGENE);
-		effetsMeteo.push_back("Unfavorable");
-		effetsMeteoIndex.push_back(EFFET_METEO_DEFAVORABLE);
-		effetsMeteo.push_back("Very unfavorable");
-		effetsMeteoIndex.push_back(EFFET_METEO_TRES_DEFAVORABLE);
-		_("Meteorological effect");
-		_("Very favorable");
-		_("Favorable");
-		_("Homogeneous");
-		_("Unfavorable");
-		_("Very unfavorable");
-		this->AppendPropertyList("lst_meteoeffect","Meteorology effects - Profiles",effetsMeteo,EFFET_METEO_HOMOGENE,false,1,effetsMeteoIndex);
-		_("Meteorology effects - Profiles");
+		effetsMeteo.push_back(wxTRANSLATE("Very favorable"));
+		effetsMeteoIndex.push_back((int)EFFET_METEO_TRES_FAVORABLE);
+		effetsMeteo.push_back(wxTRANSLATE("Favorable"));
+		effetsMeteoIndex.push_back((int)EFFET_METEO_FAVORABLE);
+		effetsMeteo.push_back(wxTRANSLATE("Homogeneous"));
+		effetsMeteoIndex.push_back((int)EFFET_METEO_HOMOGENE);
+		effetsMeteo.push_back(wxTRANSLATE("Unfavorable"));
+		effetsMeteoIndex.push_back((int)EFFET_METEO_DEFAVORABLE);
+		effetsMeteo.push_back(wxTRANSLATE("Very unfavorable"));
+		effetsMeteoIndex.push_back((int)EFFET_METEO_TRES_DEFAVORABLE);
+
+		this->AppendPropertyList("lst_meteoeffect",wxTRANSLATE("Meteorology effects - Profiles"),effetsMeteo,EFFET_METEO_HOMOGENE,false,1,effetsMeteoIndex);
+
 		std::vector<wxString> solTypes;
 		std::vector<int> solTypesIndex;
-		solTypes.push_back("Water");
-		solTypesIndex.push_back(TYPE_SOL_EAU_LIBRE);
-		solTypes.push_back("Ground");
-		solTypesIndex.push_back(TYPE_SOL_NU);
-		solTypes.push_back("Short Lawn");
-		solTypesIndex.push_back(TYPE_SOL_GAZON_RAS);
-		solTypes.push_back("Dense Lawn");
-		solTypesIndex.push_back(TYPE_SOL_GAZON_DENSE);
-		solTypes.push_back("Wheat (1m height)");
-		solTypesIndex.push_back(TYPE_SOL_BLE);
-		solTypes.push_back("Sparse habitat (farm, trees, hedges)");
-		solTypesIndex.push_back(TYPE_SOL_HABITAT_EPARS);
-		solTypes.push_back("Low concentration Suburb (residential areas, gardens)");
-		solTypesIndex.push_back(TYPE_SOL_PERIURBAIN_PEU_DENSE);
-		solTypes.push_back("Dense Suburb");
-		solTypesIndex.push_back(TYPE_SOL_PERIURBAIN_DENSE);
-		solTypes.push_back("Dense urban");
-		solTypesIndex.push_back(TYPE_SOL_URBAIN_DENSE);
-		_("Water");
-		_("Ground");
-		_("Short Lawn");
-		_("Dense Lawn");
-		_("Wheat (1m height)");
-		_("Sparse habitat (farm, trees, hedges)");
-		_("Low concentration Suburb (residential areas, gardens)");
-		_("Dense Suburb");
-		_("Dense urban");
-		this->AppendPropertyList("lst_soltype","Rugosity - Ground type",solTypes,TYPE_SOL_NU,false,1,solTypesIndex,true);
-		_("Rugosity - Ground type");
+		solTypes.push_back(wxTRANSLATE("Water"));
+		solTypesIndex.push_back((int)TYPE_SOL_EAU_LIBRE);
+		solTypes.push_back(wxTRANSLATE("Ground"));
+		solTypesIndex.push_back((int)TYPE_SOL_NU);
+		solTypes.push_back(wxTRANSLATE("Short Lawn"));
+		solTypesIndex.push_back((int)TYPE_SOL_GAZON_RAS);
+		solTypes.push_back(wxTRANSLATE("Dense Lawn"));
+		solTypesIndex.push_back((int)TYPE_SOL_GAZON_DENSE);
+		solTypes.push_back(wxTRANSLATE("Wheat (1m height)"));
+		solTypesIndex.push_back((int)TYPE_SOL_BLE);
+		solTypes.push_back(wxTRANSLATE("Sparse habitat (farm, trees, hedges)"));
+		solTypesIndex.push_back((int)TYPE_SOL_HABITAT_EPARS);
+		solTypes.push_back(wxTRANSLATE("Low concentration Suburb (residential areas, gardens)"));
+		solTypesIndex.push_back((int)TYPE_SOL_PERIURBAIN_PEU_DENSE);
+		solTypes.push_back(wxTRANSLATE("Dense Suburb"));
+		solTypesIndex.push_back((int)TYPE_SOL_PERIURBAIN_DENSE);
+		solTypes.push_back(wxTRANSLATE("Dense urban"));
+		solTypesIndex.push_back((int)TYPE_SOL_URBAIN_DENSE);
+
+		this->AppendPropertyList("lst_soltype",wxTRANSLATE("Rugosity - Ground type"),solTypes,TYPE_SOL_NU,false,1,solTypesIndex,true);
+
 		InitCoeffConstraint();
 	}
 	void InitCoeffConstraint()
 	{
-		this->AppendPropertyBool("disable_absatmo_computation","Set user defined atmospheric absorption",false,true);
-		_("Set user defined atmospheric absorption");
-		this->AppendPropertyDecimal("absatmo","Atmospheric absorption",0,true,5,false,true,0,0,true);
-		_("Atmospheric absorption");
+		this->AppendPropertyBool("disable_absatmo_computation",wxTRANSLATE("Set user defined atmospheric absorption"),false,true);
+
+		this->AppendPropertyDecimal("absatmo",wxTRANSLATE("Atmospheric absorption"),0,true,5,false,true,0,0,true);
+
 	}
 public:
 	E_Scene_Projet_Environnement( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Environment",Element::ELEMENT_TYPE_SCENE_PROJET_ENVIRONNEMENTCONF,noeudCourant)
+		:Element(parent,wxTRANSLATE("Environment"),Element::ELEMENT_TYPE_SCENE_PROJET_ENVIRONNEMENTCONF,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_ENVIRONMENT);
 		_("Environment");
@@ -211,7 +189,7 @@ public:
 	}
 
 	E_Scene_Projet_Environnement( Element* parent)
-		:Element(parent,"Environment",Element::ELEMENT_TYPE_SCENE_PROJET_ENVIRONNEMENTCONF)
+		:Element(parent,wxTRANSLATE("Environment"),Element::ELEMENT_TYPE_SCENE_PROJET_ENVIRONNEMENTCONF)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_ENVIRONMENT);
 		InitProperties();
