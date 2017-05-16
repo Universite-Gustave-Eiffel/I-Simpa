@@ -607,7 +607,7 @@ void Element::initPropLabel(Element* confCore, const wxString& propName, const w
 	}
 }
 
-void initPropListItem(Element* confCore, const wxString& propName, int itemId, const wxString& propLabel) {
+void Element::initPropListItem(Element* confCore, const wxString& propName, int itemId, const wxString& propLabel) {
 	Element* propElement;
 	if(confCore->IsPropertyExist(propName, &propElement)) {
 		E_Data_List* data = dynamic_cast<E_Data_List*>(propElement);
