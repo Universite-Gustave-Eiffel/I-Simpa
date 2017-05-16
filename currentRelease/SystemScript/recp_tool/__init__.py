@@ -156,7 +156,7 @@ class manager:
         lbl_vecy=_(u"Direction y (m)")
         lbl_vecz=_(u"Direction z (m)")
         res=ui.application.getuserinput(_(u"Translation of a group of receivers"),
-                                    "",
+                                        _(u"Please enter the coordinates of the translation vector"),
                                     { lbl_vecx : "1.",
                                       lbl_vecy : "0.",
                                       lbl_vecz : "0.",
