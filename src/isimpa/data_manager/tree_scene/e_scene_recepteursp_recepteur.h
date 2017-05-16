@@ -55,8 +55,7 @@ private:
 public:
 	void AddDirectionProperty()
 	{
-		this->AppendPropertyPosition("direction_dot","Direction",vec3());
-		_("Direction");
+		this->AppendPropertyPosition("direction_dot",wxTRANSLATE("Orientation point"),vec3());
 	}
 	E_Scene_Recepteursp_Recepteur( wxXmlNode* noeudCourant ,  Element* parent)
 		:E_Drawable(parent,"Receiver",Element::ELEMENT_TYPE_SCENE_RECEPTEURSP_RECEPTEUR,noeudCourant)
@@ -107,6 +106,7 @@ public:
 			AddDirectionProperty();
 		}
 		lockdirectioncomputation=false;
+		initPropLabel(this, "direction_dot", wxTRANSLATE("Orientation point"));
 	}
 
 	wxXmlNode* SaveXMLCoreDoc(wxXmlNode* NoeudParent)
