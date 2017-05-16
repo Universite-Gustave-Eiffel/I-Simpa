@@ -50,11 +50,9 @@ private:
 	}
 	void InitProperties()
 	{
-		this->AppendPropertyText("description","Description","");
-		this->AppendPropertyDecimal("resolution","Resolution (m)", .5f,false,2,false,true,0,.05f,true);
+		this->AppendPropertyText("description",wxTRANSLATE("Description"),"");
+		this->AppendPropertyDecimal("resolution",wxTRANSLATE("Grid resolution (m)"), .5f,false,2,false,true,0,.05f,true);
 		AddActiveProp();
-		_("Description");
-		_("Resolution (m)");
 	}
 public:
 	E_Scene_Recepteurss_RecepteurCoupe_Proprietes( wxXmlNode* noeudCourant ,  Element* parent)
@@ -64,6 +62,8 @@ public:
 		_("Properties");
 		if(!this->IsPropertyExist("enabled"))
 			AddActiveProp();
+		// Change property label #148
+		initPropLabel(this, "resolution", wxTRANSLATE("Grid resolution (m)"));
 	}
 
 	E_Scene_Recepteurss_RecepteurCoupe_Proprietes( Element* parent)

@@ -100,7 +100,6 @@ public:
 		this->AppendFils(new E_Scene_Encombrements_Encombrement_Proprietes(this));
 		this->AppendFils(new E_GammeAbsorption(this));
 		this->AppendFils(new E_Scene_Encombrements_Encombrement_Rendu(this));
-		_("Surface");
 		InitEncombrementProp();
 	}
 	void InitEncombrementProp()

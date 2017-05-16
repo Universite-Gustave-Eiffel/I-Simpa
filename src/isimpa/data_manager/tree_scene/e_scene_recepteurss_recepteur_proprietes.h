@@ -46,7 +46,7 @@ private:
 
     void AddActiveProp()
     {
-        this->AppendPropertyBool("enabled", wxTRANSLATE("Enabled"), true, false);
+        this->AppendPropertyBool("enabled", wxTRANSLATE("Enable"), true, false);
     }
 	void InitProperties()
 	{
@@ -62,6 +62,8 @@ public:
         if(!IsPropertyExist("enabled")) {
             AddActiveProp();
         }
+		// Change property label about #148
+		Element::initPropLabel(this, "enabled", wxTRANSLATE("Enable"));
 	}
 
 	E_Scene_Recepteurss_Recepteur_Proprietes( Element* parent)
