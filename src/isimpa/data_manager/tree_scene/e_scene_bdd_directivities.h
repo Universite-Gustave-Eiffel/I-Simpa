@@ -35,11 +35,11 @@
 #include "e_scene_bdd_directivities_user.h"
 
 /** \file e_scene_bdd_directivities.h
-\brief Element représentant le dossier de directivités, ce dossier regroupe les directivités utilisateur et application
+\brief This element is the directivity folder, it holds application and user defined directivities profiles.
 */
 
 /**
-\brief Element représentant le dossier de directivités, ce dossier regroupe les directivités utilisateur et application
+\brief This element is the directivity folder, it holds application and user defined directivities profiles.
 */
 class E_Scene_Bdd_Directivities : public Element
 {
@@ -54,7 +54,6 @@ public:
 		{
 			wxXmlNode* currentChild;
 			currentChild = noeudCourant->GetChildren();
-			// On va créer les fils de notre noeudCourant
 			wxString propValue;
 			while (currentChild != NULL)
 			{
