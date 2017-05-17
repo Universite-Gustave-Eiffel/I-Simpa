@@ -32,28 +32,28 @@
 #define _HPOLY
 
 /*! \file poly.h
-    \brief Impl�mentation de l'interpr�teur de fichier mod�le Poly (*.poly) 
+    \brief Poly file driver (*.poly) 
 */
 #include "Core/mathlib.h"
 #include <vector>
 
-/*! \brief Impl�mentation de l'interpr�teur de fichier mod�le Poly (*.poly) 
+/*! \brief Poly file driver (*.poly) 
 */
 namespace formatPOLY
 {
 
 	/**
-	 * @brief Structure de donn�es de d�finition d'une r�gion
+	 * @brief Region data structure (region is a closed 3d area)
 	 */
 	struct t_region
 	{	
-		int regionIndex;					/*!< 0 r�gion par d�faut */
-		vec3 dotInRegion;					/*!< Coordonn�es d'un point dans la r�gion */
-		float regionRefinement;				/*!< -1 contrainte de volume par d�faut (m3) */
+		int regionIndex;					/*!< region id, default is 0 */
+		vec3 dotInRegion;					/*!< Coordinate of a point in the volume */
+		float regionRefinement;				/*!< (m3) constraint of mesh maximum volume -1 for no constraint */
 		t_region(){regionRefinement=-1;}
 	};	
 	/**
-	 * @brief Structure de donn�es d'echange avec la classe
+	 * @brief Triangular face
 	 */
 	struct t_face
 	{
@@ -71,7 +71,7 @@ namespace formatPOLY
 	};
 
 	/**
-	 * @brief Model structure
+	 * @brief Main 3D scene structure
 	 *
 	 */
 	struct t_model
@@ -85,22 +85,22 @@ namespace formatPOLY
 
 /**
  *	\class Cpoly  
- *	\brief Classe de sauvegarde de fichier POLY
+ *	\brief Poly file driver
  */
 class CPoly
 {
 public:
 
 	/**
-	 * Constructeur
+	 * Default constructor
 	 */
 	CPoly();
 	/**
-	 * M�thode d'exportation d'un mod�le 3D
+	 * Write 3D file
 	 */
 	bool ExportPOLY(t_model& sceneconst,const std::string& mfilename);
 	/**
-	 * M�thode d'importation d'un mod�le 3D
+	 * Read 3D file
 	 */
 	bool ImportPOLY(t_model& sceneconst,const std::string& mfilename);
 
@@ -110,5 +110,6 @@ public:
 
 
 
-} //Fin namespace
+} 
 #endif
+
