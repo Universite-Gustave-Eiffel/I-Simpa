@@ -56,13 +56,12 @@ class E_Scene_Donnees: public Element
 {
 public:
 	E_Scene_Donnees( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Data",Element::ELEMENT_TYPE_SCENE_DONNEES,noeudCourant)
+		:Element(parent,wxTRANSLATE("Data"),Element::ELEMENT_TYPE_SCENE_DONNEES,noeudCourant)
 
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_DATA_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_DATA_CLOSE);
 		bool volume_has_been_loaded=false;
-		_("Data");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;
@@ -106,7 +105,7 @@ public:
 	}
 
 	E_Scene_Donnees( Element* parent)
-		:Element(parent,"Data",Element::ELEMENT_TYPE_SCENE_DONNEES)
+		:Element(parent,wxTRANSLATE("Data"),Element::ELEMENT_TYPE_SCENE_DONNEES)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_DATA_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_DATA_CLOSE);

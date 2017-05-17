@@ -41,13 +41,12 @@
 
 
 E_Scene_Groupesurfaces_Groupe::E_Scene_Groupesurfaces_Groupe( wxXmlNode* noeudCourant ,  Element* parent)
-	:E_Drawable(parent,"Group",Element::ELEMENT_TYPE_SCENE_GROUPESURFACES_GROUPE,noeudCourant)
+	:E_Drawable(parent,wxTRANSLATE("Group"),Element::ELEMENT_TYPE_SCENE_GROUPESURFACES_GROUPE,noeudCourant)
 {
 	SetIcon(GRAPH_STATE_EXPANDED,GRAPH_SURFACES_OPEN);
 	SetIcon(GRAPH_STATE_NORMAL,GRAPH_SURFACES_CLOSE);
 	vertexFileIsLoaded=false;
 	ignoreModification=false;
-	_("Group");
 	isPointerGroup=false;
 	vertexInFile=true;
 	if(noeudCourant!=NULL)
@@ -110,8 +109,7 @@ void E_Scene_Groupesurfaces_Groupe::InitGroupProp()
 {
 	if(!this->IsPropertyExist("aire"))
 	{
-		this->AppendPropertyDecimal("aire","Surface area (m2)",0,true,2);
-		_("Surface area (m2)");
+		this->AppendPropertyDecimal("aire",wxTRANSLATE("Surface area (m2)"),0,true,2);
 	}else{
 		this->UpdateDecimalConfig("aire",0);
 	}

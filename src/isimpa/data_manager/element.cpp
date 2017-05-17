@@ -106,7 +106,7 @@ void SortChildrensByProperty(wxXmlNode* node,const wxString& propertyName)
 	}
 }
 
-Element::Element(Element* parent,const wxString& Nom,ELEMENT_TYPE _type,wxXmlNode* nodeElement)
+Element::Element(Element* parent,const wxString& name,ELEMENT_TYPE _type,wxXmlNode* nodeElement)
 {
 	this->elementInfo.userDestroyable=false;
 	this->elementInfo.hidden=false;
@@ -130,7 +130,7 @@ Element::Element(Element* parent,const wxString& Nom,ELEMENT_TYPE _type,wxXmlNod
 	this->elementInfo.graphElementStateOpen=GRAPH_FOLDER_OPEN;
 
 	wxString propVal;
-	this->elementInfo.libelleElement=Nom;
+	this->elementInfo.libelleElement=name;
 
 	SetXmlId();
 
@@ -596,6 +596,26 @@ bool Element::operator<(Element &_rEl)
 		return false;
 }
 
+
+void Element::initPropLabel(Element* confCore, const wxString& propName, const wxString& propLabel) {
+	Element* propElement;
+	if(confCore->IsPropertyExist(propName, &propElement)) {
+		E_Data* data = dynamic_cast<E_Data*>(propElement);
+		if(data) {
+			data->SetPropertyLabel(propLabel);
+		}
+	}
+}
+
+void Element::initPropListItem(Element* confCore, const wxString& propName, int itemId, const wxString& propLabel) {
+	Element* propElement;
+	if(confCore->IsPropertyExist(propName, &propElement)) {
+		E_Data_List* data = dynamic_cast<E_Data_List*>(propElement);
+		if(data) {
+			data->SetPropertyLabel(propLabel);
+		}
+	}
+}
 wxXmlNode* Element::GenericSaveXmlDoc(wxXmlNode* NoeudParent)
 {
 	//Sauvegarde les données de base

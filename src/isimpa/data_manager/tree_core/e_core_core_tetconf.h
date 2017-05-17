@@ -97,7 +97,7 @@ protected:
 		this->AppendPropertyDecimal("minratio", wxTRANSLATE("Radius/Edge ratio"),2,false,2,false,true,0,1);
 		this->AppendPropertyText("appendparams", wxTRANSLATE("Additional parameters"),"");
 		this->AppendPropertyText("userdefineparams", wxTRANSLATE("User-defined parameters"),"");
-		this->AppendPropertyDecimal("constraintrecepteurss",wxTRANSLATE("Surface receivers constraint (m2)"),5.f,true,3,false,true,0,0.001f);
+		this->AppendPropertyDecimal("constraintrecepteurss",wxTRANSLATE("Surface receivers constraint (m²)"),5.f,true,3,false,true,0,0.001f);
 		this->AppendPropertyBool("isareaconstraint", wxTRANSLATE("Surface receivers constraint"),false);
 		this->AppendPropertyBool("ismaxvol", wxTRANSLATE("Volume constraint"),false);
 		this->AppendPropertyBool("preprocess", wxTRANSLATE("Scene correction before meshing"),true);

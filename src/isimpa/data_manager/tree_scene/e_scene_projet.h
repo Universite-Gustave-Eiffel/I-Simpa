@@ -55,10 +55,8 @@ class E_Scene_Projet: public Element
 {
 public:
 	E_Scene_Projet( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Projet",Element::ELEMENT_TYPE_SCENE_PROJET,noeudCourant)
+		:Element(parent,wxTRANSLATE("Project"),Element::ELEMENT_TYPE_SCENE_PROJET,noeudCourant)
 	{
-		_("Project");
-		
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_PROJECT_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_PROJECT_CLOSE);
 
@@ -93,7 +91,7 @@ public:
 	}
 
 	E_Scene_Projet( Element* parent)
-		:Element(parent,"Projet",Element::ELEMENT_TYPE_SCENE_PROJET)
+		:Element(parent,wxTRANSLATE("Project"),Element::ELEMENT_TYPE_SCENE_PROJET)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_PROJECT_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_PROJECT_CLOSE);

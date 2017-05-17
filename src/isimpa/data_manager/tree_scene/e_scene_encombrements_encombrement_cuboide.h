@@ -34,6 +34,7 @@
 #include "e_scene_encombrements_encombrement_proprietes.h"
 #include "data_manager/generic_element/e_gammeabsorption.h"
 #include "e_scene_encombrements_encombrement_rendu.h"
+#include "data_manager/e_data.h"
 
 /** \file e_scene_encombrements_encombrement_cuboide.h
    \brief Cet élément est un volume d'encombrement défini par l'utilisateur
@@ -61,7 +62,7 @@ public:
 		{
 			wxXmlNode* currentChild;
 			currentChild = noeudCourant->GetChildren();
-			// On va créer les fils de notre noeudCourant
+			// Parse XML to init Element objects
 			wxString propValue;
 			while(currentChild!=NULL)
 			{
@@ -85,6 +86,8 @@ public:
 			}
 		}
 		needBuild=true;
+		// Change of property name issue #142
+        initPropLabel(this, "ba", wxTRANSLATE("Origin volume"));
 	}
 
 	E_Scene_Encombrements_Encombrement_Cuboide( Element* parent,wxString nom=wxString::Format(_("Fitting zone %i"),ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Encombrement+1))
@@ -97,15 +100,12 @@ public:
 		this->AppendFils(new E_Scene_Encombrements_Encombrement_Proprietes(this));
 		this->AppendFils(new E_GammeAbsorption(this));
 		this->AppendFils(new E_Scene_Encombrements_Encombrement_Rendu(this));
-		_("Surface");
 		InitEncombrementProp();
 	}
 	void InitEncombrementProp()
 	{
-		this->AppendPropertyPosition("ba","Origin",vec3(0,0,0));
-		this->AppendPropertyPosition("hc","Destination volume",vec3(0,0,0));
-		_("Origin");
-		_("Destination");
+		this->AppendPropertyPosition("ba",wxTRANSLATE("Origin volume"),vec3(0,0,0));
+		this->AppendPropertyPosition("hc",wxTRANSLATE("Destination volume"),vec3(1,1,1));
 	}
 	/**
 	 *  Construction du cuboide

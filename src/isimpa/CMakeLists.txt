@@ -473,6 +473,8 @@ add_definitions(-DUSE_PYTHON=${PYTHONLIBS_FOUND})
 if(WIN32) # Check if we are on Windows
   if(MSVC) # Check if we are using the Visual Studio compiler
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+	# Source files are encoded in UTF-8
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /source-charset:utf-8")
     set_target_properties(isimpa PROPERTIES LINK_FLAGS_RELEASE "/SUBSYSTEM:WINDOWS")
     set_target_properties(isimpa PROPERTIES LINK_FLAGS_DEBUG "/SUBSYSTEM:WINDOWS")
   elseif(CMAKE_COMPILER_IS_GNUCXX)

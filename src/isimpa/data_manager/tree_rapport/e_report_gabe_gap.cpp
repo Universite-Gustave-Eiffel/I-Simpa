@@ -72,7 +72,7 @@ bool E_Report_Gabe_Gap::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,s
 	if(!gReader.GetCol(indexCol->GetValue(0),&lstFloatParam))
 		return false;
 
-	arrayTitle=wxTRANSLATE("Lateral sound level")+wxString(" (dB)");
+	arrayTitle=_("Lateral sound level (dB)");
 	////////////////////////
 	// Construction des libellés des lignes, bandes de fréquences
 	int nbfreq=indexCol->GetValue(5);

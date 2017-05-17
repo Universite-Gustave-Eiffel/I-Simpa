@@ -6,7 +6,7 @@
 import uilocale
 import uictrl as ui
 import os
-ScriptFolder=ui.application.getapplicationpath()["userscript"]+"preceiv_sourceTracker"+os.sep
+ScriptFolder=ui.application.getapplicationpath()["systemscript"]+"preceiv_sourceTracker"+os.sep
 #Déclaration de la méthode de traduction
 _=uilocale.InstallUiModule(ScriptFolder,ui.application.getlocale())
 ##
@@ -93,7 +93,8 @@ def LinkSourcePositionWithReceiverPosition(sourceId,ReceiverId):
         #Mettre a jour la propriete
         posel.updatestringconfig("linkedsource",source.getinfos()["name"])  
     else:
-        #Ajouter la propriete
+        #Add property
+        _("linkedsource")
         ui.element(posel.appendpropertytext("linkedsource","linkedsource",source.getinfos()["name"])).hide() 
     if not SourcePosToReceiverPosTrackerLst.has_key(ReceiverId):
         SourcePosToReceiverPosTrackerLst[ReceiverId]=PositionUpdater(ReceiverId,True)

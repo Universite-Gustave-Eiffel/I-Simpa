@@ -649,7 +649,7 @@ void SG_PropertySheetDialog::AddControlsToPenSubPane(wxWindow* collapsidePaneAre
 {
     wxSizer *paneSz = new wxBoxSizer(wxVERTICAL);
 	paneSz->Add(new wxButton(collapsidePaneArea,ID_CURVE_CONTROL_PEN_COLOR_BUTTON, _("Color")), 1, wxGROW|wxTOP, 2);
-	paneSz->Add(new wxButton(collapsidePaneArea,ID_CURVE_CONTROL_PEN_BITMAP_STIPPLE_BUTTON, _("Loading image ...")), 1, wxGROW|wxTOP, 2);
+	paneSz->Add(new wxButton(collapsidePaneArea,ID_CURVE_CONTROL_PEN_BITMAP_STIPPLE_BUTTON, _("Loading image...")), 1, wxGROW|wxTOP, 2);
 	paneSz->Add(new wxStaticText(collapsidePaneArea,wxID_ANY,_("Drawing style")), 1, wxGROW|wxTOP, 2);
 	paneSz->Add(new wxComboBox(collapsidePaneArea,ID_CURVE_CONTROL_PEN_STYLE_LIST,"",wxDefaultPosition, wxDefaultSize, 0, NULL, wxCB_READONLY | wxCB_DROPDOWN ), 1, wxGROW|wxTOP, 2);
 	paneSz->Add(new wxStaticText(collapsidePaneArea,wxID_ANY,_("Line thickness")), 1, wxGROW|wxTOP, 2);
@@ -662,7 +662,7 @@ void SG_PropertySheetDialog::AddControlsToBrushSubPane(wxWindow* collapsidePaneA
 {
     wxSizer *paneSz = new wxBoxSizer(wxVERTICAL);
 	paneSz->Add(new wxButton(collapsidePaneArea,ID_CURVE_CONTROL_BRUSH_COLOR_BUTTON, _("Color")), 1, wxGROW|wxTOP, 2);
-	paneSz->Add(new wxButton(collapsidePaneArea,ID_CURVE_CONTROL_BRUSH_BITMAP_STIPPLE_BUTTON, _("Loading image ...")), 1, wxGROW|wxTOP, 2);
+	paneSz->Add(new wxButton(collapsidePaneArea,ID_CURVE_CONTROL_BRUSH_BITMAP_STIPPLE_BUTTON, _("Loading image...")), 1, wxGROW|wxTOP, 2);
 	paneSz->Add(new wxStaticText(collapsidePaneArea,wxID_ANY,_("Filling style")), 1, wxGROW|wxTOP, 2);
 	paneSz->Add(new wxComboBox(collapsidePaneArea,ID_CURVE_CONTROL_BRUSH_STYLE_LIST,"",wxDefaultPosition, wxDefaultSize, 0, NULL, wxCB_READONLY | wxCB_DROPDOWN ), 1, wxGROW|wxTOP, 2);
     collapsidePaneArea->SetSizer(paneSz);

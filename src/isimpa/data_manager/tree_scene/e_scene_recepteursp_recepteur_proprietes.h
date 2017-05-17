@@ -54,7 +54,7 @@ private:
 	{
 		std::vector<wxString> typesrecepteursp;
 		typesrecepteursp.push_back(wxTRANSLATE("Omnidirectional"));
-		this->AppendPropertyList("typereception",wxTRANSLATE("Type"),typesrecepteursp,0);
+		this->AppendPropertyList("typereception",wxTRANSLATE("Directivity"),typesrecepteursp,0);
 		this->AppendPropertyText("description",wxTRANSLATE("Description"),"");
 		InitDirectivite();
 	}
@@ -67,6 +67,7 @@ public:
 		{
 			InitDirectivite();
 		}
+		initPropLabel(this, "typereception", wxTRANSLATE("Directivity"));
 	}
 
 	E_Scene_Recepteursp_Recepteur_Proprietes( Element* parent)
