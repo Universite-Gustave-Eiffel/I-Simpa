@@ -2419,14 +2419,14 @@ bool ProjectManager::LoadUserPreferenceTree()
 		wxXmlNode* currentNode = rootNode->GetChildren();
 		if( currentNode!=NULL)
 		{
-			Element::renameAttribute(currentNode, wxArrayString(1, { "3D rendering" }), "label", "3D rendering");
-			Element::renameAttribute(currentNode, wxArrayString(2, { "3D rendering", "soundmap" }), "label", "Soundmap");
-			Element::renameAttribute(currentNode, wxArrayString(2, { "3D rendering", "general" }), "label", "General");
-			Element::renameAttribute(currentNode, wxArrayString(2, { "3D rendering", "legend" }), "label", "Legend");
-			Element::renameAttribute(currentNode, wxArrayString(2, { "3D rendering", "particle" }), "label", "Particle");
-			Element::renameAttribute(currentNode, wxArrayString(2, { "3D rendering", "animations" }), "label", "Animations");
-			Element::renameAttribute(currentNode, wxArrayString(1, {"Settings"}), "label", "Settings");
-			Element::renameAttribute(currentNode, wxArrayString(2, { "Settings", "history" }), "label", "History");
+			Element::renameAttribute(currentNode, wxArrayString(1, { "3drendering" }), "name", "3D rendering");
+			Element::renameAttribute(currentNode, wxArrayString(2, { "3D rendering", "soundmap" }), "name", "Soundmap");
+			Element::renameAttribute(currentNode, wxArrayString(2, { "3D rendering", "general" }), "name", "General");
+			Element::renameAttribute(currentNode, wxArrayString(2, { "3D rendering", "legend" }), "name", "Legend");
+			Element::renameAttribute(currentNode, wxArrayString(2, { "3D rendering", "particle" }), "name", "Particle");
+			Element::renameAttribute(currentNode, wxArrayString(2, { "3D rendering", "animations" }), "name", "Animations");
+			Element::renameAttribute(currentNode, wxArrayString(1, {"mainpref"}), "name", "Settings");
+			Element::renameAttribute(currentNode, wxArrayString(2, { "Settings", "history" }), "name", "History");
 			rootUserConfig=new E_UserPreferenceNode(NULL,"root",currentNode);
 			wxString appver;
 			userPreferenceDocument.GetRoot()->GetAttribute("app_version",&appver);

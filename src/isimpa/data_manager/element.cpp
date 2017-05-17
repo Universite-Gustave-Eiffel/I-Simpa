@@ -890,7 +890,9 @@ wxXmlNode* Element::renameAttribute(wxXmlNode* root, const wxArrayString& path, 
 	wxString propValue;
 	while (currentChild != NULL)
 	{
-		if(currentChild->GetAttribute("label") == path.Item(0)) {
+		const wxString& nameNode = currentChild->GetAttribute("name");
+		const wxString& firstEl = path.Item(0);
+		if(firstEl.IsSameAs(nameNode)) {
 			if(path.size() == 1) {
 				if(currentChild->DeleteAttribute(attributeName)) {
 					currentChild->AddAttribute(attributeName, newValue);
