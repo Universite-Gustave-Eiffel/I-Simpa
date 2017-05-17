@@ -46,12 +46,11 @@ class E_Scene_Recepteurss: public Element
 {
 public:
 	E_Scene_Recepteurss( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Surface receivers",Element::ELEMENT_TYPE_SCENE_RECEPTEURSS,noeudCourant)
+		:Element(parent,wxTRANSLATE("Surface receivers"),Element::ELEMENT_TYPE_SCENE_RECEPTEURSS,noeudCourant)
 	{
 		insertPasteMenu=true;
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_SURFACE_RECEIVERS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_SURFACE_RECEIVERS_CLOSE);
-		_("Surface receivers");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;
@@ -75,7 +74,7 @@ public:
 		}
 	}
 	E_Scene_Recepteurss( Element* parent)
-		:Element(parent,"Surface receivers",Element::ELEMENT_TYPE_SCENE_RECEPTEURSS)
+		:Element(parent,wxTRANSLATE("Surface receivers"),Element::ELEMENT_TYPE_SCENE_RECEPTEURSS)
 	{
 		insertPasteMenu=true;
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_SURFACE_RECEIVERS_OPEN);

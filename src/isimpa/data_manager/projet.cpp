@@ -852,15 +852,15 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 
     bool resetHistoryBackup = false;
     // Refresh of report folder is not a user action and should not trigger tree backup
-    if(rootUserConfig->GetElementByLibelle("mainpref")->GetElementByLibelle("history")->GetBoolConfig("keep_modification_history")) {
-        rootUserConfig->GetElementByLibelle("mainpref")->GetElementByLibelle("history")->UpdateBoolConfig("keep_modification_history", false);
+    if(rootUserConfig->GetElementByLibelle("Settings")->GetElementByLibelle("History")->GetBoolConfig("keep_modification_history")) {
+        rootUserConfig->GetElementByLibelle("Settings")->GetElementByLibelle("History")->UpdateBoolConfig("keep_modification_history", false);
         resetHistoryBackup = true;
     }
 
 	RefreshReportFolder();
 
     if(resetHistoryBackup) {
-        rootUserConfig->GetElementByLibelle("mainpref")->GetElementByLibelle("history")->UpdateBoolConfig("keep_modification_history", true);
+        rootUserConfig->GetElementByLibelle("Settings")->GetElementByLibelle("History")->UpdateBoolConfig("keep_modification_history", true);
     }
 
 	wxLongLong durationOperation=wxDateTime::UNow().GetValue()-timeDebOperation.GetValue();
@@ -1640,7 +1640,7 @@ void ProjectManager::OnMenuLoadParticleSimulation(uiTreeCtrl* fromCtrl,Element* 
 	}
 
 	//Demmarage de la simulation
-	this->rootUserConfig->GetElementByLibelle("3drendering")->GetElementByLibelle("animations")->UpdateBoolConfig("showparticle",true);
+	this->rootUserConfig->GetElementByLibelle("3d Rendering")->GetElementByLibelle("Animations")->UpdateBoolConfig("showparticle",true);
 	this->GlFrame->RunSimulation();
 }
 void ProjectManager::OnMenuCreateFGroupFromSelection()
@@ -2034,32 +2034,32 @@ void ProjectManager::SetControlPointer(	wxTextCtrl* _logControl,uiTreeCtrl* _tre
 	ApplicationConfiguration::SetUserPreferenceElement(this->rootUserConfig);
 
 
-	Element* render3d_node=this->rootUserConfig->GetElementByLibelle("3drendering");
+	Element* render3d_node=this->rootUserConfig->GetElementByLibelle("3D rendering");
 	if(render3d_node)
 	{
 
 		render3d_node->SetIcon(Element::GRAPH_STATE_EXPANDED,Element::GRAPH_USER_PREF_ROOT_OPEN);
 		render3d_node->SetIcon(Element::GRAPH_STATE_NORMAL,Element::GRAPH_USER_PREF_ROOT_CLOSE);
 		//Lie l'événement de mis à jour des propriétés à l'objet de la scène 3D
-		Element* cfgScene3D=render3d_node->GetElementByLibelle("general");
+		Element* cfgScene3D=render3d_node->GetElementByLibelle("General");
 		if(cfgScene3D)
 		{
 			cfgScene3D->AppendEventCatcher(EventCatcher(new SceneUpdater(cfgScene3D,sceneMesh,GlFrame)));
 			cfgScene3D->SetIcon(Element::GRAPH_STATE_ALL,Element::GRAPH_PREF_GENERAL);
 		}
-		Element* cfgAnimation=render3d_node->GetElementByLibelle("animations");
+		Element* cfgAnimation=render3d_node->GetElementByLibelle("Animation");
 		if(cfgAnimation)
 		{
 			cfgAnimation->AppendEventCatcher(EventCatcher(new AnimationUpdater(cfgAnimation)));
 			cfgAnimation->SetIcon(Element::GRAPH_STATE_ALL,Element::GRAPH_PREF_ANIMATION);
 		}
-		Element* cfgIsoMap=render3d_node->GetElementByLibelle("soundmap");
+		Element* cfgIsoMap=render3d_node->GetElementByLibelle("Soundmap");
 		if(cfgIsoMap)
 		{
 			cfgIsoMap->AppendEventCatcher(EventCatcher(new IsoPaletteUpdater(cfgIsoMap,&recepteursSContainer)));
 			cfgIsoMap->SetIcon(Element::GRAPH_STATE_ALL,Element::GRAPH_PREF_NOISE_MAP);
 		}
-		Element* cfgLegend=render3d_node->GetElementByLibelle("legend");
+		Element* cfgLegend=render3d_node->GetElementByLibelle("Legend");
 		if(cfgLegend)
 		{
 			cfgLegend->SetIcon(Element::GRAPH_STATE_ALL,Element::GRAPH_PREF_LEGEND);
@@ -2067,19 +2067,19 @@ void ProjectManager::SetControlPointer(	wxTextCtrl* _logControl,uiTreeCtrl* _tre
 			cfgLegend->AppendEventCatcher(EventCatcher(new AnimatorUserPreferenceUpdater(cfgLegend,&recepteursPContainer)));
 			cfgLegend->AppendEventCatcher(EventCatcher(new AnimatorUserPreferenceUpdater(cfgLegend,&particulesContainer)));
 		}
-		Element* cfgParticle=render3d_node->GetElementByLibelle("particle");
+		Element* cfgParticle=render3d_node->GetElementByLibelle("Particle");
 		if(cfgParticle)
 		{
 			cfgParticle->SetIcon(Element::GRAPH_STATE_ALL,Element::GRAPH_PREF_PARTICLES);
 			cfgParticle->AppendEventCatcher(EventCatcher(new ParticleAnimatorUpdater(cfgParticle,&particulesContainer)));
 		}
 	}
-	Element* mainpref_node=this->rootUserConfig->GetElementByLibelle("mainpref");
+	Element* mainpref_node=this->rootUserConfig->GetElementByLibelle("Settings");
 	if(mainpref_node)
 	{
 		mainpref_node->SetIcon(Element::GRAPH_STATE_EXPANDED,Element::GRAPH_USER_PREF_MAINCONFIGURATION_OPEN);
 		mainpref_node->SetIcon(Element::GRAPH_STATE_NORMAL,Element::GRAPH_USER_PREF_MAINCONFIGURATION_CLOSE);
-		Element* cfgHistory=mainpref_node->GetElementByLibelle("history");
+		Element* cfgHistory=mainpref_node->GetElementByLibelle("History");
 		if(cfgHistory)
 		{
 			cfgHistory->SetIcon(Element::GRAPH_STATE_ALL,Element::GRAPH_USER_PREF_HISTORY);
@@ -2362,7 +2362,7 @@ void ProjectManager::CreateUserPreferenceTree()
 
 	/////////////////////////////////////////////////////////////
 	//Dossier Rendu 3D / Animations
-	Element* render3d_animation_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,wxTRANSLATE("animations"));
+	Element* render3d_animation_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,wxTRANSLATE("Animations"));
 
 	render3d_animation_node->AppendPropertyDecimal("animation_rate",wxTRANSLATE("Render frequency (Hz)"),60,false,4,true,true,100,1);
 	render3d_animation_node->AppendPropertyBool("showparticle",wxTRANSLATE("Particles display"),true);
@@ -2371,7 +2371,7 @@ void ProjectManager::CreateUserPreferenceTree()
 
 	/////////////////////////////////////////////////////////////
 	//Dossier Rendu 3D / Légendes
-	Element* render3d_legend_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,wxTRANSLATE("legend"));
+	Element* render3d_legend_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,wxTRANSLATE("Legend"));
 
 	render3d_legend_node->AppendPropertyFont("legend_font",wxTRANSLATE("Police font"));
 	render3d_legend_node->AppendPropertyColor("legend_text_foreground_color",wxTRANSLATE("Text color"),0,0,0);
@@ -2380,12 +2380,12 @@ void ProjectManager::CreateUserPreferenceTree()
 
 	/////////////////////////////////////////////////////////////
 	//Dossier Rendu 3D / Carte de bruits
-	Element* render3d_soundmap_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM_ISOTEMPLATE, wxTRANSLATE("soundmap"));
+	Element* render3d_soundmap_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM_ISOTEMPLATE, wxTRANSLATE("Soundmap"));
 	render3d_soundmap_node->AppendPropertyColor("iso_line_color", wxTRANSLATE("Iso-lines color"),0,0,0);
 
 	/////////////////////////////////////////////////////////////
 	//Dossier Rendu 3D / Particules
-	Element* render3d_particle_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM, wxTRANSLATE("particle"));
+	Element* render3d_particle_node=render3d_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM, wxTRANSLATE("Particle"));
 	render3d_particle_node->AppendPropertyColor("particle_color", wxTRANSLATE("Color of particles"),15,15,128);
 
 	/////////////////////////////////////////////////////////////
@@ -2394,7 +2394,7 @@ void ProjectManager::CreateUserPreferenceTree()
 
 	/////////////////////////////////////////////////////////////
 	//Dossier Général / Historique
-	Element* main_history_node=main_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM, wxTRANSLATE("history"));
+	Element* main_history_node=main_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM, wxTRANSLATE("History"));
 
 	main_history_node->AppendPropertyBool("keep_modification_history", wxTRANSLATE("Keep modification history"),true);
 
@@ -2419,6 +2419,14 @@ bool ProjectManager::LoadUserPreferenceTree()
 		wxXmlNode* currentNode = rootNode->GetChildren();
 		if( currentNode!=NULL)
 		{
+			Element::renameAttribute(currentNode, wxArrayString(1, { "3D rendering" }), "label", "3D rendering");
+			Element::renameAttribute(currentNode, wxArrayString(2, { "3D rendering", "soundmap" }), "label", "Soundmap");
+			Element::renameAttribute(currentNode, wxArrayString(2, { "3D rendering", "general" }), "label", "General");
+			Element::renameAttribute(currentNode, wxArrayString(2, { "3D rendering", "legend" }), "label", "Legend");
+			Element::renameAttribute(currentNode, wxArrayString(2, { "3D rendering", "particle" }), "label", "Particle");
+			Element::renameAttribute(currentNode, wxArrayString(2, { "3D rendering", "animations" }), "label", "Animations");
+			Element::renameAttribute(currentNode, wxArrayString(1, {"Settings"}), "label", "Settings");
+			Element::renameAttribute(currentNode, wxArrayString(2, { "Settings", "history" }), "label", "History");
 			rootUserConfig=new E_UserPreferenceNode(NULL,"root",currentNode);
 			wxString appver;
 			userPreferenceDocument.GetRoot()->GetAttribute("app_version",&appver);
@@ -2444,8 +2452,8 @@ void ProjectManager::PatchUserPreferenceTree(const wxString& oldVersion)
 	{
 		/////////////////////////////////////////////////////////////
 		//Dossier préférence générale
-		Element* main_node=rootUserConfig->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_NODE,"mainpref");
-		_("mainpref");
+		Element* main_node=rootUserConfig->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_NODE,"Settings");
+
 		/////////////////////////////////////////////////////////////
 		//Dossier Général / Historique
 		Element* main_history_node=main_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"history");

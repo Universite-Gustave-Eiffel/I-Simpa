@@ -884,6 +884,29 @@ Element* Element::AppendFils(Element* filsToAppend,bool appendToTree)
 	}
 	return filsToAppend;
 }
+
+wxXmlNode* Element::renameAttribute(wxXmlNode* root, const wxArrayString& path, const wxString& attributeName, const wxString& newValue) {
+	wxXmlNode* currentChild = root->GetChildren();
+	wxString propValue;
+	while (currentChild != NULL)
+	{
+		if(currentChild->GetAttribute("label") == path.Item(0)) {
+			if(path.size() == 1) {
+				if(currentChild->DeleteAttribute(attributeName)) {
+					currentChild->AddAttribute(attributeName, newValue);
+				}
+			} else {
+				wxArrayString reduced = path;
+				reduced.RemoveAt(0);
+				renameAttribute(currentChild, reduced, attributeName, newValue);
+			}
+			break;
+		}
+		currentChild = currentChild->GetNext();
+	}
+	return root;
+}
+
 wxMenuItem* Element::GetMenuItem(wxMenu* parent,int id,const wxString& label, wxMenu* subMenu ,const wxString& menuIcon)
 {
 	wxUiMenuItem *newmenu = new wxUiMenuItem(parent, id,label,"",wxITEM_NORMAL,subMenu);

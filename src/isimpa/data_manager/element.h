@@ -465,6 +465,7 @@ public :
     static wxMenuItem *
     GetMenuItem(wxMenu *parent, int id, const wxString &label, wxMenu *subMenu, const wxString &menuIcon = wxString());
 
+	static wxXmlNode* renameAttribute(wxXmlNode* root, const wxArrayString& path, const wxString& attributeName, const wxString& newValue);
     /**
      *  Séléction de l'élément dans le contrôle de l'arbre du projet
      *  Par défaut il n'y a aucun traitement au niveau local de l'élément
