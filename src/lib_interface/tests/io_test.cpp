@@ -1,5 +1,6 @@
 #define BOOST_TEST_MODULE lib_interface modelio tests
 #include <boost/test/included/unit_test.hpp>
+#include <boost/filesystem/operations.hpp>
 #include <iostream>
 #include <input_output/bin.h>
 #include <input_output/gabe/stdgabe.h>
@@ -236,7 +237,9 @@ BOOST_AUTO_TEST_CASE(read_poly_test1)
 {
 	using namespace formatPOLY;
 	t_model model;
-	CPoly reader;
+	CPoly reader;	
+
+	BOOST_REQUIRE(boost::filesystem::exists("test_import1.poly"));
 
 	BOOST_REQUIRE(reader.ImportPOLY(model, "test_import1.poly"));
 
@@ -390,7 +393,9 @@ BOOST_AUTO_TEST_CASE(write_read_poly_test1)
 
 	CPoly driver;
 
-	driver.ExportPOLY(model, "test_write1.poly");
+	BOOST_REQUIRE(driver.ExportPOLY(model, "test_write1.poly"));
+	
+	BOOST_REQUIRE(boost::filesystem::exists("test_write1.poly"));
 
 	model.modelVertices.clear();
 	model.modelFaces.clear();
