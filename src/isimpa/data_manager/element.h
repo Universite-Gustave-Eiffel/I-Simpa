@@ -465,6 +465,14 @@ public :
     static wxMenuItem *
     GetMenuItem(wxMenu *parent, int id, const wxString &label, wxMenu *subMenu, const wxString &menuIcon = wxString());
 
+    /**
+     * Rename XML attributes using the path "name" attribute. Usefull for xml upgrade
+     * @param root Root XML node
+     * @param path Path of navigation (name attribute)
+     * @param attributeName Attribute to change value
+     * @param newValue New value of the attribute
+     * @return root node
+     */
 	static wxXmlNode* renameAttribute(wxXmlNode* root, const std::vector<wxString>& path, const wxString& attributeName, const wxString& newValue);
     /**
      *  Séléction de l'élément dans le contrôle de l'arbre du projet
