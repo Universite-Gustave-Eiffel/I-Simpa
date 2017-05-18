@@ -2456,7 +2456,7 @@ void ProjectManager::PatchUserPreferenceTree(const wxString& oldVersion)
 
 		/////////////////////////////////////////////////////////////
 		//Dossier Général / Historique
-		Element* main_history_node=main_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"history");
+		Element* main_history_node=main_node->AppendFilsByType(Element::ELEMENT_TYPE_USER_PREFERENCE_ITEM,"History");
 
 		main_history_node->AppendPropertyBool("keep_modification_history","Keep modification history",true);
 	}

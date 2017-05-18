@@ -36,7 +36,7 @@
 #include "data_manager/e_data_list.h"
 
 E_GammeAbsorption::E_GammeAbsorption(wxXmlNode* nodeElement,Element* parent)
-	:Element(parent,"Acoustic parameters",ELEMENT_TYPE_GAMMEABSORPTION,nodeElement)
+	:Element(parent,wxTRANSLATE("Acoustic parameters"),ELEMENT_TYPE_GAMMEABSORPTION,nodeElement)
 {
 	SetIcon(GRAPH_STATE_ALL,GRAPH_SPECTRUM);
 	ignoreNextUpdate=false;
@@ -55,28 +55,26 @@ E_GammeAbsorption::E_GammeAbsorption(wxXmlNode* nodeElement,Element* parent)
 			if(listel)
 			{
 				E_Data_List* datalst=dynamic_cast<E_Data_List*>(listel);
-				if(datalst->GetItemsLabel().size()==1)
+				// Upgrade from previous I-Simpa version
+				if(datalst->GetItemsLabel().size()< 2 || datalst->GetItemsLabel().at(0) != wxTRANSLATE("Uniform reflection"))
 				{
-					datalst->AppendItem(_("Uniform Collision"),1);
-					datalst->AppendItem(_("Lambert Collision"),2);
-					somethingUpdated=true;
+                    (*itfils)->DeleteElementByXmlId(datalst->GetXmlId());
+                    (*itfils)->AppendPropertyList("loi_diff",wxTRANSLATE("Diffusion law"),{wxString(wxTRANSLATE("Uniform reflection")),
+                                                                                           wxString(wxTRANSLATE("Lambert reflection"))},
+                                                  0,false,1,{0, 1},true);
 				}else{
 					break;
 				}
 			}
 		}
 	}
-	if(somethingUpdated)
-	{
-		this->ForceBottomModified();
-	}
 }
 
 E_GammeAbsorption::E_GammeAbsorption(Element* parent)
-:Element(parent,"Acoustic parameters",ELEMENT_TYPE_GAMMEABSORPTION,NULL)
+:Element(parent,wxTRANSLATE("Acoustic parameters"),ELEMENT_TYPE_GAMMEABSORPTION,NULL)
 {
 	SetIcon(GRAPH_STATE_ALL,GRAPH_SPECTRUM);
-	_("Acoustic parameters");
+
 	ignoreNextUpdate=true;
 	InitProperties();
 	ignoreNextUpdate=false;
@@ -102,7 +100,8 @@ wxXmlNode* E_GammeAbsorption::SaveXMLCoreDoc(wxXmlNode* NoeudParent)
 void E_GammeAbsorption::InitProperties()
 {
 	std::vector<wxString> Lstlois;
-	Lstlois.push_back(wxTRANSLATE("Uniform"));
+    Lstlois.push_back(wxTRANSLATE("Uniform reflection"));
+    Lstlois.push_back(wxTRANSLATE("Lambert reflection"));
 	std::vector<int> LstloisIndex(Lstlois.size());
 
 	for(int i=0;i<LstloisIndex.size();i++)

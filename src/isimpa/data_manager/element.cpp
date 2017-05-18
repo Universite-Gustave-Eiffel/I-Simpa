@@ -1410,17 +1410,20 @@ Element* Element::AppendPropertyPosition(wxString propertyName,wxString property
 	}
 }
 
-Element* Element::AppendPropertyList(wxString propertyName,wxString propertyLabel,std::vector<wxString> &values,long defaultValue, bool asTitle, int hSize,std::vector<int> indiceValues,bool exportToCore)
+Element* Element::AppendPropertyList(wxString propertyName,wxString propertyLabel,const std::vector<wxString> &values,long defaultValue, bool asTitle, int hSize,const std::vector<int> indiceValues,bool exportToCore)
 {
+    std::vector<wxString> elValues = values;
+    std::vector<int> elIndexValues = indiceValues;
 	Element* alreadyExist=NULL;
-	if(indiceValues.size()==0)
+	if(indiceValues.empty() || indiceValues.size() != values.size())
 	{
+        elIndexValues.clear();
 		for(int i=0;i<values.size();i++)
-			indiceValues.push_back(i);
+            elIndexValues.push_back(i);
 	}
 	if(!IsPropertyExist(propertyName,&alreadyExist))
 	{
-		E_Data_List* nouvFils = new E_Data_List(this,propertyName,propertyLabel,values,indiceValues,defaultValue, asTitle,hSize);
+		E_Data_List* nouvFils = new E_Data_List(this,propertyName,propertyLabel,elValues,elIndexValues,defaultValue, asTitle,hSize);
 		nouvFils->SetXmlCoreVisibility(exportToCore);
 		return this->AppendFils(nouvFils);
 	}else{

@@ -836,8 +836,8 @@ public :
      * @see E_Data_List
      */
     Element *
-    AppendPropertyList(wxString propertyName, wxString propertyLabel, std::vector<wxString> &values, long defaultValue,
-                       bool asTitle = false, int hSize = 1, std::vector<int> indiceValues = std::vector<int>(),
+    AppendPropertyList(wxString propertyName, wxString propertyLabel, const std::vector<wxString> &values, long defaultValue,
+                       bool asTitle = false, int hSize = 1, const std::vector<int> indiceValues = std::vector<int>(),
                        bool exportToCore = false);
 
     /**
