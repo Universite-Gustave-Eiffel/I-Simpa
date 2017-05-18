@@ -885,22 +885,20 @@ Element* Element::AppendFils(Element* filsToAppend,bool appendToTree)
 	return filsToAppend;
 }
 
-wxXmlNode* Element::renameAttribute(wxXmlNode* root, const wxArrayString& path, const wxString& attributeName, const wxString& newValue) {
+wxXmlNode* Element::renameAttribute(wxXmlNode* root, const std::vector<wxString>& path, const wxString& attributeName, const wxString& newValue) {
 	wxXmlNode* currentChild = root->GetChildren();
 	wxString propValue;
 	while (currentChild != NULL)
 	{
 		const wxString& nameNode = currentChild->GetAttribute("name");
-		const wxString& firstEl = path.Item(0);
+		const wxString& firstEl = path[0];
 		if(firstEl.IsSameAs(nameNode)) {
 			if(path.size() == 1) {
 				if(currentChild->DeleteAttribute(attributeName)) {
 					currentChild->AddAttribute(attributeName, newValue);
 				}
 			} else {
-				wxArrayString reduced = path;
-				reduced.RemoveAt(0);
-				renameAttribute(currentChild, reduced, attributeName, newValue);
+				renameAttribute(currentChild, std::vector<wxString>(path.begin() + 1, path.end()), attributeName, newValue);
 			}
 			break;
 		}

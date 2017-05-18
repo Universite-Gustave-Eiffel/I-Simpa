@@ -2419,14 +2419,14 @@ bool ProjectManager::LoadUserPreferenceTree()
 		wxXmlNode* currentNode = rootNode->GetChildren();
 		if( currentNode!=NULL)
 		{
-			Element::renameAttribute(currentNode, wxArrayString(1, { "3drendering" }), "name", "3D rendering");
-			Element::renameAttribute(currentNode, wxArrayString(2, { "3D rendering", "soundmap" }), "name", "Soundmap");
-			Element::renameAttribute(currentNode, wxArrayString(2, { "3D rendering", "general" }), "name", "General");
-			Element::renameAttribute(currentNode, wxArrayString(2, { "3D rendering", "legend" }), "name", "Legend");
-			Element::renameAttribute(currentNode, wxArrayString(2, { "3D rendering", "particle" }), "name", "Particle");
-			Element::renameAttribute(currentNode, wxArrayString(2, { "3D rendering", "animations" }), "name", "Animations");
-			Element::renameAttribute(currentNode, wxArrayString(1, {"mainpref"}), "name", "Settings");
-			Element::renameAttribute(currentNode, wxArrayString(2, { "Settings", "history" }), "name", "History");
+			Element::renameAttribute(currentNode, { wxString("3drendering")  }, "name", "3D rendering");
+			Element::renameAttribute(currentNode, { wxString("3D rendering"), wxString("soundmap") }, "name", "Soundmap");
+			Element::renameAttribute(currentNode, { wxString("3D rendering"), wxString("general") }, "name", "General");
+			Element::renameAttribute(currentNode, { wxString("3D rendering"), wxString("legend") }, "name", "Legend");
+			Element::renameAttribute(currentNode, { wxString("3D rendering"), wxString("particle")}, "name", "Particle");
+			Element::renameAttribute(currentNode, { wxString("3D rendering"), wxString("animations") }, "name", "Animations");
+			Element::renameAttribute(currentNode, { wxString("mainpref")}, "name", "Settings");
+			Element::renameAttribute(currentNode, { wxString("Settings"), wxString("history")}, "name", "History");
 			rootUserConfig=new E_UserPreferenceNode(NULL,"root",currentNode);
 			wxString appver;
 			userPreferenceDocument.GetRoot()->GetAttribute("app_version",&appver);
