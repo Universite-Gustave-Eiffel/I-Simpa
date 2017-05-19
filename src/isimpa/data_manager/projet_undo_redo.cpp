@@ -68,7 +68,7 @@ bool ProjectManager::PushModificationToHistory(bool force)
 	if(force || (maintenant-lastHistoryUpdate).GetMilliseconds()>UNDO_HISTORY_TIMESTEP)
 	{
 		lastHistoryUpdate=maintenant;
-		if(this->rootUserConfig->GetElementByLibelle("mainpref")->GetElementByLibelle("history")->GetBoolConfig("keep_modification_history"))
+		if(this->rootUserConfig.get() != nullptr && this->rootUserConfig->GetElementByLibelle("Settings")->GetElementByLibelle("History")->GetBoolConfig("keep_modification_history"))
 		{
 			if(!force)
 				wxLogDebug(_("Add modifications in the change log"));

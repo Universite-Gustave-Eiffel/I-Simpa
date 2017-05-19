@@ -466,6 +466,15 @@ public :
     GetMenuItem(wxMenu *parent, int id, const wxString &label, wxMenu *subMenu, const wxString &menuIcon = wxString());
 
     /**
+     * Rename XML attributes using the path "name" attribute. Usefull for xml upgrade
+     * @param root Root XML node
+     * @param path Path of navigation (name attribute)
+     * @param attributeName Attribute to change value
+     * @param newValue New value of the attribute
+     * @return root node
+     */
+	static wxXmlNode* renameAttribute(wxXmlNode* root, const std::vector<wxString>& path, const wxString& attributeName, const wxString& newValue);
+    /**
      *  Séléction de l'élément dans le contrôle de l'arbre du projet
      *  Par défaut il n'y a aucun traitement au niveau local de l'élément
      *  @param treeEvent Spécification de l'événement
@@ -827,8 +836,8 @@ public :
      * @see E_Data_List
      */
     Element *
-    AppendPropertyList(wxString propertyName, wxString propertyLabel, std::vector<wxString> &values, long defaultValue,
-                       bool asTitle = false, int hSize = 1, std::vector<int> indiceValues = std::vector<int>(),
+    AppendPropertyList(wxString propertyName, wxString propertyLabel, const std::vector<wxString> &values, long defaultValue,
+                       bool asTitle = false, int hSize = 1, const std::vector<int> indiceValues = std::vector<int>(),
                        bool exportToCore = false);
 
     /**

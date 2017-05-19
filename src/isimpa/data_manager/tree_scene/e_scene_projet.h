@@ -82,8 +82,13 @@ public:
 						this->AppendFils(new E_Scene_Bdd(currentChild,this));
 					else if(typeEle==Element::ELEMENT_TYPE_SCENE_PROJET_ENVIRONNEMENTCONF)
 						this->AppendFils(new E_Scene_Projet_Environnement(currentChild,this));
-					else if(typeEle==Element::ELEMENT_TYPE_SCENE_PROJET_INFORMATION)
-						this->AppendFils(new E_Scene_Projet_Information(currentChild,this));
+					else if(typeEle==Element::ELEMENT_TYPE_SCENE_PROJET_INFORMATION) {
+						if(currentChild->GetAttribute("name") == "Informations") {
+							currentChild->DeleteAttribute("name");
+							currentChild->AddAttribute("name", wxTRANSLATE("Information"));
+						}
+						this->AppendFils(new E_Scene_Projet_Information(currentChild, this));
+					}
 				}
 				currentChild = currentChild->GetNext();
 			}

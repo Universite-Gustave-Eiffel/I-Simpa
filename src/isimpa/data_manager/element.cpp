@@ -135,50 +135,35 @@ Element::Element(Element* parent,const wxString& name,ELEMENT_TYPE _type,wxXmlNo
 	SetXmlId();
 
 	if(nodeElement==NULL)
-	{   //Element initialisé SANS XML
+	{   //Initialisation without XML
 
 		this->needUpdate=true;
 		this->elementInfo.expanded=false;
 	}else{
+		// Initialisation with XML
 		nodeElement->DeleteAttribute("wxid");
 		nodeElement->AddAttribute("wxid",Convertor::ToString(this->elementInfo.xmlIdElement));
-		//Element initialisé AVEC Xml
 		this->needUpdate=false;
 		if(nodeElement->GetAttribute("name",&propVal))
 			this->elementInfo.libelleElement=propVal;
-
-		//Temporaire
-		/*
-		Element* testDbg=this;
-		wxString fullName;
-		while(testDbg!=NULL)
-		{
-			fullName.insert(0,wxString::Format("%i/",testDbg->GetElementInfos().xmlIdElement));
-			testDbg=testDbg->GetElementParent();
-		}
-		wxLogDebug(fullName);
-		*/
-		//Fin temporaire
-
+		
 		if(nodeElement->GetAttribute("exp",&propVal))
 		{
 			this->elementInfo.expanded=true;
-			//if(this->elementInfo.graphElement==Element::GRAPH_FOLDER)
-			//	this->elementInfo.graphElement=Element::GRAPH_FOLDER_OPEN;
 		}
 
 		if(nodeElement->GetAttribute("hid",&propVal))
 		{
 			this->elementInfo.hidden=true;
 		}
-		//Tri des fils en fonction de leur identifiant
+		//Sort children by their unique identifier
 		SortChildrensByProperty(nodeElement,"wxid");
 
-		// Ajout des fils de cet élément
+		// Add children nodes
 
 		wxXmlNode* currentChild = nodeElement->GetChildren();
 
-		// On va créer les fils de propriétés de notre noeudCourant
+		// Add common property nodes
 		wxString propValue;
 		while(currentChild!=NULL)
 		{
@@ -236,7 +221,7 @@ Element::Element(Element* parent,const wxString& name,ELEMENT_TYPE _type,wxXmlNo
 
 void Element::OnPaste(wxXmlNode* nodeElement)
 {
-	wxBell(); //Avertissement de l'utilisateur que cette fonction n'est pas autorisée
+	wxBell(); //Ding ! sound because this operation is not handled
 }
 bool Element::OnElementRemoved()
 {
@@ -286,11 +271,8 @@ bool Element::IsDrawable()
 void Element::SetDrawable()
 {
 	drawable=true;
-	//for(std::list<Element*>::iterator itfils=this->fils.begin();itfils!=this->fils.end();itfils++)
-	//	(*itfils)->SetDrawable();
 }
 
-//Recherche parmis les fils du parent lequel des noeuds correspond à notre élément
 wxXmlNode* Element::SeekParentNodeToThisNode(wxXmlNode* noeudParent)
 {
 	wxXmlNode* noeudCourant=noeudParent->GetChildren();
@@ -884,6 +866,29 @@ Element* Element::AppendFils(Element* filsToAppend,bool appendToTree)
 	}
 	return filsToAppend;
 }
+
+wxXmlNode* Element::renameAttribute(wxXmlNode* root, const std::vector<wxString>& path, const wxString& attributeName, const wxString& newValue) {
+	wxXmlNode* currentChild = root->GetChildren();
+	wxString propValue;
+	while (currentChild != NULL)
+	{
+		const wxString& nameNode = currentChild->GetAttribute("name");
+		const wxString& firstEl = path[0];
+		if(firstEl.IsSameAs(nameNode)) {
+			if(path.size() == 1) {
+				if(currentChild->DeleteAttribute(attributeName)) {
+					currentChild->AddAttribute(attributeName, newValue);
+				}
+			} else {
+				renameAttribute(currentChild, std::vector<wxString>(path.begin() + 1, path.end()), attributeName, newValue);
+			}
+			break;
+		}
+		currentChild = currentChild->GetNext();
+	}
+	return root;
+}
+
 wxMenuItem* Element::GetMenuItem(wxMenu* parent,int id,const wxString& label, wxMenu* subMenu ,const wxString& menuIcon)
 {
 	wxUiMenuItem *newmenu = new wxUiMenuItem(parent, id,label,"",wxITEM_NORMAL,subMenu);
@@ -1387,17 +1392,20 @@ Element* Element::AppendPropertyPosition(wxString propertyName,wxString property
 	}
 }
 
-Element* Element::AppendPropertyList(wxString propertyName,wxString propertyLabel,std::vector<wxString> &values,long defaultValue, bool asTitle, int hSize,std::vector<int> indiceValues,bool exportToCore)
+Element* Element::AppendPropertyList(wxString propertyName,wxString propertyLabel,const std::vector<wxString> &values,long defaultValue, bool asTitle, int hSize,const std::vector<int> indiceValues,bool exportToCore)
 {
+    std::vector<wxString> elValues = values;
+    std::vector<int> elIndexValues = indiceValues;
 	Element* alreadyExist=NULL;
-	if(indiceValues.size()==0)
+	if(indiceValues.empty() || indiceValues.size() != values.size())
 	{
+        elIndexValues.clear();
 		for(int i=0;i<values.size();i++)
-			indiceValues.push_back(i);
+            elIndexValues.push_back(i);
 	}
 	if(!IsPropertyExist(propertyName,&alreadyExist))
 	{
-		E_Data_List* nouvFils = new E_Data_List(this,propertyName,propertyLabel,values,indiceValues,defaultValue, asTitle,hSize);
+		E_Data_List* nouvFils = new E_Data_List(this,propertyName,propertyLabel,elValues,elIndexValues,defaultValue, asTitle,hSize);
 		nouvFils->SetXmlCoreVisibility(exportToCore);
 		return this->AppendFils(nouvFils);
 	}else{
