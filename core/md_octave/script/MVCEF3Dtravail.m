@@ -105,6 +105,7 @@ while VolSource<=0
 ind=1:nn;rayonS2=rayonS2*1.5;
 ind=ind(dist2S<rayonS2);VolSource=sum(V_VC(ind));% Volume de la source
 end   
+Srce_sonore(1,4:end)=10.^(Srce_sonore(1,4:end)/10)*1e-12;
 RHS(ind)=Srce_sonore(1,7)*V_VC(ind)/VolSource;% Puissance sonre sur le tiers d'octave 100Hz
 w100=mat_100\RHS;w=w100;% Resolution du systeme edp
 RHS(ind)=Srce_sonore(1,8)*V_VC(ind)/VolSource;% Puissance sonre sur le tiers d'octave 125Hz
@@ -166,6 +167,10 @@ titre = 'Energy density (dB) for diffusion problem';
 %PlotFieldonMesh(XYZ,el,w)
 
   trisurf(el2D,XYZ(:,1),XYZ(:,2),XYZ(:,3),w), colorbar
-  
-  
+   
+   
+   figure,
+    LpdB=10*log10(w*rhoco2/(2e-5)^2);
+   trisurf(el2D,XYZ(:,1),XYZ(:,2),XYZ(:,3),LpdB), title('LpdB'), colorbar
+
   Calcul_insta
