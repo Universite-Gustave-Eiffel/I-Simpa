@@ -45,7 +45,7 @@ nbel=size(el,1)% nombre d'elements Tetraedres
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %RECHERCHE DES FACES FRONTIERES des Tetraedres
-el2Dtyp= load(strcat(domaine,'_tetrafaces.txt'));
+el2Dtyp= load(strcat(domaine,'_faces.txt'));
 el2D=el2Dtyp(:,1:3);
 face_mat=el2Dtyp(:,4);
 nel2D=max(size(el2D))% NOMBRE DE TRIANGLES EN CONDITION LIMITE

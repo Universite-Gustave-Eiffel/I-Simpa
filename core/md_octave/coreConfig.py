@@ -18,9 +18,10 @@ class SourceElement:
     def __init__(self):
         self.pos=libsimpa.vec3()
         self.id=-1
-    def __init__(self,node):
+    def __init__(self,node, db):
         self.pos=libsimpa.vec3(node.getpropertyfloat("x"),node.getpropertyfloat("y"),node.getpropertyfloat("z"))
         self.id=int(node.getproperty("id"))
+        self.db = db
 
 class material(dict):
     ##
@@ -128,7 +129,13 @@ class coreConfig(object):
     # @param nodesources Root source Xml Node
     def load_sources(self,nodesources):
         for sourcenode in nodesources.lstnodesenum("source"):
-              self.sources_lst.append(SourceElement(sourcenode))
+            db=[]
+            #On demande de trier les noeuds par bande de fréquence
+            sourcenode.SortChildsByProperty("bfreq","freq",True)
+            for idfreq,chnode in enumerate(sourcenode.lstnodesenum("bfreq")):
+                db.append(chnode.getpropertyfloat("db"))
+            print(db)
+            self.sources_lst.append(SourceElement(sourcenode, db))
     ##
     # \~english
     # Feed the fittings list
