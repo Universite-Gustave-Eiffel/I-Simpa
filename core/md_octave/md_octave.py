@@ -109,7 +109,7 @@ def main(callOctave=True):
             for filep in files:
                 if os.path.isfile(filep):
                     shutil.copy2(filep, outputdir)
-            command = ["octave.bat","--persist", outputdir+"MVCEF3D.m"]
+            command = ["octave.bat","--persist", outputdir+"MVCEF3Dtravail.m"]
             print("Run " + " ".join(command))
             call(command, cwd=outputdir, shell=True)
 if __name__ == '__main__':
