@@ -1,5 +1,5 @@
 
-function [wi_saved,iter]= MVCEF3D_Euler_implicite(wi,mat,MATinsta,itmax,dt)
+function [wi_saved,iter,pastemporel_sauvegarde]= MVCEF3D_Euler_implicite(wi,mat,MATinsta,itmax,dt)
   % wi est la solution du REGIME ETABLI  
   
  
@@ -21,8 +21,9 @@ tic
 iter=0;
 wi_saved=zeros(max(size(wi)),round(itmax/50) );
 size(wi_saved)
-for it=1:50:itmax
-  for itsauv=1:100
+pastemporel_sauvegarde=10;
+for it=1:pastemporel_sauvegarde:itmax
+  for itsauv=1:pastemporel_sauvegarde
     RHS=MATinsta*wi;%Euler Implicite 2
     %    RHS=mat3*wi;%Cranck-Nicholson 2
 

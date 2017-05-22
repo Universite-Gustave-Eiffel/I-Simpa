@@ -9,10 +9,10 @@ for n=1:nel2D
         alpha_el2D=abs_prop(idm,5:21);% Tableau des Alpha de chaque face en condition limite de 100Hz à 5kHz
  end
                
-Aire_Abs_eq=sum(alpha_el2D.*AireTr)
-alphamoy=Aire_Abs_eq/Surf% Coeff moyen SABINE
+Aire_Abs_eq=sum(alpha_el2D.*AireTr);
+alphamoy=Aire_Abs_eq/Surf;% Coeff moyen SABINE
 TR60=0.16*VOLUME./(Surf*alphamoy)% Tableau des TR selon SABINE
-TR60E=0.16*VOLUME./(-Surf*log(1-alphamoy))% Tableau des TR selon  EYRING
+TR60E=0.16*VOLUME./(-Surf*log(1-alphamoy));% Tableau des TR selon  EYRING
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 dt=1e-3;% Pas de temps
@@ -35,11 +35,14 @@ end
  fprintf(fid,print_str ,wi_saved);
  fclose(fid)
 %========================================================================================================================================================
-[wi_saved,iter]= MVCEF3D_Euler_implicite(w125,mat_125,MATinsta,itmax(2),dt);
+[wi_saved,iter,pastemporel_sauvegarde]= MVCEF3D_Euler_implicite(w125,mat_125,MATinsta,itmax(2),dt);
 %========================================================================================================================================================
 % Sauvegarde de champs toutes les 0.05s (50 itérations avec dt=1e-3 s)
 % Ecriture des résultats par bande de 1/3 octave
-ChpsInsta=strcat(domaine,'_WInstaFields125.txt');    [fid] = fopen(ChpsInsta,'w');
+ChpsInsta=strcat(domaine,'_WInstaFields125Hz');    
+ChpsInsta2=strcat(ChpsInsta,'.hdf5'); 
+ChpsInsta=strcat(ChpsInsta,'.txt');  
+[fid] = fopen(ChpsInsta,'w');
  print_str = ' %12.8f ';
 for i=2:iter
   print_str =strcat(print_str,' %12.8f ');
@@ -48,6 +51,8 @@ end
  
  fprintf(fid,print_str ,wi_saved);
  fclose(fid)
+ save( '-hdf5', ChpsInsta2, 'wi_saved')
+ save( '-hdf5', ChpsInsta2, 'pastemporel_sauvegarde')
 %========================================================================================================================================================
 
 

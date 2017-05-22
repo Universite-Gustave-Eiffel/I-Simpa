@@ -69,7 +69,7 @@ m=1e-3;mc=m*c0;
 RHS=zeros(nn,1);%SECOND MEMBRE 
 % Construction des matrices DE COEFFICIENTS 
         ia = [];        ja = [];        s = [];         mat = sparse ( ia, ja, s, nn, nn,12 );
-tic
+
 [mat]=laplaciencvfem3d(x,y,z,el,nbel,nn);% coeff Points internes
 mat=-mat*D+mc*diag(V_VC);
 %%%%%%%%%%%%%%%%%%%%%ù%%%%%%%
@@ -139,7 +139,7 @@ RHS(ind)=Srce_sonore(1,21)*V_VC(ind)/VolSource;% Puissance sonre sur le tiers d'
 w5k=mat_5k\RHS;
 
 
-toc
+
 %========================================================================================================================================================
 % Sauvegarde pour ISIMPA
 % Ecriture des résultats par bande de 1/3 octave
@@ -174,4 +174,4 @@ titre = 'Energy density (dB) for diffusion problem';
     LpdB=10*log10(w*rhoco2/(2e-5)^2);
    trisurf(el2D,XYZ(:,1),XYZ(:,2),XYZ(:,3),LpdB), title('LpdB'), colorbar
 
-   Calcul_insta
+  Calcul_insta
