@@ -51,8 +51,10 @@ end
  
  fprintf(fid,print_str ,wi_saved);
  fclose(fid)
- save( '-hdf5', ChpsInsta2, 'wi_saved')
- save( '-hdf5', ChpsInsta2, 'pastemporel_sauvegarde')
+ xx.a=pastemporel_sauvegarde;
+ xx.b=wi_saved;
+ save( '-hdf5', ChpsInsta2, 'xx')
+'=========== FIN ========='
 %========================================================================================================================================================
 
 
