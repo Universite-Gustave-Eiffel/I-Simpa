@@ -174,4 +174,4 @@ titre = 'Energy density (dB) for diffusion problem';
     LpdB=10*log10(w*rhoco2/(2e-5)^2);
    trisurf(el2D,XYZ(:,1),XYZ(:,2),XYZ(:,3),LpdB), title('LpdB'), colorbar
 
- % Calcul_insta
+   Calcul_insta
