@@ -72,9 +72,9 @@ RHS=zeros(nn,1);%SECOND MEMBRE
 
 [mat]=laplaciencvfem3d(x,y,z,el,nbel,nn);% coeff Points internes
 mat=-mat*D+mc*diag(V_VC);
-%%%%%%%%%%%%%%%%%%%%%ù%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%ï¿½%%%%%%%
 %    BOUCLER sur les Tiers Octave
-%%%%%%%%%%%%%%%%%%%%%ù%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%ï¿½%%%%%%%
 M_abs=load(strcat(domaine,'_materials_absorption.txt'));
 abs_prop=M_abs(1:end,:);
 %abs_prop=M_abs(2,:);
@@ -142,7 +142,7 @@ w5k=mat_5k\RHS;
 
 %========================================================================================================================================================
 % Sauvegarde pour ISIMPA
-% Ecriture des résultats par bande de 1/3 octave
+% Ecriture des rï¿½sultats par bande de 1/3 octave
 ChpsStatio100_5k=strcat(domaine,'_WStatioFields.txt')
    [fid] = fopen(ChpsStatio100_5k,'w');
    print_str = ' %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f%12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f \r\n';
@@ -153,13 +153,13 @@ ChpsStatio100_5k=strcat(domaine,'_WStatioFields.txt')
 
 
 
-rhoco2=1.2*c0^2;    LpdB=10*log10(w*rhoco2/(2e-5)^2);
+%rhoco2=1.2*c0^2;    LpdB=10*log10(w*rhoco2/(2e-5)^2);
 % FICHIERS DE LA SOLUTION EN REGIME ETABLI au format TECPLOT
-sauv_tecplot(XYZ,el,w,strcat(domaine,'.dat'),'Densite d''Energie acoustique')
-sauv_tecplot(XYZ,el,LpdB,strcat(domaine,'dB.dat'),'Densite d''Energie acoustique (dB)')
-output_filename = strcat(domaine,'dB.vtk')';
-titre = 'Energy density (dB) for diffusion problem';
-  threedscal_to_vtk ( XYZ,el,LpdB, output_filename', titre );
+%sauv_tecplot(XYZ,el,w,strcat(domaine,'.dat'),'Densite d''Energie acoustique')
+%sauv_tecplot(XYZ,el,LpdB,strcat(domaine,'dB.dat'),'Densite d''Energie acoustique (dB)')
+%output_filename = strcat(domaine,'dB.vtk')';
+%titre = 'Energy density (dB) for diffusion problem';
+  %threedscal_to_vtk ( XYZ,el,LpdB, output_filename', titre );
   %threedp_to_vtu ( XYZ,el,LpdB, output_filename2', titre );
   %msh2.t=el';msh2.p=XYZ';  p   = msh2.p;
 %  dim = rows (p) ;% 2D or 3D
@@ -167,11 +167,11 @@ titre = 'Energy density (dB) for diffusion problem';
   
 %PlotFieldonMesh(XYZ,el,w)
 
-  trisurf(el2D,XYZ(:,1),XYZ(:,2),XYZ(:,3),w), colorbar
+  %trisurf(el2D,XYZ(:,1),XYZ(:,2),XYZ(:,3),w), colorbar
    
    
-   figure,
-    LpdB=10*log10(w*rhoco2/(2e-5)^2);
-   trisurf(el2D,XYZ(:,1),XYZ(:,2),XYZ(:,3),LpdB), title('LpdB'), colorbar
+   %figure,
+   % LpdB=10*log10(w*rhoco2/(2e-5)^2);
+   %trisurf(el2D,XYZ(:,1),XYZ(:,2),XYZ(:,3),LpdB), title('LpdB'), colorbar
 
-  Calcul_insta
+  %Calcul_insta

@@ -109,6 +109,6 @@ titre = 'Energy density (dB) for diffusion problem';
 %PlotFieldonMesh(XYZ,el,w)
  wa=sum(w(el),2)/4;w2=sum(w(el2D),2);
 %tetramesh(el,XYZ,wa);
-trisurf(el2D,XYZ(:,1),XYZ(:,2),XYZ(:,3),w2),title('Maillage')
-figure
-plotmesh(XYZ,el,'x<1 & x>2');
+% trisurf(el2D,XYZ(:,1),XYZ(:,2),XYZ(:,3),w2),title('Maillage')
+%figure
+%plotmesh(XYZ,el,'x<1 & x>2');

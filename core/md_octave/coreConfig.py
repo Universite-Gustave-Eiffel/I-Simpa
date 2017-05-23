@@ -1,11 +1,9 @@
 # -*- coding: cp1252 -*-
 from __future__ import print_function #compatibilité python 3.0
 import xmlreader
-import sys
 import libsimpa
 from libsimpa import vec3
 import math
-from copy import deepcopy
 from build_recsurf import GetRecepteurSurfList
 
 ##
@@ -134,7 +132,6 @@ class coreConfig(object):
             sourcenode.SortChildsByProperty("bfreq","freq",True)
             for idfreq,chnode in enumerate(sourcenode.lstnodesenum("bfreq")):
                 db.append(chnode.getpropertyfloat("db"))
-            print(db)
             self.sources_lst.append(SourceElement(sourcenode, db))
     ##
     # \~english
