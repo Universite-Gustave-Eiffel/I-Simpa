@@ -29,7 +29,7 @@ def which(program):
     return None
 
 
-def processFace(tetraface, modelImport, sharedVertices, fileOut):
+def process_face(tetraface, modelImport, sharedVertices, fileOut):
     if tetraface.marker >= 0:
         fileOut.write('{0:>6} {1:>6} {2:>6} {3:>6}'.format(*(
         tetraface.vertices[0] + 1, tetraface.vertices[1] + 1, tetraface.vertices[2] + 1,
@@ -40,7 +40,7 @@ def processFace(tetraface, modelImport, sharedVertices, fileOut):
             sharedVertices.add(tetraface.vertices[2] + 1)
 
 
-def writeInputFiles(cbinpath, cmbinpath, materials, sources_lst, outfolder):
+def write_input_files(cbinpath, cmbinpath, materials, sources_lst, outfolder):
     # Import 3D model
     # This model contains the associated material link to the XML file
 
@@ -54,19 +54,19 @@ def writeInputFiles(cbinpath, cmbinpath, materials, sources_lst, outfolder):
         return -1
 
     # Import 3D mesh file builded from tetgen output
-    meshImport = ls.CMBIN().LoadMesh(cmbinpath)
-    if not meshImport:
+    mesh_import = ls.CMBIN().LoadMesh(cmbinpath)
+    if not mesh_import:
         print("Error can not load %s mesh model !\n" % cmbinpath)
         return -1
 
     # Write NODES file
     with open(outfolder + "scene_nodes.txt", "w") as f:
-        for node in meshImport.nodes:
+        for node in mesh_import.nodes:
             f.write('{0:>15} {1:>15} {2:>15}'.format(*(node[0], node[1], node[2])) + "\n")
 
     # Write elements file
     with open(outfolder + "scene_elements.txt", "w") as f:
-        for tetra in meshImport.tetrahedres:
+        for tetra in mesh_import.tetrahedres:
             volindex = idVolumeIndex.get(tetra.idVolume)
             if volindex is None:
                 volindex = len(idVolumeIndex) + 1
@@ -77,11 +77,11 @@ def writeInputFiles(cbinpath, cmbinpath, materials, sources_lst, outfolder):
 
     # Write tetra face file
     with open(outfolder + "scene_faces.txt", "w") as f:
-        for tetra in meshImport.tetrahedres:
-            processFace(tetra.getFace(0), modelImport, sharedVertices, f)
-            processFace(tetra.getFace(1), modelImport, sharedVertices, f)
-            processFace(tetra.getFace(2), modelImport, sharedVertices, f)
-            processFace(tetra.getFace(3), modelImport, sharedVertices, f)
+        for tetra in mesh_import.tetrahedres:
+            process_face(tetra.getFace(0), modelImport, sharedVertices, f)
+            process_face(tetra.getFace(1), modelImport, sharedVertices, f)
+            process_face(tetra.getFace(2), modelImport, sharedVertices, f)
+            process_face(tetra.getFace(3), modelImport, sharedVertices, f)
 
     # Write boundary material file
     with open(outfolder + "scene_materials_absorption.txt", "w") as f:
@@ -119,20 +119,22 @@ def writeInputFiles(cbinpath, cmbinpath, materials, sources_lst, outfolder):
             f.write(str(ptindex) + "\n")
 
 
-def processOutputFiles(outfolder):
+def process_output_files(outfolder):
     data_path = os.path.join(outfolder,"scene_WStatioFields.txt")
-    print("is " + data_path + " result exists ?" + str(os.path.exists(data_path)))
+    if os.path.exists(data_path):
+        # Computation done, fetch levels at tetrahedron vertices
+        pass
 
 
-def main(callOctave=True):
+def main(call_octave=True):
     # find core folder
     scriptfolder = sys.argv[0][:sys.argv[0].rfind(os.sep)] + os.sep
     # Read I-SIMPA XML configuration file
     coreconf = cc.coreConfig(sys.argv[1])
     outputdir = coreconf.paths["workingdirectory"]
     # Translation CBIN 3D model and 3D tetrahedra mesh into Octave input files
-    writeInputFiles(outputdir + coreconf.paths["modelName"], outputdir + coreconf.paths["tetrameshFileName"],
-                    coreconf.materials, coreconf.sources_lst, outputdir)
+    write_input_files(outputdir + coreconf.paths["modelName"], outputdir + coreconf.paths["tetrameshFileName"],
+                      coreconf.materials, coreconf.sources_lst, outputdir)
     # Copy octave script to working dir
     matscript_folder = os.path.join(os.path.abspath(os.path.join(os.path.realpath(__file__), os.pardir)), "script")
     files = glob.iglob(os.path.join(matscript_folder, "*.m"))
@@ -140,7 +142,7 @@ def main(callOctave=True):
     for filep in files:
         if os.path.isfile(filep):
             shutil.copy2(filep, outputdir)
-    if callOctave:
+    if call_octave:
         # Check if octave program are accessible in path
         octave = which("octave-cli.exe")
         if octave is None:
@@ -150,8 +152,8 @@ def main(callOctave=True):
             print("Run " + " ".join(command))
             deb = time.time()
             call(command, cwd=outputdir, shell=True)
-            print("Execution in %d seconds" % (time.time() - deb))
-            processOutputFiles(outputdir)
+            print("Execution in %.2f seconds" % ((time.time() - deb) / 1000.))
+            process_output_files(outputdir)
 
 if __name__ == '__main__':
     main()
