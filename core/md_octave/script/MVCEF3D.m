@@ -143,12 +143,13 @@ w5k=mat_5k\RHS;
 %========================================================================================================================================================
 % Sauvegarde pour ISIMPA
 % Ecriture des r�sultats par bande de 1/3 octave
-ChpsStatio100_5k=strcat(domaine,'_WStatioFields.txt')
-   [fid] = fopen(ChpsStatio100_5k,'w');
-   print_str = ' %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f%12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f \r\n';
- 
- fprintf(fid,print_str , [w100 w125 w160 w200 w315 w400 w500 w630 w800 w1k w2k w3150 w4k w5k]);
- fclose(fid)
+ ChpsStatio100_5k=strcat(domaine,'_WStatioFields.hdf5');
+ statio_data = [w100 w125 w160 w200 w315 w400 w500 w630 w800 w1k w2k w3150 w4k w5k];
+ save( '-hdf5', ChpsStatio100_5k, 'statio_data');
+%   [fid] = fopen(ChpsStatio100_5k,'w');
+%   print_str = ' %g %g %g %g %g %g%g %g %g %g %g %g %g %g \r\n';
+% fprintf(fid,print_str , [w100 w125 w160 w200 w315 w400 w500 w630 w800 w1k w2k w3150 w4k w5k]);
+% fclose(fid)
 %========================================================================================================================================================
 
 
