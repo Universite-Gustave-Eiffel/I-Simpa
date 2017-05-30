@@ -29,4 +29,4 @@ output
 
 scene_WStatioFields.txt
 
-Puissance sur chaque sommet de 100Hz - 5 kHz
+Power on each vertices 100Hz - 5 kHz

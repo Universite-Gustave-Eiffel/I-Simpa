@@ -1,14 +1,39 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import print_function  # compatibilité python 3.0
-import sys
+
 import os
+import sys
+# Add I-Simpa folder in lib path
+from os.path import dirname
+libpath = dirname(os.path.abspath(__file__ + "/../../"))
+sys.path.append(libpath)
+try:
+    import libsimpa as ls
+except ImportError:
+    print("Couldn't find libsimpa in " + libpath, file=sys.stderr)
+    exit(-1)
+
 import coreConfig as cc
-import libsimpa as ls
 from subprocess import call
 import shutil
 import glob
 import time
+import kdtree
+import sauve_recsurf_results
+
+
+try:
+    import h5py
+except ImportError:
+    print("h5py python module not found, cannot read hdf5 files. See www.h5py.org", file=sys.stderr)
+    exit(-1)
+
+try:
+    import numpy
+except ImportError:
+    print("numpy python module not found", file=sys.stderr)
+    exit(-1)
 
 # Find octave program utility
 def which(program):
@@ -28,7 +53,6 @@ def which(program):
 
     return None
 
-
 def process_face(tetraface, modelImport, sharedVertices, fileOut):
     if tetraface.marker >= 0:
         fileOut.write('{0:>6} {1:>6} {2:>6} {3:>6}'.format(*(
@@ -41,29 +65,39 @@ def process_face(tetraface, modelImport, sharedVertices, fileOut):
 
 
 def write_input_files(cbinpath, cmbinpath, materials, sources_lst, outfolder):
-    # Import 3D model
-    # This model contains the associated material link to the XML file
-
-    # XML volume index to octave index
+    """
+     Import 3D model
+     This model contains the associated material link to the XML file
+     XML volume index to octave index
+    :param cbinpath:
+    :param cmbinpath:
+    :param materials:
+    :param sources_lst:
+    :param outfolder:
+    :return: dictionary of loaded data or None if failed
+    """
+    ret = {}
     idVolumeIndex = {}
     sharedVertices = set()
 
     modelImport = ls.ioModel()
     if not ls.CformatBIN().ImportBIN(modelImport, cbinpath):
         print("Error can not load %s model !\n" % cbinpath)
-        return -1
+        return None
 
     # Import 3D mesh file builded from tetgen output
     mesh_import = ls.CMBIN().LoadMesh(cmbinpath)
     if not mesh_import:
         print("Error can not load %s mesh model !\n" % cmbinpath)
-        return -1
+        return None
 
     # Write NODES file
     with open(outfolder + "scene_nodes.txt", "w") as f:
         for node in mesh_import.nodes:
             f.write('{0:>15} {1:>15} {2:>15}'.format(*(node[0], node[1], node[2])) + "\n")
 
+    ret["model"] = mesh_import
+    ret["mesh"] = mesh_import
     # Write elements file
     with open(outfolder + "scene_elements.txt", "w") as f:
         for tetra in mesh_import.tetrahedres:
@@ -118,12 +152,92 @@ def write_input_files(cbinpath, cmbinpath, materials, sources_lst, outfolder):
         for ptindex in sharedVertices:
             f.write(str(ptindex) + "\n")
 
+    return ret
 
-def process_output_files(outfolder):
-    data_path = os.path.join(outfolder,"scene_WStatioFields.txt")
+
+class Receiver:
+    def __init__(self, idrs, faceid, x, y, z):
+        self.coords = (x, y, z)
+        self.idrs = idrs
+        self.faceid = faceid
+        self.spl = []
+
+    def __iter__(self):
+        return self.coords.__iter__()
+
+    def __len__(self):
+        return 3
+
+    def __getitem__(self, item):
+        return self.coords[item]
+
+
+def to_vec3(vec):
+    return ls.vec3(vec[0], vec[1], vec[2])
+
+def to_array(vec):
+    return [vec[0], vec[1], vec[2]]
+
+
+def process_output_files(outfolder, coreconf, import_data):
+    data_path = os.path.join(outfolder, "scene_WStatioFields.hdf5")
     if os.path.exists(data_path):
+        # Create spatial index for receivers points
+        receivers_index = kdtree.create(dimensions=3)
+        # For each surface receiver
+        for idrs, surface_receivers in coreconf.recsurf.iteritems():
+            # For each vertex of the grid
+            for faceid, receiver in enumerate(surface_receivers.GetSquaresCenter()):
+                receivers_index.add(Receiver(idrs, faceid, receiver[0], receiver[1], receiver[2]))
         # Computation done, fetch levels at tetrahedron vertices
-        pass
+        dataset_name = "statio_data"
+        data = h5py.File(data_path, "r")
+        if dataset_name in data:
+            # Read power at each vertices
+            sdata = data[dataset_name]
+            mesh = import_data["mesh"]
+            result_matrix = sdata["value"]
+            num_frequencies, num_nodes = result_matrix.shape
+            if num_nodes != len(mesh.nodes):
+                print("Received nodes from Octave are different that provided nodes", file=sys.stderr)
+                return False
+            for idtetra, tetra in enumerate(mesh.tetrahedres):
+                p1 = to_vec3(mesh.nodes[tetra.vertices[0]])
+                p2 = to_vec3(mesh.nodes[tetra.vertices[1]])
+                p3 = to_vec3(mesh.nodes[tetra.vertices[2]])
+                p4 = to_vec3(mesh.nodes[tetra.vertices[3]])
+                p = (p1+p2+p3+p4) / 4
+                rmax = max([p.distance(p1), p.distance(p2), p.distance(p3), p.distance(p4)])
+                # Fetch receivers in the tetrahedron
+                nearest_receivers = receivers_index.search_nn_dist([p[0], p[1], p[2]], rmax)
+                # Compute coefficient of the receiver point into the tetrahedron
+                for nearest_receiver in nearest_receivers:
+                    coefs = get_a_coefficients(to_array(nearest_receiver.data), to_array(p1), to_array(p2), to_array(p3), to_array(p4))
+                    if coefs.min() > 0:
+                        # Point is inside tetrahedron
+                        for id_freq in range(num_frequencies):
+                            coreconf.recsurf[nearest_receiver.data.idrs].face_power[
+                                nearest_receiver.data.faceid].append(
+                                coefs[0] * result_matrix[id_freq][tetra.vertices[0]] + coefs[1] *
+                                result_matrix[id_freq][tetra.vertices[1]] + coefs[2] * result_matrix[id_freq][
+                                    tetra.vertices[2]] + coefs[3] * result_matrix[id_freq][tetra.vertices[3]])
+
+
+
+def get_a_coefficients(p, p1, p2, p3, p4):
+    """
+        Compute the interpolation coefficient of a point into a tetrahedron
+        ex: getACoefficients([2,2,0.2], [1,1,0],[3,2,0], [2,4,0], [2,2.5,3])
+    :param p: Any point (x,y,z)
+    :param p1: p1 of tetrahedron (x,y,z)
+    :param p2: p2 of tetrahedron (x,y,z)
+    :param p3: p3 of tetrahedron (x,y,z)
+    :param p4: p4 of tetrahedron (x,y,z)
+    :return (a1,a2,a3,a4) coefficients. If point is inside of tetrahedron so all coefficient are greater than 0
+    """
+    left_mat = numpy.append(numpy.swapaxes(numpy.array([p1, p2, p3, p4]), 0, 1), numpy.ones((1, 4)), axis=0)
+    right_mat = numpy.append(numpy.reshape(p, (3, 1)), [1])
+    return numpy.dot(numpy.linalg.inv(left_mat), right_mat)
 
 
 def main(call_octave=True):
@@ -133,7 +247,7 @@ def main(call_octave=True):
     coreconf = cc.coreConfig(sys.argv[1])
     outputdir = coreconf.paths["workingdirectory"]
     # Translation CBIN 3D model and 3D tetrahedra mesh into Octave input files
-    write_input_files(outputdir + coreconf.paths["modelName"], outputdir + coreconf.paths["tetrameshFileName"],
+    import_data = write_input_files(outputdir + coreconf.paths["modelName"], outputdir + coreconf.paths["tetrameshFileName"],
                       coreconf.materials, coreconf.sources_lst, outputdir)
     # Copy octave script to working dir
     matscript_folder = os.path.join(os.path.abspath(os.path.join(os.path.realpath(__file__), os.pardir)), "script")
@@ -144,16 +258,17 @@ def main(call_octave=True):
             shutil.copy2(filep, outputdir)
     if call_octave:
         # Check if octave program are accessible in path
-        octave = which("octave-cli.exe")
+        octave = which("octave-cli")
         if octave is None:
             print("Octave program not in system path, however input files are created", file=sys.stderr)
         else:
-            command = ["octave-cli.exe", "--no-window-system", "--verbose", outputdir + "MVCEF3D.m"]
+            command = ["octave-cli", "--no-window-system", "--verbose", outputdir + "MVCEF3D.m"]
             print("Run " + " ".join(command))
             deb = time.time()
             call(command, cwd=outputdir, shell=True)
             print("Execution in %.2f seconds" % ((time.time() - deb) / 1000.))
-            process_output_files(outputdir)
+    process_output_files(outputdir, coreconf, import_data)
+    sauve_recsurf_results.SauveRecepteurSurfResults(coreconf)
 
 if __name__ == '__main__':
-    main()
+    main(False)
