@@ -9,18 +9,18 @@
 * it under the terms of the GNU General Public License as published by
 * the Free Software Foundation; either version 3 of the License, or
 * (at your option) any later version.
-* 
+*
 * I-SIMPA is distributed in the hope that it will be useful,
 * but WITHOUT ANY WARRANTY; without even the implied warranty of
 * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 * GNU General Public License for more details.
-* 
+*
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software Foundation,
-* Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
+* Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
+* For more information, please consult: <http://i-simpa.ifsttar.fr> or
 * send an email to i-simpa@ifsttar.fr
 *
 * To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
@@ -51,7 +51,7 @@ extern CMaterial *materials;
 #define VIEW_NEAR			0.08 //0.1
 #define VIEW_FAR			10.0
 #define VIEW_PERSPECTIVE	45.0
-//#define OPTIMIZE_TEST	//TEST DE COLLISION	
+//#define OPTIMIZE_TEST	//TEST DE COLLISION
 AnimatorManager::AnimatorManager()
 {
 	this->gl_compilation_array_size=0;
@@ -143,7 +143,7 @@ void OpenGLApp::ResetAll(void)
 	{
 		Destroy();
 	}
-	
+
 	//ClearAnimatorLst();
 
 	m_Rot      = vec3(0.0, 1.0, 0.0);
@@ -162,11 +162,11 @@ void OpenGLApp::ResetAll(void)
 	m_PosLight       = vec4(0.0f, 0.0f, 4.0f, 1.0f);
 	m_DirectionLight = vec3(0.0f, 0.0f, -1.0f);
 	m_SpotAngle =  45.0f;
-	
+
 }
 
 void OpenGLApp::Init(CObjet3D *im_Object)
-{ 
+{
     if(m_Object != im_Object) {
 	    m_Object=im_Object;
 	    ResetAll();
@@ -229,7 +229,7 @@ void OpenGLApp::ChangeRenderMode(t_renderMode idRenderMode,bool newValue)
 {
 	if(renderMode[idRenderMode]!=newValue)
 	{
-		renderMode[idRenderMode]=newValue; 
+		renderMode[idRenderMode]=newValue;
 	}
 	//	On réactualise les listes de rendu en fonction des types de mise à jour
 	if(idRenderMode== renderModelFaces || idRenderMode== renderModelLines || idRenderMode==renderModelInside|| idRenderMode== renderModelLinesAndConstruction)
@@ -243,7 +243,7 @@ bool OpenGLApp::GetCurrentRenderMode(t_renderMode idRenderMode)
 
 void OpenGLApp::LoadGlModelList(bool useLists)
 {
-	
+
 	if(useLists)
 	{
 		InitLst(0);
@@ -268,7 +268,7 @@ void OpenGLApp::LoadGlMaillageList(bool useLists)
 		m_Object->RenderMaillage(GL_TRIANGLES,this->cutPlane);
 	if(renderMode[renderModelLines])
 		m_Object->RenderMaillage(GL_LINES,this->cutPlane);
-	
+
 	if(useLists)
 		glEndList();
 }
@@ -284,9 +284,9 @@ t_faceIndex OpenGLApp::SelectVertex(unsigned int x, unsigned int y) //retourne l
 	#endif
 	if(!m_IsObjetLoaded)
 		return t_faceIndex(-1,-1);
-	vec3 posCurseur=SelectPosition(x,y); 
+	vec3 posCurseur=SelectPosition(x,y);
 	t_faceIndex faceSelectionne;
-	#ifdef OPTIMIZE_TEST   
+	#ifdef OPTIMIZE_TEST
 	duration2 = timeGetTime () - start;
 	//for(int i=0;i<10000;i++)
 	#endif
@@ -326,7 +326,7 @@ vec3 OpenGLApp::SelectPosition(unsigned int x, unsigned int y)
 	glReadPixels( x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ );
 
 	gluUnProject( winX, winY, winZ, modelview, projection, viewport, &posX, &posY, &posZ);
-	
+
 	return vec3(posX, posY, posZ); //x,y,z (sur le plan du triangle)
 }
 void OpenGLApp::InitGl()
@@ -334,7 +334,7 @@ void OpenGLApp::InitGl()
 	//glClearColor(0.,0.,0.,0);
 	if(m_Object)
 		m_Object->backgroundChange=true;
-	
+
 	glLightfv(GL_LIGHT0, GL_AMBIENT, m_AmbientLight);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, m_DiffuseLight);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, m_SpecularLight);
@@ -346,13 +346,13 @@ void OpenGLApp::InitGl()
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	if (glIsEnabled(GL_ALPHA_TEST)) glDisable(GL_ALPHA_TEST);
-	glShadeModel(GL_SMOOTH); 
+	glShadeModel(GL_SMOOTH);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
-	
+
 }
 
 int OpenGLApp::GetImage(wxImage& aimage, const int awidth, const int aheight,void* _contextv)
@@ -378,11 +378,11 @@ int OpenGLApp::GetImage(wxImage& aimage, const int awidth, const int aheight,voi
 		pixels = GlShotOffScreen.render(dataSize);
 
 		isOk=aimage.Create(awidth, aheight,pixels);
-		
+
 		aimage=aimage.Mirror(false);
 		textures->Destroy();
 	}
-	catch( OffScreenRendering::OffScreen::OUTSCREENERROR idError ) 
+	catch( OffScreenRendering::OffScreen::OUTSCREENERROR idError )
 	{
 		switch(idError)
 		{
@@ -409,7 +409,7 @@ int OpenGLApp::GetImage(wxImage& aimage, const int awidth, const int aheight,voi
 		wxLogMessage(_("Error code : %i"),(int)idError);
 		isOk=false;
 	}
-	catch( ... ) 
+	catch( ... )
 	{
 		wxLogError(_("OpenGL exportation error. Try to use the window exportation method instead"));
 		isOk=false;
@@ -467,10 +467,10 @@ void OpenGLApp::Tic()
 
 	int nbStep=0;
 
-	for(AnimatorManagerIterator curManager=animators.begin();curManager!=animators.end();curManager++)
+	for each (ptAnimatorManager curManager in animators)
 	{
-		if((*curManager)->gl_compilation_array_size>nbStep)
-			nbStep=(*curManager)->gl_compilation_array_size;
+		if(curManager->gl_compilation_array_size>nbStep)
+			nbStep=curManager->gl_compilation_array_size;
 	}
 
 	if(this->CurrentTimeStep<nbStep-1)
@@ -482,10 +482,10 @@ void OpenGLApp::DecreaseTimeStep()
 {
 	int nbStep=0;
 
-	for(AnimatorManagerIterator curManager=animators.begin();curManager!=animators.end();curManager++)
+	for each (ptAnimatorManager curManager in animators)
 	{
-			if((*curManager)->gl_compilation_array_size>nbStep)
-				nbStep=(*curManager)->gl_compilation_array_size;
+			if(curManager->gl_compilation_array_size>nbStep)
+				nbStep=curManager->gl_compilation_array_size;
 	}
 
 	if(this->CurrentTimeStep>0)
@@ -499,7 +499,7 @@ void OpenGLApp::RunGlCommands(bool useLists) //useLists à vrai si l'on doit uti
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	if(IsObjetLoaded())
-	{		
+	{
 		if(m_Object->backgroundChange)
 		{
 			m_Object->backgroundChange=false;
@@ -516,7 +516,7 @@ void OpenGLApp::RunGlCommands(bool useLists) //useLists à vrai si l'on doit uti
 		glTranslatef(m_Model_Trans.x, m_Model_Trans.y, m_Model_Trans.z );
 		glRotatef( m_Model_Rot.x, 1.0f, 0.0f, 0.0f);
 		glRotatef( m_Model_Rot.y, 0.0f, 1.0f, 0.0f);
-		glRotatef( m_Model_Rot.z, 0.0f, 0.0f, 1.0f); 
+		glRotatef( m_Model_Rot.z, 0.0f, 0.0f, 1.0f);
 
 		glPushMatrix();
 
@@ -529,8 +529,8 @@ void OpenGLApp::RunGlCommands(bool useLists) //useLists à vrai si l'on doit uti
 				glCallList(m_list[1]);
 
 		if(m_Object->selectionChange || !useLists)
-			this->UpdateGlSelectionList(useLists); 
-		
+			this->UpdateGlSelectionList(useLists);
+
 		if(useLists)
 			glCallList(m_list[3]);//Rendu des vertex sélectionnés
 		if(!useLists)
@@ -540,16 +540,16 @@ void OpenGLApp::RunGlCommands(bool useLists) //useLists à vrai si l'on doit uti
 
 		//////////////////////////////////////////////////////
 		// Rendu des animations
-		for(AnimatorManagerIterator curManager=animators.begin();curManager!=animators.end();curManager++)
+		for each (ptAnimatorManager curManager in animators)
 		{
-			Animator* curAnimator=(*curManager)->ctrl_animator;
+			Animator* curAnimator=curManager->ctrl_animator;
 			if(curAnimator!=NULL && curAnimator->IsRenderingEnable())
 			{
-				if(curAnimator->IsNeedUpdate((*curManager)->lastCompilationTime))
-					LoadAnimatorLst((*curManager));
+				if(curAnimator->IsNeedUpdate(curManager->lastCompilationTime))
+					LoadAnimatorLst(curManager);
 				if(useLists)
 				{
-					if((*curManager)->gl_compilation_array_size>CurrentTimeStep)
+					if(curManager->gl_compilation_array_size > CurrentTimeStep)
 					{
 						int firstLoopIndice=0;
 						if(!curAnimator->DoLoopFromZero())
@@ -557,10 +557,10 @@ void OpenGLApp::RunGlCommands(bool useLists) //useLists à vrai si l'on doit uti
 						if(firstLoopIndice<0)
 							firstLoopIndice=0;
 						for(int loopI=firstLoopIndice;loopI<=CurrentTimeStep;loopI++)
-							glCallList((*curManager)->gl_compilation_array[loopI]);
+							glCallList(curManager->gl_compilation_array[loopI]);
 					}else{
-						if((*curManager)->gl_compilation_array_size>0)
-							glCallList((*curManager)->gl_compilation_array[(*curManager)->gl_compilation_array_size-1]);
+						if(curManager->gl_compilation_array_size>0)
+							glCallList(curManager->gl_compilation_array[curManager->gl_compilation_array_size-1]);
 					}
 				}else{
 					curAnimator->Render(CurrentTimeStep);
@@ -644,22 +644,28 @@ void OpenGLApp::Destroy()
 void OpenGLApp::SetTimeStep(int idTimeStep)
 {
 	CurrentTimeStep=idTimeStep;
-	for(AnimatorManagerIterator curManager=animators.begin();curManager!=animators.end();curManager++)
+	for each (ptAnimatorManager curManager in animators)
 	{
-		(*curManager)->ctrl_animator->SetTimeStep(CurrentTimeStep);
+		curManager->ctrl_animator->SetTimeStep(CurrentTimeStep);
 	}
 }
 void OpenGLApp::InitAnimatorLst()
 {
-	for(AnimatorManagerIterator curManager=animators.begin();curManager!=animators.end();curManager++)
+	for each (ptAnimatorManager curManager in animators)
 	{
-		(*curManager)->FreeGlCompilationArray();
-		(*curManager)->ctrl_animator->Init();
+		curManager->FreeGlCompilationArray();
+		curManager->ctrl_animator->Init();
 	}
 }
 void OpenGLApp::ClearAnimatorLst()
 {
-	animators.clear();
+		for(int idanimatormanager=0;idanimatormanager<animators.size();idanimatormanager++)
+		{
+			ptAnimatorManager curManager=animators[idanimatormanager];
+			for(int idstep=0;idstep<curManager->gl_compilation_array_size;idstep++)
+				glDeleteLists(curManager->gl_compilation_array[idstep],1);
+	    }
+		animators.clear();
 }
 void OpenGLApp::AddAnimator(Animator* newAnimator)
 {
