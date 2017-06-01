@@ -171,6 +171,9 @@ class Receiver:
     def __getitem__(self, item):
         return self.coords[item]
 
+    def __str__(self):
+        return self.coords.__str__()
+
 
 def to_vec3(vec):
     return ls.vec3(vec[0], vec[1], vec[2])
@@ -178,6 +181,8 @@ def to_vec3(vec):
 def to_array(vec):
     return [vec[0], vec[1], vec[2]]
 
+def square_dist(v1, v2):
+    return sum([(v1[axis] - v2[axis])**2 for axis in range(len(v1))])
 
 def process_output_files(outfolder, coreconf, import_data):
     data_path = os.path.join(outfolder, "scene_WStatioFields.hdf5")
@@ -185,10 +190,14 @@ def process_output_files(outfolder, coreconf, import_data):
         # Create spatial index for receivers points
         receivers_index = kdtree.create(dimensions=3)
         # For each surface receiver
+        all_receivers = [Receiver(idrs, faceid, receiver[0], receiver[1], receiver[2]) for idrs, surface_receivers in coreconf.recsurf.iteritems() for faceid, receiver in enumerate(surface_receivers.GetSquaresCenter()) ]
+        pt_count = 0
         for idrs, surface_receivers in coreconf.recsurf.iteritems():
             # For each vertex of the grid
             for faceid, receiver in enumerate(surface_receivers.GetSquaresCenter()):
                 receivers_index.add(Receiver(idrs, faceid, receiver[0], receiver[1], receiver[2]))
+                pt_count += 1
+        receivers_index.rebalance()
         # Computation done, fetch levels at tetrahedron vertices
         dataset_name = "statio_data"
         data = h5py.File(data_path, "r")
@@ -198,6 +207,8 @@ def process_output_files(outfolder, coreconf, import_data):
             mesh = import_data["mesh"]
             result_matrix = sdata["value"]
             num_frequencies, num_nodes = result_matrix.shape
+            print("Begin export surface receiver values")
+            last_perc = 0
             if num_nodes != len(mesh.nodes):
                 print("Received nodes from Octave are different that provided nodes", file=sys.stderr)
                 return False
@@ -207,21 +218,45 @@ def process_output_files(outfolder, coreconf, import_data):
                 p3 = to_vec3(mesh.nodes[tetra.vertices[2]])
                 p4 = to_vec3(mesh.nodes[tetra.vertices[3]])
                 p = (p1+p2+p3+p4) / 4
-                rmax = max([p.distance(p1), p.distance(p2), p.distance(p3), p.distance(p4)])
+                rmax = max([square_dist(p, p1), square_dist(p, p2), square_dist(p, p3), square_dist(p, p4)])
                 # Fetch receivers in the tetrahedron
-                nearest_receivers = receivers_index.search_nn_dist([p[0], p[1], p[2]], rmax)
+                # nearest_receivers = receivers_index.search_nn_dist([p[0], p[1], p[2]], rmax)
+                nearest_receivers = set()
+                k = 5
+                while True:
+                    res = receivers_index.search_knn([p[0], p[1], p[2]], k)
+                    if len(res) > 0:
+                        dist_arr = [square_dist(tp[0].data, p) for tp in res]
+                        if len(res) < pt_count and max(dist_arr) < rmax:
+                            k *= 2
+                        else:
+                            nearest_receivers |= set([tp[0] for tp in res])
+                            break
+                new_perc = int((idtetra / float(len(mesh.tetrahedres))) * 100)
+                if new_perc != last_perc:
+                    print("Export receivers %i %%" % new_perc)
+                    last_perc = new_perc
                 # Compute coefficient of the receiver point into the tetrahedron
+                #found = []
+                #for receiver in all_receivers:
+                #    coefs = get_a_coefficients(to_array(receiver), to_array(p1), to_array(p2), to_array(p3), to_array(p4))
+                #    if coefs.min() > 0:
+                #        found.append(receiver)
+                #if len(found) > len(nearest_receivers):
+                #    print("error index")
                 for nearest_receiver in nearest_receivers:
-                    coefs = get_a_coefficients(to_array(nearest_receiver.data), to_array(p1), to_array(p2), to_array(p3), to_array(p4))
+                    receiver = nearest_receiver.data
+                    coefs = get_a_coefficients(to_array(receiver), to_array(p1), to_array(p2), to_array(p3), to_array(p4))
                     if coefs.min() > 0:
                         # Point is inside tetrahedron
                         for id_freq in range(num_frequencies):
-                            coreconf.recsurf[nearest_receiver.data.idrs].face_power[
-                                nearest_receiver.data.faceid].append(
+                            coreconf.recsurf[receiver.idrs].face_power[
+                                receiver.faceid].append(
                                 coefs[0] * result_matrix[id_freq][tetra.vertices[0]] + coefs[1] *
                                 result_matrix[id_freq][tetra.vertices[1]] + coefs[2] * result_matrix[id_freq][
                                     tetra.vertices[2]] + coefs[3] * result_matrix[id_freq][tetra.vertices[3]])
 
+            print("End export surface receiver values")
 
 
 def get_a_coefficients(p, p1, p2, p3, p4):
@@ -258,7 +293,7 @@ def main(call_octave=True):
             shutil.copy2(filep, outputdir)
     if call_octave:
         # Check if octave program are accessible in path
-        octave = which("octave-cli")
+        octave = which("octave-cli.exe")
         if octave is None:
             print("Octave program not in system path, however input files are created", file=sys.stderr)
         else:
@@ -271,4 +306,4 @@ def main(call_octave=True):
     sauve_recsurf_results.SauveRecepteurSurfResults(coreconf)
 
 if __name__ == '__main__':
-    main(False)
+    main(sys.argv[-1] != "noexec")
