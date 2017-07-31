@@ -3,9 +3,9 @@ Surface selection
 
 To select one or more face elements on the 3D scene, select the pointer mode 'Face selection' on the Toolbar 'Selection':
 
-- **left click** on a surface to select a face element
-- press **CTRL button** and **double left click** on a surface to select all coplanar face elements
-- press **CTRL button** and **select** multiple face elements
+- **Left click** on a surface to select a face element
+- **Press CTRL button** and **Double left click** on a surface to select all coplanar face elements
+- **Press CTRL button** and **Select** multiple face elements
 
 When one or more surface are selected:
 

@@ -58,7 +58,6 @@ Properties
 		Opens a dialog box to assign a color to the material, for the representation of the material in the scene (see `Menu view`_).
 
 -  'Description'
-		|description|.
 
 	+  'Description'
 			String to describe the material.
