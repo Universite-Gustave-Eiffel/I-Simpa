@@ -1,5 +1,5 @@
 # -*- coding: cp1252 -*-
-from __future__ import print_function #compatibilité python 3.0
+from __future__ import print_function #compatibilitÃ© python 3.0
 import uictrl as ui
 import sys
 from libsimpa import vec3
@@ -12,11 +12,11 @@ _=uilocale.InstallUiModule(ui.application.getapplicationpath()["systemscript"]+"
 
 def MakeLineSrc(srcgroupindice,startpoint=[0,0,0],quantity=1,step=[1,0,0]):
     """
-        Crée une ligne de source sonores
+        CrÃ©e une ligne de source sonores
     """
     #on recupere le groupe des sources
     srcgroup=ui.element(srcgroupindice)
-    #on recupere tout les indices des sources déjà existante
+    #on recupere tout les indices des sources dÃ©jÃ  existante
     oldsrclst=srcgroup.getallelementbytype(ui.element_type.ELEMENT_TYPE_SCENE_SOURCES_SOURCE)
     #On construit les quantity nouvelles sources
     for i in range(0,quantity):
@@ -27,7 +27,7 @@ def MakeLineSrc(srcgroupindice,startpoint=[0,0,0],quantity=1,step=[1,0,0]):
     for src in newsrclst:
         if src not in oldsrclst:
             createdsrc.append(src)
-    #on modifie la position des sources selon les pas de positions en paramètre
+    #on modifie la position des sources selon les pas de positions en paramÃ¨tre
     curpos=startpoint
     for src in createdsrc:
         srcEl=ui.element(src)
@@ -92,17 +92,17 @@ class manager:
     def disable_grp_sources(self,idgrp):
         self.set_grp_src_activation(idgrp,False)
     def rotate_src(self,idgrp):
-        lbl_vecx=_(u"Vector of rotation x")
-        lbl_vecy=_(u"Vector of rotation y")
-        lbl_vecz=_(u"Vector of rotation z")
+        lbl_vecx=_(u"Vector of rotation x (m)")
+        lbl_vecy=_(u"Vector of rotation y (m)")
+        lbl_vecz=_(u"Vector of rotation z (m)")
         lbl_angle=_(u"Angle (degrees)")
-        lbl_rotation_posx=_(u"Rotation centre x (m)")
-        lbl_rotation_posy=_(u"Rotation centre y (m)")
-        lbl_rotation_posz=_(u"Rotation centre z (m)")
+        lbl_rotation_posx=_(u"Rotation center x (m)")
+        lbl_rotation_posy=_(u"Rotation center y (m)")
+        lbl_rotation_posz=_(u"Rotation center z (m)")
         ##Evaluation du centre de rotation
         #on recupere le groupe des sources
         srcgroup=ui.element(idgrp)
-        #on recupere tout les indices des sources déjà existante
+        #on recupere tout les indices des sources dÃ©jÃ  existante
         srclst=srcgroup.getallelementbytype(ui.element_type.ELEMENT_TYPE_SCENE_SOURCES_SOURCE)
         centregroup=vec3()
         for src in srclst:
@@ -133,7 +133,7 @@ class manager:
                 return
             #on recupere le groupe des sources
             srcgroup=ui.element(idgrp)
-            #on recupere tout les indices des sources déjà existante
+            #on recupere tout les indices des sources dÃ©jÃ  existante
             srclst=srcgroup.getallelementbytype(ui.element_type.ELEMENT_TYPE_SCENE_SOURCES_SOURCE)
             for src in srclst:
                 sourceEl=ui.element(src)
@@ -159,7 +159,7 @@ class manager:
                 return
             #on recupere le groupe des sources
             srcgroup=ui.element(idgrp)
-            #on recupere tout les indices des sources déjà existante
+            #on recupere tout les indices des sources dÃ©jÃ  existante
             srclst=srcgroup.getallelementbytype(ui.element_type.ELEMENT_TYPE_SCENE_SOURCES_SOURCE)
             for src in srclst:
                 sourceEl=ui.element(src)
