@@ -1,5 +1,5 @@
 # -*- coding: cp1252 -*-
-from __future__ import print_function #compatibilité python 3.0
+from __future__ import print_function #compatibilitÃ© python 3.0
 import uictrl as ui
 import sys
 from libsimpa import vec3
@@ -12,22 +12,22 @@ _=uilocale.InstallUiModule(ui.application.getapplicationpath()["systemscript"]+"
 
 def MakeLineRecp(recpgroupindice,startpoint=[0,0,0],quantity=1,step=[1,0,0]):
     """
-        Crée une ligne de récepteurs ponctuels
+        CrÃ©e une ligne de rÃ©cepteurs ponctuels
     """
     #on recupere le groupe des recepteurs
     recpgroup=ui.element(recpgroupindice)
-    #on recupere tout les indices des récepteurs ponctuels déjà présents
+    #on recupere tout les indices des rÃ©cepteurs ponctuels dÃ©jÃ  prÃ©sents
     oldrecplst=recpgroup.getallelementbytype(ui.element_type.ELEMENT_TYPE_SCENE_RECEPTEURSP_RECEPTEUR)
-    #On construit les quantity nouveaux récepteurs ponctuels
+    #On construit les quantity nouveaux rÃ©cepteurs ponctuels
     for i in range(0,quantity):
         ui.application.sendevent(recpgroup,ui.idevent.IDEVENT_NEW_RECEPTEUR_P)
-    #on cherche a obtenir les indices des nouveaux récepteurs ponctuels
+    #on cherche a obtenir les indices des nouveaux rÃ©cepteurs ponctuels
     newrecplst=recpgroup.getallelementbytype(ui.element_type.ELEMENT_TYPE_SCENE_RECEPTEURSP_RECEPTEUR)
     createdrecp=[]
     for recp in newrecplst:
         if recp not in oldrecplst:
             createdrecp.append(recp)
-    #on modifie la position des récepteurs ponctuels selon les pas de positions en paramètre
+    #on modifie la position des rÃ©cepteurs ponctuels selon les pas de positions en paramÃ¨tre
     curpos=startpoint
     for recp in createdrecp:
         recpEl=ui.element(recp)
@@ -108,9 +108,9 @@ class manager:
                 recp=ui.element(recpid)
                 recp.updatepositionconfig("direction_dot",topt)
     def rotate(self,idgrp):
-        lbl_vecx=_(u"Vector of rotation x [0 1]")
-        lbl_vecy=_(u"Vector of rotation y [0 1]")
-        lbl_vecz=_(u"Vector of rotation z [0 1]")
+        lbl_vecx=_(u"Vector of rotation x (m)")
+        lbl_vecy=_(u"Vector of rotation y (m)")
+        lbl_vecz=_(u"Vector of rotation z (m)")
         lbl_angle=_(u"Angle of rotation (degrees)")
         lbl_rotation_posx=_(u"Rotation center x (m)")
         lbl_rotation_posy=_(u"Rotation center y (m)")
@@ -118,12 +118,12 @@ class manager:
 
         #on recupere le groupe des rp
         rpgroup=ui.element(idgrp)
-        #on recupere tout les indices des rp déjà existante
+        #on recupere tout les indices des rp dÃ©jÃ  existante
         rplst=rpgroup.getallelementbytype(ui.element_type.ELEMENT_TYPE_SCENE_RECEPTEURSP_RECEPTEUR)
         centregroup=vec3()
         for rp in rplst:
             rpEl=ui.element(rp)
-            #On recupere la position du récepteur ponctuel
+            #On recupere la position du rÃ©cepteur ponctuel
             pos = rpEl.getpositionconfig("pos_recepteur")
             centregroup += vec3(pos[0], pos[1], pos[2])
         centregroup/=len(rplst)
@@ -169,7 +169,7 @@ class manager:
                 return
             #on recupere le groupe des rp
             rpgroup=ui.element(idgrp)
-            #on recupere tout les indices des rp déjà existante
+            #on recupere tout les indices des rp dÃ©jÃ  existante
             rplst=rpgroup.getallelementbytype(ui.element_type.ELEMENT_TYPE_SCENE_RECEPTEURSP_RECEPTEUR)
             for rp in rplst:
                 rpEl=ui.element(rp)
