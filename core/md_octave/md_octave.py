@@ -190,7 +190,6 @@ def process_output_files(outfolder, coreconf, import_data):
         # Create spatial index for receivers points
         receivers_index = kdtree.create(dimensions=3)
         # For each surface receiver
-        all_receivers = [Receiver(idrs, faceid, receiver[0], receiver[1], receiver[2]) for idrs, surface_receivers in coreconf.recsurf.iteritems() for faceid, receiver in enumerate(surface_receivers.GetSquaresCenter()) ]
         pt_count = 0
         for idrs, surface_receivers in coreconf.recsurf.iteritems():
             # For each vertex of the grid
@@ -237,13 +236,6 @@ def process_output_files(outfolder, coreconf, import_data):
                     print("Export receivers %i %%" % new_perc)
                     last_perc = new_perc
                 # Compute coefficient of the receiver point into the tetrahedron
-                #found = []
-                #for receiver in all_receivers:
-                #    coefs = get_a_coefficients(to_array(receiver), to_array(p1), to_array(p2), to_array(p3), to_array(p4))
-                #    if coefs.min() > 0:
-                #        found.append(receiver)
-                #if len(found) > len(nearest_receivers):
-                #    print("error index")
                 for nearest_receiver in nearest_receivers:
                     receiver = nearest_receiver.data
                     coefs = get_a_coefficients(to_array(receiver), to_array(p1), to_array(p2), to_array(p3), to_array(p4))
@@ -263,6 +255,7 @@ def get_a_coefficients(p, p1, p2, p3, p4):
     """
         Compute the interpolation coefficient of a point into a tetrahedron
         ex: getACoefficients([2,2,0.2], [1,1,0],[3,2,0], [2,4,0], [2,2.5,3])
+        source: Journal of Electronic Imaging / April 2002 / Vol. 11(2) / 161
     :param p: Any point (x,y,z)
     :param p1: p1 of tetrahedron (x,y,z)
     :param p2: p2 of tetrahedron (x,y,z)
