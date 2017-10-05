@@ -68,7 +68,8 @@ PythonShell::PythonShell(PyConsole* pyCtrl)
 
 	main_namespace["PythonStdIoRedirect"] = class_<PythonStdIoRedirect>("PythonStdIoRedirect", no_init)
 	.def("write", &PythonStdIoRedirect::Write)
-	.def("readline", &PythonStdIoRedirect::ReadLine);
+	.def("readline", &PythonStdIoRedirect::ReadLine)
+	.def("flush", &PythonStdIoRedirect::flush);
 	object sys=boost::python::import("sys");
 
 	PythonStdIoRedirect outputRedirectFrame;

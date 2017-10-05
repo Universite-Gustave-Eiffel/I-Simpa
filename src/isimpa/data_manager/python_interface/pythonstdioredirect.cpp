@@ -47,6 +47,10 @@ void PythonStdIoRedirect::WriteWx( const wxString& str ) {
     m_outputs.push_back(str);
 }
 
+void PythonStdIoRedirect::flush() {
+
+}
+
 boost::python::str PythonStdIoRedirect::ReadLine( )
 {
 	wxString retStr;
