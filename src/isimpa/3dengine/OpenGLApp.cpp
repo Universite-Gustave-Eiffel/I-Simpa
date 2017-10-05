@@ -467,7 +467,7 @@ void OpenGLApp::Tic()
 
 	int nbStep=0;
 
-	for each (ptAnimatorManager curManager in animators)
+	for (const ptAnimatorManager& curManager : animators)
 	{
 		if(curManager->gl_compilation_array_size>nbStep)
 			nbStep=curManager->gl_compilation_array_size;
@@ -482,7 +482,7 @@ void OpenGLApp::DecreaseTimeStep()
 {
 	int nbStep=0;
 
-	for each (ptAnimatorManager curManager in animators)
+	for (const ptAnimatorManager& curManager : animators)
 	{
 			if(curManager->gl_compilation_array_size>nbStep)
 				nbStep=curManager->gl_compilation_array_size;
@@ -540,7 +540,7 @@ void OpenGLApp::RunGlCommands(bool useLists) //useLists à vrai si l'on doit uti
 
 		//////////////////////////////////////////////////////
 		// Rendu des animations
-		for each (ptAnimatorManager curManager in animators)
+		for (ptAnimatorManager& curManager : animators)
 		{
 			Animator* curAnimator=curManager->ctrl_animator;
 			if(curAnimator!=NULL && curAnimator->IsRenderingEnable())
@@ -644,14 +644,14 @@ void OpenGLApp::Destroy()
 void OpenGLApp::SetTimeStep(int idTimeStep)
 {
 	CurrentTimeStep=idTimeStep;
-	for each (ptAnimatorManager curManager in animators)
+	for (const ptAnimatorManager& curManager : animators)
 	{
 		curManager->ctrl_animator->SetTimeStep(CurrentTimeStep);
 	}
 }
 void OpenGLApp::InitAnimatorLst()
 {
-	for each (ptAnimatorManager curManager in animators)
+	for (ptAnimatorManager& curManager : animators)
 	{
 		curManager->FreeGlCompilationArray();
 		curManager->ctrl_animator->Init();
