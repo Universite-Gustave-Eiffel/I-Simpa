@@ -92,7 +92,7 @@ class coreConfig(object):
         for recsurf in self.rootnode["recepteurss"].lstnodesenum("recepteur_surfacique_coupe"):
             self.recepteurssurf[int(recsurf.getproperty("id"))]={ "name": recsurf.getproperty("name"), "a" : vec3(float(recsurf.getpropertyfloat("ax")),float(recsurf.getpropertyfloat("ay")),float(recsurf.getpropertyfloat("az"))), "b" :vec3(float(recsurf.getpropertyfloat("bx")),float(recsurf.getpropertyfloat("by")),float(recsurf.getpropertyfloat("bz"))) , "c" : vec3(float(recsurf.getpropertyfloat("cx")),float(recsurf.getpropertyfloat("cy")),float(recsurf.getpropertyfloat("cz"))), "resolution" : recsurf.getpropertyfloat("resolution") }
         for recponct in self.rootnode["recepteursp"].lstnodesenum("recepteur_ponctuel"):
-            self.recepteursponct[int(recponct.getproperty("id"))]={ "name" : recponct.getproperty("name"), "pos" : libsimpa.vec3(recponct.getpropertyfloat("x"),recponct.getpropertyfloat("y"),recponct.getpropertyfloat("z")) }
+            self.recepteursponct[int(recponct.getproperty("id"))]={ "name" : recponct.getproperty("name"),"power" : [], "pos" : libsimpa.vec3(recponct.getpropertyfloat("x"),recponct.getpropertyfloat("y"),recponct.getpropertyfloat("z")) }
         self.load_materials()
         self.load_sources(self.rootnode["sources"])
         self.load_fittings()

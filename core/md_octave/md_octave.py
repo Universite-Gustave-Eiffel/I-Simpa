@@ -159,6 +159,15 @@ class Receiver:
     def __init__(self, idrs, faceid, x, y, z):
         self.coords = (x, y, z)
         self.idrs = idrs
+        self.idrp = None
+        self.faceid = faceid
+        self.spl = []
+
+    def __init__(self, idrp, x, y, z):
+        self.coords = (x, y, z)
+        self.isSurfReceiver = False
+        self.idrs = None
+        self.idrp = idrp
         self.faceid = faceid
         self.spl = []
 
@@ -196,6 +205,11 @@ def process_output_files(outfolder, coreconf, import_data):
             for faceid, receiver in enumerate(surface_receivers.GetSquaresCenter()):
                 receivers_index.add(Receiver(idrs, faceid, receiver[0], receiver[1], receiver[2]))
                 pt_count += 1
+        # For each punctual receiver
+        for idrp, rp in coreconf.recepteurssurf.iteritems():
+            receivers_index.add(Receiver(idrp, rp.pos[0],rp.pos[1],rp.pos[2]))
+            pt_count += 1
+
         receivers_index.rebalance()
         # Computation done, fetch levels at tetrahedron vertices
         dataset_name = "statio_data"
@@ -238,15 +252,21 @@ def process_output_files(outfolder, coreconf, import_data):
                 # Compute coefficient of the receiver point into the tetrahedron
                 for nearest_receiver in nearest_receivers:
                     receiver = nearest_receiver.data
-                    coefs = get_a_coefficients(to_array(receiver), to_array(p1), to_array(p2), to_array(p3), to_array(p4))
-                    if coefs.min() > 0:
+                    coefficient = get_a_coefficients(to_array(receiver), to_array(p1), to_array(p2), to_array(p3), to_array(p4))
+                    if coefficient.min() > 0:
                         # Point is inside tetrahedron
                         for id_freq in range(num_frequencies):
-                            coreconf.recsurf[receiver.idrs].face_power[
-                                receiver.faceid].append(
-                                coefs[0] * result_matrix[id_freq][tetra.vertices[0]] + coefs[1] *
-                                result_matrix[id_freq][tetra.vertices[1]] + coefs[2] * result_matrix[id_freq][
-                                    tetra.vertices[2]] + coefs[3] * result_matrix[id_freq][tetra.vertices[3]])
+                            # For each frequency compute the interpolated value
+                            interpolated_value = coefficient[0] * result_matrix[id_freq][tetra.vertices[0]] + \
+                                 coefficient[1] * result_matrix[id_freq][tetra.vertices[1]] + \
+                                 coefficient[2] * result_matrix[id_freq][tetra.vertices[2]] + \
+                                 coefficient[3] * result_matrix[id_freq][tetra.vertices[3]]
+                            # If the receiver belongs to a surface receiver add the value into it            
+                            if receiver.idrs is not None:
+                                coreconf.recsurf[receiver.idrs].face_power[receiver.faceid].append(interpolated_value)
+                            else:
+                                # Into a punctual receiver
+                                coreconf.recepteurssurf[receiver.idrp].power.append(interpolated_value)
 
             print("End export surface receiver values")
 
