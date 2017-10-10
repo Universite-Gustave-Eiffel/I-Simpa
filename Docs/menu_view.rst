@@ -1,4 +1,4 @@
-﻿This menu propose several display modes for the 3D view of the geometry.
+﻿This menu proposes several display modes for the 3D view of the geometry.
 
 ‘Face’
 ~~~~~~
@@ -8,7 +8,7 @@
 
 ‘Inside’
 	Show faces oriented inside the geometry. If all faces are well oriented, only the interior of the geometry should be visible.
-	
+
 ‘None’
 	Hide all faces.
 
@@ -17,7 +17,7 @@
 
 ‘Original’
 	Show faces with their original color/texture (*i.e.* following the CAD exportation)
-	
+
 ‘Material’
 	Show faces with color associated with materials (*i.e.* following I-Simpa material assignation).
 
@@ -26,17 +26,17 @@
 
 ‘All’
 	All lines are visible.
-	
+
 ‘Contour’
 	Show lines around co-planar surfaces (co-planar faces are merged, only for the display).
-	
+
 ‘None’
 	Hide all lines.
 
 ‘Hide meshing’
 ~~~~~~~~~~~~~~~
 
-If a mesh has been generated, this option allow to hide the mesh representation in the 3D view
+If a mesh has been generated, this option allows to hide the mesh representation in the 3D view.
 
 ‘Reinitialize camera’
 ~~~~~~~~~~~~~~~~~~~~~
@@ -53,7 +53,7 @@ Change the camera mode (use the mouse and/or the arrow keys to change the view.
 	- Right clic + motion (left, right) ≡ head motion (left, right)
 	- Right clic + motion (up, down) ≡ zoom + and zoom -
 
-‘Rotation/Zoom’ mode
+‘Rotation/Zoom’ mode:
 	-  Left clic + motion (up, down) ≡ zoom + and zoom -
 	-  Left clic + motion (left, right) ≡ zoom + and zoom -
 	-  Right clic + motion (left, right, up, down) ≡ rotation (left, right, up, down)
@@ -84,4 +84,3 @@ Allow to save the 3D view in a file (PNG, JPG, BMP).
 
 ‘To a file with a specified resolution’
 	Open a File Dialog box for saving the 3D view in a file with a specific format and a given resolution.
-	
