@@ -2,22 +2,22 @@ Creating charts
 ++++++++++++++++
 
 Most values represented as tables in a 'Properties' window can be displayed in a chart form, configurable by the user. The procedure consists of
-selecting cells in a table of data, then, to click with the right mouse button on the corresponding selection and to specify options representation (Figure 3.37 (b)) :
+selecting cells in a table of data, then, to click with the right mouse button on the corresponding selection and to specify options representation:
 
 'Tab name'
 	Name of the tab containing the created a chart.
-	
-'Name of X axis'
-	Name of the x-axis.
 
 'Name of X axis'
-	Name of the y-axis.
-	
+	Name of the *x*-axis.
+
+'Name of X axis'
+	Name of the *y*-axis.
+
 'Data alignment'
 	Choose the orientation of
 
 'Text label for X'
-	Display labels of the x-axis in a 'text mode' using a linear space, or in 'value mode' using the real x value.
+	Display labels of the *x*-axis in a 'text mode' using a linear space, or in 'value mode' using the real *x* value.
 
 'Default Style'
 	Curves representation.
@@ -36,11 +36,11 @@ Once the chart is created, several actions are possible, using the contextual me
 
 'Original Zoom'
 	Reset to the initla display. Use the mouse (button left) to zoom in/out.
-	
+
 'Export'
-	'Export to image file': the chart as an image file (PNG, JPG, BMP).
-	'Export to clipboard': user can paste the chart in antoher application.
-	
+	  - 'Export to image file': export the chart as an image file (PNG, JPG, BMP).
+	  - 'Export to clipboard': user can paste the chart in antoher application.
+
 'Show/Hide curves'
 	Select the curves to be displayed or 'Show'/'Hide' all curves.
 

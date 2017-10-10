@@ -66,7 +66,6 @@ Create charts from tabular data
 
 .. include:: create_charts.rst
 
-
 .. include:: tab_scene.rst
 
 .. include:: tab_calculation.rst

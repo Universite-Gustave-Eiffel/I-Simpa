@@ -11,10 +11,14 @@ The graphic user interface (GUI) is composed by the following components:
 	-  a `'Console' window`_ (dockable/undockable) with two tabs 'Message' and 'Python' (tabs can be re-ordered within the windows)
 	-  a `'Main' window`_ with the 3D view
 
+	.. figure::  images/Screenchots/I_Simpa_GUI.jpg
+	   :align:   center
+
+	   I-Simpa user interface.
+
 Windows properties:
 	- User can **rearrange and resize** all components in the computer screen by selecting and moving the corresponding component.
 	- You can come back to the **default view** by selecting the option 'Reinitialize interface' in the 'Windows' menu.
-
 
 .. _'File': Menu_File.html
 .. _'Edition': Menu_Edition.html
