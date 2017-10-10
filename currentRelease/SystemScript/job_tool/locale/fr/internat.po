@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-02 17:05+0000\n"
-"PO-Revision-Date: 2017-03-02 17:05+0000\n"
+"POT-Creation-Date: 2017-10-10 12:08+0000\n"
+"PO-Revision-Date: 2017-10-10 12:08+0000\n"
 "Last-Translator: PICAUT Judicael <judicael.picaut@ifsttar.fr>, 2016\n"
 "Language-Team: French (https://www.transifex.com/LAE/teams/23470/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -19,31 +19,31 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: currentRelease/UserScript/job_tool/__init__.py:129
+#: currentRelease/SystemScript/job_tool/__init__.py:127
 #, python-format
 msgid "%i tasks:"
 msgstr "%i tâches :"
 
-#: currentRelease/UserScript/job_tool/__init__.py:142
+#: currentRelease/SystemScript/job_tool/__init__.py:140
 msgid "Add calculation in the job list"
 msgstr "Ajouter le calcul dans la liste des tâches"
 
-#: currentRelease/UserScript/job_tool/__init__.py:144
+#: currentRelease/SystemScript/job_tool/__init__.py:142
 msgid "Clear job list"
 msgstr "Effacer la liste des tâches"
 
-#: currentRelease/UserScript/job_tool/__init__.py:144
+#: currentRelease/SystemScript/job_tool/__init__.py:142
 msgid "Confirmation"
 msgstr "Confirmation"
 
-#: currentRelease/UserScript/job_tool/__init__.py:148
+#: currentRelease/SystemScript/job_tool/__init__.py:146
 msgid "Job list"
 msgstr "Liste des tâches"
 
-#: currentRelease/UserScript/job_tool/__init__.py:145
+#: currentRelease/SystemScript/job_tool/__init__.py:143
 msgid "Run job list"
 msgstr "Exécuter la liste des tâches"
 
-#: currentRelease/UserScript/job_tool/__init__.py:146
+#: currentRelease/SystemScript/job_tool/__init__.py:144
 msgid "Show job list"
 msgstr "Afficher la liste des tâches"

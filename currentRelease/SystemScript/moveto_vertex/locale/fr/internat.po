@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-02 17:05+0000\n"
-"PO-Revision-Date: 2017-03-02 17:05+0000\n"
+"POT-Creation-Date: 2017-10-10 12:08+0000\n"
+"PO-Revision-Date: 2017-10-10 12:08+0000\n"
 "Last-Translator: Nicolas Fortin <github@nettrader.fr>, 2017\n"
 "Language-Team: French (https://www.transifex.com/LAE/teams/23470/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -19,18 +19,18 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: currentRelease/UserScript/moveto_vertex/__init__.py:26
+#: currentRelease/SystemScript/moveto_vertex/__init__.py:26
 msgid "(Please select the group of destination:"
 msgstr "(Veuillez sélectionner le groupe de destination :"
 
-#: currentRelease/UserScript/moveto_vertex/__init__.py:24
+#: currentRelease/SystemScript/moveto_vertex/__init__.py:24
 msgid "Label"
 msgstr "Libellé"
 
-#: currentRelease/UserScript/moveto_vertex/__init__.py:26
+#: currentRelease/SystemScript/moveto_vertex/__init__.py:26
 msgid "Move faces"
 msgstr "Déplacement de faces"
 
-#: currentRelease/UserScript/moveto_vertex/__init__.py:16
+#: currentRelease/SystemScript/moveto_vertex/__init__.py:16
 msgid "Move to an existing group"
 msgstr "Déplacer vers un groupe existant"
