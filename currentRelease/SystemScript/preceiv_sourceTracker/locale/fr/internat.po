@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-02 17:05+0000\n"
-"PO-Revision-Date: 2017-03-02 17:05+0000\n"
+"POT-Creation-Date: 2017-10-10 12:08+0000\n"
+"PO-Revision-Date: 2017-10-10 12:08+0000\n"
 "Last-Translator: Nicolas Fortin <github@nettrader.fr>, 2017\n"
 "Language-Team: French (https://www.transifex.com/LAE/teams/23470/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -19,20 +19,27 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: currentRelease/UserScript/preceiv_sourceTracker/__init__.py:169
+#: currentRelease/SystemScript/preceiv_sourceTracker/__init__.py:170
 msgid "Delete the link with the source"
 msgstr "Supprimer le lien avec la source"
 
-#: currentRelease/UserScript/preceiv_sourceTracker/__init__.py:140
-#: currentRelease/UserScript/preceiv_sourceTracker/__init__.py:166
-#: currentRelease/UserScript/preceiv_sourceTracker/__init__.py:172
+#: currentRelease/SystemScript/preceiv_sourceTracker/__init__.py:167
+msgid "Link to a source:"
+msgstr ""
+
+#: currentRelease/SystemScript/preceiv_sourceTracker/__init__.py:141
+#: currentRelease/SystemScript/preceiv_sourceTracker/__init__.py:173
 msgid "Please choose the source:"
 msgstr "Veuillez choisir une source"
 
-#: currentRelease/UserScript/preceiv_sourceTracker/__init__.py:139
+#: currentRelease/SystemScript/preceiv_sourceTracker/__init__.py:140
 msgid "Source name"
 msgstr "Nom de la source"
 
-#: currentRelease/UserScript/preceiv_sourceTracker/__init__.py:140
+#: currentRelease/SystemScript/preceiv_sourceTracker/__init__.py:141
 msgid "Source selection"
 msgstr "Sélection de la source"
+
+#: currentRelease/SystemScript/preceiv_sourceTracker/__init__.py:97
+msgid "linkedsource"
+msgstr ""

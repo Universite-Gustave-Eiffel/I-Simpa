@@ -4,46 +4,46 @@
 # Automatically generated, 2017.
 # 
 # Translators:
-# Wojciech Binek <wojciech.binek@gmail.com>, 2017
+# wbinek <wojciech.binek@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-02 17:05+0000\n"
-"PO-Revision-Date: 2017-03-02 17:05+0000\n"
-"Last-Translator: Wojciech Binek <wojciech.binek@gmail.com>, 2017\n"
+"POT-Creation-Date: 2017-10-10 12:08+0000\n"
+"PO-Revision-Date: 2017-10-10 12:08+0000\n"
+"Last-Translator: wbinek <wojciech.binek@gmail.com>, 2017\n"
 "Language-Team: Polish (https://www.transifex.com/LAE/teams/23470/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: currentRelease/UserScript/job_tool/__init__.py:129
+#: currentRelease/SystemScript/job_tool/__init__.py:127
 #, python-format
 msgid "%i tasks:"
 msgstr "%i zadań"
 
-#: currentRelease/UserScript/job_tool/__init__.py:142
+#: currentRelease/SystemScript/job_tool/__init__.py:140
 msgid "Add calculation in the job list"
 msgstr "Dodaj obliczenia do listy zadań"
 
-#: currentRelease/UserScript/job_tool/__init__.py:144
+#: currentRelease/SystemScript/job_tool/__init__.py:142
 msgid "Clear job list"
 msgstr "Wyczyść listę zadań"
 
-#: currentRelease/UserScript/job_tool/__init__.py:144
+#: currentRelease/SystemScript/job_tool/__init__.py:142
 msgid "Confirmation"
 msgstr "Potwierdzenie"
 
-#: currentRelease/UserScript/job_tool/__init__.py:148
+#: currentRelease/SystemScript/job_tool/__init__.py:146
 msgid "Job list"
 msgstr "Lista zadań"
 
-#: currentRelease/UserScript/job_tool/__init__.py:145
+#: currentRelease/SystemScript/job_tool/__init__.py:143
 msgid "Run job list"
 msgstr "Uruchom listę zadań"
 
-#: currentRelease/UserScript/job_tool/__init__.py:146
+#: currentRelease/SystemScript/job_tool/__init__.py:144
 msgid "Show job list"
 msgstr "Wyświetl listę zadań"
