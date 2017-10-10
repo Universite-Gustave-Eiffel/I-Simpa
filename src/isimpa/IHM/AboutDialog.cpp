@@ -76,7 +76,7 @@ bool AboutDialog::CreateAboutDialog(wxWindow *parent) {
 
 AboutDialog::AboutDialog()
         : aboutHtml(wxString::Format(
-        "<html><head> <meta charset=\"UTF-8\"></head><body><h2>I-SIMPA %i.%i.%i</h2><p><small>" + _("Built on %s") + "</small></p><p>" +
+        "<html><head> <meta charset=\"UTF-8\"></head><body><h2>I-SIMPA %i.%i.%i WARNING ACADEMIC (sound speed 1m/s)</h2><p><small>" + _("Built on %s") + "</small></p><p>" +
         _("An Open Source software for 3D sound propagation modelling.") + "</p>"
                 "<p>" + _("Classical Theory [%i.%i.%i]") + "</p><p>" + _("SPPS [%i.%i.%i]") +
         "</p><p>Read more on <a href=\"http://i-simpa.ifsttar.fr\">http://i-simpa.ifsttar.fr</a></p></body></html>",

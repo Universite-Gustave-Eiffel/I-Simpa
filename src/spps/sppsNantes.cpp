@@ -244,7 +244,7 @@ int MainProcess(int argc, char* argv[])
 
 	using namespace std;
 
-	cout<<"SPPS version "<<SPPS_VERSION_MAJOR<<"."<<SPPS_VERSION_MINOR<<"."<<SPPS_VERSION_REVISION<<endl;
+	cout << "Warning SPPS ACADEMIC (sound speed 1m/s) version " << SPPS_VERSION_MAJOR << "." << SPPS_VERSION_MINOR << "." << SPPS_VERSION_REVISION << endl;
 	//**************************************************
 	//Initialisation
 	t_ToolBox applicationToolBox;

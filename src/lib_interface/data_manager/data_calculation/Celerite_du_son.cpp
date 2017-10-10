@@ -46,7 +46,7 @@ namespace CalculsGenerauxThermodynamique
 
 	double CCalculsGenerauxThermodynamique::c_son(double K)
 	{
-		double c = 343.2 * sqrt(K/Kref);
-		return c;
+		// Academic core, force value to 1 m/s
+		return 1;
 	}
 }
