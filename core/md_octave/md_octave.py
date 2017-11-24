@@ -155,21 +155,15 @@ def write_input_files(cbinpath, cmbinpath, materials, sources_lst, outfolder):
     return ret
 
 
-class Receiver:
+class ReceiverSurf:
     def __init__(self, idrs, faceid, x, y, z):
         self.coords = (x, y, z)
         self.idrs = idrs
+        self.isSurfReceiver = True
         self.idrp = None
         self.faceid = faceid
         self.spl = []
 
-    def __init__(self, idrp, x, y, z):
-        self.coords = (x, y, z)
-        self.isSurfReceiver = False
-        self.idrs = None
-        self.idrp = idrp
-        self.faceid = faceid
-        self.spl = []
 
     def __iter__(self):
         return self.coords.__iter__()
@@ -183,6 +177,25 @@ class Receiver:
     def __str__(self):
         return self.coords.__str__()
 
+
+class ReceiverPunctual:
+    def __init__(self, idrp, x, y, z):
+        self.coords = (x, y, z)
+        self.isSurfReceiver = False
+        self.idrp = idrp
+        self.spl = []
+
+    def __iter__(self):
+        return self.coords.__iter__()
+
+    def __len__(self):
+        return 3
+
+    def __getitem__(self, item):
+        return self.coords[item]
+
+    def __str__(self):
+        return self.coords.__str__()
 
 def to_vec3(vec):
     return ls.vec3(vec[0], vec[1], vec[2])
@@ -203,11 +216,11 @@ def process_output_files(outfolder, coreconf, import_data):
         for idrs, surface_receivers in coreconf.recsurf.iteritems():
             # For each vertex of the grid
             for faceid, receiver in enumerate(surface_receivers.GetSquaresCenter()):
-                receivers_index.add(Receiver(idrs, faceid, receiver[0], receiver[1], receiver[2]))
+                receivers_index.add(ReceiverSurf(idrs, faceid, receiver[0], receiver[1], receiver[2]))
                 pt_count += 1
         # For each punctual receiver
-        for idrp, rp in coreconf.recepteurssurf.iteritems():
-            receivers_index.add(Receiver(idrp, rp.pos[0],rp.pos[1],rp.pos[2]))
+        for idrp, rp in coreconf.recepteursponct.iteritems():
+            receivers_index.add(ReceiverPunctual(idrp, rp["pos"][0], rp["pos"][1], rp["pos"][2]))
             pt_count += 1
 
         receivers_index.rebalance()
@@ -262,13 +275,13 @@ def process_output_files(outfolder, coreconf, import_data):
                                  coefficient[2] * result_matrix[id_freq][tetra.vertices[2]] + \
                                  coefficient[3] * result_matrix[id_freq][tetra.vertices[3]]
                             # If the receiver belongs to a surface receiver add the value into it            
-                            if receiver.idrs is not None:
+                            if receiver.isSurfReceiver:
                                 coreconf.recsurf[receiver.idrs].face_power[receiver.faceid].append(interpolated_value)
                             else:
                                 # Into a punctual receiver
-                                coreconf.recepteurssurf[receiver.idrp].power.append(interpolated_value)
+                                coreconf.recepteursponct[receiver.idrp]["power"].append(interpolated_value)
 
-            print("End export surface receiver values")
+            print("End export receivers values")
 
 
 def get_a_coefficients(p, p1, p2, p3, p4):

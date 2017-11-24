@@ -1,8 +1,8 @@
  %**********************************************
 %***********************************************************
 %    Christian.prax@univ-poitiers.fr
-%Institut PPRIME, CNRS - Université de Poitiers – ENSMA, UPR 3346
-%Ecole Nationale Supérieure d’ingénieurs de Poitiers, ENSIP
+%Institut PPRIME, CNRS - UniversitÃ© de Poitiers â€“ ENSMA, UPR 3346
+%Ecole Nationale SupÃ©rieure dâ€™ingÃ©nieurs de Poitiers, ENSIP
 %   MAI 2016
 %************************************************************
 clc; clear all; close all, clf;
@@ -53,7 +53,7 @@ nel2D=max(size(el2D))% NOMBRE DE TRIANGLES EN CONDITION LIMITE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
 %lambda=zeros(size(x));
-[VOLUME]= VolumeSalle(x,y,z,nbel,el) % VOLUME de la salle
+[VOLUME]= VolumeSalle(x,y,z,nbel,el); % VOLUME de la salle
 [Surf,AireTr]= Surfaces_Salle(x,y,z,nel2D,el2D) ;% Surface des parois+de chaque elt
 % PARAMETRES DE LA THEORIE DE DIFFUSION ACOUSTIQUE
 lambda=4*VOLUME/Surf;% LIBRE PARCOURS MOYEN
@@ -69,12 +69,12 @@ m=1e-3;mc=m*c0;
 RHS=zeros(nn,1);%SECOND MEMBRE 
 % Construction des matrices DE COEFFICIENTS 
         ia = [];        ja = [];        s = [];         mat = sparse ( ia, ja, s, nn, nn,12 );
-
+tic
 [mat]=laplaciencvfem3d(x,y,z,el,nbel,nn);% coeff Points internes
 mat=-mat*D+mc*diag(V_VC);
-%%%%%%%%%%%%%%%%%%%%%�%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%ù%%%%%%%
 %    BOUCLER sur les Tiers Octave
-%%%%%%%%%%%%%%%%%%%%%�%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%ù%%%%%%%
 M_abs=load(strcat(domaine,'_materials_absorption.txt'));
 abs_prop=M_abs(1:end,:);
 %abs_prop=M_abs(2,:);
@@ -139,40 +139,12 @@ RHS(ind)=Srce_sonore(1,21)*V_VC(ind)/VolSource;% Puissance sonre sur le tiers d'
 w5k=mat_5k\RHS;
 
 
-
 %========================================================================================================================================================
 % Sauvegarde pour ISIMPA
 % Ecriture des r�sultats par bande de 1/3 octave
- ChpsStatio100_5k=strcat(domaine,'_WStatioFields.hdf5');
- statio_data = [w100 w125 w160 w200 w315 w400 w500 w630 w800 w1k w2k w3150 w4k w5k];
- save( '-hdf5', ChpsStatio100_5k, 'statio_data');
-%   [fid] = fopen(ChpsStatio100_5k,'w');
-%   print_str = ' %g %g %g %g %g %g%g %g %g %g %g %g %g %g \r\n';
-% fprintf(fid,print_str , [w100 w125 w160 w200 w315 w400 w500 w630 w800 w1k w2k w3150 w4k w5k]);
-% fclose(fid)
-%========================================================================================================================================================
+ChpsStatio100_5k=strcat(domaine,'_WStatioFields.hdf5');
+statio_data = [w100 w125 w160 w200 w315 w400 w500 w630 w800 w1k w2k w3150 w4k w5k];
+save( '-hdf5', ChpsStatio100_5k, 'statio_data');
 
-
-
-%rhoco2=1.2*c0^2;    LpdB=10*log10(w*rhoco2/(2e-5)^2);
-% FICHIERS DE LA SOLUTION EN REGIME ETABLI au format TECPLOT
-%sauv_tecplot(XYZ,el,w,strcat(domaine,'.dat'),'Densite d''Energie acoustique')
-%sauv_tecplot(XYZ,el,LpdB,strcat(domaine,'dB.dat'),'Densite d''Energie acoustique (dB)')
-%output_filename = strcat(domaine,'dB.vtk')';
-%titre = 'Energy density (dB) for diffusion problem';
-  %threedscal_to_vtk ( XYZ,el,LpdB, output_filename', titre );
-  %threedp_to_vtu ( XYZ,el,LpdB, output_filename2', titre );
-  %msh2.t=el';msh2.p=XYZ';  p   = msh2.p;
-%  dim = rows (p) ;% 2D or 3D
-%  fpl_vtk_write_field (output_filename1', msh2, {LpdB, 'Lp (dB)'}, {}, 0);
-  
-%PlotFieldonMesh(XYZ,el,w)
-
-  %trisurf(el2D,XYZ(:,1),XYZ(:,2),XYZ(:,3),w), colorbar
-   
-   
-   %figure,
-   % LpdB=10*log10(w*rhoco2/(2e-5)^2);
-   %trisurf(el2D,XYZ(:,1),XYZ(:,2),XYZ(:,3),LpdB), title('LpdB'), colorbar
-
-  %Calcul_insta
+Calcul_insta
+ 
