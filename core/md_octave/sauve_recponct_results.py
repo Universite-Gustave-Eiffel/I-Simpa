@@ -19,40 +19,43 @@ def MakeFolderIfNeeded(path):
             os.mkdir(mkpath)
         complete=os.path.join(complete,fold)
 
+
 def labeling(cell):
     return "%g ms" % (cell*1000)
+
+
 def powertwo(cell):
     return cell**2
 
-## Convert TLM receiver format to I-Simpa receiver format
+## Convert MDF receiver format to I-Simpa receiver format
 # @param coreconf Core configuration
-# @param micform File name of receiver ex:R_EsssiMIC%i"
-def SauveRecepteurPonctResults(coreconf,micform,outfolder,encoding=sys.getfilesystemencoding(),exportwavs=False):
-    rootpath=os.path.join(coreconf.paths["workingdirectory"],coreconf.paths["recepteursp_directory"])
-    recfilename=micform
-    fullpathrec=os.path.join(outfolder,recfilename)
-    if os.path.exists(fullpathrec):
-        colstoextract=[0]
-        for rec,recdata in coreconf.recepteursponct.iteritems():
-            colstoextract.append(recdata["tlmidmic"]+1)
-        colstoextract.sort()
-        recin=open(fullpathrec,"r")
-        ##
-        #Extract only ponctual receivers
-        rows=[[float(row[idcol]) for idcol in colstoextract] for row in imap(str.rsplit,recin)]
-        recin.close()
-        steplst=map(labeling,map(itemgetter(0), rows))
-        for rec,recdata in coreconf.recepteursponct.iteritems():
-            #
-            rppath=os.path.join(rootpath,recdata["name"]+os.sep)
-            spl=map(powertwo,map(itemgetter(recdata["tlmidmic"]+1), rows))
-            splcol=ls.floatarray()
-            map(splcol.append,spl)
-            gabe_out=ls.Gabe_rw(2) # Global only, FFT unused
-            stepcol=ls.stringarray()
-            map(stepcol.append,steplst)
-            gabe_out.AppendStrCol(stepcol,"SPL")
-            gabe_out.AppendFloatCol(splcol,"Global")
-            MakeFolderIfNeeded(rppath)
-            savepath=(rppath+coreconf.paths["recepteursp_filename"]).encode(encoding)
+def SauveRecepteurPonctResults(coreconf, encoding=sys.getfilesystemencoding()):
+    rootpath=os.path.join(coreconf.paths["workingdirectory"], coreconf.paths["recepteursp_directory"])
+    for id,recdata in coreconf.recepteursponct.iteritems():
+        # print(str(id) + ":" + str(recdata["power_statio"]))
+        saveFold = os.path.join(rootpath, recdata["name"]).encode(encoding)
+        savepath = os.path.join(rootpath, recdata["name"], coreconf.paths["recepteursp_filename"]).encode(encoding)
+        if "power_statio" in recdata:
+            gabe_out = ls.Gabe_rw(2)
+            stepcol = ls.stringarray()
+            stepcol.append("Global")
+            gabe_out.AppendStrCol(stepcol, "SPL")
+            # For each frequency
+            # TODO use not hard writen frequency
+            for idFreq, freq in enumerate(
+                    [100, 125, 160, 200, 315, 400, 500, 630, 800, 1000, 2000, 3150, 4000, 5000]):
+                splcol = ls.floatarray()
+                splcol.append(recdata["power_statio"][idFreq])
+                gabe_out.AppendFloatCol(splcol, str(freq))
+            MakeFolderIfNeeded(saveFold)
             gabe_out.Save(savepath)
+        # spl=recdata["power"]
+        # splcol=ls.floatarray()
+        # map(splcol.append,spl)
+
+        # stepcol=ls.stringarray()
+        # map(stepcol.append,steplst)
+        # gabe_out.AppendStrCol(stepcol,"SPL")
+        # gabe_out.AppendFloatCol(splcol,"Global")
+        # MakeFolderIfNeeded(rppath)
+        # gabe_out.Save(savepath)

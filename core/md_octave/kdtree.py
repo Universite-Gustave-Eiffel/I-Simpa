@@ -9,14 +9,15 @@ https://en.wikipedia.org/wiki/K-d_tree
 
 from __future__ import print_function
 
+import heapq
+import itertools
 import operator
 import math
 from collections import deque
 from functools import wraps
-from bounded_priority_queue import BoundedPriorityQueue
 
 __author__ = u'Stefan Kögl <stefan@skoegl.net>'
-__version__ = '0.15'
+__version__ = '0.16'
 __website__ = 'https://github.com/stefankoegl/kdtree'
 __license__ = 'ISC license'
 
@@ -405,37 +406,46 @@ class KDNode(Node):
         distances.
 
         dist is a distance function, expecting two points and returning a
-        distance value. Distance values can be any compareable type.
+        distance value. Distance values can be any comparable type.
 
         The result is an ordered list of (node, distance) tuples.
         """
+
+        if k < 1:
+            raise ValueError("k must be greater than 0.")
 
         if dist is None:
             get_dist = lambda n: n.dist(point)
         else:
             get_dist = lambda n: dist(n.data, point)
 
-        results = BoundedPriorityQueue(k)
+        results = []
 
-        self._search_node(point, k, results, get_dist)
+        self._search_node(point, k, results, get_dist, itertools.count())
 
         # We sort the final result by the distance in the tuple
-        # (<KdNode>, distance)
-        BY_VALUE = lambda kv: kv[1]
-        return sorted(results.items(), key=BY_VALUE)
+        # (<KdNode>, distance).
+        return [(node, -d) for d, _, node in sorted(results, reverse=True)]
 
 
-    def _search_node(self, point, k, results, get_dist):
+    def _search_node(self, point, k, results, get_dist, counter):
         if not self:
             return
 
         nodeDist = get_dist(self)
 
         # Add current node to the priority queue if it closer than
-        # at least one point in the queue. This functionality is
-        # taken care of by BoundedPriorityQueue.
-        results.add((self, nodeDist))
-
+        # at least one point in the queue.
+        #
+        # If the heap is at its capacity, we need to check if the
+        # current node is closer than the current farthest node, and if
+        # so, replace it.
+        item = (-nodeDist, next(counter), self)
+        if len(results) >= k:
+            if -nodeDist > results[0][0]:
+                heapq.heapreplace(results, item)
+        else:
+            heapq.heappush(results, item)
         # get the splitting plane
         split_plane = self.data[self.axis]
         # get the squared distance between the point and the splitting plane
@@ -446,20 +456,22 @@ class KDNode(Node):
         # Search the side of the splitting plane that the point is in
         if point[self.axis] < split_plane:
             if self.left is not None:
-                self.left._search_node(point, k, results, get_dist)
+                self.left._search_node(point, k, results, get_dist, counter)
         else:
             if self.right is not None:
-                self.right._search_node(point, k, results, get_dist)
+                self.right._search_node(point, k, results, get_dist, counter)
 
         # Search the other side of the splitting plane if it may contain
         # points closer than the farthest point in the current results.
-        if plane_dist2 < results.max() or results.size() < k:
+        if -plane_dist2 > results[0][0] or len(results) < k:
             if point[self.axis] < self.data[self.axis]:
                 if self.right is not None:
-                    self.right._search_node(point, k, results, get_dist)
+                    self.right._search_node(point, k, results, get_dist,
+                                            counter)
             else:
                 if self.left is not None:
-                    self.left._search_node(point, k, results, get_dist)
+                    self.left._search_node(point, k, results, get_dist,
+                                           counter)
 
 
     @require_axis
@@ -472,12 +484,33 @@ class KDNode(Node):
         with this location will be returned (not its neighbor).
 
         dist is a distance function, expecting two points and returning a
-        distance value. Distance values can be any compareable type.
+        distance value. Distance values can be any comparable type.
 
         The result is a (node, distance) tuple.
         """
 
         return next(iter(self.search_knn(point, 1, dist)), None)
+
+
+    def _search_nn_dist(self, point, dist, results, get_dist):
+        if not self:
+            return
+
+        nodeDist = get_dist(self)
+
+        if nodeDist < dist:
+            results.append(self.data)
+
+        # get the splitting plane
+        split_plane = self.data[self.axis]
+
+        # Search the side of the splitting plane that the point is in
+        if point[self.axis] <= split_plane + dist:
+            if self.left is not None:
+                self.left._search_nn_dist(point, dist, results, get_dist)
+        if point[self.axis] >= split_plane - dist:
+            if self.right is not None:
+                self.right._search_nn_dist(point, dist, results, get_dist)
 
 
     @require_axis
@@ -490,22 +523,11 @@ class KDNode(Node):
         nodes to the point within the distance will be returned.
         """
 
-        if best is None:
-            best = []
+        results = []
+        get_dist = lambda n: n.dist(point)
 
-        # consider the current node
-        if self.dist(point) < distance:
-            best.append(self)
-
-        # sort the children, nearer one first (is this really necessairy?)
-        children = sorted(self.children, key=lambda c_p1: c_p1[0].dist(point))
-
-        for child, p in children:
-            # check if child node needs to be recursed
-            if self.axis_dist(point, self.axis) < math.pow(distance, 2):
-                child.search_nn_dist(point, distance, best)
-
-        return best
+        self._search_nn_dist(point, distance, results, get_dist)
+        return results
 
 
     @require_axis
