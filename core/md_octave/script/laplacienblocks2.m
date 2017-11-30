@@ -2,33 +2,24 @@
 %	Appel de linecoeftemp qui calcule les derivees de la pression
 % 	et de la temperature (une constante)
 
-function [mat]=laplaciencvfem3d(x,y,z,kne,nbel,nn)
+function [mat]=laplacienblocks2(x,y,z,Tet_Dof,NBLOCKS,NDOF,CoeffDiff)
         ia = [];        ja = [];        s = [];
-         mat = sparse ( ia, ja, s, nn, nn,12 );
+         mat = sparse ( ia, ja, s, NDOF, NDOF,15);
 %            mat=zeros(nn,nn);
         k=zeros(4,1);xn=zeros(4,1);yn=xn;zn=xn;
+for j=1:NBLOCKS
+  for  n=1:size(Tet_Dof{j},1)
              
-            
-            for  n=1:nbel
                for l=1:4
-                              k(l)=kne(n,l);
-              xn(l)=x(k(l));  yn(l)=y(k(l));   zn(l)=z(k(l));
+                             
+                              k(l)=Tet_Dof{j}(n,l);
+                              xn(l)=x(k(l));  yn(l)=y(k(l));   zn(l)=z(k(l));
 
- %                 ks(l)=kne(n,l);xn(l)=x(ks(l));yn(l)=y(ks(l));
+ %                 ks(l)=el_1(n,l);xn(l)=x(ks(l));yn(l)=y(ks(l));
               end
                 [~,b,c,d,v]=line3d(xn,yn,zn);
            
-%             x31=xn(3)-xn(1);    x12=xn(1)-xn(2);       x23=xn(2)-xn(3);      
-%             y21=yn(2)-yn(1);    y32=yn(3)-yn(2);       y13=yn(1)-yn(3);
-
-%	tempa=( 5.*tempo(ks(1))+5.*tempo(ks(2))+2.*tempo(ks(3)) )/12.
-%*	tempb=( 2.*tempo(ks(1))+5.*tempo(ks(2))+5.*tempo(ks(3)) )/12.
-%	tempc=( 5.*tempo(ks(1))+2.*tempo(ks(2))+5.*tempo(ks(3)) )/12.
-% tempmoy=(tempo(ks(1))+tempo(ks(2))+tempo(ks(3)) )/3.;
-% 	tempa=( 2.*tempo(ks(1))+tempo(ks(2))+tempo(ks(3)) )/4.;
-% 	tempb=( tempo(ks(1))+2.*tempo(ks(2))+tempo(ks(3)) )/4.;
-% 	tempc=( tempo(ks(1))+tempo(ks(2))+2.*tempo(ks(3)) )/4.;
-%	tempa=tempmoy;	tempb=tempmoy;	tempc=tempmoy;
+ 
             xa=(xn(1)+xn(2))/2.;  ya=(yn(1)+yn(2))/2.;    za=(zn(1)+zn(2))/2.;
             xb=(xn(2)+xn(3))/2.;  yb=(yn(2)+yn(3))/2.;    zb=(zn(2)+zn(3))/2.;
             xc=(xn(3)+xn(1))/2.;  yc=(yn(3)+yn(1))/2.;    zc=(zn(3)+zn(1))/2.;
@@ -59,17 +50,16 @@ function [mat]=laplaciencvfem3d(x,y,z,kne,nbel,nn)
 		anm(3)=b(l)*ani3+c(l)*anj3+d(l)*ank3;
 		anm(4)=b(l)*ani4+c(l)*anj4+d(l)*ank4;
 %........
-    mat(k(1),k(l))=mat(k(1),k(l))+anm(1);
-    mat(k(2),k(l))=mat(k(2),k(l))+anm(2);
-		mat(k(3),k(l))=mat(k(3),k(l))+anm(3);
-		mat(k(4),k(l))=mat(k(4),k(l))+anm(4);
+    mat(k(1),k(l))=mat(k(1),k(l))+anm(1)*CoeffDiff(j);
+    mat(k(2),k(l))=mat(k(2),k(l))+anm(2)*CoeffDiff(j);
+		mat(k(3),k(l))=mat(k(3),k(l))+anm(3)*CoeffDiff(j);
+		mat(k(4),k(l))=mat(k(4),k(l))+anm(4)*CoeffDiff(j);
   
         
    end
    
-            end
-
-%================================================================
+end
+end
 
 %================================================================
 return

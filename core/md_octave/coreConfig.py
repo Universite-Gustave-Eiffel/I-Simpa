@@ -76,12 +76,13 @@ class coreConfig(object):
         self.paths["tetrameshFileName"]=simunode.getproperty("tetrameshFileName")
         self.paths["recepteurss_directory"]=simunode.getproperty("recepteurss_directory")
         self.paths["recepteurss_filename"]=simunode.getproperty("recepteurss_filename")
-        self.paths["recepteursp_directory"]=u"Récepteurs_Ponctuels"
-        self.paths["recepteursp_filename"]="soundpressure.recp"
+        self.paths["recepteursp_directory"]=simunode.getproperty("receiversp_directory")
+        self.paths["recepteursp_filename"]=simunode.getproperty("receiversp_filename")
         self.const["cel"]=libsimpa.CCalculsGenerauxThermodynamique.c_son(condition_atmospherique_node.getpropertyfloat("temperature")+273.15)
         self.const["temperature_celsius"]=condition_atmospherique_node.getpropertyfloat("temperature")
         self.const["temperature_kelvin"]=condition_atmospherique_node.getpropertyfloat("temperature")+273.15
         self.const["humidite"]=condition_atmospherique_node.getpropertyfloat("humidite")
+        self.const["frequencies"] = [100, 125, 160, 200, 250, 320, 400, 500, 640, 800, 1000, 1250, 1600, 2000, 2500, 3200, 4000, 5000]
         self.const["pression"]=condition_atmospherique_node.getpropertyfloat("pression")
         #self.const["pasdetemps"]=simunode.getpropertyfloat("pasdetemps")
         #self.const["duree_simulation"]=simunode.getpropertyfloat("duree_simulation")

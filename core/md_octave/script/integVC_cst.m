@@ -19,18 +19,19 @@
 % *
 % c----$---1---------2---------3---------4---------5---------6---------7-c
 
-function [M_int_cst]= integVC_cst(nn,V_VC)
+function [M_int_cst]= integVC_cst(V_VC)
 
          ia = [];        ja = [];        s = [];
-         M_int_cst = sparse ( ia, ja, s, nn, nn,20 );
+         nDoFr=size(V_VC,1);
+         M_int_cst = sparse ( ia, ja, s, nDoFr,nDoFr,1 );
 
 %xn=zeros(4,1);yn=xn; zn=xn; %ks=xn;
   
 
-for in=1:nn
-    M_int_cst(in,in)=V_VC(in);
-end
-
+%for in=1:nn
+%    M_int_cst(in,in)=V_VC(in);
+%end
+M_int_cst=diag(V_VC);
 end
                 
 %===========================================================

@@ -1,5 +1,5 @@
 
-function F = boundary_faces(T)
+function [ F , Fsort]= boundary_faces(T)
   % F = boundary_faces(T)
   % Détermine les faces des Tetrahedres T 
   % en frontieres du domaine
@@ -17,7 +17,7 @@ function F = boundary_faces(T)
     T(:,1) T(:,3) T(:,4); ...
     T(:,1) T(:,4) T(:,2); ...
     T(:,2) T(:,4) T(:,3)];
-size(allF)
+%tailleallF=size(allF)
   % Tri des faces par ordre croissant des indices
   sortedF = sort(allF,2);
   % determine unicite des faces
@@ -28,4 +28,5 @@ size(allF)
   sorted_exteriorF = u(counts == 1,:);
   % find in original faces so that ordering of indices is correct
   F = allF(ismember(sortedF,sorted_exteriorF,'rows'),:);
+   Fsort=sort(F,2);
 end
