@@ -239,7 +239,7 @@ def process_output_files(outfolder, coreconf, import_data):
         # Open data files
         result_matrix = [numpy.array(h5py.File(os.path.join(outfolder, "scene_WInstaFields" + str(freq) + ".hdf5"))["xx"]["value"]["b"]["value"]) for freq in
                          coreconf.const["frequencies"]]
-
+        coreconf.time_step = float(h5py.File(os.path.join(outfolder, "scene_WInstaFields" + str(coreconf.const["frequencies"][0]) + ".hdf5"))["xx"]["value"]["a"]["value"].value)
         last_perc = 0
         for idTetra in range(0, len(tetrahedrons)):
             verts = [tetrahedrons[idTetra][idvert] - 1 for idvert in range(4)]
@@ -398,7 +398,7 @@ def main(call_octave=True):
             call(command, cwd=outputdir, shell=True)
             print("Execution in %.2f seconds" % ((time.time() - deb) / 1000.))
     process_output_files(outputdir, coreconf, import_data)
-    #sauve_recsurf_results.SauveRecepteurSurfResults(coreconf)
+    sauve_recsurf_results.SauveRecepteurSurfResults(coreconf)
     #sauve_recponct_results.SauveRecepteurPonctResults(coreconf)
 
 if __name__ == '__main__':

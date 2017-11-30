@@ -26,10 +26,9 @@ def SauveRecepteurSurfResults(coreconf):
         freqCount = len(surface_receiver.face_power[0])
         for id_freq in range(freqCount):
             rsdata = ls.rsurf_data()
-            timestep = 1
-            step = 1
             # File Header
-            rsdata.Make(len(surface_receiver.vertices), 1, 1, 1)
+            rsdata.Make(len(surface_receiver.vertices), 1, len(surface_receiver.face_power[0][id_freq]),
+                        float(coreconf.time_step))
             # Vertices
             for nodeid, vertex in enumerate(surface_receiver.vertices):
                 rsdata.SetNodeValue(nodeid, vertex[0], vertex[1], vertex[2])
@@ -37,19 +36,24 @@ def SauveRecepteurSurfResults(coreconf):
             facecount = 0
             for idface, face in enumerate(surface_receiver.faceindex):
                 has_levels = len(surface_receiver.face_power[idface]) > id_freq
-                # Triangle 1
-                rsdata.SetFaceInfo(0, facecount, face[0], face[1], face[2], 1)
+                nbTimeStep = 1
                 if has_levels:
-                    rsdata.SetFaceEnergy(0, facecount, 0, 0, surface_receiver.face_power[idface][id_freq])
-                else:
-                    rsdata.SetFaceEnergy(0, facecount, 0, 0, 0)
+                    nbTimeStep = len(surface_receiver.face_power[idface][id_freq])
+                # Triangle 1
+                rsdata.SetFaceInfo(0, facecount, face[0], face[1], face[2], nbTimeStep)
+                for recordId in range(nbTimeStep):
+                    if has_levels:
+                        rsdata.SetFaceEnergy(0, facecount, recordId, recordId, surface_receiver.face_power[idface][id_freq][recordId])
+                    else:
+                        rsdata.SetFaceEnergy(0, facecount, recordId, recordId, 0)
                 facecount += 1
                 # Triangle 2
-                rsdata.SetFaceInfo(0, facecount, face[0], face[2], face[3], 1)
-                if has_levels:
-                    rsdata.SetFaceEnergy(0, facecount, 0, 0, surface_receiver.face_power[idface][id_freq])
-                else:
-                    rsdata.SetFaceEnergy(0, facecount, 0, 0, 0)
+                rsdata.SetFaceInfo(0, facecount, face[0], face[2], face[3], nbTimeStep)
+                for recordId in range(nbTimeStep):
+                    if has_levels:
+                        rsdata.SetFaceEnergy(0, facecount, recordId, recordId, surface_receiver.face_power[idface][id_freq][recordId])
+                    else:
+                        rsdata.SetFaceEnergy(0, facecount, recordId, recordId, 0)
                 facecount += 1
             rspath = os.path.join(os.path.join(rootpath, surface_receiver.label + os.sep), "f" + str(id_freq) + os.sep)
             MakeFolderIfNeeded(rspath)
