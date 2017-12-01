@@ -38,14 +38,16 @@ def SauveRecepteurPonctResults(coreconf, encoding=sys.getfilesystemencoding()):
         if "power_statio" in recdata:
             gabe_out = ls.Gabe_rw(2)
             stepcol = ls.stringarray()
-            stepcol.append("Global")
+            for step_id in range(len(recdata["power_statio"][0])):
+                stepcol.append("%.1f ms" % (float(coreconf.time_step * step_id * 1000)))
             gabe_out.AppendStrCol(stepcol, "SPL")
             # For each frequency
             # TODO use not hard writen frequency
             for idFreq, freq in enumerate(
                     [100, 125, 160, 200, 315, 400, 500, 630, 800, 1000, 2000, 3150, 4000, 5000]):
                 splcol = ls.floatarray()
-                splcol.append(recdata["power_statio"][idFreq])
+                for spl in recdata["power_statio"][idFreq]:
+                    splcol.append(float(spl))
                 gabe_out.AppendFloatCol(splcol, str(freq))
             MakeFolderIfNeeded(saveFold)
             if not gabe_out.Save(savepath):

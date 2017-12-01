@@ -330,7 +330,7 @@ def main(call_octave=True):
             print("Execution in %.2f seconds" % ((time.time() - deb) / 1000.))
     process_output_files(outputdir, coreconf, import_data)
     sauve_recsurf_results.SauveRecepteurSurfResults(coreconf)
-    #sauve_recponct_results.SauveRecepteurPonctResults(coreconf)
+    sauve_recponct_results.SauveRecepteurPonctResults(coreconf)
 
 if __name__ == '__main__':
     main(sys.argv[-1] != "noexec")
