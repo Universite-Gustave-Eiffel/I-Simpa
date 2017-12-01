@@ -43,17 +43,17 @@ def SauveRecepteurSurfResults(coreconf):
                 rsdata.SetFaceInfo(0, facecount, face[0], face[1], face[2], nbTimeStep)
                 for recordId in range(nbTimeStep):
                     if has_levels:
-                        rsdata.SetFaceEnergy(0, facecount, recordId, recordId, surface_receiver.face_power[idface][id_freq][recordId])
+                        rsdata.SetFaceEnergy(0, facecount, recordId, recordId, float(surface_receiver.face_power[idface][id_freq][recordId]))
                     else:
-                        rsdata.SetFaceEnergy(0, facecount, recordId, recordId, 0)
+                        rsdata.SetFaceEnergy(0, facecount, recordId, recordId, float(0))
                 facecount += 1
                 # Triangle 2
                 rsdata.SetFaceInfo(0, facecount, face[0], face[2], face[3], nbTimeStep)
                 for recordId in range(nbTimeStep):
                     if has_levels:
-                        rsdata.SetFaceEnergy(0, facecount, recordId, recordId, surface_receiver.face_power[idface][id_freq][recordId])
+                        rsdata.SetFaceEnergy(0, facecount, recordId, recordId, float(surface_receiver.face_power[idface][id_freq][recordId]))
                     else:
-                        rsdata.SetFaceEnergy(0, facecount, recordId, recordId, 0)
+                        rsdata.SetFaceEnergy(0, facecount, recordId, recordId, float(0))
                 facecount += 1
             rspath = os.path.join(os.path.join(rootpath, surface_receiver.label + os.sep), "f" + str(id_freq) + os.sep)
             MakeFolderIfNeeded(rspath)

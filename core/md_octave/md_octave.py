@@ -266,9 +266,8 @@ def process_output_files(outfolder, coreconf, import_data):
             for receiver in nearest_receivers:
                 coefficient = get_a_coefficients(to_array(receiver), nodes[verts[0]], nodes[verts[1]], nodes[verts[2]], nodes[verts[3]])
                 if coefficient.min() > 0:
-                    #Point is inside tetrahedron
+                    # Point is inside tetrahedron
                     for id_freq in range(len(coreconf.const["frequencies"])):
-                        interpolated_value = numpy.array([], dtype=float)
                         # For each frequency compute the interpolated value
                         interpolated_value = coefficient[0] * tetra_values[id_freq][0] + \
                                              coefficient[1] * tetra_values[id_freq][1] + \
@@ -276,81 +275,13 @@ def process_output_files(outfolder, coreconf, import_data):
                                              coefficient[3] * tetra_values[id_freq][3]
                         # If the receiver belongs to a surface receiver add the value into it
                         if receiver.isSurfReceiver:
-                            coreconf.recsurf[receiver.idrs].face_power[receiver.faceid].append(interpolated_value)
+                            coreconf.recsurf[receiver.idrs].face_power[receiver.faceid].append(
+                                numpy.abs(interpolated_value * rhoco2 * 2.5e-3))
                         else:
                             # Into a punctual receiver
-                            coreconf.recepteursponct[receiver.idrp]["power_statio"].append(interpolated_value * rhoco2)
+                            coreconf.recepteursponct[receiver.idrp]["power_statio"].append(
+                                numpy.abs(interpolated_value * rhoco2))
         print("End export receivers values")
-
-
-def process_output_files_stationary(outfolder, coreconf, import_data):
-    # sound velocity
-    c0 = 342
-    rhoco2 = 1.2 * c0 ^ 2
-    data_path = os.path.join(outfolder, "scene_WStatioFields.hdf5")
-    if os.path.exists(data_path):
-        # Create spatial index for receivers points
-        receivers_index = kdtree.create(dimensions=3)
-        # For each surface receiver
-        pt_count = 0
-        for idrs, surface_receivers in coreconf.recsurf.iteritems():
-            # For each vertex of the grid
-            for faceid, receiver in enumerate(surface_receivers.GetSquaresCenter()):
-                receivers_index.add(ReceiverSurf(idrs, faceid, receiver[0], receiver[1], receiver[2]))
-                pt_count += 1
-        # For each punctual receiver
-        for idrp, rp in coreconf.recepteursponct.iteritems():
-            receivers_index.add(ReceiverPunctual(idrp, rp["pos"][0], rp["pos"][1], rp["pos"][2]))
-            pt_count += 1
-
-        receivers_index.rebalance()
-        # Computation done, fetch levels at tetrahedron vertices
-        dataset_name = "statio_data"
-        data = h5py.File(data_path, "r")
-        if dataset_name in data:
-            # Read power at each vertices
-            sdata = data[dataset_name]
-            mesh = import_data["mesh"]
-            result_matrix = sdata["value"]
-            num_frequencies, num_nodes = result_matrix.shape
-            print("Begin export surface receiver values")
-            last_perc = 0
-            if num_nodes != len(mesh.nodes):
-                print("Received nodes from Octave are different that provided nodes", file=sys.stderr)
-                return False
-            for idtetra, tetra in enumerate(mesh.tetrahedres):
-                p1 = to_vec3(mesh.nodes[tetra.vertices[0]])
-                p2 = to_vec3(mesh.nodes[tetra.vertices[1]])
-                p3 = to_vec3(mesh.nodes[tetra.vertices[2]])
-                p4 = to_vec3(mesh.nodes[tetra.vertices[3]])
-                p = (p1+p2+p3+p4) / 4
-                rmax = math.ceil(max([square_dist(p, p1), square_dist(p, p2), square_dist(p, p3), square_dist(p, p4)]))
-                # Fetch receivers in the tetrahedron
-                # nearest_receivers = receivers_index.search_nn_dist([p[0], p[1], p[2]], rmax)
-                nearest_receivers = receivers_index.search_nn_dist([p[0], p[1], p[2]], rmax)
-                # nearest_receivers = [receiver for receiver in res if square_dist(receiver, p) <= rmax]
-                new_perc = int((idtetra / float(len(mesh.tetrahedres))) * 100)
-                if new_perc != last_perc:
-                    print("Export receivers %i %%" % new_perc)
-                    last_perc = new_perc
-                # Compute coefficient of the receiver point into the tetrahedron
-                for receiver in nearest_receivers:
-                    coefficient = get_a_coefficients(to_array(receiver), to_array(p1), to_array(p2), to_array(p3), to_array(p4))
-                    if coefficient.min() > 0:
-                        # Point is inside tetrahedron
-                        for id_freq in range(len(coreconf.const["frequencies"])):
-                            # For each frequency compute the interpolated value
-                            interpolated_value = coefficient[0] * result_matrix[id_freq][tetra.vertices[0]] + \
-                                 coefficient[1] * result_matrix[id_freq][tetra.vertices[1]] + \
-                                 coefficient[2] * result_matrix[id_freq][tetra.vertices[2]] + \
-                                 coefficient[3] * result_matrix[id_freq][tetra.vertices[3]]
-                            # If the receiver belongs to a surface receiver add the value into it            
-                            if receiver.isSurfReceiver:
-                                coreconf.recsurf[receiver.idrs].face_power[receiver.faceid].append(interpolated_value)
-                            else:
-                                # Into a punctual receiver
-                                coreconf.recepteursponct[receiver.idrp]["power_statio"].append(interpolated_value * rhoco2)
-            print("End export receivers values")
 
 
 def get_a_coefficients(p, p1, p2, p3, p4):

@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %       SOLUTION INSTATIONNAIRE PARTANT DU REGIME ETABLI -
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     Tableau des Alpha de chaque face en condition limite de 100Hz à 5kHz
+%     Tableau des Alpha de chaque face en condition limite de 100Hz ï¿½ 5kHz
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 for iB=1:NBLOCKS
@@ -12,7 +12,7 @@ TR60{iB}=0.16*VOLUME(iB)./Aire_Abs_eq;% Tableau des TR de 100Hz-5kHz selon SABIN
 %TR60E=0.16*VOLUME./(-Surf*log(1-alphamoy));% Tableau des TR selon  EYRING
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 end
- dt=1e-3;% Pas de temps
+ dt=0.01;% Pas de temps
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
@@ -31,13 +31,13 @@ for  N_Toct=1:NOct;
 %[wi_saved]= Euler_explicite(w{N_Toct},mat_Toct100Hz_5k{N_Toct},MATinsta,itmax(1),dt/500);
 %affichepatch
 
-% Ecriture des résultats par bande de 1/3 octave
+% Ecriture des rï¿½sultats par bande de 1/3 octave
 
 ChpsInsta=strcat(NomFichier,int2str(oct3rd(N_Toct)));   
 ChpsInsta2=strcat(ChpsInsta,'.hdf5');
  xx.a=dt;
  xx.b=wi_saved;
- save( '-hdf5', ChpsInsta2, 'xx')
+ save( '-float-hdf5', ChpsInsta2, 'xx')
  end
 %========================================================================================================================================================
 toc
