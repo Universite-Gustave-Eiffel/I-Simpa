@@ -5,7 +5,7 @@
 %i_nT= Tableau d'indices de Tous les noeud avec condition de transmission
 i_nT=load(strcat(domaine,'_shared_vertices.txt'));i_nT=sort(i_nT);
 Wall_TL=load(strcat(domaine,'_materials_transmission.txt'));
- %iTrsm: Indice des matériaux de transmission
+ %iTrsm: Indice des matï¿½riaux de transmission
 iTrsm=Wall_TL( find(sum(Wall_TL(:,2:end),2)),1);
 TL100Hz5k=Wall_TL( find(sum(Wall_TL(:,2:end),2)),[BdOct1:BdOctend-1]); % Transmission Loss idMat &values
 
@@ -43,7 +43,7 @@ end
 NbTransmWall=it
 
 %========================================================================================
-% surfaces d'échange (somme des surfaceS des triangles auxquels chaque point appartient/3 )
+% surfaces d'ï¿½change (somme des surfaceS des triangles auxquels chaque point appartient/3 )
 
 for i=1:NbTransmWall
           [SurFaceT(i),AireFace{i}]= Surfaces_Salle(x,y,z,size(FacesTij{i},1),FacesTij{i});
@@ -59,9 +59,9 @@ for i=1:NbTransmWall
  % Contribution de la TRANSMISSION
            for nm=1:NOct
            mat_Toct100Hz_5k{nm}(Dofi{i}(it), Dofj{i}(it))=mat_Toct100Hz_5k{nm}(Dofi{i}(it), Dofj{i}(it))...
-           +PondEchSurf (it,nm) *c0/4;
+           -PondEchSurf (it,nm) *c0/4;
           mat_Toct100Hz_5k{nm}(Dofj{i}(it), Dofi{i}(it))=mat_Toct100Hz_5k{nm}(Dofj{i}(it), Dofi{i}(it))...
-           +PondEchSurf (it,nm) *c0/4;           
+           -PondEchSurf (it,nm) *c0/4;
           end
 %============================================================================================================================
  end          

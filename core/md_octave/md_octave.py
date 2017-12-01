@@ -276,11 +276,11 @@ def process_output_files(outfolder, coreconf, import_data):
                         # If the receiver belongs to a surface receiver add the value into it
                         if receiver.isSurfReceiver:
                             coreconf.recsurf[receiver.idrs].face_power[receiver.faceid].append(
-                                numpy.abs(interpolated_value * rhoco2 * 2.5e-3))
+                                interpolated_value * rhoco2 * 2.5e-3)
                         else:
                             # Into a punctual receiver
                             coreconf.recepteursponct[receiver.idrp]["power_statio"].append(
-                                numpy.abs(interpolated_value * rhoco2))
+                                interpolated_value * rhoco2)
         print("End export receivers values")
 
 
