@@ -48,17 +48,7 @@ def SauveRecepteurPonctResults(coreconf, encoding=sys.getfilesystemencoding()):
                 splcol = ls.floatarray()
                 for spl in recdata["power_statio"][idFreq]:
                     splcol.append(float(spl))
-                gabe_out.AppendFloatCol(splcol, str(freq))
+                gabe_out.AppendFloatCol(splcol, "%i Hz" % freq)
             MakeFolderIfNeeded(saveFold)
             if not gabe_out.Save(savepath):
                 print("Failed to save ponctual receiver file")
-        # spl=recdata["power"]
-        # splcol=ls.floatarray()
-        # map(splcol.append,spl)
-
-        # stepcol=ls.stringarray()
-        # map(stepcol.append,steplst)
-        # gabe_out.AppendStrCol(stepcol,"SPL")
-        # gabe_out.AppendFloatCol(splcol,"Global")
-        # MakeFolderIfNeeded(rppath)
-        # gabe_out.Save(savepath)
