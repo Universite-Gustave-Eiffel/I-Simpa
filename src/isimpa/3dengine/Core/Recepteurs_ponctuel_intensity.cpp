@@ -155,7 +155,7 @@ bool RecepteursPControler::LoadRecepteursPFile(const wxString& path, const vec4&
 	recepteurs.clear();
 	using namespace gabe_io;
 	Gabe_rw reader;
-	if(reader.Load(std::string(path.c_str())))
+	if(reader.Load(std::string(path.utf8_str())))
 	{
 		wxFileName filePath=path;
 		filePath.MakeRelativeTo(ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath+ApplicationConfiguration::CONST_REPORT_FOLDER_PATH);

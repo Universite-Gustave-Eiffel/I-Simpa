@@ -73,7 +73,7 @@ bool E_Report_Gabe::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,std::
 	//Ouverture du fichier binaire
 
 	using namespace formatGABE;
-	GABE binImport(fullPath);
+	GABE binImport(fullPath.utf8_str());
 	int cols=binImport.GetCols();
 	if(cols==0)
 		return false;

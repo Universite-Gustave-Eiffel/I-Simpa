@@ -357,8 +357,11 @@ namespace formatGABE
 		//Namespace
 		using namespace std;
 		
+		
 		#ifdef WIN32
-			fstream binFile(pugi::as_wide(strFileName), ios::in | ios::binary);
+			// If file failed to open that means that provided path are not in utf8
+			// From wxString call myPath.utf8_str()
+			fstream binFile(pugi::as_wide(strFileName), ios::in | ios::binary);			
 		#else
 			fstream binFile(strFileName, ios::in | ios::binary);
 		#endif // WIN
