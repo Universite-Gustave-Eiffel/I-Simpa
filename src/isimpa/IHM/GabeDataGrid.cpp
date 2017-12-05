@@ -658,7 +658,7 @@ void GabeDataGrid::LoadData(wxString gabeFilePath)
 	ClearColsAndRows();
 	filePath=gabeFilePath;
 	using namespace formatGABE;
-	GABE binImport(gabeFilePath);
+	GABE binImport(gabeFilePath.utf8_str());
 	if(binImport.GetCols()>0)	
 	{
 		LockUserUpdate(binImport.IsReadOnly());
