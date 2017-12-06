@@ -14,18 +14,21 @@ class MD_Octave(ui.element):
             ui.element(self.appendpropertytext("modelName","","mesh.cbin",True,True)).hide()
             ui.element(self.appendpropertytext("exeName","","md_octave.py")).hide()
             ui.element(self.appendpropertytext("corePath","","md_octave/")).hide() 
-            self.appendfilsbytype(ui.element_type.ELEMENT_TYPE_CORE_CORE_CONFMAILLAGE)
+            # Set maximum volume of 0.1 m3
+            meshel = ui.element(self.appendfilsbytype(ui.element_type.ELEMENT_TYPE_CORE_CORE_CONFMAILLAGE))
+            meshel.updateboolconfig("ismaxvol", True)
+            meshel.updatedecimalconfig("maxvol", float(0.1))            
         if not self.hasproperty("tetrameshFileName"): 
             ui.element(self.appendpropertytext("tetrameshFileName","","tetramesh.mbin",True,True)).hide()
         else:
-            pass #Chargement d'un projet existant
+            pass #Existing project
     def gettreelabel(self):
         """
-            Retourne le libellé visible dans l'arbre
+            Return core label
         """
         return "MD Octave"
     def geticonpath(self,state_open):
         """
-            Retourne  le chemin d'accès au fichier d'icône
+            Return tree node icon
         """
         return "UserScript/md_octave/icon/md.ico"

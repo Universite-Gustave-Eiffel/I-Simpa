@@ -143,12 +143,12 @@ AbsorptionConstructionMatrix;
 % <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   SOUND SOURCE
  % Source d'energie acoustique, second membre e.d.p.
 localiseSource
-Srce_Power=Srce_sonore(1,7:end);
+Volumic_Power_Srce=0.01*Srce_sonore(1,BdOct1:BdOctend)/VolSource;
 %========================================================================================================================================================
 %   ><<<<<<<<<<<<<<<<<<<         PDE system resolution 
 tic                                                                                           
 for  N_Toct=1:NOct;
-RHS(ind)=Srce_Power(1,N_Toct)*V_VC(ind)/VolSource;% Puissance sonre sur le tiers d'octave N_Toct
+RHS(ind)=Volumic_Power_Srce(1,N_Toct)*V_VC(ind);% Puissance sonre sur le tiers d'octave N_Toct
 w{N_Toct}=mat_Toct100Hz_5k{N_Toct}\RHS;
 %w{N_Toct}= cgs(mat_Toct100Hz_5k{N_Toct},RHS,1e-6,200);
 %   [L,U] = ilu(mat_Toct100Hz_5k{N_Toct},struct('type','ilutp','droptol',1e-6));

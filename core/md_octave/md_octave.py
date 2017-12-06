@@ -37,6 +37,11 @@ except ImportError:
     print("numpy python module not found", file=sys.stderr)
     exit(-1)
 
+
+# todo under windows look for
+# HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Octave-4.2.0
+
+
 # Find octave program utility
 def which(program):
     def is_exe(fpath):
@@ -282,7 +287,8 @@ def process_output_files(outfolder, coreconf, import_data):
                             coreconf.recepteursponct[receiver.idrp]["power_statio"].append(
                                 interpolated_value * rhoco2)
         print("End export receivers values")
-
+    else:
+        print("The Octave result file is not found %s" % mesh_path, file=sys.stderr)
 
 def get_a_coefficients(p, p1, p2, p3, p4):
     """
