@@ -213,6 +213,16 @@ def to_array(vec):
 def square_dist(v1, v2):
     return sum([(v1[axis] - v2[axis])**2 for axis in range(len(v1))])
 
+
+def schroeder_to_impulse_db(schroeder):
+    return 10 * numpy.log10(numpy.power(10, schroeder / 10) - numpy.append(numpy.power(10, schroeder / 10), [0])[1:])
+
+
+def schroeder_to_impulse(schroeder):
+    # In octave schroeder seems to be truncated that last value is too high, so set 0 at the last impulse value
+    return schroeder - numpy.append(schroeder, schroeder[len(schroeder) - 1])[1:]
+
+
 def process_output_files(outfolder, coreconf, import_data):
     # sound velocity
     c0 = 342.0
@@ -260,7 +270,7 @@ def process_output_files(outfolder, coreconf, import_data):
             tetra_values = [[numpy.ones(4) for idvert in range(4)] for idfreq in range(len(coreconf.const["frequencies"]))]
             if len(nearest_receivers) > 0:
                 tetra_values = [
-                    [result_matrix[idfreq][:, verts[idvert]] for idvert in range(4)] for
+                    [schroeder_to_impulse(result_matrix[idfreq][:, verts[idvert]]) for idvert in range(4)] for
                     idfreq in range(len(coreconf.const["frequencies"]))]
             # nearest_receivers = [receiver for receiver in res if square_dist(receiver, p) <= rmax]
             new_perc = int((idTetra / float(len(tetrahedrons))) * 100)
