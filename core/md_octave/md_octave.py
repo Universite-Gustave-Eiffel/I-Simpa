@@ -214,13 +214,9 @@ def square_dist(v1, v2):
     return sum([(v1[axis] - v2[axis])**2 for axis in range(len(v1))])
 
 
-def schroeder_to_impulse_db(schroeder):
-    return 10 * numpy.log10(numpy.power(10, schroeder / 10) - numpy.append(numpy.power(10, schroeder / 10), [0])[1:])
-
-
 def schroeder_to_impulse(schroeder):
-    # In octave schroeder seems to be truncated that last value is too high, so set 0 at the last impulse value
-    return schroeder - numpy.append(schroeder, schroeder[len(schroeder) - 1])[1:]
+    # In octave schroeder seems to be truncated so we remove last entry
+    return schroeder[:-1] - schroeder[1:]
 
 
 def process_output_files(outfolder, coreconf, import_data):

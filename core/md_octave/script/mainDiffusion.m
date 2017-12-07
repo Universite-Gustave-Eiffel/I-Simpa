@@ -143,7 +143,7 @@ AbsorptionConstructionMatrix;
 % <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   SOUND SOURCE
  % Source d'energie acoustique, second membre e.d.p.
 localiseSource
-Volumic_Power_Srce=0.01*Srce_sonore(1,BdOct1:BdOctend)/VolSource;
+Volumic_Power_Srce=Srce_sonore(1,BdOct1:BdOctend)/VolSource;
 %========================================================================================================================================================
 %   ><<<<<<<<<<<<<<<<<<<         PDE system resolution 
 tic                                                                                           
