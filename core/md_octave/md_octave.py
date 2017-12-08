@@ -18,12 +18,14 @@ import coreConfig as cc
 from subprocess import call
 import shutil
 import glob
+import subprocess as sp
 import time
 import kdtree
 import sauve_recsurf_results
 import sauve_recponct_results
 import math
-
+from sound_level_layer import SoundLevelLayer
+import xml.dom.minidom  as xmlWriter
 
 try:
     import h5py
@@ -69,6 +71,59 @@ def process_face(tetraface, modelImport, sharedVertices, fileOut):
             sharedVertices.add(tetraface.vertices[0] + 1)
             sharedVertices.add(tetraface.vertices[1] + 1)
             sharedVertices.add(tetraface.vertices[2] + 1)
+
+
+##
+# \~english
+# This method run the Classical physics core for each source independently and return the results
+# @return Dict object with source id in key and sound_level_layer.SoundLevelLayer instance in dict values
+def runTC(xmlPathTc, coreconf):
+    """
+        This method run the Classical physics core for each source independently and return the results
+    """
+    # TODO option to disable direct field computation
+    #if not coreconf.const["ajouter_son_direct"]:
+    #    return {}
+    tcpath = os.path.normpath(os.path.join(os.getcwd(), "..", "classical_theory", "classicalTheory.exe"))
+
+    if not os.path.exists(tcpath):
+        print("Cant find classical theory program!", file=sys.stderr)
+        exit()
+    # One configuration file per source with different output path
+    doc = xmlWriter.parse(xmlPathTc)
+    simunode=doc.getElementsByTagName('simulation')[0]
+    srclstnode=doc.getElementsByTagName('sources')[0]
+    sources=srclstnode.getElementsByTagName('source')
+    sub_tc=[]
+    rootxml=xmlPathTc[0:xmlPathTc.rfind(os.sep)+1]
+    for source in sources:
+        srclstnode.removeChild(source)
+    for source in sources:
+        srclstnode.appendChild(source)
+        idsource=source.getAttribute('id').encode('cp1252')
+        s_xmlfile = os.path.join(rootxml, "config_s%s.xml" % idsource)
+        s_folder='direct_s%s' % idsource
+        if not os.path.exists(os.path.join(rootxml,s_folder)):
+            os.mkdir( os.path.join(rootxml,s_folder))
+        simunode.setAttribute('output_folder', s_folder)
+        simunode.setAttribute('do_angular_weighting','0') #Pas de pondération selon l'angle d'incidence de la source
+        writer= open(s_xmlfile, 'w')
+        doc.writexml(writer, encoding="utf-8")
+        writer.close()
+        sub_tc.append((int(idsource),s_xmlfile,s_folder))
+        srclstnode.removeChild(source)
+
+    # For each source we launch classical theory computation
+    resultsModificationLayers = {}
+    for tc_process in sub_tc:
+        print("Execution du programme de théorie classique :\n%s %s" % (tcpath, tc_process[1]))
+        sp.check_call([tcpath, tc_process[1]])
+        os.remove(tc_process[1])
+        resultsModificationLayer = SoundLevelLayer()
+        resultsModificationLayer.LoadData(tc_process[2], coreconf, ls)
+        # os.removedirs(coreconf.paths["workingdirectory"] + tc_process[2] + os.sep)
+        resultsModificationLayers[tc_process[0]] = resultsModificationLayer
+    return resultsModificationLayers
 
 
 def write_input_files(cbinpath, cmbinpath, materials, sources_lst, outfolder):
@@ -318,6 +373,8 @@ def main(call_octave=True):
     scriptfolder = sys.argv[0][:sys.argv[0].rfind(os.sep)] + os.sep
     # Read I-SIMPA XML configuration file
     coreconf = cc.coreConfig(sys.argv[1])
+    # Get direct field values using external computation core
+    resultsModificationLayers = runTC(sys.argv[1], coreconf)
     outputdir = coreconf.paths["workingdirectory"]
     # Translation CBIN 3D model and 3D tetrahedra mesh into Octave input files
     import_data = write_input_files(outputdir + coreconf.paths["modelName"], outputdir + coreconf.paths["tetrameshFileName"],

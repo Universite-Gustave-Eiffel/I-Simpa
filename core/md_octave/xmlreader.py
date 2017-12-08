@@ -54,6 +54,17 @@ class XmlNode(dict):
         else:
             print("Xml property %s doesn't exist in the %s node" % (propertyname,self.name),file=sys.stderr)
             return ""
+
+    def addnode(self, name, value):
+        if not self.has_key(name):
+            self[name] = []
+        dict.__getitem__(self, name).append(value)
+
+
+    def setAttribute(self, name, value):
+        self._properties[name] = value
+
+
     ##
     # \~english
     # @return Return true if this property exist
@@ -113,3 +124,11 @@ class XmlNode(dict):
 def readXmlFile(xmlfilepath):
     doc=xmlReader.parse(xmlfilepath)
     return XmlNode(doc.childNodes[0])
+
+
+def writeXmlFile(rootNode, xmlfilepath):
+    impl = xmlReader.getDOMImplementation()
+    doc = impl.createDocument(None, "none", None)
+    # TODO add nodes
+    doc.writexml(open(xmlfilepath, "w"))
+    pass

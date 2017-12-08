@@ -84,12 +84,7 @@ class coreConfig(object):
         self.const["humidite"]=condition_atmospherique_node.getpropertyfloat("humidite")
         self.const["frequencies"] = [100, 125, 160, 200, 250, 320, 400, 500, 640, 800, 1000, 1250, 1600, 2000, 2500, 3200, 4000, 5000]
         self.const["pression"]=condition_atmospherique_node.getpropertyfloat("pression")
-        #self.const["pasdetemps"]=simunode.getpropertyfloat("pasdetemps")
-        #self.const["duree_simulation"]=simunode.getpropertyfloat("duree_simulation")
-        #self.const["freqmax"]=simunode.getpropertyfloat("freqmax")
-        #self.const["nbpasdetemps"]=int(self.const["duree_simulation"]/self.const["pasdetemps"])
-        #self.load_freqlst(simunode["freq_enum"])
-        #chargement des libellés des récepteur de surface
+        # Load surface receiver
         for recsurf in self.rootnode["recepteurss"].lstnodesenum("recepteur_surfacique_coupe"):
             self.recepteurssurf[int(recsurf.getproperty("id"))]={ "name": recsurf.getproperty("name"), "a" : vec3(float(recsurf.getpropertyfloat("ax")),float(recsurf.getpropertyfloat("ay")),float(recsurf.getpropertyfloat("az"))), "b" :vec3(float(recsurf.getpropertyfloat("bx")),float(recsurf.getpropertyfloat("by")),float(recsurf.getpropertyfloat("bz"))) , "c" : vec3(float(recsurf.getpropertyfloat("cx")),float(recsurf.getpropertyfloat("cy")),float(recsurf.getpropertyfloat("cz"))), "resolution" : recsurf.getpropertyfloat("resolution") }
         for recponct in self.rootnode["recepteursp"].lstnodesenum("recepteur_ponctuel"):
