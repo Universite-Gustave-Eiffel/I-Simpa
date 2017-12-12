@@ -44,16 +44,14 @@ class XmlNode(dict):
                 if not self.has_key(child.tagName):
                     self[child.tagName]=[]
                 dict.__getitem__(self,child.tagName).append(XmlNode(child))
+
     ##
     # \~english
     # @return Return the string value of the node property. Empty string with error msg if not exist
     # @param propertyname Name of the property
-    def getproperty(self,propertyname):
-        if self._properties.has_key(propertyname):
-            return self._properties[propertyname]
-        else:
-            print("Xml property %s doesn't exist in the %s node" % (propertyname,self.name),file=sys.stderr)
-            return ""
+    def getproperty(self, propertyname, default=""):
+        return self._properties.get(propertyname, default)
+
 
     def addnode(self, name, value):
         if not self.has_key(name):

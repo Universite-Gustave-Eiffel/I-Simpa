@@ -24,6 +24,7 @@ import kdtree
 import sauve_recsurf_results
 import sauve_recponct_results
 import math
+import codecs
 from sound_level_layer import SoundLevelLayer
 import xml.dom.minidom  as xmlWriter
 
@@ -84,14 +85,21 @@ def runTC(xmlPathTc, coreconf):
     # TODO option to disable direct field computation
     #if not coreconf.const["ajouter_son_direct"]:
     #    return {}
-    tcpath = os.path.normpath(os.path.join(os.getcwd(), "..", "classical_theory", "classicalTheory.exe"))
+    tcpath = os.path.normpath(os.path.join(os.getcwd(), "core", "classical_theory", "classicalTheory.exe"))
 
     if not os.path.exists(tcpath):
-        print("Cant find classical theory program!", file=sys.stderr)
+        print("Cant find classical theory program!\n %s" % tcpath, file=sys.stderr)
         exit()
     # One configuration file per source with different output path
     doc = xmlWriter.parse(xmlPathTc)
     simunode=doc.getElementsByTagName('simulation')[0]
+    freqnode = doc.createElement("freq_enum")
+    for freq in coreconf.const["allfrequencies"]:
+        bfreq = doc.createElement("bfreq")
+        bfreq.setAttribute("freq", str(freq))
+        bfreq.setAttribute("docalc", "1" if 100 <= freq <= 5000 else "0")
+        freqnode.appendChild(bfreq)
+    simunode.appendChild(freqnode)
     srclstnode=doc.getElementsByTagName('sources')[0]
     sources=srclstnode.getElementsByTagName('source')
     sub_tc=[]
@@ -100,14 +108,14 @@ def runTC(xmlPathTc, coreconf):
         srclstnode.removeChild(source)
     for source in sources:
         srclstnode.appendChild(source)
-        idsource=source.getAttribute('id').encode('cp1252')
+        idsource=source.getAttribute('id')
         s_xmlfile = os.path.join(rootxml, "config_s%s.xml" % idsource)
         s_folder='direct_s%s' % idsource
         if not os.path.exists(os.path.join(rootxml,s_folder)):
-            os.mkdir( os.path.join(rootxml,s_folder))
+            os.mkdir(os.path.join(rootxml,s_folder))
         simunode.setAttribute('output_folder', s_folder)
         simunode.setAttribute('do_angular_weighting','0') #Pas de pondération selon l'angle d'incidence de la source
-        writer= open(s_xmlfile, 'w')
+        writer = codecs.open(s_xmlfile, 'w', encoding="utf-8")
         doc.writexml(writer, encoding="utf-8")
         writer.close()
         sub_tc.append((int(idsource),s_xmlfile,s_folder))
@@ -116,9 +124,9 @@ def runTC(xmlPathTc, coreconf):
     # For each source we launch classical theory computation
     resultsModificationLayers = {}
     for tc_process in sub_tc:
-        print("Execution du programme de théorie classique :\n%s %s" % (tcpath, tc_process[1]))
+        print(u"Execute classical theory program :\n%s %s" % (tcpath, tc_process[1]))
         sp.check_call([tcpath, tc_process[1]])
-        os.remove(tc_process[1])
+        # os.remove(tc_process[1])
         resultsModificationLayer = SoundLevelLayer()
         resultsModificationLayer.LoadData(tc_process[2], coreconf, ls)
         # os.removedirs(coreconf.paths["workingdirectory"] + tc_process[2] + os.sep)
@@ -274,10 +282,10 @@ def schroeder_to_impulse(schroeder):
     return schroeder[:-1] - schroeder[1:]
 
 
-def process_output_files(outfolder, coreconf, import_data):
+def process_output_files(outfolder, coreconf, import_data, resultsModificationLayers):
     # sound velocity
     c0 = 342.0
-    rhoco2 = 1.2 * c0  * c0
+    rhoco2 = 1.2 * c0 * c0
     # Read mesh file information from octave
     mesh_path = os.path.join(outfolder, "scene_XYZ_TETRA.hdf5")
     if os.path.exists(mesh_path):
@@ -334,18 +342,31 @@ def process_output_files(outfolder, coreconf, import_data):
                 if coefficient.min() > 0:
                     # Point is inside tetrahedron
                     for id_freq in range(len(coreconf.const["frequencies"])):
+                        # closest freq id using all frequencies
+                        current_frequency_id = coreconf.const["allfrequencies"].index(min(coreconf.const["allfrequencies"], key=lambda x: abs(x - coreconf.const["frequencies"][id_freq])))
                         # For each frequency compute the interpolated value
                         interpolated_value = coefficient[0] * tetra_values[id_freq][0] + \
                                              coefficient[1] * tetra_values[id_freq][1] + \
                                              coefficient[2] * tetra_values[id_freq][2] + \
                                              coefficient[3] * tetra_values[id_freq][3]
+
+                        # Compute direct field timestep
+                        steps = GetNumStepBySource(to_vec3(receiver), coreconf)
                         # If the receiver belongs to a surface receiver add the value into it
                         if receiver.isSurfReceiver:
                             coreconf.recsurf[receiver.idrs].face_power[receiver.faceid].append(
                                 interpolated_value * rhoco2 * 2.5e-3)
                         else:
                             # Into a punctual receiver
-                            coreconf.recepteursponct[receiver.idrp]["power_statio"].append(
+                            # Look for sound source
+                            if coreconf.const["with_direct_sound"]:
+                                for source_id in steps.keys():
+                                    if source_id in resultsModificationLayers and receiver.idrp in resultsModificationLayers[source_id].recp:
+                                        power = resultsModificationLayers[source_id].recp[receiver.idrp][current_frequency_id]
+                                        if power > 0:
+                                            interpolated_value[steps[source_id]] += power / rhoco2
+
+                            coreconf.recepteursponct[receiver.idrp]["power_insta"].append(
                                 interpolated_value * rhoco2)
         print("End export receivers values")
     else:
@@ -366,6 +387,18 @@ def get_a_coefficients(p, p1, p2, p3, p4):
     left_mat = numpy.append(numpy.swapaxes(numpy.array([p1, p2, p3, p4]), 0, 1), numpy.ones((1, 4)), axis=0)
     right_mat = numpy.append(numpy.reshape(p, (3, 1)), [1])
     return numpy.dot(numpy.linalg.inv(left_mat), right_mat)
+
+
+def GetNumStepBySource(pos, coreconf):
+    """
+        Return the time step number of the incoming impulse for each sound source
+    """
+    ret_tab = {}
+    if coreconf.const["with_direct_sound"]:
+        for src in coreconf.sources_lst:
+            dist = (pos - src.pos).length()
+            ret_tab[src.id] = int(math.floor(dist / (coreconf.const["cel"] * coreconf.time_step)))
+    return ret_tab
 
 
 def main(call_octave=True):
@@ -397,7 +430,7 @@ def main(call_octave=True):
             deb = time.time()
             call(command, cwd=outputdir, shell=True)
             print("Execution in %.2f seconds" % ((time.time() - deb) / 1000.))
-    process_output_files(outputdir, coreconf, import_data)
+    process_output_files(outputdir, coreconf, import_data, resultsModificationLayers)
     sauve_recsurf_results.SauveRecepteurSurfResults(coreconf)
     sauve_recponct_results.SauveRecepteurPonctResults(coreconf)
 

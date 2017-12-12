@@ -32,14 +32,13 @@ def powertwo(cell):
 def SauveRecepteurPonctResults(coreconf, encoding=sys.getfilesystemencoding()):
     rootpath=os.path.join(coreconf.paths["workingdirectory"], coreconf.paths["recepteursp_directory"])
     for id,recdata in coreconf.recepteursponct.iteritems():
-        # print(str(id) + ":" + str(recdata["power_statio"]))
         saveFold = os.path.join(rootpath, recdata["name"])
         savepath = os.path.join(rootpath, recdata["name"], coreconf.paths["recepteursp_filename"])
-        if "power_statio" in recdata:
+        if "power_insta" in recdata:
             gabe_out = ls.Gabe_rw(2)
             stepcol = ls.stringarray()
-            if len(recdata["power_statio"]) > 0:
-                for step_id in range(len(recdata["power_statio"][0])):
+            if len(recdata["power_insta"]) > 0:
+                for step_id in range(len(recdata["power_insta"][0])):
                     stepcol.append("%.1f ms" % (float(coreconf.time_step * step_id * 1000)))
                 gabe_out.AppendStrCol(stepcol, "SPL")
                 # For each frequency
@@ -47,7 +46,7 @@ def SauveRecepteurPonctResults(coreconf, encoding=sys.getfilesystemencoding()):
                 for idFreq, freq in enumerate(
                         [100, 125, 160, 200, 315, 400, 500, 630, 800, 1000, 2000, 3150, 4000, 5000]):
                     splcol = ls.floatarray()
-                    for spl in recdata["power_statio"][idFreq]:
+                    for spl in recdata["power_insta"][idFreq]:
                         splcol.append(float(spl))
                     gabe_out.AppendFloatCol(splcol, "%i Hz" % freq)
                 MakeFolderIfNeeded(saveFold)

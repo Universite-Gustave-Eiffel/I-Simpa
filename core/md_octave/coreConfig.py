@@ -61,29 +61,34 @@ class coreConfig(object):
         ## A list, contains the frequencies values in Hz.
         self.freqlst=[]
         ## A dictionnary that return the frequency index(value) from the frequency value in hertz(key)
-        self.freqlstassoc={}
+        self.freqlstassoc = {}
         ## A list, only the frequency user selected, contains the coreConfig.freqlst list index.
-        self.freqid_docalclst=[]
+        self.freqid_docalclst = []
         ## Fittings data. A dictionnary with fittings Xml id in key and fitting Xml node in values.
-        self.fittings={}
+        self.fittings = {}
         ## A list that contain the m parameter values. Atmospheric absorption computed from temperature, air pressure etc..
-        self.abs_atmo=[]
-        self.tr=libsimpa.vec3() #translation of model between python and fortran code
-        simunode=self.rootnode["simulation"]
-        condition_atmospherique_node=self.rootnode["condition_atmospherique"]
-        self.paths["workingdirectory"]=self.rootnode.getproperty("workingdirectory")
-        self.paths["modelName"]=simunode.getproperty("modelName")
-        self.paths["tetrameshFileName"]=simunode.getproperty("tetrameshFileName")
-        self.paths["recepteurss_directory"]=simunode.getproperty("recepteurss_directory")
-        self.paths["recepteurss_filename"]=simunode.getproperty("recepteurss_filename")
-        self.paths["recepteursp_directory"]=simunode.getproperty("receiversp_directory")
-        self.paths["recepteursp_filename"]=simunode.getproperty("receiversp_filename")
-        self.const["cel"]=libsimpa.CCalculsGenerauxThermodynamique.c_son(condition_atmospherique_node.getpropertyfloat("temperature")+273.15)
-        self.const["temperature_celsius"]=condition_atmospherique_node.getpropertyfloat("temperature")
-        self.const["temperature_kelvin"]=condition_atmospherique_node.getpropertyfloat("temperature")+273.15
-        self.const["humidite"]=condition_atmospherique_node.getpropertyfloat("humidite")
-        self.const["frequencies"] = [100, 125, 160, 200, 250, 320, 400, 500, 640, 800, 1000, 1250, 1600, 2000, 2500, 3200, 4000, 5000]
-        self.const["pression"]=condition_atmospherique_node.getpropertyfloat("pression")
+        self.abs_atmo = []
+        self.tr = libsimpa.vec3()  # translation of model between python and fortran code
+        simunode = self.rootnode["simulation"]
+        condition_atmospherique_node = self.rootnode["condition_atmospherique"]
+        self.paths["workingdirectory"] = self.rootnode.getproperty("workingdirectory")
+        self.paths["modelName"] = simunode.getproperty("modelName")
+        self.paths["tetrameshFileName"] = simunode.getproperty("tetrameshFileName")
+        self.paths["recepteurss_directory"] = simunode.getproperty("recepteurss_directory")
+        self.paths["recepteurss_filename"] = simunode.getproperty("recepteurss_filename")
+        self.paths["recepteursp_directory"] = simunode.getproperty("receiversp_directory")
+        self.paths["recepteursp_filename"] = simunode.getproperty("receiversp_filename")
+        self.const["cel"] = libsimpa.CCalculsGenerauxThermodynamique.c_son(
+            condition_atmospherique_node.getpropertyfloat("temperature") + 273.15)
+        self.const["temperature_celsius"] = condition_atmospherique_node.getpropertyfloat("temperature")
+        self.const["temperature_kelvin"] = condition_atmospherique_node.getpropertyfloat("temperature") + 273.15
+        self.const["humidite"] = condition_atmospherique_node.getpropertyfloat("humidite")
+        self.const["frequencies"] = [100, 125, 160, 200, 250, 320, 400, 500, 640, 800, 1000, 1250, 1600, 2000, 2500,
+                                     3200, 4000, 5000]
+        self.const["allfrequencies"] = [50, 63, 80, 100, 125, 160, 200, 250, 315, 400, 500, 630, 800, 1000, 1250, 1600, 2000, 2500, 3150, 4000,
+         5000, 6300, 8000, 10000, 12500, 16000, 20000]
+        self.const["pression"] = condition_atmospherique_node.getpropertyfloat("pression")
+        self.const["with_direct_sound"] = bool(int(simunode.getproperty("with_direct_sound", "1")))
         # Load surface receiver
         for recsurf in self.rootnode["recepteurss"].lstnodesenum("recepteur_surfacique_coupe"):
             self.recepteurssurf[int(recsurf.getproperty("id"))]={ "name": recsurf.getproperty("name"), "a" : vec3(float(recsurf.getpropertyfloat("ax")),float(recsurf.getpropertyfloat("ay")),float(recsurf.getpropertyfloat("az"))), "b" :vec3(float(recsurf.getpropertyfloat("bx")),float(recsurf.getpropertyfloat("by")),float(recsurf.getpropertyfloat("bz"))) , "c" : vec3(float(recsurf.getpropertyfloat("cx")),float(recsurf.getpropertyfloat("cy")),float(recsurf.getpropertyfloat("cz"))), "resolution" : recsurf.getpropertyfloat("resolution") }
