@@ -354,6 +354,13 @@ def process_output_files(outfolder, coreconf, import_data, resultsModificationLa
                         steps = GetNumStepBySource(to_vec3(receiver), coreconf)
                         # If the receiver belongs to a surface receiver add the value into it
                         if receiver.isSurfReceiver:
+                            # Look for sound source
+                            if coreconf.const["with_direct_sound"]:
+                                for source_id in steps.keys():
+                                    if source_id in resultsModificationLayers and receiver.idrs in resultsModificationLayers[source_id].recsurf and len(resultsModificationLayers[source_id].recsurf[receiver.idrs][current_frequency_id]) > receiver.faceid:
+                                        power = resultsModificationLayers[source_id].recsurf[receiver.idrs][current_frequency_id][receiver.faceid]
+                                        if power > 0:
+                                            interpolated_value[steps[source_id]] += power / (rhoco2 * 2.5e-3)
                             coreconf.recsurf[receiver.idrs].face_power[receiver.faceid].append(
                                 interpolated_value * rhoco2 * 2.5e-3)
                         else:

@@ -26,9 +26,18 @@ class SoundLevelLayer(object):
                     self.recp[int(rp[0])] = rp[1:]
             # Chargement des récepteurs de surfaces
             for idrecsurf in coreconf.recepteurssurf.keys():
+                # If surface receiver
                 filerecsurf = othercorepath + ("rs%i.gabe" % (idrecsurf))
-                if os.path.exists(filerecsurf) and reader.Load(filerecsurf):
+                if os.path.exists(filerecsurf) and reader.Load(filerecsurf.encode("utf-8")):
                     recsurf_values = []
                     for idcol in range(0, len(reader)):
                         recsurf_values.append(list(reader.ReadColFloat(idcol)))
                     self.recsurf[idrecsurf] = recsurf_values
+                # If cut receiver
+                filerecsurf = othercorepath + ("rscut%i.gabe" % (idrecsurf))
+                if os.path.exists(filerecsurf) and reader.Load(filerecsurf.encode("utf-8")):
+                    recsurf_values = []
+                    for idcol in range(0, len(reader)):
+                        recsurf_values.append(list(reader.ReadColFloat(idcol)))
+                    self.recsurf[idrecsurf] = recsurf_values
+
