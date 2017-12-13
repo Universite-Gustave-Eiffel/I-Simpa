@@ -1,45 +1,55 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%       SOLUTION INSTATIONNAIRE PARTANT DU REGIME ETABLI -
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     Tableau des Alpha de chaque face en condition limite de 100Hz � 5kHz
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+## Copyright (C) 2017 Christian Prax
+## Institut PPRIME, CNRS - Universite de Poitiers  ENSMA, UPR 3346
+## Ecole Nationale Superieure d'ingenieurs de Poitiers, ENSIP
+##
+## This file is part of MD (Room Acoustics Diffusion Model).
+##
+## MD is free software; you can redistribute it and/or
+## modify it under the terms of the GNU General Public
+## License as published by the Free Software Foundation;
+## either version 3 of the License, or (at your option) any
+## later version.
+##
+## MD is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied
+## warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+## PURPOSE.  See the GNU General Public License for more
+## details.
+##
+## You should have received a copy of the GNU General Public
+## License along with Octave; see the file COPYING.  If not,
+## see <http://www.gnu.org/licenses/>.
+##
+## Author: Christian Prax <Christian.prax@univ-poitiers.fr>
+## Keywords: Room acoustics, diffusion model
+## Adapted-By: Ifsttar <I-Simpa@ifsttar.fr>
 
-for iB=1:NBLOCKS
+## CALCULATION OF THE TIME-VARYING SOLUTION STARTING FROM THE STEADY STATE
 
-Aire_Abs_eq=  EquivAbsAreaBlock{iB};
-%alphamoy=Aire_Abs_eq/Surf;% Coeff moyen SABINE
-TR60{iB}=0.16*VOLUME(iB)./Aire_Abs_eq;% Tableau des TR de 100Hz-5kHz selon SABINE
-%TR60E=0.16*VOLUME./(-Surf*log(1-alphamoy));% Tableau des TR selon  EYRING
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-end
- dt=0.01;% Pas de temps
- 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 
-itmax=round(2*max(TR60{1})/3/dt);% Nombre d'iterations 
-%itmax=5 *itmax;
-%[MATinsta]= integVC_lin(x,y,z,nn,nbel,el);% integration lineaire
-[MATinsta]= integVC_cst(V_VC);% integration const
+#for iB=1:NBLOCKS
+#  Aire_Abs_eq=  EquivAbsAreaBlock{iB};
+#  TR60{iB}=0.16*VOLUME(iB)./Aire_Abs_eq; # Estimation of the reverberation time RT60 from Sabine's formula
+#end
+
+itmax=round(duration/dt); # Number of iterations
+[MATinsta]= integVC_cst(V_VC); # Integration constant
 %========================================================================================================================================================
-oct3rd= [100, 125, 160, 200, 250, 320, 400, 500, 640, 800, 1000, 1250, 1600, 2000, 2500, 3200, 4000, 5000];
 NomFichier=strcat(domaine,'_WInstaFields');  
+
 tic 
+## LOOP ON FREQUENCY BANDS
 for  N_Toct=1:NOct;
 
-[wi_saved]= Euler_implicite(w{N_Toct},mat_Toct100Hz_5k{N_Toct},MATinsta,itmax(1),dt);
+  # Solve diffusion equation
+  [wi_saved]= Euler_implicite(w{N_Toct},mat_Toct{N_Toct},MATinsta,itmax(1),dt,tol,maxint);
 
-%[wi_saved]= Euler_explicite(w{N_Toct},mat_Toct100Hz_5k{N_Toct},MATinsta,itmax(1),dt/500);
-%affichepatch
+  # Write results in HDF5 files
+  ChpsInsta=strcat(NomFichier,int2str(TOB(BdOct1+N_Toct-1)));   
+  ChpsInsta2=strcat(ChpsInsta,'.hdf5');
+  xx.a=dt;
+  xx.b=wi_saved;
+  save( '-float-hdf5', ChpsInsta2, 'xx')
 
-% Ecriture des r�sultats par bande de 1/3 octave
-
-ChpsInsta=strcat(NomFichier,int2str(oct3rd(N_Toct)));   
-ChpsInsta2=strcat(ChpsInsta,'.hdf5');
- xx.a=dt;
- xx.b=wi_saved;
- save( '-float-hdf5', ChpsInsta2, 'xx')
- end
-%========================================================================================================================================================
+end
 toc
-%'=========== FIN INSTA========='
-%pastemporel_sauvegarde=dt;
+

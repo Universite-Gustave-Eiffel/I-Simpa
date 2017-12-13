@@ -1,39 +1,55 @@
+## Copyright (C) 2017 Christian Prax
+## Institut PPRIME, CNRS - Universite de Poitiers  ENSMA, UPR 3346
+## Ecole Nationale Superieure d'ingenieurs de Poitiers, ENSIP
+##
+## This file is part of MD (Room Acoustics Diffusion Model).
+##
+## MD is free software; you can redistribute it and/or
+## modify it under the terms of the GNU General Public
+## License as published by the Free Software Foundation;
+## either version 3 of the License, or (at your option) any
+## later version.
+##
+## MD is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied
+## warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+## PURPOSE.  See the GNU General Public License for more
+## details.
+##
+## You should have received a copy of the GNU General Public
+## License along with Octave; see the file COPYING.  If not,
+## see <http://www.gnu.org/licenses/>.
+##
+## Author: Christian Prax <Christian.prax@univ-poitiers.fr>
+## Keywords: Room acoustics, diffusion model
+## Adapted-By: Ifsttar <I-Simpa@ifsttar.fr>
 
-function [wi_saved]= Euler_implicite(wi,mat,MATinsta,itmax,dt)
-  % wi est la solution du REGIME ETABLI  
+function [wi_saved]= Euler_implicite(wi,mat,MATinsta,itmax,dt,tol,maxint)
+# usage: [wi_saved]= Euler_implicite(wi,mat,MATinsta,itmax,dt,tol,maxint)
+# Solve the diffusion equation using the Euleur implicit method
+#
+# In:
+#	- wi : solution of the steady state
+#	- mat :
+#	- MATinsta :
+#	- itmax : number of time step iterations
+#	- dt : timestep (s)
+#	- tol : tolerance of the method (bicgstab function)
+#	- maxint : maximum number of iterations (bicgstab function)
+#
+# Out:
+#	- wi_saved : sound energy decay afetr the steady state
   
- 
-mat2=dt*mat+ MATinsta;%Euler Implicite 1
-%mat2=dt/2*mat+ MATinsta;%Cranck-Nicholson 1
-%mat3=-dt/2*mat+ MATinsta;%Cranck-Nicholson 1
+  mat2=dt*mat+ MATinsta; # Euler Implicite 1
+  wi_saved=zeros(max(size(wi)),itmax+1 );
+   
+  wi_saved(:,1)=wi;
+  [L,U] = ilu(mat2,struct('type','ilutp','droptol',tol));
 
-%wmic=zeros(itmax,1);% Mesure temporelle en 1 Pt de Mesure
-%ipmic =200;% Indice du Pt de Mesure (au hazard!!!)
-%ind=1:nn;distance_recept=rayonS2*5;
-%ind=ind(dist2S>distance_recept);
-%ind=ind(z(ind)>1.5);ind=ind(x(ind)<8);ind=ind(y(ind)<8);ind=ind(x(ind)>-8);
-%ind=ind(y(ind)>-8);
-%ipmic =ind(1);
-%
-%Coord_Pt_de_Mesure=[x(ipmic) y(ipmic) z(ipmic)]% Position du Pt de Mesure
-%wmic(1)=wi(ipmic);
-
- 
-wi_saved=zeros(max(size(wi)),itmax+1 );
- 
-wi_saved(:,1)=wi;
- [L,U] = ilu(mat2,struct('type','ilutp','droptol',1e-6));
-for it=2:itmax+1
-     RHS=MATinsta*wi;%Euler Implicite 2
-    %    RHS=mat3*wi;%Cranck-Nicholson 2
-  % wi=mat2\RHS;
-%wi= gmres(mat2,RHS,1e-8,3000,L,U,wi);
-  %wi= cgs(mat2,RHS,1e-6,200);
-   [wi,flag]=bicgstab (mat2,RHS,1e-6,200,L,U,wi);
-  %  wmic(it+1)=wi(ipmic);
-wi_saved(:,it)=wi;
-end
-
-
+  for it=2:itmax+1
+    RHS=MATinsta*wi; # Euler Implicite 2
+    [wi,flag]=bicgstab (mat2,RHS,tol,maxint,L,U,wi);
+    wi_saved(:,it)=wi;
+  end
 
 end

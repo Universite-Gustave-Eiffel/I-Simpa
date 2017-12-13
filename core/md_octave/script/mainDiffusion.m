@@ -1,182 +1,225 @@
-%***********************************************************
-%    Christian.prax@univ-poitiers.fr
-%Institut PPRIME, CNRS - Universite de Poitiers  ENSMA, UPR 3346
-%Ecole Nationale Superieure d'ingenieurs de Poitiers, ENSIP
-%   -  NOVEMBRE 2017 -
-%************************************************************
-clc; clear all; close all% clf;
-% LECTURE MAILLAGE/ CONNECTIVITES et coordonnees des noeuds
- domaine='scene';% NOM DU FICHIER DE Maillage 
-el = load(strcat(domaine,'_elements.txt'));
-nbre_salles=numel(unique(el(:,5)))
-NBLOCKS=nbre_salles;% Nombre de blocs du maillage
-idBloc=unique(el(:,5));% Identifiant des Blocs
-%  DOF_Sig <--Table des signatures pour les DOF
-% exemple NBLOCKS= 3, contient 1 0 1 pour un noeud associé à salle 1 et salle 3
- DOF_Sig=1:NBLOCKS; DOF_Sig=DOF_Sig*0;
-ndf=[];
- for i=1:NBLOCKS
-         Tet{i}=el(el(:,5)==idBloc(i),:);% Les TETRA par Salle i
-        pts{i}=unique(Tet{i}(:,1:4));
-         NodeDOFo=zeros(size(pts{i},1),size( DOF_Sig,2)+1);
-         NodeDOFo(:,1)=pts{i};NodeDOFo(:,i+1)=1;
-         Node_DOF_Sig{i}=NodeDOFo;
-         nnB(i)=size( pts{i}, 1);
- ndf=[ndf ;Node_DOF_Sig{i}];
+## Copyright (C) 2017 Christian Prax
+## Institut PPRIME, CNRS - Universite de Poitiers  ENSMA, UPR 3346
+## Ecole Nationale Superieure d'ingenieurs de Poitiers, ENSIP
+##
+## This file is part of MD (Room Acoustics Diffusion Model).
+##
+## MD is free software; you can redistribute it and/or
+## modify it under the terms of the GNU General Public
+## License as published by the Free Software Foundation;
+## either version 3 of the License, or (at your option) any
+## later version.
+##
+## MD is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied
+## warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+## PURPOSE.  See the GNU General Public License for more
+## details.
+##
+## You should have received a copy of the GNU General Public
+## License along with Octave; see the file COPYING.  If not,
+## see <http://www.gnu.org/licenses/>.
+##
+## Author: Christian Prax <Christian.prax@univ-poitiers.fr>
+## Keywords: Room acoustics, diffusion model
+## Adapted-By: Ifsttar <I-Simpa@ifsttar.fr>
+
+## Initialization
+clc;
+clear all;
+close all;
+
+## LOAD PARAMETERS
+Input_parameters;
+
+## CALCULATE ADDITIONNAL PARAMETERS FROM LOADED PARAMETERS
+# Frequency bands
+Frequency=TOB(BdOct1:BdOctend);
+# Number of selected frequency bands
+NOct=size(BdOct1:BdOctend,2);
+# Atmospheric absorption
+[m,c0]=Coef_Att_Atmos(Frequency,Humidity,Pressure,273.15+Temperature);
+if atmos_absorption_calculation==0
+	# No amtospheric absorption coefficient
+	mc=zeros(1,NOct);
+	else
+	# Use atmospheric absorption coefficient
+	mc=m*c0; 
 end
 
- % - NodeDOFs{i}: ID noeud du Volume i, la signature des degres de liberté
+## READING MESHING AND NODES
+display('Read meshes and nodes')
+domaine='scene'; # Meshing file name
+el = load(strcat(domaine,'_elements.txt'));
+nbre_salles=numel(unique(el(:,5))); # Number of volumes (i.e. rooms)
+NBLOCKS=nbre_salles; # Number of blocks of the meshing
+idBloc=unique(el(:,5)); # Block identification
+disp('Number of volumes '), disp(nbre_salles)
+
+## TABLE OF DOF SIGNATURES
+# DOF_Sig <--Table des signatures pour les DOF
+# Example NBLOCKS= 3, include 1 0 1 for a node associate to the volume 1 et volume 3
+display('Create table of signatures')
+DOF_Sig=1:NBLOCKS;
+DOF_Sig=DOF_Sig*0;
+ndf=[];
+for i=1:NBLOCKS
+  Tet{i}=el(el(:,5)==idBloc(i),:);% Meshs for the volume i
+  pts{i}=unique(Tet{i}(:,1:4));
+  NodeDOFo=zeros(size(pts{i},1),size( DOF_Sig,2)+1);
+  NodeDOFo(:,1)=pts{i};NodeDOFo(:,i+1)=1;
+  Node_DOF_Sig{i}=NodeDOFo;
+  nnB(i)=size( pts{i}, 1);
+  ndf=[ndf ;Node_DOF_Sig{i}];
+end
+
+# NodeDOFs{i}: ID Node of the Volume i, the signature of the DOL
 NDOF=size(ndf,1);
-[~,I] = sort(ndf(:,1)); sortedndf=ndf(I,:); clear I; 
-%%===================================================================================
+[~,I] = sort(ndf(:,1));
+sortedndf=ndf(I,:);
+clear I; 
 XYZ= load(strcat(domaine,'_nodes.txt'));
-%========================================================
-nn=size(XYZ,1);% nombre de noeuds (différent du nombre de Degre Of Freedom)
-NDOF=size(ndf,1)
+nn=size(XYZ,1); # Number of nodes (that is different of the nimber of DOF)
+NDOF=size(ndf,1);
+disp('Number of nodes: '), disp(NDOF)
 NFS=zeros(nn,NBLOCKS+1);% NFS= NODE FREEDOM SIGNATURE
- for ij=1:nn
+for ij=1:nn
   [irow,IL,~]=find(sortedndf(:,1)==ij);
-      cs=sum (sortedndf(irow,2:end),1);
-      NFS(ij,1:NBLOCKS+1)=[ ij  cs];% NFS= NODE FREEDOM SIGNATURE: exple 117 1 0 1
-  end
- %=============================================================================================
-% N_F:Tableau de correspondance indiceNoeud vs indice DOF
- %=============================================================================================
+  cs=sum (sortedndf(irow,2:end),1);
+  NFS(ij,1:NBLOCKS+1)=[ ij  cs];% NFS= NODE FREEDOM SIGNATURE: example 117 1 0 1
+end
+
+## TABLE OF CONNECTION BETWEEN THE NODE INDEX and the DOF index
 for ic=1:NBLOCKS
-       [lig, col] = find (sortedndf(:,ic+1)); 
-       N_F{ic}=[sortedndf(lig,1) lig];% exple N_F{1} correspondance Noeud DOF salle 1
- end
- %=============================================================================================
- %  Tet_Dof{i} définis sur les degrés de liberté
-  for i=1:NBLOCKS
+  [lig, col] = find (sortedndf(:,ic+1)); 
+  N_F{ic}=[sortedndf(lig,1) lig]; # Example N_F{1} corresponds to the DOF node in Volume 1
+end
+
+##  Tet_Dof{i} définis sur les degrés de liberté
+for i=1:NBLOCKS
   Tet_Dof{i}= changem(Tet{i}(:,1:4),N_F{i}(:,2), N_F{i}(:,1));
   Tet_Dof{i}(:,5)=Tet{i}(:,5);
-  end
-%===================================================================================
-% COORDONNES des noeuds et des degrés de liberté chaque DOF
-x=XYZ(:,1);y=XYZ(:,2);z=XYZ(:,3);% Coordonnées de chaque noeud
-xdf=x(sortedndf(:,1));ydf=y(sortedndf(:,1));zdf=z(sortedndf(:,1));% Coordonnées de chaque DOF
+end
+
+## NODES AND DOF COORDINATES
+x=XYZ(:,1);y=XYZ(:,2);z=XYZ(:,3); # Coordinates of each node
+xdf=x(sortedndf(:,1));ydf=y(sortedndf(:,1));zdf=z(sortedndf(:,1)); # Coordinates of each DOF
 XYZ2=[xdf, ydf, zdf];
-%========================================================
- %nbel=size(Tet,1);% nombre d'elements Tetraedres
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%             Lecture des FACES FRONTIERES des Tetraedres
+
+## READING MESHES ON BOUNDARIES
+display('Identifying boundaries')
 el2Dtypd= load(strcat(domaine,'_faces.txt'));
-nel2D0=size(el2Dtypd,1)
+nel2D0=size(el2Dtypd,1);
 [FT,r]=sort(el2Dtypd(:,1:3),2);      
-[FTu,l]=unique(FT,'rows' ); %size(FT),size(FTu)
+[FTu,l]=unique(FT,'rows' );
 el2Dtyp=el2Dtypd(l,:);
-nel2Dt=size(el2Dtyp,1)
+nel2Dt=size(el2Dtyp,1);
 duplicate_l = setdiff(1:nel2D0, l);
-%==============================
-% Les triangles en transmission 
-%==============================
+
+## IDENTIFYING MESHES WITH TRANSMISSION
 el2D_Trsm=el2Dtypd(duplicate_l,:);
-%affiche_triangle(x,y,z, el2D_Trsm,'xb-')
-%==============================
-el2D=el2Dtyp(:,1:3);%ELEMENTS TRIANGULAIRES UNIQUEMENT LES CL
-n_materiau=el2Dtyp(:,4);% MATERIAU
-nel2D=size(el2D,1)% NOMBRE DE TRIANGLES EN CONDITION LIMITE
-%=====================================================================================
-  %RECHERCHE DES FACES FRONTIERES de chaque BLOCKS
-%=====================================================================================
-[sortedel2D,IS]= sort(el2D,2);% Mise dans l'ordre sur chaque ligne
+
+## INFORMATION ON MESHS ON BOUNDARIES
+el2D=el2Dtyp(:,1:3); # Meshes onboundaries
+n_materiau=el2Dtyp(:,4); # Identification of boundary material
+nel2D=size(el2D,1); # Number of meshes on boundaries
+
+## SEARCH BONDARY FACES OF EACH BLOCK
+[sortedel2D,IS]= sort(el2D,2); # Sort on each line
 nel2D=zeros(NBLOCKS,1);  Surf=zeros(NBLOCKS,1);
 VOLUME=zeros(NBLOCKS,1);lambda=zeros(NBLOCKS,1);
 for i=1:NBLOCKS
-   [~, sortedel2di] = boundary_faces(Tet{i});% Elements Triangulaires SALLE i
- el2di{i}= el2Dtyp(ismember(sortedel2D,sortedel2di,'rows'),:);
+  [~, sortedel2di] = boundary_faces(Tet{i}); # Meshes of Volume i
+  el2di{i}= el2Dtyp(ismember(sortedel2D,sortedel2di,'rows'),:);
 end  
 
-%===========        FIN RECHERCHE DES FACES FRONTIERES, el2di{i}                         =========
-%========================================================================================
-%
+## ????
 V_VC=zeros(sum(nnB),1);
- for i=1:NBLOCKS
-nel2D(i)=max(size( el2di{i} ));% NOMBRE DE TRIANGLES EN CONDITION LIMITE
-[Surf(i),AireTr{i}]= Surfaces_Salle(x,y,z,nel2D(i),el2di{i}) ;% Surface des parois+de chaque elt
-[VOLUME(i)]= VolumeSalle(x,y,z,size( Tet{i},1), Tet{i}) ;% VOLUME de la salle en m3
-[V_VCi{i}]=VolumeVCDOF(x,y,z,sum(nnB),size(Tet{i},1),Tet{i}, Tet_Dof{i});% Tableau des Volumes des Volumes de Controle 
-V_VC=V_VCi{i}+V_VC;
+for i=1:NBLOCKS
+  nel2D(i)=max(size( el2di{i} ));# Number of meshes on boundaries
+  [Surf(i),AireTr{i}]= Surfaces_Salle(x,y,z,nel2D(i),el2di{i}) ; #% Surface des parois+de chaque elt
+  [VOLUME(i)]= VolumeSalle(x,y,z,size( Tet{i},1), Tet{i}) ; # Size of volume i (m3)
+  [V_VCi{i}]=VolumeVCDOF(x,y,z,sum(nnB),size(Tet{i},1),Tet{i}, Tet_Dof{i}); % Table of the volues of control
+  V_VC=V_VCi{i}+V_VC;
 end
-%clear V_VCi
-%===================================================================================
-%                   PARAMETRES DE LA THEORIE DE DIFFUSION ACOUSTIQUE
-%===================================================================================
-global c0
-c0=342;% sound velocity
-lambda=4*VOLUME./Surf ;%Free Mean Pass (LIBRE PARCOURS MOYEN)
-CoeffDiff=lambda*c0/3;%  Diffusion coefficient
-m=1e-3;        mc=m*c0;%Atmospheric  attenuation
-mc=0;
-%===================================================================================
-%===================================================================================
-%%                                 GLOBAL MATRIX ASSEMBLAGE 
-%===================================================================================
-RHS=zeros(NDOF,1);% Memory allocation
- %Tetra Assemblage of Global mat for diffusion operator
-%[mat]=laplacienblocks(x,y,z,Tet,Tet_Dof,NBLOCKS,NDOF,CoeffDiff);
- [mat]=laplacienblocks2(xdf,ydf,zdf,Tet_Dof,NBLOCKS,NDOF,CoeffDiff);
-mat=-mat+mc*diag(V_VC);
-%===================================================================================
-%toc
-BdOct1=5;      % 100Hz
-BdOctend=23; % 5kHz
-NOct=size(BdOct1:BdOctend,2)-1;
-%%%%%%%%%%%%%%%%%%%%%ù%%%%%%%
- for N_Toct=1:NOct;
-                            mat_Toct100Hz_5k{N_Toct}=mat;
- end
-%===================================================================================
-% <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   TRANSMISSION
+
+## PARAMETERS OF THE ROOM ACOUSTICS DIFFUSION MODEL
+lambda=4*VOLUME./Surf; # Mean Free path (m)
+CoeffDiff=lambda*c0/3; # Diffusion coefficient TODO: Fix the diffusion coefficient value for mixed surface reflection
+
+## GLOBAL MATRIX ASSEMBLAGE
+display('Global matrix assemblage')
+RHS=zeros(NDOF,1); # Memory allocation
+# Tetra Assemblage of Global mat for diffusion operator
+[mat]=laplacienblocks2(xdf,ydf,zdf,Tet_Dof,NBLOCKS,NDOF,CoeffDiff);
+#mat=-mat+mc*diag(V_VC);
+
+##
+for N_Toct=1:NOct;
+  mat_Toct{N_Toct}=-mat+mc(N_Toct)*diag(V_VC);
+end
+
+## ACOUSTIC TRANSMISSION
 if NBLOCKS>1
   TransmissionConstructionMatrix;
 end
- %===================================================================================
-% <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   ABSORPTION
 
-% [mat_Toct100Hz_5k]=...
-% BCMatrix(NBLOCKS,el2di,el2di_Dof,mat_Toct100Hz_5k,abs_prop,x,y,z,NOct)  ;
+## ACOUSTIC ABSORPTION
 AbsorptionConstructionMatrix;
- %toc
-%===================================================================================
-% <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   SOUND SOURCE
- % Source d'energie acoustique, second membre e.d.p.
-localiseSource
-Volumic_Power_Srce=Srce_sonore(1,BdOct1:BdOctend)/VolSource;
-%========================================================================================================================================================
-%   ><<<<<<<<<<<<<<<<<<<         PDE system resolution 
-tic                                                                                           
-for  N_Toct=1:NOct;
-RHS(ind)=Volumic_Power_Srce(1,N_Toct)*V_VC(ind);% Puissance sonre sur le tiers d'octave N_Toct
-w{N_Toct}=mat_Toct100Hz_5k{N_Toct}\RHS;
-%w{N_Toct}= cgs(mat_Toct100Hz_5k{N_Toct},RHS,1e-6,200);
-%   [L,U] = ilu(mat_Toct100Hz_5k{N_Toct},struct('type','ilutp','droptol',1e-6));
-%   [w{N_Toct},flag]=bicgstab (mat_Toct100Hz_5k{N_Toct},RHS,1e-6,200,L,U);
+
+## SOUND SOURCES
+# Load sound sources information, for EDP second member
+display('Sound sources information')
+Srce_sonore=load(strcat(domaine,'_sources.txt'));
+[Ns,Ls]=size(Srce_sonore);
+
+for s=1:Ns
+
+  % Source positions
+  xs=Srce_sonore(s,1);
+  ys=Srce_sonore(s,2);
+  zs=Srce_sonore(s,3);
+
+  dist2S=(xdf-xs).^2+(ydf-ys).^2+(zdf-zs).^2; % Distance from source to DOF
+  rayonS2=0.15^2;
+  VolSource(s)=-10;
+  
+  while VolSource(s)<=0
+	ind=1:NDOF;rayonS2=rayonS2*1.25; % Radius incrementation. TODO: should be justify?
+	ind=ind(dist2S<rayonS2); % Search all DOF inside the source radius
+	VolSource(s)=sum(V_VC(ind)); % Volume of the 'real' source (sum of the volum of each dol(ind))
+  end
+
+  Srce_sonore(s,3+(BdOct1:BdOctend))=1e-12*10.^(Srce_sonore(s,3+(BdOct1:BdOctend))/10); % Octave band sound power
+  Volumic_Power_Srce=Srce_sonore(s,3+(BdOct1:BdOctend))/VolSource(s); % Volumic normalisation
+  
+  # Display sound source information
+  disp ("Sound source N°: "), disp (s)
+  disp ("Volume source: "), disp (VolSource(s))
+  disp ('Location: '), disp(ind)
+  #disp ('Volumic power: '), disp(Volumic_Power_Srce)
+  
+  for  N_Toct=1:NOct;
+    RHS(ind)=Volumic_Power_Srce(N_Toct)*V_VC(ind); % Octave band sound power
+    if s>1
+      w{N_Toct}=w{N_Toct}+mat_Toct{N_Toct}\RHS; % Energy incrementation if multi-sources
+      else
+      w{N_Toct}=mat_Toct{N_Toct}\RHS;
+    end
+    
+  end
+  
 end
-toc
-%========================================================================================================================================================
-%========================================================================================================================================================
-%   ><<<<<<<<<<<<<<<<<<<         AFFICHAGE
-%w=wa{1};
-waf=w{1};rhoco2=1.2*c0^2;    LpdB=10*log10(waf*rhoco2/(2e-5)^2);% Pour affichage
-%affichepatchBlocks
-%========================================================================================================================================================
-%   ><<<<<<<<<<<<<<<<<<<         CALCUL INSTA
-'CALCUL INSTA 100Hz 5kHz'
-  tic
-  Calcul_insta
-  toc
-%========================================================================================================================================================
-%   ><<<<<<<<<<<<<<<<<<<         SAUVEGARDE COORDONNES ET TETRAS
 
+## TIME VARYING STATE CALCULATION
+display('Time varying state calculation')
+Calcul_insta
 
+## SAVE COORDINATES AND MESHES
+display('Save data into HDF5 files')
 NomFichier=strcat(domaine,'_XYZ_TETRA'); 
 CoordDOF=strcat(NomFichier,'.hdf5');
 topo.XYZ=XYZ2;
 topo.TetDOF=Tet_Dof;
- save( '-hdf5', CoordDOF, 'topo')
+save( '-hdf5', CoordDOF, 'topo')
  
-
-
-
