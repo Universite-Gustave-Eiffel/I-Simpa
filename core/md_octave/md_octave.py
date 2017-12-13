@@ -162,14 +162,14 @@ def write_input_files(cbinpath, cmbinpath, materials, sources_lst, outfolder):
         return None
 
     # Write NODES file
-    with open(outfolder + "scene_nodes.txt", "w") as f:
+    with open(os.path.join(outfolder, "scene_nodes.txt"), "w") as f:
         for node in mesh_import.nodes:
             f.write('{0:>15} {1:>15} {2:>15}'.format(*(node[0], node[1], node[2])) + "\n")
 
     ret["model"] = mesh_import
     ret["mesh"] = mesh_import
     # Write elements file
-    with open(outfolder + "scene_elements.txt", "w") as f:
+    with open(os.path.join(outfolder, "scene_elements.txt"), "w") as f:
         for tetra in mesh_import.tetrahedres:
             volindex = idVolumeIndex.get(tetra.idVolume)
             if volindex is None:
@@ -180,7 +180,7 @@ def write_input_files(cbinpath, cmbinpath, materials, sources_lst, outfolder):
             volindex)) + "\n")
 
     # Write tetra face file
-    with open(outfolder + "scene_faces.txt", "w") as f:
+    with open(os.path.join(outfolder,"scene_faces.txt"), "w") as f:
         for tetra in mesh_import.tetrahedres:
             process_face(tetra.getFace(0), modelImport, sharedVertices, f)
             process_face(tetra.getFace(1), modelImport, sharedVertices, f)
@@ -188,7 +188,7 @@ def write_input_files(cbinpath, cmbinpath, materials, sources_lst, outfolder):
             process_face(tetra.getFace(3), modelImport, sharedVertices, f)
 
     # Write boundary material file
-    with open(outfolder + "scene_materials_absorption.txt", "w") as f:
+    with open(os.path.join(outfolder,"scene_materials_absorption.txt"), "w") as f:
         for xmlid, mat in materials.iteritems():
             f.write('{0:>6} '.format(xmlid))
             # for each frequency band
@@ -198,7 +198,7 @@ def write_input_files(cbinpath, cmbinpath, materials, sources_lst, outfolder):
             f.write("\n")
 
     # Write boundary material transmission file
-    with open(outfolder + "scene_materials_transmission.txt", "w") as f:
+    with open(os.path.join(outfolder, "scene_materials_transmission.txt"), "w") as f:
         for xmlid, mat in materials.iteritems():
             f.write('{0:>6} '.format(xmlid))
             # for each frequency band
@@ -208,7 +208,7 @@ def write_input_files(cbinpath, cmbinpath, materials, sources_lst, outfolder):
             f.write("\n")
 
     # Write source position and power files
-    with open(outfolder + "scene_sources.txt", "w") as f:
+    with open(os.path.join(outfolder, "scene_sources.txt"), "w") as f:
         for src in sources_lst:
             f.write('{0:>15} {1:>15} {2:>15} '.format(src.pos[0], src.pos[1], src.pos[2]))
             # for each frequency band
@@ -218,7 +218,7 @@ def write_input_files(cbinpath, cmbinpath, materials, sources_lst, outfolder):
             f.write("\n")
 
     # Write shared vertices index
-    with open(outfolder + "scene_shared_vertices.txt", "w") as f:
+    with open(os.path.join(outfolder, "scene_shared_vertices.txt"), "w") as f:
         for ptindex in sharedVertices:
             f.write(str(ptindex) + "\n")
 
@@ -408,6 +408,22 @@ def GetNumStepBySource(pos, coreconf):
     return ret_tab
 
 
+def write_config_file(coreConf, outputdir):
+    with open(os.path.join(outputdir, "Input_parameters.m"), "w") as f:
+        f.write("TOB=[50, 63, 80, 100, 125, 160, 200, 250, 320, 400, 500, 640, 800, 1000, 1250, 1600, 2000, 2500,"
+                " 3200, 4000, 5000, 6300, 8000, 10000, 12500, 16000, 20000];\n")
+        f.write("BdOct1=4;\n")
+        f.write("BdOctend=21;\n")
+        f.write("Temperature=%f;\n" % coreConf.const["temperature_celsius"])
+        f.write("Humidity=%f;\n" % coreConf.const["humidite"])
+        f.write("Pressure=%f;\n" % coreConf.const["pression"])
+        f.write("tol=%f;\n" % coreConf.const["tolerance"])
+        f.write("maxint=%d;\n" % coreConf.const["maxint"])
+        f.write("dt=%f;\n" % coreConf.const["timestep"])
+        f.write("duration=%f;\n" % coreConf.const["duration"])
+        f.write("atmos_absorption_calculation = %s;\n" % "1" if coreConf.const["do_abs_atmo"] else "0")
+
+
 def main(call_octave=True):
     # find core folder
     scriptfolder = sys.argv[0][:sys.argv[0].rfind(os.sep)] + os.sep
@@ -415,9 +431,11 @@ def main(call_octave=True):
     coreconf = cc.coreConfig(sys.argv[1])
     # Get direct field values using external computation core
     resultsModificationLayers = runTC(sys.argv[1], coreconf)
-    outputdir = coreconf.paths["workingdirectory"]
+    outputdir = os.path.join(coreconf.paths["workingdirectory"], "core")
+    if not os.path.exists(outputdir):
+        os.mkdir(outputdir)
     # Translation CBIN 3D model and 3D tetrahedra mesh into Octave input files
-    import_data = write_input_files(outputdir + coreconf.paths["modelName"], outputdir + coreconf.paths["tetrameshFileName"],
+    import_data = write_input_files(os.path.join(coreconf.paths["workingdirectory"], coreconf.paths["modelName"]), os.path.join(coreconf.paths["workingdirectory"], coreconf.paths["tetrameshFileName"]),
                       coreconf.materials, coreconf.sources_lst, outputdir)
     # Copy octave script to working dir
     matscript_folder = os.path.join(os.path.abspath(os.path.join(os.path.realpath(__file__), os.pardir)), "script")
@@ -426,13 +444,16 @@ def main(call_octave=True):
     for filep in files:
         if os.path.isfile(filep):
             shutil.copy2(filep, outputdir)
+    # Write configuration file
+    write_config_file(coreconf, outputdir)
+
     if call_octave:
         # Check if octave program are accessible in path
         octave = which("octave-cli.exe")
         if octave is None:
             print("Octave program not in system path, however input files are created", file=sys.stderr)
         else:
-            command = ["octave-cli", "--no-window-system", "--verbose", outputdir + "mainDiffusion.m"]
+            command = ["octave-cli", "--no-window-system", "--verbose", os.path.join(outputdir , "mainDiffusion.m")]
             print("Run " + " ".join(command))
             deb = time.time()
             call(command, cwd=outputdir, shell=True)

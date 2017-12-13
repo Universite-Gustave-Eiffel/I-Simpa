@@ -89,6 +89,12 @@ class coreConfig(object):
          5000, 6300, 8000, 10000, 12500, 16000, 20000]
         self.const["pression"] = condition_atmospherique_node.getpropertyfloat("pression")
         self.const["with_direct_sound"] = bool(int(simunode.getproperty("with_direct_sound", "1")))
+        self.const['timestep'] = simunode.getpropertyfloat('timestep', 0.01)
+        self.const['tolerance'] = simunode.getpropertyfloat('tolerance', 1e-6)
+        self.const['maxint'] = simunode.getpropertyint('maxint', 200)
+        self.const['duration'] = simunode.getpropertyfloat('duration', 2)
+        self.const['do_abs_atmo'] = bool(int(simunode.getproperty("do_abs_atmo", "1")))
+
         # Load surface receiver
         for recsurf in self.rootnode["recepteurss"].lstnodesenum("recepteur_surfacique_coupe"):
             self.recepteurssurf[int(recsurf.getproperty("id"))]={ "name": recsurf.getproperty("name"), "a" : vec3(float(recsurf.getpropertyfloat("ax")),float(recsurf.getpropertyfloat("ay")),float(recsurf.getpropertyfloat("az"))), "b" :vec3(float(recsurf.getpropertyfloat("bx")),float(recsurf.getpropertyfloat("by")),float(recsurf.getpropertyfloat("bz"))) , "c" : vec3(float(recsurf.getpropertyfloat("cx")),float(recsurf.getpropertyfloat("cy")),float(recsurf.getpropertyfloat("cz"))), "resolution" : recsurf.getpropertyfloat("resolution") }

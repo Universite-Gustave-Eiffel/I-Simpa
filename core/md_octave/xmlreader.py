@@ -73,12 +73,23 @@ class XmlNode(dict):
     # \~english
     # @return Return the float value of the node property. 0 with error msg if not exist
     # @param propertyname Name of the property
-    def getpropertyfloat(self,propertyname):
-        propval=self.getproperty(propertyname)
+    def getpropertyfloat(self,propertyname, default="0"):
         try:
-            return float(propval)
+            return float(self.getproperty(propertyname, str(default)))
         except ValueError:
-            raise ValueError("Not parsable " + propval)
+            raise ValueError("Not parsable " + self.getproperty(propertyname))
+
+    ##
+    # \~english
+    # @return Return the float value of the node property. 0 with error msg if not exist
+    # @param propertyname Name of the property
+    def getpropertyint(self, propertyname, default="0"):
+        try:
+            return int(self.getproperty(propertyname, str(default)))
+        except ValueError:
+            raise ValueError("Not parsable " + self.getproperty(propertyname))
+
+
     def __repr__(self):
         return "Node <%s/> with %i properties and %i childs" % (self.name,len(self._properties),len(self))
     ##

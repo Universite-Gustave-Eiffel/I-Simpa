@@ -22,6 +22,17 @@ class MD_Octave(ui.element):
             self.appendpropertybool("with_direct_sound", "Merge with direct field", True, True)
         if not self.hasproperty("tetrameshFileName"):
             ui.element(self.appendpropertytext("tetrameshFileName", "", "tetramesh.mbin", True, True)).hide()
+        if not self.hasproperty("timestep"):
+            ui.element(self.appendpropertydecimal("timestep", _("Time step (s)").encode("UTF-8"), float(0.01), False, int(4), False, True, float(0),
+                                                  float(1e-4), True))
+        if not self.hasproperty("tolerance"):
+            ui.element(self.appendpropertydecimal("tolerance", _("Tolerance"), float(1e-6), False, int(8)))
+        if not self.hasproperty("maxint"):
+            ui.element(self.appendpropertyentier("maxint", _("Maximum number of iterations"), int(200)))
+        if not self.hasproperty("duration"):
+            ui.element(self.appendpropertydecimal("duration", _("Simulation length (s)"), float(2)))
+        if not self.hasproperty("do_abs_atmo"):
+            self.appendpropertybool("do_abs_atmo", "Atmospheric calculation", True, True)
         else:
             pass  # Existing project
     def gettreelabel(self):
