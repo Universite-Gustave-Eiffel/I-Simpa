@@ -1,0 +1,86 @@
+Icônes "magnétophone" :
+Icônes "Répertoire"
+d'après une série de 221 icones de la série Glaze
+Auteur : Marco Martin
+Plus d'infos sur la série 
+http://www.notmart.org/
+http://icones.pro/pack/glaze
+Licence : LGPL  Licence GPL
+Usage commercial : Oui 
+
+Icône "pointeur" :
+d'après une série de 1000 icones de la série Farm-Fresh Web Icons
+Auteur : FatCow
+http://www.fatcow.com/free-icons/
+http://icones.pro/pack/farm-fresh-web-icons
+Licence : Creative Commons
+Usage commercial : Non
+
+Icônes "Caméra" :
+d'après une série de 27 icones de la série facebook
+Auteur : Lopagof
+http://lopagof.deviantart.com/art/facebook-ui-icons-vector-90099876
+http://icones.pro/pack/facebook
+Licence : Creative Commons
+Usage commercial : Non
+
+Icônes "Caméra" :
+d'après une série de 118 icones de la série Sleek XP: Software
+Auteur : Deleket
+http://deleket.deviantart.com/art/Sleek-XP-Software-96587748
+http://icones.pro/pack/sleek-xp-software
+Licence : Creative Commons  Creative Commons
+Usage commercial : Non
+
+Icônes "Caméra" :
+d'après une série de 1296 icones de la série Human o2
+Auteur : Oliver Scholtz (and others)
+Licence : GPL  Licence GPL
+Usage commercial : Oui
+
+Icônes "sons", "database", "fichier"
+810 icones de la série Dark Glass
+Auteur : Alessandro Rei
+http://www.kde-look.org/content/show.php/Dark-Glass+reviewed?content=67902
+http://icones.pro/pack/dark-glass
+Licence : GPL  Licence GPL
+Usage commercial : Oui 
+
+Icones "Affichage 3D", "Position", "Configuration", "Spectre"... la plupart des éléments des arbres
+d'après 506 icones de la série Crystal Project
+http://www.everaldo.com/crystal/?action=license
+http://icones.pro/pack/crystal-project
+Auteur : Everaldo Coelho 
+Licence : LGPL  Licence GPL
+Usage commercial : Oui
+
+Autres icones :
+676 icones de la série Crystal Clear (page 3/19)
+Auteur : Everaldo Coelho
+http://icones.pro/pack/crystal-clear
+http://www.kde-look.org/content/show.php/Crystal+Clear?content=25668
+Licence : LGPL  Licence GPL
+Usage commercial : Oui 
+
+Icônes "tableur","popup"
+Les 659 icones de la série Oxygen
+Auteur : Oxygen Team
+http://www.oxygen-icons.org/
+http://icones.pro/pack/oxygen
+Licence : GPL  Licence GPL
+Usage commercial : Oui 
+
+Icônes "exec", préférences utilisateurs historique
+470 icones de la série Futurosoft (page 1/14)
+Auteur : Sergio Sanchez Lopez
+http://www.kde-look.org/content/show.php?content=50667
+http://icones.pro/pack/futurosoft
+Licence : GPL  Licence GPL
+Usage commercial : Oui
+
+Icone "directivité" :
+21 icones de la série Fight club
+Auteur : Mischa McLachlan
+http://icones.pro/pack/fight-club
+Licence : libre
+Usage commercial : Oui

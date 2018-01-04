@@ -1,0 +1,1 @@
+This folder contains all derivations of I-SIMPA. Trunk corresponding to official release.

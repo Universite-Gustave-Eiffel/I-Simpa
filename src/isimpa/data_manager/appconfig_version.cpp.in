@@ -1,0 +1,12 @@
+#include "data_manager/appconfig.h"
+
+const int ApplicationConfiguration::SPPS_UI_VERSION_MAJOR=@isimpa_VERSION_MAJOR@;
+const int ApplicationConfiguration::SPPS_UI_VERSION_MINOR=@isimpa_VERSION_MINOR@;
+const int ApplicationConfiguration::SPPS_UI_VERSION_REVISION=@isimpa_VERSION_PATCH@;
+const int ApplicationConfiguration::SPPS_VERSION_MAJOR=@spps_VERSION_MAJOR@;
+const int ApplicationConfiguration::SPPS_VERSION_MINOR=@spps_VERSION_MINOR@;
+const int ApplicationConfiguration::SPPS_VERSION_REVISION=@spps_VERSION_PATCH@;
+const int ApplicationConfiguration::CTR_VERSION_MAJOR=@ctr_VERSION_MAJOR@;
+const int ApplicationConfiguration::CTR_VERSION_MINOR=@ctr_VERSION_MINOR@;
+const int ApplicationConfiguration::CTR_VERSION_REVISION=@ctr_VERSION_PATCH@;
+const wxString ApplicationConfiguration::BUILD_DATE="@BUILD_DATE@";

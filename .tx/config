@@ -1,0 +1,40 @@
+[main]
+host = https://www.transifex.com
+
+[i-simpa.i-simpa-en]
+source_file = src/isimpa/lang/internat.pot
+source_lang = en
+type = PO
+file_filter = src/isimpa/lang/<lang>/internat.po
+minimum_perc = 90
+
+[i-simpa.jobtool-toolbox]
+source_file = currentRelease/SystemScript/job_tool/internat.pot
+source_lang = en
+type = PO
+file_filter = currentRelease/SystemScript/job_tool/locale/<lang>/internat.po
+
+[i-simpa.receivertools-toolbox]
+source_file = currentRelease/SystemScript/recp_tool/internat.pot
+source_lang = en
+type = PO
+file_filter = currentRelease/SystemScript/recp_tool/locale/<lang>/internat.po
+
+[i-simpa.sourcetools-toolbox]
+source_file = currentRelease/SystemScript/source_tools/internat.pot
+source_lang = en
+type = PO
+file_filter = currentRelease/SystemScript/source_tools/locale/<lang>/internat.po
+
+[i-simpa.vertextools-toolbox]
+source_file = currentRelease/SystemScript/moveto_vertex/internat.pot
+source_lang = en
+type = PO
+file_filter = currentRelease/SystemScript/moveto_vertex/locale/<lang>/internat.po
+
+[i-simpa.preceiv_sourceTracker]
+source_file = currentRelease/SystemScript/preceiv_sourceTracker/internat.pot
+source_lang = en
+type = PO
+file_filter = currentRelease/SystemScript/preceiv_sourceTracker/locale/<lang>/internat.po
+

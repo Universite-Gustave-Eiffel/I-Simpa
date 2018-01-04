@@ -1,0 +1,3798 @@
+# English translations for PACKAGE package.
+# Copyright (C) 2017 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# PICAUT Judicael <judicael.picaut@ifsttar.fr>, 2017
+# wbinek <wojciech.binek@gmail.com>, 2017
+# wbinek <wojciech.binek@gmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: I-Simpa\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-10 08:58+0000\n"
+"PO-Revision-Date: 2017-09-23 13:15+0000\n"
+"Last-Translator: Travis Lae <travis_lae@noise-planet.org>\n"
+"Language-Team: Polish (http://www.transifex.com/LAE/i-simpa/language/pl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pl\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_gabe_gap.cpp:83
+msgid " (E*cos theta)"
+msgstr " (E*cos theta)"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_gabe_gap.cpp:84
+msgid " (E*cos^2 theta)"
+msgstr " (E*cos^2 theta)"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_gabe_recp.cpp:63
+#: src/isimpa/data_manager/tree_rapport/e_report_gabe_recps.cpp:63
+msgid " (dB)"
+msgstr " (dB)"
+
+#: src/isimpa/data_manager/projet_calculation.cpp:993
+#: src/isimpa/data_manager/tree_rapport/e_report_gabe_gap.cpp:82
+#: src/isimpa/data_manager/tree_rapport/e_report_gabe_gap.cpp:83
+#: src/isimpa/data_manager/tree_rapport/e_report_gabe_gap.cpp:84
+msgid " Hz"
+msgstr "Hz"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_gabe_gap.cpp:94
+msgid " ms"
+msgstr " ms"
+
+#: src/isimpa/3dengine/Core/Recepteurs_surfacique.cpp:266
+msgid "%"
+msgstr "%"
+
+#: src/isimpa/IHM/RecepteurSOperationDialog.cpp:46
+#: src/isimpa/IHM/WizardRemeshModel.cpp:66
+msgid "&Cancel"
+msgstr "&Anuluj"
+
+#: src/isimpa/IHM/RecepteurSOperationDialog.cpp:67
+msgid "&Finish"
+msgstr "&Koniec"
+
+#: src/isimpa/IHM/RecepteurSOperationDialog.cpp:67
+msgid "&Next >"
+msgstr "&Następny >"
+
+#: src/isimpa/IHM/customRenderer/gridcellgabefloatrenderer.cpp:81
+msgid "+Inf"
+msgstr "+Inf"
+
+#: src/isimpa/IHM/customRenderer/gridcellgabefloatrenderer.cpp:83
+msgid "-Inf"
+msgstr "-Inf"
+
+#: src/isimpa/main/i_simpa_main.cpp:294
+msgid "3D View"
+msgstr "Widok 3D"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_rendermateriau.h:52
+msgid "3D display"
+msgstr "Wyświetlanie 3D"
+
+#: src/isimpa/data_manager/projet.cpp:2352
+msgid "3D rendering"
+msgstr ""
+
+#: src/isimpa/IHM/RecepteurSOperationDialog.cpp:47
+#: src/isimpa/IHM/WizardRemeshModel.cpp:67
+msgid "< &Back"
+msgstr "< &Poprzedni"
+
+#: src/isimpa/data_manager/python_interface/pythonshell.cpp:234
+msgid ""
+"A menu manager must contain the following method: bool "
+"getmenu(eltype,elid,listmenu) "
+msgstr "Menger menu musi zawierać następującą metodę: bool getmenu(eltype,elid,listmenu) "
+
+#: src/spps/sppsNantes.cpp:323
+msgid ""
+"A sound source position is intersecting with the 3D model. Move the sound "
+"source inside the 3D model"
+msgstr ""
+
+#: src/isimpa/IHM/AboutDialog.cpp:50
+msgid "About"
+msgstr "Na temat "
+
+#: src/isimpa/main/i_simpa_main.cpp:312
+msgid "About "
+msgstr "Na temat "
+
+#: src/isimpa/IHM/AboutDialog.cpp:41
+msgid "About I-SIMPA"
+msgstr ""
+
+#: src/isimpa/data_manager/e_data_row_materiau.h:226
+msgid "Absorption"
+msgstr "Pochłanianie"
+
+#: src/isimpa/Language/additionnal_univ.h:36
+#: src/isimpa/data_manager/generic_element/e_gammeabsorption.cpp:39
+#: src/isimpa/data_manager/generic_element/e_gammeabsorption.cpp:71
+#: src/isimpa/data_manager/projet_calculation.cpp:682
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:194
+msgid "Acoustic parameters"
+msgstr "Parametry akustyczne"
+
+#: src/isimpa/data_manager/projet_calculation.cpp:545
+#: src/isimpa/data_manager/projet_calculation.cpp:877
+msgid "Acoustic parameters calculation"
+msgstr "Wyznaczanie parametrów akustycznych"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:159
+#: src/isimpa/data_manager/tree_core/e_core_sppsoctreecore.h:102
+msgid "Active calculation of atmospheric absorption"
+msgstr "Aktywne pochłanianie atmosferyczne"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:160
+#: src/isimpa/data_manager/tree_core/e_core_sppsoctreecore.h:103
+msgid "Active calculation of diffusion by fitting objects"
+msgstr "Aktywne pochłanianie przez strefy dopasowania"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:161
+#: src/isimpa/data_manager/tree_core/e_core_sppsoctreecore.h:104
+msgid "Active calculation of direct field only"
+msgstr "Aktywne obliczanie tylko dźwięku bezpośredniego "
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:56
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:126
+msgid "Active calculation of transmission"
+msgstr "Aktywna transmisja dźwięku"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_proprietes.h:58
+msgid "Active fitting zone"
+msgstr "Strefa dopasowania aktywna"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source_properties.h:52
+msgid "Active source"
+msgstr "Źródło aktywne"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_groupesurfaces.h:201
+msgid "Add a group"
+msgstr "Dodaj grupę"
+
+#: src/isimpa/data_manager/projet_undo_redo.cpp:74
+msgid "Add modifications in the change log"
+msgstr "Dodano modyfikacje do logu zmian"
+
+#: src/isimpa/IHM/RecepteurSOperationDialog.cpp:232
+msgid "Add new data file"
+msgstr "Dodaj nowy plik z danymi"
+
+#: src/isimpa/IHM/RecepteurSOperationDialog.cpp:233
+msgid "Add next data file"
+msgstr "Dodaj następny plik z danymi"
+
+#: src/isimpa/data_manager/tree_core/e_core_core_tetconf.h:98
+msgid "Additional parameters"
+msgstr "Dodatkowe parametry"
+
+#: src/isimpa/data_manager/projet_calculation.cpp:1030
+#: src/isimpa/data_manager/tree_rapport/e_report_gabe_gap.cpp:42
+msgid "Advanced acoustic parameters"
+msgstr "Zaawansowane parametry akustyczne"
+
+#: src/isimpa/data_manager/tree_core/e_core_core.h:111
+msgid "Advanced sound level"
+msgstr "Zaawansowany poziom ciśnienia akustycznego"
+
+#: src/isimpa/IHM/GabeDataGrid.cpp:534 src/isimpa/IHM/GabeDataGrid.cpp:545
+msgid "After"
+msgstr "Po"
+
+#: src/isimpa/main/i_simpa_main.cpp:244
+msgid "All"
+msgstr "Wszystkie"
+
+#: src/isimpa/data_manager/tree_core/e_core_core_bfreqselection.h:138
+msgid "All [50-20000] Hz"
+msgstr "Wszystkie  [50-20000] Hz"
+
+#: src/isimpa/data_manager/tree_core/e_core_core_bfreqselection.h:135
+msgid "All [63-16000] Hz"
+msgstr "Wszystkie [63-16000] Hz"
+
+#: src/isimpa/main/i_simpa_main.cpp:892
+msgid ""
+"All compatible files|*.3ds;*.ply;*.bin;*.poly;*.stl|3DS file "
+"(*.3ds)|*.3ds|POLY file (*.poly)|*.bin|PLY file (*.ply)|*.ply|Binary file "
+"1.00 (*.bin)|*.bin|Stererolithograpic file (*.stl)|*.stl"
+msgstr "Wszystkie formaty|*.3ds;*.ply;*.bin;*.poly;*.stl|3DS file (*.3ds)|*.3ds|POLY file (*.poly)|*.bin|PLY file (*.ply)|*.ply|Binary file 1.00 (*.bin)|*.bin|Stererolithograpic file (*.stl)|*.stl"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:411
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:464
+msgid ""
+"All image "
+"files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.pcx;*.tiff;*.xpm;*.ico;*.cur;*.ani"
+msgstr "Wszystkie typy obrazów|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.pcx;*.tiff;*.xpm;*.ico;*.cur;*.ani"
+
+#: src/isimpa/data_manager/generic_element/e_gammeabsorption.cpp:112
+#: src/isimpa/data_manager/generic_element/e_gammeabsorption.cpp:124
+msgid "Alpha"
+msgstr "α"
+
+#: src/isimpa/IHM/AboutDialog.cpp:80
+msgid "An Open Source software for 3D sound propagation modelling."
+msgstr ""
+
+#: src/isimpa/main/i_simpa_main.cpp:479
+msgid "Animation toolbar"
+msgstr "Pasek animacji"
+
+#: src/isimpa/data_manager/projet.cpp:2365
+msgid "Animations"
+msgstr ""
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:536
+msgid "Anti-aliasing"
+msgstr "Anti-aliasing"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_app_materiau.h:57
+msgid "Application"
+msgstr "Aplikacja"
+
+#: src/isimpa/main/i_simpa_main.cpp:993
+msgid "Application data directory"
+msgstr ""
+
+#: src/isimpa/main/i_simpa_main.cpp:851
+msgid "Application data folder will be changed after restarting I-Simpa"
+msgstr ""
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:271
+msgid "Apply"
+msgstr "Zastosuj"
+
+#: src/isimpa/IHM/WizardRemeshModel.cpp:142
+msgid "Approximation constraint"
+msgstr "Wskaźnik przybliżenia"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_file.cpp:355
+#, c-format
+msgid ""
+"Are you sure to delete this element forever?\n"
+"%s"
+msgstr "Czy na pewno chcesz usunąć ten element?\n%s"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_rendu_origine.h:65
+msgid "Arrow color (x)"
+msgstr "Kolor strzałki (x)"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_rendu_origine.h:66
+msgid "Arrow color (y)"
+msgstr "Kolor strzałki (y)"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_rendu_origine.h:67
+msgid "Arrow color (z)"
+msgstr "Kolor strzałki (z)"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_rendu_origine.h:63
+msgid "Arrow length"
+msgstr "Długość strzałki (z)"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_rendu_origine.h:64
+msgid "Arrow width"
+msgstr "Grubość strzałki"
+
+#: src/isimpa/IHM/loadingSceneDialog.cpp:140
+#: src/isimpa/IHM/loadingSceneDialog.cpp:144
+msgid "Association maximum distance (m)"
+msgstr "Maksymalna odległość scalania"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:176
+msgid "Atmospheric absorption"
+msgstr "Tłumienie atmosferyczne"
+
+#: src/isimpa/data_manager/tree_core/e_core_tccore.h:62
+msgid "Atmospheric absorption calculation"
+msgstr "Uwzględnij tłumienie atmosferyczne"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:130
+msgid "Atmospheric pressure (Pa)"
+msgstr "Ciśnienie atmosferyczne (Pa)"
+
+#: src/isimpa/data_manager/e_data_row_ext_bandefreq.h:75
+#: src/isimpa/data_manager/generic_element/e_property_freq.cpp:192
+msgid "Attenuation"
+msgstr "Tłumienie"
+
+#: src/isimpa/data_manager/projet.cpp:1195
+msgid "Audiences"
+msgstr "Widownie"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_userconfiguration.h:55
+msgid "Author"
+msgstr "Autor"
+
+#: src/isimpa/data_manager/e_data_entier.h:136
+#, c-format
+msgid "Authorized maximum value: %i"
+msgstr "Dozwolona maksymalna wartość: %i"
+
+#: src/isimpa/data_manager/e_data_float.h:156
+#, c-format
+msgid "Authorized maximum value: %s"
+msgstr "Dozwolona minimalna wartość: %s"
+
+#: src/isimpa/data_manager/e_data_entier.h:138
+#, c-format
+msgid "Authorized minimum value: %i."
+msgstr "Dozwolona minimalna wartość: %i"
+
+#: src/isimpa/data_manager/e_data_float.h:158
+#, c-format
+msgid "Authorized minimum value: %s"
+msgstr "Dozwolona minimalna wartość: %s"
+
+#: src/isimpa/data_manager/tree_core/e_core_core_bfreqselection.h:142
+msgid "Automatic selection"
+msgstr "Wybór automatyczny"
+
+#: src/isimpa/data_manager/generic_element/e_gammeabsorption.cpp:122
+#: src/isimpa/data_manager/projet_calculation.cpp:630
+#: src/isimpa/data_manager/projet_calculation.cpp:996
+msgid "Average"
+msgstr "Średnia"
+
+#: src/isimpa/IHM/loadingSceneDialog.cpp:114
+msgid "Average model remesh"
+msgstr "Utwórz uproszczony model"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:543
+msgid "Axis, dash size"
+msgstr "Wielkość znacznika osi"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteursp_recepteur.h:138
+msgid "Background noise"
+msgstr "Tło"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_configuration.h:67
+msgid "Backup file"
+msgstr "Plik kopii zapasowej"
+
+#: src/isimpa/IHM/GabeDataGrid.cpp:533 src/isimpa/IHM/GabeDataGrid.cpp:544
+msgid "Before"
+msgstr "Przed"
+
+#: src/isimpa/data_manager/e_data_row_materiau.h:182
+msgid ""
+"Before set a transmission value, please set an absorption higher than 0"
+msgstr "Przed ustaleniem izolacyjności ustaw pochłanianie większe od 0."
+
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:53
+msgid "Bilateral"
+msgstr "Dwustronny"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_rendu.h:55
+msgid "Borders"
+msgstr "Granice"
+
+#: src/isimpa/data_manager/projet.cpp:2982
+msgid "Build of a 3D scene.\n"
+msgstr "Budowanie modelu.\n"
+
+#: src/isimpa/data_manager/tree_core/e_core_core_bfreqselection.h:139
+msgid "Building/Road [100-5000] Hz"
+msgstr "Budynki/Drogi [100-5000] Hz"
+
+#: src/isimpa/data_manager/tree_core/e_core_core_bfreqselection.h:136
+msgid "Building/Road [125-4000] Hz"
+msgstr "Budynki/Drogi [125-4000] Hz"
+
+#: src/isimpa/IHM/AboutDialog.cpp:79
+#, c-format
+msgid "Built on %s"
+msgstr ""
+
+#: src/isimpa/data_manager/projet_calculation.cpp:338
+#, c-format
+msgid "C-%g (dB)"
+msgstr "C-%g (dB)"
+
+#: src/isimpa/data_manager/projet.cpp:945
+msgid "CATT-Acoustic file (*.txt)|*.txt|li8 Odeon file (*.li8)|*.li8"
+msgstr "CATT-Acoustic (*.txt)|*.txt|li8 Odeon file (*.li8)|*.li8"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_gabe_gap.cpp:53
+#: src/isimpa/data_manager/tree_rapport/e_report_gabe_recp.cpp:52
+#: src/isimpa/data_manager/tree_rapport/e_report_gabe_recps.cpp:52
+msgid "Calculate acoustic parameters"
+msgstr "Wyznacz parametry akustyczne"
+
+#: src/isimpa/main/i_simpa_main.cpp:368
+msgid "Calculation"
+msgstr "Obliczenia"
+
+#: src/isimpa/data_manager/projet_maillage.cpp:194
+msgid "Calculation .exe file not found."
+msgstr "Nie znaleziono pliku wykonawczego"
+
+#: src/isimpa/data_manager/tree_core/e_core.h:67
+msgid "Calculation code"
+msgstr "Metoda obliczeniowa"
+
+#: src/isimpa/manager/processManager.cpp:93
+msgid "Calculation code error:"
+msgstr "Błąd metody obliuczeniowej:"
+
+#: src/isimpa/data_manager/projet.cpp:817
+msgid "Calculation execution"
+msgstr "Wykonywanie symulacji"
+
+#: src/isimpa/data_manager/projet.cpp:817
+msgid "Calculation in progress..."
+msgstr "Symulacje w toku..."
+
+#: src/isimpa/data_manager/tree_core/e_core_sppsoctreecore.h:105
+msgid "Calculation informations"
+msgstr "Informacje o obliczeniach"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:162
+#: src/isimpa/data_manager/tree_core/e_core_sppsoctreecore.h:99
+msgid "Calculation method"
+msgstr "Metoda obliczeniowa"
+
+#: src/isimpa/data_manager/projet.cpp:767
+#: src/isimpa/data_manager/projet_maillage.cpp:112
+msgid "Calculation program file not found."
+msgstr "Nie znaleziono programu obliczeniowego."
+
+#: src/isimpa/data_manager/projet.cpp:775
+msgid "Calculation requires a scene meshing"
+msgstr "Symulacje wymagają siatki"
+
+#: src/isimpa/data_manager/projet.cpp:718
+msgid "Calculation requires do define a valid frequency band"
+msgstr "Symulacje wymagają zdefiniowania pasm częstotliwości"
+
+#: src/isimpa/data_manager/projet.cpp:679
+msgid "Calculation requires, at least, one active sound source"
+msgstr "Symulacje wymagają przynajmniej jednego aktywnego źródła."
+
+#: src/isimpa/data_manager/projet.cpp:839
+#, c-format
+msgid "Calculation time: %lld ms"
+msgstr "Czas obliczeń: %lld ms"
+
+#: src/isimpa/main/i_simpa_main.cpp:261
+msgid "Camera"
+msgstr "Kamera"
+
+#: src/isimpa/main/i_simpa_main.cpp:438
+msgid "Camera mode"
+msgstr "Tryb kamery"
+
+#: src/isimpa/main/i_simpa_main.cpp:470
+msgid "Camera toolbar"
+msgstr "Pasek kamery"
+
+#: src/isimpa/main/i_simpa_main.cpp:171
+msgid "Can not read the I-SIMPA icon"
+msgstr "Nie można wczytać ikony programu I-SIMPA"
+
+#: src/isimpa/3dengine/tools/recepteursurf_difference.cpp:139
+#, c-format
+msgid ""
+"Can't compare surface receivers: time step is different with the reference one:\n"
+"%s "
+msgstr "Nie można porównać odbiorników powierzchniowych: krok czasowy nie jest taki sam:\n%s "
+
+#: src/isimpa/3dengine/tools/recepteursurf_difference.cpp:40
+#, c-format
+msgid ""
+"Can't load surface receiver:\n"
+"%s"
+msgstr "Nie można wczytać odbiornika powierzchniowego:\n%s"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:131
+#: src/isimpa/manager/processManager.cpp:159
+msgid "Cancel"
+msgstr "Anuluj"
+
+#: src/isimpa/3dengine/Core/Particules.cpp:260
+msgid "Cancel loading particles files"
+msgstr "Anulowanie wczytywania pliku cząstek"
+
+#: src/isimpa/manager/sppsString.cpp:59
+#, c-format
+msgid "Cannot convert \"%s\" to decimal value"
+msgstr "Nie można przekonwertować \"%s\" na liczbę dziesiętną"
+
+#: src/isimpa/data_manager/e_data.h:250
+#, c-format
+msgid "Cannot convert string \"%s\" to decimal number"
+msgstr "Nie można przekonwertować ciągu \"%s\" na liczbę dziesiętną"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_file.cpp:91
+#: src/isimpa/data_manager/tree_rapport/e_report_file.cpp:99
+msgid "Cannot remove file/directory"
+msgstr "Nie można usunąć pliku/folderu"
+
+#: src/isimpa/data_manager/projet.cpp:1194
+msgid "Chairs"
+msgstr "Krzesła"
+
+#: src/isimpa/main/i_simpa_main.cpp:201
+msgid "Change application data folder"
+msgstr ""
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:636
+msgid "Character font"
+msgstr "Czcionka"
+
+#: src/isimpa/data_manager/e_data_file.h:109
+msgid "Choose a file"
+msgstr "Wybierz plik"
+
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:88
+msgid "Circle"
+msgstr "Koło"
+
+#: src/isimpa/data_manager/projet_calculation.cpp:546
+msgid "Clarity (ms)"
+msgstr "Przejrzystość [C] (ms)"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:190
+msgid "Clarity computation"
+msgstr "Wyznaczanie C"
+
+#: src/isimpa/IHM/AboutDialog.cpp:81
+#, c-format
+msgid "Classical Theory [%i.%i.%i]"
+msgstr ""
+
+#: src/isimpa/data_manager/tree_core/e_core_tccore.h:85
+msgid "Classical theory of reverberation"
+msgstr "Metoda statystyczna"
+
+#: src/isimpa/data_manager/tree_core/e_core_tccore.h:65
+msgid "Classical theory of reverberation (TCR)"
+msgstr "Metoda statystyczna"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_groupesurfaces_groupe.cpp:447
+msgid "Clean"
+msgstr "Wyczyść"
+
+#: src/isimpa/manager/processManager.cpp:158
+msgid "Close"
+msgstr "Zamknij"
+
+#: src/isimpa/data_manager/projet_maillage.cpp:127
+#: src/isimpa/data_manager/projet_maillage.cpp:232
+msgid "Code execution mesh generation"
+msgstr "Wykonywanie kodu generowania siatki"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:651
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:664
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_rendermateriau.h:60
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_rendu.h:61
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteursp_recepteur_rendu.h:50
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source_rendu.h:50
+msgid "Color"
+msgstr "Kolor"
+
+#: src/isimpa/data_manager/projet.cpp:2389
+msgid "Color of particles"
+msgstr "Kolor cząstek"
+
+#: src/isimpa/IHM/DialogDiagramCreator.cpp:160
+msgid "Column"
+msgstr "Kolumna"
+
+#: src/isimpa/main/i_simpa_main.cpp:435
+msgid "Combined view"
+msgstr "Widok łączony"
+
+#: src/isimpa/IHM/RecepteurSOperationDialog.cpp:43
+#: src/isimpa/main/i_simpa_main.cpp:220
+msgid "Compare surface receivers"
+msgstr "Porównaj odbiorniki powierzchniowe"
+
+#: src/isimpa/data_manager/projet.cpp:2234
+#: src/isimpa/data_manager/projet.cpp:2262
+#: src/isimpa/data_manager/projet.cpp:2332
+#, c-format
+msgid ""
+"Compression of file\n"
+"%s"
+msgstr "Kompresja pliku\n%s"
+
+#: src/isimpa/IHM/DialogDiagramCreator.cpp:110
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_configuration.h:48
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_userconfiguration.h:65
+msgid "Configuration"
+msgstr "Konfiguracja"
+
+#: src/isimpa/main/i_simpa_main.cpp:300 src/isimpa/main/i_simpa_main.cpp:378
+msgid "Console"
+msgstr "Konsola"
+
+#: src/isimpa/data_manager/projet_maillage.cpp:225
+msgid "Constraint file can not be created"
+msgstr "Nie udało się stworzyć pliku ograniczeń."
+
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:64
+msgid "Continuous line"
+msgstr "Linia ciągła"
+
+#: src/isimpa/main/i_simpa_main.cpp:245
+msgid "Contour"
+msgstr "Krawędzie"
+
+#: src/isimpa/IHM/AboutDialog.cpp:97
+msgid "Contributors"
+msgstr ""
+
+#: src/isimpa/data_manager/tree_scene/e_scene_volumes_volume.h:197
+msgid "Convert to fitting"
+msgstr "Konwertuj na strefę dopasowania"
+
+#: src/isimpa/IHM/PropGrid.cpp:247 src/isimpa/data_manager/element.cpp:931
+msgid "Copy"
+msgstr "Kopiuj"
+
+#: src/isimpa/main/i_simpa_main.cpp:283
+msgid "Copy 3D View"
+msgstr "Kopiuj widok 3D"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteursp.h:98
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteursp.h:106
+#: src/isimpa/data_manager/tree_scene/e_scene_sources.h:158
+#: src/isimpa/data_manager/tree_scene/e_scene_sources.h:166
+#, c-format
+msgid "Copy of %s"
+msgstr "Kopia %s"
+
+#: src/isimpa/data_manager/projet.cpp:844
+msgid "Copy of calculation parameters"
+msgstr "Kopiowanie parametrów symulacji"
+
+#: src/isimpa/data_manager/projet.cpp:2223
+#, c-format
+msgid ""
+"Copy of the file\n"
+"%s"
+msgstr "Kopia pliku\n%s"
+
+#: src/isimpa/IHM/GabeDataGrid.cpp:734
+msgid "Corrupted file or file doesn't exist"
+msgstr "Plik uszkodzony lub nieistniejący"
+
+#: src/isimpa/doxDoc/demos/demos_add_element_drawable.h:59
+#: src/isimpa/doxDoc/demos/demos_add_element_withprop.h:59
+msgid "Couleur de démonstration"
+msgstr "Kolor demonstracji"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_volumes.cpp:98
+msgid "Create a volume"
+msgstr "Utwórz objętość"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_user.h:145
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_user_group.h:198
+msgid "Create group"
+msgstr "Utwórz grupę"
+
+#: src/isimpa/main/i_simpa_main.cpp:914
+msgid "Creating scene"
+msgstr "Stwórz nowy obiekt"
+
+#: src/isimpa/IHM/AboutDialog.cpp:55
+msgid "Credits"
+msgstr ""
+
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:67
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:79
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:90
+msgid "Cross"
+msgstr "Krzyżyk"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:178
+msgid "Cumulating sound level"
+msgstr "Skumulowany poziom ciśnienia akustycznego"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:176
+msgid "Cumulative instantaneous sound level"
+msgstr "Skumulowany chwilowy poziom ciśnienia akustycznego"
+
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:44
+msgid "Curve"
+msgstr "Krzywa:"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_rendu.h:62
+msgid "Cut color"
+msgstr "Kolor przekroju"
+
+#: src/isimpa/data_manager/projet_calculation.cpp:368
+#, c-format
+msgid "D-%g (%%)"
+msgstr "D-%g (%%)"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:191
+msgid "D50 computation"
+msgstr "Wyznaczanie D50"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:573
+#: src/isimpa/data_manager/tree_scene/e_scene_donnees.h:59
+#: src/isimpa/data_manager/tree_scene/e_scene_donnees.h:108
+msgid "Data"
+msgstr "Dane"
+
+#: src/isimpa/IHM/DialogDiagramCreator.cpp:162
+msgid "Data alignment"
+msgstr "Ułożenie danych"
+
+#: src/isimpa/3dengine/tools/recepteursurf_difference.cpp:149
+#, c-format
+msgid ""
+"Data can not be compared with reference surface receivers. Number of surface receivers is different from the reference one:\n"
+"%s"
+msgstr "Dane nie mogą zostać porównane. Ilość odbiorników powierzchniowych jest różna:\n%s"
+
+#: src/isimpa/data_manager/e_data_entier.h:134
+#, c-format
+msgid "Data must be in the range %i - %i"
+msgstr "Dane muszą zawierać się w przedziale %i - %i"
+
+#: src/isimpa/data_manager/e_data_float.h:154
+#, c-format
+msgid "Data must be in the range %s - %s"
+msgstr "Dane muszą zawierać się w przedziale %s - %s"
+
+#: src/isimpa/IHM/GabeDataGrid.cpp:345
+msgid "Data sheet (*.gabe)|*.gabe|CSV  text file (*.csv)|*.csv"
+msgstr "Arkusz danych (*.gabe)|*.gabe|CSV  text file (*.csv)|*.csv"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:285
+msgid "Data style"
+msgstr "Styl danych"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_userconfiguration.h:58
+msgid "Date"
+msgstr "Data"
+
+#: src/isimpa/data_manager/projet_maillage.cpp:178
+msgid "Debug mode mesh, nothing will be done"
+msgstr "Generowanie siatki w trybie debugowania, nic nie zostanie zrobione"
+
+#: src/isimpa/data_manager/projet.cpp:2361
+msgid "Default color"
+msgstr "Domyślny kolor"
+
+#: src/isimpa/IHM/DialogDiagramCreator.cpp:168
+msgid "Default style"
+msgstr "Styl domyślny"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements.h:110
+msgid "Define rectangular fitted zone"
+msgstr "Stwórz prostokątną strefę dopasowania"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements.h:109
+msgid "Define scene fitted zone "
+msgstr "Stwórz strefę dopasowania z modelu"
+
+#: src/isimpa/data_manager/e_position.h:107
+msgid "Define with 3D view"
+msgstr "Określ w widoku 3D"
+
+#: src/isimpa/data_manager/projet_calculation.cpp:547
+msgid "Definition (ms)"
+msgstr "Wyrazistość [D] (ms)"
+
+#: src/isimpa/data_manager/element.cpp:944
+msgid "Delete"
+msgstr "Usuń"
+
+#: src/isimpa/IHM/GabeDataGrid.cpp:547
+msgid "Delete column"
+msgstr "Usuń kolumnę"
+
+#: src/isimpa/IHM/GabeDataGrid.cpp:536
+msgid "Delete line"
+msgstr "Usuń wiersz"
+
+#: src/isimpa/main/i_simpa_main.cpp:431
+msgid "Delete the simulation"
+msgstr "Usuń animacje"
+
+#: src/isimpa/main/i_simpa_main.cpp:298
+msgid "Delete windows"
+msgstr "Usuń okna"
+
+#: src/isimpa/doxDoc/demos/demos_add_element.h:50
+#: src/isimpa/doxDoc/demos/demos_add_element_drawable.h:50
+#: src/isimpa/doxDoc/demos/demos_add_element_withprop.h:50
+msgid "Demo"
+msgstr "Demo"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:155
+msgid "Dense Lawn"
+msgstr "Gęsty trawnik"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:163
+msgid "Dense Suburb"
+msgstr "Zwarte przedmieścia"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:165
+msgid "Dense urban"
+msgstr "Zwarte obszary miejskie"
+
+#: src/isimpa/data_manager/generic_element/e_directivity.cpp:93
+#: src/isimpa/data_manager/generic_element/e_directivity.cpp:121
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:80
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_proprietes.h:56
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteursp_recepteur_proprietes.h:58
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteurss_recepteur_proprietes.h:53
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_proprietes.h:53
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source_properties.h:62
+#: src/isimpa/data_manager/tree_scene/e_scene_volumes_volume_proprietes.h:63
+#: src/isimpa/data_manager/tree_scene/e_scene_volumes_volume_proprietes.h:71
+msgid "Description"
+msgstr "Opis"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_cuboide.h:108
+msgid "Destination volume"
+msgstr ""
+
+#: src/isimpa/IHM/AboutDialog.cpp:92
+msgid "Developers"
+msgstr ""
+
+#: src/isimpa/data_manager/projet.cpp:2488
+#, c-format
+msgid ""
+"Dezip of file\n"
+"%s"
+msgstr "Wypakowywanie pliku\n%s"
+
+#: src/isimpa/data_manager/e_data_row_materiau.h:227
+msgid "Diffusion"
+msgstr "Rozpraszanie"
+
+#: src/isimpa/data_manager/e_data_row_materiau.h:228
+#: src/isimpa/data_manager/generic_element/e_gammeabsorption.cpp:58
+#: src/isimpa/data_manager/generic_element/e_gammeabsorption.cpp:116
+#: src/isimpa/data_manager/generic_element/e_gammeabsorption.cpp:128
+msgid "Diffusion law"
+msgstr "Prawo rozproszenia"
+
+#: src/isimpa/data_manager/tree_core/e_core_tccore.h:95
+msgid "Direct field"
+msgstr "Pole bezpośrednie"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteursp_recepteur_proprietes.h:49
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source_properties.h:73
+msgid "Direction X"
+msgstr "Kierunek X"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteursp_recepteur_proprietes.h:50
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source_properties.h:74
+msgid "Direction Y"
+msgstr "Kierunek Y"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteursp_recepteur_proprietes.h:51
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source_properties.h:75
+msgid "Direction Z"
+msgstr "Kierunek Z"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_directivities.h:48
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_directivities.h:76
+msgid "Directivities"
+msgstr "Kierunkowości"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteursp_recepteur_proprietes.h:57
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteursp_recepteur_proprietes.h:70
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source_properties.h:71
+msgid "Directivity"
+msgstr "Kierunkowość"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source_properties.h:98
+msgid "Directivity Balloon"
+msgstr "Balon kierunkowości"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source_properties.h:57
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source_properties.h:70
+msgid "Directivity balloon"
+msgstr "Balon kierunkowości"
+
+#: src/isimpa/data_manager/generic_element/e_directivity.cpp:83
+#: src/isimpa/data_manager/generic_element/e_directivity.cpp:120
+msgid "Directivity file"
+msgstr "Plik kierunkowości"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_rendu.h:76
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_rendu.h:52
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_rendu.h:77
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteursp_recepteur_rendu.h:59
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteurss_recepteur_rendu.h:50
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_rendu.h:50
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source_rendu.h:59
+#: src/isimpa/data_manager/tree_scene/e_scene_volumes_volume_rendu.h:49
+msgid "Display"
+msgstr "Wyświetlanie"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:68
+msgid "Display back"
+msgstr "Wyświetl tył"
+
+#: src/isimpa/3dengine/OpenGlViewer.cpp:272
+msgid "Display error unknown"
+msgstr "Nieznany błąd wyświetlania"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:67
+msgid "Display front"
+msgstr "Wyświetl przód"
+
+#: src/isimpa/data_manager/projet.cpp:2746
+msgid "Display mesh"
+msgstr "Wyświetl siatkę"
+
+#: src/isimpa/IHM/simpleGraphManager.cpp:188
+msgid "Display parameters"
+msgstr "Parametry wyświetlania"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:109
+msgid "Display recto"
+msgstr "Wyświetl prawą stronę"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:110
+msgid "Display verso"
+msgstr "Wyświetl lewą stronę"
+
+#: src/isimpa/main/i_simpa_main.cpp:992
+#, c-format
+msgid ""
+"Do you accept to write the projects into this directory:\n"
+"%s"
+msgstr ""
+
+#: src/isimpa/data_manager/projet.cpp:1668
+msgid "Do you really want to delete this folder?"
+msgstr "Czy na pewno chcesz usunąć ten folder?"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_volumes_volume_rendu.h:57
+msgid "Domain color"
+msgstr "Kolor dziedziny"
+
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:70
+msgid "Dotted-dashed line"
+msgstr "Kreska - kropka"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:681
+msgid "Drawing element:"
+msgstr "Element rysunku:"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:637
+msgid "Drawing method"
+msgstr "Sposób wyświetlania"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:653
+msgid "Drawing style"
+msgstr "Styl rysowania"
+
+#: src/isimpa/data_manager/projet_calculation.cpp:199
+msgid "EDT (s)"
+msgstr "EDT (s)"
+
+#: src/isimpa/3dengine/Core/Recepteurs_surfacique.cpp:733
+#, c-format
+msgid "EDT at pointer is %.2f "
+msgstr "EDT w wybranym punkcie wynosi %.2f"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:189
+msgid "EDT calculation"
+msgstr "Wyznaczanie EDT"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:182
+msgid "Early decay time (EDT)"
+msgstr "Czas wczesnego zaniku (EDT)"
+
+#: src/isimpa/data_manager/projet_calculation.cpp:878
+msgid "Early lateral fraction LF (ms)"
+msgstr "Współczynnik odbić bocznych LF (ms)"
+
+#: src/isimpa/data_manager/projet_calculation.cpp:879
+msgid "Early lateral fraction LFC (ms)"
+msgstr "Współczynnik odbić bocznych LFC (ms)"
+
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:46
+msgid "Echogram"
+msgstr "Echogram"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:85
+msgid "Echogram per source"
+msgstr "Echogram na źródło"
+
+#: src/isimpa/IHM/WizardRemeshModel.cpp:135
+msgid "Edge collapse"
+msgstr "Zapadanie krawędzi"
+
+#: src/isimpa/IHM/GabeDataGrid.cpp:548
+msgid "Edit column properties"
+msgstr "Edytuj właściwości kolumny"
+
+#: src/isimpa/IHM/GabeDataGrid.cpp:537
+msgid "Edit line properties"
+msgstr "Edytuj właściwości wiersza"
+
+#: src/isimpa/main/i_simpa_main.cpp:317
+msgid "Edition"
+msgstr "Edytuj"
+
+#: src/isimpa/manager/processManager.cpp:156
+msgid "Elapsed time: "
+msgstr "Upłynęło:"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteurss_recepteur_proprietes.h:49
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteurss_recepteur_proprietes.h:66
+msgid "Enable"
+msgstr ""
+
+#: src/isimpa/data_manager/python_interface/py_ui_module/element_pywrap.cpp:198
+msgid "Enable or Disable the user access to this data."
+msgstr "Włącz/wyłącz możliwość edycji tych danych"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_proprietes.h:49
+msgid "Enabled"
+msgstr "Aktywny"
+
+#: src/isimpa/data_manager/python_interface/py_ui_module/element_pywrap.cpp:199
+msgid ""
+"Enables / Disables the ability to change all the fields to the user for a "
+"given column."
+msgstr "Włącz/wyłącz możliwość edycji danych w tej kolumnie"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppsoctreecore.h:97
+msgid "Energetic"
+msgstr "Energetyczna"
+
+#: src/isimpa/data_manager/projet.cpp:2303
+#, c-format
+msgid "Enough memory. %li Mo required, %li Mo free on the corresponding disk"
+msgstr "Wystarczająca ilość pamięci. %li Mb wymaganych, %li Mb wolnych na dysku"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:181
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:184
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:192
+msgid "Environment"
+msgstr "Środowisko"
+
+#: src/isimpa/IHM/loadingSceneDialog.cpp:174
+msgid "Epsilon must be higher than 0 meter"
+msgstr "Epsilon musi być większe niż 1m"
+
+#: src/isimpa/3dengine/OpenGLApp.cpp:409
+#, c-format
+msgid "Error code : %i"
+msgstr "Kod błędu: %i"
+
+#: src/isimpa/data_manager/python_interface/py_ui_module/element_pywrap.cpp:649
+msgid "Error during call of Python(TM) script on element append child"
+msgstr "Błąd skryptu Python(TM) podczas dodawania elementu"
+
+#: src/isimpa/data_manager/python_interface/py_ui_module/element_pywrap.cpp:627
+msgid "Error during call of Python(TM) script on element update"
+msgstr "Błąd skryptu Python(TM) podczas aktualizowania elementu"
+
+#: src/lib_interface/coreTypes.cpp:216
+#: src/lib_interface/input_output/importExportMaillage/mbin.cpp:129
+#, c-format
+msgid ""
+"Error in input mesh, a tetrahedra have at least the same two vertices "
+"idTetra:%i vertices:%li %li %li %li"
+msgstr "Błąd w siatce wejściowej. Czworościan posiada co najmniej dwa identyczne wierzchołki,  idTetra:%i, wierzchołki:%li %li %li %li"
+
+#: src/isimpa/IHM/MainPropGrid.cpp:276
+msgid "Error in loading properties"
+msgstr "Błąd wczytywania właściwości"
+
+#: src/isimpa/data_manager/projet.cpp:787
+#: src/isimpa/data_manager/projet.cpp:2985
+msgid "Error while saving the 3d model"
+msgstr "Błąd przy zapisywaniu modelu 3d"
+
+#: src/isimpa/main/i_simpa_main.h:372
+msgid "Error:"
+msgstr "Błąd:"
+
+#: src/isimpa/data_manager/projet_remesh.cpp:107
+msgid "Execution of the model remesh."
+msgstr "Przetwarzanie siatki."
+
+#: src/isimpa/main/i_simpa_main.cpp:205
+msgid "Exit"
+msgstr "Zamknij"
+
+#: src/isimpa/3dengine/Core/Objet3D_maillage.cpp:279
+#, c-format
+msgid "Expected face size and dimension got %s"
+msgstr "Spodziewany wymiar powierzchni i wymiary, otrzymano %s"
+
+#: src/isimpa/3dengine/Core/Objet3D_maillage.cpp:229
+#, c-format
+msgid "Expected idface a b c [marker] got %s"
+msgstr "Spodziewane idface, a, b, c [marker], otrzymano %s"
+
+#: src/isimpa/3dengine/Core/Objet3D_maillage.cpp:294
+#, c-format
+msgid "Expected idface a b c marker %s"
+msgstr "Spodziewane idface, a, b, c, marker, otrzymano %s"
+
+#: src/isimpa/3dengine/Core/Objet3D_maillage.cpp:360
+#, c-format
+msgid "Expected idtetra a b c d got %s"
+msgstr "Spodziewane idtetra, a, b, c, d, otrzymano %s"
+
+#: src/isimpa/3dengine/Core/Objet3D_maillage.cpp:154
+#, c-format
+msgid "Expected idtetra a b c d idvolume got %s"
+msgstr "Spodziewane idtetra, a, b, c, d, idvolume, otrzymano %s"
+
+#: src/isimpa/3dengine/Core/Objet3D_maillage.cpp:92
+#, c-format
+msgid "Expected node id, x, y and z got %s"
+msgstr "Spodziewane id, x, y, z węzła, otrzymano %s"
+
+#: src/isimpa/3dengine/Core/Objet3D_maillage.cpp:347
+#, c-format
+msgid "Expected node size and dimension got %s"
+msgstr "Spodziewane ilość i wymiary węzłów, otrzymano %s"
+
+#: src/isimpa/3dengine/Core/Objet3D_maillage.cpp:77
+#, c-format
+msgid "Expected node size got %s"
+msgstr "Spodziewany wymiar węzła, otrzymano %s"
+
+#: src/isimpa/3dengine/Core/Objet3D_maillage.cpp:214
+#, c-format
+msgid "Expected tetra size and marker got %s"
+msgstr "Spodziewane wymiar tetra i marker, otrzymano %s"
+
+#: src/isimpa/3dengine/Core/Objet3D_maillage.cpp:139
+#, c-format
+msgid "Expected tetra size got %s"
+msgstr "Spodziewany wymiar tetra, otrzymano %s"
+
+#: src/isimpa/IHM/simpleGraphManager.cpp:167
+msgid "Export"
+msgstr "Eksportuj"
+
+#: src/isimpa/data_manager/projet.cpp:390
+msgid "Export 3D View"
+msgstr "Eksportuj widok 3D"
+
+#: src/isimpa/IHM/simpleGraphManager.cpp:115
+msgid "Export graph"
+msgstr "Eksportuj wykres"
+
+#: src/isimpa/main/i_simpa_main.cpp:946
+msgid "Export model"
+msgstr "Eksportuj model"
+
+#: src/isimpa/main/i_simpa_main.cpp:182
+msgid "Export scene"
+msgstr "Eksportuj model"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:82
+#: src/isimpa/data_manager/tree_core/e_core_sppsoctreecore.h:98
+#: src/isimpa/data_manager/tree_core/e_core_tccore.h:52
+msgid "Export surface receivers for each frequency band"
+msgstr "Eksportuj odbiorniki powierzchniowe dla każdej częstotliwości"
+
+#: src/isimpa/IHM/GabeDataGrid.cpp:524
+msgid "Export to an editing spreadsheet"
+msgstr "Eksportuj do arkusza edytowalnego "
+
+#: src/isimpa/IHM/simpleGraphManager.cpp:165
+msgid "Export to clipboard"
+msgstr "Eksportuj do schowka"
+
+#: src/isimpa/main/i_simpa_main.cpp:296
+msgid "Export to file"
+msgstr "Eksportuj do pliku"
+
+#: src/isimpa/IHM/simpleGraphManager.cpp:163
+msgid "Export to image file"
+msgstr "Eksportuj jako obrazek"
+
+#: src/isimpa/data_manager/projet.cpp:371
+#: src/isimpa/data_manager/projet.cpp:401
+msgid "Export view 3D"
+msgstr "Eksportuj widok 3D"
+
+#: src/isimpa/manager/processManager.cpp:167
+msgid "External code execution"
+msgstr "Wykonywanie zewnętrznego kodu"
+
+#: src/isimpa/manager/processManager.cpp:121
+msgid "External code execution canceled"
+msgstr "Wykonywanie zewnętrznego kodu anulowane"
+
+#: src/isimpa/main/i_simpa_main.cpp:440
+msgid "Extract sound level from 3D view"
+msgstr "Odczytaj poziom z widoku 3D"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_groupesurfaces_groupe_vertex.h:56
+msgid "Face"
+msgstr "Powierzchnia"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:66
+msgid "Face opacity"
+msgstr "Przezroczystość"
+
+#: src/isimpa/main/i_simpa_main.cpp:433
+msgid "Face view"
+msgstr "Widok powierzchni"
+
+#: src/isimpa/main/i_simpa_main.cpp:234
+msgid "Faces"
+msgstr "Powierzchnie"
+
+#: src/isimpa/IHM/loadingSceneDialog.cpp:125
+msgid ""
+"Faces of the scene will be meshed in order to enhance the resolution of the "
+"surface receivers display"
+msgstr "Na powierzchnie modelu zostanie nałożona siatka, aby zwiększyć rozdzielczość odbiorników powierzchniowych"
+
+#: src/isimpa/3dengine/Core/Objet3D_maillage.cpp:817
+msgid "Failed to export meshing"
+msgstr "Nie można wyeksportować, siatki"
+
+#: src/isimpa/main/i_simpa_main.h:361
+msgid "Fatal error: "
+msgstr "Błąd krytyczny:"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:136
+msgid "Favorable"
+msgstr "Sprzyjające"
+
+#: src/isimpa/main/i_simpa_main.cpp:316
+msgid "File"
+msgstr "Plik"
+
+#: src/isimpa/3dengine/Core/ply.cpp:221
+#, c-format
+msgid "File I/O Error:  Cannot open file %s\n"
+msgstr "Błąd pliku: Nie można otworzyć pliku %s\n"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_file.cpp:149
+msgid "File can't be renamed, a file with the same name already exists"
+msgstr "Nazwa nie może zostać zmieniona, plik o takiej nazwie już istnieje"
+
+#: src/isimpa/data_manager/projet.cpp:979
+#: src/isimpa/data_manager/projet.cpp:1581
+msgid "File does not exist"
+msgstr "Plik nie istnieje"
+
+#: src/isimpa/main/i_simpa_main.cpp:221
+msgid "File results process"
+msgstr "Przetwarzanie wyników"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:666
+msgid "Filling style"
+msgstr "Styl wypełnienia"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:702
+msgid "Filling:"
+msgstr "Wypełnienie:"
+
+#: src/isimpa/data_manager/python_interface/py_ui_module/element_pywrap.cpp:200
+msgid "Find and delete the son with this id. This is not a recursively search"
+msgstr "Znajdź i usuń potomka z tym ID. To nie jest wyszukiwanie rekursywne."
+
+#: src/isimpa/main/i_simpa_main.cpp:258
+msgid "First person"
+msgstr "Pierwsza osoba"
+
+#: src/isimpa/main/i_simpa_main.cpp:445
+msgid "First person camera"
+msgstr "Kamera w pierwszej osobie"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements.h:52
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_cuboide.h:60
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_model.h:75
+msgid "Fitting zone"
+msgstr "Strefy dopasowania"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_cuboide.h:93
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_model.h:118
+#, c-format
+msgid "Fitting zone %i"
+msgstr "Strefa dopasowania %i"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_cuboide.h:362
+#, c-format
+msgid ""
+"Fitting zone %s is not taken into account in the calculation (user choice)"
+msgstr "Strefa dopasowania %s nie jest wzięta pod uwagę w symulacjach (wybór użytkownika)"
+
+#: src/isimpa/main/i_simpa_main.cpp:293
+msgid "Floating 3D View"
+msgstr "Pływający widok 3D"
+
+#: src/isimpa/data_manager/projet.cpp:1198
+msgid "Floors"
+msgstr "Podłogi"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_file.cpp:60
+msgid "Folder name can't use the following letters: \\/:*?\"<>|"
+msgstr "Nazwa folderu nie może zawierać następujących znaków: \\/:*?\"<>|"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_file.cpp:50
+msgid "Folder name or file name can't be empty"
+msgstr "Nazwa folderu nie może być pusta"
+
+#: src/isimpa/data_manager/projet_undo_redo.cpp:76
+msgid "Forced adding changes in the change log."
+msgstr "Wymuszono dodawanie zmian do logu"
+
+#: src/isimpa/data_manager/tree_core/e_core_core_bfreqselection.h:51
+#: src/isimpa/data_manager/tree_core/e_core_core_bfreqselection.h:81
+msgid "Frequency bands"
+msgstr "Pasma częstotliwości"
+
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:77
+msgid "Full"
+msgstr "Pełne"
+
+#: src/isimpa/data_manager/projet_calculation.cpp:528
+msgid "G (dB)"
+msgstr "G (dB)"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:284
+msgid "General parameters"
+msgstr "Ustawienia ogólne"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:692
+msgid "General parameters:"
+msgstr "Ogólne właściwości:"
+
+#: src/isimpa/data_manager/projet_maillage.cpp:127
+#: src/isimpa/data_manager/projet_maillage.cpp:232
+msgid "Generating mesh"
+msgstr "Generowanie siatki"
+
+#: src/isimpa/data_manager/generic_element/e_gammefrequence.cpp:158
+#: src/isimpa/data_manager/generic_element/e_property_freq.cpp:190
+#: src/isimpa/data_manager/projet_calculation.cpp:629
+#: src/isimpa/data_manager/projet_calculation.cpp:697
+#: src/isimpa/data_manager/projet_calculation.cpp:995
+#: src/isimpa/data_manager/tree_rapport/e_report_gabe_recp.cpp:64
+#: src/isimpa/data_manager/tree_rapport/e_report_gabe_recps.cpp:64
+msgid "Global"
+msgstr "Całkowity"
+
+#: src/isimpa/Language/additionnal_univ.h:37
+msgid "Global sound level"
+msgstr "Całkowity poziom dźwięku"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_rendu_origine.h:72
+msgid "Grid color"
+msgstr "Kolor siatki"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_proprietes.h:54
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_proprietes.h:66
+msgid "Grid resolution (m)"
+msgstr ""
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_rendu_origine.h:73
+msgid "Grid scale"
+msgstr "Skala siatki"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:151
+msgid "Ground"
+msgstr "Ziemia"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_app_group.h:50
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_user_group.h:117
+#: src/isimpa/data_manager/tree_scene/e_scene_groupesurfaces_groupe.cpp:44
+msgid "Group"
+msgstr "Grupa"
+
+#: src/isimpa/data_manager/projet.cpp:392
+msgid "Height"
+msgstr "Wysokość"
+
+#: src/isimpa/main/i_simpa_main.cpp:917
+msgid "Height (z)"
+msgstr "Wysokość (z)"
+
+#: src/isimpa/main/i_simpa_main.cpp:322
+msgid "Help"
+msgstr "Pomoc"
+
+#: src/isimpa/IHM/simpleGraphManager.cpp:173
+msgid "Hide all"
+msgstr "Ukryj wszystko"
+
+#: src/isimpa/data_manager/python_interface/py_ui_module/element_pywrap.cpp:197
+msgid "Hide an element"
+msgstr "Ukryj element"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:538
+msgid "Hide legend"
+msgstr "Ukryj legendę"
+
+#: src/isimpa/main/i_simpa_main.cpp:252
+msgid "Hide meshing"
+msgstr "Ukryj siatkę"
+
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:45
+msgid "Histogram"
+msgstr "Histogram"
+
+#: src/isimpa/data_manager/projet.cpp:2397
+msgid "History"
+msgstr ""
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:138
+msgid "Homogeneous"
+msgstr "Obojętne"
+
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:68
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:82
+msgid "Horizontal line"
+msgstr "Pozioma linia"
+
+#: src/isimpa/IHM/uiTreeCtrl.cpp:143
+msgid "I-SIMPA resource folder does not exists"
+msgstr "Folder zasobów programu I-SIMPA nie istnieje"
+
+#: src/isimpa/main/i_simpa_main.cpp:309
+msgid "I-Simpa documentation (PDF in French)"
+msgstr "Dokumentacja programu I-SIMPA (PDF po francusku)"
+
+#: src/isimpa/IHM/DialogDiagramCreator.cpp:167
+msgid ""
+"If this field is not activated, label are converted in numbers and applied "
+"on the X axis"
+msgstr "Jeżeli to pole nie jest aktywne, etykiety są przekształcane na liczby i stosowane na osi X"
+
+#: src/isimpa/IHM/loadingSceneDialog.cpp:120
+msgid ""
+"If this option is activated, the scene will be imported with a correction "
+"process to improve compatibility with the mesh generator"
+msgstr "Jeżeli ta opcja jest włączona, podczas importowania modelu podjęta zostanie próba poprawienia błędów, tak aby model był kompatybilny z programem."
+
+#: src/isimpa/IHM/simpleGraphManager.cpp:115
+msgid ""
+"Image PNG (*.png)|*.png|Image JPG (*.jpg)|*.jpg|Image Bitmap (*.bmp)|*.bmp"
+msgstr "Obraz PNG (*.png)|*.png|Image JPG (*.jpg)|*.jpg|Image Bitmap (*.bmp)|*.bmp"
+
+#: src/isimpa/data_manager/projet.cpp:378
+#: src/isimpa/data_manager/projet.cpp:408
+msgid "Image saved successfully"
+msgstr "Zapisano obraz"
+
+#: src/isimpa/data_manager/projet.cpp:986
+msgid "Import from CATT-Acoustic file"
+msgstr "Import z pliku programu CATT-Acoustic"
+
+#: src/isimpa/data_manager/projet.cpp:1206
+msgid "Import from Odeon file"
+msgstr "Import z pliku programu Odeon"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_user.h:147
+msgid "Import from file"
+msgstr "Importuj z pliku"
+
+#: src/isimpa/data_manager/projet.cpp:945
+msgid "Import material from file"
+msgstr "Wczytaj materiały z pliku"
+
+#: src/isimpa/main/i_simpa_main.cpp:892
+msgid "Import new scene"
+msgstr "Importuj nowy obiekt"
+
+#: src/isimpa/data_manager/projet.cpp:1179
+#: src/isimpa/data_manager/projet.cpp:1241
+#, c-format
+msgid "Importation of material %s"
+msgstr "Import materiału %s"
+
+#: src/isimpa/IHM/DialogDiagramCreator.cpp:166
+msgid "In text mode, X data are regularly spaced (unit step)"
+msgstr "W trybie tekstowym, dane X są równomiernie rozmieszczone (wielkość kroku)"
+
+#: src/isimpa/data_manager/python_interface/py_ui_module/Application.cpp:248
+msgid "Incorrect data types. Values and index must be characters"
+msgstr "Niewłaściwy typ danych. Wartości i indeksy muszą być znakami"
+
+#: src/isimpa/data_manager/e_data_list.h:109
+msgid "Index list is not coherent with data list"
+msgstr "Lista indeksów nie jest zgodna z danymi"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet.h:88
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_informations.h:46
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_informations.h:57
+msgid "Information"
+msgstr ""
+
+#: src/isimpa/IHM/GabeDataGrid.cpp:546
+msgid "Insert new column"
+msgstr "Wstaw nową kolumnę"
+
+#: src/isimpa/IHM/GabeDataGrid.cpp:535
+msgid "Insert new line"
+msgstr "Wstaw nowy wiersz"
+
+#: src/isimpa/main/i_simpa_main.cpp:231
+msgid "Inside"
+msgstr "Wewnętrzne"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_model.h:113
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_model.h:128
+#: src/isimpa/data_manager/tree_scene/e_scene_volumes_volume.h:111
+msgid "Inside position"
+msgstr "Pozycja wewnątrz"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:175
+msgid "Instantaneous sound level"
+msgstr "Chwilowy poziom ciśnienia akustycznego"
+
+#: src/isimpa/3dengine/Core/Particules.cpp:231
+#, c-format
+msgid ""
+"Insufficent memory available, %u memory required and %u memory available"
+msgstr "Niewystarczająca ilość pamięci, %u pamięci potrzebnej and %u pamięci dostępnej"
+
+#: src/isimpa/3dengine/Core/Recepteurs_ponctuel_intensity.cpp:54
+#: src/isimpa/data_manager/tree_rapport/e_report_rpi.h:59
+#: src/isimpa/data_manager/tree_rapport/e_report_rpi.h:70
+msgid "Intensity"
+msgstr "Natężenie"
+
+#: src/isimpa/3dengine/Core/Recepteurs_ponctuel_intensity.cpp:77
+msgid "Intensity : "
+msgstr "Natężenie: "
+
+#: src/isimpa/data_manager/tree_rapport/e_report_rpi.h:58
+msgid "Intensity Animation"
+msgstr "Animacja natężenia"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:72
+#: src/spps/input_output/reportmanager.cpp:719
+msgid "Intensity animation"
+msgstr "Animacja natężenia"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:73
+msgid "Intensity vector"
+msgstr "Wektor natężenia"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:137
+msgid "IntensityAnimation"
+msgstr "Animacja natężenia"
+
+#: src/isimpa/main/i_simpa_main.cpp:158 src/isimpa/main/i_simpa_main.cpp:1031
+#: src/isimpa/main/i_simpa_main.h:493 src/isimpa/main/i_simpa_main.h:499
+msgid "Interface "
+msgstr "Interfejs"
+
+#: src/isimpa/main/i_simpa_main.cpp:382
+msgid "Interface options"
+msgstr "Opcje interfejsu"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_groupesurfaces_groupe.cpp:450
+#: src/isimpa/data_manager/tree_scene/e_scene_groupesurfaces_groupe_vertex.h:80
+msgid "Invert face normal"
+msgstr "Odwróć powierzchnię"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:143
+msgid "Iso level list"
+msgstr "Izolinie"
+
+#: src/isimpa/data_manager/tree_userpref/e_userprefitemisotemplate.hpp:104
+msgid "Iso-levels color"
+msgstr "Grupa kolorów izolinii"
+
+#: src/isimpa/data_manager/projet.cpp:2384
+msgid "Iso-lines color"
+msgstr "Kolor izolinii"
+
+#: src/isimpa/IHM/loadingSceneDialog.cpp:135
+msgid "Keep existing groups"
+msgstr "Zachowaj istniejące grupy"
+
+#: src/isimpa/data_manager/projet.cpp:2399
+msgid "Keep modification history"
+msgstr "Zapisuj historię modyfikacji"
+
+#: src/isimpa/data_manager/projet_calculation.cpp:442
+#, c-format
+msgid "LF%i"
+msgstr "LF%i"
+
+#: src/isimpa/data_manager/projet_calculation.cpp:460
+#, c-format
+msgid "LFC%i"
+msgstr "LFC%i"
+
+#: src/isimpa/data_manager/projet_calculation.cpp:495
+msgid "LG (dB)"
+msgstr "LG (dB)"
+
+#: src/isimpa/data_manager/projet.cpp:2370
+msgid "Label color"
+msgstr "Kolor etykiery"
+
+#: src/isimpa/IHM/DialogDiagramCreator.cpp:163
+msgid "Label:"
+msgstr "Etykieta"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:641
+msgid "Labelled"
+msgstr "Opisane"
+
+#: src/isimpa/data_manager/generic_element/e_gammeabsorption.cpp:114
+#: src/isimpa/data_manager/generic_element/e_gammeabsorption.cpp:126
+msgid "Lambda"
+msgstr "λ"
+
+#: src/isimpa/data_manager/generic_element/e_gammeabsorption.cpp:60
+#: src/isimpa/data_manager/generic_element/e_gammeabsorption.cpp:96
+msgid "Lambert reflection"
+msgstr ""
+
+#: src/isimpa/main/i_simpa_main.cpp:200 src/isimpa/main/i_simpa_main.cpp:1011
+msgid "Language"
+msgstr "Język"
+
+#: src/isimpa/main/i_simpa_main.cpp:844
+msgid "Language will be changed after restarting I-Simpa"
+msgstr "Język zostanie zmieniony po ponownym uruchomieniu programu"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_gabe_gap.cpp:75
+msgid "Lateral sound level (dB)"
+msgstr "Poziom boczny (dB)"
+
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:66
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:78
+msgid "Left diagonal dash"
+msgstr "Ukośnik w lewo"
+
+#: src/isimpa/data_manager/projet.cpp:2374
+msgid "Legend"
+msgstr ""
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:547
+msgid "Legend, icon length"
+msgstr "Legenda, długość ikony"
+
+#: src/isimpa/main/i_simpa_main.cpp:916
+msgid "Length (y)"
+msgstr "Długość (y)"
+
+#: src/isimpa/IHM/AboutDialog.cpp:60
+msgid "License"
+msgstr "Licencja"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:55
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:125
+msgid "Limit value of the particle extinction (Energetic method) : ratio 10^n"
+msgstr "Energia wymierania cząstek (metoda energetyczna): stosunek 10^n"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:655
+msgid "Line thickness"
+msgstr "Grubość linii"
+
+#: src/isimpa/IHM/DialogDiagramCreator.cpp:161
+#: src/isimpa/main/i_simpa_main.cpp:248
+msgid "Lines"
+msgstr "Krawędzie"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_partvisualisation.h:87
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:197
+#: src/isimpa/data_manager/tree_rapport/e_report_rpi.h:75
+msgid "Load animation"
+msgstr "Wczytaj animacje"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:411
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:464
+msgid "Load image"
+msgstr "Wczytaj obrazek"
+
+#: src/isimpa/data_manager/projet.cpp:2953
+msgid "Loading 3D scene"
+msgstr "Wczytywanie modelu"
+
+#: src/isimpa/data_manager/projet.cpp:1911
+#: src/isimpa/data_manager/projet.cpp:2908
+msgid "Loading 3D scene..."
+msgstr "Wczytywanie modelu 3D..."
+
+#: src/isimpa/data_manager/projet.cpp:2924
+#, c-format
+msgid "Loading 3D scene: %s\n"
+msgstr "Wczytywanie modelu: %s\n"
+
+#: src/isimpa/data_manager/projet_maillage.cpp:140
+#: src/isimpa/data_manager/projet_maillage.cpp:251
+msgid "Loading ASCII files from mesh generator complete"
+msgstr "Wczytywanie pliku ASCII z generatora siatki skończone"
+
+#: src/isimpa/data_manager/projet.cpp:1861
+msgid "Loading XML file"
+msgstr "Wczytywanie pliku XML"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_groupesurfaces_groupe.cpp:504
+#, c-format
+msgid "Loading face %i/%i"
+msgstr "Wczytywanie powierzchni %i/%i"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_groupesurfaces_groupe.cpp:492
+msgid "Loading faces"
+msgstr "Wczytywanie powierzchni"
+
+#: src/isimpa/data_manager/projet.cpp:2923
+#: src/isimpa/data_manager/tree_scene/e_scene_groupesurfaces_groupe.cpp:492
+msgid "Loading faces of 3D scene"
+msgstr "Wczytywanie powierzchni modelu"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:652
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:665
+msgid "Loading image..."
+msgstr "Wczytywanie obrazu..."
+
+#: src/isimpa/data_manager/projet_maillage.cpp:138
+#: src/isimpa/data_manager/projet_maillage.cpp:248
+#: src/isimpa/data_manager/projet_maillage.cpp:249
+msgid "Loading mesh ASCII file..."
+msgstr "Wczytywanie siatki z pliku ASCII..."
+
+#: src/isimpa/3dengine/Core/Recepteurs_surfacique.cpp:213
+msgid "Loading of the surface receiver file"
+msgstr "Wczytywanie pliku odbiornika powierzchniowego"
+
+#: src/isimpa/3dengine/Core/Particules.cpp:209
+msgid "Loading particles file"
+msgstr "Wczytywanie pliku cząstek"
+
+#: src/isimpa/data_manager/projet.cpp:1861
+msgid "Loading project"
+msgstr "Wczytywanie projektu"
+
+#: src/isimpa/data_manager/projet.cpp:2531
+#, c-format
+msgid "Loading project: %s"
+msgstr "Wczytywanie projektu: %s"
+
+#: src/isimpa/3dengine/OpenGLApp.cpp:623
+#, c-format
+msgid "Loading time step %i/%i"
+msgstr "Wczytywanie kroku czasowego %i/%i"
+
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:72
+msgid "Long dash"
+msgstr "Długa kreska"
+
+#: src/isimpa/data_manager/e_data_row_materiau.h:229
+msgid "Loss (dB)"
+msgstr "Izolacyjność (dB)"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:161
+msgid "Low concentration Suburb (residential areas, gardens)"
+msgstr "Przedmieścia o luźnej zabudowie (obszary mieszkaniowe, ogrody)"
+
+#: src/isimpa/data_manager/e_data_row_ext_bandefreq.h:76
+#: src/isimpa/data_manager/generic_element/e_property_freq.cpp:193
+msgid "Lw"
+msgstr "Lw"
+
+#: src/isimpa/main/i_simpa_main.cpp:398 src/isimpa/main/i_simpa_main.cpp:460
+msgid "Main window"
+msgstr "Główne okno"
+
+#: src/isimpa/main/i_simpa_main.h:492
+msgid ""
+"Many old sessions of the user interface are available.\n"
+"Do you want to retrieve an old session?"
+msgstr "Dostępne jest wiele sesji programu.\nCzy chcesz przywrócić poprzednią sesję?"
+
+#: src/isimpa/IHM/WizardRemeshModel.cpp:122
+msgid "Marching cube"
+msgstr "Chodząca kostka"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:639
+msgid "Marker"
+msgstr "Znacznik"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:557
+msgid "Marker, size (%)"
+msgstr "Wielkość znacznika (%)"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:81
+msgid "Mass density (kg/m3)"
+msgstr "Gęstość (kg/m3)"
+
+#: src/isimpa/main/i_simpa_main.cpp:239
+msgid "Material"
+msgstr "Materiał"
+
+#: src/isimpa/main/i_simpa_main.cpp:240
+msgid "Material color"
+msgstr "Kolor materuału"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:62
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:72
+msgid "Material description"
+msgstr "Opis materiału"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_groupesurfaces_groupe.cpp:266
+#, c-format
+msgid ""
+"Material of the surface group %s has not be defined: the default material is"
+" applied"
+msgstr "Materiał dla grupy powierzchni %s nie został zdefiniowany: przyjęto materiał domyślny"
+
+#: src/isimpa/data_manager/generic_element/e_materiau.cpp:41
+msgid "Material spectrum"
+msgstr "Widmo materiału"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux.h:52
+msgid "Materials"
+msgstr "Materiały"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:87
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:111
+msgid "Maximum value (dB)"
+msgstr "Wartość maksymalna (dB)"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:98
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:113
+msgid "Maximum value (s)"
+msgstr "Wartość maksymalna (s)"
+
+#: src/isimpa/IHM/WizardRemeshModel.cpp:62
+msgid "Mesh correction computation"
+msgstr "Poprawianie siatki."
+
+#: src/isimpa/data_manager/tree_core/e_core_core_tetconf.h:49
+#: src/isimpa/data_manager/tree_core/e_core_core_tetconf.h:60
+#: src/isimpa/main/i_simpa_main.cpp:216 src/isimpa/main/i_simpa_main.cpp:447
+msgid "Meshing"
+msgstr "Siatka"
+
+#: src/isimpa/data_manager/projet_maillage.cpp:146
+#: src/isimpa/data_manager/projet_maillage.cpp:276
+msgid "Meshing aborted: please, see console messages for more information "
+msgstr "Generowanie siatki przerwane: proszę, sprawdź komunikaty w konsoli aby uzyskać więcej informacji"
+
+#: src/isimpa/data_manager/projet_maillage.cpp:133
+#: src/isimpa/data_manager/projet_maillage.cpp:241
+msgid "Meshing complete"
+msgstr "Generowanie siatki skończone"
+
+#: src/isimpa/main/i_simpa_main.cpp:475
+msgid "Meshing toolbar"
+msgstr "Pasek siatki"
+
+#: src/isimpa/data_manager/projet_maillage.cpp:104
+#: src/isimpa/data_manager/projet_maillage.cpp:234
+#, c-format
+msgid ""
+"Meshing with the following parameters:\n"
+"%s"
+msgstr "Generowanie siatki z następującymi parametrami:\n%s"
+
+#: src/isimpa/data_manager/projet_maillage.cpp:182
+msgid "Meshing with user parameters"
+msgstr "Generowanie siatki z parametrami użytkownika"
+
+#: src/isimpa/doxDoc/demos/demo_translation_1.h:36
+#, c-format
+msgid "Message en francais à traduire"
+msgstr "Komunikat w języku francuskim"
+
+#: src/isimpa/main/i_simpa_main.cpp:338
+msgid "Messages"
+msgstr "Wiadomości"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:122
+msgid "Meteorological effect - Celerity gradient a_log"
+msgstr "Efekt pogodowy - gradient prędkości a_log"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:124
+msgid "Meteorological effect - Celerity gradient b_lin"
+msgstr "Efekt pogodowy - gradient prędkości b_lin"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:145
+msgid "Meteorology effects - Profiles"
+msgstr "Efekty pogodowe - Profile"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:88
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:112
+msgid "Minimum value (dB)"
+msgstr "Wartość minimalna (dB)"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:99
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:114
+msgid "Minimum value (s)"
+msgstr "Wartość minimalna (s)"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_informations.h:76
+msgid "Model face count"
+msgstr "Ilość powierzchni"
+
+#: src/isimpa/IHM/WizardRemeshModel.cpp:119
+msgid "Model solving"
+msgstr "Rozwiązywanie modelu"
+
+#: src/isimpa/IHM/customRenderer/gridcellgabefloatrenderer.cpp:78
+msgid "NaN"
+msgstr "NaN"
+
+#: src/isimpa/IHM/DialogDiagramCreator.cpp:155
+msgid "Name of X axis"
+msgstr "Nazwa osi X"
+
+#: src/isimpa/IHM/DialogDiagramCreator.cpp:157
+msgid "Name of Y axis"
+msgstr "Nazwa osi Y"
+
+#: src/isimpa/IHM/GabeDataGrid.cpp:495 src/isimpa/IHM/GabeDataGrid.cpp:523
+#: src/isimpa/IHM/MainPropGrid.cpp:171 src/isimpa/IHM/MainPropGrid.cpp:206
+msgid "New diagram"
+msgstr "Nowy wykres"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_directivities_user.h:125
+msgid "New directivity"
+msgstr "Nowy plik kierunkowości"
+
+#: src/isimpa/IHM/loadingSceneDialog.cpp:137
+msgid ""
+"New faces with the same position than old faces keep materials and surface "
+"receivers"
+msgstr "Nowe powierzchnie w tych samych pozycjach co stare zachowają swoje właściwości"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteursp.h:195
+#: src/isimpa/data_manager/tree_scene/e_scene_sources.h:224
+msgid "New group"
+msgstr "Nowa grupa"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_user.h:144
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_user_group.h:197
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_user_materiau.h:62
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_user_materiau.h:87
+msgid "New material"
+msgstr "Nowy materiał"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteurss.h:139
+msgid "New plane receiver"
+msgstr "Nowy odbiornik powierzchinowy"
+
+#: src/isimpa/IHM/GabeDataGrid.cpp:448
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_userconfiguration.h:53
+#: src/isimpa/main/i_simpa_main.cpp:420
+msgid "New project"
+msgstr "Nowy projekt"
+
+#: src/isimpa/main/i_simpa_main.cpp:178
+msgid "New project\tCtrl+N"
+msgstr "Nowy projekt\tCtrl+N"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteursp.h:194
+msgid "New receiver"
+msgstr "Nowy odbiornik"
+
+#: src/isimpa/main/i_simpa_main.cpp:183
+msgid "New scene"
+msgstr "Nowy model"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteurss.h:138
+msgid "New scene receiver"
+msgstr "Nowy odbiornik na powierzchni modelu"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_sources.h:223
+msgid "New source"
+msgstr "Nowe źródło"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_spectrums_user.h:72
+msgid "New spectrum"
+msgstr "Nowe widmo"
+
+#: src/isimpa/main/i_simpa_main.cpp:429
+msgid "Next time step"
+msgstr "Następny krok czasowy"
+
+#: src/isimpa/data_manager/projet_maillage.cpp:212
+msgid "No 3D scene for meshing"
+msgstr "Brak modelu 3D do wykonania siatki"
+
+#: src/isimpa/manager/processManager.cpp:126
+msgid "No error"
+msgstr "Brak błędu"
+
+#: src/isimpa/doxDoc/demos/demos_add_element_drawable.h:57
+#: src/isimpa/doxDoc/demos/demos_add_element_withprop.h:57
+msgid "Nom de la démo"
+msgstr "Numer dema"
+
+#: src/isimpa/data_manager/projet.cpp:383
+#: src/isimpa/data_manager/projet.cpp:413
+msgid "Non-allowed image. Exportation cancelled"
+msgstr "Obraz niedozwolony. Anulowano export"
+
+#: src/isimpa/manager/processManager.cpp:138
+msgid "Non-specified process output"
+msgstr "Nieokreślone wyjście procesu"
+
+#: src/isimpa/IHM/WizardRemeshModel.cpp:128
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:87
+#: src/isimpa/main/i_simpa_main.cpp:232 src/isimpa/main/i_simpa_main.cpp:246
+msgid "None"
+msgstr "Żadna"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_informations.h:68
+msgid "Number of active fitting zones"
+msgstr "Ilość aktywnych stref dopasowania"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_informations.h:69
+msgid "Number of active sound sources"
+msgstr "Ilość aktywnych źródeł dźwięku"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_informations.h:77
+msgid "Number of fitting zones"
+msgstr "Ilość stref dopasowania"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_informations.h:78
+msgid "Number of punctual receivers"
+msgstr "Ilość odbiorników punktowych"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:157
+#: src/isimpa/data_manager/tree_core/e_core_sppsoctreecore.h:100
+msgid "Number of sound particles per source"
+msgstr "Ilość cząstek na źródło"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:158
+#: src/isimpa/data_manager/tree_core/e_core_sppsoctreecore.h:101
+msgid "Number of sound particles per source (display)"
+msgstr "Wyświetlana ilość cząstek na źródło"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_informations.h:80
+msgid "Number of sound sources"
+msgstr "Ilość źródeł dźwięku"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_informations.h:81
+msgid "Number of surface groups"
+msgstr "Ilość grup powierzchni"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_informations.h:79
+msgid "Number of surfaces receivers"
+msgstr "Ilość odbiorników powierzchniowych"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:130
+msgid "OK"
+msgstr "Ok"
+
+#: src/isimpa/data_manager/tree_core/e_core_core_bfreqselection.h:140
+msgid "Octave"
+msgstr "Oktawy"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteursp_recepteur_proprietes.h:56
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source_properties.h:65
+msgid "Omnidirectional"
+msgstr "Wszechkierunkowe"
+
+#: src/isimpa/main/i_simpa_main.cpp:307
+msgid "Online documentation"
+msgstr "Dokumentacja online"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_rendu.h:67
+msgid "Opacity"
+msgstr "Przejrzystość"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_folder.h:86
+msgid "Open folder"
+msgstr "Otwórz folder"
+
+#: src/isimpa/data_manager/generic_element/e_directivity.cpp:85
+#: src/isimpa/data_manager/generic_element/e_directivity.cpp:120
+msgid "Open loudspeaker file"
+msgstr "Otwórz plik głośnika"
+
+#: src/isimpa/main/i_simpa_main.cpp:421 src/isimpa/main/i_simpa_main.cpp:959
+msgid "Open project"
+msgstr "Otwórz projekt"
+
+#: src/isimpa/main/i_simpa_main.cpp:179
+msgid "Open project\tCtrl+O"
+msgstr "Otwórz projekt\tCtrl+O"
+
+#: src/isimpa/3dengine/Core/Texture.cpp:162
+msgid "OpenGL error :"
+msgstr "Błąd OpenGL: "
+
+#: src/isimpa/3dengine/OpenGLApp.cpp:414
+msgid ""
+"OpenGL exportation error. Try to use the window exportation method instead"
+msgstr "Błąd eksportu OpenGL. Spróbuj użyć eksportu okna."
+
+#: src/isimpa/data_manager/element.cpp:814
+msgid "Operation not allowed"
+msgstr "Operacja nie dozwolona"
+
+#: src/isimpa/main/i_simpa_main.cpp:199
+msgid "Options"
+msgstr "Opcje"
+
+#: src/isimpa/main/i_simpa_main.cpp:444
+msgid "Orbit camera"
+msgstr "Obracaj kamerą"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteursp_recepteur.h:58
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteursp_recepteur.h:109
+msgid "Orientation point"
+msgstr ""
+
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_cuboide.h:90
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_cuboide.h:107
+msgid "Origin volume"
+msgstr ""
+
+#: src/isimpa/main/i_simpa_main.cpp:238
+msgid "Original"
+msgstr "Oryginalny"
+
+#: src/isimpa/IHM/simpleGraphManager.cpp:159
+msgid "Original zoom"
+msgstr "Oryginalne powiększenie"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:697
+msgid "Outline:"
+msgstr "Kontur:"
+
+#: src/isimpa/main/i_simpa_main.cpp:230
+msgid "Outside"
+msgstr "Zewnętrzne"
+
+#: src/isimpa/data_manager/projet.cpp:371
+#: src/isimpa/data_manager/projet.cpp:401
+msgid ""
+"PNG file (*.png)|*.png|JPG file (*.jpg)|*.jpg|Bitmap file (*.bmp)|*.bmp"
+msgstr "PNG (*.png)|*.png|JPG (*.jpg)|*.jpg|Bitmap (*.bmp)|*.bmp"
+
+#: src/isimpa/data_manager/projet.cpp:2388
+msgid "Particle"
+msgstr ""
+
+#: src/isimpa/3dengine/Core/Particules.cpp:66
+#: src/isimpa/Language/additionnal_univ.h:39
+#: src/isimpa/data_manager/tree_rapport/e_report_partvisualisation.h:85
+msgid "Particles"
+msgstr "Czastki"
+
+#: src/spps/input_output/reportmanager.cpp:490
+msgid "Particles absorbed by the atmosphere"
+msgstr "Cząstki pochłonięte przez atmosferę"
+
+#: src/spps/input_output/reportmanager.cpp:492
+msgid "Particles absorbed by the fittings"
+msgstr "Cząstki pochłonięte przez strefy dopasowania"
+
+#: src/spps/input_output/reportmanager.cpp:491
+msgid "Particles absorbed by the materials"
+msgstr "Cząstki pochłonięte przez materiały"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_partvisualisation.h:60
+msgid "Particles animation"
+msgstr "Animacja czastek"
+
+#: src/isimpa/data_manager/projet.cpp:2368
+#: src/isimpa/data_manager/tree_rapport/e_report_partvisualisation.h:75
+msgid "Particles display"
+msgstr "Wyświetlanie cząstek"
+
+#: src/isimpa/3dengine/Core/Particules.cpp:243
+#, c-format
+msgid "Particles file contains %i particles and %i time step"
+msgstr "Plik cząstek zawiera %i cząstek oraz %i kroków czasowych"
+
+#: src/isimpa/data_manager/projet.cpp:1637
+msgid "Particles file does not exist for the corresponding frequency"
+msgstr "Nie istnieje plik cząstek dla wybranej częstotliwości"
+
+#: src/isimpa/3dengine/Core/Particules.cpp:320
+#, c-format
+msgid ""
+"Particles file does not exist!\n"
+" %s"
+msgstr "Plik cząstek nie istnieje!\n %s"
+
+#: src/spps/input_output/reportmanager.cpp:493
+msgid "Particles lost by infinite loops"
+msgstr "Cząstki stracone w nieskończonych pętlach"
+
+#: src/spps/input_output/reportmanager.cpp:494
+msgid "Particles lost by meshing problems"
+msgstr "Cząstki stracone w związku z błędami siatki"
+
+#: src/spps/input_output/reportmanager.cpp:495
+msgid "Particles remaining at the end of the calculation"
+msgstr "Cząstki pozostałe na końcu symulacji"
+
+#: src/isimpa/3dengine/Core/Particules.cpp:355
+msgid "Particles:"
+msgstr "Czastki:"
+
+#: src/isimpa/3dengine/Core/Recepteurs_surfacique.cpp:268
+msgid "Pascal"
+msgstr "Paskal"
+
+#: src/isimpa/IHM/PropGrid.cpp:266 src/isimpa/data_manager/element.cpp:932
+msgid "Paste"
+msgstr "Wklej"
+
+#: src/isimpa/main/i_simpa_main.cpp:213 src/isimpa/main/i_simpa_main.cpp:428
+msgid "Pause"
+msgstr "Pauza"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe.h:60
+msgid "Plane Receiver"
+msgstr "Odbiornik powierzchniowy"
+
+#: src/isimpa/Language/additionnal_univ.h:38
+msgid "Plane Surface Receiver"
+msgstr "Odbiornik powierzchniowy"
+
+#: src/isimpa/main/i_simpa_main.cpp:212 src/isimpa/main/i_simpa_main.cpp:427
+msgid "Play"
+msgstr "Odtwarzaj"
+
+#: src/isimpa/main/i_simpa_main.cpp:1011
+msgid "Please choose language:"
+msgstr "Wybierz język:"
+
+#: src/isimpa/main/i_simpa_main.h:499
+msgid "Please choose the application instance"
+msgstr "Proszę wybierz instancję aplikacji"
+
+#: src/isimpa/data_manager/projet.cpp:2746
+msgid "Please chose a calculation code"
+msgstr "Proszę wybierz metodę obliczeniową"
+
+#: src/isimpa/data_manager/projet.cpp:1820
+msgid "Please click on the 3D view to update the coordinates"
+msgstr "Proszę kliknij na widoku 3D aby zmienić współrzędne"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_model.h:114
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_model.h:129
+#, c-format
+msgid "Please define a point inside the fitting zone %s"
+msgstr "Proszę podaj punkt wewnątrz strefy dopasowania %s"
+
+#: src/isimpa/main/i_simpa_main.cpp:914
+msgid "Please enter scene dimensions (m)"
+msgstr "Proszę podaj wymiary modelu (m)"
+
+#: src/isimpa/data_manager/projet.cpp:390
+msgid "Please give the size of the exported picture."
+msgstr "Podaj rozmiar eksportowanego obrazu."
+
+#: src/isimpa/IHM/WizardRemeshModel.cpp:203
+msgid "Please select the volume to extract"
+msgstr "Proszę wybrać objętość"
+
+#: src/isimpa/IHM/RecepteurSOperationDialog.cpp:264
+msgid "Please, give filename for the output results"
+msgstr "Proszę, podaj nazwę pliku wynikowego"
+
+#: src/isimpa/IHM/GabeDataGrid.cpp:402
+msgid "Please, give the name of column"
+msgstr "Proszę, podaj nazwę kolumny"
+
+#: src/isimpa/IHM/GabeDataGrid.cpp:399
+msgid "Please, give the name of line"
+msgstr "Proszę, podaj nazwę wiersza"
+
+#: src/isimpa/data_manager/projet_calculation.cpp:545
+#: src/isimpa/data_manager/projet_calculation.cpp:877
+msgid ""
+"Please, gives calculation parameters. Use ';' to separate several parameters"
+msgstr "Proszę, podaj parametry współczynników. Użyj ';' aby oddzielić parametry"
+
+#: src/isimpa/IHM/GabeDataGrid.cpp:338
+msgid "Please, refresh root folder of the data tree"
+msgstr "Proszę, odśwież główny folder drzewa projektu"
+
+#: src/isimpa/data_manager/projet.cpp:2953
+msgid "Please, select 3D scene importation options"
+msgstr "Proszę, wybierz opcje importu modelu"
+
+#: src/isimpa/IHM/RecepteurSOperationDialog.cpp:158
+msgid "Please, select surface receivers of reference:"
+msgstr "Proszę wybrać odbiornik powierzchniowy odniesienia"
+
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:81
+msgid "Plus"
+msgstr "Plus"
+
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:65
+msgid "Point"
+msgstr "Punkt"
+
+#: src/isimpa/main/i_simpa_main.cpp:483
+msgid "Pointer toolbar"
+msgstr "Pasek narzędzi"
+
+#: src/isimpa/data_manager/projet.cpp:2376
+msgid "Police font"
+msgstr "Czcionka"
+
+#: src/isimpa/data_manager/element.cpp:904
+#: src/isimpa/data_manager/element.cpp:921
+#, c-format
+msgid ""
+"Popup icon file doesn't find:\n"
+"%s"
+msgstr "Plik ikony nie znaleziony:\n%s"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteursp_recepteur.h:139
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source.h:99
+msgid "Position"
+msgstr "Pozycja"
+
+#: src/isimpa/IHM/RecepteurSOperationDialog.cpp:226
+msgid "Power gain"
+msgstr "Wzmocnienie"
+
+#: src/isimpa/data_manager/projet_maillage.cpp:81
+msgid "Preparing 3D scene"
+msgstr "Przygotowywanie modelu 3D"
+
+#: src/isimpa/3dengine/OpenGLApp.cpp:616
+msgid "Preparing display of surfaces receivers"
+msgstr "Przygotowywanie widoku odbiorników powierzchniowych"
+
+#: src/isimpa/main/i_simpa_main.cpp:426
+msgid "Previous time step"
+msgstr "Poprzedni krok czasowy"
+
+#: src/isimpa/manager/processManager.cpp:122
+msgid "Process answer:"
+msgstr "Przetwarzanie odpowiedzi:"
+
+#: src/isimpa/manager/processManager.cpp:135
+msgid "Process doesn't exist"
+msgstr "Proces nie istnieje"
+
+#: src/isimpa/main/i_simpa_main.h:362
+msgid "Program aborted"
+msgstr "Program anulowany"
+
+#: src/isimpa/data_manager/tree_scene/e_scene.cpp:63
+#: src/isimpa/data_manager/tree_scene/e_scene_projet.h:58
+#: src/isimpa/data_manager/tree_scene/e_scene_projet.h:99
+#: src/isimpa/main/i_simpa_main.cpp:375
+msgid "Project"
+msgstr "Projekt"
+
+#: src/isimpa/main/i_simpa_main.cpp:959
+msgid "Project (*.proj)|*.proj"
+msgstr "Projekt (*.proj)|*.proj"
+
+#: src/isimpa/data_manager/projet.cpp:2313
+msgid "Project compression"
+msgstr "Kompresja projektu"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd.h:53
+msgid "Project database"
+msgstr "Baza danych projektu"
+
+#: src/isimpa/data_manager/projet.cpp:2466
+msgid "Project decompression"
+msgstr "Wypakowywanie projektu"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_userconfiguration.h:54
+msgid "Project description"
+msgstr "Opis projektu"
+
+#: src/isimpa/data_manager/projet.cpp:2313
+msgid "Project files compression in progress..."
+msgstr "Kompresja projektu w trakcie..."
+
+#: src/isimpa/data_manager/projet.cpp:2466
+msgid "Project files decompression in progress..."
+msgstr "Wypakowywanie projektu w toku..."
+
+#: src/isimpa/main/i_simpa_main.cpp:1030
+msgid ""
+"Project has been modified.\n"
+"Save project with modifications?"
+msgstr "Projekt został zmieniony.\nCzy chcesz zapisać zmiany?"
+
+#: src/isimpa/IHM/GabeDataGrid.cpp:308
+msgid "Project has been modified. Save modifications?"
+msgstr "Projekt został zmodyfikowany. Czy chcesz zapisać zmiany?"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_userconfiguration.h:53
+msgid "Project name"
+msgstr "Nazwa projektu"
+
+#: src/isimpa/main/i_simpa_main.cpp:464
+msgid "Project toolbar"
+msgstr "Pasek projektu"
+
+#: src/isimpa/doxDoc/demos/demos_add_element_parent.h:41
+msgid "Projet"
+msgstr "Projekt"
+
+#: src/isimpa/data_manager/element.cpp:952
+#: src/isimpa/data_manager/tree_core/e_core_core_config.h:55
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_proprietes.h:66
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteursp_recepteur_proprietes.h:63
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteurss_recepteur_proprietes.h:61
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_proprietes.h:62
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source_properties.h:115
+#: src/isimpa/data_manager/tree_scene/e_scene_volumes_volume_proprietes.h:49
+#: src/isimpa/main/i_simpa_main.cpp:487 src/isimpa/main/i_simpa_main.cpp:491
+msgid "Properties"
+msgstr "Właściwości"
+
+#: src/isimpa/data_manager/projet.cpp:1543
+msgid "Properties - "
+msgstr "Właściwości -"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:77
+msgid "Punctual receiver intensity"
+msgstr "Natężenie odbiornika punktowego"
+
+#: src/isimpa/data_manager/tree_core/e_core_core.h:109
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteursp.h:52
+msgid "Punctual receivers"
+msgstr "Odbiorniki punktowe"
+
+#: src/isimpa/main/i_simpa_main.cpp:341
+msgid "Python(TM)"
+msgstr "Python(TM)"
+
+#: src/isimpa/data_manager/python_interface/pythonshell.cpp:208
+msgid "Python(TM) implementation error can't be produced"
+msgstr "Błąd implementacji Python(TM) nie może zostać wyświetlony"
+
+#: src/isimpa/data_manager/projet_python.cpp:183
+#, c-format
+msgid "Python(TM) plugin event parameter %s not found"
+msgstr "Nie znaleziono parametru zdarzenia %s wtyczki Python(TM)"
+
+#: src/isimpa/IHM/WizardRemeshModel.cpp:140
+msgid "Quality constraint"
+msgstr "Wskaźnik jakości"
+
+#: src/isimpa/3dengine/Core/Recepteurs_surfacique.cpp:721
+#, c-format
+msgid "RT at pointer is %.2f "
+msgstr "RT w wybranym punkcie wynosi  s %.2f "
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:188
+msgid "RT computation"
+msgstr "Wyznaczanie RT"
+
+#: src/isimpa/data_manager/projet_calculation.cpp:202
+#, c-format
+msgid "RT-%g (s)"
+msgstr "RT-%g (s)"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppsoctreecore.h:106
+msgid "Radius of receivers (m)"
+msgstr "Promień odbiorników (m)"
+
+#: src/isimpa/data_manager/tree_core/e_core_core_tetconf.h:97
+msgid "Radius/Edge ratio"
+msgstr "Stosunek promienia/krawędzi"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppsoctreecore.h:96
+msgid "Random"
+msgstr "Losowa"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:88
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:127
+msgid "Random initialization number"
+msgstr "Ziarno generatora liczb losowych"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_partvisualisation.h:86
+msgid "Rays"
+msgstr "Promienie"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteursp_recepteur.h:71
+msgid "Receiver"
+msgstr "Odbiornik"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteursp_recepteur.h:125
+#, c-format
+msgid "Receiver %i"
+msgstr "Odbiornik %i"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:74
+msgid "Receiver intensity"
+msgstr "Natężenie w odbiorniku"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:57
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:128
+msgid "Receiver radius (m)"
+msgstr "Promień odbiorników (m)"
+
+#: src/isimpa/main/i_simpa_main.cpp:190
+msgid "Recent projects"
+msgstr "Ostatnie projekty"
+
+#: src/isimpa/data_manager/projet_remesh.cpp:167
+msgid "Reconstruction of input model."
+msgstr "Rekonstrukcja modelu wejściowego"
+
+#: src/isimpa/main/i_simpa_main.cpp:209
+msgid "Redo\tCtrl+Y"
+msgstr "Ponów\tCtrl+Y"
+
+#: src/isimpa/IHM/WizardRemeshModel.cpp:138
+msgid "Reduction of the number of surfaces"
+msgstr "Redukcja ilości powierzchni"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:79
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_spectrums_app.h:53
+msgid "Reference"
+msgstr "Wbudowane"
+
+#: src/isimpa/data_manager/generic_element/e_materiau_app.h:58
+msgid "Reference material"
+msgstr "Materiał odniesienia"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_app.h:52
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_app.h:82
+msgid "Reference materials"
+msgstr "Materiały odniesienia"
+
+#: src/isimpa/data_manager/generic_element/e_gammefrequence_app.h:53
+msgid "Reference spectrum"
+msgstr "Widmo odniesienia"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_file.cpp:373
+msgid "Refresh folder"
+msgstr "Odśwież folder"
+
+#: src/isimpa/data_manager/projet.cpp:851
+msgid "Refreshing onglet 'Report'"
+msgstr "Odświeżanie okna wyników"
+
+#: src/isimpa/main/i_simpa_main.cpp:256 src/isimpa/main/i_simpa_main.cpp:443
+msgid "Reinitialize camera"
+msgstr "Reinicjalizuj widok"
+
+#: src/isimpa/main/i_simpa_main.cpp:290
+msgid "Reinitialize interface"
+msgstr "Reinicjalizuj interfejs"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:128
+msgid "Relative humidity (%)"
+msgstr "Wilgotność wzglęna (%)"
+
+#: src/isimpa/manager/processManager.cpp:157
+msgid "Remaining time: "
+msgstr "Pozostało:"
+
+#: src/isimpa/IHM/WizardRemeshModel.cpp:132
+msgid "Remesh adaptation"
+msgstr "Adaptacja siatki"
+
+#: src/isimpa/data_manager/element.cpp:941
+msgid "Rename"
+msgstr "Zmień nazwę"
+
+#: src/isimpa/data_manager/projet.cpp:2367
+msgid "Render frequency (Hz)"
+msgstr "Częstotliwość odświeżania (Hz)"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_rendu.h:56
+msgid "Render mode"
+msgstr "Tryb wyświetlania"
+
+#: src/isimpa/IHM/loadingSceneDialog.cpp:119
+msgid "Repair model"
+msgstr "Napraw model"
+
+#: src/isimpa/data_manager/projet_maillage.cpp:81
+msgid "Reparing 3D scene"
+msgstr "Naprawianie modelu 3D"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:82
+msgid "Resistivity (cgs)"
+msgstr "Rezystancja (cgs)"
+
+#: src/isimpa/3dengine/OpenGLApp.cpp:390
+msgid ""
+"Resolution is too high, your graphic card is enable to manage this size. "
+"Please choose a lower export resolution"
+msgstr "Zbyt duża rozdzielczość, twoja karta graficzna nie jest w stanie przetworzyć takiego obrazu. Proszę wybrać niższą rozdzielczość eksportowanego obrazu."
+
+#: src/isimpa/IHM/RecepteurSOperationDialog.cpp:220
+msgid "Result filename"
+msgstr "Nazwa pliku wynikowego"
+
+#: src/isimpa/data_manager/tree_rapport/e_report.h:54
+#: src/isimpa/main/i_simpa_main.cpp:369
+msgid "Results"
+msgstr "Wyniki"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:180
+msgid "Reverberation time (RT)"
+msgstr "Czas pogłosu (RT)"
+
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:80
+msgid "Right diagonal dash"
+msgstr "Ukośnik w prawo"
+
+#: src/isimpa/main/i_simpa_main.cpp:259
+msgid "Rotation / Zoom"
+msgstr "Obrót / Zbliżenie"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:120
+msgid "Roughness - z0 (m)"
+msgstr "Szorstkość - z0(m)"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:168
+msgid "Rugosity - Ground type"
+msgstr "Szorstkość - Typ gruntu"
+
+#: src/isimpa/data_manager/tree_core/e_core_core.h:118
+msgid "Run calculation"
+msgstr "Uruchom obliczenia"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppsoctreecore.h:95
+msgid "SPPS"
+msgstr "SPPS"
+
+#: src/isimpa/IHM/AboutDialog.cpp:81
+#, c-format
+msgid "SPPS [%i.%i.%i]"
+msgstr "SPPS [%i.%i.%i]"
+
+#: src/isimpa/main/i_simpa_main.cpp:310
+msgid "SPPS documentation (PDF in French)"
+msgstr "Dokumentacja programu SPPS (PDF po francusku)"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:71
+msgid "SPPS particle statistics"
+msgstr "Statystyki cząstek SPPS"
+
+#: src/isimpa/data_manager/projet_calculation.cpp:304
+msgid "ST (dB)"
+msgstr "ST (dB)"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:193
+msgid "ST computation"
+msgstr "Wyznaczanie ST"
+
+#: src/isimpa/main/i_simpa_main.cpp:530
+msgid "Save console"
+msgstr "Zapisz konsolę"
+
+#: src/isimpa/main/i_simpa_main.cpp:187 src/isimpa/main/i_simpa_main.cpp:1060
+msgid "Save copy of project"
+msgstr "Zapisz kopię projektu"
+
+#: src/isimpa/IHM/GabeDataGrid.cpp:553
+msgid "Save data"
+msgstr "Zapisz dane"
+
+#: src/isimpa/IHM/GabeDataGrid.cpp:554
+msgid "Save data as..."
+msgstr "Zapisz dane jako..."
+
+#: src/isimpa/IHM/GabeDataGrid.cpp:345
+msgid "Save document"
+msgstr "Zapisz dokument"
+
+#: src/isimpa/data_manager/projet.cpp:2608
+msgid "Save finished"
+msgstr "Zapis zakończony"
+
+#: src/isimpa/main/i_simpa_main.cpp:423 src/isimpa/main/i_simpa_main.cpp:978
+msgid "Save project"
+msgstr "Zapisz projekt"
+
+#: src/isimpa/main/i_simpa_main.cpp:185
+msgid "Save project\tCtrl+S"
+msgstr "Zapisz projekt\tCtrl+S"
+
+#: src/isimpa/main/i_simpa_main.cpp:186 src/isimpa/main/i_simpa_main.cpp:424
+msgid "Save project as..."
+msgstr "Zapisz projekt jako..."
+
+#: src/isimpa/data_manager/projet.cpp:2930
+msgid "Saving 3D scene"
+msgstr "Zapis modelu"
+
+#: src/isimpa/data_manager/projet.cpp:2171
+#: src/isimpa/data_manager/projet.cpp:2593
+msgid "Saving project"
+msgstr "Zapisywanie projektu"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:556
+msgid "Scale X"
+msgstr "Oś X"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:555
+msgid "Scale Y"
+msgstr "Oś Y"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:552
+msgid "Scale, x maximum value"
+msgstr "Oś X, wartość maksymalna"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:551
+msgid "Scale, x minimum value"
+msgstr "Oś X, wartość minimalna"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:554
+msgid "Scale, y maximum value"
+msgstr "Oś Y, wartość maksymalna"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:553
+msgid "Scale, y minimum value"
+msgstr "Oś Y, wartość minimalna"
+
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:47
+msgid "Scatter image"
+msgstr "Obraz punktu"
+
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:48
+msgid "Scatter marker"
+msgstr "Znacznik punktu"
+
+#: src/isimpa/data_manager/tree_scene/e_scene.cpp:41
+#: src/isimpa/main/i_simpa_main.cpp:367
+msgid "Scene"
+msgstr "Model"
+
+#: src/isimpa/data_manager/projet.cpp:2360
+msgid "Scene background"
+msgstr "Tło"
+
+#: src/isimpa/data_manager/tree_core/e_core_core_tetconf.h:103
+msgid "Scene correction before meshing"
+msgstr "Korekcja modelu przed generacją siatki"
+
+#: src/isimpa/data_manager/projet.cpp:1923
+msgid "Scene does not exist!"
+msgstr "Model nie istnieje!"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_configuration.h:65
+msgid "Scene file"
+msgstr "Plik modelu"
+
+#: src/isimpa/data_manager/projet.cpp:2358
+msgid "Scene lines"
+msgstr "Krawęzie modelu"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteurss_recepteur.h:53
+msgid "Scene receiver"
+msgstr "Odbiornik na powierzchni modelu"
+
+#: src/isimpa/data_manager/projet_maillage.cpp:90
+msgid "Scene repair canceled"
+msgstr "Naprawa modelu przerwana"
+
+#: src/isimpa/data_manager/projet_maillage.cpp:87
+msgid "Scene repair complete"
+msgstr "Naprawa modelu skończona"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_informations.h:83
+msgid "Scene surface (m2)"
+msgstr "Powierzchnia modelu"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_informations.h:82
+msgid "Scene volume (m3)"
+msgstr "Objętość modelu"
+
+#: src/isimpa/data_manager/projet_calculation.cpp:712
+msgid "Schroeder curves"
+msgstr "Krzywe Schroedera"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_gabe_recp.cpp:263
+msgid "Schroeder's curve"
+msgstr "Krzywa Schrodera"
+
+#: src/isimpa/data_manager/projet_remesh.cpp:107
+#: src/isimpa/data_manager/projet_remesh.cpp:167
+msgid "Searching model volumes..."
+msgstr "Wyszukiwanie objętości w modelu..."
+
+#: src/isimpa/data_manager/tree_core/e_core_core_bfreqselection.h:133
+msgid "Select all"
+msgstr "Zaznacz wszystkie"
+
+#: src/isimpa/main/i_simpa_main.cpp:999
+msgid "Select an empty folder that will contain your projects"
+msgstr ""
+
+#: src/isimpa/data_manager/projet.cpp:2772
+msgid ""
+"Select face: Left Click on the 3D view 3D to select a face; Double left "
+"Click+Ctrl to select a face entirely"
+msgstr "Wybierz powierzchnie:\nkliknij lewym przyciskiem myszy na widoku 3D aby wybrać powierzchnię;\nkliknij dwukrotnie lewym przyciskiem myszy na widoku 3D aby wybrać całą powierzchnię"
+
+#: src/isimpa/data_manager/projet.cpp:2359
+msgid "Selection"
+msgstr "Wybór"
+
+#: src/isimpa/data_manager/appconfig.cpp:149
+msgid "Semi-diffuse"
+msgstr "Częściowo-rozproszone??"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_groupesurfaces_groupe_vertex.h:79
+msgid "Send to a new surface group"
+msgstr "Przenieś do nowej grupy powierzchni"
+
+#: src/isimpa/main/i_simpa_main.cpp:292
+msgid "Set 3D View as main window"
+msgstr "Zadokuj widok 3D w głównym oknie"
+
+#: src/isimpa/IHM/PropGrid.cpp:274
+msgid "Set the same value"
+msgstr "Ustaw taką samą wartość"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:174
+msgid "Set user defined atmospheric absorption"
+msgstr "Ustaw tłumienie atmosferyczne zdefiniowane przez użytkownika"
+
+#: src/isimpa/data_manager/projet.cpp:2393
+#: src/isimpa/main/i_simpa_main.cpp:202
+msgid "Settings"
+msgstr "Ustawienia"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:153
+msgid "Short Lawn"
+msgstr "Krótki trawnik"
+
+#: src/isimpa/main/i_simpa_main.cpp:448
+msgid "Show / Hide meshing"
+msgstr "Pokaż / ukryj siatkę"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_rendu_origine.h:68
+msgid "Show XYZ axis"
+msgstr "Pokaż oś XYZ"
+
+#: src/isimpa/IHM/simpleGraphManager.cpp:172
+msgid "Show all"
+msgstr "Pokaż wszystko"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:142
+msgid "Show iso-curves"
+msgstr "Pokaż izolinie"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_rendu.h:63
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteursp_recepteur_rendu.h:52
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source_rendu.h:52
+msgid "Show name"
+msgstr "Pokaż nazwę"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_rendu.h:60
+msgid "Show the grid"
+msgstr "Pokaż siatkę"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_rendu.h:61
+msgid "Show vertices name"
+msgstr "Pokaż nazwy wierzchołków"
+
+#: src/isimpa/IHM/simpleGraphManager.cpp:185
+msgid "Show/Hide curves"
+msgstr "Pokaż/ukryj krzywe"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:55
+msgid "Side of material effect"
+msgstr "Strona działania materiału"
+
+#: src/isimpa/manager/processManager.cpp:129
+msgid "Signal doesn't exist"
+msgstr "Sygnał nie istnieje"
+
+#: src/isimpa/main/i_simpa_main.cpp:318
+msgid "Simulation"
+msgstr "Symulacje"
+
+#: src/isimpa/data_manager/tree_core/e_core_core_config.h:76
+msgid "Simulation length (s)"
+msgstr "Długość symulacji (s)"
+
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:71
+msgid "Small dash"
+msgstr "Krótka kreska"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:104
+msgid "Smooth colors"
+msgstr "Wygładź kolory"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:144
+msgid "Smooth level"
+msgstr "Wygładź poziom"
+
+#: src/isimpa/data_manager/projet_calculation.cpp:548
+msgid "Sound decay value for RT calculation (dB)"
+msgstr "Spadek poziomu dźwięku dla obliczeń RT (dB)"
+
+#: src/isimpa/data_manager/appconfig.cpp:60
+#: src/isimpa/data_manager/tree_core/e_core_core.h:110
+#: src/isimpa/data_manager/tree_rapport/e_report_gabe_recp.cpp:41
+#: src/isimpa/data_manager/tree_rapport/e_report_gabe_recps.cpp:41
+msgid "Sound level"
+msgstr "Poziom ciśnienia akustycznego"
+
+#: src/isimpa/data_manager/projet_calculation.cpp:224
+msgid "Sound level (dB)"
+msgstr "Poziom ciśnienia akustycznego (dB)"
+
+#: src/isimpa/data_manager/projet_calculation.cpp:264
+msgid "Sound level (dBA)"
+msgstr "Poziom ciśnienia akustycznego A (dBA)"
+
+#: src/isimpa/3dengine/Core/Recepteurs_surfacique.cpp:716
+#, c-format
+msgid "Sound level at pointer s %.2f "
+msgstr "Poziom ciśnienia akustycznego w wybranym punkcie wynosi s %.2f "
+
+#: src/isimpa/3dengine/Core/Recepteurs_surfacique.cpp:718
+msgid "Sound level is not given"
+msgstr "Nieznany poziom ciśnienia akustycznego"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:78
+msgid "Sound level per source"
+msgstr "Poziom ciśnienia akustycznego na źródło"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source.h:98
+msgid "Sound power"
+msgstr "Moc akustyczna"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_sources.h:54
+msgid "Sound sources"
+msgstr "Źródła dźwięku"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:136
+msgid "Sound_level"
+msgstr "Poziom ciśnienia akustycznego"
+
+#: src/isimpa/data_manager/projet.cpp:2383
+msgid "Soundmap"
+msgstr ""
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:65
+msgid "Soundmap: SPL"
+msgstr "SPL"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:63
+msgid "Soundmap: intensity"
+msgstr "Natężenie dźwięku"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source.h:51
+msgid "Source"
+msgstr "Zrodlo"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source.h:88
+#, c-format
+msgid "Source %i"
+msgstr "Zrodlo %i"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:159
+msgid "Sparse habitat (farm, trees, hedges)"
+msgstr "Luźna zabudowa (farma, drzewa, żywopłoty)"
+
+#: src/isimpa/data_manager/generic_element/e_property_freq.cpp:54
+#: src/isimpa/data_manager/tree_rapport/e_report_gabe_recp.cpp:195
+#: src/isimpa/data_manager/tree_rapport/e_report_gabe_recps.cpp:179
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_spectrums.h:52
+msgid "Spectrum"
+msgstr "Widmo"
+
+#: src/isimpa/data_manager/generic_element/e_property_freq.cpp:158
+#: src/isimpa/data_manager/generic_element/e_property_freq.cpp:178
+#, c-format
+msgid ""
+"Spectrum of element %s does not exist! Please, specify a valid spectrum"
+msgstr "Widmo %s nie istnieje! Proszę, wybierz właściwe widmo."
+
+#: src/isimpa/data_manager/appconfig.cpp:144
+msgid "Specular"
+msgstr "Lustrzane"
+
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:49
+msgid "Spline"
+msgstr "Splajn"
+
+#: src/isimpa/IHM/GabeDataGrid.cpp:309 src/isimpa/IHM/MainPropGrid.cpp:167
+#: src/isimpa/data_manager/projet.cpp:3179
+msgid "Spreadsheet"
+msgstr "Arkusz kalkulacyjny"
+
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:89
+msgid "Square"
+msgstr "Kwadrat"
+
+#: src/isimpa/main/i_simpa_main.cpp:946
+msgid ""
+"Stanford University (*.ply)|*.ply|Stanford University with project groups "
+"(*.mat.ply)|*.mat.ply|Poly file (*.poly)|*.poly|Mesh file "
+"(*.mesh)|*.mesh|NFF file (*.nff)|*.nff|Binary file (*.bin)|*.bin|Binary file"
+" Calcul SPPS (*.cbin)|*.cbin|Ascii file (*.asc)|*.asc"
+msgstr "Stanford University (*.ply)|*.ply|Stanford University with project groups (*.mat.ply)|*.mat.ply|Poly file (*.poly)|*.poly|Mesh file (*.mesh)|*.mesh|NFF file (*.nff)|*.nff|Binary file (*.bin)|*.bin|Binary file Calcul SPPS (*.cbin)|*.cbin|Ascii file (*.asc)|*.asc"
+
+#: src/isimpa/main/i_simpa_main.cpp:214 src/isimpa/main/i_simpa_main.cpp:430
+msgid "Stop"
+msgstr "Zatrzymaj"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_groupesurfaces_groupe.cpp:112
+#: src/isimpa/data_manager/tree_scene/e_scene_groupesurfaces_groupe_vertex.h:64
+msgid "Surface area (m2)"
+msgstr "Powierzchnia (m2)"
+
+#: src/isimpa/IHM/loadingSceneDialog.cpp:124
+msgid "Surface meshing"
+msgstr "Generowanie siatki"
+
+#: src/isimpa/3dengine/Core/Recepteurs_surfacique.cpp:79
+#: src/isimpa/data_manager/appconfig.cpp:57
+msgid "Surface receiver"
+msgstr "Odbiornik powierzchniowy"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:67
+msgid "Surface receiver export"
+msgstr "Parametr odbiorników powierzchniowych"
+
+#: src/isimpa/IHM/RecepteurSOperationDialog.cpp:204
+msgid "Surface receiver to be compared to the reference one:"
+msgstr "Odbiornik powierzchniowy do porównania:"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:64
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteurss.h:49
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteurss.h:77
+msgid "Surface receivers"
+msgstr "Odbiorniki powierzchniowe"
+
+#: src/isimpa/3dengine/Core/Recepteurs_surfacique.cpp:884
+msgid "Surface receivers :"
+msgstr "Odbiorniki powierzchniowe"
+
+#: src/isimpa/3dengine/tools/recepteursurf_difference.cpp:144
+#, c-format
+msgid ""
+"Surface receivers can not be compared. Time step (delta T) is different from the reference one:\n"
+"%s"
+msgstr "Odbiorniki powierzchniowe nie mogą zostać porównane. Krok czasowy (dT) nie jest taki sam:\n%s"
+
+#: src/isimpa/data_manager/tree_core/e_core_core_tetconf.h:101
+msgid "Surface receivers constraint"
+msgstr "Ograniczenie odbiorników powierzchniowych"
+
+#: src/isimpa/data_manager/tree_core/e_core_core_tetconf.h:100
+msgid "Surface receivers constraint (m²)"
+msgstr "Ograniczenie odbiorników powierzchniowych (m²)"
+
+#: src/isimpa/data_manager/projet.cpp:2369
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:127
+msgid "Surface receivers display"
+msgstr "Wyświetlanie odbiorników powierzchniowych"
+
+#: src/isimpa/data_manager/projet.cpp:1608
+msgid "Surface receivers file does not exist for the corresponding frequency"
+msgstr "Nie istnieją odbiorniki powierzchniowe dla wybranej częstotliwości"
+
+#: src/isimpa/main/i_simpa_main.cpp:439
+msgid "Surface selection mode"
+msgstr "Tryb wyboru powierzchni"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_model.h:97
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_model.h:125
+#: src/isimpa/data_manager/tree_scene/e_scene_groupesurfaces.h:51
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteurss_recepteur.h:84
+#: src/isimpa/data_manager/tree_scene/e_scene_recepteurss_recepteur.h:108
+msgid "Surfaces"
+msgstr "Powierzchnie"
+
+#: src/isimpa/data_manager/tree_core/e_core_tlmcore.h:53
+msgid "TLM"
+msgstr "TLM"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_recepteurssvisualisation.h:192
+msgid "TS computation"
+msgstr "Wyznaczanie TS"
+
+#: src/isimpa/data_manager/generic_element/e_directivity.cpp:85
+#: src/isimpa/data_manager/generic_element/e_directivity.cpp:120
+msgid "TXT files (*.TXT)|*.TXT"
+msgstr "Pliki tekstowe (*.TXT)|*.TXT"
+
+#: src/isimpa/IHM/DialogDiagramCreator.cpp:153
+msgid "Tab name:"
+msgstr "Nazwa zakładki"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:126
+msgid "Temperature (°C)"
+msgstr "Temperatura (°C)"
+
+#: src/isimpa/data_manager/tree_core/e_core_core_tetconf.h:104
+msgid "Test mesh topology"
+msgstr "Testuj topologię siatki"
+
+#: src/isimpa/IHM/loadingSceneDialog.cpp:128
+msgid "TetGen parameters"
+msgstr "Parametry TetGen"
+
+#: src/lib_interface/coreTypes.cpp:244
+msgid "Tetrahedron file is empty, the calculation can't be done !"
+msgstr "Plik z czworościanami (tetrahedron) jest pusty, nie można wykonań obliczeń!"
+
+#: src/isimpa/data_manager/projet.cpp:2378
+msgid "Text background color"
+msgstr "Kolor tła tekstu"
+
+#: src/isimpa/data_manager/projet.cpp:2377
+msgid "Text color"
+msgstr "Kolor tekstu"
+
+#: src/isimpa/main/i_simpa_main.cpp:530
+msgid "Text file (*.txt)|*.txt"
+msgstr "Plik tekstowy (*.txt) | *.txt"
+
+#: src/isimpa/IHM/DialogDiagramCreator.cpp:164
+msgid "Text label for X"
+msgstr "Etykieta osi X"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:643
+msgid "Text rotation (degree)"
+msgstr "Obrót tekstu (stopnie)"
+
+#: src/isimpa/3dengine/Core/Recepteurs_surfacique.cpp:725
+#, c-format
+msgid "The D value at this coordinate is %.2f"
+msgstr "Wartość wskaźnika D w wybranym punkcie wynosi  s %.2f "
+
+#: src/isimpa/3dengine/Core/Recepteurs_surfacique.cpp:729
+#, c-format
+msgid "The ST value at this coordinate is %.2f"
+msgstr "Wartość wskaźnika ST w wybranym punkcie wynosi %.2f"
+
+#: src/isimpa/3dengine/Core/Recepteurs_surfacique.cpp:727
+#, c-format
+msgid "The TS value at this coordinate is %.2f"
+msgstr "Wartość wskaźnika TS w wybranym punkcie wynosi %.2f"
+
+#: src/isimpa/3dengine/Core/Recepteurs_surfacique.cpp:723
+#, c-format
+msgid "The clarity value at this coordinate is %.2f"
+msgstr "Przejrzystość w wybranym punkcie wynosi  s %.2f "
+
+#: src/isimpa/data_manager/tree_scene/e_scene_groupesurfaces_groupe.cpp:417
+msgid "The drag and drop of a group is allowed only from main surface groups"
+msgstr "Przeciąganie i upuszczanie grup powierzchni możliwe jest tylko dla głównej grupy powierzchni"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_groupesurfaces_groupe.cpp:390
+msgid "The drag and drop of vertex is allowed only from surface groups"
+msgstr "Przeciąganie i upuszczanie powierzchni możliwe jest tylko między grupami powierzchni"
+
+#: src/isimpa/data_manager/projet_calculation.cpp:583
+#, c-format
+msgid ""
+"The following file doesn't exist:\n"
+"%s"
+msgstr "Następujący plik nie istnieje:\n%s"
+
+#: src/isimpa/3dengine/tools/recepteursurf_difference.cpp:195
+#, c-format
+msgid ""
+"The following surface receiver can't be loaded:\n"
+"%s"
+msgstr "Następujący odbiornik powierzchniowy nie może zostać wczytany:\n%s"
+
+#: src/isimpa/3dengine/tools/recepteursurf_difference.cpp:160
+#, c-format
+msgid ""
+"The following surface receiver is not composed with the same number of surfaces as the reference one:\n"
+"%s"
+msgstr "Wybrany odbiornik powierzchniowy nie składa się z takiej samej ilości powierzchni jak odbiornik odniesienia:\n%s"
+
+#: src/isimpa/data_manager/projet_python.cpp:70
+msgid "The formula result must be a number"
+msgstr "Wynik musi być liczbą"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_groupesurfaces.h:109
+msgid "The group is not empty. You can't delete it!"
+msgstr "Ta grupa nie jest pusta. Nie możesz jej usunąć!"
+
+#: src/isimpa/data_manager/python_interface/py_ui_module/e_pyext.hpp:195
+#: src/isimpa/data_manager/python_interface/py_ui_module/e_pyext.hpp:214
+#, c-format
+msgid "The icon %s doesn't exist!"
+msgstr "Ikona %s nie istnieje"
+
+#: src/isimpa/data_manager/python_interface/py_ui_module/e_pyext.hpp:193
+#: src/isimpa/data_manager/python_interface/py_ui_module/e_pyext.hpp:212
+#, c-format
+msgid "The icon format of %s is not supported."
+msgstr "Format ikony %s nie jest obsługiwany"
+
+#: src/isimpa/3dengine/Core/Recepteurs_surfacique.cpp:731
+#, c-format
+msgid "The pressure value at this coordinate is %.2f"
+msgstr "Poziom ciśnienia akustycznego w wybranym punkcie wynosi %.2f"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:201
+#, c-format
+msgid ""
+"The size of the particle file, for each frequency band, is around %.2f Mo"
+msgstr "Rozmiar pliku cząstek dla każdej częstotliwości to około %.2f Mo"
+
+#: src/isimpa/data_manager/e_data_row_materiau.h:201
+#, c-format
+msgid ""
+"The value of the loss is not corresponding to the value of the "
+"absorption.The value of absorption has been fixed to %3.f, and the loss "
+"factor keep to %.2f dB"
+msgstr "Izolacyjność nie jest zgodna ze współczynnikiem pochłaniania. Współczynnik pochłaniania został ustawiony na %3.f dB, a izolacyjność została zachowane na poziomie %.2f"
+
+#: src/isimpa/data_manager/e_data_row_materiau.h:145
+#, c-format
+msgid ""
+"The value of the loss is not corresponding to the value of the "
+"absorption.The value of loss has been fixed to %3.f dB, and the absorption "
+"value keep to %.2f"
+msgstr "Izolacyjność nie jest zgodna ze współczynnikiem pochłaniania. Izolacyjność została ustawione na %3.f dB, a pochłanianie zostało zachowane na poziomie %.2f"
+
+#: src/isimpa/data_manager/python_interface/py_ui_module/e_pyext.hpp:82
+msgid "There are errors in the Python(TM) script!"
+msgstr "W skrypcie Python(TM) są błędy"
+
+#: src/isimpa/data_manager/tree_core/e_core_core_bfreqselection.h:141
+msgid "Third octave"
+msgstr "Tercje"
+
+#: src/isimpa/data_manager/python_interface/py_ui_module/element_file_pywrap.cpp:66
+#: src/isimpa/data_manager/python_interface/py_ui_module/element_pywrap.cpp:220
+msgid "This element doesn't exist"
+msgstr "Ten element nie istnieje"
+
+#: src/isimpa/data_manager/python_interface/py_ui_module/element_file_pywrap.cpp:62
+msgid "This element doesn't represent a file or a folder"
+msgstr "Ten element nie odpowiada żadnemu plikowi lub folderowi"
+
+#: src/isimpa/data_manager/python_interface/pythonshell.cpp:278
+msgid "This event doesn't exist !"
+msgstr "Takie zdarzenie nie istnieje!"
+
+#: src/isimpa/data_manager/element.cpp:1185
+#: src/isimpa/data_manager/element.cpp:1201
+#: src/isimpa/data_manager/element.cpp:1217
+#: src/isimpa/data_manager/element.cpp:1233
+#: src/isimpa/data_manager/element.cpp:1249
+#: src/isimpa/data_manager/element.cpp:1264
+#: src/isimpa/data_manager/element.cpp:1280
+#: src/isimpa/data_manager/element.cpp:1312
+#: src/isimpa/data_manager/element.cpp:1346
+#, c-format
+msgid ""
+"This field does not exist!\n"
+"Name of element: %s Name of the field: %s"
+msgstr "To pole nie istnieje!\nNazwa elementu: %s Nazwa pola: %s"
+
+#: src/isimpa/IHM/RecepteurSOperationDialog.cpp:122
+msgid ""
+"This file or folder doesn't correspond to a compatible surface receivers"
+msgstr "Ten plik lub folder nie odnosi się do odbiorników powierzchniowych"
+
+#: src/isimpa/3dengine/Core/Recepteurs_surfacique.cpp:737
+msgid "This zone does not correspond to a defined surface receiver"
+msgstr "Ta strefa nie odpowiada żadnemu odbiornikowi powierzchniowemu"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source_properties.h:76
+msgid "Time delay (s)"
+msgstr "Opóźnienie (s)"
+
+#: src/isimpa/data_manager/tree_core/e_core_core_config.h:77
+msgid "Time step (s)"
+msgstr "Krok czasowy (s)"
+
+#: src/isimpa/main/i_simpa_main.cpp:282
+msgid "To a file with a specified resolution"
+msgstr "Do pliku z określoną rozdzielczością"
+
+#: src/isimpa/main/i_simpa_main.cpp:281
+msgid "To file"
+msgstr "Do pliku"
+
+#: src/isimpa/main/i_simpa_main.cpp:319
+msgid "Tools"
+msgstr "Narzędzia"
+
+#: src/isimpa/data_manager/tree_rapport/e_report_gabe_recp.cpp:65
+#: src/isimpa/data_manager/tree_rapport/e_report_gabe_recps.cpp:65
+#: src/spps/input_output/reportmanager.cpp:496
+msgid "Total"
+msgstr "Całkowity"
+
+#: src/isimpa/IHM/simpleGraph.cpp:1435
+#, c-format
+msgid "Total draw time %i ms"
+msgstr "Całkowity czas rysowania %i ms"
+
+#: src/isimpa/data_manager/tree_core/e_core_core.h:112
+msgid "Total energy"
+msgstr "Całkowita energia"
+
+#: src/isimpa/data_manager/tree_core/e_core_tccore.h:97
+msgid "Total field (Eyring)"
+msgstr "Pole całkowite (Eyring)"
+
+#: src/isimpa/data_manager/tree_core/e_core_tccore.h:96
+msgid "Total field (Sabine)"
+msgstr "Pole całkowite (Sabine)"
+
+#: src/isimpa/3dengine/Core/Recepteurs_surfacique.cpp:132
+#: src/isimpa/3dengine/Core/Recepteurs_surfacique.cpp:912
+msgid "Total sound level"
+msgstr "Całkowity poziom ciśnienia akustycznego"
+
+#: src/isimpa/data_manager/projet.cpp:867
+#, c-format
+msgid "Total time calculation: %lld ms"
+msgstr "Całkowity czas obliczeń: %lld ms"
+
+#: src/isimpa/data_manager/projet_maillage.cpp:144
+#: src/isimpa/data_manager/projet_maillage.cpp:274
+#, c-format
+msgid "Total time of meshing: %lld ms"
+msgstr "Całkowity czas generowania siatki: %lld ms"
+
+#: src/isimpa/IHM/AboutDialog.cpp:103
+msgid "Translators"
+msgstr ""
+
+#: src/isimpa/data_manager/e_data_row_materiau.h:230
+msgid "Transmission"
+msgstr "Transmisja"
+
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:63
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:76
+msgid "Transparent"
+msgstr "Przejżystość"
+
+#: src/isimpa/data_manager/projet.cpp:2379
+msgid "Transparent text background"
+msgstr "Przejrzyste tło tekstu"
+
+#: src/isimpa/IHM/WizardRemeshModel.cpp:125
+msgid "Triangulation method"
+msgstr "Metoda triangulacji"
+
+#: src/isimpa/data_manager/projet_calculation.cpp:397
+msgid "Ts (ms)"
+msgstr "Ts (ms)"
+
+#: src/isimpa/data_manager/python_interface/pythonshell.cpp:352
+#, c-format
+msgid "Unable to init the Python(TM) element %s of the %s module"
+msgstr "Nie można inicjalizować elementu Python(TM) %s z modułu %s "
+
+#: src/isimpa/data_manager/projet.cpp:2944
+msgid "Unable to load the 3D model"
+msgstr "Nie można wczytać modelu"
+
+#: src/isimpa/data_manager/projet_remesh.cpp:114
+#, c-format
+msgid ""
+"Unable to load the stats file:\n"
+"%s"
+msgstr "Nie można wczytać pliku statystyk: \n%s"
+
+#: src/isimpa/3dengine/Core/Objet3D.cpp:1190
+msgid "Unable to load this format"
+msgstr "Nie można załadować zawartości"
+
+#: src/isimpa/IHM/loadingSceneDialog.cpp:228
+msgid "Unable to read the epsilon value"
+msgstr "Nie można wczytać wartości epsilon"
+
+#: src/isimpa/data_manager/projet_remesh.cpp:185
+msgid "Unable to save the file under the PLY format"
+msgstr "Nie można zapisać pliku w formacie PLY"
+
+#: src/isimpa/data_manager/projet_python.cpp:72
+msgid "Unable to solve the user's defined formula !"
+msgstr "Nie można rozwiązać równania podanego przez użytkownika!"
+
+#: src/isimpa/data_manager/projet_python.cpp:78
+msgid "Unable to solve the user's defined formula :\n"
+msgstr "Nie można rozwiązać równania podanego przez użytkownika: \n"
+
+#: src/isimpa/IHM/GabeDataGrid.cpp:622
+msgid "Unable to write this file with this destination folder!"
+msgstr "Nie można zapisać do wybranego folderu!"
+
+#: src/isimpa/manager/processManager.cpp:132
+msgid "Unauthorized closing process"
+msgstr "Nieautoryzowane zamknięcie procesu"
+
+#: src/isimpa/data_manager/e_data_list.h:237
+msgid "Unauthorized data"
+msgstr "Niedozwolone dane"
+
+#: src/isimpa/data_manager/python_interface/py_ui_module/element_pywrap.cpp:396
+msgid "Uncorrect data list"
+msgstr "Błędna lista danych"
+
+#: src/isimpa/data_manager/python_interface/py_ui_module/element_pywrap.cpp:406
+msgid "Uncorrect index list"
+msgstr "Błędna lista indeksów"
+
+#: src/isimpa/main/i_simpa_main.cpp:208
+msgid "Undo\tCtrl+Z"
+msgstr "Cofnij\tCtrl+Z"
+
+#: src/isimpa/main/i_simpa_main.cpp:1050
+msgid "Unexpected Dialog response return !"
+msgstr "Niespodziewana wartość w oknie dialogowym"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:140
+msgid "Unfavorable"
+msgstr "Niesprzyjające"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source_properties.h:66
+msgid "Unidirectional"
+msgstr "Jednokierunkowy"
+
+#: src/isimpa/data_manager/appconfig.cpp:145
+msgid "Uniform"
+msgstr "Jednorodne"
+
+#: src/isimpa/data_manager/generic_element/e_gammeabsorption.cpp:56
+#: src/isimpa/data_manager/generic_element/e_gammeabsorption.cpp:59
+#: src/isimpa/data_manager/generic_element/e_gammeabsorption.cpp:95
+msgid "Uniform reflection"
+msgstr ""
+
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h:52
+msgid "Unilateral"
+msgstr "Jednostronny"
+
+#: src/isimpa/manager/processManager.cpp:160
+msgid "Unknown"
+msgstr "Nieznany"
+
+#: src/isimpa/3dengine/OpenGLApp.cpp:407
+msgid ""
+"Unknown OpenGL error, try to set a lower resolution or use another "
+"exportation method."
+msgstr "Nieznany błąd OpenGL. Spróbuj ustawić niższą rozdzielczość lub użyć innej metody eksportu."
+
+#: src/isimpa/3dengine/Core/Particules.cpp:329
+msgid "Unknown error when reading particles file"
+msgstr "Nieznany błąd podczas wczytywania pliku cząstek"
+
+#: src/isimpa/data_manager/projet.cpp:976
+msgid "Unknown file format"
+msgstr "Nieznany format pliku"
+
+#: src/isimpa/manager/processManager.cpp:141
+msgid "Unknown output process"
+msgstr "Nieznany proces wyjściowy"
+
+#: src/isimpa/data_manager/tree_core/e_core_core_bfreqselection.h:132
+msgid "Unselect all"
+msgstr "Odznacz wszystkie"
+
+#: src/isimpa/data_manager/projet.cpp:2593
+msgid "Updating XML file"
+msgstr "Aktualizacja pliku XML"
+
+#: src/isimpa/data_manager/projet.cpp:2171
+msgid "Updating project backup"
+msgstr "Aktualizacja pliku kopii zapasowej"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_materiaux_user.h:51
+#: src/isimpa/data_manager/tree_scene/e_scene_bdd_spectrums_user.h:51
+msgid "User"
+msgstr "Użytkownika"
+
+#: src/isimpa/IHM/DialogDiagramCreator.cpp:154
+msgid "User diagram"
+msgstr "Wykres użytkownika"
+
+#: src/isimpa/data_manager/generic_element/e_directivity_user.h:51
+#: src/isimpa/data_manager/generic_element/e_directivity_user.h:57
+msgid "User directivity"
+msgstr "Kierunkowość użytkownika"
+
+#: src/isimpa/data_manager/generic_element/e_gammefrequence_user.h:56
+msgid "User spectrum"
+msgstr "Widmo użytkownika"
+
+#: src/isimpa/data_manager/tree_core/e_core_core_tetconf.h:99
+msgid "User-defined parameters"
+msgstr "Parametry zdefiniowane przez użytkownika"
+
+#: src/isimpa/IHM/MainPropGrid.cpp:220
+#: src/isimpa/IHM/customdialog/customdlg.cpp:126
+#: src/isimpa/data_manager/element.cpp:985
+msgid "Value"
+msgstr "Wartość"
+
+#: src/isimpa/IHM/GabeDataGrid.cpp:481
+#, c-format
+msgid "Value %s can't be converted to decimal number"
+msgstr "Wartość %s nie może zostać przekształcona na liczbę"
+
+#: src/isimpa/data_manager/e_position.h:112
+msgid "Value (m)"
+msgstr "Wartość (m)"
+
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:69
+#: src/isimpa/IHM/simpleGraphEnumerators.cpp:83
+msgid "Vertical line"
+msgstr "Pionowa linia"
+
+#: src/isimpa/IHM/WizardRemeshModel.cpp:129
+msgid "Vertices translation"
+msgstr "Przesunięcie wierzchołków"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:134
+msgid "Very favorable"
+msgstr "Bardzo sprzyjające"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:142
+msgid "Very unfavorable"
+msgstr "Bardzo niesprzyjające"
+
+#: src/isimpa/main/i_simpa_main.cpp:320
+msgid "View"
+msgstr "Widok"
+
+#: src/isimpa/IHM/simpleGraphManager.cpp:79
+msgid "Viewing style"
+msgstr "Styl widoku"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:635
+msgid "Visible on/off"
+msgstr "Widoczne tak/nie"
+
+#: src/isimpa/IHM/WizardRemeshModel.cpp:253
+#, c-format
+msgid "Vol id:%i  %.0f m3"
+msgstr "ID objętości:%i  %.0f m3"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_encombrements_encombrement_rendu.h:54
+msgid "Volume"
+msgstr "Objętość"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_volumes_volume.h:97
+#, c-format
+msgid "Volume %i"
+msgstr "Objętość %i"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_volumes.cpp:99
+msgid "Volume auto-detect"
+msgstr "Automatycznie wykryj objętości"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_volumes_volume.h:104
+msgid "Volume boundary"
+msgstr "Brzegi objętości"
+
+#: src/isimpa/data_manager/tree_core/e_core_core_tetconf.h:102
+msgid "Volume constraint"
+msgstr "Ograniczenie objętości"
+
+#: src/isimpa/data_manager/tree_core/e_core_core_tetconf.h:96
+msgid "Volume constraint (m3)"
+msgstr "Ograniczenie objętości (m3)"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_volumes.cpp:69
+msgid "Volumes"
+msgstr "Objętości"
+
+#: src/isimpa/data_manager/projet_remesh.cpp:108
+#: src/isimpa/data_manager/projet_remesh.cpp:168
+msgid "VolumetricMeshRepair: "
+msgstr "VolumetricMeshRepair: "
+
+#: src/isimpa/data_manager/appconfig.cpp:146
+msgid "W2"
+msgstr "W2"
+
+#: src/isimpa/data_manager/appconfig.cpp:147
+msgid "W3"
+msgstr "W3"
+
+#: src/isimpa/data_manager/appconfig.cpp:148
+msgid "W4"
+msgstr "W4"
+
+#: src/isimpa/data_manager/projet.cpp:1196
+msgid "Walls"
+msgstr "Ściany"
+
+#: src/spps/sppsNantes.cpp:438
+#, c-format
+msgid ""
+"Warning %il particles has been in error on %il particles. The computation "
+"result may be wrong, please check the particles statitics file for more "
+"details."
+msgstr "Ostrzeżenie, %il cząstek na %il uległo błędom. Wyniki mogą być niepoprawne, sprawdź statystyki cząstek aby uzyskać więcej informacji."
+
+#: src/isimpa/main/i_simpa_main.h:376
+msgid "Warning: "
+msgstr "Ostrzeżenie:"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:149
+msgid "Water"
+msgstr "Woda"
+
+#: src/isimpa/main/i_simpa_main.cpp:305
+msgid "Website"
+msgstr "Strona internetowa"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_environnement.h:157
+msgid "Wheat (1m height)"
+msgstr "Zboża (1m wysokości)"
+
+#: src/isimpa/data_manager/projet.cpp:391
+msgid "Width"
+msgstr "Szerokość"
+
+#: src/isimpa/main/i_simpa_main.cpp:915
+msgid "Width (x)"
+msgstr "Szerokość (x)"
+
+#: src/isimpa/data_manager/projet.cpp:1197
+#: src/isimpa/main/i_simpa_main.cpp:321
+msgid "Window"
+msgstr "Okno"
+
+#: src/isimpa/main/i_simpa_main.cpp:434
+msgid "Wireframe view"
+msgstr "Widok krawędzi"
+
+#: src/isimpa/IHM/loadingSceneDialog.cpp:115
+msgid ""
+"With this option you are able to remesh the input model to make it "
+"compatible with all calculation core. Use this option as a last resort"
+msgstr "Ta opcja pozwala na dopasowanie modelu wejściowego, tak aby był kompatybilny z programem. Używaj tylko jako ostateczność!"
+
+#: src/lib_interface/coreinitialisation.cpp:433
+msgid ""
+"Wrong project configuration, a face is defined but no materials are attached"
+" to it ! Check your group/material associations"
+msgstr "Błędna konfiguracja projektu. istnieje powierzchnia bez przypisanego materiału! Sprawdź przypisanie materiałów do grup. "
+
+#: src/isimpa/IHM/simpleGraph.cpp:697 src/isimpa/IHM/simpleGraph.cpp:706
+msgid "X axis"
+msgstr "Oś X"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:544
+msgid "X axis, line"
+msgstr "Linia osi X"
+
+#: src/isimpa/data_manager/projet.cpp:1905
+msgid "XML file corrupted. File can't be loaded"
+msgstr "Plik XML jest uszkodzony. Plik nie może zostać wczytany."
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_rendu_origine.h:69
+#: src/isimpa/main/i_simpa_main.cpp:266
+msgid "XY Grid"
+msgstr "Siatka XY"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source_properties.h:67
+msgid "XY plan"
+msgstr "Płaszczyzna XY"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_rendu_origine.h:80
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_rendu_origine.h:88
+msgid "XYZ axis"
+msgstr "Oś XYZ"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_rendu_origine.h:70
+#: src/isimpa/main/i_simpa_main.cpp:269
+msgid "XZ Grid"
+msgstr "Siatka XZ"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source_properties.h:69
+msgid "XZ plan"
+msgstr "Płaszczyzna XZ"
+
+#: src/isimpa/IHM/simpleGraph.cpp:694 src/isimpa/IHM/simpleGraph.cpp:706
+msgid "Y axis"
+msgstr "Oś Y"
+
+#: src/isimpa/IHM/simpleGraphDialogs.cpp:545
+msgid "Y axis, line"
+msgstr "Linia osi Y"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_projet_rendu_origine.h:71
+#: src/isimpa/main/i_simpa_main.cpp:272
+msgid "YZ Grid"
+msgstr "Siatka YZ"
+
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source_properties.h:68
+#: src/isimpa/data_manager/tree_scene/e_scene_sources_source_properties.h:129
+msgid "YZ plan"
+msgstr "Płaszczyzna YZ"
+
+#: src/isimpa/IHM/RecepteurSOperationDialog.cpp:280
+msgid "You have already select this file. Please select another file"
+msgstr "Już wybrałeś ten plik. Proszę wybierz inny plik."
+
+#: src/isimpa/IHM/RecepteurSOperationDialog.cpp:286
+msgid ""
+"You have already used this label as an output data file.  Please select "
+"another label"
+msgstr "Wybrałeś już tą nazwę jako plik wynikowy. Proszę wybierz inną nazwę."
+
+#: src/isimpa/IHM/RecepteurSOperationDialog.cpp:270
+msgid ""
+"You have select the same file as the reference one.  Please select another "
+"file"
+msgstr "Wybrałeś plik odniesienia. Proszę wybierz inny plik"
+
+#: src/isimpa/data_manager/projet_maillage.cpp:358
+msgid "You must launch the mesh operation before run this method."
+msgstr "Musisz wygenerować siatkę przed uruchomieniem tej metody"
+
+#: src/isimpa/IHM/RecepteurSOperationDialog.cpp:182
+#: src/isimpa/IHM/RecepteurSOperationDialog.cpp:253
+msgid "You must select a surface receiver data file to continue"
+msgstr "Musisz wybrać odbiornik powierzchniowy aby kontunuować"
+
+#: src/isimpa/data_manager/projet.cpp:685
+msgid "Your model doesn't have any face. Please create or import a model."
+msgstr "Model nie zawiera powierzchni. Proszę stwórz lub zaimportuj model."
+
+#: src/isimpa/3dengine/Core/Recepteurs_surfacique.cpp:259
+#: src/isimpa/data_manager/e_data_row_bandefreq.h:87
+msgid "dB"
+msgstr "dB"
+
+#: src/isimpa/data_manager/e_data_row_bandefreq.h:88
+#: src/isimpa/data_manager/generic_element/e_property_freq.cpp:191
+msgid "dB(A)"
+msgstr "dB(A)"
+
+#: src/isimpa/data_manager/projet.cpp:2356
+msgid "general"
+msgstr "Ogólne"
+
+#: src/isimpa/data_manager/appconfig.cpp:64
+msgid "loudspeakers"
+msgstr ""
+
+#: src/isimpa/data_manager/appconfig.cpp:55
+#: src/isimpa/data_manager/appconfig.cpp:56
+msgid "particles"
+msgstr "Czastki"
+
+#: src/isimpa/data_manager/python_interface/pythonshell.cpp:134
+msgid "print 'Python(TM)',sys.version,'on',sys.platform"
+msgstr "print 'Python(TM)',sys.version,'on',sys.platform"
+
+#: src/isimpa/data_manager/tree_core/e_core_sppscore.h:135
+msgid "recepteurss"
+msgstr "Odbiorniki powierzchniowe"
+
+#: src/isimpa/data_manager/appconfig.cpp:54
+msgid "report"
+msgstr ""
+
+#: src/isimpa/data_manager/appconfig.cpp:61
+msgid "rs_cut"
+msgstr ""
+
+#: src/isimpa/3dengine/Core/Recepteurs_surfacique.cpp:264
+msgid "s"
+msgstr "s"
+
+#: src/isimpa/IHM/PropGrid.cpp:269
+msgid "to the column"
+msgstr "do kolumny"
+
+#: src/isimpa/IHM/PropGrid.cpp:272
+msgid "to the row"
+msgstr "do wiersza"
