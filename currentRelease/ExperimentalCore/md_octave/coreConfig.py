@@ -83,10 +83,10 @@ class coreConfig(object):
         self.const["temperature_celsius"] = condition_atmospherique_node.getpropertyfloat("temperature")
         self.const["temperature_kelvin"] = condition_atmospherique_node.getpropertyfloat("temperature") + 273.15
         self.const["humidite"] = condition_atmospherique_node.getpropertyfloat("humidite")
-        self.const["frequencies"] = [100, 125, 160, 200, 250, 320, 400, 500, 640, 800, 1000, 1250, 1600, 2000, 2500,
-                                     3200, 4000, 5000]
-        self.const["allfrequencies"] = [50, 63, 80, 100, 125, 160, 200, 250, 315, 400, 500, 630, 800, 1000, 1250, 1600, 2000, 2500, 3150, 4000,
-         5000, 6300, 8000, 10000, 12500, 16000, 20000]
+        self.const["frequencies"] = [int(freq.getproperty("freq")) for freq in self.rootnode["simulation"]["freq_enum"].lstnodesenum("bfreq") if freq.getproperty("docalc") == "1"]
+        self.const["frequencies"].sort()
+        self.const["allfrequencies"] = [int(freq.getproperty("freq")) for freq in self.rootnode["simulation"]["freq_enum"].lstnodesenum("bfreq")]
+        self.const["allfrequencies"].sort()
         self.const["pression"] = condition_atmospherique_node.getpropertyfloat("pression")
         self.const["with_direct_sound"] = bool(int(simunode.getproperty("with_direct_sound", "1")))
         self.const['timestep'] = simunode.getpropertyfloat('pasdetemps', 0.01)
