@@ -97,7 +97,7 @@ def runTC(xmlPathTc, coreconf):
     for freq in coreconf.const["allfrequencies"]:
         bfreq = doc.createElement("bfreq")
         bfreq.setAttribute("freq", str(freq))
-        bfreq.setAttribute("docalc", "1" if 100 <= freq <= 5000 else "0")
+        bfreq.setAttribute("docalc", "1" if freq in coreconf.const["frequencies"] else "0")
         freqnode.appendChild(bfreq)
     simunode.appendChild(freqnode)
     srclstnode=doc.getElementsByTagName('sources')[0]
@@ -412,8 +412,7 @@ def write_config_file(coreConf, outputdir):
     with open(os.path.join(outputdir, "Input_parameters.m"), "w") as f:
         f.write("TOB=[50, 63, 80, 100, 125, 160, 200, 250, 320, 400, 500, 640, 800, 1000, 1250, 1600, 2000, 2500,"
                 " 3200, 4000, 5000, 6300, 8000, 10000, 12500, 16000, 20000];\n")
-        f.write("BdOct1=4;\n")
-        f.write("BdOctend=21;\n")
+        f.write("SelectedFrequency=[4:21];\n")
         f.write("Temperature=%f;\n" % coreConf.const["temperature_celsius"])
         f.write("Humidity=%f;\n" % coreConf.const["humidite"])
         f.write("Pressure=%f;\n" % coreConf.const["pression"])

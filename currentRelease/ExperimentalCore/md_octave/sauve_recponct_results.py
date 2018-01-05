@@ -44,7 +44,7 @@ def SauveRecepteurPonctResults(coreconf, encoding=sys.getfilesystemencoding()):
                 # For each frequency
                 # TODO use not hard writen frequency
                 for idFreq, freq in enumerate(
-                        [100, 125, 160, 200, 315, 400, 500, 630, 800, 1000, 2000, 3150, 4000, 5000]):
+                        coreconf.const["frequencies"]):
                     splcol = ls.floatarray()
                     for spl in recdata["power_insta"][idFreq]:
                         splcol.append(float(spl))

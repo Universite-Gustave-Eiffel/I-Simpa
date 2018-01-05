@@ -34,10 +34,11 @@ Input_parameters;
 
 ## CALCULATE ADDITIONNAL PARAMETERS FROM LOADED PARAMETERS
 # Frequency bands
-Frequency=TOB(BdOct1:BdOctend);
-# Number of selected frequency bands
-NOct=size(BdOct1:BdOctend,2);
-# Atmospheric absorption
+Frequency=TOB(SelectedFrequency);
+# Selected frequency bands
+NOct=size(Frequency,2);
+NNOct=1:NOct;
+# Atmospheric absorption and sound speed values
 [m,c0]=Coef_Att_Atmos(Frequency,Humidity,Pressure,273.15+Temperature);
 if atmos_absorption_calculation==0
 	# No amtospheric absorption coefficient
@@ -137,15 +138,15 @@ end
 V_VC=zeros(sum(nnB),1);
 for i=1:NBLOCKS
   nel2D(i)=max(size( el2di{i} ));# Number of meshes on boundaries
-  [Surf(i),AireTr{i}]= Surfaces_Salle(x,y,z,nel2D(i),el2di{i}) ; #% Surface des parois+de chaque elt
+  [Surf(i),AireTr{i}]= Surfaces_Salle(x,y,z,nel2D(i),el2di{i}) ; # Surface des parois+de chaque elt
   [VOLUME(i)]= VolumeSalle(x,y,z,size( Tet{i},1), Tet{i}) ; # Size of volume i (m3)
-  [V_VCi{i}]=VolumeVCDOF(x,y,z,sum(nnB),size(Tet{i},1),Tet{i}, Tet_Dof{i}); % Table of the volues of control
+  [V_VCi{i}]=VolumeVCDOF(x,y,z,sum(nnB),size(Tet{i},1),Tet{i}, Tet_Dof{i}); # Table of the volumes of control
   V_VC=V_VCi{i}+V_VC;
 end
 
 ## PARAMETERS OF THE ROOM ACOUSTICS DIFFUSION MODEL
 lambda=4*VOLUME./Surf; # Mean Free path (m)
-CoeffDiff=lambda*c0/3; # Diffusion coefficient TODO: Fix the diffusion coefficient value for mixed surface reflection
+CoeffDiff=lambda*c0/3; # Diffusion coefficient TODO: Fix the diffusion coefficient value for mixed surface reflection and atmospheric absorption
 
 ## GLOBAL MATRIX ASSEMBLAGE
 display('Global matrix assemblage')
@@ -154,7 +155,7 @@ RHS=zeros(NDOF,1); # Memory allocation
 [mat]=laplacienblocks2(xdf,ydf,zdf,Tet_Dof,NBLOCKS,NDOF,CoeffDiff);
 #mat=-mat+mc*diag(V_VC);
 
-##
+## DIFFUSION EQUATION LEFT MEMBER
 for N_Toct=1:NOct;
   mat_Toct{N_Toct}=-mat+mc(N_Toct)*diag(V_VC);
 end
@@ -170,46 +171,46 @@ AbsorptionConstructionMatrix;
 ## SOUND SOURCES
 # Load sound sources information, for EDP second member
 display('Sound sources information')
-Srce_sonore=load(strcat(domaine,'_sources.txt'));
-[Ns,Ls]=size(Srce_sonore);
+Srce_sonore_I=load(strcat(domaine,'_sources.txt'));
+[Ns,Ls]=size(Srce_sonore_I);
 
 for s=1:Ns
 
-  % Source positions
-  xs=Srce_sonore(s,1);
-  ys=Srce_sonore(s,2);
-  zs=Srce_sonore(s,3);
+  # Source positions
+  xs=Srce_sonore_I(s,1);
+  ys=Srce_sonore_I(s,2);
+  zs=Srce_sonore_I(s,3);
 
-  dist2S=(xdf-xs).^2+(ydf-ys).^2+(zdf-zs).^2; % Distance from source to DOF
+  dist2S=(xdf-xs).^2+(ydf-ys).^2+(zdf-zs).^2; # Distance from source to DOF
   rayonS2=0.15^2;
   VolSource(s)=-10;
   
   while VolSource(s)<=0
-	ind=1:NDOF;rayonS2=rayonS2*1.25; % Radius incrementation. TODO: should be justify?
-	ind=ind(dist2S<rayonS2); % Search all DOF inside the source radius
-	VolSource(s)=sum(V_VC(ind)); % Volume of the 'real' source (sum of the volum of each dol(ind))
+	ind=1:NDOF;
+	rayonS2=rayonS2*1.25; # Radius incrementation. TODO: should be justified?
+	indss{s}=ind(dist2S<rayonS2); # Search all DOF inside the source radius
+	VolSource(s)=sum(V_VC(indss{s})); # Volume of the 'real' source (sum of the volum of each dol(ind))
   end
 
-  Srce_sonore(s,3+(BdOct1:BdOctend))=1e-12*10.^(Srce_sonore(s,3+(BdOct1:BdOctend))/10); % Octave band sound power
-  Volumic_Power_Srce=Srce_sonore(s,3+(BdOct1:BdOctend))/VolSource(s); % Volumic normalisation
+  Srce_sonore(s,3+NNOct)=1e-12*10.^(Srce_sonore_I(s,3+SelectedFrequency)/10); # Octave band sound power
+  Volumic_Power_Srce=Srce_sonore(s,3+NNOct)/VolSource(s); # Volumic normalisation
   
   # Display sound source information
   disp ("Sound source N°: "), disp (s)
   disp ("Volume source: "), disp (VolSource(s))
-  disp ('Location: '), disp(ind)
+  disp ('Location: '), disp(indss{s})
   #disp ('Volumic power: '), disp(Volumic_Power_Srce)
-  
-  for  N_Toct=1:NOct;
-    RHS(ind)=Volumic_Power_Srce(N_Toct)*V_VC(ind); % Octave band sound power
-    if s>1
-      w{N_Toct}=w{N_Toct}+mat_Toct{N_Toct}\RHS; % Energy incrementation if multi-sources
-      else
-      w{N_Toct}=mat_Toct{N_Toct}\RHS;
-    end
-    
-  end
-  
+
 end
+  
+RHS=zeros(NDOF,1); # Memory allocation
+for  N_Toct=1:NOct;
+  for s=1:Ns
+    RHS(indss{s})=Volumic_Power_Srce(N_Toct)*V_VC(indss{s}); # Octave band sound power
+  end
+  w{N_Toct}=mat_Toct{N_Toct}\RHS;
+end
+
 
 ## TIME VARYING STATE CALCULATION
 display('Time varying state calculation')
