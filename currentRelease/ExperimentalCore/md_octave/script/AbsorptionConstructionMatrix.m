@@ -31,7 +31,7 @@ iAbs=Abs_Mater( find(sum(Abs_Mater(:,2:end),2)));  # iAbs: absorbing material in
 [iAM,~]=find(sum(Abs_Mater(:,2:end),2)) ;
 iAbs=Abs_Mater(iAM,1);
 abs_prop=Abs_Mater(iAM,:);
-abs_coef=abs_prop(:,1+(BdOct1:BdOctend));
+abs_coef=abs_prop(:,1+SelectedFrequency); 
 el2di_Dof=el2di;
 for iB=1:NBLOCKS
   [SurFaceA(iB),AireFace{iB}]=Surfaces_Salle(x,y,z,size(el2di{iB},1),el2di{iB});
@@ -41,7 +41,9 @@ for iB=1:NBLOCKS
             
   for it=1:max(size(DofAbs{iB}))
     [ligne,col] = find((el2di_Dof{iB}(:,1:3)-DofAbs{iB}(it))==0);
-    EquivAbsArea (it,1:NOct)=sum( AireFace{iB}(ligne).*  abs_coef( el2di_Dof{iB}(ligne,4),1:NOct),1)/3;
+    #EquivAbsArea (it,1:NOct)=sum( AireFace{iB}(ligne).*  abs_coef( el2di_Dof{iB}(ligne,4),1:NOct),1)/3; # Sabine's based absorption
+	#EquivAbsArea (it,1:NOct)=sum( AireFace{iB}(ligne).*  (-log(1-abs_coef( el2di_Dof{iB}(ligne,4),1:NOct))),1)/3; # Eyring's based absorption
+	EquivAbsArea (it,1:NOct)=sum( AireFace{iB}(ligne).*  2.*abs_coef( el2di_Dof{iB}(ligne,4),1:NOct)./(2-abs_coef( el2di_Dof{iB}(ligne,4),1:NOct)),1)/3; # Jing's based absorption
     idfFree= DofAbs{iB}(it);
            
     for nm=1:NOct

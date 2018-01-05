@@ -33,10 +33,8 @@
 
 itmax=round(duration/dt); # Number of iterations
 [MATinsta]= integVC_cst(V_VC); # Integration constant
-%========================================================================================================================================================
 NomFichier=strcat(domaine,'_WInstaFields');  
 
-tic 
 ## LOOP ON FREQUENCY BANDS
 for  N_Toct=1:NOct;
 
@@ -44,12 +42,11 @@ for  N_Toct=1:NOct;
   [wi_saved]= Euler_implicite(w{N_Toct},mat_Toct{N_Toct},MATinsta,itmax(1),dt,tol,maxint);
 
   # Write results in HDF5 files
-  ChpsInsta=strcat(NomFichier,int2str(TOB(BdOct1+N_Toct-1)));   
+  ChpsInsta=strcat(NomFichier,int2str(TOB(SelectedFrequency(N_Toct))));   
   ChpsInsta2=strcat(ChpsInsta,'.hdf5');
   xx.a=dt;
   xx.b=wi_saved;
   save( '-float-hdf5', ChpsInsta2, 'xx')
 
 end
-toc
 

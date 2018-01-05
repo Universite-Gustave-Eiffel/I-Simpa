@@ -1,9 +1,8 @@
 ## INPUT PARAMETERS THAT SHOULD BE READ FROM I-Simpa CONFIG FILE
 
 # Frequency bands selection (from 'Frequency bands')
-TOB=[50, 63, 80, 100, 125, 160, 200, 250, 320, 400, 500, 640, 800, 1000, 1250, 1600, 2000, 2500, 3200, 4000, 5000, 6300, 8000, 10000, 12500, 16000, 20000]; # All possible bands (should be the same that within I-Simpa
-BdOct1=4; # First selected frequency band for calculation
-BdOctend=21; # Last selected frequency band for calculation
+TOB=[50, 63, 80, 100, 125, 160, 200, 250, 320, 400, 500, 640, 800, 1000, 1250, 1600, 2000, 2500, 3200, 4000, 5000, 6300, 8000, 10000, 12500, 16000, 20000]; # All possible bands (should be the same that within I-Simpa)
+SelectedFrequency=[4:21]; # Selected frequency bands
 
 # Environmental parametersTOB
 Temperature=20; # Temperature (°C)
