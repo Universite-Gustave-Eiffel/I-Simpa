@@ -412,7 +412,7 @@ def write_config_file(coreConf, outputdir):
         f.write("maxint=%d;\n" % coreConf.const["maxint"])
         f.write("dt=%f;\n" % coreConf.const["timestep"])
         f.write("duration=%f;\n" % coreConf.const["duration"])
-        f.write("atmos_absorption_calculation = %s;\n" % "1" if coreConf.const["do_abs_atmo"] else "0")
+        f.write("atmos_absorption_calculation = %s;\n" % ("1" if coreConf.const["do_abs_atmo"] else "0"))
 
 
 def main(call_octave=True):
