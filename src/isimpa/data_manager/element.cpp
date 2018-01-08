@@ -1287,9 +1287,9 @@ bool Element::UpdateBoolConfig(wxString name,bool newValue)
 	for(std::list<Element*>::iterator itfils=this->fils.begin();itfils!=this->fils.end();itfils++)
 	{
 		const Element::t_elementInfo& infoEl=(*itfils)->GetElementInfos();
-		if(infoEl.typeElement==Element::ELEMENT_TYPE_BOOL && infoEl.libelleElement==name)
+		E_Data_Bool* dataEl = dynamic_cast<E_Data_Bool*>((*itfils));
+		if(dataEl && infoEl.libelleElement==name)
 		{
-			E_Data_Bool* dataEl=dynamic_cast<E_Data_Bool*>((*itfils));
 			dataEl->SetValue(newValue);
 			return true;
 		}
