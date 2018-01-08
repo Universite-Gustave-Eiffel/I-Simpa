@@ -57,7 +57,7 @@ public:
 	{
 		E_Core_Core_Configuration* confCore=new E_Core_Core_Configuration(this);
 		this->AppendFils(confCore);
-		confCore->AppendPropertyBool("abs_atmo_calc","Atmospheric absorption calculation",true,true);
+		confCore->AppendPropertyBool("abs_atmo_calc","Active calculation of atmospheric absorption",true,true);
 		InitExportRs(confCore);
 		_("Atmospheric absorption calculation");
 	}
