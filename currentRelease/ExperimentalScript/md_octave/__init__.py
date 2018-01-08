@@ -27,7 +27,7 @@ class MD_Octave(ui.element):
             ui.element(property_node.appendpropertydecimal("tolerance", _("Tolerance"), float(1e-6), False, int(8), False, True, float(0),
                                                       float(1e-4), True))
             ui.element(property_node.appendpropertyentier("maxint", _("Maximum number of iterations"), int(200)))
-            property_node.appendpropertybool("do_abs_atmo", "Atmospheric calculation", True, True)
+            property_node.appendpropertybool("do_abs_atmo", "Active calculation of atmospheric absorption", True, True)
         if self.getelementbytype(ui.element_type.ELEMENT_TYPE_CORE_CORE_BFREQSELECTION) == -1:
             freqs = ui.element(self.appendfilsbytype(ui.element_type.ELEMENT_TYPE_CORE_CORE_BFREQSELECTION))
             # Limit frequencies from 100 to 5000
