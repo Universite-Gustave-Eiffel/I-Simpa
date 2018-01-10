@@ -111,7 +111,7 @@ void E_GammeAbsorption::InitProperties() {
         nouvLigne->SetXmlCoreVisibility(true); //Exporter
         nouvLigne->AppendPropertyDecimal("alpha", wxTRANSLATE("Alpha"), 0.f, false, precisionDecimal, true, true, 1.f,
                                          0.f, true);
-        nouvLigne->AppendPropertyDecimal("lambda", wxTRANSLATE("Lambda"), 1.f, false, precisionDecimal, false, true, 0,
+        nouvLigne->AppendPropertyDecimal("lambda", wxTRANSLATE("Lambda (m)"), 1.f, false, precisionDecimal, false, true, 0,
                                          .01f, true);
         nouvLigne->AppendPropertyList("loi_diff", wxTRANSLATE("Diffusion law"), Lstlois, 0, false, 1, LstloisIndex,
                                       true);
@@ -123,7 +123,7 @@ void E_GammeAbsorption::InitProperties() {
     nouvLigne->SetXmlCoreVisibility(false); //Ne pas exporter
     nouvLigne->AppendPropertyDecimal("alpha", wxTRANSLATE("Alpha"), 0, false, precisionDecimal, true, true, 1.f, 0.f,
                                      true);
-    nouvLigne->AppendPropertyDecimal("lambda", wxTRANSLATE("Lambda"), 1.f, false, precisionDecimal, false, true, 0,
+    nouvLigne->AppendPropertyDecimal("lambda", wxTRANSLATE("Lambda (m)"), 1.f, false, precisionDecimal, false, true, 0,
                                      .01f, true);
     nouvLigne->AppendPropertyText("l_diff", wxTRANSLATE("Diffusion law"), "", true);
     this->AppendFils(nouvLigne);
