@@ -24,9 +24,9 @@ class MD_Octave(ui.element):
             property_node = ui.element(self.appendfilsbytype(ui.element_type.ELEMENT_TYPE_CORE_CORE_CONFIG))
             property_node.appendpropertybool("with_direct_sound", "Merge with direct field", True, True)
             ui.element(self.appendpropertytext("tetrameshFileName", "", "tetramesh.mbin", True, True)).hide()
-            ui.element(property_node.appendpropertydecimal("tolerance", _("Tolerance"), float(1e-6), False, int(8), False, True, float(0),
+            ui.element(property_node.appendpropertydecimal("tolerance", _("Diffusion equation resolution - Tolerance"), float(1e-6), False, int(8), False, True, float(0),
                                                       float(1e-4), True))
-            ui.element(property_node.appendpropertyentier("maxint", _("Maximum number of iterations"), int(200)))
+            ui.element(property_node.appendpropertyentier("maxint", _("Diffusion equation resolution - Maximum number of iterations"), int(200)))
             property_node.appendpropertybool("do_abs_atmo", "Active calculation of atmospheric absorption", True, True)
         if self.getelementbytype(ui.element_type.ELEMENT_TYPE_CORE_CORE_BFREQSELECTION) == -1:
             freqs = ui.element(self.appendfilsbytype(ui.element_type.ELEMENT_TYPE_CORE_CORE_BFREQSELECTION))
