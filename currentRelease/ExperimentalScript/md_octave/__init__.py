@@ -31,8 +31,8 @@ class MD_Octave(ui.element):
         if self.getelementbytype(ui.element_type.ELEMENT_TYPE_CORE_CORE_BFREQSELECTION) == -1:
             freqs = ui.element(self.appendfilsbytype(ui.element_type.ELEMENT_TYPE_CORE_CORE_BFREQSELECTION))
             # Limit frequencies from 100 to 5000
-            ui.application.sendevent(freqs, ui.idevent.IDEVENT_BFREQ_PRESELECTION_BUILDING_THIRD_BAND)
-            
+            # ui.application.sendevent(freqs, ui.idevent.IDEVENT_BFREQ_PRESELECTION_BUILDING_THIRD_BAND)
+
     def gettreelabel(self):
         """
             Return core label
