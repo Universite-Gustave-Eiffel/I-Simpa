@@ -3,7 +3,7 @@ Study of the Elmia hall
 
 In this example, we are interested in the case of a theater. This hall, the Elmia hall, has been the subject of measurements and a comparative study of several room acoustics software. The user can refer to the following reference for more information: `A Comparison of Room Simulation Software - The 2nd Round Robin on Room Acoustical Computer Simulation, Bork Ingolf, Acta Acustica united with Acustica, Volume 86, Number 6, November/December 2000, pp. 943-956(14) <http://www.ingentaconnect.com/content/dav/aaua/2000/00000086/00000006/art00008?utm_source=TrendMD&utm_medium=cpc&utm_campaign=Acta_Acustica_united_with_Acustica_TrendMD_0>`_.
 
-Ressources for this tutorial are located in the following folder:
+Resources for this tutorial are located in the following folder:
 ::
 
 	<I-Simpa installation folder>\doc\tutorial\tutorial 2
@@ -34,7 +34,7 @@ Create an approximated 3D model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. **Choose** 'Import new scene' in the 'File' menu and **Select** the same 3D scene ``Elmia.ply``. The "Loading 3D Scene" window opens.
-2. **Select** the 'Average model remesh' option and **Set** '0.01' (10 cm) for the parameter 'Association maximum distance'. Valid with 'OK'. The 'Mesh correction computation' window is displayed.
+2. **Select** the 'Average model remesh' option and **Set** '1.' (1 m) for the parameter 'Association maximum distance'. Valid with 'OK'. The 'Mesh correction computation' window is displayed.
 3. **Set** to 6 for the 'Model solving' paremeter. Using this value, the original 3D scene will be filled with :math:`2^6` cubes and **Valid** all options with 'OK'. A new windows is displayed, showing all closed 3D volume in the scene.
 4. **Select** the volume that corresponds to the interior volume of the scene. In the present example, select the volume '9624 m3' and valid with 'Finish'. A new 3D scene, an approximate scene, is created and displays n the 3D view.
 
@@ -57,7 +57,7 @@ Define sound sources
 Define punctual receivers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. Following the same procedure as for the tutorial 'Study of a teaching room' (`define punctual receivers`_), **Create** six punctual receivers at R01(13.8,0.0,1.45), R02(12.9,10.5,5.3), R03(19.9,5.1,2.7), R04(25.5;-4.9,4.35), R05(24.8,11.9,5.7), R06(37.8,6.4,8.45).
+1. Following the same procedure as for the tutorial 'Study of a teaching room' (`define punctual receivers`_), **Create** one or more punctual receivers, for example at R01(13.8,0.0,1.45), R02(12.9,10.5,5.3), R03(19.9,5.1,2.7), R04(25.5;-4.9,4.35), R05(24.8,11.9,5.7), R06(37.8,6.4,8.45).
 
 .. _`define punctual receivers`: tutorial_teaching_room.html#define-two-punctual-receivers
 
@@ -79,7 +79,7 @@ The present study from the Round Robin II, provides the materials in CATT-Acoust
 
 1. **Right click** on the 'Project/Project Database/Materials/User' element and **Select** 'Import from File'.
 
-2. **Select** the corresponding format from the drop-down list and **Open** the file on your computer. A new material folder is creatde named with the material file name.
+2. **Select** the corresponding format from the drop-down list and **Open** the file on your computer. A new material folder is created named with the material file name.
 
 3. **Assign** each material to the corresponding surfaces group following the same procedure as for the tutorial 'Study of a teaching room' (`define surfaces`_).
 

@@ -7,7 +7,7 @@ In this example, we are interested in the case of an industrial hall coupled wit
 - illustrate the creation of fitting zones
 - study the effect of changing a material on a wall of the industrial hall, on the sound field
 
-Ressources for this tutorial are located in the following folder:
+Resources for this tutorial are located in the following folder:
 ::
 
 	<I-Simpa installation folder>\doc\tutorial\tutorial 3

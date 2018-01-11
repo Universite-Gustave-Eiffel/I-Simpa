@@ -60,6 +60,7 @@ the TCR numerical codes (embedded within the I-Simpa software).
    surface_selection
    manipulate_sources_receivers
    using_directivity
+   create_charts
 
 .. toctree::
    :maxdepth: 2

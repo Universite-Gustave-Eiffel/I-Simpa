@@ -14,9 +14,9 @@ sources. Users have to specify:
 
 Example: Below, an example of rotation of a receivers grid in a plane XY:
 
-- **'Rotation angle (degree)'**\ =45°,
--  at center position **'Rotation center'**\ =[1.,1.,0.],
-- around axis**'Rotation vector'**\ =[0.,0.,1.] :
+- **'Rotation angle (degree)'**\ =45°
+- at center position **'Rotation center'**\ =[1.,1.,0.]
+- around axis **'Rotation vector'**\ =[0.,0.,1.]
 
 
 
@@ -51,14 +51,14 @@ Examples:
 
    - Example 1:
 
-       - **'Step (line)'**\ =[0,1,0],
-       - **'Step (row)'**\ =[1,0,0],
-       - **'Number of lines'**\ =4,
-       -**'Number of rows'**\ =5;
+       - **'Step (line)'**\ =[0,1,0]
+       - **'Step (row)'**\ =[1,0,0]
+       - **'Number of lines'**\ =4
+       - **'Number of rows'**\ =5
 
    - Example 2:
 
-      - **'Step (line)'**\ =[0,1.5,0],
-      - **'Step (row)'**\ =[0.5,0.5,0],
-      - **'Number of lines'**\ =4,
-      - **'Number of rows'**\ =5.
+      - **'Step (line)'**\ =[0,1.5,0]
+      - **'Step (row)'**\ =[0.5,0.5,0]
+      - **'Number of lines'**\ =4
+      - **'Number of rows'**\ =5

@@ -3,5 +3,5 @@
 - Radio button 'x', 'y, 'z': Select the planes X, Y, Z for displaying the meshing with the cursor;
 - The slider allows to move the meshing along the selected plane.
 
-.. |meshing_generate| image:: https://raw.githubusercontent.com/Ifsttar/I-Simpa/master/currentRelease/Bitmaps/toolbar_run_tetmesh.png
-.. |meshing_remove| image:: https://raw.githubusercontent.com/Ifsttar/I-Simpa/master/currentRelease/Bitmaps/toolbar_show_hide_tetmesh.png
+.. |meshing_generate| image:: images/GUI/toolbar_run_tetmesh.png
+.. |meshing_remove| image:: images/GUI/toolbar_show_hide_tetmesh.png

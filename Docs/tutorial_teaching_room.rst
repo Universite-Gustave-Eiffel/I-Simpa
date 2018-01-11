@@ -10,7 +10,7 @@ This tutorial concerns the simple study of a teaching room. The geometry is rect
 -  calculation with the TCR and SPPS codes
 -  simple representation of results
 
-Ressources for this tutorial are located in the following folder:
+Resources for this tutorial are located in the following folder:
 ::
 
 	<I-Simpa installation folder>\doc\tutorial\tutorial 1

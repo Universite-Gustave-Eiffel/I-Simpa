@@ -5,9 +5,9 @@
 - |simulation_stop|	Stop the animation (and return at the first time step);
 - |simulation_remove|	Remove the animation (remove data animation from memory).
 
-.. |simulation_reward| image:: https://raw.githubusercontent.com/Ifsttar/I-Simpa/master/currentRelease/Bitmaps/toolbar_animation_previousstep.png
-.. |simulation_play| image:: https://raw.githubusercontent.com/Ifsttar/I-Simpa/master/currentRelease/Bitmaps/toolbar_animation_start.png
-.. |simulation_pause| image:: https://raw.githubusercontent.com/Ifsttar/I-Simpa/master/currentRelease/Bitmaps/toolbar_animation_pause.png
-.. |simulation_forward| image:: https://raw.githubusercontent.com/Ifsttar/I-Simpa/master/currentRelease/Bitmaps/toolbar_animation_nextstep.png
-.. |simulation_stop| image:: https://raw.githubusercontent.com/Ifsttar/I-Simpa/master/currentRelease/Bitmaps/toolbar_animation_stop.png
-.. |simulation_remove| image:: https://raw.githubusercontent.com/Ifsttar/I-Simpa/master/currentRelease/Bitmaps/toolbar_hideallanimations.png
+.. |simulation_reward| image:: images/GUI/toolbar_animation_previousstep.png
+.. |simulation_play| image:: images/GUI/toolbar_animation_start.png
+.. |simulation_pause| image:: images/GUI/toolbar_animation_pause.png
+.. |simulation_forward| image:: images/GUI/toolbar_animation_nextstep.png
+.. |simulation_stop| image:: images/GUI/toolbar_animation_stop.png
+.. |simulation_remove| image:: images/GUI/toolbar_hideallanimations.png

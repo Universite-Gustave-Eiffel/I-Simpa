@@ -62,7 +62,7 @@ Using spectrum in the 'Data' tree
 In I-Simpa, spectrum are used either for punctual receivers (element 'Background noise') and for sound sources (element 'Sound power').
 
 -  in the 'Properties' window, **select** the 'Spectrum' in the list (the list contains all 'Reference' and 'User' spectrums)
--  **defines** the total sound power 'Lw' (in dB);
+-  **define** the total sound power 'Lw' (in dB);
 -  if necessary, **add** an 'Attenuation' (in dB) either in global or in frequency band: this attenuation will be applied on the corresponding values of the sound power of the source.
 
 .. tip::

@@ -5,6 +5,6 @@
 .. _menu ‘View’: Menu_View.html
 .. _The procedure for the face selection is presented here: surface_selection.html
 
-.. |3D_mode_camera| image:: https://raw.githubusercontent.com/Ifsttar/I-Simpa/master/currentRelease/Bitmaps/toolbar_tool_camera.png
-.. |3D_mode_faceselect| image:: https://raw.githubusercontent.com/Ifsttar/I-Simpa/master/currentRelease/Bitmaps/toolbar_tool_faceselection.png
-.. |3D_mode_extraction| image:: https://raw.githubusercontent.com/Ifsttar/I-Simpa/master/currentRelease/Bitmaps/toolbar_tool_extractlvl.png
+.. |3D_mode_camera| image:: images/GUI/toolbar_tool_camera.png
+.. |3D_mode_faceselect| image:: images/GUI/toolbar_tool_faceselection.png
+.. |3D_mode_extraction| image:: images/GUI/toolbar_tool_extractlvl.png
