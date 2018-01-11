@@ -51,6 +51,15 @@ namespace particleio
 		 * Cette méthode est automatiquement appelé lors de la destruction de l'instance de ParticuleIO
 		 */
 		void Close();
+
+		/**
+		 * @return true if the driver is ready for writing particles
+		 */
+		bool IsOpenAndReadyForWrite();
+		/**
+		* @return true if the driver is ready for reading particles
+		*/
+		bool IsOpenAndReadyForRead();
 		~ParticuleIO();
 		/** @defgroup methodwritepart Ecriture d'un fichier de particule
 		 *
@@ -95,6 +104,11 @@ namespace particleio
 		 * @python Return a tuple containing (timeStep,nbParticles,nbStepMax)
 		 */
 		void GetHeaderData(float& timeStep,unsigned long& nbParticles,unsigned long& nbStepMax);
+
+		/**
+		 * Reset driver before the first particle
+		 */
+		void ResetRead();
 		/**
 		 * Passe à la prochaine particule
 		 * @param[out] firstTimeStep Premier pas de temps
@@ -118,8 +132,6 @@ namespace particleio
 		unsigned long lastParticuleFileHeaderInfo;
 		unsigned long lastParticuleHeaderInfo;
 		bool readonly;
-		bool IsOpenAndReadyForWrite();
-		bool IsOpenAndReadyForRead();
 		void WriteHeader(bool returntopos);
 		void CloseAndClear();
 		void CloseLastParticleHeader();
