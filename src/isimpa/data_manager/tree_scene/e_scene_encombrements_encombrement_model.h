@@ -91,6 +91,11 @@ public:
 						this->AppendFils(new E_Scene_Encombrements_Encombrement_Proprietes(currentChild,this));
 					}else if(typeEle==Element::ELEMENT_TYPE_SCENE_GROUPESURFACES_GROUPE)
 					{
+						// Change label issue #142
+						if(currentChild->GetAttribute("label","") != "Surface") {
+							currentChild->DeleteAttribute("label");
+							currentChild->AddAttribute("label", wxTRANSLATE("Surfaces"));
+						}
 						this->AppendFils(new E_Scene_Groupesurfaces_Groupe(currentChild,this));
 					}else if(typeEle==Element::ELEMENT_TYPE_GAMMEABSORPTION)
 					{
@@ -117,12 +122,11 @@ public:
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_FITTING_CLOSE);
 		this->elementInfo.userDestroyable=true;
 		this->AppendFils(new E_Scene_Encombrements_Encombrement_Proprietes(this));
-		this->AppendFils(new E_Scene_Groupesurfaces_Groupe(this,"Surface",true));
+		this->AppendFils(new E_Scene_Groupesurfaces_Groupe(this,wxTRANSLATE("Surfaces"),true));
 		this->AppendFils(new E_GammeAbsorption(this));
 		this->AppendFils(new E_Scene_Encombrements_Encombrement_Rendu(this));
 		this->AppendPropertyPosition("volpos",_("Inside position"),vec3(),true);
 		wxLogWarning(_("Please define a point inside the fitting zone %s"),this->elementInfo.libelleElement);
-		_("Surface");
 		InitEncombrementProp(); 
 	}
 

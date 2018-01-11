@@ -531,11 +531,10 @@ bool RecepteursSControler::LoadRecepteursSFile(wxArrayString& recepteurSFiles, v
 				}
 			}
 		}
-
+		this->EnableRendering();
 		wxDateTime LegendloadingTime=wxDateTime::UNow();
-		RedrawLegend();
-		//wxLogDebug("Chargement du récepteur surfacique en %i ms",wxDateTime::UNow().GetValue()-fileLoading.GetValue());
-		//wxLogDebug("Création de la légende en %i ms",wxDateTime::UNow().GetValue()-LegendloadingTime.GetValue());
+		wxLogDebug("Chargement du récepteur surfacique en %lld ms",wxDateTime::UNow().GetValue()-fileLoading.GetValue());
+		wxLogDebug("Création de la légende en %lld ms",wxDateTime::UNow().GetValue()-LegendloadingTime.GetValue());
 		loadingTime=wxDateTime::UNow();
 		return true;
 	}else{

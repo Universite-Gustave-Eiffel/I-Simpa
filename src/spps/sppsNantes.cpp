@@ -320,7 +320,7 @@ int MainProcess(int argc, char* argv[])
     ExpandPunctualReceiverTetrahedronLocalisation(&sceneTetraMesh, &configManager.recepteur_p_List, configManager);
 	TranslateSourceAtTetrahedronVertex(configManager.srcList,&sceneTetraMesh);
 	if(!CheckSourcePosition(configManager.srcList, &sceneMesh)) {
-		std::cerr << _("A sound source position is intersecting with the 3D model, move the sound source inside the room") << std::endl;
+		std::cerr << _("A sound source position is intersecting with the 3D model. Move the sound source inside the 3D model") << std::endl;
 		return 1;
 	}
 	//**************************************************

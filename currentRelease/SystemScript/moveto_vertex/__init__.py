@@ -4,7 +4,7 @@ import uictrl as ui
 import uilocale
 import os
 
-ScriptFolder=ui.application.getapplicationpath()["userscript"]+"moveto_vertex"+os.sep
+ScriptFolder=ui.application.getapplicationpath()["systemscript"]+"moveto_vertex"+os.sep
 _=uilocale.InstallUiModule(ScriptFolder,ui.application.getlocale())
 
 class manager:

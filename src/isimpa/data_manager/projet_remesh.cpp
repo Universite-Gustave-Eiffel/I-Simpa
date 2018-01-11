@@ -104,7 +104,7 @@ namespace ModelReconstructionUI
 				ReconstructionUserPreferences_t reconsPref(preferences);
 				reconsPref.getVolStats=true;
 				wxString exeArgs=GetArgFromPreferences(reconsPref);
-				wxProgressDialog progDialog(_("Execution of the model remesh."),_("Searching model volumes ..."),10000,NULL,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
+				wxProgressDialog progDialog(_("Execution of the model remesh."),_("Searching model volumes..."),10000,NULL,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
 				if(!uiRunExe(NULL,exeArgs,_("VolumetricMeshRepair: "), &progDialog))
 					return false;
 				//Lecture du fichier de statistiques
@@ -164,7 +164,7 @@ namespace ModelReconstructionUI
 			{
 
 				wxString exeArgs=GetArgFromPreferences(preferences);
-				wxProgressDialog progDialog(_("Reconstruction of input model."),_("Searching model volumes ..."),10000,NULL,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
+				wxProgressDialog progDialog(_("Reconstruction of input model."),_("Searching model volumes..."),10000,NULL,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
 				uiRunExe(NULL,exeArgs,_("VolumetricMeshRepair: "), &progDialog);
 			}
 	};

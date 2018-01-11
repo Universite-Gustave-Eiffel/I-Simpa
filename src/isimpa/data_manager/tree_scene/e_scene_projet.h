@@ -55,10 +55,8 @@ class E_Scene_Projet: public Element
 {
 public:
 	E_Scene_Projet( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Projet",Element::ELEMENT_TYPE_SCENE_PROJET,noeudCourant)
+		:Element(parent,wxTRANSLATE("Project"),Element::ELEMENT_TYPE_SCENE_PROJET,noeudCourant)
 	{
-		_("Project");
-		
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_PROJECT_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_PROJECT_CLOSE);
 
@@ -84,8 +82,13 @@ public:
 						this->AppendFils(new E_Scene_Bdd(currentChild,this));
 					else if(typeEle==Element::ELEMENT_TYPE_SCENE_PROJET_ENVIRONNEMENTCONF)
 						this->AppendFils(new E_Scene_Projet_Environnement(currentChild,this));
-					else if(typeEle==Element::ELEMENT_TYPE_SCENE_PROJET_INFORMATION)
-						this->AppendFils(new E_Scene_Projet_Information(currentChild,this));
+					else if(typeEle==Element::ELEMENT_TYPE_SCENE_PROJET_INFORMATION) {
+						if(currentChild->GetAttribute("name") == "Informations") {
+							currentChild->DeleteAttribute("name");
+							currentChild->AddAttribute("name", wxTRANSLATE("Information"));
+						}
+						this->AppendFils(new E_Scene_Projet_Information(currentChild, this));
+					}
 				}
 				currentChild = currentChild->GetNext();
 			}
@@ -93,7 +96,7 @@ public:
 	}
 
 	E_Scene_Projet( Element* parent)
-		:Element(parent,"Projet",Element::ELEMENT_TYPE_SCENE_PROJET)
+		:Element(parent,wxTRANSLATE("Project"),Element::ELEMENT_TYPE_SCENE_PROJET)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_PROJECT_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_PROJECT_CLOSE);

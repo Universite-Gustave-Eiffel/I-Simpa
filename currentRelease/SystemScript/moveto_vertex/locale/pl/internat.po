@@ -4,33 +4,33 @@
 # Automatically generated, 2017.
 # 
 # Translators:
-# Wojciech Binek <wojciech.binek@gmail.com>, 2017
+# wbinek <wojciech.binek@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-02 17:05+0000\n"
-"PO-Revision-Date: 2017-03-02 17:05+0000\n"
-"Last-Translator: Wojciech Binek <wojciech.binek@gmail.com>, 2017\n"
+"POT-Creation-Date: 2017-10-10 12:08+0000\n"
+"PO-Revision-Date: 2017-10-10 12:08+0000\n"
+"Last-Translator: wbinek <wojciech.binek@gmail.com>, 2017\n"
 "Language-Team: Polish (https://www.transifex.com/LAE/teams/23470/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: currentRelease/UserScript/moveto_vertex/__init__.py:26
+#: currentRelease/SystemScript/moveto_vertex/__init__.py:26
 msgid "(Please select the group of destination:"
 msgstr "(Proszę wybierz grupę docelową:"
 
-#: currentRelease/UserScript/moveto_vertex/__init__.py:24
+#: currentRelease/SystemScript/moveto_vertex/__init__.py:24
 msgid "Label"
 msgstr "Etykieta"
 
-#: currentRelease/UserScript/moveto_vertex/__init__.py:26
+#: currentRelease/SystemScript/moveto_vertex/__init__.py:26
 msgid "Move faces"
 msgstr "Przenieś powierzchnie"
 
-#: currentRelease/UserScript/moveto_vertex/__init__.py:16
+#: currentRelease/SystemScript/moveto_vertex/__init__.py:16
 msgid "Move to an existing group"
 msgstr "Przenieś powierzchnie do istniejącej grupy"

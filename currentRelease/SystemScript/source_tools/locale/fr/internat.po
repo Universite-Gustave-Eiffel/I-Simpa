@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-02 17:05+0000\n"
-"PO-Revision-Date: 2017-03-02 17:05+0000\n"
+"POT-Creation-Date: 2017-10-10 12:08+0000\n"
+"PO-Revision-Date: 2017-10-10 12:08+0000\n"
 "Last-Translator: PICAUT Judicael <judicael.picaut@ifsttar.fr>, 2016\n"
 "Language-Team: French (https://www.transifex.com/LAE/teams/23470/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -19,74 +19,114 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: currentRelease/UserScript/source_tools/__init__.py:52
+#: currentRelease/SystemScript/source_tools/__init__.py:52
 msgid "All sources"
 msgstr "Toutes les sources"
 
-#: currentRelease/UserScript/source_tools/__init__.py:88
+#: currentRelease/SystemScript/source_tools/__init__.py:98
 msgid "Angle (degrees)"
 msgstr "Angle (degrés)"
 
-#: currentRelease/UserScript/source_tools/__init__.py:54
-#: currentRelease/UserScript/source_tools/__init__.py:60
+#: currentRelease/SystemScript/source_tools/__init__.py:54
+#: currentRelease/SystemScript/source_tools/__init__.py:64
 msgid "Create a line of sound sources"
 msgstr "Créer une grille de sources sonores"
 
-#: currentRelease/UserScript/source_tools/__init__.py:126
-msgid "Direction (m)"
-msgstr "Direction (m)"
+#: currentRelease/SystemScript/source_tools/__init__.py:145
+msgid "Direction x (m)"
+msgstr "Direction x (m)"
 
-#: currentRelease/UserScript/source_tools/__init__.py:47
+#: currentRelease/SystemScript/source_tools/__init__.py:146
+msgid "Direction y (m)"
+msgstr "Direction y (m)"
+
+#: currentRelease/SystemScript/source_tools/__init__.py:147
+msgid "Direction z (m)"
+msgstr "Direction z (m)"
+
+#: currentRelease/SystemScript/source_tools/__init__.py:47
 msgid "Disable"
 msgstr "Désactiver"
 
-#: currentRelease/UserScript/source_tools/__init__.py:46
+#: currentRelease/SystemScript/source_tools/__init__.py:46
 msgid "Enable"
 msgstr "Activer"
 
-#: currentRelease/UserScript/source_tools/__init__.py:58
+#: currentRelease/SystemScript/source_tools/__init__.py:60
 msgid "Number of sources"
 msgstr "Nombre de sources"
 
-#: currentRelease/UserScript/source_tools/__init__.py:61
+#: currentRelease/SystemScript/source_tools/__init__.py:65
 msgid "Please fill the following fields to create the sound source line"
 msgstr ""
 "Veuillez saisir les informations pour créer la ligne de sources sonores"
 
-#: currentRelease/UserScript/source_tools/__init__.py:49
+#: currentRelease/SystemScript/source_tools/__init__.py:49
 msgid "Rotation"
 msgstr "Rotation"
 
-#: currentRelease/UserScript/source_tools/__init__.py:89
-msgid "Rotation centre"
-msgstr "Centre de rotation"
+#: currentRelease/SystemScript/source_tools/__init__.py:99
+msgid "Rotation center x (m)"
+msgstr ""
 
-#: currentRelease/UserScript/source_tools/__init__.py:102
+#: currentRelease/SystemScript/source_tools/__init__.py:100
+msgid "Rotation center y (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/source_tools/__init__.py:101
+msgid "Rotation center z (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/source_tools/__init__.py:115
 msgid "Rotation of a group of sound sources"
 msgstr "Rotation d'un groupe de sources sonores"
 
-#: currentRelease/UserScript/source_tools/__init__.py:57
-msgid "Starting position [x,y,z] (m)"
-msgstr "Point de départ [x,y,z] (m)"
+#: currentRelease/SystemScript/source_tools/__init__.py:57
+msgid "Starting position x (m)"
+msgstr "Position de départ : x (m)"
 
-#: currentRelease/UserScript/source_tools/__init__.py:59
-msgid "Step [x,y,z] (m)"
-msgstr "Pas [x,y,z] (m)"
+#: currentRelease/SystemScript/source_tools/__init__.py:58
+msgid "Starting position y (m)"
+msgstr "Position de départ : y (m)"
 
-#: currentRelease/UserScript/source_tools/__init__.py:50
+#: currentRelease/SystemScript/source_tools/__init__.py:59
+msgid "Starting position z (m)"
+msgstr "Position de départ : z (m)"
+
+#: currentRelease/SystemScript/source_tools/__init__.py:61
+msgid "Step x (m)"
+msgstr "Pas suivant x (m)"
+
+#: currentRelease/SystemScript/source_tools/__init__.py:62
+msgid "Step y (m)"
+msgstr "Pas suivant y (m)"
+
+#: currentRelease/SystemScript/source_tools/__init__.py:63
+msgid "Step z (m)"
+msgstr "Pas suivant z (m)"
+
+#: currentRelease/SystemScript/source_tools/__init__.py:50
 msgid "Translation"
 msgstr "Translation"
 
-#: currentRelease/UserScript/source_tools/__init__.py:127
+#: currentRelease/SystemScript/source_tools/__init__.py:148
 msgid "Translation of a group of sound sources"
 msgstr "Translation d'un groupe de sources sonores"
 
-#: currentRelease/UserScript/source_tools/__init__.py:87
-msgid "Vector of rotation"
-msgstr "Vecteur de rotation"
+#: currentRelease/SystemScript/source_tools/__init__.py:95
+msgid "Vector of rotation x (m)"
+msgstr ""
 
-#: currentRelease/UserScript/source_tools/__init__.py:72
-#: currentRelease/UserScript/source_tools/__init__.py:114
-#: currentRelease/UserScript/source_tools/__init__.py:135
+#: currentRelease/SystemScript/source_tools/__init__.py:96
+msgid "Vector of rotation y (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/source_tools/__init__.py:97
+msgid "Vector of rotation z (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/source_tools/__init__.py:80
+#: currentRelease/SystemScript/source_tools/__init__.py:132
+#: currentRelease/SystemScript/source_tools/__init__.py:158
 msgid "Wrong parameters"
 msgstr "Erreur de saisie des paramètres"

@@ -551,7 +551,7 @@ void GabeDataGrid::DoFillMenu(wxGridEvent& ev,wxMenu* mainMenu)
 	mainMenu->AppendSeparator();
 	if(this->IsEditable())
 		mainMenu->Append(ID_SAVE,_("Save data"));
-	mainMenu->Append(ID_SAVE_AS,_("Save data as ..."));
+	mainMenu->Append(ID_SAVE_AS,_("Save data as..."));
 }
 void GabeDataGrid::LockUserUpdate(bool readOnly)
 {

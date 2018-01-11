@@ -47,6 +47,7 @@ public:
     typedef std::list<wxString> ContainerType;
     void Write( std::wstring const& str );
     void WriteWx( const wxString& str );
+	void flush();
 	boost::python::str ReadLine(  );
 	//Lit une ligne de code
 	//Si il n'y a aucun code il faut faire attendre

@@ -43,7 +43,7 @@ class E_Scene_Projet_Information: public Element
 {
 public:
 	E_Scene_Projet_Information( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,wxTRANSLATE("Informations"),Element::ELEMENT_TYPE_SCENE_PROJET_INFORMATION,noeudCourant)
+		:Element(parent,wxTRANSLATE("Information"),Element::ELEMENT_TYPE_SCENE_PROJET_INFORMATION,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_INFORMATION);
 		if(!this->IsPropertyExist("nbencombrementenable"))
@@ -54,7 +54,7 @@ public:
 	}
 
 	E_Scene_Projet_Information( Element* parent)
-		:Element(parent, wxTRANSLATE("Informations"),Element::ELEMENT_TYPE_SCENE_PROJET_INFORMATION)
+		:Element(parent, wxTRANSLATE("Information"),Element::ELEMENT_TYPE_SCENE_PROJET_INFORMATION)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_INFORMATION);
 		InitProperties();

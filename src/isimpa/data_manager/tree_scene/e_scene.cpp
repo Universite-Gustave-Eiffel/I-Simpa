@@ -58,6 +58,10 @@ E_Scene::E_Scene( wxXmlNode* noeudCourant )
 					this->AppendFils(new E_Scene_Donnees(currentChild,this));
 				}else if(typeEle==Element::ELEMENT_TYPE_SCENE_PROJET)
 				{
+					if(currentChild->GetAttribute("name") == "Projet") {
+						currentChild->DeleteAttribute("name");
+						currentChild->AddAttribute("name", wxTRANSLATE("Project"));
+					}
 					this->AppendFils(new E_Scene_Projet(currentChild,this));
 				}
 			}

@@ -716,7 +716,7 @@ void ReportManager::SaveRecpIntensity(const CoreString& filename,std::vector<t_s
 	serie_int_parameter.Set(3,gabe_cols.size());						    	//Num�ro de la colonne du premier r�cepteur ponctuel
 	serie_float_parameter.Set(0,params.timeStep);								//Pas de temps (s)
 
-	CoreString workpath=params.working_Path+_("IntensityAnimation")+"/";
+	CoreString workpath=params.working_Path+_("Intensity animation")+"/";
 	st_mkdir(workpath);
 	//For each frequency band
 

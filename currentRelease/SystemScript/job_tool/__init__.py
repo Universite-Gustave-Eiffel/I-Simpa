@@ -3,11 +3,9 @@ import uictrl as ui
 import operator
 import uilocale
 import os
-ScriptFolder=ui.application.getapplicationpath()["userscript"]+"job_tool"+os.sep
-_=uilocale.InstallUiModule(ScriptFolder,ui.application.getlocale())
 
-def _(msg):
-    return msg
+_=uilocale.InstallUiModule(ui.application.getapplicationpath()["systemscript"]+"job_tool"+os.sep,ui.application.getlocale())
+
 def GetCurrentProjectPath():
     projconfel=ui.element(ui.element(ui.application.getrootscene()).getelementbytype(ui.element_type.ELEMENT_TYPE_SCENE_PROJET_CONFIGURATION))
     return projconfel.getstringconfig("urlsave")

@@ -77,8 +77,83 @@ We recommend you to create a lib folder in `C:` and to use it when extracting ex
 
 ### On GNU/Linux (GCC or Clang)
 
-I-Simpa do not use any platform specific library so in theory it can run on Linux.
-In practice it is not that simple, Travis will tell you if our Linux build work : [![Build Status](https://travis-ci.org/Ifsttar/I-Simpa.svg?branch=master)](https://travis-ci.org/Ifsttar/I-Simpa)
+Travis will tell you if our Linux build work : [![Build Status](https://travis-ci.org/Ifsttar/I-Simpa.svg?branch=master)](https://travis-ci.org/Ifsttar/I-Simpa)
+
+The travis build commands under linux are here https://github.com/Ifsttar/I-Simpa/blob/master/.travis.yml 
+
+We have currently issues on OpenGL calls under linux. Display of particles and surface receivers are not working in Gnu/Linux. However all the other features appears to work.
+
+#### Dependencies
+
+In order to build under linux you have to download/install the following libraries:
+
+- gcc-4.8
+- g++-4.8
+- python 2.7
+- freeglut3-dev
+- libxmu-dev
+- libxi-dev
+- libpng-dev
+- libjpeg-dev
+- libxxf86vm1
+- libxxf86vm-dev
+- libxi-dev
+- libxrandr-dev
+- mesa-common-dev
+- mesa-utils
+- libgl1-mesa-dev
+- libglapi-mesa
+- libgtk-3-dev
+- byacc
+- gettext
+
+Swig from here:
+https://github.com/swig/swig/archive/rel-3.0.10.tar.gz
+
+Boost from here:
+https://sourceforge.net/projects/boost/files/boost/1.61.0/boost_1_61_0.tar.bz2
+
+wxWidgets from here:
+https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.0/wxWidgets-3.1.0.tar.bz2
+
+Cmake from here
+https://cmake.org/files/v3.6/cmake-3.6.1-Linux-x86_64.tar.gz
+
+#### Building instructions
+
+Creating makefile using CMake program (from the I-Simpa source directory):
+
+```sh
+export CXX="g++-4.8"
+export CC="gcc-4.8"
+
+cmake --version
+${CC} --version
+${CXX} --version
+
+mkdir build
+cd build
+
+CLANG_WARNINGS=""
+
+# wxWidget path (only in script scope)
+export PATH=$HOME/wxWidgets-install/bin/:$HOME/swig-install/bin/:$HOME/cmake-install/bin/:$PATH
+export BOOST_LIBRARYDIR=$HOME/boost-install/lib/
+export BOOST_INCLUDEDIR=$HOME/boost-install/include/
+export BOOST_ROOT=$HOME/boost-install/
+
+cmake ..
+```
+
+Then you can run the build:
+
+```sh
+make
+make DESTDIR=/home/john/isimpabuild/ install
+```
+
+Then run isimpa program located in the specified destdir.
+
 
 ### Other installation/configuration
 

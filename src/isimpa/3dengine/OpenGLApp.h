@@ -266,7 +266,7 @@ public:
 	 */
 	void InitAnimatorLst();
 private:
-	std::list<ptAnimatorManager> animators;
+	std::vector<ptAnimatorManager> animators;
 	void SetTimeStep(int idTimeStep);
 
 	void InitLst(int index);

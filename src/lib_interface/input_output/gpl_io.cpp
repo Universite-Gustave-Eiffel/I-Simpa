@@ -52,8 +52,6 @@ namespace GPL_IO
 	int GPL_FileExchange::Read(const std::string& gpl_filename)
 	{
 		std::ifstream gplFile; // On the stack
-		gplFile.open( gpl_filename.c_str(),std::ios::in  );
-
 
 		#ifdef WIN32
 				gplFile.open(pugi::as_wide(gpl_filename), std::ios::in);

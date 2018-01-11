@@ -46,12 +46,11 @@ class E_Scene_Recepteurss: public Element
 {
 public:
 	E_Scene_Recepteurss( wxXmlNode* noeudCourant ,  Element* parent)
-		:Element(parent,"Surface receivers",Element::ELEMENT_TYPE_SCENE_RECEPTEURSS,noeudCourant)
+		:Element(parent,wxTRANSLATE("Surface receivers"),Element::ELEMENT_TYPE_SCENE_RECEPTEURSS,noeudCourant)
 	{
 		insertPasteMenu=true;
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_SURFACE_RECEIVERS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_SURFACE_RECEIVERS_CLOSE);
-		_("Surface receivers");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;
@@ -75,7 +74,7 @@ public:
 		}
 	}
 	E_Scene_Recepteurss( Element* parent)
-		:Element(parent,"Surface receivers",Element::ELEMENT_TYPE_SCENE_RECEPTEURSS)
+		:Element(parent,wxTRANSLATE("Surface receivers"),Element::ELEMENT_TYPE_SCENE_RECEPTEURSS)
 	{
 		insertPasteMenu=true;
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_SURFACE_RECEIVERS_OPEN);
@@ -136,7 +135,7 @@ public:
 
 	void OnRightClic(wxMenu* leMenu)
 	{	
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_RECEPTEUR_S, _("New scene face receiver"),"./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_RECEPTEUR_S, _("New scene receiver"),"./Bitmaps/popup_new.png"));
 		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_RECEPTEUR_S_COUPE, _("New plane receiver"),"./Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}

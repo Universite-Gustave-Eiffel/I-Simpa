@@ -51,16 +51,17 @@ std::vector<ApplicationConfiguration::t_ponderation> ApplicationConfiguration::t
 std::vector<wxString> ApplicationConfiguration::tabLoisReflexion;
 ApplicationConfiguration::tab_HashElement ApplicationConfiguration::tab_refElementLst;
 
-const wxString ApplicationConfiguration::CONST_REPORT_FOLDER_PATH=wxString("report")+wxFileName::GetPathSeparator();
-const wxString ApplicationConfiguration::CONST_REPORT_PARTICLE_FOLDER_PATH=wxString("particles")+wxFileName::GetPathSeparator();
-const wxString ApplicationConfiguration::CONST_REPORT_PARTICLE_FILENAME=wxString(_("particles"))+wxString(".pbin");
-const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FOLDER_PATH=wxString(_("recepteurss"))+wxFileName::GetPathSeparator();
-/* const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FILENAME=_("Sound_level.csbin");*/
-const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FILENAME=wxString(_("Sound_level"))+wxString(".csbin");
-const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_CUT_FILENAME="rs_cut.csbin";
+const wxString ApplicationConfiguration::CONST_REPORT_FOLDER_PATH=wxString(wxTRANSLATE("report"))+wxFileName::GetPathSeparator();
+const wxString ApplicationConfiguration::CONST_REPORT_PARTICLE_FOLDER_PATH=wxString(wxTRANSLATE("particles"))+wxFileName::GetPathSeparator();
+const wxString ApplicationConfiguration::CONST_REPORT_PARTICLE_FILENAME=wxString(wxTRANSLATE("particles"))+wxString(".pbin");
+const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FOLDER_PATH=wxString(wxTRANSLATE("Surface receiver"))+wxFileName::GetPathSeparator();
+
+
+const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FILENAME=wxString(wxTRANSLATE("Sound level")) + wxString(".csbin");
+const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_CUT_FILENAME= wxString(wxTRANSLATE("rs_cut")) + wxString(".csbin");
 const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FILENAME_TR="TR.csbin";
 const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FILENAME_EDT="EDT.csbin";
-const wxString ApplicationConfiguration::CONST_REPORT_DIRECTIVITIES_FOLDER_PATH = wxString("loudspeakers") + wxFileName::GetPathSeparator();;
+const wxString ApplicationConfiguration::CONST_REPORT_DIRECTIVITIES_FOLDER_PATH = wxString(wxTRANSLATE("loudspeakers")) + wxFileName::GetPathSeparator();;
 const wxString ApplicationConfiguration::CONST_MODEL_SCENE_FILENAME="sceneMesh.bin";
 
 

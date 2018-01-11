@@ -1,16 +1,16 @@
 # -*- coding: cp1252 -*-
 ##
-# Cet outil permet de lier une propriété de directivité d'un récepteur
-# à la position d'une source.
+# Cet outil permet de lier une propriÃ©tÃ© de directivitÃ© d'un rÃ©cepteur
+# Ã  la position d'une source.
 #
 import uilocale
 import uictrl as ui
 import os
-ScriptFolder=ui.application.getapplicationpath()["userscript"]+"preceiv_sourceTracker"+os.sep
-#Déclaration de la méthode de traduction
+ScriptFolder=ui.application.getapplicationpath()["systemscript"]+"preceiv_sourceTracker"+os.sep
+#DÃ©claration de la mÃ©thode de traduction
 _=uilocale.InstallUiModule(ScriptFolder,ui.application.getlocale())
 ##
-# L'instance de cette classe est placée dans l'élément position d'une source et est appelé si la position de la source est mis à jour
+# L'instance de cette classe est placÃ©e dans l'Ã©lÃ©ment position d'une source et est appelÃ© si la position de la source est mis Ã  jour
 class PositionUpdater:
     ##
     # Initialisation
@@ -76,16 +76,16 @@ class PositionUpdater:
                 posid=src.getelementbylibelle("pos_source")
                 pos=ui.element(posid)
                 self.sourceposid=posid
-                pos.register_update_manager(self.OnSourcePositionChange) #Lie la méthode à la mise à jour de la position de la source
-                src.register_update_manager(self.OnSourceLabelChange) #Lie la méthode à la mise à jour de la source pour le changement de libellé
+                pos.register_update_manager(self.OnSourcePositionChange) #Lie la mÃ©thode Ã  la mise Ã  jour de la position de la source
+                src.register_update_manager(self.OnSourceLabelChange) #Lie la mÃ©thode Ã  la mise Ã  jour de la source pour le changement de libellÃ©
                 if not self.isPositionTracker:
                     receiver.updatepositionconfig("direction_dot",src.getpositionconfig("pos_source"))
     
 SourcePosTrackerLst={}
 SourcePosToReceiverPosTrackerLst={}
 def LinkSourcePositionWithReceiverPosition(sourceId,ReceiverId):
-    #Il faut ajouter les coordonnées X,Y,Z de décalage avec la source
-    #Ainsi que le nom de la source dans cette propriété
+    #Il faut ajouter les coordonnÃ©es X,Y,Z de dÃ©calage avec la source
+    #Ainsi que le nom de la source dans cette propriÃ©tÃ©
     receiver=ui.element(ReceiverId)
     source=ui.element(sourceId)
     posel=ui.element(receiver.getelementbylibelle("pos_recepteur"))
@@ -93,7 +93,8 @@ def LinkSourcePositionWithReceiverPosition(sourceId,ReceiverId):
         #Mettre a jour la propriete
         posel.updatestringconfig("linkedsource",source.getinfos()["name"])  
     else:
-        #Ajouter la propriete
+        #Add property
+        _("linkedsource")
         ui.element(posel.appendpropertytext("linkedsource","linkedsource",source.getinfos()["name"])).hide() 
     if not SourcePosToReceiverPosTrackerLst.has_key(ReceiverId):
         SourcePosToReceiverPosTrackerLst[ReceiverId]=PositionUpdater(ReceiverId,True)
@@ -127,7 +128,7 @@ class managerLinkWithSourcePosition:
             positionel.deleteelementbyxmlid(positionel.getelementbylibelle("linkedsource"))
             SourcePosTrackerLst[ReceiverId].Unlink()
     def AskUserToSelectASource(self):
-        #Il faut faire la liste des libellés de toutes les sources
+        #Il faut faire la liste des libellÃ©s de toutes les sources
         rootscene=ui.element(ui.application.getrootscene())
         sourclst_ids=rootscene.getallelementbytype(ui.element_type.ELEMENT_TYPE_SCENE_SOURCES_SOURCE)
         dict_src={}
@@ -158,19 +159,19 @@ class managerLinkWithSourcePosition:
         if selected_sourceid!=-1:
             LinkSourcePositionWithReceiverOrientation(selected_sourceid,ui.element(idel).getinfos()["parentid"])
     def getmenu(self,typeel,idel,menu):
-        #On ajoute la fonction seulement si il s'agit de la position d'un récepteur ponctuel
+        #On ajoute la fonction seulement si il s'agit de la position d'un rÃ©cepteur ponctuel
         infoEl=ui.element(idel).getinfos()
         infoParent=ui.element(infoEl["parentid"]).getinfos()
         if infoParent["typeElement"]==ui.element_type.ELEMENT_TYPE_SCENE_RECEPTEURSP_RECEPTEUR:
             if infoEl["name"]==u"direction_dot":
-                menu.insert(1,(_(u"Please choose the source:"),self.linkWithSourcePositionEventId))
+                menu.insert(1,(_(u"Link to a source:"),self.linkWithSourcePositionEventId))
                 if ui.element(idel).hasproperty("linkedsource"):
                     
                     menu.insert(1,(_(u"Delete the link with the source"),self.unlinkReceiverDirEventId))
                 return True
             elif infoEl["name"]==u"pos_recepteur":
                 menu.insert(1,(_(u"Please choose the source:"),self.linkPositionWithSourcePositionEventId))
-                #todo tester si la position du récepteur est déjà lié a une source
+                #todo tester si la position du rÃ©cepteur est dÃ©jÃ  liÃ© a une source
                 return True
         return False
             

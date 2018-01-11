@@ -78,6 +78,11 @@ public:
 						this->AppendFils(new E_Scene_Recepteurss_Recepteur_Rendu(currentChild,this));
 					}else if(typeEle==Element::ELEMENT_TYPE_SCENE_GROUPESURFACES_GROUPE)
 					{
+						// Update element name issue #148
+						if(currentChild->GetAttribute("label","") != "Surface") {
+							currentChild->DeleteAttribute("label");
+							currentChild->AddAttribute("label", wxTRANSLATE("Surfaces"));
+						}
 						this->AppendFils(new E_Scene_Groupesurfaces_Groupe(currentChild,this));
 					}
 				}
@@ -100,9 +105,7 @@ public:
 		this->elementInfo.userDestroyable=true;
 		ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_RecepteurS++;
 		this->AppendFils(new E_Scene_Recepteurss_Recepteur_Proprietes(this));
-		//this->AppendFils(new E_Scene_Recepteurss_Recepteur_Rendu(this));
-		this->AppendFils(new E_Scene_Groupesurfaces_Groupe(this,"Surface",true));
-		_("Surface");
+		this->AppendFils(new E_Scene_Groupesurfaces_Groupe(this,wxTRANSLATE("Surfaces"),true));
 	}
 	~E_Scene_Recepteurss_Recepteur()
 	{
@@ -125,7 +128,7 @@ public:
 
 	void OnBeginLabelEdit(wxTreeEvent& treeEvent)
 	{
-		//On autorise l'edition en surchargeant l'événement
+		//Overload this function to allow editing
 	}
 	 
 	void OnEndLabelEdit(wxTreeEvent& treeEvent)
