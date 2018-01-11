@@ -1640,7 +1640,6 @@ void ProjectManager::OnMenuLoadParticleSimulation(uiTreeCtrl* fromCtrl,Element* 
 	}
 
 	//Demmarage de la simulation
-	this->rootUserConfig->GetElementByLibelle("3d Rendering")->GetElementByLibelle("Animations")->UpdateBoolConfig("showparticle",true);
 	this->GlFrame->RunSimulation();
 }
 void ProjectManager::OnMenuCreateFGroupFromSelection()
