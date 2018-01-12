@@ -61,7 +61,7 @@ bool E_Report_Gabe_Gap::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,s
 	int nbsubfreq=3;
 	wxString filePath;
 	BuildFullPath(filePath);
-	GABE gReader(filePath);
+	GABE gReader(filePath.utf8_str());
 	formatGABE::GABE_Data_Integer* indexCol;
 	formatGABE::GABE_Data_Integer* lstFreq;
 	formatGABE::GABE_Data_Float* lstFloatParam;

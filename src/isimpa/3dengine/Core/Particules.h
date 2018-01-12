@@ -100,7 +100,6 @@ int GetSizeTabParticle();
  */
 int GetNbTimeStep();
 virtual void SetTimeStep(const int& timeStep);
-void SaveToPBin(wxString fileName);
 
 /**
  * Charge un fichier Binaire en mémoire. Préférer ce format plutot que les fichiers texte. La rapidité de chargement d'un fichier binaire est au moins 60 fois plus rapide que celle d'un fichier texte.

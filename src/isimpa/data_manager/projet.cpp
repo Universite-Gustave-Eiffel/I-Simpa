@@ -1640,7 +1640,6 @@ void ProjectManager::OnMenuLoadParticleSimulation(uiTreeCtrl* fromCtrl,Element* 
 	}
 
 	//Demmarage de la simulation
-	this->rootUserConfig->GetElementByLibelle("3d Rendering")->GetElementByLibelle("Animations")->UpdateBoolConfig("showparticle",true);
 	this->GlFrame->RunSimulation();
 }
 void ProjectManager::OnMenuCreateFGroupFromSelection()
@@ -3165,6 +3164,14 @@ void ProjectManager::OpenNewDataWindow(Element* linkedElement)
 		{
 			wxString fileFullPath;
 			reportFile->BuildFullPath(fileFullPath);
+
+			if(!wxFile::Exists(fileFullPath)) {
+				// Check if file exists
+				// Error if not exists
+				wxLogError(_("The following file does not exist, please update the folder: %s"), fileFullPath);
+				return;
+			}
+
 			DataWindow* newWindow=new DataWindow(mainFrame,wxID_ANY,wxDefaultPosition,wxDefaultSize,wxAUI_NB_TOP | wxAUI_NB_TAB_SPLIT | wxAUI_NB_TAB_MOVE | wxAUI_NB_SCROLL_BUTTONS | wxAUI_NB_CLOSE_ON_ACTIVE_TAB | wxAUI_NB_TAB_EXTERNAL_MOVE );
 			wxWindowUpdateLocker noUpdates(newWindow); //Bloque la mise à jour de l'affichage
 

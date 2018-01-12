@@ -45,6 +45,7 @@ public:
 	static void SauveTCGlobalsValues(stringClass filePath, const std::vector<stringClass>& freqLst,const std::vector<stringClass>& colsLblLst,t_mainData& mainData);
 	static void SauveFusionTCRecepteursPonctuels(const stringClass& folderPath,std::vector<t_TC_RecepteurPonctuel>& tabRecepteurP);
 	static void SauveFusionRecepteursSurfaciques(const stringClass& rootFolder,std::vector<r_Surf*>& tabRecepteurS);
+	static void SauveFusionCutSurfaceReceiver(const stringClass& rootFolder, std::vector<r_SurfCut*>& tabRecepteurS);
 };
 
 #endif

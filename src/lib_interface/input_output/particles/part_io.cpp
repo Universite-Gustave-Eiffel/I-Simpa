@@ -210,6 +210,18 @@ namespace particleio
 		}
 		return particleFile;
 	}
+
+	void ParticuleIO::ResetRead() {
+		if (IsOpenAndReadyForRead())
+		{
+			particleFile->seekp(lastParticuleFileHeaderInfo + sizeof(binaryFHeader));
+			currentPartInfo.currentstep = 0;
+			currentPartInfo.opened = false;
+			currentPartInfo.nbtimestep = 0;
+			currentPartInfo.firsttimestep = 0;
+			currentPartInfo.idpart = 0;
+		}	
+	}
 	void ParticuleIO::NextParticle(unsigned long& firstTimeStep,unsigned long& nbTimeStep)
 	{
 		nbTimeStep=0;

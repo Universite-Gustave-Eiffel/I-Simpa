@@ -52,7 +52,7 @@ std::vector<wxString> ApplicationConfiguration::tabLoisReflexion;
 ApplicationConfiguration::tab_HashElement ApplicationConfiguration::tab_refElementLst;
 
 const wxString ApplicationConfiguration::CONST_REPORT_FOLDER_PATH=wxString(wxTRANSLATE("report"))+wxFileName::GetPathSeparator();
-const wxString ApplicationConfiguration::CONST_REPORT_PARTICLE_FOLDER_PATH=wxString(wxTRANSLATE("particles"))+wxFileName::GetPathSeparator();
+const wxString ApplicationConfiguration::CONST_REPORT_PARTICLE_FOLDER_PATH=wxString(wxTRANSLATE("Particles"))+wxFileName::GetPathSeparator();
 const wxString ApplicationConfiguration::CONST_REPORT_PARTICLE_FILENAME=wxString(wxTRANSLATE("particles"))+wxString(".pbin");
 const wxString ApplicationConfiguration::CONST_REPORT_RECEPTEURSS_FOLDER_PATH=wxString(wxTRANSLATE("Surface receiver"))+wxFileName::GetPathSeparator();
 

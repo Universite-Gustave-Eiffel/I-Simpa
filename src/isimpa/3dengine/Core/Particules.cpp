@@ -37,7 +37,7 @@
 #include <fstream>
 #include <wx/filename.h>
 #include <wx/utils.h>
-#include <input_output/part_binary.h>
+#include "input_output/particles/part_io.hpp"
 #include <limits>
 #include <math.h>
 #include "last_cpp_include.hpp"
@@ -139,172 +139,97 @@ void ParticulesControler::SetTextFont(const wxFont& textFont)
 	this->legendFont=textFont;
 }
 
-
-void ParticulesControler::SaveToPBin(wxString fileName)
-{
-	using namespace std;
-	fstream particleFile (WXSTRINGTOCHARPTR(fileName), ios::out | ios::binary);
-
-	//*************************
-	//Ecriture de l'entete du fichier
-	/*
-	t_Header fileHeader={0};
-	fileHeader.nbParticules=this->nbParticles;
-	fileHeader.nbPasDeTemps=this->nbStep;
-	binFile.write((char*)&fileHeader,sizeof(t_Header));
-	*/
-	binaryFHeader enteteSortie;
-	enteteSortie.nbParticles=this->nbParticles;
-	enteteSortie.nbTimeStepMax=this->nbStep;
-	enteteSortie.particleInfoLength=sizeof(binaryPTimeStep);
-	enteteSortie.particleHeaderInfoLength=sizeof(binaryPHeader);
-	enteteSortie.formatVersion=PARTICLE_BINARY_VERSION_INFORMATION;
-	enteteSortie.fileInfoLength=sizeof(binaryFHeader);
-	enteteSortie.timeStep=this->timeStep;
-	particleFile.write((char*)&enteteSortie,sizeof(binaryFHeader));
-
-
-	//*************************
-	//Ecriture de la position des particules
-	for(unsigned long pIndex=0;pIndex<this->nbParticles;pIndex++)
-	{
-		if(!tabInfoParticles[pIndex].tabSteps)
-			return;
-		unsigned long nbStepPart=tabInfoParticles[pIndex].nbStep;
-		binaryPHeader header = binaryPHeader(nbStepPart,tabInfoParticles[pIndex].firstStep);
-		particleFile.write((char*)&header,sizeof(binaryPHeader));
-		for(unsigned long pTimeIndex=0;pTimeIndex<nbStepPart;pTimeIndex++)
-		{
-		    vec3 poststep(tabInfoParticles[pIndex].tabSteps[pTimeIndex].pos);
-		    binaryPTimeStep stepdata(poststep,tabInfoParticles[pIndex].tabSteps[pTimeIndex].energie);
-			particleFile.write( (char*)&stepdata,sizeof(binaryPTimeStep));
-		}
-	}
-
-	particleFile.close();
-
-}
-
-
 void ParticulesControler::LoadPBin(wxString fileName, bool doCoordsTransformation, vec4 UnitizeVal)
 {
 
 	Init(false);
 	using namespace std;
-	fstream binFile (WXSTRINGTOCHARPTR(fileName), ios::in | ios::binary);
-    if(!binFile.is_open())
-		return;
+	using namespace particleio;
 
-	wxFileName filePath=fileName;
-	filePath.MakeRelativeTo(ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath+ApplicationConfiguration::CONST_REPORT_FOLDER_PATH);
-	if(filePath.GetDirCount()>2)
-	{
-		filePath.RemoveLastDir();
-		filePath.RemoveLastDir();
-	}
-	filePath.ClearExt();
-	filePath.SetName("");
-	ShortcutPath=filePath.GetFullPath();
-	//Création popup de progression
-	wxProgressDialog progDialog(_("Loading particles file"),_("Loading particles file"),100,NULL,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE );
-	progDialog.Update(0);
+	ParticuleIO driver;
 
+	if(driver.OpenForRead(fileName.ToStdString())) {
+		unsigned long nbstepmax;
+		driver.GetHeaderData(this->timeStep, this->nbParticles, nbstepmax);
+		this->nbStep = nbstepmax;
 
-	binaryFHeader enteteFichier;
-	memset(&enteteFichier,0,sizeof(binaryFHeader));
-	unsigned long curPosHFile=binFile.tellp();
-	binFile.read((char*)&enteteFichier, sizeof (binaryFHeader));
-	this->nbParticles=enteteFichier.nbParticles;
-	this->nbStep=enteteFichier.nbTimeStepMax;
-	this->timeStep=enteteFichier.timeStep;
-
-	//Calcul de la mémoire nécessaire
-	wxMemorySize freemem=wxGetFreeMemory();
-	//2.71 facteur d'occupation mémoire dû à la précompilation opengl en mode particule. Facteur mis à 4 afin d'avoir une marge de mémoire
-	wxMemorySize particleCount(enteteFichier.nbParticles),
-		stepcount(enteteFichier.nbTimeStepMax),
-		headerpart(sizeof(binaryPHeader)),
-		stepheader(sizeof(binaryPTimeStep));
-	wxMemorySize memrequire=(wxMemorySize)4*(headerpart*particleCount+stepheader*particleCount*stepcount);
-	if(freemem<memrequire && freemem!=-1)
-	{
-		wxLogError(_("Insufficent memory available, %u memory required and %u memory available"),(unsigned int)(memrequire/1.e6).ToLong(),(unsigned int)(freemem/1.e6).ToLong());
-		binFile.close();
-		Init();
-		return;
-	}
-	bool FileVersionDifferent=false;
-	if(enteteFichier.formatVersion!=PARTICLE_BINARY_VERSION_INFORMATION)
-		FileVersionDifferent=true;
-
-	if(FileVersionDifferent)
-		binFile.seekp(curPosHFile+enteteFichier.fileInfoLength);
-
-	wxLogDebug(_("Particles file contains %i particles and %i time step"),this->nbParticles,this->nbStep);
-	if(this->nbParticles>0)
-	{
-		delete[] tabInfoParticles;
-		tabInfoParticles = new t_ParticuleInfo[this->nbParticles];
-		int percProgression=0;
-		int ansPercProgression=0;
-		for(unsigned long pIndex=0;pIndex<this->nbParticles;pIndex++)
+		wxFileName filePath = fileName;
+		filePath.MakeRelativeTo(ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath + ApplicationConfiguration::CONST_REPORT_FOLDER_PATH);
+		if (filePath.GetDirCount()>2)
 		{
-			percProgression=((float)pIndex/this->nbParticles)*100;
-			if(ansPercProgression!=percProgression && percProgression<100)
-			{
-				ansPercProgression=percProgression;
-				if(!progDialog.Update(percProgression))
-				{
-					//Annulation du chargement du fichier par l'utilisateur
-					Init();
-					wxLogMessage(_("Cancel loading particles files"));
-					binFile.close();
-					return;
-				}
-			}
-			unsigned long curPosH=binFile.tellp();
-			binaryPHeader headerPart;
-			memset(&headerPart,0,sizeof(binaryPHeader));
-			binFile.read((char*)&headerPart, sizeof (binaryPHeader));
-			tabInfoParticles[pIndex].nbStep=headerPart.nbTimeStep;
-			tabInfoParticles[pIndex].firstStep=headerPart.firstTimeStep;
-			if(headerPart.nbTimeStep>0 && headerPart.nbTimeStep<TIMESTEP_LIMITATION)
-			{
-				tabInfoParticles[pIndex].tabSteps = new t_Particule[headerPart.nbTimeStep];
-
-				if(FileVersionDifferent)
-					if((unsigned long)binFile.tellp()!=curPosH+enteteFichier.particleHeaderInfoLength)
-						binFile.seekp(curPosH+enteteFichier.particleHeaderInfoLength);
-				for(unsigned long pTimeIndex=0;pTimeIndex<headerPart.nbTimeStep;pTimeIndex++)
-				{
-					unsigned long curPosP=binFile.tellp();
-					binaryPTimeStep partTimestep;
-					binFile.read((char*)&partTimestep, sizeof (binaryPTimeStep));
-					if(doCoordsTransformation)
-						partTimestep.position=coordsOperation::CommonCoordsToGlCoords(UnitizeVal,partTimestep.position);
-
-					tabInfoParticles[pIndex].tabSteps[pTimeIndex].pos[0]=partTimestep.position[0];
-					tabInfoParticles[pIndex].tabSteps[pTimeIndex].pos[1]=partTimestep.position[1];
-					tabInfoParticles[pIndex].tabSteps[pTimeIndex].pos[2]=partTimestep.position[2];
-					tabInfoParticles[pIndex].tabSteps[pTimeIndex].energie=partTimestep.energy;
-
-					if (partTimestep.energy > max_energy)
-						max_energy = partTimestep.energy;
-					if (partTimestep.energy < min_energy)
-						min_energy = partTimestep.energy;
-
-					if(FileVersionDifferent)
-						if((unsigned long)binFile.tellp()!=curPosP+enteteFichier.particleInfoLength)
-							binFile.seekp(curPosP+enteteFichier.particleInfoLength);
-				}
-			}
+		filePath.RemoveLastDir();
+		filePath.RemoveLastDir();
 		}
-	}else{
-		this->nbStep=0;
-		this->timeStep=0;
-	}
-	binFile.close();
+		filePath.ClearExt();
+		filePath.SetName("");
+		ShortcutPath = filePath.GetFullPath();
 
+
+		// Precomputre required memory
+		wxMemorySize freemem = wxGetFreeMemory();
+		wxMemorySize memrequire = (wxMemorySize)(sizeof(double) * 4 * nbParticles * nbStep);
+
+		if (freemem<memrequire && freemem != -1)
+		{
+			wxLogError(_("Insufficent memory available, %u memory required and %u memory available"), (unsigned int)(memrequire / 1.e6).ToLong(), (unsigned int)(freemem / 1.e6).ToLong());
+			Init();
+			driver.Close();
+			return;
+		}		
+		wxLogDebug(_("Particles file contains %i particles and %i time step"), this->nbParticles, this->nbStep);
+		if (this->nbParticles>0)
+		{
+			wxProgressDialog progDialog(_("Loading particles file"), _("Loading particles file"), 100, NULL, wxPD_CAN_ABORT | wxPD_REMAINING_TIME | wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE);
+			progDialog.Update(0);
+			tabInfoParticles = new t_ParticuleInfo[this->nbParticles];
+			int percProgression = 0;
+			int ansPercProgression = 0;
+			for (unsigned long pIndex = 0; pIndex<this->nbParticles; pIndex++)
+			{
+				percProgression = ((float)pIndex / this->nbParticles) * 100;
+				if (ansPercProgression != percProgression && percProgression<100)
+				{
+					ansPercProgression = percProgression;
+					if (!progDialog.Update(percProgression))
+					{
+						//Annulation du chargement du fichier par l'utilisateur
+						Init();
+						wxLogMessage(_("Cancel loading particles files"));
+						driver.Close();
+						return;
+					}
+				}
+				unsigned long firstTimeStep, nbTimeStep;
+				driver.NextParticle(firstTimeStep, nbTimeStep);
+				tabInfoParticles[pIndex].nbStep = nbTimeStep;
+				tabInfoParticles[pIndex].firstStep = firstTimeStep;
+				if (nbTimeStep>0 && nbTimeStep < TIMESTEP_LIMITATION)
+				{
+					tabInfoParticles[pIndex].tabSteps = new t_Particule[nbTimeStep];
+
+					for (unsigned long pTimeIndex = 0; pTimeIndex < nbTimeStep; pTimeIndex++)
+					{
+						float energy;
+						vec3 position;
+						driver.NextTimeStep(position.x, position.y, position.z, energy);
+						if (doCoordsTransformation)
+							position = coordsOperation::CommonCoordsToGlCoords(UnitizeVal, position);
+
+						tabInfoParticles[pIndex].tabSteps[pTimeIndex].pos[0] = position[0];
+						tabInfoParticles[pIndex].tabSteps[pTimeIndex].pos[1] = position[1];
+						tabInfoParticles[pIndex].tabSteps[pTimeIndex].pos[2] = position[2];
+						tabInfoParticles[pIndex].tabSteps[pTimeIndex].energie = energy;
+
+						if (energy > max_energy)
+							max_energy = energy;
+						if (energy < min_energy)
+							min_energy = energy;
+					}
+				}
+			}
+			EnableRendering();
+		}
+	}
 
 	//Chargement et mis à jour des légendes
 	RedrawLegend();

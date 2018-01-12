@@ -90,6 +90,7 @@ int MainProcess(int argc, char* argv[])
 	//Reserve l'espace mémoire pour les récepteurs surfacique pour toutes les bandes de fréquence
 	for(std::size_t idFreq=0;idFreq<configManager.freqList.size();idFreq++)
 		InitRecepteurSBfreq(configManager.recepteur_s_List,idFreq,*configManager.FastGetConfigValue(Core_Configuration::IPROP_QUANT_TIMESTEP));
+	InitRecepteurSCut(configManager.recepteur_scut_List, configManager);
 	//**************************************************
 	// 6: Executer les calculs
 
@@ -151,6 +152,7 @@ int MainProcess(int argc, char* argv[])
 		ReportManager::SauveFusionTCRecepteursPonctuels(exportcoredir,calcCore.recepteurPList);
 		//Export des fichiers des récepteurs surfaciques
 		ReportManager::SauveFusionRecepteursSurfaciques(exportcoredir,configManager.recepteur_s_List);
+		ReportManager::SauveFusionCutSurfaceReceiver(exportcoredir, configManager.recepteur_scut_List);
 	}
 	return 0;
 }

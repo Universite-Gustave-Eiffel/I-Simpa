@@ -586,7 +586,7 @@ void ProjectManager::OnMenuDoAcousticParametersComputation(uiTreeCtrl* fromCtrl,
 			////////////////////////////////////
 			//Une colonne par bande de fréquence
 			using namespace formatGABE;
-			GABE tabReader(fileName);
+			GABE tabReader(fileName.utf8_str());
 			wxInt32 nbBandeFreq=tabReader.GetCols()-1;
 			////////////////////////////////////
 			//On récupere la liste des t (ms)
@@ -679,8 +679,8 @@ void ProjectManager::OnMenuDoAcousticParametersComputation(uiTreeCtrl* fromCtrl,
 			for(int idparameter=0;idparameter<tabParameters.size();idparameter++)
 				tabWriter.SetCol(idparameter+1,tabParameters[idparameter]);
 
-			std::string path = (fileFolder + wxString(wxTRANSLATE("Acoustic parameters")) + wxString(".gabe")).ToStdString();
-			tabWriter.Save(path);
+			wxString path = (fileFolder + wxString(wxTRANSLATE("Acoustic parameters")) + wxString(".gabe")).ToStdString();
+			tabWriter.Save(std::string(path.utf8_str()));
 
 			//////////////////////////////////////////
 			// Enregistrement des données des courbes de shroeder
@@ -709,8 +709,8 @@ void ProjectManager::OnMenuDoAcousticParametersComputation(uiTreeCtrl* fromCtrl,
 				}
 				tabSchroederWriter.SetCol(idstep+1,colTimeStep);
 			}
-			std::string Schroederpath = (fileFolder + wxString(wxTRANSLATE("Schroeder curves")) + wxString(".gabe")).ToStdString();
-			tabSchroederWriter.Save(Schroederpath);
+			wxString Schroederpath = (fileFolder + wxString(wxTRANSLATE("Schroeder curves")) + wxString(".gabe")).ToStdString();
+			tabSchroederWriter.Save(std::string(Schroederpath.utf8_str()));
 
 
 			reportFolder->RefreshFolderContents();
@@ -842,7 +842,7 @@ void ProjectManager::OnMenuDoAdvancedAcousticParametersComputation(Element* sele
 	if(!wxFileExists(gabePath))
 		return;
 	using namespace formatGABE;
-	GABE gReader(gabePath);
+	GABE gReader(gabePath.utf8_str());
 	if(gReader.GetCols()==0)
 		return;
 
@@ -1027,8 +1027,8 @@ void ProjectManager::OnMenuDoAdvancedAcousticParametersComputation(Element* sele
 		tabWriter.LockData(); //lecture seule pour l'utilisateur
 		for(int idparameter=0;idparameter<tabToExport.size();idparameter++)
 			tabWriter.SetCol(idparameter,tabToExport[idparameter]);
-		std::string path = (fileFolder + wxString(wxTRANSLATE("Advanced acoustic parameters")) + wxString(".gabe")).ToStdString();
-		tabWriter.Save(path);
+		wxString path = (fileFolder + wxString(wxTRANSLATE("Advanced acoustic parameters")) + wxString(".gabe")).ToStdString();
+		tabWriter.Save(std::string(path.utf8_str()));
 		gabeFolder->RefreshFolderContents();
 		gabeFolder->FillWxTree(treeResult);
 		}

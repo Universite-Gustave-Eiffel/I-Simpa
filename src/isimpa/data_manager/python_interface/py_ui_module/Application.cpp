@@ -214,16 +214,16 @@ namespace uictrl
 		ProjectManager::eventCtrl fromCtrl;
 		Element* el=GetElement(wxid);
 
-		if(self->rootResult->GetElementByXMLId(wxid)!=NULL)
+		if(self->rootResult && self->rootResult->GetElementByXMLId(wxid)!=NULL)
 		{
 			fromCtrl=ProjectManager::EVENT_CTRL_REPORT;
 			//self->treeResult->UnselectAll();
 			//self->treeResult->SelectItem(el->GetElementInfos().idElement);
-		}else if(self->rootCore->GetElementByXMLId(wxid)!=NULL){
+		}else if(self->rootCore && self->rootCore->GetElementByXMLId(wxid) != NULL){
 			fromCtrl=ProjectManager::EVENT_CTRL_CORE;
 			//self->treeCore->UnselectAll();
 			//self->treeCore->SelectItem(el->GetElementInfos().idElement);
-		}else if(self->rootScene->GetElementByXMLId(wxid)!=NULL){
+		}else if(self->rootScene && self->rootScene->GetElementByXMLId(wxid)!=NULL){
 			fromCtrl=ProjectManager::EVENT_CTRL_SCENE;
 			//self->treeScene->UnselectAll();
 			//self->treeScene->SelectItem(el->GetElementInfos().idElement);

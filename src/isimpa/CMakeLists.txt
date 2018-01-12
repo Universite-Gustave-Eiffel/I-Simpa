@@ -1,5 +1,6 @@
 include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
-set(CMAKE_INSTALL_MFC_LIBRARIES ON)
+set(CMAKE_INSTALL_MFC_LIBRARIES TRUE )
+set(CMAKE_INSTALL_UCRT_LIBRARIES TRUE )
 include( InstallRequiredSystemLibraries )
 
 string(TIMESTAMP BUILD_DATE "%Y-%m-%dT%H:%M:%S")
@@ -493,6 +494,7 @@ install (TARGETS isimpa
         RUNTIME DESTINATION .)
 
 set(ISIMPA_RESSOURCES ${PROJECT_SOURCE_DIR}/currentRelease)
+
 
 install (FILES
 ${ISIMPA_RESSOURCES}/appconst.xml

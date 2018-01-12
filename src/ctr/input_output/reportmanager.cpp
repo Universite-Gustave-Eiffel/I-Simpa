@@ -53,6 +53,39 @@ void ReportManager::SauveFusionRecepteursSurfaciques(const stringClass& rootFold
 		}
 	}
 }
+
+
+void ReportManager::SauveFusionCutSurfaceReceiver(const stringClass& rootFolder, std::vector<r_SurfCut*>& tabRecepteurS)
+{
+	using namespace formatGABE;
+	for (std::vector<r_SurfCut*>::iterator rsit = tabRecepteurS.begin(); rsit != tabRecepteurS.end(); rsit++)
+	{
+		if ((*rsit)->nbtimestep > 0)
+		{
+			int nbfreq = (*rsit)->nbfreq;
+			GABE rsExporter(nbfreq);
+			for (int idfreq = 0; idfreq<nbfreq; idfreq++)
+			{
+				uentier rowCount = (*rsit)->nbcols * (*rsit)->nbrows;
+				GABE_Data_Float* colrs = new GABE_Data_Float(rowCount);
+				for (uentier idcol = 0; idcol < (*rsit)->nbcols; idcol++)
+				{
+					for (uentier idrow = 0; idrow < (*rsit)->nbrows; idrow++)
+					{
+						if((*rsit)->data[idfreq].size() > idrow && (*rsit)->data[idfreq][idrow].size() > idcol) {
+							colrs->Set(idcol * (*rsit)->nbrows + idrow, (*rsit)->data[idfreq][idrow][idcol][0]);
+						} else {
+							colrs->Set(idcol * (*rsit)->nbrows + idrow, 0);
+						}
+					}
+				}
+				rsExporter.SetCol(idfreq, colrs);
+			}
+			rsExporter.Save((rootFolder + "rscut" + CoreString::FromInt((*rsit)->idRecepteurS) + ".gabe").c_str());
+		}
+	}
+}
+
 void ReportManager::SauveFusionTCRecepteursPonctuels(const stringClass& folderPath,std::vector<t_TC_RecepteurPonctuel>& tabRecepteurP)
 {
 	using namespace formatGABE;
