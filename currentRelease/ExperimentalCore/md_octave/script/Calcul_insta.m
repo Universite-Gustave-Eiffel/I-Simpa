@@ -24,29 +24,38 @@
 ## Keywords: Room acoustics, diffusion model
 ## Adapted-By: Ifsttar <I-Simpa@ifsttar.fr>
 
-## CALCULATION OF THE TIME-VARYING SOLUTION STARTING FROM THE STEADY STATE
-
-#for iB=1:NBLOCKS
-#  Aire_Abs_eq=  EquivAbsAreaBlock{iB};
-#  TR60{iB}=0.16*VOLUME(iB)./Aire_Abs_eq; # Estimation of the reverberation time RT60 from Sabine's formula
-#end
-
-itmax=round(duration/dt); # Number of iterations
-[MATinsta]= integVC_cst(V_VC); # Integration constant
-NomFichier=strcat(domaine,'_WInstaFields');  
+## CALCULATION OF THE SOLUTION
+FileName_TimeVarying=strcat(domaine,'_WInstaFields');  
+FileName_Stationary=strcat(domaine,'_WStaFields');  
 
 ## LOOP ON FREQUENCY BANDS
 for  N_Toct=1:NOct;
 
-  # Solve diffusion equation
-  [wi_saved]= Euler_implicite(w{N_Toct},mat_Toct{N_Toct},MATinsta,itmax(1),dt,tol,maxint);
-
-  # Write results in HDF5 files
-  ChpsInsta=strcat(NomFichier,int2str(TOB(SelectedFrequency(N_Toct))));   
-  ChpsInsta2=strcat(ChpsInsta,'.hdf5');
-  xx.a=dt;
-  xx.b=wi_saved;
-  save( '-float-hdf5', ChpsInsta2, 'xx')
+	if state==1 # Time varying state calculation
+	
+	  # Parameters
+	  itmax=round(duration/dt); # Number of iterations
+	  [MATinsta]= integVC_cst(V_VC); # Integration constant
+	
+	  # Solve diffusion equation
+	  [wi_saved]= Euler_implicite(w{N_Toct},mat_Toct{N_Toct},MATinsta,itmax(1),dt,tol,maxint);
+	  
+	  # Write results in HDF5 files
+	  ChpsInsta=strcat(FileName_TimeVarying,int2str(TOB(SelectedFrequency(N_Toct))));   
+	  ChpsInsta2=strcat(ChpsInsta,'.hdf5');
+	  xx.a=dt;
+	  xx.b=wi_saved;
+	  save( '-float-hdf5', ChpsInsta2, 'xx')
+	  
+	  else # Stationary state
+	  
+	  # Write results in HDF5 files
+	  ChpsSta=strcat(FileName_Stationary,int2str(TOB(SelectedFrequency(N_Toct))));   
+	  ChpsSta2=strcat(ChpsSta,'.hdf5');
+	  xx.b=w{N_Toct}
+	  save( '-float-hdf5', ChpsSta2, 'xx')
+  
+	end
 
 end
 

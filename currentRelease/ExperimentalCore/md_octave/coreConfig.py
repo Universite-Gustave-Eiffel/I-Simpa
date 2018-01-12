@@ -94,6 +94,7 @@ class coreConfig(object):
         self.const['maxint'] = simunode.getpropertyint('maxint', 200)
         self.const['duration'] = simunode.getpropertyfloat('duree_simulation', 2)
         self.const['do_abs_atmo'] = bool(int(simunode.getproperty("do_abs_atmo", "1")))
+        self.const['stationary'] = bool(int(simunode.getproperty("stationary", "0")))
 
         # Load surface receiver
         for recsurf in self.rootnode["recepteurss"].lstnodesenum("recepteur_surfacique_coupe"):

@@ -212,8 +212,7 @@ for  N_Toct=1:NOct;
 end
 
 
-## TIME VARYING STATE CALCULATION
-display('Time varying state calculation')
+## TIME VARYING OR STATIONARY STATE CALCULATION
 Calcul_insta
 
 ## SAVE COORDINATES AND MESHES
