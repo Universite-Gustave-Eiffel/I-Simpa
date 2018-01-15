@@ -32,8 +32,8 @@
 i_nT=load(strcat(domaine,'_shared_vertices.txt')); # Load index
 i_nT=sort(i_nT);
 Wall_TL=load(strcat(domaine,'_materials_transmission.txt')); # Load material
-iTrsm=Wall_TL( find(sum(Wall_TL(:,2:end),2)),1);%iTrsm: index of Material with transmission
-TL=Wall_TL( find(sum(Wall_TL(:,2:end),2)),1+SelectedFrequency); % Transmission Loss idMat &values
+iTrsm=Wall_TL( find(sum(Wall_TL(:,2:end),2)),1); # iTrsm: index of Material with transmission
+TL=Wall_TL( find(sum(Wall_TL(:,2:end),2)),1+SelectedFrequency); # Transmission Loss idMat &values
 TAU(:,1:NOct)=10.^(-TL(:,1:NOct)/10);
 
 for ib=1:NBLOCKS
@@ -72,11 +72,11 @@ for i=1:NbTransmWall
 		Surf_ech(it)=sum(AireFace{i}(ligne))/3;  
         PondEchSurf (it,1:NOct) = sum( AireFace{i}(ligne).*  TAU(FacesTij{i}(ligne,4),1:end),1  )/3;
 		## Contribution of the transmission
-		for nm=1:NOct      
-			if TAU(FacesTij{i}(ligne,4),nm)==1        
-				mat_Toct{nm}(Dofj{i}(it), :)=-mat(Dofj{i}(it), :)-mat(Dofi{i}(it), :); # No absorption
-				mat_Toct{nm}(Dofi{i}(it), :)=-mat(Dofj{i}(it), :)-mat(Dofi{i}(it), :); # No absorption
-			else  
+		for nm=1:NOct     
+			if TAU(FacesTij{i}(ligne,4),nm)==1   
+				mat_Toct{nm}(Dofj{i}(it), :)=-mat(Dofj{i}(it), :)-mat(Dofi{i}(it), :);% sans absorption
+				mat_Toct{nm}(Dofi{i}(it),Dofi{i}(it))=1e6;mat_Toct{nm}(Dofi{i}(it),Dofj{i}(it))=-1e6;
+			else
 				mat_Toct{nm}(Dofi{i}(it), Dofj{i}(it))=mat_Toct{nm}(Dofi{i}(it), Dofj{i}(it))...
 					-PondEchSurf (it,nm) *c0/4;
 				mat_Toct{nm}(Dofj{i}(it), Dofi{i}(it))=mat_Toct{nm}(Dofj{i}(it), Dofi{i}(it))...
@@ -84,7 +84,7 @@ for i=1:NbTransmWall
 			end
 	    end
       
-	end          
+	end
 	clear Surf_ech
 	clear PondEchSurf
 end
