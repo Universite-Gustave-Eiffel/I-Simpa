@@ -174,7 +174,7 @@ class coreConfig(object):
                 if chnode.hasproperty("affaiblissement"):
                     g_param.append(chnode.getpropertyfloat("affaiblissement"))
                 else:
-                    g_param.append(0);
+                    g_param.append(float("inf"))
             mat["diff"]=diff_param
             mat["q"]=q_param
             mat["g"]=g_param
