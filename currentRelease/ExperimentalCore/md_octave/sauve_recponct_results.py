@@ -38,8 +38,11 @@ def SauveRecepteurPonctResults(coreconf, encoding=sys.getfilesystemencoding()):
             gabe_out = ls.Gabe_rw(2)
             stepcol = ls.stringarray()
             if len(recdata["power_insta"]) > 0:
-                for step_id in range(len(recdata["power_insta"][0])):
-                    stepcol.append("%.1f ms" % (float(coreconf.time_step * step_id * 1000)))
+                if not coreconf.const['stationary']:
+                    for step_id in range(len(recdata["power_insta"][0])):
+                        stepcol.append("%.1f ms" % (float(coreconf.time_step * step_id * 1000)))
+                else:
+                    stepcol.append("Stationary")
                 gabe_out.AppendStrCol(stepcol, "SPL")
                 # For each frequency
                 # TODO use not hard writen frequency

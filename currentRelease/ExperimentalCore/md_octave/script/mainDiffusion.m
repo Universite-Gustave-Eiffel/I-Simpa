@@ -194,7 +194,7 @@ for s=1:Ns
 
   Srce_sonore(s,3+NNOct)=1e-12*10.^(Srce_sonore_I(s,3+SelectedFrequency)/10); # Octave band sound power
   Volumic_Power_Srce=Srce_sonore(s,3+NNOct)/VolSource(s); # Volumic normalisation
-  
+  VolSource(s)
   # Display sound source information
   disp ("Sound source N°: "), disp (s)
   disp ("Volume source: "), disp (VolSource(s))
@@ -210,7 +210,7 @@ for  N_Toct=1:NOct;
   end
   w{N_Toct}=mat_Toct{N_Toct}\RHS;
 end
-
+#affichepatchBlocks
 
 ## TIME VARYING STATE CALCULATION
 display('Time varying state calculation')

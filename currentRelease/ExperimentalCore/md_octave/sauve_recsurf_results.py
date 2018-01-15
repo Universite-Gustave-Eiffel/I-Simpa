@@ -28,7 +28,7 @@ def SauveRecepteurSurfResults(coreconf):
             rsdata = ls.rsurf_data()
             # File Header
             rsdata.Make(len(surface_receiver.vertices), 1, len(surface_receiver.face_power[0][id_freq]),
-                        float(coreconf.time_step))
+                        float(coreconf.const['timestep']))
             # Vertices
             for nodeid, vertex in enumerate(surface_receiver.vertices):
                 rsdata.SetNodeValue(nodeid, vertex[0], vertex[1], vertex[2])
