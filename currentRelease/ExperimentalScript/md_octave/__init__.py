@@ -23,6 +23,7 @@ class MD_Octave(ui.element):
         if self.getelementbytype(ui.element_type.ELEMENT_TYPE_CORE_CORE_CONFIG) == -1:
             property_node = ui.element(self.appendfilsbytype(ui.element_type.ELEMENT_TYPE_CORE_CORE_CONFIG))
             property_node.appendpropertybool("with_direct_sound", "Merge with direct field", True, True)
+            property_node.appendpropertybool("stationary", "Stationary mode", False, True)
             ui.element(self.appendpropertytext("tetrameshFileName", "", "tetramesh.mbin", True, True)).hide()
             ui.element(property_node.appendpropertydecimal("tolerance", _("Diffusion equation resolution - Tolerance"), float(1e-6), False, int(8), False, True, float(0),
                                                       float(1e-4), True))

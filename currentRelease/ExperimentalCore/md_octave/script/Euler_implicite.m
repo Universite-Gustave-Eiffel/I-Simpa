@@ -48,7 +48,8 @@ function [wi_saved]= Euler_implicite(wi,mat,MATinsta,itmax,dt,tol,maxint)
 
   for it=2:itmax+1
     RHS=MATinsta*wi; # Euler Implicite 2
-    [wi,flag]=bicgstab (mat2,RHS,tol,maxint,L,U,wi);
+    #[wi,flag]=bicgstab (mat2,RHS,tol,maxint,L,U,wi);
+	wi=mat2\RHS;
     wi_saved(:,it)=wi;
   end
 

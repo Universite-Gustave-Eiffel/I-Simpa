@@ -32,9 +32,9 @@
 i_nT=load(strcat(domaine,'_shared_vertices.txt')); # Load index
 i_nT=sort(i_nT);
 Wall_TL=load(strcat(domaine,'_materials_transmission.txt')); # Load material
-iTrsm=Wall_TL( find(sum(Wall_TL(:,2:end),2)),1);%iTrsm: index of Material with transmission
-TL=Wall_TL( find(sum(Wall_TL(:,2:end),2)),1+SelectedFrequency); % Transmission Loss idMat &values
-TL(:,1:NOct)=10.^(-TL(:,1:NOct)/10);
+iTrsm=Wall_TL( find(sum(Wall_TL(:,2:end),2)),1); # iTrsm: index of Material with transmission
+TL=Wall_TL( find(sum(Wall_TL(:,2:end),2)),1+SelectedFrequency); # Transmission Loss idMat &values
+TAU(:,1:NOct)=10.^(-TL(:,1:NOct)/10);
 
 for ib=1:NBLOCKS
 	el2diTrsm{ib}=el2di{ib}(ismember( el2di{ib}(:,end),iTrsm),:);
@@ -59,9 +59,9 @@ for i=1:NBLOCKS-1
 		end   
 	end
 end
-NbTransmWall=it;
+NbTransmWall=it
 
-## EXCHANGE SURFACES (sum of the mesh face surfaces associated with each point, divided by 3
+## EXCHANGE SURFACES (sum of the mesh face surfaces associated with each point, divided by 3)
 for i=1:NbTransmWall
 	[SurFaceT(i),AireFace{i}]= Surfaces_Salle(x,y,z,size(FacesTij{i},1),FacesTij{i});
 	ptsTrsm{i}=unique(FacesTij{i}(:,1:3));
@@ -70,16 +70,21 @@ for i=1:NbTransmWall
 	for it=1:max(size(ptsTrsm{i}))
 		[ligne,col] = find((FacesTij{i}(:,1:3)-ptsTrsm{i}(it))==0);
 		Surf_ech(it)=sum(AireFace{i}(ligne))/3;  
-        PondEchSurf (it,1:NOct) = sum(   AireFace{i}(ligne).*  TL(FacesTij{i}(ligne,4),1:end),1)/3;
+        PondEchSurf (it,1:NOct) = sum( AireFace{i}(ligne).*  TAU(FacesTij{i}(ligne,4),1:end),1  )/3;
 		## Contribution of the transmission
-		for nm=1:NOct
-			mat_Toct{nm}(Dofi{i}(it), Dofj{i}(it))=mat_Toct{nm}(Dofi{i}(it), Dofj{i}(it))...
-				-PondEchSurf (it,nm) *c0/4;
-			mat_Toct{nm}(Dofj{i}(it), Dofi{i}(it))=mat_Toct{nm}(Dofj{i}(it), Dofi{i}(it))...
-				-PondEchSurf (it,nm) *c0/4;
-		end
-
-	end          
+		for nm=1:NOct     
+			if TAU(FacesTij{i}(ligne,4),nm)==1   
+				mat_Toct{nm}(Dofj{i}(it), :)=-mat(Dofj{i}(it), :)-mat(Dofi{i}(it), :);% sans absorption
+				mat_Toct{nm}(Dofi{i}(it),Dofi{i}(it))=1e6;mat_Toct{nm}(Dofi{i}(it),Dofj{i}(it))=-1e6;
+			else
+				mat_Toct{nm}(Dofi{i}(it), Dofj{i}(it))=mat_Toct{nm}(Dofi{i}(it), Dofj{i}(it))...
+					-PondEchSurf (it,nm) *c0/4;
+				mat_Toct{nm}(Dofj{i}(it), Dofi{i}(it))=mat_Toct{nm}(Dofj{i}(it), Dofi{i}(it))...
+					-PondEchSurf (it,nm) *c0/4;
+			end
+	    end
+      
+	end
 	clear Surf_ech
 	clear PondEchSurf
 end
