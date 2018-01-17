@@ -44,22 +44,22 @@ it=0;
 for i=1:NBLOCKS-1
 	el2Di=el2diTrsm{i};
 	nbParoiTransm=0;
-	for j=i+1:NBLOCKS    
+	for j=i+1:NBLOCKS
 		el2Dj=el2diTrsm{j};
 		Facescommunesij=el2Di(ismember(el2Di,el2Dj,'rows'),:);
 		cond=isempty(Facescommunesij);
 		if not(cond)
 			it=it+1;
 			FacesTij{it}=Facescommunesij;
-			FacesTij{it}(:,4)= changem(FacesTij{it}(:,4),[1:size(iTrsm,1)]' ,iTrsm );     
+			FacesTij{it}(:,4)= changem(FacesTij{it}(:,4),[1:size(iTrsm,1)]' ,iTrsm );
 			FacesTi_Dof{it}= changem(FacesTij{it}(:,1:3), N_F{i}(:,2), N_F{i}(:,1));
 			FacesTi_Dof{it}(:,4)= FacesTij{it}(:,4);
 			FacesTj_Dof{it}= changem(FacesTij{it}(:,1:3), N_F{j}(:,2), N_F{j}(:,1));
-			FacesTj_Dof{it}(:,4)= FacesTij{it}(:,4);  
-		end   
+			FacesTj_Dof{it}(:,4)= FacesTij{it}(:,4);
+		end
 	end
 end
-NbTransmWall=it
+NbTransmWall=it;
 
 ## EXCHANGE SURFACES (sum of the mesh face surfaces associated with each point, divided by 3)
 for i=1:NbTransmWall
@@ -69,11 +69,11 @@ for i=1:NbTransmWall
 	Dofj{i}=unique(FacesTj_Dof{i}(:,1:3));
 	for it=1:max(size(ptsTrsm{i}))
 		[ligne,col] = find((FacesTij{i}(:,1:3)-ptsTrsm{i}(it))==0);
-		Surf_ech(it)=sum(AireFace{i}(ligne))/3;  
+		Surf_ech(it)=sum(AireFace{i}(ligne))/3;
         PondEchSurf (it,1:NOct) = sum( AireFace{i}(ligne).*  TAU(FacesTij{i}(ligne,4),1:end),1  )/3;
 		## Contribution of the transmission
-		for nm=1:NOct     
-			if TAU(FacesTij{i}(ligne,4),nm)==1   
+		for nm=1:NOct
+			if TAU(FacesTij{i}(ligne,4),nm)==1
 				mat_Toct{nm}(Dofj{i}(it), :)=-mat(Dofj{i}(it), :)-mat(Dofi{i}(it), :);% sans absorption
 				mat_Toct{nm}(Dofi{i}(it),Dofi{i}(it))=1e6;mat_Toct{nm}(Dofi{i}(it),Dofj{i}(it))=-1e6;
 			else
@@ -83,7 +83,7 @@ for i=1:NbTransmWall
 					-PondEchSurf (it,nm) *c0/4;
 			end
 	    end
-      
+
 	end
 	clear Surf_ech
 	clear PondEchSurf
