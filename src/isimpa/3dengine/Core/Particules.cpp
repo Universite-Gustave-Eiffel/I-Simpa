@@ -157,8 +157,8 @@ void ParticulesControler::LoadPBin(wxString fileName, bool doCoordsTransformatio
 		filePath.MakeRelativeTo(ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath + ApplicationConfiguration::CONST_REPORT_FOLDER_PATH);
 		if (filePath.GetDirCount()>2)
 		{
-		filePath.RemoveLastDir();
-		filePath.RemoveLastDir();
+			filePath.RemoveLastDir();
+			filePath.RemoveLastDir();
 		}
 		filePath.ClearExt();
 		filePath.SetName("");
