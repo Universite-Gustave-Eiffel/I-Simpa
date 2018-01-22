@@ -27,6 +27,7 @@ import math
 import codecs
 from sound_level_layer import SoundLevelLayer
 import xml.dom.minidom  as xmlWriter
+from build_recsurf import GetRecepteurSurfList
 
 try:
     import h5py
@@ -159,7 +160,7 @@ def write_input_files(cbinpath, cmbinpath, materials, sources_lst, outfolder):
         for node in mesh_import.nodes:
             f.write('{0:>15} {1:>15} {2:>15}'.format(*(node[0], node[1], node[2])) + "\n")
 
-    ret["model"] = mesh_import
+    ret["model"] = modelImport
     ret["mesh"] = mesh_import
     # Write elements file
     with open(os.path.join(outfolder, "scene_elements.txt"), "w") as f:
@@ -442,6 +443,8 @@ def main(call_octave=True):
     # Translation CBIN 3D model and 3D tetrahedra mesh into Octave input files
     import_data = write_input_files(os.path.join(coreconf.paths["workingdirectory"], coreconf.paths["modelName"]), os.path.join(coreconf.paths["workingdirectory"], coreconf.paths["tetrameshFileName"]),
                       coreconf.materials, coreconf.sources_lst, outputdir)
+
+    coreconf.recsurf = GetRecepteurSurfList(coreconf, import_data["model"], import_data["mesh"])
     # Copy octave script to working dir
     matscript_folder = os.path.join(os.path.abspath(os.path.join(os.path.realpath(__file__), os.pardir)), "script")
     files = glob.iglob(os.path.join(matscript_folder, "*.m"))
