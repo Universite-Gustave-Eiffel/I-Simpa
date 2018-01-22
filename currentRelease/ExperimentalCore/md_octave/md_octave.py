@@ -342,7 +342,7 @@ def process_output_files(outfolder, coreconf, import_data, resultsModificationLa
             # Compute coefficient of the receiver point into the tetrahedron
             for receiver in nearest_receivers:
                 coefficient = get_a_coefficients(to_array(receiver), nodes[verts[0]], nodes[verts[1]], nodes[verts[2]], nodes[verts[3]])
-                if coefficient.min() > 0:
+                if coefficient.min() > -1e-6:
                     # Point is inside tetrahedron
                     for id_freq in range(len(coreconf.const["frequencies"])):
                         # closest freq id using all frequencies
