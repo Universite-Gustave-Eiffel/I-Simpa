@@ -335,22 +335,18 @@ void ProjectManager::OnFindSubVolumes(Element* volumes_el)
 					idtetra++;
 				}
 			}
-			//Si le volume n'est pas un encombrement déjà défini par l'utilisateur
-			if(tet_model_origin.tetrahedres[idtetra].idVolume==0)
-			{
-				splitter.GetInternalFaces(internal_faces,xmlidvol);
-				Element* newvol=volumes_el->AppendFilsByType(Element::ELEMENT_TYPE_SCENE_VOLUMES_VOLUME);
-				newvol->FillWxTree(this->treeScene);
+			splitter.GetInternalFaces(internal_faces,xmlidvol);
+			Element* newvol=volumes_el->AppendFilsByType(Element::ELEMENT_TYPE_SCENE_VOLUMES_VOLUME);
+			newvol->FillWxTree(this->treeScene);
 
-				newvol->UpdatePositionConfig("volpos",centre_vol);
-				E_Scene_Groupesurfaces_Groupe* grpNewEl=dynamic_cast<E_Scene_Groupesurfaces_Groupe*>(newvol->GetElementByType(Element::ELEMENT_TYPE_SCENE_GROUPESURFACES_GROUPE));
-				if(grpNewEl)
+			newvol->UpdatePositionConfig("volpos",centre_vol);
+			E_Scene_Groupesurfaces_Groupe* grpNewEl=dynamic_cast<E_Scene_Groupesurfaces_Groupe*>(newvol->GetElementByType(Element::ELEMENT_TYPE_SCENE_GROUPESURFACES_GROUPE));
+			if(grpNewEl)
+			{
+				for(std::vector<std::size_t>::iterator itface=internal_faces.begin();itface!=internal_faces.end();itface++)
 				{
-					for(std::vector<std::size_t>::iterator itface=internal_faces.begin();itface!=internal_faces.end();itface++)
-					{
-						t_faceIndex idface=this->sceneMesh.FindFaceGroupWithFaceIndex((*itface));
-						grpNewEl->AddFace(idface.f,idface.g);
-					}
+					t_faceIndex idface=this->sceneMesh.FindFaceGroupWithFaceIndex((*itface));
+					grpNewEl->AddFace(idface.f,idface.g);
 				}
 			}
 		}
