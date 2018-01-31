@@ -45,6 +45,8 @@ if [ -z "$TRANSIFEXPWD" ]; then
 else
     # Write transifex config file
     printf "[https://www.transifex.com]\nhostname = https://www.transifex.com\npassword = $TRANSIFEXPWD\ntoken =\nusername = travis_lae\n" > ~/.transifexrc
+    # Update setup-tools
+    pip install setuptools --upgrade
     # install transifex client
     pip install --user transifex-client
     # push transifex keys
