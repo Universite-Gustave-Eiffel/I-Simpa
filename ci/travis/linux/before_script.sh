@@ -39,16 +39,16 @@ msginit --no-translator --input currentRelease/SystemScript/source_tools/interna
 find . -type f -name "*.pot" -exec sed -i 's/charset=ASCII/charset=UTF-8/g' {} +
 
 # Push translation keys to transifex
-
+# Update setup-tools
+pip install --user setuptools --upgrade
+pip install --user urllib3
+# install transifex client
+pip install --user transifex-client
 if [ -z "$TRANSIFEXPWD" ]; then
     echo "Not in master branch do not push transifex keys"
 else
     # Write transifex config file
     printf "[https://www.transifex.com]\nhostname = https://www.transifex.com\npassword = $TRANSIFEXPWD\ntoken =\nusername = travis_lae\n" > ~/.transifexrc
-    # Update setup-tools
-    pip install setuptools --upgrade
-    # install transifex client
-    pip install --user transifex-client
     # push transifex keys
     tx push -s
 fi
