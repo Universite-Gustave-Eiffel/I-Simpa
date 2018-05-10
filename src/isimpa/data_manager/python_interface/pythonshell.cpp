@@ -196,7 +196,7 @@ void PythonShell::ExecLineCommand(const wxString& newcommand)
 
 void PythonShell::RunRawCmd(const wxString& command)
 {
-	if(handle_exception(boost::bind(exec, WXSTRINGTOCHARPTR(command),main_namespace,main_namespace)))
+	if(handle_exception(boost::bind<object,str,object,object>(exec, WXSTRINGTOCHARPTR(command),main_namespace,main_namespace)))
 	{
 		if (PyErr_Occurred())
 		{
