@@ -597,6 +597,9 @@ void ProjectManager::ElementEvent(wxCommandEvent& eventElement,eventCtrl fromCtr
 			case Element::IDEVENT_RECEPTEURS_COMPUTE_ST:
 				this->OnMenuRecepteurSurfDoAcousticParametersComputation(pCtrl,eRoot,elementSelected,"ST");
 				break;
+			case Element::IDEVENT_RECEPTEURS_COMPUTE_STI:
+				this->OnMenuRecepteurSurfDoSTIComputation(pCtrl,eRoot,elementSelected,"STI");
+				break;
 			case Element::IDEVENT_NEW_RECEPTEURP_GROUP:
 				this->OnMenuNewRecepteurPGroup(elementSelected);
 				break;
@@ -3284,3 +3287,4 @@ void ProjectManager::OpenNewDataWindow(Element* linkedElement)
 		particulesContainer.EnableRendering(animationPropertyElement->GetBoolConfig("showparticle"));
 		recepteursSContainer.EnableRendering(animationPropertyElement->GetBoolConfig("showrecepteurss"));
 	}
+

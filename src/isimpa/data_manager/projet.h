@@ -677,6 +677,7 @@ private:
 	 */
 	void OnMenuDoAdvancedAcousticParametersComputation(Element* selectedElement); //
 	void OnMenuRecepteurSurfDoAcousticParametersComputation(uiTreeCtrl* fromCtrl,Element* eRoot,Element* rpadvres,const wxString& parametertype); //Calcul des paramètres acoustique d'un récepteur de surface
+	void OnMenuRecepteurSurfDoSTIComputation(uiTreeCtrl* fromCtrl,Element* eRoot,Element* rpadvres,const wxString& parametertype);
 
 	/**
 	 * Supprimer l'element séléctionné par l'utilisateur
