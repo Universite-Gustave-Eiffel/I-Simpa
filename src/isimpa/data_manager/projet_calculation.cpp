@@ -569,6 +569,8 @@ formatGABE::GABE_Data_Float* Compute_G_Param(const wxFloat32& t1,const wxFloat32
 
 /**
  * @brief Calcul du paramètre acoustique STI
+ * STI calculation is based on IEC:60268-16:2011 standard.
+ * TODO: Compensation for speaker spectrum.
  */
 formatGABE::GABE_Data_Float* Compute_STI_Param(bool surf,wxFloat32 te,wxFloat32 gen,const std::vector<wxFloat32>& timeTable,const std::vector<std::vector<wxFloat32> >& tab_wj,const std::vector<wxInt32>& freqTable)
 {
