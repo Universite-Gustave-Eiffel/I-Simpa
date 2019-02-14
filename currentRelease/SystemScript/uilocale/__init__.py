@@ -17,4 +17,4 @@ def InstallUiModule(pathname,language):
         exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()
         traceback.print_exception(exceptionType, exceptionValue, exceptionTraceback)
         return dummy_notranslation
-    return locale_dict.ugettext
+    return locale_dict.gettext

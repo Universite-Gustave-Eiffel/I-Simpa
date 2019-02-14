@@ -373,13 +373,14 @@ source_group( "" FILES ${ISIMPA_SOURCES} )
 
 # Build auto-generated source files
 # Find package for generation
-FIND_PACKAGE(PythonInterp 2.7 REQUIRED)
+FIND_PACKAGE(PythonInterp 3.7 REQUIRED)
 
 # Ask make to call python in order to use element.h to produce enum_def.cpp
 ADD_CUSTOM_COMMAND(
   OUTPUT "enum_def.cpp"
   COMMAND "${PYTHON_EXECUTABLE}" ${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/python_interface/py_ui_module/generate_enum_def.py
-  ARGS    "${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/element.h" > "enum_def.cpp"
+#  ARGS    "${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/element.h" > "enum_def.cpp"
+  ARGS    "${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/element.h"
   DEPENDS "data_manager/element.h"
   )
 
@@ -389,7 +390,7 @@ set_property(SOURCE data_manager/python_interface/py_ui_module/element_pywrap.cp
 configure_file(data_manager/appconfig_version.cpp.in ${CMAKE_CURRENT_BINARY_DIR}/generated/appconfig_version.cpp )
 
 set(Boost_USE_STATIC_LIBS   OFF)
-find_package(Boost REQUIRED COMPONENTS system python filesystem regex)
+find_package(Boost REQUIRED COMPONENTS system python3.7 filesystem regex)
 link_directories( ${Boost_LIBRARY_DIRS} )
 
 # Set Properties->General->Configuration Type to Application
@@ -520,6 +521,7 @@ if(WIN32) # Check if we are on Windows
     set(DIRS ${Boost_LIBRARY_DIR_DEBUG}
              ${Boost_LIBRARY_DIR_RELEASE}
              ${wxWidgets_LIB_DIR_SLASH}
+             ${PYTHON_ROOT_FOLDER}
     )
 
     install(CODE "

@@ -80,7 +80,7 @@ public:
 	 */
 	void call_event(const int& eventid,const int& elementid);
 
-
+	static void load_uictrl();
 
 	/**
 	 * Cette méthode va parcourir les sous dossier à la recherche des fichier se nommant pyfilename
