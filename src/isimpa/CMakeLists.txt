@@ -235,8 +235,6 @@ set(DATA_MANAGER_TREECORE_SOURCES
     data_manager/tree_core/e_core_core_config.h
     data_manager/tree_core/e_core_core_tetconf.h
     data_manager/tree_core/e_core_sppscore.h
-    data_manager/tree_core/e_core_spps_aghcore.h
-	data_manager/tree_core/e_core_spps_aghcore_advanced.h
     data_manager/tree_core/e_core_sppsoctreecore.h
     data_manager/tree_core/e_core_tccore.h)
 
@@ -268,8 +266,6 @@ set(DATA_MANAGER_TREESCENE_SOURCES
     data_manager/tree_scene/e_scene_bdd_materiaux_app_group.h
     data_manager/tree_scene/e_scene_bdd_materiaux_app_materiau.h
     data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h
-	data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau_adv.h
-	data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau_adv.cpp
     data_manager/tree_scene/e_scene_bdd_materiaux_rendermateriau.h
     data_manager/tree_scene/e_scene_bdd_materiaux_user.h
     data_manager/tree_scene/e_scene_bdd_materiaux_user_group.h
