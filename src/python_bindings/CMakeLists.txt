@@ -75,10 +75,11 @@ install (FILES
         
 
 if(WIN32)
+	get_filename_component(PYTHON_PATH ${PYTHON_EXECUTABLE} DIRECTORY)
     #Fetch required Dll's 
     set(DIRS ${Boost_LIBRARY_DIR_DEBUG}
              ${Boost_LIBRARY_DIR_RELEASE}
-             ${PYTHON_ROOT_FOLDER}
+             ${PYTHON_PATH}
     )
     
     install(CODE "
