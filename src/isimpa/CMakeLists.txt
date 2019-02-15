@@ -235,6 +235,8 @@ set(DATA_MANAGER_TREECORE_SOURCES
     data_manager/tree_core/e_core_core_config.h
     data_manager/tree_core/e_core_core_tetconf.h
     data_manager/tree_core/e_core_sppscore.h
+    data_manager/tree_core/e_core_spps_aghcore.h
+	data_manager/tree_core/e_core_spps_aghcore_advanced.h
     data_manager/tree_core/e_core_sppsoctreecore.h
     data_manager/tree_core/e_core_tccore.h)
 
@@ -266,6 +268,8 @@ set(DATA_MANAGER_TREESCENE_SOURCES
     data_manager/tree_scene/e_scene_bdd_materiaux_app_group.h
     data_manager/tree_scene/e_scene_bdd_materiaux_app_materiau.h
     data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau.h
+	data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau_adv.h
+	data_manager/tree_scene/e_scene_bdd_materiaux_propmateriau_adv.cpp
     data_manager/tree_scene/e_scene_bdd_materiaux_rendermateriau.h
     data_manager/tree_scene/e_scene_bdd_materiaux_user.h
     data_manager/tree_scene/e_scene_bdd_materiaux_user_group.h
@@ -306,7 +310,7 @@ set(DATA_MANAGER_TREESCENE_SOURCES
     data_manager/tree_scene/e_scene_recepteurss_recepteurcoupe_rendu.h
     data_manager/tree_scene/e_scene_sources.h
     data_manager/tree_scene/e_scene_sources_source.h
-        data_manager/tree_scene/e_scene_sources_source_properties.h
+    data_manager/tree_scene/e_scene_sources_source_properties.h
     data_manager/tree_scene/e_scene_sources_source_rendu.h
     data_manager/tree_scene/e_scene_volumes.cpp
     data_manager/tree_scene/e_scene_volumes.h
@@ -437,6 +441,8 @@ IF(GETTEXT_FOUND )
   ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/moveto_vertex/locale ${CMAKE_BINARY_DIR}/src/moveto_vertex)
   ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/preceiv_sourceTracker/locale ${CMAKE_BINARY_DIR}/src/preceiv_sourceTracker)
   #disabled ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/SppsReportSample/locale ${CMAKE_BINARY_DIR}/src/SppsReportSample)
+  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/UserScript/gabe2csv/locale ${CMAKE_BINARY_DIR}/src/gabe2csv)
+  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/UserScript/recp_res_tool/locale ${CMAKE_BINARY_DIR}/src/recp_res_tool)
   # Building isimpa require building pofiles
   add_dependencies(isimpa pofiles)
 ENDIF()
@@ -514,14 +520,15 @@ DESTINATION .)
 if(WIN32) # Check if we are on Windows
     # Copy python libraries
     get_filename_component(PYTHON_ROOT_FOLDER ${PYTHON_EXECUTABLE} PATH)
-	set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
+    set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
 
     #Fetch required Dll's for GUI
+    get_filename_component(PYTHON_PATH ${PYTHON_EXECUTABLE} DIRECTORY)
     string(REPLACE "\\" "/" wxWidgets_LIB_DIR_SLASH ${wxWidgets_LIB_DIR})
     set(DIRS ${Boost_LIBRARY_DIR_DEBUG}
              ${Boost_LIBRARY_DIR_RELEASE}
              ${wxWidgets_LIB_DIR_SLASH}
-             ${PYTHON_ROOT_FOLDER}
+             ${PYTHON_PATH}
     )
 
     install(CODE "
