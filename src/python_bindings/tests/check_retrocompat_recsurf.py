@@ -20,7 +20,7 @@ class TestImportSurfaceReceiver(unittest.TestCase):
         self.assertTrue(ls.rsurf_io.Load(resourceFile,dat))
         self.assertEqual(dat.GetRsCount(), 1)
         self.assertEqual(dat.GetRsFaceCount(0), 1248)
-        self.assertEqual(dat.GetRsName(0).decode('cp1252'), u"Récepteur coupe") #encoding will be utf-8 on all platforms
+        self.assertEqual(dat.GetRsName(0).encode('utf-8', errors='surrogateescape').decode('cp1252'), u"Récepteur coupe") #encoding will be utf-8 on all platforms
         self.assertEqual(dat.GetRsXmlId(0), 920)
 
 
