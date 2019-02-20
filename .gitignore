@@ -10,6 +10,7 @@
 Debug
 Debug Unix
 currentRelease/libisimpa/
+currentRelease/doc/documentation/Offline_documentation/doctrees/
 *.ncb
 *.rar
 *.tags

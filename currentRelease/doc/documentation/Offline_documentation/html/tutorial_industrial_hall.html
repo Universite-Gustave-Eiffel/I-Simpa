@@ -1,0 +1,369 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Study of an industrial room &mdash; I-Simpa 1.3.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="I-Simpa 1.3.4 documentation" href="index.html"/>
+        <link rel="next" title="Standards" href="I_Simpa_standard.html"/>
+        <link rel="prev" title="Study of the Elmia hall" href="tutorial_Elmia_hall.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> I-Simpa
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">I-Simpa User Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">(Un)Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="presentation.html">GUI Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="menus.html">Menus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="toolbars.html">Toolbars</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_window.html">&#8216;Project&#8217; window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="properties_window.html">&#8216;Properties&#8217; window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console_window.html">&#8216;Console&#8217; window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main_windows.html">&#8216;Main&#8217; window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_database.html">Project database</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Thematics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="import_options.html">Import options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="import_file_recommandations.html">Recommendations to import a 3D scene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_spectrum.html">Define and use spectrum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="define_position.html">Define a position using the pointer on the 3D view</a></li>
+<li class="toctree-l1"><a class="reference internal" href="surface_selection.html">Surface selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manipulate_sources_receivers.html">Manipulating sources and receivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_directivity.html">Using directivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_charts.html">Creating charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_charts.html#chart-options">Chart Options</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tutorial_teaching_room.html">Study of a teaching room</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_Elmia_hall.html">Study of the Elmia hall</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Study of an industrial room</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#import-a-geometry">Import a geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#define-a-machine-as-a-sound-source">Define a machine as a sound source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#duplicate-the-machine">Duplicate the machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#define-a-scene-volume-as-a-fitting-zone">Define a scene volume as a fitting zone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#define-a-parallelipipedic-volume-as-a-fitting-zone">Define a parallelipipedic volume as a fitting zone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#define-surface-materials">Define surface materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#insert-a-lne-of-punctual-receivers">Insert a lne of punctual receivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#define-a-surface-receiver">Define a surface receiver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spps-calculation">SPPS calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compare-two-simulations">Compare two simulations</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Appendices</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="I_Simpa_standard.html">Standards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">I-Simpa</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Study of an industrial room</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/tutorial_industrial_hall.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="study-of-an-industrial-room">
+<h1>Study of an industrial room<a class="headerlink" href="#study-of-an-industrial-room" title="Permalink to this headline">¶</a></h1>
+<p>In this example, we are interested in the case of an industrial hall coupled with other rooms. This hall is composed of two identical noisy machines and two fitting zones (zones made of many objects that act as acoustics scaterrers). The purpose of this tutorial is:</p>
+<ul class="simple">
+<li>to illustrate the creation of machines</li>
+<li>illustrate the creation of fitting zones</li>
+<li>study the effect of changing a material on a wall of the industrial hall, on the sound field</li>
+</ul>
+<p>Resources for this tutorial are located in the following folder:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">I</span><span class="o">-</span><span class="n">Simpa</span> <span class="n">installation</span> <span class="n">folder</span><span class="o">&gt;</span>\<span class="n">doc</span>\<span class="n">tutorial</span>\<span class="n">tutorial</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>If not already done, we suggest you to follow the two previous tutorials, before the present tutorial:</p>
+<ul class="last simple">
+<li><a class="reference external" href="tutorial_teaching_room.html">Study of a teaching room</a></li>
+<li><a class="reference external" href="tutorial_industrial_hall.html">Study of the Elmia hall</a></li>
+</ul>
+</div>
+<div class="section" id="import-a-geometry">
+<h2>Import a geometry<a class="headerlink" href="#import-a-geometry" title="Permalink to this headline">¶</a></h2>
+<p>The first step is to import the geometry of the project. We are interested here in a large industrial hall coupled to a corridor through a door in a wall, this corridor being itself coupled to another room. We assume that walls and doors allow acoustic transmission.</p>
+<ol class="arabic simple">
+<li>In the &#8216;File&#8217; menu, <strong>Select</strong> &#8216;Import a new scene&#8217;, and open the file <cite>LocalIndustriel.ply</cite> located in the correspondng tutorial folder.</li>
+<li>In the next windows, <strong>Select</strong> &#8216;OK&#8217; without changing the default values.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When importing the model, several surfaces groups are created. These groups were defined at the 3D scene creation with the CAD software.</p>
+</div>
+</div>
+<div class="section" id="define-a-machine-as-a-sound-source">
+<h2>Define a machine as a sound source<a class="headerlink" href="#define-a-machine-as-a-sound-source" title="Permalink to this headline">¶</a></h2>
+<p>At this step, we want to create the sound sources. In industrial environments, sound sources are often machines or workstations made up of several source points. Since the hall can be made up of several identical machines located at different locations, it is simpler to define a machine in the form of a group of sound sources, which group can then be copied and moved within the room. In our example, we will define machines composed of three sound sources, which will be duplicate. Each sound source will be defined by a pink noise spectrum, with a global level of 80 dB.</p>
+<ol class="arabic simple">
+<li><strong>Right-click</strong> the &#8216;Data/Sound Sources&#8217; element in the &#8216;Scene&#8217; tab of the &#8216;Project&#8217; windows, and <strong>Select</strong> &#8216;New Group&#8217;. By default, the name of the new group is &#8216;Sound sources&#8217;.</li>
+<li><strong>Rename</strong> the group as the following &#8216;Milling machine&#8217;;</li>
+<li><strong>Right-click</strong> on the &#8216;Milling Machine&#8217; group and select &#8216;New Source&#8217;. <strong>Perform</strong> this operation three times (to create three sources), named &#8216;Source 1&#8217;, &#8216;Source 2&#8217; and &#8216;Source 3&#8217;. It is possible to modify the name of the sources by applying the same method as for the name of a group;</li>
+<li>For each source, <strong>Unfold</strong> the source properties, then <strong>Click</strong> on the &#8216;Position&#8217; item, and <strong>Assign</strong> the following coordinates (x,y,z) for the source 1 (2,7,1.2), the source 2 (2,6,0.6) and the source 3 (1,7,0.75).</li>
+<li>For each source, <strong>Select</strong> the &#8216;Sound power&#8217; element, <strong>Choose</strong> &#8216;Pink Noise&#8217;, and then <strong>Set</strong> the global level &#8216;Lw&#8217; to 80dB.</li>
+</ol>
+</div>
+<div class="section" id="duplicate-the-machine">
+<h2>Duplicate the machine<a class="headerlink" href="#duplicate-the-machine" title="Permalink to this headline">¶</a></h2>
+<p>The previous machine can then be duplicated and moved into the room.</p>
+<ol class="arabic simple">
+<li><strong>Right-click</strong> on the &#8216;Milling Machine&#8217; group and <strong>Select</strong> &#8216;Copy&#8217;;</li>
+<li><strong>Right-click</strong> the &#8216;Sound Sources&#8217; root folder, then <strong>Select</strong> &#8216;Paste&#8217;: an item named &#8216;Copy of Sound sources&#8217; is created.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The sound sources within the new group have exactly the same properties as the original sources, including the names of the sources. However there is no possible confusion between two sources with the same name, each source having its own internal identifier.</p>
+</div>
+<ol class="arabic simple" start="3">
+<li><strong>Rename</strong> the group created in &#8216;Milling machine 2&#8217;;</li>
+<li>Since the new machine is located in the same place as the original machine, it is necessary to move it. To perform a translation of the new machine, <strong>Right-click</strong> on the &#8216;Milling Machine 2&#8217; group and <strong>Select</strong> &#8216;All sources&gt;Translation&#8217;;</li>
+<li><strong>Set</strong> the translation values in each direction (x,y,z) to [5,-2,0], and <strong>Click</strong> on &#8216;OK&#8217;. The sources group is translated.</li>
+</ol>
+</div>
+<div class="section" id="define-a-scene-volume-as-a-fitting-zone">
+<h2>Define a scene volume as a fitting zone<a class="headerlink" href="#define-a-scene-volume-as-a-fitting-zone" title="Permalink to this headline">¶</a></h2>
+<p>There are two methods of creating a fitting zone in the room:</p>
+<ul class="simple">
+<li>when creating the scene with the CAD software. In this case, a closed volume is modeled in the 3D geometric model. It is then a &#8216;Scene fitted zone&#8217;</li>
+<li>either in I-Simpa, in the form of a parallelepipedal zone. It is then a &#8216;Rectangular fitted zone&#8217;</li>
+</ul>
+<p>In our example, a parallelepipedal zone has already been provided at the creation of the 3D scene, in order to be assigned to a &#8216;Scene fitted zone&#8217;.</p>
+<ol class="arabic simple">
+<li>In the &#8216;Scene&#8217; tree, <strong>Right-click</strong> on the &#8216;Fitting zone&#8217; root folder and <strong>Select</strong> &#8216;Define scene fitted zone&#8217;;</li>
+<li>Now you have to define the surfaces of the scene for the corresponding zone. <strong>Select</strong> the surface selection mode on the &#8216;Selection&#8217; toolbar;</li>
+</ol>
+</div>
+<div class="section" id="define-a-parallelipipedic-volume-as-a-fitting-zone">
+<h2>Define a parallelipipedic volume as a fitting zone<a class="headerlink" href="#define-a-parallelipipedic-volume-as-a-fitting-zone" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="define-surface-materials">
+<h2>Define surface materials<a class="headerlink" href="#define-surface-materials" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="insert-a-lne-of-punctual-receivers">
+<h2>Insert a lne of punctual receivers<a class="headerlink" href="#insert-a-lne-of-punctual-receivers" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="define-a-surface-receiver">
+<h2>Define a surface receiver<a class="headerlink" href="#define-a-surface-receiver" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="spps-calculation">
+<h2>SPPS calculation<a class="headerlink" href="#spps-calculation" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="compare-two-simulations">
+<h2>Compare two simulations<a class="headerlink" href="#compare-two-simulations" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="I_Simpa_standard.html" class="btn btn-neutral float-right" title="Standards" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tutorial_Elmia_hall.html" class="btn btn-neutral" title="Study of the Elmia hall" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Ifsttar.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.3.4',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
