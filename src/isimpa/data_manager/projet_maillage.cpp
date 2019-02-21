@@ -9,18 +9,18 @@
 * it under the terms of the GNU General Public License as published by
 * the Free Software Foundation; either version 3 of the License, or
 * (at your option) any later version.
-* 
+*
 * I-SIMPA is distributed in the hope that it will be useful,
 * but WITHOUT ANY WARRANTY; without even the implied warranty of
 * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 * GNU General Public License for more details.
-* 
+*
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software Foundation,
-* Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
+* Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
+* For more information, please consult: <http://i-simpa.ifsttar.fr> or
 * send an email to i-simpa@ifsttar.fr
 *
 * To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
@@ -120,7 +120,7 @@ bool ProjectManager::RunTetGenBoundaryMesh( wxString cmd, wxString cacheFolder,w
 	wxString face=cacheFolder+sceneName+".1.face";
 	wxString node=cacheFolder+sceneName+".1.node";
 
-	
+
 	///////////////////////////////////////////
 	///	On execute le logiciel de calcul
 	///////////////////////////////////////////
@@ -139,7 +139,7 @@ bool ProjectManager::RunTetGenBoundaryMesh( wxString cmd, wxString cacheFolder,w
 		sceneMesh._LoadFaceFile(face.ToStdString());
 		wxLogMessage(_("Loading ASCII files from mesh generator complete"));
 	}
-	
+
 	wxLongLong durationOperation=wxDateTime::UNow().GetValue()-timeDebOperation.GetValue();
 	wxLogMessage(_("Total time of meshing: %lld ms"),durationOperation.GetValue());
 	if(!result)
@@ -251,7 +251,7 @@ bool ProjectManager::RunTetGenMaillage(param_TetGenMaillage& paramMaillage)
 			wxLogMessage(_("Loading ASCII files from mesh generator complete"));
 		}else{
 			std::vector<int>& faces=logger->GetFaces();
-			
+
 			std::vector<t_faceIndex> faceInErr;
 			faceInErr.reserve(faceInd.size());
 			for(std::vector<int>::iterator itf=faces.begin();itf!=faces.end();itf++)
@@ -269,7 +269,7 @@ bool ProjectManager::RunTetGenMaillage(param_TetGenMaillage& paramMaillage)
 			this->OnSelectVertex(faceInErr,false);
 		}
 	}
-	
+
 	wxLongLong durationOperation=wxDateTime::UNow().GetValue()-timeDebOperation.GetValue();
 	wxLogMessage(_("Total time of meshing: %lld ms"),durationOperation.GetValue());
 	if(!result)
@@ -318,7 +318,7 @@ void ProjectManager::OnFindSubVolumes(Element* volumes_el)
 		//2eme étape, regrouper les tétraèdres par domaine
 		volumes_splitter::VolumesSplitter splitter;
 		splitter.LoadDomain(modelExport,tet_model);
-		wxLogMessage("%i volumes ont été détectés.",splitter.GetVolumes());
+		wxLogMessage(_("%i volumes have been detected"),splitter.GetVolumes());
 		for(int idgrp=0;idgrp<splitter.GetVolumes();idgrp++)
 		{
 			std::vector<std::size_t> internal_faces;

@@ -9,18 +9,18 @@
 * it under the terms of the GNU General Public License as published by
 * the Free Software Foundation; either version 3 of the License, or
 * (at your option) any later version.
-* 
+*
 * I-SIMPA is distributed in the hope that it will be useful,
 * but WITHOUT ANY WARRANTY; without even the implied warranty of
 * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 * GNU General Public License for more details.
-* 
+*
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software Foundation,
-* Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
+* Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
+* For more information, please consult: <http://i-simpa.ifsttar.fr> or
 * send an email to i-simpa@ifsttar.fr
 *
 * To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
@@ -848,7 +848,7 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	///////////////////////////////////////////
 	///	On ajoute un enregistrement des résultats de calcul dans les éléments
 	///////////////////////////////////////////
-	wxLogMessage(_("Refreshing onglet 'Report'"));
+	wxLogMessage(_("Refreshing Tab 'Results'"));
 
     bool resetHistoryBackup = false;
     // Refresh of report folder is not a user action and should not trigger tree backup
@@ -1955,7 +1955,7 @@ void ProjectManager::Init( )
 {
 	if(this->rootCore==NULL || this->rootScene==NULL || this->rootResult==NULL)
 		return;
-    
+
 	treeCore->Init(this->rootCore);
 	treeScene->Init(this->rootScene);
 	treeResult->Init(this->rootResult);
@@ -3233,7 +3233,7 @@ void ProjectManager::OpenNewDataWindow(Element* linkedElement)
 			if(!wxFileExists(meshName))
 				sceneMesh._SavePOLY(meshName.ToStdString(),false,false,true,NULL,true);
 			//Save by materials
-			
+
 			//Maillage de la bordure
 			RunTetGenBoundaryMesh(paramRepair.paramTetgen,cacheFolder,"mesh_to_repair","poly");
 			meshModified=true;

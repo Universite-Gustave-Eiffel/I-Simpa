@@ -55,7 +55,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'I-Simpa'
-copyright = u'2016, Ifsttar'
+copyright = u'2019, Ifsttar'
 author = u'Picaut J., Fortin N.'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -63,7 +63,7 @@ author = u'Picaut J., Fortin N.'
 # built documents.
 #
 # The short X.Y version.
-version = u'1.3.4'
+version = u'1.3'
 # The full version, including alpha/beta/rc tags.
 release = u'1.3.4'
 

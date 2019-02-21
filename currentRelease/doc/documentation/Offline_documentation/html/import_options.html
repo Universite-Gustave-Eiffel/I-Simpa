@@ -1,0 +1,345 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Import options &mdash; I-Simpa 1.3.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="I-Simpa 1.3.4 documentation" href="index.html"/>
+        <link rel="next" title="Recommendations to import a 3D scene" href="import_file_recommandations.html"/>
+        <link rel="prev" title="Project database" href="project_database.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> I-Simpa
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">I-Simpa User Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">(Un)Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="presentation.html">GUI Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="menus.html">Menus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="toolbars.html">Toolbars</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_window.html">&#8216;Project&#8217; window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="properties_window.html">&#8216;Properties&#8217; window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console_window.html">&#8216;Console&#8217; window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main_windows.html">&#8216;Main&#8217; window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_database.html">Project database</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Thematics</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Import options</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#average-model-remesh">&#8216;Average model remesh&#8217;</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mesh-correction-options">Mesh correction options:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#repair-model">&#8216;Repair model&#8217;</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#surface-meshing">&#8216;Surface meshing&#8217;</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#keep-existing-group">&#8216;Keep existing group&#8217;</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="import_file_recommandations.html">Recommendations to import a 3D scene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_spectrum.html">Define and use spectrum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="define_position.html">Define a position using the pointer on the 3D view</a></li>
+<li class="toctree-l1"><a class="reference internal" href="surface_selection.html">Surface selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manipulate_sources_receivers.html">Manipulating sources and receivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_directivity.html">Using directivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_charts.html">Creating charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_charts.html#chart-options">Chart Options</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_teaching_room.html">Study of a teaching room</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_Elmia_hall.html">Study of the Elmia hall</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_industrial_hall.html">Study of an industrial room</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendices</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="I_Simpa_standard.html">Standards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">I-Simpa</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Import options</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/import_options.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="import-options">
+<h1>Import options<a class="headerlink" href="#import-options" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="average-model-remesh">
+<h2>&#8216;Average model remesh&#8217;<a class="headerlink" href="#average-model-remesh" title="Permalink to this headline">¶</a></h2>
+<p>Allow to build an approximate model from the 3D scene which is imported.</p>
+<p>Indeed, due to the sensitivity of some numerical codes within I-Simpa in
+regards with the &#8216;quality&#8217; of the 3D geometries, it may be possible that
+some calculation codes will not be functional. A possibility that is
+offers by I-Simpa, is to use the &#8216;original&#8217; 3D geometry to create an
+approximate 3D model, with a &#8216;quality&#8217; in accordance with the
+calculation code.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please note, that research works on the sound field modelling in room acoustics, have shown that it is preferable to use a simple geometry with a good evaluation of the acousticalproperties of surface materials, instead of a complicated geometry. In other word, if you need to build an approximate geometry, you don&#8217;t need to choose a high level of approximation.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Depending of the chosen options and the size of the volume, the &#8216;Average model remesh&#8217; option can require large computational times.</p>
+</div>
+<p>The realization of the approximate model is based on the marching cube
+technique, and will try to propose a model as close as possible from the
+original one. When choosing the &#8216;Average model remesh&#8217; options, two
+dialog boxes will be successively proposed:</p>
+<div class="section" id="mesh-correction-options">
+<h3>Mesh correction options:<a class="headerlink" href="#mesh-correction-options" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>&#8216;Model solving&#8217;</dt>
+<dd>This option defines the resolution n of the approximation. The volume of the original model is decomposed in <span class="math">\(2^n\)</span> elements in each 3D axis. For example, for n=7, we will have 128x128x128 cubic ceils in the original volume.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>&#8216;Triangulation method&#8217;</dt>
+<dd>This option defines the type of method used for approximating model. There is currently only one possible option &#8216;Marching cube&#8217;.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>&#8216;Remesh adaptation&#8217;</dt>
+<dd>When cubic ceils are created in the original volume, you can decide to &#8216;deform&#8217; the ceils close to the surface of the volume in order to fit as well as possible the delimiting surface   of the original model (option &#8216;Vertices 6translation&#8217;). If deformation is required, choose the &#8216;None&#8217; option. important The &#8216;Vertices translation&#8217; option can require large computational time and can also produced some unwanted effects.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>&#8216;Reduction of the number of surfaces&#8217;</dt>
+<dd>This option able to reduce the total number of faces in the approximate model, by evaluating the quality of each face. There is currently only one possible option &#8216;Edge collapse&#8217;. This method is based on the size and the shape of each face, reduced to a &#8216;Quality Constraint&#8217;, noted q, and on the &#8216;Approximation constraint&#8217;. See the following <a class="reference external" href="http://www.google.fr/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=3&amp;ved=0CFIQFjAC&amp;url=http%3A%2F%2Fbooks.google.com%2Fbooks%2Fabout%2FPLTMG_A_Software_Package_for_Solving_Ell.html%3Fid%3D6C-RaZVo5TgC&amp;ei=3OJLUum7Corb0QX9jICIAw&amp;usg=AFQjCNG6ebGhEXo7pLGyfI6ApR9">book</a> for details: PLTMG: A Software Package for Solving Elliptic Partial Differential Equations by Randolph E. Bank.</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="repair-model">
+<h2>&#8216;Repair model&#8217;<a class="headerlink" href="#repair-model" title="Permalink to this headline">¶</a></h2>
+<p>With this option, I-Simpa try to repair some elements of the 3D model (fusion of vertices, correction of non-planar surfaces...). This will assure a better compatibility with the numerical code within I-Simpa, but is still limited.</p>
+</div>
+<div class="section" id="surface-meshing">
+<h2>&#8216;Surface meshing&#8217;<a class="headerlink" href="#surface-meshing" title="Permalink to this headline">¶</a></h2>
+<p>This option allows to enhance the quality of surface elements, by re-meshing original surfaces. Default parameter are proposed (it seems to offer a good quality), but can be changed. This procedure is based on the <a class="reference external" href="http://tetgen.berlios.de">TetGen</a> mesh generator.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">By using this option, it increase the numbers of face elements. The assignation of materials within I-Simpa will be more time consumer. This option should be used only if the mesh generation within I-Simpa can not be realized due to a poor quality of surface elements.</p>
+</div>
+</div>
+<div class="section" id="keep-existing-group">
+<h2>&#8216;Keep existing group&#8217;<a class="headerlink" href="#keep-existing-group" title="Permalink to this headline">¶</a></h2>
+<p>This option should be used only when importing a new 3D geometry in the current project.</p>
+<p>This allows to associate <em>new</em> faces of the new geometry to <em>old</em> surface groups. The method compares the location of the <em>new</em> surface elements from the <em>old</em> one, in regard with a given precision (&#8216;Association maximum distance&#8217;).</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">This can be useful, if users want to load a modified geometry (with minor changes from the previous one) without re-affecting all surface materials within I-Simpa.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="import_file_recommandations.html" class="btn btn-neutral float-right" title="Recommendations to import a 3D scene" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="project_database.html" class="btn btn-neutral" title="Project database" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Ifsttar.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.3.4',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
