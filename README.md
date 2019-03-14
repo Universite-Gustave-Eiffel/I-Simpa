@@ -9,7 +9,7 @@
 * **For build instructions**, see [the instructions](https://github.com/Ifsttar/I-Simpa/blob/master/Docs/Building.md)
 * **For contributing to I-Simpa**, see [the wiki](http://i-simpa-wiki.readthedocs.io/en/latest/)
 * **Follow us on Twitter** <a href="https://twitter.com/intent/follow?screen_name=ISimpaOfficial">
-        <img src="https://img.shields.io/twitter/follow/shields_io.svg?style=social&logo=twitter"
+        <img src="https://img.shields.io/twitter/follow/ISimpaOfficial.svg?style=social&logo=twitter"
             alt="follow on Twitter"></a>
 
 <IMG ALIGN="right" SRC="https://raw.githubusercontent.com/Ifsttar/I-Simpa/master/Docs/images/wiki%20pictures/illustration_i_simpa_room-Home_page.png" WIDTH=350 ALT="Room illustration" TITLE="Room illustration">
