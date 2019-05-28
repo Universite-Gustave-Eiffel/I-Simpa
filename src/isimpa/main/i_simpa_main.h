@@ -458,7 +458,7 @@ class ISimpaApp : public wxApp
 				choosenLanguage=(wxLanguage)MainUiFrame::AskApplicationLanguage(choosenLanguage);
 			}
 			lang.Init(choosenLanguage, wxLOCALE_LOAD_DEFAULT);
-			lang.AddCatalog("internat",wxLANGUAGE_DEFAULT,"");
+			lang.AddCatalog("internat", wxLANGUAGE_ENGLISH,"");
 
 
             if(ApplicationConfiguration::GetFileConfig()->Read("interface/appdata",&strConf)) {
