@@ -9,7 +9,7 @@ SPPS is already embedded in I-Simpa. Follow the next instructions to run a calcu
 
 - `Meshing`_ for the meshing configuration
 
-- `SPPS Calculation parameters`_
+- `Calculation parameters`_ for the calculation parameters
 
 
 **Right click** on the selected calculation code to display all possible actions:
@@ -23,7 +23,7 @@ SPPS is already embedded in I-Simpa. Follow the next instructions to run a calcu
 
 .. include:: code_configuration_meshing.rst
 
-SPPS Calculation parameters
+Calculation parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - 'Active calculation of atmospheric absorption'

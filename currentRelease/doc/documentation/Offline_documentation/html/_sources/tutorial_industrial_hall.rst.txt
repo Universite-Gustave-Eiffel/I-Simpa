@@ -1,5 +1,5 @@
 Study of an industrial room
-------------------------
+----------------------------
 
 In this example, we are interested in the case of an industrial hall coupled with other rooms. This hall is composed of two identical noisy machines and two fitting zones (zones made of many objects that act as acoustics scaterrers). The purpose of this tutorial is:
 
@@ -15,10 +15,10 @@ Resources for this tutorial are located in the following folder:
 .. important::
 
 	If not already done, we suggest you to follow the two previous tutorials, before the present tutorial:
-	
+
 	- `Study of a teaching room`_
 	- `Study of the Elmia hall`_
-	
+
 .. _`Study of a teaching room`: tutorial_teaching_room.html
 .. _`Study of the Elmia hall`: tutorial_industrial_hall.html
 

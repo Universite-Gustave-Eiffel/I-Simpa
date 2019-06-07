@@ -1,13 +1,25 @@
 I-Simpa overview
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-I-Simpa alone is **not a calculation software**, but is equivalent to a pre and post-processor for acoustic codes. One or more numerical codes must be added in order to obtain a fully functional system.
+I-Simpa alone is **not a calculation software**, but is equivalent to a pre and post-processor
+for acoustic codes. One or more numerical codes must be added in order to obtain a fully functional system.
 
-At the present time, **I-Simpa is delivered with two codes** (TCR based on the classical theory of reverberation and SPPS based on particle tracing approach). Classical applications are room and building acoustics, environmental noise and industrial noise, but it can be easily extend to other applications concerning the sound propagation in 3D environments (interior of vehicle, sound in cavities…).
+At the present time, **I-Simpa is distributed with two codes**:
+
+- `TCR code`_ based on the classical theory of reverberation
+- `SPPS code`_ based on particle tracing approach
+
+The resume of `all code characteristics are given here`_
+
+.. _`TCR code`: code_TCR.html
+.. _`SPPS code`: code_SPPS.html
+.. _`all code characteristics are given here`: code_characteristics.html
+
+Classical applications are room and building acoustics, environmental noise and industrial noise, but it can be easily extend to other applications concerning the sound propagation in 3D environments (interior of vehicle, sound in cavities…).
 
 I-Simpa has been initially developed as a research tool (i.e. for research laboratories), but can also be a very efficient tool for a professional/commercial use, as well as for education.
 
-**Functionnal Guide**
+**Functionnal**
 	Elements and components are organized in tree structures, to easily access to all information, parameters and properties. Many features are proposed for helping users
 
 **Open system**
@@ -25,7 +37,6 @@ I-Simpa features
 Geometry
 ------------------
 
-,,,,
 
 .. image:: images/features/Import_geometry.png
 	:align: left
@@ -71,8 +82,6 @@ Parallelepipedic geometry
 Surface material
 ---------------------
 
-,,,,
-
 
 .. image:: images/features/import_material.png
 	:align: left
@@ -106,8 +115,6 @@ Material properties
 Sound sources
 ---------------------
 
-,,,,
-
 .. image:: images/features/spectrum_data.png
 	:align: left
 	:width: 140px
@@ -138,7 +145,6 @@ Sources manipulation
 Acoustic receivers
 ---------------------
 
-,,,,
 
 .. image:: images/features/Punctual_receiver_properties.png
 	:align: left
@@ -170,8 +176,6 @@ Surface receivers
 
 Acoustic calculation
 ---------------------
-
-,,,,
 
 .. image:: images/features/calculation_codes.png
 	:align: left
@@ -213,7 +217,6 @@ Animation
 Other features
 ---------------------
 
-,,,,
 
 .. image:: images/features/python_script.png
 	:align: left
@@ -247,4 +250,4 @@ Tetrahedric meshing
 	:width: 140px
 
 Fitting zone
-	mDefinition of volumes with fitting objects characterized by probabilistic parameters (mean free path, absorption, diffusion law).
+	Definition of volumes with fitting objects characterized by probabilistic parameters (mean free path, absorption, diffusion law).

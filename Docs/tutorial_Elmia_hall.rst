@@ -102,4 +102,4 @@ Exploring the results
 
 Follow the same procedures as the 'Study of a teaching room' tutorial for `exploring the results`_.
 
-.. _`exploring the results`:tutorial_teaching_room.html#results
+.. _`exploring the results`: tutorial_teaching_room.html#results

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Search &mdash; I-Simpa 1.3.4 documentation</title>
+  <title>Calculation code characteristics &mdash; I-Simpa 1.3.4 documentation</title>
   
 
   
@@ -26,7 +26,6 @@
         <script type="text/javascript" src="_static/doctools.js"></script>
         <script type="text/javascript" src="_static/language_data.js"></script>
         <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/javascript" src="_static/searchtools.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -36,7 +35,7 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="#" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -67,7 +66,7 @@
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="#" method="get">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -179,12 +178,14 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Search</li>
+      <li>Calculation code characteristics</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
+            <a href="_sources/code_characteristics.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -196,19 +197,278 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <noscript>
-  <div id="fallback" class="admonition warning">
-    <p class="last">
-      Please activate JavaScript to enable the search
-      functionality.
-    </p>
-  </div>
-  </noscript>
+  <div class="section" id="calculation-code-characteristics">
+<h1>Calculation code characteristics<a class="headerlink" href="#calculation-code-characteristics" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="colwidths-given docutils" id="id1">
+<caption><span class="caption-text">Physical phenomena</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="70%" />
+<col width="15%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Physical phenomena</th>
+<th class="head"><a class="reference external" href="code_SPPS.html">SPPS code</a></th>
+<th class="head"><a class="reference external" href="code_TCR.html">TCR code</a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Direct field</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr class="row-odd"><td>Specular field (specular reflection)</td>
+<td>✅</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Diffuse field</td>
+<td>✅ (using scattering coefficient)</td>
+<td>✅ (Sabine, Eyring)</td>
+</tr>
+<tr class="row-odd"><td>Scattered field (edge scattering)</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Surface absorption</td>
+<td>✅ (using absorption coefficient)</td>
+<td>✅ (using absorption coefficient)</td>
+</tr>
+<tr class="row-odd"><td>Diffusion by fittings</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr class="row-even"><td>Atmospheric absorption</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr class="row-odd"><td>Meteorological effects</td>
+<td>✅</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="colwidths-given docutils" id="id2">
+<caption><span class="caption-text">Receiver type and characteristics</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="70%" />
+<col width="15%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type/characteristics</th>
+<th class="head"><a class="reference external" href="code_SPPS.html">SPPS code</a></th>
+<th class="head"><a class="reference external" href="code_TCR.html">TCR code</a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Punctual receiver</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr class="row-odd"><td>Surface receiver (any face element of the 3D scene)</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr class="row-even"><td>Surface receiver (any defined plane receivers)</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="colwidths-given docutils" id="id3">
+<caption><span class="caption-text">Sound source type and characteristics</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="70%" />
+<col width="15%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type/characteristics</th>
+<th class="head"><a class="reference external" href="code_SPPS.html">SPPS code</a></th>
+<th class="head"><a class="reference external" href="code_TCR.html">TCR code</a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Punctual sound source</td>
+<td>✅ (with complex directvity)</td>
+<td>✅ (omnidirectionnal)</td>
+</tr>
+<tr class="row-odd"><td>Surface sound source</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Line sound source</td>
+<td>as a line of punctual sources</td>
+<td>as a line of punctual sources</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="colwidths-given docutils" id="id4">
+<caption><span class="caption-text">Acoustical parameters</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="70%" />
+<col width="15%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type/characteristics</th>
+<th class="head"><a class="reference external" href="code_SPPS.html">SPPS code</a></th>
+<th class="head"><a class="reference external" href="code_TCR.html">TCR code</a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Sound level</td>
+<td>✅ (dB, dBA)</td>
+<td>✅ (Sabine, Eyring, Direct field)</td>
+</tr>
+<tr class="row-odd"><td>Lateral Sound level</td>
+<td>✅ (cos, cos²)</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Clarity</td>
+<td>✅ (C50, C80, user defined)</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>Definition</td>
+<td>✅ (D50, user defined)</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Ts</td>
+<td>✅</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>RT</td>
+<td>✅ (RT15, RT30, user defined)</td>
+<td>✅ (RT Sabine, RT Eyring)</td>
+</tr>
+<tr class="row-even"><td>EDT</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr class="row-odd"><td>ST</td>
+<td>✅</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>LF</td>
+<td>✅ (LF80, user defined)</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>LFC</td>
+<td>✅ (LFC80, user defined)</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>LG</td>
+<td>✅</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>G</td>
+<td>✅</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="colwidths-given docutils" id="id5">
+<caption><span class="caption-text">Graphical representations</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="70%" />
+<col width="15%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type/characteristics</th>
+<th class="head"><a class="reference external" href="code_SPPS.html">SPPS code</a></th>
+<th class="head"><a class="reference external" href="code_TCR.html">TCR code</a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Echogramm</td>
+<td>✅</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>Spectrum</td>
+<td>✅ (total, per sound source)</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Sound level map (on surface receivers)</td>
+<td>✅ (instantaneaous/cumulative, cumulated)</td>
+<td>✅ (cumulated)</td>
+</tr>
+<tr class="row-odd"><td>Acoustical parameters map (on surface receivers)</td>
+<td>✅</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Schroeder curves</td>
+<td>✅ (data to display)</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>Intensity</td>
+<td>✅ (animation)</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 
-  
-  <div id="search-results">
-  
-  </div>
 
            </div>
            
@@ -246,14 +506,7 @@
   
   
     
-  
-  <script type="text/javascript">
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script type="text/javascript" id="searchindexloader"></script>
    
-
 
 </body>
 </html>

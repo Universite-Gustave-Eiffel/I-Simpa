@@ -33,22 +33,22 @@ Contextual menu
 
 - 'Create group'
 	Creates a new group in the corresponding group.
-	
+
 - 'Import from a file'
 	Allows to import materials from a file. Several formats are supported:
-	
+
 		+ CATT-Acoustic Format
 			File used by the CATT-Acoustic software: text file with extension '.txt' (see `CATT-Acoustic website`_).
-		
+
 		+ Odeon Format
 			File used by the software Odeon: text file with extension '.li8' (see `Odeon website`_);
 
 		.. warning::
-		
+
 			The CATT-Acoustic and Odeon data files are defined octave bands, while I-Simpa uses third octave bands. During the importation, values per octave band are attributed to the corresponding third octaves. Furthermore, since I-Simpa takes into accound upper and lower frequency bands than the last software, data are extrapolated from the closest frquency band data.
 
 		.. note::
-		
+
 			During importation, all fields of the original file are not imported from the data files.
 
 Properties
@@ -70,28 +70,28 @@ Properties
 
 	+  'Resistivity (kN.mm-4)'
 			Resistivity of the material (real value).
-	   
+
 	+  'Side of material effect'
 			List for choosing how the material properties are considered in relation to the direction of propagation	   relative to the normal to the material:
-	   
+
 				*  'Bilateral'
 						The material has the same properties on both sides of the surface to which it is associated.
-				   
+
 				*  'Unilateral'
 						The material is transparent in one direction. The acoustic properties of the material are considered only in a propagation direction opposite to the normal to the face. See the guide of the numerical code to know how this property is used.
-   
+
 -  'Spectrum'
 		Defines the acoustic properties of the material for each frequency band.
-   
+
 -  'Absorption'
 		Absorption coefficient of the material (real value between 0 and 1).
-   
+
 -  'Scattering'
 		Scaterring coefficient of the material (real value between 0 and 1).
-   
+
 -  'Transmission'
 		Check/uncheck for taking acoustic transmission into account.
-   
+
 -  'Loss'
 		Transmission loss of the material (dB).
 
@@ -100,19 +100,19 @@ Properties
 
 	+ 'Lambert'
 		Diffuse Lambert reflection law (cosinus of the incident angle).
-	
+
 	+ 'Specular'
 		Specular reflection law.
-	
+
 	+ 'Uniform'
 		Uniform reflection law, (*i.e.* 'W' reflection law that corresponds to cosinus^2 of the incident angle).
-	
+
 	+ 'W2'
 		'W2' reflection law (cosinus^2 of the incident angle).
-	
+
 	+ 'W3'
 		'W3' reflection law (cosinus^3 of the incident angle).
-	
+
 	+ 'W4'
 		'W4' reflection law (cosinus^4 of the incident angle).
 
@@ -140,7 +140,7 @@ Contextual menu
 **Right click** on the 'User' folder to define a new sepctrum.
 
 Properties
-~~~~~~~~~
+~~~~~~~~~~
 
 User has to define the spectrum value for each frequency band, either in 'dB' or in 'dB(A)'.
 
@@ -149,7 +149,7 @@ User has to define the spectrum value for each frequency band, either in 'dB' or
 	Values in in 'dB' and in 'dB(A)' are linked together. Changing one value, for example in dB (respectively in dB(A)), will change the dB(A) value (respectively the dB value).
 
 .. note::
-	
+
 	Changing the 'Global' value will affect the value for each frequency band: all values are shifted in order to respect the global value.
 
 

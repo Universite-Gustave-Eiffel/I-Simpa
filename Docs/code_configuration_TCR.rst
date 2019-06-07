@@ -5,9 +5,9 @@ TCR is already embedded in I-Simpa. Follow the next instructions to run a calcul
 
 **Double left click** on the TCR calculation code in I-Simpa to display all calculation parameters:
 
-- Meshing, for the meshing configuration
+- `Meshing`_, for the meshing configuration
 
-- TCR Calculation parameters
+- `Calculation parameters`_  for the calculation parameters
 
 
 **Right click** on the selected calculation code to display all possible actions:
@@ -18,7 +18,7 @@ TCR is already embedded in I-Simpa. Follow the next instructions to run a calcul
 
 .. include:: code_configuration_meshing.rst
 
-TCR Calculation parameters
+Calculation parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - 'Active calculation of atmospheric absorption'

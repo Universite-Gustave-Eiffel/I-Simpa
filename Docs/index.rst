@@ -6,8 +6,13 @@
 .. figure::  images/I-Simpa-logo.jpg
    :align:   center
 
-I-Simpa is a `new generation of noise prediction software for research, engineering and education`_. I-Simpa is a graphical user interface (GUI) developed to host three-dimensional numerical codes for the modeling of sound propagation in complex geometrical domains, and propose many `features`_
+I-Simpa is a `new generation of noise prediction software for research, engineering and education`_.
+
+I-Simpa is a graphical user interface (GUI) developed to host three-dimensional numerical codes for the modeling of sound propagation in complex geometrical domains, and propose many `features`_
 Although I-Simpa is well adapted for energetic models (ray-tracing, sound-particle tracing, theory of reverberation…), it can be extend to use ondulatory approaches.
+
+**I-Simpa is distributed with two codes** (TCR based on the classical theory of reverberation and SPPS based on particle tracing approach). Classical applications are room
+and building acoustics, environmental noise and industrial noise, but it can be easily extend to other applications concerning the sound propagation in 3D environments (interior of vehicle, sound in cavities…).
 
 
 .. _`new generation of noise prediction software for research, engineering and education`: I_Simpa_overview.html
@@ -114,5 +119,6 @@ Indices and tables
 ==================
 
 * :ref:`genindex`
+
 .. * :ref:`modindex`
    * :ref:`search`
