@@ -11,11 +11,11 @@ Resources for this tutorial are located in the following folder:
 .. important::
 
 	If not already done, we suggest you to follow the two previous tutorials, before the present tutorial:
-	
+
 	- `Study of a teaching room`_
-	
-.. _`Study of a teaching room`: tutorial_teaching_room.html	
-	
+
+.. _`Study of a teaching room`: tutorial_teaching_room.html
+
 Geometry import
 ~~~~~~~~~~~~~~~~
 
@@ -42,7 +42,7 @@ Create an approximated 3D model
 
 	The Average model remesh operation can only be used simultaneously on a single volume of the scene. If the scene contains several closed volumes, the user must retain only one.
 
-5. In this operation, somes onf the faces of the new scene are not automatically assigned to surface groups. A new surfaces group 'model' is created and contains unassigned surfaces, which must then be redistributed to the corresponding groups. **Select** and **Hold** the 'model' group and **Move** it to the 'interiorwall' surfaces group. You can delete the group 'model' once it is empty.
+5. In this operation, some of the faces of the new scene are not automatically assigned to surface groups. A new surfaces group 'model' is created and contains unassigned surfaces, which must then be redistributed to the corresponding groups. **Select** and **Hold** the 'model' group and **Move** it to the 'interiorwall' surfaces group. You can delete the group 'model' once it is empty.
 6. To verify that the model correction has been effective, you can generate a meshing of the scene: in the 'Calculation' tab, **Open** the properties of the 'Meshing' element of the SPPS code and **Uncheck** the 'Scene correction before meshing' (since the 3D scene is already optimized). In the `'Meshing' toolbar_`, **Click** on the specific icon to generate the meshing. **Choose** SPPS in the new windows that is displayed and **Valid** with 'OK'. The meshing is displayed on the 3D view: you can check the 'x', 'y' or 'z' boxes in the Meshing toolbar to choose a axis and use the 'Slider' cursor to move the meshing.
 
 .. _`'Meshing' toolbar`: toolbars.html#toolbar-meshing
