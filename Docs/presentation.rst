@@ -11,7 +11,7 @@ The graphic user interface (GUI) is composed by the following components:
 	-  a `'Console' window`_ (dockable/undockable) with two tabs 'Message' and 'Python' (tabs can be re-ordered within the windows)
 	-  a `'Main' window`_ with the 3D view
 
-	.. figure::  images/Screenchots/I_Simpa_GUI.JPG
+	.. figure::  images/Screenshots/I_Simpa_GUI.JPG
 	   :align:   center
 
 	   I-Simpa user interface.

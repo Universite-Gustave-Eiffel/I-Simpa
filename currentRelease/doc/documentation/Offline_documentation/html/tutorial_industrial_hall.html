@@ -129,15 +129,17 @@
 <li class="toctree-l1"><a class="reference internal" href="surface_selection.html">Surface selection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="manipulate_sources_receivers.html">Manipulating sources and receivers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_directivity.html">Using directivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_charts.html">Creating charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_charts.html#chart-options">Chart Options</a></li>
 </ul>
 <p class="caption"><span class="caption-text">SPPS Code</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">SPPS Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">SPPS calculation code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="code_TCR.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_TCR.html">TCR Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_TCR.html">TCR calculation code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Appendices</span></p>
@@ -221,19 +223,24 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">I</span><span class="o">-</span><span class="n">Simpa</span> <span class="n">installation</span> <span class="n">folder</span><span class="o">&gt;</span>\<span class="n">doc</span>\<span class="n">tutorial</span>\<span class="n">tutorial</span> <span class="mi">3</span>
 </pre></div>
 </div>
+<p>This folder contains several files:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">tutorial_3.proj</span></code>:  I-Simpa project of the present tutorial (without Results)</li>
+<li><code class="docutils literal notranslate"><span class="pre">Industrial_hall.ply</span></code>: 3D hall geometry</li>
+</ul>
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
 <p>If not already done, we suggest you to follow the two previous tutorials, before the present tutorial:</p>
 <ul class="last simple">
 <li><a class="reference external" href="tutorial_teaching_room.html">Study of a teaching room</a></li>
-<li><a class="reference external" href="tutorial_industrial_hall.html">Study of the Elmia hall</a></li>
+<li><a class="reference external" href="tutorial_elmya_hall.html">Study of the Elmia hall</a></li>
 </ul>
 </div>
 <div class="section" id="import-a-geometry">
 <h2>Import a geometry<a class="headerlink" href="#import-a-geometry" title="Permalink to this headline">¶</a></h2>
 <p>The first step is to import the geometry of the project. We are interested here in a large industrial hall coupled to a corridor through a door in a wall, this corridor being itself coupled to another room. We assume that walls and doors allow acoustic transmission.</p>
 <ol class="arabic simple">
-<li>In the ‘File’ menu, <strong>Select</strong> ‘Import a new scene’, and open the file <cite>LocalIndustriel.ply</cite> located in the correspondng tutorial folder.</li>
+<li>In the ‘File’ menu, <strong>Select</strong> ‘Import new scene’, and open the file <code class="docutils literal notranslate"><span class="pre">LocalIndustriel.ply</span></code> located in the correspondng tutorial folder.</li>
 <li>In the next windows, <strong>Select</strong> ‘OK’ without changing the default values.</li>
 </ol>
 <div class="admonition note">
@@ -243,7 +250,7 @@
 </div>
 <div class="section" id="define-a-machine-as-a-sound-source">
 <h2>Define a machine as a sound source<a class="headerlink" href="#define-a-machine-as-a-sound-source" title="Permalink to this headline">¶</a></h2>
-<p>At this step, we want to create the sound sources. In industrial environments, sound sources are often machines or workstations made up of several source points. Since the hall can be made up of several identical machines located at different locations, it is simpler to define a machine in the form of a group of sound sources, which group can then be copied and moved within the room. In our example, we will define machines composed of three sound sources, which will be duplicate. Each sound source will be defined by a pink noise spectrum, with a global level of 80 dB.</p>
+<p>At this step, we want to create the sound sources. In industrial environments, sound sources are often machines or workstations made up of several source points. Since the hall can be made up of several identical machines located at different locations, it is simpler to define a machine in the form of a group of sound sources, which group can then be copied and moved within the room. In our example, we will define machines composed of three sound sources, which will be duplicated. Each sound source will be defined by a pink noise spectrum, with a global level of 80 dB.</p>
 <ol class="arabic simple">
 <li><strong>Right-click</strong> the ‘Data/Sound Sources’ element in the ‘Scene’ tab of the ‘Project’ windows, and <strong>Select</strong> ‘New Group’. By default, the name of the new group is ‘Sound sources’.</li>
 <li><strong>Rename</strong> the group as the following ‘Milling machine’;</li>
@@ -279,7 +286,15 @@
 <p>In our example, a parallelepipedal zone has already been provided at the creation of the 3D scene, in order to be assigned to a ‘Scene fitted zone’.</p>
 <ol class="arabic simple">
 <li>In the ‘Scene’ tree, <strong>Right-click</strong> on the ‘Fitting zone’ root folder and <strong>Select</strong> ‘Define scene fitted zone’;</li>
-<li>Now you have to define the surfaces of the scene for the corresponding zone. <strong>Select</strong> the surface selection mode on the ‘Selection’ toolbar;</li>
+<li>Now you have to define the surfaces of the scene for the corresponding zone. <strong>Select</strong> the surface selection mode on the ‘Selection’ toolbar; <strong>Hold</strong> Ctrl keyboard key and <strong>Double-click</strong> on each face element of the the fitting zone. Each face element is selected in red (or another color depending of the I-Simpa Settings). At the same time, the corresponding face elements are also highlighted in the folder ‘Surfaces’ of the ‘Data’ tree.</li>
+</ol>
+<p>Holding the Ctrl keyboard key allow to select all coplanar face element by a double click. You can also use the same procedure, but with one single click, to select each face element independently.</p>
+<ol class="arabic simple" start="3">
+<li>In the folder ‘Surfaces’ of the ‘Data’ tree, <strong>Select</strong> all highlighted face elements, and <strong>drag/drop</strong> them to the ‘Surfaces’ element of the fiiting zone. All face elements are then duplicated in this folder.</li>
+</ol>
+<p>In this example, all face elements were already identified in a given folder ‘fitting’ of the ‘Data’ tree, because this volume was build when preparing the 3D geometry. In this case, it was not necessary to follow the step 2 of this procedure. One can directly drag and drop all face elements of the corresponding surface folder.</p>
+<ol class="arabic simple" start="4">
+<li>One must also select the face elements of the fitting zone that are located on the ground. <strong>Open</strong> the ‘floor’ surface group and find the two face elements that correspond to the floor of the fitting zone (<strong>Select</strong> each face element of the group and identify the ones that correspond to the fitting zone). Once the two face elements are identified, <strong>Select</strong> them and drag/drop them to the ‘Surfaces’ element of the fitting zone.</li>
 </ol>
 </div>
 <div class="section" id="define-a-parallelipipedic-volume-as-a-fitting-zone">

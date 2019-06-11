@@ -1,6 +1,10 @@
 Study of a teaching room
 ------------------------
 
+.. image:: images/Tutorial/Screenshot_tutorial_1.PNG
+	:align: right
+	:width: 400px
+
 This tutorial concerns the simple study of a teaching room. The geometry is rectangular of size (6m x 10m x 3m). The goal of this tutorial is to manipulate:
 
 -  face elements
@@ -14,6 +18,11 @@ Resources for this tutorial are located in the following folder:
 ::
 
 	<I-Simpa installation folder>\doc\tutorial\tutorial 1
+
+This folder contains several files:
+
+- ``tutorial_1.proj``: I-Simpa project of the present tutorial (with TCR and SPPS results)
+- ``Screenshot_tutorial_1.PNG``: I-Simpa screenshot of tutorial 1
 
 Scene creation
 ~~~~~~~~~~~~~~~~

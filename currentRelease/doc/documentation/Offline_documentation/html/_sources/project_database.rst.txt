@@ -37,10 +37,37 @@ Contextual menu
 - 'Import from a file'
 	Allows to import materials from a file. Several formats are supported:
 
-		+ CATT-Acoustic Format
+Importing from CATT-Acoustic Format
 			File used by the CATT-Acoustic software: text file with extension '.txt' (see `CATT-Acoustic website`_).
 
-		+ Odeon Format
+			CATT-Acoustic material file example:
+			::
+
+				panelwalls = < 21 12 9 6 9 13 > L < 15 13 11 9 7 5 >
+				sidereflector = < 20 12 6 4 7 10 > L < 15 20 25 35 45 50 >
+				audience = < 45 60 73 80 75 64 > L < 30 40 50 60 65 70 >
+				rearaudience = < 50 66 80 88 83 70 > L < 30 40 50 60 65 70 >
+				linoleum = < 2 3 3 4 6 5 > L < 30 27 24 21 18 15 >
+				reflectors = < 12 10 4 3 3 2 >
+				stage = < 15 8 6 6 6 6 > L < 15 13 11 9 7 5 >
+				ceiling = < 20 15 10 8 4 2 > L < 15 13 11 9 7 5 >
+				speakerwindow = < 2 6 3 3 2 2 > L < 30 27 24 21 18 15 >
+				plasteredconcrete = < 2 2 3 3 4 6 > L < 15 13 11 9 7 5 >
+				ventilationgrid = < 8 12 15 15 12 8 > L < 30 27 24 21 18 15 >
+				floor = < 15 8 6 6 6 6 > L < 15 13 11 9 7 5 >
+				interiorwalls = < 20 12 6 4 7 10 > L < 15 13 11 9 7 5 >
+				stairs = < 15 8 6 6 6 6 > L < 15 13 11 9 7 5 >
+				exteriorwalls = < 20 12 6 4 7 10 > L < 15 20 25 35 45 50 >
+
+			CATT-Acoustic material file import example in I-Simpa
+
+.. image:: images/Screenshots/CATT_import.PNG
+   :align: center
+   :width: 500px
+
+.. rst-class::  clear-both
+
+		Importing from Odeon Format
 			File used by the software Odeon: text file with extension '.li8' (see `Odeon website`_);
 
 		.. warning::

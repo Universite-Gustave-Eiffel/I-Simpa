@@ -115,6 +115,8 @@
 <li class="toctree-l1"><a class="reference internal" href="surface_selection.html">Surface selection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="manipulate_sources_receivers.html">Manipulating sources and receivers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_directivity.html">Using directivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_charts.html">Creating charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_charts.html#chart-options">Chart Options</a></li>
 </ul>
 <p class="caption"><span class="caption-text">SPPS Code</span></p>
 <ul>
@@ -492,6 +494,18 @@
 </dd>
 </dl>
 </li>
+</ul>
+</div>
+<div class="section" id="computational-time-optimization">
+<h3>Computational time optimization<a class="headerlink" href="#computational-time-optimization" title="Permalink to this headline">¶</a></h3>
+<p>The computationnal time depends mainly of the <strong>Number of sound particles per source</strong>. Thus, in the SPPS code, each sound particle is followed, at each ‘Time step’ during its propagation inside the 3D domain, experiencing absorption, reflection, diffusion… and so on, during the ‘Simulation length’ and/or untill the particles disapears when its energy is to small.</p>
+<p>Considering a small number of sound particles may not produced relevant results to proceed an interesting acouctic analazis of the 3D model. Thus, it is necessary to consider a <em>large</em> number of sound particles. Assigning the good value for <em>large</em> is difficult and depends mainly on the scene size and the absorbent nature of the scene (surface absorption and volume absorption).</p>
+<p>Few recommandations to evaluate the computationnal time:</p>
+<ul class="simple">
+<li>the number of sound particles defined in SPPS (‘Number of sound particles per source’ parameter) is defined for <strong>each sound source</strong>. Considering <em>N</em> sound particles per source and <em>M</em> sound sources will generate <em>N x M</em> sound particles in the domain;</li>
+<li>one calculation is done for <strong>each frequency band</strong>: considering <em>F</em> frequency bands will be equivalent to a calculation with <em>F x N</em> sound particles for one source (or <em>F x N x M</em> for <em>M</em> sources). Note that, by default, the computation is paralleleized on the processor core, for each frequency band (a frequency band for a given core). So the increase of computional time with the nimber of frequency band is not linear;</li>
+<li>in the <strong>‘Energetic’ mode</strong>, each sound particle is ‘alive’ during its propagation untill its energy is below a ratio of the initial energy (see ‘‘’Limit value of the particle extinction: ratio 10^n’ parameter). <strong>Increasing</strong> <em>n</em> will keep the sound particles longer in the domain, which increases the computational time;</li>
+<li>in the <strong>‘Random’ mode</strong>, each physical phenomena (absorption, diffusion) is applied by considering probabilistic approaches. Using this mode, the computaional time is drastically decreased, but the quality of the results is aslo decrease. It is suggested to consider the ‘Random’ mode at the initial step of the study, and then to change to the ‘Energetic’ mode in order to obtain the final result.</li>
 </ul>
 </div>
 </div>

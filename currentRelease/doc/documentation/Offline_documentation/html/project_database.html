@@ -130,15 +130,17 @@
 <li class="toctree-l1"><a class="reference internal" href="surface_selection.html">Surface selection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="manipulate_sources_receivers.html">Manipulating sources and receivers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_directivity.html">Using directivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_charts.html">Creating charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_charts.html#chart-options">Chart Options</a></li>
 </ul>
 <p class="caption"><span class="caption-text">SPPS Code</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">SPPS Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">SPPS calculation code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="code_TCR.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_TCR.html">TCR Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_TCR.html">TCR calculation code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Appendices</span></p>
@@ -237,48 +239,60 @@ Copy/Paste is also possible for folder.</p>
 <div class="section" id="contextual-menu">
 <h3>Contextual menu<a class="headerlink" href="#contextual-menu" title="Permalink to this headline">¶</a></h3>
 <p><strong>Right click</strong> on the ‘User’ folder to define a new material or a group of material.</p>
-<ul>
+<ul class="simple">
 <li><dl class="first docutils">
 <dt>‘New Material’</dt>
-<dd><p class="first last">Creates a new material in the corresponding group.</p>
-</dd>
+<dd>Creates a new material in the corresponding group.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt>‘Create group’</dt>
-<dd><p class="first last">Creates a new group in the corresponding group.</p>
-</dd>
+<dd>Creates a new group in the corresponding group.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt>‘Import from a file’</dt>
-<dd><p class="first">Allows to import materials from a file. Several formats are supported:</p>
-<blockquote class="last">
-<div><ul class="simple">
-<li><dl class="first docutils">
-<dt>CATT-Acoustic Format</dt>
-<dd>File used by the CATT-Acoustic software: text file with extension ‘.txt’ (see <a class="reference external" href="http://www.catt.se">CATT-Acoustic website</a>).</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Odeon Format</dt>
-<dd>File used by the software Odeon: text file with extension ‘.li8’ (see <a class="reference external" href="http://www.odeon.dk">Odeon website</a>);</dd>
+<dd>Allows to import materials from a file. Several formats are supported:</dd>
 </dl>
 </li>
 </ul>
-<div class="admonition warning">
+<dl class="docutils">
+<dt>Importing from CATT-Acoustic Format</dt>
+<dd><p class="first">File used by the CATT-Acoustic software: text file with extension ‘.txt’ (see <a class="reference external" href="http://www.catt.se">CATT-Acoustic website</a>).</p>
+<p>CATT-Acoustic material file example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">panelwalls</span> <span class="o">=</span> <span class="o">&lt;</span> <span class="mi">21</span> <span class="mi">12</span> <span class="mi">9</span> <span class="mi">6</span> <span class="mi">9</span> <span class="mi">13</span> <span class="o">&gt;</span> <span class="n">L</span> <span class="o">&lt;</span> <span class="mi">15</span> <span class="mi">13</span> <span class="mi">11</span> <span class="mi">9</span> <span class="mi">7</span> <span class="mi">5</span> <span class="o">&gt;</span>
+<span class="n">sidereflector</span> <span class="o">=</span> <span class="o">&lt;</span> <span class="mi">20</span> <span class="mi">12</span> <span class="mi">6</span> <span class="mi">4</span> <span class="mi">7</span> <span class="mi">10</span> <span class="o">&gt;</span> <span class="n">L</span> <span class="o">&lt;</span> <span class="mi">15</span> <span class="mi">20</span> <span class="mi">25</span> <span class="mi">35</span> <span class="mi">45</span> <span class="mi">50</span> <span class="o">&gt;</span>
+<span class="n">audience</span> <span class="o">=</span> <span class="o">&lt;</span> <span class="mi">45</span> <span class="mi">60</span> <span class="mi">73</span> <span class="mi">80</span> <span class="mi">75</span> <span class="mi">64</span> <span class="o">&gt;</span> <span class="n">L</span> <span class="o">&lt;</span> <span class="mi">30</span> <span class="mi">40</span> <span class="mi">50</span> <span class="mi">60</span> <span class="mi">65</span> <span class="mi">70</span> <span class="o">&gt;</span>
+<span class="n">rearaudience</span> <span class="o">=</span> <span class="o">&lt;</span> <span class="mi">50</span> <span class="mi">66</span> <span class="mi">80</span> <span class="mi">88</span> <span class="mi">83</span> <span class="mi">70</span> <span class="o">&gt;</span> <span class="n">L</span> <span class="o">&lt;</span> <span class="mi">30</span> <span class="mi">40</span> <span class="mi">50</span> <span class="mi">60</span> <span class="mi">65</span> <span class="mi">70</span> <span class="o">&gt;</span>
+<span class="n">linoleum</span> <span class="o">=</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">6</span> <span class="mi">5</span> <span class="o">&gt;</span> <span class="n">L</span> <span class="o">&lt;</span> <span class="mi">30</span> <span class="mi">27</span> <span class="mi">24</span> <span class="mi">21</span> <span class="mi">18</span> <span class="mi">15</span> <span class="o">&gt;</span>
+<span class="n">reflectors</span> <span class="o">=</span> <span class="o">&lt;</span> <span class="mi">12</span> <span class="mi">10</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">3</span> <span class="mi">2</span> <span class="o">&gt;</span>
+<span class="n">stage</span> <span class="o">=</span> <span class="o">&lt;</span> <span class="mi">15</span> <span class="mi">8</span> <span class="mi">6</span> <span class="mi">6</span> <span class="mi">6</span> <span class="mi">6</span> <span class="o">&gt;</span> <span class="n">L</span> <span class="o">&lt;</span> <span class="mi">15</span> <span class="mi">13</span> <span class="mi">11</span> <span class="mi">9</span> <span class="mi">7</span> <span class="mi">5</span> <span class="o">&gt;</span>
+<span class="n">ceiling</span> <span class="o">=</span> <span class="o">&lt;</span> <span class="mi">20</span> <span class="mi">15</span> <span class="mi">10</span> <span class="mi">8</span> <span class="mi">4</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="n">L</span> <span class="o">&lt;</span> <span class="mi">15</span> <span class="mi">13</span> <span class="mi">11</span> <span class="mi">9</span> <span class="mi">7</span> <span class="mi">5</span> <span class="o">&gt;</span>
+<span class="n">speakerwindow</span> <span class="o">=</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="mi">6</span> <span class="mi">3</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="n">L</span> <span class="o">&lt;</span> <span class="mi">30</span> <span class="mi">27</span> <span class="mi">24</span> <span class="mi">21</span> <span class="mi">18</span> <span class="mi">15</span> <span class="o">&gt;</span>
+<span class="n">plasteredconcrete</span> <span class="o">=</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">6</span> <span class="o">&gt;</span> <span class="n">L</span> <span class="o">&lt;</span> <span class="mi">15</span> <span class="mi">13</span> <span class="mi">11</span> <span class="mi">9</span> <span class="mi">7</span> <span class="mi">5</span> <span class="o">&gt;</span>
+<span class="n">ventilationgrid</span> <span class="o">=</span> <span class="o">&lt;</span> <span class="mi">8</span> <span class="mi">12</span> <span class="mi">15</span> <span class="mi">15</span> <span class="mi">12</span> <span class="mi">8</span> <span class="o">&gt;</span> <span class="n">L</span> <span class="o">&lt;</span> <span class="mi">30</span> <span class="mi">27</span> <span class="mi">24</span> <span class="mi">21</span> <span class="mi">18</span> <span class="mi">15</span> <span class="o">&gt;</span>
+<span class="n">floor</span> <span class="o">=</span> <span class="o">&lt;</span> <span class="mi">15</span> <span class="mi">8</span> <span class="mi">6</span> <span class="mi">6</span> <span class="mi">6</span> <span class="mi">6</span> <span class="o">&gt;</span> <span class="n">L</span> <span class="o">&lt;</span> <span class="mi">15</span> <span class="mi">13</span> <span class="mi">11</span> <span class="mi">9</span> <span class="mi">7</span> <span class="mi">5</span> <span class="o">&gt;</span>
+<span class="n">interiorwalls</span> <span class="o">=</span> <span class="o">&lt;</span> <span class="mi">20</span> <span class="mi">12</span> <span class="mi">6</span> <span class="mi">4</span> <span class="mi">7</span> <span class="mi">10</span> <span class="o">&gt;</span> <span class="n">L</span> <span class="o">&lt;</span> <span class="mi">15</span> <span class="mi">13</span> <span class="mi">11</span> <span class="mi">9</span> <span class="mi">7</span> <span class="mi">5</span> <span class="o">&gt;</span>
+<span class="n">stairs</span> <span class="o">=</span> <span class="o">&lt;</span> <span class="mi">15</span> <span class="mi">8</span> <span class="mi">6</span> <span class="mi">6</span> <span class="mi">6</span> <span class="mi">6</span> <span class="o">&gt;</span> <span class="n">L</span> <span class="o">&lt;</span> <span class="mi">15</span> <span class="mi">13</span> <span class="mi">11</span> <span class="mi">9</span> <span class="mi">7</span> <span class="mi">5</span> <span class="o">&gt;</span>
+<span class="n">exteriorwalls</span> <span class="o">=</span> <span class="o">&lt;</span> <span class="mi">20</span> <span class="mi">12</span> <span class="mi">6</span> <span class="mi">4</span> <span class="mi">7</span> <span class="mi">10</span> <span class="o">&gt;</span> <span class="n">L</span> <span class="o">&lt;</span> <span class="mi">15</span> <span class="mi">20</span> <span class="mi">25</span> <span class="mi">35</span> <span class="mi">45</span> <span class="mi">50</span> <span class="o">&gt;</span>
+</pre></div>
+</div>
+<p class="last">CATT-Acoustic material file import example in I-Simpa</p>
+</dd>
+</dl>
+<a class="reference internal image-reference" href="_images/CATT_import.PNG"><img alt="_images/CATT_import.PNG" class="align-center" src="_images/CATT_import.PNG" style="width: 500px;" /></a>
+<dl class="clear-both docutils">
+<dt>Importing from Odeon Format</dt>
+<dd>File used by the software Odeon: text file with extension ‘.li8’ (see <a class="reference external" href="http://www.odeon.dk">Odeon website</a>);</dd>
+</dl>
+<div class="clear-both admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">The CATT-Acoustic and Odeon data files are defined octave bands, while I-Simpa uses third octave bands. During the importation, values per octave band are attributed to the corresponding third octaves. Furthermore, since I-Simpa takes into accound upper and lower frequency bands than the last software, data are extrapolated from the closest frquency band data.</p>
 </div>
-<div class="admonition note">
+<div class="clear-both admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">During importation, all fields of the original file are not imported from the data files.</p>
 </div>
-</div></blockquote>
-</dd>
-</dl>
-</li>
-</ul>
 </div>
 <div class="section" id="properties">
 <h3>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h3>

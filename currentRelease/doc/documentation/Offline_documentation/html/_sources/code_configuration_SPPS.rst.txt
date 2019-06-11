@@ -102,3 +102,17 @@ Calculation parameters
 
 - 'Time step (s)'
 	Time step (in s) for the calculation.
+
+Computational time optimization
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The computationnal time depends mainly of the **Number of sound particles per source**. Thus, in the SPPS code, each sound particle is followed, at each 'Time step' during its propagation inside the 3D domain, experiencing absorption, reflection, diffusion... and so on, during the 'Simulation length' and/or untill the particles disapears when its energy is to small.
+
+Considering a small number of sound particles may not produced relevant results to proceed an interesting acouctic analazis of the 3D model. Thus, it is necessary to consider a *large* number of sound particles. Assigning the good value for *large* is difficult and depends mainly on the scene size and the absorbent nature of the scene (surface absorption and volume absorption).
+
+Few recommandations to evaluate the computationnal time:
+
+- the number of sound particles defined in SPPS ('Number of sound particles per source' parameter) is defined for **each sound source**. Considering *N* sound particles per source and *M* sound sources will generate *N x M* sound particles in the domain;
+- one calculation is done for **each frequency band**: considering *F* frequency bands will be equivalent to a calculation with *F x N* sound particles for one source (or *F x N x M* for *M* sources). Note that, by default, the computation is paralleleized on the processor core, for each frequency band (a frequency band for a given core). So the increase of computional time with the nimber of frequency band is not linear;
+- in the **'Energetic' mode**, each sound particle is 'alive' during its propagation untill its energy is below a ratio of the initial energy (see '‘'Limit value of the particle extinction: ratio 10^n' parameter). **Increasing** *n* will keep the sound particles longer in the domain, which increases the computational time;
+- in the **'Random' mode**, each physical phenomena (absorption, diffusion) is applied by considering probabilistic approaches. Using this mode, the computaional time is drastically decreased, but the quality of the results is aslo decrease. It is suggested to consider the 'Random' mode at the initial step of the study, and then to change to the 'Energetic' mode in order to obtain the final result.

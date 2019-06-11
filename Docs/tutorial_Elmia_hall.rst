@@ -1,12 +1,30 @@
 Study of the Elmia hall
 ------------------------
 
-In this example, we are interested in the case of a theater. This hall, the Elmia hall, has been the subject of measurements and a comparative study of several room acoustics software. The user can refer to the following reference for more information: `A Comparison of Room Simulation Software - The 2nd Round Robin on Room Acoustical Computer Simulation, Bork Ingolf, Acta Acustica united with Acustica, Volume 86, Number 6, November/December 2000, pp. 943-956(14) <http://www.ingentaconnect.com/content/dav/aaua/2000/00000086/00000006/art00008?utm_source=TrendMD&utm_medium=cpc&utm_campaign=Acta_Acustica_united_with_Acustica_TrendMD_0>`_.
+.. image:: images/Tutorial/Screenshot_4_tutorial_2.PNG
+	:align: right
+	:width: 400px
+
+In this example, we are interested in the case of a theater. This hall, the Elmia hall,
+has been the subject of measurements and a comparative study of several room acoustics software
+(Round Robin II). The user can refer to the following reference for more information: `A Comparison of Room Simulation Software - The 2nd Round Robin on Room Acoustical Computer Simulation, Bork Ingolf, Acta Acustica united with Acustica, Volume 86, Number 6, November/December 2000, pp. 943-956(14) <http://www.ingentaconnect.com/content/dav/aaua/2000/00000086/00000006/art00008?utm_source=TrendMD&utm_medium=cpc&utm_campaign=Acta_Acustica_united_with_Acustica_TrendMD_0>`_.
 
 Resources for this tutorial are located in the following folder:
 ::
 
 	<I-Simpa installation folder>\doc\tutorial\tutorial 2
+
+This folder contains several files:
+
+- ``tutorial_2.proj``:  I-Simpa project of the present tutorial (without Results)
+- ``Elmia.ply``: 3D room geometry
+- ``elmia_stage.jpg``: room picture
+- ``elmiahall.jpg``: room picture
+- ``speaker_s1.jpg``: room picture
+- ``elmia_coordinates.xls``: coordinates or the 3D scene corners
+- ``material_catt.txt``: surface material definition (CATT-Acoustic software format)
+- ``Auswertung_Phase_II.xls``: All information (software results, measurements, comparisons) of the Round Robin 2 (source: PTB file at https://www.ptb.de/cms/ptb/fachabteilungen/abt1/fb-16/ag-163/round-robin-in-room-acoustics.html)
+
 
 .. important::
 
@@ -24,6 +42,12 @@ The 3D model that we have at our disposal presents numerous irregularities (surf
 Import the 'bad' 3D model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. figure:: images/Tutorial/Screenshot_1_tutorial_2.PNG
+   :align: center
+   :width: 500px
+
+   Import original geometry in I-Simpa
+
 The 'bad' 3D model is already divided into 10 surface groups corresponding to the materials to be combined (audience, ceiling, floor, stages, stairs...). The first step is to load this model without performing geometric approximation processing in order to recover the existing surface groups:
 
 1. **Create** a new project.
@@ -33,19 +57,32 @@ The 'bad' 3D model is already divided into 10 surface groups corresponding to th
 Create an approximated 3D model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. figure:: images/Tutorial/Screenshot_2_tutorial_2.PNG
+   :align: center
+   :width: 500px
+
+   Generate approximate geometry in I-Simpa
+
 1. **Choose** 'Import new scene' in the 'File' menu and **Select** the same 3D scene ``Elmia.ply``. The "Loading 3D Scene" window opens.
 2. **Select** the 'Average model remesh' option and **Set** '1.' (1 m) for the parameter 'Association maximum distance'. Valid with 'OK'. The 'Mesh correction computation' window is displayed.
-3. **Set** to 6 for the 'Model solving' paremeter. Using this value, the original 3D scene will be filled with :math:`2^6` cubes and **Valid** all options with 'OK'. A new windows is displayed, showing all closed 3D volume in the scene.
+3. **Set** to 6 for the 'Model solving' paremeter. Using this value, the original 3D scene will be filled with :math:`2^6` cubes and **Valid** all options with 'Next'. A new windows is displayed, showing all closed 3D volume in the scene.
 4. **Select** the volume that corresponds to the interior volume of the scene. In the present example, select the volume '9624 m3' and valid with 'Finish'. A new 3D scene, an approximate scene, is created and displays n the 3D view.
 
 .. warning::
 
 	The Average model remesh operation can only be used simultaneously on a single volume of the scene. If the scene contains several closed volumes, the user must retain only one.
 
-5. In this operation, some of the faces of the new scene are not automatically assigned to surface groups. A new surfaces group 'model' is created and contains unassigned surfaces, which must then be redistributed to the corresponding groups. **Select** and **Hold** the 'model' group and **Move** it to the 'interiorwall' surfaces group. You can delete the group 'model' once it is empty.
-6. To verify that the model correction has been effective, you can generate a meshing of the scene: in the 'Calculation' tab, **Open** the properties of the 'Meshing' element of the SPPS code and **Uncheck** the 'Scene correction before meshing' (since the 3D scene is already optimized). In the `'Meshing' toolbar_`, **Click** on the specific icon to generate the meshing. **Choose** SPPS in the new windows that is displayed and **Valid** with 'OK'. The meshing is displayed on the 3D view: you can check the 'x', 'y' or 'z' boxes in the Meshing toolbar to choose a axis and use the 'Slider' cursor to move the meshing.
+.. 5. In this operation, some of the faces of the new scene are not automatically assigned to surface groups. A new surfaces group 'model' is created and contains unassigned surfaces, which must then be redistributed to the corresponding groups. **Select** and **Hold** the 'model' group and **Move** it to the 'interiorwall' surfaces group. You can delete the group 'model' once it is empty.
+
+5. To verify that the model correction has been effective, you can generate a meshing of the scene: in the 'Calculation' tab, **Open** the properties of the 'Meshing' element of the SPPS code and **Uncheck** the 'Scene correction before meshing' (since the 3D scene is already optimized). In the `'Meshing' toolbar`_, **Click** on the specific icon to generate the meshing. **Choose** SPPS in the new windows that is displayed and **Valid** with 'OK'. The meshing is displayed on the 3D view: you can check the 'x', 'y' or 'z' boxes in the Meshing toolbar to choose a axis and use the 'Slider' cursor to move the meshing.
 
 .. _`'Meshing' toolbar`: toolbars.html#toolbar-meshing
+
+.. figure:: images/Tutorial/Screenshot_3_tutorial_2.PNG
+   :align: center
+   :width: 500px
+
+   Generate a meshing in I-Simpa to verify the consistency of the 3D model
 
 Define sound sources
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -85,10 +122,17 @@ The present study from the Round Robin II, provides the materials in CATT-Acoust
 
 .. _`define surfaces`: tutorial_teaching_room.html#define-surfaces
 
+
+.. figure:: images/Tutorial/Screenshot_4_tutorial_2.PNG
+   :align: center
+   :width: 500px
+
+   3D Model in I-Simpa: sources, punctual receivers, surfaces receivers, material affectation
+
 SPPS calculation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. Imported materials are only given for octaves between 125 Hz and 4000 Hz. The calculation must therefore be limited to these frequencies. In the 'Calculation' tab of the project, **Unfold** the 'SPPS' element, then **Right click** the 'Frequency bands' element and **Select** the option 'Automatic selection', 'Octave', 'Building/Road [125-4000Hz]'.
+1. Imported materials are only given for octaves between 125 Hz and 4000 Hz. The calculation must therefore be limited to these frequencies. In the 'Calculation' tab of the project, **Unfold** the 'SPPS' element, then **Right click** the 'Frequency bands' element and **Select** the option 'Automatic selection', 'Octave', 'Building/Road [125-4000] Hz'.
 2. In the 'Meshing' element, **Uncheck** the element 'Scene correction before meshing'.
 3. In the 'Properties' element, **Set**:
 	a. '0.005' to the 'Time step (s)' element;
@@ -97,9 +141,26 @@ SPPS calculation
 4. **Uncheck** the 'Export surface receivers for each frequency band' (to limit the size of the resulting files).
 5. **Right click** on the 'SPPS' and **Select** 'Run calculation' to start the simulation.
 
+.. Note::
+
+	The computation time depens mainly of the number of particles, the number of sound sources and frequency bands, as well as the choice of the calculation method ('Energetic' need more computation time than 'Probilistic'). In the present tutorial, using 100 000 particles allows to obtain quick results. However, it should not be enough to obtain detailled results. Increasing the number of partticles to 1 million could give more pertinent results.
+
+
 Exploring the results
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Follow the same procedures as the 'Study of a teaching room' tutorial for `exploring the results`_.
 
 .. _`exploring the results`: tutorial_teaching_room.html#results
+
+.. figure:: images/Tutorial/tutorial_2_Results_Echogram.PNG
+   :align: center
+   :width: 500px
+
+   Echogramm at receiver R01 (1 million particles per source)
+
+.. figure:: images/Tutorial/tutorial_2_Results_Surface_Map.PNG
+   :align: center
+   :width: 500px
+
+   Noisemap at surface receivers 1 and 2 (1 million particles per source)

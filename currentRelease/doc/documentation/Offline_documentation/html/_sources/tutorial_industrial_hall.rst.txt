@@ -12,6 +12,11 @@ Resources for this tutorial are located in the following folder:
 
 	<I-Simpa installation folder>\doc\tutorial\tutorial 3
 
+This folder contains several files:
+
+- ``tutorial_3.proj``:  I-Simpa project of the present tutorial (without Results)
+- ``Industrial_hall.ply``: 3D hall geometry
+
 .. important::
 
 	If not already done, we suggest you to follow the two previous tutorials, before the present tutorial:
@@ -20,14 +25,14 @@ Resources for this tutorial are located in the following folder:
 	- `Study of the Elmia hall`_
 
 .. _`Study of a teaching room`: tutorial_teaching_room.html
-.. _`Study of the Elmia hall`: tutorial_industrial_hall.html
+.. _`Study of the Elmia hall`: tutorial_elmya_hall.html
 
 Import a geometry
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The first step is to import the geometry of the project. We are interested here in a large industrial hall coupled to a corridor through a door in a wall, this corridor being itself coupled to another room. We assume that walls and doors allow acoustic transmission.
 
-1. In the 'File' menu, **Select** 'Import a new scene', and open the file `LocalIndustriel.ply` located in the correspondng tutorial folder.
+1. In the 'File' menu, **Select** 'Import new scene', and open the file ``LocalIndustriel.ply`` located in the correspondng tutorial folder.
 
 2. In the next windows, **Select** 'OK' without changing the default values.
 
@@ -38,7 +43,7 @@ The first step is to import the geometry of the project. We are interested here 
 Define a machine as a sound source
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-At this step, we want to create the sound sources. In industrial environments, sound sources are often machines or workstations made up of several source points. Since the hall can be made up of several identical machines located at different locations, it is simpler to define a machine in the form of a group of sound sources, which group can then be copied and moved within the room. In our example, we will define machines composed of three sound sources, which will be duplicate. Each sound source will be defined by a pink noise spectrum, with a global level of 80 dB.
+At this step, we want to create the sound sources. In industrial environments, sound sources are often machines or workstations made up of several source points. Since the hall can be made up of several identical machines located at different locations, it is simpler to define a machine in the form of a group of sound sources, which group can then be copied and moved within the room. In our example, we will define machines composed of three sound sources, which will be duplicated. Each sound source will be defined by a pink noise spectrum, with a global level of 80 dB.
 
 1. **Right-click** the 'Data/Sound Sources' element in the 'Scene' tab of the 'Project' windows, and **Select** 'New Group'. By default, the name of the new group is 'Sound sources'.
 2. **Rename** the group as the following 'Milling machine';
@@ -74,7 +79,20 @@ In our example, a parallelepipedal zone has already been provided at the creatio
 
 1. In the 'Scene' tree, **Right-click** on the 'Fitting zone' root folder and **Select** 'Define scene fitted zone';
 
-2. Now you have to define the surfaces of the scene for the corresponding zone. **Select** the surface selection mode on the 'Selection' toolbar;
+2. Now you have to define the surfaces of the scene for the corresponding zone. **Select** the surface selection mode on the 'Selection' toolbar; **Hold** Ctrl keyboard key and **Double-click** on each face element of the the fitting zone. Each face element is selected in red (or another color depending of the I-Simpa Settings). At the same time, the corresponding face elements are also highlighted in the folder 'Surfaces' of the 'Data' tree.
+
+.. note::
+
+Holding the Ctrl keyboard key allow to select all coplanar face element by a double click. You can also use the same procedure, but with one single click, to select each face element independently.
+
+3. In the folder 'Surfaces' of the 'Data' tree, **Select** all highlighted face elements, and **drag/drop** them to the 'Surfaces' element of the fiiting zone. All face elements are then duplicated in this folder.
+
+.. note::
+
+In this example, all face elements were already identified in a given folder 'fitting' of the 'Data' tree, because this volume was build when preparing the 3D geometry. In this case, it was not necessary to follow the step 2 of this procedure. One can directly drag and drop all face elements of the corresponding surface folder.
+
+4. One must also select the face elements of the fitting zone that are located on the ground. **Open** the 'floor' surface group and find the two face elements that correspond to the floor of the fitting zone (**Select** each face element of the group and identify the ones that correspond to the fitting zone). Once the two face elements are identified, **Select** them and drag/drop them to the 'Surfaces' element of the fitting zone.
+
 
 Define a parallelipipedic volume as a fitting zone
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
