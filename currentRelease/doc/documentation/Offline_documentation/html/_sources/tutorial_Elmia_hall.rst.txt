@@ -9,6 +9,16 @@ In this example, we are interested in the case of a theater. This hall, the Elmi
 has been the subject of measurements and a comparative study of several room acoustics software
 (Round Robin II). The user can refer to the following reference for more information: `A Comparison of Room Simulation Software - The 2nd Round Robin on Room Acoustical Computer Simulation, Bork Ingolf, Acta Acustica united with Acustica, Volume 86, Number 6, November/December 2000, pp. 943-956(14) <http://www.ingentaconnect.com/content/dav/aaua/2000/00000086/00000006/art00008?utm_source=TrendMD&utm_medium=cpc&utm_campaign=Acta_Acustica_united_with_Acustica_TrendMD_0>`_.
 
+The goal of this tutorial is to:
+
+-  manipulate face elements
+-  manipulate surface material
+-  manipulate punctual and plane receivers
+-  manipulate omnidirectional sound sources
+-  generate an approximate 3D model
+-  perform calculations with the SPPS codes
+-  display results
+
 Resources for this tutorial are located in the following folder:
 ::
 
@@ -24,6 +34,7 @@ This folder contains several files:
 - ``elmia_coordinates.xls``: coordinates or the 3D scene corners
 - ``material_catt.txt``: surface material definition (CATT-Acoustic software format)
 - ``Auswertung_Phase_II.xls``: All information (software results, measurements, comparisons) of the Round Robin 2 (source: PTB file at https://www.ptb.de/cms/ptb/fachabteilungen/abt1/fb-16/ag-163/round-robin-in-room-acoustics.html)
+- additional PNG images (screenshots)
 
 
 .. important::
@@ -101,7 +112,7 @@ Define punctual receivers
 Define a plane receiver
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The two main locations of the audience will be used to define plan receiver with a height of 50 cm from the audience surface:
+The two main locations of the audience will be used to define two plane receivers with a height of 0.50 m from the audience surface:
 
 1. For the first plane, **Click** on the 'Scene' tab and **Select** the 'New plane receiver' action from the context menu of the 'Surface receivers' root folder. A new plane receiver is added and a grid appears in the 3D view.
 
@@ -133,12 +144,16 @@ SPPS calculation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Imported materials are only given for octaves between 125 Hz and 4000 Hz. The calculation must therefore be limited to these frequencies. In the 'Calculation' tab of the project, **Unfold** the 'SPPS' element, then **Right click** the 'Frequency bands' element and **Select** the option 'Automatic selection', 'Octave', 'Building/Road [125-4000] Hz'.
+
 2. In the 'Meshing' element, **Uncheck** the element 'Scene correction before meshing'.
+
 3. In the 'Properties' element, **Set**:
 	a. '0.005' to the 'Time step (s)' element;
 	b. 'Energetic' to the 'Calculation' element;
 	c. '100 000' to the 'Number of sound particles per source'.
+
 4. **Uncheck** the 'Export surface receivers for each frequency band' (to limit the size of the resulting files).
+
 5. **Right click** on the 'SPPS' and **Select** 'Run calculation' to start the simulation.
 
 .. Note::

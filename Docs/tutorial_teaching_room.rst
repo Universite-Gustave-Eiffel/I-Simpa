@@ -5,14 +5,14 @@ Study of a teaching room
 	:align: right
 	:width: 400px
 
-This tutorial concerns the simple study of a teaching room. The geometry is rectangular of size (6m x 10m x 3m). The goal of this tutorial is to manipulate:
+This tutorial concerns the simple study of a teaching room. The geometry is rectangular of size (6m x 10m x 3m). The goal of this tutorial is to:
 
--  face elements
--  surface material
--  punctual receivers
--  omnidirectional sound sources
--  calculation with the TCR and SPPS codes
--  simple representation of results
+-  manipulate face elements
+-  manipulate surface material
+-  manipulate punctual receivers
+-  manipulate omnidirectional sound sources
+-  perfomr calculations with the TCR and SPPS codes
+-  display results
 
 Resources for this tutorial are located in the following folder:
 ::
@@ -23,6 +23,7 @@ This folder contains several files:
 
 - ``tutorial_1.proj``: I-Simpa project of the present tutorial (with TCR and SPPS results)
 - ``Screenshot_tutorial_1.PNG``: I-Simpa screenshot of tutorial 1
+- additional PNG images (screenshots)
 
 Scene creation
 ~~~~~~~~~~~~~~~~

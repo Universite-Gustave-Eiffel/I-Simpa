@@ -218,6 +218,16 @@
 <p>In this example, we are interested in the case of a theater. This hall, the Elmia hall,
 has been the subject of measurements and a comparative study of several room acoustics software
 (Round Robin II). The user can refer to the following reference for more information: <a class="reference external" href="http://www.ingentaconnect.com/content/dav/aaua/2000/00000086/00000006/art00008?utm_source=TrendMD&amp;utm_medium=cpc&amp;utm_campaign=Acta_Acustica_united_with_Acustica_TrendMD_0">A Comparison of Room Simulation Software - The 2nd Round Robin on Room Acoustical Computer Simulation, Bork Ingolf, Acta Acustica united with Acustica, Volume 86, Number 6, November/December 2000, pp. 943-956(14)</a>.</p>
+<p>The goal of this tutorial is to:</p>
+<ul class="simple">
+<li>manipulate face elements</li>
+<li>manipulate surface material</li>
+<li>manipulate punctual and plane receivers</li>
+<li>manipulate omnidirectional sound sources</li>
+<li>generate an approximate 3D model</li>
+<li>perform calculations with the SPPS codes</li>
+<li>display results</li>
+</ul>
 <p>Resources for this tutorial are located in the following folder:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">I</span><span class="o">-</span><span class="n">Simpa</span> <span class="n">installation</span> <span class="n">folder</span><span class="o">&gt;</span>\<span class="n">doc</span>\<span class="n">tutorial</span>\<span class="n">tutorial</span> <span class="mi">2</span>
 </pre></div>
@@ -232,6 +242,7 @@ has been the subject of measurements and a comparative study of several room aco
 <li><code class="docutils literal notranslate"><span class="pre">elmia_coordinates.xls</span></code>: coordinates or the 3D scene corners</li>
 <li><code class="docutils literal notranslate"><span class="pre">material_catt.txt</span></code>: surface material definition (CATT-Acoustic software format)</li>
 <li><code class="docutils literal notranslate"><span class="pre">Auswertung_Phase_II.xls</span></code>: All information (software results, measurements, comparisons) of the Round Robin 2 (source: PTB file at <a class="reference external" href="https://www.ptb.de/cms/ptb/fachabteilungen/abt1/fb-16/ag-163/round-robin-in-room-acoustics.html">https://www.ptb.de/cms/ptb/fachabteilungen/abt1/fb-16/ag-163/round-robin-in-room-acoustics.html</a>)</li>
+<li>additional PNG images (screenshots)</li>
 </ul>
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
@@ -295,7 +306,7 @@ has been the subject of measurements and a comparative study of several room aco
 </div>
 <div class="section" id="define-a-plane-receiver">
 <h2>Define a plane receiver<a class="headerlink" href="#define-a-plane-receiver" title="Permalink to this headline">¶</a></h2>
-<p>The two main locations of the audience will be used to define plan receiver with a height of 50 cm from the audience surface:</p>
+<p>The two main locations of the audience will be used to define two plane receivers with a height of 0.50 m from the audience surface:</p>
 <ol class="arabic simple">
 <li>For the first plane, <strong>Click</strong> on the ‘Scene’ tab and <strong>Select</strong> the ‘New plane receiver’ action from the context menu of the ‘Surface receivers’ root folder. A new plane receiver is added and a grid appears in the 3D view.</li>
 <li>The 3 points defining the plane receiver must then be placed at the level of the two main locations of the audience, defined by the surfaces group “audience”. To do this, <strong>Use</strong> the ‘Define via 3D view’ action of the context menu associated with the ‘Vertex A’, ‘Vertex B’ and ‘Vertex C’ elements of the surface receiver property. <strong>Set</strong> the positions of the vertices of the plane receiver to: A(11.93,-5.66,1.16), B(11.93,5.73,1.13), C(29.56,5.79,5.25).</li>

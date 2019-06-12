@@ -154,7 +154,11 @@ Properties
 
 .. warning::
 
-	Absorption and transmission loss are linked together. Since transmission is a part of the absorption, the transmission loss can not larger than the absorption coefficient. For example, for a given absorption coefficient of 0.2, the transmission loss must be smaller than 20 dB (i.e. 0.2=10^(20/10)). If the transmission loss value is larger than the possible absorption, the absorption coefficient is automatically adjusted. If the absorption coefficient is changed, the transmission loss can be automatically adjusted if necessary.
+	**Absorption and transmission loss are linked together**. Since transmission is a part of the absorption, the transmission loss can not larger than the absorption coefficient. For example, for a given absorption coefficient of 0.2, the transmission loss must be smaller than 20 dB (i.e. 0.2=10^(20/10)).
+
+	- If the transmission loss value is larger than the given absorption, the absorption coefficient is automatically adjusted.
+
+	- If the absorption coefficient is changed, the transmission loss can be automatically adjusted if necessary.
 
 Spectrum
 ------------

@@ -57,9 +57,12 @@ Calculation code characteristics
    * - Type/characteristics
      - `SPPS code`_
      - `TCR code`_
-   * - Punctual sound source
-     - ✅ (with complex directvity)
-     - ✅ (omnidirectionnal)
+   * - Punctual sound source : omnidirectionnal
+     - ✅
+     - ✅
+   * - Punctual sound source : complex directivity
+     - ✅
+     - -
    * - Surface sound source
      - -
      - -
@@ -124,9 +127,15 @@ Calculation code characteristics
    * - Spectrum
      - ✅ (total, per sound source)
      - -
-   * - Sound level map (on surface receivers)
-     - ✅ (instantaneaous/cumulative, cumulated)
-     - ✅ (cumulated)
+   * - Sound level map (on surface receivers) : instantaneaous
+     - ✅
+     - -
+   * - Sound level map (on surface receivers) : cumulative
+     - ✅
+     - -
+   * - Sound level map (on surface receivers) : cumulated
+     - ✅
+     - ✅
    * - Acoustical parameters map (on surface receivers)
      - ✅
      - -

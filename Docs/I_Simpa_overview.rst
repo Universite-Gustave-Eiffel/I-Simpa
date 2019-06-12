@@ -250,4 +250,4 @@ Tetrahedric meshing
 	:width: 140px
 
 Fitting zone
-	Definition of volumes with fitting objects characterized by probabilistic parameters (mean free path, absorption, diffusion law).
+	Definition of volumes with fitting objects characterized by probabilistic parameters (:term:`mean free path`, absorption, diffusion law).

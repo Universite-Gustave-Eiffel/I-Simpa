@@ -101,8 +101,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#define-a-scene-volume-as-a-fitting-zone">Define a scene volume as a fitting zone</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#define-a-parallelipipedic-volume-as-a-fitting-zone">Define a parallelipipedic volume as a fitting zone</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#define-surface-materials">Define surface materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#insert-a-lne-of-punctual-receivers">Insert a lne of punctual receivers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#define-a-surface-receiver">Define a surface receiver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#insert-a-line-of-punctual-receivers">Insert a line of punctual receivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#define-a-plane-receiver">Define a plane receiver</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#spps-calculation">SPPS calculation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#compare-two-simulations">Compare two simulations</a></li>
 </ul>
@@ -213,10 +213,14 @@
             
   <div class="section" id="study-of-an-industrial-room">
 <h1>Study of an industrial room<a class="headerlink" href="#study-of-an-industrial-room" title="Permalink to this headline">¶</a></h1>
-<p>In this example, we are interested in the case of an industrial hall coupled with other rooms. This hall is composed of two identical noisy machines and two fitting zones (zones made of many objects that act as acoustics scaterrers). The purpose of this tutorial is:</p>
+<p>In this example, we are interested in the case of an industrial hall coupled with other rooms. This hall is composed of two identical noisy machines and two fitting zones (zones made of many objects that act as acoustics scaterrers). The purpose of this tutorial is to:</p>
 <ul class="simple">
-<li>to illustrate the creation of machines</li>
+<li>illustrate the creation of machines</li>
 <li>illustrate the creation of fitting zones</li>
+<li>create new surface Materials</li>
+<li>create a line of receivers</li>
+<li>create a plane receiver</li>
+<li>perform calculations using the SPPS code</li>
 <li>study the effect of changing a material on a wall of the industrial hall, on the sound field</li>
 </ul>
 <p>Resources for this tutorial are located in the following folder:</p>
@@ -227,6 +231,7 @@
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">tutorial_3.proj</span></code>:  I-Simpa project of the present tutorial (without Results)</li>
 <li><code class="docutils literal notranslate"><span class="pre">Industrial_hall.ply</span></code>: 3D hall geometry</li>
+<li>additional PNG images (screenshots)</li>
 </ul>
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
@@ -294,26 +299,316 @@
 </ol>
 <p>In this example, all face elements were already identified in a given folder ‘fitting’ of the ‘Data’ tree, because this volume was build when preparing the 3D geometry. In this case, it was not necessary to follow the step 2 of this procedure. One can directly drag and drop all face elements of the corresponding surface folder.</p>
 <ol class="arabic simple" start="4">
-<li>One must also select the face elements of the fitting zone that are located on the ground. <strong>Open</strong> the ‘floor’ surface group and find the two face elements that correspond to the floor of the fitting zone (<strong>Select</strong> each face element of the group and identify the ones that correspond to the fitting zone). Once the two face elements are identified, <strong>Select</strong> them and drag/drop them to the ‘Surfaces’ element of the fitting zone.</li>
+<li>One must also select the face elements of the fitting zone that are located on the ground. <strong>Open</strong> the ‘floor’ surface group and find the two face elements that correspond to the floor of the fitting zone (<strong>Select</strong> each face element of the group and <strong>Identify</strong> the ones that correspond to the fitting zone). Once the two face elements are identified, <strong>Select</strong> them and drag/drop them to the ‘Surfaces’ element of the fitting zone.</li>
+<li><strong>Define</strong> the ‘Acoustic parameters’ of the fitted zone, with 0.25 for ‘Alpha’ (absorption coefficient of the obstacles), 0.5 m for ‘Lambda’ (mean free path in the fitted zone) and ‘Uniform reflection’. See the SPPS documentation for more information about acoustic parameters of fitted zones.</li>
 </ol>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>When you define value in a spreadsheet (for example ‘Alpha’ in the example above), you can duplicate the value in all the column (i.e. frequency bands) by selecting ‘Set the same value’&gt;’To the column’ after a Right-Click on the corresponding value.</p>
+<p class="last">You can also define an average value by setting a value to ‘Average’ (last row of the spreadsheet), which will define the same value for all the rows (i.e. frequency bands).</p>
+</div>
 </div>
 <div class="section" id="define-a-parallelipipedic-volume-as-a-fitting-zone">
 <h2>Define a parallelipipedic volume as a fitting zone<a class="headerlink" href="#define-a-parallelipipedic-volume-as-a-fitting-zone" title="Permalink to this headline">¶</a></h2>
+<p>One may create a fitting zone as a parallelipipedic volume directly within I-Simpa. Such volume is defined by creating the two opposite corners of the volume. In the following example, one consider a fitting zone made of chairs.</p>
+<ol class="arabic simple">
+<li><strong>Right-Click</strong> on the ‘Fitted zone’ element of the ‘Data’ tree, and <strong>Select</strong> ‘Define rectangular fitted zone’. A new fitted zone is created.</li>
+<li><strong>Define</strong> the ‘Position’ element (coordinates) of the opposite corners of the fitting zone, ‘Origin volume’ and ‘Destination volume’, as (13,4,0) and (18,1,1.2) respectively.</li>
+<li><strong>Define</strong> the ‘Acoustic parameters’ of the fitted zone, with 0.15 for ‘Alpha’ (absorption coefficient of the obstacles), 0.3 m for ‘Lambda’ (mean free path in the fitted zone) and ‘Uniform reflection’.</li>
+</ol>
 </div>
 <div class="section" id="define-surface-materials">
 <h2>Define surface materials<a class="headerlink" href="#define-surface-materials" title="Permalink to this headline">¶</a></h2>
+<p>User can define specific material for the project.</p>
+<ol class="arabic simple">
+<li><strong>Unfold</strong> the ‘Materials’ element of the ‘Project database’ element of the ‘Project’ tree and <strong>Right-Click</strong> on the ‘User’ element. <strong>Select</strong> ‘New material’. A ‘New material’ is created. <strong>Rename</strong> the name of the corresponding material to ‘Trans_material’.</li>
+<li><strong>Select</strong> the ‘Material spectrum’ element to display the acoustic parameters of the corresponding material. <strong>Set</strong> the values of each parameters according to the following table.</li>
+</ol>
+<table border="1" class="colwidths-given docutils align-center" id="id3">
+<caption><span class="caption-text">Acoustical properties of the ‘Trans_material’ material</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="20%" />
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="20%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Frequency bands</th>
+<th class="head">Absorption</th>
+<th class="head">Diffusion</th>
+<th class="head">Transmission</th>
+<th class="head">Loss (dB)</th>
+<th class="head">Diffusion law</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>125 Hz</td>
+<td>0.11</td>
+<td>0.3</td>
+<td>Check</td>
+<td>10</td>
+<td>Lambert</td>
+</tr>
+<tr class="row-odd"><td>250 Hz</td>
+<td>0.08</td>
+<td>0.4</td>
+<td>Check</td>
+<td>11</td>
+<td>Lambert</td>
+</tr>
+<tr class="row-even"><td>500 Hz</td>
+<td>0.07</td>
+<td>0.5</td>
+<td>Check</td>
+<td>12</td>
+<td>Lambert</td>
+</tr>
+<tr class="row-odd"><td>1000 Hz</td>
+<td>0.06</td>
+<td>0.6</td>
+<td>Check</td>
+<td>13</td>
+<td>Lambert</td>
+</tr>
+<tr class="row-even"><td>2000 Hz</td>
+<td>0.09</td>
+<td>0.7</td>
+<td>Check</td>
+<td>14</td>
+<td>Lambert</td>
+</tr>
+<tr class="row-odd"><td>‘4000’ Hz</td>
+<td>0.05</td>
+<td>0.8</td>
+<td>Check</td>
+<td>15</td>
+<td>Lambert</td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="3">
+<li><strong>Go to</strong> the ‘Surfaces’ folder in the ‘Data’ tree. <strong>Select</strong> the ‘trans_ro1’ surface to display the coresponding ‘Properties’ and <strong>set</strong> the ‘Material’ parameter to the ‘Trans_material’ material. <a href="#id1"><span class="problematic" id="id2">**</span></a>Repeat**this procedure for the ‘trans_room’ surface group.</li>
+<li><strong>Create</strong> a new material ‘Open_door’ using the same procedure as for ‘Trans_material’, using the following parameters, and <strong>Set</strong> this material to the ‘door_room1’ and ‘door_room2’ surface groups.</li>
+</ol>
+<table border="1" class="colwidths-given docutils align-center" id="id4">
+<caption><span class="caption-text">Acoustical properties of the ‘Open_door’ material</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="20%" />
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="20%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Frequency bands</th>
+<th class="head">Absorption</th>
+<th class="head">Diffusion</th>
+<th class="head">Transmission</th>
+<th class="head">Loss (dB)</th>
+<th class="head">Diffusion law</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>125 Hz</td>
+<td>1.0</td>
+<td>0</td>
+<td>Check</td>
+<td>0</td>
+<td>Can not be defined</td>
+</tr>
+<tr class="row-odd"><td>250 Hz</td>
+<td>1.0</td>
+<td>0</td>
+<td>Check</td>
+<td>0</td>
+<td>Can not be defined</td>
+</tr>
+<tr class="row-even"><td>500 Hz</td>
+<td>1.0</td>
+<td>0</td>
+<td>Check</td>
+<td>0</td>
+<td>Can not be defined</td>
+</tr>
+<tr class="row-odd"><td>1000 Hz</td>
+<td>1.0</td>
+<td>0</td>
+<td>Check</td>
+<td>0</td>
+<td>Can not be defined</td>
+</tr>
+<tr class="row-even"><td>2000 Hz</td>
+<td>1.0</td>
+<td>0</td>
+<td>Check</td>
+<td>0</td>
+<td>Can not be defined</td>
+</tr>
+<tr class="row-odd"><td>‘4000’ Hz</td>
+<td>1.0</td>
+<td>0</td>
+<td>Check</td>
+<td>0</td>
+<td>Can not be defined</td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="5">
+<li>For all other surfaces groups, <strong>Set</strong> the material to ‘30% absorbing’ from the ‘Reference materials’ database.</li>
+</ol>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">For all these surface groups, since the surface material is the same, user can move all surface elements to a given surface group and set the material to this surface group only.</p>
 </div>
-<div class="section" id="insert-a-lne-of-punctual-receivers">
-<h2>Insert a lne of punctual receivers<a class="headerlink" href="#insert-a-lne-of-punctual-receivers" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The surface elements that have been defined as fitting surfaces (i.e. ‘fitting’ surface group) are consider as perfeclty transparent by default. CAUTION</p>
 </div>
-<div class="section" id="define-a-surface-receiver">
-<h2>Define a surface receiver<a class="headerlink" href="#define-a-surface-receiver" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="insert-a-line-of-punctual-receivers">
+<h2>Insert a line of punctual receivers<a class="headerlink" href="#insert-a-line-of-punctual-receivers" title="Permalink to this headline">¶</a></h2>
+<p>Instead of creating punctual receivers individually, you can directly create a line (or an grid) of punctual sound sources.</p>
+<ol class="arabic simple">
+<li><strong>Go to</strong> the ‘Punctual receivers’ folder in the ‘Data’ tree and <strong>Right-Click</strong> on it. Thus, <strong>Select</strong> the ‘Create a receveir grid’ option.</li>
+<li>A spreadsheed is displayed to define the receiver grid parameters. See <a class="reference external" href="manipulate_sources_receivers.html">the corresponding documentation for more information concerning these parameters</a>. <strong>Set</strong> the following values:</li>
+</ol>
+<table border="1" class="colwidths-given docutils align-center" id="id5">
+<caption><span class="caption-text">Receiver grid parameters</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="70%" />
+<col width="30%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Parameter</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>‘Col step x (m)’</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>‘Col step y (m)’</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td>‘Col step z (m)’</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td>‘Number of rows5</td>
+<td>5</td>
+</tr>
+<tr class="row-even"><td>‘Number of cols’</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>‘Row step x (m)’</td>
+<td>2</td>
+</tr>
+<tr class="row-even"><td>‘Row step y (m)’</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td>‘Row step z (m)’</td>
+<td>0</td>
+</tr>
+<tr class="row-even"><td>‘Starting position x (m)’</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td>‘Starting position y (m)’</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td>‘Starting position z (m)’</td>
+<td>1.6</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">To create a grid of receivers instead of a line of receivers in the example above, change the value of the ‘Number of cols’ parameter to 2 or more.</p>
+</div>
+</div>
+<div class="section" id="define-a-plane-receiver">
+<h2>Define a plane receiver<a class="headerlink" href="#define-a-plane-receiver" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Following the same procedure than for the <a class="reference external" href="tutorial_Elmia_hall.html#define-a-plane-receiver">Elmia tuturial</a>, <strong>Create</strong> a ‘New plane receiver’, using the default parameters.</li>
+</ol>
 </div>
 <div class="section" id="spps-calculation">
 <h2>SPPS calculation<a class="headerlink" href="#spps-calculation" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><strong>Go to</strong> the calculation tab of the ‘Project’ windows, <strong>Unfold</strong> the ‘SPPS’ code and <strong>Select</strong> the ‘Properties’ element. It displays a spreadsheet with all SPPS calculation parameters.</li>
+<li><strong>Set</strong> the parameters to the corresponding values (<a class="reference external" href="code_configuration_SPPS.html#calculation-parameters">see the correspondig documentation for more information about these parameters</a>):</li>
+</ol>
+<table border="1" class="colwidths-given docutils align-center" id="id6">
+<caption><span class="caption-text">SPPS calculation parameters (tutorial 3)</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="70%" />
+<col width="30%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Parameter</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>‘Active calculation of atmospheric absorption’</td>
+<td>Check</td>
+</tr>
+<tr class="row-odd"><td>‘Active calculation of diffusion by fitting objects’</td>
+<td>Check</td>
+</tr>
+<tr class="row-even"><td>‘Active calculation of direct field only’</td>
+<td>Uncheck</td>
+</tr>
+<tr class="row-odd"><td>‘Active calculation transmission’</td>
+<td>Check</td>
+</tr>
+<tr class="row-even"><td>‘Calculation method’</td>
+<td>Energetic</td>
+</tr>
+<tr class="row-odd"><td>‘Echogram per source’</td>
+<td>Uncheck</td>
+</tr>
+<tr class="row-even"><td>‘Export surface receivers for each frequency band’</td>
+<td>Uncheck</td>
+</tr>
+<tr class="row-odd"><td>‘Limit value of the particle extinction: ratio 10^n’</td>
+<td>5</td>
+</tr>
+<tr class="row-even"><td>‘Number of sound particles per source’</td>
+<td>150 000</td>
+</tr>
+<tr class="row-odd"><td>‘Number of sound particles per source (display)’</td>
+<td>0</td>
+</tr>
+<tr class="row-even"><td>‘Random initialization number’</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td>‘Receiver radius (m)’</td>
+<td>O.31</td>
+</tr>
+<tr class="row-even"><td>‘Simulation length (s)’</td>
+<td>2</td>
+</tr>
+<tr class="row-odd"><td>‘Surface receiver export’</td>
+<td>Soundmap: SPL</td>
+</tr>
+<tr class="row-even"><td>‘Time step (s)’</td>
+<td>0.002</td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="3">
+<li><strong>Right click</strong> the ‘Frequency bands’ element and <strong>Select</strong> the option ‘Automatic selection’, ‘Octave’, ‘Building/Road [125-4000] Hz’.</li>
+<li><strong>Run</strong> the calculation code by right-clicking on the ‘SPPS’ element and selecting ‘Run calculation’</li>
+</ol>
 </div>
 <div class="section" id="compare-two-simulations">
 <h2>Compare two simulations<a class="headerlink" href="#compare-two-simulations" title="Permalink to this headline">¶</a></h2>
+<p>Instead of creating punctual receivers individually, you can directly create a line of punctual sound sources.</p>
+<ol class="arabic simple">
+<li></li>
+</ol>
 </div>
 </div>
 

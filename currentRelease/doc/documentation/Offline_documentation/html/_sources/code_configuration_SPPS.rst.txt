@@ -78,7 +78,7 @@ Calculation parameters
 
 		Most of time, you need to consider only few hundreds or thousands particles for the animation. Incerasing this number, will decrease the memory resources.
 
-- 'Random seed'
+- 'Random initialization number'
 	Initialize the random number series. If you select '0', the random series will always be the same.
 
 	.. tip::

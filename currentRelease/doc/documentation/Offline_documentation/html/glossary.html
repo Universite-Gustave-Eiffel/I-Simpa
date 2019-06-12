@@ -116,15 +116,17 @@
 <li class="toctree-l1"><a class="reference internal" href="surface_selection.html">Surface selection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="manipulate_sources_receivers.html">Manipulating sources and receivers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_directivity.html">Using directivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_charts.html">Creating charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_charts.html#chart-options">Chart Options</a></li>
 </ul>
 <p class="caption"><span class="caption-text">SPPS Code</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">SPPS Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">SPPS calculation code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="code_TCR.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_TCR.html">TCR Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_TCR.html">TCR calculation code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Appendices</span></p>
@@ -199,12 +201,14 @@
   <div class="section" id="glossary">
 <h1>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h1>
 <dl class="glossary docutils">
-<dt id="term-mean-free-path">Mean free path</dt>
-<dd>Mean distance between two collisions (unit: meter). The mean free path is at the basis of the Classical Theory of Reverberation, and allow to estimate the reverberant (diffuse) field and several room acoustics indicators.</dd>
-<dt id="term-absorption-coefficient">Absorption coefficient</dt>
+<dt id="term-absorption-coefficient">absorption coefficient</dt>
 <dd>Absorption coefficient of an object or a material. The value of the absorption coefficient is a real number between 0. (no absorption, <em>i.e.</em> perfect reflection) and 1 (total absorption, <em>i.e.</em> no reflection).</dd>
-<dt id="term-impulse-response">Impulse response</dt>
-<dd>Impulse response</dd>
+<dt id="term-diffusion-coefficient">diffusion coefficient</dt>
+<dd>The diffusion coefficient is used in room acoustics software to model the surface diffusivity, such as room wall. When this coefficient is ste to 1, it means that surfaces are 100% diffuse (i.e. generate diffuse reflection only), while, when this coefficient is set to 0, sound reflection are perfectly specular.</dd>
+<dt id="term-mean-free-path">mean free path</dt>
+<dd><p class="first">Mean distance between two collisions (unit: meter). The mean free path is at the basis of the Classical Theory of Reverberation, and allow to estimate the reverberant (diffuse) field and several room acoustics indicators. It statistically describes the distance between two successive wall reflections in a room.</p>
+<p class="last">It can also be used to model the acoustic diffusion in a volume that contains many obstacles (fittings). In this case, it statistically describes the distance between two successive collisions with the fittings.</p>
+</dd>
 </dl>
 </div>
 

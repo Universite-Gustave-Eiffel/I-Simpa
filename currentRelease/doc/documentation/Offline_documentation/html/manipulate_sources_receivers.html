@@ -122,15 +122,17 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using_directivity.html">Using directivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_charts.html">Creating charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_charts.html#chart-options">Chart Options</a></li>
 </ul>
 <p class="caption"><span class="caption-text">SPPS Code</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">SPPS Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">SPPS calculation code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="code_TCR.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_TCR.html">TCR Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_TCR.html">TCR calculation code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Appendices</span></p>
@@ -235,40 +237,24 @@ sources. Users have to specify:</p>
 <p>I-Simpa can creates automatically 2D grids of punctual receivers. Users
 have to specify:</p>
 <ul class="simple">
-<li><strong>‘Step (line) [x,y,z]’</strong>: define the space steps (vectors) according
-the line direction;</li>
-<li><strong>‘Step (row) [x,y,z]’</strong>: define the space steps (vectors) according
-the row direction;</li>
-<li><strong>‘Number of lines’</strong>: define the number of lines (integer)</li>
-<li><strong>‘Number of rows’</strong>: define the number of rows (integer);</li>
-<li><strong>‘Start position (x,y,z)’</strong>: define the starting position (x,y,z) of
-the grid.</li>
+<li>a column (col) vector and a row vector to define the grid plane, as well as, the spatial step between two receivers</li>
+<li>the starting position (origin) of the grid,</li>
+<li>and the number of rows and columns of the grid.</li>
 </ul>
-<p>Examples:</p>
-<blockquote>
-<div><ul>
-<li><p class="first">Example 1:</p>
-<blockquote>
-<div><ul class="simple">
-<li><strong>‘Step (line)’</strong>=[0,1,0]</li>
-<li><strong>‘Step (row)’</strong>=[1,0,0]</li>
-<li><strong>‘Number of lines’</strong>=4</li>
-<li><strong>‘Number of rows’</strong>=5</li>
+<p>Grid Parameters:</p>
+<ul class="simple">
+<li><strong>‘Col step x (m)’</strong>: define the x coordinate of the column vector;</li>
+<li><strong>‘Col step y (m)’</strong>: define the y coordinate of the column vector;</li>
+<li><strong>‘Col step z (m)’</strong>: define the z coordinate of the column vector;</li>
+<li><strong>‘Number of cols’</strong>: define the number of columns;</li>
+<li><strong>‘Number of rows’</strong>: define the number of rows;</li>
+<li><strong>‘Row step x (m)’</strong>: define the x coordinate of the row vector;</li>
+<li><strong>‘Row step y (m)’</strong>: define the y coordinate of the row vector;</li>
+<li><strong>‘Row step z (m)’</strong>: define the z coordinate of the row vector;</li>
+<li><strong>‘Starting position x (m)’</strong>: define the x coordinate of the origin of the grid;</li>
+<li><strong>‘Starting position y (m)’</strong>: define the y coordinate of the origin of the grid;</li>
+<li><strong>‘Starting position z (m)’</strong>: define the z coordinate of the origin of the grid;</li>
 </ul>
-</div></blockquote>
-</li>
-<li><p class="first">Example 2:</p>
-<blockquote>
-<div><ul class="simple">
-<li><strong>‘Step (line)’</strong>=[0,1.5,0]</li>
-<li><strong>‘Step (row)’</strong>=[0.5,0.5,0]</li>
-<li><strong>‘Number of lines’</strong>=4</li>
-<li><strong>‘Number of rows’</strong>=5</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
 </div>
 </div>
 
