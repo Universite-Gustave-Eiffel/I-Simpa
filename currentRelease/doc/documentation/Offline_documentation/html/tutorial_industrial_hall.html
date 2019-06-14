@@ -293,11 +293,17 @@
 <li>In the ‘Scene’ tree, <strong>Right-click</strong> on the ‘Fitting zone’ root folder and <strong>Select</strong> ‘Define scene fitted zone’;</li>
 <li>Now you have to define the surfaces of the scene for the corresponding zone. <strong>Select</strong> the surface selection mode on the ‘Selection’ toolbar; <strong>Hold</strong> Ctrl keyboard key and <strong>Double-click</strong> on each face element of the the fitting zone. Each face element is selected in red (or another color depending of the I-Simpa Settings). At the same time, the corresponding face elements are also highlighted in the folder ‘Surfaces’ of the ‘Data’ tree.</li>
 </ol>
-<p>Holding the Ctrl keyboard key allow to select all coplanar face element by a double click. You can also use the same procedure, but with one single click, to select each face element independently.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Holding the Ctrl keyboard key allow to select all coplanar face element by a double click. You can also use the same procedure, but with one single click, to select each face element independently.</p>
+</div>
 <ol class="arabic simple" start="3">
 <li>In the folder ‘Surfaces’ of the ‘Data’ tree, <strong>Select</strong> all highlighted face elements, and <strong>drag/drop</strong> them to the ‘Surfaces’ element of the fiiting zone. All face elements are then duplicated in this folder.</li>
 </ol>
-<p>In this example, all face elements were already identified in a given folder ‘fitting’ of the ‘Data’ tree, because this volume was build when preparing the 3D geometry. In this case, it was not necessary to follow the step 2 of this procedure. One can directly drag and drop all face elements of the corresponding surface folder.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In this example, all face elements were already identified in a given folder ‘fitting’ of the ‘Data’ tree, because this volume was build when preparing the 3D geometry. In this case, it was not necessary to follow the step 2 of this procedure. One can directly drag and drop all face elements of the corresponding surface folder.</p>
+</div>
 <ol class="arabic simple" start="4">
 <li>One must also select the face elements of the fitting zone that are located on the ground. <strong>Open</strong> the ‘floor’ surface group and find the two face elements that correspond to the floor of the fitting zone (<strong>Select</strong> each face element of the group and <strong>Identify</strong> the ones that correspond to the fitting zone). Once the two face elements are identified, <strong>Select</strong> them and drag/drop them to the ‘Surfaces’ element of the fitting zone.</li>
 <li><strong>Define</strong> the ‘Acoustic parameters’ of the fitted zone, with 0.25 for ‘Alpha’ (absorption coefficient of the obstacles), 0.5 m for ‘Lambda’ (mean free path in the fitted zone) and ‘Uniform reflection’. See the SPPS documentation for more information about acoustic parameters of fitted zones.</li>

@@ -1,4 +1,4 @@
-SPPS calculation code
+Using SPPS within I-Simpa
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 SPPS is already embedded in I-Simpa. Follow the next instructions to run a calculation with the SPPS code in I-Simpa.

@@ -150,13 +150,13 @@ SPPS code
 ^^^^^^^^^^^^^^^^^^^^^^
 1. **Unfold** the 'Results' folder in the 'SPPS' folder.
 
-2. **Unfold** the 'Punctual receiver' folder, **Unfold** the folder for a given punctual receiver and **Left click** on one element to display the corresponding results (for example: 'Sound level'). A new window is displayed, showing the results .
+2. **Unfold** the 'Punctual receiver' folder, **Unfold** the folder for a given punctual receiver and **Left click** on one element to display the corresponding results (for example: 'Sound level'). A new window is displayed, showing the results.
 
-3. **Right click** on the 'Sound level' element and **Select** 'Calculate acoustics parameters'. It opens a new window: **Keep** the default values, and **Select** 'OK'. It creates two new elements 'Schroeder curves' and 'Acoustic parameters'. **Select** the new elements to display the corresponding results.
+3. **Right click** on the 'Sound level' element and **Select** 'Calculate acoustics parameters'. It opens a new window: **Keep** the default values, and **Select** 'OK'. It creates two new elements 'Schroeder curves' and 'Acoustic parameters'. **Select** the new elements to display the corresponding results in a spreadsheet.
 
-4. **Right click** on the 'Advanced sound level' element and **Select** 'Calculate acoustics parameters'. It opens a new window: **Keep** the default values, and **Select** 'OK'. It creates one new element 'Advanced acoustic parameters'. **Select** the element to display the corresponding results.
+4. **Right click** on the 'Advanced sound level' element and **Select** 'Calculate acoustics parameters'. It opens a new window: **Keep** the default values, and **Select** 'OK'. It creates a new element 'Advanced acoustic parameters'. **Select** the element to display the corresponding results in a spreadsheet.
 
-5. **Unfold** the surface receiver folder, **Select** the frequency band and **Right click** on the 'Sound level' element and **Choose** 'Load animation', then **Choose** an action (for example: 'Instantaneaous sound level'). It displays the (animated) sound map for the corresponding surface receiver on the 3D view. You can remove the colormap on the 3D view by clicking on the 'Dash' icon, or if required, pause/resume/stop... the animation using the 'Simulation' toolbar.
+5. **Unfold** the surface receiver folder, **Select** the frequency band and **Right click** on the 'Sound level' element and **Choose** 'Load animation', then **Choose** an option (for example: 'Instantaneaous sound level'). It displays the (animated) sound map for the corresponding surface receiver on the 3D view. You can remove the colormap on the 3D view by clicking on the 'Dash' icon, or if required, pause/resume/stop... the animation using the 'Simulation' toolbar.
 
 	- 'Instantaneaous sound level'
 		Shows the time varying sound level (animation)

@@ -138,14 +138,14 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#calculation-tab">‘Calculation’ tab</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#spps-calculation-code">SPPS calculation code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-spps-within-i-simpa">Using SPPS within I-Simpa</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#frequency-bands">Frequency bands</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#meshing">Meshing</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#calculation-parameters">Calculation parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#computational-time-optimization">Computational time optimization</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#tcr-calculation-code">TCR calculation code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-tcr-within-i-simpa">Using TCR within I-Simpa</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id2">Meshing</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id4">Calculation parameters</a></li>
 </ul>
@@ -189,13 +189,15 @@
 </ul>
 <p class="caption"><span class="caption-text">SPPS Code</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">SPPS Presentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">SPPS calculation code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modélisation des phénomènes physiques dans <strong>SPPS</strong></a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="code_TCR.html">TCR Presentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_configuration_TCR.html">TCR calculation code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_TCR.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_configuration_TCR.html">Using TCR within I-Simpa</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Appendices</span></p>
 <ul>
@@ -1368,12 +1370,12 @@ within source groups. A group can contain other groups.</p>
 <p>This tab allows to choose and to define the acoustic calculation. This tab contains all calculation codes that are linked to I-Simpa. By default, two numerical codes are given:</p>
 <ul class="simple">
 <li><dl class="first docutils">
-<dt><a class="reference internal" href="#tcr-calculation-code">TCR calculation code</a></dt>
+<dt><a href="#id5"><span class="problematic" id="id6">`TCR calculation code`_</span></a></dt>
 <dd>Apply the Classical Theory of Reverberation for room acoustics. It applies Sabine and Eyring formulae. This code must be used only for closed spaces.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt><a class="reference internal" href="#spps-calculation-code">SPPS calculation code</a></dt>
+<dt><a href="#id7"><span class="problematic" id="id8">`SPPS calculation code`_</span></a></dt>
 <dd>This code is based on a particle tracing method, in respect with the geometrical and energetical hypothesis. This code can be applied in most of situations in room acoustics, as well as in open field, including urban area.</dd>
 </dl>
 </li>
@@ -1382,14 +1384,14 @@ within source groups. A group can contain other groups.</p>
 <p class="first admonition-title">Important</p>
 <p class="last">Read the corresponding documentation before using these codes.</p>
 </div>
-<div class="section" id="spps-calculation-code">
-<h3>SPPS calculation code<a class="headerlink" href="#spps-calculation-code" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="using-spps-within-i-simpa">
+<h3>Using SPPS within I-Simpa<a class="headerlink" href="#using-spps-within-i-simpa" title="Permalink to this headline">¶</a></h3>
 <p>SPPS is already embedded in I-Simpa. Follow the next instructions to run a calculation with the SPPS code in I-Simpa.</p>
 <p><strong>Double left click</strong> on the TCR calculation code in I-Simpa to display all calculation paramaters:</p>
 <ul class="simple">
 <li><a class="reference internal" href="#frequency-bands">Frequency bands</a> for the selection of the frequency band to be used for the calculation</li>
-<li><a href="#id5"><span class="problematic" id="id6">`Meshing`_</span></a> for the meshing configuration</li>
-<li><a href="#id7"><span class="problematic" id="id8">`Calculation parameters`_</span></a> for the calculation parameters</li>
+<li><a href="#id9"><span class="problematic" id="id10">`Meshing`_</span></a> for the meshing configuration</li>
+<li><a href="#id11"><span class="problematic" id="id12">`Calculation parameters`_</span></a> for the calculation parameters</li>
 </ul>
 <p><strong>Right click</strong> on the selected calculation code to display all possible actions:</p>
 <ul class="simple">
@@ -1675,13 +1677,13 @@ within source groups. A group can contain other groups.</p>
 </ul>
 </div>
 </div>
-<div class="section" id="tcr-calculation-code">
-<h3>TCR calculation code<a class="headerlink" href="#tcr-calculation-code" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="using-tcr-within-i-simpa">
+<h3>Using TCR within I-Simpa<a class="headerlink" href="#using-tcr-within-i-simpa" title="Permalink to this headline">¶</a></h3>
 <p>TCR is already embedded in I-Simpa. Follow the next instructions to run a calculation with the TCR code in I-Simpa.</p>
 <p><strong>Double left click</strong> on the TCR calculation code in I-Simpa to display all calculation parameters:</p>
 <ul class="simple">
-<li><a href="#id9"><span class="problematic" id="id10">`Meshing`_</span></a>, for the meshing configuration</li>
-<li><a href="#id11"><span class="problematic" id="id12">`Calculation parameters`_</span></a>  for the calculation parameters</li>
+<li><a href="#id13"><span class="problematic" id="id14">`Meshing`_</span></a>, for the meshing configuration</li>
+<li><a href="#id15"><span class="problematic" id="id16">`Calculation parameters`_</span></a>  for the calculation parameters</li>
 </ul>
 <p><strong>Right click</strong> on the selected calculation code to display all possible actions:</p>
 <ul class="simple">

@@ -1,4 +1,4 @@
-TCR Presentation
+Presentation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **TCR is a numerical code based on the Classical Theory or Reverberation.**

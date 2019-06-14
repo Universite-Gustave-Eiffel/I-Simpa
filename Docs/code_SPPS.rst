@@ -1,4 +1,4 @@
-SPPS Presentation
+Presentation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **SPPS is a sound particles-tracing code, based on geometrical, energetical and probabilistic approaches.**

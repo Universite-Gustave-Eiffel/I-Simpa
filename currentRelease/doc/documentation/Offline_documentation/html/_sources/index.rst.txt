@@ -36,14 +36,14 @@ the TCR numerical codes (embedded within the I-Simpa software).
 
 .. important::
    - The guide is currently not complete. Additions are underway.
-   - If the present documentation is the 'Offline documentation' you may refer to the online version at http://i-simpa-wiki.readthedocs.io/en/latest/ for an up-to-date documentation
+   - If the present documentation is the 'Offline documentation' you may refer to the online version at http://i-simpa-wiki.readthedocs.io/en/latest/ for an up-to-date documentation.
 
 .. note::
 	-  Some illustrations may referred to previous versions of I-Simpa.
 	-  Depending of your OS, screenchots may differs.
 	-  Some texts and translations in I-Simpa may have changed.
 	-  If you observe some mistakes or errors, please contact us at i-simpa@ifsttar.fr.
-	-  You can also `contribute to the documentation`_
+	-  You can also `contribute to the documentation`_.
 
 .. note::
 	 The official documentation is available in English only.
@@ -99,6 +99,8 @@ the TCR numerical codes (embedded within the I-Simpa software).
 
    code_SPPS
    code_configuration_SPPS
+   code_SPPS_principle
+   code_SPPS_modelling
 
 .. toctree::
    :maxdepth: 2

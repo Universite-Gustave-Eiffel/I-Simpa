@@ -99,6 +99,8 @@ the TCR numerical codes (embedded within the I-Simpa software).
 
    code_SPPS
    code_configuration_SPPS
+   code_SPPS_principle
+   code_SPPS_modelling
 
 .. toctree::
    :maxdepth: 2

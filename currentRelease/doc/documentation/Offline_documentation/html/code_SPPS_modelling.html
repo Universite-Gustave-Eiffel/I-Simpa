@@ -1,0 +1,1015 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Modelling of physical phenomena in SPPS &mdash; I-Simpa 1.3.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Presentation" href="code_TCR.html" />
+    <link rel="prev" title="General principle" href="code_SPPS_principle.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> I-Simpa
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">I-Simpa Presentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="I_Simpa_overview.html">I-Simpa overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="I_Simpa_overview.html#i-simpa-features">I-Simpa features</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_teaching_room.html">Study of a teaching room</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_Elmia_hall.html">Study of the Elmia hall</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_industrial_hall.html">Study of an industrial room</a></li>
+</ul>
+<p class="caption"><span class="caption-text">I-Simpa User Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">(Un)Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="presentation.html">GUI Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="menus.html">Menus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="toolbars.html">Toolbars</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_window.html">‘Project’ window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="properties_window.html">‘Properties’ window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console_window.html">‘Console’ window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main_windows.html">‘Main’ window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_database.html">Project database</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Thematics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="import_options.html">Import options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="import_file_recommandations.html">Recommendations to import a 3D scene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_spectrum.html">Define and use spectrum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="define_position.html">Define a position using the pointer on the 3D view</a></li>
+<li class="toctree-l1"><a class="reference internal" href="surface_selection.html">Surface selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manipulate_sources_receivers.html">Manipulating sources and receivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_directivity.html">Using directivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_charts.html">Creating charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_charts.html#chart-options">Chart Options</a></li>
+</ul>
+<p class="caption"><span class="caption-text">SPPS Code</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Modelling of physical phenomena in <strong>SPPS</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#sound-source-modelling">Sound source modelling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-formalism">General formalism</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#acoustic-directivity-and-probability-density-of-sound-particles-emission">Acoustic directivity and probability density of sound particles emission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#source-power-and-elementary-particle-energy">Source power and elementary particle energy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#onidirectionnal-source">Onidirectionnal source</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#physical-description">Physical description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modeling">Modeling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verification">Vérification</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#source-unidirectionnelle">Source unidirectionnelle</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#description-physique">Description physique</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modelisation">Modélisation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sources-plan-xy-yz-et-xz">Sources «&nbsp;plan&nbsp;» (XY, YZ et XZ)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Description physique</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Modélisation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modelisation-de-la-propagation-acoustique">Modélisation de la propagation acoustique</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#propagation-acoustique">Propagation acoustique</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Description physique</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Modélisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Vérification</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#absorption-atmospherique">Absorption atmosphérique</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">Description physique</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modelisation-aleatoire">Modélisation «&nbsp;aléatoire&nbsp;»</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modelisation-energetique">Modélisation «&nbsp;énergétique&nbsp;»</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">Vérification</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#profil-de-celerite-acoustique">Profil de célérité acoustique</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id12">Description physique</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modele-de-profil-de-celerite">Modèle de profil de célérité</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">Modélisation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#diffusion-par-un-encombrement">Diffusion par un encombrement</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id16">Description physique</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id19">Modélisation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modelisation-des-parois">Modélisation des parois</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id21">Description physique</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modelisation-de-la-reflexion-acoustique">Modélisation de la réflexion acoustique</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id24">Modélisation «&nbsp;aléatoire&nbsp;»</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id25">Modélisation «&nbsp;énergétique&nbsp;»</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#modelisation-des-lois-de-reflexion">Modélisation des lois de réflexion</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id30">Description physique</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id31">Modélisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id32">Description physique</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id33">Modélisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id34">Description physique</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id35">Modélisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id37">Description physique</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id38">Modélisation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#modelisation-de-la-transmission-acoustique">Modélisation de la transmission acoustique</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id39">Description physique</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id40">Modélisation «&nbsp;aléatoire&nbsp;»</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id41">Modélisation «&nbsp;énergétique&nbsp;»</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#verification-de-la-modelisation-des-parois">Vérification de la modélisation des parois</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#calcul-des-niveaux-sonores-aux-points-dobservation">Calcul des niveaux sonores aux points d’observation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#calcul-du-niveau-de-pression-acoustique-au-niveau-dun-recepteur-volumique">Calcul du niveau de pression acoustique au niveau d’un récepteur «&nbsp;volumique&nbsp;»</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vecteur-intensite-au-niveau-dun-recepteur-volumique">Vecteur intensité au niveau d’un récepteur «&nbsp;volumique&nbsp;»</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#calcul-du-niveau-de-pression-acoustique-lateral-au-niveau-dun-recepteur-volumique">Calcul du niveau de pression acoustique «&nbsp;latéral&nbsp;» au niveau d’un récepteur «&nbsp;volumique&nbsp;»</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#calcul-du-niveau-dintensite-sonore-sur-un-recepteur-surfacique">Calcul du niveau d’intensité sonore sur un récepteur «&nbsp;surfacique&nbsp;»</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#calcul-du-niveau-de-pression-acoustique-sur-un-recepteur-surfacique">Calcul du niveau de pression acoustique sur un récepteur «&nbsp;surfacique&nbsp;»</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#calcul-du-niveau-de-pression-acoustique-global-dans-le-modele">Calcul du niveau de pression acoustique global dans le modèle</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">TCR Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="code_TCR.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_configuration_TCR.html">Using TCR within I-Simpa</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendices</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="I_Simpa_standard.html">Standards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">I-Simpa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Modelling of physical phenomena in <strong>SPPS</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/code_SPPS_modelling.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="modelling-of-physical-phenomena-in-spps">
+<h1>Modelling of physical phenomena in <strong>SPPS</strong><a class="headerlink" href="#modelling-of-physical-phenomena-in-spps" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="sound-source-modelling">
+<h2>Sound source modelling<a class="headerlink" href="#sound-source-modelling" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="general-formalism">
+<h3>General formalism<a class="headerlink" href="#general-formalism" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="acoustic-directivity-and-probability-density-of-sound-particles-emission">
+<h4>Acoustic directivity and probability density of sound particles emission<a class="headerlink" href="#acoustic-directivity-and-probability-density-of-sound-particles-emission" title="Permalink to this headline">¶</a></h4>
+<p>From a numerical modelling point of view, the problem of sound emission from a point source is to attribute to the sound particles, at a given moment (which can be the origin of time), the exact position of the source, propagation directions in accordance with the directivity of the source. For example, in the case of an omnidirectional sound source, it is necessary to verify that the sound particles, once emitted, are uniformly distributed over a sphere centred on the source (figure[geo_source]). The first solution that comes to mind is to make a deterministic discretization <a class="footnote-reference" href="#id43" id="id1">[1]</a> of the source’s radiation in spherical coordinates. Nevertheless, such discretization of emission angles causes an artificial concentration of sound particles at the poles of the sphere symbolizing the source.</p>
+<div class="figure" id="id52">
+<a class="reference internal image-reference" href="geo_source.eps"><img alt="[geo\_source]Géométrie élémentaire pour une source sonore. La direction d’émission d’une particule est définie en coordonnées sphériques par les angles :math:`\phi` (azimuth) compris entre :math:`0` et :math:`2\pi`, et :math:`\theta` compris entre :math:`0` et :math:`\pi` (angle polaire), ou par l’angle solide élémentaire :math:`d\Omega`." src="geo_source.eps" style="width: 7.00000cm;" /></a>
+<p class="caption"><span class="caption-text">[geo_source]Géométrie élémentaire pour une source sonore. La direction d’émission d’une particule est définie en coordonnées sphériques par les angles <span class="math notranslate nohighlight">\(\phi\)</span> (azimuth) compris entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(2\pi\)</span>, et <span class="math notranslate nohighlight">\(\theta\)</span> compris entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(\pi\)</span> (angle polaire), ou par l’angle solide élémentaire <span class="math notranslate nohighlight">\(d\Omega\)</span>.</span></p>
+</div>
+<p>It is in fact necessary to check the respect of the number of particles emitted by elementary solid angle <span class="math notranslate nohighlight">\(d\Omega = d\phi\,\sin\theta\,d\theta\,d\theta\)</span>, checks the directivity of the source, either in a deterministic or random way (figure[geo_source]). In our case, we chose a random draw of the initial directions of the particles. It is then necessary to define the probability densities <span class="math notranslate nohighlight">\(g(\phi)\)</span> and <span class="math notranslate nohighlight">\(p(\theta)\)</span>, respectively for the angles <span class="math notranslate nohighlight">\(\phi\in[0.2\pi]\)</span> and <span class="math notranslate nohighlight">\(\theta\in[0.\pi]\)</span>, such as the probability density <span class="math notranslate nohighlight">\(Q(\theta,\phi)\)</span> of emission in the direction <span class="math notranslate nohighlight">\((\theta,\phi)\)</span> (or probability density <span class="math notranslate nohighlight">\(F(\Omega)\)</span> of emission in the elementary solid angle <span class="math notranslate nohighlight">\(\Omega\)</span>) either in accordance with the directivity of the source. In practice, <span class="math notranslate nohighlight">\(Q(\theta,\phi)\)</span> is nothing more than the directivity of the source. By definition, these probability densities verify the following relationship:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+        \int F(\Omega)\, d\Omega &amp;= \iint Q(\theta,\phi) \,\sin\theta \, d\phi\,d\theta \\
+        &amp;=\int_{0}^{2\pi} g(\phi) \, d\phi \int_{0}^{\pi} p(\theta)\,\sin\theta\,d\theta\\
+        &amp;=1.
+        \end{aligned}\end{split}\]</div>
+<p>From the point of view of sound power, this is tantamount to considering that the power <span class="math notranslate nohighlight">\(W\)</span> of the source is well distributed over the surface of a sphere centered on the source:</p>
+<div class="math notranslate nohighlight">
+\[\iint W\,Q(\theta,\phi) \,\sin\theta \, d\phi\,d\theta=W.\]</div>
+<p>If the densities <span class="math notranslate nohighlight">\(g(\phi)\)</span> and <span class="math notranslate nohighlight">\(p(\theta)\)</span> are independent, they check:</p>
+<div class="math notranslate nohighlight">
+\[\label{cond_g} \int_{0}^{2\pi} g(\phi) \, d\phi = 1,\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\label{cond_p} \int_{0}^{\pi} p(\theta)\,\sin\phi\,d\theta=1.\]</div>
+</div>
+<div class="section" id="source-power-and-elementary-particle-energy">
+<h4>Source power and elementary particle energy<a class="headerlink" href="#source-power-and-elementary-particle-energy" title="Permalink to this headline">¶</a></h4>
+<p>Acoustically, for a period of time: math:<cite>Delta t</cite>, a power source: math:<cite>W</cite> emits an amount of energy <span class="math notranslate nohighlight">\(E=W\times \Delta t\)</span>. From a particle concept point of view, each particle carries an elementary energy: math:<cite>varepsilon_0</cite>. If the source emits:math:<cite>N</cite> sound particles, energy conservation between the two approaches therefore requires:</p>
+<div class="math notranslate nohighlight">
+\[N \times \varepsilon_0 = W\times \Delta t,\]</div>
+<p>then</p>
+<div class="math notranslate nohighlight">
+\[\label{energie_elementaire} \varepsilon_0 = \frac{W}{N}\times \Delta t.\]</div>
+</div>
+</div>
+<div class="section" id="onidirectionnal-source">
+<h3>Onidirectionnal source<a class="headerlink" href="#onidirectionnal-source" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="physical-description">
+<h4>Physical description<a class="headerlink" href="#physical-description" title="Permalink to this headline">¶</a></h4>
+<p>An omnidirectional sound source is a source that radiates in all directions with the same amplitude. The directivity of the source is similar to a sphere. The directivity coefficient <span class="math notranslate nohighlight">\(Q\)</span> associated with the directivity of the source is equal to <span class="math notranslate nohighlight">\(1\)</span>.</p>
+</div>
+<div class="section" id="modeling">
+<h4>Modeling<a class="headerlink" href="#modeling" title="Permalink to this headline">¶</a></h4>
+<p>In the case of an omnidirectional source, the densities <span class="math notranslate nohighlight">\(g(\phi)\)</span> and <span class="math notranslate nohighlight">\(p(\theta)\)</span> being uniform, the relationships ([cond_g]) and ([cond_p]) check:</p>
+<div class="math notranslate nohighlight">
+\[\label{cond_g_2} \int_{0}^{2\pi} g(\phi) \, d\phi =\int_{0}^{2\pi} A \, d\phi = 1\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\label{cond_p_2} \int_{0}^{\pi} p(\theta)\,\sin\theta\,d\theta=\int_{0}^{\pi} B\,\sin\theta\,d\theta=1,\]</div>
+<p>où <span class="math notranslate nohighlight">\(A=1/2\pi\)</span> et <span class="math notranslate nohighlight">\(B=1/2\)</span> sont deux constantes de normalisation. En pratique, la méthode consiste dans un premier temps, à tirer un angle <span class="math notranslate nohighlight">\(\theta\)</span> entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(2\pi\)</span> de la manière suivante:</p>
+<div class="math notranslate nohighlight">
+\[\label{choix_phi} \phi=2\pi \times u \quad \in [0,2\pi]\]</div>
+<p>où <span class="math notranslate nohighlight">\(u\)</span> est un nombre aléatoire compris entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(1\)</span>, et défini par une distribution uniforme. Si l’angle <span class="math notranslate nohighlight">\(\theta\)</span> est choisi de la même manière (<strong>i.e.</strong> <span class="math notranslate nohighlight">\(\theta= \pi \times v\)</span>, <span class="math notranslate nohighlight">\(v\)</span> étant un nombre aléatoire suivant une distribution uniforme entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(1\)</span>), la distribution des directions d’émission ne respecte pas l’uniformité par angle solide élémentaire, puisque la condition ([cond_p]) n’est pas vérifiée. Dans ce cas, les directions autour des pôles seraient privilégiées. Il faut en fait déterminer les angles <span class="math notranslate nohighlight">\(\theta\)</span> qui vérifient une distribution proportionnelle à <span class="math notranslate nohighlight">\(\sin\theta\)</span>. Dans ce cas simple, la procédure consiste à appliquer la méthode de la fonction de distribution cumulative inverse. D’après la relation ([cond_p]), la probabilité <span class="math notranslate nohighlight">\(f(\hat{\theta})\)</span> de tirer un angle <span class="math notranslate nohighlight">\(\theta&lt;\hat{\theta}\)</span> est donnée par:</p>
+<div class="math notranslate nohighlight">
+\[\label{cdf_dist_theta} f(\hat{\theta}) = \frac{1}{2} \int_{0}^{\hat{\theta}} \sin\theta \, d\theta=\frac{1}{2} \left[\cos\hat{\theta}-1\right].\]</div>
+<p>Sachant que cette distribution est comprise entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(1\)</span>, le choix de l’angle <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> est réalisé en tirant aléatoirement un nombre <span class="math notranslate nohighlight">\(v\in [0,1]\)</span>, suivant une distribution uniforme, tel que:</p>
+<div class="math notranslate nohighlight">
+\[\hat{\theta} = \cos^{-1} \left(2v-1\right)\quad \in [0,\pi].\]</div>
+<p>Les vecteurs de propagation <span class="math notranslate nohighlight">\(\mathbf{v}(v_x,v_y,v_z)\)</span>, de norme <span class="math notranslate nohighlight">\(c\)</span> (célérité du son), sont ensuite définis par les relations:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{v}=\left\{\begin{array}{l}
+            v_x=c\,\cos\theta\,\sin\phi\\
+            v_y=c\,\sin\theta\,\sin\phi\\
+            v_z=c\,\cos\phi
+            \end{array}\right.\end{split}\]</div>
+</div>
+<div class="section" id="verification">
+<h4>Vérification<a class="headerlink" href="#verification" title="Permalink to this headline">¶</a></h4>
+<p>La figure [distribution_source_omni] présente un exemple de répartition des angles <span class="math notranslate nohighlight">\(\theta\)</span> et <span class="math notranslate nohighlight">\(\phi\)</span> obtenus suivant cette méthode de tirage avec <span class="math notranslate nohighlight">\(10000\)</span> réalisations. On observe aisément que la distribution des angles vérifient la distribution théorique. Il est bien entendu que la qualité du tirage aléatoire est fonction de la méthode de génération des nombres aléatoires, et que le respect des distributions théoriques augmente avec le nombre de tirages.</p>
+</div>
+</div>
+<div class="section" id="source-unidirectionnelle">
+<h3>Source unidirectionnelle<a class="headerlink" href="#source-unidirectionnelle" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="description-physique">
+<h4>Description physique<a class="headerlink" href="#description-physique" title="Permalink to this headline">¶</a></h4>
+<p>Une source sonore unidirectionnelle est une source qui rayonne dans une seule direction de l’espace, définie par les angles <span class="math notranslate nohighlight">\(\theta\)</span> et <span class="math notranslate nohighlight">\(\phi\)</span>, au point d’émission et dans le repère absolu. Le coefficient de directivité associé à la directivité de la source est alors défini par:</p>
+<div class="math notranslate nohighlight">
+\[Q\left(\theta,\phi\right)=\delta\left(\theta,\phi\right)=\delta\left(\theta\right)\times\delta\left(\phi\right),\]</div>
+<p>où <span class="math notranslate nohighlight">\(\delta\)</span> désigne la distribution de Dirac.</p>
+</div>
+<div class="section" id="modelisation">
+<h4>Modélisation<a class="headerlink" href="#modelisation" title="Permalink to this headline">¶</a></h4>
+<p>La modélisation de ce type de source est entièrement déterministe et ne pose donc pas de problème. Il suffit de définir un vecteur <span class="math notranslate nohighlight">\(\mathbf{s}(s_x,s_y,s_z)\)</span> dans le repère absolu de la scène, tel que :</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{s}=\left\{\begin{array}{l}
+            s_x=s\,\cos\theta\,\sin\phi\\
+            s_y=s\,\sin\theta\,\sin\phi\\
+            s_z=s\,\cos\phi
+            \end{array}\right.\end{split}\]</div>
+</div>
+</div>
+<div class="section" id="sources-plan-xy-yz-et-xz">
+<h3>Sources «&nbsp;plan&nbsp;» (XY, YZ et XZ)<a class="headerlink" href="#sources-plan-xy-yz-et-xz" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h4>Description physique<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>Une source sonore de type «&nbsp;plan&nbsp;» est une source qui rayonne dans un plan. Par défaut, on considère trois sources XY, YZ et XZ définis par les trois plans de référence <span class="math notranslate nohighlight">\((xOy)\)</span>, <span class="math notranslate nohighlight">\((yOz)\)</span> et <span class="math notranslate nohighlight">\((xOz)\)</span> respectivement.</p>
+</div>
+<div class="section" id="id3">
+<h4>Modélisation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p>La procédure consiste à déterminer aléatoirement la direction de propagation d’une particule dans un plan. Reprenant la convention d’angle présentée à la figure&nbsp;[geo_source], on aura:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{\begin{array}{llll}
+            \text{plan XY:}&amp; \theta=2\pi \times u\quad &amp;\text{et}&amp;\quad \phi=\pi/2\\
+            \text{plan YZ:}&amp; \theta=0 \quad &amp;\text{et}&amp;\quad \phi=2\pi \times u\\
+            \text{plan XZ:}&amp; \theta=\pi/2\quad &amp;\text{et}&amp;\quad \phi=2\pi \times u
+            \end{array}\right.\end{split}\]</div>
+<p>où <span class="math notranslate nohighlight">\(u\)</span> désigne un nombre aléatoire compris entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(1\)</span>. Par la suite, le vecteur de propagation <span class="math notranslate nohighlight">\(\mathbf{v}(v_x,v_y,v_z)\)</span>, de norme <span class="math notranslate nohighlight">\(c\)</span> (célérité du son), est défini par les relations:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{v}=\left\{\begin{array}{l}
+            v_x=c\,\cos\theta\,\sin\phi\\
+            v_y=c\,\sin\theta\,\sin\phi\\
+            v_z=c\,\cos\phi
+            \end{array}\right.\end{split}\]</div>
+</div>
+</div>
+</div>
+<div class="section" id="modelisation-de-la-propagation-acoustique">
+<h2>Modélisation de la propagation acoustique<a class="headerlink" href="#modelisation-de-la-propagation-acoustique" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="propagation-acoustique">
+<h3>Propagation acoustique<a class="headerlink" href="#propagation-acoustique" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h4>Description physique<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<p>En l’absence d’absorption et de réflexion sur les parois du domaine ou sur des objets, la décroissance de l’intensité sonore issue d’une source omnidrectionnelle s’écrit:</p>
+<div class="math notranslate nohighlight">
+\[I=\frac{Q}{4\pi\,r^2},\]</div>
+<p>où <span class="math notranslate nohighlight">\(r\)</span> est la distance à la source, et <span class="math notranslate nohighlight">\(Q\)</span> la directivité de la source dans la direction d’observation (<span class="math notranslate nohighlight">\(Q=1\)</span> pour une source omnidirectionnelle). Cette décroissance traduit le phénomène de dispersion géométrique, qui décrit l’«&nbsp;étalement&nbsp;» d’une onde sphérique au fur et à mesure de la propagation.</p>
+</div>
+<div class="section" id="id5">
+<h4>Modélisation<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<p>Compte tenu de la méthode présentée au paragraphe&nbsp;[par:modelisation_source_omni] pour une source omnidirectionnelle, la dispersion géométrique est automatiquement respectée. En effet, la méthode numérique proposée permet d’obtenir une répartition uniforme des particules sur un angle solide élémentaire. Sur une sphère, la distribution des particules <span class="math notranslate nohighlight">\(n(r)\)</span> (en <span class="math notranslate nohighlight">\(m^2\)</span>) est donc égale à:</p>
+<div class="math notranslate nohighlight">
+\[n(r)=\frac{N}{4\pi\,r^2},\]</div>
+<p>où <span class="math notranslate nohighlight">\(N\)</span> est le nombre de particules. La distribution des particules vérifie donc bien la même décroissance que l’intensité. Il faut toutefois noter, que plus le point d’observation sera loin de la source, plus il faudra de particules sonores.</p>
+</div>
+<div class="section" id="id6">
+<h4>Vérification<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<p>La figure&nbsp;[verif_dispersion] montre les résultats numériques de la propagation en champ libre <a class="footnote-reference" href="#id44" id="id7">[2]</a>, pour une source sonore omnidirectionnelle, sans absorption atmosphérique (nombre de particules <span class="math notranslate nohighlight">\(N=20\times 10^6\)</span>). L’accord est excellent.</p>
+<p><a class="reference internal" href="figure_test_reflexion.eps"><img alt="image" src="figure_test_reflexion.eps" style="width: 12.00000cm;" /></a></p>
+</div>
+</div>
+<div class="section" id="absorption-atmospherique">
+<h3>Absorption atmosphérique<a class="headerlink" href="#absorption-atmospherique" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id8">
+<h4>Description physique<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<p>Durant sa propagation dans l’air, une onde sonore est en partie atténuée du fait de mécanismes physiques particuliers (processus de transmission «&nbsp;classique&nbsp;», absorption moléculaire due à la relaxation rotationnelle, absorption moléculaire due à la relaxation vibratoire de l’oxygène et de l’azote) (bass1984). Ainsi, après une distance de propagation <span class="math notranslate nohighlight">\(r\)</span>, l’amplitude <span class="math notranslate nohighlight">\(p_t\)</span> de la pression acoustique décroît suivant la relation (ISO9613-1:1993):</p>
+<div class="math notranslate nohighlight">
+\[\label{eq:att_atmos_pression}
+        p_t= p_i \exp \left(-\frac{\ln(10)}{20}\alpha_\text{air}\times r\right)\]</div>
+<p>où <span class="math notranslate nohighlight">\(p_i\)</span> est la pression initiale. Considérant que l’intensité sonore est proportionnelle au carré de la pression acoustique,</p>
+<div class="math notranslate nohighlight">
+\[\label{eq:att_atmos_pression_I}
+        I\propto p_t^2 \propto \exp \left(-2\frac{\ln(10)}{20}\alpha_\text{air}\times r\right)\]</div>
+<p>et écrivant que l’intensité <span class="math notranslate nohighlight">\(I\)</span> de l’onde sonore décroît suivant la relation:</p>
+<div class="math notranslate nohighlight">
+\[\label{eq:att_atmos}
+        I= I_0 \exp -m\,r,\]</div>
+<p>où <span class="math notranslate nohighlight">\(I_0\)</span> est l’intensité initiale de l’onde sonore, alors le coefficient d’absorption atmosphérique <span class="math notranslate nohighlight">\(m\)</span> (en Np/m) peut-être exprimé à partir du coefficient d’absorption atmosphérique <span class="math notranslate nohighlight">\(\alpha_\text{air}\)</span> (en dB/m), par la relation:</p>
+<div class="math notranslate nohighlight">
+\[m=\frac{\ln 10}{10}\alpha_\text{air}.\]</div>
+<p>Dans le code <strong>SPPS</strong>, le coefficient d’absorption atmosphérique <span class="math notranslate nohighlight">\(\alpha_{air}\)</span> est calculé suivant la norme ISO 9613-1:1993 <em>Acoustique. Atténuation du son lors de sa propagation à l’air libre. Partie 1 : calcul de l’absorption atmosphérique</em> (ISO9613-1:1993), en considérant la fréquence centrale de chaque bande de fréquence <a class="footnote-reference" href="#id45" id="id9">[3]</a> de calcul conformément à la norme de référence (<em>cf.</em> (paragraph 8.2.1, ISO9613-1:1993). Cette approximation est considérée comme valide si le produit de la distance source-récepteur (en km) par le carré de la fréquence centrale (en kHz) ne dépasse pas <span class="math notranslate nohighlight">\(6\)</span>&nbsp;km/kHz:math:<cite>^2</cite> pour les bandes de tiers d’octave et <span class="math notranslate nohighlight">\(3\)</span>&nbsp;km/kHz:math:<cite>^2</cite> pour les bandes d’octave. La distance de propagation ne doit néanmoins pas dépasser <span class="math notranslate nohighlight">\(6\)</span>&nbsp;km pour les bandes de tiers d’octave et <span class="math notranslate nohighlight">\(3\)</span>&nbsp;km pour les bandes d’octave, quelle que soit la fréquence centrale considérée.</p>
+</div>
+<div class="section" id="modelisation-aleatoire">
+<h4>Modélisation «&nbsp;aléatoire&nbsp;»<a class="headerlink" href="#modelisation-aleatoire" title="Permalink to this headline">¶</a></h4>
+<p>En choisissant le mode de calcul «&nbsp;aléatoire&nbsp;», l’absorption atmosphérique est prise en compte comme une probabilité de disparition de la particule sonore durant son déplacement. La densité de probabilité correspondante peut-être définie à partir de la relation ([eq:att_atmos]):</p>
+<div class="math notranslate nohighlight">
+\[f(r)=\exp -m\,r.\]</div>
+<p>Cette quantité exprime la probabilité que la particule ne pas soit absorbée durant son déplacement <span class="math notranslate nohighlight">\(r\)</span>. La densité de probabilité <span class="math notranslate nohighlight">\(f(r)\)</span> est bien comprise entre <span class="math notranslate nohighlight">\(1\)</span> et <span class="math notranslate nohighlight">\(0\)</span>: <span class="math notranslate nohighlight">\(f(0)=1\)</span>, la probabilité est maximale, la particule ne pouvant pas être absorbée si elle ne déplace pas; <span class="math notranslate nohighlight">\(f(\infty)=0\)</span>, la probabilité est nulle puisque la particule ne peut pas se propager à l’infini (figure [attenuation]). On vérifie également facilement que la probabilité de propagation est indépendante de la probabilité de propagation précédente:</p>
+<div class="math notranslate nohighlight">
+\[f\left(\Sigma_{n=1}^N r_i\right)=\Pi_{i=1}^N f(r_n).\]</div>
+<p>La prise en compte de l’absorption atmosphérique est relativement simple. Il suffit en effet de tirer un nombre aléatoire uniforme <span class="math notranslate nohighlight">\(\zeta\)</span> compris entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(1\)</span>, à chaque pas de temps, et de comparer ce nombre à la densité de probabilité <span class="math notranslate nohighlight">\(f(d_0)\)</span> correspondant à un déplacement élémentaire <span class="math notranslate nohighlight">\(d_O=c\Delta t\)</span> sur un pas de temps <span class="math notranslate nohighlight">\(\Delta t\)</span>. Si ce nombre <span class="math notranslate nohighlight">\(\zeta\)</span> est inférieur à <span class="math notranslate nohighlight">\(f(d_o)\)</span>, il y aura propagation. Dans le cas contraire, il y aura absorption atmosphérique, donc disparition de la particule. Même sur un faible nombre de particules, cette méthode permet de prendre en compte correctement l’absorption atmosphérique.</p>
+<div class="figure" id="id53">
+<a class="reference internal image-reference" href="attenuation.eps"><img alt="[attenuation]Prise en compte de l’absorption atmosphérique par un processus aléatoire. La courbe :math:`f(r)` sépare le domaine de propagation du domaine d’absorption atmosphérique." src="attenuation.eps" style="width: 8.00000cm;" /></a>
+<p class="caption"><span class="caption-text">[attenuation]Prise en compte de l’absorption atmosphérique par un processus aléatoire. La courbe <span class="math notranslate nohighlight">\(f(r)\)</span> sépare le domaine de propagation du domaine d’absorption atmosphérique.</span></p>
+</div>
+</div>
+<div class="section" id="modelisation-energetique">
+<h4>Modélisation «&nbsp;énergétique&nbsp;»<a class="headerlink" href="#modelisation-energetique" title="Permalink to this headline">¶</a></h4>
+<p>En choisissant l’option de calcul «&nbsp;énergétique&nbsp;», l’énergie de la particule est pondérée tout au long de son déplacement, en utilisant la relation ([eq:att_atmos]).</p>
+<p><a class="reference internal" href="figure_test_reflexion.eps"><img alt="image" src="figure_test_reflexion.eps" style="width: 12.00000cm;" /></a></p>
+</div>
+<div class="section" id="id10">
+<h4>Vérification<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<p>A titre d’illustration, la figure&nbsp;[illustration_att_atmos] présente la décroissance sonore calculée <a class="footnote-reference" href="#id46" id="id11">[4]</a> par le code <strong>SPPS</strong> à <span class="math notranslate nohighlight">\(10\)</span>&nbsp;kHz pour des conditions atmosphériques classiques (<span class="math notranslate nohighlight">\(T=20\)</span>°C, <span class="math notranslate nohighlight">\(H=50\)</span>%, <span class="math notranslate nohighlight">\(P=101325\)</span>&nbsp;Pa, soit <span class="math notranslate nohighlight">\(m=0.036\)</span>&nbsp;m:math:<cite>^{-1}</cite>), pour les deux types de modélisation, comparée à la décroissance théorique présentée à la relation ([eq:att_atmos]). Comme attendu, la modélisation «&nbsp;énergétique&nbsp;» donne un meilleur résultat que la modélisation «&nbsp;aléatoire&nbsp;», l’écart moyen par rapport à la courbe théorique étant de <span class="math notranslate nohighlight">\(0.17\)</span>&nbsp;dB et <span class="math notranslate nohighlight">\(0.41\)</span>&nbsp;dB respectivement, les temps de calcul étant par ailleurs similaires.</p>
+</div>
+</div>
+<div class="section" id="profil-de-celerite-acoustique">
+<h3>Profil de célérité acoustique<a class="headerlink" href="#profil-de-celerite-acoustique" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id12">
+<h4>Description physique<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
+<p>En milieu extérieur et pour des hauteurs de propagation limitées à <span class="math notranslate nohighlight">\(100\)</span>&nbsp;m, la propagation acoustique peut être influencée par les conditions micro-météorologiques régies par des lois thermiques (transfert de chaleur) et aérodynamiques (profils de vent). Les phénomènes qui apparaissent à ces altitudes présentent une interaction très forte avec le sol (topographie, température de surface et de sous-sol, hygrométrie, cultures, forêts, obstacles, bâti…). De plus, ils évoluent rapidement dans le temps et dans l’espace, ce qui rend leur description analytique et leur modélisation numérique complexe. Les facteurs thermiques et aérodynamiques qui influent sur la propagation sont les suivants:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>Facteurs thermiques</strong> : les échanges thermiques entre le sol et la couche basse de l’atmosphère conduisent à une variation de la température de l’air en fonction de la hauteur au dessus du sol, et donc a une variation de la vitesse du son.</li>
+<li><strong>Facteurs aérodynamiques</strong> : compte tenu de l’état de rugosité de surface du sol, la vitesse du vent est toujours plus élevée en hauteur qu’au niveau du sol. Dans une situation donnée, la vitesse du son en présence de vent correspond à la somme algébrique de la vitesse du son en l’absence de vent et de la projection du vecteur vent sur la direction de propagation considérée. Cette vitesse varie donc en fonction de la hauteur au-dessus du sol.</li>
+</ul>
+</div></blockquote>
+<p>Par analogie avec les lois de l’optique, l’effet des conditions atmosphériques sur la propagation acoustique peut être décrit à travers l’expression de l’indice acoustique <span class="math notranslate nohighlight">\(n\)</span> du milieu de propagation. Si l’on se place dans une coupe verticale, cet indice est supposé varier avec l’altitude <span class="math notranslate nohighlight">\(z\)</span> et avec la distance source-récepteur <span class="math notranslate nohighlight">\(r\)</span>, tel que :</p>
+<div class="math notranslate nohighlight">
+\[n(r,z)=\frac{c(r,z)}{c_0}=\langle n(r,z)\rangle + \mu(r,z),\]</div>
+<p>où <span class="math notranslate nohighlight">\(c\)</span> est la célérité effective de l’onde sonore dans le milieu traversé et <span class="math notranslate nohighlight">\(c_0\)</span> celle de référence. Ainsi, on peut distinguer deux phénomènes distincts influant sur la propagation acoustique, la réfraction et la turbulence atmosphérique. Ces phénomènes sont respectivement liés aux parties déterministe <span class="math notranslate nohighlight">\(\langle n\rangle\)</span> et stochastique <span class="math notranslate nohighlight">\(\mu\)</span> de l’indice du milieu de propagation. En pratique, ces phénomènes de réfraction et de turbulence co-existent et interagissent, ce qui conduit à des conditions de propagation complexes, ainsi qu’à une très large dispersion des niveaux sonores rencontrés <em>in situ</em>, tous paramètres identiques par ailleurs (topographie, nature de sol, géométrie source-récepteur…).</p>
+</div>
+<div class="section" id="modele-de-profil-de-celerite">
+<h4>Modèle de profil de célérité<a class="headerlink" href="#modele-de-profil-de-celerite" title="Permalink to this headline">¶</a></h4>
+<p>Le profil moyen de célérité du son dépend ainsi des profils moyens de vent et de température. Ce profil de célérité peut être décrit de manière analytique, suivant qu’il suit une loi linéaire («&nbsp;<span class="math notranslate nohighlight">\(\text{lin}\)</span>&nbsp;»), logarithmique («&nbsp;<span class="math notranslate nohighlight">\(\text{log}\)</span>&nbsp;»), hybrides («&nbsp;<span class="math notranslate nohighlight">\(\text{log-lin}\)</span>&nbsp;») ou autre. Les profils «&nbsp;<span class="math notranslate nohighlight">\(\text{log}\)</span>&nbsp;» présentent ainsi l’avantage de traduire le très fort gradient vertical de célérité du son au voisinage immédiat du sol, mais ne rendent pas bien compte de l’évolution plus modérée avec l’altitude au-delà d’une certaine hauteur. A l’inverse, les profils «&nbsp;<span class="math notranslate nohighlight">\(\text{lin}\)</span>&nbsp;» minimisent les effets au voisinage du sol et ne sont donc pas représentatifs de la réalité lorsque l’on se place à très basse altitude. Un bon compromis consiste donc à utiliser des profils hybrides du type «&nbsp;<span class="math notranslate nohighlight">\(\text{log-lin}\)</span>&nbsp;» (valables surtout pour une atmosphère dite «&nbsp;stable&nbsp;»), exprimés à travers les paramètres <span class="math notranslate nohighlight">\(a_\text{log}\)</span> et <span class="math notranslate nohighlight">\(b_\text{lin}\)</span> qui apparaissent dans l’expression analytique du profil vertical de la célérité effective du son :</p>
+<div class="math notranslate nohighlight">
+\[\label{eq:celerite_log_lin}
+        \langle c(z)\rangle=c_0+ a_\text{log}\times \ln\left(1+\frac{z}{z_0}\right)+b_\text{lin}\times \left( z-z_0\right),\]</div>
+<p>où <span class="math notranslate nohighlight">\(z_0\)</span> est le paramètre de rugosité, dont les valeurs typiques s’étendent de <span class="math notranslate nohighlight">\(10^{-2}\)</span>&nbsp;m environ pour l’herbe rase à plusieurs mètres en milieu urbain. Le gradient vertical s’exprime alors en dérivant suivant la variable <span class="math notranslate nohighlight">\(z\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial\langle c(z)\rangle}{\partial z}=\frac{a_\text{log}}{z_0}+b_\text{lin}.\]</div>
+<p>La propagation dans un milieu à célérité variable a pour principal effet d’incurver les rayons sonores vers le bas ou vers le haut suivant que le gradient vertical de célérité du son soit respectivement positif (<em>conditions (très) favorables</em> à la propagation) ou négatif (<em>conditions (très) défavorables</em> à la propagation). L’état transitoire entre ces <span class="math notranslate nohighlight">\(2\)</span> états représente des <em>conditions homogènes</em> de propagation.</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><strong>Homogène:</strong> la célérité <span class="math notranslate nohighlight">\(c\)</span> est identique en tout point du domaine et égale à la célérité de référence <span class="math notranslate nohighlight">\(c_0\)</span>, cette dernière étant calculée en fonction des conditions de température et d’humidité, par la formule:</p>
+<div class="math notranslate nohighlight">
+\[c_0=343.2\sqrt{\frac{T}{T_\text{ref}}},\]</div>
+<p>où <span class="math notranslate nohighlight">\(T\)</span> est la température (en K), et <span class="math notranslate nohighlight">\(T_\text{ref}=293.15\)</span>&nbsp;K la température de référence (ISO9613-1:1993).</p>
+</li>
+<li><p class="first"><strong>Très défavorable</strong> : <span class="math notranslate nohighlight">\(a_\text{log}=-1\)</span> et <span class="math notranslate nohighlight">\(b_\text{lin}=-0.12\)</span>;</p>
+</li>
+<li><p class="first"><strong>Défavorable</strong> : <span class="math notranslate nohighlight">\(a_\text{log}=-0.4\)</span> et <span class="math notranslate nohighlight">\(b_\text{lin}=-0.04\)</span>;</p>
+</li>
+<li><p class="first"><strong>Favorable</strong>: <span class="math notranslate nohighlight">\(a_\text{log}=+0.4\)</span> et <span class="math notranslate nohighlight">\(b_\text{lin}=+0.04\)</span>;</p>
+</li>
+<li><p class="first"><strong>Très favorable</strong>: <span class="math notranslate nohighlight">\(a_\text{log}=+1\)</span> et <span class="math notranslate nohighlight">\(b_\text{lin}=+0.12\)</span>.</p>
+</li>
+</ul>
+</div></blockquote>
+<p>La courbure du rayon, à la frontière des zones (I) et (II), est obtenue en appliquant la construction de Huygens-Fresnel, aboutissant à la loi de Snell-Descartes suivante (salomons2001) (figure [geo_profil_celerite]):</p>
+<div class="math notranslate nohighlight">
+\[\label{relation_snell}
+        \frac{\cos\gamma_1}{c_1}=\frac{\cos\gamma_2}{c_2},\]</div>
+<p>où <span class="math notranslate nohighlight">\(c_1\)</span> et <span class="math notranslate nohighlight">\(c_2\)</span> sont respectivement les normes des vecteurs de propagation <span class="math notranslate nohighlight">\(\mathbf{c_1}\)</span> et <span class="math notranslate nohighlight">\(\mathbf{c_2}\)</span>, et où les angles <span class="math notranslate nohighlight">\(\gamma_1\)</span> et <span class="math notranslate nohighlight">\(\gamma_2\)</span> sont définis par rapport à l’axe horizontal au plan <span class="math notranslate nohighlight">\((xOy)\)</span>. Par construction, la projection de la direction de propagation dans le plan <span class="math notranslate nohighlight">\((xOy)\)</span>, définie par l’angle <span class="math notranslate nohighlight">\(\phi\)</span> en coordonnées sphériques, est conservée (figure [geo_profil_celerite]).</p>
+<p><a class="reference internal" href="figure_test_reflexion.eps"><img alt="image" src="figure_test_reflexion.eps" style="width: 12.00000cm;" /></a></p>
+</div>
+<div class="section" id="id13">
+<h4>Modélisation<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
+<p>Quelque soit le mode de calcul choisi, la prise en compte de la célérité est identique. A chaque pas de temps, la norme de célérité est calculée en fonction du profil de célérité retenu, à partir de la relation ([eq:celerite_log_lin]). Pour déterminer la nouvelle direction de propagation, dû au changement de célérité, il faut ensuite appliquer la relation ([relation_snell]). Connaissant l’angle <span class="math notranslate nohighlight">\(\theta_1\)</span> de la direction de propagation initiale, la nouvelle direction de propagation est définie par:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}  \label{cosgamma2}
+          \cos\gamma_2=\frac{c_2}{c_1}\cos\gamma_1=\frac{c_2}{c_1}\frac{\sqrt{c_{1x}^2+c_{1y}^2}}{c_1}.\\Les coordonnées du vecteur propagation sont ensuite obtenues par:\end{aligned}\end{align} \]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{c_2}=\left\{\begin{array}{l}
+        c_{2x}=c_2\cos\gamma_2\cos\phi\\
+        c_{2y}=c_2\cos\gamma_2\sin\phi\\
+        c_{2z}=c_2\sin\gamma_2
+        \end{array}\right.\end{split}\]</div>
+<p>avec</p>
+<div class="math notranslate nohighlight">
+\[\sin\phi=\frac{c_{1y}}{\sqrt{c_{1x}^2+c_{1y}^2}},\]</div>
+<p>et</p>
+<div class="math notranslate nohighlight">
+\[\cos\phi=\frac{c_{1x}}{\sqrt{c_{1x}^2+c_{1y}^2}}.\]</div>
+<p>D’un point de vue de la simulation numérique, le calcul du <span class="math notranslate nohighlight">\(\cos\gamma_2\)</span> par la relation ([cosgamma2]) peut donner des valeurs supérieures à <span class="math notranslate nohighlight">\(1\)</span> ce qui n’est évidemment pas physique. Ce cas se produit lors d’une inversion de la courbure (<em>turning point</em>) d’un rayon. Pour éviter ce problème et imposer un changement de courbure, la procédure consiste à imposer la valeur de <span class="math notranslate nohighlight">\(\gamma_2\)</span> à <span class="math notranslate nohighlight">\(1-\epsilon\)</span> (<span class="math notranslate nohighlight">\(\epsilon\)</span> étant une valeur très petite) et à changer l’orientation de la composante <span class="math notranslate nohighlight">\(c_{2z}\)</span> (<em>i.e.</em> <span class="math notranslate nohighlight">\(c_{2z}\rightarrow -c_{2z}\)</span>).</p>
+<p><a class="reference internal" href="figure_test_reflexion.eps"><img alt="image" src="figure_test_reflexion.eps" style="width: 12.00000cm;" /></a></p>
+<p>A titre d’exemple, la figure [illustration_refraction] présente deux illustrations de la prise en compte de la réfraction acoustique en utilisant cette méthode. Cette figure peut être comparée directement avec les exemples données dans la référence <a href="#id14"><span class="problematic" id="id15">:raw-latex:`\cite[figures 4.5 et 4.6]{salomons2001}`</span></a>.</p>
+</div>
+</div>
+<div class="section" id="diffusion-par-un-encombrement">
+<h3>Diffusion par un encombrement<a class="headerlink" href="#diffusion-par-un-encombrement" title="Permalink to this headline">¶</a></h3>
+<p>La présence d’un grand nombre d’objets sur le parcours d’une onde sonore peut engendrer un processus de diffusion. Ce processus peut être simulé de manière déterministe, en modélisant chaque objet individuellement. Lorsque le nombre d’objets devient important, et que ces objets sont de tailles similaires (exemple d’un hall industriel avec de nombreuses machines (sans émission acoustique) ou boite similaires), il peut être plus intéressant de modéliser statistiquement cet encombrement.</p>
+<div class="section" id="id16">
+<h4>Description physique<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h4>
+<p>Afin de prendre en compte la diffraction et l’absorption des objets diffusants répartis dans le milieu de propagation, nous avons considéré une approche similaire à celle de Ondet et Barbry présentée dans la référence (ondet1989), elle même reprise des travaux de Kuttruff (kuttruff1981), de Auletta (auletta1985, auletta1986), et de Lindquist (lindqvist1982), entre autres. Dans cette approche,</p>
+<blockquote>
+<div><ul class="simple">
+<li>les objets diffusants sont considérés comme ponctuels. Les particules sont renvoyées dans toutes les directions de l’espace à chaque collision avec un objet diffusant (sauf en cas d’absorption). Cette hypothèse est valide en général quand la longueur d’onde est de l’ordre de grandeur de la dimension caractéristique de l’obstacle;</li>
+<li>le phénomène de diffusion suit un processus de Poisson, ce qui signifie que la probabilité de collision d’une particule sonore avec un objet diffusant, suit une loi de Poisson. Les probabilités de collision sont indépendantes les unes des autres (la probabilité de collision pendant le temps <span class="math notranslate nohighlight">\(t\)</span> et <span class="math notranslate nohighlight">\(t+dt\)</span> est indépendante des collisions avant le temps <span class="math notranslate nohighlight">\(t\)</span>);</li>
+<li>les objets de l’encombrement ne produisent pas de particules (<em>i.e.</em> ces objets ne sont pas des sources sonores).</li>
+</ul>
+</div></blockquote>
+<div class="figure" id="id54">
+<a class="reference internal image-reference" href="diffusion_encombrement.eps"><img alt="[fig:diffusion\_encombrement]Illustration de la diffusion par un encombrement." src="diffusion_encombrement.eps" style="width: 7.00000cm;" /></a>
+<p class="caption"><span class="caption-text">[fig:diffusion_encombrement]Illustration de la diffusion par un encombrement.</span></p>
+</div>
+<p>Une onde sonore se propageant dans le milieu peut être amenée à rentrer en contact avec des objets diffusants, entraînant simultanément la diffraction de l’onde, et, en partie, son absorption. Par analogie, dans l’approche particulaire, une particule entrant en contact avec un objet diffusant peut être, soit absorbée, soit réfléchie dans une autre direction de propagation (figure&nbsp;[fig:diffusion_encombrement]). A l’échelle macroscopique, c’est-à-dire considérant simultanément l’ensemble des particules sonores, il se produit un processus de diffusion, caractérisé par:</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li>le coefficient d’absorption <span class="math notranslate nohighlight">\(\alpha_c\)</span> des objets diffusants;</li>
+<li>la densité d’encombrement <span class="math notranslate nohighlight">\(n_c\)</span> du milieu de propagation, défini par le nombre <span class="math notranslate nohighlight">\(N_c\)</span> d’obstacles présent dans le volume <span class="math notranslate nohighlight">\(V_c\)</span>:</li>
+</ul>
+</div></blockquote>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}n_c=\frac{N_c}{V_c}.\\-  la section moyenne de diffusion :math:`q_c`, c’est-à-dire la surface moyenne de l’objet diffusant, vue par une particule dans une direction incidente donnée. En pratique, cette donnée est très difficile à obtenir, voir impossible, dès lors que les objets diffusants sont de formes complexes et différentes. Dans cette condition, il est commun d’assimiler l’objet diffusant à une sphère, ayant la même surface externe :math:`s_c` que l’objet. Quelque soit l’angle d’incidence, la section visible de la sphère (section moyenne de diffusion) sera égale à un quart de la surface totale de la sphère, soit:\end{aligned}\end{align} \]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}q_c=\frac{s_c}{4}.\\-  la section moyenne de diffraction par unité de volume :math:`\nu_c`, encore appelée fréquence de diffusion, par\\   .. math:: \nu_c=n_c\,q_c,\\    si tous les objets diffusants sont identiques, ou\\   .. math:: \nu_c=\frac{1}{V}\sum_{p=1}^{N_c}\frac{s_{c_p}}{4}\\    si chaque objet diffusant :math:`p` est défini par sa surface :math:`s_{c_p}`. En pratique, et dans la suite du document, les objets diffusants seront considérés uniformes dans un même volume de diffusion. Néanmoins dans un même volume de propagation, plusieurs volumes de diffusion disjoints peuvent être considérés.\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<p>Puisque le phénomène de diffusion suit une loi de Poisson, la probabilité qu’une particule sonore subisse <span class="math notranslate nohighlight">\(k\)</span> collisions avec des objets diffusants, au bout d’un temps <span class="math notranslate nohighlight">\(t_k\)</span> est égale à:</p>
+<div class="math notranslate nohighlight">
+\[W_k (c\,t_k)=\frac{\left(\nu_c \, c\,t_k\right)^k}{k!}\exp\left(-\nu_c\, c\, t_k\right),\]</div>
+<p>où <span class="math notranslate nohighlight">\(c\, t_k\)</span> est la distance parcourue pendant un temps <span class="math notranslate nohighlight">\(t_k\)</span>, pouvant être exprimée à partir de la distance <span class="math notranslate nohighlight">\(R_p\)</span> séparant deux collisions (figure&nbsp;[fig:diffusion_encombrement]):</p>
+<div class="math notranslate nohighlight">
+\[c\,t_k=\sum_{p=1}^k R_p.\]</div>
+<p>Les probabilités de collision étant indépendantes les unes des autres <a href="#id17"><span class="problematic" id="id18">:raw-latex:`\cite{ondet1989}`</span></a>, on montre aisément que les variables aléatoires <span class="math notranslate nohighlight">\(R_i\)</span> (notée <span class="math notranslate nohighlight">\(R\)</span> par la suite) suivent la densité de probabilité <span class="math notranslate nohighlight">\(f(R)\)</span> suivante:</p>
+<div class="math notranslate nohighlight">
+\[\label{dispois} f(R)=\nu_c \exp\left(-\nu_c \, R\right).\]</div>
+<p>Le libre parcours moyen <span class="math notranslate nohighlight">\(\lambda_c\)</span> (distance moyenne entre deux collisions) est simplement obtenu en exprimant le premier moment de la densité de probabilité ci-dessus, à savoir:</p>
+<div class="math notranslate nohighlight">
+\[\lambda_c=\int_0^\infty R\, f(R)\, dR=\frac{1}{\nu_c}.\]</div>
+</div>
+<div class="section" id="id19">
+<h4>Modélisation<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h4>
+<p>Par définition, la fonction de distribution cumulée, associée à cette densité de probabilité, est définie par la relation suivante:</p>
+<div class="math notranslate nohighlight">
+\[\label{fdc} p(\hat{R})=\int_0^{\hat{R}} f(R)\, dR=1-\exp\left(-\nu_c\,\hat{R}\right).\]</div>
+<p>Cette fonction de distribution cumulée exprime simplement la probabilité que la particule subisse une collision avec un objet diffusant durant un trajet de longueur <span class="math notranslate nohighlight">\(\hat{R}\)</span>. Cette fonction est donc nulle pour <span class="math notranslate nohighlight">\(\hat{R}=0\)</span> et égale à <span class="math notranslate nohighlight">\(1\)</span> pour <span class="math notranslate nohighlight">\(\hat{R}=\infty\)</span>. La simulation numérique du processus de diffusion est réalisée par la méthode de la fonction de distribution cumulée inverse, obtenue en inversant la relation ([fdc]), soit:</p>
+<div class="math notranslate nohighlight">
+\[\label{fdci} \hat{R}=-\frac{1}{\nu_c}\ln \left[ 1-p(\hat{R})\right].\]</div>
+<p>La fonction de distribution cumulée étant comprise entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(1\)</span>, elle peut être assimilée à une variable aléatoire <span class="math notranslate nohighlight">\(\xi\)</span> comprise entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(1\)</span>. En tirant une succession de variables aléatoires <span class="math notranslate nohighlight">\(\xi_i\)</span>, on peut ainsi déterminer une succession de trajets de longueur <span class="math notranslate nohighlight">\(\hat{R}_i\)</span> qui satisfait bien à la fonction de distribution ([dispois]) de notre problème:</p>
+<div class="math notranslate nohighlight">
+\[\label{fdci_2} \hat{R}_n=-\frac{1}{\nu_c}\ln \left[ 1-\xi_n\right].\]</div>
+<p>Un exemple de tirage aléatoire utilisant la méthode de la distribution cumulative inverse, est proposé à la figure&nbsp;[fig:verification_diffusion_encombrement]. La comparaison avec la distribution théorique ([dispois]) montre un excellent comportement de la méthode.</p>
+<p><a class="reference internal" href="figure_test_reflexion.eps"><img alt="image" src="figure_test_reflexion.eps" style="width: 12.00000cm;" /></a></p>
+<p>Concrètement, lorsque qu’une particule sonore <span class="math notranslate nohighlight">\(n\)</span> entre dans une zone d’encombrement, on lui associe une distance de collision <span class="math notranslate nohighlight">\(R_n\)</span> avec un objet de l’encombrement en appliquant la relation ([fdci_2]). Au fur et à mesure de la propagation de la particule sonore dans la zone d’encombrement, un test est réalisé pour déterminer si la distance cumulée <span class="math notranslate nohighlight">\(d_n\)</span> de la particule dans la zone d’encombrement est inférieure ou supérieure à <span class="math notranslate nohighlight">\(R_n\)</span>. Si la distance parcourue <span class="math notranslate nohighlight">\(d_n\)</span> est supérieure à la distance de collision <span class="math notranslate nohighlight">\(R_n\)</span> la particule entre en collision avec un objet. En mode «&nbsp;énergétique&nbsp;», l’énergie de la particule sonore est pondérée par le coefficient d’absorption moyen <span class="math notranslate nohighlight">\(\alpha_c\)</span> de l’encombrement et poursuit sa propagation dans une direction aléatoire (distribution uniforme <a class="footnote-reference" href="#id47" id="id20">[5]</a>). En mode «&nbsp;aléatoire&nbsp;», un nouveau tirage aléatoire sur une variable uniforme <span class="math notranslate nohighlight">\(u\)</span> permet de déterminer si la particule est absorbée par l’objet diffusant (procédure identique à l’absorption par une paroi, <em>cf.</em> paragraphe&nbsp;[sec:modelisation_reflexion]), ou réfléchie dans une direction uniforme. Après chaque collision, la distance de propagation cumulée est remise à zéro, et un nouveau tirage est effectué pour déterminer la prochaine distance de collision. Quelque soit le mode de calcul choisi, tant que la distance parcourue par la particule est inférieure à la distance de collision, la particule poursuit sont trajet sans changer de direction.</p>
+<p><a class="reference internal" href="figure_test_reflexion.eps"><img alt="image" src="figure_test_reflexion.eps" style="width: 12.00000cm;" /></a></p>
+</div>
+</div>
+</div>
+<div class="section" id="modelisation-des-parois">
+<h2>Modélisation des parois<a class="headerlink" href="#modelisation-des-parois" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id21">
+<h3>Description physique<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<p>Au contact d’une paroi, une onde sonore sera en partie réfléchie vers l’intérieur du domaine pour une part <span class="math notranslate nohighlight">\(R\)</span>, en partie dissipée par transformation de l’énergie acoustique en chaleur dans le matériau pour une part <span class="math notranslate nohighlight">\(\beta\)</span>), le reste étant transmis à travers le matériau dans le domaine adjacent pour une part <span class="math notranslate nohighlight">\(\tau\)</span>. Ce dernier coefficient est défini comme le facteur de transmission. Si <span class="math notranslate nohighlight">\(W_i\)</span> est la puissance incidente sur une paroi, alors une partie <span class="math notranslate nohighlight">\(W_r=R\,W_i\)</span> sera réfléchie, une partie <span class="math notranslate nohighlight">\(W_d=\beta\,W_i\)</span> sera dissipée dans le matériau, et une partie <span class="math notranslate nohighlight">\(W_t=\tau\,W_i\)</span> sera transmise à travers la cloison. Par construction <a class="footnote-reference" href="#id48" id="id22">[6]</a>, les coefficients <span class="math notranslate nohighlight">\(R\)</span>, <span class="math notranslate nohighlight">\(\beta\)</span> et <span class="math notranslate nohighlight">\(\tau\)</span> sont compris entre 0 et 1. Au final, le bilan énergétique de la paroi s’écrit alors:</p>
+<div class="math notranslate nohighlight">
+\[R+\beta+\tau=1.\]</div>
+<div class="figure" id="id55">
+<a class="reference internal image-reference" href="principe_paroi.eps"><img alt="[principe\_paroi]Illustration des mécanismes de réflexion, d’absorption, de dissipation et de transmission acoustique par une paroi." src="principe_paroi.eps" style="width: 6.00000cm;" /></a>
+<p class="caption"><span class="caption-text">[principe_paroi]Illustration des mécanismes de réflexion, d’absorption, de dissipation et de transmission acoustique par une paroi.</span></p>
+</div>
+<p>Il est usuel de définir le coefficient d’absorption <span class="math notranslate nohighlight">\(\alpha\)</span> de la paroi comme la somme de la partie transmise <span class="math notranslate nohighlight">\(\tau\)</span> et de la partie dissipée <span class="math notranslate nohighlight">\(\beta\)</span>, sous la forme <span class="math notranslate nohighlight">\(\alpha=\beta+\tau\)</span>, de telle manière que le bilan énergétique ci-dessus s’écrive:</p>
+<div class="math notranslate nohighlight">
+\[R=1-\alpha.\]</div>
+<p>Le coefficient d’absorption d’un matériau peut être mesuré en utilisant les procédures standardisées ISO 354 pour la méthode en chambre réverbérante (ISO354:2003) et ISO 10534 (parties 1 et 2) pour la méthode utilisant un tube d’impédance (ISO10534-1:1996,ISO10534-2:1998). En ce qui concerne le coefficient de transmission acoustique, le lecteur pourra se reporter aux différentes parties de la norme relative la transmission aérienne (parties 1, 3, 4 et 5, (cite{)ISO140-1:1997,ISO140-3:1995,ISO140-4:1998,ISO140-5:1998)).</p>
+<p>D’autre part, suivant la forme, la taille et la distribution des irrégularités de la paroi, l’onde sonore pourra être réfléchie simultanément dans la direction spéculaire et dans d’autres directions. En acoustique des salles, il est commun de considérer qu’une fraction <span class="math notranslate nohighlight">\(1-s\)</span> de l’énergie sonore sera réfléchie dans la direction de réflexion spéculaire, tandis qu’une fraction <span class="math notranslate nohighlight">\(s\)</span> de l’énergie sera réfléchie dans les autres directions de l’espace, suivant une loi de réflexion caractérisée par les irrégularités de la paroi (embrechts2001). Dans ce dernier cas, on parle alors de <em>réflexion diffuse</em>, <span class="math notranslate nohighlight">\(s\)</span> étant appelé coefficient de diffraction (<em>scattering coefficient</em> en anglais). En acoustique des salles, de nombreuses études théoriques et expérimentales sont actuellement en cours pour caractériser ou mesurer ces lois de réflexion (vorlander2000,cox2004). Toutefois, la pratique courante consiste à utiliser une loi de Lambert pour décrire une réflexion diffuse. La valeur du coefficient de diffraction <span class="math notranslate nohighlight">\(s\)</span> peut quant à elle être obtenue par une procédure de mesure standardisée (norme ISO 17497-1 de 2004 (ISO17497-1:2004)). <a class="footnote-reference" href="#id49" id="id23">[7]</a></p>
+<p><a class="reference internal" href="figure_test_reflexion.eps"><img alt="image" src="figure_test_reflexion.eps" style="width: 12.00000cm;" /></a></p>
+</div>
+<div class="section" id="modelisation-de-la-reflexion-acoustique">
+<h3>Modélisation de la réflexion acoustique<a class="headerlink" href="#modelisation-de-la-reflexion-acoustique" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id24">
+<h4>Modélisation «&nbsp;aléatoire&nbsp;»<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h4>
+<p>Dans un premier temps, une particule sonore entrant en collision avec une paroi pourra être soit absorbée par la paroi (avec une probabilité <span class="math notranslate nohighlight">\(\alpha\)</span>), soit réfléchie dans une nouvelle direction de propagation (avec une probabilité <span class="math notranslate nohighlight">\(R=1-\alpha\)</span>). En pratique, le choix absorption/réflexion est réalisé en tirant aléatoirement un nombre <span class="math notranslate nohighlight">\(u\)</span> entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(1\)</span>, suivant une distribution uniforme. Si ce nombre est inférieur à <span class="math notranslate nohighlight">\(\alpha=1-R\)</span> (au point considéré), la particule est absorbée et disparaît du milieu de propagation. Si ce nombre est supérieur à <span class="math notranslate nohighlight">\(\alpha=1-R\)</span>, la particule est réfléchie et poursuit sa propagation dans une nouvelle direction de l’espace.</p>
+<p>Dans un second temps, pour déterminer le type de réflexion (spéculaire ou diffuse), un nouveau tirage aléatoire <span class="math notranslate nohighlight">\(v\)</span> est réalisé entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(1\)</span>. Si ce nombre est inférieur à la valeur de <span class="math notranslate nohighlight">\(1-s\)</span> (<strong>i.e.</strong> <span class="math notranslate nohighlight">\(v&lt;(1-s)\)</span>) au point considéré, la particule est réfléchie spéculairement, conformément aux lois de Snell-Descartes bien connues. Dans le cas contraire (<strong>i.e.</strong> <span class="math notranslate nohighlight">\(v&gt;(1-s)\)</span>), la réflexion est diffuse. Dans ce dernier cas, il est faut déterminer la direction de réflexion diffuse (<em>cf.</em> paragraphe [sec:mod_reflexion]).</p>
+</div>
+<div class="section" id="id25">
+<h4>Modélisation «&nbsp;énergétique&nbsp;»<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h4>
+<p>Lorsqu’une particule entre en collision avec une paroi, son énergie <span class="math notranslate nohighlight">\(\epsilon\)</span> est pondérée par le coefficient de réflexion <span class="math notranslate nohighlight">\(R=1-\alpha\)</span>. Le choix d’une réflexion spéculaire ou diffuse, en fonction du coefficient de diffraction, est identique à la méthode «&nbsp;aléatoire&nbsp;»: un tirage aléatoire <span class="math notranslate nohighlight">\(v\)</span> est réalisé entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(1\)</span>. Si ce nombre est inférieur à la valeur de <span class="math notranslate nohighlight">\(1-s\)</span>, la particule est réfléchie spéculairement. Dans le cas contraire, la réflexion est diffuse, dans une direction à déterminer (<em>cf.</em> paragraphe [sec:mod_reflexion]). Un traitement entièrement «&nbsp;énergétique&nbsp;» serait possible en dupliquant la particule en deux particules, la première étant réfléchie dans la direction spéculaire et la seconde dans la direction diffuse (<em>cf.</em> remarque à la page&nbsp;).</p>
+</div>
+</div>
+<div class="section" id="modelisation-des-lois-de-reflexion">
+<h3>Modélisation des lois de réflexion<a class="headerlink" href="#modelisation-des-lois-de-reflexion" title="Permalink to this headline">¶</a></h3>
+<div class="figure" id="id56">
+<a class="reference internal image-reference" href="geo_reflexion.eps"><img alt="[geo\_reflexion]Géométrie élémentaire d’une réflexion par une paroi, en 3D: :math:`\phi` et :math:`\phi'` désignent respectivement les angles d’incidences et de réflexion par rapport à la normale à la paroi. Les angles :math:`\theta` et :math:`\theta'` dans le plan tangent, des directions d’incidence et de réflexion, ne sont pas représentés (:math:`\phi,\phi'\in[0,\pi/2]` et :math:`\theta,\theta'\in[0,2\pi]`)." src="geo_reflexion.eps" style="width: 7.50000cm;" /></a>
+<p class="caption"><span class="caption-text">[geo_reflexion]Géométrie élémentaire d’une réflexion par une paroi, en 3D: <span class="math notranslate nohighlight">\(\phi\)</span> et <span class="math notranslate nohighlight">\(\phi'\)</span> désignent respectivement les angles d’incidences et de réflexion par rapport à la normale à la paroi. Les angles <span class="math notranslate nohighlight">\(\theta\)</span> et <span class="math notranslate nohighlight">\(\theta'\)</span> dans le plan tangent, des directions d’incidence et de réflexion, ne sont pas représentés (<span class="math notranslate nohighlight">\(\phi,\phi'\in[0,\pi/2]\)</span> et <span class="math notranslate nohighlight">\(\theta,\theta'\in[0,2\pi]\)</span>).</span></p>
+</div>
+<p>Considérons une particule sonore incidente sur une paroi, dont la direction incidente est définie par les coordonnées sphériques <span class="math notranslate nohighlight">\((\theta,\phi)\)</span> (figure [geo_reflexion]). Cette particule a une probabilité <span class="math notranslate nohighlight">\(P(\theta,\phi;\theta',\phi')\equiv P(\Omega,\Omega')\)</span> d’être réfléchie dans l’angle solide élémentaire <span class="math notranslate nohighlight">\(d\Omega'=\sin\phi'\,d\phi'\,d\theta'\)</span> <a href="#id26"><span class="problematic" id="id27">:raw-latex:`\cite{joyce1974,joyce1975,joyce1978,lepolles2003}`</span></a>. <span class="math notranslate nohighlight">\(P(\Omega,\Omega')\,d\Omega'\)</span> représente en fait la fraction de l’intensité sonore incidente qui est réfléchie dans l’angle solide <span class="math notranslate nohighlight">\(d\Omega'\)</span>. Soit <span class="math notranslate nohighlight">\(j(\theta,\phi)\)</span> le flux incident de particules. Le flux de particules réfléchies <span class="math notranslate nohighlight">\(j'(\theta',\phi')\)</span> a pour expression:</p>
+<div class="math notranslate nohighlight">
+\[\label{eq_flux_1} j'(\theta',\phi') \cos \phi'=\int
+            P(\theta,\phi;\theta',\phi')\, j(\theta,\phi) \cos \phi \,d\Omega.\]</div>
+<p>En définissant la loi de réflexion <span class="math notranslate nohighlight">\(R(\theta,\phi;\theta',\phi')\equiv R(\Omega,\Omega')\)</span> de la manière suivante</p>
+<div class="math notranslate nohighlight">
+\[R(\theta,\phi;\theta',\phi')=\frac{P(\theta,\phi;\theta',\phi')}{\cos(\phi')},\]</div>
+<p>la relation ([eq_flux_1b]) s’écrit encore</p>
+<div class="math notranslate nohighlight">
+\[\label{eq_flux_1b} j'(\theta',\phi') =\int
+            R(\theta,\phi;\theta',\phi')\, j(\theta,\phi) \cos \phi \,d\Omega.\]</div>
+<p>Il est important de souligner la différence entre la loi de réflexion <span class="math notranslate nohighlight">\(R\)</span> et la probabilité <span class="math notranslate nohighlight">\(P\)</span>. <span class="math notranslate nohighlight">\(P\)</span> désigne une probabilité de réflexion d’une particule sonore par angle solide élémentaire, tandis que <span class="math notranslate nohighlight">\(R\)</span> désigne le flux d’énergie réfléchie dans une direction <span class="math notranslate nohighlight">\(\phi'\)</span>, pour un flux incident dans la direction <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
+<p>La première loi de la thermodynamique imposent la conservation du flux sur la surface (en l’absence d’absorption). La loi de réflexion <span class="math notranslate nohighlight">\(R(\Omega,\Omega')\)</span> doit donc vérifier la condition suivante:</p>
+<div class="math notranslate nohighlight">
+\[\label{loi_2} \int P(\Omega,\Omega') \,d\Omega'=\int
+            R(\Omega,\Omega')\cos\phi' \,d\Omega'=1,\]</div>
+<p>ou encore en coordonnées sphériques,</p>
+<div class="math notranslate nohighlight">
+\[\label{loi_2b} \iint R(\theta,\phi;\theta',\phi')\cos\phi'
+            \,\sin\phi'\,d\phi'\,d\theta'=1.\]</div>
+<p>La seconde loi de la thermodynamique impose cette fois:</p>
+<div class="math notranslate nohighlight">
+\[\label{loi_1} \int P(\Omega,\Omega') \,d\Omega=\int
+            R(\Omega,\Omega')\cos\phi \,d\Omega=1,\]</div>
+<p>ou encore en coordonnées sphériques</p>
+<div class="math notranslate nohighlight">
+\[\label{loi_1b} \iint R(\theta,\phi;\theta',\phi')\cos\phi
+            \,\sin\phi\,d\phi\,d\theta=1.\]</div>
+<p>D’autre part, le principe de réciprocité impose que</p>
+<div class="math notranslate nohighlight">
+\[\label{loi_3} R(\Omega,\Omega')=R(\Omega',\Omega).\]</div>
+<p>Malgré quelques études récentes, et hormis la loi de Lambert largement utilisée pour modéliser des réflexions diffuses <a href="#id28"><span class="problematic" id="id29">:raw-latex:`\cite{kuttruff2000}`</span></a>, il n’existe pas à notre connaissance d’autres lois de réflexion pour des parois réelles. Dans le code <strong>SPPS</strong>, nous proposons toutefois des modes de réflexion arbitraires, plus ou moins réels, présentés à la figure [fig_ref] et détaillées ci-dessous.</p>
+<div class="section" id="id30">
+<h4>Description physique<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h4>
+<p>Le mode de réflexion le plus simple est défini par la réflexion spéculaire (figure [fig_ref_specul]), et peut s’écrire en trois dimensions:</p>
+<div class="math notranslate nohighlight">
+\[R(\theta,\phi;\theta',\phi')=2 \delta(\theta-\theta'\pm \pi)
+            \,\delta(\sin^2 \phi-\sin^2 \phi'),\]</div>
+<p>où les couples <span class="math notranslate nohighlight">\((\theta,\phi)\)</span> et <span class="math notranslate nohighlight">\((\theta',\phi')\)</span> désignent respectivement les directions incidentes et réfléchies des particules sonores sur la paroi. Bien que la forme de cette expression ne soit pas conventionnelle, cette relation vérifie les lois de Snell-Descartes, ainsi que les conditions ([loi_1]) à ([loi_3]).</p>
+</div>
+<div class="section" id="id31">
+<h4>Modélisation<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h4>
+<p>D’un point de vue numérique, la simulation de cette loi de réflexion ne pose pas de problème majeur, puisque les angles d’incidence de chaque particule sur une paroi sont connus. La modélisation est identique pour les approches «&nbsp;aléatoire&nbsp;» et «&nbsp;énergétique&nbsp;».</p>
+<div class="section" id="reflexion-uniforme">
+<h5>Réflexion uniforme<a class="headerlink" href="#reflexion-uniforme" title="Permalink to this headline">¶</a></h5>
+</div>
+</div>
+<div class="section" id="id32">
+<h4>Description physique<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h4>
+<p>Une loi de réflexion uniforme produit une distribution des angles de réflexion <span class="math notranslate nohighlight">\(P(\Omega')\)</span> est équiprobable. Il ne faut pas confondre avec la loi de de réflexion de Lambert, pour lequel l’uniformité est vérifiée par la loi de réflexion. Dans le cas d’une loi uniforme, les particules sont réfléchies uniformément dans tout le demi-espace, indépendamment de l’angle d’incidence. Dans ces conditions, la densité de réflexion après normalisation s’écrit:</p>
+<div class="math notranslate nohighlight">
+\[P(\Omega')d\Omega'= P(\theta',\phi')d\Omega'=\left[\frac{1}{2\pi}\,d\theta'\right] \,\left[\sin \phi' \,d\phi'\right],\]</div>
+<p>ou encore</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}R(\theta',\phi')=\frac{1}{2\pi\cos\phi'},\\pour :math:`\theta'\in[0,2\pi]` et :math:`\phi'\in[0,\pi/2]`.\end{aligned}\end{align} \]</div>
+</div>
+<div class="section" id="id33">
+<h4>Modélisation<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h4>
+<p>D’un point de vue numérique, la détermination de l’angle de réflexion est obtenue, là encore, par la méthode de la fonction de distribution cumulative inverse,</p>
+<div class="math notranslate nohighlight">
+\[f(\hat{\phi})= \int_{0}^{\hat{\phi}} \sin\phi'\,d\phi'=1-\cos\hat{\phi},\]</div>
+<p>ce qui donne</p>
+<div class="math notranslate nohighlight">
+\[\hat{\phi}=\cos^{-1}\left(1-u\right),\]</div>
+<p>où <span class="math notranslate nohighlight">\(u\)</span> est un nombre aléatoire compris entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<div class="section" id="reflexion-lambert">
+<h5>Réflexion Lambert<a class="headerlink" href="#reflexion-lambert" title="Permalink to this headline">¶</a></h5>
+</div>
+</div>
+<div class="section" id="id34">
+<h4>Description physique<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h4>
+<p>Au sens de la lumière, une surface parfaitement diffuse est une surface qui parait aussi lumineuse quelque soit l’angle d’observation, et quelque soit l’angle d’incidence. Au sens de l’acoustique, une surface parfaitement diffuse réfléchira la même énergie dans toutes les directions quelque soit l’angle d’incidence. D’un point de vue mathématique, cette condition impose que la loi de réflexion <span class="math notranslate nohighlight">\(R\)</span> soit indépendante de la direction de réflexion, donc de la direction d’incidence (par réciprocité). Après normalisation la loi de réflexion s’écrit:</p>
+<div class="math notranslate nohighlight">
+\[R(\theta,\phi;\theta',\phi')=\frac{1}{2\pi}\times 2.\]</div>
+<div class="line-block">
+<div class="line">Le coefficient <span class="math notranslate nohighlight">\(1/2\pi\)</span> est lié à la normalisation suivant l’angle <span class="math notranslate nohighlight">\(\theta'\)</span> (distribution uniforme entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(2\pi\)</span>). Le second coefficient (facteur <span class="math notranslate nohighlight">\(2\)</span>) est lié à la normalisation suivant l’angle <span class="math notranslate nohighlight">\(\phi'\)</span>. La probabilité <span class="math notranslate nohighlight">\(P(\Omega')\, d\Omega'\)</span> se réduit donc à</div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+            P(\Omega') \, d\Omega' &amp; = &amp; R\,\cos\phi'\,\sin\phi'\,d\theta'\,d\phi'\\
+            &amp; =&amp; \left[\frac{1}{2\pi}\,d\theta'\right]\, \left[2 \cos\phi'\,\sin\phi'\,d\phi'\right],
+            \end{aligned}\end{split}\]</div>
+<p>où l’expression <span class="math notranslate nohighlight">\(\cos\phi'\)</span> est relative à la loi de Lambert. Il est aisé de vérifier que <span class="math notranslate nohighlight">\(R\)</span> vérifie les conditions ([loi_1]) à ([loi_3]). Il est important de souligner la différence entre une surface aléatoire et une surface «&nbsp;uniforme&nbsp;». La première est conditionnée par une loi de réflexion <span class="math notranslate nohighlight">\(R\)</span> aléatoire uniforme, tandis que la seconde (cf. le paragraphe suivant) est définie par une probabilité <span class="math notranslate nohighlight">\(P\)</span> uniforme.</p>
+</div></blockquote>
+</div>
+<div class="section" id="id35">
+<h4>Modélisation<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h4>
+<p>D’un point de vue numérique, le tirage aléatoire des angles de réflexion (en trois dimensions) doit être réalisé en accord avec la distribution <span class="math notranslate nohighlight">\(P(\Omega')\)</span>, à savoir <span class="math notranslate nohighlight">\(P(\phi')\)</span> dans notre cas. Appliquant la méthode de la fonction de distribution cumulative inverse, la probabilité <span class="math notranslate nohighlight">\(f(\hat{\phi})\)</span> qu’une particule sonore soit réfléchie dans un angle <span class="math notranslate nohighlight">\(\phi'\)</span> compris entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(\hat{\phi}\)</span> est donnée par la relation suivante <a class="footnote-reference" href="#id50" id="id36">[8]</a>:</p>
+<div class="math notranslate nohighlight">
+\[f(\hat{\phi})=2\int_{0}^{\hat{\phi}} \cos\phi'\sin\phi'\,d\phi'=\sin^2 \hat{\phi}.\]</div>
+<p>Cette probabilité étant comprise entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(1\)</span>, le choix de l’angle <span class="math notranslate nohighlight">\(\hat{\phi}\)</span> est réalisé en tirant aléatoirement un nombre <span class="math notranslate nohighlight">\(u\in[0,1]\)</span>, tel que:</p>
+<div class="math notranslate nohighlight">
+\[\hat{\phi}=\sin^{-1}\sqrt{u}=\cos^{-1}\left(1-u\right)^\frac{1}{2}.\]</div>
+<div class="section" id="reflexion-normale-en-w-n">
+<h5>Réflexion normale en <span class="math notranslate nohighlight">\(w^n\)</span><a class="headerlink" href="#reflexion-normale-en-w-n" title="Permalink to this headline">¶</a></h5>
+</div>
+</div>
+<div class="section" id="id37">
+<h4>Description physique<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h4>
+<div class="line-block">
+<div class="line">Considérons une loi de réflexion indépendante de la direction incidente et définie uniquement par l’angle de réflexion <span class="math notranslate nohighlight">\(\phi'\)</span> autour de la normale à la paroi (<span class="math notranslate nohighlight">\(\theta'\)</span> étant uniforme entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(2\pi\)</span>), de la forme:</div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+            R(\Omega')&amp;=&amp;R(\theta',\phi')\\
+            &amp;=&amp;\frac{1}{2\pi}\times (n+1)\cos^{n-1}\phi'\\
+            &amp;=&amp;\frac{n+1}{2\pi}\,w^{n-1}.
+            \end{aligned}\end{split}\]</div>
+<p>où <span class="math notranslate nohighlight">\(n\)</span> est un entier positif. La quantité notée <span class="math notranslate nohighlight">\(w=\cos\phi'\)</span> n’est autre que la projection de la direction de réflexion sur la normale à la paroi. Conformément aux notations de ce document, la probabilité <span class="math notranslate nohighlight">\(P\)</span> aura donc pour expression:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+            P(\Omega')\,d\Omega'&amp;=&amp;P(\phi')\,\sin\phi'\,d\theta'\,d\phi'\\
+            &amp;=&amp;\left[\frac{1}{2\pi}d\theta'\right]\\
+            &amp; &amp; \quad\times
+            \left[(n+1)\cos^{n}\phi'\,d\phi'\right]\\
+            &amp;=&amp;\frac{n+1}{2\pi}\,w^{n}\,d\theta'\,d\phi'
+            \end{aligned}\end{split}\]</div>
+</div></blockquote>
+<p>ce qui justifie l’appellation en <em>loi en :math:`w^n`</em>. Cette forme de réflexion est identique à celle introduite dans (lepolles2003)`. On peut remarquer que ce type de loi est une forme généralisée de la loi de Lambert (<span class="math notranslate nohighlight">\(n=1\)</span>) et de la loi uniforme (<span class="math notranslate nohighlight">\(n=0\)</span>).</p>
+</div>
+<div class="section" id="id38">
+<h4>Modélisation<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h4>
+<p>D’un point de vue numérique, le tirage aléatoire des angles de réflexion est réalisé en appliquant la méthode de la fonction de distribution cumulative inverse. La probabilité <span class="math notranslate nohighlight">\(f(\hat{\Omega})\)</span> (c’est-à-dire la probabilité <span class="math notranslate nohighlight">\(f(\hat{\phi})\)</span> puisque la direction de réflexion ne dépend que l’angle par rapport à la normale) qu’une particule sonore soit réfléchie dans un angle solide élémentaire compris entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(\hat{\Omega}\)</span> est alors donnée par la relation</p>
+<div class="math notranslate nohighlight">
+\[f(\hat{\phi})= (n+1)\int_{0}^{\hat{\phi}} \cos^n\phi'\sin\phi'\,d\phi'=1-\cos^{n+1}\hat{\phi}.\]</div>
+<p>Cette probabilité étant comprise entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(1\)</span>, le choix de l’angle <span class="math notranslate nohighlight">\(\hat{\phi}\)</span> est réalisé en tirant aléatoirement un nombre <span class="math notranslate nohighlight">\(u\in[0,1]\)</span>, tel que:</p>
+<div class="math notranslate nohighlight">
+\[\hat{\phi}=\cos^{-1}\left(1-u\right)^\frac{1}{n+1}.\]</div>
+</div>
+</div>
+<div class="section" id="modelisation-de-la-transmission-acoustique">
+<h3>Modélisation de la transmission acoustique<a class="headerlink" href="#modelisation-de-la-transmission-acoustique" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id39">
+<h4>Description physique<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h4>
+<p>Comme nous l’avons indiqué plus haut, la partie de la puissance qui n’est pas réfléchie par la paroi est soit dissipée dans la paroi, soit transmise. La transmission acoustique est alors définie par le facteur de transmission <span class="math notranslate nohighlight">\(\tau\)</span>, défini comme le rapport de la puissance transmise <span class="math notranslate nohighlight">\(W_t\)</span> par la paroi sur la puissance incidente <span class="math notranslate nohighlight">\(W_i\)</span>. S’il n’y a pas de dissipation dans la paroi (<strong>i.e.</strong> tout est transmis à travers la paroi), alors <span class="math notranslate nohighlight">\(\tau=\alpha\)</span>. Dans le cas contraire, <span class="math notranslate nohighlight">\(\tau&lt;\alpha\)</span>. En pratique, la transmission acoustique est plutôt définie par l’indice d’affaiblissement de la paroi, qui est fonction du facteur de transmission à travers la relation suivante:</p>
+<div class="math notranslate nohighlight">
+\[R=10\,\log\left(\frac{W_i}{W_t}\right)=-10\,\log{\tau}.\]</div>
+</div>
+<div class="section" id="id40">
+<h4>Modélisation «&nbsp;aléatoire&nbsp;»<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h4>
+<p>La modélisation est similaire à celle utilisée pour la réflexion acoustique. Pour déterminer si la particule sonore est dissipée ou transmise par la cloison, il est nécessaire de tirer un nombre <span class="math notranslate nohighlight">\(w\)</span> entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(\alpha\)</span>. Si ce nombre est inférieur à <span class="math notranslate nohighlight">\(\tau\)</span>, la particule est transmise et conserve sa direction de propagation. Dans le cas contraire la particule est dissipée et disparaît du milieu de propagation.</p>
+</div>
+<div class="section" id="id41">
+<h4>Modélisation «&nbsp;énergétique&nbsp;»<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h4>
+<p>La modélisation énergétique est réalisée pondérant l’énergie de la particule une fois transmise par la cloison, par le coefficient <span class="math notranslate nohighlight">\(\tau\)</span>.</p>
+</div>
+</div>
+<div class="section" id="verification-de-la-modelisation-des-parois">
+<h3>Vérification de la modélisation des parois<a class="headerlink" href="#verification-de-la-modelisation-des-parois" title="Permalink to this headline">¶</a></h3>
+<p>La figure&nbsp;[figure_test_reflexion] illustre le résultat de la procédure de réflexion (réflexion=spécualire/diffus, absorption=disspation/transmission) en mode «&nbsp;aléatoire&nbsp;», avec les paramètres acoustiques suivants: coefficient de diffraction <span class="math notranslate nohighlight">\(s=0.6\)</span>, coefficient d’absorption <span class="math notranslate nohighlight">\(\alpha=0.8\)</span>, coefficient de transmission <span class="math notranslate nohighlight">\(\tau=10^{-R/10}=0.1\)</span> (indice d’affaiblissement <span class="math notranslate nohighlight">\(R=10\)</span>&nbsp;dB). Avec <span class="math notranslate nohighlight">\(10000\)</span> réalisations, les différents phénomènes sont retrouvés (en termes de nombre de réalisations) avec les même proportions que les paramètres acoustiques imposés.</p>
+<p><a class="reference internal" href="figure_test_reflexion.eps"><img alt="image" src="figure_test_reflexion.eps" style="width: 12.00000cm;" /></a></p>
+</div>
+</div>
+<div class="section" id="calcul-des-niveaux-sonores-aux-points-dobservation">
+<h2>Calcul des niveaux sonores aux points d’observation<a class="headerlink" href="#calcul-des-niveaux-sonores-aux-points-dobservation" title="Permalink to this headline">¶</a></h2>
+<p>Dans le code <strong>SPPS</strong> deux types de récepteurs sont considérés:</p>
+<blockquote>
+<div><ul class="simple">
+<li>les récepteurs «&nbsp;volumiques&nbsp;» modélisent les récepteurs «&nbsp;classiques&nbsp;» dits ponctuels. La notion de «&nbsp;point récepteur&nbsp;» n’étant pas applicable dans le code <strong>SPPS</strong>, puisqu’en théorie la probabilité qu’une particule sonore traverse un récepteur ponctuel est nul, il est nécessaire de donner un volume au point récepteur, pour comptabiliser le nombre de particules l’ayant traversé, et en déduire ainsi la densité d’énergie au point d’observation. Pour un récepteur ponctuel, le code <strong>SPPS</strong> retourne le niveau de pression acoustique, à chaque pas de temps du calcul et pour chaque bande de fréquence considérée;</li>
+<li>les récepteurs «&nbsp;surfaciques&nbsp;» sont des éléments de surface (en principe des faces de la scène) sur lesquels sont calculés les intensités sonores incidentes, ce qui permet ensuite de construire des cartographies acoustiques. Pour un récepteur surfacique, le code <strong>SPPS</strong> retourne le niveau d’intensité sonore, à chaque pas de temps du calcul et pour chaque bande de fréquence considérée.</li>
+</ul>
+</div></blockquote>
+<p>En parallèle, le code de calcul détermine également le niveau de pression acoustique global dans le modèle, en sommant les contributions de chaque particule, à chaque pas de temps et pour chaque bande de fréquence.</p>
+<div class="section" id="calcul-du-niveau-de-pression-acoustique-au-niveau-dun-recepteur-volumique">
+<h3>Calcul du niveau de pression acoustique au niveau d’un récepteur «&nbsp;volumique&nbsp;»<a class="headerlink" href="#calcul-du-niveau-de-pression-acoustique-au-niveau-dun-recepteur-volumique" title="Permalink to this headline">¶</a></h3>
+<p>La quantité d’<strong>énergie</strong> <span class="math notranslate nohighlight">\(E_\text{rec}^{j}(n)\)</span> (en J ou W.s) dans la bande de fréquence <span class="math notranslate nohighlight">\(j\)</span> reçue au niveau d’un récepteur volumique, au pas de temps <span class="math notranslate nohighlight">\(n\)</span> (<em>i.e.</em> au temps <span class="math notranslate nohighlight">\(n \Delta t\)</span>) est égale à la somme des énergies <span class="math notranslate nohighlight">\(\varepsilon_i^{j}\)</span> apportées par chaque particule <span class="math notranslate nohighlight">\(i\)</span> dans la bande de fréquence <span class="math notranslate nohighlight">\(j\)</span>, traversant le volume récepteur au cours du pas de temps <span class="math notranslate nohighlight">\(n\)</span> (figure&nbsp;[principe_recepteur_volumique]) :</p>
+<div class="math notranslate nohighlight">
+\[E_\text{rec}^{j}(n)=\sum_i^{N_0} \varepsilon_i^{j} = \sum_i^{N_0} \frac{W}{N} \epsilon_i^{j} \times \Delta t_i,\]</div>
+<p>où <span class="math notranslate nohighlight">\({N_0}\)</span> est le nombre total de particules traversant le volume récepteur et <span class="math notranslate nohighlight">\(\Delta t_i\)</span> le temps de présence de la particule <span class="math notranslate nohighlight">\(i\)</span> dans le volume récepteur (<span class="math notranslate nohighlight">\(\Delta t_i&lt;\Delta t\)</span>), et <span class="math notranslate nohighlight">\(\epsilon_i^{j}\)</span> le coefficient de pondération (compris entre 0 et 1) associé à la particule <span class="math notranslate nohighlight">\(i\)</span> dans la bande de fréquence <span class="math notranslate nohighlight">\(j\)</span>. Si le mode de calcul est «&nbsp;aléatoire&nbsp;», le coefficient <span class="math notranslate nohighlight">\(\epsilon_i^{j}\)</span> est constant et égale à l’unité (1). Si le mode de calcul est «&nbsp;énergétique&nbsp;», le coefficient <span class="math notranslate nohighlight">\(\epsilon_i^{j}\)</span> traduit la perte cumulée d’énergie dans la bande de fréquence <span class="math notranslate nohighlight">\(j\)</span> de la particule <span class="math notranslate nohighlight">\(i\)</span> tout au long de son trajet du fait des phénomènes physiques rencontrés (absorption par les parois et par les encombrements, absorption atmosphérique, transmission acoustique…). Le temps de présence <span class="math notranslate nohighlight">\(\Delta t_i\)</span> peut également être exprimé en fonction de la longueur du trajet de la particule <span class="math notranslate nohighlight">\(i\)</span> dans le volume récepteur, soit <span class="math notranslate nohighlight">\(\ell_i\)</span>, tel que <span class="math notranslate nohighlight">\(\Delta t_i=\ell_i/c\)</span>, <span class="math notranslate nohighlight">\(c\)</span> étant la vitesse de la particule au niveau du point d’observation. En considérant un récepteur «&nbsp;volumique&nbsp;» <a class="footnote-reference" href="#id51" id="id42">[9]</a> est défini par un volume sphérique de rayon <span class="math notranslate nohighlight">\(r_\text{rec}\)</span> (et de volume <span class="math notranslate nohighlight">\(V_\text{rec}\)</span>), la <strong>densité d’énergie</strong> <span class="math notranslate nohighlight">\(w_\text{rec}^{j}(n)\)</span> (en J/m<span class="math notranslate nohighlight">\(^3\)</span>) dans le volume récepteur, pour la bande de fréquence <span class="math notranslate nohighlight">\(j\)</span>, est donné par:</p>
+<div class="math notranslate nohighlight">
+\[\label{densite_energie_recepteur_volumique}
+        w_\text{rec}^{j}(n)=\frac{E_\text{rec}(n)}{V_\text{rec}}= \frac{W}{N} \frac{1}{V_\text{rec}} \sum_i^{N_0} \epsilon_i^{j} \frac{\ell_i}{c}.\]</div>
+<div class="figure" id="id57">
+<a class="reference internal image-reference" href="principe_recepteur_volumique.eps"><img alt="[principe\_recepteur\_volumique]Principe du calcul du niveau de pression acoustique pour un récepteur «&nbsp;volumique&nbsp;». La densité d’énergie dans le volume récepteur est calculée en sommant les contributions énergétiques de chaque particule traversant le récepteur. La contribution de la particule :math:`i` est calculée à partir du trajet :math:`\ell_i` de la particule dans le volume récepteur (relation ([densite\_energie\_recepteur\_volumique]))." src="principe_recepteur_volumique.eps" style="width: 8.00000cm;" /></a>
+<p class="caption"><span class="caption-text">[principe_recepteur_volumique]Principe du calcul du niveau de pression acoustique pour un récepteur «&nbsp;volumique&nbsp;». La densité d’énergie dans le volume récepteur est calculée en sommant les contributions énergétiques de chaque particule traversant le récepteur. La contribution de la particule <span class="math notranslate nohighlight">\(i\)</span> est calculée à partir du trajet <span class="math notranslate nohighlight">\(\ell_i\)</span> de la particule dans le volume récepteur (relation ([densite_energie_recepteur_volumique])).</span></p>
+</div>
+<p>L’<strong>intensité sonore</strong> <span class="math notranslate nohighlight">\(I_\text{rec}^{j}(n)\)</span> (en W/m<span class="math notranslate nohighlight">\(^2\)</span>) au point récepteur est quant à elle donnée par:</p>
+<div class="math notranslate nohighlight">
+\[I_\text{rec}^{j}(n)=c \times w^{j}_\text{rec}(n)= \frac{W}{N} \frac{1}{V_\text{rec}} \sum_i^{N_0} \epsilon_i^{j}\ell_i.\]</div>
+<p>Le <strong>niveau d’intensité sonore</strong> <span class="math notranslate nohighlight">\(L_\text{I,rec}^{j}(n)\)</span> et le <strong>niveau de pression acoustique</strong> <span class="math notranslate nohighlight">\(SPL_\text{rec}(n)\)</span> (en dB) peuvent ensuite être déduits de l’intensité sonore par les relations suivantes:</p>
+<div class="math notranslate nohighlight">
+\[\label{LI_recepteur_volumique}
+        L_\text{I,rec}^{j}(n)=10\log\left(\frac{P2_\text{rec}^{j}(n)}{\rho_0 c I_0}\right),\]</div>
+<p>et</p>
+<div class="math notranslate nohighlight">
+\[\label{SPL_recepteur_volumique}
+        SPL_\text{rec}^{j}(n)=10\log\left( \frac{P2_\text{rec}^{j}(n)}{p_0^2}\right),\]</div>
+<p>où <span class="math notranslate nohighlight">\(I_0=10^{-12}\)</span>&nbsp;W/m:math:<cite>^2</cite> et <span class="math notranslate nohighlight">\(p_0=20 \times 10^{-6}\)</span>&nbsp;Pa désignent l’intensité sonore et la pression acoustique de référence. Chacune des quantités précédentes (énergie, densité d’énergie, intensité et niveaux sonores) sont calculées pour chaque bande de fréquence.</p>
+</div>
+<div class="section" id="vecteur-intensite-au-niveau-dun-recepteur-volumique">
+<h3>Vecteur intensité au niveau d’un récepteur «&nbsp;volumique&nbsp;»<a class="headerlink" href="#vecteur-intensite-au-niveau-dun-recepteur-volumique" title="Permalink to this headline">¶</a></h3>
+<p>Le vecteur <strong>intensité sonore</strong> <span class="math notranslate nohighlight">\(\mathbf{I}_\text{rec}^{j}(n)\)</span> (en W/m<span class="math notranslate nohighlight">\(^2\)</span> ou J/m<span class="math notranslate nohighlight">\(^2\)</span>.s) au point récepteur, pour la bande de fréquence <span class="math notranslate nohighlight">\(j\)</span>, est défini comme la somme des densités d’énergie portées par le vecteur vitesse <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span> des particules (de norme <span class="math notranslate nohighlight">\(c_i\)</span>) traversant le volume récepteur:</p>
+<div class="math notranslate nohighlight">
+\[\textbf{I}_\text{rec}^{j}(n)= \frac{W}{N} \frac{1}{V_\text{rec}} \sum_i^{N_0} \epsilon_i^{j}\ell_i\frac{\mathbf{v}_i}{c_i}.\]</div>
+</div>
+<div class="section" id="calcul-du-niveau-de-pression-acoustique-lateral-au-niveau-dun-recepteur-volumique">
+<h3>Calcul du niveau de pression acoustique «&nbsp;latéral&nbsp;» au niveau d’un récepteur «&nbsp;volumique&nbsp;»<a class="headerlink" href="#calcul-du-niveau-de-pression-acoustique-lateral-au-niveau-dun-recepteur-volumique" title="Permalink to this headline">¶</a></h3>
+<p>Pour le calcul de certains paramètres acoustiques, tels que ceux basés sur l’énergie latérale (LF avec une pondération en <span class="math notranslate nohighlight">\(|\cos\theta|\)</span> et LFC avec une pondération en <span class="math notranslate nohighlight">\(\cos^2\theta\)</span>), il est nécessaire de considérer une pondération de l’intensité sonore en fonction de l’angle <span class="math notranslate nohighlight">\(\theta\)</span> entre la direction d’observation du récepteur ponctuel (en principe orienté vers la source sonore) et de la direction incidente des particules au niveau du récepteur. De ce fait, le code de calcul <strong>SPPS</strong> retourne également les deux quantités suivantes, homogène au carré de la pression acoustique (<em>i.e.</em> en Pa<span class="math notranslate nohighlight">\(^2\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+        P2_{\text{rec},\cos\theta}^{j}(n)&amp;=&amp; \rho_0 c^2 \times w^{j}_{\text{rec},\cos\theta}(n)\\
+        &amp;=&amp; \rho_0 c \frac{W}{N} \frac{1}{V_\text{rec}}\\
+        &amp; &amp; \quad \times \sum_i^{N_0} \epsilon_i^{j}\ell_i|\cos\theta_i|,
+        \end{aligned}\end{split}\]</div>
+<p>et</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+         P2_{\text{rec},\cos^2\theta}^{j}(n)&amp;=&amp; \rho_0 c^2 \times w^{j}_{\text{rec},\cos^2\theta}\\
+         &amp;=&amp; \rho_0 c \frac{W}{N} \frac{1}{V_\text{rec}}\\
+         &amp; &amp; \quad \times \sum_i^{N_0} \epsilon_i^{j}\ell_i\cos^2\theta_i.
+        \end{aligned}\end{split}\]</div>
+<p>où <span class="math notranslate nohighlight">\(\theta_i\)</span> est l’angle correspondant pour la particule <span class="math notranslate nohighlight">\(i\)</span>.</p>
+</div>
+<div class="section" id="calcul-du-niveau-dintensite-sonore-sur-un-recepteur-surfacique">
+<h3>Calcul du niveau d’intensité sonore sur un récepteur «&nbsp;surfacique&nbsp;»<a class="headerlink" href="#calcul-du-niveau-dintensite-sonore-sur-un-recepteur-surfacique" title="Permalink to this headline">¶</a></h3>
+<p>La <strong>puissance</strong> <span class="math notranslate nohighlight">\(W_\text{surf}^{j}\)</span> (en W) reçue par un élément de surface de taille <span class="math notranslate nohighlight">\(\Delta S\)</span> de normal <span class="math notranslate nohighlight">\(\mathbf{n}\)</span> est égale à la somme de l’énergie apportée par chaque particule <span class="math notranslate nohighlight">\(i\)</span> dans la bande de fréquence <span class="math notranslate nohighlight">\(j\)</span> par unité de temps <span class="math notranslate nohighlight">\(\Delta t\)</span>, au pas de temps <span class="math notranslate nohighlight">\(n\)</span> (<em>i.e.</em> au temps <span class="math notranslate nohighlight">\(n\Delta t\)</span>), soit:</p>
+<div class="math notranslate nohighlight">
+\[W_\text{surf}^{j}(n)=\sum_i^{N_0} \frac{\varepsilon_i^{j}}{\Delta t} \frac{\mathbf{v_i}}{c}\cdot \mathbf{n}=\frac{W}{N} \sum_i^{N_0}  \epsilon_i\cos\theta_i,\]</div>
+<p>où <span class="math notranslate nohighlight">\(\mathbf{v_i}\)</span> désigne le vecteur vitesse (de norme <span class="math notranslate nohighlight">\(c\)</span>) de la particule <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(\theta_i\)</span> l’angle entre la normale <span class="math notranslate nohighlight">\(\mathbf{n}\)</span> de la surface et la direction de la particule, et où <span class="math notranslate nohighlight">\({N_0}\)</span> est le nombre total de particules sonores entrant en collision avec l’élément de surface <span class="math notranslate nohighlight">\(\Delta S\)</span>.</p>
+<p>L’<strong>intensité sonore</strong> <span class="math notranslate nohighlight">\(I_\text{surf}^{j}(n)\)</span> (en W/m<span class="math notranslate nohighlight">\(^2\)</span>) reçue par l’élément de surface <span class="math notranslate nohighlight">\(\Delta S\)</span> au pas de temps <span class="math notranslate nohighlight">\(n\)</span> est égale à la puissance reçue divisée par la surface, soit:</p>
+<div class="math notranslate nohighlight">
+\[I_\text{surf}^{j}(n)=\frac{W}{N} \frac{1}{\Delta S}\sum_i^{N_0} \epsilon_i^{j} \cos\theta_i.\]</div>
+<p>Le <strong>niveau d’intensité sonore</strong> <span class="math notranslate nohighlight">\(L_\text{surf}^{j}(n)\)</span> (en dB) peut ensuite être calculé par la relation suivante:</p>
+<div class="math notranslate nohighlight">
+\[\label{L_recepteur_surfacique}
+        L_\text{surf}^{j}(n)= 10\log\frac{I_\text{surf}^{j}(n)}{I_0},\]</div>
+<p>où <span class="math notranslate nohighlight">\(I_0=10^{-12}\)</span>&nbsp;W/m:math:<cite>^2</cite> désigne l’intensité de référence.</p>
+<div class="figure" id="id58">
+<a class="reference internal image-reference" href="principe_recepteur_surfacique.eps"><img alt="[principe\_recepteur\_surfacique]Principe du calcul du niveau d’intensité acoustique au niveau d’un récepteur «&nbsp;surfacique&nbsp;»." src="principe_recepteur_surfacique.eps" style="width: 8.00000cm;" /></a>
+<p class="caption"><span class="caption-text">[principe_recepteur_surfacique]Principe du calcul du niveau d’intensité acoustique au niveau d’un récepteur «&nbsp;surfacique&nbsp;».</span></p>
+</div>
+</div>
+<div class="section" id="calcul-du-niveau-de-pression-acoustique-sur-un-recepteur-surfacique">
+<h3>Calcul du niveau de pression acoustique sur un récepteur «&nbsp;surfacique&nbsp;»<a class="headerlink" href="#calcul-du-niveau-de-pression-acoustique-sur-un-recepteur-surfacique" title="Permalink to this headline">¶</a></h3>
+<p>De façon équivalente au calcul du niveau d’intensité sonore sur un récepteur «&nbsp;surfacique&nbsp;», la pression acoustique quadratique <span class="math notranslate nohighlight">\(P2_\text{surf}^{j}(n)\)</span> (en Pa) reçue par l’élément de surface <span class="math notranslate nohighlight">\(\Delta S\)</span> au pas de temps <span class="math notranslate nohighlight">\(n\)</span> est égale au produit de l’intensité sonore (sans pondération de l’angle d’incidence sur la surface) par l’impédance caractéristique de l’air <span class="math notranslate nohighlight">\(\rho_0\,c\)</span>, soit:</p>
+<div class="math notranslate nohighlight">
+\[P2_\text{surf}^{j}(n)=\rho_0\,c \frac{W}{N} \frac{1}{\Delta S}\sum_i^{N_0} \epsilon_i^{j}.\]</div>
+<p>Le <strong>niveau de pression acoustique</strong> <span class="math notranslate nohighlight">\(L_\text{SPL,surf}^{j}(n)\)</span> (en dB) peut ensuite être calculé par la relation suivante:</p>
+<div class="math notranslate nohighlight">
+\[\label{SPL_recepteur_surfacique}
+        L_\text{SPL,surf}^{j}(n)= 10\log\frac{P2_\text{surf}^{j}(n)}{p_0^2},\]</div>
+<p>où <span class="math notranslate nohighlight">\(p_0=20\times 10^{-6}\)</span>&nbsp;Pa désigne la pression acoustique de référence.</p>
+</div>
+<div class="section" id="calcul-du-niveau-de-pression-acoustique-global-dans-le-modele">
+<h3>Calcul du niveau de pression acoustique global dans le modèle<a class="headerlink" href="#calcul-du-niveau-de-pression-acoustique-global-dans-le-modele" title="Permalink to this headline">¶</a></h3>
+<p>L’intensité acoustique globale <span class="math notranslate nohighlight">\(I_\text{global}^{j}(n)\)</span> dans le modèle, pour la bande de fréquence <span class="math notranslate nohighlight">\(j\)</span>, est calculée en sommant les intensités portées par toutes les particules sonores présentes <span class="math notranslate nohighlight">\(N_n\)</span> dans le modèle au pas de temps <span class="math notranslate nohighlight">\(n\)</span> (<em>i.e.</em> au temps <span class="math notranslate nohighlight">\(n\Delta t\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[I_\text{global}^{j}(n)= \frac{W}{N} \frac{1}{V_\text{rec}} \sum_i^{N_n} \epsilon_i^{j}\ell_i.\]</div>
+<p>Le <strong>niveau de pression acoustique</strong> <span class="math notranslate nohighlight">\(SPL_\text{global}^{j}(n)\)</span> (en dB) peut ensuite être calculé par la relation suivante:</p>
+<div class="math notranslate nohighlight">
+\[\label{SPL_global}
+        SPL_\text{global}^{j}(n)=10\log\left( \frac{P2_\text{global}^{j}(n)}{p_0^2}\right),\]</div>
+<p>où <span class="math notranslate nohighlight">\(p_0=20\times 10^{-6}\)</span>&nbsp;Pa désigne la pression acoustique de référence.</p>
+<table class="docutils footnote" frame="void" id="id43" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>La méthode consiste à considérer des angles d’emission <span class="math notranslate nohighlight">\(\theta\)</span> et <span class="math notranslate nohighlight">\(\phi\)</span> par pas constant.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id44" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[2]</a></td><td>Le champ libre est simulé en considérant un long couloir avec des limites parfaitement absorbantes.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id45" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[3]</a></td><td>Pour des raisons de simplicité, nous considérons la fréquence normale des bandes de fréquence (ISO266:1997), et non la fréquence centrale exacte.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id46" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id11">[4]</a></td><td>La simulation est identique à celle présentée au paragraphe&nbsp;[sec:propagation_acoustique] pour la vérification du respect de la dispersion géométrique.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id47" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id20">[5]</a></td><td>Comme pour une source omnidirectionnelle, <em>cf.</em> paragraphe&nbsp;[sec:source_omni].</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id48" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id22">[6]</a></td><td>Il ne peut pas y avoir de création d’énergie, ni plus d’absorption que d’énergie incidente.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id49" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id23">[7]</a></td><td>Il est important de signaler que ce coefficient de diffraction est différent du coefficient de diffusion <span class="math notranslate nohighlight">\(\delta\)</span> (<em>diffusion coefficient</em> en anglais) proposé par l’, et qui définit quant à lui la «&nbsp;qualité de diffusion&nbsp;» d’une surface en comparant la réponse polaire (loi de réflexion) de la surface en question à une distribution uniforme. La mesure de ce coefficient fait actuellement l’objet de la rédaction de la partie 2 de la norme ISO 17497). Dans certains logiciels de simulation acoustique, le coefficient de diffraction <span class="math notranslate nohighlight">\(s\)</span> est parfois nommé à tord, coefficient de diffusion.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id50" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id36">[8]</a></td><td>Il est important de noter que d’autres auteurs (burns1990,hodgson1991,lam1996,xiangyang2002) mentionnent d’autres relations. La bonne formulation est fonction de la convention des angles. Il est également possible que certaines relations qui sont proposées ne soient pas exactes.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id51" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id42">[9]</a></td><td>La définition du volume récepteur est un élément crucial pour la qualité et la représentativité des résultats. Il doit être suffisamment grand pour comptabiliser des particules sonores lors de leur propagation, mais pas trop pour que la densité d’énergie calculée au point d’observation soit représentative.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="code_TCR.html" class="btn btn-neutral float-right" title="Presentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="code_SPPS_principle.html" class="btn btn-neutral float-left" title="General principle" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Ifsttar
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

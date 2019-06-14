@@ -1,4 +1,4 @@
-TCR calculation code
+Using TCR within I-Simpa
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 TCR is already embedded in I-Simpa. Follow the next instructions to run a calculation with the TCR code in I-Simpa.

@@ -88,13 +88,13 @@ In our example, a parallelepipedal zone has already been provided at the creatio
 
 .. note::
 
-Holding the Ctrl keyboard key allow to select all coplanar face element by a double click. You can also use the same procedure, but with one single click, to select each face element independently.
+	Holding the Ctrl keyboard key allow to select all coplanar face element by a double click. You can also use the same procedure, but with one single click, to select each face element independently.
 
 3. In the folder 'Surfaces' of the 'Data' tree, **Select** all highlighted face elements, and **drag/drop** them to the 'Surfaces' element of the fiiting zone. All face elements are then duplicated in this folder.
 
 .. note::
 
-In this example, all face elements were already identified in a given folder 'fitting' of the 'Data' tree, because this volume was build when preparing the 3D geometry. In this case, it was not necessary to follow the step 2 of this procedure. One can directly drag and drop all face elements of the corresponding surface folder.
+	In this example, all face elements were already identified in a given folder 'fitting' of the 'Data' tree, because this volume was build when preparing the 3D geometry. In this case, it was not necessary to follow the step 2 of this procedure. One can directly drag and drop all face elements of the corresponding surface folder.
 
 4. One must also select the face elements of the fitting zone that are located on the ground. **Open** the 'floor' surface group and find the two face elements that correspond to the floor of the fitting zone (**Select** each face element of the group and **Identify** the ones that correspond to the fitting zone). Once the two face elements are identified, **Select** them and drag/drop them to the 'Surfaces' element of the fitting zone.
 
