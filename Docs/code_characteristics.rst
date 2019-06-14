@@ -127,7 +127,7 @@ Calculation code characteristics
    * - Spectrum
      - ✅ (total, per sound source)
      - -
-   * - Sound level map (on surface receivers) : instantaneaous
+   * - Sound level map (on surface receivers) : instantaneous
      - ✅
      - -
    * - Sound level map (on surface receivers) : cumulative
