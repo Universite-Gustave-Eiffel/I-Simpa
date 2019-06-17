@@ -45,6 +45,12 @@ The first step is to import the geometry of the project. We are interested here 
 
 	When importing the model, several surfaces groups are created. These groups were defined at the 3D scene creation with the CAD software.
 
+.. figure:: images/Tutorial/Screenshot_1_tutorial_3.PNG
+   :align: center
+   :width: 500px
+
+   3D scene import in I-Simpa
+
 Define a machine as a sound source
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -71,6 +77,12 @@ The previous machine can then be duplicated and moved into the room.
 3. **Rename** the group created in 'Milling machine 2';
 4. Since the new machine is located in the same place as the original machine, it is necessary to move it. To perform a translation of the new machine, **Right-click** on the 'Milling Machine 2' group and **Select** 'All sources>Translation';
 5. **Set** the translation values in each direction (x,y,z) to [5,-2,0], and **Click** on 'OK'. The sources group is translated.
+
+.. figure:: images/Tutorial/Screenshot_2_tutorial_3.PNG
+   :align: center
+   :width: 500px
+
+   Sound sources creation (2 identical machines made of 3 punctual sources)
 
 Define a scene volume as a fitting zone
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -105,6 +117,12 @@ In our example, a parallelepipedal zone has already been provided at the creatio
 		When you define value in a spreadsheet (for example 'Alpha' in the example above), you can duplicate the value in all the column (i.e. frequency bands) by selecting 'Set the same value'>'To the column' after a Right-Click on the corresponding value.
 
 		You can also define an average value by setting a value to 'Average' (last row of the spreadsheet), which will define the same value for all the rows (i.e. frequency bands).
+
+.. figure:: images/Tutorial/Screenshot_3_tutorial_3.PNG
+   :align: center
+   :width: 500px
+
+   Fitting zones representation (scene and parallelipipedic fitting zones)
 
 Define a parallelipipedic volume as a fitting zone
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -167,14 +185,14 @@ User can define specific material for the project.
      - Check
      - 14
      - Lambert
-   * - '4000' Hz
+   * - 4000 Hz
      - 0.05
      - 0.8
      - Check
      - 15
      - Lambert
 
-3. **Go to** the 'Surfaces' folder in the 'Data' tree. **Select** the 'trans_ro1' surface to display the coresponding 'Properties' and **set** the 'Material' parameter to the 'Trans_material' material. **Repeat**this procedure for the 'trans_room' surface group.
+3. **Go to** the 'Surfaces' folder in the 'Data' tree. **Select** the 'trans_ro1' surface to display the coresponding 'Properties' and **set** the 'Material' parameter to the 'Trans_material' material. **Repeat** this procedure for the 'trans_room' surface group.
 
 4. **Create** a new material 'Open_door' using the same procedure as for 'Trans_material', using the following parameters, and **Set** this material to the 'door_room1' and 'door_room2' surface groups.
 
@@ -236,6 +254,16 @@ User can define specific material for the project.
 
 	The surface elements that have been defined as fitting surfaces (i.e. 'fitting' surface group) are consider as perfeclty transparent by default. CAUTION
 
+.. tip::
+
+	In order to verify that material have been correctly set, you can display the 3D by selecting the 'Material' option in the 'View'>'Material color' menu.
+
+.. figure:: images/Tutorial/Screenshot_4_tutorial_3.PNG
+   :align: center
+   :width: 500px
+
+   Representation of material of scene surfaces
+
 Insert a line of punctual receivers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -287,6 +315,12 @@ Define a plane receiver
 1. Following the same procedure than for the `Elmia tuturial`_, **Create** a 'New plane receiver', using the default parameters.
 
 .. _`Elmia tuturial`: tutorial_Elmia_hall.html#define-a-plane-receiver
+
+.. figure:: images/Tutorial/Screenshot_5_tutorial_3.PNG
+   :align: center
+   :width: 500px
+
+   Line of punctual receivers (green) and plane surface receiver (mesh)
 
 SPPS calculation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

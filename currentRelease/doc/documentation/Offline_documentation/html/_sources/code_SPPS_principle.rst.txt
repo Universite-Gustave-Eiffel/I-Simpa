@@ -30,7 +30,7 @@ In the current version of the `` SPPS`` code, two calculation modes are proposed
 Spatial meshing
 ----------------
 
-Unlike conventional calculation codes based on ray and sound beam throws, the "SPPS" code is based on a volumetric mesh of the propagation domain.
+Unlike conventional calculation codes based on ray and sound beam throws, the **SPPS** code is based on a volumetric mesh of the propagation domain.
 
 **Benefits:**
 
@@ -38,7 +38,7 @@ Unlike conventional calculation codes based on ray and sound beam throws, the "S
 
 	- the volume mesh allows to realize a surface mesh of the domain boundaries, which can be used to build surface receivers, on any boundary of the domain;
 
-	- the realization of a volumetric mesh requiring that the geometric model be perfectly closed, thus ensuring that no sound particles can disappear from the propagation domain due to an "opening" (faces of the model not perfectly joined for example).
+	- the realization of a volumetric mesh requiring that the geometric model be perfectly closed, thus ensuring that no sound particles can disappear from the propagation domain due to an opening (faces of the model not perfectly joined for example).
 
 **Disadvantages:**
 
@@ -49,6 +49,6 @@ Temporal meshing
 
 In parallel, the monitoring of sound particles is carried out in constant time steps, and not in continuous time. It is therefore necessary to choose a sufficiently small time step so that the physical phenomena present in the sound emission and acoustic propagation processes can be applied to a given time step.
 
-**Mesh supported by the code ``SPPS``:**
+**Mesh supported by the code SPPS:**
 
 	- tetrahedral mesh;

@@ -134,13 +134,15 @@
 </ul>
 <p class="caption"><span class="caption-text">SPPS Code</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">SPPS Presentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">SPPS calculation code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in <strong>SPPS</strong></a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="code_TCR.html">TCR Presentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_configuration_TCR.html">TCR calculation code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_TCR.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_configuration_TCR.html">Using TCR within I-Simpa</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Appendices</span></p>
 <ul>
@@ -252,6 +254,10 @@
 <p class="first admonition-title">Note</p>
 <p class="last">When importing the model, several surfaces groups are created. These groups were defined at the 3D scene creation with the CAD software.</p>
 </div>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="_images/Screenshot_1_tutorial_3.PNG"><img alt="_images/Screenshot_1_tutorial_3.PNG" src="_images/Screenshot_1_tutorial_3.PNG" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">3D scene import in I-Simpa</span></p>
+</div>
 </div>
 <div class="section" id="define-a-machine-as-a-sound-source">
 <h2>Define a machine as a sound source<a class="headerlink" href="#define-a-machine-as-a-sound-source" title="Permalink to this headline">¶</a></h2>
@@ -280,6 +286,10 @@
 <li>Since the new machine is located in the same place as the original machine, it is necessary to move it. To perform a translation of the new machine, <strong>Right-click</strong> on the ‘Milling Machine 2’ group and <strong>Select</strong> ‘All sources&gt;Translation’;</li>
 <li><strong>Set</strong> the translation values in each direction (x,y,z) to [5,-2,0], and <strong>Click</strong> on ‘OK’. The sources group is translated.</li>
 </ol>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="_images/Screenshot_2_tutorial_3.PNG"><img alt="_images/Screenshot_2_tutorial_3.PNG" src="_images/Screenshot_2_tutorial_3.PNG" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">Sound sources creation (2 identical machines made of 3 punctual sources)</span></p>
+</div>
 </div>
 <div class="section" id="define-a-scene-volume-as-a-fitting-zone">
 <h2>Define a scene volume as a fitting zone<a class="headerlink" href="#define-a-scene-volume-as-a-fitting-zone" title="Permalink to this headline">¶</a></h2>
@@ -313,6 +323,10 @@
 <p>When you define value in a spreadsheet (for example ‘Alpha’ in the example above), you can duplicate the value in all the column (i.e. frequency bands) by selecting ‘Set the same value’&gt;’To the column’ after a Right-Click on the corresponding value.</p>
 <p class="last">You can also define an average value by setting a value to ‘Average’ (last row of the spreadsheet), which will define the same value for all the rows (i.e. frequency bands).</p>
 </div>
+<div class="figure align-center" id="id3">
+<a class="reference internal image-reference" href="_images/Screenshot_3_tutorial_3.PNG"><img alt="_images/Screenshot_3_tutorial_3.PNG" src="_images/Screenshot_3_tutorial_3.PNG" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">Fitting zones representation (scene and parallelipipedic fitting zones)</span></p>
+</div>
 </div>
 <div class="section" id="define-a-parallelipipedic-volume-as-a-fitting-zone">
 <h2>Define a parallelipipedic volume as a fitting zone<a class="headerlink" href="#define-a-parallelipipedic-volume-as-a-fitting-zone" title="Permalink to this headline">¶</a></h2>
@@ -330,8 +344,8 @@
 <li><strong>Unfold</strong> the ‘Materials’ element of the ‘Project database’ element of the ‘Project’ tree and <strong>Right-Click</strong> on the ‘User’ element. <strong>Select</strong> ‘New material’. A ‘New material’ is created. <strong>Rename</strong> the name of the corresponding material to ‘Trans_material’.</li>
 <li><strong>Select</strong> the ‘Material spectrum’ element to display the acoustic parameters of the corresponding material. <strong>Set</strong> the values of each parameters according to the following table.</li>
 </ol>
-<table border="1" class="colwidths-given docutils align-center" id="id3">
-<caption><span class="caption-text">Acoustical properties of the ‘Trans_material’ material</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<table border="1" class="colwidths-given docutils align-center" id="id4">
+<caption><span class="caption-text">Acoustical properties of the ‘Trans_material’ material</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="20%" />
 <col width="15%" />
@@ -385,7 +399,7 @@
 <td>14</td>
 <td>Lambert</td>
 </tr>
-<tr class="row-odd"><td>‘4000’ Hz</td>
+<tr class="row-odd"><td>4000 Hz</td>
 <td>0.05</td>
 <td>0.8</td>
 <td>Check</td>
@@ -395,11 +409,11 @@
 </tbody>
 </table>
 <ol class="arabic simple" start="3">
-<li><strong>Go to</strong> the ‘Surfaces’ folder in the ‘Data’ tree. <strong>Select</strong> the ‘trans_ro1’ surface to display the coresponding ‘Properties’ and <strong>set</strong> the ‘Material’ parameter to the ‘Trans_material’ material. <a href="#id1"><span class="problematic" id="id2">**</span></a>Repeat**this procedure for the ‘trans_room’ surface group.</li>
+<li><strong>Go to</strong> the ‘Surfaces’ folder in the ‘Data’ tree. <strong>Select</strong> the ‘trans_ro1’ surface to display the coresponding ‘Properties’ and <strong>set</strong> the ‘Material’ parameter to the ‘Trans_material’ material. <strong>Repeat</strong> this procedure for the ‘trans_room’ surface group.</li>
 <li><strong>Create</strong> a new material ‘Open_door’ using the same procedure as for ‘Trans_material’, using the following parameters, and <strong>Set</strong> this material to the ‘door_room1’ and ‘door_room2’ surface groups.</li>
 </ol>
-<table border="1" class="colwidths-given docutils align-center" id="id4">
-<caption><span class="caption-text">Acoustical properties of the ‘Open_door’ material</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<table border="1" class="colwidths-given docutils align-center" id="id5">
+<caption><span class="caption-text">Acoustical properties of the ‘Open_door’ material</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="20%" />
 <col width="15%" />
@@ -473,6 +487,14 @@
 <p class="first admonition-title">Note</p>
 <p class="last">The surface elements that have been defined as fitting surfaces (i.e. ‘fitting’ surface group) are consider as perfeclty transparent by default. CAUTION</p>
 </div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">In order to verify that material have been correctly set, you can display the 3D by selecting the ‘Material’ option in the ‘View’&gt;’Material color’ menu.</p>
+</div>
+<div class="figure align-center" id="id6">
+<a class="reference internal image-reference" href="_images/Screenshot_4_tutorial_3.PNG"><img alt="_images/Screenshot_4_tutorial_3.PNG" src="_images/Screenshot_4_tutorial_3.PNG" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">Representation of material of scene surfaces</span></p>
+</div>
 </div>
 <div class="section" id="insert-a-line-of-punctual-receivers">
 <h2>Insert a line of punctual receivers<a class="headerlink" href="#insert-a-line-of-punctual-receivers" title="Permalink to this headline">¶</a></h2>
@@ -481,8 +503,8 @@
 <li><strong>Go to</strong> the ‘Punctual receivers’ folder in the ‘Data’ tree and <strong>Right-Click</strong> on it. Thus, <strong>Select</strong> the ‘Create a receveir grid’ option.</li>
 <li>A spreadsheed is displayed to define the receiver grid parameters. See <a class="reference external" href="manipulate_sources_receivers.html">the corresponding documentation for more information concerning these parameters</a>. <strong>Set</strong> the following values:</li>
 </ol>
-<table border="1" class="colwidths-given docutils align-center" id="id5">
-<caption><span class="caption-text">Receiver grid parameters</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<table border="1" class="colwidths-given docutils align-center" id="id7">
+<caption><span class="caption-text">Receiver grid parameters</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="70%" />
 <col width="30%" />
@@ -538,6 +560,10 @@
 <ol class="arabic simple">
 <li>Following the same procedure than for the <a class="reference external" href="tutorial_Elmia_hall.html#define-a-plane-receiver">Elmia tuturial</a>, <strong>Create</strong> a ‘New plane receiver’, using the default parameters.</li>
 </ol>
+<div class="figure align-center" id="id8">
+<a class="reference internal image-reference" href="_images/Screenshot_5_tutorial_3.PNG"><img alt="_images/Screenshot_5_tutorial_3.PNG" src="_images/Screenshot_5_tutorial_3.PNG" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">Lines of punctual receivers and plane surface receiver</span></p>
+</div>
 </div>
 <div class="section" id="spps-calculation">
 <h2>SPPS calculation<a class="headerlink" href="#spps-calculation" title="Permalink to this headline">¶</a></h2>
@@ -545,8 +571,8 @@
 <li><strong>Go to</strong> the calculation tab of the ‘Project’ windows, <strong>Unfold</strong> the ‘SPPS’ code and <strong>Select</strong> the ‘Properties’ element. It displays a spreadsheet with all SPPS calculation parameters.</li>
 <li><strong>Set</strong> the parameters to the corresponding values (<a class="reference external" href="code_configuration_SPPS.html#calculation-parameters">see the correspondig documentation for more information about these parameters</a>):</li>
 </ol>
-<table border="1" class="colwidths-given docutils align-center" id="id6">
-<caption><span class="caption-text">SPPS calculation parameters (tutorial 3)</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
+<table border="1" class="colwidths-given docutils align-center" id="id9">
+<caption><span class="caption-text">SPPS calculation parameters (tutorial 3)</span><a class="headerlink" href="#id9" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="70%" />
 <col width="30%" />

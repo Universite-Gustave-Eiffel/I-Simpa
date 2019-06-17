@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="TCR Presentation" href="code_TCR.html" />
-    <link rel="prev" title="SPPS calculation code" href="code_configuration_SPPS.html" /> 
+    <link rel="next" title="Modelling of physical phenomena in SPPS" href="code_SPPS_modelling.html" />
+    <link rel="prev" title="Using SPPS within I-Simpa" href="code_configuration_SPPS.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -122,8 +122,8 @@
 </ul>
 <p class="caption"><span class="caption-text">SPPS Code</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">SPPS Presentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">SPPS calculation code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">General principle</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#sound-particle-concept">Sound particle concept</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sound-particles-vs-sound-rays">Sound particles vs. sound rays</a></li>
@@ -132,11 +132,12 @@
 <li class="toctree-l2"><a class="reference internal" href="#temporal-meshing">Temporal meshing</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in <strong>SPPS</strong></a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="code_TCR.html">TCR Presentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_configuration_TCR.html">TCR calculation code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_TCR.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_configuration_TCR.html">Using TCR within I-Simpa</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Appendices</span></p>
 <ul>
@@ -230,13 +231,13 @@
 </div>
 <div class="section" id="spatial-meshing">
 <h2>Spatial meshing<a class="headerlink" href="#spatial-meshing" title="Permalink to this headline">¶</a></h2>
-<p>Unlike conventional calculation codes based on ray and sound beam throws, the “SPPS” code is based on a volumetric mesh of the propagation domain.</p>
+<p>Unlike conventional calculation codes based on ray and sound beam throws, the <strong>SPPS</strong> code is based on a volumetric mesh of the propagation domain.</p>
 <p><strong>Benefits:</strong></p>
 <blockquote>
 <div><ul class="simple">
 <li>the mesh of the propagation domain allows to optimize the propagation of sound particles in the domain. Indeed, a pre-processing makes it possible to determine for each mesh of the domain its position with respect to the limits of the domain, its position inside or outside a space requirement, as well as general properties, such as the speed of sound in the mesh and the meteorological conditions (<em>via</em> the height with respect to the ground for example). The tracking of a sound particle in the domain is therefore accelerated by the knowledge of the properties of the meshes adjacent to the mesh containing the particle at the current time step;</li>
 <li>the volume mesh allows to realize a surface mesh of the domain boundaries, which can be used to build surface receivers, on any boundary of the domain;</li>
-<li>the realization of a volumetric mesh requiring that the geometric model be perfectly closed, thus ensuring that no sound particles can disappear from the propagation domain due to an “opening” (faces of the model not perfectly joined for example).</li>
+<li>the realization of a volumetric mesh requiring that the geometric model be perfectly closed, thus ensuring that no sound particles can disappear from the propagation domain due to an opening (faces of the model not perfectly joined for example).</li>
 </ul>
 </div></blockquote>
 <p><strong>Disadvantages:</strong></p>
@@ -249,7 +250,7 @@
 <div class="section" id="temporal-meshing">
 <h2>Temporal meshing<a class="headerlink" href="#temporal-meshing" title="Permalink to this headline">¶</a></h2>
 <p>In parallel, the monitoring of sound particles is carried out in constant time steps, and not in continuous time. It is therefore necessary to choose a sufficiently small time step so that the physical phenomena present in the sound emission and acoustic propagation processes can be applied to a given time step.</p>
-<p><strong>Mesh supported by the code ``SPPS``:</strong></p>
+<p><strong>Mesh supported by the code SPPS:</strong></p>
 <blockquote>
 <div><ul class="simple">
 <li>tetrahedral mesh;</li>
@@ -266,10 +267,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="code_TCR.html" class="btn btn-neutral float-right" title="TCR Presentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="code_SPPS_modelling.html" class="btn btn-neutral float-right" title="Modelling of physical phenomena in SPPS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="code_configuration_SPPS.html" class="btn btn-neutral float-left" title="SPPS calculation code" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="code_configuration_SPPS.html" class="btn btn-neutral float-left" title="Using SPPS within I-Simpa" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
