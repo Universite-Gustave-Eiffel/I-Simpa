@@ -75,7 +75,7 @@ The previous machine can then be duplicated and moved into the room.
 	The sound sources within the new group have exactly the same properties as the original sources, including the names of the sources. However there is no possible confusion between two sources with the same name, each source having its own internal identifier.
 
 3. **Rename** the group created in 'Milling machine 2';
-4. Since the new machine is located in the same place as the original machine, it is necessary to move it. To perform a translation of the new machine, **Right-click** on the 'Milling Machine 2' group and **Select** 'All sources>Translation';
+4. Since the new machine is located in the same place as the original machine, it is necessary to move it. To perform a translation of the new machine, **Right-click** on the 'Milling Machine 2' group and **Select** :menuselection:`All sources --> Translation item` menu;
 5. **Set** the translation values in each direction (x,y,z) to [5,-2,0], and **Click** on 'OK'. The sources group is translated.
 
 .. figure:: images/Tutorial/Screenshot_2_tutorial_3.PNG
@@ -114,7 +114,7 @@ In our example, a parallelepipedal zone has already been provided at the creatio
 
 .. tip::
 
-		When you define value in a spreadsheet (for example 'Alpha' in the example above), you can duplicate the value in all the column (i.e. frequency bands) by selecting 'Set the same value'>'To the column' after a Right-Click on the corresponding value.
+		When you define value in a spreadsheet (for example 'Alpha' in the example above), you can duplicate the value in all the column (i.e. frequency bands) by selecting ::menuselection:`Set the same value --> To the column` after a Right-Click on the corresponding value.
 
 		You can also define an average value by setting a value to 'Average' (last row of the spreadsheet), which will define the same value for all the rows (i.e. frequency bands).
 
@@ -256,7 +256,7 @@ User can define specific material for the project.
 
 .. tip::
 
-	In order to verify that material have been correctly set, you can display the 3D by selecting the 'Material' option in the 'View'>'Material color' menu.
+	In order to verify that material have been correctly set, you can display the 3D by selecting the 'Material' option in the ::menuselection:`View --> Material color` menu.
 
 .. figure:: images/Tutorial/Screenshot_4_tutorial_3.PNG
    :align: center
@@ -374,9 +374,77 @@ SPPS calculation
 
 4. **Run** the calculation code by right-clicking on the 'SPPS' element and selecting 'Run calculation'
 
-Compare two simulations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Instead of creating punctual receivers individually, you can directly create a line of punctual sound sources.
+Evaluate the effect of changing one surface material
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1.
+One can be interesting to evaluate the effect of changing one surface material. I-Simpa includes a tool that allows to compare two results on a surface material. For such operation it is important that the surface receiver is not changed between the tow simulation.
+
+1. **Create** a new material named 'Aborbing_material' using the following data:
+
+.. list-table:: Acoustical properties of the 'Absorbing_material' material
+   :widths: 20 15 15 15 15 20
+   :header-rows: 1
+   :align: center
+
+   * - Frequency bands
+     - Absorption
+     - Diffusion
+     - Transmission
+     - Loss (dB)
+     - Diffusion law
+   * - 125 Hz
+     - 0.60
+     - 0
+     - Uncheck
+     - 0
+     - Specular
+   * - 250 Hz
+     - 0.62
+     - 0
+     - Uncheck
+     - 0
+     - Specular
+   * - 500 Hz
+     - 0.77
+     - 0
+     - Uncheck
+     - 0
+     - Specular
+   * - 1000 Hz
+     - 0.74
+     - 0
+     - Uncheck
+     - 0
+     - Specular
+   * - 2000 Hz
+     - 0.80
+     - 0
+     - Uncheck
+     - 0
+     - Specular
+   * - '4000' Hz
+     - 0.81
+     - 0
+     - Uncheck
+     - 0
+     - Specular
+
+2. **Set** the 'Diff_wall' surface to the new material 'Absorbing_material'.
+
+3. **Run** a new SPPS calculation using the same calculation parameters. At this step, two simulation results are available in the 'Results' tab of the SPPS code.
+
+4. **Goto** to :menuselection:`Tools --> 'File results process' --> 'Compare surface receivers'` menu
+
+5. In the list, **Select** the data 'rs_cut' in the :menuselection:`'Surface receiver' --> 'Global'` list element of the surface receivers used as a 'reference' (should be the first calculation, but you can choose the second calculation instead), then **Select** 'Next'.
+
+6. In the list, **Select** the data 'rs_cut' in the :menuselection:`'Surface receiver' --> 'Global'` list element of the surface receiver that must be compared to the reference (i.e. the 'other simulation', should be the second calculation, but you can choose the first calculation instead). At this step, you can defined a name for the difference between the two results ('reference' - 'other simulation') (by default 'Power gain') and create a new data file by checking the corresponding box. Then **Select** 'Finish'. The corresponding result is created in the folder :menuselection:`'Surface receiver' --> 'Global'` of the second result.
+
+7. **Right-click** on the 'Power gain' result and **choose** :menuselection:`'Load animation' --> 'Cumulating sound level'` to display a sound map of the difference between the two results.
+
+
+.. figure:: images/Tutorial/Screenshot_6_tutorial_3.PNG
+   :align: center
+   :width: 500px
+
+   SPL sound map showing the difference between two calculations.

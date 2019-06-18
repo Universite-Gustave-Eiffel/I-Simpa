@@ -104,7 +104,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#insert-a-line-of-punctual-receivers">Insert a line of punctual receivers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#define-a-plane-receiver">Define a plane receiver</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#spps-calculation">SPPS calculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#compare-two-simulations">Compare two simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#evaluate-the-effect-of-changing-one-surface-material">Evaluate the effect of changing one surface material</a></li>
 </ul>
 </li>
 </ul>
@@ -283,7 +283,7 @@
 </div>
 <ol class="arabic simple" start="3">
 <li><strong>Rename</strong> the group created in ‘Milling machine 2’;</li>
-<li>Since the new machine is located in the same place as the original machine, it is necessary to move it. To perform a translation of the new machine, <strong>Right-click</strong> on the ‘Milling Machine 2’ group and <strong>Select</strong> ‘All sources&gt;Translation’;</li>
+<li>Since the new machine is located in the same place as the original machine, it is necessary to move it. To perform a translation of the new machine, <strong>Right-click</strong> on the ‘Milling Machine 2’ group and <strong>Select</strong> <span class="menuselection">All sources ‣ Translation item</span> menu;</li>
 <li><strong>Set</strong> the translation values in each direction (x,y,z) to [5,-2,0], and <strong>Click</strong> on ‘OK’. The sources group is translated.</li>
 </ol>
 <div class="figure align-center" id="id2">
@@ -320,7 +320,7 @@
 </ol>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
-<p>When you define value in a spreadsheet (for example ‘Alpha’ in the example above), you can duplicate the value in all the column (i.e. frequency bands) by selecting ‘Set the same value’&gt;’To the column’ after a Right-Click on the corresponding value.</p>
+<p>When you define value in a spreadsheet (for example ‘Alpha’ in the example above), you can duplicate the value in all the column (i.e. frequency bands) by selecting :<span class="menuselection">Set the same value ‣ To the column</span> after a Right-Click on the corresponding value.</p>
 <p class="last">You can also define an average value by setting a value to ‘Average’ (last row of the spreadsheet), which will define the same value for all the rows (i.e. frequency bands).</p>
 </div>
 <div class="figure align-center" id="id3">
@@ -489,7 +489,7 @@
 </div>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
-<p class="last">In order to verify that material have been correctly set, you can display the 3D by selecting the ‘Material’ option in the ‘View’&gt;’Material color’ menu.</p>
+<p class="last">In order to verify that material have been correctly set, you can display the 3D by selecting the ‘Material’ option in the :<span class="menuselection">View ‣ Material color</span> menu.</p>
 </div>
 <div class="figure align-center" id="id6">
 <a class="reference internal image-reference" href="_images/Screenshot_4_tutorial_3.PNG"><img alt="_images/Screenshot_4_tutorial_3.PNG" src="_images/Screenshot_4_tutorial_3.PNG" style="width: 500px;" /></a>
@@ -562,7 +562,7 @@
 </ol>
 <div class="figure align-center" id="id8">
 <a class="reference internal image-reference" href="_images/Screenshot_5_tutorial_3.PNG"><img alt="_images/Screenshot_5_tutorial_3.PNG" src="_images/Screenshot_5_tutorial_3.PNG" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Lines of punctual receivers and plane surface receiver</span></p>
+<p class="caption"><span class="caption-text">Line of punctual receivers (green) and plane surface receiver (mesh)</span></p>
 </div>
 </div>
 <div class="section" id="spps-calculation">
@@ -635,12 +635,88 @@
 <li><strong>Run</strong> the calculation code by right-clicking on the ‘SPPS’ element and selecting ‘Run calculation’</li>
 </ol>
 </div>
-<div class="section" id="compare-two-simulations">
-<h2>Compare two simulations<a class="headerlink" href="#compare-two-simulations" title="Permalink to this headline">¶</a></h2>
-<p>Instead of creating punctual receivers individually, you can directly create a line of punctual sound sources.</p>
+<div class="section" id="evaluate-the-effect-of-changing-one-surface-material">
+<h2>Evaluate the effect of changing one surface material<a class="headerlink" href="#evaluate-the-effect-of-changing-one-surface-material" title="Permalink to this headline">¶</a></h2>
+<p>One can be interesting to evaluate the effect of changing one surface material. I-Simpa includes a tool that allows to compare two results on a surface material. For such operation it is important that the surface receiver is not changed between the tow simulation.</p>
 <ol class="arabic simple">
-<li></li>
+<li><strong>Create</strong> a new material named ‘Aborbing_material’ using the following data:</li>
 </ol>
+<table border="1" class="colwidths-given docutils align-center" id="id10">
+<caption><span class="caption-text">Acoustical properties of the ‘Aborbing_material’ material</span><a class="headerlink" href="#id10" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="20%" />
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="20%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Frequency bands</th>
+<th class="head">Absorption</th>
+<th class="head">Diffusion</th>
+<th class="head">Transmission</th>
+<th class="head">Loss (dB)</th>
+<th class="head">Diffusion law</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>125 Hz</td>
+<td>0.60</td>
+<td>0</td>
+<td>Uncheck</td>
+<td>0</td>
+<td>Specular</td>
+</tr>
+<tr class="row-odd"><td>250 Hz</td>
+<td>0.62</td>
+<td>0</td>
+<td>Uncheck</td>
+<td>0</td>
+<td>Specular</td>
+</tr>
+<tr class="row-even"><td>500 Hz</td>
+<td>0.77</td>
+<td>0</td>
+<td>Uncheck</td>
+<td>0</td>
+<td>Specular</td>
+</tr>
+<tr class="row-odd"><td>1000 Hz</td>
+<td>0.74</td>
+<td>0</td>
+<td>Uncheck</td>
+<td>0</td>
+<td>Specular</td>
+</tr>
+<tr class="row-even"><td>2000 Hz</td>
+<td>0.80</td>
+<td>0</td>
+<td>Uncheck</td>
+<td>0</td>
+<td>Specular</td>
+</tr>
+<tr class="row-odd"><td>‘4000’ Hz</td>
+<td>0.81</td>
+<td>0</td>
+<td>Uncheck</td>
+<td>0</td>
+<td>Specular</td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="2">
+<li><strong>Set</strong> the ‘Diff_wall’ surface to the new material ‘Absorbing_material’.</li>
+<li><strong>Run</strong> a new SPPS calculation using the same calculation parameters. At this step, two simulation results are available in the ‘Results’ tab of the SPPS code.</li>
+<li><strong>Goto</strong> to <span class="menuselection">Tools ‣ ‘File results process’ ‣ ‘Compare surface receivers’</span> menu</li>
+<li>In the list, <strong>Select</strong> the data ‘rs_cut’ in the <span class="menuselection">‘Surface receiver’ ‣ ‘Global’</span> list element of the surface receivers used as a ‘reference’ (should be the first calculation, but you can choose the second calculation instead), then <strong>Select</strong> ‘Next’.</li>
+<li>In the list, <strong>Select</strong> the data ‘rs_cut’ in the <span class="menuselection">‘Surface receiver’ ‣ ‘Global’</span> list element of the surface receiver that must be compared to the reference (i.e. the ‘other simulation’, should be the second calculation, but you can choose the first calculation instead). At this step, you can defined a name for the difference between the two results (‘reference’ - ‘other simulation’) (by default ‘Power gain’) and create a new data file by checking the corresponding box. Then <strong>Select</strong> ‘Finish’. The corresponding result is created in the folder <span class="menuselection">‘Surface receiver’ ‣ ‘Global’</span> of the second result.</li>
+<li><strong>Right-click</strong> on the ‘Power gain’ result and choose <span class="menuselection">‘Load animation’ ‣ ‘Cumulating sound level’</span> to display a sound map of the difference between</li>
+</ol>
+<div class="figure align-center" id="id11">
+<a class="reference internal image-reference" href="_images/Screenshot_6_tutorial_3.PNG"><img alt="_images/Screenshot_6_tutorial_3.PNG" src="_images/Screenshot_6_tutorial_3.PNG" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">SPL soundmap showing the difference between two calculations.</span></p>
+</div>
 </div>
 </div>
 
