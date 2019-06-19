@@ -325,24 +325,24 @@ In outdoor environments and for propagation heights limited to :math:`100` m, ac
 
 	- Aerodynamic factors: due to the roughness of the ground surface, wind speed is always higher at height than at ground level. In a given situation, the speed of sound in the presence of wind corresponds to the algebraic sum of the speed of sound in the absence of wind and the projection of the wind vector on the direction of propagation considered. This speed therefore varies according to the height above the ground.
 
-By analogy with the laws of optics, the effect of atmospheric conditions on acoustic propagation can be described through the expression of the acoustic index :math:`n` of the propagation medium. If placed in a vertical section, this index is assumed to vary with altitude :math:`z` and with source-receptor distance :math:`r`, such that :
+By analogy with the laws of optics, the effect of atmospheric conditions on acoustic propagation can be described through the expression of the acoustic index :math:`n` of the propagation medium. If placed in a vertical section, this index is assumed to vary with altitude :math:`z` and with source-receptor distance :math:`r`, such that:
 
 .. math:: n(r,z)=\frac{c(r,z)}{c_0}=\langle n(r,z)\rangle + \mu(r,z),
 
 where :math:`c`s the effective velocity of the sound wave in the environment crossed and :math:`c_0` the reference one. Thus, two distinct phenomena can be distinguished that affect acoustic propagation, refraction and atmospheric turbulence. These phenomena are respectively related to the deterministic parts :math:`\langle n\rangle` and stochastic :math:`\mu` of the propagation medium index. In practice, these refraction and turbulence phenomena co-exist and interact, leading to complex propagation conditions, as well as a very wide dispersion of the sound levels encountered *in situ*, all of which are identical (topography, soil type, source-receptor geometry, etc.).
 
 
-Speed profile model
-''''''''''''''''''''''''''''
+Acoustic velocity profile model
+'''''''''''''''''''''''''''''''
 
-The average sound velocity profile thus depends on the average wind and temperature profiles. This velocity profile can be described analytically, depending on whether it follows a linear (":math:`\text{lin}`"), logarithmic (":math:`\text{log}`"), hybrid (":math:`\text{log-lin}`") or other law. The ":math:`\text{log}`" profiles thus have the advantage of translating the very strong vertical gradient of sound velocity in the immediate vicinity of the ground, but do not accurately reflect the more moderate evolution with altitude above a certain height. On the other hand, the profiles ":math:``\text{lin}`" minimize the effects in the vicinity of the ground and are therefore not representative of reality when placed at very low altitude. A good compromise therefore consists in using hybrid profiles of the type ":math:`\text{log-lin}`" (valid especially for a so-called "stable" atmosphere), expressed through the parameters :math:`a_\text{log}` and :math:`b_\text{lin}` which appear in the analytical expression of the vertical profile of the effective sound velocity:
+The average sound velocity profile thus depends on the average wind and temperature profiles. This velocity profile can be described analytically, depending on whether it follows a linear (":math:`\text{lin}`"), logarithmic (":math:`\text{log}`"), hybrid (":math:`\text{log-lin}`") or other law. The ":math:`\text{log}`" profiles thus have the advantage of translating the very strong vertical gradient of sound velocity in the immediate vicinity of the ground, but do not accurately reflect the more moderate evolution with altitude above a certain height. On the other hand, the profiles ":math:`\text{lin}`" minimize the effects in the vicinity of the ground and are therefore not representative of reality when placed at very low altitude. A good compromise therefore consists in using hybrid profiles of the type ":math:`\text{log-lin}`" (valid especially for a so-called "stable" atmosphere), expressed through the parameters :math:`a_\text{log}` and :math:`b_\text{lin}` which appear in the analytical expression of the vertical profile of the effective sound velocity:
 
 .. math::
 
    \label{eq:celerite_log_lin}
            \langle c(z)\rangle=c_0+ a_\text{log}\times \ln\left(1+\frac{z}{z_0}\right)+b_\text{lin}\times \left( z-z_0\right),
 
-où :math:`z_0` is the roughness parameter, whose typical values range from :math:`10^{-2}`m for short grass to several meters in urban areas. The vertical gradient is then expressed by deriving according to the variable :math:`z`:
+où :math:`z_0` is the roughness parameter, whose typical values range from :math:`10^{-2}` m for short grass to several meters in urban areas. The vertical gradient is then expressed by deriving according to the variable :math:`z`:
 
 .. math:: \frac{\partial\langle c(z)\rangle}{\partial z}=\frac{a_\text{log}}{z_0}+b_\text{lin}.
 
@@ -416,7 +416,7 @@ The presence of a large number of objects on the path of a sound wave can lead t
 Physical description
 ''''''''''''''''''''
 
-In order to take into account the diffraction and absorption of diffusing objects distributed in the propagation medium, we considered an approach similar to that of Ondet and Barbry presented in the reference (ondet1989), which itself is based on the work of Kuttruff (kuttruff1981), Auletta (auletta1985, auletta1986), and Lindquist (lindqvist1982), among others. In this approach,
+In order to take into account the scattering/diffusion and absorption of diffusing objects distributed in the propagation medium, we considered an approach similar to that of Ondet and Barbry presented in the reference (ondet1989), which itself is based on the work of Kuttruff (kuttruff1981), Auletta (auletta1985, auletta1986), and Lindquist (lindqvist1982), among others. In this approach,
 
 - the diffusing objects are considered as punctual. Particles are returned in all directions of space with each collision with a scattering object (except in the case of absorption). This assumption is generally valid when the wavelength is in the order of magnitude of the characteristic dimension of the obstacle;
 
@@ -522,7 +522,7 @@ The absorption coefficient of a material can be measured using the standardised 
 Acoustic diffusion
 ''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-On the other hand, depending on the shape, size and distribution of the wall irregularities, the sound wave can be reflected simultaneously in the specular direction and in other directions. In room acoustics, it is common to consider that a fraction :math:`1-s` of the sound energy will be reflected in the direction of specular reflection, while a fraction :math:`s` of the energy will be reflected in the other directions of space, according to a law of reflection characterized by irregularities in the wall (embrechts2001). In the latter case, we speak of *diffuse reflection*, where :math:`s` is called scattering coefficient (*scattering coefficient* in English). In room acoustics, numerous theoretical and experimental studies are currently underway to characterize or measure these laws of reflection (vorlander2000,cox2004). However, the common practice is to use Lambert's law to describe a diffuse reflection. The value of the diffraction coefficient :math:`s` can be obtained by a standardized measurement procedure (ISO 17497-1 of 2004 (ISO17497-1:2004)). [7]_
+On the other hand, depending on the shape, size and distribution of the wall irregularities, the sound wave can be reflected simultaneously in the specular direction and in other directions. In room acoustics, it is common to consider that a fraction :math:`1-s` of the sound energy will be reflected in the direction of specular reflection, while a fraction :math:`s` of the energy will be reflected in the other directions of space, according to a law of reflection characterized by irregularities in the wall (embrechts2001). In the latter case, we speak of *diffuse reflection*, where :math:`s` is called scattering coefficient (*scattering coefficient* in English). In room acoustics, numerous theoretical and experimental studies are currently underway to characterize or measure these laws of reflection (vorlander2000,cox2004). However, the common practice is to use Lambert's law to describe a diffuse reflection. The value of the scattring coefficient :math:`s` can be obtained by a standardized measurement procedure (ISO 17497-1 of 2004 (ISO17497-1:2004)). [7]_
 
 |image|
 
@@ -539,7 +539,7 @@ In a second step, to determine the type of reflection (specular or diffuse), a n
 Energetic modelling
 ''''''''''''''''''''''''''
 
-When a particle collides with a wall, its energy :math:`\epsilon` is weighted by the reflection coefficient :math:`R=1-\alpha`. The choice of specular or diffuse reflection, depending on the diffraction coefficient, is identical to the "random" method: a random draw :math:`v` is performed between :math:`0` and :math:`1`. If this number is less than the value of :math:`1-s`, the particle is specularly reflected. Otherwise, the reflection is diffuse, in a direction to be determined (*cf.* paragraph [sec:mod\_reflexion]). An entirely "energetic" treatment would be possible by duplicating the particle into two particles, the first being reflected in the specular direction and the second in the diffuse direction (*cf. * note on page).
+When a particle collides with a wall, its energy :math:`\epsilon` is weighted by the reflection coefficient :math:`R=1-\alpha`. The choice of specular or diffuse reflection, depending on the scattering coefficient, is identical to the "random" method: a random draw :math:`v` is performed between :math:`0` and :math:`1`. If this number is less than the value of :math:`1-s`, the particle is specularly reflected. Otherwise, the reflection is diffuse, in a direction to be determined (*cf.* paragraph [sec:mod\_reflexion]). An entirely "energetic" treatment would be possible by duplicating the particle into two particles, the first being reflected in the specular direction and the second in the diffuse direction (*cf. * note on page).
 
 Modelling of the reflection laws
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -758,7 +758,7 @@ The energy modeling is performed by weighting the energy of the particle once tr
 Verification of wall modelling
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The figure [figure\_test\_reflection] illustrates the result of the reflection procedure (reflection=specular/diffuse, absorption=loss/transmission) in random mode, with the following acoustic parameters: diffraction coefficient :math:`s=0.6`, absorption coefficient :math:`\alpha=0.8`, transmission coefficient :math:`\tau=10^{-R/10}=0.1` (attenuation index :math:`R=10` dB). With :math:`10000` realizations, the different phenomena are found (in terms of number of realizations) with the same proportions as the imposed acoustic parameters.
+The figure [figure\_test\_reflection] illustrates the result of the reflection procedure (reflection=specular/diffuse, absorption=loss/transmission) in random mode, with the following acoustic parameters: scattering coefficient :math:`s=0.6`, absorption coefficient :math:`\alpha=0.8`, transmission coefficient :math:`\tau=10^{-R/10}=0.1` (attenuation index :math:`R=10` dB). With :math:`10000` realizations, the different phenomena are found (in terms of number of realizations) with the same proportions as the imposed acoustic parameters.
 
 |image|
 
@@ -929,7 +929,7 @@ where :math:`p_0=20\times 10^{-6}` Pa is the reference sound pressure.
    There can be no creation of energy, nor more absorption than incident energy.
 
 .. [7]
-   It is important to note that this diffraction coefficient is different from the diffusion coefficient :math:`\delta` proposed by the AES, which defines the "diffusion quality" of a surface by comparing the polar response (reflection law) of the surface in question to a uniform distribution. The measurement of this coefficient is currently being drafted in Part 2 of ISO 17497. In some acoustic simulation software, the diffraction coefficient :math:`s` is sometimes wrongly called the diffusion coefficient.
+   It is important to note that this scattring coefficient (ISO 17497-1), which defines the ratio between non-specular reflected energy on the total energy, is different from the diffusion coefficient :math:`\delta` (ISO 17497-2), which defines the ability of the surface to uniformly scatter in all direction. In some acoustic simulation software, the diffraction coefficient :math:`s` may sometimes wrongly called the diffusion coefficient.
 
 .. [8]
    It is important to note that other authors (burns1990,hodgson1991,lam1996,xiangyang2002) mention other relationships. The correct formulation depends on the angle convention. It is also possible that some of the relationships that are proposed may not be accurate.

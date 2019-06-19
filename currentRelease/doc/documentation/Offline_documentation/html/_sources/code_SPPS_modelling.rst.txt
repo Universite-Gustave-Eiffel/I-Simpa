@@ -325,24 +325,24 @@ In outdoor environments and for propagation heights limited to :math:`100` m, ac
 
 	- Aerodynamic factors: due to the roughness of the ground surface, wind speed is always higher at height than at ground level. In a given situation, the speed of sound in the presence of wind corresponds to the algebraic sum of the speed of sound in the absence of wind and the projection of the wind vector on the direction of propagation considered. This speed therefore varies according to the height above the ground.
 
-By analogy with the laws of optics, the effect of atmospheric conditions on acoustic propagation can be described through the expression of the acoustic index :math:`n` of the propagation medium. If placed in a vertical section, this index is assumed to vary with altitude :math:`z` and with source-receptor distance :math:`r`, such that :
+By analogy with the laws of optics, the effect of atmospheric conditions on acoustic propagation can be described through the expression of the acoustic index :math:`n` of the propagation medium. If placed in a vertical section, this index is assumed to vary with altitude :math:`z` and with source-receptor distance :math:`r`, such that:
 
 .. math:: n(r,z)=\frac{c(r,z)}{c_0}=\langle n(r,z)\rangle + \mu(r,z),
 
 where :math:`c`s the effective velocity of the sound wave in the environment crossed and :math:`c_0` the reference one. Thus, two distinct phenomena can be distinguished that affect acoustic propagation, refraction and atmospheric turbulence. These phenomena are respectively related to the deterministic parts :math:`\langle n\rangle` and stochastic :math:`\mu` of the propagation medium index. In practice, these refraction and turbulence phenomena co-exist and interact, leading to complex propagation conditions, as well as a very wide dispersion of the sound levels encountered *in situ*, all of which are identical (topography, soil type, source-receptor geometry, etc.).
 
 
-Speed profile model
-''''''''''''''''''''''''''''
+Acoustic velocity profile model
+'''''''''''''''''''''''''''''''
 
-The average sound velocity profile thus depends on the average wind and temperature profiles. This velocity profile can be described analytically, depending on whether it follows a linear (":math:`\text{lin}`"), logarithmic (":math:`\text{log}`"), hybrid (":math:`\text{log-lin}`") or other law. The ":math:`\text{log}`" profiles thus have the advantage of translating the very strong vertical gradient of sound velocity in the immediate vicinity of the ground, but do not accurately reflect the more moderate evolution with altitude above a certain height. On the other hand, the profiles ":math:``\text{lin}`" minimize the effects in the vicinity of the ground and are therefore not representative of reality when placed at very low altitude. A good compromise therefore consists in using hybrid profiles of the type ":math:`\text{log-lin}`" (valid especially for a so-called "stable" atmosphere), expressed through the parameters :math:`a_\text{log}` and :math:`b_\text{lin}` which appear in the analytical expression of the vertical profile of the effective sound velocity:
+The average sound velocity profile thus depends on the average wind and temperature profiles. This velocity profile can be described analytically, depending on whether it follows a linear (":math:`\text{lin}`"), logarithmic (":math:`\text{log}`"), hybrid (":math:`\text{log-lin}`") or other law. The ":math:`\text{log}`" profiles thus have the advantage of translating the very strong vertical gradient of sound velocity in the immediate vicinity of the ground, but do not accurately reflect the more moderate evolution with altitude above a certain height. On the other hand, the profiles ":math:`\text{lin}`" minimize the effects in the vicinity of the ground and are therefore not representative of reality when placed at very low altitude. A good compromise therefore consists in using hybrid profiles of the type ":math:`\text{log-lin}`" (valid especially for a so-called "stable" atmosphere), expressed through the parameters :math:`a_\text{log}` and :math:`b_\text{lin}` which appear in the analytical expression of the vertical profile of the effective sound velocity:
 
 .. math::
 
    \label{eq:celerite_log_lin}
            \langle c(z)\rangle=c_0+ a_\text{log}\times \ln\left(1+\frac{z}{z_0}\right)+b_\text{lin}\times \left( z-z_0\right),
 
-où :math:`z_0` is the roughness parameter, whose typical values range from :math:`10^{-2}`m for short grass to several meters in urban areas. The vertical gradient is then expressed by deriving according to the variable :math:`z`:
+où :math:`z_0` is the roughness parameter, whose typical values range from :math:`10^{-2}` m for short grass to several meters in urban areas. The vertical gradient is then expressed by deriving according to the variable :math:`z`:
 
 .. math:: \frac{\partial\langle c(z)\rangle}{\partial z}=\frac{a_\text{log}}{z_0}+b_\text{lin}.
 
