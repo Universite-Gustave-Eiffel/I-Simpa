@@ -382,7 +382,7 @@ One can be interesting to evaluate the effect of changing one surface material. 
 
 1. **Create** a new material named 'Aborbing_material' using the following data:
 
-.. list-table:: Acoustical properties of the 'Aborbing_material' material
+.. list-table:: Acoustical properties of the 'Absorbing_material' material
    :widths: 20 15 15 15 15 20
    :header-rows: 1
    :align: center
@@ -440,11 +440,11 @@ One can be interesting to evaluate the effect of changing one surface material. 
 
 6. In the list, **Select** the data 'rs_cut' in the :menuselection:`'Surface receiver' --> 'Global'` list element of the surface receiver that must be compared to the reference (i.e. the 'other simulation', should be the second calculation, but you can choose the first calculation instead). At this step, you can defined a name for the difference between the two results ('reference' - 'other simulation') (by default 'Power gain') and create a new data file by checking the corresponding box. Then **Select** 'Finish'. The corresponding result is created in the folder :menuselection:`'Surface receiver' --> 'Global'` of the second result.
 
-7. **Right-click** on the 'Power gain' result and choose :menuselection:`'Load animation' --> 'Cumulating sound level'` to display a sound map of the difference between
+7. **Right-click** on the 'Power gain' result and **choose** :menuselection:`'Load animation' --> 'Cumulating sound level'` to display a sound map of the difference between the two results.
 
 
 .. figure:: images/Tutorial/Screenshot_6_tutorial_3.PNG
    :align: center
    :width: 500px
 
-   SPL soundmap showing the difference between two calculations.
+   SPL sound map showing the difference between two calculations.
