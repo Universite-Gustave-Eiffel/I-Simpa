@@ -864,7 +864,7 @@ In the **SPPS** code, two types of receivers are considered:
 In addition, the calculation code also determines the overall sound pressure level in the 3D model, summing the contributions of each particle, at each time step and for each frequency band.
 
 
-Calculation of the sound pressure level at a 'volume' receiver
+Calculation of the sound pressure level at a volume receiver
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The amount of **energy** :math:`E_\text{rec}^{j}(n)` (in J or W.s) in the frequency band :math:`j` received at a volume receiver, at the time step :math:`n` (*i.e.* to time :math:`n \Delta t`) is equal to the sum of the energies :math:`\varepsilon_i^{j}` brought by each particle :math:`i` in the frequency band :math:`j`, crossing the receiver volume during the time step :math:`n` (figure[principle\_receiver\_volumique]):
