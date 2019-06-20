@@ -6,7 +6,7 @@ represent an impulse response (RI). The actions associated with I-Simpa arise di
 
 .. important::
 	The operations performed by the interface I-Simpa with this file type make sense only if the data in the file are equivalent to an instantaneous squared sound pressure (:math:`p^2`).
-	
+
 Data Display
 ^^^^^^^^^^^^^^^^^^^
 
@@ -14,7 +14,7 @@ Double left click on a `.recp` file open a new winodw with three tabs
 
 -  'Sound Level SPL (dB)' tab
 		It contains the temporal evolution of the quantity, for each frequency band, as a data table.
-		
+
 			- This tab is opened by default.
 			- The values are represented in sound pressure levels (SPL).
 			- The **Global** value (*i.e.* the sum of all frequency bands) is calculated and displayed at the bottom of each column.
@@ -24,11 +24,11 @@ Double left click on a `.recp` file open a new winodw with three tabs
 		It provides a graphic display of the **Global** value.
 
 			- The temporal evolution of the **Global** value is displayed, as an echogram.
-			- The cumulative quantity of the **Global** value is displayed, according to the Schroeder's backward integration [Schroeder, 1965].
-			
+			- The cumulative quantity of the **Global** value is displayed, according to the Schroeder's backward integration :cite:`Schroeder_1965`.
+
 - 'Spectrum' tab
 		It displays a spectrum at the punctual receiver.
-		
+
 Room acoustics parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -60,12 +60,12 @@ After the calculation parameters, two files are created in the corresponding fol
 		- The parameters are given for each frequency band of interest.
 		- When allowed, the **Global** value (*i.e.* the sum of all frequency bands) is calculated and displayed at the bottom of each column.
 		- When allowed, the **Average** value (*i.e.* the mean value on all frequency bands) is calculated and displayed at the bottom of each column.
-		
-	
+
+
 - 'Schroeder curves'
-	It displays the temporal evolution of the Schroeder's curves [Schroeder, 1965], for each frequency band, as a data table.
-	
+	It displays the temporal evolution of the Schroeder's curves :cite:`Schroeder_1965`, for each frequency band, as a data table.
+
 .. tip::
 	User can create charts for representing data from the data table. See `charts creation`_
- 
+
 .. _`charts creation`: create_charts.html

@@ -200,7 +200,7 @@ Sound map
 	:width: 140px
 
 Acoustics parameters
-	EN ISO 3382-1 room acoustics parameters: Reverberation times, Clarity, Definition, Early support, Centre time, Strength, Early Lateral Energy Fraction, Late Lateral Sound Level.
+	:term:`EN ISO 3382-1` room acoustics parameters: Reverberation times, Clarity, Definition, Early support, Centre time, Strength, Early Lateral Energy Fraction, Late Lateral Sound Level.
 
 ,,,,
 
@@ -232,7 +232,7 @@ Python™ scripting
 	:width: 140px
 
 Environmental data
-	Definition of atmospheric conditions and calculation of absorption coefficient (ISO 9613). Meteorological parameters (log-lin sound speed velocity profiles).
+	Definition of atmospheric conditions and calculation of absorption coefficient (:term:`ISO 9613-1`). Meteorological parameters (log-lin sound speed velocity profiles).
 
 ,,,,
 

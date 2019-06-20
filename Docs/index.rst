@@ -114,8 +114,8 @@ the TCR numerical codes (embedded within the I-Simpa software).
    :caption: Appendices
 
    I_Simpa_standard
-   references
    glossary
+   references
 
 Indices and tables
 ==================

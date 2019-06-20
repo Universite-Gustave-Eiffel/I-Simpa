@@ -192,7 +192,7 @@
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modélisation des phénomènes physiques dans <strong>SPPS</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in <strong>SPPS</strong></a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
@@ -202,8 +202,8 @@
 <p class="caption"><span class="caption-text">Appendices</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="I_Simpa_standard.html">Standards</a></li>
-<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
 
             
@@ -1370,12 +1370,12 @@ within source groups. A group can contain other groups.</p>
 <p>This tab allows to choose and to define the acoustic calculation. This tab contains all calculation codes that are linked to I-Simpa. By default, two numerical codes are given:</p>
 <ul class="simple">
 <li><dl class="first docutils">
-<dt><a href="#id5"><span class="problematic" id="id6">`TCR calculation code`_</span></a></dt>
+<dt><a href="#id7"><span class="problematic" id="id8">`TCR calculation code`_</span></a></dt>
 <dd>Apply the Classical Theory of Reverberation for room acoustics. It applies Sabine and Eyring formulae. This code must be used only for closed spaces.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt><a href="#id7"><span class="problematic" id="id8">`SPPS calculation code`_</span></a></dt>
+<dt><a href="#id9"><span class="problematic" id="id10">`SPPS calculation code`_</span></a></dt>
 <dd>This code is based on a particle tracing method, in respect with the geometrical and energetical hypothesis. This code can be applied in most of situations in room acoustics, as well as in open field, including urban area.</dd>
 </dl>
 </li>
@@ -1390,8 +1390,8 @@ within source groups. A group can contain other groups.</p>
 <p><strong>Double left click</strong> on the TCR calculation code in I-Simpa to display all calculation paramaters:</p>
 <ul class="simple">
 <li><a class="reference internal" href="#frequency-bands">Frequency bands</a> for the selection of the frequency band to be used for the calculation</li>
-<li><a href="#id9"><span class="problematic" id="id10">`Meshing`_</span></a> for the meshing configuration</li>
-<li><a href="#id11"><span class="problematic" id="id12">`Calculation parameters`_</span></a> for the calculation parameters</li>
+<li><a href="#id11"><span class="problematic" id="id12">`Meshing`_</span></a> for the meshing configuration</li>
+<li><a href="#id13"><span class="problematic" id="id14">`Calculation parameters`_</span></a> for the calculation parameters</li>
 </ul>
 <p><strong>Right click</strong> on the selected calculation code to display all possible actions:</p>
 <ul class="simple">
@@ -1682,8 +1682,8 @@ within source groups. A group can contain other groups.</p>
 <p>TCR is already embedded in I-Simpa. Follow the next instructions to run a calculation with the TCR code in I-Simpa.</p>
 <p><strong>Double left click</strong> on the TCR calculation code in I-Simpa to display all calculation parameters:</p>
 <ul class="simple">
-<li><a href="#id13"><span class="problematic" id="id14">`Meshing`_</span></a>, for the meshing configuration</li>
-<li><a href="#id15"><span class="problematic" id="id16">`Calculation parameters`_</span></a>  for the calculation parameters</li>
+<li><a href="#id15"><span class="problematic" id="id16">`Meshing`_</span></a>, for the meshing configuration</li>
+<li><a href="#id17"><span class="problematic" id="id18">`Calculation parameters`_</span></a>  for the calculation parameters</li>
 </ul>
 <p><strong>Right click</strong> on the selected calculation code to display all possible actions:</p>
 <ul class="simple">
@@ -1895,7 +1895,7 @@ represent an impulse response (RI). The actions associated with I-Simpa arise di
 <blockquote class="last">
 <div><ul class="simple">
 <li>The temporal evolution of the <strong>Global</strong> value is displayed, as an echogram.</li>
-<li>The cumulative quantity of the <strong>Global</strong> value is displayed, according to the Schroeder’s backward integration [Schroeder, 1965].</li>
+<li>The cumulative quantity of the <strong>Global</strong> value is displayed, according to the Schroeder’s backward integration <a class="reference internal" href="references.html#schroeder-1965" id="id5">[Sch65]</a>.</li>
 </ul>
 </div></blockquote>
 </dd>
@@ -1949,7 +1949,7 @@ represent an impulse response (RI). The actions associated with I-Simpa arise di
 </li>
 <li><dl class="first docutils">
 <dt>‘Schroeder curves’</dt>
-<dd><p class="first last">It displays the temporal evolution of the Schroeder’s curves [Schroeder, 1965], for each frequency band, as a data table.</p>
+<dd><p class="first last">It displays the temporal evolution of the Schroeder’s curves <a class="reference internal" href="references.html#schroeder-1965" id="id6">[Sch65]</a>, for each frequency band, as a data table.</p>
 </dd>
 </dl>
 </li>
@@ -1962,7 +1962,7 @@ represent an impulse response (RI). The actions associated with I-Simpa arise di
 </div>
 <div class="section" id="punctual-receiver-file-gap">
 <h3>Punctual receiver file <cite>.gap</cite><a class="headerlink" href="#punctual-receiver-file-gap" title="Permalink to this headline">¶</a></h3>
-<p>In addition to classical room acoustics parameters, some <em>advanced</em> parameters are also calculated, and displayed in the ‘Advanced sound level’ file. This file display the temporal evolution of the impulse response, for each frequency band, as a data table, weihgted by <span class="math notranslate nohighlight">\(cos theta\)</span> (LFC and LG) and <span class="math notranslate nohighlight">\(cos^2 theta\)</span> (LF and LG).</p>
+<p>In addition to classical room acoustics parameters, some <em>advanced</em> parameters are also calculated, and displayed in the ‘Advanced sound level’ file. This file display the temporal evolution of the impulse response, for each frequency band, as a data table, weihgted by <span class="math notranslate nohighlight">\(\cos \theta\)</span> (LFC and LG) and <span class="math notranslate nohighlight">\(\cos^2 \theta\)</span> (LF and LG).</p>
 <p>The contextual menu that is associated to this file allows to calculate several room acoustic parameters:</p>
 <ul class="simple">
 <li>Early lateral energy fraction LFC (in %)</li>

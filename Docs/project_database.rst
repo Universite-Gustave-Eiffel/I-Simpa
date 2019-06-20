@@ -114,7 +114,7 @@ Properties
 		Absorption coefficient of the material (real value between 0 and 1).
 
 -  'Scattering'
-		Scaterring coefficient of the material (real value between 0 and 1).
+		Scattering coefficient of the material (real value between 0 and 1).
 
 -  'Transmission'
 		Check/uncheck for taking acoustic transmission into account.

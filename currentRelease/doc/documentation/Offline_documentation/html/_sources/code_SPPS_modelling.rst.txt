@@ -10,7 +10,7 @@ General formalism
 Acoustic directivity and probability density of sound particles emission
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-From a numerical modelling point of view, the problem of sound emission from a point source is to attribute to the sound particles, at a given moment (which can be the origin of time), the exact position of the source, propagation directions in accordance with the directivity of the source. For example, in the case of an omnidirectional sound source, it is necessary to verify that the sound particles, once emitted, are uniformly distributed over a sphere centred on the source (see corresponding figure: :ref:`geo_source`). The first solution that comes to mind is to make a deterministic discretization [1]_ of the source's radiation in spherical coordinates. Nevertheless, such discretization of emission angles causes an artificial concentration of sound particles at the poles of the sphere symbolizing the source.
+From a numerical modelling point of view, the problem of sound emission from a point source is to attribute to the sound particles, at a given moment (which can be the origin of time), the exact position of the source, propagation directions in accordance with the directivity of the source. For example, in the case of an omnidirectional sound source, it is necessary to verify that the sound particles, once emitted, are uniformly distributed over a sphere centred on the source (see corresponding figure: :ref:`geo_source`). The first solution that comes to mind is to make a deterministic discretization of the source's radiation in spherical coordinates; the method would consist in considering emission angles :math:`\theta` and :math:`\phi` by constant steps. Nevertheless, such discretization of emission angles causes an artificial concentration of sound particles at the poles of the sphere symbolizing the source.
 
 .. _geo_source:
 
@@ -210,7 +210,7 @@ where :math:`N` is the number of particles. The particle distribution therefore 
 Verification
 ''''''''''''
 
-The figure :ref:`verif_dispersion` shows the numerical results of the free field propagation [2]_, for an omnidirectional sound source, without atmospheric absorption (number of particles :math:`N=20\times 10^6`). The agreement is excellent.
+The figure :ref:`verif_dispersion` shows the numerical results of the free field propagation (the free field is simulated by considering a long corridor with perfectly absorbent limits), for an omnidirectional sound source, without atmospheric absorption (number of particles :math:`N=20\times 10^6`). The agreement is excellent.
 
 .. _verif_dispersion:
 
@@ -230,7 +230,7 @@ Atmospheric absorption
 Physical description
 ''''''''''''''''''''
 
-During its propagation in air, a sound wave is partially attenuated by particular physical mechanisms ("classical" transmission processes, molecular absorption due to rotational relaxation, molecular absorption due to vibratory relaxation of oxygen and nitrogen) (bass1984). Thus, after a propagation distance :math:`r`, the amplitude :math:`p_t` of the sound pressure decreases according to the relationship (ISO9613-1:1993):
+During its propagation in air, a sound wave is partially attenuated by particular physical mechanisms ("classical" transmission processes, molecular absorption due to rotational relaxation, molecular absorption due to vibratory relaxation of oxygen and nitrogen) :cite:`bass1984`. Thus, after a propagation distance :math:`r`, the amplitude :math:`p_t` of the sound pressure decreases according to the relationship (:term:`ISO 9613-1`):
 
 .. math::
 
@@ -256,7 +256,8 @@ where :math:`I_0` is the initial intensity of the sound wave. Then, the atmosphe
 
 .. math:: m=\frac{\ln 10}{10}\alpha_\text{air}.
 
-In **SPPS** code, the atmospheric absorption coefficient :math:`\alpha_{air}` is calculated according to ISO 9613-1:1993 (Part 1), considering the centre frequency of each frequency band [3]_ of calculation according to the reference standard (*cf.* paragraph 8.2.1, ISO9613-1:1993). This approximation is considered valid if the product of the source-receiver distance (in km) by the square of the centre frequency (in kHz) does not exceed 6 km.kHz :math:`^2` for the third octave bands and 3 km.kHz :math:`^2` for the octave bands. However, the propagation distance must not exceed 6 km for third octave bands and 3 km for octave bands, regardless of the centre frequency considered.
+In **SPPS** code, the atmospheric absorption coefficient :math:`\alpha_{air}` is calculated according to :term:`ISO 9613-1`, considering the centre frequency of each frequency band of calculation according to the reference standard (*cf.* paragraph 8.2.1 of :term:`ISO 9613-1`). This approximation is considered valid if the product of the source-receiver distance (in km) by the square of the centre frequency (in kHz) does not exceed 6 km.kHz :math:`^2` for the third octave bands and 3 km.kHz :math:`^2` for the octave bands. However, the propagation distance must not exceed 6 km for third octave bands and 3 km for octave bands, regardless of the centre frequency considered.
+
 
 
 Random modelling
@@ -298,7 +299,7 @@ By choosing the 'energetic' calculation option, the energy of the particle is we
 Verification
 ''''''''''''
 
-As an illustration, the figure :ref:`illustration_att_atmos` shows the sound decrease calculated [4]_ by the **SPPS** code at :math:`10` kHz for classical atmospheric conditions (:math:`T=20` Celsisus, :math:`H=50` %, :math:`P=101325` Pa, or :math:`m=0.036` m :math:`^{-1}`), for both types of modelling, compared to the theoretical decrease presented to the relationship :eq:`att_atmos`. As expected, energetic modelling gives a better result than random modelling, the average deviation from the theoretical curve being :math:`0.17` dB and :math:`0.41` dB respectively, the calculation times being similar.
+As an illustration, the figure :ref:`illustration_att_atmos` shows the sound decrease calculated by the **SPPS** code at :math:`10` kHz for classical atmospheric conditions (:math:`T=20` Celsisus, :math:`H=50` %, :math:`P=101325` Pa, or :math:`m=0.036` m :math:`^{-1}`), for both types of modelling, compared to the theoretical decrease presented to the relationship :eq:`att_atmos`; the simulation is identical to the one for the verification of the respect of the geometric dispersion.. As expected, energetic modelling gives a better result than random modelling, the average deviation from the theoretical curve being :math:`0.17` dB and :math:`0.41` dB respectively, the calculation times being similar.
 
 
 .. _illustration_att_atmos:
@@ -319,25 +320,35 @@ Acoustic velocity profile
 Physical description
 ''''''''''''''''''''
 
-In outdoor environments and for propagation heights limited to :math:`100` m, acoustic propagation can be influenced by micrometeorological conditions governed by thermal (heat transfer) and aerodynamic (wind profiles) laws. The phenomena that occur at these altitudes have a very strong interaction with the ground (topography, surface and subsoil temperature, hygrometry, crops, forests, obstacles, buildings, etc.). In addition, they evolve rapidly in time and space, making their analytical description and numerical modelling complex. The thermal and aerodynamic factors that influence propagation are as follows:
+In outdoor environments, acoustic propagation can be influenced by micrometeorological conditions governed by thermal (heat transfer) and aerodynamic (wind profiles) laws. The phenomena have a very strong interaction with the ground (topography, surface and subsoil temperature, hygrometry, crops, forests, obstacles, buildings, etc.). In addition, they evolve rapidly in time and space, making their analytical description and numerical modelling complex. The thermal and aerodynamic factors that influence propagation are as follows:
 
 	- Thermal factors: heat exchanges between the ground and the lower layer of the atmosphere lead to a variation in air temperature as a function of the height above the ground, and therefore to a variation in sound velocity.
 
 	- Aerodynamic factors: due to the roughness of the ground surface, wind speed is always higher at height than at ground level. In a given situation, the speed of sound in the presence of wind corresponds to the algebraic sum of the speed of sound in the absence of wind and the projection of the wind vector on the direction of propagation considered. This speed therefore varies according to the height above the ground.
 
-By analogy with the laws of optics, the effect of atmospheric conditions on acoustic propagation can be described through the expression of the acoustic index :math:`n` of the propagation medium. If placed in a vertical section, this index is assumed to vary with altitude :math:`z` and with source-receptor distance :math:`r`, such that:
+By analogy with the laws of optics (see figure :ref:`geo_profil_celerite`), the effect of atmospheric conditions on acoustic propagation can be described through the expression of the acoustic index :math:`n` of the propagation medium. If placed in a vertical section, this index is assumed to vary with altitude :math:`z` and with source-receptor distance :math:`r`, such that:
 
 .. math:: n(r,z)=\frac{c(r,z)}{c_0}=\langle n(r,z)\rangle + \mu(r,z),
 
 where :math:`c`s the effective velocity of the sound wave in the environment crossed and :math:`c_0` the reference one. Thus, two distinct phenomena can be distinguished that affect acoustic propagation, refraction and atmospheric turbulence. These phenomena are respectively related to the deterministic parts :math:`\langle n\rangle` and stochastic :math:`\mu` of the propagation medium index. In practice, these refraction and turbulence phenomena co-exist and interact, leading to complex propagation conditions, as well as a very wide dispersion of the sound levels encountered *in situ*, all of which are identical (topography, soil type, source-receptor geometry, etc.).
 
 
+.. _geo_profil_celerite:
+
+.. figure:: images/SPPS/geo_profil_celerite.png
+   :width: 500px
+   :align: center
+   :alt: Schematic representation of the acoustic refraction in the atmosphere in the presence of a vertical velocity profile.
+
+   Schematic representation of the acoustic refraction in the atmosphere in the presence of a vertical velocity profile
+
 Acoustic velocity profile model
 '''''''''''''''''''''''''''''''
 
-The average sound velocity profile thus depends on the average wind and temperature profiles. This velocity profile can be described analytically, depending on whether it follows a linear (":math:`\text{lin}`"), logarithmic (":math:`\text{log}`"), hybrid (":math:`\text{log-lin}`") or other law. The ":math:`\text{log}`" profiles thus have the advantage of translating the very strong vertical gradient of sound velocity in the immediate vicinity of the ground, but do not accurately reflect the more moderate evolution with altitude above a certain height. On the other hand, the profiles ":math:`\text{lin}`" minimize the effects in the vicinity of the ground and are therefore not representative of reality when placed at very low altitude. A good compromise therefore consists in using hybrid profiles of the type ":math:`\text{log-lin}`" (valid especially for a so-called "stable" atmosphere), expressed through the parameters :math:`a_\text{log}` and :math:`b_\text{lin}` which appear in the analytical expression of the vertical profile of the effective sound velocity:
+The average sound velocity profile thus depends on the average wind and temperature profiles. This velocity profile can be described analytically, depending on whether it follows a linear (":math:`\text{lin}`"), logarithmic (":math:`\text{log}`"), hybrid (":math:`\text{log-lin}`") or other law. The ":math:`\text{log}`" profiles thus have the advantage of translating the very strong vertical gradient of sound velocity in the immediate vicinity of the ground, but do not accurately reflect the more moderate evolution with altitude above a certain height. On the other hand, the ":math:`\text{lin}`" profile minimizes the effects in the vicinity of the ground and are therefore not representative of reality when placed at very low altitude. A good compromise therefore consists in using hybrid profiles of the type ":math:`\text{log-lin}`" (valid especially for a so-called "stable" atmosphere), expressed through the parameters :math:`a_\text{log}` and :math:`b_\text{lin}` which appear in the analytical expression of the vertical profile of the effective sound velocity:
 
 .. math::
+   :label: celerite_log_lin
 
    \label{eq:celerite_log_lin}
            \langle c(z)\rangle=c_0+ a_\text{log}\times \ln\left(1+\frac{z}{z_0}\right)+b_\text{lin}\times \left( z-z_0\right),
@@ -346,13 +357,13 @@ où :math:`z_0` is the roughness parameter, whose typical values range from :mat
 
 .. math:: \frac{\partial\langle c(z)\rangle}{\partial z}=\frac{a_\text{log}}{z_0}+b_\text{lin}.
 
-The main effect of propagation in a medium of variable speed is to bend the sound rays downwards or upwards depending on whether the vertical gradient of sound velocity is positive (*conditions (very) favourable* to propagation) or negative (*conditions (very) unfavourable* to propagation) respectively. The transient state between these :math:`2` states represents *homogeneous* propagation conditions.
+The main effect of propagation in a medium of variable speed is to bend the sound rays downwards or upwards depending on whether the vertical gradient of sound velocity is positive (*conditions (very) favorable* to propagation) or negative (*conditions (very) unfavorable* to propagation) respectively. The transient state between these two states represents *homogeneous* propagation conditions.
 
 	- **Homogeneous:** the speed :math:`c` is the same at any point in the domain and equal to the reference speed :math:`c_0`, the latter being calculated as a function of temperature and humidity conditions by the formula:
 
 	   .. math:: c_0=343.2\sqrt{\frac{T}{T_\text{ref}}},
 
-	   where :math:`T` is the temperature (K), and :math:`T_\text{ref}=293.15` K the reference temperature (ISO9613-1:1993).
+	   where :math:`T` is the temperature (K), and :math:`T_\text{ref}=293.15` K the reference temperature (:term:`ISO 9613-1`).
 
 	-  **Very unfavorable** : :math:`a_\text{log}=-1` and :math:`b_\text{lin}=-0.12`;
 
@@ -362,23 +373,23 @@ The main effect of propagation in a medium of variable speed is to bend the soun
 
 	-  **Very favorable**: :math:`a_\text{log}=+1` and :math:`b_\text{lin}=+0.12`.
 
-The curvature of the radius, at the boundary of zones (I) and (II), is obtained by applying the Huygens-Fresnel construction, resulting in the following Snell-Descartes law (salomons2001) (figure [geo\_profile\_celerite]):
+The curvature of the radius, at the boundary of zones (I) and (II), is obtained by applying the Huygens-Fresnel construction, resulting in the following Snell-Descartes law :cite:`salomons2001` (see figure :ref:`geo_profil_celerite`):
 
 .. math::
+   :label: relation_snell
 
    \label{relation_snell}
            \frac{\cos\gamma_1}{c_1}=\frac{\cos\gamma_2}{c_2},
 
-where :math:`c_1` and :math:`c_2` are respectively the norms of the propagation vectors :math:`\mathbf{c_1}` and :math:`\mathbf{c_2}`, and where the angles :math:`\gamma_1` and :math:`\gamma_2` are defined with respect to the horizontal axis in the plane :math:`(xOy)`. By construction, the projection of the propagation direction in the plane :math:`(xOy)`, defined by the angle :math:`\phi` in spherical coordinates, is preserved (figure[geo\_profile\_celerite]).
-
-|image|
+where :math:`c_1` and :math:`c_2` are respectively the norms of the propagation vectors :math:`\mathbf{c_1}` and :math:`\mathbf{c_2}`, and where the angles :math:`\gamma_1` and :math:`\gamma_2` are defined with respect to the horizontal axis in the plane :math:`(xOy)`. By construction, the projection of the propagation direction in the plane :math:`(xOy)`, defined by the angle :math:`\phi` in spherical coordinates, is preserved.
 
 Modelling
 ''''''''''''
 
-Whatever the method of calculation chosen, the speed is taken into account is identical. At each time step, the speed standard is calculated according to the chosen speed profile, based on the relationship ([eq:celerite\_log\_lin]). To determine the new direction of propagation, due to the change in speed, the relationship ([relation\_snell]) must then be applied. Knowing the angle :math:`\theta_1` of the initial propagation direction, the new propagation direction is defined by:
+Whatever the method of calculation chosen, the speed is taken into account is identical. At each time step, the speed standard is calculated according to the chosen speed profile, based on the relationship :eq:`celerite_log_lin`. To determine the new direction of propagation, due to the change in speed, the relationship :eq:`relation_snell` must then be applied. Knowing the angle :math:`\theta_1` of the initial propagation direction, the new propagation direction is defined by:
 
 .. math::
+   :label: cosgamma2
 
    \label{cosgamma2}
            \cos\gamma_2=\frac{c_2}{c_1}\cos\gamma_1=\frac{c_2}{c_1}\frac{\sqrt{c_{1x}^2+c_{1y}^2}}{c_1}.
@@ -401,36 +412,55 @@ and
 
 .. math:: \cos\phi=\frac{c_{1x}}{\sqrt{c_{1x}^2+c_{1y}^2}}.
 
-From a numerical simulation point of view, the calculation of :math:`\cos\gamma_2` by the relationship ([cosgamma2]) can give values higher than :math:`1` which is obviously not physical. This case occurs when the curvature (*turning point*) of a radius is reversed. To avoid this problem and impose a change in curvature, the procedure consists in imposing the value from :math:`\gamma_2` to :math:`1-\epsilon` (:math:`\epsilon` being a very small value) and changing the orientation of the component :math:`c_{2z}` (*i.e.* :math:`c_{2z}`).
+From a numerical simulation point of view, the calculation of :math:`\cos\gamma_2` by the relationship :eq:`cosgamma2` can give values higher than :math:`1` which is obviously not physical. This case occurs when the curvature (*turning point*) of a radius is reversed. To avoid this problem and impose a change in curvature, the procedure consists in imposing the value from :math:`\gamma_2` to :math:`1-\epsilon` (:math:`\epsilon` being a very small value) and changing the orientation of the component :math:`c_{2z}`.
 
-|image|
+As an example, the figure [illustration\_refraction] shows two illustrations of how acoustic refraction is taken into account using this method. This figure can be compared directly with the examples given in the reference :cite:`salomons2001` (figures 4.5 and 4.6).
 
-As an example, the figure [illustration\_refraction] shows two illustrations of how acoustic refraction is taken into account using this method. This figure can be compared directly with the examples given in the reference: (figures 4.5 and 4.6, salomons2001).
+.. _illustration_refraction_downward:
+
+.. figure:: images/SPPS/illustration_refraction_downward.png
+   :width: 500px
+   :align: center
+   :alt: Illustration of the modelling of acoustic refraction with SPPS in downward condition.
+
+   Illustration of the modelling of acoustic refraction with SPPS in downward condition
+
+.. _illustration_refraction_upward:
+
+.. figure:: images/SPPS/illustration_refraction_upward.png
+   :width: 500px
+   :align: center
+   :alt: Illustration of the modelling of acoustic refraction with SPPS in upward condition.
+
+   Illustration of the modelling of acoustic refraction with SPPS in upward condition
 
 
 Diffusion by fittings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The presence of a large number of objects on the path of a sound wave can lead to a diffusion process. This process can be simulated in a deterministic way, by modelling each object individually. When the number of objects becomes large, and these objects are of similar sizes (example of an industrial hall with many machines (without acoustic emission) or similar boxes), it may be more interesting to statistically model this size.
+The presence of a large number of objects on the path of a sound wave can lead to a diffusion process. This process can be simulated in a deterministic way, by modelling each object individually. When the number of objects becomes large, and these objects are of similar sizes (example of an industrial hall with many machines (without acoustic emission) or similar boxes), it may be more interesting to statistically model this fitting zone.
 
 Physical description
 ''''''''''''''''''''
 
-In order to take into account the diffraction and absorption of diffusing objects distributed in the propagation medium, we considered an approach similar to that of Ondet and Barbry presented in the reference (ondet1989), which itself is based on the work of Kuttruff (kuttruff1981), Auletta (auletta1985, auletta1986), and Lindquist (lindqvist1982), among others. In this approach,
+In order to take into account the diffusion and absorption of diffusing (or scattering) objects distributed in the propagation medium, we considered an approach similar to that of Ondet and Barbry :cite:`ondet1989`, which itself is based on the work of many authors :cite:`kuttruff1981,auletta1985,auletta1986,lindqvist1982`, among others. In this approach,
 
-- the diffusing objects are considered as punctual. Particles are returned in all directions of space with each collision with a scattering object (except in the case of absorption). This assumption is generally valid when the wavelength is in the order of magnitude of the characteristic dimension of the obstacle;
+- the diffusing objects (or obstacles, or fittings, or scattering objects...) are considered as punctual. Sound particles are returned in all directions of space at each collision with a scattering object (except in the case of absorption). This assumption is generally valid when the wavelength is in the order of magnitude of the characteristic dimension of the obstacle;
 
 - the scattering phenomenon follows a Poisson process, which means that the probability of collision of a sound particle with a scattering object follows a Poisson's law. The collision probabilities are independent of each other (the collision probability during time :math:`t` and :math:`t+dt` is independent of collisions before time :math:`t`);
 
-- the objects in the footprint do not produce particles (*i.e.* these objects are not sound sources).
+- the objects in the fitting zone do not produce particles (*i.e.* these objects are not sound sources).
 
-.. figure:: diffusion_encombrement.eps
-   :alt: [fig:diffusion\_encombrement]Illustration de la diffusion par un encombrement.
-   :width: 7.00000cm
+.. _illustration_diffusion_fittings:
 
-   [fig:diffusion\_encombrement] Illustration de la diffusion par un encombrement.
+.. figure:: images/SPPS/illustration_diffusion_fittings.png
+   :width: 500px
+   :align: center
+   :alt: Schematic representation of the acoustic diffusion by obstacles in a fitting zone.
 
-A sound wave propagating in the environment may come into contact with scattering objects, causing the wave to diffract simultaneously and, in part, to absorb it. By analogy, in the particle approach, a particle that comes into contact with a scattering object can either be absorbed or reflected in another direction of propagation (figure[fig:scattering\_overall]). At the macroscopic scale, i.e. considering all the sound particles simultaneously, a diffusion process occurs, characterized by:
+   Schematic representation of the acoustic diffusion by obstacles in a fitting zone
+
+A sound wave propagating in the environment may come into contact with scattering objects, causing the wave to diffract simultaneously and, in part, to absorb it. By analogy, in the particle approach, a particle that comes into contact with a scattering object can either be absorbed or reflected in another direction of propagation (see figure: :ref:`illustration_diffusion_fittings`). At the macroscopic scale, *i.e.* considering all the sound particles simultaneously, a diffusion process occurs, characterized by:
 
 - the absorption coefficient :math:`\alpha_c` of the scattering objects;
 
@@ -438,7 +468,7 @@ A sound wave propagating in the environment may come into contact with scatterin
 
 .. math:: n_c=\frac{N_c}{V_c}.
 
-- the average scattering section :math:`q_c`, i. e. the average surface of the scattering object, seen by a particle in a given incident direction. In practice, this data is very difficult to obtain, if not impossible, since the scattering objects are of complex and different shapes. In this condition, it is common to assimilate the diffusing object to a sphere, having the same external surface :math:`s_c` as the object. Whatever the angle of incidence, the visible cross-section of the sphere (mean scattering cross-section) will be equal to a quarter of the total surface area of the sphere, or:
+- the average scattering section :math:`q_c`, *i.e.* the average surface of the scattering object, seen by a particle in a given incident direction. In practice, this data is very difficult to obtain, if not impossible, since the scattering objects are of complex and different shapes. In this condition, it is common to assimilate the diffusing object to a sphere, having the same external surface :math:`s_c` as the object. Whatever the angle of incidence, the visible cross-section of the sphere (mean scattering cross-section) will be equal to a quarter of the total surface area of the sphere, or:
 
 .. math:: q_c=\frac{s_c}{4}.
 
@@ -456,13 +486,14 @@ Since the scattering phenomenon follows a Poisson's law, the probability that a 
 
 .. math:: W_k (c\,t_k)=\frac{\left(\nu_c \, c\,t_k\right)^k}{k!}\exp\left(-\nu_c\, c\, t_k\right),
 
-where :math:`c\, t_k` is the distance covered during a time :math:`t_k`, which can be expressed from the distance :math:`R_p` between two collisions (figure [fig:diffusion\_enccumbrement]):
+where :math:`c\, t_k` is the distance covered during a time :math:`t_k`, which can be expressed from the distance :math:`R_p` between two collisions (see figure: :ref:`illustration_diffusion_fittings`):
 
 .. math:: c\,t_k=\sum_{p=1}^k R_p.
 
-Since the collision probabilities are independent of each other: raw-latex:`\cite{ondet1989}`, it is easy to show that the random variables :math:`R_i` (noted :math:`R` afterwards) follow the following probability density :math:`f(R)`:
+Since the collision probabilities are independent of each other :cite:`ondet1989`, it is easy to show that the random variables :math:`R_i` (noted :math:`R` afterwards) follow the following probability density :math:`f(R)`:
 
 .. math:: \label{dispois} f(R)=\nu_c \exp\left(-\nu_c \, R\right).
+   :label: dispois
 
 The average free path :math:`\lambda_c` (average distance between two collisions) is simply obtained by expressing the first moment of the above probability density, namely:
 
@@ -474,23 +505,29 @@ Modelling
 By definition, the cumulative distribution function, associated with this probability density, is defined by the following relationship:
 
 .. math:: \label{fdc} p(\hat{R})=\int_0^{\hat{R}} f(R)\, dR=1-\exp\left(-\nu_c\,\hat{R}\right).
+   :label: fdc
 
-This cumulative distribution function simply expresses the probability that the particle will collide with a scattering object during a long path :math:`\hat{R}`. This function is therefore null for :math:`\hat{R}=0` and equal to :math:`1` for :math:`\hat{R}=\infty`. The numerical simulation of the diffusion process is performed by the inverse cumulative distribution function method, obtained by reversing the relationship ([fdc]), i. e:
+This cumulative distribution function simply expresses the probability that the particle will collide with a scattering object during a long path :math:`\hat{R}`. This function is therefore null for :math:`\hat{R}=0` and equal to :math:`1` for :math:`\hat{R}=\infty`. The numerical simulation of the diffusion process is performed by the inverse cumulative distribution function method, obtained by reversing the relationship :eq:`fdc` , *i.e.*:
 
 .. math:: \label{fdci} \hat{R}=-\frac{1}{\nu_c}\ln \left[ 1-p(\hat{R})\right].
+   :label: fdc2
 
-The cumulative distribution function being between :math:`0` and :math:`1`, it can be assimilated to a random variable :math:`\xi` between :math:`0` and :math:`1`. By drawing a succession of random variables :math:`\xi_i`, we can determine a succession of paths of length: math:`\hat{R}_i` that satisfies the distribution function ([available]) of our problem:
+The cumulative distribution function being between :math:`0` and :math:`1`, it can be assimilated to a random variable :math:`\xi` between :math:`0` and :math:`1`. By drawing a succession of random variables :math:`\xi_i`, we can determine a succession of paths of length :math:`\hat{R}_i` that satisfies the distribution function :eq:`dispois` of our problem:
 
 .. math:: \label{fdci_2} \hat{R}_n=-\frac{1}{\nu_c}\ln \left[ 1-\xi_n\right].
 
-An example of a random draw using the inverse cumulative distribution method is shown in Figure [fig:verification\_diffusion\_encrowding]. The comparison with the theoretical distribution ([available]) shows an excellent behaviour of the method.
+An example of a random draw using the inverse cumulative distribution method is shown in Figure [fig:verification\_diffusion\_encrowding]. The comparison with the theoretical distribution shows an excellent behaviour of the method.
 
-|image|
+.. _verification_diffusion_fittings:
 
-In concrete terms, when a sound particle :math:`n` enters a congestion area, it is associated with a collision distance :math:`R_n` with an object of the congestion by applying the relationship ([fdci\_2]). As the sound particle propagates in the crowded area, a test is performed to determine if the cumulative distance :math:`d_n` of the particle in the crowded area is less or more than :math:`R_n`. If the distance traveled :math:`d_n` is greater than the collision distance :math:`R_n` the particle collides with an object. In 'energetic' mode, the energy of the sound particle is weighted by the average absorption coefficient :math:`\alpha_c` of the space requirement and continues its propagation in a random direction (uniform distribution [5]_). In "random" mode, a new random draw on a uniform variable :math:`u` allows to determine if the particle is absorbed by the diffusing object (procedure identical to absorption by a wall, *cf.* paragraph [sec:modelization\_reflexion]), or reflected in a uniform direction. After each collision, the cumulative propagation distance is reset to zero, and a new draw is made to determine the next collision distance. Whatever the calculation mode chosen, as long as the distance travelled by the particle is less than the collision distance, the particle continues its path without changing direction.
+.. figure:: images/SPPS/verification_diffusion_fittings.png
+   :width: 500px
+   :align: center
+   :alt: Distribution of the distance between two collission obtained by the inverse cumulative distribution function method and comparison with the theoretical distribution.
 
-|image|
+   Distribution of the :math:`\hat{R}_i` paths obtained by the inverse cumulative distribution function method and comparison with the theoretical distribution
 
+When a sound particle :math:`n` enters a fitting zone, it is associated with a collision distance :math:`R_n` with an object of the congestion by applying the relationship :eq:`fdc2`. As the sound particle propagates in the crowded area, a test is performed to determine if the cumulative distance :math:`d_n` of the particle in the crowded area is less or more than :math:`R_n`. If the distance traveled :math:`d_n` is greater than the collision distance :math:`R_n` the particle collides with an object. In the 'Energetic' mode, the energy of the sound particle is weighted by the average absorption coefficient :math:`\alpha_c` of the space requirement and continues its propagation in a random direction (uniform distribution). In the 'Random' mode, a new random draw on a uniform variable :math:`u` allows to determine if the particle is absorbed by the diffusing object (same procedure than for considering absorption by a wall), or reflected in a uniform direction. After each collision, the cumulative propagation distance is reset to zero, and a new draw is made to determine the next collision distance. Whatever the calculation mode chosen, as long as the distance travelled by the particle is less than the collision distance, the particle continues its path without changing direction.
 
 Wall modelling
 -----------------------
@@ -501,45 +538,57 @@ Physical description
 Absorption, dissipation and acoustic transmission
 ''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-In contact with a wall (figure ::ref:`principe_paroi`), a sound wave will be partly reflected back into the domain for one part :math:`R`, partly dissipated by transforming the acoustic energy into heat in the material for the other part :math:`\beta`), the rest being transmitted through the material in the adjacent domain for the other par :math:`\tau`. The latter coefficient is defined as the transmission factor. If :math:`W_i` is the power incident on a wall, then a part :math:`W_r=R\,W_i` will be reflected, a part :math:`W_d=\beta\,W_i` will be dissipated in the material, and a part :math:`W_t=\tau\,W_i` will be transmitted through the partition. By construction [6]_, the coefficients :math:`R`, :math:`\beta` and :math:`\tau` are between 0 and 1, so the energy balance of the wall is written:
+In contact with a wall (see figure :ref:`geo_wall`), a sound wave will be partly reflected back into the domain for one part :math:`R`, partly dissipated by transforming the acoustic energy into heat in the material for the other part :math:`\beta`), the rest being transmitted through the material in the adjacent domain for the other par :math:`\tau`. The latter coefficient is defined as the transmission factor. If :math:`W_i` is the power incident on a wall, then a part :math:`W_r=R\,W_i` will be reflected, a part :math:`W_d=\beta\,W_i` will be dissipated in the material, and a part :math:`W_t=\tau\,W_i` will be transmitted through the partition. By construction (there can be no creation of energy, nor more absorption than incident energy), the coefficients :math:`R`, :math:`\beta` and :math:`\tau` are between 0 and 1, so the energy balance of the wall is written:
 
 .. math:: R+\beta+\tau=1.
 
-.. _principe_paroi:
+.. _geo_wall:
 
-.. figure:: principe_paroi.eps
-   :alt: [principe_paroi]Illustration des mécanismes de réflexion, d’absorption, de dissipation et de transmission acoustique par une paroi.
-   :width: 6.00000cm
+.. figure:: images/SPPS/geo_wall.png
+   :alt:  Illustration of the mechanisms of reflection, absorption, dissipation and acoustic transmission through a wall.
+   :width: 400px
+   :align: center
 
-   Illustration des mécanismes de réflexion, d’absorption, de dissipation et de transmission acoustique par une paroi.
+   Illustration of the mechanisms of reflection, absorption, dissipation (internal loss) and acoustic transmission through a wall
 
-It is usual to define the absorption coefficient: math:`\alpha` of the wall as the sum of the transmitted part: math:`\tau` and the dissipated part: math:`\beta`, in the form: math:`\alpha=\beta+\tau`, so that the above energy balance is written:
+It is usual to define the absorption coefficient :math:`\alpha` of the wall as the sum of the transmitted part :math:`\tau` and the dissipated part (internal loss) :math:`\beta`, in the form :math:`\alpha=\beta+\tau`, so that the above energy balance is written:
 
 .. math:: R=1-\alpha.
 
-The absorption coefficient of a material can be measured using the standardised procedures ISO 354 for the reverberation chamber method (ISO354:2003) and ISO 10534 (parts 1 and 2) for the impedance tube method (ISO10534-1:1996,ISO10534-2:1998). For the sound transmission coefficient, the reader may refer to the different parts of the standard for air transmission (Parts 1, 3, 4 and 5, (quoted{)ISO140-1:1997,ISO140-3:1995,ISO140-4:1998,ISO140-5:1998)).
+The absorption coefficient of a material can be measured using the standardised procedures :term:`ISO 354` for the reverberation chamber method, as well as :term:`ISO 10534-1` and :term:`ISO 10534-2` for the impedance tube method. For the sound transmission coefficient, the reader may refer to the different parts of the standards for air transmission (ISO 140).
 
 Acoustic diffusion
 ''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-On the other hand, depending on the shape, size and distribution of the wall irregularities, the sound wave can be reflected simultaneously in the specular direction and in other directions. In room acoustics, it is common to consider that a fraction :math:`1-s` of the sound energy will be reflected in the direction of specular reflection, while a fraction :math:`s` of the energy will be reflected in the other directions of space, according to a law of reflection characterized by irregularities in the wall (embrechts2001). In the latter case, we speak of *diffuse reflection*, where :math:`s` is called scattering coefficient (*scattering coefficient* in English). In room acoustics, numerous theoretical and experimental studies are currently underway to characterize or measure these laws of reflection (vorlander2000,cox2004). However, the common practice is to use Lambert's law to describe a diffuse reflection. The value of the diffraction coefficient :math:`s` can be obtained by a standardized measurement procedure (ISO 17497-1 of 2004 (ISO17497-1:2004)). [7]_
+On the other hand, depending on the shape, size and distribution of the wall irregularities, the sound wave can be reflected simultaneously in the specular direction and in other directions. In room acoustics, it is common to consider that a fraction :math:`1-s` of the sound energy will be reflected in the direction of specular reflection, while a fraction :math:`s` of the energy will be reflected in the other directions of space, according to a law of reflection characterized by irregularities in the wall :cite:`embrechts2001`. In the latter case, we speak of *diffuse reflection*, where :math:`s` is called scattering coefficient.
 
-|image|
+In room acoustics, numerous theoretical and experimental studies are currently underway to characterize or measure these laws of reflection :cite:`vorlander2000,cox2016`. However, the common practice is to use Lambert's law to describe a diffuse reflection. The value of the scattering coefficient :math:`s` can be obtained by a standardized measurement procedure (:term:`ISO 17497-1`).
+
+.. note::
+
+	It is important to note that this scattering coefficient (:term:`ISO 17497-1`), which defines the ratio between non-specular reflected energy on the total energy, is different from the diffusion coefficient :math:`\delta` (:term:`ISO 17497-2`), which defines the ability of the surface to uniformly scatter in all direction. In some acoustic simulation software, the diffraction coefficient :math:`s` may sometimes wrongly called the diffusion coefficient.
+
 
 Acoustic reflection modelling
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Random modeling
+Random modelling
 ''''''''''''''''''''''''''
 
-First, a sound particle colliding with a wall can either be absorbed by the wall (with a probability :math:`\alpha`), or reflected in a new direction of propagation (with a probability :math:`R=1-\alpha`). In practice, the absorption/reflection choice is made by randomly drawing a number :math:`u` between :math:`0` and :math:`1`, following a uniform distribution. If this number is less than:math:`\alpha=1-R` (at the point considered), the particle is absorbed and disappears from the propagation medium. If this number is greater than :math:`\alpha=1-R`, the particle is reflected and continues to propagate in a new direction of space.
+First, a sound particle colliding with a wall can either be absorbed by the wall (with a probability :math:`\alpha`), or reflected in a new direction of propagation (with a probability :math:`R=1-\alpha`). In practice, the absorption/reflection choice is made by randomly drawing a number :math:`u` between :math:`0` and :math:`1`, following a uniform distribution:
 
-In a second step, to determine the type of reflection (specular or diffuse), a new random draw :math:`v` is performed between :math:`0` and :math:`1`. If this number is less than the value of :math:`1-s` (*i.e.* :math:`v<(1-s)`) at the point considered, the particle is specularly reflected, in accordance with the well-known Snell-Descartes laws. Otherwise (*i.e.* :math:`v>(1-s)`), the reflection is diffuse. In the latter case, it is necessary to determine the direction of diffuse reflection (*cf.* paragraph[sec:mod\_reflection]).
+- If this number is less than :math:`\alpha=1-R` (at the considered point), the particle is absorbed and disappears from the propagation medium.
+
+- If this number is greater than :math:`\alpha=1-R`, the particle is reflected and continues to propagate in a new direction. In this last case, to determine the type of reflection (specular or diffuse), a new random draw :math:`v` is performed between :math:`0` and :math:`1`:
+
+	-- If this number is less than the value of :math:`1-s` (*i.e.* :math:`v<(1-s)`) at the point considered, the particle is specularly reflected, in accordance with the well-known Snell-Descartes laws.
+
+	-- Otherwise (*i.e.* if :math:`v>(1-s)`), the reflection is diffuse. In the latter case, it is necessary to determine the direction of diffuse reflection.
 
 Energetic modelling
 ''''''''''''''''''''''''''
 
-When a particle collides with a wall, its energy :math:`\epsilon` is weighted by the reflection coefficient :math:`R=1-\alpha`. The choice of specular or diffuse reflection, depending on the diffraction coefficient, is identical to the "random" method: a random draw :math:`v` is performed between :math:`0` and :math:`1`. If this number is less than the value of :math:`1-s`, the particle is specularly reflected. Otherwise, the reflection is diffuse, in a direction to be determined (*cf.* paragraph [sec:mod\_reflexion]). An entirely "energetic" treatment would be possible by duplicating the particle into two particles, the first being reflected in the specular direction and the second in the diffuse direction (*cf. * note on page).
+When a particle collides with a wall, its energy :math:`\epsilon` is weighted by the reflection coefficient :math:`R=1-\alpha`. The choice of specular or diffuse reflection, depending on the scattering coefficient, is identical to the 'Random' method: a random draw :math:`v` is performed between :math:`0` and :math:`1`. If this number is less than the value of :math:`1-s`, the particle is specularly reflected. Otherwise, the reflection is diffuse, in a direction to be determined. An entirely 'Energetic' treatment would be possible by duplicating the particle into two particles, the first being reflected in the specular direction and the second in the diffuse direction; however this last solution is not yet implemented in the **SPPS** code..
 
 Modelling of the reflection laws
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -547,17 +596,23 @@ Modelling of the reflection laws
 Formalism
 ''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-.. figure:: geo_reflexion.eps
-   :alt: [geo\_reflexion]Géométrie élémentaire d’une réflexion par une paroi, en 3D: :math:`\phi` et :math:`\phi'` désignent respectivement les angles d’incidences et de réflexion par rapport à la normale à la paroi. Les angles :math:`\theta` et :math:`\theta'` dans le plan tangent, des directions d’incidence et de réflexion, ne sont pas représentés (:math:`\phi,\phi'\in[0,\pi/2]` et :math:`\theta,\theta'\in[0,2\pi]`).
-   :width: 7.50000cm
+Let us consider an incident sound particle on a wall, whose incident direction is defined by the spherical coordinates :math:`(\theta,\phi)` (see figure :ref:`geo_reflection`). This particle has a probability of :math:`P(\theta,\phi;\theta',\phi')\equiv P(\Omega,\Omega')` being reflected in the elementary solid angle :math:`d\Omega' =\sin\phi'\, d\phi'\, d\phi'\, d\theta'` :cite:`joyce1974,joyce1975,joyce1978,lepolles2003`.
 
-   [geo\_reflexion]Géométrie élémentaire d’une réflexion par une paroi, en 3D: :math:`\phi` et :math:`\phi'` désignent respectivement les angles d’incidences et de réflexion par rapport à la normale à la paroi. Les angles :math:`\theta` et :math:`\theta'` dans le plan tangent, des directions d’incidence et de réflexion, ne sont pas représentés (:math:`\phi,\phi'\in[0,\pi/2]` et :math:`\theta,\theta'\in[0,2\pi]`).
+.. _geo_reflection:
 
-Let us consider an incident sound particle on a wall, whose incident direction is defined by the spherical coordinates :math:`(\theta,\phi)` (figure[geo\_reflection]). This particle has a probability of :math:`P(\theta,\phi;\theta',\phi')\equiv P(\Omega,\Omega')` being reflected in the elementary solid angle :math:`d\Omega' =\sin\phi'\, d\phi'\, d\phi'\, d\theta'`\,(joyce1974,joyce1975,joyce1978,lepolles2003).
+.. figure:: images/SPPS/geo_reflection.png
+   :alt: Elementary geometry of a reflection by a wall
+   :align: center
+   :width: 500px
 
-:math:`P(\Omega,\Omega')\,d\Omega'` actually represents the fraction of the incident sound intensity that is reflected in the solid angle :`math:`d\Omega'`. Let's say :math:`j(\theta,\phi)` the incident flow of particles. The flow of reflected particles :math:`j'(\theta',\phi')` is expressed:
+   Elementary geometry of a reflection by a wall
+
+   Variables :math:`\phi` and :math:`\phi'` refer respectively to the angles of incidence and reflection with respect to the normal at the wall. The angles :math:`\theta` and :math:`\theta'` in the tangent plane, directions of incidence and reflection, are not represented (:math:`\phi,\phi'\in[0,\pi/2]` and :math:`\theta,\theta'\in[0,2\pi]`).
+
+:math:`P(\Omega,\Omega')\,d\Omega'` actually represents the fraction of the incident sound intensity that is reflected in the solid angle :math:`d\Omega'`. Let's say :math:`j(\theta,\phi)` the incident flow of particles. The flow of reflected particles :math:`j'(\theta',\phi')` is expressed:
 
 .. math::
+   :label: eq_flux_1
 
    \label{eq_flux_1} j'(\theta',\phi') \cos \phi'=\int
                P(\theta,\phi;\theta',\phi')\, j(\theta,\phi) \cos \phi \,d\Omega.
@@ -566,7 +621,7 @@ Defining the reflection law :math:`R(\theta,\phi;\theta',\phi')\equiv R(\Omega,\
 
 .. math:: R(\theta,\phi;\theta',\phi')=\frac{P(\theta,\phi;\theta',\phi')}{\cos(\phi')},
 
-the relation ([eq\_flux\_1b]) can be written:
+the relation :eq:`eq_flux_1` can be written:
 
 .. math::
 
@@ -592,6 +647,7 @@ or, in spherical coordinates,
 The second law of thermodynamics imposes this time:
 
 .. math::
+   :label: loi_1
 
    \label{loi_1} \int P(\Omega,\Omega') \,d\Omega=\int
                R(\Omega,\Omega')\cos\phi \,d\Omega=1,
@@ -599,6 +655,7 @@ The second law of thermodynamics imposes this time:
 or, in spherical coordinates,
 
 .. math::
+   :label: loi_1b
 
    \label{loi_1b} \iint R(\theta,\phi;\theta',\phi')\cos\phi
                \,\sin\phi\,d\phi\,d\theta=1.
@@ -606,8 +663,19 @@ or, in spherical coordinates,
 On the other hand, the principle of reciprocity requires that
 
 .. math:: \label{loi_3} R(\Omega,\Omega')=R(\Omega',\Omega).
+   :label: loi_3
 
-Despite some recent studies, and apart from Lambert's law widely used to model diffuse reflections (kuttruff2000), to our knowledge there are no other laws of reflection for real walls. In the **SPPS** code, however, we propose arbitrary modes of reflection, more or less real, presented in figure [fig\_ref] and detailed below.
+Despite some recent studies, and apart from Lambert's law widely used to model diffuse reflections :cite:`kuttruff2016`, to our knowledge there are no other laws of reflection for real walls. In the **SPPS** code, however, we propose arbitrary modes of reflection, more or less real, presented in figure :ref:`geo_reflection_law`.
+
+.. _geo_reflection_law:
+
+.. figure:: images/SPPS/geo_reflection_law.png
+   :alt: Illustration of the reflection laws proposed in the SPPS code.
+   :align: center
+   :width: 800px
+
+   Illustration of the reflection laws proposed in the **SPPS** code
+
 
 Specular reflection
 ''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -615,19 +683,19 @@ Specular reflection
 Physical description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The simplest mode of reflection is defined by specular reflection (figure [fig\_ref\_specul]), and can be written in three dimensions:
+The simplest mode of reflection is defined by specular reflection and can be written in three dimensions:
 
 .. math::
 
    R(\theta,\phi;\theta',\phi')=2 \delta(\theta-\theta' \pm \pi)
                \,\delta(\sin^2 \phi-\sin^2 \phi'),
 
-where the couples :math:`(\theta,\phi)` and :math:`(\theta',\phi')` refer respectively to the incident and reflected directions of the sound particles on the wall. Although the form of this expression is not conventional, this relationship verifies the laws of Snell-Descartes, as well as the conditions ([law\_1]) to ([law\_3]).
+where the couples :math:`(\theta,\phi)` and :math:`(\theta',\phi')` refer respectively to the incident and reflected directions of the sound particles on the wall. Although the form of this expression is not conventional, this relationship verifies the laws of Snell-Descartes, as well as the conditions :eq:`loi_1` to :eq:`loi_3`.
 
 Modelling
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-From a numerical point of view, the simulation of this reflection law does not pose a major problem, since the angles of incidence of each particle on a wall are known. The modelling is identical for the "random" and "energetic" approaches.
+From a numerical point of view, the simulation of this reflection law does not pose a major problem, since the angles of incidence of each particle on a wall are known. The modelling is identical for the 'Random' and 'Energetic'"' approaches.
 
 Uniform reflection
 ''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -635,7 +703,7 @@ Uniform reflection
 Physical description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A uniform reflection law produces a distribution of reflection angles :math:`P(\Omega')` is equiprobable. This should not be confused with Lambert's law of reflection, for which uniformity is verified by the law of reflection. In the case of a uniform law, particles are reflected uniformly throughout the half space, regardless of the angle of incidence. Under these conditions, the reflection density after normalization is written:
+A uniform reflection law produces a distribution of reflection angles :math:`P(\Omega')` that is equiprobable. This should not be confused with Lambert's law of reflection, for which uniformity is verified by the law of reflection. In the case of a uniform law, particles are reflected uniformly throughout the half space, regardless of the angle of incidence. Under these conditions, the reflection density after normalization is written:
 
 .. math:: P(\Omega')d\Omega'= P(\theta',\phi')d\Omega'=\left[\frac{1}{2\pi}\,d\theta'\right] \,\left[\sin \phi' \,d\phi'\right],
 
@@ -664,7 +732,7 @@ Lambert reflection
 Physical description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the sense of light, a perfectly diffuse surface is a surface that also appears bright regardless of the angle of observation, and regardless of the angle of incidence. In terms of acoustics, a perfectly diffuse surface will reflect the same energy in all directions regardless of the angle of incidence. From a mathematical point of view, this condition requires that the law of reflection: math:`R` be independent of the direction of reflection, and therefore of the direction of incidence (by reciprocity). After normalization, the law of reflection is written:
+In optics, a perfectly diffuse surface is a surface that also appears bright regardless of the angle of observation, and regardless of the angle of incidence. In terms of acoustics, a perfectly diffuse surface will reflect the same energy in all directions regardless of the angle of incidence. From a mathematical point of view, this condition requires that the law of reflection :math:`R` be independent of the direction of reflection, and therefore of the direction of incidence (by reciprocity). After normalization, the law of reflection is written:
 
 .. math:: R(\theta,\phi;\theta',\phi')=\frac{1}{2\pi}\times 2.
 
@@ -678,12 +746,12 @@ The coefficient :math:`1/2\pi` is related to the normalization according to the 
                  \end{aligned}
 
 
-where the expression :math:`\cos\phi'` is related to Lambert's law. It is easy to check that :math:`R` checks the conditions ([law\_1]) to ([law\_3]). It is important to note the difference between a random surface and a "uniform" surface. The first is conditioned by a uniform random reflection law :math:`R`, while the second (see next paragraph) is defined by a uniform probability :math:`P`.
+where the expression :math:`\cos\phi'` is related to Lambert's law. It is easy to check that :math:`R` checks the conditions :eq:`loi_1` to :eq:`loi_3`. It is important to note the difference between a random surface and an uniform surface. The first one is conditioned by an uniform random reflection law :math:`R`, while the second is defined by a uniform probability :math:`P`.
 
 Modelling
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-From a numerical point of view, the random drawing of the reflection angles (in three dimensions) must be carried out in accordance with the distribution :math:`P(\Omega')`, *i.e.* :math:`P(\phi')` in our case. Applying the inverse cumulative distribution function method, the probability :math:`f(\hat{\phi})` that a sound particle is reflected in an angle :math:`\phi'` between :math:`0` and :math:`\hat{\phi}` is given by the following relationship [8]_:
+From a numerical point of view, the random drawing of the reflection angles (in three dimensions) must be carried out in accordance with the distribution :math:`P(\Omega')`, *i.e.* :math:`P(\phi')` in our case. Applying the inverse cumulative distribution function method, the probability :math:`f(\hat{\phi})` that a sound particle is reflected in an angle :math:`\phi'` between :math:`0` and :math:`\hat{\phi}` is given by the following relationship:
 
 .. math:: f(\hat{\phi})=2\int_{0}^{\hat{\phi}} \cos\phi'\sin\phi'\,d\phi'=\sin^2 \hat{\phi}.
 
@@ -691,6 +759,9 @@ Since this probability is between :math:`0` and :math:`1`, the choice of angle :
 
 .. math:: \hat{\phi}=\sin^{-1}\sqrt{u}=\cos^{-1}\left(1-u\right)^\frac{1}{2}.
 
+.. warning::
+
+	It is important to note that other authors :cite:`burns1990,hodgson1991,lam1996,xiangyang2002` mention other relationships. The correct formulation depends on the angle convention. It is also possible that some of the relationships that are proposed may not be accurate.
 
 Normal reflection :math:`w^n`
 ''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -714,23 +785,21 @@ where :math:`n` is a positive integer. The quantity noted :math:`w=\cos\phi'` is
 
      \begin{aligned}
                  P(\Omega')\,d\Omega'&=P(\phi')\,\sin\phi'\,d\theta'\,d\phi'\\
-                 &=\left[\frac{1}{2\pi}d\theta'\right]\\
-                 & \quad\times
-                 \left[(n+1)\cos^{n}\phi'\,d\phi'\right]\\
+                 &=\left[\frac{1}{2\pi}d\theta'\right] \times \left[(n+1)\cos^{n}\phi'\,d\phi'\right]\\
                  &=\frac{n+1}{2\pi}\,w^{n}\,d\theta'\,d\phi'
                  \end{aligned}
 
 
-which justifies the name: law in :math:`w^n`. This form of reflection is identical to the one introduced in (lepolles2003). It can be noted that this type of law is a generalized form of Lambert's law (:math:`n=1`) and the uniform law (:math:`n=0`).
+which justifies the name "law in :math:`w^n`". This form of reflection is identical to the one introduced in (lepolles2003). It can be noted that this type of law is a generalized form of Lambert's law (:math:`n=1`) and the uniform law (:math:`n=0`).
 
 Modelling
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-From a numerical point of view, the random drawing of the angles of reflection is achieved by applying the inverse cumulative distribution function method. The probability :math:`f(\hat{\Omega})` (*i.e.* the probability :math:`f(\hat{\phi})` since the direction of reflection depends only on the angle with respect to normal) that a sound particle is reflected in an elementary solid angle between :math:`0` and :math:`\hat{\Omega}` is then given by the relationship
+From a numerical point of view, the random drawing of the angles of reflection is achieved by applying the inverse cumulative distribution function method. The probability :math:`f(\hat{\Omega})` (*i.e.* the probability :math:`f(\hat{\phi})` since the direction of reflection depends only on the angle with respect to normal) that a sound particle is reflected in an elementary solid angle between :math:`0` and :math:`\hat{\Omega}` is then given by the relationship:
 
 .. math:: f(\hat{\phi})= (n+1)\int_{0}^{\hat{\phi}} \cos^n\phi'\sin\phi'\, d\phi'\phi' =1-\cos^{n+1}\hat{\phi}.
 
-Since this probability is between :math:`0` and :math:`1`, the choice of angle :math:`hat{\hat{\phi}` is made by randomly drawing a number :math:`u\in[0.1]`, such that:
+Since this probability is between :math:`0` and :math:`1`, the choice of angle :math:`\hat{\phi}` is made by randomly drawing a number :math:`u\in[0.1]`, such that:
 
 .. math:: \hat{\phi}=\cos^{-1}\left(1-u\right)^\frac{1}{n+1}.
 
@@ -741,27 +810,46 @@ Acoustic transmission modelling
 Physical description
 ''''''''''''''''''''
 
-As mentioned above, the part of the power that is not reflected by the wall is either dissipated in the wall or transmitted. The acoustic transmission is then defined by the transmission factor :math:`\tau`, defined as the ratio of the transmitted power :math:`W_t` by the wall to the incident power :math:`W_i`. If there is no dissipation in the wall (*i.e.* everything is transmitted through the wall), then :math:`\tau=\alpha`. Otherwise, :math:`\tau<\alpha`. In practice, acoustic transmission is rather defined by the attenuation index of the wall, which is a function of the transmission factor through the following relationship:
+As mentioned above, the part of the power that is not reflected by the wall is either dissipated in the wall or transmitted. The acoustic transmission is then defined by the transmission factor :math:`\tau`, defined as the ratio of the transmitted power :math:`W_t` by the wall to the incident power :math:`W_i`. If there is no dissipation in the wall (*i.e.* everything is transmitted through the wall), then :math:`\tau=\alpha`. Otherwise, :math:`\tau<\alpha`. In practice, acoustic transmission is rather defined by the insertion loss (IL or :math:`R`) of the wall, which is a function of the transmission factor through the following relationship:
 
 .. math:: R=10\,\log\left(\frac{W_i}{W_t}\right)=-10\,\log{\tau}.
 
 Random modelling
 ''''''''''''''''''''''''''
 
-The modeling is similar to the one used for acoustic reflection. To determine if the sound particle is dissipated or transmitted by the partition, it is necessary to draw a number :math:`w` between :math:`0` and :math:`\alpha`. If this number is less than :math:`\tau`, the particle is transmitted and keeps its direction of propagation. Otherwise the particle is dissipated and disappears from the propagation medium.
+The modelling is similar to the one used for acoustic reflection. To determine if the sound particle is dissipated or transmitted by the partition, it is necessary to draw a number :math:`w` between :math:`0` and :math:`\alpha`:
+
+- If this number is less than :math:`\tau`, the particle is transmitted and keeps its direction of propagation;
+
+- Otherwise the particle is 'dissipated' and disappears from the propagation medium.
 
 Energetic modelling
 ''''''''''''''''''''''''''''
 
-The energy modeling is performed by weighting the energy of the particle once transmitted by the partition, by the coefficient :math:`\tau`.
+The energy modeling is performed by weighting the energy of the particle once transmitted by the partition, by the coefficient :math:`\tau`. In this case, there is no change of direction of propagation.
 
 Verification of wall modelling
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The figure [figure\_test\_reflection] illustrates the result of the reflection procedure (reflection=specular/diffuse, absorption=loss/transmission) in random mode, with the following acoustic parameters: diffraction coefficient :math:`s=0.6`, absorption coefficient :math:`\alpha=0.8`, transmission coefficient :math:`\tau=10^{-R/10}=0.1` (attenuation index :math:`R=10` dB). With :math:`10000` realizations, the different phenomena are found (in terms of number of realizations) with the same proportions as the imposed acoustic parameters.
+The figure :ref:`fig_test_reflexion` illustrates the result of the reflection procedure (reflection=specular/diffuse, absorption=loss/transmission) in random mode, with the following acoustic parameters: scattering coefficient :math:`s=0.6`, absorption coefficient :math:`\alpha=0.8`, transmission coefficient :math:`\tau=10^{-R/10}=0.1` (attenuation index :math:`R=10` dB). With :math:`10000` realizations, the different phenomena are found (in terms of number of realizations) with the same proportions as the imposed acoustic parameters.
 
-|image|
+.. _fig_test_reflexion:
 
+.. figure:: images/SPPS/figure_test_reflexion.png
+   :alt: Verification of the procedure for modelling absorption, transmission and reflection.
+   :align: center
+   :width: 500px
+
+   Verification of the procedure for modelling absorption (dissipation and transmission) and reflection (specular and diffuse) phenomena
+
+
+In the previous figure, only the random drawing process is modelled (note that this simulation was realized with a very simplementation of the method, not the the one implemented in the **SPPS** code, this last one being more performant).
+
+- The first group 'Total' corresponds to the sum of the number of achievements (initial number of particles, reflection + absorption, specular + diffus + dissipation + transmission); these three quantities therefore have the exactly same value, which the initial number of sound particles (*i.e.* 10000).
+
+- The second group corresponds to the 'Reflection' process, divided into the total number of reflections (R, 2005 particles, *i.e* an equivalent reflection coefficient of 0.2005, which is quite the same that the initial condition of the random process :math:`R=1-\alpha=0.2`), specular reflections (S, 788 particles) and diffusion (Df, 1217 particles, , *i.e* an equivalent scattering coefficient of 1217/2005=0.61, which is quite the same that the initial condition of the random process :math:`s=0.6`)).
+
+- The third group corresponds to the 'Absorption' process, divided into the total number of absorption (A, 7995 particles, , *i.e* an equivalent absorption coefficient of 0.7995, which is quite the same that the initial condition of the random process :math:`\alpha=0.8`)), dissipation (D, 7014 particles) and transmission (T, 981 particles, , *i.e* an equivalent transmission coefficient of 0.0981, which is quite the same that the initial condition of the random process :math:`\tau=0.1`)).
 
 
 Calculation of sound levels at observation points
@@ -769,32 +857,42 @@ Calculation of sound levels at observation points
 
 In the **SPPS** code, two types of receivers are considered:
 
-- "Volumetric" receptors model the so-called "classical" point receptors. Since the notion of "receiver point" is not applicable in the **SPPS** code, since in theory the probability that a sound particle will pass through a point receiver is zero, it is necessary to give a volume to the receiver point, to count the number of particles that have passed through it, and thus deduce the energy density at the observation point. For a point receiver, the **SPPS** code returns the sound pressure level, at each time step of the calculation and for each frequency band considered;
+- 'Volume' receivers model the so-called "classical" point receivers. Since the notion of point receiver is not applicable in the **SPPS** code, since in theory the probability that a sound particle will pass through a point receiver is zero, it is necessary to give a volume to the receiver point, to count the number of particles that have passed through it, and thus deduce the energy density at the observation point. For a point receiver, the **SPPS** code returns the sound pressure level, at each time step of the calculation and for each frequency band considered;
 
-- "surface" receivers are surface elements (in principle stage faces) on which incident sound intensities are calculated, which then makes it possible to construct acoustic maps. For a surface receiver, the code **SPPS** returns the sound intensity level, at each time step of the calculation and for each frequency band considered.
+- 'Surface' receivers are surface elements (like a face element of the 3D scene) on which incident sound intensities are calculated, which then makes it possible to construct acoustic maps. For a surface receiver, the code **SPPS** returns the sound intensity, at each time step of the calculation and for each frequency band considered.
 
-In parallel, the calculation code also determines the overall sound pressure level in the model, summing the contributions of each particle, at each time step and for each frequency band.
+In addition, the calculation code also determines the overall sound pressure level in the 3D model, summing the contributions of each particle, at each time step and for each frequency band.
 
 
-Calculation of the sound pressure level at a "volume" receiver
+Calculation of the sound pressure level at a 'volume' receiver
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The amount of **energy** :math:`E_\text{rec}^{j}(n)` (in J or W.s) in the frequency band :math:`j` receive at a volume receiver, at the time step :math:`n` (*i.e.* to time :math:`n \Delta t`) is equal to the sum of the energies :math:`\varepsilon_i^{j}` brought by each particle :math:`i` in the frequency band :math:`j`, crossing the receiver volume during the time step :math:`n` (figure[principle\_receiver\_volumique]):
+The amount of **energy** :math:`E_\text{rec}^{j}(n)` (in J or W.s) in the frequency band :math:`j` received at a volume receiver, at the time step :math:`n` (*i.e.* to time :math:`n \Delta t`) is equal to the sum of the energies :math:`\varepsilon_i^{j}` brought by each particle :math:`i` in the frequency band :math:`j`, crossing the receiver volume during the time step :math:`n` (figure[principle\_receiver\_volumique]):
 
 .. math:: E_\text{rec}^{j}(n)=\sum_i^{N_0} \varepsilon_i^{j} = \sum_i^{N_0} \frac{W}{N} \epsilon_i^{j} \times \Delta t_i,
 
-where :math:`{N_0}` is the total number of particles passing through the receiver volume and :math:`\Delta t_i` is the presence time of the particle :math:`i` in the receiver volume (:math:`\Delta t_i<\Delta t`), and :math:`\epsilon_i^{j}` the weighting coefficient (between 0 and 1) associated with the particle :math:`i` in the frequency band :math:`j`. If the calculation mode is "random", the coefficient :math:`\epsilon_i^{j}` is constant and equal to the unit (1). If the calculation mode is "energetic", the coefficient :math:`\epsilon_i^{j}` translates the cumulative loss of energy in the frequency band :math:`j` of the particle :math:`i` throughout its path due to the physical phenomena encountered (absorption by walls and obstructions, atmospheric absorption, sound transmission...). The presence time :math:`\Delta t_i` can also be expressed as a function of the length of the path of the particle :math:`i` in the receiving volume, *i.e.* :math:`\ell_i`, such as :math:`\Delta t_i=\ell_i/c`, :math:`c` being the velocity of the particle at the observation point. Considering a "volumic" receiver [9]_ is defined by a spherical volume of radius :math:`r_\text{rec}` (and volume :math:`V_\text{rec}`), the **energy density** :math:`w_\text{rec}^{j}(n)` (J/m\ :math:`^3`) in the volumic receiver, for the frequency band :math:`j`, is given by:
+where :math:`{N_0}` is the total number of particles passing through the receiver volume and :math:`\Delta t_i` is the presence time of the particle :math:`i` in the receiver volume (:math:`\Delta t_i<\Delta t`), and :math:`\epsilon_i^{j}` the weighting coefficient (between 0 and 1) associated with the particle :math:`i` in the frequency band :math:`j`. If the calculation mode is "random", the coefficient :math:`\epsilon_i^{j}` is constant and equal to the unit (1). If the calculation mode is "energetic", the coefficient :math:`\epsilon_i^{j}` translates the cumulative loss of energy in the frequency band :math:`j` of the particle :math:`i` throughout its path due to the physical phenomena encountered (absorption by walls and obstructions, atmospheric absorption, sound transmission...). The presence time :math:`\Delta t_i` can also be expressed as a function of the length of the path of the particle :math:`i` in the receiving volume, *i.e.* :math:`\ell_i`, such as :math:`\Delta t_i=\ell_i/c`, :math:`c` being the velocity of the particle at the observation point. Considering a "volume" receiver is defined by a spherical volume of radius :math:`r_\text{rec}` (and volume :math:`V_\text{rec}`), the **energy density** :math:`w_\text{rec}^{j}(n)` (J/m\ :math:`^3`) in the volume receiver, for the frequency band :math:`j`, is given by:
 
 .. math::
+   :label: eq_density_energy_punctual_receiver
 
    \label{densite_energie_recepteur_volumique}
            w_\text{rec}^{j}(n)=\frac{E_\text{rec}(n)}{V_\text{rec}}= \frac{W}{N} \frac{1}{V_\text{rec}} \sum_i^{N_0} \epsilon_i^{j} \frac{\ell_i}{c}.
 
-.. figure:: principe_recepteur_volumique.eps
-   :alt: [principe\_recepteur\_volumique]Principe du calcul du niveau de pression acoustique pour un récepteur « volumique ». La densité d’énergie dans le volume récepteur est calculée en sommant les contributions énergétiques de chaque particule traversant le récepteur. La contribution de la particule :math:`i` est calculée à partir du trajet :math:`\ell_i` de la particule dans le volume récepteur (relation ([densite\_energie\_recepteur\_volumique])).
-   :width: 8.00000cm
+.. note::
 
-   [principe\_recepteur\_volumique]Principe du calcul du niveau de pression acoustique pour un récepteur « volumique ». La densité d’énergie dans le volume récepteur est calculée en sommant les contributions énergétiques de chaque particule traversant le récepteur. La contribution de la particule :math:`i` est calculée à partir du trajet :math:`\ell_i` de la particule dans le volume récepteur (relation ([densite\_energie\_recepteur\_volumique])).
+	The definition of the receiver volume is a crucial element for the quality and representativeness of the results. It must be large enough to count sound particles as they propagate, but not too large to make the energy density calculated at the observation point representative.
+
+.. _geo_punctual_receiver:
+
+.. figure:: images/SPPS/geo_punctual_receiver.png
+   :alt: Principle of the calculation of the sound pressure level for a volume receiver.
+   :align: center
+   :width: 500px
+
+   Principle of the calculation of the sound pressure level for a volume receiver
+
+   The energy density in the volume receiver is calculated by summing the energy contributions of each particle passing through the receiver. The contribution of the particle :math:`i` is calculated from the path :math:`\ell_i` of the particle in the volume receiver :eq:`eq_density_energy_punctual_receiver`.
 
 The **sound intensity** :math:`I_\text{rec}^{j}(n)` (in W/m\ :math:`^2`) at the receiving point is given by:
 
@@ -814,15 +912,15 @@ and
    \label{SPL_recepteur_volumique}
            SPL_\text{rec}^{j}(n)=10\log\left( \frac{P2_\text{rec}^{j}(n)}{p_0^2}\right),
 
-where :math:`I_0=10^{-12}` W/m:math:`^2` and :math:`p_0=20 \times 10^{-6}` Pa denote the reference sound intensity and sound pressure. Each of the previous quantities (energy, energy density, intensity and sound levels) are calculated for each frequency band.
+where :math:`I_0=10^{-12}` W/m :math:`^2` and :math:`p_0=20 \times 10^{-6}` Pa denote the reference sound intensity and sound pressure. Each of the previous quantities (energy, energy density, intensity and sound levels) are calculated for each frequency band.
 
 
-Intensity vector at a "volume" receiver
+Intensity vector at a volume receiver
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The vector **sound intensity** :math:`\mathbf{I}_\text{rec}^{j}(n)` (in W/m :math:`^2` or J/m :math:`^2`.s) at the receiving point, for the frequency band :math:`j`, is defined as the sum of the energy densities carried by the velocity vector :math:`\mathbf{v}_i` of the particles (standard :math:`c_i`) passing through the receiving volume:
 
-Calculation of the "lateral" sound pressure level at a "volume" receiver
+Calculation of the lateral sound pressure level at a volume receiver
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For the calculation of certain acoustic parameters, such as those based on lateral energy (LF with a weighting in :math:`|\cos\theta|` and LFC with a weighting in :math:`\cos^2\theta`), it is necessary to consider a weighting of the sound intensity as a function of the angle :math:`\theta` between the observation direction of the point receiver (in principle oriented towards the sound source) and the incident direction of the particles at the receiver. As a result, the **SPPS** code also returns the following two quantities, homogeneous to the square of the sound pressure (*i.e.* in Pa\ :math:`^2`):
@@ -830,9 +928,8 @@ For the calculation of certain acoustic parameters, such as those based on later
 .. math::
 
    \begin{aligned}
-           P2_{\text{rec},\cos\theta}^{j}(n)&=& \rho_0 c^2 \times w^{j}_{\text{rec},\cos\theta}(n)\\
-           &=& \rho_0 c \frac{W}{N} \frac{1}{V_\text{rec}}\\
-           & & \quad \times \sum_i^{N_0} \epsilon_i^{j}\ell_i|\cos\theta_i|,
+           P2_{\text{rec},\cos\theta}^{j}(n)&= \rho_0 c^2 \times w^{j}_{\text{rec},\cos\theta}(n)\\
+           &= \rho_0 c \frac{W}{N} \frac{1}{V_\text{rec}} \times \sum_i^{N_0} \epsilon_i^{j}\ell_i|\cos\theta_i|,
            \end{aligned}
 
 and
@@ -840,24 +937,23 @@ and
 .. math::
 
    \begin{aligned}
-            P2_{\text{rec},\cos^2\theta}^{j}(n)&=& \rho_0 c^2 \times w^{j}_{\text{rec},\cos^2\theta}\\
-            &=& \rho_0 c \frac{W}{N} \frac{1}{V_\text{rec}}\\
-            & & \quad \times \sum_i^{N_0} \epsilon_i^{j}\ell_i\cos^2\theta_i.
+            P2_{\text{rec},\cos^2\theta}^{j}(n)&= \rho_0 c^2 \times w^{j}_{\text{rec},\cos^2\theta}\\
+            &= \rho_0 c \frac{W}{N} \frac{1}{V_\text{rec}} \times \sum_i^{N_0} \epsilon_i^{j}\ell_i\cos^2\theta_i.
            \end{aligned}
 
 where :math:`\theta_i` is the corresponding angle for the particle :math:`i`.
 
 
-Calculation of the sound intensity level on a "surface" receiver
+Calculation of the sound intensity level on a surface receiver
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The **power** :math:`W_\text{surf}^{j}` (in W) received by a surface element of size :math:`\Delta S` of normal:math:is equal to the sum of the energy provided by each particle :math:`i` in the frequency band :math:`j` per time unit :math:`\Delta t`, at the time step :math:`n` (*i.e.* at time :math:`n\Delta t`), either:
+The **power** :math:`W_\text{surf}^{j}` (in W) received by a surface element of size :math:`\Delta S` of normal :math:`\mathbf{n}` is equal to the sum of the energy provided by each particle :math:`i` in the frequency band :math:`j` per time unit :math:`\Delta t`, at the time step :math:`n` (*i.e.* at time :math:`n\Delta t`), either:
 
 .. math:: W_\text{surf}^{j}(n)=\sum_i^{N_0} \frac{\varepsilon_i^{j}}{\Delta t} \frac{\mathbf{v_i}}{c}\cdot \mathbf{n}=\frac{W}{N} \sum_i^{N_0}  \epsilon_i\cos\theta_i,
 
 where :math:`\mathbf{v_i}` refers to the velocity vector (of norm :math:`c`) of the particle :math:`i`, :math:`\theta_i` the angle between normal :math:`\mathbf{n}` of the surface and the direction of the particle, and where :math:`{N_0}` is the total number of sound particles colliding with the surface element :math:`\Delta S`.
 
-The sound intensity** :math:`I_\text{surf}^{j}(n)` (in W/m :math:`^2`) received by the surface element :math:`\Delta S` at the time step :math:`n` is equal to the power received divided by the surface, either:
+The **sound intensity** :math:`I_\text{surf}^{j}(n)` (in W/m :math:`^2`) received by the surface element :math:`\Delta S` at the time step :math:`n` is equal to the power received divided by the surface, either:
 
 .. math:: I_\text{surf}^{j}(n)=\frac{W}{N} \frac{1}{\Delta S}\sum_i^{N_0} \epsilon_i^{j} \cos\theta_i.
 
@@ -870,17 +966,19 @@ The **sound level** :math:`L_\text{surf}^{j}(n)` (in dB) can then be calculated 
 
 where :math:`I_0=10^{-12}` W/m :math:`^2` is the reference intensity.
 
-.. figure:: principe_recepteur_surfacique.eps
-   :alt: [principe\_recepteur\_surfacique]Principe du calcul du niveau d’intensité acoustique au niveau d’un récepteur « surfacique ».
-   :width: 8.00000cm
+.. _geo_surface_receiver:
 
-   [principe\_recepteur\_surfacique]Principe du calcul du niveau d’intensité acoustique au niveau d’un récepteur « surfacique ».
+.. figure:: images/SPPS/geo_surface_receiver.png
+   :alt: Principle of the calculation of the sound intensity level for a surface receiver.
+   :align: center
+   :width: 500px
 
+   Principle of the calculation of the sound intensity level for a surface receiver
 
-Calculation of the sound pressure level on a "surface" receiver
+Calculation of the sound pressure level on a surface receiver
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Equivalent to the calculation of the sound intensity level on a "surface" receiver, the quadratic sound pressure :math:`P2_\text{surf}^{j}(n)` (in Pa) received by the surface element :math:Delta S' at the time step :math:`n` is equal to the product of the sound intensity (without weighting the angle of incidence on the surface) by the characteristic impedance of the air :math:`\rho_0` that is:
+Equivalent to the calculation of the sound intensity level on a surface receiver, the quadratic sound pressure :math:`P2_\text{surf}^{j}(n)` (in Pa) received by the surface element :math:`\Delta S` at the time step :math:`n` is equal to the product of the sound intensity (without weighting the angle of incidence on the surface) by the characteristic impedance of the air :math:`\rho_0` that is:
 
 .. math:: P2_\text{surf}^{j}(n)=\rho_0\rho_0\, c \frac{W}{N} \frac{1}{\Delta S}\sum_i^{N_0} \epsilon_i^{j}.
 
@@ -893,6 +991,9 @@ The **sound pressure level** :math:`L_\text{SPL,surf}^{j}(n)` (in dB) can then b
 
 where :math:`p_0=20\times 10^{-6}` Pa is the reference sound pressure.
 
+.. warning::
+
+    Note that the calculation of a sound pressure level for a surface is quite ambiguous. It should not be comparable to grid of punctual receivers on a plane.
 
 
 Calculation of the overall sound pressure level in the model
@@ -909,41 +1010,3 @@ The **sound pressure level** :math:`SPL_\text{global}^{j}(n)` (in dB) can then b
    \label{SPL_global} SPL_\text{global}^{j}(n)=10\log\left( \frac{P2_\text{global}^{j}(n)}{p_0^2}\right),
 
 where :math:`p_0=20\times 10^{-6}` Pa is the reference sound pressure.
-
-.. [1]
-   The method consists in considering emission angles :math:`\theta` and :math:`\phi` by constant steps.
-
-.. [2]
-   The free field is simulated by considering a long corridor with perfectly absorbent limits.
-
-.. [3]
-   For simplicity, we consider the normal frequency of the frequency bands (ISO266:1997), not the exact center frequency.
-
-.. [4]
-   The simulation is identical to the one presented in the paragraph [sec:propagation\_acoustics] for the verification of the respect of the geometric dispersion.
-
-.. [5]
-   As for an omnidirectional source, *cf.* paragraph [sec:source\_omni].
-
-.. [6]
-   There can be no creation of energy, nor more absorption than incident energy.
-
-.. [7]
-   It is important to note that this diffraction coefficient is different from the diffusion coefficient :math:`\delta` proposed by the AES, which defines the "diffusion quality" of a surface by comparing the polar response (reflection law) of the surface in question to a uniform distribution. The measurement of this coefficient is currently being drafted in Part 2 of ISO 17497. In some acoustic simulation software, the diffraction coefficient :math:`s` is sometimes wrongly called the diffusion coefficient.
-
-.. [8]
-   It is important to note that other authors (burns1990,hodgson1991,lam1996,xiangyang2002) mention other relationships. The correct formulation depends on the angle convention. It is also possible that some of the relationships that are proposed may not be accurate.
-
-.. [9]
-   The definition of the receiver volume is a crucial element for the quality and representativeness of the results. It must be large enough to count sound particles as they propagate, but not too large to make the energy density calculated at the observation point representative.
-
-.. |image| image:: organigramme_att_atmos.eps
-.. |image| image:: geo_profil_celerite.eps
-   :width: 12.00000cm
-.. |image| image:: organigramme_refraction.eps
-.. |image| image:: verification_diffusion_encombrement.eps
-   :width: 12.00000cm
-.. |image| image:: organigramme_encombrement.eps
-.. |image| image:: organigramme_reflexion.eps
-.. |image| image:: figure_test_reflexion.eps
-   :width: 12.00000cm
