@@ -12,10 +12,10 @@ environment:
     BOOST_LIBRARYDIR: C:\Libraries\boost_1_60_0\lib64-msvc-14.0
     PYTHON_LIBRARY: C:\Python27-x64\libs\python27.lib
     PYTHON_INCLUDE_DIR: C:\Python27-x64\include
-    WXWIN: C:\wxWidgets-3.1.2\
-    wxWidgets_ROOT_DIR: C:\wxWidgets-3.1.2\
-    wxWidgets_INCLUDE_DIRS: C:\wxWidgets-3.1.2\include
-    wxWidgets_LIBRARIES: C:\wxWidgets-3.1.2\lib\vc140_x64_dll
+    WXWIN: C:\wxWidgets-3.1.1\
+    wxWidgets_ROOT_DIR: C:\wxWidgets-3.1.1\
+    wxWidgets_INCLUDE_DIRS: C:\wxWidgets-3.1.1\include
+    wxWidgets_LIBRARIES: C:\wxWidgets-3.1.1\lib\vc140_x64_dll
     SWIG_DIR: C:\Libraries\swigwin-3.0.11
     SWIG_EXECUTABLE: C:\Libraries\swigwin-3.0.11\swig.exe
     PYTHON_EXECUTABLE: C:\Python27-x64\python.exe
@@ -50,18 +50,18 @@ before_build:
   # Copy x64 dll from system32 to python27 x64
   - cmd: copy c:\windows\system32\PYTHON27.DLL C:\Python27-x64\python27.dll
   # sent environment variables for wxWidgets
-  - set WXWIN=C:\wxWidgets-3.1.2\
+  - set WXWIN=C:\wxWidgets-3.1.1\
   - set wxWidgets_ROOT_DIR=%WXWIN%
   - set wxWidgets_LIB_DIR=%WXWIN%\lib\vc_dll
   - echo Download wxWidgets lib
-  - ps: Start-FileDownload 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.2/wxWidgets-3.1.2.7z'
-  - ps: Start-FileDownload 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.2/wxMSW-3.1.2_vc140_x64_Dev.7z'
-  - cmd: 7z x wxWidgets-3.1.2.7z -oC:\wxWidgets-3.1.2
-  - cmd: 7z x wxMSW-3.1.2_vc140_x64_Dev.7z -oC:\wxWidgets-3.1.2
+  - ps: Start-FileDownload 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.1/wxWidgets-3.1.1.7z'
+  - ps: Start-FileDownload 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.1/wxMSW-3.1.1_vc140_x64_Dev.7z'
+  - cmd: 7z x wxWidgets-3.1.1.7z -oC:\wxWidgets-3.1.1
+  - cmd: 7z x wxMSW-3.1.1_vc140_x64_Dev.7z -oC:\wxWidgets-3.1.1
   - cmd: dir %wxWidgets_LIBRARIES%
   # Download Release wxWidgets DLL's
-  - ps: Start-FileDownload 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.2/wxMSW-3.1.2_vc140_x64_ReleaseDLL.7z' -Timeout 15000
-  - cmd: 7z x wxMSW-3.1.2_vc140_x64_ReleaseDLL.7z -oC:\wxWidgets-3.1.2
+  - ps: Start-FileDownload 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.1/wxMSW-3.1.1_vc140_x64_ReleaseDLL.7z' -Timeout 15000
+  - cmd: 7z x wxMSW-3.1.2_vc140_x64_ReleaseDLL.7z -oC:\wxWidgets-3.1.1
   # install dependencies:
   - choco install poedit nsis 7zip.install
   - ps: Start-FileDownload 'https://github.com/nicolas-f/build_resources/raw/master/swigwin-3.0.11.zip' -FileName 'c:\Libraries\swigwin-3.0.11.zip' -Timeout 15000
