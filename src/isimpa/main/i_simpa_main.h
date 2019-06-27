@@ -261,6 +261,7 @@ class MainUiFrame : public wxFrame
 		static int AskApplicationLanguage(int defaultLanguage);
 
         static wxString AskApplicationDataDir(wxString defaultApplicationDirectory);
+        void OnWindowLoaded();
 	private:
 		void OnSaveProject(wxCommandEvent& event);
 		void OnSaveConsoleToFile(wxCommandEvent& event);
@@ -556,7 +557,7 @@ class ISimpaApp : public wxApp
 				projetCourant->Open(filename);
 			}
 
-
+            frame->OnWindowLoaded();
 			return true;
 		}
 

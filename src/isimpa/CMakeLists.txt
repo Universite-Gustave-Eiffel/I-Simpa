@@ -435,6 +435,7 @@ IF(GETTEXT_FOUND )
   ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/source_tools/locale ${CMAKE_BINARY_DIR}/src/source_tools)
   ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/moveto_vertex/locale ${CMAKE_BINARY_DIR}/src/moveto_vertex)
   ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/preceiv_sourceTracker/locale ${CMAKE_BINARY_DIR}/src/preceiv_sourceTracker)
+  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/check_version/locale ${CMAKE_BINARY_DIR}/src/check_version)
   #disabled ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/SppsReportSample/locale ${CMAKE_BINARY_DIR}/src/SppsReportSample)
   # Building isimpa require building pofiles
   add_dependencies(isimpa pofiles)
