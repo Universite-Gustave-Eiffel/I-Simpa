@@ -5994,5 +5994,436 @@
         <p name="db" eid="25" wxid="1035" readonly="1" label="dB" ex="1" value="51.400002" pr="2"/>
       </p>
     </frequences>
+    <frequences name="ELC_Full" eid="45" wxid="1165" idspectre="8">
+    <p name="cumul" eid="50" wxid="1166" label="Global">
+      <p name="dba" eid="25" wxid="1168" readonly="1" label="dB(A)" value="-2,431984" pr="2"/>
+      <p name="db" eid="25" wxid="1167" readonly="1" label="dB" value="-0,000421" pr="2"/>
+    </p>
+
+    <p name="20000" eid="51" wxid="1416" label="20000 Hz">
+      <p name="dba" eid="25" wxid="1418" label="dB(A)" value="18.046505471309" pr="2"/>
+      <p name="db" eid="25" wxid="1417" label="dB" ex="1" value="-30.0" pr="2"/>
+    </p>
+
+    <p name="16000" eid="51" wxid="1413" label="16000 Hz">
+      <p name="dba" eid="25" wxid="1415" label="dB(A)" value="54.9651453368657" pr="2"/>
+      <p name="db" eid="25" wxid="1414" label="dB" ex="1" value="-12.2" pr="2"/>
+    </p>
+
+    <p name="12500" eid="51" wxid="1410" label="12500 Hz">
+      <p name="dba" eid="25" wxid="1412" label="dB(A)" value="52.5881980200273" pr="2"/>
+      <p name="db" eid="25" wxid="1411" label="dB" ex="1" value="-14.0" pr="2"/>
+    </p>
+
+    <p name="10000" eid="51" wxid="1407" label="10000 Hz">
+      <p name="dba" eid="25" wxid="1409" label="dB(A)" value="53.6650772947814" pr="2"/>
+      <p name="db" eid="25" wxid="1408" label="dB" ex="1" value="-13.9" pr="2"/>
+    </p>
+
+    <p name="8000" eid="51" wxid="1404" label="8000 Hz">
+      <p name="dba" eid="25" wxid="1406" label="dB(A)" value="60.1306656125633" pr="2"/>
+      <p name="db" eid="25" wxid="1405" label="dB" ex="1" value="-11.0" pr="2"/>
+    </p>
+
+    <p name="6300" eid="51" wxid="1401" label="6300 Hz">
+      <p name="dba" eid="25" wxid="1403" label="dB(A)" value="71.6348792719626" pr="2"/>
+      <p name="db" eid="25" wxid="1402" label="dB" ex="1" value="-5.5" pr="2"/>
+    </p>
+
+    <p name="5000" eid="51" wxid="1398" label="5000 Hz">
+      <p name="dba" eid="25" wxid="1400" label="dB(A)" value="83.9522732234081" pr="2"/>
+      <p name="db" eid="25" wxid="1399" label="dB" ex="1" value="0.5" pr="2"/>
+    </p>
+
+    <p name="4000" eid="51" wxid="1395" label="4000 Hz">
+      <p name="dba" eid="25" wxid="1397" label="dB(A)" value="92.5303660825236" pr="2"/>
+      <p name="db" eid="25" wxid="1396" label="dB" ex="1" value="4.7" pr="2"/>
+    </p>
+
+    <p name="3150" eid="51" wxid="1392" label="3150 Hz">
+      <p name="dba" eid="25" wxid="1394" label="dB(A)" value="95.0049189380135" pr="2"/>
+      <p name="db" eid="25" wxid="1393" label="dB" ex="1" value="5.9" pr="2"/>
+    </p>
+
+    <p name="2500" eid="51" wxid="1389" label="2500 Hz">
+      <p name="dba" eid="25" wxid="1391" label="dB(A)" value="92.3726953608656" pr="2"/>
+      <p name="db" eid="25" wxid="1390" label="dB" ex="1" value="4.6" pr="2"/>
+    </p>
+
+    <p name="2000" eid="51" wxid="1386" label="2000 Hz">
+      <p name="dba" eid="25" wxid="1388" label="dB(A)" value="87.0398835441744" pr="2"/>
+      <p name="db" eid="25" wxid="1387" label="dB" ex="1" value="2.0" pr="2"/>
+    </p>
+
+    <p name="1600" eid="51" wxid="1383" label="1600 Hz">
+      <p name="dba" eid="25" wxid="1385" label="dB(A)" value="78.7902044045879" pr="2"/>
+      <p name="db" eid="25" wxid="1384" label="dB" ex="1" value="-2.0" pr="2"/>
+    </p>
+
+    <p name="1250" eid="51" wxid="1380" label="1250 Hz">
+      <p name="dba" eid="25" wxid="1382" label="dB(A)" value="78.1446081142169" pr="2"/>
+      <p name="db" eid="25" wxid="1381" label="dB" ex="1" value="-2.1" pr="2"/>
+    </p>
+
+    <p name="1000" eid="51" wxid="1377" label="1000 Hz">
+      <p name="dba" eid="25" wxid="1379" label="dB(A)" value="79.5521749012769" pr="2"/>
+      <p name="db" eid="25" wxid="1378" label="dB" ex="1" value="-1.1" pr="2"/>
+    </p>
+
+    <p name="800" eid="51" wxid="1374" label="800 Hz">
+      <p name="dba" eid="25" wxid="1376" label="dB(A)" value="77.746969820876" pr="2"/>
+      <p name="db" eid="25" wxid="1375" label="dB" ex="1" value="-1.6" pr="2"/>
+    </p>
+
+    <p name="630" eid="51" wxid="1371" label="630 Hz">
+      <p name="dba" eid="25" wxid="1373" label="dB(A)" value="74.8260485341788" pr="2"/>
+      <p name="db" eid="25" wxid="1372" label="dB" ex="1" value="-2.5" pr="2"/>
+    </p>
+
+    <p name="500" eid="51" wxid="1368" label="500 Hz">
+      <p name="dba" eid="25" wxid="1370" label="dB(A)" value="71.4824120066073" pr="2"/>
+      <p name="db" eid="25" wxid="1369" label="dB" ex="1" value="-3.5" pr="2"/>
+    </p>
+
+    <p name="400" eid="51" wxid="1365" label="400 Hz">
+      <p name="dba" eid="25" wxid="1367" label="dB(A)" value="67.1537034415572" pr="2"/>
+      <p name="db" eid="25" wxid="1366" label="dB" ex="1" value="-4.9" pr="2"/>
+    </p>
+
+    <p name="315" eid="51" wxid="1362" label="315 Hz">
+      <p name="dba" eid="25" wxid="1364" label="dB(A)" value="61.4820515945865" pr="2"/>
+      <p name="db" eid="25" wxid="1363" label="dB" ex="1" value="-6.8" pr="2"/>
+    </p>
+
+    <p name="250" eid="51" wxid="1359" label="250 Hz">
+      <p name="dba" eid="25" wxid="1361" label="dB(A)" value="52.0499215993218" pr="2"/>
+      <p name="db" eid="25" wxid="1360" label="dB" ex="1" value="-10.5" pr="2"/>
+    </p>
+
+    <p name="200" eid="51" wxid="1356" label="200 Hz">
+      <p name="dba" eid="25" wxid="1358" label="dB(A)" value="45.8770365344223" pr="2"/>
+      <p name="db" eid="25" wxid="1357" label="dB" ex="1" value="-12.5" pr="2"/>
+    </p>
+
+    <p name="160" eid="51" wxid="1353" label="160 Hz">
+      <p name="dba" eid="25" wxid="1355" label="dB(A)" value="38.2793440525708" pr="2"/>
+      <p name="db" eid="25" wxid="1354" label="dB" ex="1" value="-15.1" pr="2"/>
+    </p>
+
+    <p name="125" eid="51" wxid="1350" label="125 Hz">
+      <p name="dba" eid="25" wxid="1352" label="dB(A)" value="23.1337267818274" pr="2"/>
+      <p name="db" eid="25" wxid="1351" label="dB" ex="1" value="-21.2" pr="2"/>
+    </p>
+
+    <p name="100" eid="51" wxid="1347" label="100 Hz">
+      <p name="dba" eid="25" wxid="1349" label="dB(A)" value="11.9782615859283" pr="2"/>
+      <p name="db" eid="25" wxid="1348" label="dB" ex="1" value="-25.3" pr="2"/>
+    </p>
+
+    <p name="80" eid="51" wxid="1344" label="80 Hz">
+      <p name="dba" eid="25" wxid="1346" label="dB(A)" value="0.92544411011928" pr="2"/>
+      <p name="db" eid="25" wxid="1345" label="dB" ex="1" value="-29.2" pr="2"/>
+    </p>
+
+    <p name="79" eid="51" wxid="1341" label="79 Hz">
+      <p name="dba" eid="25" wxid="1343" label="dB(A)" value="-0.26702825539774" pr="2"/>
+      <p name="db" eid="25" wxid="1342" label="dB" ex="1" value="-29.7" pr="2"/>
+    </p>
+
+    <p name="78" eid="51" wxid="1339" label="78 Hz">
+      <p name="dba" eid="25" wxid="1341" label="dB(A)" value="-2.66295525143685" pr="2"/>
+      <p name="db" eid="25" wxid="1340" label="dB" ex="1" value="-30.8" pr="2"/>
+    </p>
+
+    <p name="77" eid="51" wxid="1336" label="77 Hz">
+      <p name="dba" eid="25" wxid="1338" label="dB(A)" value="-3.66244087258134" pr="2"/>
+      <p name="db" eid="25" wxid="1337" label="dB" ex="1" value="-31.2" pr="2"/>
+    </p>
+
+    <p name="76" eid="51" wxid="1333" label="76 Hz">
+      <p name="dba" eid="25" wxid="1335" label="dB(A)" value="-4.46559362150359" pr="2"/>
+      <p name="db" eid="25" wxid="1334" label="dB" ex="1" value="-31.5" pr="2"/>
+    </p>
+
+    <p name="75" eid="51" wxid="1330" label="75 Hz">
+      <p name="dba" eid="25" wxid="1332" label="dB(A)" value="-5.07252677368232" pr="2"/>
+      <p name="db" eid="25" wxid="1331" label="dB" ex="1" value="-31.7" pr="2"/>
+    </p>
+
+    <p name="74" eid="51" wxid="1327" label="74 Hz">
+      <p name="dba" eid="25" wxid="1329" label="dB(A)" value="-5.68335866198511" pr="2"/>
+      <p name="db" eid="25" wxid="1328" label="dB" ex="1" value="-31.9" pr="2"/>
+    </p>
+
+    <p name="73" eid="51" wxid="1324" label="73 Hz">
+      <p name="dba" eid="25" wxid="1326" label="dB(A)" value="-6.69821298291593" pr="2"/>
+      <p name="db" eid="25" wxid="1325" label="dB" ex="1" value="-32.3" pr="2"/>
+    </p>
+
+    <p name="72" eid="51" wxid="1321" label="72 Hz">
+      <p name="dba" eid="25" wxid="1323" label="dB(A)" value="-7.51721912651588" pr="2"/>
+      <p name="db" eid="25" wxid="1322" label="dB" ex="1" value="-32.6" pr="2"/>
+    </p>
+
+    <p name="71" eid="51" wxid="1318" label="71 Hz">
+      <p name="dba" eid="25" wxid="1320" label="dB(A)" value="-8.14051253211715" pr="2"/>
+      <p name="db" eid="25" wxid="1319" label="dB" ex="1" value="-32.8" pr="2"/>
+    </p>
+
+    <p name="70" eid="51" wxid="1315" label="70 Hz">
+      <p name="dba" eid="25" wxid="1317" label="dB(A)" value="-8.7682350723865" pr="2"/>
+      <p name="db" eid="25" wxid="1316" label="dB" ex="1" value="-33.0" pr="2"/>
+    </p>
+
+    <p name="69" eid="51" wxid="1313" label="69 Hz">
+      <p name="dba" eid="25" wxid="1315" label="dB(A)" value="-9.8005354683602" pr="2"/>
+      <p name="db" eid="25" wxid="1314" label="dB" ex="1" value="-33.4" pr="2"/>
+    </p>
+
+    <p name="68" eid="51" wxid="1310" label="68 Hz">
+      <p name="dba" eid="25" wxid="1312" label="dB(A)" value="-10.4375697384703" pr="2"/>
+      <p name="db" eid="25" wxid="1311" label="dB" ex="1" value="-33.6" pr="2"/>
+    </p>
+
+    <p name="67" eid="51" wxid="1307" label="67 Hz">
+      <p name="dba" eid="25" wxid="1309" label="dB(A)" value="-11.2795016848977" pr="2"/>
+      <p name="db" eid="25" wxid="1308" label="dB" ex="1" value="-33.9" pr="2"/>
+    </p>
+
+    <p name="66" eid="51" wxid="1304" label="66 Hz">
+      <p name="dba" eid="25" wxid="1306" label="dB(A)" value="-12.5265034209643" pr="2"/>
+      <p name="db" eid="25" wxid="1305" label="dB" ex="1" value="-34.4" pr="2"/>
+    </p>
+
+    <p name="65" eid="51" wxid="1301" label="65 Hz">
+      <p name="dba" eid="25" wxid="1303" label="dB(A)" value="-13.1787559437035" pr="2"/>
+      <p name="db" eid="25" wxid="1302" label="dB" ex="1" value="-34.6" pr="2"/>
+    </p>
+
+    <p name="64" eid="51" wxid="1298" label="64 Hz">
+      <p name="dba" eid="25" wxid="1300" label="dB(A)" value="-14.4364497562273" pr="2"/>
+      <p name="db" eid="25" wxid="1299" label="dB" ex="1" value="-35.1" pr="2"/>
+    </p>
+
+    <p name="63" eid="51" wxid="1295" label="63 Hz">
+      <p name="dba" eid="25" wxid="1297" label="dB(A)" value="-15.2997855450541" pr="2"/>
+      <p name="db" eid="25" wxid="1296" label="dB" ex="1" value="-35.4" pr="2"/>
+    </p>
+
+    <p name="62" eid="51" wxid="1292" label="62 Hz">
+      <p name="dba" eid="25" wxid="1294" label="dB(A)" value="-16.3689749181755" pr="2"/>
+      <p name="db" eid="25" wxid="1293" label="dB" ex="1" value="-35.8" pr="2"/>
+    </p>
+
+    <p name="61" eid="51" wxid="1289" label="61 Hz">
+      <p name="dba" eid="25" wxid="1291" label="dB(A)" value="-17.4442412103412" pr="2"/>
+      <p name="db" eid="25" wxid="1290" label="dB" ex="1" value="-36.2" pr="2"/>
+    </p>
+
+    <p name="60" eid="51" wxid="1286" label="60 Hz">
+      <p name="dba" eid="25" wxid="1288" label="dB(A)" value="-18.5258203628322" pr="2"/>
+      <p name="db" eid="25" wxid="1287" label="dB" ex="1" value="-36.6" pr="2"/>
+    </p>
+
+    <p name="59" eid="51" wxid="1283" label="59 Hz">
+      <p name="dba" eid="25" wxid="1285" label="dB(A)" value="-19.8139618858999" pr="2"/>
+      <p name="db" eid="25" wxid="1284" label="dB" ex="1" value="-37.1" pr="2"/>
+    </p>
+
+    <p name="58" eid="51" wxid="1280" label="58 Hz">
+      <p name="dba" eid="25" wxid="1282" label="dB(A)" value="-20.9089299130765" pr="2"/>
+      <p name="db" eid="25" wxid="1281" label="dB" ex="1" value="-37.5" pr="2"/>
+    </p>
+
+    <p name="57" eid="51" wxid="1277" label="57 Hz">
+      <p name="dba" eid="25" wxid="1279" label="dB(A)" value="-22.2110043577378" pr="2"/>
+      <p name="db" eid="25" wxid="1278" label="dB" ex="1" value="-38.0" pr="2"/>
+    </p>
+
+    <p name="56" eid="51" wxid="1274" label="56 Hz">
+      <p name="dba" eid="25" wxid="1276" label="dB(A)" value="-23.7204821836487" pr="2"/>
+      <p name="db" eid="25" wxid="1275" label="dB" ex="1" value="-38.6" pr="2"/>
+    </p>
+
+    <p name="55" eid="51" wxid="1271" label="55 Hz">
+      <p name="dba" eid="25" wxid="1273" label="dB(A)" value="-25.0376788027585" pr="2"/>
+      <p name="db" eid="25" wxid="1272" label="dB" ex="1" value="-39.1" pr="2"/>
+    </p>
+
+    <p name="54" eid="51" wxid="1268" label="54 Hz">
+      <p name="dba" eid="25" wxid="1270" label="dB(A)" value="-26.5629296152884" pr="2"/>
+      <p name="db" eid="25" wxid="1269" label="dB" ex="1" value="-39.7" pr="2"/>
+    </p>
+
+    <p name="53" eid="51" wxid="1265" label="53 Hz">
+      <p name="dba" eid="25" wxid="1267" label="dB(A)" value="-27.6965917091845" pr="2"/>
+      <p name="db" eid="25" wxid="1266" label="dB" ex="1" value="-40.1" pr="2"/>
+    </p>
+
+    <p name="52" eid="51" wxid="1262" label="52 Hz">
+      <p name="dba" eid="25" wxid="1264" label="dB(A)" value="-29.0390457383585" pr="2"/>
+      <p name="db" eid="25" wxid="1263" label="dB" ex="1" value="-40.6" pr="2"/>
+    </p>
+
+    <p name="51" eid="51" wxid="1259" label="51 Hz">
+      <p name="dba" eid="25" wxid="1261" label="dB(A)" value="-30.390698001844" pr="2"/>
+      <p name="db" eid="25" wxid="1260" label="dB" ex="1" value="-41.1" pr="2"/>
+    </p>
+
+    <p name="50" eid="51" wxid="1256" label="50 Hz">
+      <p name="dba" eid="25" wxid="1258" label="dB(A)" value="-32.3519827491307" pr="2"/>
+      <p name="db" eid="25" wxid="1257" label="dB" ex="1" value="-41.9" pr="2"/>
+    </p>
+
+    <p name="49" eid="51" wxid="1253" label="49 Hz">
+      <p name="dba" eid="25" wxid="1255" label="dB(A)" value="-34.1233647405678" pr="2"/>
+      <p name="db" eid="25" wxid="1254" label="dB" ex="1" value="-42.6" pr="2"/>
+    </p>
+
+    <p name="48" eid="51" wxid="1250" label="48 Hz">
+      <p name="dba" eid="25" wxid="1252" label="dB(A)" value="-35.905342095949" pr="2"/>
+      <p name="db" eid="25" wxid="1251" label="dB" ex="1" value="-43.3" pr="2"/>
+    </p>
+
+    <p name="47" eid="51" wxid="1247" label="47 Hz">
+      <p name="dba" eid="25" wxid="1249" label="dB(A)" value="-37.8984494693011" pr="2"/>
+      <p name="db" eid="25" wxid="1248" label="dB" ex="1" value="-44.1" pr="2"/>
+    </p>
+
+    <p name="46" eid="51" wxid="1244" label="46 Hz">
+      <p name="dba" eid="25" wxid="1246" label="dB(A)" value="-39.9032615936295" pr="2"/>
+      <p name="db" eid="25" wxid="1245" label="dB" ex="1" value="-44.9" pr="2"/>
+    </p>
+      
+    <p name="45" eid="51" wxid="1241" label="45 Hz">
+      <p name="dba" eid="25" wxid="1243" label="dB(A)" value="-41.5203972460789" pr="2"/>
+      <p name="db" eid="25" wxid="1242" label="dB" ex="1" value="-45.5" pr="2"/>
+    </p>
+      
+    <p name="44" eid="51" wxid="1238" label="44 Hz">
+      <p name="dba" eid="25" wxid="1240" label="dB(A)" value="-43.5505236918273" pr="2"/>
+      <p name="db" eid="25" wxid="1239" label="dB" ex="1" value="-46.3" pr="2"/>
+    </p>
+      
+    <p name="43" eid="51" wxid="1235" label="43 Hz">
+      <p name="dba" eid="25" wxid="1237" label="dB(A)" value="-45.3943616742725" pr="2"/>
+      <p name="db" eid="25" wxid="1236" label="dB" ex="1" value="-47.0" pr="2"/>
+    </p>
+      
+    <p name="42" eid="51" wxid="1232" label="42 Hz">
+      <p name="dba" eid="25" wxid="1234" label="dB(A)" value="-49.6526910299654" pr="2"/>
+      <p name="db" eid="25" wxid="1233" label="dB" ex="1" value="-48.9" pr="2"/>
+    </p>
+      
+    <p name="41" eid="51" wxid="1229" label="41 Hz">
+      <p name="dba" eid="25" wxid="1231" label="dB(A)" value="-51.9263570196204" pr="2"/>
+      <p name="db" eid="25" wxid="1230" label="dB" ex="1" value="-49.8" pr="2"/>
+    </p>
+      
+    <p name="40" eid="51" wxid="1226" label="40 Hz">
+      <p name="dba" eid="25" wxid="1228" label="dB(A)" value="-53.8162774818056" pr="2"/>
+      <p name="db" eid="25" wxid="1227" label="dB" ex="1" value="-50.5" pr="2"/>
+    </p>
+      
+    <p name="39" eid="51" wxid="1223" label="39 Hz">
+      <p name="dba" eid="25" wxid="1225" label="dB(A)" value="-56.1234509340757" pr="2"/>
+      <p name="db" eid="25" wxid="1224" label="dB" ex="1" value="-51.4" pr="2"/>
+    </p>
+      
+    <p name="38" eid="51" wxid="1220" label="38 Hz">
+      <p name="dba" eid="25" wxid="1222" label="dB(A)" value="-58.2489657679936" pr="2"/>
+      <p name="db" eid="25" wxid="1221" label="dB" ex="1" value="-52.2" pr="2"/>
+    </p>
+      
+    <p name="37" eid="51" wxid="1217" label="37 Hz">
+      <p name="dba" eid="25" wxid="1219" label="dB(A)" value="-61.1940107104528" pr="2"/>
+      <p name="db" eid="25" wxid="1218" label="dB" ex="1" value="-53.4" pr="2"/>
+    </p>
+      
+    <p name="36" eid="51" wxid="1214" label="36 Hz">
+      <p name="dba" eid="25" wxid="1216" label="dB(A)" value="-62.959886754947" pr="2"/>
+      <p name="db" eid="25" wxid="1215" label="dB" ex="1" value="-54.0" pr="2"/>
+    </p>
+      
+    <p name="35" eid="51" wxid="1211" label="35 Hz">
+      <p name="dba" eid="25" wxid="1213" label="dB(A)" value="-65.7480208041509" pr="2"/>
+      <p name="db" eid="25" wxid="1212" label="dB" ex="1" value="-55.1" pr="2"/>
+    </p>
+      
+    <p name="34" eid="51" wxid="1208" label="34 Hz">
+      <p name="dba" eid="25" wxid="1210" label="dB(A)" value="-68.5599813109432” pr="2"/>
+      <p name="db" eid="25" wxid="1209" label="dB" ex="1" value="-56.2" pr="2"/>
+    </p>
+                                                                              
+    <p name="33" eid="51" wxid="1205" label="33 Hz">
+      <p name="dba" eid="25" wxid="1207" label="dB(A)" value="-70.7974962608109" pr="2"/>
+      <p name="db" eid="25" wxid="1206" label="dB" ex="1" value="-57.0" pr="2"/>
+    </p>
+                                                                              
+    <p name="32" eid="51" wxid="1202" label="32 Hz">
+      <p name="dba" eid="25" wxid="1204" label="dB(A)" value="-75.0624739070062" pr="2"/>
+      <p name="db" eid="25" wxid="1203" label="dB" ex="1" value="-58.8" pr="2"/>
+    </p>
+                                                                              
+    <p name="31" eid="51" wxid="525" label="31 Hz">
+      <p name="dba" eid="25" wxid="527" label="dB(A)" value="-78.1570267542511" pr="2"/>
+      <p name="db" eid="25" wxid="526" label="dB" ex="1" value="-60.0" pr="2"/>
+    </p>
+                                                                             
+    <p name="30" eid="51" wxid="1199" label="30 Hz">
+      <p name="dba" eid="25" wxid="1201" label="dB(A)" value="-81.8834993916378" pr="2"/>
+      <p name="db" eid="25" wxid="1200" label="dB" ex="1" value="-61.5" pr="2"/>
+    </p>
+                                                                              
+    <p name="29" eid="51" wxid="1196" label="29 Hz">
+      <p name="dba" eid="25" wxid="1198" label="dB(A)" value="-85.6445009065575" pr="2"/>
+      <p name="db" eid="25" wxid="1197" label="dB" ex="1" value="-63.0" pr="2"/>
+    </p>
+                                                                              
+    <p name="28" eid="51" wxid="1193" label="28 Hz">
+      <p name="dba" eid="25" wxid="1195" label="dB(A)" value="-88.6429427769803" pr="2"/>
+      <p name="db" eid="25" wxid="1194" label="dB" ex="1" value="-64.1" pr="2"/>
+    </p>
+                                                                              
+    <p name="27" eid="51" wxid="1190" label="27 Hz">
+      <p name="dba" eid="25" wxid="1192" label="dB(A)" value="-92.682083350041" pr="2"/>
+      <p name="db" eid="25" wxid="1191" label="dB" ex="1" value="-65.7" pr="2"/>
+    </p>
+                                                                              
+    <p name="26" eid="51" wxid="1187" label="26 Hz">
+      <p name="dba" eid="25" wxid="1189" label="dB(A)" value="-96.165580285656" pr="2"/>
+      <p name="db" eid="25" wxid="1188" label="dB" ex="1" value="-67.0" pr="2"/>
+    </p>
+                                                                              
+    <p name="25" eid="51" wxid="1184" label="25 Hz">
+      <p name="dba" eid="25" wxid="1186" label="dB(A)" value="-100.697552695748" pr="2"/>
+      <p name="db" eid="25" wxid="1185" label="dB" ex="1" value="-68.8" pr="2"/>
+    </p>
+                                                                              
+    <p name="24" eid="51" wxid="1181" label="24 Hz">
+      <p name="dba" eid="25" wxid="1183" label="dB(A)" value="-104.482655172299" pr="2"/>
+      <p name="db" eid="25" wxid="1182" label="dB" ex="1" value="-70.2" pr="2"/>
+    </p>
+                                                                              
+    <p name="23" eid="51" wxid="1178" label="23 Hz">
+      <p name="dba" eid="25" wxid="1180" label="dB(A)" value="-108.726166513572" pr="2"/>
+      <p name="db" eid="25" wxid="1179" label="dB" ex="1" value="-71.8" pr="2"/>
+    </p>
+                                                                              
+    <p name="22" eid="51" wxid="1175" label="22 Hz">
+      <p name="dba" eid="25" wxid="1177" label="dB(A)" value="-113.613317528558" pr="2"/>
+      <p name="db" eid="25" wxid="1176" label="dB" ex="1" value="-73.1" pr="2"/>
+    </p>
+                                                                              
+    <p name="21" eid="51" wxid="1172" label="21 Hz">
+      <p name="dba" eid="25" wxid="1174" label="dB(A)" value="-115.671721388803” pr=”2”/>
+      <p name="db" eid="25" wxid="1173" label="dB" ex="1" value="-73.5" pr="2"/>
+    </p>
+      
+    <p name="20" eid="51" wxid="1169" label="20 Hz">
+      <p name="dba" eid="25" wxid="1171" label="dB(A)" value="-115.671721388803
+      <p name="db" eid="25" wxid="1170" label="dB" ex="1" value="-73.5" pr="2"/>
+    </p>
+    </frequences>
   </appspectrums>
 </configuration>
