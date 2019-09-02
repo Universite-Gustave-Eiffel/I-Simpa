@@ -78,6 +78,26 @@ public:
 	 * \~french  Efface l'historique de la fenêtre de console python
 	 */
 	static void clearshellhisto();
+
+    /**
+    * \~english Print message in the log window
+    * \~french  Affiche un message dans la fenêtre de console
+    */
+    static void loginfo(const std::wstring& path);
+
+    /**
+    * \~english Print message in the log window
+    * \~french  Affiche un message dans la fenêtre de console
+    */
+    static void logwarning(const std::wstring& path);
+
+    /**
+    * \~english Print message in the log window
+    * \~french  Affiche un message dans la fenêtre de console
+    */
+    static void logerror(const std::wstring& path);
+
+
 	/**
 	 * \~english Close current project and make a new one 
 	 * \~french  Ferme le projet courant et en créé un nouveau
@@ -250,6 +270,11 @@ public:
 	 * @warning All the items in the list must be from the same tree.
 	 */	
 	static void setselection( const boost::python::list& intlst);
+
+    /**
+     * @return application version
+     */
+    static std::wstring getversion();
 };
 }
 #endif
