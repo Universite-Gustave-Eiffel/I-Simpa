@@ -1,0 +1,535 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Calculation code characteristics &mdash; I-Simpa 1.3.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> I-Simpa
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">I-Simpa Presentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="I_Simpa_overview.html">I-Simpa overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="I_Simpa_overview.html#i-simpa-features">I-Simpa features</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_teaching_room.html">Study of a teaching room</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_Elmia_hall.html">Study of the Elmia hall</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_industrial_hall.html">Study of an industrial room</a></li>
+</ul>
+<p class="caption"><span class="caption-text">I-Simpa User Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">(Un)Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="presentation.html">GUI Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="menus.html">Menus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="toolbars.html">Toolbars</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_window.html">‘Project’ window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="properties_window.html">‘Properties’ window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console_window.html">‘Console’ window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main_windows.html">‘Main’ window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_database.html">Project database</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Thematics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="import_options.html">Import options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="import_file_recommandations.html">Recommendations to import a 3D scene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_spectrum.html">Define and use spectrum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="define_position.html">Define a position using the pointer on the 3D view</a></li>
+<li class="toctree-l1"><a class="reference internal" href="surface_selection.html">Surface selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manipulate_sources_receivers.html">Manipulating sources and receivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_directivity.html">Using directivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_charts.html">Creating charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_charts.html#chart-options">Chart Options</a></li>
+</ul>
+<p class="caption"><span class="caption-text">SPPS Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in <strong>SPPS</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">TCR Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="code_TCR.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_configuration_TCR.html">Using TCR within I-Simpa</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendices</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="I_Simpa_standard.html">Standards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">I-Simpa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Calculation code characteristics</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/code_characteristics.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="calculation-code-characteristics">
+<h1>Calculation code characteristics<a class="headerlink" href="#calculation-code-characteristics" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="colwidths-given docutils" id="id1">
+<caption><span class="caption-text">Physical phenomena</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="70%" />
+<col width="15%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Physical phenomena</th>
+<th class="head"><a class="reference external" href="code_SPPS.html">SPPS code</a></th>
+<th class="head"><a class="reference external" href="code_TCR.html">TCR code</a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Direct field</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr class="row-odd"><td>Specular field (specular reflection)</td>
+<td>✅</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Diffuse field</td>
+<td>✅ (using scattering coefficient)</td>
+<td>✅ (Sabine, Eyring)</td>
+</tr>
+<tr class="row-odd"><td>Scattered field (edge scattering)</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Surface absorption</td>
+<td>✅ (using absorption coefficient)</td>
+<td>✅ (using absorption coefficient)</td>
+</tr>
+<tr class="row-odd"><td>Diffusion by fittings</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr class="row-even"><td>Atmospheric absorption</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr class="row-odd"><td>Meteorological effects</td>
+<td>✅</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="colwidths-given docutils" id="id2">
+<caption><span class="caption-text">Receiver type and characteristics</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="70%" />
+<col width="15%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type/characteristics</th>
+<th class="head"><a class="reference external" href="code_SPPS.html">SPPS code</a></th>
+<th class="head"><a class="reference external" href="code_TCR.html">TCR code</a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Punctual receiver</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr class="row-odd"><td>Surface receiver (any face element of the 3D scene)</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr class="row-even"><td>Surface receiver (any defined plane receivers)</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="colwidths-given docutils" id="id3">
+<caption><span class="caption-text">Sound source type and characteristics</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="70%" />
+<col width="15%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type/characteristics</th>
+<th class="head"><a class="reference external" href="code_SPPS.html">SPPS code</a></th>
+<th class="head"><a class="reference external" href="code_TCR.html">TCR code</a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Punctual sound source : omnidirectionnal</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr class="row-odd"><td>Punctual sound source : complex directivity</td>
+<td>✅</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Surface sound source</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>Line sound source</td>
+<td>as a line of punctual sources</td>
+<td>as a line of punctual sources</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="colwidths-given docutils" id="id4">
+<caption><span class="caption-text">Acoustical parameters</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="70%" />
+<col width="15%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type/characteristics</th>
+<th class="head"><a class="reference external" href="code_SPPS.html">SPPS code</a></th>
+<th class="head"><a class="reference external" href="code_TCR.html">TCR code</a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Sound level</td>
+<td>✅ (dB, dBA)</td>
+<td>✅ (Sabine, Eyring, Direct field)</td>
+</tr>
+<tr class="row-odd"><td>Lateral Sound level</td>
+<td>✅ (cos, cos²)</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Clarity</td>
+<td>✅ (C50, C80, user defined)</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>Definition</td>
+<td>✅ (D50, user defined)</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Ts</td>
+<td>✅</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>RT</td>
+<td>✅ (RT15, RT30, user defined)</td>
+<td>✅ (RT Sabine, RT Eyring)</td>
+</tr>
+<tr class="row-even"><td>EDT</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr class="row-odd"><td>ST</td>
+<td>✅</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>LF</td>
+<td>✅ (LF80, user defined)</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>LFC</td>
+<td>✅ (LFC80, user defined)</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>LG</td>
+<td>✅</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>G</td>
+<td>✅</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="colwidths-given docutils" id="id5">
+<caption><span class="caption-text">Graphical representations</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="70%" />
+<col width="15%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type/characteristics</th>
+<th class="head"><a class="reference external" href="code_SPPS.html">SPPS code</a></th>
+<th class="head"><a class="reference external" href="code_TCR.html">TCR code</a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Echogramm</td>
+<td>✅</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>Spectrum</td>
+<td>✅ (total, per sound source)</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Sound level map (on surface receivers) : instantaneous</td>
+<td>✅</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>Sound level map (on surface receivers) : cumulative</td>
+<td>✅</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Sound level map (on surface receivers) : cumulated</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr class="row-odd"><td>Acoustical parameters map (on surface receivers)</td>
+<td>✅</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Schroeder curves</td>
+<td>✅ (data to display)</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>Intensity</td>
+<td>✅ (animation)</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Ifsttar
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

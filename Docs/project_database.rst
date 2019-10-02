@@ -33,22 +33,49 @@ Contextual menu
 
 - 'Create group'
 	Creates a new group in the corresponding group.
-	
+
 - 'Import from a file'
 	Allows to import materials from a file. Several formats are supported:
-	
-		+ CATT-Acoustic Format
+
+Importing from CATT-Acoustic Format
 			File used by the CATT-Acoustic software: text file with extension '.txt' (see `CATT-Acoustic website`_).
-		
-		+ Odeon Format
+
+			CATT-Acoustic material file example:
+			::
+
+				panelwalls = < 21 12 9 6 9 13 > L < 15 13 11 9 7 5 >
+				sidereflector = < 20 12 6 4 7 10 > L < 15 20 25 35 45 50 >
+				audience = < 45 60 73 80 75 64 > L < 30 40 50 60 65 70 >
+				rearaudience = < 50 66 80 88 83 70 > L < 30 40 50 60 65 70 >
+				linoleum = < 2 3 3 4 6 5 > L < 30 27 24 21 18 15 >
+				reflectors = < 12 10 4 3 3 2 >
+				stage = < 15 8 6 6 6 6 > L < 15 13 11 9 7 5 >
+				ceiling = < 20 15 10 8 4 2 > L < 15 13 11 9 7 5 >
+				speakerwindow = < 2 6 3 3 2 2 > L < 30 27 24 21 18 15 >
+				plasteredconcrete = < 2 2 3 3 4 6 > L < 15 13 11 9 7 5 >
+				ventilationgrid = < 8 12 15 15 12 8 > L < 30 27 24 21 18 15 >
+				floor = < 15 8 6 6 6 6 > L < 15 13 11 9 7 5 >
+				interiorwalls = < 20 12 6 4 7 10 > L < 15 13 11 9 7 5 >
+				stairs = < 15 8 6 6 6 6 > L < 15 13 11 9 7 5 >
+				exteriorwalls = < 20 12 6 4 7 10 > L < 15 20 25 35 45 50 >
+
+			CATT-Acoustic material file import example in I-Simpa
+
+.. image:: images/Screenshots/CATT_import.PNG
+   :align: center
+   :width: 500px
+
+.. rst-class::  clear-both
+
+		Importing from Odeon Format
 			File used by the software Odeon: text file with extension '.li8' (see `Odeon website`_);
 
 		.. warning::
-		
+
 			The CATT-Acoustic and Odeon data files are defined octave bands, while I-Simpa uses third octave bands. During the importation, values per octave band are attributed to the corresponding third octaves. Furthermore, since I-Simpa takes into accound upper and lower frequency bands than the last software, data are extrapolated from the closest frquency band data.
 
 		.. note::
-		
+
 			During importation, all fields of the original file are not imported from the data files.
 
 Properties
@@ -70,28 +97,28 @@ Properties
 
 	+  'Resistivity (kN.mm-4)'
 			Resistivity of the material (real value).
-	   
+
 	+  'Side of material effect'
 			List for choosing how the material properties are considered in relation to the direction of propagation	   relative to the normal to the material:
-	   
+
 				*  'Bilateral'
 						The material has the same properties on both sides of the surface to which it is associated.
-				   
+
 				*  'Unilateral'
 						The material is transparent in one direction. The acoustic properties of the material are considered only in a propagation direction opposite to the normal to the face. See the guide of the numerical code to know how this property is used.
-   
+
 -  'Spectrum'
 		Defines the acoustic properties of the material for each frequency band.
-   
+
 -  'Absorption'
 		Absorption coefficient of the material (real value between 0 and 1).
-   
+
 -  'Scattering'
-		Scaterring coefficient of the material (real value between 0 and 1).
-   
+		Scattering coefficient of the material (real value between 0 and 1).
+
 -  'Transmission'
 		Check/uncheck for taking acoustic transmission into account.
-   
+
 -  'Loss'
 		Transmission loss of the material (dB).
 
@@ -100,19 +127,19 @@ Properties
 
 	+ 'Lambert'
 		Diffuse Lambert reflection law (cosinus of the incident angle).
-	
+
 	+ 'Specular'
 		Specular reflection law.
-	
+
 	+ 'Uniform'
 		Uniform reflection law, (*i.e.* 'W' reflection law that corresponds to cosinus^2 of the incident angle).
-	
+
 	+ 'W2'
 		'W2' reflection law (cosinus^2 of the incident angle).
-	
+
 	+ 'W3'
 		'W3' reflection law (cosinus^3 of the incident angle).
-	
+
 	+ 'W4'
 		'W4' reflection law (cosinus^4 of the incident angle).
 
@@ -127,7 +154,11 @@ Properties
 
 .. warning::
 
-	Absorption and transmission loss are linked together. Since transmission is a part of the absorption, the transmission loss can not larger than the absorption coefficient. For example, for a given absorption coefficient of 0.2, the transmission loss must be smaller than 20 dB (i.e. 0.2=10^(20/10)). If the transmission loss value is larger than the possible absorption, the absorption coefficient is automatically adjusted. If the absorption coefficient is changed, the transmission loss can be automatically adjusted if necessary.
+	**Absorption and transmission loss are linked together**. Since transmission is a part of the absorption, the transmission loss can not larger than the absorption coefficient. For example, for a given absorption coefficient of 0.2, the transmission loss must be smaller than 20 dB (i.e. 0.2=10^(20/10)).
+
+	- If the transmission loss value is larger than the given absorption, the absorption coefficient is automatically adjusted.
+
+	- If the absorption coefficient is changed, the transmission loss can be automatically adjusted if necessary.
 
 Spectrum
 ------------
@@ -140,7 +171,7 @@ Contextual menu
 **Right click** on the 'User' folder to define a new sepctrum.
 
 Properties
-~~~~~~~~~
+~~~~~~~~~~
 
 User has to define the spectrum value for each frequency band, either in 'dB' or in 'dB(A)'.
 
@@ -149,7 +180,7 @@ User has to define the spectrum value for each frequency band, either in 'dB' or
 	Values in in 'dB' and in 'dB(A)' are linked together. Changing one value, for example in dB (respectively in dB(A)), will change the dB(A) value (respectively the dB value).
 
 .. note::
-	
+
 	Changing the 'Global' value will affect the value for each frequency band: all values are shifted in order to respect the global value.
 
 

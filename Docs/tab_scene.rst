@@ -74,15 +74,15 @@ Within I-Simpa, the diffusion in a fitting zone, can be defined using two method
 		Defines the acoustics parameters of the fitting zone, by frequency band.
 
 			+ 'Alpha'
-				:term:`Absorption coefficient` of the scatterers.
+				:term:`Absorption coefficient<absorption coefficient>` of the scatterers.
 
 			+ 'Lambda'
-				:term:`Mean free path` (unit: m).
+				:term:`Mean free path<mean free path>` (unit: m).
 
 			+ 'Diffusion law'
 				Reflection law.
 
-- 'Define rectangular fited zone'
+- 'Define rectangular fitted zone'
 	Defines a parallelepipedic fitted zone.
 
 	* 'Acoustics parameters'
