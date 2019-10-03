@@ -450,10 +450,10 @@
 </li>
 <li><dl class="first docutils">
 <dt>‘Random initialization number’</dt>
-<dd><p class="first">Initialize the random number series. If you select ‘0’, the random series will always be the same.</p>
-<div class="last admonition tip">
-<p class="first admonition-title">Tip</p>
-<p class="last">Select ‘0’ if you want to repeat exactly the same computation.</p>
+<dd><p class="first">Initialize the random number series. If you select a number that is different from ‘0’, the random number series will always be the same. The starting number of the random number series will depend on the number you will consider for this parameter.</p>
+<div class="last admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">In a multithread simulation, I-Simpa/SPPS can not control the generation of random numbers. It means that this paremeter will have no effect. Multithread simulation occurs when several frequency bands are considered in the simulation. To avoid multithreading, consider only one frequency band calculation.</p>
 </div>
 </dd>
 </dl>
@@ -507,7 +507,7 @@
 <li>the number of sound particles defined in SPPS (‘Number of sound particles per source’ parameter) is defined for <strong>each sound source</strong>. Considering <em>N</em> sound particles per source and <em>M</em> sound sources will generate <em>N x M</em> sound particles in the domain;</li>
 <li>one calculation is done for <strong>each frequency band</strong>: considering <em>F</em> frequency bands will be equivalent to a calculation with <em>F x N</em> sound particles for one source (or <em>F x N x M</em> for <em>M</em> sources). Note that, by default, the computation is paralleleized on the processor core, for each frequency band (a frequency band for a given core). So the increase of computional time with the nimber of frequency band is not linear;</li>
 <li>in the <strong>‘Energetic’ mode</strong>, each sound particle is ‘alive’ during its propagation untill its energy is below a ratio of the initial energy (see ‘‘’Limit value of the particle extinction: ratio 10^n’ parameter). <strong>Increasing</strong> <em>n</em> will keep the sound particles longer in the domain, which increases the computational time;</li>
-<li>in the <strong>‘Random’ mode</strong>, each physical phenomena (absorption, diffusion) is applied by considering probabilistic approaches. Using this mode, the computaional time is drastically decreased, but the quality of the results is aslo decrease. It is suggested to consider the ‘Random’ mode at the initial step of the study, and then to change to the ‘Energetic’ mode in order to obtain the final result.</li>
+<li>in the <strong>‘Random’ mode</strong>, each physical phenomena (absorption, diffusion) is applied by considering probabilistic approaches. Using this mode, the computational time is drastically decreased, but the quality of the results is aslo decrease. It is suggested to consider the ‘Random’ mode at the initial step of the study, and then to change to the ‘Energetic’ mode in order to obtain the final result.</li>
 </ul>
 </div>
 </div>

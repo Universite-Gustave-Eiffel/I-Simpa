@@ -38,7 +38,7 @@ Geometry
 ------------------
 
 
-.. image:: images/features/Import_geometry.png
+.. image:: images/Features/Import_geometry.png
 	:align: left
 	:width: 140px
 
@@ -49,7 +49,7 @@ Import 3D files
 ,,,,
 
 
-.. image:: images/features/Correction_model.png
+.. image:: images/Features/Correction_model.png
 	:align: left
 	:width: 140px
 
@@ -59,7 +59,7 @@ Geometry correction
 ,,,,
 
 
-.. image:: images/features/geometry_approximation.png
+.. image:: images/Features/geometry_approximation.png
 	:align: left
 	:width: 140px
 
@@ -69,7 +69,7 @@ Geometry approximation
 ,,,,
 
 
-.. image:: images/features/creating_scene.png
+.. image:: images/Features/creating_scene.png
 	:align: left
 	:width: 140px
 
@@ -83,7 +83,7 @@ Surface material
 ---------------------
 
 
-.. image:: images/features/import_material.png
+.. image:: images/Features/import_material.png
 	:align: left
 	:width: 140px
 
@@ -93,7 +93,7 @@ Import data material
 ,,,,
 
 
-.. image:: images/features/manipulate_materials.png
+.. image:: images/Features/manipulate_materials.png
 	:align: left
 	:width: 140px
 
@@ -103,7 +103,7 @@ Reference and User material database
 ,,,,
 
 
-.. image:: images/features/material_properties.png
+.. image:: images/Features/material_properties.png
 	:align: left
 	:width: 140px
 
@@ -115,7 +115,7 @@ Material properties
 Sound sources
 ---------------------
 
-.. image:: images/features/spectrum_data.png
+.. image:: images/Features/spectrum_data.png
 	:align: left
 	:width: 140px
 
@@ -124,7 +124,7 @@ Reference and User spectrum database
 
 ,,,,
 
-.. image:: images/features/source_properties.png
+.. image:: images/Features/source_properties.png
 	:align: left
 	:width: 140px
 
@@ -133,7 +133,7 @@ Sources properties
 
 ,,,,
 
-.. image:: images/features/Manipulate_sources.png
+.. image:: images/Features/Manipulate_sources.png
 	:align: left
 	:width: 140px
 
@@ -146,7 +146,7 @@ Acoustic receivers
 ---------------------
 
 
-.. image:: images/features/Punctual_receiver_properties.png
+.. image:: images/Features/Punctual_receiver_properties.png
 	:align: left
 	:width: 140px
 
@@ -155,7 +155,7 @@ Punctual sound sources
 
 ,,,,
 
-.. image:: images/features/manipulate_punctual_receivers.png
+.. image:: images/Features/manipulate_punctual_receivers.png
 	:align: left
 	:width: 140px
 
@@ -164,7 +164,7 @@ Receivers manipulation
 
 ,,,,
 
-.. image:: images/features/surface_receiver.png
+.. image:: images/Features/surface_receiver.png
 	:align: left
 	:width: 140px
 
@@ -177,7 +177,7 @@ Surface receivers
 Acoustic calculation
 ---------------------
 
-.. image:: images/features/calculation_codes.png
+.. image:: images/Features/calculation_codes.png
 	:align: left
 	:width: 140px
 
@@ -186,7 +186,7 @@ Calculation code
 
 ,,,,
 
-.. image:: images/features/sound_map.png
+.. image:: images/Features/sound_map.png
 	:align: left
 	:width: 140px
 
@@ -195,7 +195,7 @@ Sound map
 
 ,,,,
 
-.. image:: images/features/acoustical_parameters.png
+.. image:: images/Features/acoustical_parameters.png
 	:align: left
 	:width: 140px
 
@@ -204,7 +204,7 @@ Acoustics parameters
 
 ,,,,
 
-.. image:: images/features/result_animation.png
+.. image:: images/Features/result_animation.png
 	:align: left
 	:width: 140px
 
@@ -218,7 +218,7 @@ Other features
 ---------------------
 
 
-.. image:: images/features/python_script.png
+.. image:: images/Features/python_script.png
 	:align: left
 	:width: 140px
 
@@ -227,7 +227,7 @@ Python™ scripting
 
 ,,,,
 
-.. image:: images/features/environmental_data.png
+.. image:: images/Features/environmental_data.png
 	:align: left
 	:width: 140px
 
@@ -236,7 +236,7 @@ Environmental data
 
 ,,,,
 
-.. image:: images/features/meshing.png
+.. image:: images/Features/meshing.png
 	:align: left
 	:width: 140px
 
@@ -245,7 +245,7 @@ Tetrahedric meshing
 
 ,,,,
 
-.. image:: images/features/fitting_zone.png
+.. image:: images/Features/fitting_zone.png
 	:align: left
 	:width: 140px
 
