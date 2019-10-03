@@ -1,6 +1,7 @@
-| Travis Linux build status| AppVeyor Windows build status | CII Best Practices |
-|--------------------------|-------------------------------|--------------------|
-|[![Build Status](https://travis-ci.org/Ifsttar/I-Simpa.svg?branch=master)](https://travis-ci.org/Ifsttar/I-Simpa)| [![Build Status](https://ci.appveyor.com/api/projects/status/github/Ifsttar/I-Simpa?svg=true)](https://ci.appveyor.com/project/nicolas-f/I-Simpa)| [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3005/badge)](https://bestpractices.coreinfrastructure.org/projects/3005)|
+| Travis Linux build status| AppVeyor Windows build status | CII Best Practices | Documentation |
+|--------------------------|-------------------------------|--------------------|---------------|
+|[![Build Status](https://travis-ci.org/Ifsttar/I-Simpa.svg?branch=master)](https://travis-ci.org/Ifsttar/I-Simpa)| [![Build Status](https://ci.appveyor.com/api/projects/status/github/Ifsttar/I-Simpa?svg=true)](https://ci.appveyor.com/project/nicolas-f/I-Simpa)| [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3005/badge)](https://bestpractices.coreinfrastructure.org/projects/3005)| [![Documentation Status](https://readthedocs.org/projects/i-simpa-wiki/badge/?version=latest)](https://i-simpa-wiki.readthedocs.io/en/latest/?badge=latest)|
+
 
 <IMG SRC="https://github.com/Ifsttar/I-Simpa/blob/master/Docs/images/I-Simpa-logo.jpg" WIDTH=400 ALT="I-Simpa logo" TITLE="I-Simpa logo">|
        
