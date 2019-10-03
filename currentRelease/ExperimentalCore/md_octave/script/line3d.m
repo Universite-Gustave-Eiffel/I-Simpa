@@ -26,7 +26,7 @@
 
 function [a,b,c,d,v]=line3d(xn,yn,zn)
 # usage: [a,b,c,d,v]=line3d(xn,yn,zn)
-# Calculation of the lnear interpolation coefficients (a,b,c,d) of a variable P
+# Calculation of the linear interpolation coefficients (a,b,c,d) of a variable P
 # in a 3D-space
 #
 # In:

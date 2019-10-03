@@ -27,7 +27,7 @@
 function [M_int_cst]= integVC_cst(V_VC)
 # usage: [M_int_cst]= integVC_cst(V_VC)
 # Built of the matrix M_int_Lin
-# Integration on the sub-tetreahedrics mesh of voulme v/4
+# Integration on the sub-tetreahedrics mesh of volume v/4
 #
 # In:
 #	- V_VC : 
