@@ -79,11 +79,11 @@ Calculation parameters
 		Most of time, you need to consider only few hundreds or thousands particles for the animation. Incerasing this number, will decrease the memory resources.
 
 - 'Random initialization number'
-	Initialize the random number series. If you select '0', the random series will always be the same.
+	Initialize the random number series. If you select a number that is different from '0', the random number series will always be the same. The starting number of the random number series will depend on the number you will consider for this parameter.
 
-	.. tip::
+	.. warning::
 
-		Select '0' if you want to repeat exactly the same computation.
+		In a multithread simulation, I-Simpa/SPPS can not control the generation of random numbers. It means that this paremeter will have no effect. Multithread simulation occurs when several frequency bands are considered in the simulation. To avoid multithreading, consider only one frequency band calculation.
 
 - 'Receiver radius (m)'
 	Defines the receiver radius (in m).
