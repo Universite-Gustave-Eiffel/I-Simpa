@@ -40,6 +40,7 @@ extensions = [
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['ytemplates']
+mathjax_path = 'MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js'
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
