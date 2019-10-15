@@ -40,6 +40,7 @@ extensions = [
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['ytemplates']
+mathjax_path = 'MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js'
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -182,7 +183,7 @@ html_static_path = ['ystatic']
 # bottom, using the given strftime format.
 # The empty string is equivalent to '%b %d, %Y'.
 #
-html_last_updated_fmt = True
+html_last_updated_fmt = ''
 
 # If true, SmartyPants will be used to convert quotes and dashes to
 # typographically correct entities.
