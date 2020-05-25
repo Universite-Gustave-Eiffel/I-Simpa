@@ -112,14 +112,12 @@ set(IHM_SOURCES
     IHM/RecepteurSOperationDialog.h
     IHM/WizardRemeshModel.cpp
     IHM/WizardRemeshModel.hpp
-        IHM/base64.cpp
+    IHM/base64.cpp
     IHM/base64.h
-
     IHM/customItem/uimenuitem.cpp
     IHM/customRenderer/gridcellgabefloatrenderer.cpp
     IHM/customdialog/customdlg.cpp
     IHM/customdialog/customdlg.h
-
     IHM/foldpaneltree.cpp
     IHM/foldpaneltree.h
     IHM/languageSelection.cpp
@@ -139,8 +137,8 @@ set(IHM_SOURCES
     IHM/simpleGraphManager.h
     IHM/uiTreeCtrl.cpp
     IHM/uiTreeCtrl.h
-        IHM/AboutDialog.cpp
-        IHM/AboutDialog.hpp)
+    IHM/AboutDialog.cpp
+    IHM/AboutDialog.hpp)
 
 set(LANGUAGE_SOURCES
     Language/additionnal_univ.h)
@@ -345,8 +343,8 @@ set(ISIMPA_SOURCES
     ConvertUTF.h)
 
 source_group( "3dengine" FILES ${3DENGINE_SOURCES} )
-source_group( "3dengine\\Core" FILES ${3DENGINE_CORE_SOURCES} )
-source_group( "3dengine\\tools" FILES ${3DENGINE_TOOLS_SOURCES} )
+source_group( "3dengine/Core" FILES ${3DENGINE_CORE_SOURCES} )
+source_group( "3dengine/tools" FILES ${3DENGINE_TOOLS_SOURCES} )
 
 source_group( "GL" FILES ${GL_SOURCES} )
 source_group( "WIN32" FILES ${WIN32_SOURCES})
@@ -354,14 +352,14 @@ source_group( "IHM" FILES ${IHM_SOURCES} )
 source_group( "Language" FILES ${LANGUAGE_SOURCES} )
 
 source_group( "data_manager" FILES ${DATA_MANAGER_SOURCES} )
-source_group( "data_manager\\customEditor" FILES ${DATA_MANAGER_CUSTOMEDIT_SOURCES} )
-source_group( "data_manager\\generic_element" FILES ${DATA_MANAGER_GENERICELEM_SOURCES} )
-source_group( "data_manager\\grpInfo" FILES ${DATA_MANAGER_GRPINFO_SOURCES} )
-source_group( "data_manager\\python_interface" FILES ${DATA_MANAGER_PYINTERFACE_SOURCES} )
-source_group( "data_manager\\tree_core" FILES ${DATA_MANAGER_TREECORE_SOURCES} )
-source_group( "data_manager\\tree_rapport" FILES ${DATA_MANAGER_TREERAPPORT_SOURCES} )
-source_group( "data_manager\\tree_scene" FILES ${DATA_MANAGER_TREESCENE_SOURCES} )
-source_group( "data_manager\\tree_userpref" FILES ${DATA_MANAGER_TREEUSER_SOURCES} )
+source_group( "data_manager/customEditor" FILES ${DATA_MANAGER_CUSTOMEDIT_SOURCES} )
+source_group( "data_manager/generic_element" FILES ${DATA_MANAGER_GENERICELEM_SOURCES} )
+source_group( "data_manager/grpInfo" FILES ${DATA_MANAGER_GRPINFO_SOURCES} )
+source_group( "data_manager/python_interface" FILES ${DATA_MANAGER_PYINTERFACE_SOURCES} )
+source_group( "data_manager/tree_core" FILES ${DATA_MANAGER_TREECORE_SOURCES} )
+source_group( "data_manager/tree_rapport" FILES ${DATA_MANAGER_TREERAPPORT_SOURCES} )
+source_group( "data_manager/tree_scene" FILES ${DATA_MANAGER_TREESCENE_SOURCES} )
+source_group( "data_manager/tree_userpref" FILES ${DATA_MANAGER_TREEUSER_SOURCES} )
 
 source_group( "main" FILES ${MAIN_SOURCES} )
 source_group( "manager" FILES ${MANAGER_SOURCES} )
@@ -373,14 +371,13 @@ source_group( "" FILES ${ISIMPA_SOURCES} )
 
 # Build auto-generated source files
 # Find package for generation
-FIND_PACKAGE(PythonInterp 3.7 REQUIRED)
+FIND_PACKAGE(PythonInterp 3.8 REQUIRED)
 
 # Ask make to call python in order to use element.h to produce enum_def.cpp
 ADD_CUSTOM_COMMAND(
   OUTPUT "enum_def.cpp"
   COMMAND "${PYTHON_EXECUTABLE}" ${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/python_interface/py_ui_module/generate_enum_def.py
-#  ARGS    "${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/element.h" > "enum_def.cpp"
-  ARGS    "${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/element.h"
+  ARGS    "${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/element.h" > "enum_def.cpp"
   DEPENDS "data_manager/element.h"
   )
 
@@ -390,7 +387,7 @@ set_property(SOURCE data_manager/python_interface/py_ui_module/element_pywrap.cp
 configure_file(data_manager/appconfig_version.cpp.in ${CMAKE_CURRENT_BINARY_DIR}/generated/appconfig_version.cpp )
 
 set(Boost_USE_STATIC_LIBS   OFF)
-find_package(Boost REQUIRED COMPONENTS system python3.7 filesystem regex)
+find_package(Boost REQUIRED COMPONENTS system python38 filesystem regex)
 link_directories( ${Boost_LIBRARY_DIRS} )
 
 # Set Properties->General->Configuration Type to Application
@@ -436,9 +433,8 @@ IF(GETTEXT_FOUND )
   ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/source_tools/locale ${CMAKE_BINARY_DIR}/src/source_tools)
   ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/moveto_vertex/locale ${CMAKE_BINARY_DIR}/src/moveto_vertex)
   ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/preceiv_sourceTracker/locale ${CMAKE_BINARY_DIR}/src/preceiv_sourceTracker)
+  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/check_version/locale ${CMAKE_BINARY_DIR}/src/check_version)
   #disabled ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/SppsReportSample/locale ${CMAKE_BINARY_DIR}/src/SppsReportSample)
-  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/UserScript/gabe2csv/locale ${CMAKE_BINARY_DIR}/src/gabe2csv)
-  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/UserScript/recp_res_tool/locale ${CMAKE_BINARY_DIR}/src/recp_res_tool)
   # Building isimpa require building pofiles
   add_dependencies(isimpa pofiles)
 ENDIF()
@@ -516,15 +512,13 @@ DESTINATION .)
 if(WIN32) # Check if we are on Windows
     # Copy python libraries
     get_filename_component(PYTHON_ROOT_FOLDER ${PYTHON_EXECUTABLE} PATH)
-    set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
+	set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
 
     #Fetch required Dll's for GUI
-    get_filename_component(PYTHON_PATH ${PYTHON_EXECUTABLE} DIRECTORY)
     string(REPLACE "\\" "/" wxWidgets_LIB_DIR_SLASH ${wxWidgets_LIB_DIR})
     set(DIRS ${Boost_LIBRARY_DIR_DEBUG}
              ${Boost_LIBRARY_DIR_RELEASE}
              ${wxWidgets_LIB_DIR_SLASH}
-             ${PYTHON_PATH}
     )
 
     install(CODE "
@@ -564,7 +558,7 @@ if(WIN32) # Check if we are on Windows
         install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION . COMPONENT Runtime )
     endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
     # Try to fetch x64 version of python dll
-    get_filename_component(PYTHON_DLL_FILENAME ${PYTHON_LIBRARY}  NAME_WE)
+    get_filename_component(PYTHON_DLL_FILENAME ${PYTHON_ROOT_FOLDER}  NAME_WE)
 
     SET(CMAKE_FIND_LIBRARY_PREFIXES "")
     SET(CMAKE_FIND_LIBRARY_SUFFIXES ".lib" ".dll")
