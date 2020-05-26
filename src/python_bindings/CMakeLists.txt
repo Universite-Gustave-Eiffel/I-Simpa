@@ -2,6 +2,7 @@
 message(STATUS " SWIG_EXECUTABLE     - $ENV{SWIG_EXECUTABLE}")
 set(CMAKE_INSTALL_MFC_LIBRARIES TRUE) 
 set(CMAKE_INSTALL_UCRT_LIBRARIES TRUE ) 
+
 include( InstallRequiredSystemLibraries )
 #---------------------------------------#
 #    DEPENDENCY & EXECUTABLE (OR LIB)
@@ -28,17 +29,19 @@ SET_SOURCE_FILES_PROPERTIES(libsimpa.i PROPERTIES CPLUSPLUS ON)
 
 set(Boost_USE_STATIC_LIBS   OFF)
 find_package(Boost COMPONENTS system filesystem regex REQUIRED)
-link_directories( ${Boost_LIBRARY_DIRS} ) 
+link_directories( ${Boost_LIBRARY_DIRS})
 
-IF ((${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION} GREATER 3.8) OR (${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION} EQUAL 3.8))
-  SWIG_ADD_LIBRARY(libsimpa LANGUAGE python SOURCES libsimpa.i)
-ELSE()
+IF (${CMAKE_VERSION} VERSION_LESS "3.8.0")
   SWIG_ADD_MODULE(libsimpa python libsimpa.i)
+ELSE()
+  SWIG_ADD_LIBRARY(libsimpa LANGUAGE python SOURCES libsimpa.i)
 ENDIF ()
-
-
-
+message(STATUS ${Python_LIBRARY_RELEASE})
 SWIG_LINK_LIBRARIES(libsimpa lib_interface ${PYTHON_LIBRARIES})
+
+if(WIN32 AND MSVC)
+  target_link_libraries(${SWIG_MODULE_libsimpa_REAL_NAME} ${PYTHON_LIBRARY_RELEASE})
+endif()
 
 # Creates a folder "libraries" and adds target project (lib_interface.vcproj) under it
 set_property(TARGET ${SWIG_MODULE_libsimpa_REAL_NAME} PROPERTY FOLDER "libraries")

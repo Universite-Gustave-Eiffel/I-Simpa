@@ -375,9 +375,11 @@ FIND_PACKAGE(PythonInterp 3.8 REQUIRED)
 
 # Ask make to call python in order to use element.h to produce enum_def.cpp
 ADD_CUSTOM_COMMAND(
+  PRE_BUILD
   OUTPUT "enum_def.cpp"
+  COMMENT "Building enum_def.cpp using python script"
   COMMAND "${PYTHON_EXECUTABLE}" ${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/python_interface/py_ui_module/generate_enum_def.py
-  ARGS    "${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/element.h" > "enum_def.cpp"
+  ARGS    "${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/element.h"
   DEPENDS "data_manager/element.h"
   )
 
@@ -465,6 +467,11 @@ include_directories(${PYTHON_INCLUDE_PATH})
 target_link_libraries(isimpa lib_interface)
 target_link_libraries(isimpa ${Boost_LIBRARIES})
 target_link_libraries(isimpa ${PYTHON_LIBRARIES})
+
+if(WIN32 AND MSVC)
+  target_link_libraries(isimpa ${PYTHON_LIBRARY_RELEASE})
+endif()
+
 target_link_libraries(isimpa ${wxWidgets_LIBRARIES})
 target_link_libraries(isimpa ${OPENGL_LIBRARIES})
 
