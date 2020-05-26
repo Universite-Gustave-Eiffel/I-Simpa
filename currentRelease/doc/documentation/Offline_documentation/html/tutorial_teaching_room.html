@@ -1,0 +1,460 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Study of a teaching room &mdash; I-Simpa 1.3.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="I-Simpa 1.3.4 documentation" href="index.html"/>
+        <link rel="next" title="Study of the Elmia hall" href="tutorial_Elmia_hall.html"/>
+        <link rel="prev" title="Creating charts" href="create_charts.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> I-Simpa
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">I-Simpa User Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">(Un)Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="presentation.html">GUI Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="menus.html">Menus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="toolbars.html">Toolbars</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_window.html">&#8216;Project&#8217; window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="properties_window.html">&#8216;Properties&#8217; window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console_window.html">&#8216;Console&#8217; window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main_windows.html">&#8216;Main&#8217; window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_database.html">Project database</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Thematics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="import_options.html">Import options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="import_file_recommandations.html">Recommendations to import a 3D scene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_spectrum.html">Define and use spectrum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="define_position.html">Define a position using the pointer on the 3D view</a></li>
+<li class="toctree-l1"><a class="reference internal" href="surface_selection.html">Surface selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manipulate_sources_receivers.html">Manipulating sources and receivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_directivity.html">Using directivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_charts.html">Creating charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_charts.html#chart-options">Chart Options</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Study of a teaching room</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#scene-creation">Scene creation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-new-geometry">Create a new geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#define-surfaces">Define surfaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#define-a-sound-source">Define a sound source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#define-a-surface-receiver">Define a surface receiver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#define-two-punctual-receivers">Define two punctual receivers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#calculation">Calculation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tcr-code">TCR code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spps-code">SPPS code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#results">Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">TCR code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">SPPS code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_Elmia_hall.html">Study of the Elmia hall</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_industrial_hall.html">Study of an industrial room</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendices</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="I_Simpa_standard.html">Standards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">I-Simpa</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Study of a teaching room</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/tutorial_teaching_room.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="study-of-a-teaching-room">
+<h1>Study of a teaching room<a class="headerlink" href="#study-of-a-teaching-room" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial concerns the simple study of a teaching room. The geometry is rectangular of size (6m x 10m x 3m). The goal of this tutorial is to manipulate:</p>
+<ul class="simple">
+<li>face elements</li>
+<li>surface material</li>
+<li>punctual receivers</li>
+<li>omnidirectional sound sources</li>
+<li>calculation with the TCR and SPPS codes</li>
+<li>simple representation of results</li>
+</ul>
+<p>Resources for this tutorial are located in the following folder:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">I</span><span class="o">-</span><span class="n">Simpa</span> <span class="n">installation</span> <span class="n">folder</span><span class="o">&gt;</span>\<span class="n">doc</span>\<span class="n">tutorial</span>\<span class="n">tutorial</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<div class="section" id="scene-creation">
+<h2>Scene creation<a class="headerlink" href="#scene-creation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="create-a-new-geometry">
+<h3>Create a new geometry<a class="headerlink" href="#create-a-new-geometry" title="Permalink to this headline">¶</a></h3>
+<p>The first step is to create the geometry. As we consider a simple rectangular geometry with the same material of each mean face, the built-in option for creating a rectangular room can be used.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Remember that for more complicate room shapes of for rectangular room with different materials on a same main face, user will have to create the geometry with a CAD software.</p>
+</div>
+<ol class="arabic simple">
+<li><strong>Start</strong> I-Simpa</li>
+<li>When starting I-Simpa, the default project is the last saved project. To clear I-Simpa, <strong>select</strong> &#8216;New project&#8217; in the File menu or <strong>click</strong> on the &#8216;New project&#8217; icon on the &#8216;File&#8217; toolbar to clear I-Simpa</li>
+<li>In the menu file, <strong>select</strong> &#8216;New scene&#8217;</li>
+<li><strong>Enter</strong> the given size of the room (width: 6m, length: 10m and height: 3m), then <strong>click</strong> on &#8216;OK&#8217;</li>
+<li>The &#8216;Loading 3D scene&#8217; windows appears. Leave the default values (you can also deselect all options; this will not change the result) and <strong>click</strong> on &#8216;OK&#8217;</li>
+</ol>
+</div>
+<div class="section" id="define-surfaces">
+<h3>Define surfaces<a class="headerlink" href="#define-surfaces" title="Permalink to this headline">¶</a></h3>
+<p>The second step is to affect one material for each main faces. Here, we will consider 3 surface groups: the &#8216;Floor&#8217;, the &#8216;Walls&#8217; and the &#8216;Ceiling&#8217;.</p>
+<ol class="arabic simple">
+<li><strong>Select</strong> the mode &#8216;Face selection&#8217; on the toolbar &#8216;Selection&#8217;</li>
+<li><strong>Hold</strong> the CTRL key and <strong>double-click</strong> on the floor in the &#8216;3D view&#8217;:<ul>
+<li>this will select all co-planar faces (i.e. both triangular faces of the floor);</li>
+<li>the 2 corresponding elements will be underlined in the &#8216;Surface&#8217; folder of the tree &#8216;Data&#8217;;</li>
+</ul>
+</li>
+<li><strong>Uses</strong> the right click on one of the 2 selected &#8216;Surface&#8217; elements in the surfaces group in the Scene tree: a contextual menu will appear, and <strong>Select</strong> &#8216;Send to a new face group&#8217;</li>
+<li>a new surface group, named &#8216;group&#8217;, is created</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">A new group is created with the default name &#8216;group&#8217;. Group surfaces can have the same name, , since each group is identified with its own internal Id.</p>
+</div>
+<ol class="arabic simple" start="5">
+<li><strong>Right click</strong> on the new corresponding group and <strong>Select</strong> &#8216;Rename&#8217; to rename the group with the name &#8216;floor&#8217; (you can also use the Left click on the group name to change the name)</li>
+</ol>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Instead of using the &#8216;Face selection&#8217; mode, you can create 2 new groups (&#8216;Floor&#8217; and &#8216;Ceiling&#8217; for example), select the corresponding surfaces within the &#8216;Group&#8217; folder and send them to a new face group. You can also directly move the corresponding surfaces to their corresponding surfaces group using the pointer.</p>
+</div>
+<ol class="arabic simple" start="6">
+<li><dl class="first docutils">
+<dt>Once the surface groups are defined, <strong>Left click</strong> on a group and select a material in the Material list element in the Properties windows. Repeat the procedure for each surface group, with the following material (for example):</dt>
+<dd><ul class="first last">
+<li>Ceiling: &#8216;30% absorbing&#8217;</li>
+<li>Floor: &#8216;10% absorbing&#8217;</li>
+<li>Walls: &#8216;20% absorbing&#8217;</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div>
+<div class="section" id="define-a-sound-source">
+<h3>Define a sound source<a class="headerlink" href="#define-a-sound-source" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><strong>Right click</strong> on the &#8216;Sound sources&#8217; root folder in the Data tree of the Scene tab and <strong>Select</strong> &#8216;New source&#8217;. A new source is created.</li>
+<li><strong>Select</strong> the &#8216;Position&#8217; element and gives the values of the source coordinates (3, 5, 1.8).</li>
+<li><strong>Select</strong> the &#8216;Sound power&#8217; element and <strong>Choose</strong> the &#8216;White noise&#8217; spectrum in the Spectrum list (it should be the default spectrum)</li>
+<li>In the &#8216;Global&#8217; element of the &#8216;Sound power&#8217; properties, <strong>Defines</strong> the value &#8216;80&#8217; for the &#8216;Global&#8217; value of the &#8216;Lw&#8217; tab element. This will define a global sound power of 80 dB</li>
+</ol>
+</div>
+<div class="section" id="define-a-surface-receiver">
+<h3>Define a surface receiver<a class="headerlink" href="#define-a-surface-receiver" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><strong>Right click</strong> on the &#8216;Surface receiver&#8217; root folder in the Data tree of the Scene tab and <strong>Select</strong> &#8216;New scene face receiver&#8217;. A new surface receiver is created.</li>
+<li>In the &#8216;Surfaces&#8217; root folder, <strong>Select</strong> the &#8216;Floor&#8217; group (<strong>Left click</strong> and <strong>Hold</strong>) and move it in the &#8216;Surfaces&#8217; element of the surface receiver. It will define a surface receiver on the room floor.</li>
+</ol>
+</div>
+<div class="section" id="define-two-punctual-receivers">
+<h3>Define two punctual receivers<a class="headerlink" href="#define-two-punctual-receivers" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><strong>Right click</strong> on the &#8216;Punctual receiver&#8217; root folder in the Data tree of the Scene tab and <strong>Select</strong> &#8216;New receiver&#8217;. A new punctual receiver is created.</li>
+<li><strong>Select</strong> the &#8216;Position&#8217; element and define the coordinates (x,y,z) of the punctual receiver. You can choose (1.,1.,1.8) for example.</li>
+<li><strong>Repeat</strong> the two fiorst step for the second receiver at location (3.,7.,1.8) for example.</li>
+</ol>
+</div>
+</div>
+<div class="section" id="calculation">
+<h2>Calculation<a class="headerlink" href="#calculation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="tcr-code">
+<h3>TCR code<a class="headerlink" href="#tcr-code" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><strong>Select</strong> the &#8216;Meshing&#8217; element in the &#8216;Classical theory of reverberation&#8217; code.</li>
+<li><strong>Enable</strong> the &#8216;Surface receivers constraint&#8217;.</li>
+<li>In the &#8216;Surface receivers constraint (m?)&#8217; element, <strong>Define</strong> the value &#8216;0.1&#8217;. This allows to resample the corresponding surfaces for the surface receiver. In the other hand (without defining a surface receiver constraint), only the two initial surface element of the florr will be used as receiver, leading to a very poor definition.</li>
+<li><strong>Right click</strong> on the &#8216;Classical theory of reverberation&#8217; and <strong>Select</strong> &#8216;Run calculation&#8217; to start the simulation.</li>
+</ol>
+</div>
+<div class="section" id="spps-code">
+<h3>SPPS code<a class="headerlink" href="#spps-code" title="Permalink to this headline">¶</a></h3>
+<p>1-3. <strong>Repeat</strong> the same 1-3 steps as for the TCR code.</p>
+<ol class="arabic simple" start="4">
+<li><strong>Right click</strong> on the &#8216;SPPS&#8217; and <strong>Select</strong> &#8216;Run calculation&#8217; to start the simulation.</li>
+</ol>
+</div>
+</div>
+<div class="section" id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The &#8216;Results&#8217; tab correspond exactly on the image of the data on the hard disk. You can open the file explorer by a <strong>Right click</strong> on a result folder and by selecting &#8216;Open folder&#8217;. You can delete a folder or a file, either using the file explorer or the &#8216;Delete&#8217; action (<strong>Right click</strong> on the folder/element in the results folder) within I-Simpa.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For each new simulation, a specific folder in created in the corresponding simulation folder (<em>i.e.</em> SPPS or TCR), with a name that is defined from the starting time and date of the simulation.</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Most of results are displayed in table. You can select cells in the table, right click on the selection and select &#8216;New diagram&#8217; to create a graphical display of the results. You can also export data to a csv file by selecting &#8216;Save data as...&#8217;.</p>
+</div>
+<div class="section" id="id1">
+<h3>TCR code<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><strong>Unfold</strong> the &#8216;Results&#8217; folder in the &#8216;Classical theory of reverberation&#8217; folder.</li>
+<li><strong>Unfold</strong> the &#8216;Punctual receiver&#8217; folder, and <strong>Double left click</strong> on one element (<em>i.e.</em> one of the two receivers that have been created). A new window is displayed, showing the SPL at the receiver for the direct field and the total field (diffuse field + direct field) according to the Sabine and Eyring formulae.</li>
+<li><strong>Unfold</strong> the &#8216;Total field&#8217; folder (Sabine or Eyring), <strong>Select</strong> the surface receiver, <strong>Select</strong> the frequency band and <strong>Right click</strong> on the &#8216;Sound level&#8217; element and <strong>Choose</strong> &#8216;Load animation&#8217;, then &#8216;Cumulating sound level&#8217;. It displays the sound map for the corresponding surface receiver on the 3D view. You can remove the colormap on the 3D view by clicking on the &#8216;Dash&#8217; icon on the &#8216;Simulation&#8217; toolbar.</li>
+<li><strong>Double left click</strong> on the &#8216;Main results&#8217;. It opens a new display with some general results for the whole room (global reverberation time, SPL of the diffuse sound field and equivalent absorption according to the Sabine and Eyring formulae)</li>
+</ol>
+</div>
+<div class="section" id="id2">
+<h3>SPPS code<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p class="first"><strong>Unfold</strong> the &#8216;Results&#8217; folder in the &#8216;SPPS&#8217; folder.</p>
+</li>
+<li><p class="first"><strong>Unfold</strong> the &#8216;Punctual receiver&#8217; folder, <strong>Unfold</strong> the folder for a given punctual receiver and <strong>Left click</strong> on one element to display the corresponding results (for example: &#8216;Sound level&#8217;). A new window is displayed, showing the results .</p>
+</li>
+<li><p class="first"><strong>Right click</strong> on the &#8216;Sound level&#8217; element and <em>Select*</em> &#8216;Calculate coustics parameters&#8217;. It opens a new window: <strong>Keep</strong> the default values, and <strong>Select</strong> &#8216;OK&#8217;. It creates two new elements &#8216;Schroeder curves&#8217; and &#8216;Acoustic parameters&#8217;. <strong>Select</strong> the new elements to display the corresponding results.</p>
+</li>
+<li><p class="first"><strong>Right click</strong> on the &#8216;Advanced sound level&#8217; element and <em>Select*</em> &#8216;Calculate coustics parameters&#8217;. It opens a new window: <strong>Keep</strong> the default values, and <strong>Select</strong> &#8216;OK&#8217;. It creates one new element &#8216;Advanced acoustic parameters&#8217;. <strong>Select</strong> the element to display the corresponding results.</p>
+</li>
+<li><p class="first"><strong>Unfold</strong> the surface receiver folder, <strong>Select</strong> the frequency band and <strong>Right click</strong> on the &#8216;Sound level&#8217; element and <strong>Choose</strong> &#8216;Load animation&#8217;, then <strong>Choose</strong> an action (for example: &#8216;Instantaneaous sound level&#8217;). It displays the (animated) sound map for the corresponding surface receiver on the 3D view. You can remove the colormap on the 3D view by clicking on the &#8216;Dash&#8217; icon, or if required, pause/resume/stop... the animation using the &#8216;Simulation&#8217; toolbar.</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>&#8216;Instantaneaous sound level&#8217;</dt>
+<dd>Shows the time varying sound level (animation)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>&#8216;Cumulative instantaneaous sound level&#8217;</dt>
+<dd>Shows the time varying sound level by cumulating all previous time step (animation)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>&#8216;Cumulating sound level&#8217;</dt>
+<dd>Shows the cumulating sound level (no animation)</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic simple" start="5">
+<li><strong>Unfold</strong> the surface receiver folder, <strong>Select</strong> the frequency band and <strong>Right click</strong> on the &#8216;Sound level&#8217; element and <strong>Choose</strong> &#8216;Acoustic parameters&#8217;, then <strong>Choose</strong> a given parameters from the list. It creates one or more new elements (acoustic parameters). <strong>Right click</strong> on a given acoustic parameter and <strong>Select</strong> &#8216;Load animation&#8217; to display the corresponding parameter on the 3D view.</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tutorial_Elmia_hall.html" class="btn btn-neutral float-right" title="Study of the Elmia hall" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="create_charts.html" class="btn btn-neutral" title="Creating charts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Ifsttar.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.3.4',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

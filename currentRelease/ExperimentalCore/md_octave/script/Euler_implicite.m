@@ -39,17 +39,17 @@ function [wi_saved]= Euler_implicite(wi,mat,MATinsta,itmax,dt,tol,maxint)
 #
 # Out:
 #	- wi_saved : sound energy decay after the steady state
-  
+
   mat2=dt*mat+ MATinsta; # Euler Implicite 1
   wi_saved=zeros(max(size(wi)),itmax+1 );
-   
+
   wi_saved(:,1)=wi;
   [L,U] = ilu(mat2,struct('type','ilutp','droptol',tol));
 
   for it=2:itmax+1
     RHS=MATinsta*wi; # Euler Implicite 2
-    #[wi,flag]=bicgstab (mat2,RHS,tol,maxint,L,U,wi);
-	wi=mat2\RHS;
+    [wi,flag]=bicgstab (mat2,RHS,tol,maxint,L,U,wi); # Indirect calculation (best)
+    #wi=mat2\RHS; # Direct calculation
     wi_saved(:,it)=wi;
   end
 

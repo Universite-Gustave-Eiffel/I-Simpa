@@ -36,6 +36,7 @@
 #include <wx/evtloop.h>
 #include <IHM/AboutDialog.hpp>
 #include "last_cpp_include.hpp"
+#include "data_manager/python_interface/pythonshell.hpp"
 
 
 BEGIN_EVENT_TABLE(MainUiFrame, wxFrame)
@@ -519,7 +520,12 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	// Render 3D view
 	m_mgr.GetPane("3Dview").Show();
 }
-
+void MainUiFrame::OnWindowLoaded() {
+    // Run Python script for started
+    #ifdef USE_PYTHON
+        projetCourant->GetPythonShell()->run_startupscript("SystemScript/", "__ui_started__.py");
+    #endif
+}
 void MainUiFrame::OnClearConsole(wxCommandEvent& event)
 {
 	projetCourant->OnClearConsole();
