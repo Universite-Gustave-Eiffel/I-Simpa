@@ -12,7 +12,7 @@ addons:
     packages:
     - gcc-4.8
     - g++-4.8
-    - python
+    - python3-dev
     - freeglut3-dev
     - libxmu-dev
     - libxi-dev
