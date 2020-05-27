@@ -1,5 +1,7 @@
 dist: bionic
 language: cpp
+python:
+  - "3.8"
 sudo: false
 os:
 - linux

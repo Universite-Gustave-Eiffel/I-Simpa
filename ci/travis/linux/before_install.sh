@@ -10,6 +10,7 @@ else
 	wget https://sourceforge.net/projects/boost/files/boost/1.73.0/boost_1_73_0.tar.bz2
 	tar -xf boost_1_73_0.tar.bz2 --strip-components=1 -C $HOME/boost-install
 	ls -l $HOME/boost-install
+	echo "using python : 3.8 : /usr/bin/python3 : /usr/include/python3.8 : /usr/lib ;" > ~/user-config.jam
 	cd  $HOME/boost-install && ./bootstrap.sh link=static variant=release address-model=64 cxxflags="-std=c++11 -fPIC" boost.locale.icu=off --with-libraries=filesystem,system,test,regex,python,random,thread,date_time --prefix=$HOME/boost-install && ./b2 install
 fi
 
