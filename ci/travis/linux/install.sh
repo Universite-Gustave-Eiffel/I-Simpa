@@ -1,8 +1,3 @@
-
-cmake --version
-${CC} --version
-${CXX} --version
-
 mkdir build
 cd build
 
@@ -13,5 +8,9 @@ export PATH=$HOME/wxWidgets-install/bin/:$HOME/swig-install/bin/:$HOME/cmake-ins
 export BOOST_LIBRARYDIR=$HOME/boost-install/lib/
 export BOOST_INCLUDEDIR=$HOME/boost-install/include/
 export BOOST_ROOT=$HOME/boost-install/
+
+cmake --version
+${CC} --version
+${CXX} --version
 
 cmake ..
