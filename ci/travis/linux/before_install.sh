@@ -15,14 +15,13 @@ fi
 #
 # Boost install
 
-if [ -d $HOME/boost-install/include ] ; then
+if [ -d $HOME/boost-install ] ; then
 	echo "Boost already built (and in travis cache)"
 else
 	cd
 	wget https://sourceforge.net/projects/boost/files/boost/1.73.0/boost_1_73_0.tar.bz2
-	tar -xjf boost_1_73_0.tar.bz2
-	mkdir $HOME/boost-install
-	cd  $HOME/boost_1_73_0 && ./bootstrap.sh link=static variant=release address-model=64 cxxflags="-std=c++11 -fPIC" boost.locale.icu=off --with-libraries=filesystem,system,test,regex,python38,random,thread,date_time --prefix=$HOME/boost-install && ./b2 install
+	tar -xjf boost_1_73_0.tar.bz2 -C $HOME/boost-install
+	cd  $HOME/boost-install && ./bootstrap.sh link=static variant=release address-model=64 cxxflags="-std=c++11 -fPIC" boost.locale.icu=off --with-libraries=filesystem,system,test,regex,python38,random,thread,date_time --prefix=$HOME/boost-install && ./b2 install
 fi
 
 #
@@ -48,4 +47,3 @@ cd
 wget --no-check-certificate https://cmake.org/files/v3.17/cmake-3.17.2-Linux-x86_64.tar.gz
 mkdir $HOME/cmake-install
 tar zxvf cmake-3.17.2-Linux-x86_64.tar.gz -C $HOME/cmake-install --strip 1
-update-alternatives --install /usr/bin/cmake cmake $HOME/cmake-install/bin/cmake 1 --force 
