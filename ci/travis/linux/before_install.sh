@@ -1,6 +1,22 @@
 export DEBIAN_FRONTEND=noninteractive
 
 #
+# Boost install
+
+if [ -d $HOME/boost-install/boost ] ; then
+	echo "Boost already built (and in travis cache)"
+else
+	cd
+	wget https://sourceforge.net/projects/boost/files/boost/1.73.0/boost_1_73_0.tar.bz2
+	tar -xjfv boost_1_73_0.tar.bz2 -C $HOME/boost-install
+	cd  $HOME/boost-install && ./bootstrap.sh link=static variant=release address-model=64 cxxflags="-std=c++11 -fPIC" boost.locale.icu=off --with-libraries=filesystem,system,test,regex,python38,random,thread,date_time --prefix=$HOME/boost-install && ./b2 install
+fi
+
+export BOOST_LIBRARYDIR=$HOME/boost-install/lib/
+export BOOST_INCLUDEDIR=$HOME/boost-install/
+export BOOST_ROOT=$HOME/boost-install/
+
+#
 # Swig install
 if [ -f $HOME/swig-install/bin/swig ] ; then
 	echo "Swig already built (and in travis cache)"
@@ -10,18 +26,6 @@ else
 	tar zxvf rel-3.0.10.tar.gz
 	mkdir $HOME/swig-install
 	cd  $HOME/swig-rel-3.0.10 && ./autogen.sh && ./configure --prefix=$HOME/swig-install && make && make install
-fi
-
-#
-# Boost install
-
-if [ -d $HOME/boost-install/boost ] ; then
-	echo "Boost already built (and in travis cache)"
-else
-	cd
-	wget https://sourceforge.net/projects/boost/files/boost/1.73.0/boost_1_73_0.tar.bz2
-	tar -xjf boost_1_73_0.tar.bz2 -C $HOME/boost-install
-	cd  $HOME/boost-install && ./bootstrap.sh link=static variant=release address-model=64 cxxflags="-std=c++11 -fPIC" boost.locale.icu=off --with-libraries=filesystem,system,test,regex,python38,random,thread,date_time --prefix=$HOME/boost-install && ./b2 install
 fi
 
 #
