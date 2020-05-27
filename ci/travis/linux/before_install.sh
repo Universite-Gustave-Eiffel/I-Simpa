@@ -15,7 +15,7 @@ fi
 #
 # Boost install
 
-if [ -d $HOME/boost-install ] ; then
+if [ -d $HOME/boost-install/boost ] ; then
 	echo "Boost already built (and in travis cache)"
 else
 	cd
@@ -27,15 +27,15 @@ fi
 #
 # WXWidget install
 
-if [ -d $HOME/wxWidgets-install/include ] ; then
-	echo "wxWidget already built (and in travis cache)"
-else
-	cd
-	wget https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.1/wxWidgets-3.1.1.tar.bz2
-	tar -xjf wxWidgets-3.1.1.tar.bz2
-	mkdir $HOME/wxWidgets-install
-	cd $HOME/wxWidgets-3.1.1 && ./configure --prefix=$HOME/wxWidgets-install --disable-shared && make && make install
-fi
+#if [ -d $HOME/wxWidgets-install/include ] ; then
+#	echo "wxWidget already built (and in travis cache)"
+#else
+#	cd
+#	wget https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.1/wxWidgets-3.1.1.tar.bz2
+#	tar -xjf wxWidgets-3.1.1.tar.bz2
+#	mkdir $HOME/wxWidgets-install
+#	cd $HOME/wxWidgets-3.1.1 && ./configure --prefix=$HOME/wxWidgets-install --disable-shared && make && make install
+#fi
 
 # check wxWidget install
 export PATH=$HOME/wxWidgets-install/bin/:$PATH

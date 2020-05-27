@@ -13,4 +13,6 @@ cmake --version
 ${CC} --version
 ${CXX} --version
 
+ls $HOME/boost-install/lib/
+
 cmake ..
