@@ -1,6 +1,6 @@
 
-export CXX="g++-4.8"
-export CC="gcc-4.8"
+export CXX="g++-7.4"
+export CC="gcc-7.4"
 
 cmake --version
 ${CC} --version
