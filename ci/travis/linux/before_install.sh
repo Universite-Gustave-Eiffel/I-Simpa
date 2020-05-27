@@ -1,9 +1,5 @@
 export DEBIAN_FRONTEND=noninteractive
 
-
-export CXX="g++-7.4"
-export CC="gcc-7.4"
-
 #
 # Swig install
 if [ -f $HOME/swig-install/bin/swig ] ; then

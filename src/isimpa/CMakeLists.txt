@@ -565,7 +565,7 @@ if(WIN32) # Check if we are on Windows
         install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION . COMPONENT Runtime )
     endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
     # Try to fetch x64 version of python dll
-    get_filename_component(PYTHON_DLL_FILENAME ${PYTHON_ROOT_FOLDER}  NAME_WE)
+    get_filename_component(PYTHON_DLL_FILENAME "${PYTHON_LIBRARY}" NAME_WLE)
 
     SET(CMAKE_FIND_LIBRARY_PREFIXES "")
     SET(CMAKE_FIND_LIBRARY_SUFFIXES ".lib" ".dll")
