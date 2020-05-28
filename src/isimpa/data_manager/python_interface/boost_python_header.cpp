@@ -97,7 +97,7 @@ wxString extract_wxstring(const boost::python::object& from)
 	if(object_classname == "str")
 	{
 		//standart string
-		return extract_or_throw<std::string>(from);
+		return extract_or_throw<std::wstring>(from);
 	}else if(object_classname =="unicode")
 	{
 		//Unicode

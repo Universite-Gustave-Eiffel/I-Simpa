@@ -27,7 +27,7 @@
 	#include <boost/thread/thread.hpp>
 	#include <boost/bind.hpp>
 
-	boost::mutex mutex; /*!< Variable permettant la synchronisation des processus */
+	boost::mutex sppsmutex; /*!< Variable permettant la synchronisation des processus */
 #endif
     // Print warning if particle lost is superior than this ratio
 const double PARTICLE_LOST_WARNING_RATIO = 0.05;
@@ -58,7 +58,7 @@ void runSourceCalculation( progressOperation* parentOperation, t_ToolBox& applic
 	if(!sourceInfo.currentVolume)
 	{
 	    #if __USE_MULTITHREAD__
-		boost::mutex::scoped_lock lock(mutex);
+		boost::mutex::scoped_lock lock(sppsmutex);
 		#endif
 		std::cerr<<"Unable to find the source position!";
 		return;
@@ -156,7 +156,7 @@ void runSourceCalculation( progressOperation* parentOperation, t_ToolBox& applic
 
 
 			#if __USE_MULTITHREAD__
-				boost::mutex::scoped_lock lock(mutex);
+				boost::mutex::scoped_lock lock(sppsmutex);
 			#endif
 			applicationTools.mainProgressionOutput->OutputCurrentProgression();
 			//progressOperation thisPartOperation(&thisSrcOperation);
@@ -210,7 +210,7 @@ void runFrequenceCalculation(  progressOperation* parentOperation, ReportManager
 	#if __USE_MULTITHREAD__
 		if(true) //Cette branche conditionnelle existe afin que l'objet lock soit détruit à la fin du traitement de la condition
 		{
-			boost::mutex::scoped_lock lock(mutex);
+			boost::mutex::scoped_lock lock(sppsmutex);
 	#endif
 		//Post traitement des récepteurs de surface
 		ReportManager::SetPostProcessSurfaceReceiver(*applicationTools.configurationTool,threadData->freqInfos->freqIndex,applicationTools.configurationTool->recepteur_s_List,*applicationTools.configurationTool->FastGetConfigValue(Core_Configuration::FPROP_TIME_STEP));

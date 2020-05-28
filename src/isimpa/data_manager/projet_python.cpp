@@ -87,6 +87,8 @@ void ProjectManager::InitPythonEngine()
 {
 	if(pyShell==NULL)
 	{
+		PythonShell::load_uictrl();
+
 		Py_Initialize();
 		
 		pyShell = new PythonShell(shellControl);

@@ -2,23 +2,23 @@
 # specify custom environment variables
 environment:
   matrix:
-    - VisualStudioVersion: 14.0
+    - VisualStudioVersion: 14.2
       platform: x64
       configuration: Release
       vcvarsall_platform: "x64"
   global:
     MSVC_DEFAULT_OPTIONS: ON
-    BOOST_ROOT: C:\Libraries\boost_1_60_0
-    BOOST_LIBRARYDIR: C:\Libraries\boost_1_60_0\lib64-msvc-14.0
-    PYTHON_LIBRARY: C:\Python27-x64\libs\python27.lib
-    PYTHON_INCLUDE_DIR: C:\Python27-x64\include
+    BOOST_ROOT: C:\Libraries\boost_1_73_0
+    BOOST_LIBRARYDIR: C:\Libraries\boost_1_73_0\lib64-msvc-14.2
+    PYTHON_LIBRARY: C:\Python38-x64\libs\python38.lib
+    PYTHON_INCLUDE_DIR: C:\Python38-x64\include
     WXWIN: C:\wxWidgets-3.1.1\
     wxWidgets_ROOT_DIR: C:\wxWidgets-3.1.1\
     wxWidgets_INCLUDE_DIRS: C:\wxWidgets-3.1.1\include
     wxWidgets_LIBRARIES: C:\wxWidgets-3.1.1\lib\vc140_x64_dll
     SWIG_DIR: C:\Libraries\swigwin-3.0.11
     SWIG_EXECUTABLE: C:\Libraries\swigwin-3.0.11\swig.exe
-    PYTHON_EXECUTABLE: C:\Python27-x64\python.exe
+    PYTHON_EXECUTABLE: C:\Python38-x64\python.exe
     CTEST_OUTPUT_ON_FAILURE: 1
 
 # branches to build
@@ -28,7 +28,7 @@ branches:
     - master
 
 # Operating system (build VM template)
-os: Visual Studio 2015
+os: Visual Studio 2019
 
 # scripts that are called at very beginning, before repo cloning
 init:
@@ -46,13 +46,9 @@ configuration: Release
 before_build:
   - ps: git rev-parse HEAD
   # msbuild will use x64 visual studio compiler
-  - '"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64'
+  - '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"'
   # Copy x64 dll from system32 to python27 x64
-  - cmd: copy c:\windows\system32\PYTHON27.DLL C:\Python27-x64\python27.dll
-  # sent environment variables for wxWidgets
-  - set WXWIN=C:\wxWidgets-3.1.1\
-  - set wxWidgets_ROOT_DIR=%WXWIN%
-  - set wxWidgets_LIB_DIR=%WXWIN%\lib\vc_dll
+  #- cmd: copy c:\windows\system32\PYTHON27.DLL C:\Python27-x64\python27.dll
   - echo Download wxWidgets lib
   - ps: Start-FileDownload 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.1/wxWidgets-3.1.1.7z'
   - ps: Start-FileDownload 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.1/wxMSW-3.1.1_vc140_x64_Dev.7z'
@@ -77,18 +73,17 @@ before_build:
   - cmd: echo WX_LIB_DIR:INTERNAL=%wxWidgets_LIBRARIES% >> CMakeCache.txt
   - cmd: echo WX_ROOT_DIR:INTERNAL=%wxWidgets_ROOT_DIR% >> CMakeCache.txt
   - cmd: echo PYTHON_EXECUTABLE:FILEPATH=%PYTHON_EXECUTABLE% >> CMakeCache.txt
-  - cmake --debug-output -G "Visual Studio 14 2015 Win64" c:\projects\isimpa
+  - cmake --debug-output -G "Visual Studio 16 2019" -A x64 c:\projects\isimpa
 
 build_script:
   - cd c:\projects\isimpa\build
   - ECHO Building %configuration% %platform% with MSVC %VisualStudioVersion% using %PlatformToolset% PlatformToolset
   - dir
-  - 'CALL "C:\Program Files (x86)\Microsoft Visual Studio %VisualStudioVersion%\VC\vcvarsall.bat" %vcvarsall_platform%'
+  - 'call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"'
   - msbuild "INSTALL.vcxproj" /consoleloggerparameters:Verbosity=minimal /target:Build  /p:Configuration=%configuration% /p:Platform=%platform% /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
 after_build:
   - cd c:\projects\isimpa\build
-  - 'CALL "C:\Program Files (x86)\Microsoft Visual Studio %VisualStudioVersion%\VC\vcvarsall.bat" %vcvarsall_platform%'
   - ECHO Package I-SIMPA %configuration% %platform% with MSVC %VisualStudioVersion% using %PlatformToolset% PlatformToolset
   - msbuild "PACKAGE.vcxproj" /consoleloggerparameters:Verbosity=minimal /target:Build  /p:Configuration=%configuration% /p:Platform=%platform% /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
@@ -97,7 +92,6 @@ test_script:
   - choco install dependencywalker -y --allow-empty-checksums
   - depends.exe /f:1 /c /oc:c:\projects\isimpa\build\depends.txt c:\projects\isimpa\build\bin\isimpa.exe
   - cd c:\projects\isimpa\build
-  - 'CALL "C:\Program Files (x86)\Microsoft Visual Studio %VisualStudioVersion%\VC\vcvarsall.bat" %vcvarsall_platform%'
   - ECHO Test I-SIMPA %configuration% %platform% with MSVC %VisualStudioVersion% using %PlatformToolset% PlatformToolset
   - appveyor-retry msbuild "RUN_TESTS.vcxproj" /target:Build  /p:Configuration=%configuration% /p:Platform=%platform% /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
