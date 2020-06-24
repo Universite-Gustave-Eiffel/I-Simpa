@@ -7,7 +7,10 @@ def dummy_notranslation(msg):
 
 def InstallUiModule(pathname,language):
     import gettext
+    if sys.platform() == "Windows":
     localdir=pathname + "\\locale"
+    else:
+        localdir=pathname + "/locale"
     
     try:
         locale_dict=gettext.translation("messages",localdir,languages=[language])

@@ -281,9 +281,11 @@ void OpenGlViewer::OnTimer( wxTimerEvent& event) //rafraichie le rendu afin d'af
 void OpenGlViewer::OnPaint( wxPaintEvent& event )
 {
 
+#ifdef _WIN32
     // This is a dummy, to avoid an endless succession of paint messages.
     // OnPaint handlers must always create a wxPaintDC.
 	wxPaintDC dc(this);
+#endif
 
 	if (appLoaded && CurrentObject)
 	{

@@ -199,7 +199,7 @@ bool CPly::ExportPly(t_model& scene, const char* mfilename)
   for(int v=0; v < sizeFacets ;v++)
   {
 		// [sommets] [indice 1] [indice 2] [indice 3]
-		fprintf(outfile, "3  %i  %i  %i\n",scene.modelFaces[v].indicesSommets.a,
+		fprintf(outfile, "3  %li  %li  %li\n",scene.modelFaces[v].indicesSommets.a,
 											scene.modelFaces[v].indicesSommets.b,
 											scene.modelFaces[v].indicesSommets.c);
   }

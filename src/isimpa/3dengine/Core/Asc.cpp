@@ -108,7 +108,7 @@ void CAsc::ExportTetraASC(vec4 UnitizeValue,triangleFace *tabVertexMaillage, con
 	/*
 	Tri-mesh, Vertices: 8     Faces: 12
 	Vertex list:*/
-	fprintf(outfile, "Tri-mesh, Vertices: %i     Faces: %i     Tetrahedre: %i\n",nbtetrah*4,nbFaces,nbtetrah);
+	fprintf(outfile, "Tri-mesh, Vertices: %li     Faces: %li     Tetrahedre: %li\n",nbtetrah*4,nbFaces,nbtetrah);
 	for(long f=0; f < nbFaces ;f++)
 	{
 		long tetranum=f/4+1;
@@ -133,7 +133,7 @@ void CAsc::ExportTetraASC(vec4 UnitizeValue,triangleFace *tabVertexMaillage, con
 					Vertices=tabVertexMaillage[f].c;
 				if(i==3)
 					Vertices=tabVertexMaillage[f+1].b;
-				fprintf(outfile, "Vertex %i: X: %s     Y: %s     Z: %s\n",verticenum,
+				fprintf(outfile, "Vertex %li: X: %s     Y: %s     Z: %s\n",verticenum,
 				Convertor::ToString((Vertices.x/UnitizeValue.w)+UnitizeValue.x).c_str(), //On remet les points à leur etat d'origine
 				Convertor::ToString((Vertices.y/UnitizeValue.w)+UnitizeValue.y).c_str(),
 				Convertor::ToString((Vertices.z/UnitizeValue.w)+UnitizeValue.z).c_str());
@@ -146,7 +146,7 @@ void CAsc::ExportTetraASC(vec4 UnitizeValue,triangleFace *tabVertexMaillage, con
 	fprintf(outfile, "Face list:\n");
 	for(long f=0; f < nbFaces ;f++)
 	{
-		fprintf(outfile, "Face %i: A: %i     B: %i     C: %i\n",f,
+		fprintf(outfile, "Face %li: A: %i     B: %i     C: %i\n",f,
 					(int)facetab[f].x,
 					(int)facetab[f].y,
 					(int)facetab[f].z);
@@ -154,7 +154,7 @@ void CAsc::ExportTetraASC(vec4 UnitizeValue,triangleFace *tabVertexMaillage, con
 	fprintf(outfile, "Tetrahedre list:\n");
 	for(long f=0; f < nbtetrah ;f++)
 	{
-		fprintf(outfile, "Tetrahedre %i: A: %i     B: %i     C: %i     D: %i\n",f,
+		fprintf(outfile, "Tetrahedre %li: A: %i     B: %i     C: %i     D: %i\n",f,
 					(int)tetratab[f].x,
 					(int)tetratab[f].y,
 					(int)tetratab[f].z,

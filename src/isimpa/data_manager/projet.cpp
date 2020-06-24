@@ -31,6 +31,7 @@
 /*
 	Projet.cpp
 */
+
 #include "projet.h"
 
 #include "python_interface/pythonstdioredirect.hpp"
@@ -727,12 +728,17 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	wxDateTime timeDebOperation=wxDateTime::UNow();
 	wxString modelFileName=coreCalculation->GetStringConfig("modelName");
 	wxString corePath=coreCalculation->GetStringConfig("corePath");
+#ifdef __linux__
+	corePath.Replace("\\","/",true);
+#endif
 	wxString reportFolderName=dossierCourant+ApplicationConfiguration::CONST_REPORT_FOLDER_PATH;
 	wxString xmlCoreFileName="config.xml";
 	wxString exeName=coreCalculation->GetStringConfig("exeName");
 	wxString tetraFileName=coreCalculation->GetStringConfig("tetrameshFileName");
 	wxString rootCorePath=this->PathCores+corePath;
-
+#ifdef __linux__
+	rootCorePath.Replace("\\","/",true);
+#endif
 	///////////////////////////////////////////
 	//Ajout du dossier daté de résultat
 	///////////////////////////////////////////
@@ -762,6 +768,7 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
         ext = "exe";
     }
     #endif
+    
 	if(!wxFileExists(this->PathCores+corePath+exeName))
 	{
 		wxLogError(_("Calculation program file not found."));
@@ -869,7 +876,6 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 
 	wxLongLong durationOperation=wxDateTime::UNow().GetValue()-timeDebOperation.GetValue();
 	wxLogMessage(_("Total time calculation: %lld ms"),durationOperation.GetValue());
-
 
 }
 
@@ -2167,7 +2173,7 @@ bool ProjectManager::UpdateZip(wxString folderfrom,wxString zipfilename)
 	long nbfichier=tabFichiers.Count();
 	wxString tmpFileName=zipfilename+".tmp";
 	using namespace std;
-	auto_ptr<wxFFileInputStream> in(new wxFFileInputStream(zipfilename));
+	unique_ptr<wxFFileInputStream> in(new wxFFileInputStream(zipfilename));
     wxTempFileOutputStream out(tmpFileName);
 
     wxZipInputStream inzip(*in);

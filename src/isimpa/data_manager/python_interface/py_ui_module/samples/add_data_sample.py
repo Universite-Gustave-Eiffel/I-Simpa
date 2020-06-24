@@ -51,7 +51,10 @@ class mdf(uictrl.element):
             uictrl.element(self.appendpropertytext("modelName","","mesh.cbin",True,True)).hide()
             uictrl.element(self.appendpropertytext("tetrameshFileName","","tetramesh.mbin",True,True)).hide()
             uictrl.element(self.appendpropertytext("exeName","","md.py")).hide()
+            if sys.platform() == "Windows":
             uictrl.element(self.appendpropertytext("corePath","","md\\")).hide()
+            else:
+                uictrl.element(self.appendpropertytext("corePath","","md/")).hide()         
             
             #User options
             coreconf.appendpropertylist("solver_mode","Calculation mode",[["Time","Static"],[0,1]],0,False,1,True)

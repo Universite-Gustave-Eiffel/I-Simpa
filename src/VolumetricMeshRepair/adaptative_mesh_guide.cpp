@@ -37,7 +37,6 @@
 
 namespace Triangulators
 {
-
 	#ifndef MIN
 		#define MIN(a, b)  (((a) < (b)) ? (a) : (b))
 	#endif
@@ -57,34 +56,6 @@ namespace Triangulators
 	#ifndef MAXVEC
 		#define MAXVEC(av, bv)  MAXREF(av[0],bv[0]);MAXREF(av[1],bv[1]);MAXREF(av[2],bv[2]);
 	#endif
-
-	struct tri_t
-	{
-		tri_t(const vec3& _A,const vec3& _B,const vec3& _C)
-			:A(_A),B(_B),C(_C)
-		{}
-		tri_t(){}
-		vec3 A;
-		vec3 B;
-		vec3 C;
-	};
-
-	typedef PTR<tri_t> tri_ptr_t;
-	typedef std::multimap<std::size_t,tri_ptr_t> trianglesMap_t;
-	typedef trianglesMap_t::iterator trianglesMap_iterator_t;
-	typedef std::pair<std::size_t,tri_ptr_t> trianglesMap_pair_t;
-
-	struct AdaptativeMeshGuide::AdaptativeMeshGuideData_t
-	{
-		AdaptativeMeshGuideData_t()
-		{
-
-		}
-		trianglesMap_t trianglesMap;
-		PTR<octreeTool::Octree44> octreeSpace;
-		vec3 minBox;
-		vec3 maxBox;
-	};
 
 	AdaptativeMeshGuide::AdaptativeMeshGuide()
 		:AdaptativeMeshGuideData(shared_ptr_data(new AdaptativeMeshGuideData_t))

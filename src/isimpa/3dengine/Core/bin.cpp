@@ -143,7 +143,7 @@ bool CformatBIN::ProcessNodeGroup(std::fstream &binFile,t3DModel *pModel)
 		nvObjet.pFaces[f].diff[1] =faceElement.bc;
 		nvObjet.pFaces[f].diff[2] =faceElement.ca;
 		nvObjet.pFaces[f].materialID=faceElement.idMaterial;
-		nvObjet.pFaces[f].vertexTex=faceElement.coordtex;
+		nvObjet.pFaces[f].vertexTex=(long unsigned)faceElement.coordtex;
 		nvObjet.pFaces[f].internalFace=faceElement.internalFace;
 	}
 	pModel->pObject.push_back(nvObjet);
@@ -172,7 +172,7 @@ bool CformatBIN::ProcessNodeGroupV110(std::fstream &binFile,t3DModel *pModel)
 		nvObjet.pFaces[f].diff[1] =faceElement.bc;
 		nvObjet.pFaces[f].diff[2] =faceElement.ca;
 		nvObjet.pFaces[f].materialID=faceElement.idMaterial;
-		nvObjet.pFaces[f].vertexTex=faceElement.coordtex;
+		nvObjet.pFaces[f].vertexTex=(long unsigned)faceElement.coordtex;
 	}
 	pModel->pObject.push_back(nvObjet);
 	return true;
@@ -362,17 +362,17 @@ bool CformatBIN::ExportBIN(const std::string& strFileName,vec4 UnitizeVar,std::v
 		for(std::vector<SFace3D>::iterator itface=(*itgroup).pFaces.begin();itface!=(*itgroup).pFaces.end();itface++)
 		{
 			binaryFace faceElement={
-				(*itface).Vertices.a,
-				(*itface).Vertices.b,
-				(*itface).Vertices.c,
+						(unsigned)(*itface).Vertices.a,
+						(unsigned)(*itface).Vertices.b,
+						(unsigned)(*itface).Vertices.c,
                 (bShort) (*itface).idMaterial,
 				(*itface).Diff[0],
 				(*itface).Diff[1],
 				(*itface).Diff[2],
 				(*itface).internalFace,
-				{(*itface).TexCoords.a,
-				(*itface).TexCoords.b,
-				(*itface).TexCoords.c
+						{(unsigned)(*itface).TexCoords.a,
+						 (unsigned)(*itface).TexCoords.b,
+						 (unsigned)(*itface).TexCoords.c
 				}
 			};
 			binFile.write((char*)&faceElement,sizeof(binaryFace));

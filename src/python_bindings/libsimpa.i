@@ -31,6 +31,22 @@ SWIG Python lib interface module declaration
 %array_class(formatMBIN::bintetraface, bintetrafaceArray);
 
 
+%extend core_mathlib::ivec2 {
+	%rename(Index) operator[](int) const;
+   %ignore operator=(long _i);
+	%ignore operator long*;
+    long __getitem__(int i) {
+        return (*($self))[i];
+    }
+	int __len__() {
+		return 3;
+	}
+    %pythoncode %{
+		def __repr__(self):
+		  return "[%s,%s,%s]" % (self[0],self[1],self[2])
+	%}
+}
+
 %extend core_mathlib::ivec3 {
 	%rename(Index) operator[](int) const;
 	%ignore operator long*;
@@ -59,6 +75,9 @@ SWIG Python lib interface module declaration
 
 %extend core_mathlib::base_vec3 {
 	%rename(Index) operator[](int) const;
+	%ignore operator[](int);
+   
+   %rename(Assign) operator=(base_t _f);
 	%ignore operator double*;
     double __getitem__(int i) {
         return (*($self))[i];
@@ -71,6 +90,19 @@ SWIG Python lib interface module declaration
 		  return "[%f,%f,%f]" % (self[0],self[1],self[2])
 	%}
 }
+
+%extend core_mathlib::vec2 {
+  %ignore operator=(decimal _f);
+   %rename(Index) operator[](int _i) const;
+  %ignore operator[](int _i);
+ };
+
+%extend core_mathlib::vec4 {
+  %ignore operator=(decimal _f);
+   %rename(Index) operator[](int _i) const;
+  %ignore operator[](int _i);
+ };
+
 
 // Map a Python sequence into any sized C double array
 %typemap(in) double[ANY](double temp[$1_dim0]) {
