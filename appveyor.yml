@@ -15,7 +15,7 @@ environment:
     WXWIN: C:\wxWidgets-3.1.4\
     wxWidgets_ROOT_DIR: C:\wxWidgets-3.1.4\
     wxWidgets_INCLUDE_DIRS: C:\wxWidgets-3.1.4\include
-    wxWidgets_LIBRARIES: C:\wxWidgets-3.1.4\lib\vc140_x64_dll
+    wxWidgets_LIBRARIES: C:\wxWidgets-3.1.4\lib\vc14x_x64_dll
     SWIG_DIR: C:\Libraries\swigwin-3.0.11
     SWIG_EXECUTABLE: C:\Libraries\swigwin-3.0.11\swig.exe
     PYTHON_EXECUTABLE: C:\Python38-x64\python.exe
