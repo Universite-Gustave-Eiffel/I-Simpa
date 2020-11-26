@@ -33,6 +33,7 @@
 #include <float.h>
 #include <std_tools.hpp>
 #include "last_cpp_include.hpp"
+#include <cmath>
 
 // ----------------------------------------------------------------------------
 // wxGridCellGabeFloatRenderer
