@@ -52,16 +52,16 @@ before_build:
   - echo Download wxWidgets lib
   - ps: Start-FileDownload 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.4/wxWidgets-3.1.4.7z'
   - ps: Start-FileDownload 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.4/wxMSW-3.1.4_vc14x_x64_Dev.7z'
-  - cmd: 7z x wxWidgets-3.1.4.7z -oC:\wxWidgets-3.1.4
-  - cmd: 7z x wxMSW-3.1.4_vc14x_x64_Dev.7z -oC:\wxWidgets-3.1.4
+  - cmd: 7z x -aoa wxWidgets-3.1.4.7z -oC:\wxWidgets-3.1.4
+  - cmd: 7z x -aoa wxMSW-3.1.4_vc14x_x64_Dev.7z -oC:\wxWidgets-3.1.4
   - cmd: dir %wxWidgets_LIBRARIES%
   # Download Release wxWidgets DLL's
   - ps: Start-FileDownload 'https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.4/wxMSW-3.1.4_vc14x_x64_ReleaseDLL.7z' -Timeout 15000
-  - cmd: 7z x wxMSW-3.1.4_vc14x_x64_ReleaseDLL.7z -oC:\wxWidgets-3.1.4
+  - cmd: 7z x -aoa wxMSW-3.1.4_vc14x_x64_ReleaseDLL.7z -oC:\wxWidgets-3.1.4
   # install dependencies:
   - choco install poedit nsis 7zip.install
   - ps: Start-FileDownload 'https://github.com/nicolas-f/build_resources/raw/master/swigwin-3.0.11.zip' -FileName 'c:\Libraries\swigwin-3.0.11.zip' -Timeout 15000
-  - ps: 7z x c:\Libraries\swigwin-3.0.11.zip -oC:\Libraries -r -y
+  - ps: 7z x -aoa c:\Libraries\swigwin-3.0.11.zip -oC:\Libraries -r -y
   - cmd: SET PATH=%PATH%;%WXWIN%;%SWIG_DIR%;%wxWidgets_LIB_DIR%;C:\Program Files (x86)\Poedit\Gettexttools\bin;%BOOST_LIBRARYDIR%;
   - ps: swig.exe -version
   - echo Running cmake...
