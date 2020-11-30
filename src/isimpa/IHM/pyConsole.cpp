@@ -40,7 +40,7 @@ BEGIN_EVENT_TABLE( PyConsole, wxTextCtrl )
 END_EVENT_TABLE()
 
 PyConsole::PyConsole(wxWindow* parent)
-: wxTextCtrl(parent,-1, "",wxDefaultPosition, FromDIP(wxSize(200,150)), wxTE_RICH | wxNO_BORDER | wxTE_MULTILINE | wxTE_PROCESS_TAB | wxTE_PROCESS_ENTER   )
+: wxTextCtrl(parent,-1, "",wxDefaultPosition, FromDIP(wxSize(200,150), parent), wxTE_RICH | wxNO_BORDER | wxTE_MULTILINE | wxTE_PROCESS_TAB | wxTE_PROCESS_ENTER   )
 {
 	waitingForNextPrompt=true;
 	promptSize=0;

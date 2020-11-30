@@ -157,7 +157,7 @@ void OnUserConfigElementEvent(wxCommandEvent& eventElement)
 }
 
 MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APPLICATION_NAME,
-									wxDefaultPosition, FromDIP(wxSize(1024,768)),
+									wxDefaultPosition, wxDefaultSize,
 									wxDEFAULT_FRAME_STYLE),m_locale(lang)
 {
 	saveManagerConfig=true;
@@ -519,6 +519,9 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 
 	// Render 3D view
 	m_mgr.GetPane("3Dview").Show();
+
+	// Resize window
+	this->SetSize(FromDIP(wxSize(1024, 768)));
 }
 void MainUiFrame::OnWindowLoaded() {
     // Run Python script for started
