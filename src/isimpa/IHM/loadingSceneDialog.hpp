@@ -92,6 +92,7 @@ private:
 	wxCheckBox* cb_TryToMeshSurface;
 	wxCheckBox* cb_KeepExistingFaceLinks;
 	wxCheckBox* cb_RemeshModel;
+	wxChoice* lb_ModelImportUnit;
 
 	wxString epsilonValue;
     DECLARE_EVENT_TABLE()
