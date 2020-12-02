@@ -64,8 +64,6 @@ set(3DENGINE_CORE_SOURCES
     3dengine/Core/bin.h
     3dengine/Core/mesh.cpp
     3dengine/Core/mesh.h
-    3dengine/Core/ply.cpp
-    3dengine/Core/ply.h
     3dengine/Core/stl.cpp
     3dengine/Core/stl.hpp
     3dengine/Core/var.cpp
