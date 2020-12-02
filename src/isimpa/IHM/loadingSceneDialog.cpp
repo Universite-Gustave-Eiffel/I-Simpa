@@ -116,7 +116,7 @@ sceneLoadOptionDialog::sceneLoadOptionDialog(wxWindow *parent,
 	choices.push_back(_("Metric (meters)"));
 	choices.push_back(_("Metric (centimeters)"));
 	choices.push_back(_("Metric (millimeters)"));
-	choices.push_back(_("Imperial (feet-inches)"));
+	choices.push_back(_("Imperial (feet)"));
 	choices.push_back(_("Imperial (inches)"));
 	lb_ModelImportUnit = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, choices);
 	lb_ModelImportUnit->SetToolTip(_("Unit used in this file, I-Simpa will convert it to meters"));
@@ -219,6 +219,29 @@ bool sceneLoadOptionDialog::IsMeshSurface()
 {
 	return cb_TryToMeshSurface->GetValue();
 }
+
+float sceneLoadOptionDialog::GetModelScale() {
+	int selection = lb_ModelImportUnit->GetSelection();
+	switch (selection)
+	{
+	case 1:
+		//model in centimeter
+		return 0.01f;
+	case 2:
+		// model in millimeter
+		return 0.001f;
+	case 3:
+		// model in feet
+		return 0.3048f;
+	case 4:
+		// model in inch
+		return 0.0254f;
+	default:
+		return 1.0f;
+		break;
+	}
+}
+
 bool sceneLoadOptionDialog::IsKeepExistingFaceLinks()
 {
 	return cb_KeepExistingFaceLinks->GetValue();

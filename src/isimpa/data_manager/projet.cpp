@@ -1846,7 +1846,7 @@ void ProjectManager::NewProject()
 
 	ClearUndoRedoHistory();
 	this->ClearCurrentFolder(); //retourne faux si un fichier impossible à supprimer
-	this->sceneMesh.Load("");
+	this->sceneMesh.Load("", 1.0);
 	if(this->propFrame!=NULL)
 		this->propFrame->CloseElement();
 	wxXmlDocument tmpDocXml;
@@ -1921,7 +1921,7 @@ void ProjectManager::LoadCurrentProject(bool reloadXmlFile)
 		{
 			if(wxFileExists(urlScene))
 			{
-				sceneMesh.Load(urlScene.ToStdString());
+				sceneMesh.Load(urlScene.ToStdString(), 1.0);
 			}else{
 				wxLogError(_("Scene does not exist!"));
 			}
@@ -2912,12 +2912,13 @@ bool ProjectManager::LoadScene(const t_param_load_model& paramLoading)
 	t_retrieves_groups oldFacesDistribution;
 	if(paramLoading.keepexistingfacegroup)
 		BuildFaceGroupAssociation(oldFacesDistribution);
-	bool loadSuccess=sceneMesh.Load(paramLoading.pathModel.ToStdString());
+	bool loadSuccess=sceneMesh.Load(paramLoading.pathModel.ToStdString(), paramLoading.modelRescale);
 	if(loadSuccess)
 	{
 		this->RepairCurrentMesh(paramLoading);
-			if(paramLoading.glueSurfaces)
-				DoShapeComputation(false,true); //Calcul des contours des surfaces et correction de l'orientation
+		if(paramLoading.glueSurfaces) {
+			DoShapeComputation(false,true); //Calcul des contours des surfaces et correction de l'orientation
+		}
 		this->GlFrame->OpenModel(&sceneMesh);
 		this->GlFrame->AddAnimator(&particulesContainer);
 		this->GlFrame->AddAnimator(&recepteursSContainer);
@@ -2964,6 +2965,7 @@ void ProjectManager::ChangeModel3d(const wxString& FileName)
 		paramLoading.paramTetgen=optDialog.GetMeshParameters();
 		paramLoading.launchRemeshWizard=optDialog.IsRemeshModel();
 		paramLoading.epsilonLinkingFaceGroup=optDialog.GetEpsilonLinkingFaceGroup();
+		paramLoading.modelRescale = optDialog.GetModelScale();
 		LoadScene(paramLoading);
 		//supprime les groupes vides
 		Element* elgrp=rootScene->GetElementByType(Element::ELEMENT_TYPE_SCENE_GROUPESURFACES);

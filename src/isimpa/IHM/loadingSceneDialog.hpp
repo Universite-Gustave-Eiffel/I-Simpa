@@ -84,8 +84,10 @@ public:
 	 * L'utilisateur veut il executer l'operation de remaillage du modèle
 	 */
 	bool IsRemeshModel();
-
-
+	/**
+	 * @return model scale factor (0-n]
+	 */
+	float GetModelScale();
 private:
 	wxTextCtrl* txt_ParamMesh;
 	wxCheckBox* cb_TryToRepairMesh;

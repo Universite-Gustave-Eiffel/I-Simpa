@@ -149,7 +149,7 @@ public:
 	 */
 	struct t_param_load_model
 	{
-		t_param_load_model():paramTetgen("-pq5.00 -T.00001 -E"),epsilonLinkingFaceGroup(0.f),glueSurfaces(true) { }
+		t_param_load_model():paramTetgen("-pq5.00 -T.00001 -E"),epsilonLinkingFaceGroup(0.f),glueSurfaces(true), modelRescale(1.0f) { }
 		wxString pathModel;
 		bool keepexistingfacegroup;
 		bool docorrection;
@@ -158,6 +158,7 @@ public:
 		bool launchRemeshWizard;
 		wxString paramTetgen;
 		float epsilonLinkingFaceGroup; //Distance maximum de lien face / ancien groupe
+		float modelRescale; // scale factor of vertices
 	};
 
 
