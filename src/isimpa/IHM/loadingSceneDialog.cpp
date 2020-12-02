@@ -118,10 +118,10 @@ sceneLoadOptionDialog::sceneLoadOptionDialog(wxWindow *parent,
 	choices.push_back(_("Metric (millimeters)"));
 	choices.push_back(_("Imperial (feet)"));
 	choices.push_back(_("Imperial (inches)"));
-	lb_ModelImportUnit = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, choices);
-	lb_ModelImportUnit->SetToolTip(_("Unit used in this file, I-Simpa will convert it to meters"));
-	lb_ModelImportUnit->SetSelection(0);
-	topsizer->Add(lb_ModelImportUnit, 0, wxLEFT | wxTOP, 5);
+	choice_ModelImportUnit = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, choices);
+	choice_ModelImportUnit->SetToolTip(_("Unit used in this file, I-Simpa will convert it to meters"));
+	choice_ModelImportUnit->SetSelection(0);
+	topsizer->Add(choice_ModelImportUnit, 0, wxLEFT | wxTOP, 5);
 
 	cb_RemeshModel = new wxCheckBox(this,SL_CTRLS_ID_CHECKBOX_REMESH_MODEL,_("Average model remesh"));
 	cb_RemeshModel->SetToolTip(_("With this option you are able to remesh the input model to make it compatible with all calculation core. Use this option as a last resort"));
@@ -221,7 +221,7 @@ bool sceneLoadOptionDialog::IsMeshSurface()
 }
 
 float sceneLoadOptionDialog::GetModelScale() {
-	int selection = lb_ModelImportUnit->GetSelection();
+	int selection = choice_ModelImportUnit->GetSelection();
 	switch (selection)
 	{
 	case 1:

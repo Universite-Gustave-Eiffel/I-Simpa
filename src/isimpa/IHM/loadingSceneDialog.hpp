@@ -35,6 +35,7 @@
 #define __DIALOG_IMPORT_SCENE__
 
 #include <wx/dialog.h>
+#include <wx/choice.h>
 
 /*! \file customdlg.h
  *    @brief Boite de dialogue contenant un ou plusieurs champs de saisie
@@ -94,7 +95,7 @@ private:
 	wxCheckBox* cb_TryToMeshSurface;
 	wxCheckBox* cb_KeepExistingFaceLinks;
 	wxCheckBox* cb_RemeshModel;
-	wxChoice* lb_ModelImportUnit;
+	wxChoice* choice_ModelImportUnit;
 
 	wxString epsilonValue;
     DECLARE_EVENT_TABLE()
