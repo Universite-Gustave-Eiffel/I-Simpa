@@ -111,7 +111,10 @@
 <p class="caption"><span class="caption-text">Thematics</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="import_options.html">Import options</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Recommendations to import a 3D scene</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Recommendations to import a 3D scene</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#use-tetgen-to-identify-problemns-in-3d-models">Use TetGen to identify problemns in 3D models</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="using_spectrum.html">Define and use spectrum</a></li>
 <li class="toctree-l1"><a class="reference internal" href="define_position.html">Define a position using the pointer on the 3D view</a></li>
 <li class="toctree-l1"><a class="reference internal" href="surface_selection.html">Surface selection</a></li>
@@ -135,6 +138,7 @@
 <p class="caption"><span class="caption-text">Appendices</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="I_Simpa_standard.html">Standards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="room_acoustics_parameters.html">Room acoustics parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
@@ -230,6 +234,22 @@ the different steps of the model building:</p>
 <p class="first admonition-title">Tip</p>
 <p class="last">Note that, when creating a 3D model for acoustic calculations, it is not necessary to create a very complex 3D model with too many faces. You will have better results with the simple shape of your 3D model, and by adjusting correctly all acoustical characteristics of the material on the face. Make simple.</p>
 </div>
+<div class="section" id="use-tetgen-to-identify-problemns-in-3d-models">
+<h2>Use TetGen to identify problemns in 3D models<a class="headerlink" href="#use-tetgen-to-identify-problemns-in-3d-models" title="Permalink to this headline">¶</a></h2>
+<p>There is a way inside I-Simpa to identify problems in 3D geometries, after imprting the 3D scene.</p>
+<ol class="arabic simple">
+<li>Import your 3D model in I-simpa</li>
+<li>Go to the ‘Calculation’ tab of the <a class="reference external" href="main_windows.html">‘Project’ window</a></li>
+<li>Got to ‘Mesh’ <a class="reference external" href="properties_window.html">‘Properties’ window</a> of the SPPS code</li>
+<li>Check the ‘Test mesh topology’ option (see <a class="reference external" href="code_configuration_SPPS.html#meshing">SPPS meshing options</a>)</li>
+<li>Run the SPPS calculations</li>
+<li>Faces in error will be colorized in the  <a class="reference external" href="project_windows.html">‘Main’ window</a>. You can find information about indexes and coordinates in the <a class="reference external" href="console_window.html">‘Console’ window</a></li>
+</ol>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="_images/see_errors_meshing.png"><img alt="Displaying meshing errors within I-Simpa console" src="_images/see_errors_meshing.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text">Displaying meshing errors within I-Simpa <a class="reference external" href="console_window.html">‘Console’ window</a></span></p>
+</div>
+</div>
 </div>
 
 
@@ -252,9 +272,9 @@ the different steps of the model building:</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Ifsttar
+        &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Oct 08, 2019.
+        Last updated on Dec 03, 2020.
       </span>
 
     </p>

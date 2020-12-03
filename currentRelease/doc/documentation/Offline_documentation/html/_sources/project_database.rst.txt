@@ -113,8 +113,8 @@ Properties
 -  'Absorption'
 		Absorption coefficient of the material (real value between 0 and 1).
 
--  'Scattering'
-		Scattering coefficient of the material (real value between 0 and 1).
+-  'Diffusion'
+		Scattering coefficient of the material in order to model wall diffusion (real value between 0 and 1).
 
 -  'Transmission'
 		Check/uncheck for taking acoustic transmission into account.
@@ -123,7 +123,7 @@ Properties
 		Transmission loss of the material (dB).
 
 -  'Diffusion law'
-	Reflection law for the diffuse part of the reflection;
+		Reflection law for the diffuse part of the reflection;
 
 	+ 'Lambert'
 		Diffuse Lambert reflection law (cosinus of the incident angle).
@@ -154,11 +154,11 @@ Properties
 
 .. warning::
 
-	**Absorption and transmission loss are linked together**. Since transmission is a part of the absorption, the transmission loss can not larger than the absorption coefficient. For example, for a given absorption coefficient of 0.2, the transmission loss must be smaller than 20 dB (i.e. 0.2=10^(20/10)).
+	**Absorption and transmission loss are linked together**. Since transmission is a part of the absorption (:math:`\alpha=\beta+\tau`, see for example `SPPS documentation`_), the transmission coefficient :math:`\tau` can not be larger than the absorption coefficient :math:`\alpha`. For example, for a given absorption coefficient of :math:`\alpha=0.2`, the transmission loss TL (:math:`TL=-10\log\tau`) must be greater or equal than 7 dB (*i.e.* :math:`TL \geq -10 \log \alpha=-10 \log 0.2 \approx 7` dB.
 
-	- If the transmission loss value is larger than the given absorption, the absorption coefficient is automatically adjusted.
+	- If the transmission coefficient (:math:`\tau=10^(-TL/10)`) value is larger than the possible absorption, the absorption coefficient is automatically adjusted.
 
-	- If the absorption coefficient is changed, the transmission loss can be automatically adjusted if necessary.
+	- If the absorption coefficient is changed, the transmission loss :math:`TL=-10\log\tau` can be automatically adjusted if necessary.
 
 Spectrum
 ------------
@@ -186,6 +186,7 @@ User has to define the spectrum value for each frequency band, either in 'dB' or
 
 .. _Menu view: Menu_View.html
 .. _`Using spectrum`: using_spectrum.html
+.. _`SPPS documentation`: code_SPPS_modelling.html#acoustic-transmission-modelling
 .. _`CATT-Acoustic website`: http://www.catt.se
 .. _`Odeon website`: http://www.odeon.dk
 .. |usingspectrum| replace:: See the section `Using spectrum`_ for understanding how to use a spectrum in the application

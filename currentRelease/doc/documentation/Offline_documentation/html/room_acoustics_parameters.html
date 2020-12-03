@@ -1,0 +1,476 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Room acoustics parameters &mdash; I-Simpa 1.3.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Glossary" href="glossary.html" />
+    <link rel="prev" title="Standards" href="I_Simpa_standard.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> I-Simpa
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">I-Simpa Presentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="I_Simpa_overview.html">I-Simpa overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="I_Simpa_overview.html#i-simpa-features">I-Simpa features</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_teaching_room.html">Study of a teaching room</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_Elmia_hall.html">Study of the Elmia hall</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_industrial_hall.html">Study of an industrial room</a></li>
+</ul>
+<p class="caption"><span class="caption-text">I-Simpa User Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">(Un)Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="presentation.html">GUI Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="menus.html">Menus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="toolbars.html">Toolbars</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_window.html">‘Project’ window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="properties_window.html">‘Properties’ window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console_window.html">‘Console’ window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main_windows.html">‘Main’ window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_database.html">Project database</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Thematics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="import_options.html">Import options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="import_file_recommandations.html">Recommendations to import a 3D scene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_spectrum.html">Define and use spectrum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="define_position.html">Define a position using the pointer on the 3D view</a></li>
+<li class="toctree-l1"><a class="reference internal" href="surface_selection.html">Surface selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manipulate_sources_receivers.html">Manipulating sources and receivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_directivity.html">Using directivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_charts.html">Creating charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_charts.html#chart-options">Chart Options</a></li>
+</ul>
+<p class="caption"><span class="caption-text">SPPS Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in <strong>SPPS</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">TCR Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="code_TCR.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_configuration_TCR.html">Using TCR within I-Simpa</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendices</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="I_Simpa_standard.html">Standards</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Room acoustics parameters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#sound-level-parameters">Sound level parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sound-pressure-level-l-text-spl">Sound pressure level <span class="math notranslate nohighlight">\(L_\text{SPL}\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sound-strength-g-single-sound-source">Sound strength <span class="math notranslate nohighlight">\(G\)</span> (single sound source)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sound-strength-g-multiple-sound-sources">Sound strength <span class="math notranslate nohighlight">\(G\)</span> (multiple sound sources)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#reverberation">Reverberation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reverberation-time-t">Reverberation time <span class="math notranslate nohighlight">\(T\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#early-decay-time-edt">Early decay time <span class="math notranslate nohighlight">\(EDT\)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#clarity-and-intelligibility-parameters">Clarity and intelligibility parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clarity-c">Clarity <span class="math notranslate nohighlight">\(C\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#centre-time-t-s">Centre time <span class="math notranslate nohighlight">\(t_s\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#definition-d">Definition <span class="math notranslate nohighlight">\(D\)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#spatialisation-parameters">Spatialisation parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#apparent-source-width-asw">Apparent Source Width (ASW)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#early-lateral-energy-fraction-lf">Early lateral energy fraction <span class="math notranslate nohighlight">\(LF\)</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lateral-energy-fraction-lfc">Lateral energy fraction <span class="math notranslate nohighlight">\(LFC\)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#auditor-envelope-lev">Auditor Envelope (LEV)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#late-lateral-sound-level">Late lateral sound level</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#scene-criteria">Scene Criteria</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#early-stage-support-text-st-text-early">Early stage support <span class="math notranslate nohighlight">\(\text{ST}_\text{Early}\)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#expected-values">Expected values</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">I-Simpa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Room acoustics parameters</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/room_acoustics_parameters.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="room-acoustics-parameters">
+<h1>Room acoustics parameters<a class="headerlink" href="#room-acoustics-parameters" title="Permalink to this headline">¶</a></h1>
+<p>The acoustic quality of an environment, particularly in room acoustics, can be evaluate on the basis of a number of objective acoustic parameters. Most of the time, these parameters are obtained from the knowledge of the instantaneous sound pressure of the impulse response (IR), noted <span class="math notranslate nohighlight">\(p(t)\)</span>, measured or calculated at a receiving point in the propagation domain. Most of the parameters presented below are proposed by the standard NF EN ISO 3382-1.</p>
+<div class="section" id="sound-level-parameters">
+<h2>Sound level parameters<a class="headerlink" href="#sound-level-parameters" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="sound-pressure-level-l-text-spl">
+<h3>Sound pressure level <span class="math notranslate nohighlight">\(L_\text{SPL}\)</span><a class="headerlink" href="#sound-pressure-level-l-text-spl" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>sound pressure level</strong> <span class="math notranslate nohighlight">\(L_\text{SPL}\)</span> (in dB) expresses the energy of the IR (quadratic sound pressure), in integrated form (steady-state sound level):</p>
+<div class="math notranslate nohighlight">
+\[L_\text{SPL}=10\log \frac{\int_0^\infty p^2(t)\text{d}t}{p_0^2}\]</div>
+<p>or, in time-varying state:</p>
+<div class="math notranslate nohighlight">
+\[L_\text{SPL}(t)=10\log \frac{p^2(t)}{p_0^2},\]</div>
+<p>where <span class="math notranslate nohighlight">\(p_0=20\times10^{-6}\)</span> Pa is the reference acoustics pressure.</p>
+</div>
+<div class="section" id="sound-strength-g-single-sound-source">
+<h3>Sound strength <span class="math notranslate nohighlight">\(G\)</span> (single sound source)<a class="headerlink" href="#sound-strength-g-single-sound-source" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>Soud strength</strong>, noted <span class="math notranslate nohighlight">\(G\)</span> (in dB), is the logarithmic ratio of the acoustic energy of the IR obtained at the point of measurement, to that equal to a distance of 10 m from the sound source (NF EN ISO 3382-1):</p>
+<div class="math notranslate nohighlight">
+\[G=10\log \frac{\int_0^\infty p^2(t)\text{d}t}{\int_0^\infty p^2_{10\,m}(t)\text{d}t},\]</div>
+<p>where <span class="math notranslate nohighlight">\(p^2_{10\,m}(t)\)</span> is the instantaneous acoustics pressure of the IR at the refernce observation point at 10 m from the source.</p>
+</div>
+<div class="section" id="sound-strength-g-multiple-sound-sources">
+<h3>Sound strength <span class="math notranslate nohighlight">\(G\)</span> (multiple sound sources)<a class="headerlink" href="#sound-strength-g-multiple-sound-sources" title="Permalink to this headline">¶</a></h3>
+<p>When considering simultaneous sound sources, the last relation can be generalized:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+G=&amp;10\log \sum_{s=1}^{N_s}\frac{\int_0^\infty p^2(t)\text{d}t}{\int_0^\infty p^2_{s,10\,m}(t)\text{d}t}\\\nonumber
+=&amp;10\log\sum_{s=1}^{N_s} 10^{G_n/10},\end{aligned}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(s\)</span> is the source number et <span class="math notranslate nohighlight">\(N_s\)</span> the number if sound sources.</p>
+</div>
+</div>
+<div class="section" id="reverberation">
+<h2>Reverberation<a class="headerlink" href="#reverberation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="reverberation-time-t">
+<h3>Reverberation time <span class="math notranslate nohighlight">\(T\)</span><a class="headerlink" href="#reverberation-time-t" title="Permalink to this headline">¶</a></h3>
+<p>The Reverberation time, noted <span class="math notranslate nohighlight">\(T\)</span> (in s), is obtained from the slope of the decay <span class="math notranslate nohighlight">\(d\)</span> (or decay rate, in dB/s) of the sound energy, between the points located at <span class="math notranslate nohighlight">\(-5\)</span> dBand <span class="math notranslate nohighlight">\(-(5+L)\)</span> dB under steady state conditions (NF EN ISO 3382-1). The value of <span class="math notranslate nohighlight">\(L\)</span> is classically chosen at <span class="math notranslate nohighlight">\(30\)</span> (<span class="math notranslate nohighlight">\(T_{30}\)</span>) and <span class="math notranslate nohighlight">\(15\)</span> (<span class="math notranslate nohighlight">\(T15\)</span> or <span class="math notranslate nohighlight">\(RT15\)</span>). This L value can be set under I-Simpa. The slope of the decay <span class="math notranslate nohighlight">\(d\)</span> (or rate of decay) is determined by linear regression on the background integration of the quadratic IR:</p>
+<div class="math notranslate nohighlight">
+\[E(t)=\int_t^\infty p^2(\tau)\text{d}\tau.\]</div>
+<p>The reverberation time <span class="math notranslate nohighlight">\(T\)</span> is obtained using the follwing relation (in s):</p>
+<div class="math notranslate nohighlight">
+\[T=\frac{60}{d}.\]</div>
+</div>
+<div class="section" id="early-decay-time-edt">
+<h3>Early decay time <span class="math notranslate nohighlight">\(EDT\)</span><a class="headerlink" href="#early-decay-time-edt" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>Early decay time</strong>, noted <span class="math notranslate nohighlight">\(EDT\)</span> (in s), is obtained, like the classical reverberation time, by calculating the slope of the background integration decay curve of the quadratic IR, but this time corresponding to the first 10 decibels of the decay under the stationary state (between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(-10\)</span> dB).</p>
+</div>
+</div>
+<div class="section" id="clarity-and-intelligibility-parameters">
+<h2>Clarity and intelligibility parameters<a class="headerlink" href="#clarity-and-intelligibility-parameters" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="clarity-c">
+<h3>Clarity <span class="math notranslate nohighlight">\(C\)</span><a class="headerlink" href="#clarity-c" title="Permalink to this headline">¶</a></h3>
+<p><strong>Clarity</strong> <span class="math notranslate nohighlight">\(C\)</span> is obtained by calculating the ratio between the early energy
+(on the time intervals <span class="math notranslate nohighlight">\([0,t_e]\)</span>) and the late energy (on the time intervals <span class="math notranslate nohighlight">\([t_e,\infty]\)</span>). Time value <span class="math notranslate nohighlight">\(t_e\)</span> is defined as the early temporal limit, which is choosen as <span class="math notranslate nohighlight">\(50\)</span> ms (<span class="math notranslate nohighlight">\(C50\)</span>) or <span class="math notranslate nohighlight">\(80\)</span> ms
+(<span class="math notranslate nohighlight">\(C80\)</span>) (NF EN ISO 3382-1):</p>
+<div class="math notranslate nohighlight">
+\[C_{t_e}=10\log\frac{\int_0^{t_e} p^2(t)\text{d}t}{\int_{t_e}^\infty p^2(t)\text{d}t}.\]</div>
+<p>Within I-Simpa, early temporal limit <span class="math notranslate nohighlight">\(t_e\)</span> is a parameter.</p>
+</div>
+<div class="section" id="centre-time-t-s">
+<h3>Centre time <span class="math notranslate nohighlight">\(t_s\)</span><a class="headerlink" href="#centre-time-t-s" title="Permalink to this headline">¶</a></h3>
+<p><strong>Centre time</strong>, noted <span class="math notranslate nohighlight">\(t_S\)</span> (in s), is the centre of gravity of the quadratic IR (NF EN ISO 3382-1:2010):</p>
+<div class="math notranslate nohighlight">
+\[t_s=\frac{\int_0^\infty t\times p^2(t)\text{d}t}{\int_0^\infty p^2(t)\text{d}t}.\]</div>
+<p>If the time <span class="math notranslate nohighlight">\(t\)</span> is given in ms, thus, centre time <span class="math notranslate nohighlight">\(t_s\)</span>
+is also give in ms.</p>
+</div>
+<div class="section" id="definition-d">
+<h3>Definition <span class="math notranslate nohighlight">\(D\)</span><a class="headerlink" href="#definition-d" title="Permalink to this headline">¶</a></h3>
+<p><strong>Definition</strong>, noted <span class="math notranslate nohighlight">\(D\)</span> (in %), is the ratio between the early energy (on time interval <span class="math notranslate nohighlight">\([0,t_e]\)</span>) and the total energy
+(NF EN ISO 3382-1):</p>
+<div class="math notranslate nohighlight">
+\[D=100\times \frac{\int_0^{t_e} p^2(t)\text{d}t}{\int_{0}^\infty p^2(t)\text{d}t}.\]</div>
+<p><strong>Definition</strong> <span class="math notranslate nohighlight">\(D\)</span> can also be obtained the <strong>Clarity</strong> (for a time value <span class="math notranslate nohighlight">\(t_e\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[C_{t_e}=10\log \left( \frac{D_{t_e}}{1-D_{t_e}}\right).\]</div>
+<p>The value of <span class="math notranslate nohighlight">\(t_e\)</span> is classically taken as 50 ms (<span class="math notranslate nohighlight">\(D50\)</span>).</p>
+</div>
+</div>
+<div class="section" id="spatialisation-parameters">
+<h2>Spatialisation parameters<a class="headerlink" href="#spatialisation-parameters" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="apparent-source-width-asw">
+<h3>Apparent Source Width (ASW)<a class="headerlink" href="#apparent-source-width-asw" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="early-lateral-energy-fraction-lf">
+<h4>Early lateral energy fraction <span class="math notranslate nohighlight">\(LF\)</span><a class="headerlink" href="#early-lateral-energy-fraction-lf" title="Permalink to this headline">¶</a></h4>
+<p><strong>Lateral fraction</strong> noted <span class="math notranslate nohighlight">\(LF\)</span> (in %) or
+<span class="math notranslate nohighlight">\(J_{LF}\)</span> (linear) is obtained by considering the orientation of the observation point to the sound source:</p>
+<div class="math notranslate nohighlight">
+\[LF=100\times J_{LF}=100\times \frac{\int_{0.005}^{t_e} |\cos\theta|^2\times p^2(t)\text{d}t}{\int_{0}^{t_e} |\cos\theta|\times p^2(t)\text{d}t},\]</div>
+<p>where <span class="math notranslate nohighlight">\(\theta\)</span> refers to the angle between the axis normally passing between the two ears of a listener (perpendicular to the orientation of the receiver) and the source-receiver axis.</p>
+<p>The value of <span class="math notranslate nohighlight">\(t_e\)</span> is classically chosen at 80 ms (<span class="math notranslate nohighlight">\(LF80\)</span>), but can be parameterized in I-Simpa.</p>
+<p>The receiving point is normally oriented towards the center of the stage or towards each source position, so that this criterion favors above all the acoustic energy coming from lateral directions.</p>
+</div>
+<div class="section" id="lateral-energy-fraction-lfc">
+<h4>Lateral energy fraction <span class="math notranslate nohighlight">\(LFC\)</span><a class="headerlink" href="#lateral-energy-fraction-lfc" title="Permalink to this headline">¶</a></h4>
+<p>A weighting of the energy with the cosine of the angle, instead of
+square of the cosine (<span class="math notranslate nohighlight">\(LF\)</span>) is considered subjectively more
+(NF EN ISO 3382-1). One then also define the
+<strong>lateral energy fraction</strong> noted <span class="math notranslate nohighlight">\(LF\)</span> (in %) or
+<span class="math notranslate nohighlight">\(J_{LF}\)</span> (in linear) by the following relation:</p>
+<div class="math notranslate nohighlight">
+\[LFC=100\times J_{LFC}=100\times \frac{\int_{0.005}^{t_e} |\cos\theta|\times p^2(t)\text{d}t}{\int_{0}^{t_e} |\cos\theta|\times p^2(t)\text{d}t},\]</div>
+<p>The value of <span class="math notranslate nohighlight">\(t_e\)</span> is normally set to 80 ms (<span class="math notranslate nohighlight">\(LFC80\)</span>) but can be set under -Simpa. As with <span class="math notranslate nohighlight">\(LF\)</span>, the receiving point is normally oriented towards the center of the stage or towards each source position, so that this criterion favors above all the acoustic energy coming from lateral directions.</p>
+</div>
+</div>
+<div class="section" id="auditor-envelope-lev">
+<h3>Auditor Envelope (LEV)<a class="headerlink" href="#auditor-envelope-lev" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="late-lateral-sound-level">
+<h4>Late lateral sound level<a class="headerlink" href="#late-lateral-sound-level" title="Permalink to this headline">¶</a></h4>
+<p>In addition, the <strong>Late lateral sound level</strong>, noted <span class="math notranslate nohighlight">\(L_J\)</span> or <span class="math notranslate nohighlight">\(LG\)</span> in dB, is obtained by combining the <strong>Sound energy</strong> <span class="math notranslate nohighlight">\(G\)</span> and the <strong>Early lateral energy fraction</strong>. <span class="math notranslate nohighlight">\(LF\)</span> (NF EN ISO 3382-1):</p>
+<div class="math notranslate nohighlight">
+\[L_J=10\log \frac{\int_{t_e}^\infty |\cos^2\theta|\times p^2(t)\text{d}t}{\int_0^\infty p^2_{10\,m}(t)\text{d}t}.\]</div>
+<p>As for the <span class="math notranslate nohighlight">\(LF\)</span> and the <span class="math notranslate nohighlight">\(LFC\)</span>, the receiving point is normally oriented towards the center of the stage or towards each position source, so that this criterion favours above all the energy acoustics from lateral directions.</p>
+</div>
+</div>
+<div class="section" id="scene-criteria">
+<h3>Scene Criteria<a class="headerlink" href="#scene-criteria" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="early-stage-support-text-st-text-early">
+<h4>Early stage support <span class="math notranslate nohighlight">\(\text{ST}_\text{Early}\)</span><a class="headerlink" href="#early-stage-support-text-st-text-early" title="Permalink to this headline">¶</a></h4>
+<p>The <strong>Early stage support</strong> noted <span class="math notranslate nohighlight">\(\text{ST}_\text{Early}\)</span> (in dB) is
+the ratio of the energy reflected in the initial 0.1 s (100 ms) to the direct sound (including ground reflection) measured at a distance of 1 m from the
+acoustic center of an omnidirectional sound source, the others reflective surfaces and objects being located more than 2 m from the
+position of the observation point.</p>
+<div class="math notranslate nohighlight">
+\[\text{ST}_\text{Early}=10\log\frac{\int_{0.020}^{0.100} p^2(t)\text{d}t}{\int_{0}^{0.010} p^2(t)\text{d}t}\]</div>
+</div>
+</div>
+<div class="section" id="expected-values">
+<h3>Expected values<a class="headerlink" href="#expected-values" title="Permalink to this headline">¶</a></h3>
+<p>Table A.1 of the NF EN ISO 3382-1 standard proposes recommended values for most of these acoustic parameters, for
+concert halls and unoccupied multi-purpose halls up to 25000 m3:</p>
+<table border="1" class="docutils" id="id1">
+<caption><span class="caption-text">Expected values for few room acoustics parameters. From Table A.1 of the NF EN ISO 3382-1 standard.</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Parameter</th>
+<th class="head">Frequency range</th>
+<th class="head">Values</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><span class="math notranslate nohighlight">\(G\)</span></td>
+<td>500 à 1000 Hz</td>
+<td><span class="math notranslate nohighlight">\(-\)</span>2 to
+<span class="math notranslate nohighlight">\(+\)</span>10 dB</td>
+</tr>
+<tr class="row-odd"><td><span class="math notranslate nohighlight">\(EDT\)</span></td>
+<td>500 à 1000 Hz</td>
+<td>1 to 3 s</td>
+</tr>
+<tr class="row-even"><td><span class="math notranslate nohighlight">\(C80\)</span></td>
+<td>500 à 1000 Hz</td>
+<td><span class="math notranslate nohighlight">\(-\)</span>5 to
+<span class="math notranslate nohighlight">\(+\)</span>5 dB</td>
+</tr>
+<tr class="row-odd"><td><span class="math notranslate nohighlight">\(D50\)</span></td>
+<td>500 à 1000 Hz</td>
+<td>30 to70%</td>
+</tr>
+<tr class="row-even"><td><span class="math notranslate nohighlight">\(t_s\)</span></td>
+<td>500 à 1000 Hz</td>
+<td>60 to 260 ms</td>
+</tr>
+<tr class="row-odd"><td><span class="math notranslate nohighlight">\(LF\)</span> or
+<span class="math notranslate nohighlight">\(LFC\)</span></td>
+<td>125 à 1000 Hz</td>
+<td>5 to 35%</td>
+</tr>
+<tr class="row-even"><td><span class="math notranslate nohighlight">\(L_J\)</span></td>
+<td>125 à 1000 Hz</td>
+<td><span class="math notranslate nohighlight">\(-\)</span>14 to
+<span class="math notranslate nohighlight">\(+\)</span>1 dB</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="glossary.html" class="btn btn-neutral float-right" title="Glossary" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="I_Simpa_standard.html" class="btn btn-neutral float-left" title="Standards" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Université Gustave Eiffel
+      <span class="lastupdated">
+        Last updated on Dec 03, 2020.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

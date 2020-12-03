@@ -763,7 +763,7 @@ Since this probability is between :math:`0` and :math:`1`, the choice of angle :
 
 	It is important to note that other authors :cite:`burns1990,hodgson1991,lam1996,xiangyang2002` mention other relationships. The correct formulation depends on the angle convention. It is also possible that some of the relationships that are proposed may not be accurate.
 
-Normal reflection :math:`w^n`
+Normal reflection
 ''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 Physical description

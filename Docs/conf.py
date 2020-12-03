@@ -57,7 +57,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'I-Simpa'
-copyright = u'2019, Ifsttar'
+copyright = u'2020, Université Gustave Eiffel'
 author = u'Picaut J., Fortin N.'
 
 # The version info for the project you're documenting, acts as replacement for
