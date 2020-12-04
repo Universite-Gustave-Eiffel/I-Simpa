@@ -35,6 +35,7 @@
 #define __DIALOG_IMPORT_SCENE__
 
 #include <wx/dialog.h>
+#include <wx/choice.h>
 
 /*! \file customdlg.h
  *    @brief Boite de dialogue contenant un ou plusieurs champs de saisie
@@ -84,14 +85,17 @@ public:
 	 * L'utilisateur veut il executer l'operation de remaillage du modèle
 	 */
 	bool IsRemeshModel();
-
-
+	/**
+	 * @return model scale factor (0-n]
+	 */
+	float GetModelScale();
 private:
 	wxTextCtrl* txt_ParamMesh;
 	wxCheckBox* cb_TryToRepairMesh;
 	wxCheckBox* cb_TryToMeshSurface;
 	wxCheckBox* cb_KeepExistingFaceLinks;
 	wxCheckBox* cb_RemeshModel;
+	wxChoice* choice_ModelImportUnit;
 
 	wxString epsilonValue;
     DECLARE_EVENT_TABLE()

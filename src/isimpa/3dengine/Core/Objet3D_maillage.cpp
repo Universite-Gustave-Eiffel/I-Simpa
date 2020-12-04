@@ -31,7 +31,6 @@
 #include "GL/opengl_inc.h"
 #include "wx/log.h"
 #include "Objet3D.h"
-#include "ply.h"	// gestion du format PLY stanford
 #include "var.h"
 #include "data_manager/appconfig.h"
 #include <input_output/poly/poly.h> // gestion du format POLY tetgen
@@ -57,7 +56,6 @@ bool Vec3Contains(ivec3 &leftIndex,ivec3 &rightIndex)
 bool LoadNodeFile(vec4 UnitizeVar, vec3** tabNodes, unsigned long &nodes_mesh_size, const std::string& nodeFilePath)
 {
 	using namespace std;
-	using namespace formatPLY;
 
 	if(!wxFileExists(nodeFilePath))
 		return false;
@@ -119,7 +117,6 @@ bool LoadEleFile(tetrahedre** tabTetra, unsigned long &tabTetraSize, wxString te
     //Reset total volume
 	ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.volScene=0;
 	using namespace std;
-	using namespace formatPLY;
 
 	if(!wxFileExists(tetraFilePath))
 		return false;
@@ -196,7 +193,6 @@ struct t_sommet
 bool LoadFaceListe(std::vector<ivec3>& tabFace, wxString faceFilePath)
 {
 	using namespace std;
-	using namespace formatPLY;
 
 	if(!wxFileExists(faceFilePath))
 		return false;
@@ -245,7 +241,6 @@ bool LoadFaceListe(std::vector<ivec3>& tabFace, wxString faceFilePath)
 bool LoadFaceFile(tetrahedre** tabTetra, unsigned long &tabTetraSize, wxString faceFilePath,unsigned long nbNodes)
 {
 	using namespace std;
-	using namespace formatPLY;
 
 	if(!wxFileExists(faceFilePath))
 		return false;
@@ -329,7 +324,6 @@ bool LoadFaceFile(tetrahedre** tabTetra, unsigned long &tabTetraSize, wxString f
 bool LoadNeighFile(tetrahedre** tabTetra, unsigned long &tabTetraSize, wxString faceFilePath)
 {
 	using namespace std;
-	using namespace formatPLY;
 
 	if(!wxFileExists(faceFilePath))
 		return false;

@@ -64,8 +64,6 @@ set(3DENGINE_CORE_SOURCES
     3dengine/Core/bin.h
     3dengine/Core/mesh.cpp
     3dengine/Core/mesh.h
-    3dengine/Core/ply.cpp
-    3dengine/Core/ply.h
     3dengine/Core/stl.cpp
     3dengine/Core/stl.hpp
     3dengine/Core/var.cpp
@@ -371,7 +369,7 @@ source_group( "" FILES ${ISIMPA_SOURCES} )
 
 # Build auto-generated source files
 # Find package for generation
-FIND_PACKAGE(PythonInterp 3.8 REQUIRED)
+FIND_PACKAGE(PythonInterp 3.8 EXACT REQUIRED)
 
 # Ask make to call python in order to use element.h to produce enum_def.cpp
 ADD_CUSTOM_COMMAND(
