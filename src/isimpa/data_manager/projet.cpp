@@ -1002,7 +1002,7 @@ void ProjectManager::ImportMaterialCatt(wxString fromFile)
 	//Attention utilisations d'expressions régulières ( mal de tête en perspective ), mot clé: regex
 
 	//Fonctionne quelque soit le nombre de bande de frequence
-	wxRegEx generalMatHeader(wxT("(.*) = <(([0-9]* ?)*)>( L )?(<(([0-9]* ?)*)>)?"));
+	wxRegEx generalMatHeader(wxT("(.*) = <((( ?[+-]?([0-9]*[.])?[0-9]+) ?)*)>( L )?(<((( ?[+-]?([0-9]*[.])?[0-9]+) ?)*)>)?( {([0-9]+) ([0-9]+) ([0-9]+)})?"));
 
 	wxRegEx matInfos(wxT("(.*):(.*)"));
 
@@ -1023,9 +1023,16 @@ void ProjectManager::ImportMaterialCatt(wxString fromFile)
 			if(generalMatHeader.Matches(ligne))
 			{
 				E_Scene_Bdd_Materiaux_User_Group* nouvGroup=nvGroup;
+				// list regex values
+				for(int i=0;i<generalMatHeader.GetMatchCount(); i++) {
+				  wxLogDebug(_("Regex %d %s"), i, generalMatHeader.GetMatch(ligne, i));
+				}
 				wxString absName= generalMatHeader.GetMatch(ligne,1);
 				wxString chaineAbsorption=generalMatHeader.GetMatch(ligne,2);
 				wxString chaineDiffusion=generalMatHeader.GetMatch(ligne,6);
+				wxString red = generalMatHeader.GetMatch(ligne, 13);
+				wxString green = generalMatHeader.GetMatch(ligne, 14);
+				wxString blue = generalMatHeader.GetMatch(ligne, 15);
 
 				wxArrayString tabAbs;
 				wxArrayString tabDiff;
@@ -1080,6 +1087,15 @@ void ProjectManager::ImportMaterialCatt(wxString fromFile)
 				//Maj des propriétés du matériau
 				importedMaterial->UpdateDescriptionValue(descriptionMat);
 				importedMaterial->UpdateReferenceValue(referenceMat);
+				if(!red.IsEmpty() && !green.IsEmpty() && !blue.IsEmpty()) {
+					Element* renderElement = importedMaterial->GetElementByType(Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_MATERIAU_RENDER);
+					if(renderElement != NULL) {
+						E_Data_Color* color = (E_Data_Color*)(renderElement->GetElementByLibelle("mat_color"));
+						if(color != NULL) {
+							color->SetValue(wxColour(wxAtoi(red), wxAtoi(green), wxAtoi(blue)));
+						}
+					}
+				}
 
 				if(tabAbs.size()>=6)
 				{
@@ -1182,12 +1198,11 @@ void ProjectManager::ImportMaterialCatt(wxString fromFile)
 				}
 				wxLogMessage(_("Importation of material %s"),absName);
 				mainFrame->Update();
-				ligne=lecteur.GetLine();
 			}else{
-				ligne=lecteur.GetLine();
+				ligne=lecteur.GetLine(); // skip unknown line format
 			}
 		}else{
-			ligne=lecteur.GetLine();
+			ligne=lecteur.GetLine(); // skip comment
 		}
 	}
 
