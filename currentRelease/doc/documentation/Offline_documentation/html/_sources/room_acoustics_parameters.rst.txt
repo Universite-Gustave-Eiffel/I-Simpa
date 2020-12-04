@@ -23,7 +23,7 @@ where :math:`p_0=20\times10^{-6}` Pa is the reference acoustics pressure.
 Sound strength :math:`G` (single sound source)
 ------------------------------------------------
 
-The **Soud strength**, noted :math:`G` (in dB), is the logarithmic ratio of the acoustic energy of the IR obtained at the point of measurement, to that equal to a distance of 10 m from the sound source (NF EN ISO 3382-1):
+The **Sound strength**, noted :math:`G` (in dB), is the logarithmic ratio of the acoustic energy of the IR obtained at the point of measurement, to that equal to a distance of 10 m from the sound source (NF EN ISO 3382-1):
 
 .. math:: G=10\log \frac{\int_0^\infty p^2(t)\text{d}t}{\int_0^\infty p^2_{10\,m}(t)\text{d}t},
 

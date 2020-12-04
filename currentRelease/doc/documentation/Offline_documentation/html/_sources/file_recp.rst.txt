@@ -50,7 +50,7 @@ Several parameters can be given by the user in order to calculate user-values of
 - Reverberation time: fix the value of the sound level limit of integration, usually 30dB
 
 .. tip::
-	Multiple calculations are allowed for each paremeter, by using the semicolon ';' bewteen parameters.
+	Multiple calculations are allowed for each paremeter, by using the semicolon ';' between parameters.
 
 After the calculation parameters, two files are created in the corresponding folder:
 
