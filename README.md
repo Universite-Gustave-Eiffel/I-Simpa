@@ -6,6 +6,7 @@
 <IMG SRC="https://github.com/Ifsttar/I-Simpa/blob/master/Docs/images/I-Simpa-logo.jpg" WIDTH=400 ALT="I-Simpa logo" TITLE="I-Simpa logo">|
 
 
+
 * **For general information**, [visit the offical I-Simpa website](http://i-simpa.ifsttar.fr)
 * **For using I-Simpa**, see [the Online User Guide](http://i-simpa-wiki.readthedocs.io/en/latest/)
 * **For build instructions**, see [the instructions](https://github.com/Ifsttar/I-Simpa/blob/master/Docs/Building.md)
