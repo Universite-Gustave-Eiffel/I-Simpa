@@ -66,11 +66,7 @@ The second step is to affect one material for each main faces. Here, we will con
 
 	Instead of using the 'Face selection' mode, you can create 2 new groups ('Floor' and 'Ceiling' for example), select the corresponding surfaces within the 'Group' folder and send them to a new face group. You can also directly move the corresponding surfaces to their corresponding surfaces group using the pointer.
 
-
-6. Once the surface groups are defined, **Left click** on a group and select a material in the Material list element in the Properties windows. Repeat the procedure for each surface group, with the following material (for example):
-	- Ceiling: '30% absorbing'
-	- Floor: '10% absorbing'
-	- Walls: '20% absorbing'
+6. Once the surface groups are defined, **Left click** on a group and select a material in the Material list element in the Properties windows. Repeat the procedure for each surface group, with the following material (for example): Ceiling: '30% absorbing', Floor: '10% absorbing', Walls: '20% absorbing'
 
 Define a sound source
 ^^^^^^^^^^^^^^^^^^^^^^

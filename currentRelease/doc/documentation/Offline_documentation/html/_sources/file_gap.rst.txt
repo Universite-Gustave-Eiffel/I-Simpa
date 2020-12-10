@@ -21,4 +21,4 @@ Several parameters can be given by the user in order to calculate user-values of
 - LFC: fix the value of the temporal limit of integration, usually 80 ms
 
 .. tip::
-	Multiple calculations are allowed for each paremeter, by using the semicolon ';' bewteen parameters.
+	Multiple calculations are allowed for each paremeter, by using the semicolon ';' between parameters.

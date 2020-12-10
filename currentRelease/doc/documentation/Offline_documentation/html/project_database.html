@@ -148,6 +148,7 @@
 <p class="caption"><span class="caption-text">Appendices</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="I_Simpa_standard.html">Standards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="room_acoustics_parameters.html">Room acoustics parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
@@ -368,8 +369,8 @@ Copy/Paste is also possible for folder.</p>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>‘Scattering’</dt>
-<dd><p class="first last">Scattering coefficient of the material (real value between 0 and 1).</p>
+<dt>‘Diffusion’</dt>
+<dd><p class="first last">Scattering coefficient of the material in order to model wall diffusion (real value between 0 and 1).</p>
 </dd>
 </dl>
 </li>
@@ -387,7 +388,9 @@ Copy/Paste is also possible for folder.</p>
 </li>
 <li><dl class="first docutils">
 <dt>‘Diffusion law’</dt>
-<dd><p class="first">Reflection law for the diffuse part of the reflection;</p>
+<dd><blockquote class="first">
+<div><p>Reflection law for the diffuse part of the reflection;</p>
+</div></blockquote>
 <ul class="last simple">
 <li><dl class="first docutils">
 <dt>‘Lambert’</dt>
@@ -434,10 +437,10 @@ Copy/Paste is also possible for folder.</p>
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p><strong>Absorption and transmission loss are linked together</strong>. Since transmission is a part of the absorption, the transmission loss can not larger than the absorption coefficient. For example, for a given absorption coefficient of 0.2, the transmission loss must be smaller than 20 dB (i.e. 0.2=10^(20/10)).</p>
+<p><strong>Absorption and transmission loss are linked together</strong>. Since transmission is a part of the absorption (<span class="math notranslate nohighlight">\(\alpha=\beta+\tau\)</span>, see for example <a class="reference external" href="code_SPPS_modelling.html#acoustic-transmission-modelling">SPPS documentation</a>), the transmission coefficient <span class="math notranslate nohighlight">\(\tau\)</span> can not be larger than the absorption coefficient <span class="math notranslate nohighlight">\(\alpha\)</span>. For example, for a given absorption coefficient of <span class="math notranslate nohighlight">\(\alpha=0.2\)</span>, the transmission loss TL (<span class="math notranslate nohighlight">\(TL=-10\log\tau\)</span>) must be greater or equal than 7 dB (<em>i.e.</em> <span class="math notranslate nohighlight">\(TL \geq -10 \log \alpha=-10 \log 0.2 \approx 7\)</span> dB.</p>
 <ul class="last simple">
-<li>If the transmission loss value is larger than the given absorption, the absorption coefficient is automatically adjusted.</li>
-<li>If the absorption coefficient is changed, the transmission loss can be automatically adjusted if necessary.</li>
+<li>If the transmission coefficient (<span class="math notranslate nohighlight">\(\tau=10^(-TL/10)\)</span>) value is larger than the possible absorption, the absorption coefficient is automatically adjusted.</li>
+<li>If the absorption coefficient is changed, the transmission loss <span class="math notranslate nohighlight">\(TL=-10\log\tau\)</span> can be automatically adjusted if necessary.</li>
 </ul>
 </div>
 </div>
@@ -484,9 +487,9 @@ Copy/Paste is also possible for folder.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Ifsttar
+        &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Oct 08, 2019.
+        Last updated on Dec 03, 2020.
       </span>
 
     </p>

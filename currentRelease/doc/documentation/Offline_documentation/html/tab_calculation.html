@@ -133,6 +133,7 @@
 <p class="caption"><span class="caption-text">Appendices</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="I_Simpa_standard.html">Standards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="room_acoustics_parameters.html">Room acoustics parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
@@ -296,8 +297,8 @@
 <p>Within I-Simpa, TetGen can be paramatrized:</p>
 <ul>
 <li><dl class="first docutils">
-<dt>‘debugmode’</dt>
-<dd><p class="first">Check/uncheck for activate the debug mode of TetGen;</p>
+<dt>‘Test mesh topology’</dt>
+<dd><p class="first">Check/uncheck for activate the debug mode of TetGen (debug mode).</p>
 <div class="last admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">With the debug mode, the meshing is not realized.</p>
@@ -306,50 +307,50 @@
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>‘minratio’</dt>
+<dt>‘Additional parameters’</dt>
+<dd><p class="first last">Add parameters to the TetGen default parameters.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Radius/Edge ratio’</dt>
 <dd><p class="first last">Defines the ratio between the radius of the sphere that would contain a mesh and the lenght of the mesh. This parameter could be useful in order to avoid long meshes.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>‘userdefineparams’</dt>
-<dd><p class="first last">Defines new parameters by replacing default parameters.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>‘appendparams’</dt>
-<dd><p class="first last">Add parameters to the dafault parameters.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>‘preprocess’</dt>
+<dt>‘Scene correction before meshing’</dt>
 <dd><p class="first last">Check/uncheck for trying to repair the 3D scene if possible.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>‘maxvol’</dt>
-<dd><p class="first last">Maximun accepted value of a mesh volume (m3). The value can be modified only if the ‘ismaxvol’ parameter is check.</p>
+<dt>‘User-defined paramters’</dt>
+<dd><p class="first last">Defines new parameters by replacing default parameters.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>‘ismaxvol’</dt>
-<dd><p class="first last">Check/uncheck for using a given maximum value of the mesh volume ‘maxvol’.</p>
+<dt>‘Surface receiver constraint’.</dt>
+<dd><p class="first last">Check/uncheck for using a given value of the mesh surface ‘Surface receiver constraint (m²)’.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>‘constraintrecepteurss’</dt>
-<dd><p class="first last">Maximun accepted value of the mesh surface (m2) for a surface receiver. The value can be modified only if the ‘isareaconstraint’ parameter is checked.</p>
+<dt>‘Surface receiver constraint (m²)’</dt>
+<dd><p class="first last">Maximun accepted value of the mesh surface (m²) for a surface receiver. The value can be modified only if the ‘Surface receiver constraint’ parameter is checked.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>‘isareaconstraint’.</dt>
-<dd><p class="first last">Check/uncheck for using a given value of the mesh surface ‘constraintrecepteurss’.</p>
+<dt>‘Volume constraint’</dt>
+<dd><p class="first last">Check/uncheck for using a given maximum value of the mesh volume ‘Volume constraint (m3)’.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Volume constraint (m3)’</dt>
+<dd><p class="first last">Maximun accepted value of a mesh volume (m3). The value can be modified only if the ‘Volume constraint’ parameter is checked.</p>
 </dd>
 </dl>
 </li>
@@ -530,8 +531,8 @@
 <p>Within I-Simpa, TetGen can be paramatrized:</p>
 <ul>
 <li><dl class="first docutils">
-<dt>‘debugmode’</dt>
-<dd><p class="first">Check/uncheck for activate the debug mode of TetGen;</p>
+<dt>‘Test mesh topology’</dt>
+<dd><p class="first">Check/uncheck for activate the debug mode of TetGen (debug mode).</p>
 <div class="last admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">With the debug mode, the meshing is not realized.</p>
@@ -540,50 +541,50 @@
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>‘minratio’</dt>
+<dt>‘Additional parameters’</dt>
+<dd><p class="first last">Add parameters to the TetGen default parameters.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Radius/Edge ratio’</dt>
 <dd><p class="first last">Defines the ratio between the radius of the sphere that would contain a mesh and the lenght of the mesh. This parameter could be useful in order to avoid long meshes.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>‘userdefineparams’</dt>
-<dd><p class="first last">Defines new parameters by replacing default parameters.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>‘appendparams’</dt>
-<dd><p class="first last">Add parameters to the dafault parameters.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>‘preprocess’</dt>
+<dt>‘Scene correction before meshing’</dt>
 <dd><p class="first last">Check/uncheck for trying to repair the 3D scene if possible.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>‘maxvol’</dt>
-<dd><p class="first last">Maximun accepted value of a mesh volume (m3). The value can be modified only if the ‘ismaxvol’ parameter is check.</p>
+<dt>‘User-defined paramters’</dt>
+<dd><p class="first last">Defines new parameters by replacing default parameters.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>‘ismaxvol’</dt>
-<dd><p class="first last">Check/uncheck for using a given maximum value of the mesh volume ‘maxvol’.</p>
+<dt>‘Surface receiver constraint’.</dt>
+<dd><p class="first last">Check/uncheck for using a given value of the mesh surface ‘Surface receiver constraint (m²)’.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>‘constraintrecepteurss’</dt>
-<dd><p class="first last">Maximun accepted value of the mesh surface (m2) for a surface receiver. The value can be modified only if the ‘isareaconstraint’ parameter is checked.</p>
+<dt>‘Surface receiver constraint (m²)’</dt>
+<dd><p class="first last">Maximun accepted value of the mesh surface (m²) for a surface receiver. The value can be modified only if the ‘Surface receiver constraint’ parameter is checked.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>‘isareaconstraint’.</dt>
-<dd><p class="first last">Check/uncheck for using a given value of the mesh surface ‘constraintrecepteurss’.</p>
+<dt>‘Volume constraint’</dt>
+<dd><p class="first last">Check/uncheck for using a given maximum value of the mesh volume ‘Volume constraint (m3)’.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Volume constraint (m3)’</dt>
+<dd><p class="first last">Maximun accepted value of a mesh volume (m3). The value can be modified only if the ‘Volume constraint’ parameter is checked.</p>
 </dd>
 </dl>
 </li>
@@ -652,9 +653,9 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Ifsttar
+        &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Oct 08, 2019.
+        Last updated on Dec 03, 2020.
       </span>
 
     </p>
