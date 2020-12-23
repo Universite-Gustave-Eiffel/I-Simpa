@@ -122,8 +122,7 @@ BEGIN_EVENT_TABLE(MainUiFrame, wxFrame)
 	//EVT_MENU(ID_Help_Forum, MainUiFrame::OnLinkWebForum)
 	EVT_MENU(ID_Help_Web, MainUiFrame::OnLinkWebIsimpa)
 	EVT_MENU(ID_Help_Doc, MainUiFrame::OnLinkWebDoc)
-	EVT_MENU(ID_Help_Doc_Isimpa_Pdf, MainUiFrame::OnFileIsimpaDoc)
-	EVT_MENU(ID_Help_Doc_Spps_Pdf, MainUiFrame::OnFileSppsDoc)
+	EVT_MENU(ID_Help_Offline_Doc, MainUiFrame::OnLinkOfflineDoc)
 	//VT_MENU(ID_changeLanguage, MainUiFrame::OnChangeLanguage)
 END_EVENT_TABLE()
 
@@ -306,9 +305,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	aide_menu->Append(ID_Help_Web, _("Website"));
 	//aide_menu->Append(ID_Help_Forum, _("Online forums"));
 	aide_menu->Append(ID_Help_Doc, _("Online documentation"));
-	aide_menu->AppendSeparator();
-	aide_menu->Append(ID_Help_Doc_Isimpa_Pdf, _("I-Simpa documentation (PDF in French)"));
-	aide_menu->Append(ID_Help_Doc_Spps_Pdf, _("SPPS documentation (PDF in French)"));
+	aide_menu->Append(ID_Help_Offline_Doc, _("Offline documentation"));
 	aide_menu->AppendSeparator();
 	aide_menu->Append(ID_Help_About, _("About ")+APPLICATION_NAME);
 
@@ -880,20 +877,17 @@ void MainUiFrame::OnLinkWebIsimpa(wxCommandEvent& event)
 {
 	wxLaunchDefaultBrowser("http://i-simpa.ifsttar.fr/");
 }
+
 void MainUiFrame::OnLinkWebDoc(wxCommandEvent& event)
 {
 	wxLaunchDefaultBrowser("http://i-simpa-wiki.readthedocs.io");
 }
 
-void MainUiFrame::OnFileIsimpaDoc(wxCommandEvent& event)
+
+void MainUiFrame::OnLinkOfflineDoc(wxCommandEvent& event)
 {
-	wxString docpath = ApplicationConfiguration::getResourcesFolder()+wxString("doc")+wxFileName::GetPathSeparator()+wxString("documentation")+wxFileName::GetPathSeparator()+"manuel_I_Simpa.pdf";
-	wxLaunchDefaultApplication(docpath);
-}
-void MainUiFrame::OnFileSppsDoc(wxCommandEvent& event)
-{
-	wxString docpath = ApplicationConfiguration::getResourcesFolder()+wxString("doc")+wxFileName::GetPathSeparator()+wxString("documentation")+wxFileName::GetPathSeparator()+"SPPS_manuel.pdf";
-	wxLaunchDefaultApplication(docpath);
+	wxString docpath = wxString("file://") + ApplicationConfiguration::getResourcesFolder() + wxString("doc") + wxFileName::GetPathSeparator() + wxString("documentation") + wxFileName::GetPathSeparator() + wxString("Offline_documentation") + wxFileName::GetPathSeparator() + wxString("html") + wxFileName::GetPathSeparator() + wxString("index.html");
+	wxLaunchDefaultBrowser(docpath);
 }
 
 void MainUiFrame::OnOpenFile (wxCommandEvent & event)

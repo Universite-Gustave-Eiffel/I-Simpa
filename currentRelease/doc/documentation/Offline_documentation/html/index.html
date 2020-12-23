@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,28 +11,29 @@
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="I-Simpa overview" href="I_Simpa_overview.html" /> 
@@ -50,7 +50,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> I-Simpa
+            <a href="#" class="icon icon-home" alt="Documentation Home"> I-Simpa
           
 
           
@@ -77,6 +77,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -142,6 +143,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -180,7 +182,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="#">Docs</a> &raquo;</li>
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
         
       <li>I-Simpa User Guide</li>
     
@@ -214,33 +216,33 @@ and building acoustics, environmental noise and industrial noise, but it can be 
 <p>This is the <strong>official I-Simpa User Guide</strong>, including the SPPS and
 the TCR numerical codes (embedded within the I-Simpa software).</p>
 <ul class="simple">
-<li>for <strong>more information</strong> on I-Simpa, <a class="reference external" href="http://i-simpa.ifsttar.fr">visit the offical I-Simpa
-website</a></li>
-<li>for <strong>contributing to I-Simpa</strong> from the source code, follows the
-<a class="reference external" href="https://github.com/Ifsttar/I-Simpa/wiki">instructions</a></li>
-<li>for <strong>contacting the development team</strong> uses the email:
-<a class="reference external" href="mailto:i-simpa&#37;&#52;&#48;ifsttar&#46;fr">i-simpa<span>&#64;</span>ifsttar<span>&#46;</span>fr</a></li>
+<li><p>for <strong>more information</strong> on I-Simpa, <a class="reference external" href="http://i-simpa.ifsttar.fr">visit the offical I-Simpa
+website</a></p></li>
+<li><p>for <strong>contributing to I-Simpa</strong> from the source code, follows the
+<a class="reference external" href="https://github.com/Ifsttar/I-Simpa/wiki">instructions</a></p></li>
+<li><p>for <strong>contacting the development team</strong> uses the email:
+<a class="reference external" href="mailto:i-simpa&#37;&#52;&#48;ifsttar&#46;fr">i-simpa<span>&#64;</span>ifsttar<span>&#46;</span>fr</a></p></li>
 </ul>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<ul class="last simple">
-<li>The guide is currently not complete. Additions are underway.</li>
-<li>If the present documentation is the ‘Offline documentation’ you may refer to the online version at <a class="reference external" href="http://i-simpa-wiki.readthedocs.io/en/latest/">http://i-simpa-wiki.readthedocs.io/en/latest/</a> for an up-to-date documentation.</li>
+<p class="admonition-title">Important</p>
+<ul class="simple">
+<li><p>The guide is currently not complete. Additions are underway.</p></li>
+<li><p>If the present documentation is the ‘Offline documentation’ you may refer to the online version at <a class="reference external" href="http://i-simpa-wiki.readthedocs.io/en/latest/">http://i-simpa-wiki.readthedocs.io/en/latest/</a> for an up-to-date documentation.</p></li>
 </ul>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<ul class="last simple">
-<li>Some illustrations may referred to previous versions of I-Simpa.</li>
-<li>Depending of your OS, screenchots may differs.</li>
-<li>Some texts and translations in I-Simpa may have changed.</li>
-<li>If you observe some mistakes or errors, please contact us at <a class="reference external" href="mailto:i-simpa&#37;&#52;&#48;ifsttar&#46;fr">i-simpa<span>&#64;</span>ifsttar<span>&#46;</span>fr</a>.</li>
-<li>You can also <a class="reference external" href="https://github.com/Ifsttar/I-Simpa/wiki/Write-documentation">contribute to the documentation</a>.</li>
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Some illustrations may referred to previous versions of I-Simpa.</p></li>
+<li><p>Depending of your OS, screenchots may differs.</p></li>
+<li><p>Some texts and translations in I-Simpa may have changed.</p></li>
+<li><p>If you observe some mistakes or errors, please contact us at <a class="reference external" href="mailto:i-simpa&#37;&#52;&#48;ifsttar&#46;fr">i-simpa<span>&#64;</span>ifsttar<span>&#46;</span>fr</a>.</p></li>
+<li><p>You can also <a class="reference external" href="https://github.com/Ifsttar/I-Simpa/wiki/Write-documentation">contribute to the documentation</a>.</p></li>
 </ul>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The official documentation is available in English only.</p>
+<p class="admonition-title">Note</p>
+<p>The official documentation is available in English only.</p>
 </div>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">I-Simpa Presentation</span></p>
@@ -429,7 +431,7 @@ website</a></li>
 <div class="section" id="indices-and-tables">
 <h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 </ul>
 </div>
 </div>
@@ -452,14 +454,22 @@ website</a></li>
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Dec 04, 2020.
+        Last updated on Dec 23, 2020.
       </span>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -470,7 +480,6 @@ website</a></li>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
