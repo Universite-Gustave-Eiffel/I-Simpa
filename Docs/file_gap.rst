@@ -1,7 +1,7 @@
 Punctual receiver file `.gap`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In addition to classical room acoustics parameters, some *advanced* parameters are also calculated, and displayed in the 'Advanced sound level' file. This file display the temporal evolution of the impulse response, for each frequency band, as a data table, weihgted by :math:`cos theta` (LFC and LG) and :math:`cos^2 theta` (LF and LG).
+In addition to classical room acoustics parameters, some *advanced* parameters are also calculated, and displayed in the 'Advanced sound level' file. This file display the temporal evolution of the impulse response, for each frequency band, as a data table, weihgted by :math:`\cos \theta` (LFC and LG) and :math:`\cos^2 \theta` (LF and LG).
 
 The contextual menu that is associated to this file allows to calculate several room acoustic parameters:
 
@@ -21,4 +21,4 @@ Several parameters can be given by the user in order to calculate user-values of
 - LFC: fix the value of the temporal limit of integration, usually 80 ms
 
 .. tip::
-	Multiple calculations are allowed for each paremeter, by using the semicolon ';' bewteen parameters.
+	Multiple calculations are allowed for each paremeter, by using the semicolon ';' between parameters.

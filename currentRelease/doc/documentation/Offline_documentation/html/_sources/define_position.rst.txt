@@ -1,7 +1,7 @@
 Define a position using the pointer on the 3D view
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-Many elements of the three 'Data' require to define a 'Position' (x,y,z) in the 3D geometry. Data can be defined:
+Many elements of the tree 'Data' require to define a 'Position' (x,y,z) in the 3D geometry. Data can be defined:
 
 - by filling the corresponding cells (x, y and z) in the corresponding 'Properties' window;
 - by using the pointer. In this last case, user has to point the 'Position' element with the pointer in the tree:

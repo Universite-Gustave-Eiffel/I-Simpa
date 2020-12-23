@@ -34,11 +34,13 @@ extensions = [
     'sphinx.ext.doctest',
     'sphinx.ext.intersphinx',
     'sphinx.ext.coverage',
-	'sphinx.ext.mathjax',
+    'sphinx.ext.mathjax',
+    'sphinxcontrib.bibtex',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['ytemplates']
+mathjax_path = 'MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js'
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -55,7 +57,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'I-Simpa'
-copyright = u'2019, Ifsttar'
+copyright = u'2020, Université Gustave Eiffel'
 author = u'Picaut J., Fortin N.'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -181,7 +183,7 @@ html_static_path = ['ystatic']
 # bottom, using the given strftime format.
 # The empty string is equivalent to '%b %d, %Y'.
 #
-# html_last_updated_fmt = None
+html_last_updated_fmt = ''
 
 # If true, SmartyPants will be used to convert quotes and dashes to
 # typographically correct entities.
