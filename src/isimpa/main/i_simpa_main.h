@@ -207,8 +207,7 @@ class MainUiFrame : public wxFrame
 			ID_Help_About,
 			//ID_Help_Forum,
 			ID_Help_Doc,
-			ID_Help_Doc_Isimpa_Pdf,
-			ID_Help_Doc_Spps_Pdf,
+            ID_Help_Offline_Doc,
 			ID_Help_Web
 		};
 
@@ -312,8 +311,7 @@ class MainUiFrame : public wxFrame
 		void OnShowAboutDialog(wxCommandEvent& event);
 		void OnLinkWebIsimpa(wxCommandEvent& event);
 		void OnLinkWebDoc(wxCommandEvent& event);
-		void OnFileIsimpaDoc(wxCommandEvent& event);
-		void OnFileSppsDoc(wxCommandEvent& event);
+		void OnLinkOfflineDoc(wxCommandEvent& event);
 		void OnChangeLanguage(wxCommandEvent& event);
         void OnChangeAppData(wxCommandEvent &event);
 		void OnShowPreferenceTree(wxCommandEvent& event);

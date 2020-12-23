@@ -10,7 +10,7 @@ This tab allows to choose and to define the acoustic calculation. This tab conta
 	This code is based on a particle tracing method, in respect with the geometrical and energetical hypothesis. This code can be applied in most of situations in room acoustics, as well as in open field, including urban area.
 
 .. important::
-	
+
 	Read the corresponding documentation before using these codes.
 
 
@@ -18,4 +18,6 @@ This tab allows to choose and to define the acoustic calculation. This tab conta
 
 .. include:: code_configuration_TCR.rst
 
+.. include:: code_configuration_run.rst
 
+.. include:: code_configuration_job.rst

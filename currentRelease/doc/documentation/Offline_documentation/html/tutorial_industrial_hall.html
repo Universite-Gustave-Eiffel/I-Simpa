@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,51 +11,47 @@
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
   
   
   
 
   
-
-  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="I-Simpa 1.3.4 documentation" href="index.html"/>
-        <link rel="next" title="Standards" href="I_Simpa_standard.html"/>
-        <link rel="prev" title="Study of the Elmia hall" href="tutorial_Elmia_hall.html"/> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="(Un)Setup" href="setup.html" />
+    <link rel="prev" title="Study of the Elmia hall" href="tutorial_Elmia_hall.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
-            <a href="index.html" class="icon icon-home"> I-Simpa
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> I-Simpa
           
 
           
@@ -83,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -90,16 +86,39 @@
               
             
             
-              <p class="caption"><span class="caption-text">I-Simpa User Interface</span></p>
+              <p class="caption"><span class="caption-text">I-Simpa Presentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="I_Simpa_overview.html">I-Simpa overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="I_Simpa_overview.html#i-simpa-features">I-Simpa features</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tutorial_teaching_room.html">Study of a teaching room</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_Elmia_hall.html">Study of the Elmia hall</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Study of an industrial room</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#import-a-geometry">Import a geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#define-a-machine-as-a-sound-source">Define a machine as a sound source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#duplicate-the-machine">Duplicate the machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#define-a-scene-volume-as-a-fitting-zone">Define a scene volume as a fitting zone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#define-a-parallelipipedic-volume-as-a-fitting-zone">Define a parallelipipedic volume as a fitting zone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#define-surface-materials">Define surface materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#insert-a-line-of-punctual-receivers">Insert a line of punctual receivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#define-a-plane-receiver">Define a plane receiver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spps-calculation">SPPS calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#evaluate-the-effect-of-changing-one-surface-material">Evaluate the effect of changing one surface material</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">I-Simpa User Interface</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="setup.html">(Un)Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="presentation.html">GUI Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="menus.html">Menus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="toolbars.html">Toolbars</a></li>
-<li class="toctree-l1"><a class="reference internal" href="project_window.html">&#8216;Project&#8217; window</a></li>
-<li class="toctree-l1"><a class="reference internal" href="properties_window.html">&#8216;Properties&#8217; window</a></li>
-<li class="toctree-l1"><a class="reference internal" href="console_window.html">&#8216;Console&#8217; window</a></li>
-<li class="toctree-l1"><a class="reference internal" href="main_windows.html">&#8216;Main&#8217; window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_window.html">‘Project’ window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="properties_window.html">‘Properties’ window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console_window.html">‘Console’ window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main_windows.html">‘Main’ window</a></li>
 <li class="toctree-l1"><a class="reference internal" href="project_database.html">Project database</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Thematics</span></p>
@@ -114,41 +133,37 @@
 <li class="toctree-l1"><a class="reference internal" href="create_charts.html">Creating charts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="create_charts.html#chart-options">Chart Options</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Tutorials</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="tutorial_teaching_room.html">Study of a teaching room</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial_Elmia_hall.html">Study of the Elmia hall</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Study of an industrial room</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#import-a-geometry">Import a geometry</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#define-a-machine-as-a-sound-source">Define a machine as a sound source</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#duplicate-the-machine">Duplicate the machine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#define-a-scene-volume-as-a-fitting-zone">Define a scene volume as a fitting zone</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#define-a-parallelipipedic-volume-as-a-fitting-zone">Define a parallelipipedic volume as a fitting zone</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#define-surface-materials">Define surface materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#insert-a-lne-of-punctual-receivers">Insert a lne of punctual receivers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#define-a-surface-receiver">Define a surface receiver</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#spps-calculation">SPPS calculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#compare-two-simulations">Compare two simulations</a></li>
+<p class="caption"><span class="caption-text">SPPS Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in <strong>SPPS</strong></a></li>
 </ul>
-</li>
+<p class="caption"><span class="caption-text">TCR Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="code_TCR.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_configuration_TCR.html">Using TCR within I-Simpa</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Appendices</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="I_Simpa_standard.html">Standards</a></li>
-<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="room_acoustics_parameters.html">Room acoustics parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
 
             
           
         </div>
+        
       </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">I-Simpa</a>
@@ -156,9 +171,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -179,7 +195,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Study of an industrial room</li>
     
@@ -202,111 +218,523 @@
             
   <div class="section" id="study-of-an-industrial-room">
 <h1>Study of an industrial room<a class="headerlink" href="#study-of-an-industrial-room" title="Permalink to this headline">¶</a></h1>
-<p>In this example, we are interested in the case of an industrial hall coupled with other rooms. This hall is composed of two identical noisy machines and two fitting zones (zones made of many objects that act as acoustics scaterrers). The purpose of this tutorial is:</p>
+<p>In this example, we are interested in the case of an industrial hall coupled with other rooms. This hall is composed of two identical noisy machines and two fitting zones (zones made of many objects that act as acoustics scaterrers). The purpose of this tutorial is to:</p>
 <ul class="simple">
-<li>to illustrate the creation of machines</li>
-<li>illustrate the creation of fitting zones</li>
-<li>study the effect of changing a material on a wall of the industrial hall, on the sound field</li>
+<li><p>illustrate the creation of machines</p></li>
+<li><p>illustrate the creation of fitting zones</p></li>
+<li><p>create new surface Materials</p></li>
+<li><p>create a line of receivers</p></li>
+<li><p>create a plane receiver</p></li>
+<li><p>perform calculations using the SPPS code</p></li>
+<li><p>study the effect of changing a material on a wall of the industrial hall, on the sound field</p></li>
 </ul>
 <p>Resources for this tutorial are located in the following folder:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">I</span><span class="o">-</span><span class="n">Simpa</span> <span class="n">installation</span> <span class="n">folder</span><span class="o">&gt;</span>\<span class="n">doc</span>\<span class="n">tutorial</span>\<span class="n">tutorial</span> <span class="mi">3</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">I</span><span class="o">-</span><span class="n">Simpa</span> <span class="n">installation</span> <span class="n">folder</span><span class="o">&gt;</span>\<span class="n">doc</span>\<span class="n">tutorial</span>\<span class="n">tutorial</span> <span class="mi">3</span>
 </pre></div>
 </div>
+<p>This folder contains several files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tutorial_3.proj</span></code>:  I-Simpa project of the present tutorial (without Results)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Industrial_hall.ply</span></code>: 3D hall geometry</p></li>
+<li><p>additional PNG images (screenshots)</p></li>
+</ul>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
+<p class="admonition-title">Important</p>
 <p>If not already done, we suggest you to follow the two previous tutorials, before the present tutorial:</p>
-<ul class="last simple">
-<li><a class="reference external" href="tutorial_teaching_room.html">Study of a teaching room</a></li>
-<li><a class="reference external" href="tutorial_industrial_hall.html">Study of the Elmia hall</a></li>
+<ul class="simple">
+<li><p><a class="reference external" href="tutorial_teaching_room.html">Study of a teaching room</a></p></li>
+<li><p><a class="reference external" href="tutorial_elmya_hall.html">Study of the Elmia hall</a></p></li>
 </ul>
 </div>
 <div class="section" id="import-a-geometry">
 <h2>Import a geometry<a class="headerlink" href="#import-a-geometry" title="Permalink to this headline">¶</a></h2>
 <p>The first step is to import the geometry of the project. We are interested here in a large industrial hall coupled to a corridor through a door in a wall, this corridor being itself coupled to another room. We assume that walls and doors allow acoustic transmission.</p>
 <ol class="arabic simple">
-<li>In the &#8216;File&#8217; menu, <strong>Select</strong> &#8216;Import a new scene&#8217;, and open the file <cite>LocalIndustriel.ply</cite> located in the correspondng tutorial folder.</li>
-<li>In the next windows, <strong>Select</strong> &#8216;OK&#8217; without changing the default values.</li>
+<li><p>In the ‘File’ menu, <strong>Select</strong> ‘Import new scene’, and open the file <code class="docutils literal notranslate"><span class="pre">LocalIndustriel.ply</span></code> located in the correspondng tutorial folder.</p></li>
+<li><p>In the next windows, <strong>Select</strong> ‘OK’ without changing the default values.</p></li>
 </ol>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">When importing the model, several surfaces groups are created. These groups were defined at the 3D scene creation with the CAD software.</p>
+<p class="admonition-title">Note</p>
+<p>When importing the model, several surfaces groups are created. These groups were defined at the 3D scene creation with the CAD software.</p>
+</div>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="_images/Screenshot_1_tutorial_3.PNG"><img alt="_images/Screenshot_1_tutorial_3.PNG" src="_images/Screenshot_1_tutorial_3.PNG" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">3D scene import in I-Simpa</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="define-a-machine-as-a-sound-source">
 <h2>Define a machine as a sound source<a class="headerlink" href="#define-a-machine-as-a-sound-source" title="Permalink to this headline">¶</a></h2>
-<p>At this step, we want to create the sound sources. In industrial environments, sound sources are often machines or workstations made up of several source points. Since the hall can be made up of several identical machines located at different locations, it is simpler to define a machine in the form of a group of sound sources, which group can then be copied and moved within the room. In our example, we will define machines composed of three sound sources, which will be duplicate. Each sound source will be defined by a pink noise spectrum, with a global level of 80 dB.</p>
+<p>At this step, we want to create the sound sources. In industrial environments, sound sources are often machines or workstations made up of several source points. Since the hall can be made up of several identical machines located at different locations, it is simpler to define a machine in the form of a group of sound sources, which group can then be copied and moved within the room. In our example, we will define machines composed of three sound sources, which will be duplicated. Each sound source will be defined by a pink noise spectrum, with a global level of 80 dB.</p>
 <ol class="arabic simple">
-<li><strong>Right-click</strong> the &#8216;Data/Sound Sources&#8217; element in the &#8216;Scene&#8217; tab of the &#8216;Project&#8217; windows, and <strong>Select</strong> &#8216;New Group&#8217;. By default, the name of the new group is &#8216;Sound sources&#8217;.</li>
-<li><strong>Rename</strong> the group as the following &#8216;Milling machine&#8217;;</li>
-<li><strong>Right-click</strong> on the &#8216;Milling Machine&#8217; group and select &#8216;New Source&#8217;. <strong>Perform</strong> this operation three times (to create three sources), named &#8216;Source 1&#8217;, &#8216;Source 2&#8217; and &#8216;Source 3&#8217;. It is possible to modify the name of the sources by applying the same method as for the name of a group;</li>
-<li>For each source, <strong>Unfold</strong> the source properties, then <strong>Click</strong> on the &#8216;Position&#8217; item, and <strong>Assign</strong> the following coordinates (x,y,z) for the source 1 (2,7,1.2), the source 2 (2,6,0.6) and the source 3 (1,7,0.75).</li>
-<li>For each source, <strong>Select</strong> the &#8216;Sound power&#8217; element, <strong>Choose</strong> &#8216;Pink Noise&#8217;, and then <strong>Set</strong> the global level &#8216;Lw&#8217; to 80dB.</li>
+<li><p><strong>Right-click</strong> the ‘Data/Sound Sources’ element in the ‘Scene’ tab of the ‘Project’ windows, and <strong>Select</strong> ‘New Group’. By default, the name of the new group is ‘Sound sources’.</p></li>
+<li><p><strong>Rename</strong> the group as the following ‘Milling machine’;</p></li>
+<li><p><strong>Right-click</strong> on the ‘Milling Machine’ group and select ‘New Source’. <strong>Perform</strong> this operation three times (to create three sources), named ‘Source 1’, ‘Source 2’ and ‘Source 3’. It is possible to modify the name of the sources by applying the same method as for the name of a group;</p></li>
+<li><p>For each source, <strong>Unfold</strong> the source properties, then <strong>Click</strong> on the ‘Position’ item, and <strong>Assign</strong> the following coordinates (x,y,z) for the source 1 (2,7,1.2), the source 2 (2,6,0.6) and the source 3 (1,7,0.75).</p></li>
+<li><p>For each source, <strong>Select</strong> the ‘Sound power’ element, <strong>Choose</strong> ‘Pink Noise’, and then <strong>Set</strong> the global level ‘Lw’ to 80dB.</p></li>
 </ol>
 </div>
 <div class="section" id="duplicate-the-machine">
 <h2>Duplicate the machine<a class="headerlink" href="#duplicate-the-machine" title="Permalink to this headline">¶</a></h2>
 <p>The previous machine can then be duplicated and moved into the room.</p>
 <ol class="arabic simple">
-<li><strong>Right-click</strong> on the &#8216;Milling Machine&#8217; group and <strong>Select</strong> &#8216;Copy&#8217;;</li>
-<li><strong>Right-click</strong> the &#8216;Sound Sources&#8217; root folder, then <strong>Select</strong> &#8216;Paste&#8217;: an item named &#8216;Copy of Sound sources&#8217; is created.</li>
+<li><p><strong>Right-click</strong> on the ‘Milling Machine’ group and <strong>Select</strong> ‘Copy’;</p></li>
+<li><p><strong>Right-click</strong> the ‘Sound Sources’ root folder, then <strong>Select</strong> ‘Paste’: an item named ‘Copy of Sound sources’ is created.</p></li>
 </ol>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The sound sources within the new group have exactly the same properties as the original sources, including the names of the sources. However there is no possible confusion between two sources with the same name, each source having its own internal identifier.</p>
+<p class="admonition-title">Note</p>
+<p>The sound sources within the new group have exactly the same properties as the original sources, including the names of the sources. However there is no possible confusion between two sources with the same name, each source having its own internal identifier.</p>
 </div>
 <ol class="arabic simple" start="3">
-<li><strong>Rename</strong> the group created in &#8216;Milling machine 2&#8217;;</li>
-<li>Since the new machine is located in the same place as the original machine, it is necessary to move it. To perform a translation of the new machine, <strong>Right-click</strong> on the &#8216;Milling Machine 2&#8217; group and <strong>Select</strong> &#8216;All sources&gt;Translation&#8217;;</li>
-<li><strong>Set</strong> the translation values in each direction (x,y,z) to [5,-2,0], and <strong>Click</strong> on &#8216;OK&#8217;. The sources group is translated.</li>
+<li><p><strong>Rename</strong> the group created in ‘Milling machine 2’;</p></li>
+<li><p>Since the new machine is located in the same place as the original machine, it is necessary to move it. To perform a translation of the new machine, <strong>Right-click</strong> on the ‘Milling Machine 2’ group and <strong>Select</strong> <span class="menuselection">All sources ‣ Translation item</span> menu;</p></li>
+<li><p><strong>Set</strong> the translation values in each direction (x,y,z) to [5,-2,0], and <strong>Click</strong> on ‘OK’. The sources group is translated.</p></li>
 </ol>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="_images/Screenshot_2_tutorial_3.PNG"><img alt="_images/Screenshot_2_tutorial_3.PNG" src="_images/Screenshot_2_tutorial_3.PNG" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">Sound sources creation (2 identical machines made of 3 punctual sources)</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 <div class="section" id="define-a-scene-volume-as-a-fitting-zone">
 <h2>Define a scene volume as a fitting zone<a class="headerlink" href="#define-a-scene-volume-as-a-fitting-zone" title="Permalink to this headline">¶</a></h2>
 <p>There are two methods of creating a fitting zone in the room:</p>
 <ul class="simple">
-<li>when creating the scene with the CAD software. In this case, a closed volume is modeled in the 3D geometric model. It is then a &#8216;Scene fitted zone&#8217;</li>
-<li>either in I-Simpa, in the form of a parallelepipedal zone. It is then a &#8216;Rectangular fitted zone&#8217;</li>
+<li><p>when creating the scene with the CAD software. In this case, a closed volume is modeled in the 3D geometric model. It is then a ‘Scene fitted zone’</p></li>
+<li><p>either in I-Simpa, in the form of a parallelepipedal zone. It is then a ‘Rectangular fitted zone’</p></li>
 </ul>
-<p>In our example, a parallelepipedal zone has already been provided at the creation of the 3D scene, in order to be assigned to a &#8216;Scene fitted zone&#8217;.</p>
+<p>In our example, a parallelepipedal zone has already been provided at the creation of the 3D scene, in order to be assigned to a ‘Scene fitted zone’.</p>
 <ol class="arabic simple">
-<li>In the &#8216;Scene&#8217; tree, <strong>Right-click</strong> on the &#8216;Fitting zone&#8217; root folder and <strong>Select</strong> &#8216;Define scene fitted zone&#8217;;</li>
-<li>Now you have to define the surfaces of the scene for the corresponding zone. <strong>Select</strong> the surface selection mode on the &#8216;Selection&#8217; toolbar;</li>
+<li><p>In the ‘Scene’ tree, <strong>Right-click</strong> on the ‘Fitting zone’ root folder and <strong>Select</strong> ‘Define scene fitted zone’;</p></li>
+<li><p>Now you have to define the surfaces of the scene for the corresponding zone. <strong>Select</strong> the surface selection mode on the ‘Selection’ toolbar; <strong>Hold</strong> Ctrl keyboard key and <strong>Double-click</strong> on each face element of the the fitting zone. Each face element is selected in red (or another color depending of the I-Simpa Settings). At the same time, the corresponding face elements are also highlighted in the folder ‘Surfaces’ of the ‘Data’ tree.</p></li>
 </ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Holding the Ctrl keyboard key allow to select all coplanar face element by a double click. You can also use the same procedure, but with one single click, to select each face element independently.</p>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>In the folder ‘Surfaces’ of the ‘Data’ tree, <strong>Select</strong> all highlighted face elements, and <strong>drag/drop</strong> them to the ‘Surfaces’ element of the fiiting zone. All face elements are then duplicated in this folder.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this example, all face elements were already identified in a given folder ‘fitting’ of the ‘Data’ tree, because this volume was build when preparing the 3D geometry. In this case, it was not necessary to follow the step 2 of this procedure. One can directly drag and drop all face elements of the corresponding surface folder.</p>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>One must also select the face elements of the fitting zone that are located on the ground. <strong>Open</strong> the ‘floor’ surface group and find the two face elements that correspond to the floor of the fitting zone (<strong>Select</strong> each face element of the group and <strong>Identify</strong> the ones that correspond to the fitting zone). Once the two face elements are identified, <strong>Select</strong> them and drag/drop them to the ‘Surfaces’ element of the fitting zone.</p></li>
+<li><p><strong>Define</strong> the ‘Acoustic parameters’ of the fitted zone, with 0.25 for ‘Alpha’ (absorption coefficient of the obstacles), 0.5 m for ‘Lambda’ (mean free path in the fitted zone) and ‘Uniform reflection’. See the SPPS documentation for more information about acoustic parameters of fitted zones.</p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When you define value in a spreadsheet (for example ‘Alpha’ in the example above), you can duplicate the value in all the column (i.e. frequency bands) by selecting :<span class="menuselection">Set the same value ‣ To the column</span> after a Right-Click on the corresponding value.</p>
+<p>You can also define an average value by setting a value to ‘Average’ (last row of the spreadsheet), which will define the same value for all the rows (i.e. frequency bands).</p>
+</div>
+<div class="figure align-center" id="id3">
+<a class="reference internal image-reference" href="_images/Screenshot_3_tutorial_3.PNG"><img alt="_images/Screenshot_3_tutorial_3.PNG" src="_images/Screenshot_3_tutorial_3.PNG" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">Fitting zones representation (scene and parallelipipedic fitting zones)</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 <div class="section" id="define-a-parallelipipedic-volume-as-a-fitting-zone">
 <h2>Define a parallelipipedic volume as a fitting zone<a class="headerlink" href="#define-a-parallelipipedic-volume-as-a-fitting-zone" title="Permalink to this headline">¶</a></h2>
+<p>One may create a fitting zone as a parallelipipedic volume directly within I-Simpa. Such volume is defined by creating the two opposite corners of the volume. In the following example, one consider a fitting zone made of chairs.</p>
+<ol class="arabic simple">
+<li><p><strong>Right-Click</strong> on the ‘Fitted zone’ element of the ‘Data’ tree, and <strong>Select</strong> ‘Define rectangular fitted zone’. A new fitted zone is created.</p></li>
+<li><p><strong>Define</strong> the ‘Position’ element (coordinates) of the opposite corners of the fitting zone, ‘Origin volume’ and ‘Destination volume’, as (13,4,0) and (18,1,1.2) respectively.</p></li>
+<li><p><strong>Define</strong> the ‘Acoustic parameters’ of the fitted zone, with 0.15 for ‘Alpha’ (absorption coefficient of the obstacles), 0.3 m for ‘Lambda’ (mean free path in the fitted zone) and ‘Uniform reflection’.</p></li>
+</ol>
 </div>
 <div class="section" id="define-surface-materials">
 <h2>Define surface materials<a class="headerlink" href="#define-surface-materials" title="Permalink to this headline">¶</a></h2>
+<p>User can define specific material for the project.</p>
+<ol class="arabic simple">
+<li><p><strong>Unfold</strong> the ‘Materials’ element of the ‘Project database’ element of the ‘Project’ tree and <strong>Right-Click</strong> on the ‘User’ element. <strong>Select</strong> ‘New material’. A ‘New material’ is created. <strong>Rename</strong> the name of the corresponding material to ‘Trans_material’.</p></li>
+<li><p><strong>Select</strong> the ‘Material spectrum’ element to display the acoustic parameters of the corresponding material. <strong>Set</strong> the values of each parameters according to the following table.</p></li>
+</ol>
+<table class="colwidths-given docutils align-center" id="id4">
+<caption><span class="caption-text">Acoustical properties of the ‘Trans_material’ material</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Frequency bands</p></th>
+<th class="head"><p>Absorption</p></th>
+<th class="head"><p>Diffusion</p></th>
+<th class="head"><p>Transmission</p></th>
+<th class="head"><p>Loss (dB)</p></th>
+<th class="head"><p>Diffusion law</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>125 Hz</p></td>
+<td><p>0.11</p></td>
+<td><p>0.3</p></td>
+<td><p>Check</p></td>
+<td><p>10</p></td>
+<td><p>Lambert</p></td>
+</tr>
+<tr class="row-odd"><td><p>250 Hz</p></td>
+<td><p>0.08</p></td>
+<td><p>0.4</p></td>
+<td><p>Check</p></td>
+<td><p>11</p></td>
+<td><p>Lambert</p></td>
+</tr>
+<tr class="row-even"><td><p>500 Hz</p></td>
+<td><p>0.07</p></td>
+<td><p>0.5</p></td>
+<td><p>Check</p></td>
+<td><p>12</p></td>
+<td><p>Lambert</p></td>
+</tr>
+<tr class="row-odd"><td><p>1000 Hz</p></td>
+<td><p>0.06</p></td>
+<td><p>0.6</p></td>
+<td><p>Check</p></td>
+<td><p>13</p></td>
+<td><p>Lambert</p></td>
+</tr>
+<tr class="row-even"><td><p>2000 Hz</p></td>
+<td><p>0.09</p></td>
+<td><p>0.7</p></td>
+<td><p>Check</p></td>
+<td><p>14</p></td>
+<td><p>Lambert</p></td>
+</tr>
+<tr class="row-odd"><td><p>4000 Hz</p></td>
+<td><p>0.05</p></td>
+<td><p>0.8</p></td>
+<td><p>Check</p></td>
+<td><p>15</p></td>
+<td><p>Lambert</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="3">
+<li><p><strong>Go to</strong> the ‘Surfaces’ folder in the ‘Data’ tree. <strong>Select</strong> the ‘trans_ro1’ surface to display the coresponding ‘Properties’ and <strong>set</strong> the ‘Material’ parameter to the ‘Trans_material’ material. <strong>Repeat</strong> this procedure for the ‘trans_room’ surface group.</p></li>
+<li><p><strong>Create</strong> a new material ‘Open_door’ using the same procedure as for ‘Trans_material’, using the following parameters, and <strong>Set</strong> this material to the ‘door_room1’ and ‘door_room2’ surface groups.</p></li>
+</ol>
+<table class="colwidths-given docutils align-center" id="id5">
+<caption><span class="caption-text">Acoustical properties of the ‘Open_door’ material</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Frequency bands</p></th>
+<th class="head"><p>Absorption</p></th>
+<th class="head"><p>Diffusion</p></th>
+<th class="head"><p>Transmission</p></th>
+<th class="head"><p>Loss (dB)</p></th>
+<th class="head"><p>Diffusion law</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>125 Hz</p></td>
+<td><p>1.0</p></td>
+<td><p>0</p></td>
+<td><p>Check</p></td>
+<td><p>0</p></td>
+<td><p>Can not be defined</p></td>
+</tr>
+<tr class="row-odd"><td><p>250 Hz</p></td>
+<td><p>1.0</p></td>
+<td><p>0</p></td>
+<td><p>Check</p></td>
+<td><p>0</p></td>
+<td><p>Can not be defined</p></td>
+</tr>
+<tr class="row-even"><td><p>500 Hz</p></td>
+<td><p>1.0</p></td>
+<td><p>0</p></td>
+<td><p>Check</p></td>
+<td><p>0</p></td>
+<td><p>Can not be defined</p></td>
+</tr>
+<tr class="row-odd"><td><p>1000 Hz</p></td>
+<td><p>1.0</p></td>
+<td><p>0</p></td>
+<td><p>Check</p></td>
+<td><p>0</p></td>
+<td><p>Can not be defined</p></td>
+</tr>
+<tr class="row-even"><td><p>2000 Hz</p></td>
+<td><p>1.0</p></td>
+<td><p>0</p></td>
+<td><p>Check</p></td>
+<td><p>0</p></td>
+<td><p>Can not be defined</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘4000’ Hz</p></td>
+<td><p>1.0</p></td>
+<td><p>0</p></td>
+<td><p>Check</p></td>
+<td><p>0</p></td>
+<td><p>Can not be defined</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="5">
+<li><p>For all other surfaces groups, <strong>Set</strong> the material to ‘30% absorbing’ from the ‘Reference materials’ database.</p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For all these surface groups, since the surface material is the same, user can move all surface elements to a given surface group and set the material to this surface group only.</p>
 </div>
-<div class="section" id="insert-a-lne-of-punctual-receivers">
-<h2>Insert a lne of punctual receivers<a class="headerlink" href="#insert-a-lne-of-punctual-receivers" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The surface elements that have been defined as fitting surfaces (i.e. ‘fitting’ surface group) are consider as perfeclty transparent by default. CAUTION</p>
 </div>
-<div class="section" id="define-a-surface-receiver">
-<h2>Define a surface receiver<a class="headerlink" href="#define-a-surface-receiver" title="Permalink to this headline">¶</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In order to verify that material have been correctly set, you can display the 3D by selecting the ‘Material’ option in the :<span class="menuselection">View ‣ Material color</span> menu.</p>
+</div>
+<div class="figure align-center" id="id6">
+<a class="reference internal image-reference" href="_images/Screenshot_4_tutorial_3.PNG"><img alt="_images/Screenshot_4_tutorial_3.PNG" src="_images/Screenshot_4_tutorial_3.PNG" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">Representation of material of scene surfaces</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="insert-a-line-of-punctual-receivers">
+<h2>Insert a line of punctual receivers<a class="headerlink" href="#insert-a-line-of-punctual-receivers" title="Permalink to this headline">¶</a></h2>
+<p>Instead of creating punctual receivers individually, you can directly create a line (or an grid) of punctual sound sources.</p>
+<ol class="arabic simple">
+<li><p><strong>Go to</strong> the ‘Punctual receivers’ folder in the ‘Data’ tree and <strong>Right-Click</strong> on it. Thus, <strong>Select</strong> the ‘Create a receveir grid’ option.</p></li>
+<li><p>A spreadsheed is displayed to define the receiver grid parameters. See <a class="reference external" href="manipulate_sources_receivers.html">the corresponding documentation for more information concerning these parameters</a>. <strong>Set</strong> the following values:</p></li>
+</ol>
+<table class="colwidths-given docutils align-center" id="id7">
+<caption><span class="caption-text">Receiver grid parameters</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 70%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>‘Col step x (m)’</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘Col step y (m)’</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>‘Col step z (m)’</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘Number of rows5</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-even"><td><p>‘Number of cols’</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘Row step x (m)’</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>‘Row step y (m)’</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘Row step z (m)’</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>‘Starting position x (m)’</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘Starting position y (m)’</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>‘Starting position z (m)’</p></td>
+<td><p>1.6</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To create a grid of receivers instead of a line of receivers in the example above, change the value of the ‘Number of cols’ parameter to 2 or more.</p>
+</div>
+</div>
+<div class="section" id="define-a-plane-receiver">
+<h2>Define a plane receiver<a class="headerlink" href="#define-a-plane-receiver" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Following the same procedure than for the <a class="reference external" href="tutorial_Elmia_hall.html#define-a-plane-receiver">Elmia tuturial</a>, <strong>Create</strong> a ‘New plane receiver’, using the default parameters.</p></li>
+</ol>
+<div class="figure align-center" id="id8">
+<a class="reference internal image-reference" href="_images/Screenshot_5_tutorial_3.PNG"><img alt="_images/Screenshot_5_tutorial_3.PNG" src="_images/Screenshot_5_tutorial_3.PNG" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">Line of punctual receivers (green) and plane surface receiver (mesh)</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 <div class="section" id="spps-calculation">
 <h2>SPPS calculation<a class="headerlink" href="#spps-calculation" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Go to</strong> the calculation tab of the ‘Project’ windows, <strong>Unfold</strong> the ‘SPPS’ code and <strong>Select</strong> the ‘Properties’ element. It displays a spreadsheet with all SPPS calculation parameters.</p></li>
+<li><p><strong>Set</strong> the parameters to the corresponding values (<a class="reference external" href="code_configuration_SPPS.html#calculation-parameters">see the correspondig documentation for more information about these parameters</a>):</p></li>
+</ol>
+<table class="colwidths-given docutils align-center" id="id9">
+<caption><span class="caption-text">SPPS calculation parameters (tutorial 3)</span><a class="headerlink" href="#id9" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 70%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>‘Active calculation of atmospheric absorption’</p></td>
+<td><p>Check</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘Active calculation of diffusion by fitting objects’</p></td>
+<td><p>Check</p></td>
+</tr>
+<tr class="row-even"><td><p>‘Active calculation of direct field only’</p></td>
+<td><p>Uncheck</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘Active calculation transmission’</p></td>
+<td><p>Check</p></td>
+</tr>
+<tr class="row-even"><td><p>‘Calculation method’</p></td>
+<td><p>Energetic</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘Echogram per source’</p></td>
+<td><p>Uncheck</p></td>
+</tr>
+<tr class="row-even"><td><p>‘Export surface receivers for each frequency band’</p></td>
+<td><p>Uncheck</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘Limit value of the particle extinction: ratio 10^n’</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-even"><td><p>‘Number of sound particles per source’</p></td>
+<td><p>150 000</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘Number of sound particles per source (display)’</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>‘Random initialization number’</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘Receiver radius (m)’</p></td>
+<td><p>O.31</p></td>
+</tr>
+<tr class="row-even"><td><p>‘Simulation length (s)’</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘Surface receiver export’</p></td>
+<td><p>Soundmap: SPL</p></td>
+</tr>
+<tr class="row-even"><td><p>‘Time step (s)’</p></td>
+<td><p>0.002</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="3">
+<li><p><strong>Right click</strong> the ‘Frequency bands’ element and <strong>Select</strong> the option ‘Automatic selection’, ‘Octave’, ‘Building/Road [125-4000] Hz’.</p></li>
+<li><p><strong>Run</strong> the calculation code by right-clicking on the ‘SPPS’ element and selecting ‘Run calculation’</p></li>
+</ol>
 </div>
-<div class="section" id="compare-two-simulations">
-<h2>Compare two simulations<a class="headerlink" href="#compare-two-simulations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="evaluate-the-effect-of-changing-one-surface-material">
+<h2>Evaluate the effect of changing one surface material<a class="headerlink" href="#evaluate-the-effect-of-changing-one-surface-material" title="Permalink to this headline">¶</a></h2>
+<p>One can be interesting to evaluate the effect of changing one surface material. I-Simpa includes a tool that allows to compare two results on a surface material. For such operation it is important that the surface receiver is not changed between the tow simulation.</p>
+<ol class="arabic simple">
+<li><p><strong>Create</strong> a new material named ‘Aborbing_material’ using the following data:</p></li>
+</ol>
+<table class="colwidths-given docutils align-center" id="id10">
+<caption><span class="caption-text">Acoustical properties of the ‘Absorbing_material’ material</span><a class="headerlink" href="#id10" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Frequency bands</p></th>
+<th class="head"><p>Absorption</p></th>
+<th class="head"><p>Diffusion</p></th>
+<th class="head"><p>Transmission</p></th>
+<th class="head"><p>Loss (dB)</p></th>
+<th class="head"><p>Diffusion law</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>125 Hz</p></td>
+<td><p>0.60</p></td>
+<td><p>0</p></td>
+<td><p>Uncheck</p></td>
+<td><p>0</p></td>
+<td><p>Specular</p></td>
+</tr>
+<tr class="row-odd"><td><p>250 Hz</p></td>
+<td><p>0.62</p></td>
+<td><p>0</p></td>
+<td><p>Uncheck</p></td>
+<td><p>0</p></td>
+<td><p>Specular</p></td>
+</tr>
+<tr class="row-even"><td><p>500 Hz</p></td>
+<td><p>0.77</p></td>
+<td><p>0</p></td>
+<td><p>Uncheck</p></td>
+<td><p>0</p></td>
+<td><p>Specular</p></td>
+</tr>
+<tr class="row-odd"><td><p>1000 Hz</p></td>
+<td><p>0.74</p></td>
+<td><p>0</p></td>
+<td><p>Uncheck</p></td>
+<td><p>0</p></td>
+<td><p>Specular</p></td>
+</tr>
+<tr class="row-even"><td><p>2000 Hz</p></td>
+<td><p>0.80</p></td>
+<td><p>0</p></td>
+<td><p>Uncheck</p></td>
+<td><p>0</p></td>
+<td><p>Specular</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘4000’ Hz</p></td>
+<td><p>0.81</p></td>
+<td><p>0</p></td>
+<td><p>Uncheck</p></td>
+<td><p>0</p></td>
+<td><p>Specular</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="2">
+<li><p><strong>Set</strong> the ‘Diff_wall’ surface to the new material ‘Absorbing_material’.</p></li>
+<li><p><strong>Run</strong> a new SPPS calculation using the same calculation parameters. At this step, two simulation results are available in the ‘Results’ tab of the SPPS code.</p></li>
+<li><p><strong>Goto</strong> to <span class="menuselection">Tools ‣ ‘File results process’ ‣ ‘Compare surface receivers’</span> menu</p></li>
+<li><p>In the list, <strong>Select</strong> the data ‘rs_cut’ in the <span class="menuselection">‘Surface receiver’ ‣ ‘Global’</span> list element of the surface receivers used as a ‘reference’ (should be the first calculation, but you can choose the second calculation instead), then <strong>Select</strong> ‘Next’.</p></li>
+<li><p>In the list, <strong>Select</strong> the data ‘rs_cut’ in the <span class="menuselection">‘Surface receiver’ ‣ ‘Global’</span> list element of the surface receiver that must be compared to the reference (i.e. the ‘other simulation’, should be the second calculation, but you can choose the first calculation instead). At this step, you can defined a name for the difference between the two results (‘reference’ - ‘other simulation’) (by default ‘Power gain’) and create a new data file by checking the corresponding box. Then <strong>Select</strong> ‘Finish’. The corresponding result is created in the folder <span class="menuselection">‘Surface receiver’ ‣ ‘Global’</span> of the second result.</p></li>
+<li><p><strong>Right-click</strong> on the ‘Power gain’ result and <strong>choose</strong> <span class="menuselection">‘Load animation’ ‣ ‘Cumulating sound level’</span> to display a sound map of the difference between the two results.</p></li>
+</ol>
+<div class="figure align-center" id="id11">
+<a class="reference internal image-reference" href="_images/Screenshot_6_tutorial_3.PNG"><img alt="_images/Screenshot_6_tutorial_3.PNG" src="_images/Screenshot_6_tutorial_3.PNG" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">SPL sound map showing the difference between two calculations.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 </div>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="I_Simpa_standard.html" class="btn btn-neutral float-right" title="Standards" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="setup.html" class="btn btn-neutral float-right" title="(Un)Setup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="tutorial_Elmia_hall.html" class="btn btn-neutral" title="Study of the Elmia hall" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="tutorial_Elmia_hall.html" class="btn btn-neutral float-left" title="Study of the Elmia hall" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -315,11 +743,22 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Ifsttar.
+        
+        &copy; Copyright 2020, Université Gustave Eiffel
+      <span class="lastupdated">
+        Last updated on Dec 23, 2020.
+      </span>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -331,38 +770,15 @@
   </div>
   
 
-
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'1.3.4',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>

@@ -38,27 +38,20 @@ Create a grid of receivers
 I-Simpa can creates automatically 2D grids of punctual receivers. Users
 have to specify:
 
--  **'Step (line) [x,y,z]'**: define the space steps (vectors) according
-   the line direction;
--  **'Step (row) [x,y,z]'**: define the space steps (vectors) according
-   the row direction;
--  **'Number of lines'**: define the number of lines (integer)
--  **'Number of rows'**: define the number of rows (integer);
--  **'Start position (x,y,z)'**: define the starting position (x,y,z) of
-   the grid.
+- a column (col) vector and a row vector to define the grid plane, as well as, the spatial step between two receivers
+- the starting position (origin) of the grid,
+- and the number of rows and columns of the grid.
 
-Examples:
+Grid Parameters:
 
-   - Example 1:
-
-       - **'Step (line)'**\ =[0,1,0]
-       - **'Step (row)'**\ =[1,0,0]
-       - **'Number of lines'**\ =4
-       - **'Number of rows'**\ =5
-
-   - Example 2:
-
-      - **'Step (line)'**\ =[0,1.5,0]
-      - **'Step (row)'**\ =[0.5,0.5,0]
-      - **'Number of lines'**\ =4
-      - **'Number of rows'**\ =5
+-  **'Col step x (m)'**: define the x coordinate of the column vector;
+-  **'Col step y (m)'**: define the y coordinate of the column vector;
+-  **'Col step z (m)'**: define the z coordinate of the column vector;
+-  **'Number of cols'**: define the number of columns;
+-  **'Number of rows'**: define the number of rows;
+-  **'Row step x (m)'**: define the x coordinate of the row vector;
+-  **'Row step y (m)'**: define the y coordinate of the row vector;
+-  **'Row step z (m)'**: define the z coordinate of the row vector;
+-  **'Starting position x (m)'**: define the x coordinate of the origin of the grid;
+-  **'Starting position y (m)'**: define the y coordinate of the origin of the grid;
+-  **'Starting position z (m)'**: define the z coordinate of the origin of the grid;
