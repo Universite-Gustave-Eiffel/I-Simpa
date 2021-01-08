@@ -863,6 +863,10 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
         rootUserConfig->GetElementByLibelle("Settings")->GetElementByLibelle("History")->UpdateBoolConfig("keep_modification_history", true);
     }
 
+    // Open result tree
+
+    treeResult->Expand(rootResult->GetElementByType(Element::ELEMENT_TYPE_REPORT_FOLDER)->GetElementInfos().idElement);
+
 	wxLongLong durationOperation=wxDateTime::UNow().GetValue()-timeDebOperation.GetValue();
 	wxLogMessage(_("Total time calculation: %lld ms"),durationOperation.GetValue());
 

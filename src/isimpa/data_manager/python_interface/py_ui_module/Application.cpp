@@ -35,6 +35,7 @@
 #include "../pythonshell.hpp"
 #include "UtfConverter.h"
 #include <wx/filename.h>
+#include <wx/log.h>
 #include "last_cpp_include.hpp"
 
 #ifdef USE_PYTHON
@@ -93,6 +94,10 @@ void export_application_class()
 	 .def("getapplicationpath",&application::getapplicationpath,"Return a dictionnary with main application paths.")
 	 .def("dropselectionto", &application::dropselectionto, "Drag and Drop selected tree items to the element in argument.",args("element"))
 	 .def("setselection", &application::setselection, "Unselect previous selection, then select all the element passed as parameter",args("int_list"))
+     .def("getversion", &application::getversion, "Return application version")
+     .def("loginfo", &application::loginfo, "print info message in log window", arg("message=u''"))
+     .def("logwarning", &application::logwarning, "print warning message in log window", arg("message=u''"))
+     .def("logerror", &application::logerror, "print error message in log window", arg("message=u''"))
 	 .staticmethod("reloadgroupsfrommodel")
 	 .staticmethod("getdataarray")
 	 .staticmethod("getrootreport")
@@ -114,6 +119,10 @@ void export_application_class()
 	 .staticmethod("getapplicationpath")
 	 .staticmethod("dropselectionto")
 	 .staticmethod("setselection")
+     .staticmethod("getversion")
+     .staticmethod("loginfo")
+     .staticmethod("logwarning")
+     .staticmethod("logerror")
 	 ;
 
 }
@@ -164,6 +173,22 @@ namespace uictrl
 		ProjectManager* self=GetManager();
 		self->OnClearShell();
 	}
+
+
+    void application::loginfo(const std::wstring& message)
+    {
+        wxLogMessage(wxString(message));
+    }
+
+    void application::logwarning(const std::wstring& message)
+    {
+        wxLogWarning(wxString(message));
+    }
+
+    void application::logerror(const std::wstring& message)
+    {
+        wxLogError(wxString(message));
+    }
 
 	void application::newproject()
 	{
@@ -461,6 +486,11 @@ namespace uictrl
 	{
 		return WXSTRINGTOSTDWSTRING(wxGetLocale()->GetCanonicalName());
 	}
+
+    std::wstring application::getversion()
+    {
+        return WXSTRINGTOSTDWSTRING(wxString::Format("%d.%d.%d", ApplicationConfiguration::SPPS_UI_VERSION_MAJOR, ApplicationConfiguration::SPPS_UI_VERSION_MINOR, ApplicationConfiguration::SPPS_UI_VERSION_REVISION));
+    }
 
 	uiTreeCtrl* application::GetTreeFromElement(const wxTreeItemId& treeItemId)
 	{

@@ -85,7 +85,13 @@ protected:
 		}else if(eInfo.libelleElement=="isareaconstraint")
 		{
 			this->SetReadOnlyConfig("constraintrecepteurss",!this->GetBoolConfig("isareaconstraint"));
-		}
+            if (this->GetBoolConfig("isareaconstraint")) {
+                this->UpdateStringConfig("appendparams", "");
+            }
+            else {
+                this->UpdateStringConfig("appendparams", "-Y");
+            }
+        }
 		Element::Modified(eModif);
 	}
 	/**
@@ -94,8 +100,10 @@ protected:
 	void InitProperties()
 	{
         this->AppendPropertyDecimal("maxvol", wxTRANSLATE("Volume constraint (m3)"),100);
-		this->AppendPropertyDecimal("minratio", wxTRANSLATE("Radius/Edge ratio"),2,false,2,false,true,0,1);
-		this->AppendPropertyText("appendparams", wxTRANSLATE("Additional parameters"),"");
+		this->AppendPropertyDecimal("minratio", wxTRANSLATE("Radius/Edge ratio"),5,false,2,false,true,0,1);
+        // -Y parameter does not create additional point on the limits of the domain
+        // reduce the number of tetrahedrons is good for computation speed
+		this->AppendPropertyText("appendparams", wxTRANSLATE("Additional parameters"),"-Y");
 		this->AppendPropertyText("userdefineparams", wxTRANSLATE("User-defined parameters"),"");
 		this->AppendPropertyDecimal("constraintrecepteurss",wxTRANSLATE("Surface receivers constraint (m²)"),5.f,true,3,false,true,0,0.001f);
 		this->AppendPropertyBool("isareaconstraint", wxTRANSLATE("Surface receivers constraint"),false);
