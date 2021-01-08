@@ -1,4 +1,7 @@
+dist: bionic
 language: cpp
+python:
+  - "3.8"
 sudo: false
 os:
 - linux
@@ -10,9 +13,7 @@ addons:
     sources:
     - ubuntu-toolchain-r-test
     packages:
-    - gcc-4.8
-    - g++-4.8
-    - python
+    - python3.8-dev
     - freeglut3-dev
     - libxmu-dev
     - libxi-dev

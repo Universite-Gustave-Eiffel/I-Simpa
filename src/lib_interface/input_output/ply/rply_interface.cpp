@@ -160,6 +160,8 @@ namespace formatRPLY
 		ply_set_read_cb(plyFile, "vertex", "z", &vertex_cb, &curInstance, 2);
 
 		ply_set_read_cb(plyFile, "face", "vertex_indices", &face_cb, &curInstance, 0);
+		ply_set_read_cb(plyFile, "face", "vertex_index", &face_cb, &curInstance, 0);
+		
 		ply_set_read_cb(plyFile, "face", "layer_id", &face_layer_cb, &curInstance, 0);
 
 		ply_set_read_cb(plyFile, "layer", "layer_name", &layer_cb, &curInstance, 0);

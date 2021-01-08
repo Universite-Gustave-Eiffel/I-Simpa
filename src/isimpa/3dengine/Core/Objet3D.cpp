@@ -394,7 +394,7 @@ void CObjet3D::LoadPolyWithoutLostCurrentModelGroupAndMaterials(const std::strin
 	IntersectionTool=new ui_tools::IntersectionSeeker(_pVertices,_pGroups);
 }
 
-bool CObjet3D::Load(const std::string& filename)
+bool CObjet3D::Load(const std::string& filename, double scale)
 { //chargement d'un fichier contenant un modèle 3D
 	bool isLoadOk=false;
 	this->_Destroy();
@@ -428,6 +428,16 @@ bool CObjet3D::Load(const std::string& filename)
 	}
 	if(isLoadOk)
 	{
+		// Rescale from defined scale to meters
+		int v;
+		for (v = 0; v < this->_pVertices.size(); v++)
+		{
+			this->_pVertices[v].x = this->_pVertices[v].x * scale;
+			this->_pVertices[v].y = this->_pVertices[v].y * scale;
+			this->_pVertices[v].z = this->_pVertices[v].z * scale;
+		}
+		// Convert coordinates from -1 to 1 value
+		this->Unitize();
 		delete IntersectionTool;
 		IntersectionTool=new ui_tools::IntersectionSeeker(_pVertices,_pGroups);
 	}
@@ -552,7 +562,7 @@ int CObjet3D::Unitize()
 
 	scale = 2.0 / Max(Max(w, h), d);
 
-	for (v = 0; v <= this->_pVertices.size() -1; v++)
+	for (v = 0; v < this->_pVertices.size(); v++)
 	{
 		this->_pVertices[v].x = this->_pVertices[v].x - cx;
 		this->_pVertices[v].y = this->_pVertices[v].y - cy;
@@ -1046,7 +1056,6 @@ bool CObjet3D::_LoadSTL(const std::string&filename)
 	//Transfert des matières
 	this->_nbMaterials=0;
 	this->_pNormals.push_back(vec3());
-	this->Unitize();
 	return true;
 }
 bool CObjet3D::_LoadPOLY(const std::string& filename)
@@ -1085,7 +1094,6 @@ bool CObjet3D::_LoadPOLY(const std::string& filename)
 	//Transfert des matières
 	this->_nbMaterials=0;
 	this->_pNormals.push_back(vec3());
-	this->Unitize();
 	return true;
 }
 bool CObjet3D::_LoadPLY(const std::string& filename)
@@ -1162,7 +1170,6 @@ bool CObjet3D::_LoadPLY(const std::string& filename)
 	//Transfert des matières
 	this->_nbMaterials=0;
 	this->_pNormals.push_back(vec3());
-	this->Unitize();
 	return true;
 }
 
@@ -1269,8 +1276,6 @@ bool CObjet3D::_LoadBIN(const std::string& filename)
 	wxLogDebug("Chargement du modèle en %.3f s",diff/1000);
 	timeEndPeriod(1);
 	#endif
-	this->Unitize();
-
 	return true;
 }
 
@@ -1404,7 +1409,6 @@ bool CObjet3D::_Load3DS(const std::string& filename)
 		} else
 			this->_pGroups[g].Material = 0;
 	}
-	this->Unitize();
 	return true;
 }
 void AppendCoplanarFace( const float& coplanarEpsilon, std::vector<vec3>& verticesLst, const t_faceIndex& faceToProcess, const vec3& normSrc, std::vector<SGroup3D>& lstFaces, ui_tools::IntersectionSeeker& intersectionSeeker,BoolHashMap& alreadyProcessedFaces,std::vector<t_faceIndex> &dstLst)

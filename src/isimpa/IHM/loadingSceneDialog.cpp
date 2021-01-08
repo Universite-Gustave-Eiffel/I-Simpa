@@ -67,7 +67,8 @@ enum SL_CTRLS_ID
 	SL_CTRLS_ID_CHECKBOX_REMESH_MODEL,
 	SL_CTRLS_ID_CHECKBOX_SURFACE_MESH,
 	SL_CTRLS_ID_CHECKBOX_RESTOREGROUPS,
-	SL_CTRLS_ID_COMBO_EPSILON
+	SL_CTRLS_ID_COMBO_EPSILON,
+	SL_CTRLS_ID_LIST_UNIT
 };
 
 BEGIN_EVENT_TABLE(sceneLoadOptionDialog, wxDialog)
@@ -110,41 +111,49 @@ sceneLoadOptionDialog::sceneLoadOptionDialog(wxWindow *parent,
 	//vinputsizer->SetVGap(5);
 	//vinputsizer->SetHGap(5);
 
+	// Import unit choice
+	wxArrayString choices;
+	choices.push_back(_("Metric (meters)"));
+	choices.push_back(_("Metric (centimeters)"));
+	choices.push_back(_("Metric (millimeters)"));
+	choices.push_back(_("Imperial (feet)"));
+	choices.push_back(_("Imperial (inches)"));
+	choice_ModelImportUnit = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, choices);
+	choice_ModelImportUnit->SetToolTip(_("Unit used in this file, I-Simpa will convert it to meters"));
+	choice_ModelImportUnit->SetSelection(0);
+	topsizer->Add(choice_ModelImportUnit, 0, wxLEFT | wxTOP, 5);
 
 	cb_RemeshModel = new wxCheckBox(this,SL_CTRLS_ID_CHECKBOX_REMESH_MODEL,_("Average model remesh"));
 	cb_RemeshModel->SetToolTip(_("With this option you are able to remesh the input model to make it compatible with all calculation core. Use this option as a last resort"));
 	cb_RemeshModel->SetValue(false);
 	topsizer->Add(cb_RemeshModel,0,wxLEFT | wxTOP, 5);
-	//Champ choix de la correction du modèle
+	//Choice of model correction field
 	cb_TryToRepairMesh = new wxCheckBox(this,wxID_ANY,_("Repair model"));
 	cb_TryToRepairMesh->SetToolTip(_("If this option is activated, the scene will be imported with a correction process to improve compatibility with the mesh generator"));
 	cb_TryToRepairMesh->SetValue(true);
 	topsizer->Add(cb_TryToRepairMesh,0,wxLEFT | wxTOP,5);
-	//Champ choix maillage de surface
+	//surface mesh field choice 
 	cb_TryToMeshSurface = new wxCheckBox(this,SL_CTRLS_ID_CHECKBOX_SURFACE_MESH,_("Surface meshing"));
 	cb_TryToMeshSurface->SetToolTip(_("Faces of the scene will be meshed in order to enhance the resolution of the surface receivers display"));
 	topsizer->Add(cb_TryToMeshSurface,0,wxLEFT | wxTOP,5);
-	// Champ de paramètrage de tetgen
+	// Tetgen settings field
 	vinputsizer->Add( new wxStaticText( this, wxID_ANY, _("TetGen parameters") ), 0);
 	txt_ParamMesh = new wxTextCtrl(this,wxID_ANY,defaultMeshParams);
 	txt_ParamMesh->Disable();
 	cb_TryToMeshSurface->SetValue(false);
 	vinputsizer->Add( txt_ParamMesh,0,wxGROW| wxALL,1);
 	topsizer->Add( vinputsizer, 0, wxEXPAND | wxLEFT, 20);
-	//Champ choix de conservation des liens entre les groupes et les faces
+	// Scope of choice for the conservation of face allocation to groups
 	cb_KeepExistingFaceLinks = new wxCheckBox(this,SL_CTRLS_ID_CHECKBOX_RESTOREGROUPS,_("Keep existing groups"));
 	cb_KeepExistingFaceLinks->SetValue(true);
 	cb_KeepExistingFaceLinks->SetToolTip(_("New faces with the same position than old faces keep materials and surface receivers"));
 	topsizer->Add(cb_KeepExistingFaceLinks,0,wxLEFT | wxTOP,5);
-	//Champ de choix de l'epsilon
+	// Epsilon field (merge of vertices)
 	vslidersizer->Add( new wxStaticText( this, wxID_ANY, _("Association maximum distance (m)") ), 0);
-	//slider_EpsilonLinkingFaceGroupe = new wxSlider(this,wxID_ANY,1,0,500,wxDefaultPosition,wxDefaultSize,wxSL_HORIZONTAL | wxSL_AUTOTICKS | wxSL_LABELS);
-	//vslidersizer->Add(slider_EpsilonLinkingFaceGroupe,0,wxGROW| wxALL,1);
 	wxTextCtrl* sliderCtrl=new wxTextCtrl(this, SL_CTRLS_ID_COMBO_EPSILON, epsilonValue, wxDefaultPosition, wxDefaultSize, 0,wxTextValidator(wxFILTER_NUMERIC, &epsilonValue));
 	sliderCtrl->SetHelpText(_("Association maximum distance (m)"));
 	vslidersizer->Add(sliderCtrl,0,wxGROW| wxALL,1);
 	topsizer->Add( vslidersizer, 0, wxEXPAND | wxLEFT, 20);
-	
     // 3) buttons if any
     wxSizer *buttonSizer = CreateSeparatedButtonSizer(wxOK | wxCANCEL);
     if ( buttonSizer )
@@ -210,6 +219,29 @@ bool sceneLoadOptionDialog::IsMeshSurface()
 {
 	return cb_TryToMeshSurface->GetValue();
 }
+
+float sceneLoadOptionDialog::GetModelScale() {
+	int selection = choice_ModelImportUnit->GetSelection();
+	switch (selection)
+	{
+	case 1:
+		//model in centimeter
+		return 0.01f;
+	case 2:
+		// model in millimeter
+		return 0.001f;
+	case 3:
+		// model in feet
+		return 0.3048f;
+	case 4:
+		// model in inch
+		return 0.0254f;
+	default:
+		return 1.0f;
+		break;
+	}
+}
+
 bool sceneLoadOptionDialog::IsKeepExistingFaceLinks()
 {
 	return cb_KeepExistingFaceLinks->GetValue();

@@ -282,10 +282,12 @@ formatGABE::GABE_Data_Float* Compute_ST_Param(wxFloat32 t1,wxFloat32 t2,wxFloat3
 
 	//Pour chaque bande de fréquence
 	wxFloat32 sum=0.f;
+	// First sound wave is valided if superior than this value
+	float refValue = pow(10, -180.0f / 10.0f);
 	for(int idFreq=0;idFreq<tab_wj.size();idFreq++)
 	{
 		// Wave time
-		double wt0 = GetTimeDecay(EPSILON, timeTable, tab_wj[idFreq]);
+		double wt0 = GetTimeDecay(refValue, timeTable, tab_wj[idFreq]);
 		double wt1 = wt0 + t1;
 		double wt2 = wt0 + t2;
 		double wt3 = wt0 + t3;
@@ -316,11 +318,13 @@ formatGABE::GABE_Data_Float* Compute_C_Param(wxFloat32 te,const std::vector<wxFl
 
 	
 	wxFloat32 sum=0.f;
+	// First sound wave is valided if superior than this value
+	float refValue = pow(10, -180.0f / 10.0f);
 	//Pour chaque bande de fréquence
 	for(int idFreq=0;idFreq<tab_wj.size();idFreq++)
 	{
 		// Wave time
-		double wt0 = GetTimeDecay(EPSILON, timeTable, tab_wj[idFreq]);
+		double wt0 = GetTimeDecay(refValue, timeTable, tab_wj[idFreq]);
 		double wte = wt0 + te;
 
 		//Calcul de 0|te(p²(t))/te|+inf(p²(t))
@@ -350,10 +354,12 @@ formatGABE::GABE_Data_Float* Compute_D_Param(wxFloat32 te,const std::vector<wxFl
 
 	wxFloat32 sum=0.f;
 	//Pour chaque bande de fréquence
+	// First sound wave is valided if superior than this value
+	float refValue = pow(10, -180.0f / 10.0f);
 	for(int idFreq=0;idFreq<tab_wj.size();idFreq++)
 	{
 		// Wave time
-		double wt0 = GetTimeDecay(EPSILON, timeTable, tab_wj[idFreq]);
+		double wt0 = GetTimeDecay(refValue, timeTable, tab_wj[idFreq]);
 		double wte = wt0 + te;
 
 		//Calcul de 0|te(p²(t))/te|+inf(p²(t))
@@ -379,11 +385,13 @@ formatGABE::GABE_Data_Float* Compute_TS_Param(const std::vector<wxFloat32>& time
 	formatGABE::GABE_Data_Float* newParameter=new formatGABE::GABE_Data_Float(tab_wj.size()+1); //+1 pour le calcul toute bande
 
 	wxFloat32 sum=0.f;
+	// First sound wave is valided if superior than this value
+	float refValue = pow(10, -180.0f / 10.0f);
 	//Pour chaque bande de fréquence
 	for(int idFreq=0;idFreq<tab_wj.size();idFreq++)
 	{
 		// Wave time
-		double wt0 = GetTimeDecay(EPSILON, timeTable, tab_wj[idFreq]);
+		double wt0 = GetTimeDecay(refValue, timeTable, tab_wj[idFreq]);
 
 		//Calcul de 0|t(p²(t))/0|+inf(p²(t))
 		wxFloat32 wj_CurrentFreq=GetSumLimit(idFreq,wt0,-1.f,timeTable,tab_wj,SUM_OPERATION_XY)/GetSumLimit(idFreq,wt0,-1.f,timeTable,tab_wj,SUM_OPERATION_Y);
@@ -406,11 +414,13 @@ formatGABE::GABE_Data_Float* Compute_LEF_Param(const wxFloat32& t1,const wxFloat
 	GABE_Data_Float* newParameter=new GABE_Data_Float(tab_wj.size()+1); //autant de lignes de que de bande de fréquence
 
 	wxFloat32 sum=0.f;
+	// First sound wave is valided if superior than this value
+	float refValue = pow(10, -180.0f / 10.0f);
 	//Pour chaque bande de fréquence
 	for(int idFreq=0;idFreq<tab_wj.size();idFreq++)
 	{
 		// Wave time
-		double wt0 = GetTimeDecay(EPSILON, timeTable, tab_wj[idFreq]);
+		double wt0 = GetTimeDecay(refValue, timeTable, tab_wj[idFreq]);
 		double wt1 = wt0 + t1;
 		double wt2 = wt0 + t2;
 
@@ -478,10 +488,12 @@ formatGABE::GABE_Data_Float* Compute_LG_Param(const wxFloat32& t1,const wxFloat3
 
 	//Pour chaque bande de fréquence
 	wxFloat32 sum=0.f;
+	// First sound wave is valided if superior than this value
+	float refValue = pow(10, -180.0f / 10.0f);
 	for(int idFreq=0;idFreq<tab_wjthetasqr.size();idFreq++)
 	{
 		// Wave time
-		double wt0 = GetTimeDecay(EPSILON, timeTable, tab_wjthetasqr[idFreq]);
+		double wt0 = GetTimeDecay(refValue, timeTable, tab_wjthetasqr[idFreq]);
 		double wt1 = wt0 + t1;
 		double wt2 = wt0 + t2;
 		//Calcul
@@ -512,10 +524,12 @@ formatGABE::GABE_Data_Float* Compute_G_Param(const wxFloat32& t1,const wxFloat32
 
 	//Pour chaque bande de fréquence
 	wxFloat32 sum=0.f;
+	// First sound wave is valided if superior than this value
+	float refValue = pow(10, -180.0f / 10.0f);
 	for(int idFreq=0;idFreq<tab_wj.size();idFreq++)
 	{
 		// Wave time
-		double wt0 = GetTimeDecay(EPSILON, timeTable, tab_wj[idFreq]);
+		double wt0 = GetTimeDecay(refValue, timeTable, tab_wj[idFreq]);
 		double wt1 = wt0 + t1;
 		double wt2 = wt0 + t2;
 		//Calcul

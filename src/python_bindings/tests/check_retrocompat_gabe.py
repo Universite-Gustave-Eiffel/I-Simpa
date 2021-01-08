@@ -41,16 +41,17 @@ driver = ls.Gabe_rw()
 
 expected = [['', "Particules absorb\xe9es par l'atmosph\xe8re", 'Particules absorb\xe9es par les mat\xe9riaux', 'Particules perdues d\xfb aux boucles infinies', 'Particules perdues d\xfb au maillage incorrect', 'Particules restantes', 'Total'], ['50 Hz', 0, 19999966, 0, 2, 32, 20000000]]
 
-gabe_path = u"rétrocompat_test.gabe"
+gabe_path = "retrocompat_test.gabe"
 
 if not os.path.exists(gabe_path):
     sys.exit("File not exists: " + gabe_path)
 
-if not driver.Load(gabe_path.encode("utf-8")):
+if not driver.Load(gabe_path):
     sys.exit("Cannot load gabe file !")
 
 
 grid = driver.ToList()
+grid = [[x.encode('utf-8', errors='surrogateescape').decode('cp1252') if isinstance(x,str) else x for x in ls] for ls in grid]
 
 if not grid == expected:
     exit("Wrong data " + str(grid))

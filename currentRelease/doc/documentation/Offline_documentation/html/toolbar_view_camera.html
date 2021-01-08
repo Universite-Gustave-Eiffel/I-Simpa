@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,28 +11,29 @@
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
 </head>
@@ -49,7 +49,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> I-Simpa
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> I-Simpa
           
 
           
@@ -76,6 +76,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -133,6 +134,7 @@
 <p class="caption"><span class="caption-text">Appendices</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="I_Simpa_standard.html">Standards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="room_acoustics_parameters.html">Room acoustics parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
@@ -140,6 +142,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -178,7 +181,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>&lt;no title&gt;</li>
     
@@ -200,22 +203,20 @@
            <div itemprop="articleBody">
             
   <ul class="simple">
-<li><dl class="first docutils">
-<dt>3D display:</dt>
-<dd><ul class="first last">
-<li><img alt="3D_view_faces" src="_images/toolbar_showfaceonly.png" />       3D with faces (interior);</li>
-<li><img alt="3D_view_lines" src="_images/toolbar_showsidesonly.png" />       3D without faces, all lines;</li>
-<li><img alt="3D_view_faces_lines" src="_images/toolbar_showfacewithsides.png" /> 3D with faces and all lines;</li>
+<li><dl class="simple">
+<dt>3D display:</dt><dd><ul>
+<li><p><img alt="3D_view_faces" src="_images/toolbar_showfaceonly.png" />       3D with faces (interior);</p></li>
+<li><p><img alt="3D_view_lines" src="_images/toolbar_showsidesonly.png" />       3D without faces, all lines;</p></li>
+<li><p><img alt="3D_view_faces_lines" src="_images/toolbar_showfacewithsides.png" /> 3D with faces and all lines;</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Camera:</dt>
-<dd><ul class="first last">
-<li><img alt="3D_view_reinit" src="_images/toolbar_camera_movetoorigin.png" />      Reinitialize camera;</li>
-<li><img alt="3D_view_modeRZ" src="_images/toolbar_camera_rotation.png" />      Mode ‘Rotation/Zoom’;</li>
-<li><img alt="3D_view_mode_fp" src="_images/toolbar_camera_firstperson.png" />     Mode ‘First person’;</li>
+<li><dl class="simple">
+<dt>Camera:</dt><dd><ul>
+<li><p><img alt="3D_view_reinit" src="_images/toolbar_camera_movetoorigin.png" />      Reinitialize camera;</p></li>
+<li><p><img alt="3D_view_modeRZ" src="_images/toolbar_camera_rotation.png" />      Mode ‘Rotation/Zoom’;</p></li>
+<li><p><img alt="3D_view_mode_fp" src="_images/toolbar_camera_firstperson.png" />     Mode ‘First person’;</p></li>
 </ul>
 </dd>
 </dl>
@@ -233,14 +234,22 @@
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Dec 23, 2020.
       </span>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -251,7 +260,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

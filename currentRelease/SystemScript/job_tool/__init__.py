@@ -3,6 +3,7 @@ import uictrl as ui
 import operator
 import uilocale
 import os
+import collections
 
 _=uilocale.InstallUiModule(ui.application.getapplicationpath()["systemscript"]+"job_tool"+os.sep,ui.application.getlocale())
 
@@ -97,7 +98,8 @@ class JobManager(object):
         Cette classe permet la gestion des travaux renseignés par l'utilisateur
     """
     def appendjob(self,jobname,identifier):
-        if operator.isSequenceType(identifier):
+        #if operator.isSequenceType(identifier):
+        if isinstance(identifier,collections.Sequence):
             self.joblst.append(job_types[jobname](identifier))
         else:
             self.joblst.append(job_types[jobname](jobname,identifier))
@@ -124,9 +126,9 @@ class JobManager(object):
     def ExportJobLst(self,idel):
         pass
     def PrintJobLst(self,idel):
-        print _(u"%i tasks:" % (len(self.joblst)))
+        print(_(u"%i tasks:" % (len(self.joblst))))
         for job in self.joblst:
-            print job.to_str()
+            print(job.to_str())
 
 class manager:
     def __init__(self):

@@ -1,5 +1,5 @@
 ﻿# -*- coding: utf-8 -*-
-from libsimpa import *
+from libsimpa.libsimpa import *
 
 # Add new functionalities
 

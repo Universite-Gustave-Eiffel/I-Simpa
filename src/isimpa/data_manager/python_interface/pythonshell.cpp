@@ -62,10 +62,6 @@ PythonShell::PythonShell(PyConsole* pyCtrl)
 	main_module = import("__main__");
 	main_namespace = main_module.attr("__dict__");
 
-	//Enregistrement des modules
-	PyImport_AppendInittab("uictrl", inituictrl);
-	//
-
 	main_namespace["PythonStdIoRedirect"] = class_<PythonStdIoRedirect>("PythonStdIoRedirect", no_init)
 	.def("write", &PythonStdIoRedirect::Write)
 	.def("readline", &PythonStdIoRedirect::ReadLine)
@@ -131,7 +127,7 @@ void PythonShell::Init()
 	RunRawCmd("import __main__");
 	RunRawCmd("import sys");
 	RunRawCmd("import uictrl as ui");
-	RunRawCmd(_("print 'Python(TM)',sys.version,'on',sys.platform"));
+	RunRawCmd(_("print('Python(TM)',sys.version,'on',sys.platform)"));
 	run_startupscript("UserScript/","__ui_startup__.py");
 	run_startupscript("SystemScript/","__ui_startup__.py");
 	//RunRawCmd("emulationDict=dict()");
@@ -196,7 +192,7 @@ void PythonShell::ExecLineCommand(const wxString& newcommand)
 
 void PythonShell::RunRawCmd(const wxString& command)
 {
-	if(handle_exception(boost::bind(exec, WXSTRINGTOCHARPTR(command),main_namespace,main_namespace)))
+	if(handle_exception(boost::bind<object,str,object,object>(exec, WXSTRINGTOCHARPTR(command),main_namespace,main_namespace)))
 	{
 		if (PyErr_Occurred())
 		{
@@ -222,7 +218,13 @@ void PythonShell::register_menu_manager(const int& element_typeid, boost::python
 {
 	if(hasattr(manager,"getmenu"))
 	{
-		if(extract_or_throw<bool>(this->menu_managers.attr("has_key")(element_typeid)))
+		list key_list = extract_or_throw<list>(this->menu_managers.keys());
+		bool has_key = false;
+		for (int i = 0; i < len(key_list); ++i) {
+			int key = extract<int>(key_list[i]);
+			if (key == element_typeid) { has_key = true; }
+		}
+		if(has_key)
 		{
 			this->menu_managers[element_typeid].attr("append")(manager);
 		}else{
@@ -279,13 +281,27 @@ void PythonShell::call_event(const int& eventid,const int& elementid)
 	}
 }
 
+void PythonShell::load_uictrl()
+{
+	//Enregistrement des modules
+	PyImport_AppendInittab("uictrl", &PyInit_uictrl);
+	//
+}
+
 int PythonShell::GetCountEventTable()
 {
     return int(len(event_lst));
 }
 bool PythonShell::GetPythonManagedMenu(const int& element_type,const int& elementId,boost::python::list& pymenu)
 {
-	if(extract_or_throw<bool>(this->menu_managers.attr("has_key")(element_type)))
+	list key_list = extract_or_throw<list>(this->menu_managers.keys());
+	bool has_key = false;
+	for (int i = 0; i < len(key_list); ++i) {
+		int key = extract<int>(key_list[i]);
+		if (key == element_type) { has_key = true; }
+	}
+
+	if(has_key)
 	{
 		bool modified=false;
 		std::vector<object> lstManagers;

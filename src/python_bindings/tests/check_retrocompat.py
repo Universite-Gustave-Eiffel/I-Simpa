@@ -24,8 +24,8 @@ def check_file(fileName):
         assert(len(model.vertices) == 42)
         vertices = [(v[0], v[1], v[2]) for v in model.vertices]
         # compute min max for x,y,z
-        maxV = map(max, zip(*vertices))
-        minV = map(min, zip(*vertices))
+        maxV = list(map(max, zip(*vertices)))
+        minV = list(map(min, zip(*vertices)))
         assert(abs(maxV[0] - 20) < 1e-5)
         assert(abs(maxV[1] - 30) < 1e-5)
         assert(abs(maxV[2] - 10) < 1e-5)

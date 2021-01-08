@@ -193,7 +193,7 @@ void ProjectManager::OnStartRemeshWizard()
 	if(reconstructionWiz.RunWizard(reconstructionWiz.GetFirstPage()))
 	{
 		wxString reconstructedSceneFilePath(reconstructionManager.GetFinalModelFilePath());
-		this->sceneMesh.Load(reconstructedSceneFilePath.ToStdString());
+		this->sceneMesh.Load(reconstructedSceneFilePath.ToStdString(), 1.0);
 		//this->sceneMesh.Save(meshName);
 		wxRemoveFile(plyFilePath);
 		wxRemoveFile(reconstructedSceneFilePath);

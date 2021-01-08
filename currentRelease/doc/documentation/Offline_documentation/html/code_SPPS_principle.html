@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,28 +11,29 @@
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Modelling of physical phenomena in SPPS" href="code_SPPS_modelling.html" />
@@ -51,7 +51,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> I-Simpa
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> I-Simpa
           
 
           
@@ -78,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -142,6 +143,7 @@
 <p class="caption"><span class="caption-text">Appendices</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="I_Simpa_standard.html">Standards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="room_acoustics_parameters.html">Room acoustics parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
@@ -149,6 +151,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -187,7 +190,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>General principle</li>
     
@@ -225,8 +228,8 @@
 <p>The principle of simulations is therefore based on the tracking of sound particles, carrying an initial energy :math: <cite>epsilon</cite>, emitted from one or more sound sources, in a volume chamber :math:` V` totally or partially closed. Each particle is propagated along rectilinear or curved paths, until it collides with a wall or scattering object. At each collision, the sound particle (or part of its energy) can be absorbed, reflected or transmitted, depending on the absorption and transmission coefficient of the wall or object. As the processing of certain physical phenomena can be performed by random number draws, this simulation procedure can therefore be likened to a Monte Carlo method: raw-latex: <cite>cite {burns1990}</cite>. The physical phenomena simulated by these draws of random numbers will be all the better respected as the number of random draws will be large, that is to say that the initial number :math: <cite>N</cite> of sound particles will also be very large. Nevertheless, more :math: <cite>N</cite> will be large, longer will be the duration of the simulations. The choice of :math: <cite>N</cite> is therefore a compromise between the computation time and the accuracy of the results, but is also a function of the geometry and acoustic characteristics of the propagation domain. For example, the more the propagation domain will be absorbing (at the walls, scattering objects, atmospheric absorption), the more it will be necessary to consider sound particles to have a satisfactory description of the physical phenomena.</p>
 <p>In the current version of the `` SPPS`` code, two calculation modes are proposed:</p>
 <ul class="simple">
-<li><strong>Random Modeling:</strong> In this mode, the energy of the particle is constant. The phenomena of absorption and atmospheric absorption are considered statistically: depending on the values ​​of the atmospheric absorption and the absorption coefficients of the materials, the particles can be made to disappear completely from the propagation domain, or to remain in the domain with the same energy. The other physical phenomena (diffusion by a congestion, diffuse reflection) are also treated statistically. As the number of sound particles decreases over time, the calculation time decreases gradually. Moreover, the density of sound energy at a point of the domain is then proportional to the number of sound particles at the same point.</li>
-<li><strong>Energetic modeling:</strong> In this mode, the energy of the particle is weighted according to the values ​​of the atmospheric absorption and the absorption coefficients of the materials. The other physical phenomena (diffusion by congestion, diffuse reflection) are also treated randomly. Since in this mode, the number of sound particles is constant, the duration of the numerical simulations is longer than for the first mode. Moreover, the sound energy density at a point of the domain is then proportional to the sum of the energy of the sound particles at this same point.</li>
+<li><p><strong>Random Modeling:</strong> In this mode, the energy of the particle is constant. The phenomena of absorption and atmospheric absorption are considered statistically: depending on the values ​​of the atmospheric absorption and the absorption coefficients of the materials, the particles can be made to disappear completely from the propagation domain, or to remain in the domain with the same energy. The other physical phenomena (diffusion by a congestion, diffuse reflection) are also treated statistically. As the number of sound particles decreases over time, the calculation time decreases gradually. Moreover, the density of sound energy at a point of the domain is then proportional to the number of sound particles at the same point.</p></li>
+<li><p><strong>Energetic modeling:</strong> In this mode, the energy of the particle is weighted according to the values ​​of the atmospheric absorption and the absorption coefficients of the materials. The other physical phenomena (diffusion by congestion, diffuse reflection) are also treated randomly. Since in this mode, the number of sound particles is constant, the duration of the numerical simulations is longer than for the first mode. Moreover, the sound energy density at a point of the domain is then proportional to the sum of the energy of the sound particles at this same point.</p></li>
 </ul>
 </div>
 <div class="section" id="spatial-meshing">
@@ -235,15 +238,15 @@
 <p><strong>Benefits:</strong></p>
 <blockquote>
 <div><ul class="simple">
-<li>the mesh of the propagation domain allows to optimize the propagation of sound particles in the domain. Indeed, a pre-processing makes it possible to determine for each mesh of the domain its position with respect to the limits of the domain, its position inside or outside a space requirement, as well as general properties, such as the speed of sound in the mesh and the meteorological conditions (<em>via</em> the height with respect to the ground for example). The tracking of a sound particle in the domain is therefore accelerated by the knowledge of the properties of the meshes adjacent to the mesh containing the particle at the current time step;</li>
-<li>the volume mesh allows to realize a surface mesh of the domain boundaries, which can be used to build surface receivers, on any boundary of the domain;</li>
-<li>the realization of a volumetric mesh requiring that the geometric model be perfectly closed, thus ensuring that no sound particles can disappear from the propagation domain due to an opening (faces of the model not perfectly joined for example).</li>
+<li><p>the mesh of the propagation domain allows to optimize the propagation of sound particles in the domain. Indeed, a pre-processing makes it possible to determine for each mesh of the domain its position with respect to the limits of the domain, its position inside or outside a space requirement, as well as general properties, such as the speed of sound in the mesh and the meteorological conditions (<em>via</em> the height with respect to the ground for example). The tracking of a sound particle in the domain is therefore accelerated by the knowledge of the properties of the meshes adjacent to the mesh containing the particle at the current time step;</p></li>
+<li><p>the volume mesh allows to realize a surface mesh of the domain boundaries, which can be used to build surface receivers, on any boundary of the domain;</p></li>
+<li><p>the realization of a volumetric mesh requiring that the geometric model be perfectly closed, thus ensuring that no sound particles can disappear from the propagation domain due to an opening (faces of the model not perfectly joined for example).</p></li>
 </ul>
 </div></blockquote>
 <p><strong>Disadvantages:</strong></p>
 <blockquote>
 <div><ul class="simple">
-<li>the realization of the mesh requiring that the geometric model is perfectly closed, this supposes that the model is perfectly constructed. Calculation codes based on sound rays do not have this constraint, since they “allow” a ray to “leave” the domain and propagate to infinity.</li>
+<li><p>the realization of the mesh requiring that the geometric model is perfectly closed, this supposes that the model is perfectly constructed. Calculation codes based on sound rays do not have this constraint, since they “allow” a ray to “leave” the domain and propagate to infinity.</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -253,7 +256,7 @@
 <p><strong>Mesh supported by the code SPPS:</strong></p>
 <blockquote>
 <div><ul class="simple">
-<li>tetrahedral mesh;</li>
+<li><p>tetrahedral mesh;</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -279,14 +282,22 @@
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Dec 02, 2020.
+        Last updated on Dec 23, 2020.
       </span>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -297,7 +308,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

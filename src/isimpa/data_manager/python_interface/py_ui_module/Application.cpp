@@ -404,9 +404,9 @@ namespace uictrl
 		std::vector<std::pair<object, object>> stdArray;
 		//Ne pas traduire ici les libellés des champs
 		int numItems = boost::python::len(rows.keys());
-		object iter = rows.iteritems();
+		object items = rows.items();
 		for(int idItem = 0;idItem<numItems;idItem++) {
-			tuple item = extract_or_throw<tuple>(iter.attr("next")());
+			tuple item = extract_or_throw<tuple>(items[idItem]);
 			stdArray.push_back(std::make_pair(item[0], item[1]));
 		}
 		std::sort(stdArray.begin(), stdArray.end());

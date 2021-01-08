@@ -135,7 +135,7 @@ class managerLinkWithSourcePosition:
         for sourceid in sourclst_ids:
             src=ui.element(sourceid)
             dict_src[src.getinfos()["name"]]=sourceid
-        srcLst=dict_src.keys()
+        srcLst=list(dict_src.keys())
         srcLst.sort()
         srcsellabel=_(u"Source name")
         dialog_res=ui.application.getuserinput(_(u"Source selection"),_(u"Please choose the source:"),{srcsellabel : srcLst})

@@ -103,7 +103,7 @@ public:
 	 * @param filename Chemin et nom du fichier de modèle compatible
 	 * @return Vrai si le chargement du fichier s'est déroulé avec succès
 	 */
-	bool Load(const std::string& filename);
+	bool Load(const std::string& filename, double scale);
 
 	/**
 	 * Charge le fichier de modèle en conservant les propriété de groupe et de matériaux du modèle déjà chargé
