@@ -213,28 +213,32 @@
 <li>the <cite>projet_config.xml</cite> file contains all information in the 3 tabs ‘Scene’, ‘Calculation’ and ‘Results’. This file can be used as a ‘memory’ of the calculation (archive).</li>
 </ul>
 <p>In addition, each calculation codes generates specific files that can be interpreted by I-Simpa, depending of their format (with specific contents and file extensions).</p>
+<p>For more information, see the ‘Results’ section of each calculation code (in the documentation):</p>
+<ul class="simple">
+<li>For the SPPS code : see section <a class="reference external" href="code_configuration_SPPS.html#spps-results">SPPS Results</a></li>
+</ul>
 <div class="section" id="file-formats">
 <h2>File formats<a class="headerlink" href="#file-formats" title="Permalink to this headline">¶</a></h2>
 <p>I-Simpa can interpret two types of file:</p>
 <ul>
 <li><p class="first"><strong>File formats recognized by the Operating System</strong>, such as <cite>txt</cite>, <cite>xml</cite>, <cite>html</cite>, <cite>pdf</cite>… for example. Double left click on the file starts the  associated program within the operating system.</p>
 </li>
-<li><p class="first"><strong>Native I-Simpa files</strong>: these file are created by the calculation code and that can be associated with specific actions and treatments within I-Simpa. These files and associated actions are detailed below.</p>
+<li><p class="first"><strong>Native I-Simpa files</strong>: these file are created by the calculation code and that can be associated with specific actions and treatments within I-Simpa.</p>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="first docutils">
 <dt>File <cite>.recp</cite></dt>
-<dd>Punctual receiver file</dd>
+<dd>Punctual receiver file data type</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt>File <cite>.gap</cite></dt>
-<dd>Punctual receiver file</dd>
+<dd>Punctual receiver file data type</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt>File <cite>.csbin</cite></dt>
-<dd>Surface receiver file</dd>
+<dd>Surface receiver file type</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
@@ -257,186 +261,6 @@
 </li>
 </ul>
 </div>
-<div class="section" id="punctual-receiver-file-recp">
-<h2>Punctual receiver file <cite>.recp</cite><a class="headerlink" href="#punctual-receiver-file-recp" title="Permalink to this headline">¶</a></h2>
-<p>This file contains the temporal evolution, by frequency band, of a given quantity that is homogeneous to instantaneous sound squared pressure (<span class="math notranslate nohighlight">\(p^2\)</span>). Most of time, it should correspond to a punctual eceiver at the point. Typically, this type of file can
-represent an impulse response (RI). The actions associated with I-Simpa arise directly from the file format.</p>
-<div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">The operations performed by the interface I-Simpa with this file type make sense only if the data in the file are equivalent to an instantaneous squared sound pressure (<span class="math notranslate nohighlight">\(p^2\)</span>).</p>
-</div>
-<div class="section" id="data-display">
-<h3>Data Display<a class="headerlink" href="#data-display" title="Permalink to this headline">¶</a></h3>
-<p>Double left click on a <cite>.recp</cite> file open a new winodw with three tabs</p>
-<ul>
-<li><dl class="first docutils">
-<dt>‘Sound Level SPL (dB)’ tab</dt>
-<dd><p class="first">It contains the temporal evolution of the quantity, for each frequency band, as a data table.</p>
-<blockquote class="last">
-<div><ul class="simple">
-<li>This tab is opened by default.</li>
-<li>The values are represented in sound pressure levels (SPL).</li>
-<li>The <strong>Global</strong> value (<em>i.e.</em> the sum of all frequency bands) is calculated and displayed at the bottom of each column.</li>
-<li>The <strong>Total</strong> value (<em>i.e.</em> the sum of all time step) is calculated and displayed at the end of each row.</li>
-</ul>
-</div></blockquote>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>‘Sound Level SPL (dB)’ tab</dt>
-<dd><p class="first">It provides a graphic display of the <strong>Global</strong> value.</p>
-<blockquote class="last">
-<div><ul class="simple">
-<li>The temporal evolution of the <strong>Global</strong> value is displayed, as an echogram.</li>
-<li>The cumulative quantity of the <strong>Global</strong> value is displayed, according to the Schroeder’s backward integration <a class="reference internal" href="references.html#schroeder-1965" id="id1">[Sch65]</a>.</li>
-</ul>
-</div></blockquote>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>‘Spectrum’ tab</dt>
-<dd><p class="first last">It displays a spectrum at the punctual receiver.</p>
-</dd>
-</dl>
-</li>
-</ul>
-</div>
-<div class="section" id="room-acoustics-parameters">
-<h3>Room acoustics parameters<a class="headerlink" href="#room-acoustics-parameters" title="Permalink to this headline">¶</a></h3>
-<p>Given the nature of the file (<em>i.e.</em> an echogram), the contextual menu that is associated to this file allows to calculate several room acoustic parameters:</p>
-<ul class="simple">
-<li>Sound Pressure Level (SPL) in dB</li>
-<li>Sound Pressure Level (SPL) in dB(A)</li>
-<li>Clarity C (in dB)</li>
-<li>Definition D (in %)</li>
-<li>Central Time Ts (in ms)</li>
-<li>Reverberation time RT (in s)</li>
-<li>Early decay time EDT (in s)</li>
-<li>Stage Support ST (in dB)</li>
-</ul>
-<p>Several parameters can be given by the user in order to calculate user-values of some room acoustics parameters:</p>
-<ul class="simple">
-<li>Clarity: fix the value of the temporal limit of integration, usually 50 ms</li>
-<li>Definition: fix the value of the temporal limit of integration, usually 50 ms</li>
-<li>Reverberation time: fix the value of the sound level limit of integration, usually 30dB</li>
-</ul>
-<div class="admonition tip">
-<p class="first admonition-title">Tip</p>
-<p class="last">Multiple calculations are allowed for each paremeter, by using the semicolon ‘;’ between parameters.</p>
-</div>
-<p>After the calculation parameters, two files are created in the corresponding folder:</p>
-<ul>
-<li><dl class="first docutils">
-<dt>‘Acoustic parameters’</dt>
-<dd><p class="first">This file provides access to the room acoustics parameters in the form of a data table.</p>
-<blockquote class="last">
-<div><ul class="simple">
-<li>The parameters are given for each frequency band of interest.</li>
-<li>When allowed, the <strong>Global</strong> value (<em>i.e.</em> the sum of all frequency bands) is calculated and displayed at the bottom of each column.</li>
-<li>When allowed, the <strong>Average</strong> value (<em>i.e.</em> the mean value on all frequency bands) is calculated and displayed at the bottom of each column.</li>
-</ul>
-</div></blockquote>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>‘Schroeder curves’</dt>
-<dd><p class="first last">It displays the temporal evolution of the Schroeder’s curves <a class="reference internal" href="references.html#schroeder-1965" id="id2">[Sch65]</a>, for each frequency band, as a data table.</p>
-</dd>
-</dl>
-</li>
-</ul>
-<div class="admonition tip">
-<p class="first admonition-title">Tip</p>
-<p class="last">User can create charts for representing data from the data table. See <a class="reference external" href="create_charts.html">charts creation</a></p>
-</div>
-</div>
-</div>
-<div class="section" id="punctual-receiver-file-gap">
-<h2>Punctual receiver file <cite>.gap</cite><a class="headerlink" href="#punctual-receiver-file-gap" title="Permalink to this headline">¶</a></h2>
-<p>In addition to classical room acoustics parameters, some <em>advanced</em> parameters are also calculated, and displayed in the ‘Advanced sound level’ file. This file display the temporal evolution of the impulse response, for each frequency band, as a data table, weihgted by <span class="math notranslate nohighlight">\(\cos \theta\)</span> (LFC and LG) and <span class="math notranslate nohighlight">\(\cos^2 \theta\)</span> (LF and LG).</p>
-<p>The contextual menu that is associated to this file allows to calculate several room acoustic parameters:</p>
-<ul class="simple">
-<li>Early lateral energy fraction LFC (in %)</li>
-<li>Early lateral energy fraction LF (in %)</li>
-<li>Early lateral energy LF (in dB)</li>
-<li>Strength G (in dB)</li>
-</ul>
-<p>Data display:</p>
-<ul class="simple">
-<li>The <strong>Global</strong> value (<em>i.e.</em> the sum of all frequency bands) is calculated and displayed at the bottom of each column.</li>
-<li>The <strong>Total</strong> value (<em>i.e.</em> the sum of all time step) is calculated and displayed at the end of each row.</li>
-</ul>
-<p>Several parameters can be given by the user in order to calculate user-values of advanced parameters:</p>
-<ul class="simple">
-<li>LF: fix the value of the temporal limit of integration, usually 80 ms</li>
-<li>LFC: fix the value of the temporal limit of integration, usually 80 ms</li>
-</ul>
-<div class="admonition tip">
-<p class="first admonition-title">Tip</p>
-<p class="last">Multiple calculations are allowed for each paremeter, by using the semicolon ‘;’ between parameters.</p>
-</div>
-</div>
-<div class="section" id="surface-receiver-file-file-csbin">
-<h2>Surface receiver file file <cite>.csbin</cite><a class="headerlink" href="#surface-receiver-file-file-csbin" title="Permalink to this headline">¶</a></h2>
-<p>A <cite>.csbin</cite> file contains the temporal evolution of a quantity that represents an acoustic intensity on a surface.</p>
-<p>Depending of the calculation parameters, one can obtain, for each surface receiver, by default, on <strong>Global</strong> value (in the ‘Global’ folder) and, in addition, the result for each frequency band in a corresponding folder.</p>
-<p>A right click on a surface receiver file opens the contextual menu, with specific actions:</p>
-<ul>
-<li><dl class="first docutils">
-<dt>‘Acoustic parameters’</dt>
-<dd><p class="first">Allows to compute relevant room acoustics parameters on the surface. Depending of the selection, it creates specific files on the corresponding folder.</p>
-<blockquote class="last">
-<div><ul class="simple">
-<li>Clarity C (in dB)</li>
-<li>Definition D (in %)</li>
-<li>Central Time Ts (in ms)</li>
-<li>Reverberation time RT (in s)</li>
-<li>Early decay time EDT (in s)</li>
-<li>Stage Support ST (in dB)</li>
-</ul>
-</div></blockquote>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>‘Load animation’</dt>
-<dd><p class="first">It allows to represent the spatial variation of the indicators that is selected. If the indicators contains some time dependent value, it can displayed an animation. On can interact on the animation with the <a class="reference external" href="toolbar_simulation.html">‘Simulation’ toolbar</a>.</p>
-<blockquote class="last">
-<div><ul class="simple">
-<li><dl class="first docutils">
-<dt>‘Instantaneous value’</dt>
-<dd>Show the value of the given indicator at each time step.</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>‘Cumulative instantaneous value’</dt>
-<dd>Show the value of the given indicator at each time step, by cumulating all past steps.</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>‘Total value’</dt>
-<dd>Show the total value of the given indicator. No animation.</dd>
-</dl>
-</li>
-</ul>
-</div></blockquote>
-</dd>
-</dl>
-</li>
-</ul>
-</div>
-<div class="section" id="tabulated-data-file-gabe">
-<h2>Tabulated data file <cite>.gabe</cite><a class="headerlink" href="#tabulated-data-file-gabe" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="animated-intensity-file-rpi">
-<h2>Animated intensity file <cite>.rpi</cite><a class="headerlink" href="#animated-intensity-file-rpi" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="animated-data-file-pbin">
-<h2>Animated data file <cite>.pbin</cite><a class="headerlink" href="#animated-data-file-pbin" title="Permalink to this headline">¶</a></h2>
-</div>
 </div>
 
 
@@ -452,7 +276,7 @@ represent an impulse response (RI). The actions associated with I-Simpa arise di
     <p>
         &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Dec 04, 2020.
+        Last updated on Dec 15, 2020.
       </span>
 
     </p>

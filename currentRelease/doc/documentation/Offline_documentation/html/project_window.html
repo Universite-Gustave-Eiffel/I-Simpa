@@ -139,33 +139,24 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#calculation-tab">‘Calculation’ tab</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#using-spps-within-i-simpa">Using SPPS within I-Simpa</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#frequency-bands">Frequency bands</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#meshing">Meshing</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#calculation-parameters">Calculation parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Frequency bands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Meshing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#spps-calculation-parameters">SPPS Calculation parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#computational-time-optimization">Computational time optimization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#spps-results">SPPS Results</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#using-tcr-within-i-simpa">Using TCR within I-Simpa</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id2">Meshing</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id4">Calculation parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">Meshing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tcr-calculation-parameters">TCR Calculation parameters</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#run-calculation">Run calculation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#job-list">Job list</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#results-tab">‘Results’ tab</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id10">‘Results’ tab</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#file-formats">File formats</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#punctual-receiver-file-recp">Punctual receiver file <cite>.recp</cite></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#data-display">Data Display</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#room-acoustics-parameters">Room acoustics parameters</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#punctual-receiver-file-gap">Punctual receiver file <cite>.gap</cite></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#surface-receiver-file-file-csbin">Surface receiver file file <cite>.csbin</cite></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tabulated-data-file-gabe">Tabulated data file <cite>.gabe</cite></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#animated-intensity-file-rpi">Animated intensity file <cite>.rpi</cite></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#animated-data-file-pbin">Animated data file <cite>.pbin</cite></a></li>
 </ul>
 </li>
 </ul>
@@ -275,7 +266,7 @@
 <h2>Presentation<a class="headerlink" href="#presentation" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="principle">
 <h3>Principle<a class="headerlink" href="#principle" title="Permalink to this headline">¶</a></h3>
-<p>The <strong>‘Project’</strong> window allows to organize the set of useful data on three tabs <a class="reference internal" href="#scene-tab">‘Scene’ tab</a>, <a class="reference internal" href="#calculation-tab">‘Calculation’ tab</a> and <a class="reference internal" href="#results-tab">‘Results’ tab</a>. It follows a natural procedure, for a classical acoustical study, which consists in:</p>
+<p>The <strong>‘Project’</strong> window allows to organize the set of useful data on three tabs <a class="reference internal" href="#scene-tab">‘Scene’ tab</a>, <a class="reference internal" href="#calculation-tab">‘Calculation’ tab</a> and <a class="reference internal" href="#id10">‘Results’ tab</a>. It follows a natural procedure, for a classical acoustical study, which consists in:</p>
 <ol class="arabic simple">
 <li>Giving all information (geometry, material, sound sources, receivers…),</li>
 <li>Gtarting the calculation (using a specific code),</li>
@@ -285,7 +276,7 @@
 <ol class="arabic simple">
 <li>Define all information/data in the tab <a class="reference internal" href="#scene-tab">‘Scene’ tab</a></li>
 <li>Choose and parametrize the calculation code in the tab <a class="reference internal" href="#calculation-tab">‘Calculation’ tab</a></li>
-<li>Explore, process and represent all results in the tab <a class="reference internal" href="#results-tab">‘Results’ tab</a></li>
+<li>Explore, process and represent all results in the tab <a class="reference internal" href="#id10">‘Results’ tab</a></li>
 </ol>
 </div>
 <div class="section" id="definitions">
@@ -1359,6 +1350,10 @@ within source groups. A group can contain other groups.</p>
 </dl>
 </li>
 </ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The scene volume is displayed only after a first meshing of the scene. Generate a meshing using the <a class="reference external" href="toolbars.html#toolbar-meshing">Meshing Toolbar</a> (see <a class="reference external" href="code_configuration_meshing.html">Meshing option</a>)</p>
+</div>
 </div>
 <div class="section" id="project-database">
 <h4>Project database<a class="headerlink" href="#project-database" title="Permalink to this headline">¶</a></h4>
@@ -1371,12 +1366,12 @@ within source groups. A group can contain other groups.</p>
 <p>This tab allows to choose and to define the acoustic calculation. This tab contains all calculation codes that are linked to I-Simpa. By default, two numerical codes are given:</p>
 <ul class="simple">
 <li><dl class="first docutils">
-<dt><a href="#id7"><span class="problematic" id="id8">`TCR calculation code`_</span></a></dt>
-<dd>Apply the Classical Theory of Reverberation for room acoustics. It applies Sabine and Eyring formulae. This code must be used only for closed spaces.</dd>
+<dt><a class="reference external" href="code_TCR.html">TCR calculation code</a></dt>
+<dd>Apply the Classical Theory of Reverberation for room acoustics. It applies Sabine and Eyring formulae. This code must be used only for closed spaces</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt><a href="#id9"><span class="problematic" id="id10">`SPPS calculation code`_</span></a></dt>
+<dt><a class="reference external" href="code_SPPS.html">SPPS calculation code</a></dt>
 <dd>This code is based on a particle tracing method, in respect with the geometrical and energetical hypothesis. This code can be applied in most of situations in room acoustics, as well as in open field, including urban area.</dd>
 </dl>
 </li>
@@ -1390,17 +1385,17 @@ within source groups. A group can contain other groups.</p>
 <p>SPPS is already embedded in I-Simpa. Follow the next instructions to run a calculation with the SPPS code in I-Simpa.</p>
 <p><strong>Double left click</strong> on the TCR calculation code in I-Simpa to display all calculation paramaters:</p>
 <ul class="simple">
-<li><a class="reference internal" href="#frequency-bands">Frequency bands</a> for the selection of the frequency band to be used for the calculation</li>
-<li><a href="#id11"><span class="problematic" id="id12">`Meshing`_</span></a> for the meshing configuration</li>
-<li><a href="#id13"><span class="problematic" id="id14">`Calculation parameters`_</span></a> for the calculation parameters</li>
+<li><a class="reference external" href="code_configuration_meshing.html">Frequency bands</a> for the selection of the frequency band to be used for the calculation</li>
+<li><a class="reference external" href="code_configuration_frequency_bands.html">Meshing</a> for the meshing configuration</li>
+<li><a class="reference internal" href="#spps-calculation-parameters">SPPS Calculation parameters</a> for the calculation parameters</li>
 </ul>
 <p><strong>Right click</strong> on the selected calculation code to display all possible actions:</p>
 <ul class="simple">
 <li>Run calculation</li>
 <li>Job list</li>
 </ul>
-<div class="section" id="frequency-bands">
-<h4>Frequency bands<a class="headerlink" href="#frequency-bands" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id2">
+<h4>Frequency bands<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <p>This allows to define the frequency band that will be used for the calculation. This can be done:</p>
 <ul>
 <li><p class="first">by <em>hand</em>, by checking/unchecking the frequency to be considered;</p>
@@ -1457,8 +1452,8 @@ within source groups. A group can contain other groups.</p>
 </li>
 </ul>
 </div>
-<div class="section" id="meshing">
-<h4>Meshing<a class="headerlink" href="#meshing" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id3">
+<h4>Meshing<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
 <p>Some calculation codes may require a meshing of the domain (SPPS for example). I-Simpa used the <a class="reference external" href="http://wias-berlin.de/software/tetgen/">TetGen meshing code (A Quality Tetrahedral Mesh Generator and a 3D Delaunay Triangulator)</a>. See the documentation for more information.</p>
 <p>Within I-Simpa, TetGen can be paramatrized:</p>
 <ul>
@@ -1522,8 +1517,8 @@ within source groups. A group can contain other groups.</p>
 </li>
 </ul>
 </div>
-<div class="section" id="calculation-parameters">
-<h4>Calculation parameters<a class="headerlink" href="#calculation-parameters" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="spps-calculation-parameters">
+<h4>SPPS Calculation parameters<a class="headerlink" href="#spps-calculation-parameters" title="Permalink to this headline">¶</a></h4>
 <ul>
 <li><dl class="first docutils">
 <dt>‘Active calculation of atmospheric absorption’</dt>
@@ -1677,22 +1672,244 @@ within source groups. A group can contain other groups.</p>
 <li>in the <strong>‘Random’ mode</strong>, each physical phenomena (absorption, diffusion) is applied by considering probabilistic approaches. Using this mode, the computational time is drastically decreased, but the quality of the results is aslo decrease. It is suggested to consider the ‘Random’ mode at the initial step of the study, and then to change to the ‘Energetic’ mode in order to obtain the final result.</li>
 </ul>
 </div>
+<div class="section" id="spps-results">
+<h4>SPPS Results<a class="headerlink" href="#spps-results" title="Permalink to this headline">¶</a></h4>
+<p>All the results are displayed in the <a class="reference external" href="project_window.html#results-tab">Results tab</a>, following a specific <a href="#id12"><span class="problematic" id="id13">`Tree structure`_</span></a>.
+The content of the tree structure depends of the elements defined in the <a class="reference external" href="project_window.html#scene-tab">Scene tab</a>, and of additionnal processes execute on the result files (such as for creating room acoustics parameters).</p>
+<p>Comments:</p>
+<ul class="simple">
+<li>All folders and files in the tree results can be renamed. A default name is created at the end of the calculation process.</li>
+<li>Some folders may be repeated several times (for example, as many times as (AMTA) there are Punctual receivers)</li>
+</ul>
+<blockquote>
+<div><p>❙— 📁 SPPS [Root folder]</p>
+<blockquote>
+<div><p>❙— 📁 Date_folder [folder; AMTA Calculations]</p>
+<blockquote>
+<div><p>❙— 📁 Intensity animation [folder]</p>
+<blockquote>
+<div><p>❙— 📁 Frequency folder [folder; AMTA Frequencies]</p>
+<blockquote>
+<div>❙— 📄 Intensity [file]</div></blockquote>
+</div></blockquote>
+<p>❙— 📁 Punctual receivers [folder]</p>
+<blockquote>
+<div><p>❙— 📁 Punctual receiver name [folder; AMTA Punctual receivers]</p>
+<blockquote>
+<div><p>❙— 📄 Advanced sound level [file]</p>
+<p>❙— 📄 Punctual receiver intensity [file]</p>
+<p>❙— 📄 Acoustics parameters [file; see]</p>
+<p>❙— 📄 Advanced acoustics parameters [file]</p>
+<p>❙— 📄 Schroeder curves  [file]</p>
+<p>❙— 📄 Sound level [file]</p>
+<p>❙— 📄 Sound level per source [file]</p>
+</div></blockquote>
+</div></blockquote>
+<p>❙— 📁 Surface receivers [folder]</p>
+<blockquote>
+<div><p>❙— 📁 Frequency [folder; AMTA Frequencies]</p>
+<blockquote>
+<div>❙— 📄 Sound level [file]</div></blockquote>
+<p>❙— 📁 Global [folder]</p>
+<blockquote>
+<div>❙— 📄 Sound level [file]</div></blockquote>
+</div></blockquote>
+<p>❙— 📄 SPPS particle statistics [file]</p>
+<p>❙— 📄 Total energy [file]</p>
+<p>❙— 📄 config [file]</p>
+<p>❙— 📄 projet_config [file]</p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+<p>In addition to classical room <a href="#id14"><span class="problematic" id="id15">`Acoustics parameters`_</span></a>, some <a href="#id16"><span class="problematic" id="id17">`Advanced acoustics parameters`_</span></a> can also be calculated. The calculation of this advanced room acoustics parameters needs specific calculation of sound levels at a punctual receiver.</p>
+<p>This Advanced sound level <cite>.gap</cite> file display the temporal evolution of the impulse response, for each frequency band, as a data table, weihgted by <span class="math notranslate nohighlight">\(\cos \theta\)</span> (LFC and LG) and <span class="math notranslate nohighlight">\(\cos^2 \theta\)</span> (LF and LG).</p>
+<p>Given the nature of the Sound level <cite>.recp</cite> file (<em>i.e.</em> an echogram), the contextual menu that is associated to this Sound level <cite>.recp</cite> file allows to calculate several room acoustic parameters:</p>
+<ul class="simple">
+<li>Sound Pressure Level (SPL) in dB</li>
+<li>Sound Pressure Level (SPL) in dB(A)</li>
+<li>Clarity C (in dB)</li>
+<li>Definition D (in %)</li>
+<li>Central Time Ts (in ms)</li>
+<li>Reverberation time RT (in s)</li>
+<li>Early decay time EDT (in s)</li>
+<li>Stage Support ST (in dB)</li>
+</ul>
+<p>Several parameters can be given by the user in order to calculate user-values of some room acoustics parameters:</p>
+<ul class="simple">
+<li>Clarity: fix the value of the temporal limit of integration, usually 50 ms</li>
+<li>Definition: fix the value of the temporal limit of integration, usually 50 ms</li>
+<li>Reverberation time: fix the value of the sound level limit of integration, usually 30dB</li>
+</ul>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Multiple calculations are allowed for each paremeter, by using the semicolon ‘;’ between parameters.</p>
+</div>
+<p>After the calculation parameters, two files are created in the corresponding folder:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>‘Acoustic parameters’</dt>
+<dd><p class="first">This file provides access to the room acoustics parameters in the form of a data table.</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>The parameters are given for each frequency band of interest.</li>
+<li>When allowed, the <strong>Global</strong> value (<em>i.e.</em> the sum of all frequency bands) is calculated and displayed at the bottom of each column.</li>
+<li>When allowed, the <strong>Average</strong> value (<em>i.e.</em> the mean value on all frequency bands) is calculated and displayed at the bottom of each column.</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+</ul>
+<p>In addition to classical room <a href="#id18"><span class="problematic" id="id19">`Acoustics parameters`_</span></a>, some <em>advanced</em> parameters are also calculated, and displayed in the <cite>Advanced sound level</cite> file.</p>
+<p>The contextual menu that is associated to  sound level’ file allows to calculate several room acoustic parameters:</p>
+<ul class="simple">
+<li>Early lateral energy fraction LFC (in %)</li>
+<li>Early lateral energy fraction LF (in %)</li>
+<li>Early lateral energy LF (in dB)</li>
+<li>Strength G (in dB)</li>
+</ul>
+<p>Data display:</p>
+<ul class="simple">
+<li>The <strong>Global</strong> value (<em>i.e.</em> the sum of all frequency bands) is calculated and displayed at the bottom of each column.</li>
+<li>The <strong>Total</strong> value (<em>i.e.</em> the sum of all time step) is calculated and displayed at the end of each row.</li>
+</ul>
+<p>Several parameters can be given by the user in order to calculate user-values of advanced parameters:</p>
+<ul class="simple">
+<li>LF: fix the value of the temporal limit of integration, usually 80 ms</li>
+<li>LFC: fix the value of the temporal limit of integration, usually 80 ms</li>
+</ul>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Multiple calculations are allowed for each paremeter, by using the semicolon ‘;’ between parameters.</p>
+</div>
+<blockquote>
+<div>It displays the temporal evolution of the Schroeder’s curves <a class="reference internal" href="references.html#schroeder-1965" id="id5">[Sch65]</a>, for each frequency band, as a data table.</div></blockquote>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">User can create charts for representing data from the data table. See <a class="reference external" href="create_charts.html">charts creation</a></p>
+</div>
+<p>Double left click on a Sound level <cite>.recp</cite> file open a new winodw with three tabs</p>
+<ul>
+<li><dl class="first docutils">
+<dt>‘Sound Level SPL (dB)’ tab</dt>
+<dd><p class="first">It contains the temporal evolution of the quantity, for each frequency band, as a data table.</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>This tab is opened by default.</li>
+<li>The values are represented in sound pressure levels (SPL).</li>
+<li>The <strong>Global</strong> value (<em>i.e.</em> the sum of all frequency bands) is calculated and displayed at the bottom of each column.</li>
+<li>The <strong>Total</strong> value (<em>i.e.</em> the sum of all time step) is calculated and displayed at the end of each row.</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Sound Level SPL (dB)’ tab</dt>
+<dd><p class="first">It provides a graphic display of the <strong>Global</strong> value.</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>The temporal evolution of the <strong>Global</strong> value is displayed, as an echogram.</li>
+<li>The cumulative quantity of the <strong>Global</strong> value is displayed, according to the Schroeder’s backward integration <a class="reference internal" href="references.html#schroeder-1965" id="id6">[Sch65]</a>.</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Spectrum’ tab</dt>
+<dd><p class="first last">It displays a spectrum at the punctual receiver.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Double right click on a Sound level <cite>.recp</cite> file open a contextual menu that allows to calculate <a href="#id20"><span class="problematic" id="id21">`Acoustics parameters`_</span></a>.</p>
+<p>This file contains the sound level and the spectrum per sound source. Double left click on a <cite>.recps</cite> file open a new winodw with two tabs:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>‘Sound Level per source, SPL (dB)’ tab</dt>
+<dd><p class="first">It contains the sound level per source and f each frequency band, as a data table.</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>This tab is opened by default.</li>
+<li>The values are represented in sound pressure levels (SPL).</li>
+<li>The <strong>Global</strong> value (<em>i.e.</em> the sum of all frequency bands) is calculated and displayed at the bottom of each column.</li>
+<li>The <strong>Total</strong> value (<em>i.e.</em> the sum of all time step) is calculated and displayed at the end of each row.</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Spectrum’ tab</dt>
+<dd><p class="first last">It provides a graphic display of the spectrum contribution  for each sound source.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>A Surface sound level <cite>.csbin</cite> file contains the temporal evolution of a quantity that represents an acoustic intensity on a surface.</p>
+<p>Depending of the calculation parameters, one can obtain, for each surface receiver, by default, on <strong>Global</strong> value (in the ‘Global’ folder) and, in addition, the result for each frequency band in a corresponding folder.</p>
+<p>A right click on a surface receiver file opens the contextual menu, with specific actions:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>‘Acoustic parameters’</dt>
+<dd><p class="first">Allows to compute relevant room acoustics parameters on the surface. Depending of the selection, it creates additional files within the corresponding folder.</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>Clarity C (in dB)</li>
+<li>Definition D (in %)</li>
+<li>Central Time Ts (in ms)</li>
+<li>Reverberation time RT (in s)</li>
+<li>Early decay time EDT (in s)</li>
+<li>Stage Support ST (in dB)</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Load animation’</dt>
+<dd><p class="first">It allows to represent the spatial variation of the indicators that is selected. If the indicators contains some time dependent value, it can displayed an animation. On can interact on the animation with the <a class="reference external" href="toolbar_simulation.html">‘Simulation’ toolbar</a>.</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>‘Instantaneous value’</dt>
+<dd>Show the value of the given indicator at each time step.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Cumulative instantaneous value’</dt>
+<dd>Show the value of the given indicator at each time step, by cumulating all past steps.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Total value’</dt>
+<dd>Show the total value of the given indicator. No animation.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
 </div>
 <div class="section" id="using-tcr-within-i-simpa">
 <h3>Using TCR within I-Simpa<a class="headerlink" href="#using-tcr-within-i-simpa" title="Permalink to this headline">¶</a></h3>
 <p>TCR is already embedded in I-Simpa. Follow the next instructions to run a calculation with the TCR code in I-Simpa.</p>
 <p><strong>Double left click</strong> on the TCR calculation code in I-Simpa to display all calculation parameters:</p>
 <ul class="simple">
-<li><a href="#id15"><span class="problematic" id="id16">`Meshing`_</span></a>, for the meshing configuration</li>
-<li><a href="#id17"><span class="problematic" id="id18">`Calculation parameters`_</span></a>  for the calculation parameters</li>
+<li><a class="reference external" href="code_configuration_frequency_bands.html">Meshing</a>, for the meshing configuration</li>
+<li><a class="reference internal" href="#tcr-calculation-parameters">TCR Calculation parameters</a>  for the calculation parameters</li>
 </ul>
 <p><strong>Right click</strong> on the selected calculation code to display all possible actions:</p>
 <ul class="simple">
 <li>Run calculation</li>
 <li>Job list</li>
 </ul>
-<div class="section" id="id2">
-<h4>Meshing<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id8">
+<h4>Meshing<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
 <p>Some calculation codes may require a meshing of the domain (SPPS for example). I-Simpa used the <a class="reference external" href="http://wias-berlin.de/software/tetgen/">TetGen meshing code (A Quality Tetrahedral Mesh Generator and a 3D Delaunay Triangulator)</a>. See the documentation for more information.</p>
 <p>Within I-Simpa, TetGen can be paramatrized:</p>
 <ul>
@@ -1756,8 +1973,8 @@ within source groups. A group can contain other groups.</p>
 </li>
 </ul>
 </div>
-<div class="section" id="id4">
-<h4>Calculation parameters<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="tcr-calculation-parameters">
+<h4>TCR Calculation parameters<a class="headerlink" href="#tcr-calculation-parameters" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><dl class="first docutils">
 <dt>‘Active calculation of atmospheric absorption’</dt>
@@ -1807,8 +2024,8 @@ within source groups. A group can contain other groups.</p>
 </ul>
 </div>
 </div>
-<div class="section" id="results-tab">
-<h2>‘Results’ tab<a class="headerlink" href="#results-tab" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id10">
+<h2>‘Results’ tab<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
 <p>The ‘Results’ tab contains all results produced by the calculation codes. When a project is loaded into I-Simpa the outcome data are organized as a tree structure that exactly correspond to the folder/files tree on the hard disk (<em>i.e.</em> the <em>physical</em> tree). It is possible to directly access to the contents of a folder from the associated contextual menu, by choosing the ‘Open folder’ option. If changes are made in the <em>physical</em> tree, it is possible to refresh the results true by setting the action ‘Refresh folder’.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
@@ -1820,28 +2037,32 @@ within source groups. A group can contain other groups.</p>
 <li>the <cite>projet_config.xml</cite> file contains all information in the 3 tabs ‘Scene’, ‘Calculation’ and ‘Results’. This file can be used as a ‘memory’ of the calculation (archive).</li>
 </ul>
 <p>In addition, each calculation codes generates specific files that can be interpreted by I-Simpa, depending of their format (with specific contents and file extensions).</p>
+<p>For more information, see the ‘Results’ section of each calculation code (in the documentation):</p>
+<ul class="simple">
+<li>For the SPPS code : see section <a class="reference external" href="code_configuration_SPPS.html#spps-results">SPPS Results</a></li>
+</ul>
 <div class="section" id="file-formats">
 <h3>File formats<a class="headerlink" href="#file-formats" title="Permalink to this headline">¶</a></h3>
 <p>I-Simpa can interpret two types of file:</p>
 <ul>
 <li><p class="first"><strong>File formats recognized by the Operating System</strong>, such as <cite>txt</cite>, <cite>xml</cite>, <cite>html</cite>, <cite>pdf</cite>… for example. Double left click on the file starts the  associated program within the operating system.</p>
 </li>
-<li><p class="first"><strong>Native I-Simpa files</strong>: these file are created by the calculation code and that can be associated with specific actions and treatments within I-Simpa. These files and associated actions are detailed below.</p>
+<li><p class="first"><strong>Native I-Simpa files</strong>: these file are created by the calculation code and that can be associated with specific actions and treatments within I-Simpa.</p>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="first docutils">
 <dt>File <cite>.recp</cite></dt>
-<dd>Punctual receiver file</dd>
+<dd>Punctual receiver file data type</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt>File <cite>.gap</cite></dt>
-<dd>Punctual receiver file</dd>
+<dd>Punctual receiver file data type</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt>File <cite>.csbin</cite></dt>
-<dd>Surface receiver file</dd>
+<dd>Surface receiver file type</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
@@ -1863,186 +2084,6 @@ within source groups. A group can contain other groups.</p>
 </div></blockquote>
 </li>
 </ul>
-</div>
-<div class="section" id="punctual-receiver-file-recp">
-<h3>Punctual receiver file <cite>.recp</cite><a class="headerlink" href="#punctual-receiver-file-recp" title="Permalink to this headline">¶</a></h3>
-<p>This file contains the temporal evolution, by frequency band, of a given quantity that is homogeneous to instantaneous sound squared pressure (<span class="math notranslate nohighlight">\(p^2\)</span>). Most of time, it should correspond to a punctual eceiver at the point. Typically, this type of file can
-represent an impulse response (RI). The actions associated with I-Simpa arise directly from the file format.</p>
-<div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">The operations performed by the interface I-Simpa with this file type make sense only if the data in the file are equivalent to an instantaneous squared sound pressure (<span class="math notranslate nohighlight">\(p^2\)</span>).</p>
-</div>
-<div class="section" id="data-display">
-<h4>Data Display<a class="headerlink" href="#data-display" title="Permalink to this headline">¶</a></h4>
-<p>Double left click on a <cite>.recp</cite> file open a new winodw with three tabs</p>
-<ul>
-<li><dl class="first docutils">
-<dt>‘Sound Level SPL (dB)’ tab</dt>
-<dd><p class="first">It contains the temporal evolution of the quantity, for each frequency band, as a data table.</p>
-<blockquote class="last">
-<div><ul class="simple">
-<li>This tab is opened by default.</li>
-<li>The values are represented in sound pressure levels (SPL).</li>
-<li>The <strong>Global</strong> value (<em>i.e.</em> the sum of all frequency bands) is calculated and displayed at the bottom of each column.</li>
-<li>The <strong>Total</strong> value (<em>i.e.</em> the sum of all time step) is calculated and displayed at the end of each row.</li>
-</ul>
-</div></blockquote>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>‘Sound Level SPL (dB)’ tab</dt>
-<dd><p class="first">It provides a graphic display of the <strong>Global</strong> value.</p>
-<blockquote class="last">
-<div><ul class="simple">
-<li>The temporal evolution of the <strong>Global</strong> value is displayed, as an echogram.</li>
-<li>The cumulative quantity of the <strong>Global</strong> value is displayed, according to the Schroeder’s backward integration <a class="reference internal" href="references.html#schroeder-1965" id="id5">[Sch65]</a>.</li>
-</ul>
-</div></blockquote>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>‘Spectrum’ tab</dt>
-<dd><p class="first last">It displays a spectrum at the punctual receiver.</p>
-</dd>
-</dl>
-</li>
-</ul>
-</div>
-<div class="section" id="room-acoustics-parameters">
-<h4>Room acoustics parameters<a class="headerlink" href="#room-acoustics-parameters" title="Permalink to this headline">¶</a></h4>
-<p>Given the nature of the file (<em>i.e.</em> an echogram), the contextual menu that is associated to this file allows to calculate several room acoustic parameters:</p>
-<ul class="simple">
-<li>Sound Pressure Level (SPL) in dB</li>
-<li>Sound Pressure Level (SPL) in dB(A)</li>
-<li>Clarity C (in dB)</li>
-<li>Definition D (in %)</li>
-<li>Central Time Ts (in ms)</li>
-<li>Reverberation time RT (in s)</li>
-<li>Early decay time EDT (in s)</li>
-<li>Stage Support ST (in dB)</li>
-</ul>
-<p>Several parameters can be given by the user in order to calculate user-values of some room acoustics parameters:</p>
-<ul class="simple">
-<li>Clarity: fix the value of the temporal limit of integration, usually 50 ms</li>
-<li>Definition: fix the value of the temporal limit of integration, usually 50 ms</li>
-<li>Reverberation time: fix the value of the sound level limit of integration, usually 30dB</li>
-</ul>
-<div class="admonition tip">
-<p class="first admonition-title">Tip</p>
-<p class="last">Multiple calculations are allowed for each paremeter, by using the semicolon ‘;’ between parameters.</p>
-</div>
-<p>After the calculation parameters, two files are created in the corresponding folder:</p>
-<ul>
-<li><dl class="first docutils">
-<dt>‘Acoustic parameters’</dt>
-<dd><p class="first">This file provides access to the room acoustics parameters in the form of a data table.</p>
-<blockquote class="last">
-<div><ul class="simple">
-<li>The parameters are given for each frequency band of interest.</li>
-<li>When allowed, the <strong>Global</strong> value (<em>i.e.</em> the sum of all frequency bands) is calculated and displayed at the bottom of each column.</li>
-<li>When allowed, the <strong>Average</strong> value (<em>i.e.</em> the mean value on all frequency bands) is calculated and displayed at the bottom of each column.</li>
-</ul>
-</div></blockquote>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>‘Schroeder curves’</dt>
-<dd><p class="first last">It displays the temporal evolution of the Schroeder’s curves <a class="reference internal" href="references.html#schroeder-1965" id="id6">[Sch65]</a>, for each frequency band, as a data table.</p>
-</dd>
-</dl>
-</li>
-</ul>
-<div class="admonition tip">
-<p class="first admonition-title">Tip</p>
-<p class="last">User can create charts for representing data from the data table. See <a class="reference external" href="create_charts.html">charts creation</a></p>
-</div>
-</div>
-</div>
-<div class="section" id="punctual-receiver-file-gap">
-<h3>Punctual receiver file <cite>.gap</cite><a class="headerlink" href="#punctual-receiver-file-gap" title="Permalink to this headline">¶</a></h3>
-<p>In addition to classical room acoustics parameters, some <em>advanced</em> parameters are also calculated, and displayed in the ‘Advanced sound level’ file. This file display the temporal evolution of the impulse response, for each frequency band, as a data table, weihgted by <span class="math notranslate nohighlight">\(\cos \theta\)</span> (LFC and LG) and <span class="math notranslate nohighlight">\(\cos^2 \theta\)</span> (LF and LG).</p>
-<p>The contextual menu that is associated to this file allows to calculate several room acoustic parameters:</p>
-<ul class="simple">
-<li>Early lateral energy fraction LFC (in %)</li>
-<li>Early lateral energy fraction LF (in %)</li>
-<li>Early lateral energy LF (in dB)</li>
-<li>Strength G (in dB)</li>
-</ul>
-<p>Data display:</p>
-<ul class="simple">
-<li>The <strong>Global</strong> value (<em>i.e.</em> the sum of all frequency bands) is calculated and displayed at the bottom of each column.</li>
-<li>The <strong>Total</strong> value (<em>i.e.</em> the sum of all time step) is calculated and displayed at the end of each row.</li>
-</ul>
-<p>Several parameters can be given by the user in order to calculate user-values of advanced parameters:</p>
-<ul class="simple">
-<li>LF: fix the value of the temporal limit of integration, usually 80 ms</li>
-<li>LFC: fix the value of the temporal limit of integration, usually 80 ms</li>
-</ul>
-<div class="admonition tip">
-<p class="first admonition-title">Tip</p>
-<p class="last">Multiple calculations are allowed for each paremeter, by using the semicolon ‘;’ between parameters.</p>
-</div>
-</div>
-<div class="section" id="surface-receiver-file-file-csbin">
-<h3>Surface receiver file file <cite>.csbin</cite><a class="headerlink" href="#surface-receiver-file-file-csbin" title="Permalink to this headline">¶</a></h3>
-<p>A <cite>.csbin</cite> file contains the temporal evolution of a quantity that represents an acoustic intensity on a surface.</p>
-<p>Depending of the calculation parameters, one can obtain, for each surface receiver, by default, on <strong>Global</strong> value (in the ‘Global’ folder) and, in addition, the result for each frequency band in a corresponding folder.</p>
-<p>A right click on a surface receiver file opens the contextual menu, with specific actions:</p>
-<ul>
-<li><dl class="first docutils">
-<dt>‘Acoustic parameters’</dt>
-<dd><p class="first">Allows to compute relevant room acoustics parameters on the surface. Depending of the selection, it creates specific files on the corresponding folder.</p>
-<blockquote class="last">
-<div><ul class="simple">
-<li>Clarity C (in dB)</li>
-<li>Definition D (in %)</li>
-<li>Central Time Ts (in ms)</li>
-<li>Reverberation time RT (in s)</li>
-<li>Early decay time EDT (in s)</li>
-<li>Stage Support ST (in dB)</li>
-</ul>
-</div></blockquote>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>‘Load animation’</dt>
-<dd><p class="first">It allows to represent the spatial variation of the indicators that is selected. If the indicators contains some time dependent value, it can displayed an animation. On can interact on the animation with the <a class="reference external" href="toolbar_simulation.html">‘Simulation’ toolbar</a>.</p>
-<blockquote class="last">
-<div><ul class="simple">
-<li><dl class="first docutils">
-<dt>‘Instantaneous value’</dt>
-<dd>Show the value of the given indicator at each time step.</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>‘Cumulative instantaneous value’</dt>
-<dd>Show the value of the given indicator at each time step, by cumulating all past steps.</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>‘Total value’</dt>
-<dd>Show the total value of the given indicator. No animation.</dd>
-</dl>
-</li>
-</ul>
-</div></blockquote>
-</dd>
-</dl>
-</li>
-</ul>
-</div>
-<div class="section" id="tabulated-data-file-gabe">
-<h3>Tabulated data file <cite>.gabe</cite><a class="headerlink" href="#tabulated-data-file-gabe" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="animated-intensity-file-rpi">
-<h3>Animated intensity file <cite>.rpi</cite><a class="headerlink" href="#animated-intensity-file-rpi" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="animated-data-file-pbin">
-<h3>Animated data file <cite>.pbin</cite><a class="headerlink" href="#animated-data-file-pbin" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 </div>
@@ -2069,7 +2110,7 @@ represent an impulse response (RI). The actions associated with I-Simpa arise di
     <p>
         &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Dec 04, 2020.
+        Last updated on Dec 15, 2020.
       </span>
 
     </p>

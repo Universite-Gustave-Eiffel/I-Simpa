@@ -124,7 +124,8 @@
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in <strong>SPPS</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in SPPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_Validation.html">Verification of the SPPS code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
@@ -205,10 +206,12 @@
 <img alt="_images/I-Simpa-logo.jpg" src="_images/I-Simpa-logo.jpg" />
 </div>
 <p>I-Simpa is a <a class="reference external" href="I_Simpa_overview.html">new generation of noise prediction software for research, engineering and education</a>.</p>
+<div class="figure align-right">
+<a class="reference internal image-reference" href="_images/illustration_I_Simpa_room.png"><img alt="_images/illustration_I_Simpa_room.png" src="_images/illustration_I_Simpa_room.png" style="width: 300px;" /></a>
+</div>
 <p>I-Simpa is a graphical user interface (GUI) developed to host three-dimensional numerical codes for the modeling of sound propagation in complex geometrical domains, and propose many <a class="reference external" href="I_Simpa_features.html">features</a>
 Although I-Simpa is well adapted for energetic models (ray-tracing, sound-particle tracing, theory of reverberation…), it can be extend to use ondulatory approaches.</p>
-<p><strong>I-Simpa is distributed with two codes</strong> (TCR based on the classical theory of reverberation and SPPS based on particle tracing approach). Classical applications are room
-and building acoustics, environmental noise and industrial noise, but it can be easily extend to other applications concerning the sound propagation in 3D environments (interior of vehicle, sound in cavities…).</p>
+<p><strong>I-Simpa is distributed with two codes</strong> (<a class="reference external" href="code_TCR.hmtl">TCR</a> based on the classical theory of reverberation and <a class="reference external" href="code_SPPS.hmtl">SPPS</a> based on particle tracing approach). Classical applications are room and building acoustics, environmental noise and industrial noise, but it can be easily extend to other applications concerning the sound propagation in 3D environments (interior of vehicle, sound in cavities…).</p>
 <div class="section" id="i-simpa-user-guide">
 <h1>I-Simpa User Guide<a class="headerlink" href="#i-simpa-user-guide" title="Permalink to this headline">¶</a></h1>
 <p>This is the <strong>official I-Simpa User Guide</strong>, including the SPPS and
@@ -218,29 +221,19 @@ the TCR numerical codes (embedded within the I-Simpa software).</p>
 website</a></li>
 <li>for <strong>contributing to I-Simpa</strong> from the source code, follows the
 <a class="reference external" href="https://github.com/Ifsttar/I-Simpa/wiki">instructions</a></li>
-<li>for <strong>contacting the development team</strong> uses the email:
-<a class="reference external" href="mailto:i-simpa&#37;&#52;&#48;ifsttar&#46;fr">i-simpa<span>&#64;</span>ifsttar<span>&#46;</span>fr</a></li>
 </ul>
-<div class="admonition important">
-<p class="first admonition-title">Important</p>
-<ul class="last simple">
-<li>The guide is currently not complete. Additions are underway.</li>
-<li>If the present documentation is the ‘Offline documentation’ you may refer to the online version at <a class="reference external" href="http://i-simpa-wiki.readthedocs.io/en/latest/">http://i-simpa-wiki.readthedocs.io/en/latest/</a> for an up-to-date documentation.</li>
-</ul>
-</div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <ul class="last simple">
+<li>This user guide is currently not complete. Additions are underway.</li>
 <li>Some illustrations may referred to previous versions of I-Simpa.</li>
 <li>Depending of your OS, screenchots may differs.</li>
 <li>Some texts and translations in I-Simpa may have changed.</li>
-<li>If you observe some mistakes or errors, please contact us at <a class="reference external" href="mailto:i-simpa&#37;&#52;&#48;ifsttar&#46;fr">i-simpa<span>&#64;</span>ifsttar<span>&#46;</span>fr</a>.</li>
+<li>If the present documentation is the ‘Offline documentation’ you may refer to the online version at <a class="reference external" href="http://i-simpa-wiki.readthedocs.io/en/latest/">http://i-simpa-wiki.readthedocs.io/en/latest/</a> for an up-to-date documentation.</li>
+<li>If you observe some mistakes or errors, please <a class="reference external" href="https://github.com/Ifsttar/I-Simpa/issues">write an Issue on GitHub</a></li>
 <li>You can also <a class="reference external" href="https://github.com/Ifsttar/I-Simpa/wiki/Write-documentation">contribute to the documentation</a>.</li>
+<li>The official documentation is available in English only.</li>
 </ul>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The official documentation is available in English only.</p>
 </div>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">I-Simpa Presentation</span></p>
@@ -322,7 +315,7 @@ website</a></li>
 <li class="toctree-l2"><a class="reference internal" href="project_window.html#presentation">Presentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="project_window.html#scene-tab">‘Scene’ tab</a></li>
 <li class="toctree-l2"><a class="reference internal" href="project_window.html#calculation-tab">‘Calculation’ tab</a></li>
-<li class="toctree-l2"><a class="reference internal" href="project_window.html#results-tab">‘Results’ tab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_window.html#id10">‘Results’ tab</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="properties_window.html">‘Properties’ window</a></li>
@@ -373,10 +366,11 @@ website</a></li>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="code_configuration_SPPS.html#frequency-bands">Frequency bands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="code_configuration_SPPS.html#meshing">Meshing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="code_configuration_SPPS.html#calculation-parameters">Calculation parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code_configuration_SPPS.html#id1">Frequency bands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code_configuration_SPPS.html#id2">Meshing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code_configuration_SPPS.html#spps-calculation-parameters">SPPS Calculation parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="code_configuration_SPPS.html#computational-time-optimization">Computational time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code_configuration_SPPS.html#spps-results">SPPS Results</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a><ul>
@@ -387,13 +381,14 @@ website</a></li>
 <li class="toctree-l2"><a class="reference internal" href="code_SPPS_principle.html#temporal-meshing">Temporal meshing</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in <strong>SPPS</strong></a><ul>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in SPPS</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="code_SPPS_modelling.html#sound-source-modelling">Sound source modelling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="code_SPPS_modelling.html#acoustic-propagation-modelling">Acoustic propagation modelling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="code_SPPS_modelling.html#wall-modelling">Wall modelling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="code_SPPS_modelling.html#calculation-of-sound-levels-at-observation-points">Calculation of sound levels at observation points</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_Validation.html">Verification of the SPPS code</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -401,8 +396,8 @@ website</a></li>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="code_TCR.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_TCR.html">Using TCR within I-Simpa</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="code_configuration_TCR.html#meshing">Meshing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="code_configuration_TCR.html#calculation-parameters">Calculation parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code_configuration_TCR.html#id1">Meshing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code_configuration_TCR.html#tcr-calculation-parameters">TCR Calculation parameters</a></li>
 </ul>
 </li>
 </ul>
@@ -454,7 +449,7 @@ website</a></li>
     <p>
         &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Dec 04, 2020.
+        Last updated on Dec 15, 2020.
       </span>
 
     </p>
