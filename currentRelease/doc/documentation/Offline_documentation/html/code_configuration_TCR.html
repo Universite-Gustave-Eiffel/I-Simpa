@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,29 +12,28 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script async="async" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Standards" href="I_Simpa_standard.html" />
@@ -51,7 +51,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> I-Simpa
+            <a href="index.html" class="icon icon-home"> I-Simpa
           
 
           
@@ -78,7 +78,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -132,8 +131,8 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="code_TCR.html">Presentation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Using TCR within I-Simpa</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#meshing">Meshing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#calculation-parameters">Calculation parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Meshing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tcr-calculation-parameters">TCR Calculation parameters</a></li>
 </ul>
 </li>
 </ul>
@@ -148,7 +147,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -187,7 +185,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>Using TCR within I-Simpa</li>
     
@@ -213,81 +211,90 @@
 <p>TCR is already embedded in I-Simpa. Follow the next instructions to run a calculation with the TCR code in I-Simpa.</p>
 <p><strong>Double left click</strong> on the TCR calculation code in I-Simpa to display all calculation parameters:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#meshing">Meshing</a>, for the meshing configuration</p></li>
-<li><p><a class="reference internal" href="#calculation-parameters">Calculation parameters</a>  for the calculation parameters</p></li>
+<li><a class="reference external" href="code_configuration_frequency_bands.html">Meshing</a>, for the meshing configuration</li>
+<li><a class="reference internal" href="#tcr-calculation-parameters">TCR Calculation parameters</a>  for the calculation parameters</li>
 </ul>
 <p><strong>Right click</strong> on the selected calculation code to display all possible actions:</p>
 <ul class="simple">
-<li><p>Run calculation</p></li>
-<li><p>Job list</p></li>
+<li>Run calculation</li>
+<li>Job list</li>
 </ul>
-<div class="section" id="meshing">
-<h2>Meshing<a class="headerlink" href="#meshing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h2>Meshing<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>Some calculation codes may require a meshing of the domain (SPPS for example). I-Simpa used the <a class="reference external" href="http://wias-berlin.de/software/tetgen/">TetGen meshing code (A Quality Tetrahedral Mesh Generator and a 3D Delaunay Triangulator)</a>. See the documentation for more information.</p>
 <p>Within I-Simpa, TetGen can be paramatrized:</p>
 <ul>
-<li><dl>
-<dt>‘Test mesh topology’</dt><dd><p>Check/uncheck for activate the debug mode of TetGen (debug mode).</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>With the debug mode, the meshing is not realized.</p>
+<li><dl class="first docutils">
+<dt>‘Test mesh topology’</dt>
+<dd><p class="first">Check/uncheck for activate the debug mode of TetGen (debug mode).</p>
+<div class="last admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">With the debug mode, the meshing is not realized.</p>
 </div>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Additional parameters’</dt><dd><p>Add parameters to the TetGen default parameters.</p>
+<li><dl class="first docutils">
+<dt>‘Additional parameters’</dt>
+<dd><p class="first last">Add parameters to the TetGen default parameters.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Radius/Edge ratio’</dt><dd><p>Defines the ratio between the radius of the sphere that would contain a mesh and the lenght of the mesh. This parameter could be useful in order to avoid long meshes.</p>
+<li><dl class="first docutils">
+<dt>‘Radius/Edge ratio’</dt>
+<dd><p class="first last">Defines the ratio between the radius of the sphere that would contain a mesh and the lenght of the mesh. This parameter could be useful in order to avoid long meshes.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Scene correction before meshing’</dt><dd><p>Check/uncheck for trying to repair the 3D scene if possible.</p>
+<li><dl class="first docutils">
+<dt>‘Scene correction before meshing’</dt>
+<dd><p class="first last">Check/uncheck for trying to repair the 3D scene if possible.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘User-defined paramters’</dt><dd><p>Defines new parameters by replacing default parameters.</p>
+<li><dl class="first docutils">
+<dt>‘User-defined paramters’</dt>
+<dd><p class="first last">Defines new parameters by replacing default parameters.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Surface receiver constraint’.</dt><dd><p>Check/uncheck for using a given value of the mesh surface ‘Surface receiver constraint (m²)’.</p>
+<li><dl class="first docutils">
+<dt>‘Surface receiver constraint’.</dt>
+<dd><p class="first last">Check/uncheck for using a given value of the mesh surface ‘Surface receiver constraint (m²)’.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Surface receiver constraint (m²)’</dt><dd><p>Maximun accepted value of the mesh surface (m²) for a surface receiver. The value can be modified only if the ‘Surface receiver constraint’ parameter is checked.</p>
+<li><dl class="first docutils">
+<dt>‘Surface receiver constraint (m²)’</dt>
+<dd><p class="first last">Maximun accepted value of the mesh surface (m²) for a surface receiver. The value can be modified only if the ‘Surface receiver constraint’ parameter is checked.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Volume constraint’</dt><dd><p>Check/uncheck for using a given maximum value of the mesh volume ‘Volume constraint (m3)’.</p>
+<li><dl class="first docutils">
+<dt>‘Volume constraint’</dt>
+<dd><p class="first last">Check/uncheck for using a given maximum value of the mesh volume ‘Volume constraint (m3)’.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Volume constraint (m3)’</dt><dd><p>Maximun accepted value of a mesh volume (m3). The value can be modified only if the ‘Volume constraint’ parameter is checked.</p>
+<li><dl class="first docutils">
+<dt>‘Volume constraint (m3)’</dt>
+<dd><p class="first last">Maximun accepted value of a mesh volume (m3). The value can be modified only if the ‘Volume constraint’ parameter is checked.</p>
 </dd>
 </dl>
 </li>
 </ul>
 </div>
-<div class="section" id="calculation-parameters">
-<h2>Calculation parameters<a class="headerlink" href="#calculation-parameters" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="tcr-calculation-parameters">
+<h2>TCR Calculation parameters<a class="headerlink" href="#tcr-calculation-parameters" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><dl class="simple">
-<dt>‘Active calculation of atmospheric absorption’</dt><dd><p>Enables calculation of atmospheric absorption.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Active calculation of atmospheric absorption’</dt>
+<dd>Enables calculation of atmospheric absorption.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Export surface receivers for each frequency band’</dt><dd><p>Check to export the surface receiver results, for each frequency band. If uncheck, only the global value is exported.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Export surface receivers for each frequency band’</dt>
+<dd>Check to export the surface receiver results, for each frequency band. If uncheck, only the global value is exported.</dd>
 </dl>
 </li>
 </ul>
@@ -314,22 +321,14 @@
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Dec 23, 2020.
+        Last updated on Dec 15, 2020.
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -340,6 +339,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

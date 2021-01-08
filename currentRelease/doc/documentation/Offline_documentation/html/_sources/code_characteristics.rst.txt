@@ -13,13 +13,13 @@ Calculation code characteristics
      - ✅
    * - Specular field (specular reflection)
      - ✅
-     - -
+     - ❌
    * - Diffuse field
      - ✅ (using scattering coefficient)
      - ✅ (Sabine, Eyring)
    * - Scattered field (edge scattering)
-     - -
-     - -
+     - ❌
+     - ❌
    * - Surface absorption
      - ✅ (using absorption coefficient)
      - ✅ (using absorption coefficient)
@@ -31,7 +31,7 @@ Calculation code characteristics
      - ✅
    * - Meteorological effects
      - ✅
-     - -
+     - ❌
 
 .. list-table:: Receiver type and characteristics
    :widths: 70 15 15
@@ -62,10 +62,10 @@ Calculation code characteristics
      - ✅
    * - Punctual sound source : complex directivity
      - ✅
-     - -
+     - ❌
    * - Surface sound source
-     - -
-     - -
+     - ❌
+     - ❌
    * - Line sound source
      - as a line of punctual sources
      - as a line of punctual sources
@@ -82,16 +82,16 @@ Calculation code characteristics
      - ✅ (Sabine, Eyring, Direct field)
    * - Lateral Sound level
      - ✅ (cos, cos²)
-     - -
+     - ❌
    * - Clarity
      - ✅ (C50, C80, user defined)
-     - -
+     - ❌
    * - Definition
      - ✅ (D50, user defined)
-     - -
+     - ❌
    * - Ts
      - ✅
-     - -
+     - ❌
    * -  RT
      - ✅ (RT15, RT30, user defined)
      - ✅ (RT Sabine, RT Eyring)
@@ -100,19 +100,19 @@ Calculation code characteristics
      - ✅
    * - ST
      - ✅
-     - -
+     - ❌
    * - LF
      - ✅ (LF80, user defined)
-     - -
+     - ❌
    * - LFC
      - ✅ (LFC80, user defined)
-     - -
+     - ❌
    * - LG
-     - ✅
-     - -
+     - ❌
+     - ❌
    * - G
-     - ✅
-     - -
+     - ❌
+     - ❌
 
 .. list-table:: Graphical representations
    :widths: 70 15 15
@@ -123,28 +123,28 @@ Calculation code characteristics
      - `TCR code`_
    * - Echogramm
      - ✅
-     - -
+     - ❌
    * - Spectrum
      - ✅ (total, per sound source)
-     - -
+     - ❌
    * - Sound level map (on surface receivers) : instantaneous
      - ✅
-     - -
+     - ❌
    * - Sound level map (on surface receivers) : cumulative
      - ✅
-     - -
+     - ❌
    * - Sound level map (on surface receivers) : cumulated
      - ✅
      - ✅
    * - Acoustical parameters map (on surface receivers)
      - ✅
-     - -
+     - ❌
    * - Schroeder curves
      - ✅ (data to display)
-     - -
+     - ❌
    * - Intensity
      - ✅ (animation)
-     - -
+     - ❌
 
 .. _`TCR code`: code_TCR.html
 .. _`SPPS code`: code_SPPS.html

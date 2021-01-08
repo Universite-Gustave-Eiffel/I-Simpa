@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,29 +12,28 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script async="async" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
 </head>
@@ -49,7 +49,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> I-Simpa
+            <a href="index.html" class="icon icon-home"> I-Simpa
           
 
           
@@ -76,7 +76,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -142,7 +141,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -181,7 +179,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>‘Scene’ tab</li>
     
@@ -207,12 +205,12 @@
 <p>In the ‘Data’ tree of the ‘Project’ window, user defines all needed information, in a acoustic point of view, in order to realize an acoustical calculation. This means, surface material, sound sources, receivers (punctual and plane), as well as other needed data in function of the numerical code (for example, the SPPS code can also take into account fitting zones).</p>
 <p>In the ‘Project’ tree of the ‘Project’ window, user defines all general information (environmental data, configuration, information…) and common database (material and spectrum).</p>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>All data defined in the ‘Scene’ tree depend on the numerical code that will be used in the tab ‘Calculation’ (<em>i.e.</em> depending on the calculation code, it is not necessary to define all elements. See the user guide/manual of the corresponding code for more information).</p>
+<p class="first admonition-title">Warning</p>
+<p class="last">All data defined in the ‘Scene’ tree depend on the numerical code that will be used in the tab ‘Calculation’ (<em>i.e.</em> depending on the calculation code, it is not necessary to define all elements. See the user guide/manual of the corresponding code for more information).</p>
 </div>
 <div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>For data that depend on frequency, users need to define only the data for the frequency bands of interest, <em>i.e.</em> the frequency bands that will be used for the calculation.</p>
+<p class="first admonition-title">Tip</p>
+<p class="last">For data that depend on frequency, users need to define only the data for the frequency bands of interest, <em>i.e.</em> the frequency bands that will be used for the calculation.</p>
 </div>
 <div class="section" id="data-tree">
 <h2>‘Data’ tree<a class="headerlink" href="#data-tree" title="Permalink to this headline">¶</a></h2>
@@ -223,59 +221,62 @@
 <p>Within I-Simpa, the diffusion in a fitting zone, can be defined using two methods (<strong>Right click</strong> on the folder ‘Fitting zone’ and <strong>Select</strong> the option in the contextual menu):</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>by creating a rectangular volume in the 3D scene (<strong>‘Define rectangular fitted zone’</strong>) and by setting the diffusion parameters in the corresponding zone;</p></li>
-<li><p>by detecting one or more volumes in the 3D scene (<strong>‘Define scene fitted zone’</strong>) and by setting the diffusion parameters in the corresponding zones. This can also be done handly, by selecting all the face elements around a given volume and a point inside the volume.</p></li>
+<li>by creating a rectangular volume in the 3D scene (<strong>‘Define rectangular fitted zone’</strong>) and by setting the diffusion parameters in the corresponding zone;</li>
+<li>by detecting one or more volumes in the 3D scene (<strong>‘Define scene fitted zone’</strong>) and by setting the diffusion parameters in the corresponding zones. This can also be done handly, by selecting all the face elements around a given volume and a point inside the volume.</li>
 </ul>
 </div></blockquote>
 <p><strong>Right click</strong> on the root ‘Fitting zone’ folder to define a fitting zone:</p>
 <ul>
-<li><dl>
-<dt>‘Define scene fitted zone’</dt><dd><p>Defines a fitted zone from the face elements of the 3D scene.</p>
+<li><dl class="first docutils">
+<dt>‘Define scene fitted zone’</dt>
+<dd><p class="first">Defines a fitted zone from the face elements of the 3D scene.</p>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The volume must be a closed space.</p>
+<p class="first admonition-title">Warning</p>
+<p class="last">The volume must be a closed space.</p>
 </div>
-<ul>
-<li><dl>
-<dt>‘Surfaces’</dt><dd><p>Contains the scene surfaces that define the fitting zone.</p>
+<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Surfaces’</dt>
+<dd><p class="first">Contains the scene surfaces that define the fitting zone.</p>
 <blockquote>
 <div><ul class="simple">
-<li><dl class="simple">
-<dt>‘Surface area’</dt><dd><p>Total surface (in m²) of all face elements in the folder.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Surface area’</dt>
+<dd>Total surface (in m²) of all face elements in the folder.</dd>
 </dl>
 </li>
 </ul>
 </div></blockquote>
 <p>The selection of faces can be made:</p>
-<blockquote>
+<blockquote class="last">
 <div><ul class="simple">
-<li><p>by using the 3D view. See the section <a class="reference external" href="surface_selection.html">Surface selection</a> for understanding how to select surface elements</p></li>
-<li><p>by drag &amp; drop of all surfaces of a ‘Volume’ element;</p></li>
-<li><p>by a direct conversion of a ‘Volume’ element to a fitting zone (see section <a class="reference internal" href="#volumes">Volumes</a>).</p></li>
+<li>by using the 3D view. See the section <a class="reference external" href="surface_selection.html">Surface selection</a> for understanding how to select surface elements</li>
+<li>by drag &amp; drop of all surfaces of a ‘Volume’ element;</li>
+<li>by a direct conversion of a ‘Volume’ element to a fitting zone (see section <a class="reference internal" href="#volumes">Volumes</a>).</li>
 </ul>
 </div></blockquote>
 </dd>
 </dl>
 </li>
-<li><dl>
-<dt>‘Properties’</dt><dd><p>Defines the properties of the element.</p>
-<blockquote>
+<li><dl class="first docutils">
+<dt>‘Properties’</dt>
+<dd><p class="first">Defines the properties of the element.</p>
+<blockquote class="last">
 <div><ul class="simple">
-<li><dl class="simple">
-<dt>‘Active fitting zone’</dt><dd><p>(Un)check to (Des)activate the fitting zone.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Active fitting zone’</dt>
+<dd>(Un)check to (Des)activate the fitting zone.</dd>
 </dl>
 </li>
 </ul>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Depending of the parameters of the selected calculation code, all the fitting zones can also be desactivated at the calculation step.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">Depending of the parameters of the selected calculation code, all the fitting zones can also be desactivated at the calculation step.</p>
 </div>
 <ul class="simple">
-<li><dl class="simple">
-<dt>‘Description’</dt><dd><p>Gives a short text description of the element.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Description’</dt>
+<dd>Gives a short text description of the element.</dd>
 </dl>
 </li>
 </ul>
@@ -283,104 +284,112 @@
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Inside position’</dt><dd><p>Defines a point of coordinates (x,y,z) inside the volume. The position can be defined by filling the form or using the pointer on the 3D view. See the section <a class="reference external" href="define_position.html">Defines position</a> for understanding how to define a location with the 3D view.</p>
+<li><dl class="first docutils">
+<dt>‘Inside position’</dt>
+<dd><p class="first last">Defines a point of coordinates (x,y,z) inside the volume. The position can be defined by filling the form or using the pointer on the 3D view. See the section <a class="reference external" href="define_position.html">Defines position</a> for understanding how to define a location with the 3D view.</p>
 </dd>
 </dl>
 </li>
-<li><dl>
-<dt>‘Display’</dt><dd><p>Defines the parameters for displaying the element on the 3D view</p>
+<li><dl class="first docutils">
+<dt>‘Display’</dt>
+<dd><p class="first">Defines the parameters for displaying the element on the 3D view</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>‘Color’:</dt>
+<dd>Defines the color of the fitting zone.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Show name’:</dt>
+<dd>Check to display the name of the fitting zone on the 3D view.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Acoustics parameters’</dt>
+<dd><p class="first">Defines the acoustics parameters of the fitting zone, by frequency band.</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>‘Alpha’</dt>
+<dd><a class="reference internal" href="glossary.html#term-absorption-coefficient"><span class="xref std std-term">Absorption coefficient</span></a> of the scatterers.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Lambda’</dt>
+<dd><a class="reference internal" href="glossary.html#term-mean-free-path"><span class="xref std std-term">Mean free path</span></a> (unit: m).</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Diffusion law’</dt>
+<dd>Reflection law.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Define rectangular fitted zone’</dt>
+<dd><p class="first">Defines a parallelepipedic fitted zone.</p>
+<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Acoustics parameters’</dt>
+<dd><p class="first last">Similar as for ‘Define scene fitted zone’.</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">‘Display’</p>
 <blockquote>
 <div><ul class="simple">
-<li><dl class="simple">
-<dt>‘Color’:</dt><dd><p>Defines the color of the fitting zone.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Color’</dt>
+<dd>Defines color of the fitting zone in the 3D view.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Show name’:</dt><dd><p>Check to display the name of the fitting zone on the 3D view.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Opacity’</dt>
+<dd>Defines opacity of the fitting zone in the 3D view.</dd>
 </dl>
 </li>
-</ul>
-</div></blockquote>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Render mode’</dt>
+<dd>In the 3D view, the fitting zone can be represented by a zone with face (‘Volume’) or a contour (‘Borders’).</dd>
 </dl>
 </li>
-<li><dl>
-<dt>‘Acoustics parameters’</dt><dd><p>Defines the acoustics parameters of the fitting zone, by frequency band.</p>
-<blockquote>
-<div><ul class="simple">
-<li><dl class="simple">
-<dt>‘Alpha’</dt><dd><p><a class="reference internal" href="glossary.html#term-absorption-coefficient"><span class="xref std std-term">Absorption coefficient</span></a> of the scatterers.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Lambda’</dt><dd><p><a class="reference internal" href="glossary.html#term-mean-free-path"><span class="xref std std-term">Mean free path</span></a> (unit: m).</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Diffusion law’</dt><dd><p>Reflection law.</p>
-</dd>
-</dl>
-</li>
-</ul>
-</div></blockquote>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl>
-<dt>‘Define rectangular fitted zone’</dt><dd><p>Defines a parallelepipedic fitted zone.</p>
-<ul>
-<li><dl class="simple">
-<dt>‘Acoustics parameters’</dt><dd><p>Similar as for ‘Define scene fitted zone’.</p>
-</dd>
-</dl>
-</li>
-<li><p>‘Display’</p>
-<blockquote>
-<div><ul class="simple">
-<li><dl class="simple">
-<dt>‘Color’</dt><dd><p>Defines color of the fitting zone in the 3D view.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Opacity’</dt><dd><p>Defines opacity of the fitting zone in the 3D view.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Render mode’</dt><dd><p>In the 3D view, the fitting zone can be represented by a zone with face (‘Volume’) or a contour (‘Borders’).</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Show name’</dt><dd><p>Check to display the name of the fitting zone on the 3D view.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Show name’</dt>
+<dd>Check to display the name of the fitting zone on the 3D view.</dd>
 </dl>
 </li>
 </ul>
 </div></blockquote>
 </li>
-<li><dl class="simple">
-<dt>‘Properties’</dt><dd><p>Similar as for ‘Define scene fitted zone’.</p>
+<li><dl class="first docutils">
+<dt>‘Properties’</dt>
+<dd><p class="first last">Similar as for ‘Define scene fitted zone’.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Origin’</dt><dd><p>Defines the (x,y,z) coordinates of the first point of the rectangular zone. The position can be defined by filling the form or using the pointer on the 3D view. See the section <a class="reference external" href="define_position.html">Defines position</a> for understanding how to define a location with the 3D view.</p>
+<li><dl class="first docutils">
+<dt>‘Origin’</dt>
+<dd><p class="first last">Defines the (x,y,z) coordinates of the first point of the rectangular zone. The position can be defined by filling the form or using the pointer on the 3D view. See the section <a class="reference external" href="define_position.html">Defines position</a> for understanding how to define a location with the 3D view.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Destination’</dt><dd><p>Defines the (x,y,z) coordinates of the point opposite the ‘Origin’ point of the rectangular zone. The position can be defined by filling the form or using the pointer on the 3D view. See the section <a class="reference external" href="define_position.html">Defines position</a> for understanding how to define a location with the 3D view.</p>
+<li><dl class="first docutils">
+<dt>‘Destination’</dt>
+<dd><p class="first last">Defines the (x,y,z) coordinates of the point opposite the ‘Origin’ point of the rectangular zone. The position can be defined by filling the form or using the pointer on the 3D view. See the section <a class="reference external" href="define_position.html">Defines position</a> for understanding how to define a location with the 3D view.</p>
 </dd>
 </dl>
 </li>
@@ -395,88 +404,88 @@
 <p>Several acoustic indicators must be associated to punctual receivers in the volume of propagation. Besides their position and direction of view, it may also be necessary to define other acoustic properties, such as directivity, background noise… The receivers can be grouped within source groups. A group can contain other groups.</p>
 <p><strong>Right click</strong> on the root folder ‘Punctual receivers’ to create new receivers or groups of receivers.</p>
 <ul class="simple">
-<li><dl class="simple">
-<dt>‘New receiver’</dt><dd><p>Creates a new receiver.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘New receiver’</dt>
+<dd>Creates a new receiver.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘New Group’</dt><dd><p>Creates a new group of receivers.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘New Group’</dt>
+<dd>Creates a new group of receivers.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Create a receiver grid’</dt><dd><p>Creates a grid of receivers in a new group.</p>
-<ul>
-<li><dl class="simple">
-<dt>‘Number of receivers (column)’</dt><dd><p>Number of receivers along a column.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Create a receiver grid’</dt>
+<dd>Creates a grid of receivers in a new group.<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Number of receivers (column)’</dt>
+<dd>Number of receivers along a column.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Number of receivers (row)’</dt><dd><p>Number of receivers along a row.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Number of receivers (row)’</dt>
+<dd>Number of receivers along a row.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Column vector’</dt><dd><p>Defines the (x,y,z) coordinates of the vector along the column.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Column vector’</dt>
+<dd>Defines the (x,y,z) coordinates of the vector along the column.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Row vector’</dt><dd><p>Defines the (x,y,z) coordinates of the vector along the row.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Row vector’</dt>
+<dd>Defines the (x,y,z) coordinates of the vector along the row.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Grid origin’</dt><dd><p>Defines the (x,y,z) coordinates of the grid origin.</p>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Rotation’</dt><dd><p>Rotate all receivers in a given group (See <a class="reference external" href="manipulate_sources_receivers.html">Manipulating sources and receivers</a> for description).</p>
-<ul>
-<li><dl class="simple">
-<dt>‘Angle (degree)’</dt><dd><p>Defines the rotation angle in degree.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Rotation center’</dt><dd><p>Defines the (x,y,z) coordinates of the point of rotation.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Rotation vector’</dt><dd><p>Defines the (x,y,z) coordinates of the vector of rotation.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Grid origin’</dt>
+<dd>Defines the (x,y,z) coordinates of the grid origin.</dd>
 </dl>
 </li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Translation’</dt><dd><p>Translate all receivers in a given group.</p>
-<ul>
-<li><dl class="simple">
-<dt>‘Translation vector’ (See <a class="reference external" href="manipulate_sources_receivers.html">Manipulating sources and receivers</a> for description)</dt><dd><p>Defines the (x,y,z) coordinates of the vector of translation.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Rotation’</dt>
+<dd>Rotate all receivers in a given group (See <a class="reference external" href="manipulate_sources_receivers.html">Manipulating sources and receivers</a> for description).<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Angle (degree)’</dt>
+<dd>Defines the rotation angle in degree.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Rotation center’</dt>
+<dd>Defines the (x,y,z) coordinates of the point of rotation.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Rotation vector’</dt>
+<dd>Defines the (x,y,z) coordinates of the vector of rotation.</dd>
 </dl>
 </li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Orientation’</dt><dd><p>Orient all receivers in a given group to a target point.</p>
-<ul>
-<li><dl class="simple">
-<dt>‘Target point’</dt><dd><p>Defines the (x,y,z) coordinates of the target point.</p>
+<li><dl class="first docutils">
+<dt>‘Translation’</dt>
+<dd>Translate all receivers in a given group.<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Translation vector’ (See <a class="reference external" href="manipulate_sources_receivers.html">Manipulating sources and receivers</a> for description)</dt>
+<dd>Defines the (x,y,z) coordinates of the vector of translation.</dd>
+</dl>
+</li>
+</ul>
 </dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Orientation’</dt>
+<dd>Orient all receivers in a given group to a target point.<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Target point’</dt>
+<dd>Defines the (x,y,z) coordinates of the target point.</dd>
 </dl>
 </li>
 </ul>
@@ -486,28 +495,31 @@
 </ul>
 <p>Receiver parameters:</p>
 <ul>
-<li><dl class="simple">
-<dt>‘Background noise’</dt><dd><p>Defines the existing background noise at the receiver location. This parameters can be useful, for example, to calculate some acoustics indicator for speech intelligibility. This parameter is defined by a background noise ‘Spectrum’. See the section <a class="reference external" href="using_spectrum.html">Using spectrum</a> for understanding how to use a spectrum in the application.</p>
+<li><dl class="first docutils">
+<dt>‘Background noise’</dt>
+<dd><p class="first last">Defines the existing background noise at the receiver location. This parameters can be useful, for example, to calculate some acoustics indicator for speech intelligibility. This parameter is defined by a background noise ‘Spectrum’. See the section <a class="reference external" href="using_spectrum.html">Using spectrum</a> for understanding how to use a spectrum in the application.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Direction’</dt><dd><p>Defines the orientation of the receivers, using a vector of coordinates (x,y,z). This parameters can be useful, for example, to associate a directivity to the receiver. The position can be defined by filling the form or using the pointer on the 3D view. See the section <a class="reference external" href="define_position.html">Defines position</a> for understanding how to define a location with the 3D view. The receiver can also be automatically oriented to a given sound source with a dynamic link: choose the corresonding sound source in the list.</p>
+<li><dl class="first docutils">
+<dt>‘Direction’</dt>
+<dd><p class="first last">Defines the orientation of the receivers, using a vector of coordinates (x,y,z). This parameters can be useful, for example, to associate a directivity to the receiver. The position can be defined by filling the form or using the pointer on the 3D view. See the section <a class="reference external" href="define_position.html">Defines position</a> for understanding how to define a location with the 3D view. The receiver can also be automatically oriented to a given sound source with a dynamic link: choose the corresonding sound source in the list.</p>
 </dd>
 </dl>
 </li>
-<li><dl>
-<dt>‘Display’</dt><dd><p>Defines the parameters for displaying the element on the 3D view.</p>
-<blockquote>
+<li><dl class="first docutils">
+<dt>‘Display’</dt>
+<dd><p class="first">Defines the parameters for displaying the element on the 3D view.</p>
+<blockquote class="last">
 <div><ul class="simple">
-<li><dl class="simple">
-<dt>‘Color’:</dt><dd><p>Defines the color of the receiver.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Color’:</dt>
+<dd>Defines the color of the receiver.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Show name’:</dt><dd><p>Check to display the name of the receiver on the 3D view.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Show name’:</dt>
+<dd>Check to display the name of the receiver on the 3D view.</dd>
 </dl>
 </li>
 </ul>
@@ -515,38 +527,40 @@
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Position’</dt><dd><p>Defines the (x,y,z) coordinate of the receiver. The position can be defined by filling the form or using the pointer on the 3D view. See the section <a class="reference external" href="define_position.html">Defines position</a> for understanding how to define a location with the 3D view.</p>
+<li><dl class="first docutils">
+<dt>‘Position’</dt>
+<dd><p class="first last">Defines the (x,y,z) coordinate of the receiver. The position can be defined by filling the form or using the pointer on the 3D view. See the section <a class="reference external" href="define_position.html">Defines position</a> for understanding how to define a location with the 3D view.</p>
 </dd>
 </dl>
 </li>
-<li><dl>
-<dt>‘Properties’</dt><dd><p>Defines the properties of the element.</p>
-<blockquote>
+<li><dl class="first docutils">
+<dt>‘Properties’</dt>
+<dd><p class="first">Defines the properties of the element.</p>
+<blockquote class="last">
 <div><ul class="simple">
-<li><dl class="simple">
-<dt>‘Description’</dt><dd><p>Gives a short text description of the element.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Description’</dt>
+<dd>Gives a short text description of the element.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Direction x’</dt><dd><p>Coordinate x of the orientation vector (unit vector).</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Direction x’</dt>
+<dd>Coordinate x of the orientation vector (unit vector).</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Direction y’</dt><dd><p>Coordinate y of the orientation vector (unit vector).</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Direction y’</dt>
+<dd>Coordinate y of the orientation vector (unit vector).</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Direction z’</dt><dd><p>Coordinate z of the orientation vector (unit vector).</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Direction z’</dt>
+<dd>Coordinate z of the orientation vector (unit vector).</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Directivity’</dt><dd><p>Directivity of the receiver. See the <a class="reference external" href="using_directivity.html">Directivity</a> section for details.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Directivity’</dt>
+<dd>Directivity of the receiver. See the <a class="reference external" href="using_directivity.html">Directivity</a> section for details.</dd>
 </dl>
 </li>
 </ul>
@@ -562,43 +576,47 @@
 within source groups. A group can contain other groups.</p>
 <p><strong>Right click</strong> on the root folder ‘Sound source’ to create new sound sources or groups of sound sources</p>
 <ul>
-<li><dl class="simple">
-<dt>‘New source’</dt><dd><p>Creates a new source.</p>
+<li><dl class="first docutils">
+<dt>‘New source’</dt>
+<dd><p class="first last">Creates a new source.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘New Group’</dt><dd><p>Creates a new group of receivers.</p>
+<li><dl class="first docutils">
+<dt>‘New Group’</dt>
+<dd><p class="first last">Creates a new group of receivers.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Create a line of sound source’</dt><dd><p>Creates a line of sound source in a new group.</p>
+<li><dl class="first docutils">
+<dt>‘Create a line of sound source’</dt>
+<dd><p class="first last">Creates a line of sound source in a new group.</p>
 </dd>
 </dl>
 </li>
-<li><dl>
-<dt>‘All sources’</dt><dd><p>Possible actions on a group of sound sources.</p>
-<blockquote>
+<li><dl class="first docutils">
+<dt>‘All sources’</dt>
+<dd><p class="first">Possible actions on a group of sound sources.</p>
+<blockquote class="last">
 <div><ul class="simple">
-<li><dl class="simple">
-<dt>‘Enable’</dt><dd><p>Enable all sound surces in a group.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Enable’</dt>
+<dd>Enable all sound surces in a group.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Disable’</dt><dd><p>Disable all sound surces in a group.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Disable’</dt>
+<dd>Disable all sound surces in a group.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Rotation’ (See <a class="reference external" href="manipulate_sources_receivers.html">Manipulating sources and receivers</a> for description)</dt><dd><p>Same action as for sound sources.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Rotation’ (See <a class="reference external" href="manipulate_sources_receivers.html">Manipulating sources and receivers</a> for description)</dt>
+<dd>Same action as for sound sources.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Translation’ (See <a class="reference external" href="manipulate_sources_receivers.html">Manipulating sources and receivers</a> for description)</dt><dd><p>Same action as for sound sources.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Translation’ (See <a class="reference external" href="manipulate_sources_receivers.html">Manipulating sources and receivers</a> for description)</dt>
+<dd>Same action as for sound sources.</dd>
 </dl>
 </li>
 </ul>
@@ -609,58 +627,61 @@ within source groups. A group can contain other groups.</p>
 </ul>
 <p>Sound source parameters:</p>
 <ul>
-<li><dl class="simple">
-<dt>‘Display’</dt><dd><p>Defines the parameters for displaying the element on the 3D view.</p>
+<li><dl class="first docutils">
+<dt>‘Display’</dt>
+<dd><p class="first last">Defines the parameters for displaying the element on the 3D view.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Position’</dt><dd><p>Defines the (x,y,z) coordinate of the sound source. The position can be defined by filling the form or using the pointer on the 3D view. See the section <a class="reference external" href="define_position.html">Defines position</a> for understanding how to define a location with the 3D view.</p>
+<li><dl class="first docutils">
+<dt>‘Position’</dt>
+<dd><p class="first last">Defines the (x,y,z) coordinate of the sound source. The position can be defined by filling the form or using the pointer on the 3D view. See the section <a class="reference external" href="define_position.html">Defines position</a> for understanding how to define a location with the 3D view.</p>
 </dd>
 </dl>
 </li>
-<li><dl>
-<dt>‘Properties’</dt><dd><p>Defines the properties of the element.</p>
-<blockquote>
+<li><dl class="first docutils">
+<dt>‘Properties’</dt>
+<dd><p class="first">Defines the properties of the element.</p>
+<blockquote class="last">
 <div><ul class="simple">
-<li><dl class="simple">
-<dt>‘Active source’</dt><dd><p>(Un)check to (Des)activate the sound source.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Active source’</dt>
+<dd>(Un)check to (Des)activate the sound source.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Description’</dt><dd><p>Gives a short text description of the element.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Description’</dt>
+<dd>Gives a short text description of the element.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Direction x’</dt><dd><p>Coordinate x of the orientation vector (unit vector).</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Direction x’</dt>
+<dd>Coordinate x of the orientation vector (unit vector).</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Direction y’</dt><dd><p>Coordinate y of the orientation vector (unit vector).</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Direction y’</dt>
+<dd>Coordinate y of the orientation vector (unit vector).</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Direction z’</dt><dd><p>Coordinate z of the orientation vector (unit vector).</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Direction z’</dt>
+<dd>Coordinate z of the orientation vector (unit vector).</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Directivity’</dt><dd><p>Selects the directivity of the sound source in a list. Several ‘theoretical’ directivities are proposed (omnidrectionnal, unidirectionnal, XY, YZ, ZY) as well as ‘balloon’ directivities (<em>i.e.</em> as measured). In this last case, the ‘Balloon’ parameter must be given.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Directivity’</dt>
+<dd>Selects the directivity of the sound source in a list. Several ‘theoretical’ directivities are proposed (omnidrectionnal, unidirectionnal, XY, YZ, ZY) as well as ‘balloon’ directivities (<em>i.e.</em> as measured). In this last case, the ‘Balloon’ parameter must be given.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Directivity Balloon’</dt><dd><p>Selects the directivity balloon of the sound source in a list. This parameter is enable only if the ‘Balloon’ option is selected in the ‘Directivity’ parameter.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Directivity Balloon’</dt>
+<dd>Selects the directivity balloon of the sound source in a list. This parameter is enable only if the ‘Balloon’ option is selected in the ‘Directivity’ parameter.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Time delay’</dt><dd><p>Defines a delay (in second) for activating the sound source.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Time delay’</dt>
+<dd>Defines a delay (in second) for activating the sound source.</dd>
 </dl>
 </li>
 </ul>
@@ -668,8 +689,9 @@ within source groups. A group can contain other groups.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Sound power’</dt><dd><p>Defines the sound power of the sound source. This parameter is defined by a power ‘Spectrum’. See the section <a class="reference external" href="using_spectrum.html">Using spectrum</a> for understanding how to use a spectrum in the application.</p>
+<li><dl class="first docutils">
+<dt>‘Sound power’</dt>
+<dd><p class="first last">Defines the sound power of the sound source. This parameter is defined by a power ‘Spectrum’. See the section <a class="reference external" href="using_spectrum.html">Using spectrum</a> for understanding how to use a spectrum in the application.</p>
 </dd>
 </dl>
 </li>
@@ -680,14 +702,30 @@ within source groups. A group can contain other groups.</p>
 <p>It is common in a acoustics study to focus on the distribution of sound levels on a surface (noise mapping). The concept of mapping can also be generalized to the surface representation of any acoustic parameter, like reverberation time, clarity… The I-Simpa interface enables to define surfaces for the representation of maps.</p>
 <p>By right clicking on the root ‘Surface receiver’ folder, it allows define two types of surface receiver:</p>
 <ul class="simple">
-<li><dl class="simple">
-<dt>‘New scene receiver’</dt><dd><p>Surface elements of the 3D scene can be selected.</p>
-<ul>
-<li><dl class="simple">
-<dt>‘Surfaces’</dt><dd><p>Defines the surface element of the 3D scene to be considered for the surface receiver. See the section <a class="reference external" href="surface_selection.html">Surface selection</a> for understanding how to select surface elements.</p>
-<ul>
-<li><dl class="simple">
-<dt>‘Surface area’</dt><dd><p>Total surface (in m²) of all face elements in the folder.</p>
+<li><dl class="first docutils">
+<dt>‘New scene receiver’</dt>
+<dd>Surface elements of the 3D scene can be selected.<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Surfaces’</dt>
+<dd>Defines the surface element of the 3D scene to be considered for the surface receiver. See the section <a class="reference external" href="surface_selection.html">Surface selection</a> for understanding how to select surface elements.<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Surface area’</dt>
+<dd>Total surface (in m²) of all face elements in the folder.</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Properties’</dt>
+<dd>Defines the properties of the element.<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Description’</dt>
+<dd>Gives a short text description of the element.</dd>
+</dl>
+</li>
+</ul>
 </dd>
 </dl>
 </li>
@@ -695,82 +733,66 @@ within source groups. A group can contain other groups.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Properties’</dt><dd><p>Defines the properties of the element.</p>
-<ul>
-<li><dl class="simple">
-<dt>‘Description’</dt><dd><p>Gives a short text description of the element.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘New plan receiver’</dt>
+<dd>The surface receiver is defined by a grid cutting plane, made of 3 vertices A, B and C.<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Display’</dt>
+<dd>Defines the parameters for displaying the element on the 3D view.<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Grid color’</dt>
+<dd>Defines the color for displaying the grid.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Show grid’</dt>
+<dd>Check to display the grid on the 3D view.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Show vertice names’</dt>
+<dd>Check to display the name of the vertices A, B, C.</dd>
 </dl>
 </li>
 </ul>
 </dd>
 </dl>
 </li>
-</ul>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Properties’</dt>
+<dd>Defines the properties of the element.<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Description’</dt>
+<dd>Gives a short text description of the element.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘New plan receiver’</dt><dd><p>The surface receiver is defined by a grid cutting plane, made of 3 vertices A, B and C.</p>
-<ul>
-<li><dl class="simple">
-<dt>‘Display’</dt><dd><p>Defines the parameters for displaying the element on the 3D view.</p>
-<ul>
-<li><dl class="simple">
-<dt>‘Grid color’</dt><dd><p>Defines the color for displaying the grid.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Enable’</dt>
+<dd>Check to enable the plan receiver in the calculation.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Show grid’</dt><dd><p>Check to display the grid on the 3D view.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Show vertice names’</dt><dd><p>Check to display the name of the vertices A, B, C.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Grid resolution’</dt>
+<dd>Defines the resolution of the grid (in m).</dd>
 </dl>
 </li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Properties’</dt><dd><p>Defines the properties of the element.</p>
-<ul>
-<li><dl class="simple">
-<dt>‘Description’</dt><dd><p>Gives a short text description of the element.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Vertex A’</dt>
+<dd>Defines the (x,y,z) coordinates of the vertex A. The position can be defined by filling the form or using the pointer on the 3D view. See the section <a class="reference external" href="define_position.html">Defines position</a> for understanding how to define a location with the 3D view.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Enable’</dt><dd><p>Check to enable the plan receiver in the calculation.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Vertex B’</dt>
+<dd>Defines the (x,y,z) coordinates of the vertex B. The position can be defined by filling the form or using the pointer on the 3D view. See the section <a class="reference external" href="define_position.html">Defines position</a> for understanding how to define a location with the 3D view.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Grid resolution’</dt><dd><p>Defines the resolution of the grid (in m).</p>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Vertex A’</dt><dd><p>Defines the (x,y,z) coordinates of the vertex A. The position can be defined by filling the form or using the pointer on the 3D view. See the section <a class="reference external" href="define_position.html">Defines position</a> for understanding how to define a location with the 3D view.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Vertex B’</dt><dd><p>Defines the (x,y,z) coordinates of the vertex B. The position can be defined by filling the form or using the pointer on the 3D view. See the section <a class="reference external" href="define_position.html">Defines position</a> for understanding how to define a location with the 3D view.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Vertex C’</dt><dd><p>Defines the (x,y,z) coordinates of the vertex C. The position can be defined by filling the form or using the pointer on the 3D view. See the section <a class="reference external" href="define_position.html">Defines position</a> for understanding how to define a location with the 3D view.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Vertex C’</dt>
+<dd>Defines the (x,y,z) coordinates of the vertex C. The position can be defined by filling the form or using the pointer on the 3D view. See the section <a class="reference external" href="define_position.html">Defines position</a> for understanding how to define a location with the 3D view.</dd>
 </dl>
 </li>
 </ul>
@@ -784,30 +806,30 @@ within source groups. A group can contain other groups.</p>
 <p>This element contains all surfaces of the scene. These surfaces are either created within I-Simpa in the case of a the creation of a parallelepipedic geometry or imported. In the last case, depending on the software used to create the 3D scene, it is possible to import faces that are already organized into groups. This group organisation allows to easily affect specific material (with specific acoustic properties) for each surface group.</p>
 <p><strong>Right click</strong> on the root folder ‘Surfaces’ to organize the face elements:</p>
 <ul class="simple">
-<li><dl class="simple">
-<dt>‘Add a group’</dt><dd><p>Creates a new group.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Add a group’</dt>
+<dd>Creates a new group.</dd>
 </dl>
 </li>
 </ul>
 <p><strong>Right click</strong> on a group to perform actions:</p>
 <ul class="simple">
-<li><dl class="simple">
-<dt>‘Inverse face normal’</dt><dd><p>Change the orientation of the normal of all face elements within the group. This can useful if, at the importation of 3D scene, some original faces have a wrong orientation.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Inverse face normal’</dt>
+<dd>Change the orientation of the normal of all face elements within the group. This can useful if, at the importation of 3D scene, some original faces have a wrong orientation.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Properties’</dt><dd><p>Defines the properties of the element</p>
-<ul>
-<li><dl class="simple">
-<dt>‘Material’</dt><dd><p>Select the material to affect to the surfaces group, from a list. The list is defined in the ‘Material database’ of the ‘Project tree’.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Properties’</dt>
+<dd>Defines the properties of the element<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Material’</dt>
+<dd>Select the material to affect to the surfaces group, from a list. The list is defined in the ‘Material database’ of the ‘Project tree’.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Surface area’</dt><dd><p>Total surface (in m²) of all face elements in the folder.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Surface area’</dt>
+<dd>Total surface (in m²) of all face elements in the folder.</dd>
 </dl>
 </li>
 </ul>
@@ -821,14 +843,40 @@ within source groups. A group can contain other groups.</p>
 <p>The volume element allows to define volumes of interest in the 3D scene. You can ‘handly’ create a volume from face elements in the 3D scene or automatically detect all existing volume in the 3D scene. This can useful to create or detect fitting zones.</p>
 <p><strong>Right click</strong> on the root folder ‘Volumes’ to manage ‘Volumes’:</p>
 <ul class="simple">
-<li><dl class="simple">
-<dt>‘Create a volume’</dt><dd><p>Creates a volume from the face elements of the 3D scene.</p>
-<ul>
-<li><dl class="simple">
-<dt>‘Display’</dt><dd><p>Defines the parameters for displaying the element on the 3D view.</p>
-<ul>
-<li><dl class="simple">
-<dt>‘Domain color’</dt><dd><p>Defines the color for displaying the volume.</p>
+<li><dl class="first docutils">
+<dt>‘Create a volume’</dt>
+<dd>Creates a volume from the face elements of the 3D scene.<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Display’</dt>
+<dd>Defines the parameters for displaying the element on the 3D view.<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Domain color’</dt>
+<dd>Defines the color for displaying the volume.</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Inside position’</dt>
+<dd>Defines a point of coordinates (x,y,z) inside the volume. The position can be defined by filling the form or using the pointer on the 3D view. See the section <a class="reference external" href="define_position.html">Defines position</a> for understanding how to define a location with the 3D view.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Properties’</dt>
+<dd>Defines the properties of the element<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Calculate the mean free path’</dt>
+<dd>Calculate the <a class="reference internal" href="glossary.html#term-mean-free-path"><span class="xref std std-term">mean free path</span></a> using the classical formulae from statistical room acoustics (λ=4V/S, with V the volume and S the surface of the volume).</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Mean free path’</dt>
+<dd>Value (in m) of the calculated mean free path.</dd>
+</dl>
+</li>
+</ul>
 </dd>
 </dl>
 </li>
@@ -836,35 +884,9 @@ within source groups. A group can contain other groups.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Inside position’</dt><dd><p>Defines a point of coordinates (x,y,z) inside the volume. The position can be defined by filling the form or using the pointer on the 3D view. See the section <a class="reference external" href="define_position.html">Defines position</a> for understanding how to define a location with the 3D view.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Properties’</dt><dd><p>Defines the properties of the element</p>
-<ul>
-<li><dl class="simple">
-<dt>‘Calculate the mean free path’</dt><dd><p>Calculate the <a class="reference internal" href="glossary.html#term-mean-free-path"><span class="xref std std-term">mean free path</span></a> using the classical formulae from statistical room acoustics (λ=4V/S, with V the volume and S the surface of the volume).</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Mean free path’</dt><dd><p>Value (in m) of the calculated mean free path.</p>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Volume auto-detect’</dt><dd><p>Automatically detect all volumes within the 3D scene. Same paremeters as for ‘Create a volume’.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Volume auto-detect’</dt>
+<dd>Automatically detect all volumes within the 3D scene. Same paremeters as for ‘Create a volume’.</dd>
 </dl>
 </li>
 </ul>
@@ -877,24 +899,24 @@ within source groups. A group can contain other groups.</p>
 <p>This element of the ‘Project’ tree defines some useful information concerning the project. These element are not used for the calculation.</p>
 <p>Property elements: these elements are all optional.</p>
 <ul class="simple">
-<li><dl class="simple">
-<dt>‘Author’</dt><dd><p>Name or information concerning the author of the project.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Author’</dt>
+<dd>Name or information concerning the author of the project.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Date’</dt><dd><p>Date of the project. By default, it is the date of creation of the project (text).</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Date’</dt>
+<dd>Date of the project. By default, it is the date of creation of the project (text).</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Project description’</dt><dd><p>Quick description of the project.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Project description’</dt>
+<dd>Quick description of the project.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Project name’</dt><dd><p>Name of the project, given by the author.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Project name’</dt>
+<dd>Name of the project, given by the author.</dd>
 </dl>
 </li>
 </ul>
@@ -904,59 +926,59 @@ within source groups. A group can contain other groups.</p>
 <p>This element of the ‘Project’ tree defines some useful parameter for the 3D display.</p>
 <p>Property elements:</p>
 <ul class="simple">
-<li><dl class="simple">
-<dt>‘XYZ axis’</dt><dd><p>Define some parameters for the graphical representation of the geometric coordinates.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘XYZ axis’</dt>
+<dd>Define some parameters for the graphical representation of the geometric coordinates.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Arrow color (x)’</dt><dd><p>Open a dialog box for selecting the color of the arrow of the x-axis.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Arrow color (x)’</dt>
+<dd>Open a dialog box for selecting the color of the arrow of the x-axis.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Arrow color (y)’</dt><dd><p>Open a dialog box for selecting the color of the arrow of the y-axis.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Arrow color (y)’</dt>
+<dd>Open a dialog box for selecting the color of the arrow of the y-axis.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Arrow color (z)’</dt><dd><p>Open a dialog box for selecting the color of the arrow of the z-axis.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Arrow color (z)’</dt>
+<dd>Open a dialog box for selecting the color of the arrow of the z-axis.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Arrow length’</dt><dd><p>Length (in m) of the arrow of the xyz-axis.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Arrow length’</dt>
+<dd>Length (in m) of the arrow of the xyz-axis.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Arrow widh’</dt><dd><p>Width (in m) of the arrow of the xyz-axis.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Arrow widh’</dt>
+<dd>Width (in m) of the arrow of the xyz-axis.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Grid size’</dt><dd><p>Size (in m) of a grid element.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Grid size’</dt>
+<dd>Size (in m) of a grid element.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Grid color’</dt><dd><p>Open a dialog box for selecting the color of the XYZ grid.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Grid color’</dt>
+<dd>Open a dialog box for selecting the color of the XYZ grid.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘XY Grid’</dt><dd><p>Enable/disbale the display of the XY grid.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘XY Grid’</dt>
+<dd>Enable/disbale the display of the XY grid.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘XZ Grid’</dt><dd><p>Enable/disbale the display of the XZ grid.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘XZ Grid’</dt>
+<dd>Enable/disbale the display of the XZ grid.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘YZ Grid’</dt><dd><p>Enable/disbale the display of the YZ grid.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘YZ Grid’</dt>
+<dd>Enable/disbale the display of the YZ grid.</dd>
 </dl>
 </li>
 </ul>
@@ -965,63 +987,69 @@ within source groups. A group can contain other groups.</p>
 <h3>Environment<a class="headerlink" href="#environment" title="Permalink to this headline">¶</a></h3>
 <p>This element of the ‘Project’ tree defines some useful environment data.</p>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The use of these information depend on the calculation code. See the reference guide of the numerical code for more details. The code can enable the calculation of the atmospheric absorption and of the meteorological effect (considerig a log_lin celerity gradient) with a ground description using the roughness parameters.</p>
+<p class="first admonition-title">Warning</p>
+<p class="last">The use of these information depend on the calculation code. See the reference guide of the numerical code for more details. The code can enable the calculation of the atmospheric absorption and of the meteorological effect (considerig a log_lin celerity gradient) with a ground description using the roughness parameters.</p>
 </div>
 <p>Property elements:</p>
 <ul>
-<li><dl class="simple">
-<dt>‘Atmospheric absorption - User defined’</dt><dd><p>Enable/disable the selection of the value of the atmospheric absorption.</p>
+<li><dl class="first docutils">
+<dt>‘Atmospheric absorption - User defined’</dt>
+<dd><p class="first last">Enable/disable the selection of the value of the atmospheric absorption.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Atmospheric absorption - Value’</dt><dd><p>User value of the atmospehic absorption. This option is available only if the option ‘Atmospheric absorption - User defined’ is enable.</p>
+<li><dl class="first docutils">
+<dt>‘Atmospheric absorption - Value’</dt>
+<dd><p class="first last">User value of the atmospehic absorption. This option is available only if the option ‘Atmospheric absorption - User defined’ is enable.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Atmospheric pressure (Pa)’</dt><dd><p>Atmospheric pressure(Pa).</p>
+<li><dl class="first docutils">
+<dt>‘Atmospheric pressure (Pa)’</dt>
+<dd><p class="first last">Atmospheric pressure(Pa).</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Meteorolical effect - Celerity gradient a_log’</dt><dd><p>Value of the a_log paremeter of the log_lin profile celerity. The default value is function of the option given by the ‘Meteorolical effect - Profile’, but can be modified by the user.</p>
+<li><dl class="first docutils">
+<dt>‘Meteorolical effect - Celerity gradient a_log’</dt>
+<dd><p class="first last">Value of the a_log paremeter of the log_lin profile celerity. The default value is function of the option given by the ‘Meteorolical effect - Profile’, but can be modified by the user.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Meteorolical effect - Celerity gradient b_lin’</dt><dd><p>Value of the b_lin paremeter of the log_lin profile celerity. The default value is function of the option given by the ‘Meteorolical effect - Profile’, but can be modified by the user.</p>
+<li><dl class="first docutils">
+<dt>‘Meteorolical effect - Celerity gradient b_lin’</dt>
+<dd><p class="first last">Value of the b_lin paremeter of the log_lin profile celerity. The default value is function of the option given by the ‘Meteorolical effect - Profile’, but can be modified by the user.</p>
 </dd>
 </dl>
 </li>
-<li><dl>
-<dt>‘Meteorolical effect - Profile’</dt><dd><p>Defines a log_lin gradient profile. By selecting one of the following options, it sets the ‘Meteorolical effect - Celerity gradient a_log’ and ‘Meteorolical effect - Celerity gradient b_lin’ parameters. However, these values can be modified by the user.</p>
-<blockquote>
+<li><dl class="first docutils">
+<dt>‘Meteorolical effect - Profile’</dt>
+<dd><p class="first">Defines a log_lin gradient profile. By selecting one of the following options, it sets the ‘Meteorolical effect - Celerity gradient a_log’ and ‘Meteorolical effect - Celerity gradient b_lin’ parameters. However, these values can be modified by the user.</p>
+<blockquote class="last">
 <div><ul class="simple">
-<li><dl class="simple">
-<dt>‘Very favorable’</dt><dd><p>a_log=+1, b_lin=+0.12</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Very favorable’</dt>
+<dd>a_log=+1, b_lin=+0.12</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Favorable’</dt><dd><p>a_log=+0.4, b_lin=+0.04</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Favorable’</dt>
+<dd>a_log=+0.4, b_lin=+0.04</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Homogenous’:</dt><dd><p>a_log=0, b_lin=0</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Homogenous’:</dt>
+<dd>a_log=0, b_lin=0</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Unfavorable’:</dt><dd><p>a_log=-0.4, b_lin=-0.04</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Unfavorable’:</dt>
+<dd>a_log=-0.4, b_lin=-0.04</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Veryfavorable’:</dt><dd><p>a_log=-1, b_lin=-0.12</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Veryfavorable’:</dt>
+<dd>a_log=-1, b_lin=-0.12</dd>
 </dl>
 </li>
 </ul>
@@ -1029,63 +1057,66 @@ within source groups. A group can contain other groups.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Relative humidity (%)’</dt><dd><p>Relative humidity of air (%).</p>
+<li><dl class="first docutils">
+<dt>‘Relative humidity (%)’</dt>
+<dd><p class="first last">Relative humidity of air (%).</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Roughness - z0 (m)’</dt><dd><p>Value of the ground roughness (m).</p>
+<li><dl class="first docutils">
+<dt>‘Roughness - z0 (m)’</dt>
+<dd><p class="first last">Value of the ground roughness (m).</p>
 </dd>
 </dl>
 </li>
-<li><dl>
-<dt>‘Roughness - Ground type (m)’</dt><dd><p>Defines the ground type. By selecting one of the following options, it sets the ‘Roughness - z0 (m)’ parameter. However, this value can be modified by the user.</p>
-<blockquote>
+<li><dl class="first docutils">
+<dt>‘Roughness - Ground type (m)’</dt>
+<dd><p class="first">Defines the ground type. By selecting one of the following options, it sets the ‘Roughness - z0 (m)’ parameter. However, this value can be modified by the user.</p>
+<blockquote class="last">
 <div><ul class="simple">
-<li><dl class="simple">
-<dt>‘Water’</dt><dd><p>z0=0.006</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Water’</dt>
+<dd>z0=0.006</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Ground’</dt><dd><p>z0=0.02</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Ground’</dt>
+<dd>z0=0.02</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Short lawn’</dt><dd><p>z0=0.001</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Short lawn’</dt>
+<dd>z0=0.001</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Dense lawn’</dt><dd><p>z0=0.02</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Dense lawn’</dt>
+<dd>z0=0.02</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Wheat (1m height)’</dt><dd><p>z0=0.16</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Wheat (1m height)’</dt>
+<dd>z0=0.16</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Sparse habitat (farm, trees, hedges)’</dt><dd><p>z0=0.6</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Sparse habitat (farm, trees, hedges)’</dt>
+<dd>z0=0.6</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Low concentration Suburb (residential areas, gardens)’</dt><dd><p>z0=1.2</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Low concentration Suburb (residential areas, gardens)’</dt>
+<dd>z0=1.2</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Dense urban’</dt><dd><p>z0=10</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Dense urban’</dt>
+<dd>z0=10</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Dense suburb’</dt><dd><p>z0=1.8</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Dense suburb’</dt>
+<dd>z0=1.8</dd>
 </dl>
 </li>
 </ul>
@@ -1093,8 +1124,9 @@ within source groups. A group can contain other groups.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Temperature (°C)’</dt><dd><p>Temperature of air (°C).</p>
+<li><dl class="first docutils">
+<dt>‘Temperature (°C)’</dt>
+<dd><p class="first last">Temperature of air (°C).</p>
 </dd>
 </dl>
 </li>
@@ -1105,52 +1137,56 @@ within source groups. A group can contain other groups.</p>
 <p>This element of the ‘Project’ tree gives some useful information concerning the I-Simpa project.</p>
 <p>Property elements:</p>
 <ul class="simple">
-<li><dl class="simple">
-<dt>‘Model face count’</dt><dd><p>Number of face elements.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Model face count’</dt>
+<dd>Number of face elements.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Number of active fitting zones’</dt><dd><p>Number of active fitting zones.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Number of active fitting zones’</dt>
+<dd>Number of active fitting zones.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Number of active sound sources’</dt><dd><p>Number of active sound sources.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Number of active sound sources’</dt>
+<dd>Number of active sound sources.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Number of fitting zones’</dt><dd><p>Number of fitting zones.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Number of fitting zones’</dt>
+<dd>Number of fitting zones.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Number of punctual receivers’</dt><dd><p>Number of punctual receivers.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Number of punctual receivers’</dt>
+<dd>Number of punctual receivers.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Number of sound sources’</dt><dd><p>Number of sound sources.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Number of sound sources’</dt>
+<dd>Number of sound sources.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Number of surface groups’</dt><dd><p>Number of surface groups.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Number of surface groups’</dt>
+<dd>Number of surface groups.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Scene surface (m2)’</dt><dd><p>Scene surface (m²).</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Scene surface (m2)’</dt>
+<dd>Scene surface (m²).</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Scene volume (m3)’</dt><dd><p>Scene volume (m3).</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Scene volume (m3)’</dt>
+<dd>Scene volume (m3).</dd>
 </dl>
 </li>
 </ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The scene volume is displayed only after a first meshing of the scene. Generate a meshing using the <a class="reference external" href="toolbars.html#toolbar-meshing">Meshing Toolbar</a> (see <a class="reference external" href="code_configuration_meshing.html">Meshing option</a>)</p>
+</div>
 </div>
 <div class="section" id="project-database">
 <h3>Project database<a class="headerlink" href="#project-database" title="Permalink to this headline">¶</a></h3>
@@ -1170,22 +1206,14 @@ within source groups. A group can contain other groups.</p>
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Dec 23, 2020.
+        Last updated on Dec 11, 2020.
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1196,6 +1224,7 @@ within source groups. A group can contain other groups.</p>
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {
