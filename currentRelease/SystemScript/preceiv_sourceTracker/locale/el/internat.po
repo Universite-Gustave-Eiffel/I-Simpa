@@ -1,0 +1,46 @@
+# English translations for PACKAGE package.
+# Copyright (C) 2021 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2021.
+# 
+# Translators:
+# gfk31 <georgiadisfkostas@yahoo.gr>, 2017
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-08 16:41+0000\n"
+"PO-Revision-Date: 2017-01-05 10:58+0000\n"
+"Last-Translator: gfk31 <georgiadisfkostas@yahoo.gr>, 2017\n"
+"Language-Team: Greek (https://www.transifex.com/LAE/teams/23470/el/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: el\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: currentRelease/SystemScript/preceiv_sourceTracker/__init__.py:170
+msgid "Delete the link with the source"
+msgstr "Διαγραφή συνδέσμου με την πηγή"
+
+#: currentRelease/SystemScript/preceiv_sourceTracker/__init__.py:167
+msgid "Link to a source"
+msgstr ""
+
+#: currentRelease/SystemScript/preceiv_sourceTracker/__init__.py:97
+msgid "Linked source"
+msgstr ""
+
+#: currentRelease/SystemScript/preceiv_sourceTracker/__init__.py:141
+#: currentRelease/SystemScript/preceiv_sourceTracker/__init__.py:173
+msgid "Please choose the source:"
+msgstr "Παρακαλώ επιλέξτε την πηγή:"
+
+#: currentRelease/SystemScript/preceiv_sourceTracker/__init__.py:140
+msgid "Source name"
+msgstr "Όνομα πηγής"
+
+#: currentRelease/SystemScript/preceiv_sourceTracker/__init__.py:141
+msgid "Source selection"
+msgstr "Επιλογή πηγής"

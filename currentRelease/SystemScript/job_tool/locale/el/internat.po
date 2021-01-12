@@ -1,0 +1,50 @@
+# English translations for PACKAGE package.
+# Copyright (C) 2021 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2021.
+# 
+# Translators:
+# gfk31 <georgiadisfkostas@yahoo.gr>, 2017
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-08 16:41+0000\n"
+"PO-Revision-Date: 2016-12-02 16:04+0000\n"
+"Last-Translator: gfk31 <georgiadisfkostas@yahoo.gr>, 2017\n"
+"Language-Team: Greek (https://www.transifex.com/LAE/teams/23470/el/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: el\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: currentRelease/SystemScript/job_tool/__init__.py:129
+#, python-format
+msgid "%i tasks:"
+msgstr "%i εργασίες:"
+
+#: currentRelease/SystemScript/job_tool/__init__.py:142
+msgid "Add calculation in the job list"
+msgstr "Προσθήκη υπολογισμού στον κατάλογο εργασιών"
+
+#: currentRelease/SystemScript/job_tool/__init__.py:144
+msgid "Clear job list"
+msgstr "Εκκαθάριση καταλόγου εργασιών"
+
+#: currentRelease/SystemScript/job_tool/__init__.py:144
+msgid "Confirmation"
+msgstr "Επιβεβαίωση"
+
+#: currentRelease/SystemScript/job_tool/__init__.py:148
+msgid "Job list"
+msgstr "Κατάλογος εργασιών"
+
+#: currentRelease/SystemScript/job_tool/__init__.py:145
+msgid "Run job list"
+msgstr "Εκτέλεση καταλόγου εργασιών"
+
+#: currentRelease/SystemScript/job_tool/__init__.py:146
+msgid "Show job list"
+msgstr "Προβολή καταλόγου εργασιών"

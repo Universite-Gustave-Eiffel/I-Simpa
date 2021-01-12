@@ -1,0 +1,165 @@
+# English translations for PACKAGE package.
+# Copyright (C) 2021 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2021.
+# 
+# Translators:
+# Rafael Andrade <rafael.gl.andrade@gmail.com>, 2018
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-08 16:41+0000\n"
+"PO-Revision-Date: 2016-12-02 16:06+0000\n"
+"Last-Translator: Rafael Andrade <rafael.gl.andrade@gmail.com>, 2018\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/LAE/teams/23470/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:114
+msgid "Angle of rotation (degrees)"
+msgstr "Ângulo de rotação (graus)"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:67
+msgid "Col step x (m)"
+msgstr "Col step x (m)"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:68
+msgid "Col step y (m)"
+msgstr "Col step y (m)"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:69
+msgid "Col step z (m)"
+msgstr "Col step z (m)"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:56
+#: currentRelease/SystemScript/recp_tool/__init__.py:82
+msgid "Create a receiver grid"
+msgstr "Criar grid de receptor"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:155
+msgid "Direction x (m)"
+msgstr "Direção x (m)"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:156
+msgid "Direction y (m)"
+msgstr "Direção y (m)"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:157
+msgid "Direction z (m)"
+msgstr "Direção z (m)"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:63
+msgid "Number of cols"
+msgstr "Número de colunas"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:62
+msgid "Number of rows"
+msgstr "Número de linhas"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:97
+msgid "Orient a group of receivers to a point"
+msgstr "Orientar grupo de receptores a um ponto"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:52
+msgid "Orient the group to a position"
+msgstr "Orientar grupo a uma posição"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:94
+msgid "Orient to position x (m)"
+msgstr "Orientar para posição x (m)"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:95
+msgid "Orient to position y (m)"
+msgstr "Orientar para posição y (m)"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:96
+msgid "Orient to position z (m)"
+msgstr "Orientar para posição z (m)"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:98
+msgid "Please enter the coordinates of the orientation point"
+msgstr "Por favor, informe as coordenadas do ponto de orientação"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:159
+msgid "Please enter the coordinates of the translation vector"
+msgstr "Por favor, informe as coordenadas do vetor de translação"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:83
+msgid "Please fill the following fields to create the receivers points grid"
+msgstr ""
+"Por favor, preencha os campos a seguir para criar o grid de receptores "
+"pontuais"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:115
+msgid "Rotation center x (m)"
+msgstr "Centro de rotação x (m)"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:116
+msgid "Rotation center y (m)"
+msgstr "Centro de rotação y (m)"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:117
+msgid "Rotation center z (m)"
+msgstr "Centro de rotação z (m)"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:130
+msgid "Rotation of a group of receivers"
+msgstr "Rotação de um grupo de receptores"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:54
+msgid "Rotation of receivers"
+msgstr "Rotação de receptores"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:64
+msgid "Row step x (m)"
+msgstr "Passo em linha x (m)"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:65
+msgid "Row step y (m)"
+msgstr "Passo em linha y (m)"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:66
+msgid "Row step z (m)"
+msgstr "Passo em linha z (m)"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:59
+msgid "Starting position x (m)"
+msgstr "Posição inicial x (m)"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:60
+msgid "Starting position y (m)"
+msgstr "Posição inicial y (m)"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:61
+msgid "Starting position z (m)"
+msgstr "Posição inicial z (m)"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:158
+msgid "Translation of a group of receivers"
+msgstr "Translação de um grupo de receptores"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:53
+msgid "Translation of receivers"
+msgstr "Translação de receptores"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:111
+msgid "Vector of rotation x (m)"
+msgstr "Vetor de rotação x (m)"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:112
+msgid "Vector of rotation y (m)"
+msgstr "Vetor de rotação y (m)"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:113
+msgid "Vector of rotation z (m)"
+msgstr "Vetor de rotação z (m)"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:146
+#: currentRelease/SystemScript/recp_tool/__init__.py:168
+msgid "Wrong parameters"
+msgstr "Parâmetros inválidos"

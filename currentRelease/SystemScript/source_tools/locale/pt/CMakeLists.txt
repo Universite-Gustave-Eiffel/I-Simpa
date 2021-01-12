@@ -1,0 +1,1 @@
+gettext_process_po_files(pt INSTALL_DESTINATION SystemScript/source_tools/locale PO_FILES internat.po)

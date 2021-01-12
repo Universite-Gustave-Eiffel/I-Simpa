@@ -2,7 +2,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.6.0)
 
 # Maps to a solution file (isimpa.sln). The solution will
 # have all targets (exe, lib, dll) as projects (.vcproj)
-project (isimpa VERSION 1.3.4)
+project (isimpa VERSION 1.3.5)
 
 
 # convert path of a .lib file into a .dll file

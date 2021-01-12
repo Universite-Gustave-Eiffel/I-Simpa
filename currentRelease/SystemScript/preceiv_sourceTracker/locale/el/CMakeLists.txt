@@ -1,0 +1,1 @@
+gettext_process_po_files(el INSTALL_DESTINATION SystemScript/preceiv_sourceTracker/locale PO_FILES internat.po)

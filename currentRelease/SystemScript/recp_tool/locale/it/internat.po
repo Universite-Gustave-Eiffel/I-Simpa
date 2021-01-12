@@ -1,0 +1,159 @@
+# English translations for PACKAGE package.
+# Copyright (C) 2021 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2021.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-08 16:41+0000\n"
+"PO-Revision-Date: 2016-12-02 16:06+0000\n"
+"Language-Team: Italian (https://www.transifex.com/LAE/teams/23470/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:114
+msgid "Angle of rotation (degrees)"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:67
+msgid "Col step x (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:68
+msgid "Col step y (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:69
+msgid "Col step z (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:56
+#: currentRelease/SystemScript/recp_tool/__init__.py:82
+msgid "Create a receiver grid"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:155
+msgid "Direction x (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:156
+msgid "Direction y (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:157
+msgid "Direction z (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:63
+msgid "Number of cols"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:62
+msgid "Number of rows"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:97
+msgid "Orient a group of receivers to a point"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:52
+msgid "Orient the group to a position"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:94
+msgid "Orient to position x (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:95
+msgid "Orient to position y (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:96
+msgid "Orient to position z (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:98
+msgid "Please enter the coordinates of the orientation point"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:159
+msgid "Please enter the coordinates of the translation vector"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:83
+msgid "Please fill the following fields to create the receivers points grid"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:115
+msgid "Rotation center x (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:116
+msgid "Rotation center y (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:117
+msgid "Rotation center z (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:130
+msgid "Rotation of a group of receivers"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:54
+msgid "Rotation of receivers"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:64
+msgid "Row step x (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:65
+msgid "Row step y (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:66
+msgid "Row step z (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:59
+msgid "Starting position x (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:60
+msgid "Starting position y (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:61
+msgid "Starting position z (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:158
+msgid "Translation of a group of receivers"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:53
+msgid "Translation of receivers"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:111
+msgid "Vector of rotation x (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:112
+msgid "Vector of rotation y (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:113
+msgid "Vector of rotation z (m)"
+msgstr ""
+
+#: currentRelease/SystemScript/recp_tool/__init__.py:146
+#: currentRelease/SystemScript/recp_tool/__init__.py:168
+msgid "Wrong parameters"
+msgstr ""
