@@ -427,6 +427,9 @@ IF(GETTEXT_FOUND )
   # Main isimpa locale
   add_subdirectory (lang/fr)
   add_subdirectory (lang/pl)
+  add_subdirectory (lang/el)
+  add_subdirectory (lang/pt_BR)
+  add_subdirectory (lang/zh_CN)
   # Plugins locale
   ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/job_tool/locale ${CMAKE_BINARY_DIR}/src/job_tool)
   ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/recp_tool/locale ${CMAKE_BINARY_DIR}/src/recp_tool)
