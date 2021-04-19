@@ -1072,7 +1072,7 @@ namespace sgSpace
 		wxPen oldPen = currentElementStyle->GetPen();
 		wxPen newPen = oldPen;
 		newPen.SetWidth(1);
-		newPen.SetStyle(wxSOLID);
+		newPen.SetStyle(wxPENSTYLE_SOLID);
 		currentContext->SetPen(newPen);
 
 
@@ -1170,9 +1170,9 @@ namespace sgSpace
 	}
 	void SG_Renderer::DrawRectangle(const wxRect& rectArea)
 	{
-		if (currentElementStyle->GetBrush().GetStyle() != wxTRANSPARENT)
+		if (currentElementStyle->GetBrush().GetStyle() != wxBRUSHSTYLE_TRANSPARENT)
 		{
-			currentContext->SetBrush(wxBrush(currentElementStyle->GetPen().GetColour(), wxSOLID));
+			currentContext->SetBrush(wxBrush(currentElementStyle->GetPen().GetColour(), wxBRUSHSTYLE_SOLID));
 			currentContext->DrawRectangle(rectArea);
 		}
 		//Dessin du rect de style
@@ -1282,7 +1282,7 @@ namespace sgSpace
 		backingStoreDc(NULL)
 	{
 		InheritAttributes();
-		wxPen pen = wxPen(*wxBLACK, 1, wxDOT);
+		wxPen pen = wxPen(*wxBLACK, 1, wxPENSTYLE_DOT);
 		zoomAreaHintStyle.SetPen(&pen);
 		zoomAreaHintStyle.SetBrush(wxTRANSPARENT_BRUSH);
 	}

@@ -60,27 +60,27 @@ namespace sgSpace
 	}
 	void SG_EnumeratorFiller::FillPenStyleEnumeration(StyleArray& arrayToFeed)
 	{
-		arrayToFeed.Add(t_LstEnums(_("Transparent"),wxTRANSPARENT));
-		arrayToFeed.Add(t_LstEnums(_("Continuous line"),wxSOLID));
-		arrayToFeed.Add(t_LstEnums(_("Point"),wxDOT));
-		arrayToFeed.Add(t_LstEnums(_("Left diagonal dash"),wxBDIAGONAL_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Cross"),wxCROSS_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Horizontal line"),wxHORIZONTAL_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Vertical line"),wxVERTICAL_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Dotted-dashed line"),wxDOT_DASH));
-		arrayToFeed.Add(t_LstEnums(_("Small dash"),wxSHORT_DASH));
-		arrayToFeed.Add(t_LstEnums(_("Long dash"),wxLONG_DASH));
+		arrayToFeed.Add(t_LstEnums(_("Transparent"),wxPENSTYLE_TRANSPARENT));
+		arrayToFeed.Add(t_LstEnums(_("Continuous line"), wxPENSTYLE_SOLID));
+		arrayToFeed.Add(t_LstEnums(_("Point"), wxPENSTYLE_DOT));
+		arrayToFeed.Add(t_LstEnums(_("Left diagonal dash"), wxPENSTYLE_BDIAGONAL_HATCH));
+		arrayToFeed.Add(t_LstEnums(_("Cross"), wxPENSTYLE_CROSS_HATCH));
+		arrayToFeed.Add(t_LstEnums(_("Horizontal line"), wxPENSTYLE_HORIZONTAL_HATCH));
+		arrayToFeed.Add(t_LstEnums(_("Vertical line"), wxPENSTYLE_VERTICAL_HATCH));
+		arrayToFeed.Add(t_LstEnums(_("Dotted-dashed line"), wxPENSTYLE_DOT_DASH));
+		arrayToFeed.Add(t_LstEnums(_("Small dash"), wxPENSTYLE_SHORT_DASH));
+		arrayToFeed.Add(t_LstEnums(_("Long dash"), wxPENSTYLE_LONG_DASH));
 	}
 	void SG_EnumeratorFiller::FillBrushStyleEnumeration(StyleArray& arrayToFeed)
 	{
-		arrayToFeed.Add(t_LstEnums(_("Transparent"),wxTRANSPARENT));
-		arrayToFeed.Add(t_LstEnums(_("Full"),wxSOLID));
-		arrayToFeed.Add(t_LstEnums(_("Left diagonal dash"),wxBDIAGONAL_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Cross"),wxCROSSDIAG_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Right diagonal dash"),wxFDIAGONAL_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Plus"),wxCROSS_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Horizontal line"),wxHORIZONTAL_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Vertical line"),wxVERTICAL_HATCH));
+		arrayToFeed.Add(t_LstEnums(_("Transparent"), wxBRUSHSTYLE_TRANSPARENT));
+		arrayToFeed.Add(t_LstEnums(_("Full"), wxBRUSHSTYLE_SOLID));
+		arrayToFeed.Add(t_LstEnums(_("Left diagonal dash"), wxBRUSHSTYLE_BDIAGONAL_HATCH));
+		arrayToFeed.Add(t_LstEnums(_("Cross"), wxBRUSHSTYLE_CROSSDIAG_HATCH));
+		arrayToFeed.Add(t_LstEnums(_("Right diagonal dash"), wxBRUSHSTYLE_FDIAGONAL_HATCH));
+		arrayToFeed.Add(t_LstEnums(_("Plus"), wxBRUSHSTYLE_CROSS_HATCH));
+		arrayToFeed.Add(t_LstEnums(_("Horizontal line"), wxBRUSHSTYLE_HORIZONTAL_HATCH));
+		arrayToFeed.Add(t_LstEnums(_("Vertical line"), wxBRUSHSTYLE_VERTICAL_HATCH));
 	}
 	void SG_EnumeratorFiller::FillMarkersStyleEnumeration(StyleArray& arrayToFeed)
 	{
