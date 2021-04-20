@@ -235,9 +235,62 @@ bool LoadFaceListe(std::vector<ivec3>& tabFace, wxString faceFilePath)
 	}
     infile.close();
 	return true;
-
-
 }
+
+bool LoadFaceListeWithMarkers(std::vector<ivec4>& tabFace, const std::string& faceFilePath)
+{
+	using namespace std;
+
+	if (!wxFileExists(faceFilePath))
+		return false;
+
+	ifstream infile;
+	infile.open(faceFilePath);
+
+	// Read header
+	std::string line;
+	if (!getline(infile, line)) {
+		return false;
+	}
+	wxStringTokenizer string_tokenizer(line);
+	if (string_tokenizer.CountTokens() < 2) {
+		wxLogError(_("Expected tetra size and marker got %s"), line);
+		return false;
+	}
+
+	unsigned int nbFaceTetra = Convertor::ToInt(string_tokenizer.GetNextToken());
+	int has_marker = Convertor::ToInt(string_tokenizer.GetNextToken());
+	if (!has_marker){
+		wxLogError(_("No marker found, skipping file loading"));
+		return false;
+	}
+
+	if (nbFaceTetra > 0)
+	{
+
+		unsigned int idFaceTetra = 0;
+		tabFace.reserve(nbFaceTetra);
+		while (idFaceTetra < nbFaceTetra && getline(infile, line))
+		{
+			string_tokenizer.SetString(line);
+			if (string_tokenizer.CountTokens() < (4 + has_marker)) {
+				wxLogError(_("Expected idface a b c [marker] got %s"), line);
+				return false;
+			}
+			idFaceTetra = Convertor::ToInt(string_tokenizer.GetNextToken());
+			int sa = Convertor::ToInt(string_tokenizer.GetNextToken());
+			int sb = Convertor::ToInt(string_tokenizer.GetNextToken());
+			int sc = Convertor::ToInt(string_tokenizer.GetNextToken());
+			int marker = Convertor::ToInt(string_tokenizer.GetNextToken());
+			tabFace.push_back(ivec4(sc - 1, sb - 1, sa - 1, marker));
+			idFaceTetra++;
+		}
+	}
+	infile.close();
+	return true;
+}
+
+
 bool LoadFaceFile(tetrahedre** tabTetra, unsigned long &tabTetraSize, wxString faceFilePath,unsigned long nbNodes)
 {
 	using namespace std;
@@ -954,8 +1007,6 @@ bool CObjet3D::_SavePOLY(const std::string& filename,bool exportUserModel,bool s
 }
 
 
-
-
 bool CObjet3D::_LoadFaceFile(const std::string& filename)
 {
 	wxFileName nodePath(filename);
@@ -1015,4 +1066,8 @@ bool CObjet3D::_LoadFaceFile(const std::string& filename)
 		}
 	}
 	return false;
+}
+
+bool CObjet3D::_LoadFaceListeWithMarkers(std::vector<ivec4>& tabFace, const std::string& faceFilePath) {
+	return LoadFaceListeWithMarkers(tabFace, faceFilePath);
 }

@@ -337,6 +337,7 @@ public:
 	 * Chargement du fichier face provenant de tetgen en tant que modèle
 	 */
 	bool _LoadFaceFile(const std::string& filename);
+	bool _LoadFaceListeWithMarkers(std::vector<ivec4>& tabFace, const std::string& faceFilePath);
 	/**
 	 * Export au format poly supporté par tetgen avec des paramètres spéciaux
 	 * @param exportUserModel A vrai les objets ajoutés par l'utilisateurs ( faces dynamiques) sont exportés dans ce fichier
