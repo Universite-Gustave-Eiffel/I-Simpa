@@ -84,6 +84,11 @@ protected:
     DECLARE_EVENT_TABLE()
 	
 	bool allowPaste;
+
+	//Functions for automatic resizing of last column
+	void OnGridWindowSize(wxSizeEvent& event);
+	void OnColHeaderSize(wxGridSizeEvent& event);
+	void AutoSizeLastCol();
 public:
 	/**
 	 * Constructeur
