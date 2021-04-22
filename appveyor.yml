@@ -26,6 +26,7 @@ branches:
   # whitelist
   only:
     - master
+    - dev
 
 # Operating system (build VM template)
 os: Visual Studio 2019
