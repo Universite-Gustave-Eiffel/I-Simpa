@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,29 +12,28 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script async="async" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
 </head>
@@ -49,7 +49,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> I-Simpa
+            <a href="index.html" class="icon icon-home"> I-Simpa
           
 
           
@@ -76,7 +76,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -124,7 +123,8 @@
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in <strong>SPPS</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in SPPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_Validation.html">Verification of the SPPS code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
@@ -142,7 +142,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -181,7 +180,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>‘Face’</li>
     
@@ -205,33 +204,33 @@
   <p>This menu proposes several display modes for the 3D view of the geometry.</p>
 <div class="section" id="face">
 <h1>‘Face’<a class="headerlink" href="#face" title="Permalink to this headline">¶</a></h1>
-<dl class="simple">
-<dt>‘Oustide’</dt><dd><p>Show faces oriented outside the geometry. If all faces are well oriented, only the exterior of the geometry should be visible.</p>
-</dd>
-<dt>‘Inside’</dt><dd><p>Show faces oriented inside the geometry. If all faces are well oriented, only the interior of the geometry should be visible.</p>
-</dd>
-<dt>‘None’</dt><dd><p>Hide all faces.</p>
-</dd>
+<dl class="docutils">
+<dt>‘Oustide’</dt>
+<dd>Show faces oriented outside the geometry. If all faces are well oriented, only the exterior of the geometry should be visible.</dd>
+<dt>‘Inside’</dt>
+<dd>Show faces oriented inside the geometry. If all faces are well oriented, only the interior of the geometry should be visible.</dd>
+<dt>‘None’</dt>
+<dd>Hide all faces.</dd>
 </dl>
 </div>
 <div class="section" id="material-color">
 <h1>‘Material color’<a class="headerlink" href="#material-color" title="Permalink to this headline">¶</a></h1>
-<dl class="simple">
-<dt>‘Original’</dt><dd><p>Show faces with their original color/texture (<em>i.e.</em> following the CAD exportation)</p>
-</dd>
-<dt>‘Material’</dt><dd><p>Show faces with color associated with materials (<em>i.e.</em> following I-Simpa material assignation).</p>
-</dd>
+<dl class="docutils">
+<dt>‘Original’</dt>
+<dd>Show faces with their original color/texture (<em>i.e.</em> following the CAD exportation)</dd>
+<dt>‘Material’</dt>
+<dd>Show faces with color associated with materials (<em>i.e.</em> following I-Simpa material assignation).</dd>
 </dl>
 </div>
 <div class="section" id="lines">
 <h1>‘Lines’<a class="headerlink" href="#lines" title="Permalink to this headline">¶</a></h1>
-<dl class="simple">
-<dt>‘All’</dt><dd><p>All lines are visible.</p>
-</dd>
-<dt>‘Contour’</dt><dd><p>Show lines around co-planar surfaces (co-planar faces are merged, only for the display).</p>
-</dd>
-<dt>‘None’</dt><dd><p>Hide all lines.</p>
-</dd>
+<dl class="docutils">
+<dt>‘All’</dt>
+<dd>All lines are visible.</dd>
+<dt>‘Contour’</dt>
+<dd>Show lines around co-planar surfaces (co-planar faces are merged, only for the display).</dd>
+<dt>‘None’</dt>
+<dd>Hide all lines.</dd>
 </dl>
 </div>
 <div class="section" id="hide-meshing">
@@ -245,18 +244,20 @@
 <div class="section" id="camera">
 <h1>‘Camera’<a class="headerlink" href="#camera" title="Permalink to this headline">¶</a></h1>
 <p>Change the camera mode (use the mouse and/or the arrow keys to change the view.</p>
-<dl class="simple">
-<dt>‘First person’ mode: Users visualize the 3D scene with its own eyes:</dt><dd><ul class="simple">
-<li><p>Left clic + motion (left, right, up, down) ≡ head motion (left, right, up, down)</p></li>
-<li><p>Right clic + motion (left, right) ≡ head motion (left, right)</p></li>
-<li><p>Right clic + motion (up, down) ≡ zoom + and zoom -</p></li>
+<dl class="docutils">
+<dt>‘First person’ mode: Users visualize the 3D scene with its own eyes:</dt>
+<dd><ul class="first last simple">
+<li>Left clic + motion (left, right, up, down) ≡ head motion (left, right, up, down)</li>
+<li>Right clic + motion (left, right) ≡ head motion (left, right)</li>
+<li>Right clic + motion (up, down) ≡ zoom + and zoom -</li>
 </ul>
 </dd>
-<dt>‘Rotation/Zoom’ mode:</dt><dd><ul class="simple">
-<li><p>Left clic + motion (up, down) ≡ zoom + and zoom -</p></li>
-<li><p>Left clic + motion (left, right) ≡ zoom + and zoom -</p></li>
-<li><p>Right clic + motion (left, right, up, down) ≡ rotation (left, right, up, down)</p></li>
-<li><p>Center clic: move scene</p></li>
+<dt>‘Rotation/Zoom’ mode:</dt>
+<dd><ul class="first last simple">
+<li>Left clic + motion (up, down) ≡ zoom + and zoom -</li>
+<li>Left clic + motion (left, right) ≡ zoom + and zoom -</li>
+<li>Right clic + motion (left, right, up, down) ≡ rotation (left, right, up, down)</li>
+<li>Center clic: move scene</li>
 </ul>
 </dd>
 </dl>
@@ -276,11 +277,11 @@
 <div class="section" id="export-3d-view">
 <h1>‘Export 3D view’<a class="headerlink" href="#export-3d-view" title="Permalink to this headline">¶</a></h1>
 <p>Allow to save the 3D view in a file (PNG, JPG, BMP).</p>
-<dl class="simple">
-<dt>‘To file’</dt><dd><p>Open a File Dialog box for saving the 3D view in a file with a specific format and a default resolution (800×600).</p>
-</dd>
-<dt>‘To a file with a specified resolution’</dt><dd><p>Open a File Dialog box for saving the 3D view in a file with a specific format and a given resolution.</p>
-</dd>
+<dl class="docutils">
+<dt>‘To file’</dt>
+<dd>Open a File Dialog box for saving the 3D view in a file with a specific format and a default resolution (800×600).</dd>
+<dt>‘To a file with a specified resolution’</dt>
+<dd>Open a File Dialog box for saving the 3D view in a file with a specific format and a given resolution.</dd>
 </dl>
 </div>
 
@@ -295,22 +296,14 @@
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Dec 23, 2020.
+        Last updated on Jan 04, 2022.
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -321,6 +314,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

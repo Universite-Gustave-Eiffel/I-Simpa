@@ -10,4 +10,4 @@ Here were proposed some validations and verifications of the SPPS code.
 
 .. _`Goto this page`: validations/validation_notice.html
 .. _`Clarity calculation implementation validation`: validations/validation_clarity_calculation.html
-.. _`Atmospheric absorption implementation verification`: validations/Validation_atmospheric_absorption.html
+.. _`Atmospheric absorption implementation verification`: validations/validation_atmospheric_absorption.html
