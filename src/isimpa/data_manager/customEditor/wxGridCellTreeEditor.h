@@ -71,6 +71,12 @@ public:
 	 * @param grid Pointeur vers le contrôle
 	 */
     virtual void BeginEdit(int row, int col, wxGrid* grid);
+
+	/**
+	 * Event handler for cell edit end. Called when combobox is closed to automatically apply changes.
+	 */
+	void onEndEdit(wxCommandEvent& event);
+
 	/**
 	 * Fin d'édition du champ
 	 * @param row Ligne
@@ -90,6 +96,8 @@ public:
 	ComboTreeCtrl* GetTree();
 protected:
     wxGenericComboCtrl *Combo() const { return (wxGenericComboCtrl *)m_control; }
+	int edited_row, edited_col;
+	wxGrid* currentGrid;
 	Element *rootItem;
 	Element *currentSelection;
 	std::list<Element::ELEMENT_TYPE> currentFilters;

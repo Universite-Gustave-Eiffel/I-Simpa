@@ -524,6 +524,7 @@ if(WIN32) # Check if we are on Windows
     set(DIRS ${Boost_LIBRARY_DIR_DEBUG}
              ${Boost_LIBRARY_DIR_RELEASE}
              ${wxWidgets_LIB_DIR_SLASH}
+             ${PYTHON_ROOT_FOLDER}
     )
 
     install(CODE "

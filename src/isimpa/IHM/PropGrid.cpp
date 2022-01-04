@@ -74,6 +74,10 @@ PropGrid::PropGrid(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wx
 	wxAcceleratorTable accel(2, entries);
 	this->SetAcceleratorTable(accel);
 	SetRowLabelAlignment(wxALIGN_LEFT, wxALIGN_CENTRE);
+
+	// Bind events for automatic resizing of last column
+	GetGridWindow()->Bind(wxEVT_SIZE, &PropGrid::OnGridWindowSize, this);
+	Bind(wxEVT_GRID_COL_SIZE, &PropGrid::OnColHeaderSize, this);
 }
 
 void PropGrid::OnLostFocus( wxFocusEvent& ev)
@@ -307,4 +311,31 @@ void PropGrid::AutoSizeLibelle( int row )
     ForceRefresh();
 	*/
 	//AutoSizeRowLabelSize(row);
+}
+
+void PropGrid::OnGridWindowSize(wxSizeEvent& event)
+{
+	if (GetNumberCols() > 0)
+		AutoSizeLastCol();
+}
+
+void PropGrid::OnColHeaderSize(wxGridSizeEvent& event)
+{
+	if (GetNumberCols() > 0)
+		AutoSizeLastCol();
+}
+
+void PropGrid::AutoSizeLastCol()
+{
+	int colWidths = 0;
+
+	for (int i = 0; i < GetNumberCols() - 1; i++)
+		colWidths += GetColWidth(i);
+
+	int finalColWidth = GetGridWindow()->GetSize().x - colWidths;
+
+	if (finalColWidth > FromDIP(50))
+		SetColSize(GetNumberCols() - 1, finalColWidth);
+	else
+		SetColSize(GetNumberCols() - 1, FromDIP(50));
 }

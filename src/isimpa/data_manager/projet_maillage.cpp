@@ -202,6 +202,7 @@ bool ProjectManager::RunTetGenMaillage(param_TetGenMaillage& paramMaillage)
 	wxString ele=cacheFolder+sceneName+".1.ele";
 	wxString node=cacheFolder+sceneName+".1.node";
 	wxString neigh=cacheFolder+sceneName+".1.neigh";
+	wxString skipped_face_file = cacheFolder + sceneName + "_skipped.face";
 
 	///////////////////////////////////////////
 	///	Conversion de la scène au format POLY
@@ -250,7 +251,16 @@ bool ProjectManager::RunTetGenMaillage(param_TetGenMaillage& paramMaillage)
 			sceneMesh.LoadMaillage(WXSTRINGTOSTDSTRING(face),WXSTRINGTOSTDSTRING(ele),WXSTRINGTOSTDSTRING(node),WXSTRINGTOSTDSTRING(neigh));
 			wxLogMessage(_("Loading ASCII files from mesh generator complete"));
 		}else{
-			std::vector<int>& faces=logger->GetFaces();
+			std::vector<int>& faces = logger->GetFaces();
+
+			// Load faces from skipped_faces file (works with tetgen 1.6)
+			std::vector<ivec4> skippedFaces;
+			bool has_markers = sceneMesh._LoadFaceListeWithMarkers(skippedFaces, WXSTRINGTOSTDSTRING(skipped_face_file));
+			if(has_markers){
+				for (ivec4 face : skippedFaces) {
+					faces.push_back(face.d+1);
+				}
+			}
 
 			std::vector<t_faceIndex> faceInErr;
 			faceInErr.reserve(faceInd.size());
