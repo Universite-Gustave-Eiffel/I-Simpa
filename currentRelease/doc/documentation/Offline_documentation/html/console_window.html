@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,29 +12,28 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script async="async" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="‘Main’ window" href="main_windows.html" />
@@ -51,7 +51,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> I-Simpa
+            <a href="index.html" class="icon icon-home"> I-Simpa
           
 
           
@@ -78,7 +78,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -126,7 +125,8 @@
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in <strong>SPPS</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in SPPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_Validation.html">Verification of the SPPS code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
@@ -144,7 +144,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -183,7 +182,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>‘Console’ window</li>
     
@@ -208,32 +207,33 @@
 <h1>‘Console’ window<a class="headerlink" href="#console-window" title="Permalink to this headline">¶</a></h1>
 <p>The ‘Console’ window contains two tabs:</p>
 <ul>
-<li><p>the ‘Message’ tab displays messages for the user, with a color code:</p>
+<li><p class="first">the ‘Message’ tab displays messages for the user, with a color code:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Information messages (black) according to the operations performed by the user</p></li>
-<li><p>Warning messages (red): operations to be performed by the user</p></li>
-<li><p>Information messages (blue) from internal or external programs (computer codes, a correction tool…)</p></li>
+<li>Information messages (black) according to the operations performed by the user</li>
+<li>Warning messages (red): operations to be performed by the user</li>
+<li>Information messages (blue) from internal or external programs (computer codes, a correction tool…)</li>
 </ul>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>All messages are time stamped.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">All messages are time stamped.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>For the meaning of the messages from external programs, refer to the documentation of the corresponding program.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">For the meaning of the messages from external programs, refer to the documentation of the corresponding program.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The information in the tab ‘Message’ can be saved in a text format using the ‘Console/Export to file’ option of the ‘Windows’ menu.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">The information in the tab ‘Message’ can be saved in a text format using the ‘Console/Export to file’ option of the ‘Windows’ menu.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The console can be reset using the ‘Console/Delete windows’ option of the ‘Windows’ menu.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">The console can be reset using the ‘Console/Delete windows’ option of the ‘Windows’ menu.</p>
 </div>
 </div></blockquote>
 </li>
-<li><p>the ‘Python’ tab allows you to run Python scripts, both to perform treatments on data from I-Simpa or to develop new features. Refers to the scripting examples for the developement of scripts in I-Simpa and to the <a class="reference external" href="http://docs.python.org/tutorial/">Python documentation</a>.</p></li>
+<li><p class="first">the ‘Python’ tab allows you to run Python scripts, both to perform treatments on data from I-Simpa or to develop new features. Refers to the scripting examples for the developement of scripts in I-Simpa and to the <a class="reference external" href="http://docs.python.org/tutorial/">Python documentation</a>.</p>
+</li>
 </ul>
 </div>
 
@@ -257,22 +257,14 @@
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Dec 23, 2020.
+        Last updated on Jan 07, 2022.
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -283,6 +275,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,32 +12,31 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script async="async" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Presentation" href="code_TCR.html" />
+    <link rel="next" title="Verification of the SPPS code" href="code_SPPS_Validation.html" />
     <link rel="prev" title="General principle" href="code_SPPS_principle.html" /> 
 </head>
 
@@ -51,7 +51,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> I-Simpa
+            <a href="index.html" class="icon icon-home"> I-Simpa
           
 
           
@@ -78,7 +78,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -126,7 +125,7 @@
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Modelling of physical phenomena in <strong>SPPS</strong></a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Modelling of physical phenomena in SPPS</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#sound-source-modelling">Sound source modelling</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#general-formalism">General formalism</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#acoustic-directivity-and-probability-density-of-sound-particles-emission">Acoustic directivity and probability density of sound particles emission</a></li>
@@ -217,6 +216,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_Validation.html">Verification of the SPPS code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
@@ -234,7 +234,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -273,9 +272,9 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Modelling of physical phenomena in <strong>SPPS</strong></li>
+      <li>Modelling of physical phenomena in SPPS</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -295,7 +294,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="modelling-of-physical-phenomena-in-spps">
-<h1>Modelling of physical phenomena in <strong>SPPS</strong><a class="headerlink" href="#modelling-of-physical-phenomena-in-spps" title="Permalink to this headline">¶</a></h1>
+<h1>Modelling of physical phenomena in SPPS<a class="headerlink" href="#modelling-of-physical-phenomena-in-spps" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="sound-source-modelling">
 <h2>Sound source modelling<a class="headerlink" href="#sound-source-modelling" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="general-formalism">
@@ -305,10 +304,9 @@
 <p>From a numerical modelling point of view, the problem of sound emission from a point source is to attribute to the sound particles, at a given moment (which can be the origin of time), the exact position of the source, propagation directions in accordance with the directivity of the source. For example, in the case of an omnidirectional sound source, it is necessary to verify that the sound particles, once emitted, are uniformly distributed over a sphere centred on the source (see corresponding figure: <a class="reference internal" href="#geo-source"><span class="std std-ref">Elementary geometry for a sound source</span></a>). The first solution that comes to mind is to make a deterministic discretization of the source’s radiation in spherical coordinates; the method would consist in considering emission angles <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span> by constant steps. Nevertheless, such discretization of emission angles causes an artificial concentration of sound particles at the poles of the sphere symbolizing the source.</p>
 <div class="figure align-center" id="id48">
 <span id="geo-source"></span><a class="reference internal image-reference" href="_images/geo_source.png"><img alt="Elementary geometry for a sound source" src="_images/geo_source.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-text">Elementary geometry for a sound source</span><a class="headerlink" href="#id48" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Elementary geometry for a sound source</span></p>
 <div class="legend">
-<p>The direction of emission of a particle is defined in spherical coordinates by the angles <span class="math notranslate nohighlight">\(\phi\)</span> (azimuth) between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(2\pi\)</span>, and <span class="math notranslate nohighlight">\(\theta\)</span> between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(\pi\)</span> (polar angle), or by the elementary solid angle <span class="math notranslate nohighlight">\(d\Omega\)</span>.</p>
-</div>
+The direction of emission of a particle is defined in spherical coordinates by the angles <span class="math notranslate nohighlight">\(\phi\)</span> (azimuth) between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(2\pi\)</span>, and <span class="math notranslate nohighlight">\(\theta\)</span> between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(\pi\)</span> (polar angle), or by the elementary solid angle <span class="math notranslate nohighlight">\(d\Omega\)</span>.</div>
 </div>
 <p>It is in fact necessary to check the respect of the number of particles emitted by elementary solid angle <span class="math notranslate nohighlight">\(d\Omega = d\phi\,\sin\theta\,d\theta\)</span>, checks the directivity of the source, either in a deterministic or random way (figure[geo_source]). In our case, we chose a random draw of the initial directions of the particles. It is then necessary to define the probability densities <span class="math notranslate nohighlight">\(g(\phi)\)</span> and <span class="math notranslate nohighlight">\(p(\theta)\)</span>, respectively for the angles <span class="math notranslate nohighlight">\(\phi\in[0.2\pi]\)</span> and <span class="math notranslate nohighlight">\(\theta\in[0.\pi]\)</span>, such as the probability density <span class="math notranslate nohighlight">\(Q(\theta,\phi)\)</span> of emission in the direction <span class="math notranslate nohighlight">\((\theta,\phi)\)</span> (or probability density <span class="math notranslate nohighlight">\(F(\Omega)\)</span> of emission in the elementary solid angle <span class="math notranslate nohighlight">\(\Omega\)</span>) either in accordance with the directivity of the source. In practice, <span class="math notranslate nohighlight">\(Q(\theta,\phi)\)</span> is nothing more than the directivity of the source. By definition, these probability densities verify the following relationship:</p>
 <div class="math notranslate nohighlight">
@@ -373,11 +371,11 @@
 <p>The figures <a class="reference internal" href="#dist-angles-phi-2019"><span class="std std-ref">Distribution of emission angles \phi for an omnidirectional source</span></a> and <a class="reference internal" href="#dist-angles-theta-2019"><span class="std std-ref">Distribution of emission angles \theta for an omnidirectional source</span></a> shows an example of the distribution of angles <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span> obtained according to this printing method with <span class="math notranslate nohighlight">\(10000\)</span> achievements. It is easy to see that the angle distribution checks the theoretical distribution. It is understood that the quality of the random draw depends on the method of generating random numbers, and that compliance with theoretical distributions increases with the number of draws.</p>
 <div class="figure align-center" id="id49">
 <span id="dist-angles-phi-2019"></span><a class="reference internal image-reference" href="_images/Dist_angles_phi_2019.png"><img alt="Distribution of emission angles for an omnidirectional source." src="_images/Dist_angles_phi_2019.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Distribution of emission angles <span class="math notranslate nohighlight">\(\phi\)</span> for an omnidirectional source</span><a class="headerlink" href="#id49" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Distribution of emission angles <span class="math notranslate nohighlight">\(\phi\)</span> for an omnidirectional source</span></p>
 </div>
 <div class="figure align-center" id="id50">
 <span id="dist-angles-theta-2019"></span><a class="reference internal image-reference" href="_images/Dist_angles_theta_2019.png"><img alt="Distribution of emission angles for an omnidirectional source." src="_images/Dist_angles_theta_2019.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Distribution of emission angles <span class="math notranslate nohighlight">\(\theta\)</span> for an omnidirectional source</span><a class="headerlink" href="#id50" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Distribution of emission angles <span class="math notranslate nohighlight">\(\theta\)</span> for an omnidirectional source</span></p>
 </div>
 </div>
 </div>
@@ -449,10 +447,9 @@
 <p>The figure <a class="reference internal" href="#verif-dispersion"><span class="std std-ref">Verification of the respect of the geometric dispersion with the SPPS code</span></a> shows the numerical results of the free field propagation (the free field is simulated by considering a long corridor with perfectly absorbent limits), for an omnidirectional sound source, without atmospheric absorption (number of particles <span class="math notranslate nohighlight">\(N=20\times 10^6\)</span>). The agreement is excellent.</p>
 <div class="figure align-center" id="id51">
 <span id="verif-dispersion"></span><a class="reference internal image-reference" href="_images/fig_illustration_dispersion.png"><img alt="Distribution of emission angles for an omnidirectional source." src="_images/fig_illustration_dispersion.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Verification of the respect of the geometric dispersion with the SPPS code</span><a class="headerlink" href="#id51" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Verification of the respect of the geometric dispersion with the SPPS code</span></p>
 <div class="legend">
-<p>The numerical simulations are compared with the theoretical decrease (<span class="math notranslate nohighlight">\(N=20\times 10^6\)</span> particles). The marker presents the result of the simulation with the <strong>SPPS</strong> code. The solid line shows the theoretical geometric dispersion.</p>
-</div>
+The numerical simulations are compared with the theoretical decrease (<span class="math notranslate nohighlight">\(N=20\times 10^6\)</span> particles). The marker presents the result of the simulation with the <strong>SPPS</strong> code. The solid line shows the theoretical geometric dispersion.</div>
 </div>
 </div>
 </div>
@@ -460,7 +457,7 @@
 <h3>Atmospheric absorption<a class="headerlink" href="#atmospheric-absorption" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="id7">
 <h4>Physical description<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
-<p>During its propagation in air, a sound wave is partially attenuated by particular physical mechanisms (“classical” transmission processes, molecular absorption due to rotational relaxation, molecular absorption due to vibratory relaxation of oxygen and nitrogen) <a class="bibtex reference internal" href="references.html#bass1984" id="id8">[BSPE84]</a>. Thus, after a propagation distance <span class="math notranslate nohighlight">\(r\)</span>, the amplitude <span class="math notranslate nohighlight">\(p_t\)</span> of the sound pressure decreases according to the relationship (<a class="reference internal" href="I_Simpa_standard.html#term-ISO-9613-1"><span class="xref std std-term">ISO 9613-1</span></a>):</p>
+<p>During its propagation in air, a sound wave is partially attenuated by particular physical mechanisms (“classical” transmission processes, molecular absorption due to rotational relaxation, molecular absorption due to vibratory relaxation of oxygen and nitrogen) <a class="reference internal" href="references.html#bass1984" id="id8">[BSPE84]</a>. Thus, after a propagation distance <span class="math notranslate nohighlight">\(r\)</span>, the amplitude <span class="math notranslate nohighlight">\(p_t\)</span> of the sound pressure decreases according to the relationship (<a class="reference internal" href="I_Simpa_standard.html#term-iso-9613-1"><span class="xref std std-term">ISO 9613-1</span></a>):</p>
 <div class="math notranslate nohighlight">
 \[\label{eq:att_atmos_pression}
         p_t= p_i \exp \left(-\frac{\ln(10)}{20}\alpha_\text{air}\times r\right)\]</div>
@@ -475,7 +472,7 @@
 <p>where <span class="math notranslate nohighlight">\(I_0\)</span> is the initial intensity of the sound wave. Then, the atmospheric absorption coefficient <span class="math notranslate nohighlight">\(m\)</span> (in Np/m) can be expressed from the atmospheric absorption coefficient <span class="math notranslate nohighlight">\(\alpha_\text{air}\)</span> (in dB/m), by the relationship:</p>
 <div class="math notranslate nohighlight">
 \[m=\frac{\ln 10}{10}\alpha_\text{air}.\]</div>
-<p>In <strong>SPPS</strong> code, the atmospheric absorption coefficient <span class="math notranslate nohighlight">\(\alpha_{air}\)</span> is calculated according to <a class="reference internal" href="I_Simpa_standard.html#term-ISO-9613-1"><span class="xref std std-term">ISO 9613-1</span></a>, considering the centre frequency of each frequency band of calculation according to the reference standard (<em>cf.</em> paragraph 8.2.1 of <a class="reference internal" href="I_Simpa_standard.html#term-ISO-9613-1"><span class="xref std std-term">ISO 9613-1</span></a>). This approximation is considered valid if the product of the source-receiver distance (in km) by the square of the centre frequency (in kHz) does not exceed 6 km.kHz <span class="math notranslate nohighlight">\(^2\)</span> for the third octave bands and 3 km.kHz <span class="math notranslate nohighlight">\(^2\)</span> for the octave bands. However, the propagation distance must not exceed 6 km for third octave bands and 3 km for octave bands, regardless of the centre frequency considered.</p>
+<p>In <strong>SPPS</strong> code, the atmospheric absorption coefficient <span class="math notranslate nohighlight">\(\alpha_{air}\)</span> is calculated according to <a class="reference internal" href="I_Simpa_standard.html#term-iso-9613-1"><span class="xref std std-term">ISO 9613-1</span></a>, considering the centre frequency of each frequency band of calculation according to the reference standard (<em>cf.</em> paragraph 8.2.1 of <a class="reference internal" href="I_Simpa_standard.html#term-iso-9613-1"><span class="xref std std-term">ISO 9613-1</span></a>). This approximation is considered valid if the product of the source-receiver distance (in km) by the square of the centre frequency (in kHz) does not exceed 6 km.kHz <span class="math notranslate nohighlight">\(^2\)</span> for the third octave bands and 3 km.kHz <span class="math notranslate nohighlight">\(^2\)</span> for the octave bands. However, the propagation distance must not exceed 6 km for third octave bands and 3 km for octave bands, regardless of the centre frequency considered.</p>
 </div>
 <div class="section" id="random-modelling">
 <h4>Random modelling<a class="headerlink" href="#random-modelling" title="Permalink to this headline">¶</a></h4>
@@ -484,8 +481,8 @@
 \[f(r)=\exp -m\,r.\]</div>
 <p>This quantity expresses the probability that the particle will not be absorbed during its propagation distance <span class="math notranslate nohighlight">\(r\)</span>. The probability density <span class="math notranslate nohighlight">\(f(r)\)</span> is well between <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(0\)</span> (see figure <a class="reference internal" href="#geo-att-atmos"><span class="std std-ref">Modelling of atmospheric absorption by a random process</span></a>):</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(f(0)=1\)</span>, the probability is maximum, the particle cannot be absorbed if it does not move;</p></li>
-<li><p><span class="math notranslate nohighlight">\(f(\infty)=0\)</span>, the probability is zero since the particle cannot spread infinitely.</p></li>
+<li><span class="math notranslate nohighlight">\(f(0)=1\)</span>, the probability is maximum, the particle cannot be absorbed if it does not move;</li>
+<li><span class="math notranslate nohighlight">\(f(\infty)=0\)</span>, the probability is zero since the particle cannot spread infinitely.</li>
 </ul>
 <p>It is also easily verified that the probability of propagation is independent of the previous probability of propagation:</p>
 <div class="math notranslate nohighlight">
@@ -493,10 +490,9 @@
 <p>Taking atmospheric absorption into account is relatively simple. It is sufficient to consider a uniform random number <span class="math notranslate nohighlight">\(\zeta\)</span> between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>, at each time step, and to compare this number to the probability density <span class="math notranslate nohighlight">\(f(d_0)\)</span> corresponding to an elementary displacement <span class="math notranslate nohighlight">\(d_O=c\Delta t\)</span> on a time step <span class="math notranslate nohighlight">\(\Delta t\)</span>. If this number <span class="math notranslate nohighlight">\(\zeta\)</span> is less than <span class="math notranslate nohighlight">\(f(d_o)\)</span>, there will be propagation. Otherwise, there will be atmospheric absorption, thus disappearing the particle. Even on a small number of particles, this method makes it possible to correctly take into account atmospheric absorption.</p>
 <div class="figure align-center" id="id52">
 <span id="geo-att-atmos"></span><a class="reference internal image-reference" href="_images/geo_att_atmos.png"><img alt="Modelling of atmospheric absorption by a random process." src="_images/geo_att_atmos.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Modelling of atmospheric absorption by a random process</span><a class="headerlink" href="#id52" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Modelling of atmospheric absorption by a random process</span></p>
 <div class="legend">
-<p>The curve <span class="math notranslate nohighlight">\(f(r)\)</span> separates the propagation domain from the atmospheric absorption domain.</p>
-</div>
+The curve <span class="math notranslate nohighlight">\(f(r)\)</span> separates the propagation domain from the atmospheric absorption domain.</div>
 </div>
 </div>
 <div class="section" id="energetic-modelling">
@@ -508,10 +504,9 @@
 <p>As an illustration, the figure <a class="reference internal" href="#illustration-att-atmos"><span class="std std-ref">Illustration of the modelling of atmospheric absorption in the SPPS code</span></a> shows the sound decrease calculated by the <strong>SPPS</strong> code at <span class="math notranslate nohighlight">\(10\)</span> kHz for classical atmospheric conditions (<span class="math notranslate nohighlight">\(T=20\)</span> Celsisus, <span class="math notranslate nohighlight">\(H=50\)</span> %, <span class="math notranslate nohighlight">\(P=101325\)</span> Pa, or <span class="math notranslate nohighlight">\(m=0.036\)</span> m <span class="math notranslate nohighlight">\(^{-1}\)</span>), for both types of modelling, compared to the theoretical decrease presented to the relationship <a class="reference internal" href="#equation-att-atmos">(3)</a>; the simulation is identical to the one for the verification of the respect of the geometric dispersion.. As expected, energetic modelling gives a better result than random modelling, the average deviation from the theoretical curve being <span class="math notranslate nohighlight">\(0.17\)</span> dB and <span class="math notranslate nohighlight">\(0.41\)</span> dB respectively, the calculation times being similar.</p>
 <div class="figure align-center" id="id53">
 <span id="illustration-att-atmos"></span><a class="reference internal image-reference" href="_images/illustration_att_atmos.png"><img alt="Illustration of the modelling of atmospheric absorption in the SPPS code." src="_images/illustration_att_atmos.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Illustration of the modelling of atmospheric absorption in the SPPS code</span><a class="headerlink" href="#id53" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Illustration of the modelling of atmospheric absorption in the SPPS code</span></p>
 <div class="legend">
-<p>Comparison with the theoretical decrease (with et without atmospheric absorption) Simulations performed with (<span class="math notranslate nohighlight">\(N=20\times 10^6\)</span> particles) at 10 kHz, for conventional atmospheric conditions: <span class="math notranslate nohighlight">\(T=20\)</span> Celsisus, <span class="math notranslate nohighlight">\(H=50\)</span> %, <span class="math notranslate nohighlight">\(P=101325\)</span> Pa, or <span class="math notranslate nohighlight">\(m=0.036\)</span> m <span class="math notranslate nohighlight">\(^{-1}\)</span>.</p>
-</div>
+Comparison with the theoretical decrease (with et without atmospheric absorption) Simulations performed with (<span class="math notranslate nohighlight">\(N=20\times 10^6\)</span> particles) at 10 kHz, for conventional atmospheric conditions: <span class="math notranslate nohighlight">\(T=20\)</span> Celsisus, <span class="math notranslate nohighlight">\(H=50\)</span> %, <span class="math notranslate nohighlight">\(P=101325\)</span> Pa, or <span class="math notranslate nohighlight">\(m=0.036\)</span> m <span class="math notranslate nohighlight">\(^{-1}\)</span>.</div>
 </div>
 </div>
 </div>
@@ -522,8 +517,8 @@
 <p>In outdoor environments, acoustic propagation can be influenced by micrometeorological conditions governed by thermal (heat transfer) and aerodynamic (wind profiles) laws. The phenomena have a very strong interaction with the ground (topography, surface and subsoil temperature, hygrometry, crops, forests, obstacles, buildings, etc.). In addition, they evolve rapidly in time and space, making their analytical description and numerical modelling complex. The thermal and aerodynamic factors that influence propagation are as follows:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Thermal factors: heat exchanges between the ground and the lower layer of the atmosphere lead to a variation in air temperature as a function of the height above the ground, and therefore to a variation in sound velocity.</p></li>
-<li><p>Aerodynamic factors: due to the roughness of the ground surface, wind speed is always higher at height than at ground level. In a given situation, the speed of sound in the presence of wind corresponds to the algebraic sum of the speed of sound in the absence of wind and the projection of the wind vector on the direction of propagation considered. This speed therefore varies according to the height above the ground.</p></li>
+<li>Thermal factors: heat exchanges between the ground and the lower layer of the atmosphere lead to a variation in air temperature as a function of the height above the ground, and therefore to a variation in sound velocity.</li>
+<li>Aerodynamic factors: due to the roughness of the ground surface, wind speed is always higher at height than at ground level. In a given situation, the speed of sound in the presence of wind corresponds to the algebraic sum of the speed of sound in the absence of wind and the projection of the wind vector on the direction of propagation considered. This speed therefore varies according to the height above the ground.</li>
 </ul>
 </div></blockquote>
 <p>By analogy with the laws of optics (see figure <a class="reference internal" href="#geo-profil-celerite"><span class="std std-ref">Schematic representation of the acoustic refraction in the atmosphere in the presence of a vertical velocity profile</span></a>), the effect of atmospheric conditions on acoustic propagation can be described through the expression of the acoustic index <span class="math notranslate nohighlight">\(n\)</span> of the propagation medium. If placed in a vertical section, this index is assumed to vary with altitude <span class="math notranslate nohighlight">\(z\)</span> and with source-receptor distance <span class="math notranslate nohighlight">\(r\)</span>, such that:</p>
@@ -532,7 +527,7 @@
 <p>where <span class="math notranslate nohighlight">\(c\)</span> the reference one. Thus, two distinct phenomena can be distinguished that affect acoustic propagation, refraction and atmospheric turbulence. These phenomena are respectively related to the deterministic parts <span class="math notranslate nohighlight">\(\langle n\rangle\)</span> and stochastic <span class="math notranslate nohighlight">\(\mu\)</span> of the propagation medium index. In practice, these refraction and turbulence phenomena co-exist and interact, leading to complex propagation conditions, as well as a very wide dispersion of the sound levels encountered <em>in situ</em>, all of which are identical (topography, soil type, source-receptor geometry, etc.).</p>
 <div class="figure align-center" id="id54">
 <span id="geo-profil-celerite"></span><a class="reference internal image-reference" href="_images/geo_profil_celerite.png"><img alt="Schematic representation of the acoustic refraction in the atmosphere in the presence of a vertical velocity profile." src="_images/geo_profil_celerite.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Schematic representation of the acoustic refraction in the atmosphere in the presence of a vertical velocity profile</span><a class="headerlink" href="#id54" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Schematic representation of the acoustic refraction in the atmosphere in the presence of a vertical velocity profile</span></p>
 </div>
 </div>
 <div class="section" id="acoustic-velocity-profile-model">
@@ -547,20 +542,24 @@
 <p>The main effect of propagation in a medium of variable speed is to bend the sound rays downwards or upwards depending on whether the vertical gradient of sound velocity is positive (<em>conditions (very) favorable</em> to propagation) or negative (<em>conditions (very) unfavorable</em> to propagation) respectively. The transient state between these two states represents <em>homogeneous</em> propagation conditions.</p>
 <blockquote>
 <div><ul>
-<li><p><strong>Homogeneous:</strong> the speed <span class="math notranslate nohighlight">\(c\)</span> is the same at any point in the domain and equal to the reference speed <span class="math notranslate nohighlight">\(c_0\)</span>, the latter being calculated as a function of temperature and humidity conditions by the formula:</p>
+<li><p class="first"><strong>Homogeneous:</strong> the speed <span class="math notranslate nohighlight">\(c\)</span> is the same at any point in the domain and equal to the reference speed <span class="math notranslate nohighlight">\(c_0\)</span>, the latter being calculated as a function of temperature and humidity conditions by the formula:</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
 \[c_0=343.2\sqrt{\frac{T}{T_\text{ref}}},\]</div>
-<p>where <span class="math notranslate nohighlight">\(T\)</span> is the temperature (K), and <span class="math notranslate nohighlight">\(T_\text{ref}=293.15\)</span> K the reference temperature (<a class="reference internal" href="I_Simpa_standard.html#term-ISO-9613-1"><span class="xref std std-term">ISO 9613-1</span></a>).</p>
+<p>where <span class="math notranslate nohighlight">\(T\)</span> is the temperature (K), and <span class="math notranslate nohighlight">\(T_\text{ref}=293.15\)</span>&nbsp;K the reference temperature (<a class="reference internal" href="I_Simpa_standard.html#term-iso-9613-1"><span class="xref std std-term">ISO 9613-1</span></a>).</p>
 </div></blockquote>
 </li>
-<li><p><strong>Very unfavorable</strong> : <span class="math notranslate nohighlight">\(a_\text{log}=-1\)</span> and <span class="math notranslate nohighlight">\(b_\text{lin}=-0.12\)</span>;</p></li>
-<li><p><strong>Unfavorable</strong> : <span class="math notranslate nohighlight">\(a_\text{log}=-0.4\)</span> and <span class="math notranslate nohighlight">\(b_\text{lin}=-0.04\)</span>;</p></li>
-<li><p><strong>Favorable</strong>: <span class="math notranslate nohighlight">\(a_\text{log}=+0.4\)</span> and <span class="math notranslate nohighlight">\(b_\text{lin}=+0.04\)</span>;</p></li>
-<li><p><strong>Very favorable</strong>: <span class="math notranslate nohighlight">\(a_\text{log}=+1\)</span> and <span class="math notranslate nohighlight">\(b_\text{lin}=+0.12\)</span>.</p></li>
+<li><p class="first"><strong>Very unfavorable</strong> : <span class="math notranslate nohighlight">\(a_\text{log}=-1\)</span> and <span class="math notranslate nohighlight">\(b_\text{lin}=-0.12\)</span>;</p>
+</li>
+<li><p class="first"><strong>Unfavorable</strong> : <span class="math notranslate nohighlight">\(a_\text{log}=-0.4\)</span> and <span class="math notranslate nohighlight">\(b_\text{lin}=-0.04\)</span>;</p>
+</li>
+<li><p class="first"><strong>Favorable</strong>: <span class="math notranslate nohighlight">\(a_\text{log}=+0.4\)</span> and <span class="math notranslate nohighlight">\(b_\text{lin}=+0.04\)</span>;</p>
+</li>
+<li><p class="first"><strong>Very favorable</strong>: <span class="math notranslate nohighlight">\(a_\text{log}=+1\)</span> and <span class="math notranslate nohighlight">\(b_\text{lin}=+0.12\)</span>.</p>
+</li>
 </ul>
 </div></blockquote>
-<p>The curvature of the radius, at the boundary of zones (I) and (II), is obtained by applying the Huygens-Fresnel construction, resulting in the following Snell-Descartes law <a class="bibtex reference internal" href="references.html#salomons2001" id="id11">[Sal01]</a> (see figure <a class="reference internal" href="#geo-profil-celerite"><span class="std std-ref">Schematic representation of the acoustic refraction in the atmosphere in the presence of a vertical velocity profile</span></a>):</p>
+<p>The curvature of the radius, at the boundary of zones (I) and (II), is obtained by applying the Huygens-Fresnel construction, resulting in the following Snell-Descartes law <a class="reference internal" href="references.html#salomons2001" id="id11">[Sal01]</a> (see figure <a class="reference internal" href="#geo-profil-celerite"><span class="std std-ref">Schematic representation of the acoustic refraction in the atmosphere in the presence of a vertical velocity profile</span></a>):</p>
 <div class="math notranslate nohighlight" id="equation-relation-snell">
 <span class="eqno">(5)<a class="headerlink" href="#equation-relation-snell" title="Permalink to this equation">¶</a></span>\[\label{relation_snell}
         \frac{\cos\gamma_1}{c_1}=\frac{\cos\gamma_2}{c_2},\]</div>
@@ -586,14 +585,14 @@
 <div class="math notranslate nohighlight">
 \[\cos\phi=\frac{c_{1x}}{\sqrt{c_{1x}^2+c_{1y}^2}}.\]</div>
 <p>From a numerical simulation point of view, the calculation of <span class="math notranslate nohighlight">\(\cos\gamma_2\)</span> by the relationship <a class="reference internal" href="#equation-cosgamma2">(6)</a> can give values higher than <span class="math notranslate nohighlight">\(1\)</span> which is obviously not physical. This case occurs when the curvature (<em>turning point</em>) of a radius is reversed. To avoid this problem and impose a change in curvature, the procedure consists in imposing the value from <span class="math notranslate nohighlight">\(\gamma_2\)</span> to <span class="math notranslate nohighlight">\(1-\epsilon\)</span> (<span class="math notranslate nohighlight">\(\epsilon\)</span> being a very small value) and changing the orientation of the component <span class="math notranslate nohighlight">\(c_{2z}\)</span>.</p>
-<p>As an example, the figure [illustration_refraction] shows two illustrations of how acoustic refraction is taken into account using this method. This figure can be compared directly with the examples given in the reference <a class="bibtex reference internal" href="references.html#salomons2001" id="id13">[Sal01]</a> (figures 4.5 and 4.6).</p>
+<p>As an example, the figure [illustration_refraction] shows two illustrations of how acoustic refraction is taken into account using this method. This figure can be compared directly with the examples given in the reference <a class="reference internal" href="references.html#salomons2001" id="id13">[Sal01]</a> (figures 4.5 and 4.6).</p>
 <div class="figure align-center" id="id55">
 <span id="illustration-refraction-downward"></span><a class="reference internal image-reference" href="_images/illustration_refraction_downward.png"><img alt="Illustration of the modelling of acoustic refraction with SPPS in downward condition." src="_images/illustration_refraction_downward.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Illustration of the modelling of acoustic refraction with SPPS in downward condition</span><a class="headerlink" href="#id55" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Illustration of the modelling of acoustic refraction with SPPS in downward condition</span></p>
 </div>
 <div class="figure align-center" id="id56">
 <span id="illustration-refraction-upward"></span><a class="reference internal image-reference" href="_images/illustration_refraction_upward.png"><img alt="Illustration of the modelling of acoustic refraction with SPPS in upward condition." src="_images/illustration_refraction_upward.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Illustration of the modelling of acoustic refraction with SPPS in upward condition</span><a class="headerlink" href="#id56" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Illustration of the modelling of acoustic refraction with SPPS in upward condition</span></p>
 </div>
 </div>
 </div>
@@ -602,30 +601,30 @@
 <p>The presence of a large number of objects on the path of a sound wave can lead to a diffusion process. This process can be simulated in a deterministic way, by modelling each object individually. When the number of objects becomes large, and these objects are of similar sizes (example of an industrial hall with many machines (without acoustic emission) or similar boxes), it may be more interesting to statistically model this fitting zone.</p>
 <div class="section" id="id14">
 <h4>Physical description<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
-<p>In order to take into account the diffusion and absorption of diffusing (or scattering) objects distributed in the propagation medium, we considered an approach similar to that of Ondet and Barbry <a class="bibtex reference internal" href="references.html#ondet1989" id="id15">[OB89]</a>, which itself is based on the work of many authors <a class="bibtex reference internal" href="references.html#kuttruff1981" id="id16">[Kut81]</a><a class="bibtex reference internal" href="references.html#auletta1985" id="id17">[Aul85]</a><a class="bibtex reference internal" href="references.html#auletta1986" id="id18">[Aul86]</a><a class="bibtex reference internal" href="references.html#lindqvist1982" id="id19">[Lin82]</a>, among others. In this approach,</p>
+<p>In order to take into account the diffusion and absorption of diffusing (or scattering) objects distributed in the propagation medium, we considered an approach similar to that of Ondet and Barbry <a class="reference internal" href="references.html#ondet1989" id="id15">[OB89]</a>, which itself is based on the work of many authors <a class="reference internal" href="references.html#kuttruff1981" id="id16">[Kut81]</a><a class="reference internal" href="references.html#auletta1985" id="id17">[Aul85]</a><a class="reference internal" href="references.html#auletta1986" id="id18">[Aul86]</a><a class="reference internal" href="references.html#lindqvist1982" id="id19">[Lin82]</a>, among others. In this approach,</p>
 <ul class="simple">
-<li><p>the diffusing objects (or obstacles, or fittings, or scattering objects…) are considered as punctual. Sound particles are returned in all directions of space at each collision with a scattering object (except in the case of absorption). This assumption is generally valid when the wavelength is in the order of magnitude of the characteristic dimension of the obstacle;</p></li>
-<li><p>the scattering phenomenon follows a Poisson process, which means that the probability of collision of a sound particle with a scattering object follows a Poisson’s law. The collision probabilities are independent of each other (the collision probability during time <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(t+dt\)</span> is independent of collisions before time <span class="math notranslate nohighlight">\(t\)</span>);</p></li>
-<li><p>the objects in the fitting zone do not produce particles (<em>i.e.</em> these objects are not sound sources).</p></li>
+<li>the diffusing objects (or obstacles, or fittings, or scattering objects…) are considered as punctual. Sound particles are returned in all directions of space at each collision with a scattering object (except in the case of absorption). This assumption is generally valid when the wavelength is in the order of magnitude of the characteristic dimension of the obstacle;</li>
+<li>the scattering phenomenon follows a Poisson process, which means that the probability of collision of a sound particle with a scattering object follows a Poisson’s law. The collision probabilities are independent of each other (the collision probability during time <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(t+dt\)</span> is independent of collisions before time <span class="math notranslate nohighlight">\(t\)</span>);</li>
+<li>the objects in the fitting zone do not produce particles (<em>i.e.</em> these objects are not sound sources).</li>
 </ul>
 <div class="figure align-center" id="id57">
 <span id="illustration-diffusion-fittings"></span><a class="reference internal image-reference" href="_images/illustration_diffusion_fittings.png"><img alt="Schematic representation of the acoustic diffusion by obstacles in a fitting zone." src="_images/illustration_diffusion_fittings.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Schematic representation of the acoustic diffusion by obstacles in a fitting zone</span><a class="headerlink" href="#id57" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Schematic representation of the acoustic diffusion by obstacles in a fitting zone</span></p>
 </div>
 <p>A sound wave propagating in the environment may come into contact with scattering objects, causing the wave to diffract simultaneously and, in part, to absorb it. By analogy, in the particle approach, a particle that comes into contact with a scattering object can either be absorbed or reflected in another direction of propagation (see figure: <a class="reference internal" href="#illustration-diffusion-fittings"><span class="std std-ref">Schematic representation of the acoustic diffusion by obstacles in a fitting zone</span></a>). At the macroscopic scale, <em>i.e.</em> considering all the sound particles simultaneously, a diffusion process occurs, characterized by:</p>
 <ul class="simple">
-<li><p>the absorption coefficient <span class="math notranslate nohighlight">\(\alpha_c\)</span> of the scattering objects;</p></li>
-<li><p>the bulk density <span class="math notranslate nohighlight">\(n_c\)</span> of the propagation medium, defined by the number <span class="math notranslate nohighlight">\(N_c\)</span> of obstacles present in the volume <span class="math notranslate nohighlight">\(V_c\)</span>:</p></li>
+<li>the absorption coefficient <span class="math notranslate nohighlight">\(\alpha_c\)</span> of the scattering objects;</li>
+<li>the bulk density <span class="math notranslate nohighlight">\(n_c\)</span> of the propagation medium, defined by the number <span class="math notranslate nohighlight">\(N_c\)</span> of obstacles present in the volume <span class="math notranslate nohighlight">\(V_c\)</span>:</li>
 </ul>
 <div class="math notranslate nohighlight">
 \[n_c=\frac{N_c}{V_c}.\]</div>
 <ul class="simple">
-<li><p>the average scattering section <span class="math notranslate nohighlight">\(q_c\)</span>, <em>i.e.</em> the average surface of the scattering object, seen by a particle in a given incident direction. In practice, this data is very difficult to obtain, if not impossible, since the scattering objects are of complex and different shapes. In this condition, it is common to assimilate the diffusing object to a sphere, having the same external surface <span class="math notranslate nohighlight">\(s_c\)</span> as the object. Whatever the angle of incidence, the visible cross-section of the sphere (mean scattering cross-section) will be equal to a quarter of the total surface area of the sphere, or:</p></li>
+<li>the average scattering section <span class="math notranslate nohighlight">\(q_c\)</span>, <em>i.e.</em> the average surface of the scattering object, seen by a particle in a given incident direction. In practice, this data is very difficult to obtain, if not impossible, since the scattering objects are of complex and different shapes. In this condition, it is common to assimilate the diffusing object to a sphere, having the same external surface <span class="math notranslate nohighlight">\(s_c\)</span> as the object. Whatever the angle of incidence, the visible cross-section of the sphere (mean scattering cross-section) will be equal to a quarter of the total surface area of the sphere, or:</li>
 </ul>
 <div class="math notranslate nohighlight">
 \[q_c=\frac{s_c}{4}.\]</div>
 <ul class="simple">
-<li><p>the average diffraction section per unit volume <span class="math notranslate nohighlight">\(\nu_c\)</span>, also called the diffusion frequency, by</p></li>
+<li>the average diffraction section per unit volume <span class="math notranslate nohighlight">\(\nu_c\)</span>, also called the diffusion frequency, by</li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\nu_c=n_c\,q_c,\]</div>
@@ -639,7 +638,7 @@
 <p>where <span class="math notranslate nohighlight">\(c\, t_k\)</span> is the distance covered during a time <span class="math notranslate nohighlight">\(t_k\)</span>, which can be expressed from the distance <span class="math notranslate nohighlight">\(R_p\)</span> between two collisions (see figure: <a class="reference internal" href="#illustration-diffusion-fittings"><span class="std std-ref">Schematic representation of the acoustic diffusion by obstacles in a fitting zone</span></a>):</p>
 <div class="math notranslate nohighlight">
 \[c\,t_k=\sum_{p=1}^k R_p.\]</div>
-<p>Since the collision probabilities are independent of each other <a class="bibtex reference internal" href="references.html#ondet1989" id="id20">[OB89]</a>, it is easy to show that the random variables <span class="math notranslate nohighlight">\(R_i\)</span> (noted <span class="math notranslate nohighlight">\(R\)</span> afterwards) follow the following probability density <span class="math notranslate nohighlight">\(f(R)\)</span>:</p>
+<p>Since the collision probabilities are independent of each other <a class="reference internal" href="references.html#ondet1989" id="id20">[OB89]</a>, it is easy to show that the random variables <span class="math notranslate nohighlight">\(R_i\)</span> (noted <span class="math notranslate nohighlight">\(R\)</span> afterwards) follow the following probability density <span class="math notranslate nohighlight">\(f(R)\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-dispois">
 <span class="eqno">(7)<a class="headerlink" href="#equation-dispois" title="Permalink to this equation">¶</a></span>\[\label{dispois} f(R)=\nu_c \exp\left(-\nu_c \, R\right).\]</div>
 <p>The average free path <span class="math notranslate nohighlight">\(\lambda_c\)</span> (average distance between two collisions) is simply obtained by expressing the first moment of the above probability density, namely:</p>
@@ -660,7 +659,7 @@
 <p>An example of a random draw using the inverse cumulative distribution method is shown in Figure [fig:verification_diffusion_encrowding]. The comparison with the theoretical distribution shows an excellent behaviour of the method.</p>
 <div class="figure align-center" id="id58">
 <span id="verification-diffusion-fittings"></span><a class="reference internal image-reference" href="_images/verification_diffusion_fittings.png"><img alt="Distribution of the distance between two collission obtained by the inverse cumulative distribution function method and comparison with the theoretical distribution." src="_images/verification_diffusion_fittings.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Distribution of the <span class="math notranslate nohighlight">\(\hat{R}_i\)</span> paths obtained by the inverse cumulative distribution function method and comparison with the theoretical distribution</span><a class="headerlink" href="#id58" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Distribution of the <span class="math notranslate nohighlight">\(\hat{R}_i\)</span> paths obtained by the inverse cumulative distribution function method and comparison with the theoretical distribution</span></p>
 </div>
 <p>When a sound particle <span class="math notranslate nohighlight">\(n\)</span> enters a fitting zone, it is associated with a collision distance <span class="math notranslate nohighlight">\(R_n\)</span> with an object of the congestion by applying the relationship <a class="reference internal" href="#equation-fdc2">(9)</a>. As the sound particle propagates in the crowded area, a test is performed to determine if the cumulative distance <span class="math notranslate nohighlight">\(d_n\)</span> of the particle in the crowded area is less or more than <span class="math notranslate nohighlight">\(R_n\)</span>. If the distance traveled <span class="math notranslate nohighlight">\(d_n\)</span> is greater than the collision distance <span class="math notranslate nohighlight">\(R_n\)</span> the particle collides with an object. In the ‘Energetic’ mode, the energy of the sound particle is weighted by the average absorption coefficient <span class="math notranslate nohighlight">\(\alpha_c\)</span> of the space requirement and continues its propagation in a random direction (uniform distribution). In the ‘Random’ mode, a new random draw on a uniform variable <span class="math notranslate nohighlight">\(u\)</span> allows to determine if the particle is absorbed by the diffusing object (same procedure than for considering absorption by a wall), or reflected in a uniform direction. After each collision, the cumulative propagation distance is reset to zero, and a new draw is made to determine the next collision distance. Whatever the calculation mode chosen, as long as the distance travelled by the particle is less than the collision distance, the particle continues its path without changing direction.</p>
 </div>
@@ -677,20 +676,20 @@
 \[R+\beta+\tau=1.\]</div>
 <div class="figure align-center" id="id59">
 <span id="geo-wall"></span><a class="reference internal image-reference" href="_images/geo_wall.png"><img alt="Illustration of the mechanisms of reflection, absorption, dissipation and acoustic transmission through a wall." src="_images/geo_wall.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text">Illustration of the mechanisms of reflection, absorption, dissipation (internal loss) and acoustic transmission through a wall</span><a class="headerlink" href="#id59" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Illustration of the mechanisms of reflection, absorption, dissipation (internal loss) and acoustic transmission through a wall</span></p>
 </div>
 <p>It is usual to define the absorption coefficient <span class="math notranslate nohighlight">\(\alpha\)</span> of the wall as the sum of the transmitted part <span class="math notranslate nohighlight">\(\tau\)</span> and the dissipated part (internal loss) <span class="math notranslate nohighlight">\(\beta\)</span>, in the form <span class="math notranslate nohighlight">\(\alpha=\beta+\tau\)</span>, so that the above energy balance is written:</p>
 <div class="math notranslate nohighlight">
 \[R=1-\alpha.\]</div>
-<p>The absorption coefficient of a material can be measured using the standardised procedures <a class="reference internal" href="I_Simpa_standard.html#term-ISO-354"><span class="xref std std-term">ISO 354</span></a> for the reverberation chamber method, as well as <a class="reference internal" href="I_Simpa_standard.html#term-ISO-10534-1"><span class="xref std std-term">ISO 10534-1</span></a> and <a class="reference internal" href="I_Simpa_standard.html#term-ISO-10534-2"><span class="xref std std-term">ISO 10534-2</span></a> for the impedance tube method. For the sound transmission coefficient, the reader may refer to the different parts of the standards for air transmission (ISO 140).</p>
+<p>The absorption coefficient of a material can be measured using the standardised procedures <a class="reference internal" href="I_Simpa_standard.html#term-iso-354"><span class="xref std std-term">ISO 354</span></a> for the reverberation chamber method, as well as <a class="reference internal" href="I_Simpa_standard.html#term-iso-10534-1"><span class="xref std std-term">ISO 10534-1</span></a> and <a class="reference internal" href="I_Simpa_standard.html#term-iso-10534-2"><span class="xref std std-term">ISO 10534-2</span></a> for the impedance tube method. For the sound transmission coefficient, the reader may refer to the different parts of the standards for air transmission (ISO 140).</p>
 </div>
 <div class="section" id="acoustic-diffusion">
 <h4>Acoustic diffusion<a class="headerlink" href="#acoustic-diffusion" title="Permalink to this headline">¶</a></h4>
-<p>On the other hand, depending on the shape, size and distribution of the wall irregularities, the sound wave can be reflected simultaneously in the specular direction and in other directions. In room acoustics, it is common to consider that a fraction <span class="math notranslate nohighlight">\(1-s\)</span> of the sound energy will be reflected in the direction of specular reflection, while a fraction <span class="math notranslate nohighlight">\(s\)</span> of the energy will be reflected in the other directions of space, according to a law of reflection characterized by irregularities in the wall <a class="bibtex reference internal" href="references.html#embrechts2001" id="id23">[EAS01]</a>. In the latter case, we speak of <em>diffuse reflection</em>, where <span class="math notranslate nohighlight">\(s\)</span> is called scattering coefficient.</p>
-<p>In room acoustics, numerous theoretical and experimental studies are currently underway to characterize or measure these laws of reflection <a class="bibtex reference internal" href="references.html#vorlander2000" id="id24">[VM00]</a><a class="bibtex reference internal" href="references.html#cox2016" id="id25">[CDAntonio16]</a>. However, the common practice is to use Lambert’s law to describe a diffuse reflection. The value of the scattering coefficient <span class="math notranslate nohighlight">\(s\)</span> can be obtained by a standardized measurement procedure (<a class="reference internal" href="I_Simpa_standard.html#term-ISO-17497-1"><span class="xref std std-term">ISO 17497-1</span></a>).</p>
+<p>On the other hand, depending on the shape, size and distribution of the wall irregularities, the sound wave can be reflected simultaneously in the specular direction and in other directions. In room acoustics, it is common to consider that a fraction <span class="math notranslate nohighlight">\(1-s\)</span> of the sound energy will be reflected in the direction of specular reflection, while a fraction <span class="math notranslate nohighlight">\(s\)</span> of the energy will be reflected in the other directions of space, according to a law of reflection characterized by irregularities in the wall <a class="reference internal" href="references.html#embrechts2001" id="id23">[EAS01]</a>. In the latter case, we speak of <em>diffuse reflection</em>, where <span class="math notranslate nohighlight">\(s\)</span> is called scattering coefficient.</p>
+<p>In room acoustics, numerous theoretical and experimental studies are currently underway to characterize or measure these laws of reflection <a class="reference internal" href="references.html#vorlander2000" id="id24">[VM00]</a><a class="reference internal" href="references.html#cox2016" id="id25">[CDAntonio16]</a>. However, the common practice is to use Lambert’s law to describe a diffuse reflection. The value of the scattering coefficient <span class="math notranslate nohighlight">\(s\)</span> can be obtained by a standardized measurement procedure (<a class="reference internal" href="I_Simpa_standard.html#term-iso-17497-1"><span class="xref std std-term">ISO 17497-1</span></a>).</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>It is important to note that this scattering coefficient (<a class="reference internal" href="I_Simpa_standard.html#term-ISO-17497-1"><span class="xref std std-term">ISO 17497-1</span></a>), which defines the ratio between non-specular reflected energy on the total energy, is different from the diffusion coefficient <span class="math notranslate nohighlight">\(\delta\)</span> (<a class="reference internal" href="I_Simpa_standard.html#term-ISO-17497-2"><span class="xref std std-term">ISO 17497-2</span></a>), which defines the ability of the surface to uniformly scatter in all direction. In some acoustic simulation software, the diffraction coefficient <span class="math notranslate nohighlight">\(s\)</span> may sometimes wrongly called the diffusion coefficient.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">It is important to note that this scattering coefficient (<a class="reference internal" href="I_Simpa_standard.html#term-iso-17497-1"><span class="xref std std-term">ISO 17497-1</span></a>), which defines the ratio between non-specular reflected energy on the total energy, is different from the diffusion coefficient <span class="math notranslate nohighlight">\(\delta\)</span> (<a class="reference internal" href="I_Simpa_standard.html#term-iso-17497-2"><span class="xref std std-term">ISO 17497-2</span></a>), which defines the ability of the surface to uniformly scatter in all direction. In some acoustic simulation software, the diffraction coefficient <span class="math notranslate nohighlight">\(s\)</span> may sometimes wrongly called the diffusion coefficient.</p>
 </div>
 </div>
 </div>
@@ -700,11 +699,12 @@
 <h4>Random modelling<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h4>
 <p>First, a sound particle colliding with a wall can either be absorbed by the wall (with a probability <span class="math notranslate nohighlight">\(\alpha\)</span>), or reflected in a new direction of propagation (with a probability <span class="math notranslate nohighlight">\(R=1-\alpha\)</span>). In practice, the absorption/reflection choice is made by randomly drawing a number <span class="math notranslate nohighlight">\(u\)</span> between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>, following a uniform distribution:</p>
 <ul>
-<li><p>If this number is less than <span class="math notranslate nohighlight">\(\alpha=1-R\)</span> (at the considered point), the particle is absorbed and disappears from the propagation medium.</p></li>
-<li><p>If this number is greater than <span class="math notranslate nohighlight">\(\alpha=1-R\)</span>, the particle is reflected and continues to propagate in a new direction. In this last case, to determine the type of reflection (specular or diffuse), a new random draw <span class="math notranslate nohighlight">\(v\)</span> is performed between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>:</p>
+<li><p class="first">If this number is less than <span class="math notranslate nohighlight">\(\alpha=1-R\)</span> (at the considered point), the particle is absorbed and disappears from the propagation medium.</p>
+</li>
+<li><p class="first">If this number is greater than <span class="math notranslate nohighlight">\(\alpha=1-R\)</span>, the particle is reflected and continues to propagate in a new direction. In this last case, to determine the type of reflection (specular or diffuse), a new random draw <span class="math notranslate nohighlight">\(v\)</span> is performed between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>:</p>
 <blockquote>
 <div><p>– If this number is less than the value of <span class="math notranslate nohighlight">\(1-s\)</span> (<em>i.e.</em> <span class="math notranslate nohighlight">\(v&lt;(1-s)\)</span>) at the point considered, the particle is specularly reflected, in accordance with the well-known Snell-Descartes laws.</p>
-<p class="attribution">—Otherwise (<em>i.e.</em> if <span class="math notranslate nohighlight">\(v&gt;(1-s)\)</span>), the reflection is diffuse. In the latter case, it is necessary to determine the direction of diffuse reflection.</p>
+<p class="attribution">&mdash;Otherwise (<em>i.e.</em> if <span class="math notranslate nohighlight">\(v&gt;(1-s)\)</span>), the reflection is diffuse. In the latter case, it is necessary to determine the direction of diffuse reflection.</p>
 </div></blockquote>
 </li>
 </ul>
@@ -718,13 +718,12 @@
 <h3>Modelling of the reflection laws<a class="headerlink" href="#modelling-of-the-reflection-laws" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="formalism">
 <h4>Formalism<a class="headerlink" href="#formalism" title="Permalink to this headline">¶</a></h4>
-<p>Let us consider an incident sound particle on a wall, whose incident direction is defined by the spherical coordinates <span class="math notranslate nohighlight">\((\theta,\phi)\)</span> (see figure <a class="reference internal" href="#geo-reflection"><span class="std std-ref">Elementary geometry of a reflection by a wall</span></a>). This particle has a probability of <span class="math notranslate nohighlight">\(P(\theta,\phi;\theta',\phi')\equiv P(\Omega,\Omega')\)</span> being reflected in the elementary solid angle <span class="math notranslate nohighlight">\(d\Omega' =\sin\phi'\, d\phi'\, d\phi'\, d\theta'\)</span> <a class="bibtex reference internal" href="references.html#joyce1974" id="id28">[Joy74]</a><a class="bibtex reference internal" href="references.html#joyce1975" id="id29">[Joy75]</a><a class="bibtex reference internal" href="references.html#joyce1978" id="id30">[Joy78]</a><a class="bibtex reference internal" href="references.html#lepolles2003" id="id31">[LP03]</a>.</p>
+<p>Let us consider an incident sound particle on a wall, whose incident direction is defined by the spherical coordinates <span class="math notranslate nohighlight">\((\theta,\phi)\)</span> (see figure <a class="reference internal" href="#geo-reflection"><span class="std std-ref">Elementary geometry of a reflection by a wall</span></a>). This particle has a probability of <span class="math notranslate nohighlight">\(P(\theta,\phi;\theta',\phi')\equiv P(\Omega,\Omega')\)</span> being reflected in the elementary solid angle <span class="math notranslate nohighlight">\(d\Omega' =\sin\phi'\, d\phi'\, d\phi'\, d\theta'\)</span> <a class="reference internal" href="references.html#joyce1974" id="id28">[Joy74]</a><a class="reference internal" href="references.html#joyce1975" id="id29">[Joy75]</a><a class="reference internal" href="references.html#joyce1978" id="id30">[Joy78]</a><a class="reference internal" href="references.html#lepolles2003" id="id31">[LP03]</a>.</p>
 <div class="figure align-center" id="id60">
 <span id="geo-reflection"></span><a class="reference internal image-reference" href="_images/geo_reflection.png"><img alt="Elementary geometry of a reflection by a wall" src="_images/geo_reflection.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Elementary geometry of a reflection by a wall</span><a class="headerlink" href="#id60" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Elementary geometry of a reflection by a wall</span></p>
 <div class="legend">
-<p>Variables <span class="math notranslate nohighlight">\(\phi\)</span> and <span class="math notranslate nohighlight">\(\phi'\)</span> refer respectively to the angles of incidence and reflection with respect to the normal at the wall. The angles <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\theta'\)</span> in the tangent plane, directions of incidence and reflection, are not represented (<span class="math notranslate nohighlight">\(\phi,\phi'\in[0,\pi/2]\)</span> and <span class="math notranslate nohighlight">\(\theta,\theta'\in[0,2\pi]\)</span>).</p>
-</div>
+Variables <span class="math notranslate nohighlight">\(\phi\)</span> and <span class="math notranslate nohighlight">\(\phi'\)</span> refer respectively to the angles of incidence and reflection with respect to the normal at the wall. The angles <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\theta'\)</span> in the tangent plane, directions of incidence and reflection, are not represented (<span class="math notranslate nohighlight">\(\phi,\phi'\in[0,\pi/2]\)</span> and <span class="math notranslate nohighlight">\(\theta,\theta'\in[0,2\pi]\)</span>).</div>
 </div>
 <p><span class="math notranslate nohighlight">\(P(\Omega,\Omega')\,d\Omega'\)</span> actually represents the fraction of the incident sound intensity that is reflected in the solid angle <span class="math notranslate nohighlight">\(d\Omega'\)</span>. Let’s say <span class="math notranslate nohighlight">\(j(\theta,\phi)\)</span> the incident flow of particles. The flow of reflected particles <span class="math notranslate nohighlight">\(j'(\theta',\phi')\)</span> is expressed:</p>
 <div class="math notranslate nohighlight" id="equation-eq-flux-1">
@@ -757,10 +756,10 @@
 <p>On the other hand, the principle of reciprocity requires that</p>
 <div class="math notranslate nohighlight" id="equation-loi-3">
 <span class="eqno">(13)<a class="headerlink" href="#equation-loi-3" title="Permalink to this equation">¶</a></span>\[\label{loi_3} R(\Omega,\Omega')=R(\Omega',\Omega).\]</div>
-<p>Despite some recent studies, and apart from Lambert’s law widely used to model diffuse reflections <a class="bibtex reference internal" href="references.html#kuttruff2016" id="id32">[Kut16]</a>, to our knowledge there are no other laws of reflection for real walls. In the <strong>SPPS</strong> code, however, we propose arbitrary modes of reflection, more or less real, presented in figure <a class="reference internal" href="#geo-reflection-law"><span class="std std-ref">Illustration of the reflection laws proposed in the SPPS code</span></a>.</p>
+<p>Despite some recent studies, and apart from Lambert’s law widely used to model diffuse reflections <a class="reference internal" href="references.html#kuttruff2016" id="id32">[Kut16]</a>, to our knowledge there are no other laws of reflection for real walls. In the <strong>SPPS</strong> code, however, we propose arbitrary modes of reflection, more or less real, presented in figure <a class="reference internal" href="#geo-reflection-law"><span class="std std-ref">Illustration of the reflection laws proposed in the SPPS code</span></a>.</p>
 <div class="figure align-center" id="id61">
 <span id="geo-reflection-law"></span><a class="reference internal image-reference" href="_images/geo_reflection_law.png"><img alt="Illustration of the reflection laws proposed in the SPPS code." src="_images/geo_reflection_law.png" style="width: 800px;" /></a>
-<p class="caption"><span class="caption-text">Illustration of the reflection laws proposed in the <strong>SPPS</strong> code</span><a class="headerlink" href="#id61" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Illustration of the reflection laws proposed in the <strong>SPPS</strong> code</span></p>
 </div>
 </div>
 <div class="section" id="specular-reflection">
@@ -827,8 +826,8 @@
 <div class="math notranslate nohighlight">
 \[\hat{\phi}=\sin^{-1}\sqrt{u}=\cos^{-1}\left(1-u\right)^\frac{1}{2}.\]</div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>It is important to note that other authors <a class="bibtex reference internal" href="references.html#burns1990" id="id39">[BMC90]</a><a class="bibtex reference internal" href="references.html#hodgson1991" id="id40">[Hod91]</a><a class="bibtex reference internal" href="references.html#lam1996" id="id41">[Lam96]</a><a class="bibtex reference internal" href="references.html#xiangyang2002" id="id42">[XKaJ02]</a> mention other relationships. The correct formulation depends on the angle convention. It is also possible that some of the relationships that are proposed may not be accurate.</p>
+<p class="first admonition-title">Warning</p>
+<p class="last">It is important to note that other authors <a class="reference internal" href="references.html#burns1990" id="id39">[BMC90]</a><a class="reference internal" href="references.html#hodgson1991" id="id40">[Hod91]</a><a class="reference internal" href="references.html#lam1996" id="id41">[Lam96]</a><a class="reference internal" href="references.html#xiangyang2002" id="id42">[XKaJ02]</a> mention other relationships. The correct formulation depends on the angle convention. It is also possible that some of the relationships that are proposed may not be accurate.</p>
 </div>
 </div>
 </div>
@@ -875,8 +874,8 @@
 <h4>Random modelling<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h4>
 <p>The modelling is similar to the one used for acoustic reflection. To determine if the sound particle is dissipated or transmitted by the partition, it is necessary to draw a number <span class="math notranslate nohighlight">\(w\)</span> between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(\alpha\)</span>:</p>
 <ul class="simple">
-<li><p>If this number is less than <span class="math notranslate nohighlight">\(\tau\)</span>, the particle is transmitted and keeps its direction of propagation;</p></li>
-<li><p>Otherwise the particle is ‘dissipated’ and disappears from the propagation medium.</p></li>
+<li>If this number is less than <span class="math notranslate nohighlight">\(\tau\)</span>, the particle is transmitted and keeps its direction of propagation;</li>
+<li>Otherwise the particle is ‘dissipated’ and disappears from the propagation medium.</li>
 </ul>
 </div>
 <div class="section" id="id47">
@@ -889,13 +888,13 @@
 <p>The figure <a class="reference internal" href="#fig-test-reflexion"><span class="std std-ref">Verification of the procedure for modelling absorption (dissipation and transmission) and reflection (specular and diffuse) phenomena</span></a> illustrates the result of the reflection procedure (reflection=specular/diffuse, absorption=loss/transmission) in random mode, with the following acoustic parameters: scattering coefficient <span class="math notranslate nohighlight">\(s=0.6\)</span>, absorption coefficient <span class="math notranslate nohighlight">\(\alpha=0.8\)</span>, transmission coefficient <span class="math notranslate nohighlight">\(\tau=10^{-R/10}=0.1\)</span> (attenuation index <span class="math notranslate nohighlight">\(R=10\)</span> dB). With <span class="math notranslate nohighlight">\(10000\)</span> realizations, the different phenomena are found (in terms of number of realizations) with the same proportions as the imposed acoustic parameters.</p>
 <div class="figure align-center" id="id62">
 <span id="fig-test-reflexion"></span><a class="reference internal image-reference" href="_images/figure_test_reflexion.png"><img alt="Verification of the procedure for modelling absorption, transmission and reflection." src="_images/figure_test_reflexion.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Verification of the procedure for modelling absorption (dissipation and transmission) and reflection (specular and diffuse) phenomena</span><a class="headerlink" href="#id62" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Verification of the procedure for modelling absorption (dissipation and transmission) and reflection (specular and diffuse) phenomena</span></p>
 </div>
 <p>In the previous figure, only the random drawing process is modelled (note that this simulation was realized with a very simplementation of the method, not the the one implemented in the <strong>SPPS</strong> code, this last one being more performant).</p>
 <ul class="simple">
-<li><p>The first group ‘Total’ corresponds to the sum of the number of achievements (initial number of particles, reflection + absorption, specular + diffus + dissipation + transmission); these three quantities therefore have the exactly same value, which the initial number of sound particles (<em>i.e.</em> 10000).</p></li>
-<li><p>The second group corresponds to the ‘Reflection’ process, divided into the total number of reflections (R, 2005 particles, <em>i.e</em> an equivalent reflection coefficient of 0.2005, which is quite the same that the initial condition of the random process <span class="math notranslate nohighlight">\(R=1-\alpha=0.2\)</span>), specular reflections (S, 788 particles) and diffusion (Df, 1217 particles, , <em>i.e</em> an equivalent scattering coefficient of 1217/2005=0.61, which is quite the same that the initial condition of the random process <span class="math notranslate nohighlight">\(s=0.6\)</span>)).</p></li>
-<li><p>The third group corresponds to the ‘Absorption’ process, divided into the total number of absorption (A, 7995 particles, , <em>i.e</em> an equivalent absorption coefficient of 0.7995, which is quite the same that the initial condition of the random process <span class="math notranslate nohighlight">\(\alpha=0.8\)</span>)), dissipation (D, 7014 particles) and transmission (T, 981 particles, , <em>i.e</em> an equivalent transmission coefficient of 0.0981, which is quite the same that the initial condition of the random process <span class="math notranslate nohighlight">\(\tau=0.1\)</span>)).</p></li>
+<li>The first group ‘Total’ corresponds to the sum of the number of achievements (initial number of particles, reflection + absorption, specular + diffus + dissipation + transmission); these three quantities therefore have the exactly same value, which the initial number of sound particles (<em>i.e.</em> 10000).</li>
+<li>The second group corresponds to the ‘Reflection’ process, divided into the total number of reflections (R, 2005 particles, <em>i.e</em> an equivalent reflection coefficient of 0.2005, which is quite the same that the initial condition of the random process <span class="math notranslate nohighlight">\(R=1-\alpha=0.2\)</span>), specular reflections (S, 788 particles) and diffusion (Df, 1217 particles, , <em>i.e</em> an equivalent scattering coefficient of 1217/2005=0.61, which is quite the same that the initial condition of the random process <span class="math notranslate nohighlight">\(s=0.6\)</span>)).</li>
+<li>The third group corresponds to the ‘Absorption’ process, divided into the total number of absorption (A, 7995 particles, , <em>i.e</em> an equivalent absorption coefficient of 0.7995, which is quite the same that the initial condition of the random process <span class="math notranslate nohighlight">\(\alpha=0.8\)</span>)), dissipation (D, 7014 particles) and transmission (T, 981 particles, , <em>i.e</em> an equivalent transmission coefficient of 0.0981, which is quite the same that the initial condition of the random process <span class="math notranslate nohighlight">\(\tau=0.1\)</span>)).</li>
 </ul>
 </div>
 </div>
@@ -903,8 +902,8 @@
 <h2>Calculation of sound levels at observation points<a class="headerlink" href="#calculation-of-sound-levels-at-observation-points" title="Permalink to this headline">¶</a></h2>
 <p>In the <strong>SPPS</strong> code, two types of receivers are considered:</p>
 <ul class="simple">
-<li><p>‘Volume’ receivers model the so-called “classical” point receivers. Since the notion of point receiver is not applicable in the <strong>SPPS</strong> code, since in theory the probability that a sound particle will pass through a point receiver is zero, it is necessary to give a volume to the receiver point, to count the number of particles that have passed through it, and thus deduce the energy density at the observation point. For a point receiver, the <strong>SPPS</strong> code returns the sound pressure level, at each time step of the calculation and for each frequency band considered;</p></li>
-<li><p>‘Surface’ receivers are surface elements (like a face element of the 3D scene) on which incident sound intensities are calculated, which then makes it possible to construct acoustic maps. For a surface receiver, the code <strong>SPPS</strong> returns the sound intensity, at each time step of the calculation and for each frequency band considered.</p></li>
+<li>‘Volume’ receivers model the so-called “classical” point receivers. Since the notion of point receiver is not applicable in the <strong>SPPS</strong> code, since in theory the probability that a sound particle will pass through a point receiver is zero, it is necessary to give a volume to the receiver point, to count the number of particles that have passed through it, and thus deduce the energy density at the observation point. For a point receiver, the <strong>SPPS</strong> code returns the sound pressure level, at each time step of the calculation and for each frequency band considered;</li>
+<li>‘Surface’ receivers are surface elements (like a face element of the 3D scene) on which incident sound intensities are calculated, which then makes it possible to construct acoustic maps. For a surface receiver, the code <strong>SPPS</strong> returns the sound intensity, at each time step of the calculation and for each frequency band considered.</li>
 </ul>
 <p>In addition, the calculation code also determines the overall sound pressure level in the 3D model, summing the contributions of each particle, at each time step and for each frequency band.</p>
 <div class="section" id="calculation-of-the-sound-pressure-level-at-a-volume-receiver">
@@ -917,15 +916,14 @@
 <span class="eqno">(14)<a class="headerlink" href="#equation-eq-density-energy-punctual-receiver" title="Permalink to this equation">¶</a></span>\[\label{densite_energie_recepteur_volumique}
         w_\text{rec}^{j}(n)=\frac{E_\text{rec}(n)}{V_\text{rec}}= \frac{W}{N} \frac{1}{V_\text{rec}} \sum_i^{N_0} \epsilon_i^{j} \frac{\ell_i}{c}.\]</div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The definition of the receiver volume is a crucial element for the quality and representativeness of the results. It must be large enough to count sound particles as they propagate, but not too large to make the energy density calculated at the observation point representative.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">The definition of the receiver volume is a crucial element for the quality and representativeness of the results. It must be large enough to count sound particles as they propagate, but not too large to make the energy density calculated at the observation point representative.</p>
 </div>
 <div class="figure align-center" id="id63">
 <span id="geo-punctual-receiver"></span><a class="reference internal image-reference" href="_images/geo_punctual_receiver.png"><img alt="Principle of the calculation of the sound pressure level for a volume receiver." src="_images/geo_punctual_receiver.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Principle of the calculation of the sound pressure level for a volume receiver</span><a class="headerlink" href="#id63" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Principle of the calculation of the sound pressure level for a volume receiver</span></p>
 <div class="legend">
-<p>The energy density in the volume receiver is calculated by summing the energy contributions of each particle passing through the receiver. The contribution of the particle <span class="math notranslate nohighlight">\(i\)</span> is calculated from the path <span class="math notranslate nohighlight">\(\ell_i\)</span> of the particle in the volume receiver <a class="reference internal" href="#equation-eq-density-energy-punctual-receiver">(14)</a>.</p>
-</div>
+The energy density in the volume receiver is calculated by summing the energy contributions of each particle passing through the receiver. The contribution of the particle <span class="math notranslate nohighlight">\(i\)</span> is calculated from the path <span class="math notranslate nohighlight">\(\ell_i\)</span> of the particle in the volume receiver <a class="reference internal" href="#equation-eq-density-energy-punctual-receiver">(14)</a>.</div>
 </div>
 <p>The <strong>sound intensity</strong> <span class="math notranslate nohighlight">\(I_\text{rec}^{j}(n)\)</span> (in W/m<span class="math notranslate nohighlight">\(^2\)</span>) at the receiving point is given by:</p>
 <div class="math notranslate nohighlight">
@@ -976,7 +974,7 @@
 <p>where <span class="math notranslate nohighlight">\(I_0=10^{-12}\)</span> W/m <span class="math notranslate nohighlight">\(^2\)</span> is the reference intensity.</p>
 <div class="figure align-center" id="id64">
 <span id="geo-surface-receiver"></span><a class="reference internal image-reference" href="_images/geo_surface_receiver.png"><img alt="Principle of the calculation of the sound intensity level for a surface receiver." src="_images/geo_surface_receiver.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Principle of the calculation of the sound intensity level for a surface receiver</span><a class="headerlink" href="#id64" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Principle of the calculation of the sound intensity level for a surface receiver</span></p>
 </div>
 </div>
 <div class="section" id="calculation-of-the-sound-pressure-level-on-a-surface-receiver">
@@ -990,8 +988,8 @@
         L_\text{SPL,surf}^{j}(n)= 10\log\frac{P2_\text{surf}^{j}(n)}{p_0^2},\]</div>
 <p>where <span class="math notranslate nohighlight">\(p_0=20\times 10^{-6}\)</span> Pa is the reference sound pressure.</p>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Note that the calculation of a sound pressure level for a surface is quite ambiguous. It should not be comparable to grid of punctual receivers on a plane.</p>
+<p class="first admonition-title">Warning</p>
+<p class="last">Note that the calculation of a sound pressure level for a surface is quite ambiguous. It should not be comparable to grid of punctual receivers on a plane.</p>
 </div>
 </div>
 <div class="section" id="calculation-of-the-overall-sound-pressure-level-in-the-model">
@@ -1015,7 +1013,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="code_TCR.html" class="btn btn-neutral float-right" title="Presentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="code_SPPS_Validation.html" class="btn btn-neutral float-right" title="Verification of the SPPS code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="code_SPPS_principle.html" class="btn btn-neutral float-left" title="General principle" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -1027,22 +1025,14 @@
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Dec 23, 2020.
+        Last updated on Jan 07, 2022.
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1053,6 +1043,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

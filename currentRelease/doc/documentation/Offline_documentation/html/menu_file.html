@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,29 +12,28 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script async="async" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
 </head>
@@ -49,7 +49,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> I-Simpa
+            <a href="index.html" class="icon icon-home"> I-Simpa
           
 
           
@@ -76,7 +76,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -124,7 +123,8 @@
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in <strong>SPPS</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in SPPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_Validation.html">Verification of the SPPS code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
@@ -142,7 +142,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -181,7 +180,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>&lt;no title&gt;</li>
     
@@ -202,87 +201,178 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <dl>
-<dt>‘New project’</dt><dd><p>Create a new project (empty project)</p>
-</dd>
-<dt>‘Open project’</dt><dd><p>Open an existing project with the I-Simpa file format <code class="docutils literal notranslate"><span class="pre">*.proj</span></code></p>
-</dd>
-<dt>‘Import new scene’</dt><dd><p>Import a new 3D geometry in the existing project. Some <a href="#id3"><span class="problematic" id="id4">`Import options`_</span></a> are available at this step.</p>
+  <dl class="docutils">
+<dt>‘New project’</dt>
+<dd>Create a new project (empty project)</dd>
+<dt>‘Open project’</dt>
+<dd>Open an existing project with the I-Simpa file format <code class="docutils literal notranslate"><span class="pre">*.proj</span></code></dd>
+<dt>‘Import new scene’</dt>
+<dd><p class="first">Import a new 3D geometry in the existing project. Some <a href="#id3"><span class="problematic" id="id4">`Import options`_</span></a> are available at this step.</p>
 <p>Import file formats:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="http://en.wikipedia.org/wiki/.3ds">.3DS</a>:  keep all surface groups and texture</p></li>
-<li><p><a class="reference external" href="http://en.wikipedia.org/wiki/PLY_%28file_format%29">.PLY</a>: ASCII and BIN format, keep all surface groups</p></li>
-<li><p><a class="reference external" href="http://tetgen.berlios.de/fformats.poly.html">.POLY</a></p></li>
-<li><p><a class="reference external" href="http://en.wikipedia.org/wiki/STL_%28file_format%29">.STL</a></p></li>
+<ul class="last simple">
+<li><a class="reference external" href="http://en.wikipedia.org/wiki/.3ds">.3DS</a>:  keep all surface groups and texture</li>
+<li><a class="reference external" href="http://en.wikipedia.org/wiki/PLY_%28file_format%29">.PLY</a>: ASCII and BIN format, keep all surface groups</li>
+<li><a class="reference external" href="http://tetgen.berlios.de/fformats.poly.html">.POLY</a></li>
+<li><a class="reference external" href="http://en.wikipedia.org/wiki/STL_%28file_format%29">.STL</a></li>
 </ul>
 </dd>
 </dl>
 <div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>When you import a new scene, except the geometry, all previous data (sources, receivers, materials…) of the current project are unchanged. You can use this option if you want to keep all current data, and just import a new geometry. If you want to remove all data, you need to create a new project.</p>
+<p class="first admonition-title">Tip</p>
+<p class="last">When you import a new scene, except the geometry, all previous data (sources, receivers, materials…) of the current project are unchanged. You can use this option if you want to keep all current data, and just import a new geometry. If you want to remove all data, you need to create a new project.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Numerical codes within I-Simpa (like SPPS) are very sensitive to the quality of the import geometry. Although I-Simpa can correct some defaults during importation of a geometry, it is recommended to pay a particular attention to the creation of the geometry. <a class="reference external" href="import_file_recommandations.html">Read the recommandations here.</a></p>
+<p class="first admonition-title">Note</p>
+<p class="last">Numerical codes within I-Simpa (like SPPS) are very sensitive to the quality of the import geometry. Although I-Simpa can correct some defaults during importation of a geometry, it is recommended to pay a particular attention to the creation of the geometry. <a class="reference external" href="import_file_recommandations.html">Read the recommandations here.</a></p>
 </div>
-<dl>
-<dt>‘Export scene’</dt><dd><p>Export the current 3D geometry from the current project (without additional data)</p>
+<dl class="docutils">
+<dt>‘Export scene’</dt>
+<dd><p class="first">Export the current 3D geometry from the current project (without additional data)</p>
 <p>Export file formats:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="http://en.wikipedia.org/wiki/PLY_%28file_format%29">.PLY</a></p></li>
-<li><p>.MAT.PLY: same as PLY, with surface groups</p></li>
-<li><p><a class="reference external" href="http://tetgen.berlios.de/fformats.poly.html">.POLY</a></p></li>
-<li><p><a class="reference external" href="http://www.ann.jussieu.fr/frey/software.html">.MESH</a></p></li>
-<li><p><a class="reference external" href="http://paulbourke.net/dataformats/nff/nff2.html">.NFF</a></p></li>
-<li><p>.BIN: I-Simpa file format</p></li>
-<li><p>.ASC</p></li>
+<ul class="last simple">
+<li><a class="reference external" href="http://en.wikipedia.org/wiki/PLY_%28file_format%29">.PLY</a></li>
+<li>.MAT.PLY: same as PLY, with surface groups</li>
+<li><a class="reference external" href="http://tetgen.berlios.de/fformats.poly.html">.POLY</a></li>
+<li><a class="reference external" href="http://www.ann.jussieu.fr/frey/software.html">.MESH</a></li>
+<li><a class="reference external" href="http://paulbourke.net/dataformats/nff/nff2.html">.NFF</a></li>
+<li>.BIN: I-Simpa file format</li>
+<li>.ASC</li>
 </ul>
 </dd>
-<dt>‘New scene’</dt><dd><p>This option able to create a parallelepipedic scene. This is the simple way to create a 3D scene with I-Simpa. This can be useful for starting with I-Simpa. For more realistic scenes, users have to build 3D scenes using a CAD software, and then, importing the geometry using one the possible import file format (see <strong>‘Import new scene’</strong> in the file menu).</p>
-</dd>
+<dt>‘New scene’</dt>
+<dd>This option able to create a parallelepipedic scene. This is the simple way to create a 3D scene with I-Simpa. This can be useful for starting with I-Simpa. For more realistic scenes, users have to build 3D scenes using a CAD software, and then, importing the geometry using one the possible import file format (see <strong>‘Import new scene’</strong> in the file menu).</dd>
 </dl>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Using the built-in option for creating a rectangular geometry, each main face of the geometry (<em>i.e.</em> there are 6 main faces), is split into 2 triangular face elements. This mean that, when defining the acoustical material for each face, you will only have the possibility to affect two different materials for each main face (one on each triangular face). Most of times, users will consider a single material for each group.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">Using the built-in option for creating a rectangular geometry, each main face of the geometry (<em>i.e.</em> there are 6 main faces), is split into 2 triangular face elements. This mean that, when defining the acoustical material for each face, you will only have the possibility to affect two different materials for each main face (one on each triangular face). Most of times, users will consider a single material for each group.</p>
 </div>
-<dl>
-<dt>‘Save project’</dt><dd><p>Save the current project with the current filename.</p>
-</dd>
-<dt>‘Save project as’</dt><dd><p>Save the current project with a new/given filename.</p>
-</dd>
-<dt>‘Save copy of project’</dt><dd><p>Save the current project with a new filename, by default, in the same folder as the original project.</p>
-</dd>
-<dt>‘Recent projects’</dt><dd><p>Show the more recent projects. Load a project by selecting the file in the list.</p>
-</dd>
-<dt>‘Settings’</dt><dd><p>Defines I-Simpa settings.</p>
-<ul>
-<li><dl>
-<dt>‘Options’</dt><dd><p>Defines general options.</p>
-<blockquote>
+<dl class="docutils">
+<dt>‘Save project’</dt>
+<dd>Save the current project with the current filename.</dd>
+<dt>‘Save project as’</dt>
+<dd>Save the current project with a new/given filename.</dd>
+<dt>‘Save copy of project’</dt>
+<dd>Save the current project with a new filename, by default, in the same folder as the original project.</dd>
+<dt>‘Recent projects’</dt>
+<dd>Show the more recent projects. Load a project by selecting the file in the list.</dd>
+<dt>‘Settings’</dt>
+<dd><p class="first">Defines I-Simpa settings.</p>
+<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Options’</dt>
+<dd><p class="first">Defines general options.</p>
+<blockquote class="last">
 <div><ul class="simple">
-<li><dl class="simple">
-<dt>‘3D rendering’</dt><dd><p>Defines 3D rendering options.</p>
-<ul>
-<li><dl class="simple">
-<dt>‘Animations’</dt><dd><p>Defines 3D animation options.</p>
-<ul>
-<li><dl class="simple">
-<dt>‘Label color’</dt><dd><p>Color of the legend concerning animations.</p>
+<li><dl class="first docutils">
+<dt>‘3D rendering’</dt>
+<dd>Defines 3D rendering options.<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Animations’</dt>
+<dd>Defines 3D animation options.<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Label color’</dt>
+<dd>Color of the legend concerning animations.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Particles display’</dt>
+<dd>Show/hide particle animation.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Render frequency’</dt>
+<dd>Set frequency of animations (Hz). the speed of animations increases with frequency.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Surface receiver display’</dt>
+<dd>Show/hide surface receiver animations.</dd>
+</dl>
+</li>
+</ul>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Particles display’</dt><dd><p>Show/hide particle animation.</p>
+<li><dl class="first docutils">
+<dt>‘Legend’</dt>
+<dd>Defines legend options.<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Legend font’</dt>
+<dd>Legend font (Text Dialog box).</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Text background color’</dt>
+<dd>Background color of the text legend (Color Dialog box).</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Text color’</dt>
+<dd>Legend text color (Color Dialog box).</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Transparent text background’</dt>
+<dd>Enable/disable the transparency of the legend background. If selected, the option ‘Text background color’ has no effect.</dd>
+</dl>
+</li>
+</ul>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Render frequency’</dt><dd><p>Set frequency of animations (Hz). the speed of animations increases with frequency.</p>
+<li><dl class="first docutils">
+<dt>‘General’</dt>
+<dd>Defines general 3D options.<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Default color’</dt>
+<dd>Default color of an surface element of the geometry (Color Dialog box).</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Scene background’</dt>
+<dd>Background color of the 3D view (Color Dialog box).</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Scene lines’</dt>
+<dd>Color of lines for the geometry (Color Dialog box).</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Selection’</dt>
+<dd>Color of a face selection (Color Dialog box).</dd>
+</dl>
+</li>
+</ul>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Surface receiver display’</dt><dd><p>Show/hide surface receiver animations.</p>
+<li><dl class="first docutils">
+<dt>‘Particles’</dt>
+<dd>Defines particles options.<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Color of particles’</dt>
+<dd>Color of particles (Color Dialog box).</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Sound map’</dt>
+<dd>Defines sound map options.<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Iso-lines color’</dt>
+<dd>Color of lines used for displaying iso-contour representation (Color Dialog box).</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>‘Iso-levels color’</dt>
+<dd>Select the colormap for sound map representation. Colormaps can be added by users.</dd>
+</dl>
+</li>
+</ul>
 </dd>
 </dl>
 </li>
@@ -290,102 +380,15 @@
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Legend’</dt><dd><p>Defines legend options.</p>
-<ul>
-<li><dl class="simple">
-<dt>‘Legend font’</dt><dd><p>Legend font (Text Dialog box).</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Text background color’</dt><dd><p>Background color of the text legend (Color Dialog box).</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Text color’</dt><dd><p>Legend text color (Color Dialog box).</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Transparent text background’</dt><dd><p>Enable/disable the transparency of the legend background. If selected, the option ‘Text background color’ has no effect.</p>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘General’</dt><dd><p>Defines general 3D options.</p>
-<ul>
-<li><dl class="simple">
-<dt>‘Default color’</dt><dd><p>Default color of an surface element of the geometry (Color Dialog box).</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Scene background’</dt><dd><p>Background color of the 3D view (Color Dialog box).</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Scene lines’</dt><dd><p>Color of lines for the geometry (Color Dialog box).</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Selection’</dt><dd><p>Color of a face selection (Color Dialog box).</p>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Particles’</dt><dd><p>Defines particles options.</p>
-<ul>
-<li><dl class="simple">
-<dt>‘Color of particles’</dt><dd><p>Color of particles (Color Dialog box).</p>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Sound map’</dt><dd><p>Defines sound map options.</p>
-<ul>
-<li><dl class="simple">
-<dt>‘Iso-lines color’</dt><dd><p>Color of lines used for displaying iso-contour representation (Color Dialog box).</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Iso-levels color’</dt><dd><p>Select the colormap for sound map representation. Colormaps can be added by users.</p>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>‘Main preferences’</dt><dd><p>Defines the main preferences of the interface.</p>
-<ul>
-<li><dl class="simple">
-<dt>‘History’</dt><dd><p>Defines history options.</p>
-<ul>
-<li><dl class="simple">
-<dt>‘Keep modification history’</dt><dd><p>Enable/disable ‘Undo’/’Redo’ options.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Main preferences’</dt>
+<dd>Defines the main preferences of the interface.<ul class="last">
+<li><dl class="first docutils">
+<dt>‘History’</dt>
+<dd>Defines history options.<ul class="last">
+<li><dl class="first docutils">
+<dt>‘Keep modification history’</dt>
+<dd>Enable/disable ‘Undo’/’Redo’ options.</dd>
 </dl>
 </li>
 </ul>
@@ -401,28 +404,30 @@
 </dd>
 </dl>
 </li>
-<li><dl>
-<dt>‘Language’</dt><dd><p>Open a dialog box for selecting the interface language.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>I-Simpa must be restarted in order to apply the selected language.</p>
+<li><dl class="first docutils">
+<dt>‘Language’</dt>
+<dd><p class="first">Open a dialog box for selecting the interface language.</p>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">I-Simpa must be restarted in order to apply the selected language.</p>
 </div>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Change application data folder’</dt><dd><p>Allows to change the default folder for the Application Data</p>
+<li><dl class="first docutils">
+<dt>‘Change application data folder’</dt>
+<dd><p class="first last">Allows to change the default folder for the Application Data</p>
 </dd>
 </dl>
 </li>
 </ul>
 </dd>
-<dt>‘Exit’</dt><dd><p>Exit I-Simpa.</p>
-</dd>
+<dt>‘Exit’</dt>
+<dd>Exit I-Simpa.</dd>
 </dl>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>When starting I-Simpa, the last project (if available) will be automatically loaded.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">When starting I-Simpa, the last project (if available) will be automatically loaded.</p>
 </div>
 
 
@@ -436,22 +441,14 @@
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Dec 23, 2020.
+        Last updated on Jan 07, 2022.
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -462,6 +459,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

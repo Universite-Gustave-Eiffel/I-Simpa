@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,29 +12,28 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script async="async" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Define a position using the pointer on the 3D view" href="define_position.html" />
@@ -51,7 +51,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> I-Simpa
+            <a href="index.html" class="icon icon-home"> I-Simpa
           
 
           
@@ -78,7 +78,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -134,7 +133,8 @@
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in <strong>SPPS</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in SPPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_Validation.html">Verification of the SPPS code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
@@ -152,7 +152,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -191,7 +190,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>Define and use spectrum</li>
     
@@ -216,18 +215,18 @@
 <h1>Define and use spectrum<a class="headerlink" href="#define-and-use-spectrum" title="Permalink to this headline">¶</a></h1>
 <blockquote>
 <div><div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>It is extremely important that users experiment the manipulation of spectrum before using I-Simpa. The interdependence of sound level in dB and in dB(A), as well as the interdependence of global sound level and sound level for each frequency band, although it is conformed to physical principles, is not obvious.</p>
+<p class="first admonition-title">Important</p>
+<p class="last">It is extremely important that users experiment the manipulation of spectrum before using I-Simpa. The interdependence of sound level in dB and in dB(A), as well as the interdependence of global sound level and sound level for each frequency band, although it is conformed to physical principles, is not obvious.</p>
 </div>
 </div></blockquote>
 <div class="section" id="general-information">
 <h2>General information<a class="headerlink" href="#general-information" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Spectrum are defined in the same way for receivers and sound sources</p></li>
-<li><p>Spectrum are defined only within in ‘Spectrum’ database folder of ‘Project database’ folder, in the ‘Project’ tree,</p></li>
-<li><p>the ‘Spectrum’ database folder contains 2 subfolders, the ‘Reference’ subfolder and the ‘User’ subfolder:</p></li>
-<li><p>Spectrum within the ‘Reference’ subfolders can not be modified. This folder contains only reference built-in spectrum.</p></li>
-<li><p>User can create spectrums in the ‘User’ subfolder. Spectrum can be modified later if necessary.</p></li>
+<li>Spectrum are defined in the same way for receivers and sound sources</li>
+<li>Spectrum are defined only within in ‘Spectrum’ database folder of ‘Project database’ folder, in the ‘Project’ tree,</li>
+<li>the ‘Spectrum’ database folder contains 2 subfolders, the ‘Reference’ subfolder and the ‘User’ subfolder:</li>
+<li>Spectrum within the ‘Reference’ subfolders can not be modified. This folder contains only reference built-in spectrum.</li>
+<li>User can create spectrums in the ‘User’ subfolder. Spectrum can be modified later if necessary.</li>
 </ul>
 </div>
 <div class="section" id="definition">
@@ -237,48 +236,48 @@
 <p>In the ‘Spectrum’ database folder, spectrum are defined simultaneously by a sound level in decibels (dB) or in decibels with the A-weigthed (dB(A)), for each frequency band of interest.</p>
 <p><strong>Very important rules:</strong></p>
 <ul class="simple">
-<li><p>at the spectrum creation, the global sound level (in dB) is set to 0 dB;</p></li>
-<li><p>modifying the global sound level (in dB) updates automatically the ponderate global sound level (in dB(A));</p></li>
-<li><p>modifying the ponderate global sound level (in dB(A)) updates automatically the global sound level (in dB);</p></li>
-<li><p>modifying the global sound level, either in dB and in dB(A), updates automatically the value for all frequency band, in dB and in dB(A), by applying an uniform ponderation on all frequency band;</p></li>
-<li><p>modifying one or more values for a given frequency band, affects automatically the global sound level, both in dB and in dB(A);</p></li>
-<li><p>the global sound level, both in dB and in dB(A), are calculated over the 27 frequency bands between 50 and 20000 Hz.</p></li>
+<li>at the spectrum creation, the global sound level (in dB) is set to 0 dB;</li>
+<li>modifying the global sound level (in dB) updates automatically the ponderate global sound level (in dB(A));</li>
+<li>modifying the ponderate global sound level (in dB(A)) updates automatically the global sound level (in dB);</li>
+<li>modifying the global sound level, either in dB and in dB(A), updates automatically the value for all frequency band, in dB and in dB(A), by applying an uniform ponderation on all frequency band;</li>
+<li>modifying one or more values for a given frequency band, affects automatically the global sound level, both in dB and in dB(A);</li>
+<li>the global sound level, both in dB and in dB(A), are calculated over the 27 frequency bands between 50 and 20000 Hz.</li>
 </ul>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>User can however select only few frequency bands for the calculation. In this case, the user must    set the correct sound level values for each corresponding frequency band. The global sound level that will be calculated by I-Simpa (for source spectrum) will not be the global sound level that should be  obtained over the selected frequency bands. However, in the results data, since the calculation will be been done with the selected frequency bands, the global sound level at a receiver will be correct.</p>
+<p class="first admonition-title">Warning</p>
+<p class="last">User can however select only few frequency bands for the calculation. In this case, the user must    set the correct sound level values for each corresponding frequency band. The global sound level that will be calculated by I-Simpa (for source spectrum) will not be the global sound level that should be  obtained over the selected frequency bands. However, in the results data, since the calculation will be been done with the selected frequency bands, the global sound level at a receiver will be correct.</p>
 </div>
 <p><strong>Examples:</strong></p>
 <ol class="arabic">
-<li><p><strong>A first spectrum is created</strong>:</p>
+<li><p class="first"><strong>A first spectrum is created</strong>:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>By default, the global sound level is automatically set to 0 dB;</p></li>
-<li><p>By default, the global sound level is distributed over all frequency bands (27 third octave bands, from 50 Hz to 20 000 Hz), which gives -14.31 dB for each band (<em>i.e.</em> -10log(27)=-14.31 dB);</p></li>
-<li><p>The A-weigthed is automatically calculated for each frequency band, leading a global sound level of -2.38 dB(A).</p></li>
+<li>By default, the global sound level is automatically set to 0 dB;</li>
+<li>By default, the global sound level is distributed over all frequency bands (27 third octave bands, from 50 Hz to 20 000 Hz), which gives -14.31 dB for each band (<em>i.e.</em> -10log(27)=-14.31 dB);</li>
+<li>The A-weigthed is automatically calculated for each frequency band, leading a global sound level of -2.38 dB(A).</li>
 </ul>
 </div></blockquote>
 </li>
-<li><p><strong>The global sound level is set to 100 dB</strong>:</p>
+<li><p class="first"><strong>The global sound level is set to 100 dB</strong>:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>The sound level for each frequency band is uniformly modified and sets to 85.69 dB (<em>i.e.</em> 100-14.31 dB);</p></li>
-<li><p>The ponderate sound level in dB(A) is automatically modified, both for each frequency band and for the global sound level.</p></li>
+<li>The sound level for each frequency band is uniformly modified and sets to 85.69 dB (<em>i.e.</em> 100-14.31 dB);</li>
+<li>The ponderate sound level in dB(A) is automatically modified, both for each frequency band and for the global sound level.</li>
 </ul>
 </div></blockquote>
 </li>
-<li><p><strong>The ponderate sound level is set to 100 dB(A)</strong>:</p>
+<li><p class="first"><strong>The ponderate sound level is set to 100 dB(A)</strong>:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>The ponderate sound level for each frequency band is modified, according to the pattern of the A ponderation;</p></li>
-<li><p>The ponderate sound level in dB is automatically modified, both for each frequency band and for the global sound level.</p></li>
+<li>The ponderate sound level for each frequency band is modified, according to the pattern of the A ponderation;</li>
+<li>The ponderate sound level in dB is automatically modified, both for each frequency band and for the global sound level.</li>
 </ul>
 </div></blockquote>
 </li>
-<li><p><strong>from the last spectrum, the sound level is modified to 50 dB for the third octave band between 500Hz and 2000Hz</strong>, and then the global sound level is set to 80 dB:</p>
+<li><p class="first"><strong>from the last spectrum, the sound level is modified to 50 dB for the third octave band between 500Hz and 2000Hz</strong>, and then the global sound level is set to 80 dB:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>All sound level, both in dB and dB(A) are automatically updated.</p></li>
+<li>All sound level, both in dB and dB(A) are automatically updated.</li>
 </ul>
 </div></blockquote>
 </li>
@@ -288,17 +287,17 @@
 <h3>Using spectrum in the ‘Data’ tree<a class="headerlink" href="#using-spectrum-in-the-data-tree" title="Permalink to this headline">¶</a></h3>
 <p>In I-Simpa, spectrum are used either for punctual receivers (element ‘Background noise’) and for sound sources (element ‘Sound power’).</p>
 <ul class="simple">
-<li><p>in the ‘Properties’ window, <strong>select</strong> the ‘Spectrum’ in the list (the list contains all ‘Reference’ and ‘User’ spectrums)</p></li>
-<li><p><strong>define</strong> the total sound power ‘Lw’ (in dB);</p></li>
-<li><p>if necessary, <strong>add</strong> an ‘Attenuation’ (in dB) either in global or in frequency band: this attenuation will be applied on the corresponding values of the sound power of the source.</p></li>
+<li>in the ‘Properties’ window, <strong>select</strong> the ‘Spectrum’ in the list (the list contains all ‘Reference’ and ‘User’ spectrums)</li>
+<li><strong>define</strong> the total sound power ‘Lw’ (in dB);</li>
+<li>if necessary, <strong>add</strong> an ‘Attenuation’ (in dB) either in global or in frequency band: this attenuation will be applied on the corresponding values of the sound power of the source.</li>
 </ul>
 <div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>The ‘Attenuation’ value can be useful to simulate an attenuation device on the source, without changing the source spectrum, just by adjusting the attenuation in global or in frequency band.</p>
+<p class="first admonition-title">Tip</p>
+<p class="last">The ‘Attenuation’ value can be useful to simulate an attenuation device on the source, without changing the source spectrum, just by adjusting the attenuation in global or in frequency band.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>A global attenuation of 0 dB will apply an uniform attenuation of -14.31 dB for each frequency band. In you do not want to take an attenuation into account, the attenuation must be set to 0 dB for each frequency band.</p>
+<p class="first admonition-title">Warning</p>
+<p class="last">A global attenuation of 0 dB will apply an uniform attenuation of -14.31 dB for each frequency band. In you do not want to take an attenuation into account, the attenuation must be set to 0 dB for each frequency band.</p>
 </div>
 </div>
 </div>
@@ -324,22 +323,14 @@
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Dec 23, 2020.
+        Last updated on Jan 07, 2022.
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -350,6 +341,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

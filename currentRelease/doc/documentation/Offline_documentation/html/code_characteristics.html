@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,29 +12,28 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script async="async" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
 </head>
@@ -49,7 +49,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> I-Simpa
+            <a href="index.html" class="icon icon-home"> I-Simpa
           
 
           
@@ -76,7 +76,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -124,7 +123,8 @@
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in <strong>SPPS</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in SPPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_Validation.html">Verification of the SPPS code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
@@ -142,7 +142,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -181,7 +180,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>Calculation code characteristics</li>
     
@@ -204,292 +203,223 @@
             
   <div class="section" id="calculation-code-characteristics">
 <h1>Calculation code characteristics<a class="headerlink" href="#calculation-code-characteristics" title="Permalink to this headline">¶</a></h1>
-<table class="colwidths-given docutils align-default" id="id1">
+<table border="1" class="colwidths-given docutils" id="id1">
 <caption><span class="caption-text">Physical phenomena</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
 <colgroup>
-<col style="width: 70%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
+<col width="70%" />
+<col width="15%" />
+<col width="15%" />
 </colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Physical phenomena</p></th>
-<th class="head"><p><a class="reference external" href="code_SPPS.html">SPPS code</a></p></th>
-<th class="head"><p><a class="reference external" href="code_TCR.html">TCR code</a></p></th>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Physical phenomena</th>
+<th class="head"><a class="reference external" href="code_SPPS.html">SPPS code</a></th>
+<th class="head"><a class="reference external" href="code_TCR.html">TCR code</a></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Direct field</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Direct field</td>
+<td>✅</td>
+<td>✅</td>
 </tr>
-<tr class="row-odd"><td><p>Specular field (specular reflection)</p></td>
-<td><p>✅</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
+<tr class="row-odd"><td>Specular field (specular reflection)</td>
+<td>✅</td>
+<td>❌</td>
 </tr>
-<tr class="row-even"><td><p>Diffuse field</p></td>
-<td><p>✅ (using scattering coefficient)</p></td>
-<td><p>✅ (Sabine, Eyring)</p></td>
+<tr class="row-even"><td>Diffuse field</td>
+<td>✅ (using scattering coefficient)</td>
+<td>✅ (Sabine, Eyring)</td>
 </tr>
-<tr class="row-odd"><td><p>Scattered field (edge scattering)</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
+<tr class="row-odd"><td>Scattered field (edge scattering)</td>
+<td>❌</td>
+<td>❌</td>
 </tr>
-<tr class="row-even"><td><p>Surface absorption</p></td>
-<td><p>✅ (using absorption coefficient)</p></td>
-<td><p>✅ (using absorption coefficient)</p></td>
+<tr class="row-even"><td>Surface absorption</td>
+<td>✅ (using absorption coefficient)</td>
+<td>✅ (using absorption coefficient)</td>
 </tr>
-<tr class="row-odd"><td><p>Diffusion by fittings</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
+<tr class="row-odd"><td>Diffusion by fittings</td>
+<td>✅</td>
+<td>✅</td>
 </tr>
-<tr class="row-even"><td><p>Atmospheric absorption</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
+<tr class="row-even"><td>Atmospheric absorption</td>
+<td>✅</td>
+<td>✅</td>
 </tr>
-<tr class="row-odd"><td><p>Meteorological effects</p></td>
-<td><p>✅</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
+<tr class="row-odd"><td>Meteorological effects</td>
+<td>✅</td>
+<td>❌</td>
 </tr>
 </tbody>
 </table>
-<table class="colwidths-given docutils align-default" id="id2">
+<table border="1" class="colwidths-given docutils" id="id2">
 <caption><span class="caption-text">Receiver type and characteristics</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
 <colgroup>
-<col style="width: 70%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
+<col width="70%" />
+<col width="15%" />
+<col width="15%" />
 </colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Type/characteristics</p></th>
-<th class="head"><p><a class="reference external" href="code_SPPS.html">SPPS code</a></p></th>
-<th class="head"><p><a class="reference external" href="code_TCR.html">TCR code</a></p></th>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type/characteristics</th>
+<th class="head"><a class="reference external" href="code_SPPS.html">SPPS code</a></th>
+<th class="head"><a class="reference external" href="code_TCR.html">TCR code</a></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Punctual receiver</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Punctual receiver</td>
+<td>✅</td>
+<td>✅</td>
 </tr>
-<tr class="row-odd"><td><p>Surface receiver (any face element of the 3D scene)</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
+<tr class="row-odd"><td>Surface receiver (any face element of the 3D scene)</td>
+<td>✅</td>
+<td>✅</td>
 </tr>
-<tr class="row-even"><td><p>Surface receiver (any defined plane receivers)</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
+<tr class="row-even"><td>Surface receiver (any defined plane receivers)</td>
+<td>✅</td>
+<td>✅</td>
 </tr>
 </tbody>
 </table>
-<table class="colwidths-given docutils align-default" id="id3">
+<table border="1" class="colwidths-given docutils" id="id3">
 <caption><span class="caption-text">Sound source type and characteristics</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
 <colgroup>
-<col style="width: 70%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
+<col width="70%" />
+<col width="15%" />
+<col width="15%" />
 </colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Type/characteristics</p></th>
-<th class="head"><p><a class="reference external" href="code_SPPS.html">SPPS code</a></p></th>
-<th class="head"><p><a class="reference external" href="code_TCR.html">TCR code</a></p></th>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type/characteristics</th>
+<th class="head"><a class="reference external" href="code_SPPS.html">SPPS code</a></th>
+<th class="head"><a class="reference external" href="code_TCR.html">TCR code</a></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Punctual sound source : omnidirectionnal</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Punctual sound source : omnidirectionnal</td>
+<td>✅</td>
+<td>✅</td>
 </tr>
-<tr class="row-odd"><td><p>Punctual sound source : complex directivity</p></td>
-<td><p>✅</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
+<tr class="row-odd"><td>Punctual sound source : complex directivity</td>
+<td>✅</td>
+<td>❌</td>
 </tr>
-<tr class="row-even"><td><p>Surface sound source</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
+<tr class="row-even"><td>Surface sound source</td>
+<td>❌</td>
+<td>❌</td>
 </tr>
-<tr class="row-odd"><td><p>Line sound source</p></td>
-<td><p>as a line of punctual sources</p></td>
-<td><p>as a line of punctual sources</p></td>
+<tr class="row-odd"><td>Line sound source</td>
+<td>as a line of punctual sources</td>
+<td>as a line of punctual sources</td>
 </tr>
 </tbody>
 </table>
-<table class="colwidths-given docutils align-default" id="id4">
+<table border="1" class="colwidths-given docutils" id="id4">
 <caption><span class="caption-text">Acoustical parameters</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
 <colgroup>
-<col style="width: 70%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
+<col width="70%" />
+<col width="15%" />
+<col width="15%" />
 </colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Type/characteristics</p></th>
-<th class="head"><p><a class="reference external" href="code_SPPS.html">SPPS code</a></p></th>
-<th class="head"><p><a class="reference external" href="code_TCR.html">TCR code</a></p></th>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type/characteristics</th>
+<th class="head"><a class="reference external" href="code_SPPS.html">SPPS code</a></th>
+<th class="head"><a class="reference external" href="code_TCR.html">TCR code</a></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Sound level</p></td>
-<td><p>✅ (dB, dBA)</p></td>
-<td><p>✅ (Sabine, Eyring, Direct field)</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Sound level</td>
+<td>✅ (dB, dBA)</td>
+<td>✅ (Sabine, Eyring, Direct field)</td>
 </tr>
-<tr class="row-odd"><td><p>Lateral Sound level</p></td>
-<td><p>✅ (cos, cos²)</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
+<tr class="row-odd"><td>Lateral Sound level</td>
+<td>✅ (cos, cos²)</td>
+<td>❌</td>
 </tr>
-<tr class="row-even"><td><p>Clarity</p></td>
-<td><p>✅ (C50, C80, user defined)</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
+<tr class="row-even"><td>Clarity</td>
+<td>✅ (C50, C80, user defined)</td>
+<td>❌</td>
 </tr>
-<tr class="row-odd"><td><p>Definition</p></td>
-<td><p>✅ (D50, user defined)</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
+<tr class="row-odd"><td>Definition</td>
+<td>✅ (D50, user defined)</td>
+<td>❌</td>
 </tr>
-<tr class="row-even"><td><p>Ts</p></td>
-<td><p>✅</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
+<tr class="row-even"><td>Ts</td>
+<td>✅</td>
+<td>❌</td>
 </tr>
-<tr class="row-odd"><td><p>RT</p></td>
-<td><p>✅ (RT15, RT30, user defined)</p></td>
-<td><p>✅ (RT Sabine, RT Eyring)</p></td>
+<tr class="row-odd"><td>RT</td>
+<td>✅ (RT15, RT30, user defined)</td>
+<td>✅ (RT Sabine, RT Eyring)</td>
 </tr>
-<tr class="row-even"><td><p>EDT</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
+<tr class="row-even"><td>EDT</td>
+<td>✅</td>
+<td>✅</td>
 </tr>
-<tr class="row-odd"><td><p>ST</p></td>
-<td><p>✅</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
+<tr class="row-odd"><td>ST</td>
+<td>✅</td>
+<td>❌</td>
 </tr>
-<tr class="row-even"><td><p>LF</p></td>
-<td><p>✅ (LF80, user defined)</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
+<tr class="row-even"><td>LF</td>
+<td>✅ (LF80, user defined)</td>
+<td>❌</td>
 </tr>
-<tr class="row-odd"><td><p>LFC</p></td>
-<td><p>✅ (LFC80, user defined)</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
+<tr class="row-odd"><td>LFC</td>
+<td>✅ (LFC80, user defined)</td>
+<td>❌</td>
 </tr>
-<tr class="row-even"><td><p>LG</p></td>
-<td><p>✅</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
+<tr class="row-even"><td>LG</td>
+<td>❌</td>
+<td>❌</td>
 </tr>
-<tr class="row-odd"><td><p>G</p></td>
-<td><p>✅</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
+<tr class="row-odd"><td>G</td>
+<td>❌</td>
+<td>❌</td>
 </tr>
 </tbody>
 </table>
-<table class="colwidths-given docutils align-default" id="id5">
+<table border="1" class="colwidths-given docutils" id="id5">
 <caption><span class="caption-text">Graphical representations</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
 <colgroup>
-<col style="width: 70%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
+<col width="70%" />
+<col width="15%" />
+<col width="15%" />
 </colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Type/characteristics</p></th>
-<th class="head"><p><a class="reference external" href="code_SPPS.html">SPPS code</a></p></th>
-<th class="head"><p><a class="reference external" href="code_TCR.html">TCR code</a></p></th>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type/characteristics</th>
+<th class="head"><a class="reference external" href="code_SPPS.html">SPPS code</a></th>
+<th class="head"><a class="reference external" href="code_TCR.html">TCR code</a></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Echogramm</p></td>
-<td><p>✅</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
+<tbody valign="top">
+<tr class="row-even"><td>Echogramm</td>
+<td>✅</td>
+<td>❌</td>
 </tr>
-<tr class="row-odd"><td><p>Spectrum</p></td>
-<td><p>✅ (total, per sound source)</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
+<tr class="row-odd"><td>Spectrum</td>
+<td>✅ (total, per sound source)</td>
+<td>❌</td>
 </tr>
-<tr class="row-even"><td><p>Sound level map (on surface receivers) : instantaneous</p></td>
-<td><p>✅</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
+<tr class="row-even"><td>Sound level map (on surface receivers) : instantaneous</td>
+<td>✅</td>
+<td>❌</td>
 </tr>
-<tr class="row-odd"><td><p>Sound level map (on surface receivers) : cumulative</p></td>
-<td><p>✅</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
+<tr class="row-odd"><td>Sound level map (on surface receivers) : cumulative</td>
+<td>✅</td>
+<td>❌</td>
 </tr>
-<tr class="row-even"><td><p>Sound level map (on surface receivers) : cumulated</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
+<tr class="row-even"><td>Sound level map (on surface receivers) : cumulated</td>
+<td>✅</td>
+<td>✅</td>
 </tr>
-<tr class="row-odd"><td><p>Acoustical parameters map (on surface receivers)</p></td>
-<td><p>✅</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
+<tr class="row-odd"><td>Acoustical parameters map (on surface receivers)</td>
+<td>✅</td>
+<td>❌</td>
 </tr>
-<tr class="row-even"><td><p>Schroeder curves</p></td>
-<td><p>✅ (data to display)</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
+<tr class="row-even"><td>Schroeder curves</td>
+<td>✅ (data to display)</td>
+<td>❌</td>
 </tr>
-<tr class="row-odd"><td><p>Intensity</p></td>
-<td><p>✅ (animation)</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
+<tr class="row-odd"><td>Intensity</td>
+<td>✅ (animation)</td>
+<td>❌</td>
 </tr>
 </tbody>
 </table>
@@ -506,22 +436,14 @@
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Dec 23, 2020.
+        Last updated on Jan 07, 2022.
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -532,6 +454,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

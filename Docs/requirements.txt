@@ -1,1 +1,1 @@
-sphinxcontrib-bibtex
+sphinxcontrib-bibtex = {version = "<2.0.0"} 

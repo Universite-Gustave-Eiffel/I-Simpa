@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,29 +12,28 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script async="async" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Presentation" href="code_SPPS.html" />
@@ -51,7 +51,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> I-Simpa
+            <a href="index.html" class="icon icon-home"> I-Simpa
           
 
           
@@ -78,7 +78,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -126,7 +125,8 @@
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in <strong>SPPS</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in SPPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_Validation.html">Verification of the SPPS code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
@@ -144,7 +144,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -183,7 +182,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>Creating charts</li>
     
@@ -208,44 +207,45 @@
 <h1>Creating charts<a class="headerlink" href="#creating-charts" title="Permalink to this headline">¶</a></h1>
 <p>Most values represented as tables in a ‘Properties’ window can be displayed in a chart form, configurable by the user. The procedure consists of
 selecting cells in a table of data, then, to click with the right mouse button on the corresponding selection and to specify options representation:</p>
-<dl class="simple">
-<dt>‘Tab name’</dt><dd><p>Name of the tab containing the created a chart.</p>
-</dd>
-<dt>‘Name of X axis’</dt><dd><p>Name of the <em>x</em>-axis.</p>
-</dd>
-<dt>‘Name of X axis’</dt><dd><p>Name of the <em>y</em>-axis.</p>
-</dd>
-<dt>‘Data alignment’</dt><dd><p>Choose the orientation of</p>
-</dd>
-<dt>‘Text label for X’</dt><dd><p>Display labels of the <em>x</em>-axis in a ‘text mode’ using a linear space, or in ‘value mode’ using the real <em>x</em> value.</p>
-</dd>
-<dt>‘Default Style’</dt><dd><p>Curves representation.</p>
-</dd>
+<dl class="docutils">
+<dt>‘Tab name’</dt>
+<dd>Name of the tab containing the created a chart.</dd>
+<dt>‘Name of X axis’</dt>
+<dd>Name of the <em>x</em>-axis.</dd>
+<dt>‘Name of X axis’</dt>
+<dd>Name of the <em>y</em>-axis.</dd>
+<dt>‘Data alignment’</dt>
+<dd>Choose the orientation of</dd>
+<dt>‘Text label for X’</dt>
+<dd>Display labels of the <em>x</em>-axis in a ‘text mode’ using a linear space, or in ‘value mode’ using the real <em>x</em> value.</dd>
+<dt>‘Default Style’</dt>
+<dd>Curves representation.</dd>
 </dl>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The choice of colors (for curves, fills, dots…) in the representation of graphics is random.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">The choice of colors (for curves, fills, dots…) in the representation of graphics is random.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The labels of the data series (in tables) are automatically considered in charts.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">The labels of the data series (in tables) are automatically considered in charts.</p>
 </div>
 </div>
 <div class="section" id="chart-options">
 <h1>Chart Options<a class="headerlink" href="#chart-options" title="Permalink to this headline">¶</a></h1>
 <p>Once the chart is created, several actions are possible, using the contextual menu on the chart.</p>
-<dl class="simple">
-<dt>‘Original Zoom’</dt><dd><p>Reset to the initla display. Use the mouse (button left) to zoom in/out.</p>
-</dd>
-<dt>‘Export’</dt><dd><ul class="simple">
-<li><p>‘Export to image file’: export the chart as an image file (PNG, JPG, BMP).</p></li>
-<li><p>‘Export to clipboard’: user can paste the chart in antoher application.</p></li>
+<dl class="docutils">
+<dt>‘Original Zoom’</dt>
+<dd>Reset to the initla display. Use the mouse (button left) to zoom in/out.</dd>
+<dt>‘Export’</dt>
+<dd><ul class="first last simple">
+<li>‘Export to image file’: export the chart as an image file (PNG, JPG, BMP).</li>
+<li>‘Export to clipboard’: user can paste the chart in antoher application.</li>
 </ul>
 </dd>
-<dt>‘Show/Hide curves’</dt><dd><p>Select the curves to be displayed or ‘Show’/’Hide’ all curves.</p>
-</dd>
-<dt>‘Display parameters’</dt><dd><p>Configure all the chart properties.</p>
-</dd>
+<dt>‘Show/Hide curves’</dt>
+<dd>Select the curves to be displayed or ‘Show’/’Hide’ all curves.</dd>
+<dt>‘Display parameters’</dt>
+<dd>Configure all the chart properties.</dd>
 </dl>
 </div>
 
@@ -269,22 +269,14 @@ selecting cells in a table of data, then, to click with the right mouse button o
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Dec 23, 2020.
+        Last updated on Jan 07, 2022.
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -295,6 +287,7 @@ selecting cells in a table of data, then, to click with the right mouse button o
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

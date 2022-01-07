@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,29 +12,28 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script async="async" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="GUI Presentation" href="presentation.html" />
@@ -51,7 +51,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> I-Simpa
+            <a href="index.html" class="icon icon-home"> I-Simpa
           
 
           
@@ -78,7 +78,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -130,7 +129,8 @@
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in <strong>SPPS</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in SPPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_Validation.html">Verification of the SPPS code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
@@ -148,7 +148,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -187,7 +186,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>(Un)Setup</li>
     
@@ -213,35 +212,35 @@
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p><strong>Download I-Simpa</strong> from the web site <a class="reference external" href="http://i-simpa.ifsttar.fr">http://i-simpa.ifsttar.fr</a></p></li>
-<li><p><strong>Run</strong> the installation file</p></li>
-<li><p><strong>Select the language</strong> of installation (language can be changed
-within I-Simpa)</p></li>
-<li><p><strong>Agree</strong> (or not) with the terms of the I-Simpa license agreement</p></li>
-<li><p><strong>Choose the components to install</strong> at the same time (a functional
+<li><strong>Download I-Simpa</strong> from the web site <a class="reference external" href="http://i-simpa.ifsttar.fr">http://i-simpa.ifsttar.fr</a></li>
+<li><strong>Run</strong> the installation file</li>
+<li><strong>Select the language</strong> of installation (language can be changed
+within I-Simpa)</li>
+<li><strong>Agree</strong> (or not) with the terms of the I-Simpa license agreement</li>
+<li><strong>Choose the components to install</strong> at the same time (a functional
 Python installation is required. If not already install on your
-computer, choose the ‘Python’ component)</p></li>
-<li><p><strong>Choose to install I-Simpa for you</strong> or for anyone</p></li>
-<li><p><strong>Choose the install location</strong></p></li>
-<li><p><strong>Wait</strong> during the installation procedure</p></li>
-<li><p><strong>Launch I-Simpa</strong></p></li>
+computer, choose the ‘Python’ component)</li>
+<li><strong>Choose to install I-Simpa for you</strong> or for anyone</li>
+<li><strong>Choose the install location</strong></li>
+<li><strong>Wait</strong> during the installation procedure</li>
+<li><strong>Launch I-Simpa</strong></li>
 </ul>
 <p>The installation procedure will create:</p>
 <ul class="simple">
-<li><p>an icon on the desktop</p></li>
-<li><p>a folder in the start menu folder</p></li>
+<li>an icon on the desktop</li>
+<li>a folder in the start menu folder</li>
 </ul>
 </div>
 <div class="section" id="un-installation">
 <h2>Un-installation<a class="headerlink" href="#un-installation" title="Permalink to this headline">¶</a></h2>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>By removing I-Simpa, you will remove all the installation folder (including all files and all subfolders). If you have have modified or installed new files (scripts, graphics, data…), if necessary, please backup all files before removing I-Simpa.</p>
+<p class="first admonition-title">Warning</p>
+<p class="last">By removing I-Simpa, you will remove all the installation folder (including all files and all subfolders). If you have have modified or installed new files (scripts, graphics, data…), if necessary, please backup all files before removing I-Simpa.</p>
 </div>
 <ul class="simple">
-<li><p><strong>Select the uninstall</strong> tool in the start menu of I-Simpa</p></li>
-<li><p><strong>Wait</strong> during the uninstallation procedure</p></li>
-<li><p>I-Simpa is removed from your computer</p></li>
+<li><strong>Select the uninstall</strong> tool in the start menu of I-Simpa</li>
+<li><strong>Wait</strong> during the uninstallation procedure</li>
+<li>I-Simpa is removed from your computer</li>
 </ul>
 </div>
 </div>
@@ -266,22 +265,14 @@ computer, choose the ‘Python’ component)</p></li>
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Dec 23, 2020.
+        Last updated on Jan 07, 2022.
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -292,6 +283,7 @@ computer, choose the ‘Python’ component)</p></li>
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

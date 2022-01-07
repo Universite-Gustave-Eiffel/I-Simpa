@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,29 +12,28 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script async="async" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Import options" href="import_options.html" />
@@ -51,7 +51,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> I-Simpa
+            <a href="index.html" class="icon icon-home"> I-Simpa
           
 
           
@@ -78,7 +78,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -139,7 +138,8 @@
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in <strong>SPPS</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in SPPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_Validation.html">Verification of the SPPS code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
@@ -157,7 +157,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -196,7 +195,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>Project database</li>
     
@@ -221,18 +220,18 @@
 <h1>Project database<a class="headerlink" href="#project-database" title="Permalink to this headline">¶</a></h1>
 <p>The Projet database is an element of the ‘Projet’ tree. This database is composed of three database:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#directivities">Directivities</a> for sound source and receiver</p></li>
-<li><p><a class="reference internal" href="#materials">Materials</a> for the scene boundaries</p></li>
-<li><p><a class="reference internal" href="#spectrum">Spectrum</a> for receiver and sound sources</p></li>
+<li><a class="reference internal" href="#directivities">Directivities</a> for sound source and receiver</li>
+<li><a class="reference internal" href="#materials">Materials</a> for the scene boundaries</li>
+<li><a class="reference internal" href="#spectrum">Spectrum</a> for receiver and sound sources</li>
 </ul>
 <p>For each database, two sub-database are given:</p>
 <ul class="simple">
-<li><p>a ‘Reference’ database that contains built in information, which can not be edited by the user</p></li>
-<li><p>a ‘User’ database that can be edited bu the user to create new elements</p></li>
+<li>a ‘Reference’ database that contains built in information, which can not be edited by the user</li>
+<li>a ‘User’ database that can be edited bu the user to create new elements</li>
 </ul>
 <div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Note that it is possible to copy an element from the ‘Reference’ database to the ‘User’ database.
+<p class="first admonition-title">Tip</p>
+<p class="last">Note that it is possible to copy an element from the ‘Reference’ database to the ‘User’ database.
 Copy/Paste is also possible for folder.</p>
 </div>
 <div class="section" id="directivities">
@@ -245,24 +244,25 @@ Copy/Paste is also possible for folder.</p>
 <h3>Contextual menu<a class="headerlink" href="#contextual-menu" title="Permalink to this headline">¶</a></h3>
 <p><strong>Right click</strong> on the ‘User’ folder to define a new material or a group of material.</p>
 <ul class="simple">
-<li><dl class="simple">
-<dt>‘New Material’</dt><dd><p>Creates a new material in the corresponding group.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘New Material’</dt>
+<dd>Creates a new material in the corresponding group.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Create group’</dt><dd><p>Creates a new group in the corresponding group.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Create group’</dt>
+<dd>Creates a new group in the corresponding group.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Import from a file’</dt><dd><p>Allows to import materials from a file. Several formats are supported:</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Import from a file’</dt>
+<dd>Allows to import materials from a file. Several formats are supported:</dd>
 </dl>
 </li>
 </ul>
-<dl>
-<dt>Importing from CATT-Acoustic Format</dt><dd><p>File used by the CATT-Acoustic software: text file with extension ‘.txt’ (see <a class="reference external" href="http://www.catt.se">CATT-Acoustic website</a>).</p>
+<dl class="docutils">
+<dt>Importing from CATT-Acoustic Format</dt>
+<dd><p class="first">File used by the CATT-Acoustic software: text file with extension ‘.txt’ (see <a class="reference external" href="http://www.catt.se">CATT-Acoustic website</a>).</p>
 <p>CATT-Acoustic material file example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">panelwalls</span> <span class="o">=</span> <span class="o">&lt;</span> <span class="mi">21</span> <span class="mi">12</span> <span class="mi">9</span> <span class="mi">6</span> <span class="mi">9</span> <span class="mi">13</span> <span class="o">&gt;</span> <span class="n">L</span> <span class="o">&lt;</span> <span class="mi">15</span> <span class="mi">13</span> <span class="mi">11</span> <span class="mi">9</span> <span class="mi">7</span> <span class="mi">5</span> <span class="o">&gt;</span>
 <span class="n">sidereflector</span> <span class="o">=</span> <span class="o">&lt;</span> <span class="mi">20</span> <span class="mi">12</span> <span class="mi">6</span> <span class="mi">4</span> <span class="mi">7</span> <span class="mi">10</span> <span class="o">&gt;</span> <span class="n">L</span> <span class="o">&lt;</span> <span class="mi">15</span> <span class="mi">20</span> <span class="mi">25</span> <span class="mi">35</span> <span class="mi">45</span> <span class="mi">50</span> <span class="o">&gt;</span>
@@ -281,134 +281,146 @@ Copy/Paste is also possible for folder.</p>
 <span class="n">exteriorwalls</span> <span class="o">=</span> <span class="o">&lt;</span> <span class="mi">20</span> <span class="mi">12</span> <span class="mi">6</span> <span class="mi">4</span> <span class="mi">7</span> <span class="mi">10</span> <span class="o">&gt;</span> <span class="n">L</span> <span class="o">&lt;</span> <span class="mi">15</span> <span class="mi">20</span> <span class="mi">25</span> <span class="mi">35</span> <span class="mi">45</span> <span class="mi">50</span> <span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>CATT-Acoustic material file import example in I-Simpa</p>
+<p class="last">CATT-Acoustic material file import example in I-Simpa</p>
 </dd>
 </dl>
 <a class="reference internal image-reference" href="_images/CATT_import.PNG"><img alt="_images/CATT_import.PNG" class="align-center" src="_images/CATT_import.PNG" style="width: 500px;" /></a>
-<dl class="clear-both simple">
-<dt>Importing from Odeon Format</dt><dd><p>File used by the software Odeon: text file with extension ‘.li8’ (see <a class="reference external" href="http://www.odeon.dk">Odeon website</a>);</p>
-</dd>
+<dl class="clear-both docutils">
+<dt>Importing from Odeon Format</dt>
+<dd>File used by the software Odeon: text file with extension ‘.li8’ (see <a class="reference external" href="http://www.odeon.dk">Odeon website</a>);</dd>
 </dl>
 <div class="clear-both admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The CATT-Acoustic and Odeon data files are defined octave bands, while I-Simpa uses third octave bands. During the importation, values per octave band are attributed to the corresponding third octaves. Furthermore, since I-Simpa takes into accound upper and lower frequency bands than the last software, data are extrapolated from the closest frquency band data.</p>
+<p class="first admonition-title">Warning</p>
+<p class="last">The CATT-Acoustic and Odeon data files are defined octave bands, while I-Simpa uses third octave bands. During the importation, values per octave band are attributed to the corresponding third octaves. Furthermore, since I-Simpa takes into accound upper and lower frequency bands than the last software, data are extrapolated from the closest frquency band data.</p>
 </div>
 <div class="clear-both admonition note">
-<p class="admonition-title">Note</p>
-<p>During importation, all fields of the original file are not imported from the data files.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">During importation, all fields of the original file are not imported from the data files.</p>
 </div>
 </div>
 <div class="section" id="properties">
 <h3>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h3>
 <ul>
-<li><dl class="simple">
-<dt>‘Display’</dt><dd><p>Opens a dialog box to assign a color to the material, for the representation of the material in the scene (see <a class="reference external" href="Menu_View.html">Menu view</a>).</p>
+<li><dl class="first docutils">
+<dt>‘Display’</dt>
+<dd><p class="first last">Opens a dialog box to assign a color to the material, for the representation of the material in the scene (see <a class="reference external" href="Menu_View.html">Menu view</a>).</p>
 </dd>
 </dl>
 </li>
-<li><p>‘Description’</p>
+<li><p class="first">‘Description’</p>
 <blockquote>
 <div><ul>
-<li><dl class="simple">
-<dt>‘Description’</dt><dd><p>String to describe the material.</p>
+<li><dl class="first docutils">
+<dt>‘Description’</dt>
+<dd><p class="first last">String to describe the material.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Mass density (kg/m3)’</dt><dd><p>Density of the material (real).</p>
+<li><dl class="first docutils">
+<dt>‘Mass density (kg/m3)’</dt>
+<dd><p class="first last">Density of the material (real).</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Reference’</dt><dd><p>Reference associated with the material (text).</p>
+<li><dl class="first docutils">
+<dt>‘Reference’</dt>
+<dd><p class="first last">Reference associated with the material (text).</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Resistivity (kN.mm-4)’</dt><dd><p>Resistivity of the material (real value).</p>
+<li><dl class="first docutils">
+<dt>‘Resistivity (kN.mm-4)’</dt>
+<dd><p class="first last">Resistivity of the material (real value).</p>
 </dd>
 </dl>
 </li>
-<li><dl>
-<dt>‘Side of material effect’</dt><dd><p>List for choosing how the material properties are considered in relation to the direction of propagation           relative to the normal to the material:</p>
-<blockquote>
+<li><dl class="first docutils">
+<dt>‘Side of material effect’</dt>
+<dd><p class="first">List for choosing how the material properties are considered in relation to the direction of propagation           relative to the normal to the material:</p>
+<blockquote class="last">
 <div><ul class="simple">
-<li><dl class="simple">
-<dt>‘Bilateral’</dt><dd><p>The material has the same properties on both sides of the surface to which it is associated.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Bilateral’</dt>
+<dd>The material has the same properties on both sides of the surface to which it is associated.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Unilateral’</dt><dd><p>The material is transparent in one direction. The acoustic properties of the material are considered only in a propagation direction opposite to the normal to the face. See the guide of the numerical code to know how this property is used.</p>
+<li><dl class="first docutils">
+<dt>‘Unilateral’</dt>
+<dd>The material is transparent in one direction. The acoustic properties of the material are considered only in a propagation direction opposite to the normal to the face. See the guide of the numerical code to know how this property is used.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
 </dd>
 </dl>
 </li>
 </ul>
 </div></blockquote>
+</li>
+<li><dl class="first docutils">
+<dt>‘Spectrum’</dt>
+<dd><p class="first last">Defines the acoustic properties of the material for each frequency band.</p>
 </dd>
 </dl>
 </li>
-</ul>
-</div></blockquote>
-</li>
-<li><dl class="simple">
-<dt>‘Spectrum’</dt><dd><p>Defines the acoustic properties of the material for each frequency band.</p>
+<li><dl class="first docutils">
+<dt>‘Absorption’</dt>
+<dd><p class="first last">Absorption coefficient of the material (real value between 0 and 1).</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Absorption’</dt><dd><p>Absorption coefficient of the material (real value between 0 and 1).</p>
+<li><dl class="first docutils">
+<dt>‘Diffusion’</dt>
+<dd><p class="first last">Scattering coefficient of the material in order to model wall diffusion (real value between 0 and 1).</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Diffusion’</dt><dd><p>Scattering coefficient of the material in order to model wall diffusion (real value between 0 and 1).</p>
+<li><dl class="first docutils">
+<dt>‘Transmission’</dt>
+<dd><p class="first last">Check/uncheck for taking acoustic transmission into account.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Transmission’</dt><dd><p>Check/uncheck for taking acoustic transmission into account.</p>
+<li><dl class="first docutils">
+<dt>‘Loss’</dt>
+<dd><p class="first last">Transmission loss of the material (dB).</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Loss’</dt><dd><p>Transmission loss of the material (dB).</p>
-</dd>
-</dl>
-</li>
-<li><dl>
-<dt>‘Diffusion law’</dt><dd><blockquote>
+<li><dl class="first docutils">
+<dt>‘Diffusion law’</dt>
+<dd><blockquote class="first">
 <div><p>Reflection law for the diffuse part of the reflection;</p>
 </div></blockquote>
-<ul class="simple">
-<li><dl class="simple">
-<dt>‘Lambert’</dt><dd><p>Diffuse Lambert reflection law (cosinus of the incident angle).</p>
-</dd>
+<ul class="last simple">
+<li><dl class="first docutils">
+<dt>‘Lambert’</dt>
+<dd>Diffuse Lambert reflection law (cosinus of the incident angle).</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Specular’</dt><dd><p>Specular reflection law.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Specular’</dt>
+<dd>Specular reflection law.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Uniform’</dt><dd><p>Uniform reflection law, (<em>i.e.</em> ‘W’ reflection law that corresponds to cosinus^2 of the incident angle).</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Uniform’</dt>
+<dd>Uniform reflection law, (<em>i.e.</em> ‘W’ reflection law that corresponds to cosinus^2 of the incident angle).</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘W2’</dt><dd><p>‘W2’ reflection law (cosinus^2 of the incident angle).</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘W2’</dt>
+<dd>‘W2’ reflection law (cosinus^2 of the incident angle).</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘W3’</dt><dd><p>‘W3’ reflection law (cosinus^3 of the incident angle).</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘W3’</dt>
+<dd>‘W3’ reflection law (cosinus^3 of the incident angle).</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘W4’</dt><dd><p>‘W4’ reflection law (cosinus^4 of the incident angle).</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘W4’</dt>
+<dd>‘W4’ reflection law (cosinus^4 of the incident angle).</dd>
 </dl>
 </li>
 </ul>
@@ -417,19 +429,19 @@ Copy/Paste is also possible for folder.</p>
 </li>
 </ul>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>For a scattering coefficient set to 0 (no diffuse reflection), the ‘Diffusion law’ is set to ‘Specular’, and can not be modified.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">For a scattering coefficient set to 0 (no diffuse reflection), the ‘Diffusion law’ is set to ‘Specular’, and can not be modified.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>For a scattering coefficient set to 1 (full diffuse reflection), the ‘Diffusion law’ is set to ‘Specular’ by default, but can be changed.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">For a scattering coefficient set to 1 (full diffuse reflection), the ‘Diffusion law’ is set to ‘Specular’ by default, but can be changed.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<p class="first admonition-title">Warning</p>
 <p><strong>Absorption and transmission loss are linked together</strong>. Since transmission is a part of the absorption (<span class="math notranslate nohighlight">\(\alpha=\beta+\tau\)</span>, see for example <a class="reference external" href="code_SPPS_modelling.html#acoustic-transmission-modelling">SPPS documentation</a>), the transmission coefficient <span class="math notranslate nohighlight">\(\tau\)</span> can not be larger than the absorption coefficient <span class="math notranslate nohighlight">\(\alpha\)</span>. For example, for a given absorption coefficient of <span class="math notranslate nohighlight">\(\alpha=0.2\)</span>, the transmission loss TL (<span class="math notranslate nohighlight">\(TL=-10\log\tau\)</span>) must be greater or equal than 7 dB (<em>i.e.</em> <span class="math notranslate nohighlight">\(TL \geq -10 \log \alpha=-10 \log 0.2 \approx 7\)</span> dB.</p>
-<ul class="simple">
-<li><p>If the transmission coefficient (<span class="math notranslate nohighlight">\(\tau=10^(-TL/10)\)</span>) value is larger than the possible absorption, the absorption coefficient is automatically adjusted.</p></li>
-<li><p>If the absorption coefficient is changed, the transmission loss <span class="math notranslate nohighlight">\(TL=-10\log\tau\)</span> can be automatically adjusted if necessary.</p></li>
+<ul class="last simple">
+<li>If the transmission coefficient (<span class="math notranslate nohighlight">\(\tau=10^(-TL/10)\)</span>) value is larger than the possible absorption, the absorption coefficient is automatically adjusted.</li>
+<li>If the absorption coefficient is changed, the transmission loss <span class="math notranslate nohighlight">\(TL=-10\log\tau\)</span> can be automatically adjusted if necessary.</li>
 </ul>
 </div>
 </div>
@@ -445,12 +457,12 @@ Copy/Paste is also possible for folder.</p>
 <h3>Properties<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>User has to define the spectrum value for each frequency band, either in ‘dB’ or in ‘dB(A)’.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Values in in ‘dB’ and in ‘dB(A)’ are linked together. Changing one value, for example in dB (respectively in dB(A)), will change the dB(A) value (respectively the dB value).</p>
+<p class="first admonition-title">Note</p>
+<p class="last">Values in in ‘dB’ and in ‘dB(A)’ are linked together. Changing one value, for example in dB (respectively in dB(A)), will change the dB(A) value (respectively the dB value).</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Changing the ‘Global’ value will affect the value for each frequency band: all values are shifted in order to respect the global value.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">Changing the ‘Global’ value will affect the value for each frequency band: all values are shifted in order to respect the global value.</p>
 </div>
 </div>
 </div>
@@ -476,22 +488,14 @@ Copy/Paste is also possible for folder.</p>
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Dec 23, 2020.
+        Last updated on Jan 07, 2022.
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -502,6 +506,7 @@ Copy/Paste is also possible for folder.</p>
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {
