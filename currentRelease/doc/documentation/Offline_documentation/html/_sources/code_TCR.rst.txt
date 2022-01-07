@@ -3,7 +3,7 @@ Presentation
 
 **TCR is a numerical code based on the Classical Theory or Reverberation.**
 
-- `Visit the offical I-Simpa website`_ for more information about TCR code.
+- `Visit the offical I-Simpa website`_ for more information about SPPS code.
 
 - See the main `characteristics of the code`_ that is embedded in I-Simpa.
 
