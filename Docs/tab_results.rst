@@ -14,6 +14,12 @@ The results of the calculations are sequentially added to the 'Results' tree wit
 
 In addition, each calculation codes generates specific files that can be interpreted by I-Simpa, depending of their format (with specific contents and file extensions).
 
+For more information, see the 'Results' section of each calculation code (in the documentation):
+
+- For the SPPS code : see section `SPPS Results`_
+
+.. _`SPPS Results`: code_configuration_SPPS.html#spps-results
+
 File formats
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -21,16 +27,16 @@ I-Simpa can interpret two types of file:
 
 - **File formats recognized by the Operating System**, such as `txt`, `xml`, `html`, `pdf`... for example. Double left click on the file starts the  associated program within the operating system.
 
-- **Native I-Simpa files**: these file are created by the calculation code and that can be associated with specific actions and treatments within I-Simpa. These files and associated actions are detailed below.
+- **Native I-Simpa files**: these file are created by the calculation code and that can be associated with specific actions and treatments within I-Simpa.
 
 	- File `.recp`
-		Punctual receiver file
+		Punctual receiver file data type
 
 	- File `.gap`
-		Punctual receiver file
+		Punctual receiver file data type
 
 	- File `.csbin`
-		Surface receiver file
+		Surface receiver file type
 
 	- File `.gabe`
 		Tabulated data file
@@ -40,15 +46,3 @@ I-Simpa can interpret two types of file:
 
 	- File `.pbin`
 		Animated data file
-
-.. include:: file_recp.rst
-
-.. include:: file_gap.rst
-
-.. include:: file_csbin.rst
-
-.. include:: file_gabe.rst
-
-.. include:: file_rpi.rst
-
-.. include:: file_pbin.rst

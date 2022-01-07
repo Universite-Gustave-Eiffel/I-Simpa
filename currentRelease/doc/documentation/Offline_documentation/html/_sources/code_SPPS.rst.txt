@@ -28,9 +28,11 @@ Detailled information about SPPS code:
 - `Using SPPS within I-simpa`_
 - `General principle of SPPS`_
 - `The physics inside SPPS`_
+- `Validation of SPPS code`_
 - `Validation of I-Simpa (online)`_
 
 .. _`Using SPPS within I-simpa`: code_configuration_SPPS.html
 .. _`General principle of SPPS`: code_SPPS_principle.html
 .. _`The physics inside SPPS`: code_SPPS_modelling.html
+.. _`Validation of SPPS code`: code_SPPS_Validation.html
 .. _`Validation of I-Simpa (online)`: https://i-simpa.ifsttar.fr/support/resources/code-verification/

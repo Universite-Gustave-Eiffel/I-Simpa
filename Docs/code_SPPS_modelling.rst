@@ -1,4 +1,4 @@
-Modelling of physical phenomena in **SPPS**
+Modelling of physical phenomena in SPPS
 ===================================================
 
 Sound source modelling

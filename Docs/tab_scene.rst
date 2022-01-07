@@ -562,6 +562,13 @@ Property elements:
 - 'Scene volume (m3)'
 	Scene volume (m3).
 
+.. note::
+
+   The scene volume is displayed only after a first meshing of the scene. Generate a meshing using the `Meshing Toolbar`_ (see `Meshing option`_)
+
+.. _`Meshing Toolbar`: toolbars.html#toolbar-meshing
+.. _`Meshing option`: code_configuration_meshing.html
+
 Project database
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

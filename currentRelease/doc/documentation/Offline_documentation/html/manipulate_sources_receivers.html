@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,29 +12,28 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script async="async" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Using directivity" href="using_directivity.html" />
@@ -51,7 +51,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> I-Simpa
+            <a href="index.html" class="icon icon-home"> I-Simpa
           
 
           
@@ -78,7 +78,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -131,7 +130,8 @@
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in <strong>SPPS</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in SPPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_Validation.html">Verification of the SPPS code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
@@ -149,7 +149,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -188,7 +187,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>Manipulating sources and receivers</li>
     
@@ -216,16 +215,16 @@
 <p>I-Simpa can automatically rotate a group of punctual receivers or sound
 sources. Users have to specify:</p>
 <ul class="simple">
-<li><p><strong>‘Rotation angle (degree)’</strong>: angle of rotation [degree];</p></li>
-<li><p><strong>‘Rotation center’</strong>: center of the rotation (position (x,y,z) in
-[m]);</p></li>
-<li><p><strong>‘Rotation vector’</strong>: axis of rotation (x,y,z) in [m].</p></li>
+<li><strong>‘Rotation angle (degree)’</strong>: angle of rotation [degree];</li>
+<li><strong>‘Rotation center’</strong>: center of the rotation (position (x,y,z) in
+[m]);</li>
+<li><strong>‘Rotation vector’</strong>: axis of rotation (x,y,z) in [m].</li>
 </ul>
 <p>Example: Below, an example of rotation of a receivers grid in a plane XY:</p>
 <ul class="simple">
-<li><p><strong>‘Rotation angle (degree)’</strong>=45°</p></li>
-<li><p>at center position <strong>‘Rotation center’</strong>=[1.,1.,0.]</p></li>
-<li><p>around axis <strong>‘Rotation vector’</strong>=[0.,0.,1.]</p></li>
+<li><strong>‘Rotation angle (degree)’</strong>=45°</li>
+<li>at center position <strong>‘Rotation center’</strong>=[1.,1.,0.]</li>
+<li>around axis <strong>‘Rotation vector’</strong>=[0.,0.,1.]</li>
 </ul>
 </div>
 <div class="section" id="translate-a-group-of-sources-receivers">
@@ -233,7 +232,7 @@ sources. Users have to specify:</p>
 <p>I-Simpa can automatically translate of punctual receivers or sound
 sources. Users have to specify:</p>
 <ul class="simple">
-<li><p><strong>‘Direction (m)’</strong>: define the direction (vector) of translation.</p></li>
+<li><strong>‘Direction (m)’</strong>: define the direction (vector) of translation.</li>
 </ul>
 <p>Example: Below, an example of a translation of a receivers grid, in the direction [3.,0.,0.]:</p>
 </div>
@@ -242,23 +241,23 @@ sources. Users have to specify:</p>
 <p>I-Simpa can creates automatically 2D grids of punctual receivers. Users
 have to specify:</p>
 <ul class="simple">
-<li><p>a column (col) vector and a row vector to define the grid plane, as well as, the spatial step between two receivers</p></li>
-<li><p>the starting position (origin) of the grid,</p></li>
-<li><p>and the number of rows and columns of the grid.</p></li>
+<li>a column (col) vector and a row vector to define the grid plane, as well as, the spatial step between two receivers</li>
+<li>the starting position (origin) of the grid,</li>
+<li>and the number of rows and columns of the grid.</li>
 </ul>
 <p>Grid Parameters:</p>
 <ul class="simple">
-<li><p><strong>‘Col step x (m)’</strong>: define the x coordinate of the column vector;</p></li>
-<li><p><strong>‘Col step y (m)’</strong>: define the y coordinate of the column vector;</p></li>
-<li><p><strong>‘Col step z (m)’</strong>: define the z coordinate of the column vector;</p></li>
-<li><p><strong>‘Number of cols’</strong>: define the number of columns;</p></li>
-<li><p><strong>‘Number of rows’</strong>: define the number of rows;</p></li>
-<li><p><strong>‘Row step x (m)’</strong>: define the x coordinate of the row vector;</p></li>
-<li><p><strong>‘Row step y (m)’</strong>: define the y coordinate of the row vector;</p></li>
-<li><p><strong>‘Row step z (m)’</strong>: define the z coordinate of the row vector;</p></li>
-<li><p><strong>‘Starting position x (m)’</strong>: define the x coordinate of the origin of the grid;</p></li>
-<li><p><strong>‘Starting position y (m)’</strong>: define the y coordinate of the origin of the grid;</p></li>
-<li><p><strong>‘Starting position z (m)’</strong>: define the z coordinate of the origin of the grid;</p></li>
+<li><strong>‘Col step x (m)’</strong>: define the x coordinate of the column vector;</li>
+<li><strong>‘Col step y (m)’</strong>: define the y coordinate of the column vector;</li>
+<li><strong>‘Col step z (m)’</strong>: define the z coordinate of the column vector;</li>
+<li><strong>‘Number of cols’</strong>: define the number of columns;</li>
+<li><strong>‘Number of rows’</strong>: define the number of rows;</li>
+<li><strong>‘Row step x (m)’</strong>: define the x coordinate of the row vector;</li>
+<li><strong>‘Row step y (m)’</strong>: define the y coordinate of the row vector;</li>
+<li><strong>‘Row step z (m)’</strong>: define the z coordinate of the row vector;</li>
+<li><strong>‘Starting position x (m)’</strong>: define the x coordinate of the origin of the grid;</li>
+<li><strong>‘Starting position y (m)’</strong>: define the y coordinate of the origin of the grid;</li>
+<li><strong>‘Starting position z (m)’</strong>: define the z coordinate of the origin of the grid;</li>
 </ul>
 </div>
 </div>
@@ -283,22 +282,18 @@ have to specify:</p>
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Dec 23, 2020.
+<<<<<<< HEAD
+        Last updated on Jan 07, 2022.
+=======
+        Last updated on Jan 04, 2022.
+>>>>>>> e47323c (Update documentation)
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -309,6 +304,7 @@ have to specify:</p>
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

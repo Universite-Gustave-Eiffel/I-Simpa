@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,29 +12,28 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script async="async" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Recommendations to import a 3D scene" href="import_file_recommandations.html" />
@@ -51,7 +51,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> I-Simpa
+            <a href="index.html" class="icon icon-home"> I-Simpa
           
 
           
@@ -78,7 +78,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -135,7 +134,8 @@
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in <strong>SPPS</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in SPPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_Validation.html">Verification of the SPPS code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
@@ -153,7 +153,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -192,7 +191,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>Import options</li>
     
@@ -225,15 +224,15 @@ offered by I-Simpa, is to use the ‘original’ 3D geometry to create an
 approximate 3D model, with a ‘quality’ in accordance with the
 calculation code.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Please note, that research works on the sound field modelling in room acoustics,</p>
+<p class="first admonition-title">Note</p>
+<p class="last">Please note, that research works on the sound field modelling in room acoustics,</p>
 </div>
 <p>have shown that it is preferable to use a simple geometry with a good evaluation
 of the acoustical properties of surface materials, instead of a complicated geometry.
 In other word, if you need to build an approximate geometry, you don’t need to choose a high level of approximation.</p>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Depending of the chosen options and the size of the volume, the ‘Average model remesh’ option can require large computational times.</p>
+<p class="first admonition-title">Warning</p>
+<p class="last">Depending of the chosen options and the size of the volume, the ‘Average model remesh’ option can require large computational times.</p>
 </div>
 <p>The realization of the approximate model is based on the marching cube
 technique, and will try to propose a model as close as possible from the
@@ -242,24 +241,24 @@ dialog boxes will be successively proposed:</p>
 <div class="section" id="mesh-correction-options">
 <h3>Mesh correction options:<a class="headerlink" href="#mesh-correction-options" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><dl class="simple">
-<dt>‘Model solving’</dt><dd><p>This option defines the resolution n of the approximation. The volume of the original model is decomposed in <span class="math notranslate nohighlight">\(2^n\)</span> elements in each 3D axis. For example, for n=7, we will have 128x128x128 cubic ceils in the original volume.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Model solving’</dt>
+<dd>This option defines the resolution n of the approximation. The volume of the original model is decomposed in <span class="math notranslate nohighlight">\(2^n\)</span> elements in each 3D axis. For example, for n=7, we will have 128x128x128 cubic ceils in the original volume.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Triangulation method’</dt><dd><p>This option defines the type of method used for approximating model. There is currently only one possible option ‘Marching cube’.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Triangulation method’</dt>
+<dd>This option defines the type of method used for approximating model. There is currently only one possible option ‘Marching cube’.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Remesh adaptation’</dt><dd><p>When cubic ceils are created in the original volume, you can decide to ‘deform’ the ceils close to the surface of the volume in order to fit as well as possible the delimiting surface   of the original model (option ‘Vertices 6translation’). If deformation is required, choose the ‘None’ option. important The ‘Vertices translation’ option can require large computational time and can also produced some unwanted effects.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Remesh adaptation’</dt>
+<dd>When cubic ceils are created in the original volume, you can decide to ‘deform’ the ceils close to the surface of the volume in order to fit as well as possible the delimiting surface   of the original model (option ‘Vertices 6translation’). If deformation is required, choose the ‘None’ option. important The ‘Vertices translation’ option can require large computational time and can also produced some unwanted effects.</dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>‘Reduction of the number of surfaces’</dt><dd><p>This option able to reduce the total number of faces in the approximate model, by evaluating the quality of each face. There is currently only one possible option ‘Edge collapse’. This method is based on the size and the shape of each face, reduced to a ‘Quality Constraint’, noted q, and on the ‘Approximation constraint’. See the following <a class="reference external" href="http://www.google.fr/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=3&amp;ved=0CFIQFjAC&amp;url=http%3A%2F%2Fbooks.google.com%2Fbooks%2Fabout%2FPLTMG_A_Software_Package_for_Solving_Ell.html%3Fid%3D6C-RaZVo5TgC&amp;ei=3OJLUum7Corb0QX9jICIAw&amp;usg=AFQjCNG6ebGhEXo7pLGyfI6ApR9">book</a> for details: PLTMG: A Software Package for Solving Elliptic Partial Differential Equations by Randolph E. Bank.</p>
-</dd>
+<li><dl class="first docutils">
+<dt>‘Reduction of the number of surfaces’</dt>
+<dd>This option able to reduce the total number of faces in the approximate model, by evaluating the quality of each face. There is currently only one possible option ‘Edge collapse’. This method is based on the size and the shape of each face, reduced to a ‘Quality Constraint’, noted q, and on the ‘Approximation constraint’. See the following <a class="reference external" href="http://www.google.fr/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=3&amp;ved=0CFIQFjAC&amp;url=http%3A%2F%2Fbooks.google.com%2Fbooks%2Fabout%2FPLTMG_A_Software_Package_for_Solving_Ell.html%3Fid%3D6C-RaZVo5TgC&amp;ei=3OJLUum7Corb0QX9jICIAw&amp;usg=AFQjCNG6ebGhEXo7pLGyfI6ApR9">book</a> for details: PLTMG: A Software Package for Solving Elliptic Partial Differential Equations by Randolph E. Bank.</dd>
 </dl>
 </li>
 </ul>
@@ -273,8 +272,8 @@ dialog boxes will be successively proposed:</p>
 <h2>‘Surface meshing’<a class="headerlink" href="#surface-meshing" title="Permalink to this headline">¶</a></h2>
 <p>This option allows to enhance the quality of surface elements, by re-meshing original surfaces. Default parameter are proposed (it seems to offer a good quality), but can be changed. This procedure is based on the <a class="reference external" href="http://tetgen.berlios.de">TetGen</a> mesh generator.</p>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>By using this option, it increases the numbers of face elements. The assignation of materials within I-Simpa will be more time consumer. This option should be used only if the mesh generation within I-Simpa can not be realized due to a poor quality of surface elements.</p>
+<p class="first admonition-title">Warning</p>
+<p class="last">By using this option, it increases the numbers of face elements. The assignation of materials within I-Simpa will be more time consumer. This option should be used only if the mesh generation within I-Simpa can not be realized due to a poor quality of surface elements.</p>
 </div>
 </div>
 <div class="section" id="keep-existing-group">
@@ -282,8 +281,8 @@ dialog boxes will be successively proposed:</p>
 <p>This option should be used only when importing a new 3D geometry in the current project.</p>
 <p>This allows to associate <em>new</em> faces of the new geometry to <em>old</em> surface groups. The method compares the location of the <em>new</em> surface elements from the <em>old</em> one, in regard with a given precision (‘Association maximum distance’).</p>
 <div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>This can be useful, if users want to load a modified geometry (with minor changes from the previous one) without re-affecting all surface materials within I-Simpa.</p>
+<p class="first admonition-title">Tip</p>
+<p class="last">This can be useful, if users want to load a modified geometry (with minor changes from the previous one) without re-affecting all surface materials within I-Simpa.</p>
 </div>
 </div>
 </div>
@@ -308,22 +307,18 @@ dialog boxes will be successively proposed:</p>
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Dec 23, 2020.
+<<<<<<< HEAD
+        Last updated on Jan 07, 2022.
+=======
+        Last updated on Jan 04, 2022.
+>>>>>>> e47323c (Update documentation)
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -334,6 +329,7 @@ dialog boxes will be successively proposed:</p>
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

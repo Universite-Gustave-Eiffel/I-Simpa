@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,29 +12,28 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script async="async" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="‘Project’ window" href="project_window.html" />
@@ -51,7 +51,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> I-Simpa
+            <a href="index.html" class="icon icon-home"> I-Simpa
           
 
           
@@ -78,7 +78,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -133,7 +132,8 @@
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in <strong>SPPS</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in SPPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_Validation.html">Verification of the SPPS code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
@@ -151,7 +151,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -190,7 +189,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>Toolbars</li>
     
@@ -216,29 +215,31 @@
 <div class="section" id="toolbar-project">
 <h2>Toolbar ‘Project’<a class="headerlink" href="#toolbar-project" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p><img alt="i_create_project" src="_images/toolbar_newproject.png" /> Create new project;</p></li>
-<li><p><img alt="i_new_project" src="_images/toolbar_openproject.png" /> Open new project;</p></li>
-<li><p><img alt="i_save_project" src="_images/toolbar_saveproject.png" /> Save the project with the current filename;</p></li>
-<li><p><img alt="i_project_project_as" src="_images/toolbar_saveprojectas.png" /> Save the project with a new filename.</p></li>
+<li><img alt="i_create_project" src="_images/toolbar_newproject.png" /> Create new project;</li>
+<li><img alt="i_new_project" src="_images/toolbar_openproject.png" /> Open new project;</li>
+<li><img alt="i_save_project" src="_images/toolbar_saveproject.png" /> Save the project with the current filename;</li>
+<li><img alt="i_project_project_as" src="_images/toolbar_saveprojectas.png" /> Save the project with a new filename.</li>
 </ul>
 </div>
 <div class="section" id="toolbar-view-camera">
 <h2>Toolbar ‘View/Camera’<a class="headerlink" href="#toolbar-view-camera" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><dl class="simple">
-<dt>3D display:</dt><dd><ul>
-<li><p><img alt="3D_view_faces" src="_images/toolbar_showfaceonly.png" />       3D with faces (interior);</p></li>
-<li><p><img alt="3D_view_lines" src="_images/toolbar_showsidesonly.png" />       3D without faces, all lines;</p></li>
-<li><p><img alt="3D_view_faces_lines" src="_images/toolbar_showfacewithsides.png" /> 3D with faces and all lines;</p></li>
+<li><dl class="first docutils">
+<dt>3D display:</dt>
+<dd><ul class="first last">
+<li><img alt="3D_view_faces" src="_images/toolbar_showfaceonly.png" />       3D with faces (interior);</li>
+<li><img alt="3D_view_lines" src="_images/toolbar_showsidesonly.png" />       3D without faces, all lines;</li>
+<li><img alt="3D_view_faces_lines" src="_images/toolbar_showfacewithsides.png" /> 3D with faces and all lines;</li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>Camera:</dt><dd><ul>
-<li><p><img alt="3D_view_reinit" src="_images/toolbar_camera_movetoorigin.png" />      Reinitialize camera;</p></li>
-<li><p><img alt="3D_view_modeRZ" src="_images/toolbar_camera_rotation.png" />      Mode ‘Rotation/Zoom’;</p></li>
-<li><p><img alt="3D_view_mode_fp" src="_images/toolbar_camera_firstperson.png" />     Mode ‘First person’;</p></li>
+<li><dl class="first docutils">
+<dt>Camera:</dt>
+<dd><ul class="first last">
+<li><img alt="3D_view_reinit" src="_images/toolbar_camera_movetoorigin.png" />      Reinitialize camera;</li>
+<li><img alt="3D_view_modeRZ" src="_images/toolbar_camera_rotation.png" />      Mode ‘Rotation/Zoom’;</li>
+<li><img alt="3D_view_mode_fp" src="_images/toolbar_camera_firstperson.png" />     Mode ‘First person’;</li>
 </ul>
 </dd>
 </dl>
@@ -248,29 +249,29 @@
 <div class="section" id="toolbar-meshing">
 <h2>Toolbar ‘Meshing’<a class="headerlink" href="#toolbar-meshing" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p><img alt="meshing_generate" src="_images/toolbar_run_tetmesh.png" />    Generate and display the meshing (open a Dialog box for selecting the meshing parameters from a calculation code);</p></li>
-<li><p><img alt="meshing_remove" src="_images/toolbar_show_hide_tetmesh.png" />      Remove the meshing from the 3D view;</p></li>
-<li><p>Radio button ‘x’, ‘y, ‘z’: Select the planes X, Y, Z for displaying the meshing with the cursor;</p></li>
-<li><p>The slider allows to move the meshing along the selected plane.</p></li>
+<li><img alt="meshing_generate" src="_images/toolbar_run_tetmesh.png" />    Generate and display the meshing (open a Dialog box for selecting the meshing parameters from a calculation code);</li>
+<li><img alt="meshing_remove" src="_images/toolbar_show_hide_tetmesh.png" />      Remove the meshing from the 3D view;</li>
+<li>Radio button ‘x’, ‘y, ‘z’: Select the planes X, Y, Z for displaying the meshing with the cursor;</li>
+<li>The slider allows to move the meshing along the selected plane.</li>
 </ul>
 </div>
 <div class="section" id="toolbar-selection">
 <h2>Toolbar ‘Selection’<a class="headerlink" href="#toolbar-selection" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p><img alt="3D_mode_camera" src="_images/toolbar_tool_camera.png" />     Mode ‘Camera’: see <a class="reference external" href="Menu_View.html">menu ‘View’</a>;</p></li>
-<li><p><img alt="3D_mode_faceselect" src="_images/toolbar_tool_faceselection.png" /> Mode ‘Face selection’: enable the face selection with the pointer (selected faces are colored on the 3D view and on the ‘Surfaces’ group on the tree ‘Data’ of the window ‘Project’). <a class="reference external" href="surface_selection.html">The procedure for the face selection is presented here</a>.</p></li>
-<li><p><img alt="3D_mode_extraction" src="_images/toolbar_tool_extractlvl.png" /> Mode ‘Data extraction’: enable to extract a value on a colormap, with the pointer. The corresponding data is displayed in the window ‘Message’.</p></li>
+<li><img alt="3D_mode_camera" src="_images/toolbar_tool_camera.png" />     Mode ‘Camera’: see <a class="reference external" href="Menu_View.html">menu ‘View’</a>;</li>
+<li><img alt="3D_mode_faceselect" src="_images/toolbar_tool_faceselection.png" /> Mode ‘Face selection’: enable the face selection with the pointer (selected faces are colored on the 3D view and on the ‘Surfaces’ group on the tree ‘Data’ of the window ‘Project’). <a class="reference external" href="surface_selection.html">The procedure for the face selection is presented here</a>.</li>
+<li><img alt="3D_mode_extraction" src="_images/toolbar_tool_extractlvl.png" /> Mode ‘Data extraction’: enable to extract a value on a colormap, with the pointer. The corresponding data is displayed in the window ‘Message’.</li>
 </ul>
 </div>
 <div class="section" id="toolbar-simulation">
 <h2>Toolbar ‘Simulation’<a class="headerlink" href="#toolbar-simulation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p><img alt="simulation_reward" src="_images/toolbar_animation_previousstep.png" />   Reward to the last time step;</p></li>
-<li><p><img alt="simulation_play" src="_images/toolbar_animation_start.png" />     Play from the current time step;</p></li>
-<li><p><img alt="simulation_pause" src="_images/toolbar_animation_pause.png" />    Pause the animation;</p></li>
-<li><p><img alt="simulation_forward" src="_images/toolbar_animation_nextstep.png" />  Forward to the next time step;</p></li>
-<li><p><img alt="simulation_stop" src="_images/toolbar_animation_stop.png" />     Stop the animation (and return at the first time step);</p></li>
-<li><p><img alt="simulation_remove" src="_images/toolbar_hideallanimations.png" />   Remove the animation (remove data animation from memory).</p></li>
+<li><img alt="simulation_reward" src="_images/toolbar_animation_previousstep.png" />   Reward to the last time step;</li>
+<li><img alt="simulation_play" src="_images/toolbar_animation_start.png" />     Play from the current time step;</li>
+<li><img alt="simulation_pause" src="_images/toolbar_animation_pause.png" />    Pause the animation;</li>
+<li><img alt="simulation_forward" src="_images/toolbar_animation_nextstep.png" />  Forward to the next time step;</li>
+<li><img alt="simulation_stop" src="_images/toolbar_animation_stop.png" />     Stop the animation (and return at the first time step);</li>
+<li><img alt="simulation_remove" src="_images/toolbar_hideallanimations.png" />   Remove the animation (remove data animation from memory).</li>
 </ul>
 </div>
 </div>
@@ -295,22 +296,18 @@
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Dec 23, 2020.
+<<<<<<< HEAD
+        Last updated on Jan 07, 2022.
+=======
+        Last updated on Jan 04, 2022.
+>>>>>>> e47323c (Update documentation)
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -321,6 +318,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

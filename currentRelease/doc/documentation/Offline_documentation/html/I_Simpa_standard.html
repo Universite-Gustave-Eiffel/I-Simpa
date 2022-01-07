@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,29 +12,28 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script async="async" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Room acoustics parameters" href="room_acoustics_parameters.html" />
@@ -51,7 +51,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> I-Simpa
+            <a href="index.html" class="icon icon-home"> I-Simpa
           
 
           
@@ -78,7 +78,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -126,7 +125,8 @@
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in <strong>SPPS</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in SPPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_Validation.html">Verification of the SPPS code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
@@ -148,7 +148,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -187,7 +186,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>Standards</li>
     
@@ -212,61 +211,61 @@
 <h1>Standards<a class="headerlink" href="#standards" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="acoustics">
 <h2>Acoustics<a class="headerlink" href="#acoustics" title="Permalink to this headline">¶</a></h2>
-<dl class="glossary simple">
-<dt id="term-ISO-9613-1">ISO 9613-1</dt><dd><p>ISO 9613-1:1993, Acoustics – Attenuation of sound during propagation outdoors – Part 1: Calculation of the absorption of sound by the atmosphere
-<a class="reference external" href="http://www.iso.org/iso/catalogue_detail.htm?csnumber=17426">http://www.iso.org/iso/catalogue_detail.htm?csnumber=17426</a></p>
-</dd>
-<dt id="term-ISO-3382-1">ISO 3382-1</dt><dd><p>ISO 3382-1:2009, Acoustics – Measurement of room acoustic parameters – Part 1: Performance spaces
-<a class="reference external" href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=40979">http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=40979</a></p>
-</dd>
-<dt id="term-NF-S31-133">NF S31-133</dt><dd><p>NF S31-133:2011, Acoustics – Outdoor noise - Calculation of sound levels
-https://www.boutique.afnor.org/norme/nf-s31-133/acoustique-bruit-dans-l-environnement-calcul-de-niveaux-sonores/article/678966/fa169343</p>
-</dd>
-<dt id="term-ISO-354">ISO 354</dt><dd><p>ISO 354:2003, Acoustics – Measurement of sound absorption in a reverberation room
-<a class="reference external" href="https://www.iso.org/standard/34545.html">https://www.iso.org/standard/34545.html</a></p>
-</dd>
-<dt id="term-ISO-10534-1">ISO 10534-1</dt><dd><p>ISO 10534-1:1996, Acoustics – Determination of sound absorption coefficient and impedance in impedance tubes – Part 1: Method using standing wave ratio
-<a class="reference external" href="https://www.iso.org/standard/18603.html">https://www.iso.org/standard/18603.html</a></p>
-</dd>
-<dt id="term-ISO-10534-2">ISO 10534-2</dt><dd><p>ISO 10534-2:1998, Acoustics – Determination of sound absorption coefficient and impedance in impedance tubes – Part 2: Transfer-function method
-<a class="reference external" href="https://www.iso.org/standard/22851.html">https://www.iso.org/standard/22851.html</a></p>
-</dd>
-<dt id="term-ISO-17497-1">ISO 17497-1</dt><dd><p>ISO 17497-1:2004, Acoustics – Sound-scattering properties of surfaces – Part 1: Measurement of the random-incidence scattering coefficient in a reverberation room
-<a class="reference external" href="https://www.iso.org/standard/31397.html">https://www.iso.org/standard/31397.html</a></p>
-</dd>
-<dt id="term-ISO-17497-2">ISO 17497-2</dt><dd><p>ISO 17497-2:2012, Acoustics – Sound-scattering properties of surfaces – Part 2: Measurement of the directional diffusion coefficient in a free field
-<a class="reference external" href="https://www.iso.org/standard/55293.html">https://www.iso.org/standard/55293.html</a></p>
-</dd>
-<dt id="term-ISO-266">ISO 266</dt><dd><p>ISO 266:1997, Acoustics – Preferred frequencies
-<a class="reference external" href="https://www.iso.org/standard/1350.html">https://www.iso.org/standard/1350.html</a></p>
-</dd>
-<dt id="term-EN-ISO-3382-1">EN ISO 3382-1</dt><dd><p>ISO 3382-1:2009, Acoustics – Measurement of room acoustic parameters – Part 1: Performance spaces
-<a class="reference external" href="https://www.iso.org/standard/40979.html">https://www.iso.org/standard/40979.html</a></p>
-</dd>
+<dl class="glossary docutils">
+<dt id="term-iso-9613-1">ISO 9613-1</dt>
+<dd>ISO 9613-1:1993, Acoustics – Attenuation of sound during propagation outdoors – Part 1: Calculation of the absorption of sound by the atmosphere
+<a class="reference external" href="http://www.iso.org/iso/catalogue_detail.htm?csnumber=17426">http://www.iso.org/iso/catalogue_detail.htm?csnumber=17426</a></dd>
+<dt id="term-iso-3382-1">ISO 3382-1</dt>
+<dd>ISO 3382-1:2009, Acoustics – Measurement of room acoustic parameters – Part 1: Performance spaces
+<a class="reference external" href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=40979">http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=40979</a></dd>
+<dt id="term-nf-s31-133">NF S31-133</dt>
+<dd>NF S31-133:2011, Acoustics – Outdoor noise - Calculation of sound levels
+https://www.boutique.afnor.org/norme/nf-s31-133/acoustique-bruit-dans-l-environnement-calcul-de-niveaux-sonores/article/678966/fa169343</dd>
+<dt id="term-iso-354">ISO 354</dt>
+<dd>ISO 354:2003, Acoustics – Measurement of sound absorption in a reverberation room
+<a class="reference external" href="https://www.iso.org/standard/34545.html">https://www.iso.org/standard/34545.html</a></dd>
+<dt id="term-iso-10534-1">ISO 10534-1</dt>
+<dd>ISO 10534-1:1996, Acoustics – Determination of sound absorption coefficient and impedance in impedance tubes – Part 1: Method using standing wave ratio
+<a class="reference external" href="https://www.iso.org/standard/18603.html">https://www.iso.org/standard/18603.html</a></dd>
+<dt id="term-iso-10534-2">ISO 10534-2</dt>
+<dd>ISO 10534-2:1998, Acoustics – Determination of sound absorption coefficient and impedance in impedance tubes – Part 2: Transfer-function method
+<a class="reference external" href="https://www.iso.org/standard/22851.html">https://www.iso.org/standard/22851.html</a></dd>
+<dt id="term-iso-17497-1">ISO 17497-1</dt>
+<dd>ISO 17497-1:2004, Acoustics – Sound-scattering properties of surfaces – Part 1: Measurement of the random-incidence scattering coefficient in a reverberation room
+<a class="reference external" href="https://www.iso.org/standard/31397.html">https://www.iso.org/standard/31397.html</a></dd>
+<dt id="term-iso-17497-2">ISO 17497-2</dt>
+<dd>ISO 17497-2:2012, Acoustics – Sound-scattering properties of surfaces – Part 2: Measurement of the directional diffusion coefficient in a free field
+<a class="reference external" href="https://www.iso.org/standard/55293.html">https://www.iso.org/standard/55293.html</a></dd>
+<dt id="term-iso-266">ISO 266</dt>
+<dd>ISO 266:1997, Acoustics – Preferred frequencies
+<a class="reference external" href="https://www.iso.org/standard/1350.html">https://www.iso.org/standard/1350.html</a></dd>
+<dt id="term-en-iso-3382-1">EN ISO 3382-1</dt>
+<dd>ISO 3382-1:2009, Acoustics – Measurement of room acoustic parameters – Part 1: Performance spaces
+<a class="reference external" href="https://www.iso.org/standard/40979.html">https://www.iso.org/standard/40979.html</a></dd>
 </dl>
 </div>
 <div class="section" id="other">
 <h2>Other<a class="headerlink" href="#other" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<div><dl class="simple">
-<dt>ISO 639-1</dt><dd><p>NF ISO 639-1:2003 – Codes for the representation of names of languages - Part 1 : Alpha-2 code
-<a class="reference external" href="https://www.boutique.afnor.org/standard/nf-iso-639-1/codes-for-the-representation-of-names-of-languages-part-1-alpha-2-code/article/742951/fa104093">https://www.boutique.afnor.org/standard/nf-iso-639-1/codes-for-the-representation-of-names-of-languages-part-1-alpha-2-code/article/742951/fa104093</a></p>
-</dd>
-<dt>ISO 639-2</dt><dd><p>NF ISO 639-2:1999 – Codes for the representation of names of languages - Part : alpha-3 code
-<a class="reference external" href="https://www.boutique.afnor.org/standard/nf-iso-639-2/codes-for-the-representation-of-names-of-languages-part-alpha-3-code/article/727490/fa043864">https://www.boutique.afnor.org/standard/nf-iso-639-2/codes-for-the-representation-of-names-of-languages-part-alpha-3-code/article/727490/fa043864</a></p>
-</dd>
-<dt>ISO 639-3</dt><dd><p>NF ISO 639-3:2007 – Codes for the representation of names of languages - Part 3 : alpha-3 code for comprehensive coverage of languages
-<a class="reference external" href="https://www.boutique.afnor.org/standard/nf-iso-639-3/codes-for-the-representation-of-names-of-languages-part-3-alpha-3-code-for-comprehensive-coverage-of-languages/article/752747/fa138697">https://www.boutique.afnor.org/standard/nf-iso-639-3/codes-for-the-representation-of-names-of-languages-part-3-alpha-3-code-for-comprehensive-coverage-of-languages/article/752747/fa138697</a></p>
-</dd>
-<dt>ISO 639-4</dt><dd><p>NF ISO 639-4:2010 – Codes for the representation of names of languages - Part 4 : general principles of coding of the representation of names of languages and related entities, and application guidelines
-<a class="reference external" href="https://www.boutique.afnor.org/standard/nf-iso-639-4/codes-for-the-representation-of-names-of-languages-part-4-general-principles-of-coding-of-the-representation-of-names-of-lan/article/724011/fa138698">https://www.boutique.afnor.org/standard/nf-iso-639-4/codes-for-the-representation-of-names-of-languages-part-4-general-principles-of-coding-of-the-representation-of-names-of-lan/article/724011/fa138698</a></p>
-</dd>
-<dt>ISO 639-5</dt><dd><p>NF ISO 639-5:2008 – Codes for the representation of names of languages - Part 5 : Alpha-3 code for language families and groups
-<a class="reference external" href="https://www.boutique.afnor.org/standard/nf-iso-639-5/codes-for-the-representation-of-names-of-languages-part-5-alpha-3-code-for-language-families-and-groups/article/645452/fa138699">https://www.boutique.afnor.org/standard/nf-iso-639-5/codes-for-the-representation-of-names-of-languages-part-5-alpha-3-code-for-language-families-and-groups/article/645452/fa138699</a></p>
-</dd>
-<dt>ISO 639-5</dt><dd><p>NF ISO 639-6:2010 – Codes for the representation of names of languages - Part 6 : alpha-4 code for comprehensive coverage of language variants
-<a class="reference external" href="https://www.boutique.afnor.org/standard/nf-iso-639-6/codes-for-the-representation-of-names-of-languages-part-6-alpha-4-code-for-comprehensive-coverage-of-language-variants/article/699300/fa148722">https://www.boutique.afnor.org/standard/nf-iso-639-6/codes-for-the-representation-of-names-of-languages-part-6-alpha-4-code-for-comprehensive-coverage-of-language-variants/article/699300/fa148722</a></p>
-</dd>
+<div><dl class="docutils">
+<dt>ISO 639-1</dt>
+<dd>NF ISO 639-1:2003 – Codes for the representation of names of languages - Part 1 : Alpha-2 code
+<a class="reference external" href="https://www.boutique.afnor.org/standard/nf-iso-639-1/codes-for-the-representation-of-names-of-languages-part-1-alpha-2-code/article/742951/fa104093">https://www.boutique.afnor.org/standard/nf-iso-639-1/codes-for-the-representation-of-names-of-languages-part-1-alpha-2-code/article/742951/fa104093</a></dd>
+<dt>ISO 639-2</dt>
+<dd>NF ISO 639-2:1999 – Codes for the representation of names of languages - Part : alpha-3 code
+<a class="reference external" href="https://www.boutique.afnor.org/standard/nf-iso-639-2/codes-for-the-representation-of-names-of-languages-part-alpha-3-code/article/727490/fa043864">https://www.boutique.afnor.org/standard/nf-iso-639-2/codes-for-the-representation-of-names-of-languages-part-alpha-3-code/article/727490/fa043864</a></dd>
+<dt>ISO 639-3</dt>
+<dd>NF ISO 639-3:2007 – Codes for the representation of names of languages - Part 3 : alpha-3 code for comprehensive coverage of languages
+<a class="reference external" href="https://www.boutique.afnor.org/standard/nf-iso-639-3/codes-for-the-representation-of-names-of-languages-part-3-alpha-3-code-for-comprehensive-coverage-of-languages/article/752747/fa138697">https://www.boutique.afnor.org/standard/nf-iso-639-3/codes-for-the-representation-of-names-of-languages-part-3-alpha-3-code-for-comprehensive-coverage-of-languages/article/752747/fa138697</a></dd>
+<dt>ISO 639-4</dt>
+<dd>NF ISO 639-4:2010 – Codes for the representation of names of languages - Part 4 : general principles of coding of the representation of names of languages and related entities, and application guidelines
+<a class="reference external" href="https://www.boutique.afnor.org/standard/nf-iso-639-4/codes-for-the-representation-of-names-of-languages-part-4-general-principles-of-coding-of-the-representation-of-names-of-lan/article/724011/fa138698">https://www.boutique.afnor.org/standard/nf-iso-639-4/codes-for-the-representation-of-names-of-languages-part-4-general-principles-of-coding-of-the-representation-of-names-of-lan/article/724011/fa138698</a></dd>
+<dt>ISO 639-5</dt>
+<dd>NF ISO 639-5:2008 – Codes for the representation of names of languages - Part 5 : Alpha-3 code for language families and groups
+<a class="reference external" href="https://www.boutique.afnor.org/standard/nf-iso-639-5/codes-for-the-representation-of-names-of-languages-part-5-alpha-3-code-for-language-families-and-groups/article/645452/fa138699">https://www.boutique.afnor.org/standard/nf-iso-639-5/codes-for-the-representation-of-names-of-languages-part-5-alpha-3-code-for-language-families-and-groups/article/645452/fa138699</a></dd>
+<dt>ISO 639-5</dt>
+<dd>NF ISO 639-6:2010 – Codes for the representation of names of languages - Part 6 : alpha-4 code for comprehensive coverage of language variants
+<a class="reference external" href="https://www.boutique.afnor.org/standard/nf-iso-639-6/codes-for-the-representation-of-names-of-languages-part-6-alpha-4-code-for-comprehensive-coverage-of-language-variants/article/699300/fa148722">https://www.boutique.afnor.org/standard/nf-iso-639-6/codes-for-the-representation-of-names-of-languages-part-6-alpha-4-code-for-comprehensive-coverage-of-language-variants/article/699300/fa148722</a></dd>
 </dl>
 </div></blockquote>
 </div>
@@ -292,22 +291,18 @@ https://www.boutique.afnor.org/norme/nf-s31-133/acoustique-bruit-dans-l-environn
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Dec 23, 2020.
+<<<<<<< HEAD
+        Last updated on Jan 07, 2022.
+=======
+        Last updated on Jan 04, 2022.
+>>>>>>> e47323c (Update documentation)
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -318,6 +313,7 @@ https://www.boutique.afnor.org/norme/nf-s31-133/acoustique-bruit-dans-l-environn
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

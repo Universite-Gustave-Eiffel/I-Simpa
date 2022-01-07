@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,29 +12,28 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script async="async" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Surface selection" href="surface_selection.html" />
@@ -51,7 +51,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> I-Simpa
+            <a href="index.html" class="icon icon-home"> I-Simpa
           
 
           
@@ -78,7 +78,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -126,7 +125,8 @@
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in <strong>SPPS</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in SPPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_Validation.html">Verification of the SPPS code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
@@ -144,7 +144,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -183,7 +182,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>Define a position using the pointer on the 3D view</li>
     
@@ -208,12 +207,13 @@
 <h1>Define a position using the pointer on the 3D view<a class="headerlink" href="#define-a-position-using-the-pointer-on-the-3d-view" title="Permalink to this headline">¶</a></h1>
 <p>Many elements of the tree ‘Data’ require to define a ‘Position’ (x,y,z) in the 3D geometry. Data can be defined:</p>
 <ul class="simple">
-<li><p>by filling the corresponding cells (x, y and z) in the corresponding ‘Properties’ window;</p></li>
-<li><dl class="simple">
-<dt>by using the pointer. In this last case, user has to point the ‘Position’ element with the pointer in the tree:</dt><dd><ul>
-<li><p><strong>Right click</strong> on the ‘Position’ element;</p></li>
-<li><p><strong>Select</strong> the ‘Define in the 3D view’ option in the contextual menu;</p></li>
-<li><p>Then, in the 3D view, users point a position on a visible face; this will affect the values (x,y,z) to the ‘Position’ element. Users can then adjust values in the corresponding cell of the spreadsheet in the ‘Properties’ window.</p></li>
+<li>by filling the corresponding cells (x, y and z) in the corresponding ‘Properties’ window;</li>
+<li><dl class="first docutils">
+<dt>by using the pointer. In this last case, user has to point the ‘Position’ element with the pointer in the tree:</dt>
+<dd><ul class="first last">
+<li><strong>Right click</strong> on the ‘Position’ element;</li>
+<li><strong>Select</strong> the ‘Define in the 3D view’ option in the contextual menu;</li>
+<li>Then, in the 3D view, users point a position on a visible face; this will affect the values (x,y,z) to the ‘Position’ element. Users can then adjust values in the corresponding cell of the spreadsheet in the ‘Properties’ window.</li>
 </ul>
 </dd>
 </dl>
@@ -241,22 +241,18 @@
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Dec 23, 2020.
+<<<<<<< HEAD
+        Last updated on Jan 07, 2022.
+=======
+        Last updated on Jan 04, 2022.
+>>>>>>> e47323c (Update documentation)
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -267,6 +263,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

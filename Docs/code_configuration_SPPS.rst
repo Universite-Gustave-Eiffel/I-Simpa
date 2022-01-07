@@ -9,8 +9,10 @@ SPPS is already embedded in I-Simpa. Follow the next instructions to run a calcu
 
 - `Meshing`_ for the meshing configuration
 
-- `Calculation parameters`_ for the calculation parameters
+- `SPPS Calculation parameters`_ for the calculation parameters
 
+.. _`Meshing`: code_configuration_frequency_bands.html
+.. _`Frequency bands`: code_configuration_meshing.html
 
 **Right click** on the selected calculation code to display all possible actions:
 
@@ -23,8 +25,8 @@ SPPS is already embedded in I-Simpa. Follow the next instructions to run a calcu
 
 .. include:: code_configuration_meshing.rst
 
-Calculation parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SPPS Calculation parameters
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - 'Active calculation of atmospheric absorption'
 	Enables calculation of atmospheric absorption.
@@ -116,3 +118,221 @@ Few recommandations to evaluate the computationnal time:
 - one calculation is done for **each frequency band**: considering *F* frequency bands will be equivalent to a calculation with *F x N* sound particles for one source (or *F x N x M* for *M* sources). Note that, by default, the computation is paralleleized on the processor core, for each frequency band (a frequency band for a given core). So the increase of computional time with the nimber of frequency band is not linear;
 - in the **'Energetic' mode**, each sound particle is 'alive' during its propagation untill its energy is below a ratio of the initial energy (see '‘'Limit value of the particle extinction: ratio 10^n' parameter). **Increasing** *n* will keep the sound particles longer in the domain, which increases the computational time;
 - in the **'Random' mode**, each physical phenomena (absorption, diffusion) is applied by considering probabilistic approaches. Using this mode, the computational time is drastically decreased, but the quality of the results is aslo decrease. It is suggested to consider the 'Random' mode at the initial step of the study, and then to change to the 'Energetic' mode in order to obtain the final result.
+
+SPPS Results
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+All the results are displayed in the `Results tab`_, following a specific `Tree structure`_.
+The content of the tree structure depends of the elements defined in the `Scene tab`_, and of additionnal processes execute on the result files (such as for creating room acoustics parameters).
+
+.. _`Results tab`: project_window.html#results-tab
+.. _`Scene tab`: project_window.html#scene-tab
+
+Comments:
+
+- All folders and files in the tree results can be renamed. A default name is created at the end of the calculation process.
+- Some folders may be repeated several times (for example, as many times as (AMTA) there are Punctual receivers)
+
+Tree structure
+"""""""""""""""""""""""
+
+	❙--- 📁 SPPS [Root folder]
+
+		❙--- 📁 Date_folder [folder; AMTA Calculations]
+
+			❙--- 📁 Intensity animation [folder]
+
+				❙--- 📁 Frequency folder [folder; AMTA Frequencies]
+
+					❙--- 📄 Intensity [file]
+
+			❙--- 📁 Punctual receivers [folder]
+
+				❙--- 📁 Punctual receiver name [folder; AMTA Punctual receivers]
+
+					❙--- 📄 Advanced sound level [file]
+
+					❙--- 📄 Punctual receiver intensity [file]
+
+					❙--- 📄 Acoustics parameters [file; see]
+
+					❙--- 📄 Advanced acoustics parameters [file]
+
+					❙--- 📄 Schroeder curves  [file]
+
+					❙--- 📄 Sound level [file]
+
+					❙--- 📄 Sound level per source [file]
+
+			❙--- 📁 Surface receivers [folder]
+
+				❙--- 📁 Frequency [folder; AMTA Frequencies]
+
+					❙--- 📄 Sound level [file]
+
+				❙--- 📁 Global [folder]
+
+					❙--- 📄 Sound level [file]
+
+			❙--- 📄 SPPS particle statistics [file]
+
+			❙--- 📄 Total energy [file]
+
+			❙--- 📄 config [file]
+
+			❙--- 📄 projet_config [file]
+
+Intensity
+""""""""""""""""""""""""""
+
+Advanced sound level
+""""""""""""""""""""""""""
+
+In addition to classical room `Acoustics parameters`_, some `Advanced acoustics parameters`_ can also be calculated. The calculation of this advanced room acoustics parameters needs specific calculation of sound levels at a punctual receiver.
+
+This Advanced sound level `.gap` file display the temporal evolution of the impulse response, for each frequency band, as a data table, weihgted by :math:`\cos \theta` (LFC and LG) and :math:`\cos^2 \theta` (LF and LG).
+
+Punctual receiver intensity
+""""""""""""""""""""""""""""""""
+
+Acoustics parameters
+""""""""""""""""""""""""""
+
+Given the nature of the Sound level `.recp` file (*i.e.* an echogram), the contextual menu that is associated to this Sound level `.recp` file allows to calculate several room acoustic parameters:
+
+- Sound Pressure Level (SPL) in dB
+- Sound Pressure Level (SPL) in dB(A)
+- Clarity C (in dB)
+- Definition D (in %)
+- Central Time Ts (in ms)
+- Reverberation time RT (in s)
+- Early decay time EDT (in s)
+- Stage Support ST (in dB)
+
+Several parameters can be given by the user in order to calculate user-values of some room acoustics parameters:
+
+- Clarity: fix the value of the temporal limit of integration, usually 50 ms
+- Definition: fix the value of the temporal limit of integration, usually 50 ms
+- Reverberation time: fix the value of the sound level limit of integration, usually 30dB
+
+.. tip::
+	Multiple calculations are allowed for each paremeter, by using the semicolon ';' between parameters.
+
+After the calculation parameters, two files are created in the corresponding folder:
+
+- 'Acoustic parameters'
+	This file provides access to the room acoustics parameters in the form of a data table.
+
+		- The parameters are given for each frequency band of interest.
+		- When allowed, the **Global** value (*i.e.* the sum of all frequency bands) is calculated and displayed at the bottom of each column.
+		- When allowed, the **Average** value (*i.e.* the mean value on all frequency bands) is calculated and displayed at the bottom of each column.
+
+Advanced acoustics parameters
+"""""""""""""""""""""""""""""""""
+
+In addition to classical room `Acoustics parameters`_, some *advanced* parameters are also calculated, and displayed in the `Advanced sound level` file.
+
+The contextual menu that is associated to  sound level' file allows to calculate several room acoustic parameters:
+
+- Early lateral energy fraction LFC (in %)
+- Early lateral energy fraction LF (in %)
+- Early lateral energy LF (in dB)
+- Strength G (in dB)
+
+Data display:
+
+- The **Global** value (*i.e.* the sum of all frequency bands) is calculated and displayed at the bottom of each column.
+- The **Total** value (*i.e.* the sum of all time step) is calculated and displayed at the end of each row.
+
+Several parameters can be given by the user in order to calculate user-values of advanced parameters:
+
+- LF: fix the value of the temporal limit of integration, usually 80 ms
+- LFC: fix the value of the temporal limit of integration, usually 80 ms
+
+.. tip::
+	Multiple calculations are allowed for each paremeter, by using the semicolon ';' between parameters.
+
+
+Schroeder curves
+""""""""""""""""""""""""""
+
+	It displays the temporal evolution of the Schroeder's curves :cite:`Schroeder_1965`, for each frequency band, as a data table.
+
+.. tip::
+	User can create charts for representing data from the data table. See `charts creation`_
+
+.. _`charts creation`: create_charts.html
+
+Sound level (punctual receier)
+"""""""""""""""""""""""""""""""""""
+
+Double left click on a Sound level `.recp` file open a new winodw with three tabs
+
+-  'Sound Level SPL (dB)' tab
+		It contains the temporal evolution of the quantity, for each frequency band, as a data table.
+
+			- This tab is opened by default.
+			- The values are represented in sound pressure levels (SPL).
+			- The **Global** value (*i.e.* the sum of all frequency bands) is calculated and displayed at the bottom of each column.
+			- The **Total** value (*i.e.* the sum of all time step) is calculated and displayed at the end of each row.
+
+- 'Sound Level SPL (dB)' tab
+		It provides a graphic display of the **Global** value.
+
+			- The temporal evolution of the **Global** value is displayed, as an echogram.
+			- The cumulative quantity of the **Global** value is displayed, according to the Schroeder's backward integration :cite:`Schroeder_1965`.
+
+- 'Spectrum' tab
+		It displays a spectrum at the punctual receiver.
+
+Double right click on a Sound level `.recp` file open a contextual menu that allows to calculate `Acoustics parameters`_.
+
+Sound level per source
+""""""""""""""""""""""""""
+
+This file contains the sound level and the spectrum per sound source. Double left click on a `.recps` file open a new winodw with two tabs:
+
+-  'Sound Level per source, SPL (dB)' tab
+		It contains the sound level per source and f each frequency band, as a data table.
+
+			- This tab is opened by default.
+			- The values are represented in sound pressure levels (SPL).
+			- The **Global** value (*i.e.* the sum of all frequency bands) is calculated and displayed at the bottom of each column.
+			- The **Total** value (*i.e.* the sum of all time step) is calculated and displayed at the end of each row.
+
+- 'Spectrum' tab
+		It provides a graphic display of the spectrum contribution  for each sound source.
+
+
+Sound level (surface receiver)
+""""""""""""""""""""""""""""""""""""""""
+
+A Surface sound level `.csbin` file contains the temporal evolution of a quantity that represents an acoustic intensity on a surface.
+
+Depending of the calculation parameters, one can obtain, for each surface receiver, by default, on **Global** value (in the 'Global' folder) and, in addition, the result for each frequency band in a corresponding folder.
+
+A right click on a surface receiver file opens the contextual menu, with specific actions:
+
+- 'Acoustic parameters'
+	Allows to compute relevant room acoustics parameters on the surface. Depending of the selection, it creates additional files within the corresponding folder.
+
+		- Clarity C (in dB)
+		- Definition D (in %)
+		- Central Time Ts (in ms)
+		- Reverberation time RT (in s)
+		- Early decay time EDT (in s)
+		- Stage Support ST (in dB)
+
+- 'Load animation'
+	It allows to represent the spatial variation of the indicators that is selected. If the indicators contains some time dependent value, it can displayed an animation. On can interact on the animation with the `'Simulation' toolbar`_.
+
+		- 'Instantaneous value'
+			Show the value of the given indicator at each time step.
+
+		- 'Cumulative instantaneous value'
+			Show the value of the given indicator at each time step, by cumulating all past steps.
+
+		- 'Total value'
+			Show the total value of the given indicator. No animation.
+
+.. _`'Simulation' toolbar`: toolbar_simulation.html

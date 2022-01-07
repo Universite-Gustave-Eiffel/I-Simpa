@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,29 +12,28 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script async="async" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="_static/MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Study of a teaching room" href="tutorial_teaching_room.html" />
@@ -51,7 +51,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> I-Simpa
+            <a href="index.html" class="icon icon-home"> I-Simpa
           
 
           
@@ -78,7 +78,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -134,7 +133,8 @@
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_configuration_SPPS.html">Using SPPS within I-Simpa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_SPPS_principle.html">General principle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in <strong>SPPS</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_modelling.html">Modelling of physical phenomena in SPPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_SPPS_Validation.html">Verification of the SPPS code</a></li>
 </ul>
 <p class="caption"><span class="caption-text">TCR Code</span></p>
 <ul>
@@ -152,7 +152,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -191,7 +190,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>I-Simpa overview</li>
     
@@ -218,21 +217,21 @@
 for acoustic codes. One or more numerical codes must be added in order to obtain a fully functional system.</p>
 <p>At the present time, <strong>I-Simpa is distributed with two codes</strong>:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="code_TCR.html">TCR code</a> based on the classical theory of reverberation</p></li>
-<li><p><a class="reference external" href="code_SPPS.html">SPPS code</a> based on particle tracing approach</p></li>
+<li><a class="reference external" href="code_TCR.html">TCR code</a> based on the classical theory of reverberation</li>
+<li><a class="reference external" href="code_SPPS.html">SPPS code</a> based on particle tracing approach</li>
 </ul>
 <p>The resume of <a class="reference external" href="code_characteristics.html">all code characteristics are given here</a></p>
 <p>Classical applications are room and building acoustics, environmental noise and industrial noise, but it can be easily extend to other applications concerning the sound propagation in 3D environments (interior of vehicle, sound in cavities…).</p>
 <p>I-Simpa has been initially developed as a research tool (i.e. for research laboratories), but can also be a very efficient tool for a professional/commercial use, as well as for education.</p>
-<dl class="simple">
-<dt><strong>Functionnal</strong></dt><dd><p>Elements and components are organized in tree structures, to easily access to all information, parameters and properties. Many features are proposed for helping users</p>
-</dd>
-<dt><strong>Open system</strong></dt><dd><p>All information and data are organized in spreadsheets that can be displayed, exported, copied… User can use their own software for processing data and graphical representation.</p>
-</dd>
-<dt><strong>Open software</strong></dt><dd><p>User can integrate their own numerical propagation code, develop their own functionalities within the interface, using Python scripts… All have been done in order you can extend I-Simpa easily.</p>
-</dd>
-<dt><strong>Open source project</strong></dt><dd><p>The source code of I-Simpa is freely available on the GitHub plateform (<a class="reference external" href="https://github.com/Ifsttar/I-Simpa">https://github.com/Ifsttar/I-Simpa</a>). There are many way for the community to contribute to the development of I-Simpa.</p>
-</dd>
+<dl class="docutils">
+<dt><strong>Functionnal</strong></dt>
+<dd>Elements and components are organized in tree structures, to easily access to all information, parameters and properties. Many features are proposed for helping users</dd>
+<dt><strong>Open system</strong></dt>
+<dd>All information and data are organized in spreadsheets that can be displayed, exported, copied… User can use their own software for processing data and graphical representation.</dd>
+<dt><strong>Open software</strong></dt>
+<dd>User can integrate their own numerical propagation code, develop their own functionalities within the interface, using Python scripts… All have been done in order you can extend I-Simpa easily.</dd>
+<dt><strong>Open source project</strong></dt>
+<dd>The source code of I-Simpa is freely available on the GitHub plateform (<a class="reference external" href="https://github.com/Ifsttar/I-Simpa">https://github.com/Ifsttar/I-Simpa</a>). There are many way for the community to contribute to the development of I-Simpa.</dd>
 </dl>
 </div>
 <div class="section" id="i-simpa-features">
@@ -240,144 +239,144 @@ for acoustic codes. One or more numerical codes must be added in order to obtain
 <div class="section" id="geometry">
 <h2>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="_images/Import_geometry.png"><img alt="_images/Import_geometry.png" class="align-left" src="_images/Import_geometry.png" style="width: 140px;" /></a>
-<dl class="simple">
-<dt>Import 3D files</dt><dd><p>Import 3D files with common extensions: 3DS (3D Studio), STL (stereolithography), PLY (Stanford) and POLY (TetGen).</p>
-</dd>
+<dl class="docutils">
+<dt>Import 3D files</dt>
+<dd>Import 3D files with common extensions: 3DS (3D Studio), STL (stereolithography), PLY (Stanford) and POLY (TetGen).</dd>
 </dl>
 <hr class="docutils" />
 <a class="reference internal image-reference" href="_images/Correction_model.png"><img alt="_images/Correction_model.png" class="align-left" src="_images/Correction_model.png" style="width: 140px;" /></a>
-<dl class="simple">
-<dt>Geometry correction</dt><dd><p>Automatic tools for model corrections and repairs during file importation. Model detection error.</p>
-</dd>
+<dl class="docutils">
+<dt>Geometry correction</dt>
+<dd>Automatic tools for model corrections and repairs during file importation. Model detection error.</dd>
 </dl>
 <hr class="docutils" />
 <a class="reference internal image-reference" href="_images/geometry_approximation.png"><img alt="_images/geometry_approximation.png" class="align-left" src="_images/geometry_approximation.png" style="width: 140px;" /></a>
-<dl class="simple">
-<dt>Geometry approximation</dt><dd><p>Algorithm for model approximation by the marching cube method. This can be useful for original 3D scene with many problems.</p>
-</dd>
+<dl class="docutils">
+<dt>Geometry approximation</dt>
+<dd>Algorithm for model approximation by the marching cube method. This can be useful for original 3D scene with many problems.</dd>
 </dl>
 <hr class="docutils" />
 <a class="reference internal image-reference" href="_images/creating_scene.png"><img alt="_images/creating_scene.png" class="align-left" src="_images/creating_scene.png" style="width: 140px;" /></a>
-<dl class="simple">
-<dt>Parallelepipedic geometry</dt><dd><p>Built-in design of parallelepipedic model. Just gives the dimensions of the scene.</p>
-</dd>
+<dl class="docutils">
+<dt>Parallelepipedic geometry</dt>
+<dd>Built-in design of parallelepipedic model. Just gives the dimensions of the scene.</dd>
 </dl>
 </div>
 <hr class="docutils" />
 <div class="section" id="surface-material">
 <h2>Surface material<a class="headerlink" href="#surface-material" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="_images/import_material.png"><img alt="_images/import_material.png" class="align-left" src="_images/import_material.png" style="width: 140px;" /></a>
-<dl class="simple">
-<dt>Import data material</dt><dd><p>Import data from file (import from CATT-Acoustic™ and Odeon room acoustics software).</p>
-</dd>
+<dl class="docutils">
+<dt>Import data material</dt>
+<dd>Import data from file (import from CATT-Acoustic™ and Odeon room acoustics software).</dd>
 </dl>
 <hr class="docutils" />
 <a class="reference internal image-reference" href="_images/manipulate_materials.png"><img alt="_images/manipulate_materials.png" class="align-left" src="_images/manipulate_materials.png" style="width: 140px;" /></a>
-<dl class="simple">
-<dt>Reference and User material database</dt><dd><p>Use the built-in database (Reference) or create your own materials (User database). Organize and copy material between (sub-)groups of material.</p>
-</dd>
+<dl class="docutils">
+<dt>Reference and User material database</dt>
+<dd>Use the built-in database (Reference) or create your own materials (User database). Organize and copy material between (sub-)groups of material.</dd>
 </dl>
 <hr class="docutils" />
 <a class="reference internal image-reference" href="_images/material_properties.png"><img alt="_images/material_properties.png" class="align-left" src="_images/material_properties.png" style="width: 140px;" /></a>
-<dl class="simple">
-<dt>Material properties</dt><dd><p>Define acoustic parameters by frequency band: absorption, transmission loss, scattering, scattering reflection law. Add material information (description, physical parameters…).</p>
-</dd>
+<dl class="docutils">
+<dt>Material properties</dt>
+<dd>Define acoustic parameters by frequency band: absorption, transmission loss, scattering, scattering reflection law. Add material information (description, physical parameters…).</dd>
 </dl>
 </div>
 <hr class="docutils" />
 <div class="section" id="sound-sources">
 <h2>Sound sources<a class="headerlink" href="#sound-sources" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="_images/spectrum_data.png"><img alt="_images/spectrum_data.png" class="align-left" src="_images/spectrum_data.png" style="width: 140px;" /></a>
-<dl class="simple">
-<dt>Reference and User spectrum database</dt><dd><p>Use the built-in database (Reference) or create your own source spectrum (User database).</p>
-</dd>
+<dl class="docutils">
+<dt>Reference and User spectrum database</dt>
+<dd>Use the built-in database (Reference) or create your own source spectrum (User database).</dd>
 </dl>
 <hr class="docutils" />
 <a class="reference internal image-reference" href="_images/source_properties.png"><img alt="_images/source_properties.png" class="align-left" src="_images/source_properties.png" style="width: 140px;" /></a>
-<dl class="simple">
-<dt>Sources properties</dt><dd><p>Define source properties: spectrum, position, directivity, delay, activate/desactivate sources.</p>
-</dd>
+<dl class="docutils">
+<dt>Sources properties</dt>
+<dd>Define source properties: spectrum, position, directivity, delay, activate/desactivate sources.</dd>
 </dl>
 <hr class="docutils" />
 <a class="reference internal image-reference" href="_images/Manipulate_sources.png"><img alt="_images/Manipulate_sources.png" class="align-left" src="_images/Manipulate_sources.png" style="width: 140px;" /></a>
-<dl class="simple">
-<dt>Sources manipulation</dt><dd><p>Organize and copy sources between (sub-)groups of material. Translation and rotation of (sub-)groups of sound sources.</p>
-</dd>
+<dl class="docutils">
+<dt>Sources manipulation</dt>
+<dd>Organize and copy sources between (sub-)groups of material. Translation and rotation of (sub-)groups of sound sources.</dd>
 </dl>
 </div>
 <hr class="docutils" />
 <div class="section" id="acoustic-receivers">
 <h2>Acoustic receivers<a class="headerlink" href="#acoustic-receivers" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="_images/Punctual_receiver_properties.png"><img alt="_images/Punctual_receiver_properties.png" class="align-left" src="_images/Punctual_receiver_properties.png" style="width: 140px;" /></a>
-<dl class="simple">
-<dt>Punctual sound sources</dt><dd><p>Defines source properties: position, directivity, orientation to a point or (with a dynamic link) to a source, background noise.</p>
-</dd>
+<dl class="docutils">
+<dt>Punctual sound sources</dt>
+<dd>Defines source properties: position, directivity, orientation to a point or (with a dynamic link) to a source, background noise.</dd>
 </dl>
 <hr class="docutils" />
 <a class="reference internal image-reference" href="_images/manipulate_punctual_receivers.png"><img alt="_images/manipulate_punctual_receivers.png" class="align-left" src="_images/manipulate_punctual_receivers.png" style="width: 140px;" /></a>
-<dl class="simple">
-<dt>Receivers manipulation</dt><dd><p>Organize and copy receivers between (sub-)groups of material. Translation and rotation of (sub-)groups of receivers.</p>
-</dd>
+<dl class="docutils">
+<dt>Receivers manipulation</dt>
+<dd>Organize and copy receivers between (sub-)groups of material. Translation and rotation of (sub-)groups of receivers.</dd>
 </dl>
 <hr class="docutils" />
 <a class="reference internal image-reference" href="_images/surface_receiver.png"><img alt="_images/surface_receiver.png" class="align-left" src="_images/surface_receiver.png" style="width: 140px;" /></a>
-<dl class="simple">
-<dt>Surface receivers</dt><dd><p>Definition of a surface receiver by selecting surfaces of the 3D model or by creating cut planes.</p>
-</dd>
+<dl class="docutils">
+<dt>Surface receivers</dt>
+<dd>Definition of a surface receiver by selecting surfaces of the 3D model or by creating cut planes.</dd>
 </dl>
 </div>
 <hr class="docutils" />
 <div class="section" id="acoustic-calculation">
 <h2>Acoustic calculation<a class="headerlink" href="#acoustic-calculation" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="_images/calculation_codes.png"><img alt="_images/calculation_codes.png" class="align-left" src="_images/calculation_codes.png" style="width: 140px;" /></a>
-<dl class="simple">
-<dt>Calculation code</dt><dd><p>Built-in acoustic calculation code: sound particle tracing (SPPS); Classical theory of reverberation for room acoustics (TCR).</p>
-</dd>
+<dl class="docutils">
+<dt>Calculation code</dt>
+<dd>Built-in acoustic calculation code: sound particle tracing (SPPS); Classical theory of reverberation for room acoustics (TCR).</dd>
 </dl>
 <hr class="docutils" />
 <a class="reference internal image-reference" href="_images/sound_map.png"><img alt="_images/sound_map.png" class="align-left" src="_images/sound_map.png" style="width: 140px;" /></a>
-<dl class="simple">
-<dt>Sound map</dt><dd><p>Noisemap (surface receivers) in stationary stationary state, time-varying state, time-cumulated state. Iso-contours.</p>
-</dd>
+<dl class="docutils">
+<dt>Sound map</dt>
+<dd>Noisemap (surface receivers) in stationary stationary state, time-varying state, time-cumulated state. Iso-contours.</dd>
 </dl>
 <hr class="docutils" />
 <a class="reference internal image-reference" href="_images/acoustical_parameters.png"><img alt="_images/acoustical_parameters.png" class="align-left" src="_images/acoustical_parameters.png" style="width: 140px;" /></a>
-<dl class="simple">
-<dt>Acoustics parameters</dt><dd><p><a class="reference internal" href="I_Simpa_standard.html#term-EN-ISO-3382-1"><span class="xref std std-term">EN ISO 3382-1</span></a> room acoustics parameters: Reverberation times, Clarity, Definition, Early support, Centre time, Strength, Early Lateral Energy Fraction, Late Lateral Sound Level.</p>
-</dd>
+<dl class="docutils">
+<dt>Acoustics parameters</dt>
+<dd><a class="reference internal" href="I_Simpa_standard.html#term-en-iso-3382-1"><span class="xref std std-term">EN ISO 3382-1</span></a> room acoustics parameters: Reverberation times, Clarity, Definition, Early support, Centre time, Strength, Early Lateral Energy Fraction, Late Lateral Sound Level.</dd>
 </dl>
 <hr class="docutils" />
 <a class="reference internal image-reference" href="_images/result_animation.png"><img alt="_images/result_animation.png" class="align-left" src="_images/result_animation.png" style="width: 140px;" /></a>
-<dl class="simple">
-<dt>Animation</dt><dd><p>Intensity vectors animation for punctual receivers. Ray-tracing and particle-tracing animation.</p>
-</dd>
+<dl class="docutils">
+<dt>Animation</dt>
+<dd>Intensity vectors animation for punctual receivers. Ray-tracing and particle-tracing animation.</dd>
 </dl>
 </div>
 <hr class="docutils" />
 <div class="section" id="other-features">
 <h2>Other features<a class="headerlink" href="#other-features" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="_images/python_script.png"><img alt="_images/python_script.png" class="align-left" src="_images/python_script.png" style="width: 140px;" /></a>
-<dl class="simple">
-<dt>Python™ scripting</dt><dd><p>Extension of I-Simpa functionalities using Python scripts. Creations of Toolbox.</p>
-</dd>
+<dl class="docutils">
+<dt>Python™ scripting</dt>
+<dd>Extension of I-Simpa functionalities using Python scripts. Creations of Toolbox.</dd>
 </dl>
 <hr class="docutils" />
 <a class="reference internal image-reference" href="_images/environmental_data.png"><img alt="_images/environmental_data.png" class="align-left" src="_images/environmental_data.png" style="width: 140px;" /></a>
-<dl class="simple">
-<dt>Environmental data</dt><dd><p>Definition of atmospheric conditions and calculation of absorption coefficient (<a class="reference internal" href="I_Simpa_standard.html#term-ISO-9613-1"><span class="xref std std-term">ISO 9613-1</span></a>). Meteorological parameters (log-lin sound speed velocity profiles).</p>
-</dd>
+<dl class="docutils">
+<dt>Environmental data</dt>
+<dd>Definition of atmospheric conditions and calculation of absorption coefficient (<a class="reference internal" href="I_Simpa_standard.html#term-iso-9613-1"><span class="xref std std-term">ISO 9613-1</span></a>). Meteorological parameters (log-lin sound speed velocity profiles).</dd>
 </dl>
 <hr class="docutils" />
 <a class="reference internal image-reference" href="_images/meshing.png"><img alt="_images/meshing.png" class="align-left" src="_images/meshing.png" style="width: 140px;" /></a>
-<dl class="simple">
-<dt>Tetrahedric meshing</dt><dd><p>Built-in Delaunay tetrahedric meshing using TetGen code (fully parametrized).</p>
-</dd>
+<dl class="docutils">
+<dt>Tetrahedric meshing</dt>
+<dd>Built-in Delaunay tetrahedric meshing using TetGen code (fully parametrized).</dd>
 </dl>
 <hr class="docutils" />
 <a class="reference internal image-reference" href="_images/fitting_zone.png"><img alt="_images/fitting_zone.png" class="align-left" src="_images/fitting_zone.png" style="width: 140px;" /></a>
-<dl class="simple">
-<dt>Fitting zone</dt><dd><p>Definition of volumes with fitting objects characterized by probabilistic parameters (<a class="reference internal" href="glossary.html#term-mean-free-path"><span class="xref std std-term">mean free path</span></a>, absorption, diffusion law).</p>
-</dd>
+<dl class="docutils">
+<dt>Fitting zone</dt>
+<dd>Definition of volumes with fitting objects characterized by probabilistic parameters (<a class="reference internal" href="glossary.html#term-mean-free-path"><span class="xref std std-term">mean free path</span></a>, absorption, diffusion law).</dd>
 </dl>
 </div>
 </div>
@@ -402,22 +401,18 @@ for acoustic codes. One or more numerical codes must be added in order to obtain
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2020, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Dec 23, 2020.
+<<<<<<< HEAD
+        Last updated on Jan 07, 2022.
+=======
+        Last updated on Jan 04, 2022.
+>>>>>>> e47323c (Update documentation)
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -428,6 +423,7 @@ for acoustic codes. One or more numerical codes must be added in order to obtain
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {
