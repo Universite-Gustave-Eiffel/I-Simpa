@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Toolbars &mdash; I-Simpa 1.3.4 documentation</title>
+  <title>I-Simpa errors and messages &mdash; I-Simpa 1.3.4 documentation</title>
   
 
   
@@ -35,9 +35,7 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="‘Project’ window" href="project_window.html" />
-    <link rel="prev" title="Menus" href="menus.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -97,18 +95,11 @@
 <li class="toctree-l1"><a class="reference internal" href="tutorial_industrial_hall.html">Study of an industrial room</a></li>
 </ul>
 <p class="caption"><span class="caption-text">I-Simpa User Interface</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="setup.html">(Un)Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="presentation.html">GUI Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="menus.html">Menus</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Toolbars</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#toolbar-project">Toolbar ‘Project’</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#toolbar-view-camera">Toolbar ‘View/Camera’</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#toolbar-meshing">Toolbar ‘Meshing’</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#toolbar-selection">Toolbar ‘Selection’</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#toolbar-simulation">Toolbar ‘Simulation’</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="toolbars.html">Toolbars</a></li>
 <li class="toctree-l1"><a class="reference internal" href="project_window.html">‘Project’ window</a></li>
 <li class="toctree-l1"><a class="reference internal" href="properties_window.html">‘Properties’ window</a></li>
 <li class="toctree-l1"><a class="reference internal" href="console_window.html">‘Console’ window</a></li>
@@ -191,13 +182,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Toolbars</li>
+      <li>I-Simpa errors and messages</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/toolbars.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/errors_messages.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -210,69 +201,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="toolbars">
-<h1>Toolbars<a class="headerlink" href="#toolbars" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="toolbar-project">
-<h2>Toolbar ‘Project’<a class="headerlink" href="#toolbar-project" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><img alt="i_create_project" src="_images/toolbar_newproject.png" /> Create new project;</li>
-<li><img alt="i_new_project" src="_images/toolbar_openproject.png" /> Open new project;</li>
-<li><img alt="i_save_project" src="_images/toolbar_saveproject.png" /> Save the project with the current filename;</li>
-<li><img alt="i_project_project_as" src="_images/toolbar_saveprojectas.png" /> Save the project with a new filename.</li>
-</ul>
+  <div class="section" id="i-simpa-errors-and-messages">
+<h1>I-Simpa errors and messages<a class="headerlink" href="#i-simpa-errors-and-messages" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="tetrahedron-file-is-empty-the-calculation-can-t-be-done">
+<h2>‘Tetrahedron file is empty, the calculation can’t be done !’<a class="headerlink" href="#tetrahedron-file-is-empty-the-calculation-can-t-be-done" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="description">
+<h3>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h3>
+<p>This errors occurs when the meshing process fails. The meshing process is required for specific numerical code within I-Simpa, particularly using the SPPS code. Most of time, the problem is that the 3D scene that is used for the meshing process, contains several errors such as holes, intersecting faces…</p>
 </div>
-<div class="section" id="toolbar-view-camera">
-<h2>Toolbar ‘View/Camera’<a class="headerlink" href="#toolbar-view-camera" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><dl class="first docutils">
-<dt>3D display:</dt>
-<dd><ul class="first last">
-<li><img alt="3D_view_faces" src="_images/toolbar_showfaceonly.png" />       3D with faces (interior);</li>
-<li><img alt="3D_view_lines" src="_images/toolbar_showsidesonly.png" />       3D without faces, all lines;</li>
-<li><img alt="3D_view_faces_lines" src="_images/toolbar_showfacewithsides.png" /> 3D with faces and all lines;</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Camera:</dt>
-<dd><ul class="first last">
-<li><img alt="3D_view_reinit" src="_images/toolbar_camera_movetoorigin.png" />      Reinitialize camera;</li>
-<li><img alt="3D_view_modeRZ" src="_images/toolbar_camera_rotation.png" />      Mode ‘Rotation/Zoom’;</li>
-<li><img alt="3D_view_mode_fp" src="_images/toolbar_camera_firstperson.png" />     Mode ‘First person’;</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
+<div class="section" id="solution">
+<h3>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h3>
+<p>The 3D scene must be created and imported with a great attention in order to avoid such problems.
+See <a class="reference external" href="import_file_recommandations.html">our recommandation for creating and importing a 3D scene</a></p>
 </div>
-<div class="section" id="toolbar-meshing">
-<h2>Toolbar ‘Meshing’<a class="headerlink" href="#toolbar-meshing" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><img alt="meshing_generate" src="_images/toolbar_run_tetmesh.png" />    Generate and display the meshing (open a Dialog box for selecting the meshing parameters from a calculation code);</li>
-<li><img alt="meshing_remove" src="_images/toolbar_show_hide_tetmesh.png" />      Remove the meshing from the 3D view;</li>
-<li>Radio button ‘x’, ‘y, ‘z’: Select the planes X, Y, Z for displaying the meshing with the cursor;</li>
-<li>The slider allows to move the meshing along the selected plane.</li>
-</ul>
-</div>
-<div class="section" id="toolbar-selection">
-<h2>Toolbar ‘Selection’<a class="headerlink" href="#toolbar-selection" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><img alt="3D_mode_camera" src="_images/toolbar_tool_camera.png" />     Mode ‘Camera’: see <a class="reference external" href="Menu_View.html">menu ‘View’</a>;</li>
-<li><img alt="3D_mode_faceselect" src="_images/toolbar_tool_faceselection.png" /> Mode ‘Face selection’: enable the face selection with the pointer (selected faces are colored on the 3D view and on the ‘Surfaces’ group on the tree ‘Data’ of the window ‘Project’). <a class="reference external" href="surface_selection.html">The procedure for the face selection is presented here</a>.</li>
-<li><img alt="3D_mode_extraction" src="_images/toolbar_tool_extractlvl.png" /> Mode ‘Data extraction’: enable to extract a value on a colormap, with the pointer. The corresponding data is displayed in the window ‘Message’.</li>
-</ul>
-</div>
-<div class="section" id="toolbar-simulation">
-<h2>Toolbar ‘Simulation’<a class="headerlink" href="#toolbar-simulation" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><img alt="simulation_reward" src="_images/toolbar_animation_previousstep.png" />   Reward to the last time step;</li>
-<li><img alt="simulation_play" src="_images/toolbar_animation_start.png" />     Play from the current time step;</li>
-<li><img alt="simulation_pause" src="_images/toolbar_animation_pause.png" />    Pause the animation;</li>
-<li><img alt="simulation_forward" src="_images/toolbar_animation_nextstep.png" />  Forward to the next time step;</li>
-<li><img alt="simulation_stop" src="_images/toolbar_animation_stop.png" />     Stop the animation (and return at the first time step);</li>
-<li><img alt="simulation_remove" src="_images/toolbar_hideallanimations.png" />   Remove the animation (remove data animation from memory).</li>
-</ul>
 </div>
 </div>
 
@@ -281,15 +222,6 @@
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="project_window.html" class="btn btn-neutral float-right" title="‘Project’ window" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="menus.html" class="btn btn-neutral float-left" title="Menus" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

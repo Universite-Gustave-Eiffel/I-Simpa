@@ -7,7 +7,7 @@ Presentation
 
 - See the main `characteristics of the code`_ that is embedded in I-Simpa
 
-.. _Visit the offical I-Simpa website: http://i-simpa.ifsttar.fr/presentation/embedded-codes/spps/
+.. _Visit the offical I-Simpa website: https://i-simpa.univ-gustave-eiffel.fr/presentation/embedded-codes/spps/
 .. _`characteristics of the code`: code_characteristics.html
 
 The simulation principle of the SPPS code (from French "Simulation de la Propagation

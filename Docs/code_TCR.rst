@@ -7,7 +7,7 @@ Presentation
 
 - See the main `characteristics of the code`_ that is embedded in I-Simpa.
 
-.. _Visit the offical I-Simpa website: http://i-simpa.ifsttar.fr/presentation/embedded-codes/tcr/
+.. _Visit the offical I-Simpa website: https://i-simpa.univ-gustave-eiffel.fr/presentation/embedded-codes/tcr/
 .. _`characteristics of the code`: code_characteristics.html
 
 The simulation code TCR (from French "Théorie Classique de la Réverbération") is a numerical application of the Classical

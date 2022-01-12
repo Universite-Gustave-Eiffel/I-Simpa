@@ -10,4 +10,4 @@
 ‘About I-Simpa’
 	Open a message box with general information concerning I-Simpa.
 
-.. _i-simpa.ifsttar.fr: http://i-simpa.ifsttar.fr/
+.. _i-simpa.ifsttar.fr: https://i-simpa.univ-gustave-eiffel.fr/
