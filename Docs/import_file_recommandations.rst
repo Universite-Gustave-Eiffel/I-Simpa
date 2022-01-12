@@ -6,7 +6,7 @@ a ‘bad’ geometry, with faces intersections, holes between faces… (in
 fact, the model will be imported, but some codes like SPPS will not be
 functional).
 
-Step-by-step 3D secne creation, importation and test
+Step-by-step 3D scene creation, importation and test
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 It is recommended that users try to export their model in I-Simpa during
