@@ -875,7 +875,7 @@ void MainUiFrame::OnShowAboutDialog(wxCommandEvent& event)
 
 void MainUiFrame::OnLinkWebIsimpa(wxCommandEvent& event)
 {
-	wxLaunchDefaultBrowser("http://i-simpa.ifsttar.fr/");
+	wxLaunchDefaultBrowser("https://i-simpa.univ-gustave-eiffel.fr/");
 }
 
 void MainUiFrame::OnLinkWebDoc(wxCommandEvent& event)

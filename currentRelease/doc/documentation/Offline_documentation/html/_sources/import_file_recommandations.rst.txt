@@ -6,6 +6,9 @@ a ‘bad’ geometry, with faces intersections, holes between faces… (in
 fact, the model will be imported, but some codes like SPPS will not be
 functional).
 
+Step-by-step 3D secne creation, importation and test
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 It is recommended that users try to export their model in I-Simpa during
 the different steps of the model building:
 
@@ -29,10 +32,10 @@ the different steps of the model building:
 .. _Import options: import_options.html
 
 
-Use TetGen to identify problemns in 3D models
+Use TetGen to identify problems in 3D models
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-There is a way inside I-Simpa to identify problems in 3D geometries, after imprting the 3D scene.
+There is a way inside I-Simpa to identify problems in 3D geometries, after importing the 3D scene.
 
 1. Import your 3D model in I-simpa
 2. Go to the 'Calculation' tab of the `'Project' window`_
