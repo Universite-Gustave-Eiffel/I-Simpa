@@ -7,8 +7,8 @@
 
 
 
-* **For general information**, [visit the offical I-Simpa website](http://i-simpa.ifsttar.fr)
-* **For using I-Simpa**, see [the Online User Guide](http://i-simpa-wiki.readthedocs.io/en/latest/)
+* **For general information**, [visit the offical I-Simpa website](https://i-simpa.univ-gustave-eiffel.fr/)
+* **For using I-Simpa**, see [the Online User Guide](http://i-simpa-wiki.readthedocs.io/fr/latest/)
 * **For build instructions**, see [the instructions](https://github.com/Ifsttar/I-Simpa/blob/master/Docs/Building.md)
 * **For contributing to I-Simpa**, see [the GitHub wiki](https://github.com/Ifsttar/I-Simpa/wiki/)
 * **Follow us on Twitter** <a href="https://twitter.com/intent/follow?screen_name=ISimpaOfficial">
@@ -46,4 +46,4 @@ I-Simpa is an application developped by Ifsttar under the GENERAL PUBLIC LICENSE
 
 ## **License Agreement for contributors**
 
-For legal reasons, contributors are asked to agree with a Contributor License Agreement (for Individual or for Entity). Contributors will be added in the 'About' dialog box of I-Simpa. For more information visit the following page: http://i-simpa.ifsttar.fr/community/contribute/contribute-to-the-code/
+For legal reasons, contributors are asked to agree with a Contributor License Agreement (for Individual or for Entity). Contributors will be added in the 'About' dialog box of I-Simpa. For more information visit the following page: https://i-simpa.univ-gustave-eiffel.fr/community/contribute/contribute-to-the-code/
