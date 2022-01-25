@@ -39,7 +39,7 @@ This folder contains several files:
 
 .. important::
 
-	If not already done, we suggest you to follow the two previous tutorials, before the present tutorial:
+	If not already done, we suggest you to follow the previous tutorial, before the present tutorial:
 
 	- `Study of a teaching room`_
 
@@ -120,7 +120,7 @@ The two main locations of the audience will be used to define two plane receiver
 
 3. Fo the second plane receiver, **Repeat** the previous 1-2 steps, with A(33.25,-8.22,6.26), B(33.17,8.58,6.23), C(40.73,8.58,9.47).
 
-.... note::
+.. note::
 
 	You can change the location and orientation of the plane by changing the location of one or more vertex (A, B, C). If a part of the plane receiver is oustide the 3D scene, this is not a problem for the SPPS code.
 
