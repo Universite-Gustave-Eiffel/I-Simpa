@@ -20,10 +20,11 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult:
+* <https://i-simpa.univ-gustave-eiffel.fr/>
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
+* To contact Université Gustave Eiffel, write to:
+* Université Gustave Eiffel,
+* Boulevard Descartes, Champs-sur-Marne, 77454 Marne-la-Vallée cedex 2 FRANCE
+* or write to software@univ-eiffel.fr
 * ----------------------------------------------------------------------*/
