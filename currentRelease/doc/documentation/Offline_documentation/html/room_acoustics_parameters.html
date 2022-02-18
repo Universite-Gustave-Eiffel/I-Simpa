@@ -135,6 +135,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Appendices</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="errors_messages.html">I-Simpa errors and messages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="I_Simpa_standard.html">Standards</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Room acoustics parameters</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#sound-level-parameters">Sound level parameters</a><ul>
@@ -285,6 +286,10 @@ G=&amp;10\log \sum_{s=1}^{N_s}\frac{\int_0^\infty p^2(t)\text{d}t}{\int_0^\infty
 <div class="section" id="early-decay-time-edt">
 <h3>Early decay time <span class="math notranslate nohighlight">\(EDT\)</span><a class="headerlink" href="#early-decay-time-edt" title="Permalink to this headline">¶</a></h3>
 <p>The <strong>Early decay time</strong>, noted <span class="math notranslate nohighlight">\(EDT\)</span> (in s), is obtained, like the classical reverberation time, by calculating the slope of the background integration decay curve of the quadratic IR, but this time corresponding to the first 10 decibels of the decay under the stationary state (between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(-10\)</span> dB).</p>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="_images/RT_EDT_calculation.png"><img alt="_images/RT_EDT_calculation.png" src="_images/RT_EDT_calculation.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">Illustration of the EDT and RT calculation from background integration decay curve (Schroeder curve)</span></p>
+</div>
 </div>
 </div>
 <div class="section" id="clarity-and-intelligibility-parameters">
@@ -370,8 +375,8 @@ position of the observation point.</p>
 <h3>Expected values<a class="headerlink" href="#expected-values" title="Permalink to this headline">¶</a></h3>
 <p>Table A.1 of the NF EN ISO 3382-1 standard proposes recommended values for most of these acoustic parameters, for
 concert halls and unoccupied multi-purpose halls up to 25000 m3:</p>
-<table border="1" class="docutils" id="id1">
-<caption><span class="caption-text">Expected values for few room acoustics parameters. From Table A.1 of the NF EN ISO 3382-1 standard.</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<table border="1" class="docutils" id="id2">
+<caption><span class="caption-text">Expected values for few room acoustics parameters. From Table A.1 of the NF EN ISO 3382-1 standard.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="33%" />
 <col width="33%" />
@@ -444,7 +449,7 @@ concert halls and unoccupied multi-purpose halls up to 25000 m3:</p>
     <p>
         &copy; Copyright 2022, Université Gustave Eiffel
       <span class="lastupdated">
-        Last updated on Jan 12, 2022.
+        Last updated on Feb 18, 2022.
       </span>
 
     </p>

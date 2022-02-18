@@ -111,7 +111,7 @@ the TCR numerical codes (embedded within the I-Simpa software).
    :maxdepth: 2
    :caption: Appendices
 
-   erros_messages
+   errors_messages
    I_Simpa_standard
    room_acoustics_parameters
    glossary

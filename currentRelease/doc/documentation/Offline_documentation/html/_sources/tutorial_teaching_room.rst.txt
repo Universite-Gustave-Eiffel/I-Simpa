@@ -11,7 +11,7 @@ This tutorial concerns the simple study of a teaching room. The geometry is rect
 -  manipulate surface material
 -  manipulate punctual receivers
 -  manipulate omnidirectional sound sources
--  perfomr calculations with the TCR and SPPS codes
+-  perfome calculations with the TCR and SPPS codes
 -  display results
 
 Resources for this tutorial are located in the following folder:
