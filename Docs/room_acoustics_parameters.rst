@@ -62,6 +62,13 @@ Early decay time :math:`EDT`
 
 The **Early decay time**, noted :math:`EDT` (in s), is obtained, like the classical reverberation time, by calculating the slope of the background integration decay curve of the quadratic IR, but this time corresponding to the first 10 decibels of the decay under the stationary state (between :math:`0` and :math:`-10` dB).
 
+.. figure::  images/Documentation/RT_EDT_calculation.png
+   :align:   center
+   :width:   500px
+
+   Illustration of the EDT and RT calculation from background integration decay curve (Schroeder curve)
+
+
 Clarity and intelligibility parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
