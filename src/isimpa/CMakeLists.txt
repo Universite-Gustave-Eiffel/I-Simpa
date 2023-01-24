@@ -451,8 +451,10 @@ ENDIF()
 
 find_package(wxWidgets COMPONENTS core base xml gl aui adv html REQUIRED)
 include(${wxWidgets_USE_FILE})
-# Find package for building
-FIND_PACKAGE(PythonLibs)
+# Find package for buildingfind_package(Python3 COMPONENTS Interpreter Development)
+FIND_PACKAGE(PythonLibs "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}" REQUIRED)
+execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "import sys; from distutils.sysconfig import get_python_lib; print(get_python_lib().split(sys.prefix)[-1][1:])"
+                    OUTPUT_VARIABLE PYTHON_SITE_PACKAGES OUTPUT_STRIP_TRAILING_WHITESPACE)
 
 find_package(OpenGL REQUIRED)
 include_directories( ${OPENGL_INCLUDE_DIRS})
