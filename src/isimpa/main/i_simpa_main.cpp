@@ -386,7 +386,8 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
         { WX_GL_RGBA, WX_GL_MIN_RED, 1, WX_GL_MIN_GREEN, 1,
         WX_GL_MIN_BLUE, 1, WX_GL_DEPTH_SIZE, 1,
         WX_GL_DOUBLEBUFFER,
-#  if defined(__WXMAC__)  || defined(__WXQT__) || defined(__linux__) 
+
+#  if defined(__WXMAC__)  || defined(__WXQT__) || defined(__linux__)
         GL_NONE };
 #  else
         None };

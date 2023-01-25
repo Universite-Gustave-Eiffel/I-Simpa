@@ -67,7 +67,8 @@ void wxGridCellTreeEditor::BeginEdit(int row, int col, wxGrid* grid)
 }
 
 void wxGridCellTreeEditor::onEndEdit(wxCommandEvent& event) {
-	this->EndEdit(edited_row, edited_col, currentGrid, "", &wxString());								// Apply changes 'locally'
+    wxString value = wxString();
+	this->EndEdit(edited_row, edited_col, currentGrid, "", &value);								// Apply changes 'locally'
 	wxPostEvent(Combo(), wxGridEvent(0, wxEVT_GRID_CELL_CHANGED, currentGrid, edited_row, edited_col)); //Post event so that e_data_tree action is triggered
 	event.Skip();
 }

@@ -239,6 +239,8 @@ void E_Scene_Groupesurfaces_Groupe::PushFace(std::vector<std::vector<Application
 		vectorToFeed[faceIndex.group].push_back(ApplicationConfiguration::t_PropFace());
 	}
 	//Il faut renseigner l'element de la face en fonction du type de groupe
+	//if(faceIndex.face>=0)
+	//{
 	if(!isPointerGroup)
 		vectorToFeed[faceIndex.group][faceIndex.face].idMaterial=this->GetIntegerConfig("idmat");
 	else
@@ -258,6 +260,7 @@ void E_Scene_Groupesurfaces_Groupe::PushFace(std::vector<std::vector<Application
 				vectorToFeed[faceIndex.group][faceIndex.face].idEncombrement=parentInfos.xmlIdElement;
 		}
 	}
+	//}
 }
 
 void E_Scene_Groupesurfaces_Groupe::GetMaterialsLink( std::vector<std::vector<ApplicationConfiguration::t_PropFace> > &matFacesAssociations)

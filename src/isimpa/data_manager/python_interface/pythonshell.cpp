@@ -33,6 +33,7 @@
 #include <wx/log.h>
 #include "UtfConverter.h"
 #include "last_cpp_include.hpp"
+#include <stdio.h>
 
 #ifdef USE_PYTHON
 
@@ -345,6 +346,7 @@ bool PythonShell::GetPythonManagedMenu(const int& element_type,const int& elemen
 	}else{
 		return false;
 	}
+	return true;
 }
 bool PythonShell::ins_pyelement(boost::python::object& py_el,const wxInt32& wxid, const wxString& module,const wxString& _pyclass)
 {

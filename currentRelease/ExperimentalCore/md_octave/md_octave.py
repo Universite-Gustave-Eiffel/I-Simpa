@@ -77,16 +77,19 @@ def process_face(tetraface, modelImport, sharedVertices, fileOut):
 
 ##
 # \~english
-# This method run the Classical physics core for each source independently and return the results
+# This method runs the Classical physics core for each source independently and returns the results
 # @return Dict object with source id in key and sound_level_layer.SoundLevelLayer instance in dict values
 def runTC(xmlPathTc, coreconf):
     """
-        This method run the Classical physics core for each source independently and return the results
+        This method runs the Classical physics core for each source independently and returns the results
     """
     # TODO option to disable direct field computation
     #if not coreconf.const["ajouter_son_direct"]:
     #    return {}
+    if platform.system() == 'Windows':
     tcpath = os.path.normpath(os.path.join(os.getcwd(), "core", "classical_theory", "classicalTheory.exe"))
+    else:
+        tcpath = os.path.normpath(os.path.join(os.getcwd(), "core", "classical_theory", "classicalTheory"))
 
     if not os.path.exists(tcpath):
         print("Cant find classical theory program!\n %s" % tcpath, file=sys.stderr)

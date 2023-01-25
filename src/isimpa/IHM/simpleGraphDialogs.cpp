@@ -400,7 +400,7 @@ void SG_PropertySheetDialog::OnUserChoosePenStyle(wxCommandEvent& ev)
 	if(drawingPenStyleCombo)
 	{
 		wxPen drawingPen=elementsModifications.Item(selectedElementIndice).elStyle.GetPen();
-		drawingPen.SetStyle(penStyles.Item(drawingPenStyleCombo->GetSelection()).enumId);
+		drawingPen.SetStyle((wxPenStyle)penStyles.Item(drawingPenStyleCombo->GetSelection()).enumId);
 		elementsModifications.Item(selectedElementIndice).elStyle.SetPen(&drawingPen);
 		OnCurveChange();
 	}
@@ -498,7 +498,7 @@ void SG_PropertySheetDialog::OnUserChooseBrushStyle(wxCommandEvent& ev)
 	if(drawingBrushStyleCombo)
 	{
 		wxBrush drawingBrush=elementsModifications.Item(selectedElementIndice).elStyle.GetBrush();
-		drawingBrush.SetStyle(brushStyles.Item(drawingBrushStyleCombo->GetSelection()).enumId);
+		drawingBrush.SetStyle((wxBrushStyle)brushStyles.Item(drawingBrushStyleCombo->GetSelection()).enumId);
 		elementsModifications.Item(selectedElementIndice).elStyle.SetBrush(&drawingBrush);
 		OnCurveChange();
 	}

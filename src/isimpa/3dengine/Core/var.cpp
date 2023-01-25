@@ -58,10 +58,10 @@ bool CVar::BuildVar(t_file& sceneconst,const char* mfilename)
   fprintf(outfile, "%i\n",quantConstraints);
   for(int v=0; v < quantConstraints ;v++)
   {
-	  fprintf(outfile, wxString::Format("%i  %i %s\n",v+1,
+	  fprintf(outfile,"%i  %i %s\n",v+1,
 	sceneconst.facetsConstraints[v].boundaryMarker,
-	Convertor::ToString(sceneconst.facetsConstraints[v].areaConstraint)
-	));
+		  Convertor::ToString(sceneconst.facetsConstraints[v].areaConstraint).c_str()
+		  );
   }
   fprintf(outfile, "# Segment constraints\n");
   fprintf(outfile, "0");
