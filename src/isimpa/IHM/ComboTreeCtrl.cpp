@@ -64,7 +64,7 @@ wxSize ComboTreeCtrl::GetAdjustedSize( int minWidth,
                                     int WXUNUSED(prefHeight),
                                     int maxHeight )
     {
-        return wxSize(wxMax(200,minWidth),wxMin(125,maxHeight));
+        return wxSize(FromDIP(wxMax(200,minWidth)),FromDIP(wxMin(150,maxHeight)));
     }
 
 wxWindow *ComboTreeCtrl::GetControl() { return this; }
