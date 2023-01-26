@@ -449,6 +449,9 @@ ELSE()
     MESSAGE(STATUS "Using dynamic wxWidgets library  lib:${wxWidgets_LIB_DIR} include:${wxWidgets_ROOT_DIR}")
 ENDIF()
 
+SET(CMAKE_EXE_LINKER_FLAGS
+          "${CMAKE_EXE_LINKER_FLAGS} -Wl,-rpath -Wl,/usr/local/lib")
+
 find_package(wxWidgets COMPONENTS core base xml gl aui adv html REQUIRED)
 include(${wxWidgets_USE_FILE})
 # Find package for buildingfind_package(Python3 COMPONENTS Interpreter Development)
