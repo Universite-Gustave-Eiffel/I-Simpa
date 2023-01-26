@@ -424,6 +424,7 @@ void uiTreeCtrl::OnMouseMove(wxMouseEvent& event)
 	{
 		mousePos=event.GetPosition();
 	}
+	event.Skip(true);
 }
 void uiTreeCtrl::OnTimer( wxTimerEvent& event)
 {
