@@ -21,13 +21,6 @@ environment:
     PYTHON_EXECUTABLE: C:\Python38-x64\python.exe
     CTEST_OUTPUT_ON_FAILURE: 1
 
-# branches to build
-branches:
-  # whitelist
-  only:
-    - master
-    - dev
-
 # Operating system (build VM template)
 os: Visual Studio 2019
 
