@@ -229,17 +229,25 @@ void E_Scene_Groupesurfaces_Groupe::InitProp()
 
 void E_Scene_Groupesurfaces_Groupe::PushFace(std::vector<std::vector<ApplicationConfiguration::t_PropFace> >& vectorToFeed,t_faceIndex faceIndex)
 {
-	while(faceIndex.group+1>vectorToFeed.size())
+	// First resize vector to fit the expected faceIndex or groupIndex array index
+	while(faceIndex.group == -1 || faceIndex.group >= vectorToFeed.size())
 	{
 		std::vector<ApplicationConfiguration::t_PropFace> nvGroup;
 		vectorToFeed.push_back(nvGroup);
+		if(faceIndex.group == -1 < 0) {
+			faceIndex.group = vectorToFeed.size() - 1;
+		}
 	}
-	while(faceIndex.face+1>vectorToFeed[faceIndex.group].size())
+	while(faceIndex.face == -1 || faceIndex.face >= vectorToFeed[faceIndex.group].size())
 	{
 		vectorToFeed[faceIndex.group].push_back(ApplicationConfiguration::t_PropFace());
+		if(faceIndex.face == -1 < 0) {
+			faceIndex.face = vectorToFeed[faceIndex.group].size() - 1;
+		}
 	}
+	// Feed the arrays with data
 	// The face element must be filled in according to the type of group
-	if(!isPointerGroup && faceIndex.face >= 0) {
+	if(!isPointerGroup) {
 		vectorToFeed[faceIndex.group][faceIndex.face].idMaterial=this->GetIntegerConfig("idmat");
 	} else {
         // gather parent element of the surface group
