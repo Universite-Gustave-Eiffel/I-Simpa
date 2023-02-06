@@ -114,9 +114,15 @@ source_group( "tools" FILES ${TOOLS_SOURCES} )
 #---------------------------------------#
 
 set(Boost_USE_STATIC_LIBS   OFF)
-find_package(Boost COMPONENTS REQUIRED system filesystem regex)
-link_directories( ${Boost_LIBRARY_DIRS} )
-include_directories( ${Boost_INCLUDE_DIRS} )
+# find_package(Boost COMPONENTS REQUIRED system filesystem regex)
+
+CPMAddPackage(
+  NAME Boost
+  VERSION 1.81.0
+  GITHUB_REPOSITORY "boostorg/boost"
+  OPTIONS "--with-libraries=filesystem,system,test,regex,python,random,thread,timer,date_time"
+  GIT_TAG "boost-1.81.0"
+)
 
 add_library(lib_interface
     ${LIBINTERFACE_SOURCES}
@@ -135,9 +141,7 @@ add_library(lib_interface
 set_property(TARGET lib_interface PROPERTY FOLDER "libraries")
 
 target_link_libraries (lib_interface
-    ${Boost_FILESYSTEM_LIBRARY}
-    ${Boost_SYSTEM_LIBRARY}
-    ${Boost_REGEX_LIBRARY})
+    Boost::system Boost::filesystem Boost::regex)
 
 #------------#
 #    TEST 1
