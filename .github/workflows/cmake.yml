@@ -21,11 +21,10 @@ jobs:
       CPM_SOURCE_CACHE: ~/.cache/CPM
     steps:
       - uses: actions/checkout@v3
-      # - name: Install I-SIMPA dependencies
-      #   run: |
-      #     sudo apt-get update -qq                                       
-      #     sudo apt-get install -y --no-install-recommends               \
-      #                       python3-dev
+       - name: Install I-SIMPA dependencies
+         run: |                                 
+           sudo apt-get install -y --no-install-recommends               \                             
+                        libgtk-3-dev
       - name: Cache CPM dependency packages
         uses: actions/cache@v3
         with:
