@@ -1,9 +1,13 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.6.0)
+# begin basic metadata
+# minimum CMake version required for C++20 support, among other things
+cmake_minimum_required(VERSION 3.15)
 
 # Maps to a solution file (isimpa.sln). The solution will
 # have all targets (exe, lib, dll) as projects (.vcproj)
 project (isimpa VERSION 1.3.4)
 
+# a better way to load dependencies
+include(cmake/CPM.cmake)
 
 # convert path of a .lib file into a .dll file
 # findboost does not store .dll locations

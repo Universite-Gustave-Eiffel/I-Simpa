@@ -390,6 +390,16 @@ set(Boost_USE_STATIC_LIBS   OFF)
 find_package(Boost REQUIRED COMPONENTS system python filesystem regex)
 link_directories( ${Boost_LIBRARY_DIRS} )
 
+
+# add wxWidgets as dependency
+CPMFindPackage(
+    NAME wxWidgets
+    GIT_REPOSITORY https://github.com/wxWidgets/wxWidgets
+    GIT_TAG v3.1.4
+    EXCLUDE_FROM_ALL YES
+)
+
+
 # Set Properties->General->Configuration Type to Application
 # Creates isimpa with the listed sources
 # Adds sources to the Solution Explorer
@@ -456,7 +466,7 @@ find_package(wxWidgets COMPONENTS core base xml gl aui adv html REQUIRED)
 include(${wxWidgets_USE_FILE})
 # Find package for buildingfind_package(Python3 COMPONENTS Interpreter Development)
 FIND_PACKAGE(PythonLibs "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}" REQUIRED)
-execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "import sys; from distutils.sysconfig import get_python_lib; print(get_python_lib().split(sys.prefix)[-1][1:])"
+execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "import sys; import sysconfig; print(list(sysconfig.get_paths().values()))"
                     OUTPUT_VARIABLE PYTHON_SITE_PACKAGES OUTPUT_STRIP_TRAILING_WHITESPACE)
 
 find_package(OpenGL REQUIRED)
