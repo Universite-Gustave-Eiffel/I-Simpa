@@ -31,8 +31,6 @@ SET_SOURCE_FILES_PROPERTIES(libsimpa.i PROPERTIES CPLUSPLUS ON)
 #find_package(Boost COMPONENTS system filesystem regex REQUIRED)
 #link_directories( ${Boost_LIBRARY_DIRS})
 
-set(BOOST_INCLUDE_LIBRARIES system filesystem regex)
-
 CPMAddPackage(
   NAME Boost
   VERSION 1.81.0

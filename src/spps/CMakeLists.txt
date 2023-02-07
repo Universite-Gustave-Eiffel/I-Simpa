@@ -154,9 +154,6 @@ file(COPY
 set(SPPS_TESTS
     tests/spps_core_test.cpp)
 	
-set(Boost_USE_STATIC_LIBS   ON)
-find_package(Boost COMPONENTS filesystem regex unit_test_framework timer chrono REQUIRED)
-
 add_executable(TEST_spps ${SPPS_TESTS}
     ${DATA_MANAGER_SOURCES}
     ${IO_SOURCES}

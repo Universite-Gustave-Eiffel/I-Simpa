@@ -155,14 +155,10 @@ file(COPY tests/speaker-test1.txt tests/speaker-test2.txt
 set(LIBINTERFACE_TESTS
     tests/balloon_test.cpp)
 
-set(Boost_USE_STATIC_LIBS   ON)
-find_package(Boost COMPONENTS regex unit_test_framework timer chrono filesystem REQUIRED)
-
 add_executable(TEST_lib_interface ${LIBINTERFACE_TESTS})
 
 target_link_libraries (TEST_lib_interface
-    lib_interface
-    ${Boost_LIBRARIES})
+lib_interface Boost::system Boost::filesystem Boost::regex Boost::thread Boost::algorithm)
 
 set_property(TARGET TEST_lib_interface PROPERTY FOLDER "tests")
 
@@ -188,9 +184,8 @@ file(COPY tests/cube.cbin tests/cube_mesh.mbin tests/test_import1.poly
 add_executable(TEST_io_lib_interface tests/io_test.cpp )
 
 
-target_link_libraries (TEST_io_lib_interface
-    lib_interface
-    ${Boost_LIBRARIES})
+target_link_libraries (TEST_io_lib_interface lib_interface
+    Boost::system Boost::filesystem Boost::regex Boost::thread Boost::algorithm)
 
 
 set_property(TARGET TEST_io_lib_interface PROPERTY FOLDER "tests")
