@@ -386,19 +386,47 @@ set_property(SOURCE data_manager/python_interface/py_ui_module/element_pywrap.cp
 
 configure_file(data_manager/appconfig_version.cpp.in ${CMAKE_CURRENT_BINARY_DIR}/generated/appconfig_version.cpp )
 
-set(Boost_USE_STATIC_LIBS   OFF)
-find_package(Boost REQUIRED COMPONENTS system python filesystem regex)
-link_directories( ${Boost_LIBRARY_DIRS} )
-
-
-# add wxWidgets as dependency
-CPMFindPackage(
-    NAME wxWidgets
-    GIT_REPOSITORY https://github.com/wxWidgets/wxWidgets
-    GIT_TAG v3.1.4
-    EXCLUDE_FROM_ALL YES
+CPMAddPackage(
+  NAME Boost
+  VERSION 1.81.0
+  GITHUB_REPOSITORY "boostorg/boost"
+  GIT_TAG "boost-1.81.0"
 )
 
+# add wxWidgets as dependency
+
+find_package(wxWidgets)
+
+if(wxWidgets_FOUND)
+
+    if(CMAKE_BUILD_TYPE STREQUAL Debug)
+        if(NOT ${wxWidgets_CONFIGURATION} MATCHES .*d$ )
+        set(wxWidgets_CONFIGURATION ${wxWidgets_CONFIGURATION}d)
+        endif()
+    else()
+        if(${wxWidgets_CONFIGURATION} MATCHES .*d$ )
+        string(LENGTH ${wxWidgets_CONFIGURATION} BUILD_STR_SIZE)
+        MATH(EXPR BUILD_STR_SIZE "${BUILD_STR_SIZE}-1")
+        string(SUBSTRING ${wxWidgets_CONFIGURATION} 0 ${BUILD_STR_SIZE} wxWidgets_CONFIGURATION)
+        endif()
+    endif()
+
+    find_package(wxWidgets COMPONENTS core base xml gl aui adv html REQUIRED)
+
+    include(${wxWidgets_USE_FILE})
+else(NOT wxWidgets_FOUND)
+  set(USING_CPM true)
+  set(BUILD_SHARED_LIBS OFF)
+  set(CPM_DOWNLOAD_VERSION 0.34.0)
+
+  include(${CPM_DOWNLOAD_LOCATION})
+
+  CPMAddPackage(
+    NAME wxWidgets
+    GIT_REPOSITORY https://github.com/wxWidgets/wxWidgets
+    GIT_TAG        v3.1.6
+  )
+endif()
 
 # Set Properties->General->Configuration Type to Application
 # Creates isimpa with the listed sources
@@ -462,30 +490,36 @@ ENDIF()
 SET(CMAKE_EXE_LINKER_FLAGS
           "${CMAKE_EXE_LINKER_FLAGS} -Wl,-rpath -Wl,/usr/local/lib")
 
-find_package(wxWidgets COMPONENTS core base xml gl aui adv html REQUIRED)
-include(${wxWidgets_USE_FILE})
+#find_package(wxWidgets COMPONENTS core base xml gl aui adv html REQUIRED)
+# include(${wxWidgets_USE_FILE})
+
 # Find package for buildingfind_package(Python3 COMPONENTS Interpreter Development)
 FIND_PACKAGE(PythonLibs "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}" REQUIRED)
 execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "import sys; import sysconfig; print(list(sysconfig.get_paths().values()))"
                     OUTPUT_VARIABLE PYTHON_SITE_PACKAGES OUTPUT_STRIP_TRAILING_WHITESPACE)
 
 find_package(OpenGL REQUIRED)
-include_directories( ${OPENGL_INCLUDE_DIRS})
-
+include_directories(${OPENGL_INCLUDE_DIRS})
+include_directories(${wxWidgets_SOURCE_DIR})
 link_directories( ${Boost_LIBRARY_DIRS} )
-include_directories( ${Boost_INCLUDE_DIRS} )
+include_directories(${Boost_INCLUDE_DIRS} )
 include_directories(${PYTHON_INCLUDE_PATH})
 
 # Properties->Linker->Input->Additional Dependencies
 target_link_libraries(isimpa lib_interface)
-target_link_libraries(isimpa ${Boost_LIBRARIES})
+target_link_libraries(isimpa Boost::python)
 target_link_libraries(isimpa ${PYTHON_LIBRARIES})
 
 if(WIN32 AND MSVC)
   target_link_libraries(isimpa ${PYTHON_LIBRARY_RELEASE})
 endif()
 
-target_link_libraries(isimpa ${wxWidgets_LIBRARIES})
+if(USING_CPM)
+    target_link_libraries(isimpa wx::core wx::base wx::aui)
+else()
+    target_link_libraries(isimpa ${wxWidgets_LIBRARIES})
+endif()
+
 target_link_libraries(isimpa ${OPENGL_LIBRARIES})
 
 add_definitions(-DUSE_PYTHON=${PYTHONLIBS_FOUND})

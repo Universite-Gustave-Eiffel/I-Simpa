@@ -27,9 +27,20 @@ SET(CMAKE_SWIG_FLAGS "")
 
 SET_SOURCE_FILES_PROPERTIES(libsimpa.i PROPERTIES CPLUSPLUS ON)
 
-set(Boost_USE_STATIC_LIBS   OFF)
-find_package(Boost COMPONENTS system filesystem regex REQUIRED)
-link_directories( ${Boost_LIBRARY_DIRS})
+#set(Boost_USE_STATIC_LIBS   OFF)
+#find_package(Boost COMPONENTS system filesystem regex REQUIRED)
+#link_directories( ${Boost_LIBRARY_DIRS})
+
+set(BOOST_INCLUDE_LIBRARIES system filesystem regex)
+
+CPMAddPackage(
+  NAME Boost
+  VERSION 1.81.0
+  GITHUB_REPOSITORY "boostorg/boost"
+  GIT_TAG "boost-1.81.0"
+  FIND_PACKAGE_ARGUMENTS "COMPONENTS program_options"
+)
+
 
 IF (${CMAKE_VERSION} VERSION_LESS "3.8.0")
   SWIG_ADD_MODULE(libsimpa python libsimpa.i)

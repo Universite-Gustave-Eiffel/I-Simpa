@@ -113,14 +113,13 @@ source_group( "tools" FILES ${TOOLS_SOURCES} )
 #    DEPENDENCY & EXECUTABLE (OR LIB)
 #---------------------------------------#
 
-set(Boost_USE_STATIC_LIBS   OFF)
+# set(Boost_USE_STATIC_LIBS   OFF)
 # find_package(Boost COMPONENTS REQUIRED system filesystem regex)
 
 CPMAddPackage(
   NAME Boost
   VERSION 1.81.0
   GITHUB_REPOSITORY "boostorg/boost"
-  OPTIONS "--with-libraries=filesystem,system,test,regex,python,random,thread,timer,date_time"
   GIT_TAG "boost-1.81.0"
 )
 

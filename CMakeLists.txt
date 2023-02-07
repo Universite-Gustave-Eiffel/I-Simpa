@@ -53,13 +53,15 @@ IF (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     EXECUTE_PROCESS(COMMAND ${CMAKE_CXX_COMPILER} -dumpversion OUTPUT_VARIABLE GCC_VERSION)
     IF (GCC_VERSION VERSION_GREATER 4.7 OR GCC_VERSION VERSION_EQUAL 4.7)
         SET(USE_CXX_11 TRUE)
-        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+        set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall --std=c++11 -O3 -fPIC" )        
+        set( CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -Wall -O3 -fPIC" )
     ENDIF()
 ELSEIF (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     IF ((NOT APPLE AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER "3.2")
             OR (APPLE AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER "4.1"))
         SET(USE_CXX_11 TRUE)
-        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wno-error=c++11-narrowing")
+        set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall --std=c++11  -Wno-error=c++11-narrowing -O3 -fPIC" )    
+        set(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -Wall -O3 -fPIC" )
     ENDIF()
 ELSEIF (MSVC AND MSVC_VERSION GREATER 1600)
     SET(USE_CXX_11 TRUE)
@@ -72,6 +74,12 @@ ENDIF()
 cmake_policy(SET CMP0086 NEW)
 cmake_policy(SET CMP0078 NEW)
 cmake_policy(SET CMP0074 NEW)
+
+# configure boost for inclusion in builds
+
+set(BOOST_INCLUDE_LIBRARIES system python filesystem regex)
+set(BOOST_ENABLE_PYTHON ON)
+
 
 # Command to output information to the console
 # Useful for displaying errors, warnings, and debugging
