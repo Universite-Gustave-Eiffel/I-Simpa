@@ -54,17 +54,12 @@ source_group("" FILES ${SPPS_SOURCES} $(SPPS_MAIN_SOURCES))
 #    DEPENDENCY & EXECUTABLE (OR LIB)
 #---------------------------------------#
 
-set(Boost_USE_STATIC_LIBS   OFF)
-
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-  find_package(Boost REQUIRED COMPONENTS system random filesystem regex)
-else()
-  find_package (Threads)
-  find_package(Boost REQUIRED COMPONENTS system random filesystem regex thread chrono date_time)
-endif()
-
-link_directories( ${Boost_LIBRARY_DIRS} )
-include_directories( ${Boost_INCLUDE_DIRS} )
+CPMAddPackage(
+  NAME Boost
+  VERSION 1.81.0
+  GITHUB_REPOSITORY "boostorg/boost"
+  GIT_TAG "boost-1.81.0"
+)
 
 # Check for clock_gettime function
 if (UNIX)
@@ -92,7 +87,10 @@ set_property(TARGET spps PROPERTY FOLDER "executables")
 
 
 # Properties->Linker->Input->Additional Dependencies
-target_link_libraries (spps lib_interface ${Boost_LIBRARIES})
+target_link_libraries (spps lib_interface)
+
+target_link_libraries (spps
+    Boost::system Boost::filesystem Boost::regex Boost::thread Boost::algorithm Boost::thread Boost::chrono Boost::date_time) 
 
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")

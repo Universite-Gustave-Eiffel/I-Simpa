@@ -140,7 +140,7 @@ add_library(lib_interface
 set_property(TARGET lib_interface PROPERTY FOLDER "libraries")
 
 target_link_libraries (lib_interface
-    Boost::system Boost::filesystem Boost::regex)
+    Boost::system Boost::filesystem Boost::regex Boost::thread Boost::algorithm)
 
 #------------#
 #    TEST 1

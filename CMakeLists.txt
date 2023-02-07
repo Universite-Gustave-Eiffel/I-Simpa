@@ -77,7 +77,7 @@ cmake_policy(SET CMP0074 NEW)
 
 # configure boost for inclusion in builds
 
-set(BOOST_INCLUDE_LIBRARIES system python filesystem regex)
+set(BOOST_INCLUDE_LIBRARIES system python filesystem regex algorithm thread)
 set(BOOST_ENABLE_PYTHON ON)
 
 
