@@ -22,7 +22,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install I-SIMPA dependencies
-        run: sudo apt update && sudo apt-get install -y --no-install-recommends               \                             
+        run: |
+          sudo sed -i 's/azure\.//' /etc/apt/sources.list 
+          sudo apt-get update 
+          sudo apt-get update && sudo apt-get install -y --no-install-recommends               \                             
                       libgtk-3-dev
       - name: Cache CPM dependency packages
         uses: actions/cache@v3
