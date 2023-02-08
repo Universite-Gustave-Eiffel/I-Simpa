@@ -13,9 +13,9 @@ FIND_PACKAGE(SWIG REQUIRED)
 INCLUDE(${SWIG_USE_FILE})
 
 # Find package for building
-FIND_PACKAGE(PythonLibs 3.10 EXACT REQUIRED)
+FIND_PACKAGE(PythonLibs REQUIRED)
 # Find package for testing
-FIND_PACKAGE(PythonInterp 3.10 EXACT REQUIRED)
+FIND_PACKAGE(PythonInterp REQUIRED)
 
 INCLUDE_DIRECTORIES(${PYTHON_INCLUDE_PATH})
 
@@ -27,18 +27,9 @@ SET(CMAKE_SWIG_FLAGS "")
 
 SET_SOURCE_FILES_PROPERTIES(libsimpa.i PROPERTIES CPLUSPLUS ON)
 
-#set(Boost_USE_STATIC_LIBS   OFF)
-#find_package(Boost COMPONENTS system filesystem regex REQUIRED)
-#link_directories( ${Boost_LIBRARY_DIRS})
-
-CPMAddPackage(
-  NAME Boost
-  VERSION 1.81.0
-  GITHUB_REPOSITORY "boostorg/boost"
-  GIT_TAG "boost-1.81.0"
-  FIND_PACKAGE_ARGUMENTS "COMPONENTS program_options"
-)
-
+set(Boost_USE_STATIC_LIBS   OFF)
+find_package(Boost COMPONENTS system filesystem regex REQUIRED)
+link_directories( ${Boost_LIBRARY_DIRS})
 
 IF (${CMAKE_VERSION} VERSION_LESS "3.8.0")
   SWIG_ADD_MODULE(libsimpa python libsimpa.i)

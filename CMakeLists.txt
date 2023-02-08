@@ -75,12 +75,6 @@ cmake_policy(SET CMP0086 NEW)
 cmake_policy(SET CMP0078 NEW)
 cmake_policy(SET CMP0074 NEW)
 
-# configure boost for inclusion in builds
-
-set(BOOST_INCLUDE_LIBRARIES system python filesystem regex algorithm thread test random)
-set(BOOST_ENABLE_PYTHON ON)
-
-
 # Command to output information to the console
 # Useful for displaying errors, warnings, and debugging
 message (STATUS "cxx Flags: " ${CMAKE_CXX_FLAGS})

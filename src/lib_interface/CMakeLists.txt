@@ -113,15 +113,10 @@ source_group( "tools" FILES ${TOOLS_SOURCES} )
 #    DEPENDENCY & EXECUTABLE (OR LIB)
 #---------------------------------------#
 
-# set(Boost_USE_STATIC_LIBS   OFF)
-# find_package(Boost COMPONENTS REQUIRED system filesystem regex)
-
-CPMAddPackage(
-  NAME Boost
-  VERSION 1.81.0
-  GITHUB_REPOSITORY "boostorg/boost"
-  GIT_TAG "boost-1.81.0"
-)
+set(Boost_USE_STATIC_LIBS   OFF)
+find_package(Boost COMPONENTS REQUIRED system filesystem regex)
+link_directories( ${Boost_LIBRARY_DIRS} )
+include_directories( ${Boost_INCLUDE_DIRS} )
 
 add_library(lib_interface
     ${LIBINTERFACE_SOURCES}
@@ -140,7 +135,9 @@ add_library(lib_interface
 set_property(TARGET lib_interface PROPERTY FOLDER "libraries")
 
 target_link_libraries (lib_interface
-    Boost::system Boost::filesystem Boost::regex Boost::thread Boost::algorithm)
+    ${Boost_FILESYSTEM_LIBRARY}
+    ${Boost_SYSTEM_LIBRARY}
+    ${Boost_REGEX_LIBRARY})
 
 #------------#
 #    TEST 1
@@ -155,10 +152,14 @@ file(COPY tests/speaker-test1.txt tests/speaker-test2.txt
 set(LIBINTERFACE_TESTS
     tests/balloon_test.cpp)
 
+set(Boost_USE_STATIC_LIBS   ON)
+find_package(Boost COMPONENTS regex unit_test_framework timer chrono filesystem REQUIRED)
+
 add_executable(TEST_lib_interface ${LIBINTERFACE_TESTS})
 
 target_link_libraries (TEST_lib_interface
-lib_interface Boost::system Boost::filesystem Boost::regex Boost::thread Boost::algorithm Boost::unit_test_framework)
+    lib_interface
+    ${Boost_LIBRARIES})
 
 set_property(TARGET TEST_lib_interface PROPERTY FOLDER "tests")
 
@@ -184,8 +185,9 @@ file(COPY tests/cube.cbin tests/cube_mesh.mbin tests/test_import1.poly
 add_executable(TEST_io_lib_interface tests/io_test.cpp )
 
 
-target_link_libraries (TEST_io_lib_interface lib_interface
-    lib_interface Boost::system Boost::filesystem Boost::regex Boost::thread Boost::algorithm Boost::unit_test_framework)
+target_link_libraries (TEST_io_lib_interface
+    lib_interface
+    ${Boost_LIBRARIES})
 
 
 set_property(TARGET TEST_io_lib_interface PROPERTY FOLDER "tests")

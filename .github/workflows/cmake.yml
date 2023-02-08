@@ -26,6 +26,7 @@ jobs:
           sudo sed -i 's/azure\.//' /etc/apt/sources.list 
           sudo apt-get update 
           sudo apt-get install -y --no-install-recommends \
+          build-essential \
           libgtk-3-dev \
           freeglut3-dev \
           libxmu-dev \
@@ -41,7 +42,11 @@ jobs:
           libgl1-mesa-dev \
           libglapi-mesa \
           byacc \
-          gettext
+          gettext \
+          cmake \
+          python3-dev \
+          swig \
+          libboost-all-dev
       - name: Cache CPM dependency packages
         uses: actions/cache@v3
         with:
@@ -56,16 +61,18 @@ jobs:
           cmake -DCPM_SOURCE_CACHE=${{ env.CPM_SOURCE_CACHE }} -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
       - name: Build
+        working-directory: ${{github.workspace}}/build
         # Compile i-simpa
-        run: cd build && make
+        run: make
 
       - name: Install
+        working-directory: ${{github.workspace}}/build
         # Copy stuff to bin subdirectory for "standalone" application
-        run: cd build && make install
+        run: make install
 
       - name: Test
         working-directory: ${{github.workspace}}/build
         # Execute tests defined by the CMake configuration.
         # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-        run: cd build && make test
+        run: make test
 
