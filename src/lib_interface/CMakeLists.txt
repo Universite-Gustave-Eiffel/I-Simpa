@@ -158,7 +158,7 @@ set(LIBINTERFACE_TESTS
 add_executable(TEST_lib_interface ${LIBINTERFACE_TESTS})
 
 target_link_libraries (TEST_lib_interface
-lib_interface Boost::system Boost::filesystem Boost::regex Boost::thread Boost::algorithm)
+lib_interface Boost::system Boost::filesystem Boost::regex Boost::thread Boost::algorithm Boost::unit_test_framework)
 
 set_property(TARGET TEST_lib_interface PROPERTY FOLDER "tests")
 
@@ -185,7 +185,7 @@ add_executable(TEST_io_lib_interface tests/io_test.cpp )
 
 
 target_link_libraries (TEST_io_lib_interface lib_interface
-    Boost::system Boost::filesystem Boost::regex Boost::thread Boost::algorithm)
+    lib_interface Boost::system Boost::filesystem Boost::regex Boost::thread Boost::algorithm Boost::unit_test_framework)
 
 
 set_property(TARGET TEST_io_lib_interface PROPERTY FOLDER "tests")
