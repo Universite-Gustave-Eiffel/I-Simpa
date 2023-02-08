@@ -506,9 +506,7 @@ include_directories(${Boost_INCLUDE_DIRS} )
 include_directories(${PYTHON_INCLUDE_PATH})
 
 # Properties->Linker->Input->Additional Dependencies
-target_link_libraries(isimpa lib_interface)
-target_link_libraries(isimpa Boost::python)
-target_link_libraries(isimpa ${PYTHON_LIBRARIES})
+target_link_libraries(isimpa lib_interface Boost::python Boost::random ${PYTHON_LIBRARIES})
 
 if(WIN32 AND MSVC)
   target_link_libraries(isimpa ${PYTHON_LIBRARY_RELEASE})
