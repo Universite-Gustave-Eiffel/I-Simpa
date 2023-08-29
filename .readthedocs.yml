@@ -13,9 +13,10 @@ version: 2
 formats:
   - pdf
   - htmlzip
-
-# Optionally set the version of Python and requirements required to build your docs
-python:
-  version: 3.7
-  install:
-    - requirements: Docs/requirements.txt
+  
+build:
+  os: "ubuntu-22.04"
+  tools:
+    python: "3.11"
+    install:
+      - requirements: Docs/requirements.txt
