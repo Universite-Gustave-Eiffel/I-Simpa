@@ -18,6 +18,7 @@ build:
   os: "ubuntu-22.04"
   tools:
     python: "3.11"
-    
-install:
+
+python:    
+  install:
   - requirements: Docs/requirements.txt
