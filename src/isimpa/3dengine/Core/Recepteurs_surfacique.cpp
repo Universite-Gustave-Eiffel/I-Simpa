@@ -266,6 +266,8 @@ bool RecepteursSControler::LoadRecepteursSFile(wxArrayString& recepteurSFiles, v
 			libellLegends.unit=_("%");
 		}else if(RecordRecepteurSurfType==(int)RECEPTEURS_RECORD_TYPE_PRESSURE){
 			libellLegends.unit=_("Pascal");
+		}else if(RecordRecepteurSurfType==(int)RECEPTEURS_RECORD_TYPE_STI){
+			libellLegends.unit=_(" ");
 		}
 		libellLegends.labelEl=elConf->GetElementInfos().libelleElement;
 	}
@@ -731,6 +733,8 @@ bool RecepteursSControler::UserWantToKnowAcousticLevelAtPosition( vec3 extractPo
 						wxLogMessage(_("The pressure value at this coordinate is %.2f")+libellLegends.unit,energyValue);
 					else if(RecordRecepteurSurfType==(int)formatRSBIN::RECEPTEURS_RECORD_TYPE_EDT)
 						wxLogMessage(_("EDT at pointer is %.2f ")+libellLegends.unit,energyValue);
+					else if(RecordRecepteurSurfType==(int)formatRSBIN::RECEPTEURS_RECORD_TYPE_STI)
+						wxLogMessage(_("The STI value at this coordinate is %.2f")+libellLegends.unit,energyValue);
 			}
 		}
 	}else{
@@ -762,6 +766,8 @@ void RecepteursSControler::RedrawLegend()
 	wxString precision("%.1f %s");
 	if(libellLegends.unit=="s")
 		precision="%.3f %s";
+	else if(libellLegends.unit==" ")
+		precision="%.2f %s";
 	libellLegends.maxValue=wxString::Format(precision,libellLegends.v_max,libellLegends.unit);
 	libellLegends.avgValue=wxString::Format(precision,(libellLegends.v_max-libellLegends.v_min)/2+libellLegends.v_min,libellLegends.unit);
 	libellLegends.minValue=wxString::Format(precision,libellLegends.v_min,libellLegends.unit);

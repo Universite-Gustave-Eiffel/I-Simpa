@@ -72,7 +72,8 @@ enum RECEPTEURS_RECORD_TYPE
 	RECEPTEURS_RECORD_TYPE_CLARITY,				/*!< Cartographie du paramètre C(dB)*/
 	RECEPTEURS_RECORD_TYPE_DEFINITION,			/*!< Cartographie du paramètre D(%)*/
 	RECEPTEURS_RECORD_TYPE_TS,					/*!< Cartographie du paramètre TS(secondes)*/
-	RECEPTEURS_RECORD_TYPE_ST					/*!< Cartographie du paramètre ST(dB)*/
+	RECEPTEURS_RECORD_TYPE_ST,					/*!< Cartographie du paramètre ST(dB)*/
+	RECEPTEURS_RECORD_TYPE_STI					/*!< Cartographie du paramètre STI*/
 };
 
 
