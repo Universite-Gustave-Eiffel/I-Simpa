@@ -219,7 +219,7 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I):
     ############################################
     ### PARAMETERS OF THE ROOM ACOUSTICS DIFFUSION MODEL
     Lambda=4*(VOLUME/Surf)    # Mean Free path (m)
-    CoeffDiff=Lambda*c0/3    # Diffusion coefficient TODO: Fix the diffusion coefficient value for mixed surface reflection and atmospheric absorption
+    CoeffDiff=Lambda*c0/3    # Diffusion coefficient
     ###########################################
     ## GLOBAL MATRIX ASSEMBLAGE
 # print('Global matrix assemblage')
@@ -551,7 +551,7 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I):
       rayonS2=0.15**2
       VolSource[s]=-10    # pourquoi -10 ??
       while VolSource[s]<=0 :
-        rayonS2 = rayonS2*1.25; # Radius incrementation. TODO: should be justified?
+        rayonS2 = rayonS2*1.25; # Radius incrementation.
         res=np.nonzero(dist2S<rayonS2)[0]
         VolSource[s]=sum(V_VC[res]) # Volume of the 'real' source (sum of the volum of each dol(ind))
       indss.append(res)    # Search all DOF inside the source radius
@@ -663,13 +663,13 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I):
     Volum=-10
     #while Volum<=0:
     #  ind=range(NDOF)
-    #  rayonS2=rayonS2*1.25   # Radius incrementation. TODO: should be justified?
+    #  rayonS2=rayonS2*1.25   # Radius incrementation.
     #  inds=ind(dist2m<rayonS2)   # Search all DOF inside the micro radius
     #  Volum=sum(V_VC[inds])  # Volume of the 'real' source (sum of the volum of each dol(ind))
     ###%inds est l'indice du point de contr�le
     #ind=range(NDOF)
     while Volum<=0:
-      rayonS2=rayonS2*1.25   # Radius incrementation. TODO: should be justified?
+      rayonS2=rayonS2*1.25   # Radius incrementation.
     #  inds=ind(dist2m<rayonS2)   # Search all DOF inside the micro radius
       inds=[x for x in range(NDOF) if dist2m[x] < rayonS2]
       Volum=sum(V_VC[inds])  # Volume of the 'real' source (sum of the volum of each dol(ind))
