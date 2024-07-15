@@ -569,6 +569,7 @@ def main(call_python=True):
     process_output_files(outputdir, coreconf, import_data, resultsModificationLayers,nodes,tetrahedrons,w,dt)
     sauve_recsurf_results.SauveRecepteurSurfResults(coreconf)
     sauve_recponct_results.SauveRecepteurPonctResults(coreconf)
+    print("fin test")
 
 
 if __name__ == '__main__':
