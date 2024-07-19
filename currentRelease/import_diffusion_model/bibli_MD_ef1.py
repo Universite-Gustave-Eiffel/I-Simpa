@@ -45,7 +45,8 @@ from scipy.constants import atmosphere, zero_Celsius
 # Définition locale de constantes :
 #######################################################
 TOB=np.array([50, 63, 80, 100, 125, 160, 200, 250, 315, 400, 500, 630, 800, 1000, 1250, 1600, 2000, 2500, 3150, 4000, 5000, 6300, 8000, 10000, 12500, 16000, 20000])
-SelectedFrequency=np.arange(7)
+# SelectedFrequency=np.arange(7)
+# print("selection =", TOB[SelectedFrequency])
 Temperature=20.0
 Humidity=50.0
 tol=0.000001
@@ -122,7 +123,10 @@ def Coef_Att_Atmos(F,H,P,K):
     Ps=Pref*(10**C)
     hmol=H*(Ps/Pref)
 # Rotational absorption
-    Acr=(Pref/P)*(1.60e-10)*np.sqrt(K/Kref)*F**2
+    F=np.array(F)
+    print("type de F :",type(F))
+    print("F :",F)
+    Acr=(Pref/P)*(1.60e-10)*np.sqrt(K/Kref)*(F**2)
     print('####################################')
     print('Pref/P=',Pref/P)
     print('K/Kref=',K/Kref)

@@ -13,7 +13,7 @@
 #############################################################################
 # Importation de fonctions externes :
 from bibli_MD_ef1 import *   # bibliothhèque EF pour MD
-def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I):
+def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I,coreConf):
     import os,sys
     import numpy as np
     from copy import deepcopy
@@ -27,8 +27,19 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I):
     start_time = time.time()
     ## CALCULATE ADDITIONNAL PARAMETERS FROM LOADED PARAMETERS
     # Frequency bands
-    Frequency=TOB[SelectedFrequency]
+    Frequency=coreConf.const["frequencies"]
     # Selected frequency bands
+    SelectedFrequency=[]
+    for f in Frequency:
+        for k in range(len(TOB)):
+            if f==TOB[k]:
+                SelectedFrequency.append(k)
+    # nonSelected frequency bands
+    NonSelectedFrequency=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]
+    for f in SelectedFrequency:
+        for i in range(len(NonSelectedFrequency)-1,-1,-1):
+            if f==NonSelectedFrequency[i]:
+                NonSelectedFrequency=np.delete(NonSelectedFrequency,i,0)
     NOct=len(Frequency)
     NNOct=np.arange(NOct)
     ## Atmospheric absorption and sound speed values
@@ -48,18 +59,18 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I):
     #NBLOCKS=nbre_salles; # Number of blocks of the meshing
     #idBloc=unique(el(:,5)); # Block identification
     #disp('Number of volumes '), disp(nbre_salles)
-# print('Read meshes and nodes')
+    print('Read meshes and nodes')
     domaine='scene' # Meshing file name
     #el=np.loadtxt(domaine+'_elements.txt',dtype=int)			# charge le fichier de data
     nbre_salles=np.size(np.unique(el[:,4])) # Number of volumes (i.e. rooms)
     NBLOCKS=nbre_salles # Number of blocks of the meshing
     idBloc=np.unique(el[:,4]) # Block identification
-# print('Number of volumes ',nbre_salles)
+    print('Number of volumes ',nbre_salles)
     
     ## TABLE OF DOF SIGNATURES
     # DOF_Sig <--Table des signatures pour les DOF
     # Example NBLOCKS= 3, include 1 0 1 for a node associate to the volume 1 et volume 3
-# print('Create table of signatures')
+    print('Create table of signatures')
     #DOF_Sig=np.arange(NBLOCKS)                   # pourquoi créer à priori ce tableau de zéros ??
     #DOF_Sig=DOF_Sig*0.
     DOF_Sig=np.zeros(NBLOCKS, dtype=float)
@@ -108,7 +119,7 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I):
     ##NDOF=size(ndf,1);
     #NDOF=ndf[0]*len(ndf[1])-1   # np.shape(ndf[1])
     ##disp('Number of nodes: '), disp(NDOF)
-# print('Number of nodes: ',NDOF)
+    print('Number of nodes: ',NDOF)
     ###
     #################
     ##NFS=zeros(nn,NBLOCKS+1);% NFS= NODE FREEDOM SIGNATURE
@@ -160,7 +171,7 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I):
     XYZ3=np.transpose(XYZ2)
     XYZ3=np.array(XYZ3)
     ### READING MESHES ON BOUNDARIES
-# print('Identifying boundaries')
+    print('Identifying boundaries')
     #el2Dtypd= np.loadtxt(domaine+'_faces.txt',dtype=int)			# charge le fichier de data
     nel2D0=el2Dtypd.shape[0]
     FT =np.sort(el2Dtypd[:,0:3])
@@ -219,10 +230,10 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I):
     ############################################
     ### PARAMETERS OF THE ROOM ACOUSTICS DIFFUSION MODEL
     Lambda=4*(VOLUME/Surf)    # Mean Free path (m)
-    CoeffDiff=Lambda*c0/3    # Diffusion coefficient
+    CoeffDiff=Lambda*c0/3    # Diffusion coefficient TODO: Fix the diffusion coefficient value for mixed surface reflection and atmospheric absorption
     ###########################################
     ## GLOBAL MATRIX ASSEMBLAGE
-# print('Global matrix assemblage')
+    print('Global matrix assemblage')
     # Tetra Assemblage of Global mat for diffusion operator
     mat=laplacienblocks2(xdf,ydf,zdf,Tet_Dof,NBLOCKS,NDOF,CoeffDiff)   # mat sparse CSR matrix
     #print('matrice creuse mat=',type(mat))
@@ -250,8 +261,8 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I):
     #Abs_Mater = np.loadtxt(domaine+'_materials_absorption.txt',dtype=float) # Load the absorbing material
     iAM = np.where(np.sum(Abs_Mater[:,1:],axis=1)!=0)[0] # iAbs: row of absorbing material index
     iAbs = Abs_Mater[iAM,0]          # iAbs: absorbing material index
-    abs_prop=Abs_Mater[iAM,:]
-    abs_coef=abs_prop[:,1+SelectedFrequency] 
+    abs_prop=Abs_Mater[iAM,:]    
+    abs_coef=abs_prop[:,SelectedFrequency]
     el2di_Dof=deepcopy(el2di)
     SurFaceA=[]
     AireFace=[]
@@ -319,10 +330,15 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I):
     
     #Wall_TL=np.loadtxt(domaine+'_materials_transmission.txt',dtype=float) # Load material
     iTrsm=Wall_TL[np.where(np.sum(Wall_TL[:,1:],axis=1)!=0)[0],0] # iTrsm: index of Material with transmission
-# print('iTrsm=',iTrsm)
+    print("Wall_TL : ", Wall_TL)
+    print("SelectedFrequency[np.newaxis,:] : ", SelectedFrequency)
     l=np.where(np.sum(Wall_TL[:,1:],axis=1)!=0)[0]
-    c=SelectedFrequency+1
-    TL=Wall_TL[l[:,np.newaxis], c[np.newaxis,:] ] # Transmission Loss idMat &values
+    print(l)
+    c=[0]+[k+1 for k in NonSelectedFrequency] #suppression des fréquences non choisies et de la première valeur 16/07/2024
+    #print("l[:,np.newaxis] : ", l[:,np.newaxis])
+    Wall_TLnp=np.array(Wall_TL)
+    TL=np.delete(Wall_TLnp,c,1) # Transmission Loss idMat &values
+    print("TL = ", TL)
     TAU=10.**(-TL[:,:NOct]/10)
     Surfaceporte=0
     el2diTrsm=[]
@@ -542,7 +558,7 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I):
     VolSource=np.zeros(Ns)
     indss = []
     for s in range(Ns) :
-# print('s=',s)
+      print('s=',s)
       xs=Srce_sonore_I[s,0]
       ys=Srce_sonore_I[s,1]
       zs=Srce_sonore_I[s,2]
@@ -551,18 +567,19 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I):
       rayonS2=0.15**2
       VolSource[s]=-10    # pourquoi -10 ??
       while VolSource[s]<=0 :
-        rayonS2 = rayonS2*1.25; # Radius incrementation.
+        rayonS2 = rayonS2*1.25; # Radius incrementation. TODO: should be justified?
         res=np.nonzero(dist2S<rayonS2)[0]
         VolSource[s]=sum(V_VC[res]) # Volume of the 'real' source (sum of the volum of each dol(ind))
       indss.append(res)    # Search all DOF inside the source radius
     #  
       Srce_sonore=np.zeros((Ns,3+len(NNOct)),float)
-      Srce_sonore[s,3+NNOct]=1e-12*10**(Srce_sonore_I[s,3+SelectedFrequency]/10) # Octave band sound power
+      SelectedFrequency2=[k+3 for k in SelectedFrequency]
+      Srce_sonore[s,3+NNOct]=1e-12*10**(Srce_sonore_I[s,SelectedFrequency2]/10) # Octave band sound power
       Volumic_Power_Srce=Srce_sonore[s,3+NNOct]/VolSource[s] # Volumic normalisation
     #%  # Display sound source information
-# print('Sound source N°: ',s)
-# print('Volume source = {0:06.4f}'.format(VolSource[s]))
-# print('Location: ',indss[s])
+    print('Sound source N°: ',s)
+    print('Volume source = {0:06.4f}'.format(VolSource[s]))
+    print('Location: ',indss[s])
     ############ sauvegarde éléments non nuls de la matrice creuse ########################
     #with open("mat_Toct{1}_non_nuls.txt", "w") as sauvegarde:
     #  print(mat_Toct[0], file=sauvegarde )
@@ -585,13 +602,13 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I):
     LpdB=10*np.log10(waf*rhoco2/(2e-5)**2)
     #########################   fin  affichepatchBlocks Python    ###############################
     #%## TIME VARYING STATE CALCULATION
-# print('Time varying state calculation')
+    print('Time varying state calculation')
     Sc=1.8
     A2=0.1*5*5*6-2
     A22=A2+Sc
     k2=Sc/(A2+Sc)
     A11=A22
-# print('10*log10(k2)=',10*np.log10(k2))
+    print('10*log10(k2)=',10*np.log10(k2))
     L1=10*np.log10(1/1.2/c0**2*103*c0/4*A22/(A22*A11-Sc**2)/1e-12)
     val=10*np.log10(el2di_Dof[-1][:,0:3]*rhoco2/(2e-5)**2)
     L1moy=np.mean(np.mean(val))
@@ -636,13 +653,13 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I):
     TheorieR0R10=10*np.log10(25/(Sc*10**(-0.1*0)+(25-Sc)*10**(-0.1*10)))+Cr
     TheorieR0R20=10*np.log10(25/(Sc*10**(-0.1*0)+(25-Sc)*10**(-0.1*20)))+Cr
     TheorieR0R30=10*np.log10(25/(Sc*10**(-0.1*0)+(25-Sc)*10**(-0.1*30)))+Cr
-# print('TheorieR0R10 = {0:02.4e}'.format(TheorieR0R10))
-# print('TheorieR0R20 = {0:02.4e}'.format(TheorieR0R20))
-# print('TheorieR0R30 = {0:02.4e}'.format(TheorieR0R30))
+    print('TheorieR0R10 = {0:02.4e}'.format(TheorieR0R10))
+    print('TheorieR0R20 = {0:02.4e}'.format(TheorieR0R20))
+    print('TheorieR0R30 = {0:02.4e}'.format(TheorieR0R30))
     TheorieR0Rinf=10*np.log10(25/(Sc*10**(-0.1*0)+(25-Sc)*10**(-0.1*400)))+Cr
     Rlim=  10*np.log10(25/Sc)+Cr
-# print('TheorieR0Rinf = {0:02.4e}'.format(TheorieR0Rinf))
-# print('Rlim = {0:02.4e}'.format(Rlim))
+    print('TheorieR0Rinf = {0:02.4e}'.format(TheorieR0Rinf))
+    print('Rlim = {0:02.4e}'.format(Rlim))
     ##
     #with open("mat_non_nuls.txt", "w") as sauvegarde:
     #  print(mat_Toct[6], file=sauvegarde )
@@ -663,13 +680,13 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I):
     Volum=-10
     #while Volum<=0:
     #  ind=range(NDOF)
-    #  rayonS2=rayonS2*1.25   # Radius incrementation.
+    #  rayonS2=rayonS2*1.25   # Radius incrementation. TODO: should be justified?
     #  inds=ind(dist2m<rayonS2)   # Search all DOF inside the micro radius
     #  Volum=sum(V_VC[inds])  # Volume of the 'real' source (sum of the volum of each dol(ind))
     ###%inds est l'indice du point de contr�le
     #ind=range(NDOF)
     while Volum<=0:
-      rayonS2=rayonS2*1.25   # Radius incrementation.
+      rayonS2=rayonS2*1.25   # Radius incrementation. TODO: should be justified?
     #  inds=ind(dist2m<rayonS2)   # Search all DOF inside the micro radius
       inds=[x for x in range(NDOF) if dist2m[x] < rayonS2]
       Volum=sum(V_VC[inds])  # Volume of the 'real' source (sum of the volum of each dol(ind))
@@ -775,4 +792,7 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I):
     ###
     #### Affichage du temps d execution
     print('Temps d execution : {0:02.4e} s '.format(time.time() - start_time))
+    print("taille :", len(w), len(w[0]))
+    print("type :", type(w), type(w[0]))
+    print("w :", w)
     return XYZ3,Tet_Dof,w,dt
