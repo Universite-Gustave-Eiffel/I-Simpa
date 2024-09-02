@@ -82,7 +82,7 @@ class coreConfig(object):
         self.const["temperature_celsius"] = condition_atmospherique_node.getpropertyfloat("temperature")
         self.const["temperature_kelvin"] = condition_atmospherique_node.getpropertyfloat("temperature") + 273.15
         self.const["humidite"] = condition_atmospherique_node.getpropertyfloat("humidite")
-        self.const["frequencies"] = [int(freq.getproperty("freq")) for freq in self.rootnode["simulation"]["freq_enum"].lstnodesenum("bfreq") if freq.getproperty("docalc") == "1"]
+        self.const["frequencies"] = [int(freq.getproperty("freq")) for freq in self.rootnode["simulation"]["freq_enum"].lstnodesenum("bfreq") if freq.getproperty("docalc") == b'1']
         self.const["frequencies"].sort()
         self.const["allfrequencies"] = [int(freq.getproperty("freq")) for freq in self.rootnode["simulation"]["freq_enum"].lstnodesenum("bfreq")]
         self.const["allfrequencies"].sort()
@@ -111,6 +111,9 @@ class coreConfig(object):
         self.load_materials()
         self.load_sources(self.rootnode["sources"])
         self.load_fittings()
+        self.load_freqlst(self.rootnode["simulation"]["freq_enum"])
+
+
     ##
     # \~english 
     # Feed the following list : 
@@ -135,6 +138,7 @@ class coreConfig(object):
             if computation[freqval]:
                 self.freqid_docalclst.append(idfreq+1)
             self.abs_atmo.append(libsimpa.CCalculsGenerauxThermodynamique.Coef_Att_Atmos( freqval, humidite, pression, temperature_k)*math.log(10.)/10.)
+        print("frequence list : ", self.freqlst)
     ##
     # \~english 
     # Feed the sources_lst member.
@@ -181,7 +185,6 @@ class coreConfig(object):
             mat["name"]="'mat id:%i'" % (xmlidmat)
             mat["h"]=0
             self.materials[xmlidmat]=mat
-
     ##
     # \~english 
     def __getitem__(self,item_name):

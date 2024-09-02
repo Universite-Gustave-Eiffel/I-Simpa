@@ -3,6 +3,7 @@
 from __future__ import print_function  # compatibilité python 3.0
 
 import os
+import platform
 import sys
 # Add I-Simpa folder in lib path
 from os.path import dirname
@@ -91,8 +92,11 @@ def runTC(xmlPathTc, coreconf):
     # TODO option to disable direct field computation
     #if not coreconf.const["ajouter_son_direct"]:
     #    return {}
-    tcpath = os.path.normpath(os.path.join(os.getcwd(), "core", "classical_theory", "classicalTheory.exe"))
-
+    # tcpath = os.path.normpath(os.path.join(os.getcwd(), "core", "classical_theory", "classicalTheory.exe"))
+    if not coreconf.const["with_direct_sound"]:
+        return {}
+    bin_name = "classicalTheory.exe" if platform.system() != "Linux" else "classicalTheory"
+    tcpath = os.path.normpath(os.path.join(os.getcwd(), "core", "classical_theory", bin_name))
     if not os.path.exists(tcpath):
         print("Cant find classical theory program!\n %s" % tcpath, file=sys.stderr)
         exit()
@@ -216,7 +220,7 @@ def write_input_files(cbinpath, cmbinpath, materials, sources_lst, outfolder):
         #f.write('{0:>6} '.format(xmlid))
         Abs_Mater.append([xmlid])
         # for each frequency band
-        for freqAbs in mat["q"]:
+        for freqAbs in reversed(mat["q"]):      #modifs 22/08/2024 remettre à l'endroit la matrice d'absorption. dasn le fichier XML, on vas dans l'ordre décroissant des fréquences
             #f.write(' {0:>6.2g}'.format(freqAbs))
             Abs_Mater[-1].append(freqAbs)
         # end of line
@@ -230,7 +234,7 @@ def write_input_files(cbinpath, cmbinpath, materials, sources_lst, outfolder):
         #f.write('{0:>6} '.format(xmlid))
         Wall_TL.append([xmlid])
         # for each frequency band
-        for freqTransm in mat["g"]:
+        for freqTransm in reversed(mat["g"]):   #modifs 22/08/2024 idem que juste au dessus
             #f.write(' {0:>6.2g}'.format(freqTransm))
             Wall_TL[-1].append(freqTransm)
         # end of line
@@ -381,27 +385,30 @@ def process_output_files(outfolder, coreconf, import_data, resultsModificationLa
         tetra_values = [[numpy.ones(4) for idvert in range(4)] for idfreq in range(len(coreconf.const["frequencies"]))]
         if len(nearest_receivers) > 0:
             if not coreconf.const["stationary"]:
+                #print("result_matrix[0] :", result_matrix[0])
+                #print("taille : ", np.size(result_matrix[0]))
                 tetra_values = [
                     [schroeder_to_impulse(result_matrix[idfreq][:, verts[idvert]]) for idvert in range(4)] for
                     idfreq in range(len(coreconf.const["frequencies"]))]
             else:
+                #print("verts[0] :", verts[0])
                 tetra_values = [
                     [result_matrix[idfreq][:, verts[idvert]] for idvert in range(4)] for
                     idfreq in range(len(coreconf.const["frequencies"]))]
         # nearest_receivers = [receiver for receiver in res if square_dist(receiver, p) <= rmax]
         new_perc = int((idTetra / float(len(tetrahedrons))) * 100)
         if new_perc != last_perc:
-            print("Export receivers %i %%" % new_perc)
+            #print("Export receivers %i %%" % new_perc)
             last_perc = new_perc
         # Compute coefficient of the receiver point into the tetrahedron
         for receiver in nearest_receivers:
             coefficient = get_a_coefficients(to_array(receiver), nodes[verts[0]], nodes[verts[1]], nodes[verts[2]], nodes[verts[3]])
             if coefficient.min() > -1e-6:
-                print("1")
-                print("len = ",len(coreconf.const["frequencies"]))
+                #print("1")
+                #print("len = ",len(coreconf.const["frequencies"]))
                 # Point is inside tetrahedron
                 for id_freq in range(len(coreconf.const["frequencies"])):
-                    print("2")
+                   # print("2")
                     # closest freq id using all frequencies
                     current_frequency_id = coreconf.const["allfrequencies"].index(min(coreconf.const["allfrequencies"], key=lambda x: abs(x - coreconf.const["frequencies"][id_freq])))
                     # For each frequency compute the interpolated value
@@ -414,41 +421,41 @@ def process_output_files(outfolder, coreconf, import_data, resultsModificationLa
                     steps = GetNumStepBySource(to_vec3(receiver), coreconf)
                     # If the receiver belongs to a surface receiver add the value into it
                     if receiver.isSurfReceiver:
-                        print("3")
+                        #print("3")
                         # Look for sound source
                         if coreconf.const["with_direct_sound"]:
-                            print("4")
+                            #print("4")
                             for source_id in steps.keys():
-                                print("5")
+                                #print("5")
                                 if source_id in resultsModificationLayers and receiver.idrs in resultsModificationLayers[source_id].recsurf and len(resultsModificationLayers[source_id].recsurf[receiver.idrs][current_frequency_id]) > receiver.faceid:
-                                    print("6")
+                                    #print("6")
                                     power = resultsModificationLayers[source_id].recsurf[receiver.idrs][current_frequency_id][receiver.faceid]
                                     if power > 0 and not coreconf.const["stationary"]:
                                         interpolated_value[steps[source_id]] += power / (rhoco2 * 2.5e-3)
                                         print("7")
                                     else:
                                         interpolated_value += power / (rhoco2 * 2.5e-3)
-                                        print("8")
+                                        #print("8")
                         coreconf.recsurf[receiver.idrs].face_power[receiver.faceid].append(
                             interpolated_value * rhoco2 * 2.5e-3)
                     else:
-                        print("9")
+                        #print("9")
                         # Into a punctual receiver
                         # Look for sound source
                         if coreconf.const["with_direct_sound"]:
-                            print("10")
+                            #print("10")
                             for source_id in steps.keys():
-                                print("11")
+                                #print("11")
                                 if source_id in resultsModificationLayers and receiver.idrp in resultsModificationLayers[source_id].recp:
-                                    print("12")
+                                    #print("12")
                                     power = resultsModificationLayers[source_id].recp[receiver.idrp][current_frequency_id]
                                     if power > 0 and not coreconf.const["stationary"]:
                                         print("13")
                                         interpolated_value[steps[source_id]] += power / rhoco2
                                     else:
-                                        print("14")
+                                        #print("14")
                                         interpolated_value += power / rhoco2
-                        print("15")
+                        #print("15")
                         coreconf.recepteursponct[receiver.idrp]["power_insta"].append(
                             interpolated_value * rhoco2)
     print("End export receivers values")
@@ -500,10 +507,10 @@ def write_config_file(coreConf, outputdir):
         f.write("state = %s;\n" % ("0" if coreConf.const["stationary"] else "1"))
 
 
-def run_model(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_Sonore_I):
-    sys.path.append('C:/Program Files/I-SIMPA/Lib/import_diffusion_model')
+def run_model(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_Sonore_I,coreConf,libpath):
+    sys.path.append(libpath + '/Lib/import_diffusion_model')
     import Diffusion_MD_fil_ao2
-    nodes,tetrahedrons,w,dt=Diffusion_MD_fil_ao2.main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_Sonore_I)
+    nodes,tetrahedrons,w,dt=Diffusion_MD_fil_ao2.main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_Sonore_I,coreConf)
     return nodes,tetrahedrons,w,dt
 
 def main(call_python=True):
@@ -520,6 +527,7 @@ def main(call_python=True):
     if isinstance(working_directory, bytes):
        working_directory = working_directory.decode('utf-8')
     outputdir = os.path.join(working_directory, "core")
+    print("outputdir = ", outputdir)
     #------------------FIN modif code-----------------
     
     #outputdir = os.path.join(coreconf.paths["workingdirectory"], "core")
@@ -554,18 +562,18 @@ def main(call_python=True):
     #         print("Execution in %.2f seconds" % ((time.time() - deb) / 1000.))
     
     #--------------Modifs code------------------
-    script_name = "Diffusion_MD_fil_ao2.py"
-    script_path = os.path.join(outputdir , script_name)
-    print("outputdir = ",outputdir)
-    sys.path.append('C:/ProgramData/anaconda3/Lib/venv/scripts/nt')
-    command = ["--no-window-system", "C:/ProgramData/anaconda3/Lib/venv/scripts/nt"]
-    print("Run " + " ".join(command))
+    # script_name = "Diffusion_MD_fil_ao2.py"
+    # script_path = os.path.join(outputdir , script_name)
+    # print("outputdir = ",outputdir)
+    # sys.path.append('C:/ProgramData/anaconda3/Lib/venv/scripts/nt')
+    # command = ["--no-window-system", "C:/ProgramData/anaconda3/Lib/venv/scripts/nt"]
+    # print("Run " + " ".join(command))
     deb = time.time()
-    sys.path.append(outputdir)
-    #sp.run(["C:/ProgramData/anaconda3/python",outputdir+"/Diffusion_MD_fil_ao2.py"], cwd=outputdir, shell=True)
+    # sys.path.append(outputdir)
+    # #sp.run(["C:/ProgramData/anaconda3/python",outputdir+"/Diffusion_MD_fil_ao2.py"], cwd=outputdir, shell=True)
     print("Execution in %.2f seconds" % ((time.time() - deb) / 1000.))
     #--------------FIN Modifs code--------------
-    nodes,tetrahedrons,w,dt=run_model(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_Sonore_I)
+    nodes,tetrahedrons,w,dt=run_model(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_Sonore_I,coreconf,libpath)
     process_output_files(outputdir, coreconf, import_data, resultsModificationLayers,nodes,tetrahedrons,w,dt)
     sauve_recsurf_results.SauveRecepteurSurfResults(coreconf)
     sauve_recponct_results.SauveRecepteurPonctResults(coreconf)

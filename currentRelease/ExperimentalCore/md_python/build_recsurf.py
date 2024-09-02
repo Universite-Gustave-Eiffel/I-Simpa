@@ -65,7 +65,7 @@ def GetRecepteurSurfList(coreconf, scene, mesh):
         nbvertcol = NbCellV + 1
         # Calcul des coordonnées des sommets
         newrs.vertices = [(vertB + (stepU * (idnoderow) + (stepV * (idnodecol)))) for idnoderow in
-                          xrange(nbvertrow) for idnodecol in xrange(nbvertcol)]
+                          range(nbvertrow) for idnodecol in range(nbvertcol)]
         # Calcul des indices des sommets des faces triangulaire.
         newrs.faceindex = [[int((idcol + 1 + (idrow * nbvertcol))), int((idcol + (idrow * nbvertcol))),
                             int((idcol + ((idrow + 1) * nbvertcol))), int((idcol + 1 + ((idrow + 1) * nbvertcol)))] for

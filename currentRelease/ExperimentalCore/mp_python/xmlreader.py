@@ -71,7 +71,7 @@ class XmlNode(dict):
     # @param propertyname Name of the property
     def hasproperty(self,propertyname):
         #return self._properties.has_key(propertyname)
-        return propertyname in self._properties
+        return propertyname in self
     ##
     # \~english
     # @return Return the float value of the node property. 0 with error msg if not exist
@@ -104,8 +104,7 @@ class XmlNode(dict):
     def SortChildsByProperty(self,childsname,propertynamesort,ispropertyint=False):
         lst=self.lstnodesenum(childsname)
         for node in lst:
-            #node.sortpropertyname=propertynamesort
-            setattr(node, 'sortpropertyname', propertynamesort)
+            node.sortpropertyname=propertynamesort
         if ispropertyint:
             #lst.sort(cmpFuncInt)
             lst.sort(key=lambda x: int(getattr(x, propertynamesort, 0)))

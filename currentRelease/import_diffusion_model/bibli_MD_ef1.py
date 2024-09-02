@@ -51,8 +51,8 @@ Temperature=20.0
 Humidity=50.0
 tol=0.000001
 maxint=200
-dt=0.001000
-duration=2.000000
+# dt=0.001000
+# duration=2.000000
 atmos_absorption_calculation = 1
 ###############################################################
 ################   changem(z,newcode, oldcode)  ##############

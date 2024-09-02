@@ -330,15 +330,15 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I,coreConf):
     
     #Wall_TL=np.loadtxt(domaine+'_materials_transmission.txt',dtype=float) # Load material
     iTrsm=Wall_TL[np.where(np.sum(Wall_TL[:,1:],axis=1)!=0)[0],0] # iTrsm: index of Material with transmission
-    print("Wall_TL : ", Wall_TL)
-    print("SelectedFrequency[np.newaxis,:] : ", SelectedFrequency)
+    #print("Wall_TL : ", Wall_TL)
+    #print("SelectedFrequency[np.newaxis,:] : ", SelectedFrequency)
     l=np.where(np.sum(Wall_TL[:,1:],axis=1)!=0)[0]
     print(l)
     c=[0]+[k+1 for k in NonSelectedFrequency] #suppression des fréquences non choisies et de la première valeur 16/07/2024
     #print("l[:,np.newaxis] : ", l[:,np.newaxis])
     Wall_TLnp=np.array(Wall_TL)
     TL=np.delete(Wall_TLnp,c,1) # Transmission Loss idMat &values
-    print("TL = ", TL)
+    #print("TL = ", TL)
     TAU=10.**(-TL[:,:NOct]/10)
     Surfaceporte=0
     el2diTrsm=[]
@@ -650,12 +650,6 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I,coreConf):
     Ac=0.1*(5*5*6-Sc)+Sc
     Cr=10*np.log10(Ac/25)
      
-    TheorieR0R10=10*np.log10(25/(Sc*10**(-0.1*0)+(25-Sc)*10**(-0.1*10)))+Cr
-    TheorieR0R20=10*np.log10(25/(Sc*10**(-0.1*0)+(25-Sc)*10**(-0.1*20)))+Cr
-    TheorieR0R30=10*np.log10(25/(Sc*10**(-0.1*0)+(25-Sc)*10**(-0.1*30)))+Cr
-    print('TheorieR0R10 = {0:02.4e}'.format(TheorieR0R10))
-    print('TheorieR0R20 = {0:02.4e}'.format(TheorieR0R20))
-    print('TheorieR0R30 = {0:02.4e}'.format(TheorieR0R30))
     TheorieR0Rinf=10*np.log10(25/(Sc*10**(-0.1*0)+(25-Sc)*10**(-0.1*400)))+Cr
     Rlim=  10*np.log10(25/Sc)+Cr
     print('TheorieR0Rinf = {0:02.4e}'.format(TheorieR0Rinf))
@@ -665,6 +659,8 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I,coreConf):
     #  print(mat_Toct[6], file=sauvegarde )
     ##print(mat_Toct[0])
     ##################   CalculInsta Python   #####################
+    duration=coreConf.const["duration"]
+    dt=coreConf.const["timestep"]
     itmax=round(duration/dt) # Number of iterations
     MATinsta= np.diag(V_VC) # Integration constant   #  je ne suis pas sûr de bien comprendre comment fonctionnait la fontion integVC_cst
     #print('MATinsta=',MATinsta)
@@ -696,10 +692,16 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I,coreConf):
     temps_apres_arret_Srce= np.arange(0,itmax*dt,dt)
     ######    parallélisation  #########
     ### marche aussi en ne passant que N_Toct....
+    
+    ### 26/08/2024 modifs sur w pour ajouter cas insta ###
+    w_insta=deepcopy(w)
+    for k in range(len(w)):
+        w_insta[k]=list(w_insta[k])
     class Insta(Thread):
       def __init__(self, n):
         Thread.__init__(self)
         self.n = n     # N_Toct
+        #print("n = ",n)
       def run(self):
         """Code à exécuter pendant l'exécution du thread."""
     #    mat2=csr_matrix(dt*mat_Toct[self.n].tocsr()+ MATinsta) # Euler Implicite 1 matrice csr pour calcul direct
@@ -721,38 +723,49 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I,coreConf):
           wi = lu.solve( RHS )
     #      wi, _ = linalg.bicg(mat2, RHS)    # 
           wi_saved[:,it]=wi
+        #print("taille wi saved :", len(wi_saved), len(wi_saved[0]))
         LdBi=10*np.log10(np.abs(wi_saved[inds,:]*rhoco2/(2e-5)**2))
         LdBi=LdBi-LdBi[0][0]
         _, jn=np.where((LdBi+30.)>0.)  #  On cherche l'indice pour lequel on a descendu de 30dB
         T30=2*temps_apres_arret_Srce[jn[-1]-1]  #   Estimation du TR60 sur une dynamique de 30dB
-        print(self.n,'T30=',T30)   # idem Octave
+        #print(self.n,'T30=',T30)   # idem Octave
+        #print("W_insta[n][0] = ",w_insta[n][0])
+        #print("wi_saved[0] = ", wi_saved[0])
+        w_insta[self.n][0]=wi_saved[0]
+        #print(f"W_insta[{n}][0] = ",w_insta[n][0])
+        for kbis in range(1,len(wi_saved)):
+            w_insta[self.n][kbis]=wi_saved[kbis]
     ######   fin parallélisation  #########
     ### Création des threads
-    thread_1 = Insta(0)
-    thread_2 = Insta(1)
-    thread_3 = Insta(2)
-    thread_4 = Insta(3)
-    thread_5 = Insta(4)
-    thread_6 = Insta(5)
-    thread_7 = Insta(6)
+    for k in range(4):
+        thread_1 = Insta(6*k+0)
+        thread_2 = Insta(6*k+1)
+        thread_3 = Insta(6*k+2)
+        thread_4 = Insta(6*k+3)
+        thread_5 = Insta(6*k+4)
+        thread_6 = Insta(6*k+5)
+        #thread_7 = Insta(6,w)
     #
     ## Lancement des threads
-    thread_1.start()
-    thread_2.start()
-    thread_3.start()
-    thread_4.start()
-    thread_5.start()
-    thread_6.start()
-    thread_7.start()
+        thread_1.start()
+        thread_2.start()
+        thread_3.start()
+        thread_4.start()
+        thread_5.start()
+        thread_6.start()
+        #thread_7.start()
     #
     ## Attend que les threads se terminent
-    thread_1.join()
-    thread_2.join() 
-    thread_3.join() 
-    thread_4.join()
-    thread_5.join()
-    thread_6.join() 
-    thread_7.join() 
+        thread_1.join()
+        thread_2.join() 
+        thread_3.join() 
+        thread_4.join()
+        thread_5.join()
+        thread_6.join() 
+        #thread_7.join()
+        
+    for k in range(len(w_insta)):
+        w_insta[k]=np.array(w_insta[k])
     ##
     #### 392 s sur pc Hadrien
     #### 28 s avec décomposition LU
@@ -791,8 +804,9 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I,coreConf):
     ##print([('{0:02.4e} & {1:02.4e}& {1:02.4e} \n'.format(waf[x], waf[y], 10*np.log10(waf[x]/waf[y]))) for x in portej for y in portei])
     ###
     #### Affichage du temps d execution
-    print('Temps d execution : {0:02.4e} s '.format(time.time() - start_time))
-    print("taille :", len(w), len(w[0]))
-    print("type :", type(w), type(w[0]))
-    print("w :", w)
-    return XYZ3,Tet_Dof,w,dt
+    # print("coreconf statio : ", coreConf.const["stationary"])
+    # print('Temps d execution : {0:02.4e} s '.format(time.time() - start_time))
+    # print("taille :", len(w_insta), len(w_insta[0][0]))
+    # print("type :", type(w_insta), type(w_insta[0]))
+    # print("w :", w_insta[0][0])
+    return XYZ3,Tet_Dof,w_insta,dt

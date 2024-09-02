@@ -9,6 +9,12 @@ from sys import exit
 #from itertools import imap
 
 def MakeFolderIfNeeded(path):
+    #modifs 27/08/2024
+    if type(path)==bytes:
+        path=str(path)
+        path=path[2:-1]
+        print("path = ", path)
+    #fin modifs
     list=path.split(os.path.sep)
     complete=""
     if os.path.isabs(path):
@@ -35,7 +41,7 @@ def SauveRecepteurPonctResults(coreconf, encoding=sys.getfilesystemencoding()):
     for id,recdata in coreconf.recepteursponct.items():
         saveFold = os.path.join(rootpath, recdata["name"])
         savepath = os.path.join(rootpath, recdata["name"], coreconf.paths["recepteursp_filename"])
-        print("Recdata = ", recdata)
+        #print("Recdata = ", recdata)
         if "power_insta" in recdata:
             gabe_out = ls.Gabe_rw(2)
             stepcol = ls.stringarray()
@@ -55,7 +61,7 @@ def SauveRecepteurPonctResults(coreconf, encoding=sys.getfilesystemencoding()):
                         splcol.append(float(spl))
                     gabe_out.AppendFloatCol(splcol, "%i Hz" % freq)
                 MakeFolderIfNeeded(saveFold)
-                if not gabe_out.Save(savepath.decode(encoding).encode("UTF-8")):
+                if not gabe_out.Save(str(savepath)):#.decode(encoding).encode("UTF-8")):
                     print("Failed to save ponctual receiver file", file=sys.stderr)
             else:
                 

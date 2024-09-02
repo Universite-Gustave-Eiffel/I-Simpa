@@ -7,6 +7,11 @@ import os
 
 
 def MakeFolderIfNeeded(path):
+    #modifs 27/08/2024
+    if type(path)==bytes:
+        path=str(path)
+        path=path[2:-1]
+    #fin modifs
     list = path.split(os.path.sep)
     complete = ""
     if os.path.isabs(path):
@@ -49,7 +54,7 @@ def SauveRecepteurSurfResults(coreconf):
             triangle_count = len(surface_receiver.faceindex)
             if not triangle_based:
                 triangle_count = len(surface_receiver.faceindex) * 2
-            rsdata.MakeRs(0, triangle_count, surface_receiver.label, surface_receiver.index)
+            rsdata.MakeRs(0, triangle_count, str(surface_receiver.label), surface_receiver.index)
             facecount = 0
             for idface, face in enumerate(surface_receiver.faceindex):
                 has_levels = len(surface_receiver.face_power[idface]) > id_freq
@@ -73,6 +78,8 @@ def SauveRecepteurSurfResults(coreconf):
                         else:
                             rsdata.SetFaceEnergy(0, facecount, recordId, recordId, float(0))
                     facecount += 1
-            rspath = os.path.join(os.path.join(rootpath, surface_receiver.label + os.sep), ("%d Hz" % (coreconf.const["frequencies"][id_freq])) + os.sep)
+            rspath = os.path.join(os.path.join(rootpath, str(surface_receiver.label) + os.sep), ("%d Hz" % (coreconf.const["frequencies"][id_freq])) + os.sep)
             MakeFolderIfNeeded(rspath)
-            ls.rsurf_io.Save(rspath + coreconf.paths["recepteurss_filename"], rsdata)
+            #print("rsdata = ", rsdata)
+            #print("coreconf.paths['recepteurss_filename'] = ", coreconf.paths["recepteurss_filename"], type(coreconf.paths["recepteurss_filename"]))
+            ls.rsurf_io.Save(rspath + str(coreconf.paths["recepteurss_filename"]), rsdata)
