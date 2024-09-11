@@ -7,11 +7,10 @@ import os
 
 
 def MakeFolderIfNeeded(path):
-    #modifs 27/08/2024
-    if type(path)==bytes:
-        path=str(path)
-        path=path[2:-1]
-    #fin modifs
+    # modifs 27/08/2024
+    if type(path) == bytes:
+        path = path.decode('utf-8')
+    # fin modifs
     list = path.split(os.path.sep)
     complete = ""
     if os.path.isabs(path):
@@ -25,18 +24,17 @@ def MakeFolderIfNeeded(path):
 
 
 def SauveRecepteurSurfResults(coreconf):
-    
-    #-------------Modifs code---------------------
-    working_directory = coreconf.paths["workingdirectory"]    
+    # -------------Modifs code---------------------
+    working_directory = coreconf.paths["workingdirectory"]
     if isinstance(working_directory, bytes):
-           working_directory = working_directory.decode('utf-8')
-    recepteurss_directory = coreconf.paths["recepteurss_directory"]    
+        working_directory = working_directory.decode('utf-8')
+    recepteurss_directory = coreconf.paths["recepteurss_directory"]
     if isinstance(recepteurss_directory, bytes):
-           recepteurss_directory = recepteurss_directory.decode('utf-8')
+        recepteurss_directory = recepteurss_directory.decode('utf-8')
     rootpath = os.path.join(working_directory, recepteurss_directory + os.sep)
-    #-------------FIN Modifs code-----------------
-    
-    #rootpath = os.path.join(coreconf.paths["workingdirectory"], coreconf.paths["recepteurss_directory"] + os.sep)
+    # -------------FIN Modifs code-----------------
+
+    # rootpath = os.path.join(coreconf.paths["workingdirectory"], coreconf.paths["recepteurss_directory"] + os.sep)
     for (idrs, surface_receiver) in coreconf.recsurf.items():
         if len(surface_receiver.face_power) == 0:
             continue
@@ -54,7 +52,7 @@ def SauveRecepteurSurfResults(coreconf):
             triangle_count = len(surface_receiver.faceindex)
             if not triangle_based:
                 triangle_count = len(surface_receiver.faceindex) * 2
-            rsdata.MakeRs(0, triangle_count, str(surface_receiver.label), surface_receiver.index)
+            rsdata.MakeRs(0, triangle_count, surface_receiver.label.decode('utf-8'), surface_receiver.index)
             facecount = 0
             for idface, face in enumerate(surface_receiver.faceindex):
                 has_levels = len(surface_receiver.face_power[idface]) > id_freq
@@ -65,7 +63,8 @@ def SauveRecepteurSurfResults(coreconf):
                 rsdata.SetFaceInfo(0, facecount, face[0], face[1], face[2], nbTimeStep)
                 for recordId in range(nbTimeStep):
                     if has_levels:
-                        rsdata.SetFaceEnergy(0, facecount, recordId, recordId, float(surface_receiver.face_power[idface][id_freq][recordId]))
+                        rsdata.SetFaceEnergy(0, facecount, recordId, recordId,
+                                             float(surface_receiver.face_power[idface][id_freq][recordId]))
                     else:
                         rsdata.SetFaceEnergy(0, facecount, recordId, recordId, float(0))
                 facecount += 1
@@ -74,12 +73,14 @@ def SauveRecepteurSurfResults(coreconf):
                     rsdata.SetFaceInfo(0, facecount, face[0], face[2], face[3], nbTimeStep)
                     for recordId in range(nbTimeStep):
                         if has_levels:
-                            rsdata.SetFaceEnergy(0, facecount, recordId, recordId, float(surface_receiver.face_power[idface][id_freq][recordId]))
+                            rsdata.SetFaceEnergy(0, facecount, recordId, recordId,
+                                                 float(surface_receiver.face_power[idface][id_freq][recordId]))
                         else:
                             rsdata.SetFaceEnergy(0, facecount, recordId, recordId, float(0))
                     facecount += 1
-            rspath = os.path.join(os.path.join(rootpath, str(surface_receiver.label) + os.sep), ("%d Hz" % (coreconf.const["frequencies"][id_freq])) + os.sep)
+            rspath = os.path.join(os.path.join(rootpath, surface_receiver.label.decode('utf-8') + os.sep),
+                                  ("%d Hz" % (coreconf.const["frequencies"][id_freq])) + os.sep)
             MakeFolderIfNeeded(rspath)
-            #print("rsdata = ", rsdata)
-            #print("coreconf.paths['recepteurss_filename'] = ", coreconf.paths["recepteurss_filename"], type(coreconf.paths["recepteurss_filename"]))
-            ls.rsurf_io.Save(rspath + str(coreconf.paths["recepteurss_filename"]), rsdata)
+            # print("rsdata = ", rsdata)
+            # print("coreconf.paths['recepteurss_filename'] = ", coreconf.paths["recepteurss_filename"], type(coreconf.paths["recepteurss_filename"]))
+            ls.rsurf_io.Save(rspath + coreconf.paths["recepteurss_filename"].decode('utf-8'), rsdata)

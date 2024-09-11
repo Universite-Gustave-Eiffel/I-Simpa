@@ -1,36 +1,39 @@
 # -*- coding: cp1252 -*-
-from __future__ import print_function #compatibilité python 3.0
+from __future__ import print_function  # compatibilité python 3.0
 import xmlreader
 import libsimpa
 from libsimpa import vec3
 import math
 
+
 ##
 # @file coreConfig.py
-# \~english 
+# \~english
 # This file contain the class coreconfig that read the XML file and feed some arrays and dict with data extracted from this file.
 
 
 class SourceElement:
     def __init__(self):
-        self.pos=libsimpa.vec3()
-        self.id=-1
-    def __init__(self,node, db):
-        self.pos=libsimpa.vec3(node.getpropertyfloat("x"),node.getpropertyfloat("y"),node.getpropertyfloat("z"))
-        self.id=int(node.getproperty("id"))
+        self.pos = libsimpa.vec3()
+        self.id = -1
+
+    def __init__(self, node, db):
+        self.pos = libsimpa.vec3(node.getpropertyfloat("x"), node.getpropertyfloat("y"), node.getpropertyfloat("z"))
+        self.id = int(node.getproperty("id"))
         self.db = db
+
 
 class material(dict):
     ##
-    # \~english 
+    # \~english
     # Initialisation of a new material.
     # @param idmat_xml I-Simpa material indice (found in Xml file)
     # @param nbfreq Number of frequencies band in the comsol core input. Usefull to init array that contains frequency dependent data like Absorption,Diffusion or Tau(Transmission)
-    def __init__(self,idmat_comsol,idmat_xml,nbfreq):
-        self.idmat_xml=idmat_xml
-        self.hastransmission=False
-        
-        
+    def __init__(self, idmat_comsol, idmat_xml, nbfreq):
+        self.idmat_xml = idmat_xml
+        self.hastransmission = False
+
+
 ##
 # \~english
 # @brief Core Configuration
@@ -38,27 +41,27 @@ class material(dict):
 # Read the XML file and feed some arrays and dict with data extracted from this file.
 class coreConfig(object):
     ##
-    # \~english 
+    # \~english
     # @param xmlfilepath The path and file name of the Xml file.
-    def __init__(self,xmlfilepath):
+    def __init__(self, xmlfilepath):
         ## Xml root node. Use this member to give access to the raw input data of the core.
-        self.rootnode=xmlreader.readXmlFile(xmlfilepath)
+        self.rootnode = xmlreader.readXmlFile(xmlfilepath)
         ## A list of coreConfig.material instance. Key: XmlIdMaterial
-        self.materials={}
+        self.materials = {}
         ## A list of sourceElement.sourceElement instance.
-        self.sources_lst=[]
+        self.sources_lst = []
         ## None or 3D model data.
-        self.scene=None
+        self.scene = None
         ## Dictionnary with Xml Id in Key and Surface Receiver name in values.
-        self.recepteursponct={}
-        self.recepteurssurf={}
-        self.tlm_receivers=0 #Mixing ponctual and surface receivers cells. Keep the same order in the mic.dat file.
+        self.recepteursponct = {}
+        self.recepteurssurf = {}
+        self.tlm_receivers = 0  # Mixing ponctual and surface receivers cells. Keep the same order in the mic.dat file.
         ## Dictionnary giving path information.
-        self.paths={}
+        self.paths = {}
         ## Main simulation simple data
-        self.const={}
+        self.const = {}
         ## A list, contains the frequencies values in Hz.
-        self.freqlst=[]
+        self.freqlst = []
         ## A dictionnary that return the frequency index(value) from the frequency value in hertz(key)
         self.freqlstassoc = {}
         ## A list, only the frequency user selected, contains the coreConfig.freqlst list index.
@@ -82,9 +85,12 @@ class coreConfig(object):
         self.const["temperature_celsius"] = condition_atmospherique_node.getpropertyfloat("temperature")
         self.const["temperature_kelvin"] = condition_atmospherique_node.getpropertyfloat("temperature") + 273.15
         self.const["humidite"] = condition_atmospherique_node.getpropertyfloat("humidite")
-        self.const["frequencies"] = [int(freq.getproperty("freq")) for freq in self.rootnode["simulation"]["freq_enum"].lstnodesenum("bfreq") if freq.getproperty("docalc") == b'1']
+        self.const["frequencies"] = [int(freq.getproperty("freq")) for freq in
+                                     self.rootnode["simulation"]["freq_enum"].lstnodesenum("bfreq") if
+                                     freq.getproperty("docalc") == b'1']
         self.const["frequencies"].sort()
-        self.const["allfrequencies"] = [int(freq.getproperty("freq")) for freq in self.rootnode["simulation"]["freq_enum"].lstnodesenum("bfreq")]
+        self.const["allfrequencies"] = [int(freq.getproperty("freq")) for freq in
+                                        self.rootnode["simulation"]["freq_enum"].lstnodesenum("bfreq")]
         self.const["allfrequencies"].sort()
         self.const["pression"] = condition_atmospherique_node.getpropertyfloat("pression")
         self.const["with_direct_sound"] = bool(int(simunode.getproperty("with_direct_sound", "1")))
@@ -97,9 +103,20 @@ class coreConfig(object):
 
         # Load surface receiver
         for recsurf in self.rootnode["recepteurss"].lstnodesenum("recepteur_surfacique"):
-            self.recepteurssurf[int(recsurf.getproperty("id"))]={ "name": recsurf.getproperty("name"), "id": int(recsurf.getproperty("id"))}
+            self.recepteurssurf[int(recsurf.getproperty("id"))] = {"name": recsurf.getproperty("name"),
+                                                                   "id": int(recsurf.getproperty("id"))}
         for recsurf in self.rootnode["recepteurss"].lstnodesenum("recepteur_surfacique_coupe"):
-            self.recepteurssurf[int(recsurf.getproperty("id"))]={ "name": recsurf.getproperty("name"), "a" : vec3(float(recsurf.getpropertyfloat("ax")),float(recsurf.getpropertyfloat("ay")),float(recsurf.getpropertyfloat("az"))), "b" :vec3(float(recsurf.getpropertyfloat("bx")),float(recsurf.getpropertyfloat("by")),float(recsurf.getpropertyfloat("bz"))) , "c" : vec3(float(recsurf.getpropertyfloat("cx")),float(recsurf.getpropertyfloat("cy")),float(recsurf.getpropertyfloat("cz"))), "resolution" : recsurf.getpropertyfloat("resolution") }
+            self.recepteurssurf[int(recsurf.getproperty("id"))] = {"name": recsurf.getproperty("name"),
+                                                                   "a": vec3(float(recsurf.getpropertyfloat("ax")),
+                                                                             float(recsurf.getpropertyfloat("ay")),
+                                                                             float(recsurf.getpropertyfloat("az"))),
+                                                                   "b": vec3(float(recsurf.getpropertyfloat("bx")),
+                                                                             float(recsurf.getpropertyfloat("by")),
+                                                                             float(recsurf.getpropertyfloat("bz"))),
+                                                                   "c": vec3(float(recsurf.getpropertyfloat("cx")),
+                                                                             float(recsurf.getpropertyfloat("cy")),
+                                                                             float(recsurf.getpropertyfloat("cz"))),
+                                                                   "resolution": recsurf.getpropertyfloat("resolution")}
         for recponct in self.rootnode["recepteursp"].lstnodesenum("recepteur_ponctuel"):
             self.recepteursponct[int(recponct.getproperty("id"))] = {"name": recponct.getproperty("name"),
                                                                      "power_statio": [],
@@ -113,88 +130,94 @@ class coreConfig(object):
         self.load_fittings()
         self.load_freqlst(self.rootnode["simulation"]["freq_enum"])
 
-
     ##
-    # \~english 
-    # Feed the following list : 
+    # \~english
+    # Feed the following list :
     # - freqlstassoc
     # - freqlst
     # - abs_atmo
     # - freqid_docalclst
     # @param freqenumnode Root frequency Xml Node
-    def load_freqlst(self,freqenumnode):
-        computation={}
+    def load_freqlst(self, freqenumnode):
+        computation = {}
         for freq in freqenumnode.lstnodesenum("bfreq"):
-            freqval=int(freq.getproperty("freq"))
+            freqval = int(freq.getproperty("freq"))
             self.freqlst.append(freqval)
-            computation[freqval]=bool(int(freq.getproperty("docalc")))
+            computation[freqval] = bool(int(freq.getproperty("docalc")))
         self.freqlst.sort()
-        temperature_k=self.const["temperature_kelvin"]
-        humidite=self.const["humidite"]
-        pression=self.const["pression"]
-        for idfreq in range(0,len(self.freqlst)):
-            freqval=self.freqlst[idfreq]
-            self.freqlstassoc[freqval]=idfreq
+        temperature_k = self.const["temperature_kelvin"]
+        humidite = self.const["humidite"]
+        pression = self.const["pression"]
+        for idfreq in range(0, len(self.freqlst)):
+            freqval = self.freqlst[idfreq]
+            self.freqlstassoc[freqval] = idfreq
             if computation[freqval]:
-                self.freqid_docalclst.append(idfreq+1)
-            self.abs_atmo.append(libsimpa.CCalculsGenerauxThermodynamique.Coef_Att_Atmos( freqval, humidite, pression, temperature_k)*math.log(10.)/10.)
+                self.freqid_docalclst.append(idfreq + 1)
+            self.abs_atmo.append(libsimpa.CCalculsGenerauxThermodynamique.Coef_Att_Atmos(freqval, humidite, pression,
+                                                                                         temperature_k) * math.log(
+                10.) / 10.)
         print("frequence list : ", self.freqlst)
+
     ##
-    # \~english 
+    # \~english
     # Feed the sources_lst member.
     # @param nodesources Root source Xml Node
-    def load_sources(self,nodesources):
+    def load_sources(self, nodesources):
         for sourcenode in nodesources.lstnodesenum("source"):
-            db=[]
-            #On demande de trier les noeuds par bande de fréquence
-            sourcenode.SortChildsByProperty("bfreq","freq",True)
-            for idfreq,chnode in enumerate(sourcenode.lstnodesenum("bfreq")):
+            db = []
+            # On demande de trier les noeuds par bande de fréquence
+            sourcenode.SortChildsByProperty("bfreq", "freq", True)
+            for idfreq, chnode in enumerate(sourcenode.lstnodesenum("bfreq")):
                 db.append(chnode.getpropertyfloat("db"))
             self.sources_lst.append(SourceElement(sourcenode, db))
+
     ##
     # \~english
     # Feed the fittings list
     def load_fittings(self):
         for fitting in self.rootnode["encombrement_enum"].lstnodesenum("encombrement"):
-            self.fittings[int(fitting.getproperty("id"))]=fitting
-       
+            self.fittings[int(fitting.getproperty("id"))] = fitting
+
     ##
-    # \~english 
+    # \~english
     # Navigate through the Materials node and feed the mat dictionnary with material instance.
     def load_materials(self):
-        #Lecture des matériaux du fichier XML
+        # Lecture des matériaux du fichier XML
         for matnode in self.rootnode["surface_absorption_enum"].lstnodesenum("type_surface"):
-            xmlidmat=int(matnode.getproperty("id"))
-            mat=material(len(self.materials)+1,xmlidmat,len(self.freqlst))
-            
-            q_param=[]
-            diff_param=[]
-            g_param=[]
-            #On demande de trier les noeuds par bande de fréquence
-            matnode.SortChildsByProperty("bfreq","freq",True)
-            for idfreq,chnode in enumerate(matnode.lstnodesenum("bfreq")):
+            xmlidmat = int(matnode.getproperty("id"))
+            mat = material(len(self.materials) + 1, xmlidmat, len(self.freqlst))
+
+            q_param = []
+            diff_param = []
+            g_param = []
+            # On demande de trier les noeuds par bande de fréquence
+            matnode.SortChildsByProperty("bfreq", "freq", True)
+            for idfreq, chnode in enumerate(matnode.lstnodesenum("bfreq")):
                 q_param.append(chnode.getpropertyfloat("absorb"))
                 diff_param.append(chnode.getpropertyfloat("diffusion"))
                 if chnode.hasproperty("affaiblissement"):
                     g_param.append(chnode.getpropertyfloat("affaiblissement"))
                 else:
                     g_param.append(float("inf"))
-            mat["diff"]=diff_param
-            mat["q"]=q_param
-            mat["g"]=g_param
-            mat["name"]="'mat id:%i'" % (xmlidmat)
-            mat["h"]=0
-            self.materials[xmlidmat]=mat
+            mat["diff"] = diff_param
+            mat["q"] = q_param
+            mat["g"] = g_param
+            mat["name"] = "'mat id:%i'" % (xmlidmat)
+            mat["h"] = 0
+            self.materials[xmlidmat] = mat
+
     ##
-    # \~english 
-    def __getitem__(self,item_name):
+    # \~english
+    def __getitem__(self, item_name):
         return self.rootnode[item_name]
+
     ##
-    # \~english 
+    # \~english
     def __len__(self):
         return len(self.rootnode)
+
     ##
-    # \~english 
-    def __contains__(self,val):
+    # \~english
+    def __contains__(self, val):
         return self.rootnode.has_key(val)
-    
+
