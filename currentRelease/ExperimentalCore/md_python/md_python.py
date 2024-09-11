@@ -600,7 +600,7 @@ def main(call_python=True):
     #         print("Execution in %.2f seconds" % ((time.time() - deb) / 1000.))
 
     # --------------Modifs code------------------
-    # script_name = "Diffusion_MD_fil_ao2.py"
+    # script_name = "Diffusion_MD_fil_ao3.py"
     # script_path = os.path.join(outputdir , script_name)
     # print("outputdir = ",outputdir)
     # sys.path.append('C:/ProgramData/anaconda3/Lib/venv/scripts/nt')
@@ -608,7 +608,7 @@ def main(call_python=True):
     # print("Run " + " ".join(command))
     deb = time.time()
     # sys.path.append(outputdir)
-    # #sp.run(["C:/ProgramData/anaconda3/python",outputdir+"/Diffusion_MD_fil_ao2.py"], cwd=outputdir, shell=True)
+    # #sp.run(["C:/ProgramData/anaconda3/python",outputdir+"/Diffusion_MD_fil_ao3.py"], cwd=outputdir, shell=True)
     print("Execution in %.2f seconds" % ((time.time() - deb) / 1000.))
     # --------------FIN Modifs code--------------
     nodes, tetrahedrons, w, dt = run_model(el, XYZ, el2Dtypd, Abs_Mater, i_nT, Wall_TL, Srce_Sonore_I, coreconf,
