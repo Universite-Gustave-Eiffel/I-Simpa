@@ -7,7 +7,7 @@ Created on Mon Dec  2 16:31:25 2019
 """
 #####################################################
 #           bibli_RNF_ef0.py
-#     Biblitothèques pour Room_Natural_Frequencies_ef0.py
+#     Biblitothèques pour Room_Natural_Frequencies_ao2.py
 #####################################
 ## Copyright (C) 2017 Christian Prax
 ## Institut PPRIME, CNRS - Universite de Poitiers  ENSMA, UPR 3346
@@ -39,6 +39,19 @@ Created on Mon Dec  2 16:31:25 2019
 #
 #######################################################
 import numpy as np
+from scipy.constants import zero_Celsius
+#######################################################
+def Coef_Att_Atmos(K):
+# In:
+#	- K : Temperature (K)
+# Out:
+#	- cson : Sound speed (m/s)
+# Atmospheric information
+  #	- K : Air temperature (K)
+  Kref=zero_Celsius+20	# Reference temperature (K)  # 
+# Sound speed
+  cson=343.2*np.sqrt(K/Kref)
+  return cson
 #######################################################
 def volumeTetra1(xn,yn,zn):
     import numpy as np
@@ -276,29 +289,6 @@ def VolumeSalle(x,y,z,nbel,el):
     return(vtotal)
 ################################################################
 def changem(z,newcode, oldcode) :
-################## Octave #####################################
-#function mapout = changem(Z, newcode, oldcode)
-## usage: mapout = changem(Z, newcode, oldcode)
-## Identical to the Matlab Mapping Toolbox's changem
-## Note the weird order: newcode, oldcode. I left it unchanged from Matlab.
-##
-## In:
-##	- Z :
-##	- newcode :
-##	- oldcode :
-##
-## Out:
-##	- mapout : 
-#
-#  if numel(newcode) ~= numel(oldcode)
-#    error('newcode and oldcode must be of equal length');
-#  end
-#  mapout = Z;
-#  for ii = 1:numel(oldcode)
-#    mapout(Z == oldcode(ii)) = newcode(ii);
-#  end
-#end
-################## Python 3 ####################################
   forme=z.shape
   z=z.flatten()
   newcode=newcode.flatten()

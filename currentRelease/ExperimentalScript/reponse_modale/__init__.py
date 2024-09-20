@@ -1,19 +1,19 @@
 # -*- coding: cp1252 -*-
 import uictrl as ui
 import uilocale
-_=uilocale.InstallUiModule(ui.application.getapplicationpath()["userscript"]+"md_python\\",ui.application.getlocale())
+_=uilocale.InstallUiModule(ui.application.getapplicationpath()["userscript"]+"reponse_modale\\",ui.application.getlocale())
 
-class MD_Python(ui.element):
+class Reponse_modale(ui.element):
     """
-      Declaration of MD computation core
+      Declaration of MP computation core
     """
     def __init__(self,idel):
         ui.element.__init__(self, idel)
 
         if not self.hasproperty("exeName"):  # Nouveau projet
             ui.element(self.appendpropertytext("modelName", "", "mesh.cbin", True, True)).hide()
-            ui.element(self.appendpropertytext("exeName", "", "md_python.py")).hide()
-            ui.element(self.appendpropertytext("corePath", "", "md_python/")).hide()
+            ui.element(self.appendpropertytext("exeName", "", "reponse_modale.py")).hide()
+            ui.element(self.appendpropertytext("corePath", "", "reponse_modale/")).hide()
 
         if self.getelementbytype(ui.element_type.ELEMENT_TYPE_CORE_CORE_CONFMAILLAGE) == -1:
             # Set maximum volume of 0.1 m3
@@ -38,9 +38,9 @@ class MD_Python(ui.element):
         """
             Return core label
         """
-        return "MD Python"
+        return "Reponse_modale"
     def geticonpath(self,state_open):
         """
             Return tree node icon
         """
-        return "UserScript/md_python/icon/md.ico"
+        return "UserScript/reponse_modale/icon/mp.ico"

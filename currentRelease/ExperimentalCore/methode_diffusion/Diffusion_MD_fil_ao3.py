@@ -44,17 +44,17 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I,coreConf):
     NNOct=np.arange(NOct)
     ## Atmospheric absorption and sound speed values
     m, c0 = Coef_Att_Atmos(Frequency,Humidity,atmosphere,273.15+Temperature)
-    #print(m,'~',c0)
-    if atmos_absorption_calculation==0:
+    if coreConf.const['do_abs_atmo']==False:
     # No amtospheric absorption coefficient
       mc=np.zeros(NOct, dtype=float)
     else:
+      if coreConf.const['imposed_abs_atmo']==True:
+          m=coreConf.const['abs_atmo']*np.ones(len(SelectedFrequency))
     # Use atmospheric absorption coefficient
       mc=m*c0
     ## READING MESHING AND NODES
     print('Read meshes and nodes')
     domaine='scene' # Meshing file name
-    #el=np.loadtxt(domaine+'_elements.txt',dtype=int)
     nbre_salles=np.size(np.unique(el[:,4])) # Number of volumes (i.e. rooms)
     NBLOCKS=nbre_salles # Number of blocks of the meshing
     idBloc=np.unique(el[:,4]) # Block identification
@@ -87,7 +87,6 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I,coreConf):
         val=np.concatenate((val,ndf[k]),axis=0)
     sortedndf=sorted(np.reshape(val,(len(val),nbre_salles+1)), key=itemgetter(0))
     sortedndf=np.asarray(sortedndf)
-    #XYZ=np.loadtxt(domaine+'_nodes.txt',dtype=float)
     nn=len(XYZ) # Number of nodes (that is different of the number of DOF)
     print('Number of nodes: ',NDOF)
     #################
@@ -126,7 +125,6 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I,coreConf):
     XYZ3=np.array(XYZ3)
     ### READING MESHES ON BOUNDARIES
     print('Identifying boundaries')
-    #el2Dtypd= np.loadtxt(domaine+'_faces.txt',dtype=int)
     nel2D0=el2Dtypd.shape[0]
     FT =np.sort(el2Dtypd[:,0:3])
     FTu, l, i, c =np.unique(FT, axis=0, return_index=True, return_counts=True, return_inverse=True)    # le l retourné n'est pas le même que Octave !!!
@@ -173,31 +171,29 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I,coreConf):
       V_VCi=VolumeVCDOF(x,y,z,sum(nnB),len(Tet[i]),Tet[i], Tet_Dof[i]); # Table of the volumes of control
       V_VC+=V_VCi
     ############################################
-    ### PARAMETERS OF THE ROOM ACOUSTICS DIFFUSION MODEL
+    ### PARAMETERS OF THE ROOM ACOUSTICS DIFFUSION MODEL Modifié
     Lambda=4*(VOLUME/Surf)    # Mean Free path (m)
     CoeffDiff=Lambda*c0/3    # Diffusion coefficient TODO: Fix the diffusion coefficient value for mixed surface reflection and atmospheric absorption
+    CoeffDiff=[]
+    for i in range(len(Tet_Dof)):
+        CoeffDiff.append([])
+        for j in range(len(Tet_Dof[i])):
+            CoeffDiff[i].append(Lambda[i]*c0/3)
     ###########################################
     ## GLOBAL MATRIX ASSEMBLAGE
     print('Global matrix assemblage')
     # Tetra Assemblage of Global mat for diffusion operator
     mat=laplacienblocks2(xdf,ydf,zdf,Tet_Dof,NBLOCKS,NDOF,CoeffDiff)   # mat sparse CSR matrix
-    ####### Affichage ######################
-    ##fig,ax00 = plt.subplots()   #  aperçu de la matrice creuse
-    ##plt.spy(mat,precision=0.01, markersize=1)    # idem spy(mat) avec Octave
-    ##fig.tight_layout()
-    ##plt.show()
     #############################################
     ##### DIFFUSION EQUATION LEFT MEMBER
     mat_Toct=[]
     for N_Toct in range(NOct):
       mat_Toct.append(csr_matrix(mc[N_Toct]*np.diag(V_VC))-mat)
-    #  print('mat_Toct matrix_csr ?',isspmatrix_csr(mat_Toct[N_Toct]))
     mat_Toct0= deepcopy(mat_Toct)
     ############################################
     #### ACOUSTIC ABSORPTION
     ################# AbsorptionConstructionMatrix ########################
     ### Load the absorption coefficient of each material in the corresponding file
-    #Abs_Mater = np.loadtxt(domaine+'_materials_absorption.txt',dtype=float) # Load the absorbing material
     iAM = np.where(np.sum(Abs_Mater[:,1:],axis=1)!=0)[0] # iAbs: row of absorbing material index
     iAbs = Abs_Mater[iAM,0]          # iAbs: absorbing material index
     abs_prop=Abs_Mater[iAM,:]
@@ -235,25 +231,14 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I,coreConf):
           mat_Toct[nm][ idfFree,idfFree] += EquivAbsArea[it][nm]*c0
       EquivAbsAreaBlock.append(np.sum(EquivAbsArea,axis=0))
     ################# end AbsorptionConstructionMatrix ###########################
-    ##### ACOUSTIC TRANSMISSION
-    #
-    # if NBLOCKS <=1 :
-    #     print('Error : NBLOCS = ',NBLOCKS,' <= 1')
-    #     sys.exit()
-    #
-    ################## Begin TransmissionConstructionMatrix4  ##################
     ##### CALCULATE FACES TRANSMISSION el2diTrsm{ib}
     #### Load the transmission coefficient of each material in the corresponding file
     #### iAbs TL_50 TL_63 TL_80 .. TL_16000 TL_20000
-    #i_nT=np.loadtxt(domaine+'_shared_vertices.txt',dtype=float)
-    #i_nT=np.sort(i_nT)
-    #Wall_TL=np.loadtxt(domaine+'_materials_transmission.txt',dtype=float) # Load material
     iTrsm=Wall_TL[np.where(np.sum(Wall_TL[:,1:],axis=1)!=0)[0],0] # iTrsm: index of Material with transmission
     l=np.where(np.sum(Wall_TL[:,1:],axis=1)!=0)[0]
     c=[0]+[k+1 for k in NonSelectedFrequency]
     Wall_TLnp=np.array(Wall_TL)
     TL=np.delete(Wall_TLnp,c,1)
-    #TL=Wall_TL[l[:,np.newaxis], c[np.newaxis,:] ] # Transmission Loss idMat &values
     TAU=10.**(-TL[:,:NOct]/10)
     Surfaceporte=0
     el2diTrsm=[]
@@ -270,7 +255,6 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I,coreConf):
       nbParoiTransm=0
       for j in np.arange(i+1,NBLOCKS) :
         el2Dj=el2diTrsm[j]
-        # Facescommunesij=el2Di[np.isin( el2Di, el2Dj)].reshape(forme)  # je ne comprends pas pourquoi je suis obligé de faire ça...
         #changement de stratégie pour la récupération des surfaces de contact
         Facescommunesij=np.array([])
         isin=np.isin(el2Di, el2Dj)
@@ -349,16 +333,9 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I,coreConf):
             mat_Toct[nm][Dofi[i][it]-1, Dofj[i][it-1]-1] += -PondEchSurf[it][nm]*c0/4
             mat_Toct[nm][Dofj[i][it-1]-1, Dofi[i][it]-1] += -PondEchSurf[it][nm]*c0/4
     #
-    ####################  sparse matrix overview  ############################
-    #print(mat_Toct[0][:2,:])
-    ##fig,ax00 = plt.subplots()   #
-    ##plt.spy(mat_Toct[1],precision=0.01, markersize=1)   # idem spy(mat) in Octave
-    ##fig.tight_layout()
-    #################### end TransmissionConstructionMatrix4 ###########################
     ###### SOUND SOURCES
     ####%# Load sound sources information, for EDP second member    ######
     print('Sound sources information')
-    #Srce_sonore_I=np.loadtxt(domaine+'_sources.txt',dtype=float) # Load sources sonores
     if len(Srce_sonore_I.shape)==1:  #cas avec une seule source, Srce_sonore_I.shape = (longeur,) or on veut (nb source, longueur)
         Ns, Ls = 1, Srce_sonore_I.shape[0]
         Srce_sonore_I=np.array([Srce_sonore_I,np.zeros(Ls)]) #ajout d'une 2ème source neutre pour avoir une matrice
@@ -386,7 +363,6 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I,coreConf):
       SelectedFrequency2=[k+3 for k in SelectedFrequency]
       Srce_sonore[s,3+NNOct]=1e-12*10**(Srce_sonore_I[s,SelectedFrequency2]/10) # Octave band sound power
       Volumic_Power_Srce=Srce_sonore[s,3+NNOct]/VolSource[s] # Volumic normalisation
-      #print("Volumic_Power_Srce : ", Volumic_Power_Srce)
     #### Display sound source information
       print('Sound source N°: ',s)
       print('Volume source = {0:06.4f}'.format(VolSource[s]))
@@ -397,11 +373,7 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I,coreConf):
     for  N_Toct in range(NOct) :
       for s in np.arange(Ns) :
         RHS[indss[s]]=Volumic_Power_Srce[N_Toct]*V_VC[indss[s]] # 
-      if N_Toct==0 or N_Toct==1 or N_Toct==2:
-         print(f"RHS : {N_Toct}", RHS)
-         print("longueur RHS :", len(RHS))
       w.append(linalg.spsolve(mat_Toct[N_Toct].tocsr(), RHS))# Cette ligne là est peut-être à l'origine du pb pour 50 Hz
-      #print(f"Puissances {N_Toct}: ", w[-1][12])
     #
     # iaf=4 # % 50==>125HZ
     waf=w[len(SelectedFrequency)-1]        # 
@@ -415,24 +387,7 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I,coreConf):
     k2=Sc/(A2+Sc)
     A11=A22
     print('10*log10(k2)=',10*np.log10(k2))
-    # L1=10*np.log10(1/1.2/c0**2*103*c0/4*A22/(A22*A11-Sc**2)/1e-12)
-    # val=10*np.log10(el2di_Dof[-1][:,0:3]*rhoco2/(2e-5)**2)
-    # L1moy=np.mean(np.mean(val))
-    #
     LpdBwmoy=[]
-    # for k in range(nbre_salles):
-    #     LpdBwmoy.append(10*np.log10(np.mean(np.mean(waf[Tet_Dof[k][:,:4]-1]))*rhoco2/(2e-5)**2))
-    # # LpdBwmoy1=10*np.log10(np.mean(np.mean(waf[Tet_Dof[0][:,:4]-1]))*rhoco2/(2e-5)**2)
-    # # LpdBwmoy2=10*np.log10(np.mean(np.mean(waf[Tet_Dof[1][:,:4]-1]))*rhoco2/(2e-5)**2)
-    # # deltaL_w=LpdBwmoy1-LpdBwmoy2
-    # deltaL_w=np.zeros((nbre_salles,nbre_salles))
-    # for i in range(1,nbre_salles):
-    #     for j in range(1,i):
-    #         deltaL_w[i][j]=LpdBwmoy[i]-LpdBwmoy[j]
-    #         deltaL_w[j][i]=-1*deltaL_w[i][j]
-    
-    #DELTALTet= np.mean(np.mean(LpdB[Tet_Dof[0][:,:4]-1]))-np.mean(np.mean(LpdB[Tet_Dof[1][:,:4]-1]))
-    #DELTAL= np.mean(np.mean(LpdB[el2di_Dof[0][:,:3]-1]))- np.mean(np.mean(LpdB[el2di_Dof[1][:,:3]-1]))
     DELTATet=np.zeros((nbre_salles,nbre_salles))
     DELTAL=np.zeros((nbre_salles,nbre_salles))
     for i in range(1,nbre_salles):
@@ -451,7 +406,6 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I,coreConf):
     ##################   CalculInsta Python   #####################
     duration=coreConf.const["duration"]
     dt=coreConf.const["timestep"]
-    print("nombre fréquences = ", len(SelectedFrequency))
     itmax=round(duration/dt) # Number of iterations
     MATinsta= np.diag(V_VC) # Integration constant 
     ################### Verification of sound energy decay
@@ -491,15 +445,12 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I,coreConf):
         LdBi=LdBi-LdBi[0][0]
         _, jn=np.where((LdBi+30.)>0.)  # We are looking for the index for which we have gone down 30dB
         T30=2*time_after_stop_Srce[jn[-1]-1]  #  TR60 estimation on a dynamic of 30dB
-        #print(self.n,'T30=',T30)   # idem Octave
+        print(self.n,'T30=',T30)   # idem Octave
         w_insta[self.n][0]=wi_saved[0]
         for kbis in range(1,len(wi_saved)):
             w_insta[self.n][kbis]=wi_saved[kbis]
-        # if self.n==0 or self.n==1:
-        #     print(f"w_insta {self.n}:", w_insta[self.n][123])
     ######   end of parallelization  #########
     ### Opti 05/09/2024 ###
-    #print("Insta ? :", coreConf.const["stationary"])
     if coreConf.const["stationary"]==False:
         nb_coeurs=multiprocessing.cpu_count()
         k=0
@@ -520,47 +471,17 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I,coreConf):
                 locals()[f'thread_{j}'].join()
             k+=n
             freq_restantes-=n
-        ### Opti 05/09/2024 ###
-        # ### Creating threads
-        # for k in range(1):
-        #     thread_1 = Insta(6*k+0)
-        #     thread_2 = Insta(6*k+1)
-        #     thread_3 = Insta(6*k+2)
-        #     thread_4 = Insta(6*k+3)
-        #     thread_5 = Insta(6*k+4)
-        #     thread_6 = Insta(6*k+5)
-        #     #thread_7 = Insta(6,w)
-        # #
-        # ## Lancement des threads
-        #     thread_1.start()
-        #     thread_2.start()
-        #     thread_3.start()
-        #     thread_4.start()
-        #     thread_5.start()
-        #     thread_6.start()
-        #     #thread_7.start()
-        # #
-        # ## Attend que les threads se terminent
-        #     thread_1.join()
-        #     thread_2.join() 
-        #     thread_3.join() 
-        #     thread_4.join()
-        #     thread_5.join()
-        #     thread_6.join() 
-        #     #thread_7.join()
             
         for k in range(len(w_insta)):
             w_insta[k]=np.array(w_insta[k])
     ##
     ########## Implicit Euler end ######
+    ###################  end Calcul_insta   ####################################
     ##cas stationnaire, il faut ajouter une 3ème dimension et faire un array entre la 2ème et 3ème pour la passerelle
     if coreConf.const["stationary"]==True:
         for k1 in range(len(w_insta)):
             w_insta[k1]=np.array(w_insta[k1])
-            # for k2 in range(len(w_insta[k1])):
-            #     w_insta[k1][k2]=[w_insta[k1][k2]]
         w_insta = np.expand_dims(w_insta, axis=-1)
-    ###################  end Calcul_insta   ####################################
     #### Displaying execution time
     print('Execution time : {0:02.4e} s '.format(time.time() - start_time))
     ###

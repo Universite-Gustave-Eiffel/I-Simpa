@@ -7,10 +7,8 @@ import os
 
 
 def MakeFolderIfNeeded(path):
-    #modifs 27/08/2024
     if type(path)==bytes:
         path=path.decode('utf-8')
-    #fin modifs
     list = path.split(os.path.sep)
     complete = ""
     if os.path.isabs(path):
@@ -23,9 +21,7 @@ def MakeFolderIfNeeded(path):
         complete = os.path.join(complete, fold)
 
 
-def SauveRecepteurSurfResults(coreconf,NbEV):
-    
-    #-------------Modifs code---------------------
+def SauveRecepteurSurfResults(coreconf):
     working_directory = coreconf.paths["workingdirectory"]    
     if isinstance(working_directory, bytes):
            working_directory = working_directory.decode('utf-8')
@@ -33,17 +29,19 @@ def SauveRecepteurSurfResults(coreconf,NbEV):
     if isinstance(recepteurss_directory, bytes):
            recepteurss_directory = recepteurss_directory.decode('utf-8')
     rootpath = os.path.join(working_directory, recepteurss_directory + os.sep)
-    #-------------FIN Modifs code-----------------
-    
-    #rootpath = os.path.join(coreconf.paths["workingdirectory"], coreconf.paths["recepteurss_directory"] + os.sep)
     for (idrs, surface_receiver) in coreconf.recsurf.items():
         if len(surface_receiver.face_power) == 0:
             continue
-        #freqCount = len(coreconf.const["frequencies"])
-        for id_EV in range(NbEV):
+        freqCount = len(coreconf.const["frequencies"])
+        for id_freq in range(freqCount):
             rsdata = ls.rsurf_data()
             # File Header
-            rsdata.Make(len(surface_receiver.vertices), 1,
+            if coreconf.const['stationary']==True:
+                rsdata.Make(len(surface_receiver.vertices), 1,
+                        1,
+                        float(coreconf.const['timestep']))
+            else:
+                rsdata.Make(len(surface_receiver.vertices), 1,
                         int(math.ceil(coreconf.const['duration'] / coreconf.const['timestep'])),
                         float(coreconf.const['timestep']))
             # Vertices
@@ -56,18 +54,15 @@ def SauveRecepteurSurfResults(coreconf,NbEV):
             rsdata.MakeRs(0, triangle_count, surface_receiver.label.decode('utf-8'), surface_receiver.index)
             facecount = 0
             for idface, face in enumerate(surface_receiver.faceindex):
-                has_levels = len(surface_receiver.face_power[idface]) > id_EV
+                has_levels = len(surface_receiver.face_power[idface]) > id_freq
                 nbTimeStep = 1
-                #if has_levels:
-                    #nbTimeStep = len(surface_receiver.face_power[idface][id_EV])
+                if has_levels:
+                    nbTimeStep = len(surface_receiver.face_power[idface][id_freq])
                 # Triangle 1
                 rsdata.SetFaceInfo(0, facecount, face[0], face[1], face[2], nbTimeStep)
                 for recordId in range(nbTimeStep):
-                    # print("id_EV : ", id_EV)
-                    # print("idface : ", idface)
-                    # print("longueurs : ", len(surface_receiver.face_power), len(surface_receiver.face_power[idface]))
                     if has_levels:
-                        rsdata.SetFaceEnergy(0, facecount, recordId, recordId, float(surface_receiver.face_power[idface][id_EV]))
+                        rsdata.SetFaceEnergy(0, facecount, recordId, recordId, float(surface_receiver.face_power[idface][id_freq][recordId]))
                     else:
                         rsdata.SetFaceEnergy(0, facecount, recordId, recordId, float(0))
                 facecount += 1
@@ -76,12 +71,10 @@ def SauveRecepteurSurfResults(coreconf,NbEV):
                     rsdata.SetFaceInfo(0, facecount, face[0], face[2], face[3], nbTimeStep)
                     for recordId in range(nbTimeStep):
                         if has_levels:
-                            rsdata.SetFaceEnergy(0, facecount, recordId, recordId, float(surface_receiver.face_power[idface][id_EV]))
+                            rsdata.SetFaceEnergy(0, facecount, recordId, recordId, float(surface_receiver.face_power[idface][id_freq][recordId]))
                         else:
                             rsdata.SetFaceEnergy(0, facecount, recordId, recordId, float(0))
                     facecount += 1
-            rspath = os.path.join(os.path.join(rootpath, surface_receiver.label.decode('utf-8') + os.sep), ("%d valeur propre" % id_EV) + os.sep)
+            rspath = os.path.join(os.path.join(rootpath, surface_receiver.label.decode('utf-8') + os.sep), ("%d Hz" % (coreconf.const["frequencies"][id_freq])) + os.sep)
             MakeFolderIfNeeded(rspath)
-            #print("rsdata = ", rsdata)
-            #print("coreconf.paths['recepteurss_filename'] = ", coreconf.paths["recepteurss_filename"], type(coreconf.paths["recepteurss_filename"]))
             ls.rsurf_io.Save(rspath + coreconf.paths["recepteurss_filename"].decode('utf-8'), rsdata)

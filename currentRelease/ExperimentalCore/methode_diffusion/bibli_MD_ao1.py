@@ -61,7 +61,7 @@ tol=0.000001
 maxint=200
 #dt=0.001000
 #duration=2.000000
-atmos_absorption_calculation = 1
+#atmos_absorption_calculation = 1
 ###############################################################
 ################   changem(z,newcode, oldcode)  ##############
 def changem(z,newcode, oldcode) :
@@ -128,7 +128,6 @@ def Coef_Att_Atmos(F,H,P,K):
   cson=343.2*np.sqrt(K/Kref)
 # Molar concentration of water vapor
   C=-6.8346*((K01/K)**1.261)+4.6151
-#    print('K01=',K01, ' K=',K)
   Ps=Pref*(10**C)
   hmol=H*(Ps/Pref)
 # Rotational absorption
@@ -248,7 +247,6 @@ def VolumeSalle(x,y,z,nbel,kne) :
 ################## Python ####################################
   vtotal=0
   # The volume is equal to the sum of the volume of all the meshes
-#  print('nbel=',nbel)
   for n in range(nbel) :
       ks=kne[n,:]
       v=volumeTetra(x[ks-1],y[ks-1],z[ks-1])
@@ -362,10 +360,10 @@ def laplacienblocks2(x,y,z,Tet_Dof,NBLOCKS,NDOF,CoeffDiff) :
         anm[4]=b[l]*ani4+c[l]*anj4+d[l]*ank4;
   #
   
-        matrice[k[1],k[l]]=matrice[k[1],k[l]]+anm[1]*CoeffDiff[j-1];
-        matrice[k[2],k[l]]=matrice[k[2],k[l]]+anm[2]*CoeffDiff[j-1];
-        matrice[k[3],k[l]]=matrice[k[3],k[l]]+anm[3]*CoeffDiff[j-1];
-        matrice[k[4],k[l]]=matrice[k[4],k[l]]+anm[4]*CoeffDiff[j-1];
+        matrice[k[1],k[l]]=matrice[k[1],k[l]]+anm[1]*CoeffDiff[j-1][0]; #le zéro est présent pour gérer la variable de coefficient de diffusion de chaque degré de liberté
+        matrice[k[2],k[l]]=matrice[k[2],k[l]]+anm[2]*CoeffDiff[j-1][0];
+        matrice[k[3],k[l]]=matrice[k[3],k[l]]+anm[3]*CoeffDiff[j-1][0];
+        matrice[k[4],k[l]]=matrice[k[4],k[l]]+anm[4]*CoeffDiff[j-1][0];
   #   je remets la matrice aux dimensions (NDOF,NDPF)
   return matrice[1:,1:].tocsr()    #   a lil matrix is ​​builded but a csr matrix is ​​returned because it is faster for the rest
 #___________________________________

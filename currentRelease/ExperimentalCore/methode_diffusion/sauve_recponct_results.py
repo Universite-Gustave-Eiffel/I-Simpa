@@ -9,10 +9,8 @@ from sys import exit
 #from itertools import imap
 
 def MakeFolderIfNeeded(path):
-    #modifs 27/08/2024
     if type(path)==bytes:
         path=path.decode('utf-8')
-    #fin modifs
     list=path.split(os.path.sep)
     complete=""
     if os.path.isabs(path):
@@ -39,7 +37,6 @@ def SauveRecepteurPonctResults(coreconf, encoding=sys.getfilesystemencoding()):
     for id,recdata in coreconf.recepteursponct.items():
         saveFold = os.path.join(rootpath, recdata["name"])
         savepath = os.path.join(rootpath, recdata["name"], coreconf.paths["recepteursp_filename"])
-        #print("Recdata = ", recdata)
         if "power_insta" in recdata:
             gabe_out = ls.Gabe_rw(2)
             stepcol = ls.stringarray()

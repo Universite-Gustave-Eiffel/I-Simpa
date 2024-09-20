@@ -9,7 +9,6 @@ from os.path import dirname
 libpath = dirname(os.path.abspath(__file__ + "/../../"))
 sys.path.append(libpath)
 #libpath='c:\program files\i-simpa'
-print("syspath : ",sys.path)
 
 
 try:
@@ -30,20 +29,12 @@ from build_recsurf import GetRecepteurSurfList
 import numpy as np
 
 try:
-    import h5py
-except ImportError:
-    print("h5py python module not found, cannot read hdf5 files. See www.h5py.org", file=sys.stderr)
-    exit(-1)
-
-try:
     import numpy
 except ImportError:
     print("numpy python module not found", file=sys.stderr)
     exit(-1)
 
 
-# todo under windows look for
-# HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Octave-4.2.0
 
 class ReceiverSurf:
     def __init__(self, idrs, faceid, x, y, z):
@@ -116,17 +107,6 @@ def get_a_coefficients(p, p1, p2, p3, p4):
     right_mat = numpy.append(numpy.reshape(p, (3, 1)), [1])
     return numpy.dot(numpy.linalg.inv(left_mat), right_mat)
 
-def GetNumStepBySource(pos, coreconf):
-    """
-        Return the time step number of the incoming impulse for each sound source
-    """
-    ret_tab = {}
-    if coreconf.const["with_direct_sound"]:
-        for src in coreconf.sources_lst:
-            dist = (pos - src.pos).length()
-            ret_tab[src.id] = int(math.floor(dist / (coreconf.const["cel"] * coreconf.const['timestep'])))
-    return ret_tab
-
 
 
 # Find octave program utility
@@ -185,7 +165,6 @@ def write_input_files(cbinpath, cmbinpath, outfolder):
     # Write NODES file
     XYZ=[]
     for node in mesh_import.nodes:
-        #f.write('{0:>15} {1:>15} {2:>15}'.format(*(node[0], node[1], node[2])) + "\n")
         XYZ.append([node[0], node[1], node[2]])
     XYZ=np.array(XYZ)
     
@@ -198,9 +177,6 @@ def write_input_files(cbinpath, cmbinpath, outfolder):
         if volindex is None:
             volindex = len(idVolumeIndex) + 1
             idVolumeIndex[tetra.idVolume] = len(idVolumeIndex) + 1
-        #f.write('{0:>6} {1:>6} {2:>6} {3:>6} {4:>6}'.format(*(
-        #tetra.vertices[0] + 1, tetra.vertices[1] + 1, tetra.vertices[2] + 1, tetra.vertices[3] + 1,
-        #volindex)) + "\n")
         el.append([
         tetra.vertices[0] + 1, tetra.vertices[1] + 1, tetra.vertices[2] + 1, tetra.vertices[3] + 1,
         volindex])
@@ -216,14 +192,7 @@ def process_output_files(outfolder, coreconf, import_data, nodes,Vecps,tetrahedr
     rhoco2 = 1.2 * c0 * c0
     # Read mesh file information from python
     
-    #--------------modifs 10/07/2024---------------
-    # mesh_path = os.path.join(outfolder, "scene_elements.txt")
-    # if os.path.exists(mesh_path):
-    # mesh_data = h5py.File(mesh_path, "r")
-    # nodes = mesh_data["topo"]["value"]["XYZ"]["value"].value.transpose()
-    # rooms = set(mesh_data["topo"]["value"]["TetDOF"]["value"].keys()) - {"dims"}
-    # tetrahedrons = numpy.concatenate([mesh_data["topo"]["value"]["TetDOF"]["value"][key]["value"].value.astype(int).transpose() for key in rooms])
-    # print("tetraèdres : ", tetrahedrons, len(tetrahedrons))
+    # Pour éviter un plantage dans le cas où on a plusieurs salles
     if len(tetrahedrons)==1:
         tetrahedrons=tetrahedrons[0]
     elif len(tetrahedrons)==2:
@@ -232,13 +201,8 @@ def process_output_files(outfolder, coreconf, import_data, nodes,Vecps,tetrahedr
         tetrahedrons2=np.concatenate((tetrahedrons[0],tetrahedrons[1]), axis=0)
         for k in range(len(tetrahedrons)-2):
             tetrahedrons2=np.array(tetrahedrons2)
-            # print("tetraèdre : ", len(tetrahedrons2), tetrahedrons2)
-            # print("concat : ", np.array(tetrahedrons[2+k]))
             tetrahedrons2=np.concatenate((tetrahedrons2,np.array(tetrahedrons[2+k])), axis=0)
-            # print("final :", len(tetrahedrons2), tetrahedrons2)
         tetrahedrons=tetrahedrons2
-    #--------------FIN modifs 10/07/2024-----------
-    #print("Vecps = ", Vecps)
     # Create spatial index for receivers points
     receivers_index = kdtree.create(dimensions=3)
     # For each surface receiver
@@ -256,26 +220,10 @@ def process_output_files(outfolder, coreconf, import_data, nodes,Vecps,tetrahedr
     receivers_index.rebalance()
 
     # Open data files
-    if coreconf.const["stationary"]:
-        # result_matrix = [numpy.array(h5py.File(os.path.join(outfolder, "scene_WStaFields" + str(freq) + ".hdf5"))["xx"]["value"]["b"]["value"]) for freq in
-        #              coreconf.const["frequencies"]]
-        result_matrix = Vecps
-    else:
-        #result_matrix = [numpy.array(h5py.File(os.path.join(outfolder, "scene_WInstaFields" + str(freq) + ".hdf5"))["xx"]["value"]["b"]["value"]) for freq in
-                     #coreconf.const["frequencies"]]
-        result_matrix = Vecps
-        #coreconf.time_step = float(h5py.File(os.path.join(outfolder, "scene_WInstaFields" + str(coreconf.const["frequencies"][0]) + ".hdf5"))["xx"]["value"]["a"]["value"].value)
-        #coreconf.time_step = dt
-    # print("taille result:", len(result_matrix), len(result_matrix[0]), len(result_matrix[0][0]))
-    # print("type result:", type(result_matrix), type(result_matrix[0]), type(result_matrix[0][0]))
+    result_matrix = Vecps
     last_perc = 0
     for idTetra in range(0, len(tetrahedrons)):
-        # print(f"tetrahedrons[{idTetra}]:", tetrahedrons[idTetra])
         verts = [tetrahedrons[idTetra][idvert] - 1 for idvert in range(4)]
-        # print("taille verts:", len(verts))
-        # print("type verts:", type(verts))
-        # print("verts:", verts)
-        # print("test:",len(result_matrix[0][:, 100]))
         p1 = to_vec3(nodes[verts[0]])
         p2 = to_vec3(nodes[verts[1]])
         p3 = to_vec3(nodes[verts[2]])
@@ -290,57 +238,36 @@ def process_output_files(outfolder, coreconf, import_data, nodes,Vecps,tetrahedr
             tetra_values = [
                 [result_matrix[idfreq][verts[idvert]] for idvert in range(4)] for
                 idfreq in range(NbEV)]
-        #print("tetra values : ", tetra_values)
         # nearest_receivers = [receiver for receiver in res if square_dist(receiver, p) <= rmax]
         new_perc = int((idTetra / float(len(tetrahedrons))) * 100)
         if new_perc != last_perc:
-            #print("Export receivers %i %%" % new_perc)
+            #print("Export receivers %i %%" % new_perc) A voir si on veux le mettre car il peux se supperposer avec la print des valeurs propres
             last_perc = new_perc
         # Compute coefficient of the receiver point into the tetrahedron
         for receiver in nearest_receivers:
             coefficient = get_a_coefficients(to_array(receiver), nodes[verts[0]], nodes[verts[1]], nodes[verts[2]], nodes[verts[3]])
             if coefficient.min() > -1e-6:
-                #print("1")
-                #print("len = ",len(coreconf.const["frequencies"]))
                 # Point is inside tetrahedron
-                for id_freq in range(NbEV):
-                   # print("2")
-                    # closest freq id using all frequencies
-                    #current_frequency_id = coreconf.const["allfrequencies"].index(min(coreconf.const["allfrequencies"], key=lambda x: abs(x - coreconf.const["frequencies"][id_freq])))
+                for id_EV in range(NbEV):
                     # For each frequency compute the interpolated value
-                    interpolated_value = coefficient[0] * tetra_values[id_freq][0] + \
-                                         coefficient[1] * tetra_values[id_freq][1] + \
-                                         coefficient[2] * tetra_values[id_freq][2] + \
-                                         coefficient[3] * tetra_values[id_freq][3]
+                    interpolated_value = coefficient[0] * tetra_values[id_EV][0] + \
+                                         coefficient[1] * tetra_values[id_EV][1] + \
+                                         coefficient[2] * tetra_values[id_EV][2] + \
+                                         coefficient[3] * tetra_values[id_EV][3]
 
                     # Compute direct field timestep
-                    #steps = GetNumStepBySource(to_vec3(receiver), coreconf)
                     # If the receiver belongs to a surface receiver add the value into it
                     if receiver.isSurfReceiver:
-                        #print("3")
                         # Look for sound source
                         coreconf.recsurf[receiver.idrs].face_power[receiver.faceid].append(
                             interpolated_value)
-                        #print(f"surface {receiver.idrs}, face {receiver.faceid} : ", coreconf.recsurf[receiver.idrs].face_power[receiver.faceid])
-                        if receiver.idrs == 6805:
-                            n1+=1
-                        else :
-                            n2+=1
-    print("n1 = ", n1, "n2 = ", n2)
     print("End export receivers values")
 
-def write_config_file(coreConf, outputdir):
-    with open(os.path.join(outputdir, "Input_parameters.m"), "w") as f:
-        f.write("Temperature=%f;\n" % coreConf.const["temperature_celsius"])
-        f.write("Humidity=%f;\n" % coreConf.const["humidite"])
-        f.write("Pressure=%f;\n" % coreConf.const["pression"])
 
-
-def run_model(el,XYZ,coreConf,libpath):
-    sys.path.append(libpath + '/Lib/import_frequencies')
+def run_model(el,XYZ,coreConf):
     import Room_Natural_Frequencies_ao2
-    nodes, Vecps, tetrahedrons, NbEV=Room_Natural_Frequencies_ao2.main(el,XYZ,coreConf)
-    return nodes, Vecps, tetrahedrons, NbEV
+    nodes, Vecps, tetrahedrons, NbEV, listef=Room_Natural_Frequencies_ao2.main(el,XYZ,coreConf)
+    return nodes, Vecps, tetrahedrons, NbEV, listef
 
 def main(call_python=True):
     # find core folder
@@ -352,12 +279,12 @@ def main(call_python=True):
     
     #------------------modif code---------------------
     working_directory = coreconf.paths["workingdirectory"]
+    print("model directory : ", libpath + "\core\md_python")
     if isinstance(working_directory, bytes):
        working_directory = working_directory.decode('utf-8')
     outputdir = os.path.join(working_directory, "core")
     #------------------FIN modif code-----------------
     
-    #outputdir = os.path.join(coreconf.paths["workingdirectory"], "core")
     if not os.path.exists(outputdir):
         os.mkdir(outputdir)
     # Translation CBIN 3D model and 3D tetrahedra mesh into Octave input files
@@ -368,31 +295,21 @@ def main(call_python=True):
     # Copy octave script to working dir
     matscript_folder = os.path.join(os.path.abspath(os.path.join(os.path.realpath(__file__), os.pardir)), "script")
     files = glob.iglob(os.path.join(matscript_folder, "*.py"))
-    print(os.path.join(matscript_folder, "*.py"))
     for filep in files:
         if os.path.isfile(filep):
             shutil.copy2(filep, outputdir)
-    # Write configuration file
-    write_config_file(coreconf, outputdir)
 
     
     #--------------Modifs code 08/07/2024-------
-    script_name = "Room_Natural_Frequencies_ao2.py"
-    #script_path = os.path.join("C:/Program Files/I-SIMPA/core/mp_python/Script" , script_name)
-    #print("script_path = ", script_path)
-    #sys.path.append('C:/ProgramData/anaconda3/Lib/venv/scripts/nt')
-    #command = ["--no-window-system", "C:/ProgramData/anaconda3/Lib/venv/scripts/nt"]
-    #print("Run " + " ".join(command))
+    #script_name = "Room_Natural_Frequencies_ao2.py"
+    #model_path = os.path.join(libpath + "\core\reponse_modale")
     deb = time.time()
-    nodes, Vecps, tetrahedrons, NbEV=run_model(el,XYZ,coreconf, libpath)
+    nodes, Vecps, tetrahedrons, NbEV, listef=run_model(el,XYZ,coreconf)
     process_output_files(outputdir, coreconf, import_data,nodes,Vecps,tetrahedrons, NbEV)
     
-    sauve_recsurf_results.SauveRecepteurSurfResults(coreconf, NbEV)
+    sauve_recsurf_results.SauveRecepteurSurfResults(coreconf, NbEV, listef)
     print("Execution in %.2f seconds" % ((time.time() - deb) / 1000.))
     #--------------FIN Modifs code--------------
-    # for nodes in coreconf.recsurf.items():
-    #     print("noeuds :", nodes[1].vertices, nodes[1].faceindex, nodes[1].face_power, nodes[1].index, nodes[1].label, nodes[1].props)
-    #process_output_files(outputdir, coreconf, import_data, resultsModificationLayers)
 
 if __name__ == '__main__':
     main(sys.argv[-1] != "noexec")

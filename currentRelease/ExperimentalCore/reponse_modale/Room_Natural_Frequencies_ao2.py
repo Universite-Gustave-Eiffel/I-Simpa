@@ -16,24 +16,17 @@ from bibli_RNF_ef0 import *
 #import gmsh
 def main(el,XYZ, coreconf):
     import numpy as np
-    import matplotlib.pyplot as plt
     from scipy.sparse.linalg import eigs
     import time
     from operator import itemgetter
-    c0=np.sqrt(1.41*287*303)#Sound Propagation Velocity
+    c0=Coef_Att_Atmos(coreconf.const["temperature_kelvin"])#Sound Propagation Velocity
     #============================================================================
-    # Partie à remplacer par la lecture des fichiers générés par le maillage et ISIMPA
-    #=============================================================================
     t0 = time.time()
-    
+    ChoixNbmodes=20 #Choix du nombre de réponses modales à généraliser en l'ajoutant aux options de I-SIMPA
     ## READING MESHING AND NODES
     print('Read meshes and nodes')
-    domaine='scene' # Meshing file name
     nbre_salles=np.size(np.unique(el[:,4])) # Number of volumes (i.e. rooms)
     NBLOCKS=nbre_salles # Number of blocks of the meshing
-    idBloc=np.unique(el[:,4]) # Block identification
-    
-    print('Number of volumes :',nbre_salles)
     print('Number of elements :', len(el))
     print('Number of points : ',len(XYZ))
 
@@ -60,17 +53,12 @@ def main(el,XYZ, coreconf):
         val=np.concatenate((val,ndf[k]),axis=0)
     sortedndf=sorted(np.reshape(val,(len(val),nbre_salles+1)), key=itemgetter(0))
     sortedndf=np.asarray(sortedndf)
-    #XYZ=np.loadtxt(domaine+'_nodes.txt',dtype=float)
     nn=len(XYZ) # Number of nodes (that is different of the number of DOF)
     print('Number of nodes: ',NDOF)
     #################
     val =[np.where(sortedndf[:,0] == ij)  for ij in range(nn+1) ]
     val=np.array(val, dtype=object)
     val=val.flatten()
-    cs=[np.sum(sortedndf[val[ij],1:],axis=0) for ij in range(nn+1)]
-    cs=np.array(cs)
-    col=np.arange(len(cs))
-    NFS=np.append(col[:,np.newaxis], cs, 1)
     ##%## TABLE OF CONNECTION BETWEEN THE NODE INDEX and the DOF index
     N_F=[]
     for ic in range(NBLOCKS) :
@@ -103,13 +91,6 @@ def main(el,XYZ, coreconf):
     z=np.asarray(z)
     el=np.asarray(el)
     
-    #facteurEchelle=1.# Parametre pour changer facilement les dimensions de la salle
-    #=============================================================================
-    #XYZ=XYZ*facteurEchelle
-    #x=x*facteurEchelle
-    #y=y*facteurEchelle
-    #z=z*facteurEchelle
-    #========================================================
     nn=np.shape(x)[0] # nombre de noeuds
     nbel=np.shape(el)[0] # nombre d'elements Tetraedres
     
@@ -117,10 +98,6 @@ def main(el,XYZ, coreconf):
     #RECHERCHE LES FACES FRONTIERES
     el2D = boundary_faces(el)
     # # get boundary vertices
-    b = np.unique(el2D[:])
-    
-    VOLUME= VolumeSalle(x,y,z,nbel,el) # Verification du VOLUME du local
-    
     
     #      [A]{p}=lambda[B]{p}
     #lambda sont les valeurs propres et {p} les vecteurs prores associés
@@ -128,11 +105,11 @@ def main(el,XYZ, coreconf):
     A=INTEG_laplacien_cvfem3d(x,y,z,el,nbel,nn)
     B= integ_pdv(x,y,z,el,nbel,nn)
      
-    t1=time.perf_counter()
     
     #--------Modif code 08/07/2024------------
-    try:
-        NumberEV=20# Number of Eigen Values
+    print("Calcul de la réponse modale")
+    try: # On cherche les valeurs propres d'une matrice. Or la matrice est de la taille du nombre de points donc si moins de 20 points, on a un pb
+        NumberEV=ChoixNbmodes# Number of Eigen Values
         V=eigs(A,NumberEV,M=B,sigma=None,which='SM')# Seules les NumberEV plus petites valeurs propres sont déterminées
     except:
         NumberEV=len(XYZ)-2
@@ -141,9 +118,7 @@ def main(el,XYZ, coreconf):
     Vecps=V[1].real # Vecteurs propres
     Vecps=np.array(Vecps)
     Vecps=np.transpose(Vecps)
-    for i in range(len(Vecps)):
-        for j in range(len(Vecps[i])):
-            Vecps[i][j]=Vecps[i][j]*Vecps[i][j]
+    Vecps= np.absolute(Vecps) # mise en valeur absolue pour un affichage correct en dB
     Valps=V[0].real # Valeurs propres correspondant à (kd)^2
     WaveNumbers = np.zeros(len(Valps), dtype=float)# kd
     Naturalfrequency = np.zeros(len(Valps), dtype=float)# kd
@@ -154,20 +129,19 @@ def main(el,XYZ, coreconf):
     SortedWaveNumbers=sorted(WaveNumbers)
     I=np.zeros(len(SortedWaveNumbers), dtype=float)
     for k in range(len(SortedWaveNumbers)):
-        I[k]=position( WaveNumbers, WaveNumbers[k])
+        I[k]=position( SortedWaveNumbers, WaveNumbers[k])
          
-    # liste=[0 for iter in range(NumberEV*2)]
-    # listef=[0 for iter in range(NumberEV*2)]
     liste = np.zeros(NumberEV*2, dtype=float)
     listef = np.zeros(NumberEV*2, dtype=float)
-    #print('k.d=',SortedWaveNumbers,' Natural frequency =', SortedWaveNumbers*c0/(2*3.14159) )
     print('                <============================================')
-    
-    for nomb in range(NumberEV):
-        liste[nomb]=I[nomb]  
-        liste[len(liste)-1-nomb]=SortedWaveNumbers[NumberEV-1-nomb]
-        listef[nomb]=I[nomb]  
-        listef[len(liste)-1-nomb]=Naturalfrequency[NumberEV-1-nomb]
+    SortedVecps=np.zeros(np.shape(Vecps))
+    for nomb in range(NumberEV):    # Tri dans l'ordre croissant des réponses modales et des vecteurs propres
+        pos=int(I[nomb])
+        liste[pos]=I[nomb]  
+        liste[NumberEV+pos]=WaveNumbers[nomb]
+        listef[pos]=I[nomb]  
+        listef[NumberEV+pos]=Naturalfrequency[nomb]
+        SortedVecps[pos]=Vecps[nomb]
     
     
     t2=time.time()
@@ -188,25 +162,6 @@ def main(el,XYZ, coreconf):
     for nomb in range(0,NumberEV):
         print('indice=',listef[nomb], ' Freq Propre ', listef[nomb+NumberEV])
     print('_________________________________________________')
-    
-    #print(liste[nomb+1])
     print('durée du programme=',T[0],'h',T[1],'min',T[2],'s')
-    ####################################################################""
-    # fig, ax0 = plt.subplots()
-    # # plt.title(ar, fontsize='x-small')
-    # color='tab:red'
-    # ax0.plot(liste[:NumberEV], liste[NumberEV:2*NumberEV], 'x', color=color, label = 'Valeurs propres')  #
-    # ax0.set_ylabel(r'Valeurs propres', color=color)
-    # ax0.set_xlabel(r'Indices')
-    # ax0.grid(True)
-    # # plt.legend(loc='best', fontsize='x-small')
-    # ax1 = ax0.twinx()  # instantiate a second axes that shares the same x-axis
-    # color='tab:blue'
-    # ax1.plot(liste[:NumberEV], listef[NumberEV:2*NumberEV], '+', color=color, label = 'Fréquences propres')  #
-    # ax1.set_ylabel(r'Fréquences propres', color=color)
-    # # plt.legend(loc='best', fontsize='x-small')
-    # fig.tight_layout()
     # ####################################################################
-    # plt.show()
-    # ####################################################################
-    return XYZ3, Vecps, Tet_Dof, NumberEV
+    return XYZ3, SortedVecps, Tet_Dof, NumberEV, listef
