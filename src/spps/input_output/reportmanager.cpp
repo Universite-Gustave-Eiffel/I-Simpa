@@ -184,10 +184,10 @@ void ReportManager::ParticuleFreeTranslation(CONF_PARTICULE& particleInfos, cons
 				vec3 normal=(*itrs)->planeNormal;
 				if(particleInfos.direction.dot(normal)<0) //si la face du recepteur est orient�e dans l'autre direction on inverse la normal
 					normal*=-1;
-				if(*(this->paramReport.configManager->FastGetConfigValue(Core_Configuration::I_PROP_SURFACE_RECEIVER_MODE))==0)
-					(*itrs)->data[particleInfos.frequenceIndex][CellRow][CellCol][particleInfos.pasCourant]+=particleInfos.energie*cosf(normal.angle(particleInfos.direction));
+				if (*(this->paramReport.configManager->FastGetConfigValue(Core_Configuration::I_PROP_SURFACE_RECEIVER_MODE)) == 0)
+					(*itrs)->data[particleInfos.frequenceIndex][CellRow][CellCol][particleInfos.pasCourant] += particleInfos.energie;
 				else
-					(*itrs)->data[particleInfos.frequenceIndex][CellRow][CellCol][particleInfos.pasCourant]+=particleInfos.energie;
+					(*itrs)->data[particleInfos.frequenceIndex][CellRow][CellCol][particleInfos.pasCourant]+=particleInfos.energie / max(cosf(normal.angle(particleInfos.direction)), 0.000000001f);
 			}
 		}
 	}
@@ -278,10 +278,10 @@ void ReportManager::ParticuleCollideWithSceneMesh(CONF_PARTICULE& particleInfos)
 		if(particleInfos.direction.dot(normal)<0) //If the receiver surface is on the other side then revert the normal
 			normal*=-1;
 		//Add particle energy to receiver
-		if(*(this->paramReport.configManager->FastGetConfigValue(Core_Configuration::I_PROP_SURFACE_RECEIVER_MODE))==0)
-			face->recepteurS->energieRecu[particleInfos.frequenceIndex][particleInfos.pasCourant]+=particleInfos.energie*cosf(normal.angle(particleInfos.direction));
+		if (*(this->paramReport.configManager->FastGetConfigValue(Core_Configuration::I_PROP_SURFACE_RECEIVER_MODE)) == 0)
+			face->recepteurS->energieRecu[particleInfos.frequenceIndex][particleInfos.pasCourant] += particleInfos.energie;
 		else
-			face->recepteurS->energieRecu[particleInfos.frequenceIndex][particleInfos.pasCourant]+=particleInfos.energie;
+			face->recepteurS->energieRecu[particleInfos.frequenceIndex][particleInfos.pasCourant] += particleInfos.energie / max(cosf(normal.angle(particleInfos.direction)), 0.000000001f); 
 	}
 }
 
