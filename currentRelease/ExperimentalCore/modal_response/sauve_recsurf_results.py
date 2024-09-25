@@ -76,6 +76,6 @@ def SauveRecepteurSurfResults(coreconf,NbEV, listef):
                         else:
                             rsdata.SetFaceEnergy(0, facecount, recordId, recordId, float(0))
                     facecount += 1
-            rspath = os.path.join(os.path.join(rootpath, surface_receiver.label.decode('utf-8') + os.sep), ("freq propre %5.3f Hz" % listef[NbEV+id_EV]) + os.sep)
+            rspath = os.path.join(os.path.join(rootpath, surface_receiver.label.decode('utf-8') + os.sep), ("Modal response %5.3f Hz" % listef[NbEV+id_EV]) + os.sep)
             MakeFolderIfNeeded(rspath)
             ls.rsurf_io.Save(rspath + coreconf.paths["recepteurss_filename"].decode('utf-8'), rsdata)

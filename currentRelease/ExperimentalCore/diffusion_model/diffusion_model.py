@@ -226,7 +226,6 @@ def write_input_files(cbinpath, cmbinpath, materials, sources_lst, outfolder):
     for ptindex in sharedVertices:
         i_nT.append(ptindex)
     i_nT=np.array(i_nT)
-
     return el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_Sonore_I,ret
 
 

@@ -300,16 +300,12 @@ def main(call_python=True):
             shutil.copy2(filep, outputdir)
 
     
-    #--------------Modifs code 08/07/2024-------
-    #script_name = "Room_Natural_Frequencies_ao2.py"
-    #model_path = os.path.join(libpath + "\core\reponse_modale")
     deb = time.time()
     nodes, Vecps, tetrahedrons, NbEV, listef=run_model(el,XYZ,coreconf)
     process_output_files(outputdir, coreconf, import_data,nodes,Vecps,tetrahedrons, NbEV)
     
     sauve_recsurf_results.SauveRecepteurSurfResults(coreconf, NbEV, listef)
     print("Execution in %.2f seconds" % ((time.time() - deb) / 1000.))
-    #--------------FIN Modifs code--------------
 
 if __name__ == '__main__':
     main(sys.argv[-1] != "noexec")

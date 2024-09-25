@@ -1,19 +1,19 @@
 # -*- coding: cp1252 -*-
 import uictrl as ui
 import uilocale
-_=uilocale.InstallUiModule(ui.application.getapplicationpath()["userscript"]+"methode_diffusion\\",ui.application.getlocale())
+_=uilocale.InstallUiModule(ui.application.getapplicationpath()["userscript"]+"modal_response\\",ui.application.getlocale())
 
-class Methode_Diffusion(ui.element):
+class Modal_Response(ui.element):
     """
-      Declaration of MD computation core
+      Declaration of MP computation core
     """
     def __init__(self,idel):
         ui.element.__init__(self, idel)
 
         if not self.hasproperty("exeName"):  # Nouveau projet
             ui.element(self.appendpropertytext("modelName", "", "mesh.cbin", True, True)).hide()
-            ui.element(self.appendpropertytext("exeName", "", "methode_diffusion.py")).hide()
-            ui.element(self.appendpropertytext("corePath", "", "methode_diffusion/")).hide()
+            ui.element(self.appendpropertytext("exeName", "", "modal_response.py")).hide()
+            ui.element(self.appendpropertytext("corePath", "", "modal_response/")).hide()
 
         if self.getelementbytype(ui.element_type.ELEMENT_TYPE_CORE_CORE_CONFMAILLAGE) == -1:
             # Set maximum volume of 0.1 m3
@@ -38,9 +38,9 @@ class Methode_Diffusion(ui.element):
         """
             Return core label
         """
-        return "Methode de la diffusion"
+        return "Modal Response"
     def geticonpath(self,state_open):
         """
             Return tree node icon
         """
-        return "UserScript/methode_diffusion/icon/md.ico"
+        return "UserScript/modal_response/icon/mp.ico"

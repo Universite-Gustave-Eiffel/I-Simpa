@@ -194,10 +194,11 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I,coreConf):
     #### ACOUSTIC ABSORPTION
     ################# AbsorptionConstructionMatrix ########################
     ### Load the absorption coefficient of each material in the corresponding file
-    iAM = np.where(np.sum(Abs_Mater[:,1:],axis=1)!=0)[0] # iAbs: row of absorbing material index
+    iAM = np.where(np.sum(Abs_Mater[:,1:],axis=1)!=0)[0] # iAbs: row of absorbing material index (ATTENTION SUPPRIME les matériaux 100% réfléchissants avec que des 0)
     iAbs = Abs_Mater[iAM,0]          # iAbs: absorbing material index
     abs_prop=Abs_Mater[iAM,:]
-    abs_coef=abs_prop[:,SelectedFrequency] 
+    SelectedFrequency3=[k+1 for k in SelectedFrequency]  #incrément de 1 pour éviter l'identifiant du matériau
+    abs_coef=abs_prop[:,SelectedFrequency3]
     el2di_Dof=deepcopy(el2di)
     SurFaceA=[]
     AireFace=[]
@@ -360,7 +361,7 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I,coreConf):
       indss.append(res)    # Search all DOF inside the source radius
     #  
       Srce_sonore=np.zeros((Ns,3+len(NNOct)),float)
-      SelectedFrequency2=[k+3 for k in SelectedFrequency]
+      SelectedFrequency2=[k+3 for k in SelectedFrequency]  #incrément de 3 pour éviter les coordonnées spatiales des sources
       Srce_sonore[s,3+NNOct]=1e-12*10**(Srce_sonore_I[s,SelectedFrequency2]/10) # Octave band sound power
       Volumic_Power_Srce=Srce_sonore[s,3+NNOct]/VolSource[s] # Volumic normalisation
     #### Display sound source information
@@ -444,8 +445,8 @@ def main(el,XYZ,el2Dtypd,Abs_Mater,i_nT,Wall_TL,Srce_sonore_I,coreConf):
         LdBi=10*np.log10(np.abs(wi_saved[inds,:]*rhoco2/(2e-5)**2))
         LdBi=LdBi-LdBi[0][0]
         _, jn=np.where((LdBi+30.)>0.)  # We are looking for the index for which we have gone down 30dB
-        T30=2*time_after_stop_Srce[jn[-1]-1]  #  TR60 estimation on a dynamic of 30dB
-        print(self.n,'T30=',T30)   # idem Octave
+        #T30=2*time_after_stop_Srce[jn[-1]-1]  #  TR60 estimation on a dynamic of 30dB
+        #print(self.n,'T30=',T30)   # idem Octave
         w_insta[self.n][0]=wi_saved[0]
         for kbis in range(1,len(wi_saved)):
             w_insta[self.n][kbis]=wi_saved[kbis]
