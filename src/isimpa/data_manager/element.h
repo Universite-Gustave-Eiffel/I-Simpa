@@ -206,7 +206,7 @@ public :
         ELEMENT_TYPE_DIRECTIVITIES_APP,
         ELEMENT_TYPE_DIRECTIVITIES_USER,
         ELEMENT_TYPE_FILE,
-        ELEMENT_TYPE_REPORT_GABE_RECPS /*!< Receiver sound level by source */
+        ELEMENT_TYPE_REPORT_GABE_RECPS, /*!< Receiver sound level by source */
     };
     /**
      * Indice des états des images
@@ -364,6 +364,7 @@ public :
         IDEVENT_NEW_RECEPTEUR_S_COUPE,                /*!< \~english Add a cutting plan receiver event \~french Ajouter une récepteur en coupe */
         IDEVENT_BFREQ_PRESELECTION_ALL,                /*!< \~english built-in event \~french Séléction automatique des bandes de fréquences */
         IDEVENT_NEW_USERDIRECTIV,
+		IDEVENT_RECEPTEURS_COMPUTE_STI,
         IDEVENT_LAST_FIXED /* !! This event must be the last, those before are "built-in" and those after are send to python */
     };
     /**
