@@ -47,3 +47,4 @@ files.txt
 # cmake should convert .po files into .mo files if necessary
 *.mo
 .vscode
+.DS_Store
