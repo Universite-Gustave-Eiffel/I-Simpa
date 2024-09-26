@@ -84,7 +84,7 @@ ReportManager::ReportManager(t_ParamReport& _paramReport)
 
 	if(paramReport.nbParticles!=0)
 		writeParticleFile();
-	
+
 }
 
 void ReportManager::writeParticleFile()
@@ -102,7 +102,7 @@ void ReportManager::writeParticleFile()
 
 	st_mkdir(freqFolder);
 	stringClass fileNamePath=freqFolder+paramReport._particleFileName;
-	
+
 	#ifdef WIN32
 		particleFile = new fstream(pugi::as_wide(fileNamePath), ios::out | ios::binary);
 	#else
@@ -119,6 +119,7 @@ void ReportManager::writeParticleFile()
 		#else
 		particleSurfaceCSVFile = new fstream(fileCSVNamePath.c_str(), ios::out);
 		#endif // WIN
+		*particleSurfaceCSVFile<<"id,collision coordinate,face normal,reflection order,incident vector,energy"<<std::endl;
     }
     if (*(this->paramReport.configManager->FastGetConfigValue(Core_Configuration::I_PROP_SAVE_RECEIVER_INTERSECTION))) {
 
@@ -127,6 +128,7 @@ void ReportManager::writeParticleFile()
 		#else
 		particleReceiverCSVFile = new fstream(fileReceiversCSVNamePath.c_str(), ios::out);
 		#endif // WIN
+		*particleReceiverCSVFile << "time(s),receiver name,incident vector x,incident vector y,incident vector z,energy * dist" << std::endl;
     }
 
 	enteteSortie.nbParticles=paramReport.nbParticles;
@@ -139,8 +141,6 @@ void ReportManager::writeParticleFile()
 	enteteSortie.timeStep=paramReport.timeStep;
 	lastParticuleFileHeaderInfo=particleFile->tellp();
 	particleFile->write((char*)&enteteSortie,sizeof(binaryFHeader));
-	*particleSurfaceCSVFile<<"id,collision coordinate,face normal,reflection order,incident vector,energy"<<std::endl;
-    *particleReceiverCSVFile << "time(s),receiver name,incident vector x,incident vector y,incident vector z,energy * dist" << std::endl;
 	realNbParticle=0;
 
 }
@@ -402,7 +402,7 @@ void ReportManager::FillWithLefData(t_sppsThreadParam& data)
 			if(this->timeStepInSourceOutput) {
 				for(uentier idstep=0;idstep<paramReport.nbTimeStep;idstep++)
 				{
-					sum += currentRp->SrcContrib[idstep * nbSource + idsrc]; 	
+					sum += currentRp->SrcContrib[idstep * nbSource + idsrc];
 				}
 			} else {
 				sum = currentRp->SrcContrib[idsrc];
@@ -417,7 +417,7 @@ void ReportManager::FillWithLefData(t_sppsThreadParam& data)
 		data.GabeSlPerSrc.push_back(energyBySrc);
 		if(this->timeStepInSourceOutput) {
 			l_decimal* srcContribCopy = new l_decimal[nbSource*paramReport.nbTimeStep];
-			memcpy(srcContribCopy, currentRp->SrcContrib, sizeof(l_decimal) * nbSource * paramReport.nbTimeStep); 
+			memcpy(srcContribCopy, currentRp->SrcContrib, sizeof(l_decimal) * nbSource * paramReport.nbTimeStep);
 			data.SrcContrib.push_back(srcContribCopy);
 		}
 	}
@@ -471,7 +471,7 @@ void ReportManager::NewParticule(CONF_PARTICULE& particleInfos)
 {
 	if(particleFile!=NULL && particleInfos.outputToParticleFile)
 	{
-		//Dump old data, save 
+		//Dump old data, save
 		positionsCurrentParticule.clear();
 		positionsCurrentParticule.reserve(paramReport.nbTimeStep);
 		firstTimeStep=-1;
@@ -650,7 +650,7 @@ void ReportManager::SaveSoundLevelBySource(const CoreString& filename,std::vecto
 				CoreString file = rootRp + receiverData.lblRp + "/" + params.configManager->srcList[idsource]->sourceName + st_path_separator();
 				st_mkdir(file);
 				file += *params.configManager->FastGetConfigValue(Base_Core_Configuration::SPROP_PONCTUAL_RECEIVER_FILE_PATH);
-				BaseReportManager::SauveRecepteurPonctuel(file, reportFreqLbl, reportStepLbl, &receiverData); 
+				BaseReportManager::SauveRecepteurPonctuel(file, reportFreqLbl, reportStepLbl, &receiverData);
 			}
 		}
 	}
