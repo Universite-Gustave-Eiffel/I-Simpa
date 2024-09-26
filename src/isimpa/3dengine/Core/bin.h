@@ -40,6 +40,7 @@
 #include "manager/smart_ptr.h"
 #include "manager/stringTools.h"
 #include "Model3D.h"
+#include <stdint.h>
 /**
  * \brief Implémentation de l'interpréteur de fichier modèle Bin (*.bin) 
  */
@@ -121,14 +122,24 @@ struct t3DModel
 };
 
 	//Types du fichier
-	typedef unsigned short bShort;
-	typedef unsigned int bInt;
-	typedef int bsInt;
+	// typedef unsigned short bShort;
+	// typedef unsigned int bInt;
+	// typedef int bsInt;
+	// typedef char bString;
+	// typedef float bFloat;
+	// typedef long bLong;
+	// typedef long bsLong;
+	// typedef bool bBool;
+
+	typedef uint16_t bShort;
+	typedef uint32_t bInt;
+	typedef int32_t bsInt;
 	typedef char bString;
 	typedef float bFloat;
-	typedef long bLong;
-	typedef long bsLong;
+	typedef uint32_t bLong;
+	typedef uint32_t bsLong;
 	typedef bool bBool;
+
 /*! 
 	\brief Cette structure définit une section de données du fichier Binaire
 */

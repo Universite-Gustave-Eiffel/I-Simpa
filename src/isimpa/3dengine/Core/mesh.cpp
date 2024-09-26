@@ -85,7 +85,7 @@ bool CMesh::ExportMESH(vec4 UnitizeValue,std::vector<SGroup3D> &pModel, std::vec
   {
 		for(long j=0; j < pModel[g].pFaces.size() ;j++)
 		{
-			fprintf(outfile, "%5d  %5d  %5d",
+			fprintf(outfile, "%5ld  %5ld  %5ld",
 					pModel[g].pFaces[j].Vertices.a+1,
 					pModel[g].pFaces[j].Vertices.b+1,
 					pModel[g].pFaces[j].Vertices.c+1);

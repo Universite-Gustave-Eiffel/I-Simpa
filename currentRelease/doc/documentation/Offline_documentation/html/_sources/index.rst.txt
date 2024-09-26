@@ -36,15 +36,16 @@ the TCR numerical codes (embedded within the I-Simpa software).
    `instructions`_
 
 .. note::
-	- Some illustrations may referred to previous versions of I-Simpa.
-	- Depending of your OS, screenchots may differs.
-	- Some texts and translations in I-Simpa may have changed.
-	- If the present documentation is the 'Offline documentation' you may refer to the online version at http://i-simpa-wiki.readthedocs.io/fr/latest/ for an up-to-date documentation.
-	- If you observe some mistakes or errors, please `write an Issue on GitHub`_
-	- You can also `contribute to the documentation`_.
-	- The official documentation is available in English only.
+	-  This user guide is currently not complete. Additions are underway.
+	-  Some illustrations may referred to previous versions of I-Simpa.
+	-  Depending of your OS, screenchots may differs.
+	-  Some texts and translations in I-Simpa may have changed.
+	- If the present documentation is the 'Offline documentation' you may refer to the online version at http://i-simpa-wiki.readthedocs.io/en/latest/ for an up-to-date documentation.
+	-  If you observe some mistakes or errors, please `write an Issue on GitHub`_
+	-  You can also `contribute to the documentation`_.
+	-  The official documentation is available in English only.
 
-.. _visit the offical I-Simpa website: https://i-simpa.univ-gustave-eiffel.fr/
+.. _visit the offical I-Simpa website: http://i-simpa.ifsttar.fr
 .. _instructions: https://github.com/Ifsttar/I-Simpa/wiki
 .. _contribute to the documentation: https://github.com/Ifsttar/I-Simpa/wiki/Write-documentation
 .. _write an Issue on GitHub: https://github.com/Ifsttar/I-Simpa/issues
@@ -111,7 +112,6 @@ the TCR numerical codes (embedded within the I-Simpa software).
    :maxdepth: 2
    :caption: Appendices
 
-   errors_messages
    I_Simpa_standard
    room_acoustics_parameters
    glossary

@@ -247,6 +247,7 @@ void E_Report_File::RefreshFolderContents()
 
 	wxString fullPath;
 	this->BuildFullPath(fullPath);
+
 	//Chargement des éléments déjà présent comme fils
 	wxSortedArrayString currentFileChilds;
 	wxString thisFullPath;

@@ -10,10 +10,10 @@
 #### Software & Dependencies requirements
 
 * CMake
-* Boost 1.60
-* wxWidget 3.1.0
-* Swig
-* Python 2.7
+* Boost 1.73
+* wxWidget 3.1.4
+* Swig 3.0.11
+* Python 3.8
 
 :warning: This project uses OpenGL, check if your graphic driver is up to date !
 
@@ -21,22 +21,22 @@
 
 ### On Windows with Microsoft Visual Studio (64bits)
 
-Last (free) version in date :  [Visual Studio Community 2015](https://www.visualstudio.com/)
+Last (free) version in date :  [Visual Studio Community 2019](https://www.visualstudio.com/)
 
 #### Libraries installation
 
 We recommend you to create a lib folder in `C:` and to use it when extracting extracting externals libraries source.
 
 * **Boost**
-	* [Download Boost 1.60](http://www.boost.org/users/history/)
+	* [Download Boost 1.73](http://www.boost.org/users/history/)
 	* Extract the archive
 	* To build Boost : from the Visual Studio shell (Menu > All Programs > Visual Studio Tools), in the Boost folder
 	
 			.\bootstrap.bat
 			# build just what we need
-			.\b2. toolset=msvc-14.0 --with-thread --with-random --with-python --with-date_time --with-test --with-filesystem --with-regex --build-type=complete stage
+			.\b2. toolset=msvc-16.0 --with-thread --with-random --with-python --with-date_time --with-test --with-filesystem --with-regex --build-type=complete stage
 			# or everything
-			.\b2. toolset=msvc-14.0 --build-type=complete stage
+			.\b2. toolset=msvc-16.0 --build-type=complete stage
 	
 	* Move the lib/ folder (inside stage/) to the Boost folder root
 	* Create/check environment variable
@@ -49,9 +49,9 @@ We recommend you to create a lib folder in `C:` and to use it when extracting ex
 	* Extract the archive
 	* Add to Path the Swig folder path
 * **wxWidgets**
-	* [Download the wxWidget 3.1.0 Windows Installer](http://www.wxwidgets.org/downloads/)
+	* [Download the wxWidget 3.1.4 Windows Installer](http://www.wxwidgets.org/downloads/)
 	* The installer extract the source in a folder
-	* In the wxWidget folder, in build/msw, launch wx_vc14.sl
+	* In the wxWidget folder, in build/msw, launch wx_vc16.sl
 	* Choose the "debug" mode and generate the solution
 	* Choose the "release" mode and generate the solution again
 	* Quit Visual Studio
@@ -60,7 +60,7 @@ We recommend you to create a lib folder in `C:` and to use it when extracting ex
 			WXWIN		path\to\wxwidget
 	
 * **Python**
-	* [Download Python 2.7](https://www.python.org/downloads/)
+	* [Download Python 3.8](https://www.python.org/downloads/)
 	* Install it (the installer has an option that can do the two next steps for you)
 	* Add to Path the Python installation folder path
 	* Create/check environment variable
@@ -89,7 +89,7 @@ In order to build under linux you have to download/install the following librari
 
 - gcc-4.8
 - g++-4.8
-- python 2.7
+- python 3.8
 - freeglut3-dev
 - libxmu-dev
 - libxi-dev
@@ -111,13 +111,13 @@ Swig from here:
 https://github.com/swig/swig/archive/rel-3.0.10.tar.gz
 
 Boost from here:
-https://sourceforge.net/projects/boost/files/boost/1.61.0/boost_1_61_0.tar.bz2
+https://sourceforge.net/projects/boost/files/boost/1.73.0/boost_1_73_0.tar.bz2/download
 
 wxWidgets from here:
-https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.0/wxWidgets-3.1.0.tar.bz2
+https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.4/wxWidgets-3.1.4.tar.bz2
 
-Cmake from here
-https://cmake.org/files/v3.6/cmake-3.6.1-Linux-x86_64.tar.gz
+Cmake from here (or from apt-get)
+https://cmake.org/files/LatestRelease/cmake-3.22.0.tar.gz
 
 #### Building instructions
 

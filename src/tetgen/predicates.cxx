@@ -399,7 +399,7 @@ static REAL ispstaticfilter;
 //          http://www.math.utah.edu/~beebe/software/ieee/
 // The original program was "fpinfo2.c".
 
-double fppow2(int n)
+static double fppow2(int n)
 {
   double x, power;
   x = (n < 0) ? ((double)1.0/(double)2.0) : (double)2.0;
@@ -412,12 +412,12 @@ double fppow2(int n)
 
 #ifdef SINGLE
 
-float fstore(float x)
+static float fstore(float x)
 {
   return (x);
 }
 
-int test_float(int verbose)
+static int test_float(int verbose)
 {
   float x;
   int pass = 1;
@@ -467,12 +467,12 @@ int test_float(int verbose)
 
 # else
 
-double dstore(double x)
+static double dstore(double x)
 {
   return (x);
 }
 
-int test_double(int verbose)
+static int test_double(int verbose)
 {
   double x;
   int pass = 1;
@@ -629,10 +629,6 @@ void exactinit(int verbose, int noexact, int nofilter, REAL maxx, REAL maxy,
   // Added by H. Si, 2012-08-23.
 
   // Sort maxx < maxy < maxz. Re-use 'half' for swapping.
-  assert(maxx > 0);
-  assert(maxy > 0);
-  assert(maxz > 0);
-
   if (maxx > maxz) {
     half = maxx; maxx = maxz; maxz = half;
   }
@@ -885,7 +881,7 @@ int expansion_sum_zeroelim2(int elen, REAL *e, int flen, REAL *f, REAL *h)
 /*                                                                           */
 /*****************************************************************************/
 
-int fast_expansion_sum(int elen, REAL *e, int flen, REAL *f, REAL *h)
+static int fast_expansion_sum(int elen, REAL *e, int flen, REAL *f, REAL *h)
 /* h cannot be e or f. */
 {
   REAL Q;
@@ -957,7 +953,7 @@ int fast_expansion_sum(int elen, REAL *e, int flen, REAL *f, REAL *h)
 /*  properties.                                                              */
 /*                                                                           */
 /*****************************************************************************/
-
+static
 int fast_expansion_sum_zeroelim(int elen, REAL *e, int flen, REAL *f, REAL *h)
 /* h cannot be e or f. */
 {
@@ -1169,7 +1165,7 @@ int linear_expansion_sum_zeroelim(int elen, REAL *e, int flen, REAL *f,
 /*  will h.)                                                                 */
 /*                                                                           */
 /*****************************************************************************/
-
+static
 int scale_expansion(int elen, REAL *e, REAL b, REAL *h)
 /* e and h cannot be the same. */
 {
@@ -1215,7 +1211,7 @@ int scale_expansion(int elen, REAL *e, REAL b, REAL *h)
 /*  will h.)                                                                 */
 /*                                                                           */
 /*****************************************************************************/
-
+static
 int scale_expansion_zeroelim(int elen, REAL *e, REAL b, REAL *h)
 /* e and h cannot be the same. */
 {
@@ -1267,7 +1263,7 @@ int scale_expansion_zeroelim(int elen, REAL *e, REAL b, REAL *h)
 /*  nonadjacent expansion.                                                   */
 /*                                                                           */
 /*****************************************************************************/
-
+static
 int compress(int elen, REAL *e, REAL *h)
 /* e and h may be the same. */
 {
@@ -1310,7 +1306,7 @@ int compress(int elen, REAL *e, REAL *h)
 /*  See either version of my paper for details.                              */
 /*                                                                           */
 /*****************************************************************************/
-
+static
 REAL estimate(int elen, REAL *e)
 {
   REAL Q;
@@ -1348,7 +1344,7 @@ REAL estimate(int elen, REAL *e)
 /*  nearly so.                                                               */
 /*                                                                           */
 /*****************************************************************************/
-
+static
 REAL orient2dfast(REAL *pa, REAL *pb, REAL *pc)
 {
   REAL acx, bcx, acy, bcy;
@@ -1360,6 +1356,7 @@ REAL orient2dfast(REAL *pa, REAL *pb, REAL *pc)
   return acx * bcy - acy * bcx;
 }
 
+//static
 REAL orient2dexact(REAL *pa, REAL *pb, REAL *pc)
 {
   INEXACT REAL axby1, axcy1, bxcy1, bxay1, cxay1, cxby1;
@@ -4185,7 +4182,7 @@ REAL insphere(REAL *pa, REAL *pb, REAL *pc, REAL *pd, REAL *pe)
 /*  See my Robust Predicates paper for details.                              */
 /*                                                                           */
 /*****************************************************************************/
-
+//static
 REAL orient4dexact(REAL* pa, REAL* pb, REAL* pc, REAL* pd, REAL* pe,
                    REAL aheight, REAL bheight, REAL cheight, REAL dheight, 
                    REAL eheight)
@@ -4401,6 +4398,7 @@ REAL orient4dexact(REAL* pa, REAL* pb, REAL* pc, REAL* pd, REAL* pe,
   return deter[deterlen - 1];
 }
 
+static
 REAL orient4dadapt(REAL* pa, REAL* pb, REAL* pc, REAL* pd, REAL* pe,
                    REAL aheight, REAL bheight, REAL cheight, REAL dheight, 
                    REAL eheight, REAL permanent)
@@ -4702,5 +4700,11 @@ REAL orient4d(REAL* pa, REAL* pb, REAL* pc, REAL* pd, REAL* pe,
                       aheight, bheight, cheight, dheight, eheight, permanent);
 }
 
+
+
+
+
+
+//==============================================================================
 
 

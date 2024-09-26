@@ -81,6 +81,9 @@ void processManager::HandleOutput() {
 		if (IsErrorAvailable()) {
 			wxTextInputStream tis(*GetErrorStream());
 			const wxString& errMsg(tis.ReadLine());
+			// The IsErrorAvailable function seems to always return true.  I think there must be an empty line in the error stream. -- Larry Pyeatt
+			if(errMsg.Len() > 0)
+			  {
 			if (!this->outlogs.empty())
 			{
 				for (std::vector<smart_ptr<InterfLogger> >::iterator itlogs = this->outlogs.begin(); itlogs != this->outlogs.end(); itlogs++)
@@ -94,6 +97,7 @@ void processManager::HandleOutput() {
 			msg.Replace("%", "%%"); //wxLog expect this character used for parameters, then add another % to escape it
 			errorMessage += msg + "\n";
 		}
+	}
 	}
 	if (!message.IsEmpty()) {
 		wxLogMessage(message);

@@ -39,7 +39,7 @@
 wxGridCellTreeEditor::wxGridCellTreeEditor(Element* _rootItem,Element* _defaultSelection,const std::list<Element::ELEMENT_TYPE>& elementFilter)
 :wxGridCellEditor(),rootItem(_rootItem),currentSelection(_defaultSelection),currentFilters(elementFilter)
 {
-
+	
 }
 
 void wxGridCellTreeEditor::BeginEdit(int row, int col, wxGrid* grid)
@@ -59,7 +59,20 @@ void wxGridCellTreeEditor::BeginEdit(int row, int col, wxGrid* grid)
     Combo()->SetInsertionPointEnd();
     Combo()->SetFocus();
 
+	// Save currently edited cell and bind combo closeup with edit end handler
+	edited_row = row;
+	edited_col = col;
+	currentGrid = grid;
+	Combo()->Bind(wxEVT_COMBOBOX_CLOSEUP, &wxGridCellTreeEditor::onEndEdit, this);
 }
+
+void wxGridCellTreeEditor::onEndEdit(wxCommandEvent& event) {
+    wxString value = wxString();
+	this->EndEdit(edited_row, edited_col, currentGrid, "", &value);								// Apply changes 'locally'
+	wxPostEvent(Combo(), wxGridEvent(0, wxEVT_GRID_CELL_CHANGED, currentGrid, edited_row, edited_col)); //Post event so that e_data_tree action is triggered
+	event.Skip();
+}
+
 bool wxGridCellTreeEditor::EndEdit(int row, int col, const wxGrid* grid, const wxString& oldval, wxString *newval)
 {
 	ComboTreeCtrl* popupCtrlTree=dynamic_cast<ComboTreeCtrl*>( Combo()->GetPopupControl());
@@ -74,8 +87,10 @@ bool wxGridCellTreeEditor::EndEdit(int row, int col, const wxGrid* grid, const w
 		currentSelection=newSelection;
 		grid->GetTable()->SetValue(row, col, value);
 
+		Combo()->Unbind(wxEVT_COMBOBOX_CLOSEUP, &wxGridCellTreeEditor::onEndEdit, this); //Not sure if it is needed(?)
 		return true;
 	}else{
+		Combo()->Unbind(wxEVT_COMBOBOX_CLOSEUP, &wxGridCellTreeEditor::onEndEdit, this);
 		return false;
 	}
 }
@@ -144,5 +159,5 @@ void wxGridCellTreeEditor::Reset(void)
 
 wxString wxGridCellTreeEditor::GetValue() const
 {
-  return Combo()->GetValue();
+	return Combo()->GetValue();
 }

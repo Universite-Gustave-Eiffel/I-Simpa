@@ -430,7 +430,7 @@ bool CPoly::ImportPOLY(t_model& scene,const std::string& mfilename)
 			}
 		}	
 	}
-
+	return true;
 }
 
 } //fin namespace

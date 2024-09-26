@@ -1653,7 +1653,7 @@ void CObjet3D::GetRealVertice(const unsigned long verticeId,vec3* outVert)
 }
 void CObjet3D::SelectVertex(const t_faceIndex& faceid)
 {
-	if(faceid.f>=0 && faceid.g >=0 && faceid.f<this->GetNumFaces(faceid.g))
+	if(faceid.f>=0 && faceid.g >=0 && faceid.group < this->_pGroups.size() && faceid.face < this->_pGroups[faceid.group].pFaces.size())
 	{
 		this->_pGroups[faceid.group].pFaces[faceid.face].selected=true;
 		selectionChange=true;

@@ -37,8 +37,14 @@
 #ifndef BOOST_PYTHON_STATIC_LIB
 	#define BOOST_PYTHON_STATIC_LIB 1
 #endif
+
+//#define BOOST_BIND_GLOBAL_PLACEHOLDERS
+#include <boost/bind/bind.hpp>
+using namespace boost::placeholders;
+
 #include <boost/python.hpp>
 #include <boost/python/tuple.hpp>
+
 #include <vector>
 #include <wx/string.h>
 

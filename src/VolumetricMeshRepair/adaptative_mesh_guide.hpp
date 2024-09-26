@@ -34,7 +34,10 @@
  */
 #include "smart_macro.h"
 #include <Core/mathlib.h> //Mathlib de libinterface
+#include <tools/octree44_triangleElement.hpp>
+#include <tools/octree44_sphereElement.hpp>
 #include <list>
+#include <map>
 #include <utility>
 
 #ifndef __ADAPTATIVE_MESH_GUIDE__
@@ -76,6 +79,42 @@ namespace Triangulators
 
 		void SortByDistance(ClosestCandidates_t& foundPositions);
 	};
+
+
+  // the following definitions were moved from the .cpp to the .hpp to
+  // avoid compiler warnings about not being able to call the
+  // destructor for AdaptativeMeshGuideData_t and/or
+  // AdaptativeMeshGuideData_t when instantiating a template.
+  // -- Larry Pyeatt
+	struct tri_t
+	{
+		tri_t(const vec3& _A,const vec3& _B,const vec3& _C)
+			:A(_A),B(_B),C(_C)
+		{}
+		tri_t(){}
+		vec3 A;
+		vec3 B;
+		vec3 C;
+	};
+
+	typedef PTR<tri_t> tri_ptr_t;
+	typedef std::multimap<std::size_t,tri_ptr_t> trianglesMap_t;
+	typedef trianglesMap_t::iterator trianglesMap_iterator_t;
+	typedef std::pair<std::size_t,tri_ptr_t> trianglesMap_pair_t;
+
+	struct AdaptativeMeshGuide::AdaptativeMeshGuideData_t
+	{
+		AdaptativeMeshGuideData_t()
+		{
+
+		}
+		trianglesMap_t trianglesMap;
+		PTR<octreeTool::Octree44> octreeSpace;
+		vec3 minBox;
+		vec3 maxBox;
+	};
+
+  
 };
 
 #endif

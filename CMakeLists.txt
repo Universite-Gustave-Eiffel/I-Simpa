@@ -1,9 +1,13 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.6.0)
+# begin basic metadata
+# minimum CMake version required for C++20 support, among other things
+cmake_minimum_required(VERSION 3.15)
 
 # Maps to a solution file (isimpa.sln). The solution will
 # have all targets (exe, lib, dll) as projects (.vcproj)
 project (isimpa VERSION 1.3.4)
 
+# a better way to load dependencies
+include(cmake/CPM.cmake)
 
 # convert path of a .lib file into a .dll file
 # findboost does not store .dll locations
@@ -49,13 +53,15 @@ IF (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     EXECUTE_PROCESS(COMMAND ${CMAKE_CXX_COMPILER} -dumpversion OUTPUT_VARIABLE GCC_VERSION)
     IF (GCC_VERSION VERSION_GREATER 4.7 OR GCC_VERSION VERSION_EQUAL 4.7)
         SET(USE_CXX_11 TRUE)
-        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+        set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall --std=c++11 -O3 -fPIC" )        
+        set( CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -Wall -O3 -fPIC" )
     ENDIF()
 ELSEIF (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     IF ((NOT APPLE AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER "3.2")
             OR (APPLE AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER "4.1"))
         SET(USE_CXX_11 TRUE)
-        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wno-error=c++11-narrowing")
+        set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall --std=c++11  -Wno-error=c++11-narrowing -O3 -fPIC" )    
+        set(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -Wall -O3 -fPIC" )
     ENDIF()
 ELSEIF (MSVC AND MSVC_VERSION GREATER 1600)
     SET(USE_CXX_11 TRUE)

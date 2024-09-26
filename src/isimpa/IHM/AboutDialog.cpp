@@ -91,8 +91,8 @@ AboutDialog::AboutDialog()
                               "<table width=\"100%\" border=0>\n"
                               "<tr><td valign=top colspan=2 bgcolor=\"LIGHT BLUE\"><strong>" + _("Developers") +
                       "</strong></td></tr>\n"
-                              "<tr><td valign=top>Judicaël Picaut</td><td valign=top>Ifsttar</td></tr>\n"
-                              "<tr><td valign=top>Nicolas Fortin</td><td valign=top>Ifsttar</td></tr>\n"
+                              "<tr><td valign=top>Judicaël Picaut</td><td valign=top>Université Gustave Eiffel (formely Ifsttar, LCPC)</td></tr>\n"
+                              "<tr><td valign=top>Nicolas Fortin</td><td valign=top>Université Gustave Eiffel (formely Ifsttar, LCPC)</td></tr>\n"
                               "<tr><td valign=top> &nbsp </td></tr>\n"
                               "<tr><td valign=top colspan=2 bgcolor=\"LIGHT BLUE\"><strong>" + _("Contributors") +
                       "</strong></td></tr>\n"
