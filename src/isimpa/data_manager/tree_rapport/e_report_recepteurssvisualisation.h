@@ -180,6 +180,8 @@ public:
 			libelCumul=_("Reverberation time (RT)");
 		else if( recordType==RECEPTEURS_RECORD_TYPE_EDT)
 			libelCumul=_("Early decay time (EDT)");
+		else if( recordType==RECEPTEURS_RECORD_TYPE_STI)
+			libelCumul=_("Speech Transmision Index (STI)");
 		subMenuSimu->Append(Element::GetMenuItem(subMenuSimu,IDEVENT_LOAD_RECEPTEURSS_SIMULATION_SUM,libelCumul));
 
 		if(recordType==RECEPTEURS_RECORD_TYPE_SPL_STANDART && !onlySum)
@@ -191,6 +193,7 @@ public:
 			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_DEFINITION,_("D50 computation")));
 			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_TS,_("TS computation")));
 			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_ST,_("ST computation")));
+			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_STI,_("STI computation")));
 			leMenu->Append(GetMenuItem(leMenu,-1,_("Acoustic parameters"),subMenuPostComputation));
 		}
 
