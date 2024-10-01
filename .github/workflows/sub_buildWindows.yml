@@ -42,6 +42,7 @@ jobs:
     runs-on: windows-latest
     continue-on-error: ${{ inputs.allowedToFail }}
     env:
+      CPM_SOURCE_CACHE: ~/.cache/CPM
       CCACHE_DIR: C:/ISIMPA/cache/
       CCACHE_COMPILERCHECK: "%compiler%" # default:mtime
       CCACHE_MAXSIZE: 1G
@@ -76,6 +77,12 @@ jobs:
           mkdir ${{ env.logdir }}
           mkdir ${{ env.reportdir }}
           echo "reportFile=${{ env.reportfilename }}" >> $GITHUB_OUTPUT
+      - name: Cache CPM dependency packages
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ env.CPM_SOURCE_CACHE }}
+          key: ${{ runner.os }}-isimpa
       - name: Get Ccache
         uses: ./.github/workflows/actions/windows/getCcache
         with:
@@ -101,7 +108,7 @@ jobs:
       - name: Configuring CMake
         run: >
           cmake -B"${{ env.builddir }}" .
-          --preset release
+          -DCPM_SOURCE_CACHE=${{ env.CPM_SOURCE_CACHE }} 
           -DCMAKE_VS_NO_COMPILE_BATCHING=ON
           -DCMAKE_BUILD_TYPE=Release
           -DISIMPA_LIBPACK_DIR="${{ env.libpackdir }}"
