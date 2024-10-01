@@ -1,6 +1,19 @@
-name: CMake
+name: Build linux
 
-on: [workflow_dispatch, push, pull_request]
+on:
+  workflow_call:
+    inputs:
+      artifactBasename:
+        type: string
+        required: true
+      allowedToFail:
+        default: false
+        type: boolean
+        required: false
+    outputs:
+      reportFile:
+        value: ${{ jobs.Build.outputs.reportFile }}
+
 
 
 concurrency:

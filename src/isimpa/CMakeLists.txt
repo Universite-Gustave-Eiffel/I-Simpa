@@ -369,7 +369,7 @@ source_group( "" FILES ${ISIMPA_SOURCES} )
 
 # Build auto-generated source files
 # Find package for generation
-FIND_PACKAGE(PythonInterp 3.10 REQUIRED)
+FIND_PACKAGE(PythonInterp REQUIRED)
 
 # Ask make to call python in order to use element.h to produce enum_def.cpp
 ADD_CUSTOM_COMMAND(
@@ -494,7 +494,7 @@ FIND_PACKAGE(PythonLibs "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}" REQUIR
 execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "import sys; import sysconfig; print(list(sysconfig.get_paths().values()))"
                     OUTPUT_VARIABLE PYTHON_SITE_PACKAGES OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-FIND_PACKAGE(OpenGL REQUIRED COMPONENTS OpenGL EGL)
+FIND_PACKAGE(OpenGL REQUIRED COMPONENTS OpenGL)
 include_directories(${OPENGL_INCLUDE_DIRS})
 include_directories(${wxWidgets_SOURCE_DIR})
 include_directories(${PYTHON_INCLUDE_PATH})
