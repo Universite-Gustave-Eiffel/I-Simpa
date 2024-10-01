@@ -3,25 +3,25 @@
 # *                                                                         *
 # *   Copyright (c) 2023 0penBrain.                                         *
 # *                                                                         *
-# *   This file is part of FreeCAD.                                         *
+# *   This file is part of ISIMPA.                                         *
 # *                                                                         *
-# *   FreeCAD is free software: you can redistribute it and/or modify it    *
+# *   ISIMPA is free software: you can redistribute it and/or modify it    *
 # *   under the terms of the GNU Lesser General Public License as           *
 # *   published by the Free Software Foundation, either version 2.1 of the  *
 # *   License, or (at your option) any later version.                       *
 # *                                                                         *
-# *   FreeCAD is distributed in the hope that it will be useful, but        *
+# *   ISIMPA is distributed in the hope that it will be useful, but        *
 # *   WITHOUT ANY WARRANTY; without even the implied warranty of            *
 # *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU      *
 # *   Lesser General Public License for more details.                       *
 # *                                                                         *
 # *   You should have received a copy of the GNU Lesser General Public      *
-# *   License along with FreeCAD. If not, see                               *
+# *   License along with ISIMPA. If not, see                               *
 # *   <https://www.gnu.org/licenses/>.                                      *
 # *                                                                         *
 # ***************************************************************************
 
-# This is the pre-check workflow for CI of FreeCAD.
+# This is the pre-check workflow for CI of ISIMPA.
 # It aims at running some basic checks about the workflow run ...
 # ... and gathering some data needed for the next steps.
 

@@ -1,0 +1,8 @@
+file(GLOB ISIMPA_HELPER_CMAKE_FILES ./*.cmake)
+
+foreach(_CMAKE_FILE ${ISIMPA_HELPER_CMAKE_FILES})
+    get_filename_component(_FILENAME ${_CMAKE_FILE} NAME)
+    if (NOT _FILENAME IN_LIST _SKIP_FILES)
+        include(${_CMAKE_FILE})
+    endif()
+endforeach(_CMAKE_FILE ${ISIMPA_HELPER_CMAKE_FILES})
