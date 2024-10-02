@@ -10,8 +10,9 @@ project (isimpa VERSION 1.3.4)
 include(cmake/CPM.cmake)
 
 # include helper functions/macros
-add_subdirectory(cMake/ISIMPA_Helpers)
+add_subdirectory(cmake/ISIMPA_Helpers)
 
+InitializeISIMPABuildOptions()
 ISIMPALibpackChecks()
 
 # convert path of a .lib file into a .dll file
@@ -42,9 +43,6 @@ endif()
 # It creates "CMakePredefinedTargets" folder by default and adds CMake
 # defined projects like INSTALL.vcproj and ZERO_CHECK.vcproj
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-
-#Add an option in order to build only the computation cores and libraries
-option(SKIPISIMPA "skip-gui" FALSE)
 
 # Set compiler flags and options.
 #############################################################
