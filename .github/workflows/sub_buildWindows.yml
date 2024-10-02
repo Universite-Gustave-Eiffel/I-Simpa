@@ -47,7 +47,7 @@ jobs:
         include:
           - configuration: 'DLL Release'
             platform: 'x64'
-            vsversion: 2019
+            vsversion: 2022
     continue-on-error: ${{ inputs.allowedToFail }}
     env:
       CPM_SOURCE_CACHE: C:/ISIMPA/CPM/
