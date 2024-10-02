@@ -42,7 +42,7 @@ jobs:
     runs-on: windows-latest
     continue-on-error: ${{ inputs.allowedToFail }}
     env:
-      CPM_SOURCE_CACHE: ~/.cache/CPM
+      CPM_SOURCE_CACHE: C:/ISIMPA/CPM/
       CCACHE_DIR: C:/ISIMPA/cache/
       CCACHE_COMPILERCHECK: "%compiler%" # default:mtime
       CCACHE_MAXSIZE: 1G

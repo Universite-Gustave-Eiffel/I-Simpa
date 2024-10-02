@@ -12,6 +12,8 @@ include(cmake/CPM.cmake)
 # include helper functions/macros
 add_subdirectory(cmake/ISIMPA_Helpers)
 
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cMake")
+
 InitializeISIMPABuildOptions()
 ISIMPALibpackChecks()
 

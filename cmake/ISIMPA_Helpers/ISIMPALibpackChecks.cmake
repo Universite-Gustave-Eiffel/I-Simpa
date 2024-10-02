@@ -22,7 +22,11 @@ macro(ISIMPALibpackChecks)
             include(cMake/UseLibPack3.cmake)
         else(ISIMPA_LIBPACK_CHECKFILE_CLBUNDLER)
             set(ISIMPA_LIBPACK_VERSION "NOTFOUND" CACHE STRING "Displays if the libpack has been found" FORCE)
-            message(SEND_ERROR  "Could not find LibPack in specified location:" ${ISIMPA_LIBPACK_DIR})
+            message(SEND_ERROR  "Could not find LibPack in specified location: " ${ISIMPA_LIBPACK_DIR})
+            file(GLOB found_files LIST_DIRECTORIES true "${ISIMPA_LIBPACK_DIR}/*")
+            foreach(found_file ${found_files})
+                message("${found_file}")
+            endforeach()
         endif(ISIMPA_LIBPACK_CHECKFILE_CLBUNDLER)
 # -------------------------------- PyCXX --------------------------------
 
