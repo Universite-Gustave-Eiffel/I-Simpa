@@ -39,7 +39,15 @@ on:
 
 jobs:
   Build:
-    runs-on: windows-latest
+    runs-on: windows-${{ matrix.vsversion }}
+    name: MSW vs${{ matrix.vsversion }} ${{ matrix.configuration }} ${{ matrix.platform }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - configuration: 'DLL Release'
+            platform: 'x64'
+            vsversion: 2019
     continue-on-error: ${{ inputs.allowedToFail }}
     env:
       CPM_SOURCE_CACHE: C:/ISIMPA/CPM/
