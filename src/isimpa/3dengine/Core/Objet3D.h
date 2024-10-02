@@ -41,6 +41,7 @@
 */
 
 #ifdef _WINDOWS
+#define _WINSOCKAPI_
 #include <windows.h>
 #endif
 #include "Material.h"
