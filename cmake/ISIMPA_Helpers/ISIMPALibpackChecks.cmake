@@ -28,9 +28,6 @@ macro(ISIMPALibpackChecks)
                 message("${found_file}")
             endforeach()
         endif(ISIMPA_LIBPACK_CHECKFILE_CLBUNDLER)
-# -------------------------------- PyCXX --------------------------------
-
-        find_package(PyCXX REQUIRED)
 
 # -------------------------------- Swig ----------------------------------
 
@@ -41,12 +38,6 @@ macro(ISIMPALibpackChecks)
                     "SWIG not found, don't build SWIG binding for pivy.\n"
                     "==================================================\n")
         endif(NOT SWIG_FOUND)
-
-# -------------------------------- Salome SMESH --------------------------
-
-        if(NOT ISIMPA_USE_EXTERNAL_SMESH)
-            set(SMESH_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/src/3rdParty/salomesmesh/inc)
-        endif()
 
     endif(ISIMPA_LIBPACK_USE)
 
