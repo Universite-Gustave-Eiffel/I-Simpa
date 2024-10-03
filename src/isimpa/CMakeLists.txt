@@ -399,7 +399,7 @@ set_property(SOURCE data_manager/python_interface/py_ui_module/element_pywrap.cp
 configure_file(data_manager/appconfig_version.cpp.in ${CMAKE_CURRENT_BINARY_DIR}/generated/appconfig_version.cpp )
 
 set(Boost_USE_STATIC_LIBS   OFF)
-find_package(Boost REQUIRED COMPONENTS system python filesystem regex random)
+
 link_directories( ${Boost_LIBRARY_DIRS} )
 
 # Set Properties->General->Configuration Type to Application
@@ -468,38 +468,17 @@ SET(CMAKE_EXE_LINKER_FLAGS
 
 # add wxWidgets as dependency
 
-find_package(wxWidgets)
+set(USING_CPM true)
+set(BUILD_SHARED_LIBS OFF)
+set(CPM_DOWNLOAD_VERSION 0.34.0)
 
-if(wxWidgets_FOUND)
+include(${CPM_DOWNLOAD_LOCATION})
 
-    if(CMAKE_BUILD_TYPE STREQUAL Debug)
-        if(NOT ${wxWidgets_CONFIGURATION} MATCHES .*d$ )
-        set(wxWidgets_CONFIGURATION ${wxWidgets_CONFIGURATION}d)
-        endif()
-    else()
-        if(${wxWidgets_CONFIGURATION} MATCHES .*d$ )
-        string(LENGTH ${wxWidgets_CONFIGURATION} BUILD_STR_SIZE)
-        MATH(EXPR BUILD_STR_SIZE "${BUILD_STR_SIZE}-1")
-        string(SUBSTRING ${wxWidgets_CONFIGURATION} 0 ${BUILD_STR_SIZE} wxWidgets_CONFIGURATION)
-        endif()
-    endif()
-
-    find_package(wxWidgets COMPONENTS core base xml gl aui adv html REQUIRED)
-
-    include(${wxWidgets_USE_FILE})
-else(NOT wxWidgets_FOUND)
-  set(USING_CPM true)
-  set(BUILD_SHARED_LIBS OFF)
-  set(CPM_DOWNLOAD_VERSION 0.34.0)
-
-  include(${CPM_DOWNLOAD_LOCATION})
-
-  CPMAddPackage(
-    NAME wxWidgets
-    GIT_REPOSITORY https://github.com/wxWidgets/wxWidgets
-    GIT_TAG        v3.2.1
-  )
-endif()
+CPMAddPackage(
+NAME wxWidgets
+GIT_REPOSITORY https://github.com/wxWidgets/wxWidgets
+GIT_TAG        v3.2.1
+)
 
 # Find package for buildingfind_package(Python3 COMPONENTS Interpreter Development)
 FIND_PACKAGE(PythonLibs "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}" REQUIRED)
@@ -512,7 +491,7 @@ include_directories(${wxWidgets_SOURCE_DIR})
 include_directories(${PYTHON_INCLUDE_PATH})
 
 # Properties->Linker->Input->Additional Dependencies
-target_link_libraries(isimpa lib_interface Boost::python Boost::random ${PYTHON_LIBRARIES})
+target_link_libraries(isimpa lib_interface ${Boost_LIBRARIES} ${PYTHON_LIBRARIES})
 
 if(WIN32 AND MSVC)
   target_link_libraries(isimpa ${PYTHON_LIBRARY_RELEASE})

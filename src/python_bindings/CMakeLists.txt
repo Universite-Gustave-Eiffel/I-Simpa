@@ -28,7 +28,7 @@ SET(CMAKE_SWIG_FLAGS "")
 SET_SOURCE_FILES_PROPERTIES(libsimpa.i PROPERTIES CPLUSPLUS ON)
 
 set(Boost_USE_STATIC_LIBS   OFF)
-find_package(Boost COMPONENTS system filesystem regex REQUIRED)
+
 link_directories( ${Boost_LIBRARY_DIRS})
 
 IF (${CMAKE_VERSION} VERSION_LESS "3.8.0")

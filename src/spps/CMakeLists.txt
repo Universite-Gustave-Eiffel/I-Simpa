@@ -11,8 +11,6 @@ include_directories (./ "${CMAKE_SOURCE_DIR}/src/lib_interface" "${CMAKE_CURRENT
 set(CMAKE_INSTALL_MFC_LIBRARIES TRUE) 
 set(CMAKE_INSTALL_UCRT_LIBRARIES TRUE )
 include( InstallRequiredSystemLibraries )
-message(STATUS " Boost path - $ENV{BOOST_INCLUDEDIR}")
-message(STATUS " Boost lib path - $ENV{BOOST_LIBRARYDIR}")
 
 #--------------#
 #    SOURCES
@@ -54,18 +52,6 @@ source_group("" FILES ${SPPS_SOURCES} $(SPPS_MAIN_SOURCES))
 #    DEPENDENCY & EXECUTABLE (OR LIB)
 #---------------------------------------#
 
-set(Boost_USE_STATIC_LIBS   OFF)
-
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-  find_package(Boost REQUIRED COMPONENTS system random filesystem regex)
-else()
-  find_package (Threads)
-  find_package(Boost REQUIRED COMPONENTS system random filesystem regex thread chrono date_time)
-endif()
-
-link_directories( ${Boost_LIBRARY_DIRS} )
-include_directories( ${Boost_INCLUDE_DIRS} )
-
 # Check for clock_gettime function
 if (CMAKE_SYSTEM_NAME EQUAL "LINUX")
   include(CheckLibraryExists)
@@ -92,7 +78,7 @@ set_property(TARGET spps PROPERTY FOLDER "executables")
 
 
 # Properties->Linker->Input->Additional Dependencies
-target_link_libraries (spps lib_interface ${Boost_LIBRARIES})
+target_link_libraries (spps lib_interface Boost::random Boost::thread)
 
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
@@ -155,9 +141,6 @@ file(COPY
 # Test executable and folder
 set(SPPS_TESTS
     tests/spps_core_test.cpp)
-	
-set(Boost_USE_STATIC_LIBS   ON)
-find_package(Boost COMPONENTS filesystem regex unit_test_framework timer chrono REQUIRED)
 
 add_executable(TEST_spps ${SPPS_TESTS}
     ${DATA_MANAGER_SOURCES}
@@ -167,7 +150,8 @@ add_executable(TEST_spps ${SPPS_TESTS}
 
 target_link_libraries (TEST_spps
     lib_interface
-    ${Boost_LIBRARIES})
+    Boost::unit_test_framework
+    Boost::random)
 set_property(TARGET TEST_spps PROPERTY FOLDER "tests")
 
 # Add to test suite

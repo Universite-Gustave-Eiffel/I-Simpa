@@ -1,5 +1,5 @@
 #define BOOST_TEST_MODULE lib_interface modelio tests
-#include <boost/test/included/unit_test.hpp>
+#include <boost/test/unit_test.hpp>
 #include <boost/filesystem/operations.hpp>
 #include <iostream>
 #include <input_output/bin.h>

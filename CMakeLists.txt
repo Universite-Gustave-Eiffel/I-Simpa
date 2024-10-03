@@ -8,6 +8,8 @@ project (isimpa VERSION 1.3.4)
 
 # a better way to load dependencies
 include(cmake/CPM.cmake)
+# download boost source and compile using CPM
+include(cmake/SetupBoost.cmake)
 
 # convert path of a .lib file into a .dll file
 # findboost does not store .dll locations
@@ -86,6 +88,8 @@ add_subdirectory(src/tetgen)
 add_subdirectory (src/spps)
 if(NOT SKIPISIMPA)
    add_subdirectory (src/isimpa)
+else()
+   message (STATUS "Skip building GUI")
 endif()
 
 # custom target for CLion "make install"

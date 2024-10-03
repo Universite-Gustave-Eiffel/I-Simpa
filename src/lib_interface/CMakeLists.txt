@@ -114,9 +114,6 @@ source_group( "tools" FILES ${TOOLS_SOURCES} )
 #---------------------------------------#
 
 set(Boost_USE_STATIC_LIBS   OFF)
-find_package(Boost COMPONENTS REQUIRED system filesystem regex)
-link_directories( ${Boost_LIBRARY_DIRS} )
-include_directories( ${Boost_INCLUDE_DIRS} )
 
 add_library(lib_interface
     ${LIBINTERFACE_SOURCES}
@@ -134,10 +131,11 @@ add_library(lib_interface
 # Creates a folder "libraries" and adds target project (lib_interface.vcproj) under it
 set_property(TARGET lib_interface PROPERTY FOLDER "libraries")
 
-target_link_libraries (lib_interface
-    ${Boost_FILESYSTEM_LIBRARY}
-    ${Boost_SYSTEM_LIBRARY}
-    ${Boost_REGEX_LIBRARY})
+SetupBoost()
+
+target_link_libraries (lib_interface Boost::filesystem Boost::algorithm)
+
+
 
 #------------#
 #    TEST 1
@@ -152,14 +150,13 @@ file(COPY tests/speaker-test1.txt tests/speaker-test2.txt
 set(LIBINTERFACE_TESTS
     tests/balloon_test.cpp)
 
-set(Boost_USE_STATIC_LIBS   ON)
-find_package(Boost COMPONENTS regex unit_test_framework timer chrono filesystem REQUIRED)
+set(Boost_USE_STATIC_LIBS   OFF)
 
 add_executable(TEST_lib_interface ${LIBINTERFACE_TESTS})
 
 target_link_libraries (TEST_lib_interface
     lib_interface
-    ${Boost_LIBRARIES})
+    Boost::unit_test_framework)
 
 set_property(TARGET TEST_lib_interface PROPERTY FOLDER "tests")
 
@@ -187,7 +184,7 @@ add_executable(TEST_io_lib_interface tests/io_test.cpp )
 
 target_link_libraries (TEST_io_lib_interface
     lib_interface
-    ${Boost_LIBRARIES})
+    Boost::unit_test_framework)
 
 
 set_property(TARGET TEST_io_lib_interface PROPERTY FOLDER "tests")

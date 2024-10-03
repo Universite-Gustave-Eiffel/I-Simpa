@@ -25,8 +25,8 @@ set(CT_SOURCE_FILES
 #    DEPENDENCY & EXECUTABLE (OR LIB)
 #---------------------------------------#
 
-set(Boost_USE_STATIC_LIBS   OFF) 
-find_package(Boost COMPONENTS system filesystem regex REQUIRED)
+set(Boost_USE_STATIC_LIBS   OFF)
+
 link_directories( ${Boost_LIBRARY_DIRS} )  
 include_directories( ${Boost_INCLUDE_DIRS} )
 

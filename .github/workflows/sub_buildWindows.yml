@@ -62,7 +62,6 @@ jobs:
       CCACHE_LOGFILE: C:/logs/ccache.log
       ## Have to use C:\ because not enough space on workspace drive
       builddir: C:/ISIMPA/build/release/
-      libpackdir: C:/ISIMPA/libpack/
       ccachebindir: C:/ISIMPA/ccache/
       logdir: C:/logs/
       reportdir: C:/report/
@@ -80,7 +79,6 @@ jobs:
         run: |
           mkdir ${{ env.CCACHE_DIR }}
           mkdir ${{ env.ccachebindir }}
-          mkdir ${{ env.libpackdir }}
           mkdir ${{ env.builddir }}
           mkdir ${{ env.logdir }}
           mkdir ${{ env.reportdir }}
@@ -96,10 +94,6 @@ jobs:
         uses: ./.github/workflows/actions/windows/getCcache
         with:
           ccachebindir: ${{ env.ccachebindir }}
-      - name: Get Libpack
-        uses: ./.github/workflows/actions/windows/getLibpack
-        with:
-          libpackdir: ${{ env.libpackdir }}
       - name: Restore compiler cache
         uses: actions/cache@v4
         with:
@@ -120,7 +114,6 @@ jobs:
           -DCPM_SOURCE_CACHE=${{ env.CPM_SOURCE_CACHE }} 
           -DCMAKE_VS_NO_COMPILE_BATCHING=ON
           -DCMAKE_BUILD_TYPE=Release
-          -DISIMPA_LIBPACK_DIR="${{ env.libpackdir }}"
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v2
       - name: Compiling sources
