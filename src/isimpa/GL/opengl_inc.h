@@ -37,5 +37,10 @@
 #include <GL/glut.h>    // Header File For The GLUT Library
 #include <GL/glx.h>     // Header file fot the glx libraries.
 #endif
+#if defined(__APPLE__)
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#else
 #include <GL/gl.h>
 #include <GL/glu.h>
+#endif

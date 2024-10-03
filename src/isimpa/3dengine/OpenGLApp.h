@@ -43,8 +43,7 @@
 #include <string.h>
 #include <wx/image.h>
 #include <list>
-#include <GL/gl.h>
-
+#include "GL/opengl_inc.h"
 /**
  * Contient les information d'un animateur
  */

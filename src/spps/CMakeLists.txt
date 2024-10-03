@@ -67,13 +67,13 @@ link_directories( ${Boost_LIBRARY_DIRS} )
 include_directories( ${Boost_INCLUDE_DIRS} )
 
 # Check for clock_gettime function
-if (UNIX)
+if (CMAKE_SYSTEM_NAME EQUAL "LINUX")
   include(CheckLibraryExists)
   check_library_exists(rt clock_gettime "time.h" HAVE_CLOCK_GETTIME )
   if(NOT HAVE_CLOCK_GETTIME)
     message(FATAL_ERROR "clock_gettime not found")
   endif(NOT HAVE_CLOCK_GETTIME)
-endif(UNIX)
+endif()
 
 configure_file(sppsVersion.h.in ${CMAKE_CURRENT_BINARY_DIR}/generated/sppsVersion.h )
 
@@ -101,9 +101,9 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 else()
   message(STATUS " SPPS release build enable multi threading")
   target_link_libraries (spps ${CMAKE_THREAD_LIBS_INIT})
-  if(UNIX)
+  if (CMAKE_SYSTEM_NAME EQUAL "LINUX")
     target_link_libraries (spps rt)
-  endif(UNIX)
+  endif()
 endif()
 
 #--------------#

@@ -29,8 +29,8 @@
 * ----------------------------------------------------------------------*/
 
 #include "drawable_element.h"
+#include "GL/opengl_inc.h"
 #include <wx/glcanvas.h>
-#include <GL/glu.h>
 #include "data_manager/appconfig.h"
 #include "last_cpp_include.hpp"
 

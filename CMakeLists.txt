@@ -9,14 +9,6 @@ project (isimpa VERSION 1.3.4)
 # a better way to load dependencies
 include(cmake/CPM.cmake)
 
-# include helper functions/macros
-add_subdirectory(cmake/ISIMPA_Helpers)
-
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cMake")
-
-InitializeISIMPABuildOptions()
-ISIMPALibpackChecks()
-
 # convert path of a .lib file into a .dll file
 # findboost does not store .dll locations
 macro(LIB_TO_DLL LIBPATH DLL_PATH)
