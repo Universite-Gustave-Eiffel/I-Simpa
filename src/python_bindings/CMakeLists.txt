@@ -27,10 +27,6 @@ SET(CMAKE_SWIG_FLAGS "")
 
 SET_SOURCE_FILES_PROPERTIES(libsimpa.i PROPERTIES CPLUSPLUS ON)
 
-set(Boost_USE_STATIC_LIBS   OFF)
-
-link_directories( ${Boost_LIBRARY_DIRS})
-
 IF (${CMAKE_VERSION} VERSION_LESS "3.8.0")
   SWIG_ADD_MODULE(libsimpa python libsimpa.i)
 ELSE()
@@ -39,9 +35,9 @@ ENDIF ()
 message(STATUS ${Python_LIBRARY_RELEASE})
 SWIG_LINK_LIBRARIES(libsimpa lib_interface ${PYTHON_LIBRARIES})
 
-if(WIN32 AND MSVC)
-  target_link_libraries(${SWIG_MODULE_libsimpa_REAL_NAME} ${PYTHON_LIBRARY_RELEASE})
-endif()
+SetupBoost()
+
+target_link_libraries(${SWIG_MODULE_libsimpa_REAL_NAME} ${PYTHON_LIBRARY_RELEASE} Boost::python Boost::thread)
 
 # Creates a folder "libraries" and adds target project (lib_interface.vcproj) under it
 set_property(TARGET ${SWIG_MODULE_libsimpa_REAL_NAME} PROPERTY FOLDER "libraries")
