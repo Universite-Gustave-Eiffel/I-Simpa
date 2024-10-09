@@ -118,7 +118,8 @@ jobs:
           -DCPM_SOURCE_CACHE=${{ env.CPM_SOURCE_CACHE }} 
           -DCMAKE_VS_NO_COMPILE_BATCHING=ON
           -DCMAKE_BUILD_TYPE=Release
-          -DSWIG_EXECUTABLE=${{ env.builddir }}/swigwintools.4.2.0/tools/swigwin-4.2.0/swig.exe
+          -DSWIG_EXECUTABLE=${{ env.builddir }}swigwintools.4.2.0/tools/swigwin-4.2.0/swig.exe
+          -DSWIG_DIR=${{ env.builddir }}swigwintools.4.2.0/tools/swigwin-4.2.0
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v2
       - name: Compiling sources
