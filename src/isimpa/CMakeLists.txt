@@ -460,7 +460,7 @@ IF(CMAKE_BUILD_TYPE STREQUAL "Debug")
 ELSE()
     SET(wxWidgets_USE_DEBUG OFF)
     SET(wxWidgets_USE_STATIC OFF)
-    MESSAGE(STATUS "Using dynamic wxWidgets library  lib:${wxWidgets_LIB_DIR} include:${wxWidgets_ROOT_DIR}")
+    #MESSAGE(STATUS "Using dynamic wxWidgets library  lib:${wxWidgets_LIB_DIR} include:${wxWidgets_ROOT_DIR}")
 ENDIF()
 
 SET(CMAKE_EXE_LINKER_FLAGS
@@ -552,7 +552,7 @@ if(WIN32) # Check if we are on Windows
 	set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
 
     #Fetch required Dll's for GUI
-    string(REPLACE "\\" "/" wxWidgets_LIB_DIR_SLASH ${wxWidgets_LIB_DIR})
+    #string(REPLACE "\\" "/" wxWidgets_LIB_DIR_SLASH ${wxWidgets_LIB_DIR})
     set(DIRS ${Boost_LIBRARY_DIR_DEBUG}
              ${Boost_LIBRARY_DIR_RELEASE}
              ${wxWidgets_LIB_DIR_SLASH}

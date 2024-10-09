@@ -108,12 +108,17 @@ jobs:
           . $env:ccachebindir\ccache -s
           . $env:ccachebindir\ccache -z
           . $env:ccachebindir\ccache -p
+      - name: Install NuGet Packages
+        shell: powershell
+        run: |
+            nuget install swigwintools -OutputDirectory "${{ env.builddir }}/Tools" -Version 4.2.0
       - name: Configuring CMake
         run: >
           cmake -B"${{ env.builddir }}" .
           -DCPM_SOURCE_CACHE=${{ env.CPM_SOURCE_CACHE }} 
           -DCMAKE_VS_NO_COMPILE_BATCHING=ON
           -DCMAKE_BUILD_TYPE=Release
+          -DSWIG_EXECUTABLE=${{ env.builddir }}/swigwintools.4.2.0/tools/swigwin-4.2.0/swig.exe
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v2
       - name: Compiling sources

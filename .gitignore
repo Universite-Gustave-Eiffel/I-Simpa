@@ -49,3 +49,4 @@ files.txt
 .vscode
 .vs
 .DS_Store
+out/
