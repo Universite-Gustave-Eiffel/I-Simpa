@@ -112,6 +112,7 @@ jobs:
         shell: powershell
         run: |
             nuget install swigwintools -OutputDirectory "${{ env.builddir }}/Tools" -Version 4.2.0
+            nuget install python -Version 3.8 -OutputDirectory "${{ env.builddir }}/Tools"
       - name: Configuring CMake
         run: >
           cmake -B"${{ env.builddir }}" .
@@ -120,6 +121,7 @@ jobs:
           -DCMAKE_BUILD_TYPE=Release
           -DSWIG_EXECUTABLE=${{ env.builddir }}swigwintools.4.2.0/tools/swigwin-4.2.0/swig.exe
           -DSWIG_DIR=${{ env.builddir }}swigwintools.4.2.0/tools/swigwin-4.2.0
+          -DPython_ROOT_DIR${{ env.builddir }}python.3.8.0/tools
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v2
       - name: Compiling sources

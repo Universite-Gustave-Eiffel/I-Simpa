@@ -369,7 +369,7 @@ source_group( "" FILES ${ISIMPA_SOURCES} )
 
 # Build auto-generated source files
 # Find package for generation
-FIND_PACKAGE(PythonInterp REQUIRED)
+find_package(Python3 COMPONENTS Interpreter Development)
 
 find_package(OpenGL)
 include(FindPackageMessage)
@@ -480,8 +480,6 @@ GIT_REPOSITORY https://github.com/wxWidgets/wxWidgets
 GIT_TAG        v3.2.1
 )
 
-# Find package for buildingfind_package(Python3 COMPONENTS Interpreter Development)
-FIND_PACKAGE(PythonLibs "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}" REQUIRED)
 execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "import sys; import sysconfig; print(list(sysconfig.get_paths().values()))"
                     OUTPUT_VARIABLE PYTHON_SITE_PACKAGES OUTPUT_STRIP_TRAILING_WHITESPACE)
 
@@ -596,32 +594,32 @@ if(WIN32) # Check if we are on Windows
         install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION . COMPONENT Runtime )
     endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
     # Try to fetch x64 version of python dll
-    get_filename_component(PYTHON_DLL_FILENAME "${PYTHON_LIBRARY}" NAME_WLE)
+    #get_filename_component(PYTHON_DLL_FILENAME "${PYTHON_LIBRARY}" NAME_WLE)
 
-    SET(CMAKE_FIND_LIBRARY_PREFIXES "")
-    SET(CMAKE_FIND_LIBRARY_SUFFIXES ".lib" ".dll")
+    #SET(CMAKE_FIND_LIBRARY_PREFIXES "")
+    #SET(CMAKE_FIND_LIBRARY_SUFFIXES ".lib" ".dll")
 
-    find_library(
-        PYTHON_DLL
-        NAMES ${PYTHON_DLL_FILENAME}
-        PATHS ${PYTHON_ROOT_FOLDER}
-        NO_DEFAULT_PATH
-        NO_SYSTEM_ENVIRONMENT_PATH
-        NO_CMAKE_SYSTEM_PATH
-    )
-    if(NOT EXISTS ${PYTHON_DLL})
-        MESSAGE(FATAL_ERROR "Python not found here ${PYTHON_DLL_FILENAME}.DLL")
-    else()
-        MESSAGE(STATUS "Python dll found here ${PYTHON_DLL}")
-    endif()
+    #find_library(
+    #    PYTHON_DLL
+    #    NAMES ${PYTHON_DLL_FILENAME}
+    #    PATHS ${PYTHON_ROOT_FOLDER}
+    #    NO_DEFAULT_PATH
+    #    NO_SYSTEM_ENVIRONMENT_PATH
+    #    NO_CMAKE_SYSTEM_PATH
+    #)
+    #if(NOT EXISTS ${PYTHON_DLL})
+    #    MESSAGE(FATAL_ERROR "Python not found here ${PYTHON_DLL_FILENAME}.DLL")
+    #else()
+    #    MESSAGE(STATUS "Python dll found here ${PYTHON_DLL}")
+    #endif()
 
-    install(FILES ${PYTHON_DLL} DESTINATION .)
+    #install(FILES ${PYTHON_DLL} DESTINATION .)
 
-    install(CODE "
-    set(INSTALL_DLL \"\${CMAKE_INSTALL_PREFIX}/${PYTHON_DLL_FILENAME}.DLL\")
-    file(SHA512 \${INSTALL_DLL} INSTALL_DLL_HASH)
-    MESSAGE(STATUS \"INSTALL_DLL_HASH \${INSTALL_DLL_HASH}\")
-    ")
+    #install(CODE "
+    #set(INSTALL_DLL \"\${CMAKE_INSTALL_PREFIX}/${PYTHON_DLL_FILENAME}.DLL\")
+    #file(SHA512 \${INSTALL_DLL} INSTALL_DLL_HASH)
+    #MESSAGE(STATUS \"INSTALL_DLL_HASH \${INSTALL_DLL_HASH}\")
+    #")
 endif()
 
 # Package creation instructions, NSIS under windows

@@ -31,6 +31,8 @@
 #include "first_header_include.hpp"
 
 #ifdef _WINDOWS
+#include <WinSock2.h>
+#include <WS2tcpip.h>
 #include <windows.h>
 #endif
 #ifdef _UNIX
