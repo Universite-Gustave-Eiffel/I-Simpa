@@ -8,8 +8,6 @@ project (isimpa VERSION 1.3.4)
 
 # a better way to load dependencies
 include(cmake/CPM.cmake)
-# download swig source and compile using CPM
-include(cmake/SetupSWIG.cmake)
 # download boost source and compile using CPM
 include(cmake/SetupBoost.cmake)
 
