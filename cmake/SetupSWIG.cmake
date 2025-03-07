@@ -2,8 +2,8 @@
 CPMAddPackage(
   NAME SWIG
   VERSION 4.2.1
-  URL https://github.com/swig/swig/archive/refs/tags/v4.2.1.tar.gz
-  URL_HASH SHA256=8895878b9215612e73611203dc8f5232c626e4d07ffc4532922f375518f067ca
+  URL https://github.com/swig/swig/archive/refs/tags/v4.3.0.tar.gz
+  URL_HASH SHA256=f2136da1137a20dfcec795fe0d17ca1a2465d28e3b307f122526629b6b2f2294
   OPTIONS "WITH_PCRE OFF"
     "SWIG_BUILD_EXAMPLES OFF"
     "SWIG_CSHARP OFF"

@@ -50,3 +50,5 @@ files.txt
 .vs
 .DS_Store
 out/
+*.kdev4
+
