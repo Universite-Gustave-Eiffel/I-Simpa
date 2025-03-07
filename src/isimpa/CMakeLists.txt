@@ -368,8 +368,10 @@ source_group( "" FILES ${ISIMPA_SOURCES} )
 #---------------------------------------#
 
 # Build auto-generated source files
-# Find package for generation
-find_package(Python3 COMPONENTS Interpreter Development)
+# Find Python 3
+find_package(Python3 REQUIRED COMPONENTS Interpreter Development.Module)
+
+list(APPEND CMAKE_SWIG_FLAGS "-py3" "-DPY3")
 
 find_package(OpenGL)
 include(FindPackageMessage)
@@ -388,7 +390,7 @@ ADD_CUSTOM_COMMAND(
   PRE_BUILD
   OUTPUT "enum_def.cpp"
   COMMENT "Building enum_def.cpp using python script"
-  COMMAND "${PYTHON_EXECUTABLE}" ${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/python_interface/py_ui_module/generate_enum_def.py
+  COMMAND "${Python3_EXECUTABLE}" ${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/python_interface/py_ui_module/generate_enum_def.py
   ARGS    "${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/element.h"
   DEPENDS "data_manager/element.h"
   )
@@ -399,7 +401,7 @@ set_property(SOURCE data_manager/python_interface/py_ui_module/element_pywrap.cp
 configure_file(data_manager/appconfig_version.cpp.in ${CMAKE_CURRENT_BINARY_DIR}/generated/appconfig_version.cpp )
 
 set(Boost_USE_STATIC_LIBS   OFF)
-
+SetupBoost()
 link_directories( ${Boost_LIBRARY_DIRS} )
 
 # Set Properties->General->Configuration Type to Application
@@ -480,7 +482,7 @@ GIT_REPOSITORY https://github.com/wxWidgets/wxWidgets
 GIT_TAG        v3.2.1
 )
 
-execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "import sys; import sysconfig; print(list(sysconfig.get_paths().values()))"
+execute_process(COMMAND ${Python3_EXECUTABLE} -c "import sys; import sysconfig; print(list(sysconfig.get_paths().values()))"
                     OUTPUT_VARIABLE PYTHON_SITE_PACKAGES OUTPUT_STRIP_TRAILING_WHITESPACE)
 
 FIND_PACKAGE(OpenGL REQUIRED COMPONENTS OpenGL)
@@ -489,7 +491,7 @@ include_directories(${wxWidgets_SOURCE_DIR})
 include_directories(${PYTHON_INCLUDE_PATH})
 
 # Properties->Linker->Input->Additional Dependencies
-target_link_libraries(isimpa lib_interface ${Boost_LIBRARIES} ${PYTHON_LIBRARIES})
+target_link_libraries(isimpa lib_interface ${PYTHON_LIBRARIES} Boost::python Boost::thread)
 
 if(WIN32 AND MSVC)
   target_link_libraries(isimpa ${PYTHON_LIBRARY_RELEASE})
@@ -546,7 +548,7 @@ DESTINATION .)
 
 if(WIN32) # Check if we are on Windows
     # Copy python libraries
-    get_filename_component(PYTHON_ROOT_FOLDER ${PYTHON_EXECUTABLE} PATH)
+    get_filename_component(PYTHON_ROOT_FOLDER ${Python3_EXECUTABLE} PATH)
 	set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
 
     #Fetch required Dll's for GUI

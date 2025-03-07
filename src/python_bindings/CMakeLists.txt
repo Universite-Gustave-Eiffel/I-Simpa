@@ -1,5 +1,4 @@
 # Libsimpa
-message(STATUS " SWIG_EXECUTABLE     - $ENV{SWIG_EXECUTABLE}")
 set(CMAKE_INSTALL_MFC_LIBRARIES TRUE) 
 set(CMAKE_INSTALL_UCRT_LIBRARIES TRUE ) 
 
@@ -81,7 +80,7 @@ install (FILES
         
 
 if(WIN32)
-    get_filename_component(PYTHON_PATH ${PYTHON_EXECUTABLE} DIRECTORY)
+    get_filename_component(PYTHON_PATH ${Python3_EXECUTABLE} DIRECTORY)
     #Fetch required Dll's 
     set(DIRS ${Boost_LIBRARY_DIR_DEBUG}
              ${Boost_LIBRARY_DIR_RELEASE}
