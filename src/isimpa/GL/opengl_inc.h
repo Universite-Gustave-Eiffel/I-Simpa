@@ -34,19 +34,18 @@
 #include <windows.h>
 #endif
 #ifdef _UNIX
+#include <GL/glut.h>    // Header File For The GLUT Library
+
 #ifdef __APPLE__
-  #include <OpenGL/glut.h>    // Header File For The GLUT Library
   #include <OpenGL/glx.h>     // Header file fot the glx libraries.
 #else
-  #include <GL/glut.h>    // Header File For The GLUT Library
   #include <GL/glx.h>     // Header file fot the glx libraries.
 #endif
 
 #endif
 #include <GL/gl.h>
 #ifdef __APPLE__
-  #include <OpenGL/glut.h>    // Header File For The GLUT Library
-  #include <OpenGL/glx.h>     // Header file fot the glx libraries.
+  #include <OpenGL/glu.h>
 #else
   #include <GL/glu.h>
 #endif
