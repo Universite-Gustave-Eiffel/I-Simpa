@@ -1,0 +1,16 @@
+{
+	"name": "I-Simpa",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "simpa-container",
+	"workspaceFolder": "/workspace",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+			],
+			"settings": {
+				"terminal.integrated.automationShell.linux": "/bin/bash",
+				"editor.formatOnSave": true
+			}
+		}
+	}
+}

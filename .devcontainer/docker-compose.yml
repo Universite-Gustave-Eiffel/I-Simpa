@@ -1,0 +1,30 @@
+services:
+  simpa-container:
+    build:
+      context: ../
+      dockerfile: .devcontainer/Dockerfile
+    user: "simpa"
+    working_dir: /workspace
+
+    network_mode: host
+
+    init: true
+    privileged: true
+    environment:
+      - DISPLAY=$DISPLAY
+      - QT_X11_NO_MITSHM=1
+      - LC_ALL=C
+      - XAUTHORITY=/tmp/.Xauthority
+      - PRE_COMMIT=${HOME}/.git/hooks/pre-commit
+    volumes:
+      - ..:/workspace
+
+      # Enable GUI environments
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ~/.Xauthority:/tmp/.Xauthority
+
+    # Add devices to be share in container
+    stdin_open: true
+    tty: true
+
+    command: "/bin/bash"
