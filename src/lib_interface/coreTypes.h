@@ -32,6 +32,7 @@
 #include "coreString.h"
 #include "input_output/directivity/directivityBalloon.h"
 #include <vector>
+#include <cstdint>
 
 #ifndef CORE_TYPES
 #define CORE_TYPES

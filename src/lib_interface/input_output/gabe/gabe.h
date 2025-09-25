@@ -31,7 +31,7 @@
 #ifndef __GABE__
 #define __GABE__
 #include <memory.h>
-#include <assert.h>
+#include <cassert>
 #include <fstream> 
 #include <vector> 
 /*! @file gabe.h

@@ -31,9 +31,10 @@
 #include "gabe.h"
 #include <fstream>
 #include <sstream>
-#include <float.h>
+#include <cfloat>
 #include <cstddef>
-#include <iostream>
+#include <cstdint>
+
 #include "std_tools.hpp"
 #ifdef WIN32
 #include "input_output/pugixml/src/pugixml.hpp"
