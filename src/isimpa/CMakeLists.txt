@@ -494,7 +494,13 @@ FIND_PACKAGE(PythonLibs "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}" REQUIR
 execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "import sys; import sysconfig; print(list(sysconfig.get_paths().values()))"
                     OUTPUT_VARIABLE PYTHON_SITE_PACKAGES OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-FIND_PACKAGE(OpenGL REQUIRED COMPONENTS OpenGL EGL)
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    FIND_PACKAGE(OpenGL REQUIRED COMPONENTS OpenGL)
+else()
+    FIND_PACKAGE(OpenGL REQUIRED COMPONENTS OpenGL EGL)
+endif()
+
+#FIND_PACKAGE(OpenGL REQUIRED COMPONENTS OpenGL EGL)
 include_directories(${OPENGL_INCLUDE_DIRS})
 include_directories(${wxWidgets_SOURCE_DIR})
 include_directories(${PYTHON_INCLUDE_PATH})

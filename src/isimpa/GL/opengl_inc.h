@@ -35,7 +35,17 @@
 #endif
 #ifdef _UNIX
 #include <GL/glut.h>    // Header File For The GLUT Library
-#include <GL/glx.h>     // Header file fot the glx libraries.
+
+#ifdef __APPLE__
+  #include <OpenGL/glx.h>     // Header file fot the glx libraries.
+#else
+  #include <GL/glx.h>     // Header file fot the glx libraries.
+#endif
+
 #endif
 #include <GL/gl.h>
-#include <GL/glu.h>
+#ifdef __APPLE__
+  #include <OpenGL/glu.h>
+#else
+  #include <GL/glu.h>
+#endif

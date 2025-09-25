@@ -30,7 +30,12 @@
 
 #include "drawable_element.h"
 #include <wx/glcanvas.h>
-#include <GL/glu.h>
+#ifdef __APPLE__
+	#include <OpenGL/glu.h>
+#else
+	#include <GL/glu.h>
+#endif
+
 #include "data_manager/appconfig.h"
 #include "last_cpp_include.hpp"
 
