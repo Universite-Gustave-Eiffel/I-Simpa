@@ -154,6 +154,66 @@ make DESTDIR=/home/john/isimpabuild/ install
 
 Then run isimpa program located in the specified destdir.
 
+### Using Docker Development Container
+
+Install [docker](https://docs.docker.com/engine/install/) and [docker compose](https://docs.docker.com/compose/install/)
+
+#### Open dev container in VSCode
+
+Install [remote development](https://marketplace.visualstudio.com/items?itemname=ms-vscode-remote.vscode-remote-extensionpack) extensions for VSCode
+
+Open VSCode and just click in the `reopen in container` button on bottom right corner. If you don't see anything press `Ctrl+Shift+P` and type `Remote-Containers: Rebuild and Reopen in container` or `Docker-images: Build Image` option.
+
+Open a terminal session and build I-Simpa inside the container
+
+```
+bash scripts/build.sh
+```
+
+You only need to do this once, then you can open I-Simpa running the executable:
+
+```
+/home/simpa/isimpabuild/workspace/build/bin/isimpa
+```
+
+Save your projects on the `/workspace` directory so you have access to them outside the container.
+
+
+#### On a terminal session
+
+Open the project and head to the `.devcontainer` directory:
+
+```
+cd .devcontainer/
+```
+
+Run the container
+
+```
+docker compose up -d simpa-container
+```
+
+If it is the first time, wait for the container to build and install all the dependencies.
+
+Attach to the container
+
+```
+docker attach devcontainer-simpa-container-1
+```
+
+Build I-Simpa inside the container
+
+```
+bash scripts/build.sh
+```
+
+You only need to do this once, then you can open I-Simpa running the executable:
+
+```
+/home/simpa/isimpabuild/workspace/build/bin/isimpa
+```
+
+Save your projects on the `/workspace` directory so you have access to them outside the container.
 
 ### Other installation/configuration
 
