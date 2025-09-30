@@ -29,9 +29,8 @@
 * ----------------------------------------------------------------------*/
 
 #include "../std_tools.hpp"
-#include <math.h>
-#include <stdlib.h>
-#include <float.h>
+#include <cmath>
+#include <cstdint>
 
 
 /*! \file Mathlib.h

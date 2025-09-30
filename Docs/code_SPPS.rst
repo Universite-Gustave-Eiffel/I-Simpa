@@ -19,9 +19,11 @@ may be absorbed, reflected, scattered, diffused, transmitted, depending on the n
 
 Two algorithms can be considered:
 
-	1. The first approach (**Energetic**) is to consider that the energy of the particle is constant. In function of the phenomena, the particle may disappear from the domain or follows its propagation: the number of sound particles decreases along the time.
+	1. The first approach (**Random**) is to consider that the energy of the particle is constant. In function of the phenomena, the particle may disappear from the domain or follows its propagation: the number of sound particles decreases along the time.
 
-	2. In the second approach (**Random**), the particle energy is varying according to the physical phenomena occurring during the propagation. In this case, the number of particles in the domain should be constant along the time. Since, in both cases, physical phenomena can be modeled according to probabilistic laws, both approaches are equivalent to Monte-Carlo methods. The accuracy of prediction is then mainly dependent of the initial number of particles.
+	2. In the second approach (**Energetic**), the particle energy is decreasing according to the physical phenomena occurring during the propagation. In this case, the number of particles in the domain should be constant along the time. Since, in both cases, physical phenomena can be modeled according to probabilistic laws.
+
+Both approaches are equivalent to Monte-Carlo methods. The accuracy of prediction is then mainly dependent of the initial number of particles.
 
 Detailled information about SPPS code:
 
