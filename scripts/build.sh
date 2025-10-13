@@ -11,9 +11,10 @@ export BOOST_INCLUDEDIR=$HOME/boost-install/include/
 export BOOST_ROOT=$HOME/boost-install/
 
 # build I-Simpa
-mkdir -p build && cd build
-cmake ..
+mkdir -p $HOME/build && cd $HOME/build
+cmake /workspace
 make -j$(nproc)
+
 
 # install to a DESTDIR (optional)
 make DESTDIR=/home/simpa/isimpabuild install
