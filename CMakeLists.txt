@@ -1,6 +1,6 @@
 # begin basic metadata
 # minimum CMake version required for C++20 support, among other things
-cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 
 # Maps to a solution file (isimpa.sln). The solution will
 # have all targets (exe, lib, dll) as projects (.vcproj)

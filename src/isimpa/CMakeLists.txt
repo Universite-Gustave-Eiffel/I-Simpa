@@ -387,7 +387,6 @@ endif(OPENGL_GLU_FOUND)
 
 # Ask make to call python in order to use element.h to produce enum_def.cpp
 ADD_CUSTOM_COMMAND(
-  PRE_BUILD
   OUTPUT "enum_def.cpp"
   COMMENT "Building enum_def.cpp using python script"
   COMMAND "${Python3_EXECUTABLE}" ${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/python_interface/py_ui_module/generate_enum_def.py

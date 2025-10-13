@@ -51,4 +51,4 @@ files.txt
 .DS_Store
 out/
 *.kdev4
-
+CMakeSettings.json
