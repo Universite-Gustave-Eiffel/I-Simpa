@@ -107,28 +107,29 @@ enable_testing()
 MESSAGE(STATUS "Run test in ${CMAKE_CURRENT_BINARY_DIR}")
 
 add_test(NAME test_modelio
-  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/model_io.py ${PROJECT_BINARY_DIR}/Testing/Temporary/
-   WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX}/libsimpa/)
-  
+        COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/model_io.py ${PROJECT_BINARY_DIR}/Testing/Temporary/
+        WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX}/libsimpa/)
+
 add_test(NAME check_retrocompat
-  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_retrocompat.py ${CMAKE_CURRENT_SOURCE_DIR}/tests/mesh.cbin ${PROJECT_BINARY_DIR}/Testing/Temporary/ WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX})
-  
-  
+        COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_retrocompat.py ${CMAKE_CURRENT_SOURCE_DIR}/tests/mesh.cbin ${PROJECT_BINARY_DIR}/Testing/Temporary/
+        WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX})
+
 add_test(NAME check_retrocompat_mesh
-  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_retrocompat_mesh.py ${CMAKE_CURRENT_SOURCE_DIR}/tests/tetramesh.mbin ${PROJECT_BINARY_DIR}/Testing/Temporary/ WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX})
-  
-  
+        COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_retrocompat_mesh.py ${CMAKE_CURRENT_SOURCE_DIR}/tests/tetramesh.mbin ${PROJECT_BINARY_DIR}/Testing/Temporary/
+        WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX})
+
 add_test(NAME check_retrocompat_gabe
-  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_retrocompat_gabe.py ${PROJECT_BINARY_DIR}/Testing/Temporary/ WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/tests/)
-  
+        COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_retrocompat_gabe.py ${PROJECT_BINARY_DIR}/Testing/Temporary/
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/tests/)
+
 add_test(NAME test_math
-  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_math.py WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX})
-  
+        COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_math.py
+        WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX})
+
 add_test(NAME check_retrocompat_recsurf
-  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_retrocompat_recsurf.py WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX})
-  
-  
-  
+        COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_retrocompat_recsurf.py
+        WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX})
+
 set_property(TEST test_modelio check_retrocompat check_retrocompat_mesh check_retrocompat_gabe test_math check_retrocompat_recsurf
  PROPERTY ENVIRONMENT "PYTHONPATH=${CMAKE_INSTALL_PREFIX}"
 )
