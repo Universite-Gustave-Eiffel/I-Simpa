@@ -369,10 +369,18 @@ source_group( "" FILES ${ISIMPA_SOURCES} )
 
 # Build auto-generated source files
 # Find Python 3
-find_package(Python3 REQUIRED COMPONENTS Interpreter Development.Module)
+find_package(Python3 REQUIRED COMPONENTS Interpreter Development.Module Development)
+
+# Debug: Print Python variables to verify they're set correctly
+message(STATUS "Python3_FOUND: ${Python3_FOUND}")
+message(STATUS "Python3_INCLUDE_DIRS: ${Python3_INCLUDE_DIRS}")
+message(STATUS "Python3_LIBRARIES: ${Python3_LIBRARIES}")
+message(STATUS "Python3_LIBRARY_DIRS: ${Python3_LIBRARY_DIRS}")
+message(STATUS "Python3_EXECUTABLE: ${Python3_EXECUTABLE}")
 
 list(APPEND CMAKE_SWIG_FLAGS "-py3" "-DPY3")
 
+set(OpenGL_GL_PREFERENCE LEGACY)
 find_package(OpenGL)
 include(FindPackageMessage)
 if(OPENGL_GLU_FOUND)
@@ -476,9 +484,10 @@ set(CPM_DOWNLOAD_VERSION 0.34.0)
 include(${CPM_DOWNLOAD_LOCATION})
 
 CPMAddPackage(
-NAME wxWidgets
-GIT_REPOSITORY https://github.com/wxWidgets/wxWidgets
-GIT_TAG        v3.2.1
+    NAME wxWidgets
+    GIT_TAG        v3.2.8.1
+    URL https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.8.1/wxWidgets-3.2.8.1.tar.bz2
+    URL_HASH SHA1=5b2cdc2a6503a3b00c397dffabb585a0452d7928
 )
 
 execute_process(COMMAND ${Python3_EXECUTABLE} -c "import sys; import sysconfig; print(list(sysconfig.get_paths().values()))"
@@ -493,14 +502,16 @@ endif()
 
 include_directories(${OPENGL_INCLUDE_DIRS})
 include_directories(${wxWidgets_SOURCE_DIR})
-include_directories(${PYTHON_INCLUDE_PATH})
+# Include Python headers
+include_directories(${Python3_INCLUDE_DIRS})
 
 # Properties->Linker->Input->Additional Dependencies
-target_link_libraries(isimpa lib_interface ${PYTHON_LIBRARIES} Boost::python Boost::thread)
-
-if(WIN32 AND MSVC)
-  target_link_libraries(isimpa ${PYTHON_LIBRARY_RELEASE})
-endif()
+target_link_libraries(isimpa
+        lib_interface
+        Python3::Python
+        Boost::python
+        Boost::thread
+)
 
 if(USING_CPM)
     target_link_libraries(isimpa wx::core wx::base wx::aui wx::adv wx::xml wx::html wx::gl)
