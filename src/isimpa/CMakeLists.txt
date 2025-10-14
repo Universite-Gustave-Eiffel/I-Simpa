@@ -493,7 +493,7 @@ CPMAddPackage(
 execute_process(COMMAND ${Python3_EXECUTABLE} -c "import sys; import sysconfig; print(list(sysconfig.get_paths().values()))"
                     OUTPUT_VARIABLE PYTHON_SITE_PACKAGES OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin" OR ${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     FIND_PACKAGE(OpenGL REQUIRED COMPONENTS OpenGL)
 else()
     FIND_PACKAGE(OpenGL REQUIRED COMPONENTS OpenGL EGL)
