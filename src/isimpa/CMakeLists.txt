@@ -484,7 +484,13 @@ GIT_TAG        v3.2.1
 execute_process(COMMAND ${Python3_EXECUTABLE} -c "import sys; import sysconfig; print(list(sysconfig.get_paths().values()))"
                     OUTPUT_VARIABLE PYTHON_SITE_PACKAGES OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-FIND_PACKAGE(OpenGL REQUIRED COMPONENTS OpenGL)
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    FIND_PACKAGE(OpenGL REQUIRED COMPONENTS OpenGL)
+else()
+    FIND_PACKAGE(OpenGL REQUIRED COMPONENTS OpenGL EGL)
+endif()
+
+
 include_directories(${OPENGL_INCLUDE_DIRS})
 include_directories(${wxWidgets_SOURCE_DIR})
 include_directories(${PYTHON_INCLUDE_PATH})

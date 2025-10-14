@@ -33,7 +33,7 @@ jobs:
     env:
       CPM_SOURCE_CACHE: ~/.cache/CPM
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - name: Install I-SIMPA dependencies
         run: |
           sudo sed -i 's/azure\.//' /etc/apt/sources.list 
