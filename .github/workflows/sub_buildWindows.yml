@@ -84,9 +84,8 @@ jobs:
           mkdir ${{ env.reportdir }}
           echo "reportFile=${{ env.reportfilename }}" >> $GITHUB_OUTPUT
       - name: Cache CPM dependency packages
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
-          save-always: true
           path: |
             ${{ env.CPM_SOURCE_CACHE }}
           key: ${{ runner.os }}-isimpa
