@@ -291,11 +291,41 @@ void OpenGlViewer::OnPaint( wxPaintEvent& event )
 	}
 }
 
+// Get the actual framebuffer size (physical pixels) accounting for HiDPI
+wxSize GetDPIScaledSize(wxWindow* window)
+{
+	wxSize size = window->GetClientSize();
+
+#if wxCHECK_VERSION(3, 1, 0)
+	// wxWidgets 3.1.0+ has built-in content scale factor
+	double scaleFactor = window->GetContentScaleFactor();
+	size.x = static_cast<int>(size.x * scaleFactor);
+	size.y = static_cast<int>(size.y * scaleFactor);
+#elif defined(__WXGTK3__)
+	// For GTK3, get scale factor from GDK
+	GdkWindow* gdkWindow = gtk_widget_get_window(static_cast<GtkWidget*>(window->GetHandle()));
+	if (gdkWindow) {
+		int scale = gdk_window_get_scale_factor(gdkWindow);
+		size.x *= scale;
+		size.y *= scale;
+	}
+#elif defined(__WXMAC__)
+	// For macOS, get backing scale factor
+	NSView* view = (NSView*)window->GetHandle();
+	if (view && view.window) {
+		double scaleFactor = view.window.backingScaleFactor;
+		size.x = static_cast<int>(size.x * scaleFactor);
+		size.y = static_cast<int>(size.y * scaleFactor);
+	}
+#endif
+
+	return size;
+}
+
 void OpenGlViewer::Display()
 {
 	//Initialisation
-	int w, h;
-    GetClientSize(&w, &h);
+    const wxSize size = GetDPIScaledSize(this);
 
 	if (IsShown() && this->GetParent()->IsShown()) {
 		if(!ActivateContext())
@@ -307,10 +337,10 @@ void OpenGlViewer::Display()
 	}
 	//Execution des commandes de rendu 3D
 
-	m_GLApp->ChangeWindow(w,h);
+	m_GLApp->ChangeWindow(size.GetWidth(),size.GetHeight());
 	m_GLApp->Display();
 
-	legendDrawer.Draw(w,h);
+	legendDrawer.Draw(size.GetWidth(),size.GetHeight());
 
 	SwapBuffers();
 }
