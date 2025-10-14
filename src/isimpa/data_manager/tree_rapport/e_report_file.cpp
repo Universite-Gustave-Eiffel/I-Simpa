@@ -168,6 +168,11 @@ E_Report_File::E_Report_File(Element* parent,wxString Nom,wxString Path,ELEMENT_
 		if(nodeElement->GetAttribute("filepath",&propVal) && propVal!="")
 		{
 			filePath=propVal;
+			// Fix path if windows style folder separator
+			wxUniChar otherFileSystemDirSeparator=wxFileName::GetPathSeparator()==wxString("\\") ? '/' : '\\';
+			if(filePath.Find(otherFileSystemDirSeparator) != wxNOT_FOUND) {
+				filePath.Replace(otherFileSystemDirSeparator, wxFileName::GetPathSeparator());
+			}
 		}
 		wxXmlNode* currentChild;
 		currentChild = nodeElement->GetChildren();
