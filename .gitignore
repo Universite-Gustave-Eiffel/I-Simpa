@@ -52,3 +52,4 @@ files.txt
 out/
 *.kdev4
 CMakeSettings.json
+.flatpak-builder

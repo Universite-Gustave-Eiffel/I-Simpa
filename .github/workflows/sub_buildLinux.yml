@@ -59,7 +59,8 @@ jobs:
           cmake \
           python3-dev \
           swig \
-          libboost-all-dev
+          libboost-all-dev \
+          flatpak-builder
       - name: Cache CPM dependency packages
         uses: actions/cache@v3
         with:
@@ -88,10 +89,15 @@ jobs:
         # Execute tests defined by the CMake configuration.
         # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
         run: make test
+      - name: Build flatpak
+        run: |
+          flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+          flatpak-builder --install-deps-from=flathub --user --install build/isimpa.flatpak org.noise_planet.i-simpa.yml
+          flatpak build-bundle repo i-simpa.flatpak org.noise_planet.simpa
 
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: isimpa-amd64.zip 
-          path: ${{github.workspace}}/build/bin
+#      - name: Archive production artifacts
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: isimpa-amd64.zip
+#          path: ${{github.workspace}}/build/bin
           

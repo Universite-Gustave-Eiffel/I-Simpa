@@ -1,0 +1,19 @@
+app-id: org.noise_planet.i-simpa
+runtime: org.freedesktop.Platform
+runtime-version: '25.08'
+sdk: org.freedesktop.Sdk
+command: isimpa
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --socket=wayland
+  - --device=dri
+  - --filesystem=home
+modules:
+  - name: isimpa
+    buildsystem: cmake
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -G Ninja
+    build-commands:
+      - make install
