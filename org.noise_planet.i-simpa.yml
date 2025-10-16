@@ -10,10 +10,39 @@ finish-args:
   - --device=dri
   - --filesystem=home
 modules:
+  - name: cpm
+    buildsystem: simple
+    sources:
+      - type: file
+        url: https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.40.7/CPM.cmake
+        sha256: c0fc82149e00c43a21febe7b2ca57b2ffea2b8e88ab867022c21d6b81937eb50
+    build-commands:
+      - mkdir -p /app/share/cpm
+      - install -m 0644 CPM.cmake /app/share/cpm/CPM_0.40.7.cmake
+  - name: boost
+    buildsystem: cmake
+    sources:
+      - type: archive
+        url: https://github.com/boostorg/boost/releases/download/boost-1.86.0/boost-1.86.0-cmake.tar.xz
+        sha256: 2c5ec5edcdff47ff55e27ed9560b0a0b94b07bd07ed9928b476150e16b0efc57
+    config-opts:
+      - -DBOOST_ENABLE_CMAKE=ON
+      - -DBUILD_TESTING=ON
+      - -DBOOST_ENABLE_TEST=ON
+      - -DBOOST_ENABLE_PYTHON=ON
+      - -DBUILD_SHARED_LIBS=ON
+      - -DBOOST_INCLUDE_LIBRARIES=system\;algorithm\;random\;filesystem\;regex\;thread\;chrono\;test\;date_time\;python\;numeric/conversion
+      - -DCMAKE_BUILD_TYPE=Release
   - name: isimpa
     buildsystem: cmake
+    sources:
+      - type: dir
+        path: .
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -G Ninja
+      - -DCPM_SOURCE_CACHE=/app/share
+      - -DBoost_DIR=/app/lib64/cmake/Boost-1.86.0
+      - -DBOOST_ROOT=/app
     build-commands:
       - make install

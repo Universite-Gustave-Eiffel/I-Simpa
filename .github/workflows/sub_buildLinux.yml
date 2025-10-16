@@ -92,7 +92,7 @@ jobs:
       - name: Build flatpak
         run: |
           flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-          flatpak-builder --install-deps-from=flathub --user --install build/isimpa.flatpak org.noise_planet.i-simpa.yml
+          flatpak-builder --force-clean --install-deps-from=flathub --user --install build/isimpa.flatpak org.noise_planet.i-simpa.yml
           flatpak build-bundle repo i-simpa.flatpak org.noise_planet.simpa
 
 #      - name: Archive production artifacts
