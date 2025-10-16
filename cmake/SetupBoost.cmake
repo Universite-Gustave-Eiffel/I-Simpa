@@ -1,5 +1,5 @@
 macro(SetupBoost)
-    find_package(Boost 1.86.0 COMPONENTS system algorithm random filesystem regex thread chrono date_time python)
+    find_package(Boost 1.86.0 COMPONENTS system algorithm random filesystem regex thread chrono date_time python unit_test_framework)
 
     if(NOT Boost_FOUND)
         message(STATUS "Boost not found")
@@ -25,5 +25,10 @@ macro(SetupBoost)
               OPTIONS "BOOST_ENABLE_CMAKE ON" "BOOST_ENABLE_PYTHON ON" "BOOST_INCLUDE_LIBRARIES system\\\;algorithm\\\;random\\\;filesystem\\\;regex\\\;thread\\\;chrono\\\;test\\\;date_time\\\;python\\\;numeric/conversion" # Note the escapes!
             )
         endif()
+    else()
+        message(STATUS "Boost found")
+        message(STATUS "Boost_INCLUDE_DIRS=${Boost_INCLUDE_DIRS}")
+        message(STATUS "Boost_LIBRARIES=${Boost_LIBRARIES}")
+        message(STATUS "Boost_VERSION=${Boost_VERSION}")
     endif()
 endmacro(SetupBoost)

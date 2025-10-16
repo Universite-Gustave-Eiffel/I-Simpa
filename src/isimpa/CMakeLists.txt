@@ -477,18 +477,37 @@ SET(CMAKE_EXE_LINKER_FLAGS
 
 # add wxWidgets as dependency
 
-set(USING_CPM true)
-set(BUILD_SHARED_LIBS OFF)
-set(CPM_DOWNLOAD_VERSION 0.34.0)
+find_package(wxWidgets)
 
-include(${CPM_DOWNLOAD_LOCATION})
+if(wxWidgets_FOUND)
 
-CPMAddPackage(
-    NAME wxWidgets
-    GIT_TAG        v3.2.8.1
-    URL https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.8.1/wxWidgets-3.2.8.1.tar.bz2
-    URL_HASH SHA1=5b2cdc2a6503a3b00c397dffabb585a0452d7928
-)
+    if(CMAKE_BUILD_TYPE STREQUAL Debug)
+        if(NOT ${wxWidgets_CONFIGURATION} MATCHES .*d$ )
+            set(wxWidgets_CONFIGURATION ${wxWidgets_CONFIGURATION}d)
+        endif()
+    else()
+        if(${wxWidgets_CONFIGURATION} MATCHES .*d$ )
+            string(LENGTH ${wxWidgets_CONFIGURATION} BUILD_STR_SIZE)
+            MATH(EXPR BUILD_STR_SIZE "${BUILD_STR_SIZE}-1")
+            string(SUBSTRING ${wxWidgets_CONFIGURATION} 0 ${BUILD_STR_SIZE} wxWidgets_CONFIGURATION)
+        endif()
+    endif()
+
+    find_package(wxWidgets COMPONENTS core base xml gl aui adv html REQUIRED)
+
+    include(${wxWidgets_USE_FILE})
+else(NOT wxWidgets_FOUND)
+    set(USING_CPM true)
+    set(BUILD_SHARED_LIBS OFF)
+
+    CPMAddPackage(
+            NAME wxWidgets
+            GIT_TAG        v3.2.8.1
+            URL https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.8.1/wxWidgets-3.2.8.1.tar.bz2
+            URL_HASH SHA1=5b2cdc2a6503a3b00c397dffabb585a0452d7928
+    )
+
+endif()
 
 execute_process(COMMAND ${Python3_EXECUTABLE} -c "import sys; import sysconfig; print(list(sysconfig.get_paths().values()))"
                     OUTPUT_VARIABLE PYTHON_SITE_PACKAGES OUTPUT_STRIP_TRAILING_WHITESPACE)
@@ -541,136 +560,145 @@ ENDIF()
 #    INSTALL
 #--------------#
 
-# Adds logic to INSTALL.vcproj to copy isimpa to destination directory
-install (TARGETS isimpa
-        RUNTIME DESTINATION .)
+# Detect if building for Flatpak
+if(DEFINED ENV{FLATPAK_ID})
+    set(IS_FLATPAK TRUE)
+    message(STATUS "Building for Flatpak environment")
+else()
+    set(IS_FLATPAK FALSE)
+endif()
+
+# Set installation directories based on build type
+if(IS_FLATPAK)
+    set(ISIMPA_BIN_DIR bin)
+    set(ISIMPA_DATA_DIR share/isimpa)
+    set(ISIMPA_DOC_DIR share/doc/isimpa)
+    set(ISIMPA_ICON_DIR share/icons/hicolor/256x256/apps)
+else()
+    # Original behavior for non-Flatpak builds
+    set(ISIMPA_BIN_DIR .)
+    set(ISIMPA_DATA_DIR .)
+    set(ISIMPA_DOC_DIR .)
+    set(ISIMPA_ICON_DIR .)
+endif()
+
+# Install executable
+install(TARGETS isimpa
+        RUNTIME DESTINATION ${ISIMPA_BIN_DIR})
 
 set(ISIMPA_RESSOURCES ${PROJECT_SOURCE_DIR}/currentRelease)
 
+# Install configuration and documentation files
+if(IS_FLATPAK)
+    install(FILES
+            ${ISIMPA_RESSOURCES}/appconst.xml
+            DESTINATION ${ISIMPA_DATA_DIR})
 
-install (FILES
-${ISIMPA_RESSOURCES}/appconst.xml
-${ISIMPA_RESSOURCES}/license.html
-isimpa.ico
-        DESTINATION .)
+    install(FILES
+            ${ISIMPA_RESSOURCES}/license.html
+            DESTINATION ${ISIMPA_DOC_DIR})
 
+    install(FILES
+            isimpa.ico
+            DESTINATION ${ISIMPA_ICON_DIR}
+            RENAME org.noise_planet.i-simpa.png)
+else()
+    install(FILES
+            ${ISIMPA_RESSOURCES}/appconst.xml
+            ${ISIMPA_RESSOURCES}/license.html
+            isimpa.ico
+            DESTINATION ${ISIMPA_DATA_DIR})
+endif()
+
+# Install resource directories
 install(DIRECTORY
-${ISIMPA_RESSOURCES}/Bitmaps
-${ISIMPA_RESSOURCES}/doc
-${ISIMPA_RESSOURCES}/SystemScript
-${ISIMPA_RESSOURCES}/UserScript
-${ISIMPA_RESSOURCES}/Directivities
-DESTINATION .)
+        ${ISIMPA_RESSOURCES}/Bitmaps
+        ${ISIMPA_RESSOURCES}/doc
+        ${ISIMPA_RESSOURCES}/SystemScript
+        ${ISIMPA_RESSOURCES}/UserScript
+        ${ISIMPA_RESSOURCES}/Directivities
+        DESTINATION ${ISIMPA_DATA_DIR})
 
-if(WIN32) # Check if we are on Windows
+# Windows-specific installation (skip for Flatpak)
+if(WIN32 AND NOT IS_FLATPAK)
     # Copy python libraries
     get_filename_component(PYTHON_ROOT_FOLDER ${Python3_EXECUTABLE} PATH)
-	set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
+    set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
 
-    #Fetch required Dll's for GUI
-    #string(REPLACE "\\" "/" wxWidgets_LIB_DIR_SLASH ${wxWidgets_LIB_DIR})
     set(DIRS ${Boost_LIBRARY_DIR_DEBUG}
-             ${Boost_LIBRARY_DIR_RELEASE}
-             ${wxWidgets_LIB_DIR_SLASH}
-             ${PYTHON_ROOT_FOLDER}
-    )
+            ${Boost_LIBRARY_DIR_RELEASE}
+            ${wxWidgets_LIB_DIR_SLASH}
+            ${PYTHON_ROOT_FOLDER})
 
     install(CODE "
     include(BundleUtilities)
-
-    # Print all dependencies
-    #GET_PREREQUISITES(\"\${CMAKE_CURRENT_LIST_DIR}/\${BUILD_TYPE}/isimpa.exe\" ISIMPA_DEPENDENCIES 1 0 \${CMAKE_INSTALL_PREFIX} \"${DIRS}\" )
-    #    MESSAGE(STATUS \"Dependencies \${ISIMPA_DEPENDENCIES}\")
-
-    # Use this to print all available variables
-    #get_cmake_property(_variableNames VARIABLES)
-    #foreach (_variableName \${_variableNames})
-    #    message(STATUS \"\${_variableName}=\${\${_variableName}}\")
-    #endforeach()
-
     FIXUP_BUNDLE(\"\${CMAKE_CURRENT_LIST_DIR}/\${BUILD_TYPE}/isimpa.exe\" \"\"   \"${DIRS}\")
 
-	# Install copied dlls
-	FILE(GLOB children \"\${CMAKE_CURRENT_LIST_DIR}/\${BUILD_TYPE}/*.dll\")
-	file(INSTALL DESTINATION \"\${CMAKE_INSTALL_PREFIX}/.\" TYPE PROGRAM FILES
+    # Install copied dlls
+    FILE(GLOB children \"\${CMAKE_CURRENT_LIST_DIR}/\${BUILD_TYPE}/*.dll\")
+    file(INSTALL DESTINATION \"\${CMAKE_INSTALL_PREFIX}/.\" TYPE PROGRAM FILES
     \${children}
     )
 ")
 
-
-
-	install(DIRECTORY
-	${PYTHON_ROOT_FOLDER}/Lib
-	${PYTHON_ROOT_FOLDER}/DLLs
-	DESTINATION .
-    PATTERN "Lib/site-packages" EXCLUDE
-    PATTERN "*.pdb" EXCLUDE)
+    install(DIRECTORY
+            ${PYTHON_ROOT_FOLDER}/Lib
+            ${PYTHON_ROOT_FOLDER}/DLLs
+            DESTINATION .
+            PATTERN "Lib/site-packages" EXCLUDE
+            PATTERN "*.pdb" EXCLUDE)
 
     install(FILES "${PYTHON_ROOT_FOLDER}/python.exe" DESTINATION .)
 
-    if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
-        install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION . COMPONENT Runtime )
-    endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
-    # Try to fetch x64 version of python dll
-    #get_filename_component(PYTHON_DLL_FILENAME "${PYTHON_LIBRARY}" NAME_WLE)
-
-    #SET(CMAKE_FIND_LIBRARY_PREFIXES "")
-    #SET(CMAKE_FIND_LIBRARY_SUFFIXES ".lib" ".dll")
-
-    #find_library(
-    #    PYTHON_DLL
-    #    NAMES ${PYTHON_DLL_FILENAME}
-    #    PATHS ${PYTHON_ROOT_FOLDER}
-    #    NO_DEFAULT_PATH
-    #    NO_SYSTEM_ENVIRONMENT_PATH
-    #    NO_CMAKE_SYSTEM_PATH
-    #)
-    #if(NOT EXISTS ${PYTHON_DLL})
-    #    MESSAGE(FATAL_ERROR "Python not found here ${PYTHON_DLL_FILENAME}.DLL")
-    #else()
-    #    MESSAGE(STATUS "Python dll found here ${PYTHON_DLL}")
-    #endif()
-
-    #install(FILES ${PYTHON_DLL} DESTINATION .)
-
-    #install(CODE "
-    #set(INSTALL_DLL \"\${CMAKE_INSTALL_PREFIX}/${PYTHON_DLL_FILENAME}.DLL\")
-    #file(SHA512 \${INSTALL_DLL} INSTALL_DLL_HASH)
-    #MESSAGE(STATUS \"INSTALL_DLL_HASH \${INSTALL_DLL_HASH}\")
-    #")
+    if(CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS)
+        install(PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION . COMPONENT Runtime)
+    endif()
 endif()
 
-# Package creation instructions, NSIS under windows
-if(WIN32 AND NOT DEFINED CPACK_GENERATOR) # Check if we are on Windows
-	SET(CPACK_GENERATOR "NSIS;ZIP")
+# Flatpak-specific: Install desktop file and appdata
+if(IS_FLATPAK)
+    install(FILES
+            ${PROJECT_SOURCE_DIR}/org.noise_planet.i-simpa.desktop
+            DESTINATION share/applications)
+
+    install(FILES
+            ${PROJECT_SOURCE_DIR}/org.noise_planet.i-simpa.appdata.xml
+            DESTINATION share/metainfo)
 endif()
-SET(CPACK_NSIS_EXECUTABLES_DIRECTORY ".")
 
-SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "I-SIMPA")
-SET(CPACK_PACKAGE_VENDOR "Ifsttar")
-SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/DESCRIPTION.txt")
-SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE.md")
-SET(CPACK_PACKAGE_VERSION_MAJOR ${isimpa_VERSION_MAJOR})
-SET(CPACK_PACKAGE_VERSION_MINOR ${isimpa_VERSION_MINOR})
-SET(CPACK_PACKAGE_VERSION_PATCH ${isimpa_VERSION_PATCH})
-SET(CPACK_PACKAGE_INSTALL_DIRECTORY "I-SIMPA")
-IF(WIN32 AND NOT UNIX)
-  # There is a bug in NSI that does not handle full unix paths properly. Make
-  # sure there is at least one set of four (4) backlasshes.    # Create the desktop link
-  set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "  CreateShortCut '$DESKTOP\\\\I_SIMPA.lnk' '$INSTDIR\\\\isimpa.exe' ")
-  set(CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS "Delete '$DESKTOP\\\\I_SIMPA.lnk'")
-  SET(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}\\\\src\\\\isimpa\\\\isimpa.ico")
-  SET(CPACK_NSIS_INSTALLED_ICON_NAME "isimpa.exe")
-  SET(CPACK_NSIS_DISPLAY_NAME "I-SIMPA")
-  SET(CPACK_NSIS_HELP_LINK "http:\\\\\\\\i-simpa-wiki.readthedocs.io")
-  SET(CPACK_NSIS_URL_INFO_ABOUT "http:\\\\\\\\i-simpa.ifsttar.fr")
-  SET(CPACK_NSIS_CONTACT "i-simpa@ifsttar.fr")
-  SET(CPACK_NSIS_MODIFY_PATH ON)
-ELSE(WIN32 AND NOT UNIX)
-  SET(CPACK_STRIP_FILES TRUE)
-  SET(CPACK_SOURCE_STRIP_FILES "")
-ENDIF(WIN32 AND NOT UNIX)
-SET(CPACK_PACKAGE_EXECUTABLES "isimpa" "I-SIMPA")
-SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "Nicolas Fortin")
+# Package creation instructions (skip for Flatpak)
+if(NOT IS_FLATPAK)
+    if(WIN32 AND NOT DEFINED CPACK_GENERATOR)
+        SET(CPACK_GENERATOR "NSIS;ZIP")
+    endif()
+    SET(CPACK_NSIS_EXECUTABLES_DIRECTORY ".")
 
-INCLUDE(CPack)
+    SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "I-SIMPA")
+    SET(CPACK_PACKAGE_VENDOR "Ifsttar")
+    SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/DESCRIPTION.txt")
+    SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE.md")
+    SET(CPACK_PACKAGE_VERSION_MAJOR ${isimpa_VERSION_MAJOR})
+    SET(CPACK_PACKAGE_VERSION_MINOR ${isimpa_VERSION_MINOR})
+    SET(CPACK_PACKAGE_VERSION_PATCH ${isimpa_VERSION_PATCH})
+    SET(CPACK_PACKAGE_INSTALL_DIRECTORY "I-SIMPA")
+
+    IF(WIN32 AND NOT UNIX)
+        set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "  CreateShortCut '$DESKTOP\\\\I_SIMPA.lnk' '$INSTDIR\\\\isimpa.exe' ")
+        set(CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS "Delete '$DESKTOP\\\\I_SIMPA.lnk'")
+        SET(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}\\\\src\\\\isimpa\\\\isimpa.ico")
+        SET(CPACK_NSIS_INSTALLED_ICON_NAME "isimpa.exe")
+        SET(CPACK_NSIS_DISPLAY_NAME "I-SIMPA")
+        SET(CPACK_NSIS_HELP_LINK "http:\\\\\\\\i-simpa-wiki.readthedocs.io")
+        SET(CPACK_NSIS_URL_INFO_ABOUT "http:\\\\\\\\i-simpa.ifsttar.fr")
+        SET(CPACK_NSIS_CONTACT "i-simpa@ifsttar.fr")
+        SET(CPACK_NSIS_MODIFY_PATH ON)
+    ELSE(WIN32 AND NOT UNIX)
+        SET(CPACK_STRIP_FILES TRUE)
+        SET(CPACK_SOURCE_STRIP_FILES "")
+    ENDIF(WIN32 AND NOT UNIX)
+
+    SET(CPACK_PACKAGE_EXECUTABLES "isimpa" "I-SIMPA")
+    SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "Nicolas Fortin")
+
+    INCLUDE(CPack)
+endif()

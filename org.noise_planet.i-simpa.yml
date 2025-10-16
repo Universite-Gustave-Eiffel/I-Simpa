@@ -33,16 +33,56 @@ modules:
       - -DBUILD_SHARED_LIBS=ON
       - -DBOOST_INCLUDE_LIBRARIES=system\;algorithm\;random\;filesystem\;regex\;thread\;chrono\;test\;date_time\;python\;numeric/conversion
       - -DCMAKE_BUILD_TYPE=Release
-  - name: isimpa
+  - name: swig
+    buildsystem: autotools
+    sources:
+      - type: archive
+        url: https://downloads.sourceforge.net/project/swig/swig/swig-4.1.1/swig-4.1.1.tar.gz
+        sha256: 2af08aced8fcd65cdb5cc62426768914bedc735b1c250325203716f78e39ac9b
+    config-opts:
+      - --without-maximum-compile-warnings
+      - --without-pcre
+  - name: glu
+    buildsystem: meson
+    sources:
+      - type: archive
+        url: https://gitlab.freedesktop.org/mesa/glu/-/archive/glu-9.0.3/glu-glu-9.0.3.tar.gz
+        sha256: 7e919cbc1b2677b01d65fc28fd36a19d1f3e23d76663020e0f3b82b991475e8b
+  - name: wxwidgets
     buildsystem: cmake
+    config-opts:
+      - -DwxBUILD_SHARED=ON
+      - -DwxUSE_OPENGL=ON
+      - -DwxUSE_GLCANVAS_EGL=OFF
+      - -DwxUSE_UNICODE=ON
+    sources:
+      - type: archive
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.8.1/wxWidgets-3.2.8.1.tar.bz2
+        sha256: ad0cf6c18815dcf1a6a89ad3c3d21a306cd7b5d99a602f77372ef1d92cb7d756
+  - name: isimpa
+    buildsystem: cmake-ninja
     sources:
       - type: dir
-        path: .
+        path: src
+        dest: src
+      - type: dir
+        path: currentRelease
+        dest: currentRelease
+      - type: dir
+        path: cmake
+        dest: cmake
+      - type: file
+        path: CMakeLists.txt
+      - type: file
+        path: DESCRIPTION.txt
+      - type: file
+        path: LICENSE.md
+      - type: file
+        path: org.noise_planet.i-simpa.desktop
+      - type: file
+        path: org.noise_planet.i-simpa.appdata.xml
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
-      - -G Ninja
       - -DCPM_SOURCE_CACHE=/app/share
       - -DBoost_DIR=/app/lib64/cmake/Boost-1.86.0
       - -DBOOST_ROOT=/app
-    build-commands:
-      - make install

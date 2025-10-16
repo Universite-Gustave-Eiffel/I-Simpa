@@ -81,6 +81,9 @@ set_property(TARGET spps PROPERTY FOLDER "executables")
 
 
 # Properties->Linker->Input->Additional Dependencies
+set(Boost_USE_STATIC_LIBS   OFF)
+SetupBoost()
+
 target_link_libraries (spps lib_interface Boost::random Boost::thread)
 
 
