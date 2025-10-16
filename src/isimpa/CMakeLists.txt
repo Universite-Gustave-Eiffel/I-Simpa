@@ -569,16 +569,12 @@ else()
 endif()
 
 # Set installation directories based on build type
+set(ISIMPA_BIN_DIR .)
+set(ISIMPA_DATA_DIR .)
+set(ISIMPA_DOC_DIR .)
 if(IS_FLATPAK)
-    set(ISIMPA_BIN_DIR bin)
-    set(ISIMPA_DATA_DIR share/isimpa)
-    set(ISIMPA_DOC_DIR share/doc/isimpa)
     set(ISIMPA_ICON_DIR share/icons/hicolor/256x256/apps)
 else()
-    # Original behavior for non-Flatpak builds
-    set(ISIMPA_BIN_DIR .)
-    set(ISIMPA_DATA_DIR .)
-    set(ISIMPA_DOC_DIR .)
     set(ISIMPA_ICON_DIR .)
 endif()
 
