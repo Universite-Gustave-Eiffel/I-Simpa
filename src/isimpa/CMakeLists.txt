@@ -599,7 +599,7 @@ if(IS_FLATPAK)
             DESTINATION ${ISIMPA_DOC_DIR})
 
     install(FILES
-            isimpa.ico
+            isimpa.png
             DESTINATION ${ISIMPA_ICON_DIR}
             RENAME org.noise_planet.i-simpa.png)
 else()
