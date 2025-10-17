@@ -402,28 +402,33 @@ void OpenGlViewer::OnMouseEvent(wxMouseEvent& event)
 						doScreenRefresh=true;
 					}
 				}
-			}else if(currentTool == TOOL_MODE_RECEPTEURS_SOUNDLEVEL_EXTRACT)
-			{
-				vec3 posCurseur=m_GLApp->SelectPosition(event.GetX(),event.GetY());
-				if(eventPositionBinded)
-					(*pointeurFonctionEventSelectionPosition)(posCurseur);
-				doScreenRefresh=true;
-			}
-			if(modeSelectionPoint && CurrentObject!=NULL)
-			{
+			} else if (currentTool == TOOL_MODE_RECEPTEURS_SOUNDLEVEL_EXTRACT) {
 				wxPoint cursorPosition = event.GetPosition();
 				double scaleFactor = GetContentScaleFactor();
-				cursorPosition = wxPoint(static_cast<int>(cursorPosition.x * scaleFactor), static_cast<int>(cursorPosition.y * scaleFactor));
-				vec3 posCurseur=m_GLApp->SelectPosition(cursorPosition.x, cursorPosition.y);
+				cursorPosition = wxPoint(static_cast<int>(cursorPosition.x * scaleFactor),
+				                         static_cast<int>(cursorPosition.y * scaleFactor));
+				vec3 posCurseur = m_GLApp->SelectPosition(cursorPosition.x, cursorPosition.y);
+				if (eventPositionBinded)
+					(*pointeurFonctionEventSelectionPosition)(posCurseur);
+				doScreenRefresh = true;
+			}
+			if (modeSelectionPoint && CurrentObject != nullptr) {
+				wxPoint cursorPosition = event.GetPosition();
+				double scaleFactor = GetContentScaleFactor();
+				cursorPosition = wxPoint(static_cast<int>(cursorPosition.x * scaleFactor),
+				                         static_cast<int>(cursorPosition.y * scaleFactor));
+				vec3 posCurseur = m_GLApp->SelectPosition(cursorPosition.x, cursorPosition.y);
 				t_faceIndex vertexSel = m_GLApp->SelectVertex(cursorPosition.x, cursorPosition.y);
 				vec3 posProjection;
-				if(vertexSel!=t_faceIndex(-1,-1) && eventPositionBinded && CurrentObject->GetExactCollisionPosition(vertexSel,posCurseur,&posProjection))
-				{
-					(*pointeurFonctionEventSelectionPosition)(coordsOperation::GlCoordsToCommonCoords(CurrentObject->UnitizeVar, posProjection));
-					doScreenRefresh=true;
-				}else{
-					(*pointeurFonctionEventSelectionPosition)(coordsOperation::GlCoordsToCommonCoords(CurrentObject->UnitizeVar, posCurseur));
-					doScreenRefresh=true;
+				if (vertexSel != t_faceIndex(-1, -1) && eventPositionBinded && CurrentObject->GetExactCollisionPosition(
+					    vertexSel, posCurseur, &posProjection)) {
+					(*pointeurFonctionEventSelectionPosition)(
+						coordsOperation::GlCoordsToCommonCoords(CurrentObject->UnitizeVar, posProjection));
+					doScreenRefresh = true;
+				} else {
+					(*pointeurFonctionEventSelectionPosition)(
+						coordsOperation::GlCoordsToCommonCoords(CurrentObject->UnitizeVar, posCurseur));
+					doScreenRefresh = true;
 				}
 			}
 		}
