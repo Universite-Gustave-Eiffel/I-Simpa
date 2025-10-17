@@ -63,19 +63,35 @@ endif()
 
 set(ISIMPA_RESSOURCES ${PROJECT_SOURCE_DIR}/currentRelease)
 
+# Detect if building for Flatpak
+if(DEFINED ENV{FLATPAK_ID})
+    set(IS_FLATPAK TRUE)
+    message(STATUS "Building for Flatpak environment")
+else()
+    set(IS_FLATPAK FALSE)
+endif()
+
+# Set installation directories based on build type
+if(IS_FLATPAK)
+    set(ISIMPA_BIN_DIR bin)
+else()
+    set(ISIMPA_BIN_DIR .)
+endif()
+
+
 # Adds logic to INSTALL.vcproj to copy _libsimpa.pyd to the destination directory
 install (TARGETS ${SWIG_MODULE_libsimpa_REAL_NAME}
-      LIBRARY DESTINATION libsimpa/
+      LIBRARY DESTINATION ${ISIMPA_BIN_DIR}/libsimpa/
 )
 
 if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
-    install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION libsimpa COMPONENT System )
+    install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION ${ISIMPA_BIN_DIR}/libsimpa COMPONENT System )
 endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
 
 install (FILES
         ${ISIMPA_RESSOURCES}/libsimpa/__init__.py
 		${CMAKE_CURRENT_BINARY_DIR}/libsimpa.py
-        DESTINATION libsimpa/)
+        DESTINATION ${ISIMPA_BIN_DIR}/libsimpa/)
         
         
 

@@ -49,12 +49,26 @@ target_link_libraries(classicalTheory ${Boost_LIBRARIES})
 #    INSTALL
 #--------------#
 
+# Detect if building for Flatpak
+if(DEFINED ENV{FLATPAK_ID})
+	set(IS_FLATPAK TRUE)
+	message(STATUS "Building for Flatpak environment")
+else()
+	set(IS_FLATPAK FALSE)
+endif()
+
+# Set installation directories based on build type
+if(IS_FLATPAK)
+	set(ISIMPA_BIN_DIR bin)
+else()
+	set(ISIMPA_BIN_DIR .)
+endif()
 
 
 # Adds logic to INSTALL.vcproj to copy spps to destination directory
 install (TARGETS classicalTheory
-        RUNTIME DESTINATION core/classical_theory)
+        RUNTIME DESTINATION ${ISIMPA_BIN_DIR}/core/classical_theory)
 
 if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
-    install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION core/classical_theory COMPONENT System )
+    install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION ${ISIMPA_BIN_DIR}/core/classical_theory COMPONENT System )
 endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )

@@ -2,7 +2,7 @@ app-id: org.noise_planet.i-simpa
 runtime: org.freedesktop.Platform
 runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
-command: ../isimpa
+command: isimpa
 finish-args:
   - --share=ipc
   - --socket=x11
@@ -10,6 +10,9 @@ finish-args:
   - --device=dri
   - --filesystem=home
   - --env=LD_LIBRARY_PATH=/app/lib:/app/lib64
+cleanup:
+  - '/include'
+  - '/lib/debug'
 modules:
   - name: cpm
     buildsystem: simple

@@ -5,6 +5,28 @@ include( InstallRequiredSystemLibraries )
 
 string(TIMESTAMP BUILD_DATE "%Y-%m-%dT%H:%M:%S")
 
+# Detect if building for Flatpak
+if(DEFINED ENV{FLATPAK_ID})
+    set(IS_FLATPAK TRUE)
+    message(STATUS "Building for Flatpak environment")
+else()
+    set(IS_FLATPAK FALSE)
+endif()
+
+# Set installation directories based on build type
+if(IS_FLATPAK)
+    set(ISIMPA_ICON_DIR share/icons/hicolor/256x256/apps)
+    set(ISIMPA_BIN_DIR bin)
+    set(ISIMPA_DATA_DIR bin)
+    set(ISIMPA_DOC_DIR bin)
+else()
+    set(ISIMPA_ICON_DIR .)
+    set(ISIMPA_BIN_DIR .)
+    set(ISIMPA_DATA_DIR .)
+    set(ISIMPA_DOC_DIR .)
+endif()
+
+
 MACRO(ADDMULTIPLE_LANG curdir bindir)
   FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)
   FOREACH(child ${children})
@@ -395,6 +417,7 @@ endif(OPENGL_GLU_FOUND)
 
 # Ask make to call python in order to use element.h to produce enum_def.cpp
 ADD_CUSTOM_COMMAND(
+  PRE_BUILD
   OUTPUT "enum_def.cpp"
   COMMENT "Building enum_def.cpp using python script"
   COMMAND "${Python3_EXECUTABLE}" ${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/python_interface/py_ui_module/generate_enum_def.py
@@ -560,24 +583,6 @@ ENDIF()
 #    INSTALL
 #--------------#
 
-# Detect if building for Flatpak
-if(DEFINED ENV{FLATPAK_ID})
-    set(IS_FLATPAK TRUE)
-    message(STATUS "Building for Flatpak environment")
-else()
-    set(IS_FLATPAK FALSE)
-endif()
-
-# Set installation directories based on build type
-set(ISIMPA_BIN_DIR .)
-set(ISIMPA_DATA_DIR .)
-set(ISIMPA_DOC_DIR .)
-if(IS_FLATPAK)
-    set(ISIMPA_ICON_DIR share/icons/hicolor/256x256/apps)
-else()
-    set(ISIMPA_ICON_DIR .)
-endif()
-
 # Install executable
 install(TARGETS isimpa
         RUNTIME DESTINATION ${ISIMPA_BIN_DIR})
@@ -593,6 +598,10 @@ if(IS_FLATPAK)
     install(FILES
             ${ISIMPA_RESSOURCES}/license.html
             DESTINATION ${ISIMPA_DOC_DIR})
+
+    install(FILES
+            isimpa.ico
+            DESTINATION ${ISIMPA_BIN_DIR})
 
     install(FILES
             isimpa.png
