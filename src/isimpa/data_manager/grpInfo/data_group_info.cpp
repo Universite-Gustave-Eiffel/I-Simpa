@@ -30,6 +30,8 @@
 
 #include "data_group_info.h"
 #include <fstream>
+#include <limits.h>
+
 #include "last_cpp_include.hpp"
 
 namespace formatGRPINFO
@@ -69,6 +71,11 @@ bool  DGIBIN::ImportBIN(const char *strFileName,exchangeMainData &mainData)
 	//*************************
 	//Lecture de l'entete du fichier
 	binFile.read((char*)&mainData.header,sizeof(t_FileHeader));
+	// Check for corruption
+	if (mainData.header.quantFace > INT_MAX) {
+		binFile.close();
+		return false;
+	}
 	mainData.tabFaces = new binface[mainData.header.quantFace];
 	//*************************
 	//Lecture des faces

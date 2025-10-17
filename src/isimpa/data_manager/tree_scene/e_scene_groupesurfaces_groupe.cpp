@@ -130,10 +130,11 @@ void E_Scene_Groupesurfaces_Groupe::sendStringToVector()
 		this->vertexLst.clear();
 		exchangeMainData mainData;
 		DGIBIN fileReader;
-		fileReader.ImportBIN(fullPath,mainData);
-		for(long idface=0;idface<mainData.header.quantFace;idface++)
-		{
-			this->vertexLst.push_back(t_faceIndex(mainData.tabFaces[idface].face,mainData.tabFaces[idface].group));
+		if (fileReader.ImportBIN(fullPath,mainData)) {
+			for(long idface=0;idface<mainData.header.quantFace;idface++)
+			{
+				this->vertexLst.push_back(t_faceIndex(mainData.tabFaces[idface].face,mainData.tabFaces[idface].group));
+			}
 		}
 	}
 }
