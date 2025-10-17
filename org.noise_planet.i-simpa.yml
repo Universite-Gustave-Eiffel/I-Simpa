@@ -61,6 +61,7 @@ modules:
       - -DwxUSE_OPENGL=ON
       - -DwxUSE_GLCANVAS_EGL=OFF
       - -DwxUSE_UNICODE=ON
+      - -DwxUSE_LIBTIFF=OFF
     sources:
       - type: archive
         url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.8.1/wxWidgets-3.2.8.1.tar.bz2

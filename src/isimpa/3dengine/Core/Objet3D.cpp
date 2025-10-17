@@ -766,63 +766,62 @@ long CObjet3D::_RenderGroupTexture(long g, bool blendRendering)  //Le rendu
 	short lastMaterial=-1;
 	vec2 texTrans(0.f,0.f);//Texture transformation due to rescale then translation
 	vec2 texScale(1.f,1.f);
-	for(std::vector<SFace3D>::iterator itface=this->_pGroups[g].pFaces.begin();itface!=this->_pGroups[g].pFaces.end();itface++)
+	for(auto faceIterator=this->_pGroups[g].pFaces.begin();faceIterator!=this->_pGroups[g].pFaces.end();faceIterator+=1)
 	{
-		if(lastMaterial!=(*itface).idMaterial)
+		if(lastMaterial!=faceIterator->idMaterial)
 		{
-			lastMaterial=(*itface).idMaterial;
+			lastMaterial=faceIterator->idMaterial;
 			glEnd();
 			materials->SetMat(lastMaterial);
 			if(hasTextCoords)
 			{
-				if(materials->HasTexture((*itface).idMaterial))
-					textures->GetTransformation(materials->GetTextureId((*itface).idMaterial),texScale,texTrans);
+				if(materials->HasTexture(faceIterator->idMaterial))
+					textures->GetTransformation(materials->GetTextureId(faceIterator->idMaterial),texScale,texTrans);
 			}
 			glBegin(GL_TRIANGLES);
 		}
-		if(cullingActive && lastStateCulling!=!(*itface).internalFace)
+		if(cullingActive && lastStateCulling!=!faceIterator->internalFace)
 		{
 			glEnd();
-			if((*itface).internalFace)
+			if(faceIterator->internalFace)
 				glDisable(GL_CULL_FACE);
 			else
 				glEnable(GL_CULL_FACE);
-			lastStateCulling=!(*itface).internalFace;
+			lastStateCulling=!(*faceIterator).internalFace;
 			glBegin(GL_TRIANGLES);
 		}
 		if(!blendRendering)
-			glNormal3fv((*itface).FaceNormals*-1); //On inverse les normals pour voir l'interieur de l'objet
-		if(hasTextCoords)
+			glNormal3fv(faceIterator->FaceNormals*-1); //On inverse les normals pour voir l'interieur de l'objet
+		if(hasTextCoords && faceIterator->TexCoords.a < this->_pTexCoords.size())
 		{
-			vec2 texCoordA=this->_pTexCoords[(*itface).TexCoords.a];
+			vec2 texCoordA=this->_pTexCoords[faceIterator->TexCoords.a];
 			texCoordA.set(texCoordA.x*texScale.x,texCoordA.y*texScale.y);
 			texCoordA+=texTrans;
 			glTexCoord2fv(texCoordA);
 		}
 		if(blendRendering)
-			glNormal3fv(this->_pNormals[(*itface).Normals.a]);
-		glVertex3fv(this->_pVertices[(*itface).Vertices.a]);
-		if(hasTextCoords)
+			glNormal3fv(this->_pNormals[faceIterator->Normals.a]);
+		glVertex3fv(this->_pVertices[faceIterator->Vertices.a]);
+		if(hasTextCoords && faceIterator->TexCoords.b < this->_pTexCoords.size())
 		{
-			
-			vec2 texCoordB=this->_pTexCoords[(*itface).TexCoords.b];
+			vec2 texCoordB=this->_pTexCoords[faceIterator->TexCoords.b];
 			texCoordB.set(texCoordB.x*texScale.x,texCoordB.y*texScale.y);
 			texCoordB+=texTrans;
 			glTexCoord2fv(texCoordB);
 		}
 		if(blendRendering)
-			glNormal3fv(this->_pNormals[(*itface).Normals.b]);
-		glVertex3fv(this->_pVertices[(*itface).Vertices.b]);
-		if(hasTextCoords)
+			glNormal3fv(this->_pNormals[faceIterator->Normals.b]);
+		glVertex3fv(this->_pVertices[faceIterator->Vertices.b]);
+		if(hasTextCoords && faceIterator->TexCoords.c < this->_pTexCoords.size())
 		{
-			vec2 texCoordC=this->_pTexCoords[(*itface).TexCoords.c];
+			vec2 texCoordC=this->_pTexCoords[faceIterator->TexCoords.c];
 			texCoordC.set(texCoordC.x*texScale.x,texCoordC.y*texScale.y);
 			texCoordC+=texTrans;
 			glTexCoord2fv(texCoordC);
 		}
 		if(blendRendering)
-			glNormal3fv(this->_pNormals[(*itface).Normals.c]);
-		glVertex3fv(this->_pVertices[(*itface).Vertices.c]);
+			glNormal3fv(this->_pNormals[faceIterator->Normals.c]);
+		glVertex3fv(this->_pVertices[faceIterator->Vertices.c]);
 	}
 	glEnd();
 		glDisable(GL_POLYGON_OFFSET_FILL);

@@ -48,7 +48,6 @@ jobs:
           libjpeg-dev \
           libxxf86vm1 \
           libxxf86vm-dev \
-          libxi-dev \
           libxrandr-dev \
           mesa-common-dev \
           mesa-utils \

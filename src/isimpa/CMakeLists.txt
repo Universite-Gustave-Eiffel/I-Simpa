@@ -500,7 +500,7 @@ SET(CMAKE_EXE_LINKER_FLAGS
 
 # add wxWidgets as dependency
 
-find_package(wxWidgets)
+find_package(wxWidgets 3.1)
 
 if(wxWidgets_FOUND)
 
@@ -522,14 +522,13 @@ if(wxWidgets_FOUND)
 else(NOT wxWidgets_FOUND)
     set(USING_CPM true)
     set(BUILD_SHARED_LIBS OFF)
-
     CPMAddPackage(
             NAME wxWidgets
             GIT_TAG        v3.2.8.1
             URL https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.8.1/wxWidgets-3.2.8.1.tar.bz2
             URL_HASH SHA1=5b2cdc2a6503a3b00c397dffabb585a0452d7928
+            OPTIONS "wxBUILD_SAMPLES OFF" "wxBUILD_TESTS OFF" "wxBUILD_SHARED ON" "wxUSE_OPENGL ON" "wxUSE_UNICODE ON" "wxUSE_LIBTIFF OFF"
     )
-
 endif()
 
 execute_process(COMMAND ${Python3_EXECUTABLE} -c "import sys; import sysconfig; print(list(sysconfig.get_paths().values()))"

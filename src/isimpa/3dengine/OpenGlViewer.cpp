@@ -411,10 +411,12 @@ void OpenGlViewer::OnMouseEvent(wxMouseEvent& event)
 			}
 			if(modeSelectionPoint && CurrentObject!=NULL)
 			{
-				vec3 posCurseur=m_GLApp->SelectPosition(event.GetX(),event.GetY());
-				t_faceIndex vertexSel = m_GLApp->SelectVertex( event.GetX(),event.GetY());
+				wxPoint cursorPosition = event.GetPosition();
+				double scaleFactor = GetContentScaleFactor();
+				cursorPosition = wxPoint(static_cast<int>(cursorPosition.x * scaleFactor), static_cast<int>(cursorPosition.y * scaleFactor));
+				vec3 posCurseur=m_GLApp->SelectPosition(cursorPosition.x, cursorPosition.y);
+				t_faceIndex vertexSel = m_GLApp->SelectVertex(cursorPosition.x, cursorPosition.y);
 				vec3 posProjection;
-
 				if(vertexSel!=t_faceIndex(-1,-1) && eventPositionBinded && CurrentObject->GetExactCollisionPosition(vertexSel,posCurseur,&posProjection))
 				{
 					(*pointeurFonctionEventSelectionPosition)(coordsOperation::GlCoordsToCommonCoords(CurrentObject->UnitizeVar, posProjection));
