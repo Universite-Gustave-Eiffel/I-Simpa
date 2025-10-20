@@ -176,7 +176,7 @@ void ParticulesControler::LoadPBin(wxString fileName, bool doCoordsTransformatio
 			driver.Close();
 			return;
 		}		
-		wxLogDebug(_("Particles file contains %i particles and %i time step"), this->nbParticles, this->nbStep);
+		wxLogDebug(_("Particles file contains %d particles and %d time step"), static_cast<int>(this->nbParticles), static_cast<int>(this->nbStep));
 		if (this->nbParticles>0)
 		{
 			wxProgressDialog progDialog(_("Loading particles file"), _("Loading particles file"), 100, NULL, wxPD_CAN_ABORT | wxPD_REMAINING_TIME | wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE);

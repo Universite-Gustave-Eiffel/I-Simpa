@@ -323,7 +323,7 @@ class MainUiFrame : public wxFrame
 		 * Menu refaire
 		 */
 		void OnRedo(wxCommandEvent& event);
-		//void OnSelectVertex(const long group, const long vertex);
+
 		void ChargerVertex();
 
 

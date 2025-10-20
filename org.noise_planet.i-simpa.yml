@@ -6,6 +6,7 @@ command: isimpa
 finish-args:
   - --share=ipc
   - --socket=x11
+  - --socket=fallback-x11
   - --socket=wayland
   - --device=dri
   - --filesystem=home
@@ -59,7 +60,7 @@ modules:
     config-opts:
       - -DwxBUILD_SHARED=ON
       - -DwxUSE_OPENGL=ON
-      - -DwxUSE_GLCANVAS_EGL=OFF
+      - -DwxUSE_GLCANVAS_EGL=ON
       - -DwxUSE_UNICODE=ON
       - -DwxUSE_LIBTIFF=OFF
     sources:

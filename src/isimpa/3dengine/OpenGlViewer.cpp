@@ -388,8 +388,11 @@ void OpenGlViewer::OnMouseEvent(wxMouseEvent& event)
 				doScreenRefresh=true; //Il faut redessiner avant la sélection, l'algorithme de sélection se servant de la derniere scene dessinée
 			if(currentTool == TOOL_MODE_SELECTION)
 			{
-				t_faceIndex vertexSel = m_GLApp->SelectVertex( event.GetX(),event.GetY());
-
+				wxPoint cursorPosition = event.GetPosition();
+				double scaleFactor = GetContentScaleFactor();
+				cursorPosition = wxPoint(static_cast<int>(cursorPosition.x * scaleFactor),
+										 static_cast<int>(cursorPosition.y * scaleFactor));
+				t_faceIndex vertexSel = m_GLApp->SelectVertex( cursorPosition.x, cursorPosition.y);
 				if(event.LeftDClick())
 				{
 					OnMouseDoubleClick(vertexSel);
