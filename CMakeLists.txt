@@ -2,6 +2,8 @@
 # minimum CMake version required for C++20 support, among other things
 cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
 
+cmake_policy(SET CMP0177 NEW) # install() DESTINATION paths are normalized
+
 # Maps to a solution file (isimpa.sln). The solution will
 # have all targets (exe, lib, dll) as projects (.vcproj)
 project (isimpa VERSION 1.3.4)

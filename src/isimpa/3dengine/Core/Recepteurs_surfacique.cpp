@@ -631,29 +631,30 @@ void RecepteursSControler::Render(const int& _timeStp)
 	glDisable(GL_LIGHTING);
 	glEnable(GL_POLYGON_OFFSET_FILL);
 	glPolygonOffset(1.f,1.f);
-	glBegin(GL_TRIANGLES);
 
-	for(std::vector<t_recepteurS>::iterator itrs=recepteursS.begin();itrs!=recepteursS.end();itrs++)
+	for(auto & itrs : recepteursS)
 	{
-		for(std::vector<t_rs_face>::iterator itface=(*itrs).faces.begin();itface!=(*itrs).faces.end();itface++)
+		for(auto & face : itrs.faces)
 		{
-			if((*itface).render)
+			if(face.render)
 			{
+				glBegin(GL_TRIANGLES);
 				if(!smoothColour)
-					glColor4fv(GetColor((*itface).energy[timeStp]).v);
+					glColor4fv(GetColor(face.energy[timeStp]).v);
 				if(smoothColour)
-					glColor4fv(GetColor(nodesData[(*itface).sommets.i[0]].energy[timeStp]).v);
-				glVertex3fv(nodesData[(*itface).sommets.i[0]].position.v);
+					glColor4fv(GetColor(nodesData[face.sommets.i[0]].energy[timeStp]).v);
+				glVertex3fv(nodesData[face.sommets.i[0]].position.v);
 				if(smoothColour)
-					glColor4fv(GetColor(nodesData[(*itface).sommets.i[1]].energy[timeStp]).v);
-				glVertex3fv(nodesData[(*itface).sommets.i[1]].position.v);
+					glColor4fv(GetColor(nodesData[face.sommets.i[1]].energy[timeStp]).v);
+				glVertex3fv(nodesData[face.sommets.i[1]].position.v);
 				if(smoothColour)
-					glColor4fv(GetColor(nodesData[(*itface).sommets.i[2]].energy[timeStp]).v);
-				glVertex3fv(nodesData[(*itface).sommets.i[2]].position.v);
+					glColor4fv(GetColor(nodesData[face.sommets.i[2]].energy[timeStp]).v);
+				glVertex3fv(nodesData[face.sommets.i[2]].position.v);
 			}
+
+			glEnd();
 		}
 	}
-	glEnd();
 	glDisable(GL_POLYGON_OFFSET_FILL);
 	glDepthFunc(GL_LESS);
 

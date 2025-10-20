@@ -524,10 +524,10 @@ else(NOT wxWidgets_FOUND)
     set(BUILD_SHARED_LIBS OFF)
     CPMAddPackage(
             NAME wxWidgets
-            GIT_TAG        v3.2.8.1
-            URL https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.8.1/wxWidgets-3.2.8.1.tar.bz2
-            URL_HASH SHA1=5b2cdc2a6503a3b00c397dffabb585a0452d7928
-            OPTIONS "wxBUILD_SAMPLES OFF" "wxBUILD_TESTS OFF" "wxBUILD_SHARED ON" "wxUSE_OPENGL ON" "wxUSE_UNICODE ON" "wxUSE_LIBTIFF OFF"
+            GIT_TAG        v3.3.1
+            URL https://github.com/wxWidgets/wxWidgets/releases/download/v3.3.1/wxWidgets-3.3.1.tar.bz2
+            URL_HASH SHA256=f936c8d694f9c49a367a376f99c751467150a4ed7cbf8f4723ef19b2d2d9998d
+            OPTIONS "wxBUILD_SAMPLES OFF" "wxBUILD_TESTS OFF" "wxBUILD_SHARED ON" "wxUSE_OPENGL ON" "wxUSE_UNICODE ON" "wxUSE_LIBTIFF OFF" "wxUSE_GLCANVAS_EGL ON"
     )
 endif()
 
