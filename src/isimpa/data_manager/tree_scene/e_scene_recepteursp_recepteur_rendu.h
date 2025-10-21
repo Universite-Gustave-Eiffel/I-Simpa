@@ -47,16 +47,16 @@ private:
 	void InitProperties()
 	{
 		this->AppendPropertyColor("couleur","Color",0,255,0);
-		_("Color"); //Pour generer le fichier de langues automatiquement
+		wxGetTranslation("Color"); //Pour generer le fichier de langues automatiquement
 		this->AppendPropertyBool("showlabel","Show name",true);
-		_("Show name");
+		wxGetTranslation("Show name");
 	}
 public:
 	E_Scene_Recepteursp_Recepteur_Rendu( wxXmlNode* noeudCourant ,  Element* parent)
 		:Element(parent,"Display",Element::ELEMENT_TYPE_SCENE_RECEPTEURSP_RECEPTEUR_RENDU,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_3D_DISPLAY);
-		_("Display");
+		wxGetTranslation("Display");
 		InitProperties();
 	}
 

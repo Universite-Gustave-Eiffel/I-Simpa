@@ -63,7 +63,7 @@ ParticulesControler::ParticulesControler()
 
 wxString ParticulesControler::GetRendererLabel()
 {
-	return _("Particles");
+	return wxGetTranslation("Particles");
 }
 ParticulesControler::~ParticulesControler()
 {
@@ -171,15 +171,15 @@ void ParticulesControler::LoadPBin(wxString fileName, bool doCoordsTransformatio
 
 		if (freemem<memrequire && freemem != -1)
 		{
-			wxLogError(_("Insufficent memory available, %u memory required and %u memory available"), (unsigned int)(memrequire / 1.e6).ToLong(), (unsigned int)(freemem / 1.e6).ToLong());
+			wxLogError(wxGetTranslation("Insufficent memory available, %u memory required and %u memory available"), (unsigned int)(memrequire / 1.e6).ToLong(), (unsigned int)(freemem / 1.e6).ToLong());
 			Init();
 			driver.Close();
 			return;
 		}		
-		wxLogDebug(_("Particles file contains %d particles and %d time step"), static_cast<int>(this->nbParticles), static_cast<int>(this->nbStep));
+		wxLogDebug(wxGetTranslation("Particles file contains %d particles and %d time step"), static_cast<int>(this->nbParticles), static_cast<int>(this->nbStep));
 		if (this->nbParticles>0)
 		{
-			wxProgressDialog progDialog(_("Loading particles file"), _("Loading particles file"), 100, NULL, wxPD_CAN_ABORT | wxPD_REMAINING_TIME | wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE);
+			wxProgressDialog progDialog(wxGetTranslation("Loading particles file"), wxGetTranslation("Loading particles file"), 100, NULL, wxPD_CAN_ABORT | wxPD_REMAINING_TIME | wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE);
 			progDialog.Update(0);
 			tabInfoParticles = new t_ParticuleInfo[this->nbParticles];
 			int percProgression = 0;
@@ -194,7 +194,7 @@ void ParticulesControler::LoadPBin(wxString fileName, bool doCoordsTransformatio
 					{
 						//Annulation du chargement du fichier par l'utilisateur
 						Init();
-						wxLogMessage(_("Cancel loading particles files"));
+						wxLogMessage(wxGetTranslation("Cancel loading particles files"));
 						driver.Close();
 						return;
 					}
@@ -242,7 +242,7 @@ bool  ParticulesControler::LoadParticleFile(const char *mfilename, vec4 UnitizeV
 	this->Init(false);
     if (!wxFileExists(mfilename))
     {
-		wxLogError(_("Particles file does not exist!\n %s"),mfilename);
+		wxLogError(wxGetTranslation("Particles file does not exist!\n %s"),mfilename);
         return false;
     }
 
@@ -251,7 +251,7 @@ bool  ParticulesControler::LoadParticleFile(const char *mfilename, vec4 UnitizeV
 		LoadPBin(mfilename,true,UnitizeVal);
 	}
 	catch( ... ) {
-		wxLogError(_("Unknown error when reading particles file"));
+		wxLogError(wxGetTranslation("Unknown error when reading particles file"));
 		return false;
 	}
 	return true;
@@ -277,7 +277,7 @@ void ParticulesControler::RedrawLegend()
 		fileLegend->SetFont( this->legendFont );
 		fileLegend->SetTextForeground(this->text_foreground_color);
 		fileLegend->SetTextBackground(this->text_background_color);
-		fileLegend->InitText(_("Particles:")+ShortcutPath,35);
+		fileLegend->InitText(wxGetTranslation("Particles:")+ShortcutPath,35);
 
 
 		if(!this->p_legends.currentFile)

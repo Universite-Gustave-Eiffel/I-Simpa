@@ -76,7 +76,7 @@ namespace sgSpace
 	void MainSimpleGraphWindow::OnShowGraphParameters(wxCommandEvent& event)
 	{
 		//Ouverture de l'interface de personalisation du rendu graphique
-		SG_PropertySheetDialog* propertyDialog=new SG_PropertySheetDialog(this,-1,_("Viewing style"));
+		SG_PropertySheetDialog* propertyDialog=new SG_PropertySheetDialog(this,-1,wxGetTranslation("Viewing style"));
 		propertyDialog->ShowModal();
 		if(cfgManagerToUpdate && updateConfigOnChange)
 		{
@@ -112,7 +112,7 @@ namespace sgSpace
 	{
 		wxBitmap bitmap=GetAreaBitmap();
 		wxInitAllImageHandlers();
-		wxFileDialog saveFileDialog( this, _("Export graph"), defaultGraphSavePath, "Export graph", _("Image PNG (*.png)|*.png|Image JPG (*.jpg)|*.jpg|Image Bitmap (*.bmp)|*.bmp"),wxFD_SAVE);
+		wxFileDialog saveFileDialog( this, wxGetTranslation("Export graph"), defaultGraphSavePath, "Export graph", wxGetTranslation("Image PNG (*.png)|*.png|Image JPG (*.jpg)|*.jpg|Image Bitmap (*.bmp)|*.bmp"),wxFD_SAVE);
 		if (saveFileDialog.ShowModal() == wxID_OK)
 		{
 			wxString FileName(saveFileDialog.GetPath());
@@ -156,21 +156,21 @@ namespace sgSpace
 		//Creation du menu popup
 
 		wxMenu popup_menu;
-		popup_menu.Append(ID_MSGW_ZOOMFIT, _("Original zoom"));
+		popup_menu.Append(ID_MSGW_ZOOMFIT, wxGetTranslation("Original zoom"));
 		popup_menu.AppendSeparator();
 
 		wxMenu* popup_menu_export= new wxMenu();
-		popup_menu_export->Append(ID_MSGW_EXPORT_SAVE_AS, _("Export to image file"));
-		//popup_menu_export->Append(ID_MSGW_EXPORT_SAVE_AS_POSTSCRIPT_FILE, _("Vers un fichier PostScript"));
-		popup_menu_export->Append(ID_MSGW_EXPORT_TO_CLIPBOARD, _("Export to clipboard"));
+		popup_menu_export->Append(ID_MSGW_EXPORT_SAVE_AS, wxGetTranslation("Export to image file"));
+		//popup_menu_export->Append(ID_MSGW_EXPORT_SAVE_AS_POSTSCRIPT_FILE, wxGetTranslation("Vers un fichier PostScript"));
+		popup_menu_export->Append(ID_MSGW_EXPORT_TO_CLIPBOARD, wxGetTranslation("Export to clipboard"));
 
-		popup_menu.Append(ID_MSGW_EXPORT, _("Export"),popup_menu_export);
+		popup_menu.Append(ID_MSGW_EXPORT, wxGetTranslation("Export"),popup_menu_export);
 
 
 		wxMenu* popup_menu_checkCurveVisibility= new wxMenu();
 		//Ajout du sous-menu de séléction d'affichage
-		popup_menu_checkCurveVisibility->Append(ID_MSGW_FILTER_SELECT_ALL, _("Show all"));
-		popup_menu_checkCurveVisibility->Append(ID_MSGW_FILTER_UNSELECT_ALL, _("Hide all"));
+		popup_menu_checkCurveVisibility->Append(ID_MSGW_FILTER_SELECT_ALL, wxGetTranslation("Show all"));
+		popup_menu_checkCurveVisibility->Append(ID_MSGW_FILTER_UNSELECT_ALL, wxGetTranslation("Hide all"));
 		popup_menu_checkCurveVisibility->AppendSeparator();
 		ArrayOfGraphEl::iterator it;
 		for( it = elements.begin(); it != elements.end(); ++it )
@@ -182,10 +182,10 @@ namespace sgSpace
 				newCheck->Check(drawingEl->IsVisible());
 			}
 		}
-		popup_menu.Append(ID_MSGW_FILTER, _("Show/Hide curves"),popup_menu_checkCurveVisibility);
+		popup_menu.Append(ID_MSGW_FILTER, wxGetTranslation("Show/Hide curves"),popup_menu_checkCurveVisibility);
 
 		popup_menu.AppendSeparator();
-		popup_menu.Append(ID_MSGW_CONFIGURATION, _("Display parameters"));
+		popup_menu.Append(ID_MSGW_CONFIGURATION, wxGetTranslation("Display parameters"));
 
 		wxWindow* associatedWindow=wxDynamicCast(event.GetEventObject(),wxWindow);
 		if(associatedWindow)

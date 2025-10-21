@@ -41,12 +41,12 @@ namespace sgSpace
 	void SG_EnumeratorFiller::FillStyleEnumeration(StyleArray& arrayToFeed)
 	{
 		//Chargement des styles de tracés
-		arrayToFeed.Add(t_LstEnums(_("Curve"),DRAWING_METHOD_LINE));
-		arrayToFeed.Add(t_LstEnums(_("Histogram"),DRAWING_METHOD_COLS));
-		arrayToFeed.Add(t_LstEnums(_("Echogram"),DRAWING_METHOD_ECHOGRAM));
-		arrayToFeed.Add(t_LstEnums(_("Scatter image"),DRAWING_METHOD_STIPPLE));
-		arrayToFeed.Add(t_LstEnums(_("Scatter marker"),DRAWING_METHOD_DOT_CLOUD));
-		arrayToFeed.Add(t_LstEnums(_("Spline"),DRAWING_METHOD_SPLINE));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Curve"),DRAWING_METHOD_LINE));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Histogram"),DRAWING_METHOD_COLS));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Echogram"),DRAWING_METHOD_ECHOGRAM));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Scatter image"),DRAWING_METHOD_STIPPLE));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Scatter marker"),DRAWING_METHOD_DOT_CLOUD));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Spline"),DRAWING_METHOD_SPLINE));
 	}
 
 	const wxString& SG_EnumeratorFiller::FindStringWithIndex( StyleArray* dataSrc , wxInt32 enumIndex)
@@ -60,33 +60,33 @@ namespace sgSpace
 	}
 	void SG_EnumeratorFiller::FillPenStyleEnumeration(StyleArray& arrayToFeed)
 	{
-		arrayToFeed.Add(t_LstEnums(_("Transparent"),wxPENSTYLE_TRANSPARENT));
-		arrayToFeed.Add(t_LstEnums(_("Continuous line"), wxPENSTYLE_SOLID));
-		arrayToFeed.Add(t_LstEnums(_("Point"), wxPENSTYLE_DOT));
-		arrayToFeed.Add(t_LstEnums(_("Left diagonal dash"), wxPENSTYLE_BDIAGONAL_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Cross"), wxPENSTYLE_CROSS_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Horizontal line"), wxPENSTYLE_HORIZONTAL_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Vertical line"), wxPENSTYLE_VERTICAL_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Dotted-dashed line"), wxPENSTYLE_DOT_DASH));
-		arrayToFeed.Add(t_LstEnums(_("Small dash"), wxPENSTYLE_SHORT_DASH));
-		arrayToFeed.Add(t_LstEnums(_("Long dash"), wxPENSTYLE_LONG_DASH));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Transparent"),wxPENSTYLE_TRANSPARENT));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Continuous line"), wxPENSTYLE_SOLID));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Point"), wxPENSTYLE_DOT));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Left diagonal dash"), wxPENSTYLE_BDIAGONAL_HATCH));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Cross"), wxPENSTYLE_CROSS_HATCH));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Horizontal line"), wxPENSTYLE_HORIZONTAL_HATCH));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Vertical line"), wxPENSTYLE_VERTICAL_HATCH));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Dotted-dashed line"), wxPENSTYLE_DOT_DASH));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Small dash"), wxPENSTYLE_SHORT_DASH));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Long dash"), wxPENSTYLE_LONG_DASH));
 	}
 	void SG_EnumeratorFiller::FillBrushStyleEnumeration(StyleArray& arrayToFeed)
 	{
-		arrayToFeed.Add(t_LstEnums(_("Transparent"), wxBRUSHSTYLE_TRANSPARENT));
-		arrayToFeed.Add(t_LstEnums(_("Full"), wxBRUSHSTYLE_SOLID));
-		arrayToFeed.Add(t_LstEnums(_("Left diagonal dash"), wxBRUSHSTYLE_BDIAGONAL_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Cross"), wxBRUSHSTYLE_CROSSDIAG_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Right diagonal dash"), wxBRUSHSTYLE_FDIAGONAL_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Plus"), wxBRUSHSTYLE_CROSS_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Horizontal line"), wxBRUSHSTYLE_HORIZONTAL_HATCH));
-		arrayToFeed.Add(t_LstEnums(_("Vertical line"), wxBRUSHSTYLE_VERTICAL_HATCH));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Transparent"), wxBRUSHSTYLE_TRANSPARENT));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Full"), wxBRUSHSTYLE_SOLID));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Left diagonal dash"), wxBRUSHSTYLE_BDIAGONAL_HATCH));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Cross"), wxBRUSHSTYLE_CROSSDIAG_HATCH));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Right diagonal dash"), wxBRUSHSTYLE_FDIAGONAL_HATCH));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Plus"), wxBRUSHSTYLE_CROSS_HATCH));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Horizontal line"), wxBRUSHSTYLE_HORIZONTAL_HATCH));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Vertical line"), wxBRUSHSTYLE_VERTICAL_HATCH));
 	}
 	void SG_EnumeratorFiller::FillMarkersStyleEnumeration(StyleArray& arrayToFeed)
 	{
-		arrayToFeed.Add(t_LstEnums(_("None"),DRAWING_MARKER_NONE));
-		arrayToFeed.Add(t_LstEnums(_("Circle"),DRAWING_MARKER_DOT));
-		arrayToFeed.Add(t_LstEnums(_("Square"),DRAWING_MARKER_SQUARE));
-		arrayToFeed.Add(t_LstEnums(_("Cross"),DRAWING_MARKER_CROSS_D));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("None"),DRAWING_MARKER_NONE));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Circle"),DRAWING_MARKER_DOT));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Square"),DRAWING_MARKER_SQUARE));
+		arrayToFeed.Add(t_LstEnums(wxGetTranslation("Cross"),DRAWING_MARKER_CROSS_D));
 	}
 }

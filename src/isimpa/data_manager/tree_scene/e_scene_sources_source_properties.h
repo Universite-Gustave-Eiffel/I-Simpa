@@ -59,7 +59,7 @@ private:
 	void InitProperties()
 	{
 		this->AppendPropertyText("description","Description","");
-		_("Description");
+		wxGetTranslation("Description");
 		std::vector<wxString> vDirectivite;
 		std::vector<int> iDirectivite;
 		vDirectivite.push_back(wxTRANSLATE("Omnidirectional"));

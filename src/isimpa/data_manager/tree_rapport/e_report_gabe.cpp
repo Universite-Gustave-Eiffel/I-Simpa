@@ -94,12 +94,12 @@ bool E_Report_Gabe::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,std::
 		firstDataColIndex=1;
 		for(int idrow=0;idrow<nbCellsRow;idrow++)
 			lblRows[idrow]=(*dataLbl)[idrow]->strData;
-		arrayTitle=wxString(_(this->elementInfo.libelleElement))+", "+wxString((*dataLbl).GetLabel());
+		arrayTitle=wxString(wxGetTranslation(this->elementInfo.libelleElement))+", "+wxString((*dataLbl).GetLabel());
 	}else{
 		firstDataColIndex=0;
 		for(int idrow=0;idrow<nbCellsRow;idrow++)
 			lblRows[idrow]=Convertor::ToString(idrow+1);
-		arrayTitle=_(this->elementInfo.libelleElement);
+		arrayTitle=wxGetTranslation(this->elementInfo.libelleElement);
 	}
 
 	lblCols=std::vector<wxString>(cols-firstDataColIndex);

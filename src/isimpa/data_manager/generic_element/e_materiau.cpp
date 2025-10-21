@@ -38,7 +38,7 @@ E_Materiau::E_Materiau(Element* parent,wxString Nom,ELEMENT_TYPE _type,wxXmlNode
 {
 	SetIcon(GRAPH_STATE_ALL,GRAPH_SPECTRUM);
 	ignoreModification=false;
-	_("Material spectrum");
+	wxGetTranslation("Material spectrum");
 	idMateriau=ApplicationConfiguration::GetFreeMateriauId();
 
 	wxString propVal;

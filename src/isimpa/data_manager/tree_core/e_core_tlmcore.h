@@ -50,7 +50,7 @@ public:
 	E_Core_Tlm( Element* parent, wxXmlNode* noeudCourant)
 		:E_Core_Core(parent,"TLM",ELEMENT_TYPE_CORE_TC,noeudCourant)
 	{
-		_("TLM");
+		wxGetTranslation("TLM");
 	}
 
 	E_Core_Tlm( Element* parent)

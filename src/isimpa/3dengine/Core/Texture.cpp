@@ -159,7 +159,7 @@ long CTexture::Load(const std::string& filename)
 		return this->_pTexInf.size() - 1;	
 	}else{
 		const GLubyte *mess=gluErrorString(ret);
-		wxLogError(wxString(_("OpenGL error :")) + wxString(mess));
+		wxLogError(wxString(wxGetTranslation("OpenGL error :")) + wxString(mess));
 		return -1;
 	}
 	

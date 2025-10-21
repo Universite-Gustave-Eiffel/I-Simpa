@@ -39,7 +39,7 @@
 E_Report_Gabe_Gap::E_Report_Gabe_Gap(Element* parent,wxString Nom,wxString Path)
 	:E_Report_Gabe(parent,Nom,Path,ELEMENT_TYPE_REPORT_GABE_GAP)
 {
-	_("Advanced acoustic parameters"); //Libellé du fichier standart
+	wxGetTranslation("Advanced acoustic parameters"); //Libellé du fichier standart
 }
 
 E_Report_Gabe_Gap::E_Report_Gabe_Gap(Element* parent,wxXmlNode* nodeElement)
@@ -50,7 +50,7 @@ E_Report_Gabe_Gap::E_Report_Gabe_Gap(Element* parent,wxXmlNode* nodeElement)
 
 void E_Report_Gabe_Gap::OnRightClic(wxMenu* leMenu)
 {
-	leMenu->Append(GetMenuItem(leMenu,IDEVENT_RECP_COMPUTE_ADVANCED_ACOUSTIC_PARAMETERS,_("Calculate acoustic parameters")));
+	leMenu->Append(GetMenuItem(leMenu,IDEVENT_RECP_COMPUTE_ADVANCED_ACOUSTIC_PARAMETERS,wxGetTranslation("Calculate acoustic parameters")));
 	E_Report_Gabe::OnRightClic(leMenu);
 }
 
@@ -72,16 +72,16 @@ bool E_Report_Gabe_Gap::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,s
 	if(!gReader.GetCol(indexCol->GetValue(0),&lstFloatParam))
 		return false;
 
-	arrayTitle=_("Lateral sound level (dB)");
+	arrayTitle=wxGetTranslation("Lateral sound level (dB)");
 	////////////////////////
 	// Construction des libellés des lignes, bandes de fréquences
 	int nbfreq=indexCol->GetValue(5);
 	lblRows.reserve(nbfreq*nbsubfreq);
 	for(int idfreq=0;idfreq<nbfreq;idfreq++)
 	{
-		lblRows.push_back(wxString(lstFreq->GetStringEquiv(idfreq))+_(" Hz"));
-		lblRows.push_back(wxString(lstFreq->GetStringEquiv(idfreq))+_(" Hz")+_(" (E*cos theta)"));
-		lblRows.push_back(wxString(lstFreq->GetStringEquiv(idfreq))+_(" Hz")+_(" (E*cos^2 theta)"));
+		lblRows.push_back(wxString(lstFreq->GetStringEquiv(idfreq))+wxGetTranslation(" Hz"));
+		lblRows.push_back(wxString(lstFreq->GetStringEquiv(idfreq))+wxGetTranslation(" Hz")+wxGetTranslation(" (E*cos theta)"));
+		lblRows.push_back(wxString(lstFreq->GetStringEquiv(idfreq))+wxGetTranslation(" Hz")+wxGetTranslation(" (E*cos^2 theta)"));
 	}
 	////////////////////////
 	// Construction des libellés des colonnes, Temps
@@ -91,7 +91,7 @@ bool E_Report_Gabe_Gap::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,s
 	for(int idstep=0;idstep<nbtimeStep;idstep++)
 	{
 		float currentTimeStep= timeStep+idstep*timeStep;
-		lblCols.push_back(Convertor::ToString((int)currentTimeStep)+_(" ms"));
+		lblCols.push_back(Convertor::ToString((int)currentTimeStep)+wxGetTranslation(" ms"));
 	}
 	////////////////////////
 	// Affectation des niveaux sonores (dB)

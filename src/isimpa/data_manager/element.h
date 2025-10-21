@@ -804,7 +804,7 @@ public :
     /**
      * Ajoute un champ de texte dans la feuille de propriété de cet élément
      * @param propertyName Nom de la propriété, non visible par l'utilisateur, de préférence se limiter aux caractères alphabétique sans accents
-     * @param propertyLabel Libellé du champ, le libellé ne doit PAS être passé par la méthode de traduction pendant sa création, Méthode _("texte de base").Il sera traduit par la suite automatiquement à l'affichage.
+     * @param propertyLabel Libellé du champ, le libellé ne doit PAS être passé par la méthode de traduction pendant sa création, Méthode wxGetTranslation("texte de base").Il sera traduit par la suite automatiquement à l'affichage.
      * @param propertyDefaultValue Valeur par défaut du champ. C'est la valeur qu'il y aura lors de la création d'un nouveau projet
      * @param readOnly Lecture seule, à vrai le champ ne pourra pas être modifié par l'utilisateur
      * @param exportToCore A vrai cette propriété sera exporté dans les propriétés du noeud supérieur lors de la génération du code XML à destination des coeurs de calculs.
@@ -817,7 +817,7 @@ public :
     /**
      * Ajoute un sous élément de position comme fils de cet élément
      * @param propertyName Nom de la propriété, non visible par l'utilisateur, de préférence se limiter aux caractère alphabétique sans accents
-     * @param propertyLabel Libellé du champ, le libellé ne doit PAS être passé par la méthode de traduction pendant sa création Méthode _("") .Il sera traduit par la suite automatiquement à l'affichage.
+     * @param propertyLabel Libellé du champ, le libellé ne doit PAS être passé par la méthode de traduction pendant sa création Méthode wxGetTranslation("") .Il sera traduit par la suite automatiquement à l'affichage.
      * @param propertyDefaultValue Valeur par défaut du champ. C'est la valeur qu'il y aura lors de la création d'un nouveau projet
      * @param exportToCore A vrai les propriétés x,y,z de cet élément seront exporté dans les propriétés du noeud supérieur lors de la génération du code XML à destination des coeurs de calculs.
      * @see E_Position
@@ -828,7 +828,7 @@ public :
     /**
      * Ajoute un champ liste dans la feuille de propriété de cet élément
      * @param propertyName Nom de la propriété, non visible par l'utilisateur, de préférence se limiter aux caractères alphabétique sans accents
-     * @param propertyLabel Libellé du champ, le libellé ne doit PAS être passé par la méthode de traduction pendant sa création,  Méthode _("") .Il sera traduit par la suite automatiquement à l'affichage.
+     * @param propertyLabel Libellé du champ, le libellé ne doit PAS être passé par la méthode de traduction pendant sa création,  Méthode wxGetTranslation("") .Il sera traduit par la suite automatiquement à l'affichage.
      * @param defaultValue Valeur par défaut du champ. C'est la valeur qu'il y aura lors de la création d'un nouveau projet
      * @param values Tableau de chaîne de caractères contenant les valeurs visibles de la liste.
      * @param asTitle Ce champ doit-il être visible en premier dans la liste des propriétés
@@ -844,7 +844,7 @@ public :
     /**
      * Ajoute un champ de choix de couleur dans la feuille de propriété de cet élément
      * @param propertyName Nom de la propriété, non visible par l'utilisateur, de préférence se limiter aux caractères alphabétique sans accents
-     * @param propertyLabel Libellé du champ, le libellé ne doit PAS être passé par la méthode de traduction pendant sa création,  Méthode _("") .Il sera traduit par la suite automatiquement à l'affichage.
+     * @param propertyLabel Libellé du champ, le libellé ne doit PAS être passé par la méthode de traduction pendant sa création,  Méthode wxGetTranslation("") .Il sera traduit par la suite automatiquement à l'affichage.
      * @param defaultRed Composante de couleur par défaut
      * @param defaultGreen Composante de couleur par défaut
      * @param defaultBlue Composante de couleur par défaut
@@ -856,7 +856,7 @@ public :
     /**
      * Ajoute un champ de choix de fichier dans la feuille de propriété de cet élément
      * @param propertyName Nom de la propriété, non visible par l'utilisateur, de préférence se limiter aux caractères alphabétique sans accents
-     * @param propertyLabel Libellé du champ, le libellé ne doit PAS être passé par la méthode de traduction pendant sa création,  Méthode _("") .Il sera traduit par la suite automatiquement à l'affichage.
+     * @param propertyLabel Libellé du champ, le libellé ne doit PAS être passé par la méthode de traduction pendant sa création,  Méthode wxGetTranslation("") .Il sera traduit par la suite automatiquement à l'affichage.
      * @see E_Data_File
      */
     Element *
@@ -866,7 +866,7 @@ public :
     /**
      * Ajoute un champ de saisie de nombre dans la feuille de propriété de cet élément
      * @param propertyName Nom de la propriété, non visible par l'utilisateur, de préférence se limiter aux caractères alphabétique sans accents
-     * @param propertyLabel Libellé du champ, le libellé ne doit PAS être passé par la méthode de traduction pendant sa création,  Méthode _("") .Il sera traduit par la suite automatiquement à l'affichage.
+     * @param propertyLabel Libellé du champ, le libellé ne doit PAS être passé par la méthode de traduction pendant sa création,  Méthode wxGetTranslation("") .Il sera traduit par la suite automatiquement à l'affichage.
      * @param propertyDefaultValue Valeur par défaut du champ. C'est la valeur qu'il y aura lors de la création d'un nouveau projet
      * @param exportToCore A vrai cette propriété sera exporté dans les propriétés du noeud supérieur lors de la génération du code XML à destination des coeurs de calculs.
      * @see E_Data_Integer
@@ -878,7 +878,7 @@ public :
     /**
      * Ajoute un champ de saisie de nombre décimal dans la feuille de propriété de cet élément
      * @param propertyName Nom de la propriété, non visible par l'utilisateur, de préférence se limiter aux caractères alphabétique sans accents
-     * @param propertyLabel Libellé du champ, le libellé ne doit PAS être passé par la méthode de traduction pendant sa création,  Méthode _("") .Il sera traduit par la suite automatiquement à l'affichage.
+     * @param propertyLabel Libellé du champ, le libellé ne doit PAS être passé par la méthode de traduction pendant sa création,  Méthode wxGetTranslation("") .Il sera traduit par la suite automatiquement à l'affichage.
      * @param propertyDefaultValue Valeur par défaut du champ. C'est la valeur qu'il y aura lors de la création d'un nouveau projet
      * @param readOnly Lecture seule, à vrai le champ ne pourra pas être modifié par l'utilisateur
      * @param precision Précision d'affichage au niveau du nombre de chiffres Après la virgule.
@@ -896,7 +896,7 @@ public :
     /**
      * Ajoute un champ de coche (CheckBox ) dans la feuille de propriété de cet élément
      * @param propertyName Nom de la propriété, non visible par l'utilisateur, de préférence se limiter aux caractères alphabétique sans accents
-     * @param propertyLabel Libellé du champ, le libellé ne doit PAS être passé par la méthode de traduction pendant sa création,  Méthode _("") .Il sera traduit par la suite automatiquement à l'affichage.
+     * @param propertyLabel Libellé du champ, le libellé ne doit PAS être passé par la méthode de traduction pendant sa création,  Méthode wxGetTranslation("") .Il sera traduit par la suite automatiquement à l'affichage.
      * @param propertyDefaultValue Valeur par défaut du champ. C'est la valeur qu'il y aura lors de la création d'un nouveau projet
      * @see E_Data_Bool
      */
@@ -906,7 +906,7 @@ public :
     /**
      * Ajoute un champ de sélection de police de caractère dans la feuille de propriété de cet élément
      * @param propertyName Nom de la propriété, non visible par l'utilisateur, de préférence se limiter aux caractères alphabétique sans accents
-     * @param propertyLabel Libellé du champ, le libellé ne doit PAS être passé par la méthode de traduction pendant sa création,  Méthode _("") .Il sera traduit par la suite automatiquement à l'affichage.
+     * @param propertyLabel Libellé du champ, le libellé ne doit PAS être passé par la méthode de traduction pendant sa création,  Méthode wxGetTranslation("") .Il sera traduit par la suite automatiquement à l'affichage.
      * @param propertyDefaultValue Valeur par défaut du champ. C'est la valeur qu'il y aura lors de la création d'un nouveau projet
      * @see E_Data_Font
      */

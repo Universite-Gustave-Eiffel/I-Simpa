@@ -38,7 +38,7 @@ public:
 	E_Scene_Projet( wxXmlNode* noeudCourant ,  Element* parent)
 		:Element(parent,"Projet",Element::ELEMENT_TYPE_SCENE_PROJET,Element::GRAPH_FOLDER,noeudCourant)
 	{
-		_("Projet");
+		wxGetTranslation("Projet");
 		
 		if(noeudCourant!=NULL)
 		{

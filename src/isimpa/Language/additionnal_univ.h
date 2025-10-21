@@ -33,7 +33,7 @@
  * Mots à traduire en supplément de ceux utilisés dans le code source
  */
 
-_("Acoustic parameters"); //ProjectManager::OnMenuDoAcousticParametersComputation
-_("Global sound level"); //spps nom du fichier cumul de l'energie du domaine
-_("Plane Surface Receiver");
-_("Particles"); //spps dossier de particules
+wxGetTranslation("Acoustic parameters"); //ProjectManager::OnMenuDoAcousticParametersComputation
+wxGetTranslation("Global sound level"); //spps nom du fichier cumul de l'energie du domaine
+wxGetTranslation("Plane Surface Receiver");
+wxGetTranslation("Particles"); //spps dossier de particules

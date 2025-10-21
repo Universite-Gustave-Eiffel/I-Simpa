@@ -56,7 +56,7 @@ double Convertor::ToFloat(const std::string& sval) {
 		if (wxString(sval).ToDouble(&value)) {
 			return value;
 		} else {
-			wxLogError(_("Cannot convert \"%s\" to decimal value"), sval);
+			wxLogError(wxGetTranslation("Cannot convert \"%s\" to decimal value"), sval);
 		}
 		return strtod(sval.c_str(), NULL);
 	}

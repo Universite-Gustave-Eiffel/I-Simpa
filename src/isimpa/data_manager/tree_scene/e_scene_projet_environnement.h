@@ -181,7 +181,7 @@ public:
 		:Element(parent,wxTRANSLATE("Environment"),Element::ELEMENT_TYPE_SCENE_PROJET_ENVIRONNEMENTCONF,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_ENVIRONMENT);
-		_("Environment");
+		wxGetTranslation("Environment");
 		if(!this->IsPropertyExist("absatmo"))
 		{
 			InitCoeffConstraint();

@@ -155,7 +155,7 @@ void E_GammeFrequence::InitProperties()
 	E_Data_Row* nouvLigne=new E_Data_Row(this,"cumul","Global");
 	nouvLigne->AppendPropertyDecimal("db","dB",0,true,PRECISION_DB);
 	nouvLigne->AppendPropertyDecimal("dba","dB(A)",0,true,PRECISION_DB);
-	_("Global");
+	wxGetTranslation("Global");
 	this->AppendFils(nouvLigne);
 	ignoreNextUpdate=false;
 }

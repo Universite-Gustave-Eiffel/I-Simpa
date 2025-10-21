@@ -93,7 +93,7 @@ void processManager::HandleOutput() {
 			}
 			// this assumes that the output is always line buffered
 			wxString msg;
-			msg << _("Calculation code error:") << errMsg;
+			msg << wxGetTranslation("Calculation code error:") << errMsg;
 			msg.Replace("%", "%%"); //wxLog expect this character used for parameters, then add another % to escape it
 			errorMessage += msg + "\n";
 		}
@@ -122,27 +122,27 @@ void processManager::OnTimer(wxTimerEvent& WXUNUSED(event)) {
 		int pid = GetPid();
 		if(pid > 0) {
 			wxKillError killerror = wxProcess::Kill(pid, wxSIGKILL);
-			wxLogMessage(_("External code execution canceled"));
-			wxLogMessage(_("Process answer:"));
+			wxLogMessage(wxGetTranslation("External code execution canceled"));
+			wxLogMessage(wxGetTranslation("Process answer:"));
 			switch (killerror)
 			{
 			case wxKILL_OK:              // no error
-				wxLogMessage(_("No error"));
+				wxLogMessage(wxGetTranslation("No error"));
 				break;
 			case wxKILL_BAD_SIGNAL:      // no such signal
-				wxLogError(_("Signal doesn't exist"));
+				wxLogError(wxGetTranslation("Signal doesn't exist"));
 				break;
 			case wxKILL_ACCESS_DENIED:   // permission denied
-				wxLogError(_("Unauthorized closing process"));
+				wxLogError(wxGetTranslation("Unauthorized closing process"));
 				break;
 			case wxKILL_NO_PROCESS:      // no such process
-				wxLogError(_("Process doesn't exist"));
+				wxLogError(wxGetTranslation("Process doesn't exist"));
 				break;
 			case wxKILL_ERROR:           // another, unspecified error
-				wxLogError(_("Non-specified process output"));
+				wxLogError(wxGetTranslation("Non-specified process output"));
 				break;
 			default:
-				wxLogError(_("Unknown output process"));
+				wxLogError(wxGetTranslation("Unknown output process"));
 				break;
 			}
 		}
@@ -157,18 +157,18 @@ void processManager::AddLogger(smart_ptr<InterfLogger> logger)
 
 bool uiRunExe(wxFrame* parent,const wxString& path,const wxString& labelOutput, wxWindow* progressDialog,smart_ptr<InterfLogger> extLogger)
 {
-    _("Elapsed time: ");
-	_("Remaining time: ");
-	_("Close");
-	_("Cancel");
-	_("Unknown");
+    wxGetTranslation("Elapsed time: ");
+	wxGetTranslation("Remaining time: ");
+	wxGetTranslation("Close");
+	wxGetTranslation("Cancel");
+	wxGetTranslation("Unknown");
 	wxProgressDialog * progDialog=wxDynamicCast(progressDialog,wxProgressDialog);
 
 	processManager process(parent, path, labelOutput, progDialog);
 	if (extLogger.get() != NULL)
 		process.AddLogger(extLogger);
 
-	wxLogMessage(_("External code execution"));
+	wxLogMessage(wxGetTranslation("External code execution"));
 	wxLogMessage(path);
 
 	int processId = wxExecute(path, wxEXEC_SYNC, &process);

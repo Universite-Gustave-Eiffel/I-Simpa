@@ -357,8 +357,8 @@ public:
 
 		switch ( level ) {
 			case wxLOG_FatalError:
-				DoLogText(wxString(_("Fatal error: ")) + szString, wxRED);
-				DoLogText(_("Program aborted"), wxRED);
+				DoLogText(wxString(wxGetTranslation("Fatal error: ")) + szString, wxRED);
+				DoLogText(wxGetTranslation("Program aborted"), wxRED);
 				Flush();
 		#ifdef __WXWINCE__
 				ExitThread(3);
@@ -368,11 +368,11 @@ public:
 				break;
 
 			case wxLOG_Error:
-				DoLogText(wxString(_("Error:")) + szString, wxRED);
+				DoLogText(wxString(wxGetTranslation("Error:")) + szString, wxRED);
 				break;
 
 			case wxLOG_Warning:
-				DoLogText(wxString(_("Warning: ")) + szString, wxRED);
+				DoLogText(wxString(wxGetTranslation("Warning: ")) + szString, wxRED);
 				break;
 
 			case wxLOG_Message:
@@ -488,14 +488,14 @@ class ISimpaApp : public wxApp
 				if(folderDirs.size()>1)
 				{
 
-					wxMessageDialog dialog( NULL, _("Many old sessions of the user interface are available.\nDo you want to retrieve an old session?"),
-					wxString(_("Interface "))+APPLICATION_NAME, wxYES_DEFAULT|wxYES_NO|wxICON_INFORMATION);
+					wxMessageDialog dialog( NULL, wxGetTranslation("Many old sessions of the user interface are available.\nDo you want to retrieve an old session?"),
+					wxString(wxGetTranslation("Interface "))+APPLICATION_NAME, wxYES_DEFAULT|wxYES_NO|wxICON_INFORMATION);
 
 					wxCommandEvent cmdEvt;
 					wxInt32 userResponse=dialog.ShowModal();
 					if(userResponse==wxID_YES)
 					{
-						wxSingleChoiceDialog dialchoice(NULL,_("Please choose the application instance"),wxString(_("Interface "))+APPLICATION_NAME,folderDirs);
+						wxSingleChoiceDialog dialchoice(NULL,wxGetTranslation("Please choose the application instance"),wxString(wxGetTranslation("Interface "))+APPLICATION_NAME,folderDirs);
 						if(dialchoice.ShowModal()==wxID_OK)
 						{
 							cleartmpfolder=false;

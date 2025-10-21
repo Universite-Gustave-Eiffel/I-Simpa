@@ -47,7 +47,7 @@ public:
 		:Element(parent,"Display",Element::ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEURCOUPE_RENDU,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_3D_DISPLAY);
-		_("Display");
+		wxGetTranslation("Display");
 	}
 
 	E_Scene_Recepteurss_RecepteurCoupe_Rendu( Element* parent)
@@ -57,9 +57,9 @@ public:
 		this->AppendPropertyBool("showplane","Show the grid",true);
 		this->AppendPropertyBool("showlabels","Show vertices name",true);
 		this->AppendPropertyColor("planecolor","Cut color",241,243,175);
-		_("Show the grid");
-		_("Show vertices name");
-		_("Cut color");
+		wxGetTranslation("Show the grid");
+		wxGetTranslation("Show vertices name");
+		wxGetTranslation("Cut color");
 	}
 
 	

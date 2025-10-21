@@ -155,7 +155,7 @@ void OnUserConfigElementEvent(wxCommandEvent& eventElement)
 	projetCourant->ElementEvent(eventElement,ProjectManager::EVENT_CTRL_USERCONFIG);
 }
 
-MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APPLICATION_NAME,
+MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, wxGetTranslation("Interface ")+APPLICATION_NAME,
 									wxDefaultPosition, wxDefaultSize,
 									wxDEFAULT_FRAME_STYLE),m_locale(lang)
 {
@@ -168,26 +168,26 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	if(ico_ui.LoadFile("./isimpa.ico",wxBITMAP_TYPE_ICO))
 		SetIcon(ico_ui);
 	else
-		wxLogError(_("Can not read the I-SIMPA icon"));
+		wxLogError(wxGetTranslation("Can not read the I-SIMPA icon"));
 	//Creation des menus
 
 
 	wxMenuBar* mb = new wxMenuBar;
 
 	wxMenu* file_menu = new wxMenu;
-	file_menu->Append(ID_nouveau_projet, _("New project\tCtrl+N"));
-	file_menu->Append(ID_ouvrir, _("Open project\tCtrl+O"));
+	file_menu->Append(ID_nouveau_projet, wxGetTranslation("New project\tCtrl+N"));
+	file_menu->Append(ID_ouvrir, wxGetTranslation("Open project\tCtrl+O"));
 	file_menu->AppendSeparator();
-	file_menu->Append(ID_importer, _(wxT("Import new scene")));
-	file_menu->Append(ID_exporter, _("Export scene"));
-	file_menu->Append(ID_generer, _("New scene"));
+	file_menu->Append(ID_importer, wxGetTranslation(wxT("Import new scene")));
+	file_menu->Append(ID_exporter, wxGetTranslation("Export scene"));
+	file_menu->Append(ID_generer, wxGetTranslation("New scene"));
 	file_menu->AppendSeparator();
-	file_menu->Append(ID_enregistrer, _("Save project\tCtrl+S"));
-	file_menu->Append(ID_enregistrer_sous, _("Save project as..."));
-	file_menu->Append(ID_enregistrer_copie, _("Save copy of project"));
+	file_menu->Append(ID_enregistrer, wxGetTranslation("Save project\tCtrl+S"));
+	file_menu->Append(ID_enregistrer_sous, wxGetTranslation("Save project as..."));
+	file_menu->Append(ID_enregistrer_copie, wxGetTranslation("Save copy of project"));
 	file_menu->AppendSeparator();
 	wxMenu* recent_projet_menu = new wxMenu;
-	file_menu->Append(ID_projets_recent, _("Recent projects"),recent_projet_menu);
+	file_menu->Append(ID_projets_recent, wxGetTranslation("Recent projects"),recent_projet_menu);
 
 	//Utilisation de la classe projets récent
 	fileHistory = new wxFileHistory(MAX_HISTORY_SHOW,ID_History);
@@ -196,80 +196,80 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	file_menu->AppendSeparator();
 
 	wxMenu* file_preferences_menu = new wxMenu;
-	file_preferences_menu->Append(ID_preferences_options, _("Options"));
-	file_preferences_menu->Append(ID_preferences_lang, _("Language"));
-    file_preferences_menu->Append(ID_preferences_appdata, _("Change application data folder"));
-	file_menu->Append(ID_preferences, _("Settings"),file_preferences_menu);
+	file_preferences_menu->Append(ID_preferences_options, wxGetTranslation("Options"));
+	file_preferences_menu->Append(ID_preferences_lang, wxGetTranslation("Language"));
+    file_preferences_menu->Append(ID_preferences_appdata, wxGetTranslation("Change application data folder"));
+	file_menu->Append(ID_preferences, wxGetTranslation("Settings"),file_preferences_menu);
 
 	file_menu->AppendSeparator();
-	file_menu->Append(ID_fermer, _("Exit"));
+	file_menu->Append(ID_fermer, wxGetTranslation("Exit"));
 
 	edit_menu = new wxMenu;
-	edit_menu->Append(ID_annuler, _("Undo\tCtrl+Z"))->Enable(false);
-	edit_menu->Append(ID_retablir, _("Redo\tCtrl+Y"))->Enable(false);
+	edit_menu->Append(ID_annuler, wxGetTranslation("Undo\tCtrl+Z"))->Enable(false);
+	edit_menu->Append(ID_retablir, wxGetTranslation("Redo\tCtrl+Y"))->Enable(false);
 
 	wxMenu* simulation_menu = new wxMenu;
-	simulation_menu->Append(ID_start_simulation, _("Play"));
-	simulation_menu->Append(ID_pause_simulation, _("Pause"));
-	simulation_menu->Append(ID_stop_simulation, _("Stop"));
+	simulation_menu->Append(ID_start_simulation, wxGetTranslation("Play"));
+	simulation_menu->Append(ID_pause_simulation, wxGetTranslation("Pause"));
+	simulation_menu->Append(ID_stop_simulation, wxGetTranslation("Stop"));
 	simulation_menu->AppendSeparator();
-	simulation_menu->Append(ID_Mailler, _("Meshing"));
+	simulation_menu->Append(ID_Mailler, wxGetTranslation("Meshing"));
 
 	wxMenu* outils_menu = new wxMenu;
 	wxMenu* outils_menu_postprocess = new wxMenu;
-	outils_menu_postprocess->Append(ID_outil_resultpostprocess_substract_recepteursurf, _("Compare surface receivers"));
-	outils_menu->Append(ID_outil_resultpostprocess,_("File results process"),outils_menu_postprocess);
+	outils_menu_postprocess->Append(ID_outil_resultpostprocess_substract_recepteursurf, wxGetTranslation("Compare surface receivers"));
+	outils_menu->Append(ID_outil_resultpostprocess,wxGetTranslation("File results process"),outils_menu_postprocess);
 
 	//outils_menu->AppendSeparator();
-	//outils_menu->Append(ID_outil_options, _("Options..."));
+	//outils_menu->Append(ID_outil_options, wxGetTranslation("Options..."));
 
 
 	view_menu = new wxMenu;
 
 	view_face_menu = new wxMenu;
-	view_face_menu->Append(ID_flat, _("Outside"),"Outside",wxITEM_RADIO);
-	view_face_menu->Append(ID_flat_inside, _("Inside"),"Inside",wxITEM_RADIO);
-	view_face_menu->Append(ID_flat_none, _("None"),"None",wxITEM_RADIO);
+	view_face_menu->Append(ID_flat, wxGetTranslation("Outside"),"Outside",wxITEM_RADIO);
+	view_face_menu->Append(ID_flat_inside, wxGetTranslation("Inside"),"Inside",wxITEM_RADIO);
+	view_face_menu->Append(ID_flat_none, wxGetTranslation("None"),"None",wxITEM_RADIO);
 	view_face_menu->Check(ID_flat_inside,true);
-	view_menu->Append(ID_fold_face, _("Faces"),view_face_menu);
+	view_menu->Append(ID_fold_face, wxGetTranslation("Faces"),view_face_menu);
 
 
 	wxMenu* affichage_material_menu = new wxMenu;
-	affichage_material_menu->Append(ID_ModelMaterial, _("Original"),"Original",wxITEM_RADIO);
-	affichage_material_menu->Append(ID_SoundMaterial, _("Material"),"Material",wxITEM_RADIO);
-	view_menu->Append(ID_fold_material, _("Material color"),affichage_material_menu);
+	affichage_material_menu->Append(ID_ModelMaterial, wxGetTranslation("Original"),"Original",wxITEM_RADIO);
+	affichage_material_menu->Append(ID_SoundMaterial, wxGetTranslation("Material"),"Material",wxITEM_RADIO);
+	view_menu->Append(ID_fold_material, wxGetTranslation("Material color"),affichage_material_menu);
 	affichage_material_menu->Check(ID_ModelMaterial,true);
 
 	view_line_menu = new wxMenu;
-	view_line_menu->Append(ID_wireframe_all, _("All"),"All",wxITEM_RADIO);
-	view_line_menu->Append(ID_wireframe_shape, _("Contour"),"Contour",wxITEM_RADIO);
-	view_line_menu->Append(ID_wireframe_none, _("None"),"None",wxITEM_RADIO);
+	view_line_menu->Append(ID_wireframe_all, wxGetTranslation("All"),"All",wxITEM_RADIO);
+	view_line_menu->Append(ID_wireframe_shape, wxGetTranslation("Contour"),"Contour",wxITEM_RADIO);
+	view_line_menu->Append(ID_wireframe_none, wxGetTranslation("None"),"None",wxITEM_RADIO);
 	view_line_menu->Check(ID_wireframe_none,true);
-	view_menu->Append(ID_fold_wireframe, _("Lines"),view_line_menu);
+	view_menu->Append(ID_fold_wireframe, wxGetTranslation("Lines"),view_line_menu);
 
 	view_menu->AppendSeparator();
 
-	view_menu->Append(ID_ShowHideMailler, _("Hide meshing"),"Hide meshing",wxITEM_CHECK);
+	view_menu->Append(ID_ShowHideMailler, wxGetTranslation("Hide meshing"),"Hide meshing",wxITEM_CHECK);
 
 	view_menu->AppendSeparator();
 
-	view_menu->Append(ID_InitCamera, _("Reinitialize camera"));
+	view_menu->Append(ID_InitCamera, wxGetTranslation("Reinitialize camera"));
 	view_camera_menu = new wxMenu;
-	view_camera_menu->Append(ID_camera_firstperson, _("First person"),"First person",wxITEM_RADIO);
-	view_camera_menu->Append(ID_camera_rotate, _("Rotation / Zoom"),"Rotation / Zoom",wxITEM_RADIO);
+	view_camera_menu->Append(ID_camera_firstperson, wxGetTranslation("First person"),"First person",wxITEM_RADIO);
+	view_camera_menu->Append(ID_camera_rotate, wxGetTranslation("Rotation / Zoom"),"Rotation / Zoom",wxITEM_RADIO);
 	view_camera_menu->Check(ID_camera_rotate,true);
-	view_menu->Append(ID_fold_camera, _("Camera"),view_camera_menu);
+	view_menu->Append(ID_fold_camera, wxGetTranslation("Camera"),view_camera_menu);
 
 	view_menu->AppendSeparator();
 
 	//Ces éléments du menu interagissent avec l'etat d'élément du projet
-	LinkMenuItemWithElement(view_menu->Append(ID_grid_xy, _("XY Grid"),"XY Grid",wxITEM_CHECK),
+	LinkMenuItemWithElement(view_menu->Append(ID_grid_xy, wxGetTranslation("XY Grid"),"XY Grid",wxITEM_CHECK),
 		Element::ELEMENT_TYPE_SCENE_PROJET_RENDU_ORIGINE,
 		"showgxy");
-	LinkMenuItemWithElement(view_menu->Append(ID_grid_xz, _("XZ Grid"),"XZ Grid",wxITEM_CHECK),
+	LinkMenuItemWithElement(view_menu->Append(ID_grid_xz, wxGetTranslation("XZ Grid"),"XZ Grid",wxITEM_CHECK),
 		Element::ELEMENT_TYPE_SCENE_PROJET_RENDU_ORIGINE,
 		"showgxz");
-	LinkMenuItemWithElement(view_menu->Append(ID_grid_yz, _("YZ Grid"),"YZ Grid",wxITEM_CHECK),
+	LinkMenuItemWithElement(view_menu->Append(ID_grid_yz, wxGetTranslation("YZ Grid"),"YZ Grid",wxITEM_CHECK),
 		Element::ELEMENT_TYPE_SCENE_PROJET_RENDU_ORIGINE,
 		"showgyz");
 
@@ -277,47 +277,47 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 
 	// Copie de la fenêtre openGl dans un fichier ou dans le presse papier
 	wxMenu* affichage_copygl = new wxMenu;
-	//affichage_copygl->Append(ID_copygl_toclipboard, _("Vers le presse papier"));
-	affichage_copygl->Append(ID_copygl_tofile, _("To file"));
-	affichage_copygl->Append(ID_copygl_tofile_withdim, _("To a file with a specified resolution"));
-	view_menu->Append(ID_fold_copygl, _("Copy 3D View"),affichage_copygl);
+	//affichage_copygl->Append(ID_copygl_toclipboard, wxGetTranslation("Vers le presse papier"));
+	affichage_copygl->Append(ID_copygl_tofile, wxGetTranslation("To file"));
+	affichage_copygl->Append(ID_copygl_tofile_withdim, wxGetTranslation("To a file with a specified resolution"));
+	view_menu->Append(ID_fold_copygl, wxGetTranslation("Copy 3D View"),affichage_copygl);
 	//view_menu->AppendSeparator();
-	//view_menu->Append(ID_changeLanguage,_("Changer la langue du logiciel"));
+	//view_menu->Append(ID_changeLanguage,wxGetTranslation("Changer la langue du logiciel"));
 
 
 
 	wxMenu* fenetre_menu = new wxMenu;
-	fenetre_menu->Append(ID_clearwindowmanager, _("Reinitialize interface"));
+	fenetre_menu->Append(ID_clearwindowmanager, wxGetTranslation("Reinitialize interface"));
 	wxMenu* window3D_menu_console = new wxMenu;
-	window3D_menu_console->Append(ID_Dock3Dwindow, _("Set 3D View as main window"));
-	window3D_menu_console->Append(ID_Float3Dwindow, _("Floating 3D View"));
-	fenetre_menu->AppendSubMenu(window3D_menu_console,_("3D View"));
+	window3D_menu_console->Append(ID_Dock3Dwindow, wxGetTranslation("Set 3D View as main window"));
+	window3D_menu_console->Append(ID_Float3Dwindow, wxGetTranslation("Floating 3D View"));
+	fenetre_menu->AppendSubMenu(window3D_menu_console,wxGetTranslation("3D View"));
 	wxMenu* fenetre_menu_console = new wxMenu;
-	fenetre_menu_console->Append(ID_Console_SaveToFile, _("Export to file"));
+	fenetre_menu_console->Append(ID_Console_SaveToFile, wxGetTranslation("Export to file"));
 	fenetre_menu_console->AppendSeparator();
-	fenetre_menu_console->Append(ID_Console_ClearLog, _("Delete windows"));
+	fenetre_menu_console->Append(ID_Console_ClearLog, wxGetTranslation("Delete windows"));
 	fenetre_menu->AppendSeparator();
-	fenetre_menu->AppendSubMenu(fenetre_menu_console,_("Console"));
+	fenetre_menu->AppendSubMenu(fenetre_menu_console,wxGetTranslation("Console"));
 
 
 	wxMenu* aide_menu = new wxMenu;
-	//aide_menu->Append(ID_Help, _("Aide"));
-	aide_menu->Append(ID_Help_Web, _("Website"));
-	//aide_menu->Append(ID_Help_Forum, _("Online forums"));
-	aide_menu->Append(ID_Help_Doc, _("Online documentation"));
-	aide_menu->Append(ID_Help_Offline_Doc, _("Offline documentation"));
+	//aide_menu->Append(ID_Help, wxGetTranslation("Aide"));
+	aide_menu->Append(ID_Help_Web, wxGetTranslation("Website"));
+	//aide_menu->Append(ID_Help_Forum, wxGetTranslation("Online forums"));
+	aide_menu->Append(ID_Help_Doc, wxGetTranslation("Online documentation"));
+	aide_menu->Append(ID_Help_Offline_Doc, wxGetTranslation("Offline documentation"));
 	aide_menu->AppendSeparator();
-	aide_menu->Append(ID_Help_About, _("About ")+APPLICATION_NAME);
+	aide_menu->Append(ID_Help_About, wxGetTranslation("About ")+APPLICATION_NAME);
 
 
 
-	mb->Append(file_menu, _("File"));
-	mb->Append(edit_menu, _("Edition"));
-	mb->Append(simulation_menu, _("Simulation"));
-	mb->Append(outils_menu, _("Tools"));
-	mb->Append(view_menu, _("View"));
-	mb->Append(fenetre_menu, _("Window"));
-	mb->Append(aide_menu, _("Help"));
+	mb->Append(file_menu, wxGetTranslation("File"));
+	mb->Append(edit_menu, wxGetTranslation("Edition"));
+	mb->Append(simulation_menu, wxGetTranslation("Simulation"));
+	mb->Append(outils_menu, wxGetTranslation("Tools"));
+	mb->Append(view_menu, wxGetTranslation("View"));
+	mb->Append(fenetre_menu, wxGetTranslation("Window"));
+	mb->Append(aide_menu, wxGetTranslation("Help"));
 
     SetMenuBar(mb);
 
@@ -333,10 +333,10 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 							wxDefaultPosition, FromDIP(wxSize(200,150)),
 							wxTE_RICH | wxNO_BORDER | wxTE_MULTILINE | wxTE_READONLY);
 
-    shellNotebook->AddPage(logWindow, _("Messages") , true);
+    shellNotebook->AddPage(logWindow, wxGetTranslation("Messages") , true);
 	#ifdef USE_PYTHON
 		PyConsole* consolePython=new PyConsole(this);
-		shellNotebook->AddPage(consolePython, _("Python(TM)") , false);
+		shellNotebook->AddPage(consolePython, wxGetTranslation("Python(TM)") , false);
 	#else
 		PyConsole* consolePython=NULL;
 	#endif
@@ -362,22 +362,22 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	treeUserPref->BindElementEvent(&OnUserConfigElementEvent);
 
 
-    ctrlNotebook->AddPage(this->treeScene, _("Scene") , false);
-    ctrlNotebook->AddPage(this->treeCore, _("Calculation") , false);
-    ctrlNotebook->AddPage(this->treeResult, _("Results") , false);
+    ctrlNotebook->AddPage(this->treeScene, wxGetTranslation("Scene") , false);
+    ctrlNotebook->AddPage(this->treeCore, wxGetTranslation("Calculation") , false);
+    ctrlNotebook->AddPage(this->treeResult, wxGetTranslation("Results") , false);
 
 
 
 	// Ajout des panneaux de l'interface
 	m_mgr.AddPane(ctrlNotebook.get(), wxAuiPaneInfo().
-					Name("projet").Caption(_("Project")).
+					Name("projet").Caption(wxGetTranslation("Project")).
 					Left().Position(0).CloseButton(false));
 	m_mgr.AddPane(shellNotebook.get(), wxAuiPaneInfo().
-					Name("console").Caption(_("Console")).
+					Name("console").Caption(wxGetTranslation("Console")).
 					Bottom().Position(0).CloseButton(false));
 
 	m_mgr.AddPane(treeUserPref.get(), wxAuiPaneInfo().
-				Name("userpref").Caption(_("Interface options")).Hide()
+				Name("userpref").Caption(wxGetTranslation("Interface options")).Hide()
 				);
 #ifdef __WXMSW__
     int *gl_attrib = NULL;
@@ -394,7 +394,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 #  endif
 #endif
 	GlFrame = new OpenGlViewer(this, -1, wxPoint(0,25), wxSize(-1,-1),
-												0, _("Main window"), gl_attrib );
+												0, wxGetTranslation("Main window"), gl_attrib );
 
 	toolbarGl = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTB_FLAT | wxTB_NODIVIDER);
 
@@ -416,35 +416,35 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 
 	wxString ressourceFolder=ApplicationConfiguration::getResourcesFolder();
 
-	tbProjet->AddTool(ID_nouveau_projet, _("New project"), wxImage(ressourceFolder+"/Bitmaps/toolbar_newproject.png", wxBITMAP_TYPE_PNG), _("New project"));
-	tbProjet->AddTool(ID_ouvrir, _("Open project"), wxImage(ressourceFolder+"/Bitmaps/toolbar_openproject.png", wxBITMAP_TYPE_PNG), _("Open project"));
+	tbProjet->AddTool(ID_nouveau_projet, wxGetTranslation("New project"), wxImage(ressourceFolder+"/Bitmaps/toolbar_newproject.png", wxBITMAP_TYPE_PNG), wxGetTranslation("New project"));
+	tbProjet->AddTool(ID_ouvrir, wxGetTranslation("Open project"), wxImage(ressourceFolder+"/Bitmaps/toolbar_openproject.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Open project"));
 	tbProjet->AddSeparator();
-	tbProjet->AddTool(ID_enregistrer, _("Save project"), wxImage(ressourceFolder+"/Bitmaps/toolbar_saveproject.png", wxBITMAP_TYPE_PNG), _("Save project"));
-	tbProjet->AddTool(ID_enregistrer_sous, _("Save project as..."), wxImage(ressourceFolder+"/Bitmaps/toolbar_saveprojectas.png", wxBITMAP_TYPE_PNG), _("Save project as..."));
+	tbProjet->AddTool(ID_enregistrer, wxGetTranslation("Save project"), wxImage(ressourceFolder+"/Bitmaps/toolbar_saveproject.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Save project"));
+	tbProjet->AddTool(ID_enregistrer_sous, wxGetTranslation("Save project as..."), wxImage(ressourceFolder+"/Bitmaps/toolbar_saveprojectas.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Save project as..."));
 
-	simulation->AddTool(ID_previous_step_simulation, _("Previous time step"), wxImage(ressourceFolder+"/Bitmaps/toolbar_animation_previousstep.png", wxBITMAP_TYPE_PNG), _("Previous time step"));
-	simulation->AddTool(ID_start_simulation, _("Play"), wxImage(ressourceFolder+"/Bitmaps/toolbar_animation_start.png", wxBITMAP_TYPE_PNG), _("Play"));
-	simulation->AddTool(ID_pause_simulation, _("Pause"), wxImage(ressourceFolder+"/Bitmaps/toolbar_animation_pause.png", wxBITMAP_TYPE_PNG), _("Pause"));
-	simulation->AddTool(ID_next_step_simulation, _("Next time step"), wxImage(ressourceFolder+"/Bitmaps/toolbar_animation_nextstep.png", wxBITMAP_TYPE_PNG), _("Next time step"));
-	simulation->AddTool(ID_stop_simulation, _("Stop"), wxImage(ressourceFolder+"/Bitmaps/toolbar_animation_stop.png", wxBITMAP_TYPE_PNG), _("Stop"));
-	simulation->AddTool(ID_delete_simulation, _("Delete the simulation"), wxImage(ressourceFolder+"/Bitmaps/toolbar_hideallanimations.png", wxBITMAP_TYPE_PNG), _("Delete the simulation"));
+	simulation->AddTool(ID_previous_step_simulation, wxGetTranslation("Previous time step"), wxImage(ressourceFolder+"/Bitmaps/toolbar_animation_previousstep.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Previous time step"));
+	simulation->AddTool(ID_start_simulation, wxGetTranslation("Play"), wxImage(ressourceFolder+"/Bitmaps/toolbar_animation_start.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Play"));
+	simulation->AddTool(ID_pause_simulation, wxGetTranslation("Pause"), wxImage(ressourceFolder+"/Bitmaps/toolbar_animation_pause.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Pause"));
+	simulation->AddTool(ID_next_step_simulation, wxGetTranslation("Next time step"), wxImage(ressourceFolder+"/Bitmaps/toolbar_animation_nextstep.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Next time step"));
+	simulation->AddTool(ID_stop_simulation, wxGetTranslation("Stop"), wxImage(ressourceFolder+"/Bitmaps/toolbar_animation_stop.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Stop"));
+	simulation->AddTool(ID_delete_simulation, wxGetTranslation("Delete the simulation"), wxImage(ressourceFolder+"/Bitmaps/toolbar_hideallanimations.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Delete the simulation"));
 
-	visualisation->AddTool(ID_tool_flat_inside, _("Face view"), wxImage(ressourceFolder+"/Bitmaps/toolbar_showfaceonly.png", wxBITMAP_TYPE_PNG), _("Face view"));
-	visualisation->AddTool(ID_tool_wireframe_all, _("Wireframe view"), wxImage(ressourceFolder+"/Bitmaps/toolbar_showsidesonly.png", wxBITMAP_TYPE_PNG), _("Wireframe view"));
-	visualisation->AddTool(ID_tool_wireframe_and_flat, _("Combined view"), wxImage(ressourceFolder+"/Bitmaps/toolbar_showfacewithsides.png", wxBITMAP_TYPE_PNG), _("Combined view"));
+	visualisation->AddTool(ID_tool_flat_inside, wxGetTranslation("Face view"), wxImage(ressourceFolder+"/Bitmaps/toolbar_showfaceonly.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Face view"));
+	visualisation->AddTool(ID_tool_wireframe_all, wxGetTranslation("Wireframe view"), wxImage(ressourceFolder+"/Bitmaps/toolbar_showsidesonly.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Wireframe view"));
+	visualisation->AddTool(ID_tool_wireframe_and_flat, wxGetTranslation("Combined view"), wxImage(ressourceFolder+"/Bitmaps/toolbar_showfacewithsides.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Combined view"));
 
 
-	mousetool->AddRadioTool(ID_toolCameraMode, _("Camera mode"), wxImage(ressourceFolder+"/Bitmaps/toolbar_tool_camera.png", wxBITMAP_TYPE_PNG), wxNullBitmap, _("Camera mode"));
-	mousetool->AddRadioTool(ID_SwitchSelectionMode, _("Surface selection mode"), wxImage(ressourceFolder+"/Bitmaps/toolbar_tool_faceselection.png", wxBITMAP_TYPE_PNG), wxNullBitmap, _("Surface selection mode"));
-	mousetool->AddRadioTool(ID_toolGetdBLevelMode, _("Extract sound level from 3D view"), wxImage(ressourceFolder+"/Bitmaps/toolbar_tool_extractlvl.png", wxBITMAP_TYPE_PNG), wxNullBitmap, _("Extract sound level from 3D view"));
+	mousetool->AddRadioTool(ID_toolCameraMode, wxGetTranslation("Camera mode"), wxImage(ressourceFolder+"/Bitmaps/toolbar_tool_camera.png", wxBITMAP_TYPE_PNG), wxNullBitmap, wxGetTranslation("Camera mode"));
+	mousetool->AddRadioTool(ID_SwitchSelectionMode, wxGetTranslation("Surface selection mode"), wxImage(ressourceFolder+"/Bitmaps/toolbar_tool_faceselection.png", wxBITMAP_TYPE_PNG), wxNullBitmap, wxGetTranslation("Surface selection mode"));
+	mousetool->AddRadioTool(ID_toolGetdBLevelMode, wxGetTranslation("Extract sound level from 3D view"), wxImage(ressourceFolder+"/Bitmaps/toolbar_tool_extractlvl.png", wxBITMAP_TYPE_PNG), wxNullBitmap, wxGetTranslation("Extract sound level from 3D view"));
 
 	visualisation->AddSeparator();
-	visualisation->AddTool(ID_InitCamera, _("Reinitialize camera"), wxImage((ressourceFolder+"/Bitmaps/toolbar_camera_movetoorigin.png"), wxBITMAP_TYPE_PNG), _("Reinitialize camera"));
-	visualisation->AddTool(ID_camera_rotate, _("Orbit camera"), wxImage((ressourceFolder+"/Bitmaps/toolbar_camera_rotation.png"), wxBITMAP_TYPE_PNG), _("Orbit camera"));
-	visualisation->AddTool(ID_camera_firstperson, _("First person camera"), wxImage((ressourceFolder+"/Bitmaps/toolbar_camera_firstperson.png"), wxBITMAP_TYPE_PNG), _("First person camera"));
+	visualisation->AddTool(ID_InitCamera, wxGetTranslation("Reinitialize camera"), wxImage((ressourceFolder+"/Bitmaps/toolbar_camera_movetoorigin.png"), wxBITMAP_TYPE_PNG), wxGetTranslation("Reinitialize camera"));
+	visualisation->AddTool(ID_camera_rotate, wxGetTranslation("Orbit camera"), wxImage((ressourceFolder+"/Bitmaps/toolbar_camera_rotation.png"), wxBITMAP_TYPE_PNG), wxGetTranslation("Orbit camera"));
+	visualisation->AddTool(ID_camera_firstperson, wxGetTranslation("First person camera"), wxImage((ressourceFolder+"/Bitmaps/toolbar_camera_firstperson.png"), wxBITMAP_TYPE_PNG), wxGetTranslation("First person camera"));
 
-	toolbarGl->AddTool(ID_Mailler, _("Meshing"), wxImage((ressourceFolder+"/Bitmaps/toolbar_run_tetmesh.png"), wxBITMAP_TYPE_PNG), _("Meshing"));
-	toolbarGl->AddTool(ID_Tool_ShowHideMailler, _("Show / Hide meshing"), wxImage((ressourceFolder+"/Bitmaps/toolbar_show_hide_tetmesh.png"), wxBITMAP_TYPE_PNG), _("Show / Hide meshing"));
+	toolbarGl->AddTool(ID_Mailler, wxGetTranslation("Meshing"), wxImage((ressourceFolder+"/Bitmaps/toolbar_run_tetmesh.png"), wxBITMAP_TYPE_PNG), wxGetTranslation("Meshing"));
+	toolbarGl->AddTool(ID_Tool_ShowHideMailler, wxGetTranslation("Show / Hide meshing"), wxImage((ressourceFolder+"/Bitmaps/toolbar_show_hide_tetmesh.png"), wxBITMAP_TYPE_PNG), wxGetTranslation("Show / Hide meshing"));
 	toolbarGl->AddSeparator();
 	toolbarGl->AddControl(xPlan);
 	toolbarGl->AddControl(yPlan);
@@ -456,38 +456,38 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, _("Interface ")+APP
 	visualisation->Realize();
 	tbProjet->Realize();
 	mousetool->Realize();
-	m_mgr.AddPane(GlFrame.get(), wxAuiPaneInfo().Name("3Dview").Caption(_("Main window")).
+	m_mgr.AddPane(GlFrame.get(), wxAuiPaneInfo().Name("3Dview").Caption(wxGetTranslation("Main window")).
 					CenterPane());
 
     m_mgr.AddPane(tbProjet, wxAuiPaneInfo().
-                  Name(wxT("projetTb")).Caption(_("Project toolbar")).
+                  Name(wxT("projetTb")).Caption(wxGetTranslation("Project toolbar")).
                   ToolbarPane().Position(0).Top().CloseButton(false));
 
 
 
     m_mgr.AddPane(visualisation, wxAuiPaneInfo().
-                  Name(wxT("visualisationTb")).Caption(_("Camera toolbar")).
+                  Name(wxT("visualisationTb")).Caption(wxGetTranslation("Camera toolbar")).
                   ToolbarPane().Top().Position(1).CloseButton(false));
 
 
     m_mgr.AddPane(toolbarGl, wxAuiPaneInfo().
-                  Name(wxT("maillageTb")).Caption(_("Meshing toolbar")).
+                  Name(wxT("maillageTb")).Caption(wxGetTranslation("Meshing toolbar")).
                   ToolbarPane().Top().Position(2).CloseButton(false));
 
     m_mgr.AddPane(simulation, wxAuiPaneInfo().
-                  Name(wxT("simulationTb")).Caption(_("Animation toolbar")).
+                  Name(wxT("simulationTb")).Caption(wxGetTranslation("Animation toolbar")).
                   ToolbarPane().Position(3).Top().CloseButton(false));
 
     m_mgr.AddPane(mousetool, wxAuiPaneInfo().
-                  Name(wxT("toolTb")).Caption(_("Pointer toolbar")).
+                  Name(wxT("toolTb")).Caption(wxGetTranslation("Pointer toolbar")).
                   ToolbarPane().Position(4).Top().CloseButton(false));
 	//Feuille de propriétés
 
-	propertiesGrid = new MainPropGrid(this,-1,wxDefaultPosition,FromDIP(wxSize(200,300)),262144,_("Properties"));
+	propertiesGrid = new MainPropGrid(this,-1,wxDefaultPosition,FromDIP(wxSize(200,300)),262144,wxGetTranslation("Properties"));
 
 
 	m_mgr.AddPane(&(*(propertiesGrid)), wxAuiPaneInfo().
-					Name(_("Properties")).Caption(_("Properties")).
+					Name(wxGetTranslation("Properties")).Caption(wxGetTranslation("Properties")).
 					Bottom().Position(-1).BestSize(350,400).CloseButton(false));
 
 
@@ -534,7 +534,7 @@ void MainUiFrame::OnClearConsole(wxCommandEvent& event)
 
 void MainUiFrame::OnSaveConsoleToFile(wxCommandEvent& event)
 {
-	wxFileDialog saveFileDialog( this, _("Save console"), "Text file (*.txt)|*.txt", "Text file (*.txt)|*.txt", _("Text file (*.txt)|*.txt"),
+	wxFileDialog saveFileDialog( this, wxGetTranslation("Save console"), "Text file (*.txt)|*.txt", "Text file (*.txt)|*.txt", wxGetTranslation("Text file (*.txt)|*.txt"),
 														wxFD_SAVE , wxDefaultPosition);
 
 	if (saveFileDialog.ShowModal() == wxID_OK)
@@ -848,14 +848,14 @@ void MainUiFrame::OnChangeLanguage(wxCommandEvent& event)
 {
 	MainUiFrame::AskApplicationLanguage(wxLocale::GetSystemLanguage());
 	this->saveManagerConfig=false;
-	wxLogMessage(_("Language will be changed after restarting I-Simpa"));
+	wxLogMessage(wxGetTranslation("Language will be changed after restarting I-Simpa"));
 }
 
 void MainUiFrame::OnChangeAppData(wxCommandEvent& event)
 {
     MainUiFrame::AskApplicationDataDir(ApplicationConfiguration::GLOBAL_VAR.appDataFolderPath);
     ApplicationConfiguration::GetFileConfig()->Write("interface/appdata", ApplicationConfiguration::GLOBAL_VAR.appDataFolderPath);
-    wxLogMessage(_("Application data folder will be changed after restarting I-Simpa"));
+    wxLogMessage(wxGetTranslation("Application data folder will be changed after restarting I-Simpa"));
 }
 
 void MainUiFrame::OnShowPreferenceTree(wxCommandEvent& event)
@@ -893,7 +893,7 @@ void MainUiFrame::OnLinkOfflineDoc(wxCommandEvent& event)
 
 void MainUiFrame::OnOpenFile (wxCommandEvent & event)
 {
-		smart_ptr<wxFileDialog> openFileDialog = new wxFileDialog ( this, _("Import new scene"), "", "", _("All compatible files|*.3ds;*.ply;*.bin;*.poly;*.stl|3DS file (*.3ds)|*.3ds|POLY file (*.poly)|*.bin|PLY file (*.ply)|*.ply|Binary file 1.00 (*.bin)|*.bin|Stererolithograpic file (*.stl)|*.stl"),
+		smart_ptr<wxFileDialog> openFileDialog = new wxFileDialog ( this, wxGetTranslation("Import new scene"), "", "", wxGetTranslation("All compatible files|*.3ds;*.ply;*.bin;*.poly;*.stl|3DS file (*.3ds)|*.3ds|POLY file (*.poly)|*.bin|PLY file (*.ply)|*.ply|Binary file 1.00 (*.bin)|*.bin|Stererolithograpic file (*.stl)|*.stl"),
 														wxFD_OPEN, wxDefaultPosition);
 
 	if (openFileDialog->ShowModal() == wxID_OK)
@@ -915,10 +915,10 @@ void MainUiFrame::OnCreateModel(wxCommandEvent & event)
 	bool widthOk=false;
 	while(!lengthOk || !heightOk || !widthOk)
 	{
-		wxCustomEntryDialog textDialog(this,_("Please enter scene dimensions (m)"),_("Creating scene"));
-		textDialog.AddTextControl(_("Width (x)"),"5.0");
-		textDialog.AddTextControl(_("Length (y)"),"5.0");
-		textDialog.AddTextControl(_("Height (z)"),"5.0");
+		wxCustomEntryDialog textDialog(this,wxGetTranslation("Please enter scene dimensions (m)"),wxGetTranslation("Creating scene"));
+		textDialog.AddTextControl(wxGetTranslation("Width (x)"),"5.0");
+		textDialog.AddTextControl(wxGetTranslation("Length (y)"),"5.0");
+		textDialog.AddTextControl(wxGetTranslation("Height (z)"),"5.0");
 		if (textDialog.ShowModal() == wxID_OK)
 		{
 			std::vector<wxString> valeursChamps;
@@ -947,7 +947,7 @@ void MainUiFrame::OnCreateModel(wxCommandEvent & event)
 
 void MainUiFrame::OnSaveFile (wxCommandEvent & event)
 {
-	wxFileDialog saveFileDialog( this, _("Export model"), "", "", _("Stanford University (*.ply)|*.ply|Stanford University with project groups (*.mat.ply)|*.mat.ply|Poly file (*.poly)|*.poly|Mesh file (*.mesh)|*.mesh|NFF file (*.nff)|*.nff|Binary file (*.bin)|*.bin|Binary file Calcul SPPS (*.cbin)|*.cbin|Ascii file (*.asc)|*.asc"),
+	wxFileDialog saveFileDialog( this, wxGetTranslation("Export model"), "", "", wxGetTranslation("Stanford University (*.ply)|*.ply|Stanford University with project groups (*.mat.ply)|*.mat.ply|Poly file (*.poly)|*.poly|Mesh file (*.mesh)|*.mesh|NFF file (*.nff)|*.nff|Binary file (*.bin)|*.bin|Binary file Calcul SPPS (*.cbin)|*.cbin|Ascii file (*.asc)|*.asc"),
 														wxFD_SAVE, wxDefaultPosition);
 
 	if (saveFileDialog.ShowModal() == wxID_OK)
@@ -960,7 +960,7 @@ void MainUiFrame::OnSaveFile (wxCommandEvent & event)
 
 void MainUiFrame::OnOpenProject(wxCommandEvent& event)
 {
-	smart_ptr<wxFileDialog> openFileDialog = new wxFileDialog ( this, _("Open project"), "", "", _("Project (*.proj)|*.proj"),
+	smart_ptr<wxFileDialog> openFileDialog = new wxFileDialog ( this, wxGetTranslation("Open project"), "", "", wxGetTranslation("Project (*.proj)|*.proj"),
 														wxFD_OPEN, wxDefaultPosition);
 	if (openFileDialog->ShowModal() == wxID_OK)
 	{
@@ -979,7 +979,7 @@ void MainUiFrame::OnOpenProject(wxCommandEvent& event)
 
 void MainUiFrame::OnSaveToProject(wxCommandEvent& event)
 {
-	wxFileDialog saveFileDialog( this, _("Save project"), "", "", "Projet (*.proj)|*.proj",
+	wxFileDialog saveFileDialog( this, wxGetTranslation("Save project"), "", "", "Projet (*.proj)|*.proj",
 														wxFD_SAVE, wxDefaultPosition);
 
 	if (saveFileDialog.ShowModal() == wxID_OK)
@@ -993,14 +993,14 @@ wxString MainUiFrame::AskApplicationDataDir(wxString defaultApplicationDirectory
 
 
     wxMessageDialog dialog( NULL, wxString::Format(
-                                    _("Do you accept to write the projects into this directory:\n%s"), defaultApplicationDirectory),
-                            _("Application data directory"), wxYES_DEFAULT|wxYES_NO|wxICON_INFORMATION);
+                                    wxGetTranslation("Do you accept to write the projects into this directory:\n%s"), defaultApplicationDirectory),
+                            wxGetTranslation("Application data directory"), wxYES_DEFAULT|wxYES_NO|wxICON_INFORMATION);
 
 	if(dialog.ShowModal()== wxID_YES) {
 		return defaultApplicationDirectory;
 	} else {
 		// User want to select a folder
-		wxDirDialog folderChooser(NULL, _("Select an empty folder that will contain your projects"), defaultApplicationDirectory,  wxDD_DEFAULT_STYLE | wxDD_DIR_MUST_EXIST);
+		wxDirDialog folderChooser(NULL, wxGetTranslation("Select an empty folder that will contain your projects"), defaultApplicationDirectory,  wxDD_DEFAULT_STYLE | wxDD_DIR_MUST_EXIST);
 		if(folderChooser.ShowModal() == wxID_OK) {
 			return folderChooser.GetPath();
 		} else {
@@ -1012,7 +1012,7 @@ wxString MainUiFrame::AskApplicationDataDir(wxString defaultApplicationDirectory
 int MainUiFrame::AskApplicationLanguage(int defaultLanguage)
 {
 	int choosenLanguage=defaultLanguage;
-	LanguageSelector langSelection(NULL, _("Please choose language:"),_("Language"),ApplicationConfiguration::getResourcesFolder()+wxString("locale")+wxFileName::GetPathSeparator(),ApplicationConfiguration::getResourcesFolder()+ApplicationConfiguration::CONST_RESOURCE_BITMAP_FOLDER+wxString("flags")+wxFileName::GetPathSeparator());
+	LanguageSelector langSelection(NULL, wxGetTranslation("Please choose language:"),wxGetTranslation("Language"),ApplicationConfiguration::getResourcesFolder()+wxString("locale")+wxFileName::GetPathSeparator(),ApplicationConfiguration::getResourcesFolder()+ApplicationConfiguration::CONST_RESOURCE_BITMAP_FOLDER+wxString("flags")+wxFileName::GetPathSeparator());
 	wxInt32 choice=langSelection.ShowModal();
 	if(choice==wxID_OK)
 	{
@@ -1031,8 +1031,8 @@ bool MainUiFrame::AskUserForSaveModification()
 {
 	if(projetCourant->IsProjectNeedSave())
 	{
-		wxMessageDialog dialog( NULL, _("Project has been modified.\nSave project with modifications?"),
-			wxString(_("Interface "))+APPLICATION_NAME, wxYES_DEFAULT|wxYES_NO|wxCANCEL|wxICON_INFORMATION);
+		wxMessageDialog dialog( NULL, wxGetTranslation("Project has been modified.\nSave project with modifications?"),
+			wxString(wxGetTranslation("Interface "))+APPLICATION_NAME, wxYES_DEFAULT|wxYES_NO|wxCANCEL|wxICON_INFORMATION);
 
 		wxCommandEvent cmdEvt;
 		switch ( dialog.ShowModal() )
@@ -1051,7 +1051,7 @@ bool MainUiFrame::AskUserForSaveModification()
 				break;
 
 			default:
-				wxLogError(_("Unexpected Dialog response return !"));
+				wxLogError(wxGetTranslation("Unexpected Dialog response return !"));
 				return false;
 		}
 	}else{
@@ -1061,7 +1061,7 @@ bool MainUiFrame::AskUserForSaveModification()
 
 void MainUiFrame::OnSaveProjectCopy(wxCommandEvent& event)
 {
-	wxFileDialog saveFileDialog( this, _("Save copy of project"), "", "", "Projet (*.proj)|*.proj",
+	wxFileDialog saveFileDialog( this, wxGetTranslation("Save copy of project"), "", "", "Projet (*.proj)|*.proj",
 														wxFD_SAVE, wxDefaultPosition);
 
 	if (saveFileDialog.ShowModal() == wxID_OK)

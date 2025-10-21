@@ -59,7 +59,7 @@ public:
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_MATERIAL_CLOSE);
 		this->elementInfo.userDestroyable=true;
 		ignoreModification=false;
-		_("New material");
+		wxGetTranslation("New material");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;

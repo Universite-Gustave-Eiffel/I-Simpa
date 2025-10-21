@@ -305,8 +305,8 @@ GabeDataGrid::~GabeDataGrid()
 	if(modified && this->IsEditable())
 	{
 		//On propose à l'utilisateur de sauvegarder les modifications
-		wxMessageDialog dialog( NULL, _("Project has been modified. Save modifications?"),
-					_("Spreadsheet"), wxYES_DEFAULT|wxYES_NO|wxICON_INFORMATION);
+		wxMessageDialog dialog( NULL, wxGetTranslation("Project has been modified. Save modifications?"),
+					wxGetTranslation("Spreadsheet"), wxYES_DEFAULT|wxYES_NO|wxICON_INFORMATION);
 		wxCommandEvent cmdEvt;
 		switch ( dialog.ShowModal() )
 		{
@@ -335,14 +335,14 @@ void GabeDataGrid::SendRefreshFolderEvent()
 	if(ptDataWindow && ptDataWindow->GetParent())
 		wxPostEvent(ptDataWindow->GetParent(), eventUpdate);
 	else
-		wxLogMessage(_("Please, refresh root folder of the data tree")); //en attendant de pouvoir propager correctement l'évenement de réactualisation de l'arbre report
+		wxLogMessage(wxGetTranslation("Please, refresh root folder of the data tree")); //en attendant de pouvoir propager correctement l'évenement de réactualisation de l'arbre report
 
 }
 bool GabeDataGrid::AskUserWhereToSaveData(wxString& out_filePath)
 {
 
 	wxString DefautDir=ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath+ApplicationConfiguration::CONST_REPORT_FOLDER_PATH;
-	wxFileDialog saveFileDialog( this, _("Save document"), DefautDir, "Data sheet (*.gabe)|*.gabe|CSV  text file (*.csv)|*.csv", _("Data sheet (*.gabe)|*.gabe|CSV  text file (*.csv)|*.csv"),
+	wxFileDialog saveFileDialog( this, wxGetTranslation("Save document"), DefautDir, "Data sheet (*.gabe)|*.gabe|CSV  text file (*.csv)|*.csv", wxGetTranslation("Data sheet (*.gabe)|*.gabe|CSV  text file (*.csv)|*.csv"),
 														wxFD_SAVE, wxDefaultPosition);
 	
 	if (saveFileDialog.ShowModal() == wxID_OK)
@@ -396,13 +396,13 @@ void GabeDataGrid::OnEditRowOrCol(wxCommandEvent& event)
 	wxString curLabelVal;
 	if(event.GetId()==ID_RENAME_ROW_LABEL) //Editer la colonne
 	{
-		messInfo=_("Please, give the name of line");
+		messInfo=wxGetTranslation("Please, give the name of line");
 		curLabelVal=this->GetRowLabelValue(this->currentSelection.BottomRow);
 	}else{																//Editer la ligne
-		messInfo=_("Please, give the name of column");
+		messInfo=wxGetTranslation("Please, give the name of column");
 		curLabelVal=this->GetColLabelValue(this->currentSelection.LeftCol);
 	}
-	wxTextEntryDialog fenetreSaisieMessage(this,messInfo,_(APPLICATION_NAME),curLabelVal);
+	wxTextEntryDialog fenetreSaisieMessage(this,messInfo,wxGetTranslation(APPLICATION_NAME),curLabelVal);
 	if(fenetreSaisieMessage.ShowModal()==wxID_OK)
 	{
 		curLabelVal=fenetreSaisieMessage.GetValue();
@@ -445,7 +445,7 @@ void GabeDataGrid::OnCreateDocument(wxCommandEvent& event)
 	CopyUserSelectionToArrays(lblCols,lblRows,cells,cellsValue,true);
 	GabeDataGrid* newSubWindow= new GabeDataGrid(this,-1);
 	newSubWindow->LoadData(lblCols,lblRows,cells,cellsValue,&cellsAttr);
-	noteBookWin->AddPage(newSubWindow,_("New project"));
+	noteBookWin->AddPage(newSubWindow,wxGetTranslation("New project"));
 	noteBookWin->SetSelection(noteBookWin->GetPageCount()-1);
 	
 }
@@ -478,7 +478,7 @@ void GabeDataGrid::CopyUserSelectionToArrays(std::vector<wxString>& lblCols,std:
 			}else if(!this->GetCellValue(row,col).ToDouble(&valCell))
 			{
 				//Impossible de convertir
-				wxLogError(_("Value %s can't be converted to decimal number"),this->GetCellValue(row,col));
+				wxLogError(wxGetTranslation("Value %s can't be converted to decimal number"),this->GetCellValue(row,col));
 			}			
 			cellsValue[(zeroBaseCol*lblRows.size())+zeroBaseRow]=valCell;
 			if(initStringCells)
@@ -492,7 +492,7 @@ void GabeDataGrid::OnBuildDiagram(wxCommandEvent& event)
 {
 	//Ouverture de l'interface de création de graphique
 	//Création du dialogue
-	BuildGraphSheetDialog* sgCreatorDialog=new BuildGraphSheetDialog(this,this->m_parent,wxID_ANY,_("New diagram"));
+	BuildGraphSheetDialog* sgCreatorDialog=new BuildGraphSheetDialog(this,this->m_parent,wxID_ANY,wxGetTranslation("New diagram"));
 
 	wxFileName folderExtractor(filePath);
 	sgCreatorDialog->SetDataFolder(folderExtractor.GetPath());
@@ -520,8 +520,8 @@ void GabeDataGrid::DoFillMenu(wxGridEvent& ev,wxMenu* mainMenu)
 	if(RowsSelected>1 || ColsSelected>1)
 	{
 		mainMenu->AppendSeparator();
-		mainMenu->Append(ID_CREATE_DIAGRAM,_("New diagram"));
-		mainMenu->Append(ID_CREATE_DOCUMENT,_("Export to an editing spreadsheet"));
+		mainMenu->Append(ID_CREATE_DIAGRAM,wxGetTranslation("New diagram"));
+		mainMenu->Append(ID_CREATE_DOCUMENT,wxGetTranslation("Export to an editing spreadsheet"));
 	}
 	if(this->IsEditable() && (RowsSelected==1 || ColsSelected==1))
 	{
@@ -530,28 +530,28 @@ void GabeDataGrid::DoFillMenu(wxGridEvent& ev,wxMenu* mainMenu)
 		if(RowsSelected==1)
 		{
 			wxMenu* addRowMenu=new wxMenu();
-			addRowMenu->Append(ID_INSERT_NEW_ROW_BEFORE,_("Before"));
-			addRowMenu->Append(ID_INSERT_NEW_ROW_AFTER,_("After"));
-			mainMenu->AppendSubMenu(addRowMenu,_("Insert new line"));
-			mainMenu->Append(ID_DELETE_ROW,_("Delete line"));
-			mainMenu->Append(ID_RENAME_ROW_LABEL,_("Edit line properties"));
+			addRowMenu->Append(ID_INSERT_NEW_ROW_BEFORE,wxGetTranslation("Before"));
+			addRowMenu->Append(ID_INSERT_NEW_ROW_AFTER,wxGetTranslation("After"));
+			mainMenu->AppendSubMenu(addRowMenu,wxGetTranslation("Insert new line"));
+			mainMenu->Append(ID_DELETE_ROW,wxGetTranslation("Delete line"));
+			mainMenu->Append(ID_RENAME_ROW_LABEL,wxGetTranslation("Edit line properties"));
 		}
 		if(ColsSelected==1 && RowsSelected==1)			
 			mainMenu->AppendSeparator();
 		if(ColsSelected==1)
 		{
 			wxMenu* addColMenu=new wxMenu();
-			addColMenu->Append(ID_INSERT_NEW_COL_BEFORE,_("Before"));
-			addColMenu->Append(ID_INSERT_NEW_COL_AFTER,_("After"));
-			mainMenu->AppendSubMenu(addColMenu,_("Insert new column"));
-			mainMenu->Append(ID_DELETE_COL,_("Delete column"));
-			mainMenu->Append(ID_RENAME_COL_LABEL,_("Edit column properties"));
+			addColMenu->Append(ID_INSERT_NEW_COL_BEFORE,wxGetTranslation("Before"));
+			addColMenu->Append(ID_INSERT_NEW_COL_AFTER,wxGetTranslation("After"));
+			mainMenu->AppendSubMenu(addColMenu,wxGetTranslation("Insert new column"));
+			mainMenu->Append(ID_DELETE_COL,wxGetTranslation("Delete column"));
+			mainMenu->Append(ID_RENAME_COL_LABEL,wxGetTranslation("Edit column properties"));
 		}
 	}
 	mainMenu->AppendSeparator();
 	if(this->IsEditable())
-		mainMenu->Append(ID_SAVE,_("Save data"));
-	mainMenu->Append(ID_SAVE_AS,_("Save data as..."));
+		mainMenu->Append(ID_SAVE,wxGetTranslation("Save data"));
+	mainMenu->Append(ID_SAVE_AS,wxGetTranslation("Save data as..."));
 }
 void GabeDataGrid::LockUserUpdate(bool readOnly)
 {
@@ -618,7 +618,7 @@ void GabeDataGrid::SaveDataCSV(wxString csvFilePath)
 	outfile.Create();
 	if(!wxFileExists(csvFilePath))
 	{
-		wxLogError(_("Unable to write this file with this destination folder!"));
+		wxLogError(wxGetTranslation("Unable to write this file with this destination folder!"));
 		return;
 	}
 	wxString lineOfText;
@@ -670,7 +670,7 @@ void GabeDataGrid::LoadData(wxString gabeFilePath)
 			this->InsertRows(0,gabeData->GetSize());
 			for(int idrow=0;idrow<gabeData->GetSize();idrow++)
 			{
-				this->SetRowLabelValue(idrow, _(gabeData->GetStringEquiv(idrow)));
+				this->SetRowLabelValue(idrow, wxGetTranslation(gabeData->GetStringEquiv(idrow)));
 				AutoSizeLibelle(idrow);
 			}
 		}else{
@@ -730,7 +730,7 @@ void GabeDataGrid::LoadData(wxString gabeFilePath)
 			}
 		}
 	}else{
-		wxLogError(_("Corrupted file or file doesn't exist"));
+		wxLogError(wxGetTranslation("Corrupted file or file doesn't exist"));
 	}
 	//Redimensionnement
 	AutoSizeColumns(false);	

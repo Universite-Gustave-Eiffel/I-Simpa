@@ -44,7 +44,7 @@
  *
  * A chaque fois qu'une chaîne de texte sera visible par l'utilisateur il faut l'entourer d'une méthode globale comme ceci :
  *
- * \skipline printf(_("Message
+ * \skipline printf(wxGetTranslation("Message
  *
  * \section warningtraductionTuto Attention
  * 

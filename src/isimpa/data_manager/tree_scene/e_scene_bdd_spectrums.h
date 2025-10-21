@@ -49,7 +49,7 @@ public:
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_ROOT_SPECTRUMS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_ROOT_SPECTRUMS_CLOSE);
-		_("Spectrum");
+		wxGetTranslation("Spectrum");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;

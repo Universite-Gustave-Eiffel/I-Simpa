@@ -164,11 +164,11 @@ void MainPropGrid::OnBuildDiagram(wxCommandEvent& event)
 		wxWindowUpdateLocker noUpdates(newWindow); //Bloque la mise à jour de l'affichage	
 		
 		currentManager->AddPane(newWindow, wxAuiPaneInfo().
-				Caption(_("Spreadsheet")+wxString(" - ")+CurrentElement->GetElementInfos().libelleElement).FloatingSize(300,200)
+				Caption(wxGetTranslation("Spreadsheet")+wxString(" - ")+CurrentElement->GetElementInfos().libelleElement).FloatingSize(300,200)
 					  .Float().CloseButton(true).MaximizeButton(true).DestroyOnClose(true));
 
 		//Création du dialogue
-		BuildGraphSheetDialog* sgCreatorDialog=new BuildGraphSheetDialog(this->GetParent(),newWindow,wxID_ANY,_("New diagram"));
+		BuildGraphSheetDialog* sgCreatorDialog=new BuildGraphSheetDialog(this->GetParent(),newWindow,wxID_ANY,wxGetTranslation("New diagram"));
 		//Ajout des données séléctionnées
 		std::vector<wxString> lblCols(currentSelection.RightCol-currentSelection.LeftCol+1);
 		std::vector<wxString> lblRows(currentSelection.BottomRow-currentSelection.TopRow+1);
@@ -203,7 +203,7 @@ void MainPropGrid::DoFillMenu(wxGridEvent& ev,wxMenu* mainMenu)
 	if((currentSelection.BottomRow-currentSelection.TopRow>=1) || (currentSelection.RightCol-currentSelection.LeftCol>=1))
 	{
 		mainMenu->AppendSeparator();
-		mainMenu->Append(ID_CREATE_DIAGRAM,_("New diagram"));
+		mainMenu->Append(ID_CREATE_DIAGRAM,wxGetTranslation("New diagram"));
 	}
 }
 void MainPropGrid::CloseElement()
@@ -217,7 +217,7 @@ void MainPropGrid::CloseElement()
 			this->DeleteRows(0,this->GetNumberRows());
 		if(this->GetNumberCols()>1)
 			this->DeleteCols(0,this->GetNumberCols()-1);
-		this->SetColLabelValue(0,_("Value"));
+		this->SetColLabelValue(0,wxGetTranslation("Value"));
 		this->SetRowLabelSize(30);
 		CurrentElement=NULL;
 		this->SetRowLabelAlignment(wxVERTICAL,wxALIGN_LEFT);
@@ -273,7 +273,7 @@ void MainPropGrid::LoadElement(Element* elementToShowProp)
 				}
 				catch( ... )
 				{
-					wxLogDebug(_("Error in loading properties"));
+					wxLogDebug(wxGetTranslation("Error in loading properties"));
 					break;
 				}
 			}

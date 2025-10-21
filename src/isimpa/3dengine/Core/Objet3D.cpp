@@ -1193,7 +1193,7 @@ bool CObjet3D::_LoadBIN(const std::string& filename)
 	}
 	catch(...)
 	{
-		wxLogWarning(_("Unable to load this format"));
+		wxLogWarning(wxGetTranslation("Unable to load this format"));
 		return false;
 	}
 

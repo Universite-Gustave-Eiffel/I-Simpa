@@ -66,7 +66,7 @@ E_Scene_Volumes::E_Scene_Volumes( Element* parent)
 {
 	SetIcon(GRAPH_STATE_EXPANDED,GRAPH_VOLUMES_OPEN);
 	SetIcon(GRAPH_STATE_NORMAL,GRAPH_VOLUMES_CLOSE);
-	_("Volumes");
+	wxGetTranslation("Volumes");
 }
 
 
@@ -95,7 +95,7 @@ wxXmlNode* E_Scene_Volumes::SaveXMLDoc(wxXmlNode* NoeudParent)
 }
 void E_Scene_Volumes::OnRightClic(wxMenu* leMenu)
 {
-	leMenu->Append(GetMenuItem(leMenu,IDEVENT_NEW_VOLUME, _("Create a volume"),"./Bitmaps/popup_new.png"));
-	leMenu->Append(GetMenuItem(leMenu,IDEVENT_BUILD_VOLUMES_FROM_TRIMESH, _("Volume auto-detect"),"./Bitmaps/popup_new.png"));
+	leMenu->Append(GetMenuItem(leMenu,IDEVENT_NEW_VOLUME, wxGetTranslation("Create a volume"),"./Bitmaps/popup_new.png"));
+	leMenu->Append(GetMenuItem(leMenu,IDEVENT_BUILD_VOLUMES_FROM_TRIMESH, wxGetTranslation("Volume auto-detect"),"./Bitmaps/popup_new.png"));
 	Element::OnRightClic(leMenu);
 }

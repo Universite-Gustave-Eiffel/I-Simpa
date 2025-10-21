@@ -85,7 +85,7 @@ public:
 		}
 	}
 
-	E_Scene_Sources_Source( Element* parent,wxString nom=wxString::Format(_("Source %i"),ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Sources+1))
+	E_Scene_Sources_Source( Element* parent,wxString nom=wxString::Format(wxGetTranslation("Source %i"),ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Sources+1))
 		:E_Drawable(parent,nom,Element::ELEMENT_TYPE_SCENE_SOURCES_SOURCE)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_SOUND_SOURCE_OPEN);

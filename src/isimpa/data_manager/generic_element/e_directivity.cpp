@@ -82,7 +82,7 @@ E_Directivity::E_Directivity(Element* parent, wxString Nom, ELEMENT_TYPE _type, 
 						currentChild->DeleteAttribute("label");
 						currentChild->AddAttribute("label", wxTRANSLATE("Directivity file"));
 					}
-					E_Data_File* dirFile = new E_Data_File(currentChild, this, storageFolder.GetPath(), _("Open loudspeaker file"), _("TXT files (*.TXT)|*.TXT"));
+					E_Data_File* dirFile = new E_Data_File(currentChild, this, storageFolder.GetPath(), wxGetTranslation("Open loudspeaker file"), wxGetTranslation("TXT files (*.TXT)|*.TXT"));
 					this->AppendFils(dirFile);
 				}
 			}
@@ -117,7 +117,7 @@ void E_Directivity::InitProperties()
 	{
 		storageFolder.Mkdir();
 	}
-	this->AppendPropertyFile("file", wxTRANSLATE("Directivity file"), storageFolder.GetPath(), _("Open loudspeaker file"), _("TXT files (*.TXT)|*.TXT"));
+	this->AppendPropertyFile("file", wxTRANSLATE("Directivity file"), storageFolder.GetPath(), wxGetTranslation("Open loudspeaker file"), wxGetTranslation("TXT files (*.TXT)|*.TXT"));
 	this->AppendPropertyText("description", wxTRANSLATE("Description"), "");
 }
 

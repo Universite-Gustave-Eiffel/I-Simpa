@@ -53,7 +53,7 @@ public:
 	{
 		
 		this->elementInfo.userDestroyable=true;
-		_("User spectrum");
+		wxGetTranslation("User spectrum");
 	}
 
 	E_GammeFrequence_User( Element* parent)

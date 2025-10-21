@@ -53,9 +53,9 @@ private:
 	void InitProperties()
 	{
 		this->AppendPropertyText(wxT("description"),wxT("Description"),wxT(""));
-		_("Description");
+		wxGetTranslation("Description");
 		this->AppendPropertyBool(wxT("useforcalculation"),wxT("Active fitting zone"),true);
-		_("Active fitting zone");
+		wxGetTranslation("Active fitting zone");
 	}
 public:
 	E_Scene_Encombrements_Encombrement_Proprietes( wxXmlNode* noeudCourant ,  Element* parent)
@@ -63,7 +63,7 @@ public:
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
 		ignore_count_change=false;
-		_("Properties");
+		wxGetTranslation("Properties");
 		ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Encombrement++;
 		if(this->GetBoolConfig("useforcalculation"))
 			ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Encombrement_Actifs++;

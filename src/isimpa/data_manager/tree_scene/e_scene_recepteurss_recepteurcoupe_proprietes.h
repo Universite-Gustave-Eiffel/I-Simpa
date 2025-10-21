@@ -59,7 +59,7 @@ public:
 		:Element(parent,"Properties",Element::ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEURCOUPE_PROPRIETES,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
-		_("Properties");
+		wxGetTranslation("Properties");
 		if(!this->IsPropertyExist("enabled"))
 			AddActiveProp();
 		// Change property label #148

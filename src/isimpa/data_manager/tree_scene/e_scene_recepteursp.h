@@ -49,7 +49,7 @@ public:
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_PUNCTUAL_RECEIVERS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_PUNCTUAL_RECEIVERS_CLOSE);
 		insertPasteMenu=true;
-		_("Punctual receivers");
+		wxGetTranslation("Punctual receivers");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;
@@ -95,7 +95,7 @@ public:
 					wxString recpName;
 					currentChild->GetAttribute("name",&recpName);
 					currentChild->DeleteAttribute("name");
-					currentChild->AddAttribute("name",wxString::Format(_("Copy of %s"),recpName));
+					currentChild->AddAttribute("name",wxString::Format(wxGetTranslation("Copy of %s"),recpName));
 					this->AppendFils(new E_Scene_Recepteursp_Recepteur(currentChild,this))->ForceBottomModified();
 					somethingAdded=true;
 				}else if(typeEle==Element::ELEMENT_TYPE_SCENE_RECEPTEURSP)
@@ -103,7 +103,7 @@ public:
 					wxString recpName;
 					currentChild->GetAttribute("name",&recpName);
 					currentChild->DeleteAttribute("name");
-					currentChild->AddAttribute("name",wxString::Format(_("Copy of %s"),recpName));
+					currentChild->AddAttribute("name",wxString::Format(wxGetTranslation("Copy of %s"),recpName));
 					E_Scene_Recepteursp* newel=new E_Scene_Recepteursp(currentChild,this);
 					newel->SetUserGroup();
 					newel->ForceBottomModified();
@@ -191,8 +191,8 @@ public:
 	}
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_RECEPTEUR_P, _("New receiver"),"./Bitmaps/popup_new.png"));
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_RECEPTEURP_GROUP, _("New group"),"./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_RECEPTEUR_P, wxGetTranslation("New receiver"),"./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_RECEPTEURP_GROUP, wxGetTranslation("New group"),"./Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 

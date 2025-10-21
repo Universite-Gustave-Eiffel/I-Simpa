@@ -140,7 +140,7 @@ void uiTreeCtrl::InitTree()
 
 	wxString ressourceFolder=ApplicationConfiguration::getResourcesFolder();
 	wxImageList *imglist = new wxImageList(16, 16, true, 2);
-	wxASSERT_MSG((bool)wxDirExists(ressourceFolder), _("I-SIMPA resource folder does not exists"));
+	wxASSERT_MSG((bool)wxDirExists(ressourceFolder), wxGetTranslation("I-SIMPA resource folder does not exists"));
 
 	for(std::size_t graph_id=0;graph_id<Element::GRAPH_LAST_STATIC_GRAPH;graph_id++)
 	{
@@ -542,7 +542,7 @@ void uiTreeCtrl::AddElement(Element* newElement)
 	if(!elementInfo.idParent.IsOk() && (this->GetWindowStyle() & wxTR_HIDE_ROOT) != 0)
 		idElement=this->AddRoot("root");
 	else
-		idElement=this->AppendItem(elementInfo.idParent,_(newElement->GetTreeLabel()),elementInfo.graphElement,-1,new ElementLinkWithTree(newElement));
+		idElement=this->AppendItem(elementInfo.idParent,wxGetTranslation(newElement->GetTreeLabel()),elementInfo.graphElement,-1,new ElementLinkWithTree(newElement));
 
 	this->SetItemImage(idElement,elementInfo.graphElementStateOpen,wxTreeItemIcon_Expanded);
 	this->SetItemImage(idElement,elementInfo.graphElement,wxTreeItemIcon_Normal);

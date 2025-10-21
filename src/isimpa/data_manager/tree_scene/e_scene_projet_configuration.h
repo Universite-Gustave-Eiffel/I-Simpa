@@ -45,7 +45,7 @@ public:
 		:Element(parent,"Configuration",Element::ELEMENT_TYPE_SCENE_PROJET_CONFIGURATION,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
-		_("Configuration");
+		wxGetTranslation("Configuration");
 		if(this->GetStringConfig("urlmodel")==wxString("current")+wxFileName::GetPathSeparator()+"sceneMesh.bin") //maj version 1.0.3
 			this->UpdateStringConfig("urlmodel","sceneMesh.bin");
 	}
@@ -62,9 +62,9 @@ public:
 	void InitProperties()
 	{
 		this->AppendPropertyText("urlmodel","Fichier de modèle","",true);
-		_("Scene file"); //Pour generer les fichiers de langues
+		wxGetTranslation("Scene file"); //Pour generer les fichiers de langues
 		this->AppendPropertyText("urlsave","Fichier de sauvegarde","",true);
-		_("Backup file");
+		wxGetTranslation("Backup file");
 	}
 
 	void FillWxTree(wxTreeCtrl* treeToFeed,const wxTreeItemId& parentId)

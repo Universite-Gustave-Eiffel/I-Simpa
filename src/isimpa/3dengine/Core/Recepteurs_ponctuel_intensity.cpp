@@ -51,7 +51,7 @@ RecepteursPControler::~RecepteursPControler()
 }
 wxString RecepteursPControler::GetRendererLabel()
 {
-	return _("Intensity");
+	return wxGetTranslation("Intensity");
 }
 
 void RecepteursPControler::RedrawLegend()
@@ -74,7 +74,7 @@ void RecepteursPControler::RedrawLegend()
 		fileLegend->SetFont( this->legendFont );
 		fileLegend->SetTextForeground(this->text_foreground_color);
 		fileLegend->SetTextBackground(this->text_background_color);
-		fileLegend->InitText(_("Intensity : ")+pathLoadedFile,35);
+		fileLegend->InitText(wxGetTranslation("Intensity : ")+pathLoadedFile,35);
 
 
 		if(!this->p_legends.currentFile)

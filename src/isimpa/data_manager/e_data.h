@@ -129,7 +129,7 @@ public:
 		if(this->elementInfo.libelleElement.IsNumber())
 			return this->elementInfo.libelleElement;
 		else
-			return add+_(propertyLabel);
+			return add+wxGetTranslation(propertyLabel);
 	}
 	/**
 	 * Passe la valeur de cet élément dans la grille de données
@@ -139,7 +139,7 @@ public:
 	virtual void FillWxGrid(wxGrid* gridToFeed,int col=0)
 	{
 		int row=gridToFeed->GetNumberRows()-1;
-		gridToFeed->SetRowLabelValue(row,_(propertyLabel));
+		gridToFeed->SetRowLabelValue(row,wxGetTranslation(propertyLabel));
 		if(hSize>gridToFeed->GetNumberCols())
 			gridToFeed->AppendCols(hSize-gridToFeed->GetNumberCols());
 		if(col>=0)
@@ -177,7 +177,7 @@ public:
 	 */
 	virtual wxString GetPropertyLabel()
 	{
-		return _(propertyLabel);
+		return wxGetTranslation(propertyLabel);
 	}
 
 	/**
@@ -247,7 +247,7 @@ public:
 						*ok = true;
 					return value;
 				} else {
-					wxLogError(_("Cannot convert string \"%s\" to decimal number"), sval);
+					wxLogError(wxGetTranslation("Cannot convert string \"%s\" to decimal number"), sval);
 					if (ok)
 						*ok = false;
 					return 0.f;				

@@ -122,7 +122,7 @@ public:
 
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu, Element::IDEVENT_NEW_USERDIRECTIV, _("New directivity"), "./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu, Element::IDEVENT_NEW_USERDIRECTIV, wxGetTranslation("New directivity"), "./Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 

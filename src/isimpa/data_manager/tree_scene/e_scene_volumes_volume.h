@@ -94,21 +94,21 @@ public:
 		}
 	}
 
-	E_Scene_Volumes_Volume( Element* parent,const wxString& nom=wxString::Format(_("Volume %i"),ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Volumes+1))
+	E_Scene_Volumes_Volume( Element* parent,const wxString& nom=wxString::Format(wxGetTranslation("Volume %i"),ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Volumes+1))
 		:E_Drawable(parent,nom,Element::ELEMENT_TYPE_SCENE_VOLUMES_VOLUME)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_VOLUME_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_VOLUME_CLOSE);
 		ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Volumes++;
 		this->elementInfo.userDestroyable=true;
-		_("Volume boundary");
+		wxGetTranslation("Volume boundary");
 		this->AppendFils(new E_Scene_Volumes_Volume_Proprietes(this));
 		this->AppendFils(new E_Scene_Volumes_Volume_Rendu(this));
 		this->AppendFils(new E_Scene_Groupesurfaces_Groupe(this,"Volume boundary",true));
 		this->AppendPropertyPosition("volpos","Inside position",vec3(),true);
 		this->AppendPropertyInteger("idvol","idvol",GetFreeId(parent),true)->Hide();
 
-		_("Inside position");
+		wxGetTranslation("Inside position");
 	}
 
 	~E_Scene_Volumes_Volume()
@@ -194,7 +194,7 @@ public:
 
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_CONVERT_VOL_TO_FITTING, _("Convert to fitting")));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_CONVERT_VOL_TO_FITTING, wxGetTranslation("Convert to fitting")));
 		Element::OnRightClic(leMenu);
 	}
 

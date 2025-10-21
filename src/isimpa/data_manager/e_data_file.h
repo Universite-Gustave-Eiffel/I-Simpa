@@ -106,7 +106,7 @@ public:
 		E_Data::FillWxGrid(gridToFeed, col);
 		int row = gridToFeed->GetNumberRows() - 1;
 		gridToFeed->SetCellEditor(row, col, new wxGridCellFileEditor(dialogTitle, fileExtension));
-		gridToFeed->SetCellValue(row, col, file.IsOk() ? file.GetFullName() : _("Choose a file"));
+		gridToFeed->SetCellValue(row, col, file.IsOk() ? file.GetFullName() : wxGetTranslation("Choose a file"));
 	}
 
 	void SetValue(const wxString& newFilePath)

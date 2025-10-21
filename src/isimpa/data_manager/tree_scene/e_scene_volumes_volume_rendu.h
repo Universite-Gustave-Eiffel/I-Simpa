@@ -46,7 +46,7 @@ public:
 		:Element(parent,"Display",Element::ELEMENT_TYPE_SCENE_VOLUMES_VOLUME_RENDU,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_3D_DISPLAY);
-		_("Display");
+		wxGetTranslation("Display");
 	}
 
 	E_Scene_Volumes_Volume_Rendu( Element* parent)
@@ -54,7 +54,7 @@ public:
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_3D_DISPLAY);
 		this->AppendPropertyColor("volcolor","Domain color",GetRandValue()*255,GetRandValue()*255,GetRandValue()*255);
-		_("Domain color");
+		wxGetTranslation("Domain color");
 	}
 
 	

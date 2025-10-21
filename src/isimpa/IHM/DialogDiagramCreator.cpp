@@ -107,7 +107,7 @@ BuildGraphSheetDialog::BuildGraphSheetDialog(wxWindow* parent,wxWindow* auiNoteb
 
     wxPanel* generalSettings = CreateMainSettingsPage(notebook);
 
-    notebook->AddPage(generalSettings, _("Configuration"), true);
+    notebook->AddPage(generalSettings, wxGetTranslation("Configuration"), true);
 
     LayoutDialog();
 
@@ -150,22 +150,22 @@ wxPanel* BuildGraphSheetDialog::CreateMainSettingsPage(wxWindow* parent)
     wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
     wxBoxSizer *topSizer = new wxBoxSizer( wxVERTICAL );
 
-	topSizer->Add(new wxStaticText(panel,wxID_ANY,_("Tab name:")),0,wxALL,2);
-	topSizer->Add(new wxTextCtrl(panel,ID_PANEL_CONTROL_TAB_LABEL,_("User diagram")),0,wxALL,2);
-	topSizer->Add(new wxStaticText(panel,wxID_ANY,_("Name of X axis")),0,wxALL,2);
+	topSizer->Add(new wxStaticText(panel,wxID_ANY,wxGetTranslation("Tab name:")),0,wxALL,2);
+	topSizer->Add(new wxTextCtrl(panel,ID_PANEL_CONTROL_TAB_LABEL,wxGetTranslation("User diagram")),0,wxALL,2);
+	topSizer->Add(new wxStaticText(panel,wxID_ANY,wxGetTranslation("Name of X axis")),0,wxALL,2);
 	topSizer->Add(new wxTextCtrl(panel,ID_PANEL_CONTROL_X_AXIS_LABEL,""),0,wxALL,2);
-	topSizer->Add(new wxStaticText(panel,wxID_ANY,_("Name of Y axis")),0,wxALL,2);
+	topSizer->Add(new wxStaticText(panel,wxID_ANY,wxGetTranslation("Name of Y axis")),0,wxALL,2);
 	topSizer->Add(new wxTextCtrl(panel,ID_PANEL_CONTROL_Y_AXIS_LABEL,""),0,wxALL,2);
 	wxArrayString radioChoice;
-	radioChoice.Add(_("Column"));
-	radioChoice.Add(_("Lines"));
-	topSizer->Add(new wxRadioBox(panel,ID_PANEL_CONTROL_RADIO_DATA,_("Data alignment"),wxDefaultPosition,wxDefaultSize,radioChoice), 0, wxGROW|wxTOP, 2);
-	topSizer->Add(new wxStaticText(panel,wxID_ANY,_("Label:")),0,wxALL,2);
-	wxCheckBox* convertCheck=new wxCheckBox(panel,ID_PANEL_CONTROL_CHECK_CONVERTX_INTO_NUMBER,_("Text label for X"));
+	radioChoice.Add(wxGetTranslation("Column"));
+	radioChoice.Add(wxGetTranslation("Lines"));
+	topSizer->Add(new wxRadioBox(panel,ID_PANEL_CONTROL_RADIO_DATA,wxGetTranslation("Data alignment"),wxDefaultPosition,wxDefaultSize,radioChoice), 0, wxGROW|wxTOP, 2);
+	topSizer->Add(new wxStaticText(panel,wxID_ANY,wxGetTranslation("Label:")),0,wxALL,2);
+	wxCheckBox* convertCheck=new wxCheckBox(panel,ID_PANEL_CONTROL_CHECK_CONVERTX_INTO_NUMBER,wxGetTranslation("Text label for X"));
 	topSizer->Add(convertCheck,0,wxALL,2);
-	convertCheck->SetToolTip(_("In text mode, X data are regularly spaced (unit step)")
-		+wxString(_("If this field is not activated, label are converted in numbers and applied on the X axis")));
-	topSizer->Add(new wxStaticText(panel,wxID_ANY,_("Default style")),0,wxALL,2);
+	convertCheck->SetToolTip(wxGetTranslation("In text mode, X data are regularly spaced (unit step)")
+		+wxString(wxGetTranslation("If this field is not activated, label are converted in numbers and applied on the X axis")));
+	topSizer->Add(new wxStaticText(panel,wxID_ANY,wxGetTranslation("Default style")),0,wxALL,2);
 	wxComboBox* lstStyles=new wxComboBox(panel,ID_PANEL_CONTROL_SELECT_DEFAULT_STYLE,"",wxDefaultPosition, wxDefaultSize, 0, NULL, wxCB_READONLY | wxCB_DROPDOWN );
 	topSizer->Add(lstStyles,0,wxALL,2);
 	FillComboBox(lstStyles,&drawingMethodStyles);

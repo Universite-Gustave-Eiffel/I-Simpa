@@ -198,7 +198,7 @@ public:
 				{
 					unsigned int nbpasdetemps=elConf->GetDecimalConfig("duree_simulation")/elConf->GetDecimalConfig("pasdetemps");
 					unsigned int total_data=nbpartrendu*nbpasdetemps*sizeof(float)*4*ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_Sources_Actives;
-					wxLogWarning(_("The size of the particle file, for each frequency band, is around %.2f Mo"),float(total_data)/pow(10.f,6.f));
+					wxLogWarning(wxGetTranslation("The size of the particle file, for each frequency band, is around %.2f Mo"),float(total_data)/pow(10.f,6.f));
 				}
 			}else if(filsInfo.libelleElement=="computation_method")
 			{

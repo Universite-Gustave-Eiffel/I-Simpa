@@ -49,7 +49,7 @@ public:
 		
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_FITTINGS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_FITTINGS_CLOSE);
-		_("Fitting zone");
+		wxGetTranslation("Fitting zone");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;
@@ -106,8 +106,8 @@ public:
 
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_ENCOMBREMENT, _("Define scene fitted zone "),"./Bitmaps/popup_new.png"));
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_ENCOMBREMENT_CUBOIDE, _("Define rectangular fitted zone"),"./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_ENCOMBREMENT, wxGetTranslation("Define scene fitted zone "),"./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_ENCOMBREMENT_CUBOIDE, wxGetTranslation("Define rectangular fitted zone"),"./Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 

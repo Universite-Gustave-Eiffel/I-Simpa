@@ -113,45 +113,45 @@ sceneLoadOptionDialog::sceneLoadOptionDialog(wxWindow *parent,
 
 	// Import unit choice
 	wxArrayString choices;
-	choices.push_back(_("Metric (meters)"));
-	choices.push_back(_("Metric (centimeters)"));
-	choices.push_back(_("Metric (millimeters)"));
-	choices.push_back(_("Imperial (feet)"));
-	choices.push_back(_("Imperial (inches)"));
+	choices.push_back(wxGetTranslation("Metric (meters)"));
+	choices.push_back(wxGetTranslation("Metric (centimeters)"));
+	choices.push_back(wxGetTranslation("Metric (millimeters)"));
+	choices.push_back(wxGetTranslation("Imperial (feet)"));
+	choices.push_back(wxGetTranslation("Imperial (inches)"));
 	choice_ModelImportUnit = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, choices);
-	choice_ModelImportUnit->SetToolTip(_("Unit used in this file, I-Simpa will convert it to meters"));
+	choice_ModelImportUnit->SetToolTip(wxGetTranslation("Unit used in this file, I-Simpa will convert it to meters"));
 	choice_ModelImportUnit->SetSelection(0);
 	topsizer->Add(choice_ModelImportUnit, 0, wxLEFT | wxTOP, 5);
 
-	cb_RemeshModel = new wxCheckBox(this,SL_CTRLS_ID_CHECKBOX_REMESH_MODEL,_("Average model remesh"));
-	cb_RemeshModel->SetToolTip(_("With this option you are able to remesh the input model to make it compatible with all calculation core. Use this option as a last resort"));
+	cb_RemeshModel = new wxCheckBox(this,SL_CTRLS_ID_CHECKBOX_REMESH_MODEL,wxGetTranslation("Average model remesh"));
+	cb_RemeshModel->SetToolTip(wxGetTranslation("With this option you are able to remesh the input model to make it compatible with all calculation core. Use this option as a last resort"));
 	cb_RemeshModel->SetValue(false);
 	topsizer->Add(cb_RemeshModel,0,wxLEFT | wxTOP, 5);
 	//Choice of model correction field
-	cb_TryToRepairMesh = new wxCheckBox(this,wxID_ANY,_("Repair model"));
-	cb_TryToRepairMesh->SetToolTip(_("If this option is activated, the scene will be imported with a correction process to improve compatibility with the mesh generator"));
+	cb_TryToRepairMesh = new wxCheckBox(this,wxID_ANY,wxGetTranslation("Repair model"));
+	cb_TryToRepairMesh->SetToolTip(wxGetTranslation("If this option is activated, the scene will be imported with a correction process to improve compatibility with the mesh generator"));
 	cb_TryToRepairMesh->SetValue(true);
 	topsizer->Add(cb_TryToRepairMesh,0,wxLEFT | wxTOP,5);
 	//surface mesh field choice 
-	cb_TryToMeshSurface = new wxCheckBox(this,SL_CTRLS_ID_CHECKBOX_SURFACE_MESH,_("Surface meshing"));
-	cb_TryToMeshSurface->SetToolTip(_("Faces of the scene will be meshed in order to enhance the resolution of the surface receivers display"));
+	cb_TryToMeshSurface = new wxCheckBox(this,SL_CTRLS_ID_CHECKBOX_SURFACE_MESH,wxGetTranslation("Surface meshing"));
+	cb_TryToMeshSurface->SetToolTip(wxGetTranslation("Faces of the scene will be meshed in order to enhance the resolution of the surface receivers display"));
 	topsizer->Add(cb_TryToMeshSurface,0,wxLEFT | wxTOP,5);
 	// Tetgen settings field
-	vinputsizer->Add( new wxStaticText( this, wxID_ANY, _("TetGen parameters") ), 0);
+	vinputsizer->Add( new wxStaticText( this, wxID_ANY, wxGetTranslation("TetGen parameters") ), 0);
 	txt_ParamMesh = new wxTextCtrl(this,wxID_ANY,defaultMeshParams);
 	txt_ParamMesh->Disable();
 	cb_TryToMeshSurface->SetValue(false);
 	vinputsizer->Add( txt_ParamMesh,0,wxGROW| wxALL,1);
 	topsizer->Add( vinputsizer, 0, wxEXPAND | wxLEFT, 20);
 	// Scope of choice for the conservation of face allocation to groups
-	cb_KeepExistingFaceLinks = new wxCheckBox(this,SL_CTRLS_ID_CHECKBOX_RESTOREGROUPS,_("Keep existing groups"));
+	cb_KeepExistingFaceLinks = new wxCheckBox(this,SL_CTRLS_ID_CHECKBOX_RESTOREGROUPS,wxGetTranslation("Keep existing groups"));
 	cb_KeepExistingFaceLinks->SetValue(true);
-	cb_KeepExistingFaceLinks->SetToolTip(_("New faces with the same position than old faces keep materials and surface receivers"));
+	cb_KeepExistingFaceLinks->SetToolTip(wxGetTranslation("New faces with the same position than old faces keep materials and surface receivers"));
 	topsizer->Add(cb_KeepExistingFaceLinks,0,wxLEFT | wxTOP,5);
 	// Epsilon field (merge of vertices)
-	vslidersizer->Add( new wxStaticText( this, wxID_ANY, _("Association maximum distance (m)") ), 0);
+	vslidersizer->Add( new wxStaticText( this, wxID_ANY, wxGetTranslation("Association maximum distance (m)") ), 0);
 	wxTextCtrl* sliderCtrl=new wxTextCtrl(this, SL_CTRLS_ID_COMBO_EPSILON, epsilonValue, wxDefaultPosition, wxDefaultSize, 0,wxTextValidator(wxFILTER_NUMERIC, &epsilonValue));
-	sliderCtrl->SetHelpText(_("Association maximum distance (m)"));
+	sliderCtrl->SetHelpText(wxGetTranslation("Association maximum distance (m)"));
 	vslidersizer->Add(sliderCtrl,0,wxGROW| wxALL,1);
 	topsizer->Add( vslidersizer, 0, wxEXPAND | wxLEFT, 20);
     // 3) buttons if any
@@ -180,7 +180,7 @@ bool sceneLoadOptionDialog::IsRemeshModel()
 void sceneLoadOptionDialog::OnOK(wxCommandEvent& event)
 {
 	if(GetEpsilonLinkingFaceGroup()<=0.f)
-		wxLogError(_("Epsilon must be higher than 0 meter"));
+		wxLogError(wxGetTranslation("Epsilon must be higher than 0 meter"));
     else
 		EndModal(wxID_OK);
 }
@@ -257,6 +257,6 @@ float sceneLoadOptionDialog::GetEpsilonLinkingFaceGroup()
 		if(epsilonCtrl->GetValue().ToDouble(&value))
 			return value;
 	}
-	wxLogError(_("Unable to read the epsilon value"));
+	wxLogError(wxGetTranslation("Unable to read the epsilon value"));
 	return 0.01f;
 }

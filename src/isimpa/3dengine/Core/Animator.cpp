@@ -74,7 +74,7 @@ void Animator::InitLegend(legendRendering::ForeGroundGlBitmap& _legendRenderer)
 }
 wxString Animator::GetRendererLabel()
 {
-	return _(this->GetRendererName());
+	return wxGetTranslation(this->GetRendererName());
 }
 const wxString& Animator::GetRendererName()
 {

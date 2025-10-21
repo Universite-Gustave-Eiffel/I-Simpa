@@ -67,15 +67,15 @@ bool GetFormulaEvaluation(const wxString& formula,double& evalResult)
   {
     try
 	{
-      	evalResult=extract_or_throw<double>(pyshell->eval(formula),WXSTRINGTOSTDWSTRING(_("The formula result must be a number")));
+      	evalResult=extract_or_throw<double>(pyshell->eval(formula),WXSTRINGTOSTDWSTRING(wxGetTranslation("The formula result must be a number")));
 	}catch( error_already_set ) {
-		wxLogError(_("Unable to solve the user's defined formula !"));
+		wxLogError(wxGetTranslation("Unable to solve the user's defined formula !"));
 		return false;
     }
 	catch( elementException elexc)
 	{
 
-		wxLogError(_("Unable to solve the user's defined formula :\n")+elexc.msg());
+		wxLogError(wxGetTranslation("Unable to solve the user's defined formula :\n")+elexc.msg());
 		return false;
 	}
 	//return pyshell->ins_pyelement(py_el,wxid,module,_pyclass);
@@ -176,15 +176,14 @@ void ProjectManager::ClearBatchParameters()
 }
 bool ProjectManager::GetParameter(const wxString& name,wxString& value)
 {
-	StringHash_wxImplementation_HashTable::iterator it=this->pyenventparams.find(name);
+	const auto it=this->pyenventparams.find(name);
 	if(it != this->pyenventparams.end())
 	{
 		value=it->second;
 		return true;
-	}else{
-		wxLogDebug(_("Python(TM) plugin event parameter %s not found"),name);
-		return false;
 	}
+	wxLogDebug(wxGetTranslation("Python(TM) plugin event parameter %s not found"),name);
+	return false;
 }
 
 PythonShell* ProjectManager::GetPythonShell()

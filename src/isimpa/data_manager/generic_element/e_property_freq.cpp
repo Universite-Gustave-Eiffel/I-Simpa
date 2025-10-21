@@ -51,7 +51,7 @@ E_Property_Freq::E_Property_Freq( wxXmlNode* noeudCourant ,  Element* parent)
 		SetIcon(GRAPH_STATE_ALL,GRAPH_SPECTRUM);
 		ignoreUpdate=false;
 		askReload=false;
-		_("Spectrum");
+		wxGetTranslation("Spectrum");
 		wxString propVal;
 		//Affecte la valeur de l'element
 
@@ -155,7 +155,7 @@ void E_Property_Freq::LoadLwFromBdd()
 		if(this_bfreq_rows.size()!=bfreq_rows.size())
 		{
 			if(this->pere)
-				wxLogWarning(_("Spectrum of element %s does not exist! Please, specify a valid spectrum"),this->pere->GetTreeLabel());
+				wxLogWarning(wxGetTranslation("Spectrum of element %s does not exist! Please, specify a valid spectrum"),this->pere->GetTreeLabel());
 			return;
 		}
 		BoolLocker lockUpdate(&this->ignoreUpdate,true);
@@ -175,7 +175,7 @@ void E_Property_Freq::LoadLwFromBdd()
 		SetGlobalLevel("lw",UserDefinedLwGlobal);
 	}else{
 		if(this->pere)
-			wxLogWarning(_("Spectrum of element %s does not exist! Please, specify a valid spectrum"),this->pere->GetTreeLabel());
+			wxLogWarning(wxGetTranslation("Spectrum of element %s does not exist! Please, specify a valid spectrum"),this->pere->GetTreeLabel());
 	}
 }
 void E_Property_Freq::CreateGlobalVal(float valDefault)
@@ -187,10 +187,10 @@ void E_Property_Freq::CreateGlobalVal(float valDefault)
 	nouvLigne->AppendPropertyDecimal("att","Attenuation",0,false,2);
 	nouvLigne->AppendPropertyDecimal("lw","Lw",0,false,2);
 	#if 0
-	_("Global");
-	_("dB(A)");
-	_("Attenuation");
-	_("Lw");
+	wxGetTranslation("Global");
+	wxGetTranslation("dB(A)");
+	wxGetTranslation("Attenuation");
+	wxGetTranslation("Lw");
 	#endif
 }
 

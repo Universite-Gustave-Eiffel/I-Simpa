@@ -78,16 +78,16 @@ bool ProjectManager::RunRemeshProcess(wxString fileToRemesh)
 
 	//On attend que l'execution soit terminée
 
-	wxProgressDialog progDialog(_("Reparing 3D scene"),_("Preparing 3D scene"),10000,mainFrame,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
+	wxProgressDialog progDialog(wxGetTranslation("Reparing 3D scene"),wxGetTranslation("Preparing 3D scene"),10000,mainFrame,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
 
 	bool result=uiRunExe(mainFrame,MeshRegenPath+cmd,lblOutput,&progDialog);
 
 	if(result)
 	{
-		wxLogMessage(_("Scene repair complete"));
+		wxLogMessage(wxGetTranslation("Scene repair complete"));
 		return true;
 	}else{
-		wxLogError(_("Scene repair canceled"));
+		wxLogError(wxGetTranslation("Scene repair canceled"));
 		return false;
 	}
 }
@@ -101,7 +101,7 @@ bool ProjectManager::RunTetGenBoundaryMesh( wxString cmd, wxString cacheFolder,w
 	wxString lblOutput=tetgenExe+" : ";
 	cmd=tetgenExe+" "+cmd+" \""+meshFilePath+"\"";
 
-	wxLogMessage(_("Meshing with the following parameters:\n%s"),cmd);
+	wxLogMessage(wxGetTranslation("Meshing with the following parameters:\n%s"),cmd);
 
 	///////////////////////////////////////////
 	///	Verifications de l'existance du coeur de calcul
@@ -109,7 +109,7 @@ bool ProjectManager::RunTetGenBoundaryMesh( wxString cmd, wxString cacheFolder,w
 	#ifdef __WXMSW__
 	if(!wxFileExists(tetgenPath+tetgenExe))
 	{
-		wxLogMessage(_("Calculation program file not found."));
+		wxLogMessage(wxGetTranslation("Calculation program file not found."));
 		return false;
 	}
 	#endif
@@ -124,26 +124,26 @@ bool ProjectManager::RunTetGenBoundaryMesh( wxString cmd, wxString cacheFolder,w
 	///////////////////////////////////////////
 	///	On execute le logiciel de calcul
 	///////////////////////////////////////////
-	wxProgressDialog progDialog(_("Code execution mesh generation"),_("Generating mesh"),10000,mainFrame,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
+	wxProgressDialog progDialog(wxGetTranslation("Code execution mesh generation"),wxGetTranslation("Generating mesh"),10000,mainFrame,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
 
 	bool result=uiRunExe(mainFrame,tetgenPath+cmd,lblOutput,&progDialog);
 
 	if(result)
 	{
-		wxLogMessage(_("Meshing complete"));
+		wxLogMessage(wxGetTranslation("Meshing complete"));
 
 		///////////////////////////////////////////
 		///	On transfert les données vers l'objet de la scène
 		///////////////////////////////////////////
-		wxLogMessage(_("Loading mesh ASCII file..."));
+		wxLogMessage(wxGetTranslation("Loading mesh ASCII file..."));
 		sceneMesh._LoadFaceFile(face.ToStdString());
-		wxLogMessage(_("Loading ASCII files from mesh generator complete"));
+		wxLogMessage(wxGetTranslation("Loading ASCII files from mesh generator complete"));
 	}
 
 	wxLongLong durationOperation=wxDateTime::UNow().GetValue()-timeDebOperation.GetValue();
-	wxLogMessage(_("Total time of meshing: %lld ms"),durationOperation.GetValue());
+	wxLogMessage(wxGetTranslation("Total time of meshing: %lld ms"),durationOperation.GetValue());
 	if(!result)
-		wxLogError(_("Meshing aborted: please, see console messages for more information "));
+		wxLogError(wxGetTranslation("Meshing aborted: please, see console messages for more information "));
 	return true;
 
 
@@ -175,11 +175,11 @@ bool ProjectManager::RunTetGenMaillage(param_TetGenMaillage& paramMaillage)
 			cmd+=" -A -n "+paramMaillage.cmd_append;
 		}else{
 			cmd+=" -d";
-			wxLogWarning(_("Debug mode mesh, nothing will be done"));
+			wxLogWarning(wxGetTranslation("Debug mode mesh, nothing will be done"));
 		}
 	}else{
 		cmd+=" "+paramMaillage.user_defined_params;
-		wxLogWarning(_("Meshing with user parameters"));
+		wxLogWarning(wxGetTranslation("Meshing with user parameters"));
 	}
 	wxString meshFilePath=cacheFolder+sceneName+sceneNameExt;
 	wxString constraintFilePath=cacheFolder+sceneName+".var";
@@ -191,7 +191,7 @@ bool ProjectManager::RunTetGenMaillage(param_TetGenMaillage& paramMaillage)
 	#ifdef __WXMSW__
 	if(!wxFileExists(tetgenPath+tetgenExe))
 	{
-		wxLogMessage(_("Calculation .exe file not found."));
+		wxLogMessage(wxGetTranslation("Calculation .exe file not found."));
 		return false;
 	}
     #endif
@@ -210,7 +210,7 @@ bool ProjectManager::RunTetGenMaillage(param_TetGenMaillage& paramMaillage)
 
 	if(!sceneMesh._SavePOLY(meshFilePath.ToStdString(),true,paramMaillage.doMeshRepair,true,&faceInd))
 	{
-		wxLogError(_("No 3D scene for meshing"));
+		wxLogError(wxGetTranslation("No 3D scene for meshing"));
 		return false;
 	}
 	// Correction du modèle
@@ -223,33 +223,33 @@ bool ProjectManager::RunTetGenMaillage(param_TetGenMaillage& paramMaillage)
 	{
 		if(!sceneMesh.BuildVarConstraintFile(constraintFilePath.ToStdString(),paramMaillage.maxAreaOnRecepteurss))
 		{
-			wxLogError(_("Constraint file can not be created"));
+			wxLogError(wxGetTranslation("Constraint file can not be created"));
 			return false;
 		}
 	}
 	///////////////////////////////////////////
 	///	On execute le logiciel de calcul
 	///////////////////////////////////////////
-	wxProgressDialog progDialog(_("Code execution mesh generation"),_("Generating mesh"),10000,mainFrame,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
+	wxProgressDialog progDialog(wxGetTranslation("Code execution mesh generation"),wxGetTranslation("Generating mesh"),10000,mainFrame,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
 
-	wxLogMessage(_("Meshing with the following parameters:\n%s"),cmd);
+	wxLogMessage(wxGetTranslation("Meshing with the following parameters:\n%s"),cmd);
 	TetgenDebugLogger* logger=new TetgenDebugLogger(); //Do not delete smart_ptr will do this
 	smart_ptr<InterfLogger> errorCollector=smart_ptr<InterfLogger>(logger);
 	bool result=uiRunExe(mainFrame,tetgenPath+cmd,lblOutput,&progDialog,errorCollector);
 
 	if(result)
 	{
-		wxLogMessage(_("Meshing complete"));
+		wxLogMessage(wxGetTranslation("Meshing complete"));
 
 		///////////////////////////////////////////
 		///	On transfert les données vers l'objet de la scène
 		///////////////////////////////////////////
 		if(!paramMaillage.debugMode)
 		{
-            progDialog.Update(50, _("Loading mesh ASCII file..."));
-			wxLogMessage(_("Loading mesh ASCII file..."));
+            progDialog.Update(50, wxGetTranslation("Loading mesh ASCII file..."));
+			wxLogMessage(wxGetTranslation("Loading mesh ASCII file..."));
 			sceneMesh.LoadMaillage(WXSTRINGTOSTDSTRING(face),WXSTRINGTOSTDSTRING(ele),WXSTRINGTOSTDSTRING(node),WXSTRINGTOSTDSTRING(neigh));
-			wxLogMessage(_("Loading ASCII files from mesh generator complete"));
+			wxLogMessage(wxGetTranslation("Loading ASCII files from mesh generator complete"));
 		}else{
 			std::vector<int>& faces = logger->GetFaces();
 
@@ -281,9 +281,9 @@ bool ProjectManager::RunTetGenMaillage(param_TetGenMaillage& paramMaillage)
 	}
 
 	wxLongLong durationOperation=wxDateTime::UNow().GetValue()-timeDebOperation.GetValue();
-	wxLogMessage(_("Total time of meshing: %lld ms"),durationOperation.GetValue());
+	wxLogMessage(wxGetTranslation("Total time of meshing: %lld ms"),durationOperation.GetValue());
 	if(!result)
-		wxLogError(_("Meshing aborted: please, see console messages for more information "));
+		wxLogError(wxGetTranslation("Meshing aborted: please, see console messages for more information "));
 	return true;
 }
 
@@ -328,7 +328,7 @@ void ProjectManager::OnFindSubVolumes(Element* volumes_el)
 		//2eme étape, regrouper les tétraèdres par domaine
 		volumes_splitter::VolumesSplitter splitter;
 		splitter.LoadDomain(modelExport,tet_model);
-		wxLogMessage(_("%i volumes have been detected"),splitter.GetVolumes());
+		wxLogMessage(wxGetTranslation("%i volumes have been detected"),splitter.GetVolumes());
 		for(int idgrp=0;idgrp<splitter.GetVolumes();idgrp++)
 		{
 			std::vector<std::size_t> internal_faces;
@@ -361,6 +361,6 @@ void ProjectManager::OnFindSubVolumes(Element* volumes_el)
 			}
 		}
 	}else{
-		wxLogError(_("You must launch the mesh operation before run this method."));
+		wxLogError(wxGetTranslation("You must launch the mesh operation before run this method."));
 	}
 }

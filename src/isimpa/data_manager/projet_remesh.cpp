@@ -104,14 +104,14 @@ namespace ModelReconstructionUI
 				ReconstructionUserPreferences_t reconsPref(preferences);
 				reconsPref.getVolStats=true;
 				wxString exeArgs=GetArgFromPreferences(reconsPref);
-				wxProgressDialog progDialog(_("Execution of the model remesh."),_("Searching model volumes..."),10000,NULL,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
-				if(!uiRunExe(NULL,exeArgs,_("VolumetricMeshRepair: "), &progDialog))
+				wxProgressDialog progDialog(wxGetTranslation("Execution of the model remesh."),wxGetTranslation("Searching model volumes..."),10000,NULL,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
+				if(!uiRunExe(NULL,exeArgs,wxGetTranslation("VolumetricMeshRepair: "), &progDialog))
 					return false;
 				//Lecture du fichier de statistiques
 				wxString statsFilePath(outputFileDir+GetVolumeInfoFileName());
 				if(!wxFileExists(statsFilePath))
 				{
-					wxLogError(_("Unable to load the stats file:\n%s"),statsFilePath);
+					wxLogError(wxGetTranslation("Unable to load the stats file:\n%s"),statsFilePath);
 					return false;
 				}
 				wxTextFile infile(statsFilePath);
@@ -164,8 +164,8 @@ namespace ModelReconstructionUI
 			{
 
 				wxString exeArgs=GetArgFromPreferences(preferences);
-				wxProgressDialog progDialog(_("Reconstruction of input model."),_("Searching model volumes..."),10000,NULL,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
-				uiRunExe(NULL,exeArgs,_("VolumetricMeshRepair: "), &progDialog);
+				wxProgressDialog progDialog(wxGetTranslation("Reconstruction of input model."),wxGetTranslation("Searching model volumes..."),10000,NULL,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
+				uiRunExe(NULL,exeArgs,wxGetTranslation("VolumetricMeshRepair: "), &progDialog);
 			}
 	};
 };
@@ -182,7 +182,7 @@ void ProjectManager::OnStartRemeshWizard()
 	wxString plyFilePath(tmpFolder+"sourceRecons.ply");
 	if(!this->sceneMesh.Save(plyFilePath.ToStdString()))
 	{
-		wxLogError(_("Unable to save the file under the PLY format"));
+		wxLogError(wxGetTranslation("Unable to save the file under the PLY format"));
 		return;
 	}
 	reconstructionManager.SetModelSourceFilePath(plyFilePath);

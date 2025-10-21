@@ -123,7 +123,7 @@ wxCustomEntryDialog::wxCustomEntryDialog(wxWindow *parent,
 	vinputsizer->Add( newGrid,1,wxEXPAND);
 	//newGrid->SetMinSize(FromDIP(wxSize(300,200)));
 	//newGrid->AppendCols();
-	newGrid->SetColLabelValue(0,_("Value"));
+	newGrid->SetColLabelValue(0,wxGetTranslation("Value"));
 	newGrid->SetColLabelAlignment(wxVERTICAL,wxALIGN_LEFT);
 
     SetSizer( topsizer );

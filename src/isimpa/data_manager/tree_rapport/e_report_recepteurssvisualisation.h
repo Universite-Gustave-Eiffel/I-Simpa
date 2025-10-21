@@ -61,7 +61,7 @@ public:
 	{
 		
 		SetIcon(GRAPH_STATE_ALL,GRAPH_DISK_RS);
-		_("Surface receivers");
+		wxGetTranslation("Surface receivers");
 		onlySum=false;
 		this->AppendPropertyDecimal("surfacetransparency",wxTRANSLATE("Face opacity"),1.f,false,2,true,true,1,0);
 		this->AppendPropertyBool("rendersideone",wxTRANSLATE("Display front"),true);
@@ -106,12 +106,12 @@ public:
 		this->AppendPropertyDecimal("mininterval",libelMin,vmin);
 		this->AppendCurvesParameters();
 
-		_("Display recto");
-		_("Display verso");
-		_("Maximum value (dB)");
-		_("Minimum value (dB)");
-		_("Maximum value (s)");
-		_("Minimum value (s)");
+		wxGetTranslation("Display recto");
+		wxGetTranslation("Display verso");
+		wxGetTranslation("Maximum value (dB)");
+		wxGetTranslation("Minimum value (dB)");
+		wxGetTranslation("Maximum value (s)");
+		wxGetTranslation("Minimum value (s)");
 	}
 
 	/**
@@ -124,7 +124,7 @@ public:
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_DISK_RS);
 		onlySum=false;
-		_("Surface receivers display");
+		wxGetTranslation("Surface receivers display");
 		wxString propVal;
 		if(nodeElement!=NULL && nodeElement->GetAttribute("wxid",&propVal))
 		{
@@ -172,32 +172,32 @@ public:
 		wxMenu* subMenuSimu = new wxMenu;
 		if(!onlySum)
 		{
-			subMenuSimu->Append(Element::GetMenuItem(subMenuSimu,IDEVENT_LOAD_RECEPTEURSS_SIMULATION_BY_TIMESTEP,_("Instantaneous sound level")));
-			subMenuSimu->Append(Element::GetMenuItem(subMenuSimu,IDEVENT_LOAD_RECEPTEURSS_SIMULATION_BY_TIMESTEP_SUM,_("Cumulative instantaneous sound level")));
+			subMenuSimu->Append(Element::GetMenuItem(subMenuSimu,IDEVENT_LOAD_RECEPTEURSS_SIMULATION_BY_TIMESTEP,wxGetTranslation("Instantaneous sound level")));
+			subMenuSimu->Append(Element::GetMenuItem(subMenuSimu,IDEVENT_LOAD_RECEPTEURSS_SIMULATION_BY_TIMESTEP_SUM,wxGetTranslation("Cumulative instantaneous sound level")));
 		}
-		wxString libelCumul=_("Cumulating sound level");
+		wxString libelCumul=wxGetTranslation("Cumulating sound level");
 		if(recordType==RECEPTEURS_RECORD_TYPE_TR)
-			libelCumul=_("Reverberation time (RT)");
+			libelCumul=wxGetTranslation("Reverberation time (RT)");
 		else if( recordType==RECEPTEURS_RECORD_TYPE_EDT)
-			libelCumul=_("Early decay time (EDT)");
+			libelCumul=wxGetTranslation("Early decay time (EDT)");
 		else if( recordType==RECEPTEURS_RECORD_TYPE_STI)
-			libelCumul=_("Speech Transmision Index (STI)");
+			libelCumul=wxGetTranslation("Speech Transmision Index (STI)");
 		subMenuSimu->Append(Element::GetMenuItem(subMenuSimu,IDEVENT_LOAD_RECEPTEURSS_SIMULATION_SUM,libelCumul));
 
 		if(recordType==RECEPTEURS_RECORD_TYPE_SPL_STANDART && !onlySum)
 		{
 			wxMenu* subMenuPostComputation = new wxMenu;
-			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_TR,_("RT computation")));
-			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_EDT,_("EDT calculation")));
-			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_CLARITY,_("Clarity computation")));
-			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_DEFINITION,_("D50 computation")));
-			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_TS,_("TS computation")));
-			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_ST,_("ST computation")));
-			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_STI,_("STI computation")));
-			leMenu->Append(GetMenuItem(leMenu,-1,_("Acoustic parameters"),subMenuPostComputation));
+			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_TR,wxGetTranslation("RT computation")));
+			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_EDT,wxGetTranslation("EDT calculation")));
+			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_CLARITY,wxGetTranslation("Clarity computation")));
+			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_DEFINITION,wxGetTranslation("D50 computation")));
+			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_TS,wxGetTranslation("TS computation")));
+			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_ST,wxGetTranslation("ST computation")));
+			subMenuPostComputation->Append(Element::GetMenuItem(subMenuPostComputation,IDEVENT_RECEPTEURS_COMPUTE_STI,wxGetTranslation("STI computation")));
+			leMenu->Append(GetMenuItem(leMenu,-1,wxGetTranslation("Acoustic parameters"),subMenuPostComputation));
 		}
 
-		leMenu->Append(GetMenuItem(leMenu,-1,_("Load animation"),subMenuSimu));
+		leMenu->Append(GetMenuItem(leMenu,-1,wxGetTranslation("Load animation"),subMenuSimu));
 		E_Report_File::OnRightClic(leMenu);
 	}
 	

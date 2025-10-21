@@ -54,7 +54,7 @@ public:
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_MATERIAL_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_MATERIAL_CLOSE);
-		_("Application");
+		wxGetTranslation("Application");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;
