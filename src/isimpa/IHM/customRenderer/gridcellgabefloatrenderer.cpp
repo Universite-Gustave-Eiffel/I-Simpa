@@ -30,10 +30,12 @@
 
 #include "gridcellgabefloatrenderer.hpp"
 #include <wx/log.h>
-#include <float.h>
+#include <cfloat>
 #include <std_tools.hpp>
 #include "last_cpp_include.hpp"
 #include <cmath>
+
+#include "wx/dc.h"
 
 // ----------------------------------------------------------------------------
 // wxGridCellGabeFloatRenderer
