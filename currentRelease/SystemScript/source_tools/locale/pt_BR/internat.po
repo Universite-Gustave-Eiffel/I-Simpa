@@ -4,7 +4,7 @@
 # Automatically generated, 2021.
 # 
 # Translators:
-# wbinek <wojciech.binek@gmail.com>, 2018
+# Rafael Andrade <rafael.gl.andrade@gmail.com>, 2018
 # 
 msgid ""
 msgstr ""
@@ -12,121 +12,123 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-08 16:41+0000\n"
 "PO-Revision-Date: 2016-12-02 16:09+0000\n"
-"Last-Translator: wbinek <wojciech.binek@gmail.com>, 2018\n"
-"Language-Team: Polish (https://app.transifex.com/LAE/teams/23470/pl/)\n"
+"Last-Translator: Rafael Andrade <rafael.gl.andrade@gmail.com>, 2018\n"
+"Language-Team: Portuguese (Brazil) (https://app.transifex.com/LAE/teams/23470/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pl\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:52
 msgid "All sources"
-msgstr "Wszystkie źródła"
+msgstr "Todas as fontes"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:98
 msgid "Angle (degrees)"
-msgstr "Kąt (stopnie)"
+msgstr "Ângulo (graus)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:54
 #: currentRelease/SystemScript/source_tools/__init__.py:64
 msgid "Create a line of sound sources"
-msgstr "Utwórz źródła dźwieku na linii"
+msgstr "Criar linha de fontes sonoras"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:145
 msgid "Direction x (m)"
-msgstr "Kierunek - x (m)"
+msgstr "Direção x (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:146
 msgid "Direction y (m)"
-msgstr "Kierunek - y (m)"
+msgstr "Direção y (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:147
 msgid "Direction z (m)"
-msgstr "Kierunek - z (m)"
+msgstr "Direção z (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:47
 msgid "Disable"
-msgstr "Wyłącz"
+msgstr "Desabilitar"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:46
 msgid "Enable"
-msgstr "Włącz"
+msgstr "Habilitar"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:60
 msgid "Number of sources"
-msgstr "Ilość źródeł"
+msgstr "Número de fontes"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:65
 msgid "Please fill the following fields to create the sound source line"
-msgstr "Proszę uzupełnij poniższe pola aby utworzyć linię źródeł dźwięku"
+msgstr ""
+"Por favor, preencha os campos a seguir para criar uma linha de fontes "
+"sonoras"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:49
 msgid "Rotation"
-msgstr "Obrót"
+msgstr "Rotação"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:99
 msgid "Rotation center x (m)"
-msgstr "Środek obrotu x (m)"
+msgstr "Centro de rotação x (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:100
 msgid "Rotation center y (m)"
-msgstr "Środek obrotu y (m)"
+msgstr "Centro de rotação y (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:101
 msgid "Rotation center z (m)"
-msgstr "Środek obrotu z (m)"
+msgstr "Centro de rotação z (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:115
 msgid "Rotation of a group of sound sources"
-msgstr "Obrót grupy źródeł dźwięu"
+msgstr "Rotação de um grupo de fontes sonoras"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:57
 msgid "Starting position x (m)"
-msgstr "Pozycja początkowa - x (m)"
+msgstr "Posição inicial x (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:58
 msgid "Starting position y (m)"
-msgstr "Pozycja początkowa - y (m)"
+msgstr "Posição inicial y (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:59
 msgid "Starting position z (m)"
-msgstr "Pozycja początkowa - z (m)"
+msgstr "Posição inicial z (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:61
 msgid "Step x (m)"
-msgstr "Krok - x (m)"
+msgstr "Passo x (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:62
 msgid "Step y (m)"
-msgstr "Krok - y (m)"
+msgstr "Passo y (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:63
 msgid "Step z (m)"
-msgstr "Krok - z (m)"
+msgstr "Passo z (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:50
 msgid "Translation"
-msgstr "Przesunięcie"
+msgstr "Translação"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:148
 msgid "Translation of a group of sound sources"
-msgstr "Przesunięcie grupy źródeł dźwięku"
+msgstr "Translação de um grupo de fontes sonoras"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:95
 msgid "Vector of rotation x (m)"
-msgstr "Wektor obrotu x (m)"
+msgstr "Vetor de rotação x (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:96
 msgid "Vector of rotation y (m)"
-msgstr "Wektor obrotu y (m)"
+msgstr "Vetor de rotação y (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:97
 msgid "Vector of rotation z (m)"
-msgstr "Wektor obrotu z (m)"
+msgstr "Vetor de rotação z (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:80
 #: currentRelease/SystemScript/source_tools/__init__.py:132
 #: currentRelease/SystemScript/source_tools/__init__.py:158
 msgid "Wrong parameters"
-msgstr "Błędne parametry"
+msgstr "Parâmetros inválidos"

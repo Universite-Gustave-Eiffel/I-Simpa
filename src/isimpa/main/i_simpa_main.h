@@ -160,7 +160,6 @@ class MainUiFrame : public wxFrame
 			ID_fold_copygl,
 				ID_copygl_toclipboard,
 				ID_copygl_tofile,
-				ID_copygl_tofile_withdim,
 
 			ID_SwitchSelectionMode,
 			ID_toolCameraMode,
@@ -268,7 +267,6 @@ class MainUiFrame : public wxFrame
 		void OnSetDockStatus(wxCommandEvent& event);
 		void OnClearWindowManager(wxCommandEvent& event);
 		void CopyGlToFile(wxCommandEvent& event);
-		void CopyGlToFileWithDim(wxCommandEvent& event);
 		void OnModeToolWireFrameAndFlat(wxCommandEvent& event);
 		void OnModeToolFlat(wxCommandEvent& event);
 		void OnModeToolWireFrame(wxCommandEvent& event);

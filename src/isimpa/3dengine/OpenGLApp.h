@@ -224,16 +224,6 @@ public:
 	 */
 	bool GetCurrentRenderMode(t_renderMode idRenderMode);
 
-	/*
-	 * Charge l'image passé en paramètre par le rendu 3D courant. Cette opération prend du temps car le rendu fait un aller retour entre le processeur CPU et la carte graphique.
-	 * @param[out] aimage Image à renseigner
-	 * @param awidth Largeur en pixels du rendu à effectuer.
-	 * @param aheight Hauteur en pixels du rendu à effectuer.
-	 * @param _context HWND window context (windows only)
-	 */
-
-	int GetImage(wxImage& aimage, const int awidth, const int aheight,void* _context=NULL);
-
 	/**
 	 * Charge l'image passé en paramètre par le rendu 3D courant.
 	 * @param[out] aimage Image à renseigner

@@ -34,9 +34,7 @@
 
 #include "GL/opengl_inc.h"
 #include <wx/progdlg.h>
-#ifdef _WIN32
-	#include "GL\offScreenRendering.h"
-#endif
+
 #include "last_cpp_include.hpp"
 
 extern CTexture *textures;
@@ -354,79 +352,6 @@ void OpenGLApp::InitGl()
 	glEnable(GL_LIGHT0);
 
 }
-
-int OpenGLApp::GetImage(wxImage& aimage, const int awidth, const int aheight,void* _contextv)
-{
-	#ifdef _WIN32
-	HWND _context=(HWND)_contextv;
-	GLubyte* pixels=NULL;
-	bool isOk=false;
-	try
-	{
-		OffScreenRendering::OffScreen GlShotOffScreen(awidth,aheight);
-
-		GlShotOffScreen.init(_context);
-		ChangeWindow(awidth,aheight);
-
-		m_Object->backgroundChange=true;
-		m_Object->BuildFont(GetDC( _context ));
-		InitGl();
-		textures->ReloadAllTextures();
-		RunGlCommands(false);
-		int dataSize=0;
-
-		pixels = GlShotOffScreen.render(dataSize);
-
-		isOk=aimage.Create(awidth, aheight,pixels);
-
-		aimage=aimage.Mirror(false);
-		textures->Destroy();
-	}
-	catch( OffScreenRendering::OffScreen::OUTSCREENERROR idError )
-	{
-		switch(idError)
-		{
-			case OffScreenRendering::OffScreen::OUTSCREENERROR_Could_not_create_the_pbuffer:
-				wxLogMessage(wxGetTranslation("Resolution is too high, your graphic card is enable to manage this size. Please choose a lower export resolution"));
-				break;
-			case OffScreenRendering::OffScreen::OUTSCREENERROR_Could_not_make_the_pbuffer_context_current:
-				break;
-			case OffScreenRendering::OffScreen::OUTSCREENERROR_not_find_acceptable_pixel_format:
-				break;
-			case OffScreenRendering::OffScreen::OUTSCREENERROR_WGL_ARB_pbuffer_extension_not_found:
-				break;
-			case OffScreenRendering::OffScreen::OUTSCREENERROR_WGL_ARB_pbuffer_functions_not_found:
-				break;
-			case OffScreenRendering::OffScreen::OUTSCREENERROR_WGL_ARB_pixel_format_extension_was_not_found:
-				break;
-			case OffScreenRendering::OffScreen::OUTSCREENERROR_WGL_ARB_pixel_format_functions_not_found:
-				break;
-			case OffScreenRendering::OffScreen::OUTSCREENERROR_wglGetExtensionsStringARB_miss:
-				break;
-			default:
-				wxLogError(wxGetTranslation("Unknown OpenGL error, try to set a lower resolution or use another exportation method."));
-		}
-		wxLogMessage(wxGetTranslation("Error code : %i"),(int)idError);
-		isOk=false;
-	}
-	catch( ... )
-	{
-		wxLogError(wxGetTranslation("OpenGL exportation error. Try to use the window exportation method instead"));
-		isOk=false;
-	}
-
-	if(isOk)
-		return 1;
-	else
-	{
-		return 0;
-	}
-	#else
-	return 0;
-	#endif
-}
-
-
 
 int OpenGLApp::GetImage(wxImage& aimage)
 {

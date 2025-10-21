@@ -89,7 +89,6 @@ BEGIN_EVENT_TABLE(MainUiFrame, wxFrame)
 	EVT_MENU(ID_grid_xz, MainUiFrame::LinkedMenuEvent)
 	EVT_MENU(ID_grid_yz, MainUiFrame::LinkedMenuEvent)
 	EVT_MENU(ID_copygl_tofile, MainUiFrame::CopyGlToFile)
-	EVT_MENU(ID_copygl_tofile_withdim, MainUiFrame::CopyGlToFileWithDim)
 
 	EVT_MENU(ID_camera_firstperson, MainUiFrame::OnChangeCameraMode)
 	EVT_MENU(ID_camera_rotate, MainUiFrame::OnChangeCameraMode)
@@ -279,7 +278,6 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, wxGetTranslation("I
 	wxMenu* affichage_copygl = new wxMenu;
 	//affichage_copygl->Append(ID_copygl_toclipboard, wxGetTranslation("Vers le presse papier"));
 	affichage_copygl->Append(ID_copygl_tofile, wxGetTranslation("To file"));
-	affichage_copygl->Append(ID_copygl_tofile_withdim, wxGetTranslation("To a file with a specified resolution"));
 	view_menu->Append(ID_fold_copygl, wxGetTranslation("Copy 3D View"),affichage_copygl);
 	//view_menu->AppendSeparator();
 	//view_menu->Append(ID_changeLanguage,wxGetTranslation("Changer la langue du logiciel"));
@@ -639,10 +637,7 @@ void MainUiFrame::OnClearWindowManager(wxCommandEvent& event)
 	saveManagerConfig=false;
 	m_mgr.LoadPerspective(originalPerspective);
 }
-void MainUiFrame::CopyGlToFileWithDim(wxCommandEvent& event)
-{
-	projetCourant->CopyGlToFileWithDim();
-}
+
 void MainUiFrame::CopyGlToFile(wxCommandEvent& event)
 {
 	projetCourant->CopyGlToFile();

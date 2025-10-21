@@ -4,7 +4,7 @@
 # Automatically generated, 2021.
 # 
 # Translators:
-# wbinek <wojciech.binek@gmail.com>, 2018
+# pdwangchao <pdwangchao@163.com>, 2018
 # 
 msgid ""
 msgstr ""
@@ -12,121 +12,121 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-08 16:41+0000\n"
 "PO-Revision-Date: 2016-12-02 16:09+0000\n"
-"Last-Translator: wbinek <wojciech.binek@gmail.com>, 2018\n"
-"Language-Team: Polish (https://app.transifex.com/LAE/teams/23470/pl/)\n"
+"Last-Translator: pdwangchao <pdwangchao@163.com>, 2018\n"
+"Language-Team: Chinese (China) (https://app.transifex.com/LAE/teams/23470/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pl\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:52
 msgid "All sources"
-msgstr "Wszystkie źródła"
+msgstr "所有声源"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:98
 msgid "Angle (degrees)"
-msgstr "Kąt (stopnie)"
+msgstr "角度 (度)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:54
 #: currentRelease/SystemScript/source_tools/__init__.py:64
 msgid "Create a line of sound sources"
-msgstr "Utwórz źródła dźwieku na linii"
+msgstr "创建一列声源"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:145
 msgid "Direction x (m)"
-msgstr "Kierunek - x (m)"
+msgstr "方向 x (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:146
 msgid "Direction y (m)"
-msgstr "Kierunek - y (m)"
+msgstr "方向 y (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:147
 msgid "Direction z (m)"
-msgstr "Kierunek - z (m)"
+msgstr "方向 z (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:47
 msgid "Disable"
-msgstr "Wyłącz"
+msgstr "禁用"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:46
 msgid "Enable"
-msgstr "Włącz"
+msgstr "启用"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:60
 msgid "Number of sources"
-msgstr "Ilość źródeł"
+msgstr "声源数"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:65
 msgid "Please fill the following fields to create the sound source line"
-msgstr "Proszę uzupełnij poniższe pola aby utworzyć linię źródeł dźwięku"
+msgstr "请填写以下内容来创建声源列"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:49
 msgid "Rotation"
-msgstr "Obrót"
+msgstr "旋转"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:99
 msgid "Rotation center x (m)"
-msgstr "Środek obrotu x (m)"
+msgstr "旋转中心x (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:100
 msgid "Rotation center y (m)"
-msgstr "Środek obrotu y (m)"
+msgstr "旋转中心 y (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:101
 msgid "Rotation center z (m)"
-msgstr "Środek obrotu z (m)"
+msgstr "旋转中心 z (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:115
 msgid "Rotation of a group of sound sources"
-msgstr "Obrót grupy źródeł dźwięu"
+msgstr "旋转一组声源"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:57
 msgid "Starting position x (m)"
-msgstr "Pozycja początkowa - x (m)"
+msgstr "起始点 x (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:58
 msgid "Starting position y (m)"
-msgstr "Pozycja początkowa - y (m)"
+msgstr "起始点 y (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:59
 msgid "Starting position z (m)"
-msgstr "Pozycja początkowa - z (m)"
+msgstr "起始点 z (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:61
 msgid "Step x (m)"
-msgstr "Krok - x (m)"
+msgstr "步长 x (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:62
 msgid "Step y (m)"
-msgstr "Krok - y (m)"
+msgstr "步长 y (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:63
 msgid "Step z (m)"
-msgstr "Krok - z (m)"
+msgstr "步长 z (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:50
 msgid "Translation"
-msgstr "Przesunięcie"
+msgstr "翻译"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:148
 msgid "Translation of a group of sound sources"
-msgstr "Przesunięcie grupy źródeł dźwięku"
+msgstr "翻译一组声源"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:95
 msgid "Vector of rotation x (m)"
-msgstr "Wektor obrotu x (m)"
+msgstr "旋转向量 x (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:96
 msgid "Vector of rotation y (m)"
-msgstr "Wektor obrotu y (m)"
+msgstr "旋转向量 y (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:97
 msgid "Vector of rotation z (m)"
-msgstr "Wektor obrotu z (m)"
+msgstr "旋转向量 z (m)"
 
 #: currentRelease/SystemScript/source_tools/__init__.py:80
 #: currentRelease/SystemScript/source_tools/__init__.py:132
 #: currentRelease/SystemScript/source_tools/__init__.py:158
 msgid "Wrong parameters"
-msgstr "Błędne parametry"
+msgstr "错误的参数"

@@ -452,11 +452,7 @@ public:
 	 * @param fileName Chemin du fichier
 	 */
 	void CopyGlToFile( );
-	/**
-	 * L'utilisateur désire exporter le rendu 3D de la scène
-	 * @param fileName Chemin du fichier
-	 */
-	void CopyGlToFileWithDim();
+
 	/**
 	 * L'utilisateur désire exporter l'historique des messages
 	 * @param fileName Chemin du fichier

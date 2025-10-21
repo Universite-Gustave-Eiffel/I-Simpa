@@ -469,8 +469,7 @@ FIND_PACKAGE(Gettext)
 IF(GETTEXT_FOUND )
   MESSAGE(STATUS "Found Gettext")
   # Main isimpa locale
-  add_subdirectory (lang/fr)
-  add_subdirectory (lang/pl)
+  ADDMULTIPLE_LANG(lang ${CMAKE_BINARY_DIR}/src/job_tool ${ISIMPA_BIN_DIR}/locale)
   # Plugins locale
   ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/job_tool/locale ${CMAKE_BINARY_DIR}/src/job_tool)
   ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/recp_tool/locale ${CMAKE_BINARY_DIR}/src/recp_tool)

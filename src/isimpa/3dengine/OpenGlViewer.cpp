@@ -116,33 +116,14 @@ OpenGlViewer::TOOL_MODE OpenGlViewer::GetCurrentTool()
 {
 	return currentTool;
 }
-int OpenGlViewer::GetImage(wxImage& aimage, const int awidth, const int aheight)
-{
-	if(appLoaded)
-	{
-	    #ifdef _WIN32
-            int retour = m_GLApp->GetImage(aimage,awidth,aheight,(HWND)this->GetHWND());
-        #else
-            int retour = m_GLApp->GetImage(aimage,awidth,aheight);
-        #endif
-		return retour;
-	}
-	else
-		return 0;
-}
 
 int OpenGlViewer::GetImage(wxImage& aimage)
 {
-	if(appLoaded)
-	{
+	if(appLoaded) {
 		Display();
-		//int retour = m_GLApp->GetImage(aimage,awidth,aheight,(HWND)this->GetHWND());
-		int retour = m_GLApp->GetImage(aimage);
-		wxSizeEvent sizeevt;
-		return retour;
+		return m_GLApp->GetImage(aimage);
 	}
-	else
-		return 0;
+	return 0;
 }
 
 void OpenGlViewer::SetSimulationRefreshRate(const int& refreshrate)

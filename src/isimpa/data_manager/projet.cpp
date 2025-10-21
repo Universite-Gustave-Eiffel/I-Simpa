@@ -384,36 +384,6 @@ void ProjectManager::CopyGlToFile()
 		wxLogError(wxGetTranslation("Non-allowed image. Exportation cancelled"));
 }
 
-void ProjectManager::CopyGlToFileWithDim()
-{
-	wxImage glImage;
-	wxSize sizeCapture;
-	wxCustomEntryDialog entrydiag(mainFrame,wxGetTranslation("Please give the size of the exported picture."),wxGetTranslation("Export 3D View"));
-	entrydiag.AddTextControl(wxGetTranslation("Width"),"800");
-	entrydiag.AddTextControl(wxGetTranslation("Height"),"600");
-	if(entrydiag.ShowModal()==wxID_OK)
-	{
-		std::vector<wxString> values;
-		entrydiag.GetValues(values);
-		sizeCapture.Set(Convertor::ToInt(values[0]),Convertor::ToInt(values[1]));
-		GlFrame->GetImage(glImage,sizeCapture.GetWidth(),sizeCapture.GetHeight());
-		if(glImage.IsOk())
-		{
-			wxFileDialog saveFileDialog( mainFrame, wxGetTranslation("Export view 3D"), "PNG file (*.png)|*.png|JPG file (*.jpg)|*.jpg|Bitmap file (*.bmp)|*.bmp", "PNG file (*.png)|*.png|JPG file (*.jpg)|*.jpg|Bitmap file (*.bmp)|*.bmp", wxGetTranslation("PNG file (*.png)|*.png|JPG file (*.jpg)|*.jpg|Bitmap file (*.bmp)|*.bmp"),
-																wxFD_SAVE, wxDefaultPosition);
-
-			if (saveFileDialog.ShowModal() == wxID_OK)
-			{
-				wxString filename(wxString(saveFileDialog.GetPath()));
-				glImage.SaveFile(filename);
-				wxLogMessage(wxGetTranslation("Image saved successfully"));
-
-			}
-		}
-		else
-			wxLogError(wxGetTranslation("Non-allowed image. Exportation cancelled"));
-	}
-}
 void ProjectManager::ElementEvent(wxCommandEvent& eventElement,eventCtrl fromCtrl,Element* elementSelected)
 {
 

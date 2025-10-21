@@ -58,6 +58,7 @@ modules:
   - name: wxwidgets
     buildsystem: cmake
     config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
       - -DwxBUILD_SHARED=ON
       - -DwxUSE_OPENGL=ON
       - -DwxUSE_GLCANVAS_EGL=ON
