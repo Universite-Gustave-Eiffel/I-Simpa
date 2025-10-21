@@ -500,7 +500,7 @@ SET(CMAKE_EXE_LINKER_FLAGS
 
 # add wxWidgets as dependency
 
-find_package(wxWidgets 3.1)
+find_package(wxWidgets 3.3.1)
 
 if(wxWidgets_FOUND)
 
@@ -524,7 +524,6 @@ else(NOT wxWidgets_FOUND)
     set(BUILD_SHARED_LIBS OFF)
     CPMAddPackage(
             NAME wxWidgets
-            GIT_TAG        v3.3.1
             URL https://github.com/wxWidgets/wxWidgets/releases/download/v3.3.1/wxWidgets-3.3.1.tar.bz2
             URL_HASH SHA256=f936c8d694f9c49a367a376f99c751467150a4ed7cbf8f4723ef19b2d2d9998d
             OPTIONS "wxBUILD_SAMPLES OFF" "wxBUILD_TESTS OFF" "wxBUILD_SHARED ON" "wxUSE_OPENGL ON" "wxUSE_UNICODE ON" "wxUSE_LIBTIFF OFF" "wxUSE_GLCANVAS_EGL ON"
