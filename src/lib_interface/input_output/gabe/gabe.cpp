@@ -34,6 +34,7 @@
 #include <cfloat>
 #include <cstddef>
 #include <cstdint>
+#include <cstring>
 
 #include "std_tools.hpp"
 #ifdef WIN32
@@ -89,7 +90,7 @@ namespace formatGABE
 
 	void GABE_Object::SetLabel(const char * _label)
 	{
-		strncpy(label,_label, sizeof(label));
+		std::strncpy(label,_label, sizeof(label));
 	}
 	
 	const char * GABE_Object::GetStringEquiv(int numRow)
