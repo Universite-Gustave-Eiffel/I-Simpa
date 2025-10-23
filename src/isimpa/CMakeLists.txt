@@ -1,7 +1,6 @@
 include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
 set(CMAKE_INSTALL_MFC_LIBRARIES TRUE )
 set(CMAKE_INSTALL_UCRT_LIBRARIES TRUE )
-include( InstallRequiredSystemLibraries )
 
 string(TIMESTAMP BUILD_DATE "%Y-%m-%dT%H:%M:%S")
 
@@ -25,7 +24,6 @@ else()
     set(ISIMPA_DATA_DIR .)
     set(ISIMPA_DOC_DIR .)
 endif()
-
 
 MACRO(ADDMULTIPLE_LANG curdir bindir)
   FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)
@@ -417,7 +415,6 @@ endif(OPENGL_GLU_FOUND)
 
 # Ask make to call python in order to use element.h to produce enum_def.cpp
 ADD_CUSTOM_COMMAND(
-  PRE_BUILD
   OUTPUT "enum_def.cpp"
   COMMENT "Building enum_def.cpp using python script"
   COMMAND "${Python3_EXECUTABLE}" ${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/python_interface/py_ui_module/generate_enum_def.py
@@ -429,10 +426,6 @@ ADD_CUSTOM_COMMAND(
 set_property(SOURCE data_manager/python_interface/py_ui_module/element_pywrap.cpp APPEND PROPERTY OBJECT_DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/enum_def.cpp)
 
 configure_file(data_manager/appconfig_version.cpp.in ${CMAKE_CURRENT_BINARY_DIR}/generated/appconfig_version.cpp )
-
-set(Boost_USE_STATIC_LIBS   OFF)
-SetupBoost()
-link_directories( ${Boost_LIBRARY_DIRS} )
 
 # Set Properties->General->Configuration Type to Application
 # Creates isimpa with the listed sources
@@ -486,18 +479,16 @@ SET(wxUSE_GLCANVAS_EGL OFF)
 
 IF(CMAKE_BUILD_TYPE STREQUAL "Debug")
     SET(wxWidgets_USE_DEBUG ON)
-    SET(wxWidgets_USE_STATIC OFF)
+    SET(wxWidgets_USE_STATIC ON)
     MESSAGE(STATUS "Using debug version of wxWidgets")
 ELSE()
     SET(wxWidgets_USE_DEBUG OFF)
-    SET(wxWidgets_USE_STATIC OFF)
-    #MESSAGE(STATUS "Using dynamic wxWidgets library  lib:${wxWidgets_LIB_DIR} include:${wxWidgets_ROOT_DIR}")
+    SET(wxWidgets_USE_STATIC ON)
 ENDIF()
 
-SET(CMAKE_EXE_LINKER_FLAGS
-          "${CMAKE_EXE_LINKER_FLAGS} -Wl,-rpath -Wl,/usr/local/lib")
-
 # add wxWidgets as dependency
+
+set(USING_CPM false)
 
 find_package(wxWidgets 3.3.1)
 
@@ -525,7 +516,7 @@ else(NOT wxWidgets_FOUND)
             NAME wxWidgets
             URL https://github.com/wxWidgets/wxWidgets/releases/download/v3.3.1/wxWidgets-3.3.1.tar.bz2
             URL_HASH SHA256=f936c8d694f9c49a367a376f99c751467150a4ed7cbf8f4723ef19b2d2d9998d
-            OPTIONS "wxBUILD_SAMPLES OFF" "wxBUILD_TESTS OFF" "wxBUILD_SHARED ON" "wxUSE_OPENGL ON" "wxUSE_UNICODE ON" "wxUSE_LIBTIFF OFF" "wxUSE_GLCANVAS_EGL ON"
+            OPTIONS "wxBUILD_SAMPLES OFF" "wxBUILD_TESTS OFF" "wxBUILD_SHARED OFF" "wxUSE_OPENGL ON" "wxUSE_UNICODE ON" "wxUSE_LIBTIFF OFF" "wxUSE_GLCANVAS_EGL ON"
     )
 endif()
 
@@ -562,23 +553,27 @@ target_link_libraries(isimpa ${OPENGL_LIBRARIES})
 
 add_definitions(-DUSE_PYTHON=${PYTHONLIBS_FOUND})
 
-if(WIN32) # Check if we are on Windows
-  if(MSVC) # Check if we are using the Visual Studio compiler
-    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
-	# Source files are encoded in UTF-8
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /source-charset:utf-8")
-    set_target_properties(isimpa PROPERTIES LINK_FLAGS_RELEASE "/SUBSYSTEM:WINDOWS")
-    set_target_properties(isimpa PROPERTIES LINK_FLAGS_DEBUG "/SUBSYSTEM:WINDOWS")
-  elseif(CMAKE_COMPILER_IS_GNUCXX)
-    # SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mwindows") # Not tested
-  else()
-    message(SEND_ERROR "You are using an unsupported Windows compiler! (Not MSVC or GCC)")
-  endif()
-ENDIF()
+#if(WIN32) # Check if we are on Windows
+#  if(MSVC) # Check if we are using the Visual Studio compiler
+#    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+#	# Source files are encoded in UTF-8
+#	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /source-charset:utf-8")
+#    set_target_properties(isimpa PROPERTIES LINK_FLAGS_RELEASE "/SUBSYSTEM:WINDOWS")
+#    set_target_properties(isimpa PROPERTIES LINK_FLAGS_DEBUG "/SUBSYSTEM:WINDOWS")
+#  elseif(CMAKE_COMPILER_IS_GNUCXX)
+#    # SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mwindows") # Not tested
+#  else()
+#    message(SEND_ERROR "You are using an unsupported Windows compiler! (Not MSVC or GCC)")
+#  endif()
+#ENDIF()
 
 #--------------#
 #    INSTALL
 #--------------#
+
+set(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION ${ISIMPA_BIN_DIR})
+
+include( InstallRequiredSystemLibraries )
 
 # Install executable
 install(TARGETS isimpa
@@ -625,23 +620,6 @@ install(DIRECTORY
 if(WIN32 AND NOT IS_FLATPAK)
     # Copy python libraries
     get_filename_component(PYTHON_ROOT_FOLDER ${Python3_EXECUTABLE} PATH)
-    set(PYTHON_LIB_FOLDER ${PYTHON_ROOT_FOLDER}/Lib)
-
-    set(DIRS ${Boost_LIBRARY_DIR_DEBUG}
-            ${Boost_LIBRARY_DIR_RELEASE}
-            ${wxWidgets_LIB_DIR_SLASH}
-            ${PYTHON_ROOT_FOLDER})
-
-    install(CODE "
-    include(BundleUtilities)
-    FIXUP_BUNDLE(\"\${CMAKE_CURRENT_LIST_DIR}/\${BUILD_TYPE}/isimpa.exe\" \"\"   \"${DIRS}\")
-
-    # Install copied dlls
-    FILE(GLOB children \"\${CMAKE_CURRENT_LIST_DIR}/\${BUILD_TYPE}/*.dll\")
-    file(INSTALL DESTINATION \"\${CMAKE_INSTALL_PREFIX}/.\" TYPE PROGRAM FILES
-    \${children}
-    )
-")
 
     install(DIRECTORY
             ${PYTHON_ROOT_FOLDER}/Lib

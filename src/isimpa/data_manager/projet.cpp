@@ -763,12 +763,12 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	///////////////////////////////////////////
 	if(!wxDirExists(workingDir))
 		wxMkdir(workingDir);
-	if(!this->sceneMesh.Save((workingDir+modelFileName).ToStdString())) {
+	if(!this->sceneMesh.Save(workingDir+modelFileName)) {
 		wxLogError(wxGetTranslation("Error while saving the 3d model"));
 		return;
 	}
 	if(!tetraFileName.empty())
-		this->sceneMesh.SaveMaillage((workingDir+tetraFileName).ToStdString(),true);
+		this->sceneMesh.SaveMaillage(workingDir+tetraFileName,true);
 	wxXmlDocument xmlCoreDocument;
 	wxXmlNode* rootConfig = new wxXmlNode(wxXML_ELEMENT_NODE,"configuration");
 
@@ -3220,7 +3220,7 @@ void ProjectManager::OpenNewDataWindow(Element* linkedElement)
 			{
 				if(paramRepair.domeshsurface)
 				{
-					sceneMesh._SavePOLY(meshName.ToStdString(),false,false,true,NULL,true);
+					sceneMesh._SavePOLY(meshName.ToStdString(),false,false,true, NULL,true);
 				}else{
 					sceneMesh._SavePOLY(meshName.ToStdString());
 				}
@@ -3231,7 +3231,7 @@ void ProjectManager::OpenNewDataWindow(Element* linkedElement)
 		if(paramRepair.domeshsurface)
 		{
 			if(!wxFileExists(meshName))
-				sceneMesh._SavePOLY(meshName.ToStdString(),false,false,true,NULL,true);
+				sceneMesh._SavePOLY(meshName.ToStdString(),false,false,true, NULL,true);
 			//Save by materials
 
 			//Maillage de la bordure

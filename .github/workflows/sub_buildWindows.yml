@@ -121,12 +121,13 @@ jobs:
           -DSWIG_EXECUTABLE=${{ env.builddir }}swigwintools.4.2.0/tools/swigwin-4.2.0/swig.exe
           -DSWIG_DIR=${{ env.builddir }}swigwintools.4.2.0/tools/swigwin-4.2.0
           -DPython_ROOT_DIR=${{ env.builddir }}python.3.8.0/tools
+          -DCMAKE_C_COMPILER_LAUNCHER=${{ env.ccachebindir }}/ccache.exe
+          -DCMAKE_CXX_COMPILER_LAUNCHER=${{ env.ccachebindir }}/ccache.exe
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v2
       - name: Compiling sources
         run: |
-          cd $env:builddir
-          msbuild ALL_BUILD.vcxproj /m /p:Configuration=Release /p:TrackFileAccess=false /p:CLToolPath=${{ env.ccachebindir }}
+          cmake --build "${{ env.builddir }}" --config Release --parallel
       - name: Print Ccache statistics after build
         run: |
           . $env:ccachebindir\ccache -s

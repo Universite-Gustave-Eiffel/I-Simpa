@@ -485,7 +485,7 @@ bool CObjet3D::BuildModel(vec3 debCuboide,vec3 finCuboide)
 
 	return true;
 }
-bool CObjet3D::Save(const std::string& filename)
+bool CObjet3D::Save(const wxString& filename)
 { //Sauvegarde d'un fichier, determination du type via l'extension dans le nom du fichier
 	std::string ext = wxFileName(filename).GetExt().Lower().ToStdString();
 	if(ext.empty()) {
@@ -498,10 +498,6 @@ bool CObjet3D::Save(const std::string& filename)
 	else if (ext == "asc")
 	{
 		return this->_SaveASC(filename);
-	}
-	else if (ext=="nff")
-	{
-        return this->_SaveNFF(filename);
 	}
 	else if (ext=="poly")
 	{
@@ -881,33 +877,32 @@ long CObjet3D::_RenderGroupLines(long g,bool hideLines)
 	return this->_pGroups[g].pFaces.size();
 }
 
-bool CObjet3D::_SaveMESH(const std::string& filename)
+bool CObjet3D::_SaveMESH(const wxString& filename)
 {
 	using namespace formatMESH;
 	formatMESH::CMesh classExport;	
-	return classExport.ExportMESH(this->UnitizeVar, this->_pGroups, this->_pVertices, filename, this->GetNumFaces());
+	return classExport.ExportMESH(this->UnitizeVar, this->_pGroups, this->_pVertices, filename.ToStdString(), this->GetNumFaces());
 }
 
-bool CObjet3D::_SaveASC(const std::string&filename)
+bool CObjet3D::_SaveASC(const wxString& filename)
 {
 	formatASC::CAsc classExport;
-	//classExport.ExportASC(this->UnitizeVar,this->tabVertexMaillage, filename, this->tabVertexMaillageNbFace);
-	classExport.ExportASC(this->UnitizeVar,this->_pGroups,this->_pVertices,filename.c_str(),this->GetNumVertices(),this->GetNumFaces());
+	classExport.ExportASC(this->UnitizeVar,this->_pGroups,this->_pVertices,filename,this->GetNumVertices(),this->GetNumFaces());
 	return true;
 }
-bool CObjet3D::_SaveNFF(const std::string&filename)
+bool CObjet3D::_SaveNFF(const wxString& filename)
 {
 	formatNFF::CNff classExport;
-	classExport.ExportNFF(this->UnitizeVar,this->_pGroups,this->_pVertices,filename.c_str(),this->GetNumVertices(),this->GetNumFaces());
+	classExport.ExportNFF(this->UnitizeVar,this->_pGroups,this->_pVertices,filename,this->GetNumVertices(),this->GetNumFaces());
 	return true;
 }
-bool CObjet3D::_SaveBIN(const std::string& filename)
+bool CObjet3D::_SaveBIN(const wxString& filename)
 {
 	formatBIN::CformatBIN classExport;
-	return classExport.ExportBIN(filename,this->UnitizeVar,this->_pVertices,this->_pTexCoords,this->_pGroups);
+	return classExport.ExportBIN(filename.ToStdString(),this->UnitizeVar,this->_pVertices,this->_pTexCoords,this->_pGroups);
 }
 
-bool CObjet3D::_SavePLYProjectGroup(const std::string&filename)
+bool CObjet3D::_SavePLYProjectGroup(const wxString& filename)
 {
 
 	formatRPLY::t_model modelExport;
@@ -935,7 +930,7 @@ bool CObjet3D::_SavePLYProjectGroup(const std::string&filename)
 	}
 	std::vector<int> LayerIdToIdMat;
 	int lastidmat=-1;
-	int lastlayerid=-1;
+	std::size_t lastlayerid=-1;
 	for(int g=0; g < this->_pGroups.size(); g++)
 	{
 		for(long f=0; f < this->_pGroups[g].pFaces.size() ;f++)
@@ -967,7 +962,7 @@ bool CObjet3D::_SavePLYProjectGroup(const std::string&filename)
 						name=mat->GetElementParent()->GetElementInfos().libelleElement;
 					}
 					modelExport.modelLayers.push_back(formatRPLY::t_layer(name));
-					lastlayerid=LayerIdToIdMat.size()-1;
+					lastlayerid=LayerIdToIdMat.size()-1L;
 				} else {
 					lastlayerid=layerIndex;
 				}
@@ -976,9 +971,9 @@ bool CObjet3D::_SavePLYProjectGroup(const std::string&filename)
 		}
 	}
 	
-	return formatRPLY::CPly::ExportPly(modelExport,filename);
+	return formatRPLY::CPly::ExportPly(modelExport, filename.ToStdString());
 }
-bool CObjet3D::_SavePLY(const std::string&filename)
+bool CObjet3D::_SavePLY(const wxString& filename)
 {
 
 	formatRPLY::t_model modelExport;
@@ -1005,17 +1000,7 @@ bool CObjet3D::_SavePLY(const std::string&filename)
 			}
 		}
 	}
-	return formatRPLY::CPly::ExportPly(modelExport,filename);
-}
-
-
-
-
-bool CObjet3D::_SaveNFFMaillage(const std::string&filename)
-{
-	formatNFF::CNff classExport;
-	//classExport.ExportTetraNFF(this->UnitizeVar,this->tabVertexMaillage, filename, this->tabVertexMaillageNbFace);
-	return true;
+	return formatRPLY::CPly::ExportPly(modelExport,filename.ToStdString());
 }
 
 bool CObjet3D::_LoadSTL(const std::string&filename)

@@ -29,30 +29,16 @@ INCLUDE_DIRECTORIES("${PROJECT_SOURCE_DIR}/src/lib_interface")
 
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 
-SET(CMAKE_SWIG_FLAGS "")
-
 SET_SOURCE_FILES_PROPERTIES(libsimpa.i PROPERTIES CPLUSPLUS ON)
 
 SWIG_ADD_LIBRARY(libsimpa LANGUAGE python SOURCES libsimpa.i)
 
-message(STATUS ${Python_LIBRARY_RELEASE})
-SWIG_LINK_LIBRARIES(libsimpa lib_interface ${PYTHON_LIBRARIES})
+SWIG_LINK_LIBRARIES(libsimpa lib_interface)
 
-SetupBoost()
-
-target_link_libraries(${SWIG_MODULE_libsimpa_REAL_NAME} ${PYTHON_LIBRARY_RELEASE} Boost::python Boost::thread)
+target_link_libraries(${SWIG_MODULE_libsimpa_REAL_NAME} Boost::python Boost::thread)
 
 # Creates a folder "libraries" and adds target project (lib_interface.vcproj) under it
 set_property(TARGET ${SWIG_MODULE_libsimpa_REAL_NAME} PROPERTY FOLDER "libraries")
-
-if(WIN32) # Check if we are on Windows
- if(MSVC) # Check if we are using the Visual Studio compiler
-   # A 'Debug' build of the wrappers requires a debug build of the Python interpreter.
-   # http://www.swig.org/Doc2.0/Python.html#Python_nn12
-   # Fix linking with non existing python27_d.lib
-   add_definitions(-DSWIG_PYTHON_INTERPRETER_NO_DEBUG)
- endif()
-endif()
 
 #--------------#
 #    INSTALL
