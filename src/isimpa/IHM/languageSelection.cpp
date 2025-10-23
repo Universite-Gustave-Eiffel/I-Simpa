@@ -92,18 +92,24 @@ LanguageSelector::LanguageSelector(wxWindow *parent,
     int defaultSelection = 0;
     int systemLanguage = wxLocale::GetSystemLanguage();
     std::vector<wxString> lngFolders;
+    std::vector<wxString> languages;
     wxDirList traverser(lngFolders);
     wxDir folderRoot(rootLngFolder);
     if (folderRoot.Open(rootLngFolder)) {
         folderRoot.Traverse(traverser);
     }
     // Add key language
-    lngFolders.push_back(resourceFolder + "en");
+    languages.emplace_back("en");
     // Iterate over language sub-folder
     for (auto &lngFolder: lngFolders) {
         // Extract folder name
         wxString langName = lngFolder.SubString(resourceFolder.size(), lngFolder.size() - 4);
-        const wxLanguageInfo *lngInfo = wxLocale::FindLanguageInfo(langName);
+        languages.emplace_back(langName);
+    }
+    // sort languages
+    std::sort(languages.begin(), languages.end());
+    for (const auto& lang: languages) {
+        const wxLanguageInfo *lngInfo = wxLocale::FindLanguageInfo(lang);
         if (lngInfo != nullptr && wxLocale::IsAvailable(lngInfo->Language)) {
             // Is system default
             if (systemLanguage == lngInfo->Language)
