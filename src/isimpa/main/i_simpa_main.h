@@ -444,7 +444,6 @@ class ISimpaApp : public wxApp
 			wxImage::AddHandler(new wxICOHandler); //ajoute le support du format ico
 
 			//Charge le gestionnaire de language
-			wxLocale::AddCatalogLookupPathPrefix(_T("locale")); //Rechercher les fichiers de langue dans le répertoire "locale"
 			wxLanguage choosenLanguage=wxLANGUAGE_DEFAULT;
 			wxString strConf;
 			if(ApplicationConfiguration::GetFileConfig()->Read("interface/language",&strConf))
@@ -455,7 +454,7 @@ class ISimpaApp : public wxApp
 				choosenLanguage=(wxLanguage)MainUiFrame::AskApplicationLanguage(choosenLanguage);
 			}
 			lang.Init(choosenLanguage, wxLOCALE_LOAD_DEFAULT);
-			lang.AddCatalog("internat", wxLANGUAGE_ENGLISH,"");
+			lang.AddCatalog("isimpa");
 
 
             if(ApplicationConfiguration::GetFileConfig()->Read("interface/appdata",&strConf)) {

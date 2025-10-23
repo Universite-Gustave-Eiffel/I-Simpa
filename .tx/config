@@ -2,8 +2,8 @@
 host = https://app.transifex.com
 
 [o:LAE:p:i-simpa:r:i-simpa-en]
-file_filter            = src/isimpa/lang/<lang>/internat.po
-source_file            = src/isimpa/lang/internat.pot
+file_filter            = src/isimpa/lang/<lang>.po
+source_file            = src/isimpa/lang/<lang>.pot
 source_lang            = en
 type                   = PO
 minimum_perc           = 90
@@ -11,40 +11,40 @@ replace_edited_strings = false
 keep_translations      = false
 
 [o:LAE:p:i-simpa:r:jobtool-toolbox]
-file_filter            = currentRelease/SystemScript/job_tool/locale/<lang>/internat.po
-source_file            = currentRelease/SystemScript/job_tool/internat.pot
+file_filter            = currentRelease/SystemScript/job_tool/locale/<lang>.po
+source_file            = currentRelease/SystemScript/job_tool/<lang>.pot
 source_lang            = en
 type                   = PO
 replace_edited_strings = false
 keep_translations      = false
 
 [o:LAE:p:i-simpa:r:preceiv_sourceTracker]
-file_filter            = currentRelease/SystemScript/preceiv_sourceTracker/locale/<lang>/internat.po
-source_file            = currentRelease/SystemScript/preceiv_sourceTracker/internat.pot
+file_filter            = currentRelease/SystemScript/preceiv_sourceTracker/locale/<lang>.po
+source_file            = currentRelease/SystemScript/preceiv_sourceTracker/<lang>.pot
 source_lang            = en
 type                   = PO
 replace_edited_strings = false
 keep_translations      = false
 
 [o:LAE:p:i-simpa:r:receivertools-toolbox]
-file_filter            = currentRelease/SystemScript/recp_tool/locale/<lang>/internat.po
-source_file            = currentRelease/SystemScript/recp_tool/internat.pot
+file_filter            = currentRelease/SystemScript/recp_tool/locale/<lang>.po
+source_file            = currentRelease/SystemScript/recp_tool/<lang>.pot
 source_lang            = en
 type                   = PO
 replace_edited_strings = false
 keep_translations      = false
 
 [o:LAE:p:i-simpa:r:sourcetools-toolbox]
-file_filter            = currentRelease/SystemScript/source_tools/locale/<lang>/internat.po
-source_file            = currentRelease/SystemScript/source_tools/internat.pot
+file_filter            = currentRelease/SystemScript/source_tools/locale/<lang>.po
+source_file            = currentRelease/SystemScript/source_tools/<lang>.pot
 source_lang            = en
 type                   = PO
 replace_edited_strings = false
 keep_translations      = false
 
 [o:LAE:p:i-simpa:r:vertextools-toolbox]
-file_filter            = currentRelease/SystemScript/moveto_vertex/locale/<lang>/internat.po
-source_file            = currentRelease/SystemScript/moveto_vertex/internat.pot
+file_filter            = currentRelease/SystemScript/moveto_vertex/locale/<lang>.po
+source_file            = currentRelease/SystemScript/moveto_vertex/<lang>.pot
 source_lang            = en
 type                   = PO
 replace_edited_strings = false

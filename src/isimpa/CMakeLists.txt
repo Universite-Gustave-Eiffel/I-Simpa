@@ -25,12 +25,26 @@ else()
     set(ISIMPA_DOC_DIR .)
 endif()
 
-MACRO(ADDMULTIPLE_LANG curdir bindir)
+MACRO(ADDMULTIPLE_LANG curdir installdir)
+  # MESSAGE(STATUS "ADDMULTIPLE_LANG ${curdir}")
   FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)
   FOREACH(child ${children})
-    IF(IS_DIRECTORY ${curdir}/${child})
-        MESSAGE(STATUS "Add lang ${curdir}/${child}  ${bindir}${child}")
-        add_subdirectory(${curdir}/${child} ${bindir}${child})
+    IF(EXISTS "${curdir}/${child}"
+            AND NOT IS_DIRECTORY "${curdir}/${child}"
+            AND "${child}" MATCHES "\\.po$")
+        file(RELATIVE_PATH rel_path "${CMAKE_SOURCE_DIR}" "${curdir}/${child}")
+        MESSAGE(STATUS "Add lang ${rel_path}")
+        # Remove the .po extension (last 3 characters)
+        string(REGEX REPLACE "\\.po$" "" lang_name "${child}")
+        gettext_process_po_files(
+                ${lang_name}
+                ALL
+                PO_FILES ${curdir}/${child}
+        )
+        install(FILES       "${CMAKE_CURRENT_BINARY_DIR}/${lang_name}.gmo"
+                DESTINATION "${installdir}/${lang_name}/LC_MESSAGES"
+                RENAME      "isimpa.mo"
+        )
     ENDIF()
   ENDFOREACH()
 ENDMACRO()
@@ -100,8 +114,7 @@ set(3DENGINE_TOOLS_SOURCES
     3dengine/tools/tesselator.h)
 
 set(GL_SOURCES
-    GL/opengl_inc.h
-    GL/wglext.h)
+    GL/opengl_inc.h)
 
 if(WIN32) # Check if we are on Windows
   set(WIN32_SOURCES
@@ -157,9 +170,6 @@ set(IHM_SOURCES
     IHM/uiTreeCtrl.h
     IHM/AboutDialog.cpp
     IHM/AboutDialog.hpp)
-
-set(LANGUAGE_SOURCES
-    Language/additionnal_univ.h)
 
 set(DATA_MANAGER_SOURCES
     data_manager/appconfig.cpp
@@ -367,7 +377,6 @@ source_group( "3dengine/tools" FILES ${3DENGINE_TOOLS_SOURCES} )
 source_group( "GL" FILES ${GL_SOURCES} )
 source_group( "WIN32" FILES ${WIN32_SOURCES})
 source_group( "IHM" FILES ${IHM_SOURCES} )
-source_group( "Language" FILES ${LANGUAGE_SOURCES} )
 
 source_group( "data_manager" FILES ${DATA_MANAGER_SOURCES} )
 source_group( "data_manager/customEditor" FILES ${DATA_MANAGER_CUSTOMEDIT_SOURCES} )
@@ -462,17 +471,14 @@ FIND_PACKAGE(Gettext)
 IF(GETTEXT_FOUND )
   MESSAGE(STATUS "Found Gettext")
   # Main isimpa locale
-  ADDMULTIPLE_LANG(lang ${CMAKE_BINARY_DIR}/src/job_tool ${ISIMPA_BIN_DIR}/locale)
+  ADDMULTIPLE_LANG(${CMAKE_CURRENT_LIST_DIR}/lang ${ISIMPA_BIN_DIR}/share/locale)
   # Plugins locale
-  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/job_tool/locale ${CMAKE_BINARY_DIR}/src/job_tool)
-  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/recp_tool/locale ${CMAKE_BINARY_DIR}/src/recp_tool)
-  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/source_tools/locale ${CMAKE_BINARY_DIR}/src/source_tools)
-  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/moveto_vertex/locale ${CMAKE_BINARY_DIR}/src/moveto_vertex)
-  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/preceiv_sourceTracker/locale ${CMAKE_BINARY_DIR}/src/preceiv_sourceTracker)
-  ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/check_version/locale ${CMAKE_BINARY_DIR}/src/check_version)
-  #disabled ADDMULTIPLE_LANG(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/SppsReportSample/locale ${CMAKE_BINARY_DIR}/src/SppsReportSample)
-  # Building isimpa require building pofiles
-  add_dependencies(isimpa pofiles)
+  add_subdirectory(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/check_version ${CMAKE_BINARY_DIR}/src/check_version)
+  add_subdirectory(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/job_tool ${CMAKE_BINARY_DIR}/src/job_tool)
+  add_subdirectory(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/moveto_vertex ${CMAKE_BINARY_DIR}/src/moveto_vertex)
+  add_subdirectory(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/preceiv_sourceTracker ${CMAKE_BINARY_DIR}/src/preceiv_sourceTracker)
+  add_subdirectory(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/recp_tool ${CMAKE_BINARY_DIR}/src/recp_tool)
+  add_subdirectory(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/source_tools ${CMAKE_BINARY_DIR}/src/source_tools)
 ENDIF()
 
 SET(wxUSE_GLCANVAS_EGL OFF)

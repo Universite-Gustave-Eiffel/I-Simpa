@@ -103,7 +103,7 @@ LanguageSelector::LanguageSelector(wxWindow *parent,
     // Iterate over language sub-folder
     for (auto &lngFolder: lngFolders) {
         // Extract folder name
-        wxString langName = lngFolder.SubString(resourceFolder.size(), lngFolder.size() - 4);
+        wxString langName = lngFolder.SubString(resourceFolder.size(), lngFolder.size());
         languages.emplace_back(langName);
     }
     // sort languages

@@ -11,7 +11,7 @@ def InstallUiModule(pathname,language):
     localdir=pathname + os.sep + "locale"
 
     try:
-        locale_dict=gettext.translation("internat",localdir,languages=[language],fallback=True)
+        locale_dict=gettext.translation("isimpa",localdir,languages=[language],fallback=True)
     except IOError:
         sys.stderr.write("Language %s is not avaible for this module :\n%s\n" % (language,pathname))
         exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()
