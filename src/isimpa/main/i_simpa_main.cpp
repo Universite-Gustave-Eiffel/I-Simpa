@@ -1007,7 +1007,7 @@ wxString MainUiFrame::AskApplicationDataDir(wxString defaultApplicationDirectory
 int MainUiFrame::AskApplicationLanguage(int defaultLanguage)
 {
 	int choosenLanguage=defaultLanguage;
-	LanguageSelector langSelection(NULL, wxGetTranslation("Please choose language:"),wxGetTranslation("Language"),ApplicationConfiguration::getResourcesFolder()+wxString("locale")+wxFileName::GetPathSeparator(),ApplicationConfiguration::getResourcesFolder()+ApplicationConfiguration::CONST_RESOURCE_BITMAP_FOLDER+wxString("flags")+wxFileName::GetPathSeparator());
+	LanguageSelector langSelection(NULL, wxGetTranslation("Please choose language:"),wxGetTranslation("Language"),ApplicationConfiguration::getResourcesFolder()+wxString("locale")+wxFileName::GetPathSeparator());
 	wxInt32 choice=langSelection.ShowModal();
 	if(choice==wxID_OK)
 	{

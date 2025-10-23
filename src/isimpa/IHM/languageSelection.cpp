@@ -46,7 +46,7 @@ BEGIN_EVENT_TABLE(LanguageSelector, wxDialog)
 END_EVENT_TABLE()
 
 enum WindowLanguageSelectorId {
-    WindowLanguageSelectorId_FLAG_LIST
+    WindowLanguageSelectorId_LIST
 };
 
 class wxDirList : public wxDirTraverser {
@@ -71,68 +71,49 @@ LanguageSelector::LanguageSelector(wxWindow *parent,
                                    const wxString &message,
                                    const wxString &caption,
                                    const wxString &rootLngFolder,
-                                   const wxString &flagsFolder,
                                    const wxPoint &pos)
-    : wxDialog(parent, wxID_ANY, caption,
+    : wxDialog(parent, wxID_ANY, message,
                pos, wxDefaultSize) {
     wxBeginBusyCursor();
     wxBoxSizer *topsizer = new wxBoxSizer(wxVERTICAL);
     wxBoxSizer *lstsizer = new wxBoxSizer(wxVERTICAL);
     topsizer->Add(lstsizer, 1, wxLEFT | wxTOP | wxGROW);
 
-    wxListCtrl *flagList = new wxListCtrl(this, WindowLanguageSelectorId_FLAG_LIST, wxDefaultPosition, wxDefaultSize,
-                                          wxLC_SMALL_ICON |
-                                          wxSUNKEN_BORDER | wxLC_SINGLE_SEL);
-    lstsizer->Add(flagList, 0, wxLEFT | wxTOP | wxGROW, 5);
+    wxListCtrl *languageList = new wxListCtrl(this, WindowLanguageSelectorId_LIST, wxDefaultPosition, wxDefaultSize,
+                                          wxLC_REPORT | wxSUNKEN_BORDER | wxLC_SINGLE_SEL);
+    languageList->InsertColumn(0, caption, wxLIST_FORMAT_LEFT, -1);
 
-    wxImageList *icoLst = new wxImageList(16, 11);
+    // Set the column width to match the list control width
+    languageList->SetColumnWidth(0, wxLIST_AUTOSIZE_USEHEADER);
+
+    lstsizer->Add(languageList, 0, wxLEFT | wxTOP | wxGROW, 5);
+
     const wxString &resourceFolder = rootLngFolder;
     int defaultSelection = 0;
     int systemLanguage = wxLocale::GetSystemLanguage();
-    wxArrayString flagsFileName;
     std::vector<wxString> lngFolders;
-
     wxDirList traverser(lngFolders);
     wxDir folderRoot(rootLngFolder);
     if (folderRoot.Open(rootLngFolder)) {
         folderRoot.Traverse(traverser);
     }
-    wxDir::GetAllFiles(flagsFolder, &flagsFileName, "*.png", wxDIR_FILES);
     // Add key language
     lngFolders.push_back(resourceFolder + "en");
     // Iterate over language sub-folder
     for (auto &lngFolder: lngFolders) {
         // Extract folder name
-        wxString langName = lngFolder.SubString(resourceFolder.size(), lngFolder.size());
+        wxString langName = lngFolder.SubString(resourceFolder.size(), lngFolder.size() - 4);
         const wxLanguageInfo *lngInfo = wxLocale::FindLanguageInfo(langName);
         if (lngInfo != nullptr && wxLocale::IsAvailable(lngInfo->Language)) {
             // Is system default
             if (systemLanguage == lngInfo->Language)
-                defaultSelection = flagList->GetItemCount();
-            // Fetch flag if available
-            wxString Canonical_lng = lngInfo->CanonicalName;
-            wxString ISO3166_lng = Canonical_lng.Mid(Canonical_lng.rfind("_") + 1).Lower();
-            wxString flag_filepath = flagsFolder + wxString::Format("%s.png", ISO3166_lng);
-            if (flagsFileName.Index(flag_filepath) >= 0) {
-                wxIcon flagImage(flag_filepath, wxBITMAP_TYPE_PNG);
-                if (flagImage.IsOk()) {
-                    const int iconIndex = icoLst->Add(flagImage);
-                    flagList->SetItemData(
-                        flagList->InsertItem(flagList->GetItemCount(), wxLocale::GetLanguageName(lngInfo->Language),
-                                             iconIndex), lngInfo->Language);
-                } else {
-                    flagList->SetItemData(flagList->InsertItem(flagList->GetItemCount(), lngInfo->Description),
-                                          lngInfo->Language);
-                }
-            } else {
-                flagList->SetItemData(flagList->InsertItem(flagList->GetItemCount(), lngInfo->Description),
-                                      lngInfo->Language);
-            }
+                defaultSelection = languageList->GetItemCount();
+            languageList->SetItemData(
+                languageList->InsertItem(languageList->GetItemCount(), wxLocale::GetLanguageName(lngInfo->Language) + "(" + wxLocale::GetLanguageCanonicalName(lngInfo->Language) + ")"), lngInfo->Language);
         }
     }
-    flagList->AssignImageList(icoLst, wxIMAGE_LIST_SMALL);
-    if (flagList->GetItemCount() > 0)
-        flagList->SetItemState(defaultSelection,wxLIST_STATE_SELECTED,wxLIST_STATE_SELECTED);
+    if (languageList->GetItemCount() > 0)
+        languageList->SetItemState(defaultSelection,wxLIST_STATE_SELECTED,wxLIST_STATE_SELECTED);
     // 3) buttons if any
     wxSizer *buttonSizer = CreateSeparatedButtonSizer(wxOK | wxCANCEL);
     if (buttonSizer) {
@@ -144,6 +125,10 @@ LanguageSelector::LanguageSelector(wxWindow *parent,
 
     topsizer->SetSizeHints(this);
     topsizer->Fit(this);
+
+    // After the window is shown and has a size
+    int width = languageList->GetClientSize().GetWidth();
+    languageList->SetColumnWidth(0, width);
 
     wxEndBusyCursor();
 }
@@ -158,7 +143,7 @@ void LanguageSelector::OnCancel(wxCommandEvent &event) {
 
 int LanguageSelector::GetSelectedLanguage() {
     //wxWindow* listwin=this->GetWindowChild(WindowLanguageSelectorId_FLAG_LIST);
-    wxWindow *listwin = this->FindWindowById(WindowLanguageSelectorId_FLAG_LIST);
+    wxWindow *listwin = this->FindWindowById(WindowLanguageSelectorId_LIST);
     wxListCtrl *lstCtrl = wxDynamicCast(listwin, wxListCtrl);
     if (lstCtrl) {
         int selection = -1;
