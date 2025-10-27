@@ -107,24 +107,22 @@ jobs:
           . $env:ccachebindir\ccache -s
           . $env:ccachebindir\ccache -z
           . $env:ccachebindir\ccache -p
-      - name: Install NuGet Packages
-        shell: powershell
-        run: |
-            nuget install swigwintools -OutputDirectory "${{ env.builddir }}/Tools" -Version 4.2.0
-            nuget install python -Version 3.8 -OutputDirectory "${{ env.builddir }}/Tools"
+      - uses: mmomtchev/setup-swig@v4
+      - name: Verify
+        run: swig -versio
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v2
       - name: Configuring CMake
         run: >
           cmake -B"${{ env.builddir }}" .
           -DCPM_SOURCE_CACHE=${{ env.CPM_SOURCE_CACHE }} 
           -DCMAKE_VS_NO_COMPILE_BATCHING=ON
           -DCMAKE_BUILD_TYPE=Release
-          -DSWIG_EXECUTABLE=${{ env.builddir }}swigwintools.4.2.0/tools/swigwin-4.2.0/swig.exe
-          -DSWIG_DIR=${{ env.builddir }}swigwintools.4.2.0/tools/swigwin-4.2.0
-          -DPython_ROOT_DIR=${{ env.builddir }}python.3.8.0/tools
           -DCMAKE_C_COMPILER_LAUNCHER=${{ env.ccachebindir }}/ccache.exe
           -DCMAKE_CXX_COMPILER_LAUNCHER=${{ env.ccachebindir }}/ccache.exe
-      - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v2
       - name: Compiling sources
         run: |
           cmake --build "${{ env.builddir }}" --config Release --parallel
