@@ -70,7 +70,6 @@ private:
 LanguageSelector::LanguageSelector(wxWindow *parent,
                                    const wxString &message,
                                    const wxString &caption,
-                                   const wxString &rootLngFolder,
                                    const wxPoint &pos)
     : wxDialog(parent, wxID_ANY, message,
                pos, wxDefaultSize) {
@@ -88,25 +87,20 @@ LanguageSelector::LanguageSelector(wxWindow *parent,
 
     lstsizer->Add(languageList, 0, wxLEFT | wxTOP | wxGROW, 5);
 
-    const wxString &resourceFolder = rootLngFolder;
     int defaultSelection = 0;
-    int systemLanguage = wxLocale::GetSystemLanguage();
-    std::vector<wxString> lngFolders;
+    const int systemLanguage = wxLocale::GetSystemLanguage();
     std::vector<wxString> languages;
-    wxDirList traverser(lngFolders);
-    wxDir folderRoot(rootLngFolder);
-    if (folderRoot.Open(rootLngFolder)) {
-        folderRoot.Traverse(traverser);
-    }
-    // Add key language
-    languages.emplace_back("en");
-    // Iterate over language sub-folder
-    for (auto &lngFolder: lngFolders) {
-        // Extract folder name
-        wxString langName = lngFolder.SubString(resourceFolder.size(), lngFolder.size());
-        languages.emplace_back(langName);
-    }
     // sort languages
+    wxTranslations* translations = wxTranslations::Get();
+
+    if (translations) {
+        // Get all available translations
+        wxArrayString availLangs = translations->GetAvailableTranslations("isimpa");
+        for (const auto& lang: availLangs) {
+            languages.emplace_back(lang);
+        }
+    }
+
     std::sort(languages.begin(), languages.end());
     for (const auto& lang: languages) {
         const wxLanguageInfo *lngInfo = wxLocale::FindLanguageInfo(lang);

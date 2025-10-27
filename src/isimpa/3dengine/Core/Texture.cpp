@@ -33,7 +33,6 @@
 #include <wx/filename.h>
 #include <wx/image.h>
 #include <wx/log.h>
-#include "GL/glext.h"
 #include "3dengine/tools/opengl_test.hpp"
 #include "UtfConverter.h"
 #include "last_cpp_include.hpp"

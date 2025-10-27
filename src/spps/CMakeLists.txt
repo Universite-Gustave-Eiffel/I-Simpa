@@ -79,6 +79,8 @@ add_executable(spps
 # Creates a folder "executables" and adds target project (spps.vcproj) under it
 set_property(TARGET spps PROPERTY FOLDER "executables")
 
+SetupBoost()
+
 target_link_libraries (spps lib_interface Boost::random Boost::thread)
 
 

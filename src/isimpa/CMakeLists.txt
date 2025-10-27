@@ -469,7 +469,7 @@ FIND_PACKAGE(Gettext)
 IF(GETTEXT_FOUND )
   MESSAGE(STATUS "Found Gettext")
   # Main isimpa locale
-  ADDMULTIPLE_LANG(${CMAKE_CURRENT_LIST_DIR}/lang ${ISIMPA_BIN_DIR}/share/locale)
+  ADDMULTIPLE_LANG(${CMAKE_CURRENT_LIST_DIR}/lang share/locale)
   # Plugins locale
   add_subdirectory(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/check_version ${CMAKE_BINARY_DIR}/src/check_version)
   add_subdirectory(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/job_tool ${CMAKE_BINARY_DIR}/src/job_tool)
@@ -538,6 +538,8 @@ include_directories(${OPENGL_INCLUDE_DIRS})
 include_directories(${wxWidgets_SOURCE_DIR})
 # Include Python headers
 include_directories(${Python3_INCLUDE_DIRS})
+
+SetupBoost()
 
 # Properties->Linker->Input->Additional Dependencies
 target_link_libraries(isimpa

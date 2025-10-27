@@ -28,15 +28,13 @@ modules:
     buildsystem: cmake
     sources:
       - type: archive
-        url: https://github.com/boostorg/boost/releases/download/boost-1.86.0/boost-1.86.0-cmake.tar.xz
-        sha256: 2c5ec5edcdff47ff55e27ed9560b0a0b94b07bd07ed9928b476150e16b0efc57
+        url: https://github.com/boostorg/boost/releases/download/boost-1.89.0/boost-1.89.0-cmake.7z
+        sha256: 252149f583054515b10688855b24ca1c16072b5118e603b8fe017894d319c262
     config-opts:
-      - -DBOOST_ENABLE_CMAKE=ON
       - -DBUILD_TESTING=ON
-      - -DBOOST_ENABLE_TEST=ON
       - -DBOOST_ENABLE_PYTHON=ON
       - -DBUILD_SHARED_LIBS=ON
-      - -DBOOST_INCLUDE_LIBRARIES=system\;algorithm\;random\;filesystem\;regex\;thread\;chrono\;test\;date_time\;python\;numeric/conversion
+      - -DBOOST_INCLUDE_LIBRARIES=system;algorithm;random;filesystem;regex;thread;chrono;test;date_time;python;numeric/conversion
       - -DCMAKE_BUILD_TYPE=Release
   - name: swig
     buildsystem: autotools

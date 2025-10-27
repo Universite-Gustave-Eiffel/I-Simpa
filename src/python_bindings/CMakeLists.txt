@@ -1,6 +1,6 @@
 # Libsimpa
-set(CMAKE_INSTALL_MFC_LIBRARIES TRUE) 
-set(CMAKE_INSTALL_UCRT_LIBRARIES TRUE ) 
+set(CMAKE_INSTALL_MFC_LIBRARIES TRUE)
+set(CMAKE_INSTALL_UCRT_LIBRARIES TRUE )
 
 include( InstallRequiredSystemLibraries )
 #---------------------------------------#
@@ -15,7 +15,7 @@ include(UseSWIG)
 list(APPEND CMAKE_SWIG_FLAGS "-doxygen")
 
 if(UNIX AND NOT APPLE)
-  list(APPEND CMAKE_SWIG_FLAGS "-DSWIGWORDSIZE64")
+    list(APPEND CMAKE_SWIG_FLAGS "-DSWIGWORDSIZE64")
 endif()
 
 # Find Python 3
@@ -34,6 +34,8 @@ SET_SOURCE_FILES_PROPERTIES(libsimpa.i PROPERTIES CPLUSPLUS ON)
 SWIG_ADD_LIBRARY(libsimpa LANGUAGE python SOURCES libsimpa.i)
 
 SWIG_LINK_LIBRARIES(libsimpa lib_interface)
+
+SetupBoost()
 
 target_link_libraries(${SWIG_MODULE_libsimpa_REAL_NAME} Boost::python Boost::thread)
 
@@ -56,42 +58,53 @@ endif()
 
 # Set installation directories based on build type
 if(IS_FLATPAK)
-    set(ISIMPA_BIN_DIR bin)
+    # Flatpak uses standard FHS paths
+    set(PYTHON_SITE_PACKAGES "${CMAKE_INSTALL_PREFIX}/lib/python${Python3_VERSION_MAJOR}.${Python3_VERSION_MINOR}/site-packages")
 else()
-    set(ISIMPA_BIN_DIR .)
+    # Use Python's site-packages directory (works with pip install)
+    execute_process(
+            COMMAND ${Python3_EXECUTABLE} -c "import sysconfig; print(sysconfig.get_path('purelib'))"
+            OUTPUT_VARIABLE PYTHON_SITE_PACKAGES
+            OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    # For scikit-build, use relative path from CMAKE_INSTALL_PREFIX
+    set(PYTHON_SITE_PACKAGES ".")
 endif()
 
-
-# Adds logic to INSTALL.vcproj to copy _libsimpa.pyd to the destination directory
+# Install the SWIG-generated extension module
 install (TARGETS ${SWIG_MODULE_libsimpa_REAL_NAME}
-      LIBRARY DESTINATION ${ISIMPA_BIN_DIR}/libsimpa/
+        LIBRARY DESTINATION ${PYTHON_SITE_PACKAGES}/libsimpa/
+        RUNTIME DESTINATION ${PYTHON_SITE_PACKAGES}/libsimpa/
 )
 
 if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
-    install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION ${ISIMPA_BIN_DIR}/libsimpa COMPONENT System )
+    install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS}
+            DESTINATION ${PYTHON_SITE_PACKAGES}/libsimpa
+            COMPONENT System )
 endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
 
+# Install Python files
 install (FILES
         ${ISIMPA_RESSOURCES}/libsimpa/__init__.py
-		${CMAKE_CURRENT_BINARY_DIR}/libsimpa.py
-        DESTINATION ${ISIMPA_BIN_DIR}/libsimpa/)
-        
-        
+        ${CMAKE_CURRENT_BINARY_DIR}/libsimpa.py
+        DESTINATION ${PYTHON_SITE_PACKAGES}/libsimpa/)
+
+
 
 if(WIN32)
     get_filename_component(PYTHON_PATH ${Python3_EXECUTABLE} DIRECTORY)
-    #Fetch required Dll's 
+    #Fetch required Dll's
     set(DIRS ${Boost_LIBRARY_DIR_DEBUG}
-             ${Boost_LIBRARY_DIR_RELEASE}
-             ${PYTHON_PATH}
+            ${Boost_LIBRARY_DIR_RELEASE}
+            ${PYTHON_PATH}
     )
-    
+
     install(CODE "
-    include(BundleUtilities)   
+    include(BundleUtilities)
     # Rename to .exe as cmake check if the file ends with .exe in windows before gathering dependencies..
-    file(RENAME \"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.pyd\" \"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.exe\")    
+    file(RENAME \"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.pyd\" \"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.exe\")
     fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.exe\" \"\"   \"${DIRS}\")
-    file(RENAME \"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.exe\" \"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.pyd\") 
+    file(RENAME \"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.exe\" \"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.pyd\")
 ")
 endif()
 
@@ -130,5 +143,5 @@ add_test(NAME check_retrocompat_recsurf
         WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX})
 
 set_property(TEST test_modelio check_retrocompat check_retrocompat_mesh check_retrocompat_gabe test_math check_retrocompat_recsurf
- PROPERTY ENVIRONMENT "PYTHONPATH=${CMAKE_INSTALL_PREFIX}"
+        PROPERTY ENVIRONMENT "PYTHONPATH=${CMAKE_INSTALL_PREFIX}"
 )
