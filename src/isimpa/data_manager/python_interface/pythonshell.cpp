@@ -81,7 +81,8 @@ PythonShell::PythonShell(PyConsole* pyCtrl)
 	outputRedirectIn=extract<PythonStdIoRedirect*>(sys.attr("stdin"));
 
 	//Ajout du dossier de script
-    boost::python::import("site").attr("addsitedir")("");
+	std::string pythonVersion = std::to_string(PY_MAJOR_VERSION) + "." + std::to_string(PY_MINOR_VERSION);
+    boost::python::import("site").attr("addsitedir")("lib/python"+pythonVersion+"/site-packages");
 	boost::python::import("site").attr("addsitedir")("UserScript");
 	boost::python::import("site").attr("addsitedir")("SystemScript");
 }

@@ -57,19 +57,8 @@ else()
 endif()
 
 # Set installation directories based on build type
-if(IS_FLATPAK)
-    # Flatpak uses standard FHS paths
-    set(PYTHON_SITE_PACKAGES "${CMAKE_INSTALL_PREFIX}/lib/python${Python3_VERSION_MAJOR}.${Python3_VERSION_MINOR}/site-packages")
-else()
-    # Use Python's site-packages directory (works with pip install)
-    execute_process(
-            COMMAND ${Python3_EXECUTABLE} -c "import sysconfig; print(sysconfig.get_path('purelib'))"
-            OUTPUT_VARIABLE PYTHON_SITE_PACKAGES
-            OUTPUT_STRIP_TRAILING_WHITESPACE
-    )
-    # For scikit-build, use relative path from CMAKE_INSTALL_PREFIX
-    set(PYTHON_SITE_PACKAGES ".")
-endif()
+# Flatpak and pip uses standard FHS paths
+set(PYTHON_SITE_PACKAGES "${CMAKE_INSTALL_PREFIX}/lib/python${Python3_VERSION_MAJOR}.${Python3_VERSION_MINOR}/site-packages")
 
 # Install the SWIG-generated extension module
 install (TARGETS ${SWIG_MODULE_libsimpa_REAL_NAME}
