@@ -118,8 +118,6 @@ set(GL_SOURCES
 
 if(WIN32) # Check if we are on Windows
   set(WIN32_SOURCES
-    GL/offScreenRendering.cpp
-    GL/offScreenRendering.h
 	resources/isimpa.rc
       )
 else()
