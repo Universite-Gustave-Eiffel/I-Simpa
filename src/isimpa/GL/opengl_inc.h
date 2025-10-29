@@ -46,3 +46,15 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #endif
+
+/* ------------------- GL_EXT_texture_filter_anisotropic ------------------- */
+
+#ifndef GL_EXT_texture_filter_anisotropic
+#define GL_EXT_texture_filter_anisotropic 1
+
+#define GL_TEXTURE_MAX_ANISOTROPY_EXT 0x84FE
+#define GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT 0x84FF
+
+#define GLEW_EXT_texture_filter_anisotropic GLEW_GET_VAR(__GLEW_EXT_texture_filter_anisotropic)
+
+#endif /* GL_EXT_texture_filter_anisotropic */

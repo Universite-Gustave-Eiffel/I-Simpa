@@ -29,7 +29,6 @@
 * ----------------------------------------------------------------------*/
 
 #include "GlBitmapSurface.h"
-#include <cstring>
 #include "GL/opengl_inc.h"
 #include "3dengine/tools/opengl_test.hpp"
 #include <cmath>
