@@ -91,9 +91,9 @@ if(WIN32)
     install(CODE "
     include(BundleUtilities)
     # Rename to .exe as cmake check if the file ends with .exe in windows before gathering dependencies..
-    file(RENAME \"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.pyd\" \"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.exe\")
-    fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.exe\" \"\"   \"${DIRS}\")
-    file(RENAME \"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.exe\" \"\${CMAKE_INSTALL_PREFIX}/libsimpa/_libsimpa.pyd\")
+    file(RENAME \"${PYTHON_SITE_PACKAGES}/libsimpa/_libsimpa.pyd\" \"${PYTHON_SITE_PACKAGES}/libsimpa/_libsimpa.exe\")
+    fixup_bundle(\"${PYTHON_SITE_PACKAGES}/libsimpa/_libsimpa.exe\" \"\"   \"${DIRS}\")
+    file(RENAME \"${PYTHON_SITE_PACKAGES}/libsimpa/_libsimpa.exe\" \"${PYTHON_SITE_PACKAGES}/libsimpa/_libsimpa.pyd\")
 ")
 endif()
 
