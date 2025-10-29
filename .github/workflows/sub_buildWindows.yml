@@ -109,6 +109,9 @@ jobs:
           . $env:ccachebindir\ccache -p
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v2
+      - name: Install GnuWin32 gettext tools
+        run: |
+          choco install gettext.tool -y
       - name: Configuring CMake
         run: >
           cmake -B"${{ env.builddir }}" .
@@ -120,6 +123,9 @@ jobs:
       - name: Compiling sources
         run: |
           cmake --build "${{ env.builddir }}" --config Release --parallel
+      - name: Install
+        run: |
+          cmake --install "${{ env.builddir }}" --config Release
       - name: Print Ccache statistics after build
         run: |
           . $env:ccachebindir\ccache -s
@@ -130,3 +136,9 @@ jobs:
           name: ${{ inputs.artifactBasename }}-Logs
           path: |
             ${{ env.logdir }}
+
+      - name: Upload I-Simpa standalone
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-no-install-${{ matrix.platform }}
+          path: ${{ env.builddir }}/bin
