@@ -691,10 +691,10 @@ namespace sgSpace
 		{
 			if (this->axisOrientation == wxVERTICAL)
 			{
-				return _("Y axis");
+				return wxGetTranslation("Y axis");
 			}
 			else {
-				return _("X axis");
+				return wxGetTranslation("X axis");
 			}
 		}
 		else {
@@ -703,7 +703,7 @@ namespace sgSpace
 	}
 	void SG_Element_Axis::SetLabel(const wxString& newLabel)
 	{
-		if (newLabel != _("X axis") && newLabel != _("Y axis"))
+		if (newLabel != wxGetTranslation("X axis") && newLabel != wxGetTranslation("Y axis"))
 		{
 			SG_Element::SetLabel(newLabel);
 		}
@@ -1432,7 +1432,7 @@ namespace sgSpace
 		directDc.DrawBitmap(operationObject, 0, 0);
 #ifdef __SG_PROFILING__
 		wxLongLong durationOperation = wxDateTime::UNow().GetValue() - beginT.GetValue();
-		wxLogMessage(_("Total draw time %i ms"), durationOperation.GetValue());
+		wxLogMessage(wxGetTranslation("Total draw time %i ms"), durationOperation.GetValue());
 #endif
 	}
 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+    <id>org.noise_planet.i-simpa</id>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>GPL-3.0+</project_license>
+    <name>I-SIMPA</name>
+    <summary>Room acoustics simulation software</summary>
+
+    <description>
+        <p>
+            I-SIMPA is a graphical user interface (GUI) for room acoustics simulations.
+            It allows users to model indoor sound propagation and analyze acoustic parameters.
+        </p>
+        <p>
+            Features include:
+        </p>
+        <ul>
+            <li>3D scene import</li>
+            <li>Multiple calculation codes support (SPPS, TC, etc.)</li>
+            <li>Acoustic materials database</li>
+            <li>Sound source directivity</li>
+            <li>Results analysis and visualization</li>
+        </ul>
+    </description>
+
+    <launchable type="desktop-id">org.noise_planet.i-simpa.desktop</launchable>
+
+    <url type="homepage">https://i-simpa.univ-gustave-eiffel.fr</url>
+    <url type="help">https://i-simpa-wiki.readthedocs.io</url>
+    <url type="bugtracker">https://github.com/Universite-Gustave-Eiffel/I-Simpa/issues</url>
+
+    <screenshots>
+        <screenshot type="default">
+            <caption>Main interface</caption>
+            <image>https://raw.githubusercontent.com/Universite-Gustave-Eiffel/I-Simpa/refs/tags/v1.3.4/Docs/images/Screenshots/I_Simpa_GUI.JPG</image>
+        </screenshot>
+    </screenshots>
+
+    <content_rating type="oars-1.1" />
+
+    <releases>
+        <release version="1.4.0" date="2025-10-20"/>
+    </releases>
+</component>

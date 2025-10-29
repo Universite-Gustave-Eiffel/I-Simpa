@@ -46,8 +46,6 @@ public:
 	LanguageSelector(wxWindow *parent,
                         const wxString& message,
                         const wxString& caption,
-						const wxString& rootLngFolder,
-						const wxString& flagsFolder,
                         const wxPoint& pos = wxDefaultPosition);
 	
 	/** Evenement de validation

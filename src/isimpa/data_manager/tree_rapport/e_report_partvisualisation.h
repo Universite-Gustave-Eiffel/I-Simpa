@@ -72,7 +72,7 @@ public:
 		:E_Report_File(parent,"Visualisation particules","",ELEMENT_TYPE_REPORT_PARTVISUALISATION,nodeElement)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_DISK_PARTICLE);
-		_("Particles display");
+		wxGetTranslation("Particles display");
 	}
 
 
@@ -82,9 +82,9 @@ public:
 	{
 		
 		wxMenu* subMenuLoadSimu = new wxMenu;
-		subMenuLoadSimu->Append(GetMenuItem(subMenuLoadSimu,IDEVENT_LOAD_PARTICLE_SIMULATION,_("Particles")));
-		subMenuLoadSimu->Append(GetMenuItem(subMenuLoadSimu,IDEVENT_LOAD_PARTICLE_SIMULATION_PATH,_("Rays")));
-		leMenu->Append(GetMenuItem(leMenu,-1,_("Load animation"),subMenuLoadSimu));
+		subMenuLoadSimu->Append(GetMenuItem(subMenuLoadSimu,IDEVENT_LOAD_PARTICLE_SIMULATION,wxGetTranslation("Particles")));
+		subMenuLoadSimu->Append(GetMenuItem(subMenuLoadSimu,IDEVENT_LOAD_PARTICLE_SIMULATION_PATH,wxGetTranslation("Rays")));
+		leMenu->Append(GetMenuItem(leMenu,-1,wxGetTranslation("Load animation"),subMenuLoadSimu));
 		E_Report_File::OnRightClic(leMenu);
 	}
 

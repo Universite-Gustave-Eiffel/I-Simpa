@@ -50,7 +50,7 @@ private:
 
 	void InitProperties() 
 	{
-		this->AppendPropertyText("projectname",wxTRANSLATE("Project name"),_("New project"));
+		this->AppendPropertyText("projectname",wxTRANSLATE("Project name"),wxGetTranslation("New project"));
 		this->AppendPropertyText("projectdesc",wxTRANSLATE("Project description"),"");
 		this->AppendPropertyText("projectuser",wxTRANSLATE("Author"),"");
 		wxDateTime maintenant=wxDateTime::UNow();
@@ -62,7 +62,7 @@ public:
 		:Element(parent,"Configuration",Element::ELEMENT_TYPE_SCENE_PROJET_USERCONFIGURATION,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_PROJECT_AUTHOR);
-		_("Configuration");
+		wxGetTranslation("Configuration");
 	}
 
 	E_Scene_UserConfiguration( Element* parent)

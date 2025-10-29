@@ -47,16 +47,16 @@ public:
 	E_Scene_Projet_Demo( wxXmlNode* noeudCourant ,  Element* parent) 
 		:E_Drawable(parent,"Demo",Element::ELEMENT_TYPE_SCENE_PROJET_DEMO,Element::GRAPH_ITEM,noeudCourant)
 	{
-		_("Demo");
+		wxGetTranslation("Demo");
 	}
 
 	E_Scene_Projet_Demo( Element* parent)
 		:E_Drawable(parent,"Demo",Element::ELEMENT_TYPE_SCENE_PROJET_DEMO,Element::GRAPH_ITEM)
 	{
 		this->AppendPropertyText("demoname","Nom de la démo","Sans nom !");
-		_("Nom de la démo");
+		wxGetTranslation("Nom de la démo");
 		this->AppendPropertyColor("democolor","Couleur de démonstration",0,120,0);
-		_("Couleur de démonstration");
+		wxGetTranslation("Couleur de démonstration");
 	}
 
 	void DrawItem( vec4 unitizeValue )

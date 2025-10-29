@@ -34,9 +34,7 @@
 
 #include "GL/opengl_inc.h"
 #include <wx/progdlg.h>
-#ifdef _WIN32
-	#include "GL\offScreenRendering.h"
-#endif
+
 #include "last_cpp_include.hpp"
 
 extern CTexture *textures;
@@ -355,79 +353,6 @@ void OpenGLApp::InitGl()
 
 }
 
-int OpenGLApp::GetImage(wxImage& aimage, const int awidth, const int aheight,void* _contextv)
-{
-	#ifdef _WIN32
-	HWND _context=(HWND)_contextv;
-	GLubyte* pixels=NULL;
-	bool isOk=false;
-	try
-	{
-		OffScreenRendering::OffScreen GlShotOffScreen(awidth,aheight);
-
-		GlShotOffScreen.init(_context);
-		ChangeWindow(awidth,aheight);
-
-		m_Object->backgroundChange=true;
-		m_Object->BuildFont(GetDC( _context ));
-		InitGl();
-		textures->ReloadAllTextures();
-		RunGlCommands(false);
-		int dataSize=0;
-
-		pixels = GlShotOffScreen.render(dataSize);
-
-		isOk=aimage.Create(awidth, aheight,pixels);
-
-		aimage=aimage.Mirror(false);
-		textures->Destroy();
-	}
-	catch( OffScreenRendering::OffScreen::OUTSCREENERROR idError )
-	{
-		switch(idError)
-		{
-			case OffScreenRendering::OffScreen::OUTSCREENERROR_Could_not_create_the_pbuffer:
-				wxLogMessage(_("Resolution is too high, your graphic card is enable to manage this size. Please choose a lower export resolution"));
-				break;
-			case OffScreenRendering::OffScreen::OUTSCREENERROR_Could_not_make_the_pbuffer_context_current:
-				break;
-			case OffScreenRendering::OffScreen::OUTSCREENERROR_not_find_acceptable_pixel_format:
-				break;
-			case OffScreenRendering::OffScreen::OUTSCREENERROR_WGL_ARB_pbuffer_extension_not_found:
-				break;
-			case OffScreenRendering::OffScreen::OUTSCREENERROR_WGL_ARB_pbuffer_functions_not_found:
-				break;
-			case OffScreenRendering::OffScreen::OUTSCREENERROR_WGL_ARB_pixel_format_extension_was_not_found:
-				break;
-			case OffScreenRendering::OffScreen::OUTSCREENERROR_WGL_ARB_pixel_format_functions_not_found:
-				break;
-			case OffScreenRendering::OffScreen::OUTSCREENERROR_wglGetExtensionsStringARB_miss:
-				break;
-			default:
-				wxLogError(_("Unknown OpenGL error, try to set a lower resolution or use another exportation method."));
-		}
-		wxLogMessage(_("Error code : %i"),(int)idError);
-		isOk=false;
-	}
-	catch( ... )
-	{
-		wxLogError(_("OpenGL exportation error. Try to use the window exportation method instead"));
-		isOk=false;
-	}
-
-	if(isOk)
-		return 1;
-	else
-	{
-		return 0;
-	}
-	#else
-	return 0;
-	#endif
-}
-
-
-
 int OpenGLApp::GetImage(wxImage& aimage)
 {
 	GLint view[4];
@@ -613,14 +538,14 @@ void OpenGLApp::LoadAnimatorLst(ptAnimatorManager& managerToCompile)
 	unsigned int nbStep=managerToCompile->gl_compilation_array_size;
 	if(nbStep>0)
 	{
-		wxProgressDialog progDialog(_(wxString::Format("Compilation du rendu de l'animation '%s'",managerToCompile->ctrl_animator->GetRendererLabel())),_("Preparing display of surfaces receivers"),100,NULL,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
+		wxProgressDialog progDialog(wxGetTranslation(wxString::Format("Compilation du rendu de l'animation '%s'",managerToCompile->ctrl_animator->GetRendererLabel())),wxGetTranslation("Preparing display of surfaces receivers"),100,NULL,wxPD_CAN_ABORT | wxPD_REMAINING_TIME |wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
 		progDialog.Update(0);
 		for(int tStep=0;tStep<nbStep;tStep++)
 		{
 			int prog=int(((float)tStep/nbStep)*100);
 			if(prog>0 && prog<100)
 			{
-				progDialog.Update(prog,wxString::Format(_("Loading time step %i/%i"),tStep+1,nbStep));
+				progDialog.Update(prog,wxString::Format(wxGetTranslation("Loading time step %i/%i"),tStep+1,nbStep));
 			}
 			managerToCompile->gl_compilation_array[tStep]=glGenLists(1);
 			glNewList(managerToCompile->gl_compilation_array[tStep], GL_COMPILE);

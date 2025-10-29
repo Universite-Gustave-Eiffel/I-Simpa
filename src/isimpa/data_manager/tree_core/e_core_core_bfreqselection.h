@@ -129,17 +129,17 @@ public:
 	void OnRightClic(wxMenu* leMenu)
 	{
 		wxMenu* submenupreselect=new wxMenu();
-		submenupreselect->Append(Element::GetMenuItem(submenupreselect,Element::IDEVENT_BFREQ_PRESELECTION_NONE, _("Unselect all")));
-		submenupreselect->Append(Element::GetMenuItem(submenupreselect,Element::IDEVENT_BFREQ_PRESELECTION_ALL, _("Select all")));
+		submenupreselect->Append(Element::GetMenuItem(submenupreselect,Element::IDEVENT_BFREQ_PRESELECTION_NONE, wxGetTranslation("Unselect all")));
+		submenupreselect->Append(Element::GetMenuItem(submenupreselect,Element::IDEVENT_BFREQ_PRESELECTION_ALL, wxGetTranslation("Select all")));
 		wxMenu* submenupreselect_octave=new wxMenu();
-		submenupreselect_octave->Append(Element::GetMenuItem(submenupreselect_octave,Element::IDEVENT_BFREQ_PRESELECTION_BAND, _("All [63-16000] Hz")));
-		submenupreselect_octave->Append(Element::GetMenuItem(submenupreselect_octave,Element::IDEVENT_BFREQ_PRESELECTION_BUILDING_BAND, _("Building/Road [125-4000] Hz")));
+		submenupreselect_octave->Append(Element::GetMenuItem(submenupreselect_octave,Element::IDEVENT_BFREQ_PRESELECTION_BAND, wxGetTranslation("All [63-16000] Hz")));
+		submenupreselect_octave->Append(Element::GetMenuItem(submenupreselect_octave,Element::IDEVENT_BFREQ_PRESELECTION_BUILDING_BAND, wxGetTranslation("Building/Road [125-4000] Hz")));
 		wxMenu* submenupreselect_thirdoctave=new wxMenu();
-		submenupreselect_thirdoctave->Append(Element::GetMenuItem(submenupreselect_thirdoctave,Element::IDEVENT_BFREQ_PRESELECTION_THIRD_BAND, _("All [50-20000] Hz")));
-		submenupreselect_thirdoctave->Append(Element::GetMenuItem(submenupreselect_thirdoctave,Element::IDEVENT_BFREQ_PRESELECTION_BUILDING_THIRD_BAND, _("Building/Road [100-5000] Hz")));
-		submenupreselect->AppendSubMenu(submenupreselect_octave,_("Octave"));
-		submenupreselect->AppendSubMenu(submenupreselect_thirdoctave,_("Third octave"));
-		leMenu->AppendSubMenu(submenupreselect,_("Automatic selection"));
+		submenupreselect_thirdoctave->Append(Element::GetMenuItem(submenupreselect_thirdoctave,Element::IDEVENT_BFREQ_PRESELECTION_THIRD_BAND, wxGetTranslation("All [50-20000] Hz")));
+		submenupreselect_thirdoctave->Append(Element::GetMenuItem(submenupreselect_thirdoctave,Element::IDEVENT_BFREQ_PRESELECTION_BUILDING_THIRD_BAND, wxGetTranslation("Building/Road [100-5000] Hz")));
+		submenupreselect->AppendSubMenu(submenupreselect_octave,wxGetTranslation("Octave"));
+		submenupreselect->AppendSubMenu(submenupreselect_thirdoctave,wxGetTranslation("Third octave"));
+		leMenu->AppendSubMenu(submenupreselect,wxGetTranslation("Automatic selection"));
 		Element::OnRightClic(leMenu);
 	}
 

@@ -47,7 +47,7 @@ bool isFileNameValid(const wxString& fileName)
 {
     if ( fileName.empty() )
     {
-		wxLogError(_("Folder name or file name can't be empty"));
+		wxLogError(wxGetTranslation("Folder name or file name can't be empty"));
 		return false;
     }
 
@@ -57,7 +57,7 @@ bool isFileNameValid(const wxString& fileName)
 		const wxChar currChar(fileName[n]);
 		if ( currChar == 92 || currChar == 47 || currChar == 58 || currChar == 42 || currChar == 63 || currChar == 34 || currChar == 60 || currChar == 62 || currChar == 124 )
         {
-			wxLogError(_("Folder name can't use the following letters: \\/:*?\"<>|"));
+			wxLogError(wxGetTranslation("Folder name can't use the following letters: \\/:*?\"<>|"));
             return false;
         }
     }
@@ -88,7 +88,7 @@ bool FuncDeleteFolder( wxString folderToDelete )
 	if(!pathToDelete.IsDir()) //Si le chemin correspond à un fichier existant
 	{
 		if(!wxRemoveFile(folderToDelete)) {
-            wxLogError(_("Cannot remove file/directory"));
+            wxLogError(wxGetTranslation("Cannot remove file/directory"));
             return false;
         } else {
 		    return true;
@@ -96,7 +96,7 @@ bool FuncDeleteFolder( wxString folderToDelete )
 	} else {
         //Delete folder
         if(!pathToDelete.Rmdir(wxPATH_RMDIR_RECURSIVE)) {
-            wxLogError(_("Cannot remove file/directory"));
+            wxLogError(wxGetTranslation("Cannot remove file/directory"));
             return false;            
         } else {
             return true;
@@ -133,11 +133,10 @@ void E_Report_File::OnEndLabelEdit(wxTreeEvent& treeEvent)
 			newFileName.AppendDir(newLabel);
 			newFullName=newLabel+newFileName.GetPathSeparator();
 		}else{
-			wxString fileExt=newFileName.GetExt();
 			newFileName.SetName(newLabel);
 			newFullName=newFileName.GetFullName();
 		}
-		wxString newFileNamePath=newFileName.GetFullPath();
+		const wxString newFileNamePath=newFileName.GetFullPath();
 		if(wxRenameFile(thisFileName,newFileNamePath,false))
 		{
 			this->elementInfo.libelleElement=newLabel;
@@ -146,7 +145,7 @@ void E_Report_File::OnEndLabelEdit(wxTreeEvent& treeEvent)
 		}else{
 			treeEvent.Veto();
 			if(wxFileExists(newFileNamePath))
-				wxLogError(_("File can't be renamed, a file with the same name already exists"));
+				wxLogError(wxGetTranslation("File can't be renamed, a file with the same name already exists"));
 
 		}
 	}else{
@@ -168,6 +167,11 @@ E_Report_File::E_Report_File(Element* parent,wxString Nom,wxString Path,ELEMENT_
 		if(nodeElement->GetAttribute("filepath",&propVal) && propVal!="")
 		{
 			filePath=propVal;
+			// Fix path if windows style folder separator
+			wxUniChar otherFileSystemDirSeparator=wxFileName::GetPathSeparator()==wxString("\\") ? '/' : '\\';
+			if(filePath.Find(otherFileSystemDirSeparator) != wxNOT_FOUND) {
+				filePath.Replace(otherFileSystemDirSeparator, wxFileName::GetPathSeparator());
+			}
 		}
 		wxXmlNode* currentChild;
 		currentChild = nodeElement->GetChildren();
@@ -249,12 +253,12 @@ void E_Report_File::RefreshFolderContents()
 	this->BuildFullPath(fullPath);
 
 	//Chargement des éléments déjà présent comme fils
-	wxSortedArrayString currentFileChilds;
+	wxArrayString currentFileChilds;
 	wxString thisFullPath;
 	this->BuildFullPath(thisFullPath);
-	for(std::list<Element*>::iterator itfils=this->fils.begin();itfils!=this->fils.end();itfils++)
+	for(auto & fil : this->fils)
 	{
-		E_Report_File* eleFile=dynamic_cast<E_Report_File*>((*itfils));
+		E_Report_File* eleFile=dynamic_cast<E_Report_File*>(fil);
 		if(eleFile)
 		{
 			eleFile->PushElementPath(thisFullPath,currentFileChilds);
@@ -353,7 +357,7 @@ bool E_Report_File::OnElementRemoved()
 	this->BuildFullPath(FullPath);
 	if(wxFileExists(FullPath) || wxDirExists(FullPath))
 	{
-		wxMessageDialog dialog( NULL, wxString::Format(_("Are you sure to delete this element forever?\n%s"),FullPath),
+		wxMessageDialog dialog( NULL, wxString::Format(wxGetTranslation("Are you sure to delete this element forever?\n%s"),FullPath),
 			APPLICATION_NAME, wxNO_DEFAULT|wxYES_NO|wxICON_INFORMATION);
 		if( dialog.ShowModal()==wxID_NO)
 		{
@@ -371,7 +375,7 @@ void E_Report_File::OnRightClic( wxMenu* leMenu )
 	wxFileName fileInfo(filePath);
 	if(fileInfo.IsDir())
 	{
-		leMenu->Append(GetMenuItem(leMenu,IDEVENT_RELOAD_FOLDER,_("Refresh folder")));
+		leMenu->Append(GetMenuItem(leMenu,IDEVENT_RELOAD_FOLDER,wxGetTranslation("Refresh folder")));
 	}
 	Element::OnRightClic(leMenu);
 }

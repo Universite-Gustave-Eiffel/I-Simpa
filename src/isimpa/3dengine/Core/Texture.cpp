@@ -33,7 +33,6 @@
 #include <wx/filename.h>
 #include <wx/image.h>
 #include <wx/log.h>
-#include "GL/glext.h"
 #include "3dengine/tools/opengl_test.hpp"
 #include "UtfConverter.h"
 #include "last_cpp_include.hpp"
@@ -159,7 +158,7 @@ long CTexture::Load(const std::string& filename)
 		return this->_pTexInf.size() - 1;	
 	}else{
 		const GLubyte *mess=gluErrorString(ret);
-		wxLogError(wxString(_("OpenGL error :")) + wxString(mess));
+		wxLogError(wxString(wxGetTranslation("OpenGL error :")) + wxString(mess));
 		return -1;
 	}
 	

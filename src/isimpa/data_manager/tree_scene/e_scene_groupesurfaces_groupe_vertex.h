@@ -53,7 +53,7 @@ public:
 		:Element(parent,"Face",Element::ELEMENT_TYPE_SCENE_GROUPESURFACES_GROUPE_VERTEX)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_TRIANGLE);
-		_("Face");
+		wxGetTranslation("Face");
 		face=_face;
 		group=_group;
 		wxString nom;
@@ -61,7 +61,7 @@ public:
 		this->elementInfo.libelleElement=nom;
 		this->AppendPropertyDecimal("aire","Surface area (m2)",0,true,2);
 		this->elementInfo.userDestroyable=userCanDestroyThis;
-		_("Surface area (m2)");
+		wxGetTranslation("Surface area (m2)");
 	}
 
 	/**
@@ -76,8 +76,8 @@ public:
 	{
 		if(this->pere && this->pere->GetElementInfos().userDestroyable)
 		{
-			leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SURFACE_GROUP_FROM_SELECTION,_("Send to a new surface group"),"./Bitmaps/popup_new.png"));
-			leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_INVERT_FACE_ORIENTATION, _("Invert face normal")));
+			leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SURFACE_GROUP_FROM_SELECTION,wxGetTranslation("Send to a new surface group"),"./Bitmaps/popup_new.png"));
+			leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_INVERT_FACE_ORIENTATION, wxGetTranslation("Invert face normal")));
 		}
 		Element::OnRightClic(leMenu);
 	}

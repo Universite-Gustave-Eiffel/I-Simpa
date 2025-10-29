@@ -81,7 +81,7 @@
  * Vous vous demandez peut être quel est l'utilité des lignes comportant uniquement @ref traductionTuto "la méthode de traduction" ?
  *
  * En fait la raison est simple. Le libellé que vous renseignez dans l'appel de la méthode d'ajout de propriété sera sauvegardé dans le fichier de projet comme étant une chaine non traduite.
- * Si jamais vous utilisez la méthode de traduction _( ) dans ses paramètres alors les libellé des propriétés d'un projet qui sera échangé entre un anglais et un francais resteront en anglais.
+ * Si jamais vous utilisez la méthode de traduction wxGetTranslation( ) dans ses paramètres alors les libellé des propriétés d'un projet qui sera échangé entre un anglais et un francais resteront en anglais.
  * Donc utiliser la méthode de traduction en dehors des propriétés permet au champ d'être traduit uniquement lors de l'affichage du libellé et que cette chaine à traduire soit reconnue par le programme de mise à jour des chaines à traduire.
  *
  * Vous pouvez ensuite utiliser \ref getprop "les accesseurs de propriétés" pour lire ses données. Consultez \ref gestionpropelement "la documentation relative" pour plus de détails.

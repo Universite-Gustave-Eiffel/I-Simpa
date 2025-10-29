@@ -101,7 +101,6 @@ namespace legendRendering
 	*/
 	void legendText::DoAppendText(const wxString& text,int x,int y, bool overwrite,int maxLength)
 	{
-		//Todo utiliser uniquement l'espace nécessaire à la chaine de caractère
         wxBitmap bmp(1,1);
 		wxMemoryDC textDrawer(bmp);
 		textDrawer.SetBrush( *wxGREEN_BRUSH );
@@ -142,19 +141,6 @@ namespace legendRendering
 	}
 	void legendText::AppendText(const wxString& text,int x,int y)
 	{
-		/*
-		wxFont oldfont=textFont;
-		//textFont.SetPointSize(textFont.GetPointSize()+2);
-		textFont.SetFamily(
-		x-=1;
-		y-=1;
-		wxPen::set
-		wxColour oldcolour=textForeground;
-		textForeground=*wxBLACK;
-		DoAppendText(text,x,y,false);
-		textFont=oldfont;
-		textForeground=oldcolour;
-		*/
 		DoAppendText(text,x,y,false);
 	}
 	

@@ -38,7 +38,7 @@ wxBEGIN_EVENT_TABLE(AboutDialog, wxPropertySheetDialog)
 wxEND_EVENT_TABLE()
 
 bool AboutDialog::CreateAboutDialog(wxWindow *parent) {
-    if (!wxPropertySheetDialog::Create(parent, wxID_ANY, _("About I-SIMPA"), wxDefaultPosition))
+    if (!wxPropertySheetDialog::Create(parent, wxID_ANY, wxGetTranslation("About I-SIMPA"), wxDefaultPosition))
         return false;
     CreateButtons(wxOK);
 
@@ -47,17 +47,17 @@ bool AboutDialog::CreateAboutDialog(wxWindow *parent) {
     // Add main about page
     wxHtmlWindow* mainAboutHtml = new wxHtmlWindow(GetBookCtrl());
     mainAboutHtml->SetPage(aboutHtml);
-    GetBookCtrl()->AddPage(mainAboutHtml, _("About"));
+    GetBookCtrl()->AddPage(mainAboutHtml, wxGetTranslation("About"));
 
     // Add credits
     wxHtmlWindow* creditsAboutHtml = new wxHtmlWindow(GetBookCtrl());
     creditsAboutHtml->SetPage(creditsHtml);
-    GetBookCtrl()->AddPage(creditsAboutHtml, _("Credits"));
+    GetBookCtrl()->AddPage(creditsAboutHtml, wxGetTranslation("Credits"));
 
     // Add license
     wxHtmlWindow* licenseAboutHtml = new wxHtmlWindow(GetBookCtrl());
     licenseAboutHtml->LoadFile(wxFileName(ApplicationConfiguration::getResourcesFolder(), "license.html"));
-    GetBookCtrl()->AddPage(licenseAboutHtml, _("License"));
+    GetBookCtrl()->AddPage(licenseAboutHtml, wxGetTranslation("License"));
 
 
     wxSizer* innerSizer = GetInnerSizer();
@@ -76,9 +76,9 @@ bool AboutDialog::CreateAboutDialog(wxWindow *parent) {
 
 AboutDialog::AboutDialog()
         : aboutHtml(wxString::Format(
-        "<html><head> <meta charset=\"UTF-8\"></head><body><h2>I-SIMPA %i.%i.%i</h2><p><small>" + _("Built on %s") + "</small></p><p>" +
-        _("An Open Source software for 3D sound propagation modelling.") + "</p>"
-                "<p>" + _("Classical Theory [%i.%i.%i]") + "</p><p>" + _("SPPS [%i.%i.%i]") +
+        "<html><head> <meta charset=\"UTF-8\"></head><body><h2>I-SIMPA %i.%i.%i</h2><p><small>" + wxGetTranslation("Built on %s") + "</small></p><p>" +
+        wxGetTranslation("An Open Source software for 3D sound propagation modelling.") + "</p>"
+                "<p>" + wxGetTranslation("Classical Theory [%i.%i.%i]") + "</p><p>" + wxGetTranslation("SPPS [%i.%i.%i]") +
         "</p><p>Read more on <a href=\"http://i-simpa.ifsttar.fr\">http://i-simpa.ifsttar.fr</a></p></body></html>",
         ApplicationConfiguration::SPPS_UI_VERSION_MAJOR, ApplicationConfiguration::SPPS_UI_VERSION_MINOR,
         ApplicationConfiguration::SPPS_UI_VERSION_REVISION, ApplicationConfiguration::BUILD_DATE,
@@ -89,18 +89,18 @@ AboutDialog::AboutDialog()
           creditsHtml("<html><head> <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"></head>\n"
                               "<body>\n"
                               "<table width=\"100%\" border=0>\n"
-                              "<tr><td valign=top colspan=2 bgcolor=\"LIGHT BLUE\"><strong>" + _("Developers") +
+                              "<tr><td valign=top colspan=2 bgcolor=\"LIGHT BLUE\"><strong>" + wxGetTranslation("Developers") +
                       "</strong></td></tr>\n"
                               "<tr><td valign=top>Judicaël Picaut</td><td valign=top>Université Gustave Eiffel (formely Ifsttar, LCPC)</td></tr>\n"
                               "<tr><td valign=top>Nicolas Fortin</td><td valign=top>Université Gustave Eiffel (formely Ifsttar, LCPC)</td></tr>\n"
                               "<tr><td valign=top> &nbsp </td></tr>\n"
-                              "<tr><td valign=top colspan=2 bgcolor=\"LIGHT BLUE\"><strong>" + _("Contributors") +
+                              "<tr><td valign=top colspan=2 bgcolor=\"LIGHT BLUE\"><strong>" + wxGetTranslation("Contributors") +
                       "</strong></td></tr>\n"
                               "<tr><td valign=top>Augustin Lacour</td><td valign=top>Ifsttar</td></tr>\n"
                               "<tr><td valign=top>Jimmy Farcy</td><td valign=top>Ifsttar</td></tr>\n"
                               "<tr><td valign=top>Wojciech Binek</td><td valign=top>AGH</td></tr>\n"
                               "<tr><td valign=top> &nbsp </td></tr>\n"
-                              "<tr><td valign=top colspan=2 bgcolor=\"LIGHT BLUE\"><strong>" + _("Translators") +
+                              "<tr><td valign=top colspan=2 bgcolor=\"LIGHT BLUE\"><strong>" + wxGetTranslation("Translators") +
                       "</strong></td></tr>\n"
                               "<tr><td valign=top>Wojciech Binek</td><td valign=top>AGH</td></tr>\n"
                               "</table>\n"

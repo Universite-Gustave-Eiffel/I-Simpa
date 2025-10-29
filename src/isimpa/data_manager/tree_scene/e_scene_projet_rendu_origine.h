@@ -60,24 +60,24 @@ private:
 		this->AppendPropertyBool("showgyz","YZ Grid",false);
 		this->AppendPropertyColor("couleurgrille","Grid color",90,90,90);
 		this->AppendPropertyInteger("echellegrille","Grid scale",1);
-		_("Arrow length");
-		_("Arrow width");
-		_("Arrow color (x)");
-		_("Arrow color (y)");
-		_("Arrow color (z)");
-		_("Show XYZ axis");
-		_("XY Grid");
-		_("XZ Grid");
-		_("YZ Grid");
-		_("Grid color");
-		_("Grid scale");
+		wxGetTranslation("Arrow length");
+		wxGetTranslation("Arrow width");
+		wxGetTranslation("Arrow color (x)");
+		wxGetTranslation("Arrow color (y)");
+		wxGetTranslation("Arrow color (z)");
+		wxGetTranslation("Show XYZ axis");
+		wxGetTranslation("XY Grid");
+		wxGetTranslation("XZ Grid");
+		wxGetTranslation("YZ Grid");
+		wxGetTranslation("Grid color");
+		wxGetTranslation("Grid scale");
 	}
 public:
 	E_Scene_Rendu_Origine( wxXmlNode* noeudCourant ,  Element* parent)
 		:E_Drawable(parent,"XYZ axis",Element::ELEMENT_TYPE_SCENE_PROJET_RENDU_ORIGINE,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_ORIGIN);
-		_("XYZ axis");
+		wxGetTranslation("XYZ axis");
 		this->InitProps();
 	}
 
@@ -85,7 +85,7 @@ public:
 		:E_Drawable(parent,"XYZ axis",Element::ELEMENT_TYPE_SCENE_PROJET_RENDU_ORIGINE)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_ORIGIN);
-		_("XYZ axis");
+		wxGetTranslation("XYZ axis");
 		this->InitProps();
 	}
 	void DrawPlan( vec4 unitizeValue,vec3 pas,vec3 extremitea,vec3 extremiteb,int rangebegin,int rangeend,vec3 couleurGrille,vec3 couleurElement)

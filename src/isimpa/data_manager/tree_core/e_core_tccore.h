@@ -49,7 +49,7 @@ private:
 	void InitExportRs(Element* confCore)
 	{
 		confCore->AppendPropertyBool("output_recs_byfreq","Export surface receivers for each frequency band",true,true);
-		_("Export surface receivers for each frequency band");
+		wxGetTranslation("Export surface receivers for each frequency band");
 	}
 public:
 
@@ -59,7 +59,7 @@ public:
 		this->AppendFils(confCore);
 		confCore->AppendPropertyBool("abs_atmo_calc","Active calculation of atmospheric absorption",true,true);
 		InitExportRs(confCore);
-		_("Atmospheric absorption calculation");
+		wxGetTranslation("Atmospheric absorption calculation");
 	}
 	E_Core_Tc( Element* parent, wxXmlNode* noeudCourant)
 		:E_Core_Core(parent, wxTRANSLATE("Classical theory of reverberation (TCR)"),ELEMENT_TYPE_CORE_TC,noeudCourant)

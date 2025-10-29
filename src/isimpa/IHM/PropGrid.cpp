@@ -248,7 +248,7 @@ void PropGrid::Paste(wxCommandEvent& event)
 
 void PropGrid::DoFillMenu(wxGridEvent& ev,wxMenu* mainMenu)
 {
-	mainMenu->Append(ID_COPIER, _("Copy"));
+	mainMenu->Append(ID_COPIER, wxGetTranslation("Copy"));
 	// Check if all row/column editors are the same
     bool sameColumnEditors = true;
     bool sameRowEditors = true;
@@ -267,15 +267,15 @@ void PropGrid::DoFillMenu(wxGridEvent& ev,wxMenu* mainMenu)
     }
 	if(allowPaste && (sameColumnEditors || sameRowEditors))
 	{
-		mainMenu->Append(ID_COLLER, _("Paste"));
+		mainMenu->Append(ID_COLLER, wxGetTranslation("Paste"));
 		wxMenu* subMenu=new wxMenu;
         if(sameColumnEditors) {
-            subMenu->Append(ID_COPY_ON_COLUMN, _("to the column"));
+            subMenu->Append(ID_COPY_ON_COLUMN, wxGetTranslation("to the column"));
         }
         if(sameRowEditors) {
-            subMenu->Append(ID_COPY_ON_ROW, _("to the row"));
+            subMenu->Append(ID_COPY_ON_ROW, wxGetTranslation("to the row"));
         }
-		mainMenu->Append(new wxUiMenuItem(mainMenu, -1,_("Set the same value"),"Set the same value",wxITEM_NORMAL,subMenu));
+		mainMenu->Append(new wxUiMenuItem(mainMenu, -1,wxGetTranslation("Set the same value"),"Set the same value",wxITEM_NORMAL,subMenu));
 	}
 }
 void PropGrid::OnRightClic(wxGridEvent& ev)

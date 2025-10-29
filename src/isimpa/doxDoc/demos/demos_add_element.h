@@ -47,7 +47,7 @@ public:
 	E_Scene_Projet_Demo( wxXmlNode* noeudCourant ,  Element* parent)
 		:Element(parent,"Demo",Element::ELEMENT_TYPE_SCENE_PROJET_DEMO,Element::GRAPH_ITEM,noeudCourant)
 	{
-		_("Demo");
+		wxGetTranslation("Demo");
 	}
 
 	E_Scene_Projet_Demo( Element* parent)

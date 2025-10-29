@@ -48,7 +48,7 @@ public:
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_SURFACES_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_SURFACES_CLOSE);
-		_("Surfaces");
+		wxGetTranslation("Surfaces");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;
@@ -106,7 +106,7 @@ public:
 				E_Scene_Groupesurfaces_Groupe* eGroupe=dynamic_cast<E_Scene_Groupesurfaces_Groupe*>(grFils);
 				if(!eGroupe->IsEmpty())
 				{
-					wxLogMessage(_("The group is not empty. You can't delete it!"));
+					wxLogMessage(wxGetTranslation("The group is not empty. You can't delete it!"));
 					return true;
 				}
 			}
@@ -198,7 +198,7 @@ public:
 
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SURFACE_GROUP, _("Add a group"),"./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SURFACE_GROUP, wxGetTranslation("Add a group"),"./Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 };

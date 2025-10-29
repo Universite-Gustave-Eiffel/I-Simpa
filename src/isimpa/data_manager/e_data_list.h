@@ -106,7 +106,7 @@ public:
 		iList=_iList;
 		eList=_eList;
 		if(iList.size()!=_eList.size())
-			wxLogDebug(_("Index list is not coherent with data list"));
+			wxLogDebug(wxGetTranslation("Index list is not coherent with data list"));
 		SetValue(defaultChoice);
 	}
 
@@ -179,7 +179,7 @@ public:
 		int row=gridToFeed->GetNumberRows()-1;
 		smart_ptr_ar<wxString> choices=new wxString[eList.size()];
 		for(long id=0;id<eList.size();id++)
-			choices[id]=_(eList[id]); //traduction de chaque élément
+			choices[id]=wxGetTranslation(eList[id]); //traduction de chaque élément
 		gridToFeed->SetCellEditor(row, col, new wxGridCellChoiceEditor(eList.size(),choices.get()));
 		SetGridValue(gridToFeed,row,col);
 	}
@@ -214,7 +214,7 @@ public:
 				{
 					if(id<eList.size())
 					{
-						currentLibel=_(eList[id]);
+						currentLibel=wxGetTranslation(eList[id]);
 					}
 				}
 			}
@@ -228,13 +228,13 @@ public:
 		//On va chercher l'indice de cette valeur
 		for(long id=0;id<eList.size();id++)
 		{
-			if(_(eList[id])==sValue)
+			if(wxGetTranslation(eList[id])==sValue)
 			{
 				if(iList.size()>id)
 				{
 					SetValue(iList[id],sValue);
 				}else{
-					wxLogMessage(_("Unauthorized data"));
+					wxLogMessage(wxGetTranslation("Unauthorized data"));
 				}
 				Modified(this);
 				return;

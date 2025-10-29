@@ -84,8 +84,8 @@ public:
 		AppendPropertyDecimal("db","dB",0,false,PRECISION_DB,false,false,0,0,true);
 		AppendPropertyDecimal("dba","dB(A)",0,false,PRECISION_DB);
 		SetPonderationState(true);
-		_("dB");
-		_("dB(A)");
+		wxGetTranslation("dB");
+		wxGetTranslation("dB(A)");
 	}
 
 	/*

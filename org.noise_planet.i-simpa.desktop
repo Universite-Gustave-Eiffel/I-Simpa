@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=I-SIMPA
+GenericName=Room Acoustics Simulation
+Comment=Indoor Sound Propagation Modeling Application
+Icon=org.noise_planet.i-simpa
+Exec=isimpa
+Terminal=false
+Categories=Science;Physics;Education;AudioVideo;
+Keywords=acoustics;simulation;sound;propagation;
+MimeType=application/x-isimpa-project;

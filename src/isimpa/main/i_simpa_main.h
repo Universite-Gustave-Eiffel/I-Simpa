@@ -160,7 +160,6 @@ class MainUiFrame : public wxFrame
 			ID_fold_copygl,
 				ID_copygl_toclipboard,
 				ID_copygl_tofile,
-				ID_copygl_tofile_withdim,
 
 			ID_SwitchSelectionMode,
 			ID_toolCameraMode,
@@ -268,7 +267,6 @@ class MainUiFrame : public wxFrame
 		void OnSetDockStatus(wxCommandEvent& event);
 		void OnClearWindowManager(wxCommandEvent& event);
 		void CopyGlToFile(wxCommandEvent& event);
-		void CopyGlToFileWithDim(wxCommandEvent& event);
 		void OnModeToolWireFrameAndFlat(wxCommandEvent& event);
 		void OnModeToolFlat(wxCommandEvent& event);
 		void OnModeToolWireFrame(wxCommandEvent& event);
@@ -323,7 +321,7 @@ class MainUiFrame : public wxFrame
 		 * Menu refaire
 		 */
 		void OnRedo(wxCommandEvent& event);
-		//void OnSelectVertex(const long group, const long vertex);
+
 		void ChargerVertex();
 
 
@@ -357,8 +355,8 @@ public:
 
 		switch ( level ) {
 			case wxLOG_FatalError:
-				DoLogText(wxString(_("Fatal error: ")) + szString, wxRED);
-				DoLogText(_("Program aborted"), wxRED);
+				DoLogText(wxString(wxGetTranslation("Fatal error: ")) + szString, wxRED);
+				DoLogText(wxGetTranslation("Program aborted"), wxRED);
 				Flush();
 		#ifdef __WXWINCE__
 				ExitThread(3);
@@ -368,11 +366,11 @@ public:
 				break;
 
 			case wxLOG_Error:
-				DoLogText(wxString(_("Error:")) + szString, wxRED);
+				DoLogText(wxString(wxGetTranslation("Error:")) + szString, wxRED);
 				break;
 
 			case wxLOG_Warning:
-				DoLogText(wxString(_("Warning: ")) + szString, wxRED);
+				DoLogText(wxString(wxGetTranslation("Warning: ")) + szString, wxRED);
 				break;
 
 			case wxLOG_Message:
@@ -446,7 +444,6 @@ class ISimpaApp : public wxApp
 			wxImage::AddHandler(new wxICOHandler); //ajoute le support du format ico
 
 			//Charge le gestionnaire de language
-			wxLocale::AddCatalogLookupPathPrefix(_T("locale")); //Rechercher les fichiers de langue dans le répertoire "locale"
 			wxLanguage choosenLanguage=wxLANGUAGE_DEFAULT;
 			wxString strConf;
 			if(ApplicationConfiguration::GetFileConfig()->Read("interface/language",&strConf))
@@ -457,7 +454,7 @@ class ISimpaApp : public wxApp
 				choosenLanguage=(wxLanguage)MainUiFrame::AskApplicationLanguage(choosenLanguage);
 			}
 			lang.Init(choosenLanguage, wxLOCALE_LOAD_DEFAULT);
-			lang.AddCatalog("internat", wxLANGUAGE_ENGLISH,"");
+			lang.AddCatalog("isimpa");
 
 
             if(ApplicationConfiguration::GetFileConfig()->Read("interface/appdata",&strConf)) {
@@ -488,14 +485,14 @@ class ISimpaApp : public wxApp
 				if(folderDirs.size()>1)
 				{
 
-					wxMessageDialog dialog( NULL, _("Many old sessions of the user interface are available.\nDo you want to retrieve an old session?"),
-					wxString(_("Interface "))+APPLICATION_NAME, wxYES_DEFAULT|wxYES_NO|wxICON_INFORMATION);
+					wxMessageDialog dialog( NULL, wxGetTranslation("Many old sessions of the user interface are available.\nDo you want to retrieve an old session?"),
+					wxString(wxGetTranslation("Interface "))+APPLICATION_NAME, wxYES_DEFAULT|wxYES_NO|wxICON_INFORMATION);
 
 					wxCommandEvent cmdEvt;
 					wxInt32 userResponse=dialog.ShowModal();
 					if(userResponse==wxID_YES)
 					{
-						wxSingleChoiceDialog dialchoice(NULL,_("Please choose the application instance"),wxString(_("Interface "))+APPLICATION_NAME,folderDirs);
+						wxSingleChoiceDialog dialchoice(NULL,wxGetTranslation("Please choose the application instance"),wxString(wxGetTranslation("Interface "))+APPLICATION_NAME,folderDirs);
 						if(dialchoice.ShowModal()==wxID_OK)
 						{
 							cleartmpfolder=false;

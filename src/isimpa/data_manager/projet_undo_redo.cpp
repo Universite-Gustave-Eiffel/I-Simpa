@@ -71,9 +71,9 @@ bool ProjectManager::PushModificationToHistory(bool force)
 		if(this->rootUserConfig.get() != nullptr && this->rootUserConfig->GetElementByLibelle("Settings")->GetElementByLibelle("History")->GetBoolConfig("keep_modification_history"))
 		{
 			if(!force)
-				wxLogDebug(_("Add modifications in the change log"));
+				wxLogDebug(wxGetTranslation("Add modifications in the change log"));
 			else
-				wxLogDebug(_("Forced adding changes in the change log."));
+				wxLogDebug(wxGetTranslation("Forced adding changes in the change log."));
 			this->UpdateXmlFile("",false);
 			configHistory.Add(new wxXmlDocument(projetConfig));
 			//Dû à la modification on perd soit la plus vieille modification soit tout les dernieres modifications ( en fonction de l'etat de navigation dans l'historique)

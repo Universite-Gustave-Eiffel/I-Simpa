@@ -505,7 +505,7 @@ void Element::FillWxTree(wxTreeCtrl* treeToFeed, const wxTreeItemId& parentId)
 		if(comboTree)
 		{
 			if(comboTree->ElementFitWithFilter(this))
-				wxtreeidparent=comboTree->Associate(comboTree->AppendItem(parentId,_(this->elementInfo.libelleElement)),this);
+				wxtreeidparent=comboTree->Associate(comboTree->AppendItem(parentId,wxGetTranslation(this->elementInfo.libelleElement)),this);
 		}
 	}
 
@@ -553,7 +553,7 @@ wxInt32 Element::GetXmlId( ) const
 }
 const wxString Element::GetElementNameForOrder() const
 {
-	return _(this->GetTreeLabel());
+	return wxGetTranslation(this->GetTreeLabel());
 }
 bool Element::operator>(Element &_rEl)
 {
@@ -811,7 +811,7 @@ void Element::Reparent( Element* newParent )
 		Element* nvParent=this->GetElementByTreeId(newParent->GetElementInfos().idElement);
 		if(nvParent!=NULL)
 		{
-			wxLogMessage(_("Operation not allowed"));
+			wxLogMessage(wxGetTranslation("Operation not allowed"));
 			return;
 		}
 	}
@@ -901,7 +901,7 @@ wxMenuItem* Element::GetMenuItem(wxMenu* parent,int id,const wxString& label, wx
 			newmenu->SetBitmapPath(menuIcon);
 
 		}else{
-			wxLogWarning(_("Popup icon file doesn't find:\n%s"),menuIcon);
+			wxLogWarning(wxGetTranslation("Popup icon file doesn't find:\n%s"),menuIcon);
 		}
 	}
 	return newmenu;
@@ -918,7 +918,7 @@ wxMenuItem* Element::GetMenuItem(wxMenu* parent,int id,const wxString& label, co
 			newmenu->SetBitmapPath(menuIcon);
 
 		}else{
-			wxLogWarning(_("Popup icon file doesn't find:\n%s"),menuIcon);
+			wxLogWarning(wxGetTranslation("Popup icon file doesn't find:\n%s"),menuIcon);
 		}
 	}
 	return newmenu;
@@ -927,9 +927,9 @@ void Element::OnRightClic(wxMenu* leMenu)
 {
 	if(leMenu->GetMenuItemCount()>0)
 		leMenu->AppendSeparator();
-	//leMenu->Append(IDEVENT_COPIER, _("Copier"));
-	leMenu->Append(GetMenuItem(leMenu,IDEVENT_COPIER, _("Copy"),"./Bitmaps/popup_copy.png"));
-	wxMenuItem*	pasteMenu=leMenu->Append(GetMenuItem(leMenu,IDEVENT_COLLER, _("Paste"),"./Bitmaps/popup_paste.png"));
+	//leMenu->Append(IDEVENT_COPIER, wxGetTranslation("Copier"));
+	leMenu->Append(GetMenuItem(leMenu,IDEVENT_COPIER, wxGetTranslation("Copy"),"./Bitmaps/popup_copy.png"));
+	wxMenuItem*	pasteMenu=leMenu->Append(GetMenuItem(leMenu,IDEVENT_COLLER, wxGetTranslation("Paste"),"./Bitmaps/popup_paste.png"));
 
 	wxTreeEvent renameEvent;
 	renameEvent.Allow();
@@ -938,10 +938,10 @@ void Element::OnRightClic(wxMenu* leMenu)
 	if(renameEvent.IsAllowed() ||  this->elementInfo.userDestroyable)
 		leMenu->AppendSeparator();
 	if(renameEvent.IsAllowed())
-		leMenu->Append(GetMenuItem(leMenu,IDEVENT_RENAME_ELEMENT, _("Rename"),"./Bitmaps/popup_rename.png"));
+		leMenu->Append(GetMenuItem(leMenu,IDEVENT_RENAME_ELEMENT, wxGetTranslation("Rename"),"./Bitmaps/popup_rename.png"));
 
 	if(this->elementInfo.userDestroyable)
-		leMenu->Append(GetMenuItem(leMenu,IDEVENT_DELETE_ELEMENT, _("Delete"),"./Bitmaps/popup_delete.png"));
+		leMenu->Append(GetMenuItem(leMenu,IDEVENT_DELETE_ELEMENT, wxGetTranslation("Delete"),"./Bitmaps/popup_delete.png"));
 
 	//Si l'element accepte des données provenant de l'exterieur, et si il y a du texte dans le presse papier
 	if(!insertPasteMenu || !wxTheClipboard->IsSupported(wxDataFormat(wxDF_TEXT)))
@@ -949,7 +949,7 @@ void Element::OnRightClic(wxMenu* leMenu)
 	if(this->IsContainsProperties())
 	{
 		leMenu->AppendSeparator();
-		leMenu->Append(GetMenuItem(leMenu,IDEVENT_GETPROPERTIES, _("Properties"),"./Bitmaps/popup_show_property.png"));
+		leMenu->Append(GetMenuItem(leMenu,IDEVENT_GETPROPERTIES, wxGetTranslation("Properties"),"./Bitmaps/popup_show_property.png"));
 	}
 }
 void Element::ForceBottomModified()
@@ -982,7 +982,7 @@ bool Element::IsFittingWithThisType( const ELEMENT_TYPE& typeTest )
 
 wxString Element::GetColTitle(int col)
 {
-	return _("Value");
+	return wxGetTranslation("Value");
 }
 
 void Element::OnSelectTreeItem(wxTreeEvent& treeEvent)
@@ -1182,7 +1182,7 @@ wxString Element::GetStringConfig(wxString name)
 			return dataEl->GetValue();
 		}
 	}
-	wxLogDebug(_("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
+	wxLogDebug(wxGetTranslation("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
 	return "";
 }
 
@@ -1198,7 +1198,7 @@ wxFont Element::GetFontConfig(const wxString& name)
 			return dataEl->GetValue();
 		}
 	}
-	wxLogDebug(_("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
+	wxLogDebug(wxGetTranslation("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
 	return wxFont();
 }
 
@@ -1214,7 +1214,7 @@ wxFileName Element::GetFileConfig(wxString name)
 			return dataEl->GetFile() ;
 		}
 	}
-	wxLogDebug(_("This field does not exist!\nName of element: %s Name of the field: %s"), this->elementInfo.libelleElement, name);
+	wxLogDebug(wxGetTranslation("This field does not exist!\nName of element: %s Name of the field: %s"), this->elementInfo.libelleElement, name);
 	return wxFileName();
 }
 
@@ -1230,7 +1230,7 @@ vec3 Element::GetColorConfig(wxString name)
 			return dataEl->GetValue();
 		}
 	}
-	wxLogDebug(_("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
+	wxLogDebug(wxGetTranslation("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
 	return vec3(0,0,0);
 }
 
@@ -1246,7 +1246,7 @@ int Element::GetListConfig(wxString name)
 			return dataEl->GetChoice();
 		}
 	}
-	wxLogDebug(_("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
+	wxLogDebug(wxGetTranslation("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
 	return -1;
 }
 float Element::GetDecimalConfig(wxString name)
@@ -1261,7 +1261,7 @@ float Element::GetDecimalConfig(wxString name)
 			return dataEl->GetValue();
 		}
 	}
-	wxLogDebug(_("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
+	wxLogDebug(wxGetTranslation("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
 	return 0;
 }
 
@@ -1277,7 +1277,7 @@ int Element::GetIntegerConfig(wxString name)
 			return dataEl->GetValue();
 		}
 	}
-	wxLogDebug(_("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
+	wxLogDebug(wxGetTranslation("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
 	return 0;
 }
 
@@ -1309,7 +1309,7 @@ bool Element::GetBoolConfig(wxString name)
 			return dataEl->GetValue();
 		}
 	}
-	wxLogDebug(_("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
+	wxLogDebug(wxGetTranslation("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
 	return false;
 }
 
@@ -1343,7 +1343,7 @@ vec3 Element::GetPositionConfig(wxString name)
 				return dataEl->GetPosValue();
 		}
 	}
-	wxLogDebug(_("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
+	wxLogDebug(wxGetTranslation("This field does not exist!\nName of element: %s Name of the field: %s"),this->elementInfo.libelleElement,name);
 	return vec3(0,0,0);
 }
 

@@ -143,7 +143,7 @@ bool CformatBIN::ProcessNodeGroup(std::fstream &binFile,t3DModel *pModel)
 		nvObjet.pFaces[f].diff[1] =faceElement.bc;
 		nvObjet.pFaces[f].diff[2] =faceElement.ca;
 		nvObjet.pFaces[f].materialID=faceElement.idMaterial;
-		nvObjet.pFaces[f].vertexTex=(long unsigned)faceElement.coordtex;
+		nvObjet.pFaces[f].vertexTex=ivec3(static_cast<long>(faceElement.coordtex[0]), static_cast<long>(faceElement.coordtex[1]), static_cast<long>(faceElement.coordtex[2]));
 		nvObjet.pFaces[f].internalFace=faceElement.internalFace;
 	}
 	pModel->pObject.push_back(nvObjet);
@@ -162,17 +162,19 @@ bool CformatBIN::ProcessNodeGroupV110(std::fstream &binFile,t3DModel *pModel)
 	nvObjet.numOfFaces=elementNode.nbFace;
 	nvObjet.pFaces=new tFace[elementNode.nbFace];
 
-	for(unsigned long f=0;f<elementNode.nbFace;f++)
+	for (unsigned long f = 0; f < elementNode.nbFace; f++)
 	{
-		binFile.read((char*)&faceElement, sizeof (binaryFace110));
-		nvObjet.pFaces[f].vertIndex[0]=faceElement.a;
-		nvObjet.pFaces[f].vertIndex[1]=faceElement.b;
-		nvObjet.pFaces[f].vertIndex[2]=faceElement.c;
-		nvObjet.pFaces[f].diff[0] =faceElement.ab;
-		nvObjet.pFaces[f].diff[1] =faceElement.bc;
-		nvObjet.pFaces[f].diff[2] =faceElement.ca;
-		nvObjet.pFaces[f].materialID=faceElement.idMaterial;
-		nvObjet.pFaces[f].vertexTex=(long unsigned)faceElement.coordtex;
+		binFile.read((char*)&faceElement, sizeof(binaryFace110));
+		nvObjet.pFaces[f].vertIndex[0] = static_cast<int>(faceElement.a);
+		nvObjet.pFaces[f].vertIndex[1] = static_cast<int>(faceElement.b);
+		nvObjet.pFaces[f].vertIndex[2] = static_cast<int>(faceElement.c);
+		nvObjet.pFaces[f].diff[0] = faceElement.ab;
+		nvObjet.pFaces[f].diff[1] = faceElement.bc;
+		nvObjet.pFaces[f].diff[2] = faceElement.ca;
+		nvObjet.pFaces[f].materialID = static_cast<short>(faceElement.idMaterial);
+		nvObjet.pFaces[f].vertexTex = ivec3(static_cast<long>(faceElement.coordtex[0]),
+		                                    static_cast<long>(faceElement.coordtex[1]),
+		                                    static_cast<long>(faceElement.coordtex[2]));
 	}
 	pModel->pObject.push_back(nvObjet);
 	return true;
@@ -192,9 +194,9 @@ bool CformatBIN::ProcessNodeGroupv100(std::fstream &binFile,t3DModel *pModel)
 	for(unsigned long f=0;f<elementNode.nbFace;f++)
 	{
 		binFile.read((char*)&faceElement, sizeof (binaryFace100));
-		nvObjet.pFaces[f].vertIndex[0]=faceElement.a;
-		nvObjet.pFaces[f].vertIndex[1]=faceElement.b;
-		nvObjet.pFaces[f].vertIndex[2]=faceElement.c;
+		nvObjet.pFaces[f].vertIndex[0] = static_cast<int>(faceElement.a);
+		nvObjet.pFaces[f].vertIndex[1] = static_cast<int>(faceElement.b);
+		nvObjet.pFaces[f].vertIndex[2] = static_cast<int>(faceElement.c);
 		nvObjet.pFaces[f].diff[0] =faceElement.ab;
 		nvObjet.pFaces[f].diff[1] =faceElement.bc;
 		nvObjet.pFaces[f].diff[2] =faceElement.ca;

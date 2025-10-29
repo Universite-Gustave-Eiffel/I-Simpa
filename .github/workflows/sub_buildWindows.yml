@@ -1,0 +1,146 @@
+# ***************************************************************************
+# *   Copyright (c) 2023 0penBrain                               *
+# *                                                                         *
+# *   This program is free software; you can redistribute it and/or modify  *
+# *   it under the terms of the GNU Lesser General Public License (LGPL)    *
+# *   as published by the Free Software Foundation; either version 2 of     *
+# *   the License, or (at your option) any later version.                   *
+# *   for detail see the LICENCE text file.                                 *
+# *                                                                         *
+# *   This program is distributed in the hope that it will be useful,       *
+# *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+# *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+# *   GNU Library General Public License for more details.                  *
+# *                                                                         *
+# *   You should have received a copy of the GNU Library General Public     *
+# *   License along with this program; if not, write to the Free Software   *
+# *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  *
+# *   USA                                                                   *
+# *                                                                         *
+# ***************************************************************************
+
+# This is a build and test workflow for CI of I-SIMPA.
+# This workflow aims at building and testing I-SIMPA on Windows using MSVC.
+
+name: Build Windows
+on:
+  workflow_call:
+    inputs:
+      artifactBasename:
+        type: string
+        required: true
+      allowedToFail:
+        default: false
+        type: boolean
+        required: false
+    outputs:
+      reportFile:
+        value: ${{ jobs.Build.outputs.reportFile }}
+
+jobs:
+  Build:
+    runs-on: windows-${{ matrix.vsversion }}
+    name: MSW vs${{ matrix.vsversion }} ${{ matrix.configuration }} ${{ matrix.platform }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - configuration: 'DLL Release'
+            platform: 'x64'
+            vsversion: 2022
+    continue-on-error: ${{ inputs.allowedToFail }}
+    env:
+      CPM_SOURCE_CACHE: C:/ISIMPA/CPM/
+      CCACHE_DIR: C:/ISIMPA/cache/
+      CCACHE_COMPILERCHECK: "%compiler%" # default:mtime
+      CCACHE_MAXSIZE: 1G
+      CCACHE_COMPRESS: true
+      CCACHE_COMPRESSLEVEL: 1
+      CCACHE_NOHASHDIR: true
+      CCACHE_DIRECT: true
+      #CCACHE_SLOPPINESS: "pch_defines,time_macros" # Can't get PCH to work on Windows
+      CCACHE_LOGFILE: C:/logs/ccache.log
+      ## Have to use C:\ because not enough space on workspace drive
+      builddir: C:/ISIMPA/build/release/
+      ccachebindir: C:/ISIMPA/ccache/
+      logdir: C:/logs/
+      reportdir: C:/report/
+      reportfilename: ${{ inputs.artifactBasename }}-report.md
+    outputs:
+      reportFile: ${{ steps.Init.outputs.reportFile }}
+
+    steps:
+      - name: Checking out source code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Make needed directories, files and initializations
+        id: Init
+        run: |
+          mkdir ${{ env.CCACHE_DIR }}
+          mkdir ${{ env.ccachebindir }}
+          mkdir ${{ env.builddir }}
+          mkdir ${{ env.logdir }}
+          mkdir ${{ env.reportdir }}
+          echo "reportFile=${{ env.reportfilename }}" >> $GITHUB_OUTPUT
+      - name: Cache CPM dependency packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ env.CPM_SOURCE_CACHE }}
+          key: ${{ runner.os }}-isimpa
+      - name: Get Ccache
+        uses: ./.github/workflows/actions/windows/getCcache
+        with:
+          ccachebindir: ${{ env.ccachebindir }}
+      - name: Restore compiler cache
+        uses: actions/cache@v4
+        with:
+          save-always: true
+          path: ${{ env.CCACHE_DIR }}
+          key: ISIMPA-Windows-${{ github.ref }}-${{ github.run_id }}
+          restore-keys: |
+            ISIMPA-Windows-${{ github.ref }}-
+            ISIMPA-Windows-
+      - name: Print Ccache statistics before build, reset stats and print config
+        run: |
+          . $env:ccachebindir\ccache -s
+          . $env:ccachebindir\ccache -z
+          . $env:ccachebindir\ccache -p
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v2
+      - name: Install GnuWin32 gettext tools
+        run: |
+          choco install poedit -y
+      - name: Configuring CMake
+        run: >
+          cmake -B"${{ env.builddir }}" .
+          -DCPM_SOURCE_CACHE=${{ env.CPM_SOURCE_CACHE }} 
+          -DCMAKE_VS_NO_COMPILE_BATCHING=ON
+          -DCMAKE_BUILD_TYPE=Release
+          -DCMAKE_C_COMPILER_LAUNCHER=${{ env.ccachebindir }}/ccache.exe
+          -DCMAKE_CXX_COMPILER_LAUNCHER=${{ env.ccachebindir }}/ccache.exe
+          -DGETTEXT_MSGFMT_EXECUTABLE="C:/Program Files (x86)/Poedit/GettextTools/bin/msgfmt.exe"
+          -DGETTEXT_MSGMERGE_EXECUTABLE="C:/Program Files (x86)/Poedit/GettextTools/bin/msgmerge.exe"
+      - name: Compiling sources
+        run: |
+          cmake --build "${{ env.builddir }}" --config Release --parallel
+      - name: Install
+        run: |
+          cmake --install "${{ env.builddir }}" --config Release
+      - name: Print Ccache statistics after build
+        run: |
+          . $env:ccachebindir\ccache -s
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.artifactBasename }}-Logs
+          path: |
+            ${{ env.logdir }}
+
+      - name: Upload I-Simpa standalone
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-no-install-${{ matrix.platform }}
+          path: ${{ env.builddir }}/bin

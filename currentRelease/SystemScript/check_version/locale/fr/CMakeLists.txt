@@ -1,1 +1,0 @@
-gettext_process_po_files(fr INSTALL_DESTINATION SystemScript/check_version/locale PO_FILES internat.po)

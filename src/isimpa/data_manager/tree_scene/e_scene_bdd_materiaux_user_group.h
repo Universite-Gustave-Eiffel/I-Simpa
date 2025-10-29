@@ -114,7 +114,7 @@ public:
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_MATERIAL_CLOSE);
 		this->elementInfo.userDestroyable=true;
 		insertPasteMenu=true;
-		_("Group");
+		wxGetTranslation("Group");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;
@@ -194,8 +194,8 @@ public:
 	}
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_USERMAT, _("New material"),"./Bitmaps/popup_new.png"));
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_MATERIAL_GROUP, _("Create group"),"./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_USERMAT, wxGetTranslation("New material"),"./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_MATERIAL_GROUP, wxGetTranslation("Create group"),"./Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 	wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)

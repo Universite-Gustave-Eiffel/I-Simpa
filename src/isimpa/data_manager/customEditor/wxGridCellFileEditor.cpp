@@ -43,7 +43,7 @@ void wxGridCellFileEditor::BeginEdit(int row, int col, wxGrid* grid)
 {
 	wxASSERT_MSG(m_control, wxT("The wxGridCellEditor must be created first!"));
 
-	wxFileDialog openFileDialog(grid, _(dialogTitle), "", "", fileExtension, wxFD_OPEN | wxFD_FILE_MUST_EXIST);
+	wxFileDialog openFileDialog(grid, wxGetTranslation(dialogTitle), "", "", fileExtension, wxFD_OPEN | wxFD_FILE_MUST_EXIST);
 
 	if (openFileDialog.ShowModal() == wxID_OK) 
 	{

@@ -30,10 +30,12 @@
 
 #include "gridcellgabefloatrenderer.hpp"
 #include <wx/log.h>
-#include <float.h>
+#include <cfloat>
 #include <std_tools.hpp>
 #include "last_cpp_include.hpp"
 #include <cmath>
+
+#include "wx/dc.h"
 
 // ----------------------------------------------------------------------------
 // wxGridCellGabeFloatRenderer
@@ -76,12 +78,12 @@ wxString wxGridCellGabeFloatRenderer::GetString(const wxGrid& grid, int row, int
 			text=wxString::Format("%."+wxString::Format("%i",m_precision)+"f",val);
 		}else{
 			if(isnan(val)) {
-				text = _("NaN"); // Not a number
+				text = wxGetTranslation("NaN"); // Not a number
 			} else {
 				if(!std::signbit(val))
-					text=_("+Inf");
+					text=wxGetTranslation("+Inf");
 				else
-					text=_("-Inf");
+					text=wxGetTranslation("-Inf");
 			}
 		}
     }

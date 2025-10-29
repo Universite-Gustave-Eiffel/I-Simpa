@@ -38,7 +38,7 @@
 E_Report_Gabe_Recp::E_Report_Gabe_Recp(Element* parent,wxString Nom,wxString Path)
 	:E_Report_Gabe(parent,Nom,Path,ELEMENT_TYPE_REPORT_GABE_RECP)
 {
-	_("Sound level"); //Libellé du fichier standard
+	wxGetTranslation("Sound level"); //Libellé du fichier standard
 }
 
 E_Report_Gabe_Recp::E_Report_Gabe_Recp(Element* parent,wxXmlNode* nodeElement)
@@ -49,7 +49,7 @@ E_Report_Gabe_Recp::E_Report_Gabe_Recp(Element* parent,wxXmlNode* nodeElement)
 
 void E_Report_Gabe_Recp::OnRightClic(wxMenu* leMenu)
 {
-	leMenu->Append(GetMenuItem(leMenu,IDEVENT_RECP_COMPUTE_ACOUSTIC_PARAMETERS,_("Calculate acoustic parameters")));
+	leMenu->Append(GetMenuItem(leMenu,IDEVENT_RECP_COMPUTE_ACOUSTIC_PARAMETERS,wxGetTranslation("Calculate acoustic parameters")));
 	E_Report_Gabe::OnRightClic(leMenu);
 }
 
@@ -60,9 +60,9 @@ bool E_Report_Gabe_Recp::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,
 	/////////////////////////////////////////////////////
 	//Post traitement
 	// J/m3 -> dB
-	arrayTitle+=_(" (dB)");
-	lblCols.push_back(_("Global"));
-	lblRows.push_back(_("Total"));
+	arrayTitle+=wxGetTranslation(" (dB)");
+	lblCols.push_back(wxGetTranslation("Global"));
+	lblRows.push_back(wxGetTranslation("Total"));
 	int nbrow=lblRows.size();
 	int nbcol=lblCols.size();
 	int nbrow_src=nbrow-1;
@@ -192,7 +192,7 @@ bool E_Report_Gabe_Recp::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,
 		this->BuildFullPath(gabeFolder);
 		graphPage->SetDefaultSaveGraphSavePath(gabeFolder);
 
-		noteBookWin->AddPage(graphPage,_("Spectrum"));
+		noteBookWin->AddPage(graphPage,wxGetTranslation("Spectrum"));
 		SG_Element_List* drawingEl;
 		size_t idcol=nbcolel-1;
 		drawingEl=new SG_Element_List(graphPage,lblCols[idcol]);
@@ -260,7 +260,7 @@ bool E_Report_Gabe_Recp::GetArrayData(wxWindow* auiBookWin,wxString& arrayTitle,
 				drawingElDat->PushValue(xVal,cellsValue[cellIndex]);
 			}
 		}
-		SG_Element_Data* drawingElDat=new SG_Element_Data(graphPage, _("Schroeder's curve"),
+		SG_Element_Data* drawingElDat=new SG_Element_Data(graphPage, wxGetTranslation("Schroeder's curve"),
 														  (const wxInt32 &) (nbcolel - 1));
 		drawingElDat->el_style.SetDrawingMethod(DRAWING_METHOD_LINE);
 		wxPen pen = wxPen(*wxBLACK,2,wxPENSTYLE_SOLID);

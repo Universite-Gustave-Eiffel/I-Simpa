@@ -51,7 +51,7 @@ public:
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_SOUND_SOURCES_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_SOUND_SOURCES_CLOSE);
 		insertPasteMenu=true;
-		_("Sound sources");
+		wxGetTranslation("Sound sources");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;
@@ -155,7 +155,7 @@ public:
 					wxString elName;
 					currentChild->GetAttribute("name",&elName);
 					currentChild->DeleteAttribute("name");
-					currentChild->AddAttribute("name",wxString::Format(_("Copy of %s"),elName));
+					currentChild->AddAttribute("name",wxString::Format(wxGetTranslation("Copy of %s"),elName));
 					this->AppendFils(new E_Scene_Sources_Source(currentChild,this))->ForceBottomModified();
 					somethingAdded=true;
 				}else if(typeEle==Element::ELEMENT_TYPE_SCENE_SOURCES)
@@ -163,7 +163,7 @@ public:
 					wxString elName;
 					currentChild->GetAttribute("name",&elName);
 					currentChild->DeleteAttribute("name");
-					currentChild->AddAttribute("name",wxString::Format(_("Copy of %s"),elName));
+					currentChild->AddAttribute("name",wxString::Format(wxGetTranslation("Copy of %s"),elName));
 					E_Scene_Sources* newfils=new E_Scene_Sources(currentChild,this);
 					this->AppendFils(newfils);
 					newfils->SetUserGroup();
@@ -220,8 +220,8 @@ public:
 
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SOURCE, _("New source"),"./Bitmaps/popup_new.png"));
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SOURCE_GROUP, _("New group"),"./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SOURCE, wxGetTranslation("New source"),"./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SOURCE_GROUP, wxGetTranslation("New group"),"./Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 

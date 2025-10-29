@@ -1,0 +1,46 @@
+# English translations for PACKAGE package.
+# Copyright (C) 2021 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2021.
+# 
+# Translators:
+# pdwangchao <pdwangchao@163.com>, 2017
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-08 16:41+0000\n"
+"PO-Revision-Date: 2017-01-05 10:58+0000\n"
+"Last-Translator: pdwangchao <pdwangchao@163.com>, 2017\n"
+"Language-Team: Chinese (China) (https://app.transifex.com/LAE/teams/23470/zh_CN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: currentRelease/SystemScript/preceiv_sourceTracker/__init__.py:170
+msgid "Delete the link with the source"
+msgstr "删除与源的链接"
+
+#: currentRelease/SystemScript/preceiv_sourceTracker/__init__.py:167
+msgid "Link to a source"
+msgstr ""
+
+#: currentRelease/SystemScript/preceiv_sourceTracker/__init__.py:97
+msgid "Linked source"
+msgstr ""
+
+#: currentRelease/SystemScript/preceiv_sourceTracker/__init__.py:141
+#: currentRelease/SystemScript/preceiv_sourceTracker/__init__.py:173
+msgid "Please choose the source:"
+msgstr "请选择声源："
+
+#: currentRelease/SystemScript/preceiv_sourceTracker/__init__.py:140
+msgid "Source name"
+msgstr "声源名称"
+
+#: currentRelease/SystemScript/preceiv_sourceTracker/__init__.py:141
+msgid "Source selection"
+msgstr "声源选择"

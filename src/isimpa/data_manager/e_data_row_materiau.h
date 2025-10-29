@@ -142,7 +142,7 @@ protected:
 							affaib=-10*log10(absorb);
 							ignoreNextUpdate=true;
 							this->UpdateDecimalConfig("affaiblissement",affaib);
-							wxLogWarning(_("The value of the loss is not corresponding to the value of the absorption.The value of loss has been fixed to %3.f dB, and the absorption value keep to %.2f"),affaib,absorb);
+							wxLogWarning(wxGetTranslation("The value of the loss is not corresponding to the value of the absorption.The value of loss has been fixed to %3.f dB, and the absorption value keep to %.2f"),affaib,absorb);
 							ignoreNextUpdate=false;
 						}
 					}
@@ -179,7 +179,7 @@ protected:
 						if(this->GetDecimalConfig("absorb")>0.f)
 							this->SetReadOnlyConfig("affaiblissement",!transmission);
 						else
-							wxLogWarning(_("Before set a transmission value, please set an absorption higher than 0"));
+							wxLogWarning(wxGetTranslation("Before set a transmission value, please set an absorption higher than 0"));
 					}
 				} else {
 					this->SetReadOnlyConfig("affaiblissement", !transmission);
@@ -198,7 +198,7 @@ protected:
 					{
 						ignoreNextUpdate=true;
 						this->UpdateDecimalConfig("absorb",tau);
-						wxLogWarning(_("The value of the loss is not corresponding to the value of the absorption.The value of absorption has been fixed to %3.f, and the loss factor keep to %.2f dB"),tau,affaib);
+						wxLogWarning(wxGetTranslation("The value of the loss is not corresponding to the value of the absorption.The value of absorption has been fixed to %3.f, and the loss factor keep to %.2f dB"),tau,affaib);
 						ignoreNextUpdate=false;
 					}
 				}
@@ -223,11 +223,11 @@ protected:
 		if(loi==0)
 			this->SetReadOnlyConfig("loi");
 		#if 0
-			_("Absorption");
-			_("Diffusion");
-			_("Diffusion law");
-			_("Loss (dB)");
-			_("Transmission");
+			wxGetTranslation("Absorption");
+			wxGetTranslation("Diffusion");
+			wxGetTranslation("Diffusion law");
+			wxGetTranslation("Loss (dB)");
+			wxGetTranslation("Transmission");
 		#endif
 
 	}

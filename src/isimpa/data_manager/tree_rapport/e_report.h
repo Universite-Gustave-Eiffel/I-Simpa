@@ -51,7 +51,7 @@ public:
 		:Element(NULL,"Results",Element::ELEMENT_TYPE_RESULT_ROOT ,noeudCourant)
 	{
 		eventBinded=false;
-		_("Results");
+		wxGetTranslation("Results");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;

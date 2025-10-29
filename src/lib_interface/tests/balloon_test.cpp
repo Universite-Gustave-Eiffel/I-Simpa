@@ -1,5 +1,5 @@
 #define BOOST_TEST_MODULE lib_interface balloon tests
-#include <boost/test/included/unit_test.hpp>
+#include <boost/test/unit_test.hpp>
 #include <iostream>
 #include <input_output/directivity/directivityParser.h>
 #include <Core/mathlib.h>

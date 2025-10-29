@@ -37,7 +37,7 @@ RecepteurSurfAttenuationComputation::RecepteurSurfAttenuationComputation(wxStrin
 {
 	if(!LoadRs(rsurfReferenceFile,&referenceRS))
 	{
-		wxLogError(_("Can't load surface receiver:\n%s"),rsurfReferenceFile);
+		wxLogError(wxGetTranslation("Can't load surface receiver:\n%s"),rsurfReferenceFile);
 	}
 }
 /*
@@ -51,17 +51,17 @@ bool RecepteurSurfAttenuationComputation::SaveAttenuationRecepteurSurfFile(wxStr
 	{
 		if(secondRecepteurSurf.rawData.nbTimeStep!=referenceRS.rawData.nbTimeStep)
 		{
-			wxLogError(_("Impossible de comparer ce récepteur surfacique car le nombre de pas de temps est différend que celui du fichier de référence :\n%s"),rsurfSecondFile);
+			wxLogError(wxGetTranslation("Impossible de comparer ce récepteur surfacique car le nombre de pas de temps est différend que celui du fichier de référence :\n%s"),rsurfSecondFile);
 			return false;
 		}
 		if(secondRecepteurSurf.rawData.timeStep!=referenceRS.rawData.timeStep)
 		{
-			wxLogError(_("Impossible de comparer ce récepteur surfacique car le pas de temps (delta T) est différend que celui du fichier de référence :\n%s"),rsurfSecondFile);
+			wxLogError(wxGetTranslation("Impossible de comparer ce récepteur surfacique car le pas de temps (delta T) est différend que celui du fichier de référence :\n%s"),rsurfSecondFile);
 			return false;
 		}
 		if(secondRecepteurSurf.rawData.tabRsSize!=referenceRS.rawData.tabRsSize)
 		{
-			wxLogError(_("Impossible de comparer avec le fichier de référence car il n'y a pas le même nombre de récepteur de surface :\n%s"),rsurfSecondFile);
+			wxLogError(wxGetTranslation("Impossible de comparer avec le fichier de référence car il n'y a pas le même nombre de récepteur de surface :\n%s"),rsurfSecondFile);
 			return false;
 		}
 		wxFloat32 energyRef=0;
@@ -72,7 +72,7 @@ bool RecepteurSurfAttenuationComputation::SaveAttenuationRecepteurSurfFile(wxStr
 		{
 			if(secondRecepteurSurf.rawData.tabRs[idrs].dataRec.quantFaces!=referenceRS.rawData.tabRs[idrs].dataRec.quantFaces)
 			{
-				wxLogError(_("La structure du récepteur de surface suivant ne contient pas le même nombre de surfaces que le fichier de référence :\n%s"),rsurfSecondFile);
+				wxLogError(wxGetTranslation("La structure du récepteur de surface suivant ne contient pas le même nombre de surfaces que le fichier de référence :\n%s"),rsurfSecondFile);
 				return false;				
 			}
 			for(wxInt32 idface=0;idface<secondRecepteurSurf.rawData.tabRs[idrs].dataRec.quantFaces;idface++) //Pour chaque face
@@ -121,7 +121,7 @@ bool RecepteurSurfAttenuationComputation::SaveAttenuationRecepteurSurfFile(wxStr
 		//Sauvegarde de la modification dans le dossier spécifié
 		return SaveRs(destinationResultFile,secondRecepteurSurf);
 	}else{
-		wxLogError(_("Impossible de charger le récepteur surfacique suivant :\n%s"),rsurfSecondFile);
+		wxLogError(wxGetTranslation("Impossible de charger le récepteur surfacique suivant :\n%s"),rsurfSecondFile);
 		return false;
 	}
 }
@@ -136,17 +136,17 @@ bool RecepteurSurfAttenuationComputation::SaveAttenuationRecepteurSurfFile(wxStr
 	{
 		if(secondRecepteurSurf.rawData.nbTimeStep!=referenceRS.rawData.nbTimeStep)
 		{
-			wxLogError(_("Can't compare surface receivers: time step is different with the reference one:\n%s "),rsurfSecondFile);
+			wxLogError(wxGetTranslation("Can't compare surface receivers: time step is different with the reference one:\n%s "),rsurfSecondFile);
 			return false;
 		}
 		if(secondRecepteurSurf.rawData.timeStep!=referenceRS.rawData.timeStep)
 		{
-			wxLogError(_("Surface receivers can not be compared. Time step (delta T) is different from the reference one:\n%s"),rsurfSecondFile);
+			wxLogError(wxGetTranslation("Surface receivers can not be compared. Time step (delta T) is different from the reference one:\n%s"),rsurfSecondFile);
 			return false;
 		}
 		if(secondRecepteurSurf.rawData.tabRsSize!=referenceRS.rawData.tabRsSize)
 		{
-			wxLogError(_("Data can not be compared with reference surface receivers. Number of surface receivers is different from the reference one:\n%s"),rsurfSecondFile);
+			wxLogError(wxGetTranslation("Data can not be compared with reference surface receivers. Number of surface receivers is different from the reference one:\n%s"),rsurfSecondFile);
 			return false;
 		}
 		wxFloat32 energyRef=0;
@@ -157,7 +157,7 @@ bool RecepteurSurfAttenuationComputation::SaveAttenuationRecepteurSurfFile(wxStr
 		{
 			if(secondRecepteurSurf.rawData.tabRs[idrs].dataRec.quantFaces!=referenceRS.rawData.tabRs[idrs].dataRec.quantFaces)
 			{
-				wxLogError(_("The following surface receiver is not composed with the same number of surfaces as the reference one:\n%s"),rsurfSecondFile);
+				wxLogError(wxGetTranslation("The following surface receiver is not composed with the same number of surfaces as the reference one:\n%s"),rsurfSecondFile);
 				return false;				
 			}
 			for(wxInt32 idface=0;idface<secondRecepteurSurf.rawData.tabRs[idrs].dataRec.quantFaces;idface++) //Pour chaque face
@@ -192,7 +192,7 @@ bool RecepteurSurfAttenuationComputation::SaveAttenuationRecepteurSurfFile(wxStr
 		//Sauvegarde de la modification dans le dossier spécifié
 		return SaveRs(destinationResultFile,secondRecepteurSurf);
 	}else{
-		wxLogError(_("The following surface receiver can't be loaded:\n%s"),rsurfSecondFile);
+		wxLogError(wxGetTranslation("The following surface receiver can't be loaded:\n%s"),rsurfSecondFile);
 		return false;
 	}
 }

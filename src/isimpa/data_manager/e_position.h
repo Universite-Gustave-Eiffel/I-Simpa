@@ -104,12 +104,12 @@ public:
 	}
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_SELECT_POSITION, _("Define with 3D view")));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_SELECT_POSITION, wxGetTranslation("Define with 3D view")));
 		E_Data::OnRightClic(leMenu);
 	}
 	wxString GetColTitle(int col)
 	{
-		return _("Value (m)");
+		return wxGetTranslation("Value (m)");
 	}
 	/**
 	 * Affecte la valeur de la position

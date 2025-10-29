@@ -41,11 +41,13 @@
 */
 
 #ifdef _WINDOWS
+#define _WINSOCKAPI_
 #include <windows.h>
 #endif
 #include "Material.h"
 #include "Texture.h"
 #include "Mathlib.h"
+#include <wx/string.h>
 
 #include <input_output/bin.h> // gestion du format binaire pour le coeur de calcul spps
 #include <input_output/importExportMaillage/mbin.h> //gestion de l'exportation,importation du maillage
@@ -121,7 +123,7 @@ public:
 	 * @param filename Chemin et nom du fichier de modèle (le format est défini par l'extension)
 	 * @return Vrai si l'exportation du modèle s'est déroulée avec succès
 	 */
-	bool Save(const std::string& filename);
+	bool Save(const wxString& filename);
 	/**
 	 * Exporte la scène vers le format de structure de données CBIN
 	 * @param[out] modelExport Structure de donnée de CBIN
@@ -132,14 +134,14 @@ public:
 	 * @param filename Chemin et nom du fichier de maillage
 	 * @param faceAreaContraint Contrainte de surface des tetrahèdres en m²
 	 */
-	bool BuildVarConstraintFile(const std::string& filename, float faceAreaContraint);
+	bool BuildVarConstraintFile(const wxString& filename, float faceAreaContraint);
 	/**
 	 * Exporte le maillage vers un fichier au format MBIN
 	 * @param filename Chemin et nom du fichier de maillage
 	 * @param toRealCoords A vrai converti les coordonées opengl vers les coordonées de la scène
 	 * @return Vrai si l'exportation s'est déroulée avec succès
 	 */
-	bool SaveMaillage(const std::string& filename,bool toRealCoords=false);
+	bool SaveMaillage(const wxString& filename,bool toRealCoords=false);
 	/**
 	 * Retourne le maillage en mémoire sous la structure de données MBIN
 	 */
@@ -347,7 +349,7 @@ public:
 	 * @param saveFaceIndexAsGroup Les marqeurs correspondent aux groupes de surfaces
 	 * @see http://tetgen.berlios.de/fformats.poly.html
 	 */
-	bool _SavePOLY(const std::string& filename,bool exportUserModel=false,bool separateUserDefinedModel=false,bool saveFaceIndex=false,std::vector<t_faceIndex>* fg_to_ind=NULL,bool saveFaceIndexAsGroup=false);
+	bool _SavePOLY(const wxString& filename, bool exportUserModel=false, bool separateUserDefinedModel=false, bool saveFaceIndex=false, std::vector<t_faceIndex>* fg_to_ind=NULL, bool saveFaceIndexAsGroup=false);
 
 
 
@@ -417,16 +419,16 @@ private:
 	 */
 	void SetInternalFaceState(const formatCoreBIN::ioModel& modelExport,const formatMBIN::trimeshmodel& tetramodel);
 	void _RenderMaillageLines(t_cutPlane cutPlane);
-	bool _SaveMESH(const std::string& filename);
+	bool _SaveMESH(const wxString& filename);
 	/**
 	 * Save model.mat.ply , model with project defined groups
 	 */
-	bool _SavePLYProjectGroup(const std::string& filename);
-	bool _SavePLY(const std::string& filename);
-	bool _SaveASC(const std::string& filename);
-	bool _SaveNFF(const std::string& filename);
-	bool _SaveBIN(const std::string& filename);
-	bool _SaveCBIN(const std::string& filename);
+	bool _SavePLYProjectGroup(const wxString& filename);
+	bool _SavePLY(const wxString& filename);
+	bool _SaveASC(const wxString& filename);
+	bool _SaveNFF(const wxString& filename);
+	bool _SaveBIN(const wxString& filename);
+	bool _SaveCBIN(const wxString& filename);
 	bool faceConnecte(t_faceIndex _f);
 	bool _SaveNFFMaillage(const std::string& filename);
 	long _RenderGroupTexture(long g, bool blendRendering);

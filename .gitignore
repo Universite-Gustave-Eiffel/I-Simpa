@@ -47,4 +47,9 @@ files.txt
 # cmake should convert .po files into .mo files if necessary
 *.mo
 .vscode
+.vs
 .DS_Store
+out/
+*.kdev4
+CMakeSettings.json
+.flatpak-builder

@@ -15,7 +15,6 @@ set(PREPROCESS_SOURCE_FILES
 #    DEPENDENCY & EXECUTABLE (OR LIB)
 #---------------------------------------#
 
-find_package(Boost COMPONENTS system filesystem regex REQUIRED)
 link_directories( ${Boost_LIBRARY_DIRS} ) 
 
 # Set Properties->General->Configuration Type to Application
@@ -33,23 +32,26 @@ target_link_libraries (preprocess lib_interface)
 #    INSTALL
 #--------------#
 
+# Detect if building for Flatpak
+if(DEFINED ENV{FLATPAK_ID})
+    set(IS_FLATPAK TRUE)
+    message(STATUS "Building for Flatpak environment")
+else()
+    set(IS_FLATPAK FALSE)
+endif()
+
+# Set installation directories based on build type
+if(IS_FLATPAK)
+    set(ISIMPA_BIN_DIR bin)
+else()
+    set(ISIMPA_BIN_DIR .)
+endif()
+
 
 # Adds logic to INSTALL.vcproj to copy preprocess to destination directory
 install (TARGETS preprocess
-        RUNTIME DESTINATION meshing/tetgen)
-if(WIN32)
-	# Resolve symbolic link
-	LIB_TO_DLL(${Boost_FILESYSTEM_LIBRARY_RELEASE} Boost_FILESYSTEM_LIBRARY_RELEASE_REAL)
-	LIB_TO_DLL(${Boost_SYSTEM_LIBRARY_RELEASE} Boost_SYSTEM_LIBRARY_RELEASE_REAL)
-	LIB_TO_DLL(${Boost_REGEX_LIBRARY_RELEASE} Boost_REGEX_LIBRARY_RELEASE_REAL)
-
-	install (FILES
-			${Boost_FILESYSTEM_LIBRARY_RELEASE_REAL}
-			${Boost_SYSTEM_LIBRARY_RELEASE_REAL}
-			${Boost_REGEX_LIBRARY_RELEASE_REAL}
-				DESTINATION meshing/tetgen)
-endif()
+        RUNTIME DESTINATION ${ISIMPA_BIN_DIR}/meshing/tetgen)
 
 if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
-    install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION meshing/tetgen COMPONENT System )
+    install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION ${ISIMPA_BIN_DIR}/meshing/tetgen COMPONENT System )
 endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )

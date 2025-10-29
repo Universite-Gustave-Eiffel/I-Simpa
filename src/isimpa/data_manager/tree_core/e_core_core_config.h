@@ -52,7 +52,7 @@ public:
 		:Element(parent,"Properties",Element::ELEMENT_TYPE_CORE_CORE_CONFIG,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
-		_("Properties");
+		wxGetTranslation("Properties");
 	}
 
 	E_Core_Core_Configuration( Element* parent)

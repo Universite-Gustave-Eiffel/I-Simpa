@@ -29,13 +29,8 @@
 * ----------------------------------------------------------------------*/
 
 #include "drawable_element.h"
+#include "GL/opengl_inc.h"
 #include <wx/glcanvas.h>
-#ifdef __APPLE__
-	#include <OpenGL/glu.h>
-#else
-	#include <GL/glu.h>
-#endif
-
 #include "data_manager/appconfig.h"
 #include "last_cpp_include.hpp"
 

@@ -90,14 +90,7 @@ public:
 	 * @return Outil utilisé
 	 */
 	TOOL_MODE GetCurrentTool();
-	/**
-	 * Copie le rendu de la scène vers un objet image.
-	 * @param[out] aimage Image à renseigner
-	 * @param awidth Largeur en pixels du rendu à effectuer.
-	 * @param aheight Hauteur en pixels du rendu à effectuer.
-	 * @return 1 si l'opération a réussi
-	 */
-	int GetImage(wxImage& aimage, const int awidth, const int aheight);
+
 	/**
 	 * Copie le rendu de la scène vers un objet image.
 	 * @param[out] aimage Image à renseigner

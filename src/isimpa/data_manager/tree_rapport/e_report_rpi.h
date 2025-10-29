@@ -55,8 +55,8 @@ public:
 	E_Report_ReceiverPonctualIntensity(Element* parent,wxString Nom,wxString Path)
 		:E_Report_File(parent,Nom,Path,ELEMENT_TYPE_REPORT_RPI)
 	{
-		_("Intensity Animation");
-		_("Intensity");
+		wxGetTranslation("Intensity Animation");
+		wxGetTranslation("Intensity");
 	}
 
 	/**
@@ -67,12 +67,12 @@ public:
 	E_Report_ReceiverPonctualIntensity(Element* parent,wxXmlNode* nodeElement)
 		:E_Report_File(parent,"Intensity","",ELEMENT_TYPE_REPORT_RPI,nodeElement)
 	{
-		_("Intensity");
+		wxGetTranslation("Intensity");
 	}
 
 	void OnRightClic( wxMenu* leMenu )
 	{
-		leMenu->Append(GetMenuItem(leMenu,IDEVENT_LOAD_RECEPTEURSP_SIMULATION,_("Load animation")));
+		leMenu->Append(GetMenuItem(leMenu,IDEVENT_LOAD_RECEPTEURSP_SIMULATION,wxGetTranslation("Load animation")));
 		E_Report_File::OnRightClic(leMenu);
 	}
 	

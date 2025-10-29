@@ -83,7 +83,7 @@ public:
 		
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,IDEVENT_OPEN_FOLDER, _("Open folder")));
+		leMenu->Append(GetMenuItem(leMenu,IDEVENT_OPEN_FOLDER, wxGetTranslation("Open folder")));
 		E_Report_File::OnRightClic(leMenu);
 	}
 	wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)
@@ -109,7 +109,7 @@ public:
 	virtual const wxString GetElementNameForOrder() const
 	{
 		//Les dossier d'abord, les elements ensuite
-		return wxString("  ")+wxString(_(this->GetTreeLabel()));
+		return wxString("  ")+wxString(wxGetTranslation(this->GetTreeLabel()));
 	}
 };
 

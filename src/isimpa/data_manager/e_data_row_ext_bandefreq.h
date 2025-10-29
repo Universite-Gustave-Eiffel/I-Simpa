@@ -72,8 +72,8 @@ public:
 		this->SetReadOnlyConfig("db");
 		this->SetReadOnlyConfig("dba");
 		SetPonderationState(true);
-		_("Attenuation");
-		_("Lw");
+		wxGetTranslation("Attenuation");
+		wxGetTranslation("Lw");
 	}
 
 	/*

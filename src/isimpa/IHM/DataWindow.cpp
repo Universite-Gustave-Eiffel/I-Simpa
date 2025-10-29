@@ -93,7 +93,7 @@ void DataWindow::PushElement(Element* newElement)
 			gabeElement->BuildFullPath(pathGabe);
 			GabeDataGrid* newSubWindow= new GabeDataGrid(this,-1);
 			newSubWindow->LoadData(pathGabe);
-			this->AddPage(newSubWindow,_(newElement->GetElementInfos().libelleElement),true);
+			this->AddPage(newSubWindow,wxGetTranslation(newElement->GetElementInfos().libelleElement),true);
 		}
 	}
 }

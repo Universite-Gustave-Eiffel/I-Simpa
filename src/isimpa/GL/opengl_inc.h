@@ -31,21 +31,30 @@
 #include "first_header_include.hpp"
 
 #ifdef _WINDOWS
+#include <WinSock2.h>
+#include <WS2tcpip.h>
 #include <windows.h>
 #endif
 #ifdef _UNIX
 #include <GL/glut.h>    // Header File For The GLUT Library
-
-#ifdef __APPLE__
-  #include <OpenGL/glx.h>     // Header file fot the glx libraries.
+#include <GL/glx.h>     // Header file fot the glx libraries.
+#endif
+#if defined(__APPLE__)
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
 #else
-  #include <GL/glx.h>     // Header file fot the glx libraries.
-#endif
-
-#endif
 #include <GL/gl.h>
-#ifdef __APPLE__
-  #include <OpenGL/glu.h>
-#else
-  #include <GL/glu.h>
+#include <GL/glu.h>
 #endif
+
+/* ------------------- GL_EXT_texture_filter_anisotropic ------------------- */
+
+#ifndef GL_EXT_texture_filter_anisotropic
+#define GL_EXT_texture_filter_anisotropic 1
+
+#define GL_TEXTURE_MAX_ANISOTROPY_EXT 0x84FE
+#define GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT 0x84FF
+
+#define GLEW_EXT_texture_filter_anisotropic GLEW_GET_VAR(__GLEW_EXT_texture_filter_anisotropic)
+
+#endif /* GL_EXT_texture_filter_anisotropic */

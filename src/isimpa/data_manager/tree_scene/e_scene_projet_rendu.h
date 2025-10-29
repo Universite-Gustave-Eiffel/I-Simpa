@@ -49,7 +49,7 @@ public:
 		
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_RENDERING_FOLDER_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_RENDERING_FOLDER_CLOSE);
-		_("Display");
+		wxGetTranslation("Display");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;
@@ -74,7 +74,7 @@ public:
 	E_Scene_Rendu( Element* parent)
 		:Element(parent,"Display",Element::ELEMENT_TYPE_SCENE_PROJET_RENDU)
 	{
-		_("Display");
+		wxGetTranslation("Display");
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_RENDERING_FOLDER_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_RENDERING_FOLDER_CLOSE);
 		this->AppendFils(new E_Scene_Rendu_Origine(this));	

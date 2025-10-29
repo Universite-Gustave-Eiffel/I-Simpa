@@ -49,17 +49,17 @@ public:
 	void AddSideProperty()
 	{
 		std::vector<wxString> choices;
-		choices.push_back(_("Unilateral"));
-		choices.push_back(_("Bilateral"));
+		choices.push_back(wxGetTranslation("Unilateral"));
+		choices.push_back(wxGetTranslation("Bilateral"));
 		this->AppendPropertyList("side_material","Side of material effect",choices,1,false,1,std::vector<int>(),true);
-		_("Side of material effect");
+		wxGetTranslation("Side of material effect");
 	}
 
 	E_Scene_Bdd_Materiaux_PropertyMaterial( wxXmlNode* noeudCourant ,  Element* parent)
 		:Element(parent,"Material description",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_PROPMATERIAU,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
-		_("Material description");
+		wxGetTranslation("Material description");
 		if(!this->IsPropertyExist("side_material"))
 		{
 			AddSideProperty();
@@ -69,17 +69,17 @@ public:
 		/*:Element(parent,"Description du matériau",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_PROPMATERIAU)*/
 		:Element(parent,"Material description",Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_PROPMATERIAU)
 	{
-		_("Material description");
+		wxGetTranslation("Material description");
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
 		this->AppendPropertyDecimal("masse_volumique","Mass density (kg/m3)",0,false,4,false,false,0,0,true);
 		this->AppendPropertyDecimal("resistivite","Resistivity (cgs)",100000,false,4,false,false,0,0,true);
 		this->AppendPropertyText("description","Description","");
 		this->AppendPropertyText("reference","Reference","");
 		AddSideProperty();
-		_("Reference");
-		_("Description");
-		_("Mass density (kg/m3)");
-		_("Resistivity (cgs)");
+		wxGetTranslation("Reference");
+		wxGetTranslation("Description");
+		wxGetTranslation("Mass density (kg/m3)");
+		wxGetTranslation("Resistivity (cgs)");
 	}
 
 	wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)

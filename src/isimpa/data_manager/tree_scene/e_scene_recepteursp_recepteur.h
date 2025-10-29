@@ -68,7 +68,7 @@ public:
 		this->elementInfo.userDestroyable=true;
 		ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_RecepteurP++;
 		this->elementInfo.exportLblToCore=true;
-		_("Receiver");
+		wxGetTranslation("Receiver");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;
@@ -122,7 +122,7 @@ public:
 	 * @param parent Element parent
 	 * @param nom Libellé du recepteur
 	 */
-	E_Scene_Recepteursp_Recepteur( Element* parent,wxString nom=wxString::Format(_("Receiver %i"),ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_RecepteurP+1))
+	E_Scene_Recepteursp_Recepteur( Element* parent,wxString nom=wxString::Format(wxGetTranslation("Receiver %i"),ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS.quant_RecepteurP+1))
 		:E_Drawable(parent,nom,Element::ELEMENT_TYPE_SCENE_RECEPTEURSP_RECEPTEUR)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_PUNCTUAL_RECEIVER_OPEN);
@@ -135,8 +135,8 @@ public:
 		this->AppendFils(new E_Scene_Recepteursp_Recepteur_Proprietes(this));
 		this->AppendFils(new E_Scene_Recepteursp_Recepteur_Rendu(this));
 		this->AppendFils(new E_Property_Freq(this,"Background noise"));
-		_("Background noise");
-		_("Position");
+		wxGetTranslation("Background noise");
+		wxGetTranslation("Position");
 		AddDirectionProperty();
 		this->AppendPropertyPosition("pos_recepteur","Position",vec3(0,0,0),true);
 		lockdirectioncomputation=false;

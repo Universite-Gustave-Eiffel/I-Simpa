@@ -1,13 +1,17 @@
 # begin basic metadata
 # minimum CMake version required for C++20 support, among other things
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
 
+cmake_policy(SET CMP0177 NEW) # install() DESTINATION paths are normalized
+cmake_policy(SET CMP0175 NEW)
 # Maps to a solution file (isimpa.sln). The solution will
 # have all targets (exe, lib, dll) as projects (.vcproj)
 project (isimpa VERSION 1.3.4)
 
 # a better way to load dependencies
 include(cmake/CPM.cmake)
+# download boost source and compile using CPM
+include(cmake/SetupBoost.cmake)
 
 # convert path of a .lib file into a .dll file
 # findboost does not store .dll locations
@@ -37,9 +41,6 @@ endif()
 # It creates "CMakePredefinedTargets" folder by default and adds CMake
 # defined projects like INSTALL.vcproj and ZERO_CHECK.vcproj
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-
-#Add an option in order to build only the computation cores and libraries
-option(SKIPISIMPA "skip-gui" FALSE)
 
 # Set compiler flags and options.
 #############################################################
@@ -82,14 +83,18 @@ message (STATUS "cxx Flags: " ${CMAKE_CXX_FLAGS})
 # Sub-directories where more CMakeLists.txt exist
 add_subdirectory (src/lib_interface)
 add_subdirectory (src/python_bindings)
-add_subdirectory (src/ctr)
-add_subdirectory (src/VolumetricMeshRepair)
-add_subdirectory (src/preprocess)
-add_subdirectory(src/tetgen)
-add_subdirectory (src/spps)
-if(NOT SKIPISIMPA)
-   add_subdirectory (src/isimpa)
-endif()
+if(NOT LIBSIMPA_ONLY)
+    add_subdirectory (src/ctr)
+    add_subdirectory (src/VolumetricMeshRepair)
+    add_subdirectory (src/preprocess)
+    add_subdirectory(src/tetgen)
+    add_subdirectory (src/spps)
+    if(NOT SKIPISIMPA)
+       add_subdirectory (src/isimpa)
+    else()
+       message (STATUS "Skip building GUI")
+    endif()
+endif ()
 
 # custom target for CLion "make install"
 if(CMAKE_GENERATOR STREQUAL "Unix Makefiles")

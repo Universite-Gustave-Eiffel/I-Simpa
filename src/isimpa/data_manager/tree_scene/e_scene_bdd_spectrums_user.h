@@ -48,7 +48,7 @@ public:
 		insertPasteMenu=true;
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_USER_SPECTRUMS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_USER_SPECTRUMS_CLOSE);
-		_("User");
+		wxGetTranslation("User");
 		if(noeudCourant!=NULL)
 		{
 			wxXmlNode* currentChild;
@@ -69,7 +69,7 @@ public:
 	
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_USERFREQ, _("New spectrum"),"./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_USERFREQ, wxGetTranslation("New spectrum"),"./Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 

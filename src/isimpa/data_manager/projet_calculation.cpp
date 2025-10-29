@@ -212,10 +212,10 @@ formatGABE::GABE_Data_Float* Compute_TR_Param(wxFloat32 fromdbL,wxFloat32 todbL,
 	newParameter->Set(newParameter->GetSize()-1,sum/(tab_schroeder.size()-1));
 	if(fromdbL==0)
 	{
-		newParameter->SetLabel(_("EDT (s)"));
+		newParameter->SetLabel(wxGetTranslation("EDT (s)"));
 		newParameter->headerData.numOfDigits=COMMA_PRECISION_TIME_S;
 	}else{
-		newParameter->SetLabel(wxString::Format(_("RT-%g (s)"),todbL-5));
+		newParameter->SetLabel(wxString::Format(wxGetTranslation("RT-%g (s)"),todbL-5));
 		newParameter->headerData.numOfDigits=COMMA_PRECISION_TIME_S;
 	}
 	return newParameter;
@@ -236,7 +236,7 @@ formatGABE::GABE_Data_Float* dB_Sum_Param(const std::vector<wxFloat32>& timeTabl
 		newParameter->Set(idFreq,db_CurrentFreq);
 	}
 
-	newParameter->SetLabel(_("Sound level (dB)"));
+	newParameter->SetLabel(wxGetTranslation("Sound level (dB)"));
 	newParameter->headerData.numOfDigits= COMMA_PRECISION_DB;
 	return newParameter;
 
@@ -258,7 +258,7 @@ formatGABE::GABE_Data_Float* dB_Sum_Param_surf(const std::vector<wxFloat32>& tim
 		newParameter->Set(idFreq,db_CurrentFreq);
 	}
 
-	newParameter->SetLabel(_("Sound level (dB)"));
+	newParameter->SetLabel(wxGetTranslation("Sound level (dB)"));
 	newParameter->headerData.numOfDigits=3;
 	return newParameter;
 
@@ -299,7 +299,7 @@ formatGABE::GABE_Data_Float* dBa_Sum_Param(const std::vector<wxFloat32>& timeTab
 		newParameter->Set(idFreq,db_CurrentFreq);
 	}
 
-	newParameter->SetLabel(_("Sound level (dBA)"));
+	newParameter->SetLabel(wxGetTranslation("Sound level (dBA)"));
 	newParameter->headerData.numOfDigits= COMMA_PRECISION_DB;
 	return newParameter;
 
@@ -341,7 +341,7 @@ formatGABE::GABE_Data_Float* Compute_ST_Param(wxFloat32 t1,wxFloat32 t2,wxFloat3
 		newParameter->Set(idFreq,db_CurrentFreq);
 	}
 	newParameter->Set(newParameter->GetSize()-1,sum/(tab_wj.size()-1));
-	newParameter->SetLabel(_("ST (dB)"));
+	newParameter->SetLabel(wxGetTranslation("ST (dB)"));
 	newParameter->headerData.numOfDigits= COMMA_PRECISION_DB;
 	return newParameter;
 }
@@ -377,7 +377,7 @@ formatGABE::GABE_Data_Float* Compute_C_Param(wxFloat32 te,const std::vector<wxFl
 	}
 
 	newParameter->Set(newParameter->GetSize()-1,sum/(tab_wj.size()-1));
-	newParameter->SetLabel(wxString::Format(_("C-%g (dB)"),te));
+	newParameter->SetLabel(wxString::Format(wxGetTranslation("C-%g (dB)"),te));
 	newParameter->headerData.numOfDigits= COMMA_PRECISION_DB;
 	return newParameter;
 }
@@ -409,7 +409,7 @@ formatGABE::GABE_Data_Float* Compute_D_Param(wxFloat32 te,const std::vector<wxFl
 	}
 
 	newParameter->Set(newParameter->GetSize()-1,sum/(tab_wj.size()-1));
-	newParameter->SetLabel(wxString::Format(_("D-%g (%%)"),te));
+	newParameter->SetLabel(wxString::Format(wxGetTranslation("D-%g (%%)"),te));
 	newParameter->headerData.numOfDigits= COMMA_PRECISION_PERCENT;
 	return newParameter;
 }
@@ -440,7 +440,7 @@ formatGABE::GABE_Data_Float* Compute_TS_Param(const std::vector<wxFloat32>& time
 	}
 
 	newParameter->Set(newParameter->GetSize()-1,sum/(tab_wj.size()-1));
-	newParameter->SetLabel(_("Ts (ms)"));
+	newParameter->SetLabel(wxGetTranslation("Ts (ms)"));
 	newParameter->headerData.numOfDigits= COMMA_PRECISION_TIME_MS;
 	return newParameter;
 }
@@ -487,7 +487,7 @@ formatGABE::GABE_Data_Float* Compute_LF_Param(const wxFloat32& t1,const wxFloat3
 {
 	using namespace formatGABE;
 	GABE_Data_Float* newParameter=Compute_LEF_Param(t1,t2,timeTable,tab_wj,tab_wjTheta);
-	newParameter->SetLabel(wxString::Format(_("LF%i"),(int)t2));
+	newParameter->SetLabel(wxString::Format(wxGetTranslation("LF%i"),(int)t2));
 	return newParameter;
 }
 
@@ -505,7 +505,7 @@ formatGABE::GABE_Data_Float* Compute_LFC_Param(const wxFloat32& t1,const wxFloat
 {
 	using namespace formatGABE;
 	GABE_Data_Float* newParameter=Compute_LEF_Param(t1,t2,timeTable,tab_wj,tab_wjTheta);
-	newParameter->SetLabel(wxString::Format(_("LFC%i"),(int)t2));
+	newParameter->SetLabel(wxString::Format(wxGetTranslation("LFC%i"),(int)t2));
 	return newParameter;
 }
 
@@ -542,7 +542,7 @@ formatGABE::GABE_Data_Float* Compute_LG_Param(const wxFloat32& t1,const wxFloat3
 		newParameter->Set(idFreq,10*log10f(wj_CurrentFreq));
 	}
 	newParameter->Set(newParameter->GetSize()-1,10*log10f(sum/(tab_wjthetasqr.size()-1)));
-	newParameter->SetLabel(_("LG (dB)"));
+	newParameter->SetLabel(wxGetTranslation("LG (dB)"));
 	return newParameter;
 }
 
@@ -577,7 +577,7 @@ formatGABE::GABE_Data_Float* Compute_G_Param(const wxFloat32& t1,const wxFloat32
 			sum+=to_deciBel(wj_CurrentFreq);
 	}
 	newParameter->Set(newParameter->GetSize()-1,sum/(tab_wj.size()-1));
-	newParameter->SetLabel(_("G (dB)"));
+	newParameter->SetLabel(wxGetTranslation("G (dB)"));
 	return newParameter;
 }
 
@@ -606,7 +606,7 @@ formatGABE::GABE_Data_Float* Compute_STI_Param(bool surf,wxFloat32 te,wxFloat32 
 		idx=std::find(freqTable.begin(), freqTable.end(), freqSTI[i]);
 		if(std::find(freqTable.begin(), freqTable.end(), freqSTI[i])==freqTable.end()){
 			do_calc=false;
-			wxLogError(_("STI not calculated! The following frequency could not be found:%d"),freqSTI[i]);
+			wxLogError(wxGetTranslation("STI not calculated! The following frequency could not be found:%d"),freqSTI[i]);
 			break;
 		}
 		idx_l[i]=idx - freqTable.begin();
@@ -787,7 +787,7 @@ formatGABE::GABE_Data_Float* Compute_STI_Param(bool surf,wxFloat32 te,wxFloat32 
 	}
 
 	newParameter->Set(newParameter->GetSize()-1,STI);
-	newParameter->SetLabel(wxString::Format(_("STI, NC%g"),te));
+	newParameter->SetLabel(wxString::Format(wxGetTranslation("STI, NC%g"),te));
 	newParameter->headerData.numOfDigits=2;
 	return newParameter;
 }
@@ -808,11 +808,11 @@ void ProjectManager::OnMenuDoAcousticParametersComputation(uiTreeCtrl* fromCtrl,
 
 	if (!pyeventmode)
 	{
-		wxCustomEntryDialog parametersDialog(mainFrame,_("Please, gives calculation parameters. Use ';' to separate several parameters"),_("Acoustic parameters calculation"));
-		parametersDialog.AddTextControl(_("Clarity (ms)"),Cdefault);
-		parametersDialog.AddTextControl(_("Definition (ms)"),Ddefault);
-		parametersDialog.AddTextControl(_("Sound decay value for RT calculation (dB)"),TRdefault);
-		parametersDialog.AddTextControl(_("NC curve for STI calculation"),NCdefault);
+		wxCustomEntryDialog parametersDialog(mainFrame,wxGetTranslation("Please, gives calculation parameters. Use ';' to separate several parameters"),wxGetTranslation("Acoustic parameters calculation"));
+		parametersDialog.AddTextControl(wxGetTranslation("Clarity (ms)"),Cdefault);
+		parametersDialog.AddTextControl(wxGetTranslation("Definition (ms)"),Ddefault);
+		parametersDialog.AddTextControl(wxGetTranslation("Sound decay value for RT calculation (dB)"),TRdefault);
+		parametersDialog.AddTextControl(wxGetTranslation("NC curve for STI calculation"),NCdefault);
 
 		if (parametersDialog.ShowModal() == wxID_OK)
 		{
@@ -852,7 +852,7 @@ void ProjectManager::OnMenuDoAcousticParametersComputation(uiTreeCtrl* fromCtrl,
 
 			if(!wxFileExists(fileName))
 			{
-				wxLogError(_("The following file doesn't exist:\n%s"),fileName);
+				wxLogError(wxGetTranslation("The following file doesn't exist:\n%s"),fileName);
 				return;
 			}
 			////////////////////////////////////
@@ -901,8 +901,8 @@ void ProjectManager::OnMenuDoAcousticParametersComputation(uiTreeCtrl* fromCtrl,
 					tab_wj[nbBandeFreq][idstep]+=*(*dataFloat)[idstep];
 				}
 			}
-			rowLbls->SetString(nbBandeFreq,_("Global"));
-			rowLbls->SetString(nbBandeFreq+1,_("Average"));
+			rowLbls->SetString(nbBandeFreq,wxGetTranslation("Global"));
+			rowLbls->SetString(nbBandeFreq+1,wxGetTranslation("Average"));
 
 			MakeSchroederArray(tab_wj,tab_schroeder);
 			
@@ -974,7 +974,7 @@ void ProjectManager::OnMenuDoAcousticParametersComputation(uiTreeCtrl* fromCtrl,
 				tabReader.GetCol(idbFreq, &dataFloat);
 				cpRowLbls->SetString(idbFreq - 1, dataFloat->GetLabel());
 			}
-			cpRowLbls->SetString(nbBandeFreq, _("Global"));
+			cpRowLbls->SetString(nbBandeFreq, wxGetTranslation("Global"));
 			GABE tabSchroederWriter(nbTimeStep+1);
 			tabSchroederWriter.LockData(); //lecture seule pour l'utilisateur
 			tabSchroederWriter.SetCol(0,cpRowLbls);
@@ -1116,8 +1116,8 @@ void ProjectManager::OnMenuRecepteurSurfDoSTIComputation(uiTreeCtrl* fromCtrl,El
 
 	if(!pyeventmode)
 	{
-		wxCustomEntryDialog parametersDialog(mainFrame,_("Please, gives calculation parameters. Use ';' to separate several parameters"),_("Acoustic parameters calculation"));
-		parametersDialog.AddTextControl(_("NC curve for STI calculation"),NCdefault);
+		wxCustomEntryDialog parametersDialog(mainFrame,wxGetTranslation("Please, gives calculation parameters. Use ';' to separate several parameters"),wxGetTranslation("Acoustic parameters calculation"));
+		parametersDialog.AddTextControl(wxGetTranslation("NC curve for STI calculation"),NCdefault);
 
 		if (parametersDialog.ShowModal() == wxID_OK)
 		{
@@ -1280,11 +1280,11 @@ void ProjectManager::OnMenuDoAdvancedAcousticParametersComputation(Element* sele
 
 	if(!pyeventmode)
 	{
-		wxCustomEntryDialog parametersDialog(mainFrame,_("Please, gives calculation parameters. Use ';' to separate several parameters"),_("Acoustic parameters calculation"));
-		parametersDialog.AddTextControl(_("Early lateral fraction LF (ms)"),LFParam);
-		parametersDialog.AddTextControl(_("Early lateral fraction LFC (ms)"),LFCParam);
-		//parametersDialog.AddTextControl(_("Tenue acoustique latérale LG(ms)"),LGParam);
-		//parametersDialog.AddTextControl(_("Tenue acoustique G (ms)"),GParam);
+		wxCustomEntryDialog parametersDialog(mainFrame,wxGetTranslation("Please, gives calculation parameters. Use ';' to separate several parameters"),wxGetTranslation("Acoustic parameters calculation"));
+		parametersDialog.AddTextControl(wxGetTranslation("Early lateral fraction LF (ms)"),LFParam);
+		parametersDialog.AddTextControl(wxGetTranslation("Early lateral fraction LFC (ms)"),LFCParam);
+		//parametersDialog.AddTextControl(wxGetTranslation("Tenue acoustique latérale LG(ms)"),LGParam);
+		//parametersDialog.AddTextControl(wxGetTranslation("Tenue acoustique G (ms)"),GParam);
 
 
 
@@ -1396,10 +1396,10 @@ void ProjectManager::OnMenuDoAdvancedAcousticParametersComputation(Element* sele
 		GABE_Data_ShortString* cpRowLbls= new GABE_Data_ShortString(nbBandeFreq+2);
 		for(int idfreq=0;idfreq<nbBandeFreq;idfreq++)
 		{
-			cpRowLbls->SetString(idfreq,(wxString(lstFreq->GetStringEquiv(idfreq))+_(" Hz")).c_str());
+			cpRowLbls->SetString(idfreq,(wxString(lstFreq->GetStringEquiv(idfreq))+wxGetTranslation(" Hz")).c_str());
 		}
-		cpRowLbls->SetString(nbBandeFreq,_("Global"));
-		cpRowLbls->SetString(nbBandeFreq+1,_("Average"));
+		cpRowLbls->SetString(nbBandeFreq,wxGetTranslation("Global"));
+		cpRowLbls->SetString(nbBandeFreq+1,wxGetTranslation("Average"));
 		tabToExport.push_back(cpRowLbls);
 
 		/////////////////////////////////////////

@@ -377,11 +377,11 @@ p_ply ply_open_from_file(FILE *fp, p_ply_error_cb error_cb,
     p_ply ply;
     if (error_cb == NULL) error_cb = ply_error_cb;
     assert(fp);
+    ply = ply_alloc();
     if (!ply_type_check()) {
         error_cb(ply, "Incompatible type system");
         return NULL;
     }
-    ply = ply_alloc();
     if (!ply) {
         error_cb(NULL, "Out of memory");
         return NULL;
@@ -477,13 +477,12 @@ p_ply ply_create(const char *name, e_ply_storage_mode storage_mode,
 
 p_ply ply_create_to_file(FILE *fp, e_ply_storage_mode storage_mode,
         p_ply_error_cb error_cb, long idata, void *pdata) {
-    p_ply ply;
+    p_ply ply = ply_alloc();
     assert(fp && storage_mode <= PLY_DEFAULT);
     if (!ply_type_check()) {
         error_cb(ply, "Incompatible type system");
         return NULL;
     }
-    ply = ply_alloc();
     if (!ply) {
         error_cb(NULL, "Out of memory");
         return NULL;

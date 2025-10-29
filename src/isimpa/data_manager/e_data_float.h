@@ -151,11 +151,11 @@ public:
 			wxBell();
 			ev.Veto();
 			if(isMaxValue && isMinValue)
-				wxLogMessage(_("Data must be in the range %s - %s"),FloatToString(minValue),FloatToString(maxValue));
+				wxLogMessage(wxGetTranslation("Data must be in the range %s - %s"),FloatToString(minValue),FloatToString(maxValue));
 			else if(isMaxValue)
-				wxLogMessage(_("Authorized maximum value: %s"),FloatToString(maxValue));
+				wxLogMessage(wxGetTranslation("Authorized maximum value: %s"),FloatToString(maxValue));
 			else if(isMinValue)
-				wxLogMessage(_("Authorized minimum value: %s"),FloatToString(minValue));
+				wxLogMessage(wxGetTranslation("Authorized minimum value: %s"),FloatToString(minValue));
 		}
 	}
 

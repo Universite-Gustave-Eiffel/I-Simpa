@@ -485,7 +485,7 @@ bool CObjet3D::BuildModel(vec3 debCuboide,vec3 finCuboide)
 
 	return true;
 }
-bool CObjet3D::Save(const std::string& filename)
+bool CObjet3D::Save(const wxString& filename)
 { //Sauvegarde d'un fichier, determination du type via l'extension dans le nom du fichier
 	std::string ext = wxFileName(filename).GetExt().Lower().ToStdString();
 	if(ext.empty()) {
@@ -498,10 +498,6 @@ bool CObjet3D::Save(const std::string& filename)
 	else if (ext == "asc")
 	{
 		return this->_SaveASC(filename);
-	}
-	else if (ext=="nff")
-	{
-        return this->_SaveNFF(filename);
 	}
 	else if (ext=="poly")
 	{
@@ -766,63 +762,62 @@ long CObjet3D::_RenderGroupTexture(long g, bool blendRendering)  //Le rendu
 	short lastMaterial=-1;
 	vec2 texTrans(0.f,0.f);//Texture transformation due to rescale then translation
 	vec2 texScale(1.f,1.f);
-	for(std::vector<SFace3D>::iterator itface=this->_pGroups[g].pFaces.begin();itface!=this->_pGroups[g].pFaces.end();itface++)
+	for(auto faceIterator=this->_pGroups[g].pFaces.begin();faceIterator!=this->_pGroups[g].pFaces.end();faceIterator+=1)
 	{
-		if(lastMaterial!=(*itface).idMaterial)
+		if(lastMaterial!=faceIterator->idMaterial)
 		{
-			lastMaterial=(*itface).idMaterial;
+			lastMaterial=faceIterator->idMaterial;
 			glEnd();
 			materials->SetMat(lastMaterial);
 			if(hasTextCoords)
 			{
-				if(materials->HasTexture((*itface).idMaterial))
-					textures->GetTransformation(materials->GetTextureId((*itface).idMaterial),texScale,texTrans);
+				if(materials->HasTexture(faceIterator->idMaterial))
+					textures->GetTransformation(materials->GetTextureId(faceIterator->idMaterial),texScale,texTrans);
 			}
 			glBegin(GL_TRIANGLES);
 		}
-		if(cullingActive && lastStateCulling!=!(*itface).internalFace)
+		if(cullingActive && lastStateCulling!=!faceIterator->internalFace)
 		{
 			glEnd();
-			if((*itface).internalFace)
+			if(faceIterator->internalFace)
 				glDisable(GL_CULL_FACE);
 			else
 				glEnable(GL_CULL_FACE);
-			lastStateCulling=!(*itface).internalFace;
+			lastStateCulling=!(*faceIterator).internalFace;
 			glBegin(GL_TRIANGLES);
 		}
 		if(!blendRendering)
-			glNormal3fv((*itface).FaceNormals*-1); //On inverse les normals pour voir l'interieur de l'objet
-		if(hasTextCoords)
+			glNormal3fv(faceIterator->FaceNormals*-1); //On inverse les normals pour voir l'interieur de l'objet
+		if(hasTextCoords && faceIterator->TexCoords.a < this->_pTexCoords.size())
 		{
-			vec2 texCoordA=this->_pTexCoords[(*itface).TexCoords.a];
+			vec2 texCoordA=this->_pTexCoords[faceIterator->TexCoords.a];
 			texCoordA.set(texCoordA.x*texScale.x,texCoordA.y*texScale.y);
 			texCoordA+=texTrans;
 			glTexCoord2fv(texCoordA);
 		}
 		if(blendRendering)
-			glNormal3fv(this->_pNormals[(*itface).Normals.a]);
-		glVertex3fv(this->_pVertices[(*itface).Vertices.a]);
-		if(hasTextCoords)
+			glNormal3fv(this->_pNormals[faceIterator->Normals.a]);
+		glVertex3fv(this->_pVertices[faceIterator->Vertices.a]);
+		if(hasTextCoords && faceIterator->TexCoords.b < this->_pTexCoords.size())
 		{
-			
-			vec2 texCoordB=this->_pTexCoords[(*itface).TexCoords.b];
+			vec2 texCoordB=this->_pTexCoords[faceIterator->TexCoords.b];
 			texCoordB.set(texCoordB.x*texScale.x,texCoordB.y*texScale.y);
 			texCoordB+=texTrans;
 			glTexCoord2fv(texCoordB);
 		}
 		if(blendRendering)
-			glNormal3fv(this->_pNormals[(*itface).Normals.b]);
-		glVertex3fv(this->_pVertices[(*itface).Vertices.b]);
-		if(hasTextCoords)
+			glNormal3fv(this->_pNormals[faceIterator->Normals.b]);
+		glVertex3fv(this->_pVertices[faceIterator->Vertices.b]);
+		if(hasTextCoords && faceIterator->TexCoords.c < this->_pTexCoords.size())
 		{
-			vec2 texCoordC=this->_pTexCoords[(*itface).TexCoords.c];
+			vec2 texCoordC=this->_pTexCoords[faceIterator->TexCoords.c];
 			texCoordC.set(texCoordC.x*texScale.x,texCoordC.y*texScale.y);
 			texCoordC+=texTrans;
 			glTexCoord2fv(texCoordC);
 		}
 		if(blendRendering)
-			glNormal3fv(this->_pNormals[(*itface).Normals.c]);
-		glVertex3fv(this->_pVertices[(*itface).Vertices.c]);
+			glNormal3fv(this->_pNormals[faceIterator->Normals.c]);
+		glVertex3fv(this->_pVertices[faceIterator->Vertices.c]);
 	}
 	glEnd();
 		glDisable(GL_POLYGON_OFFSET_FILL);
@@ -882,33 +877,32 @@ long CObjet3D::_RenderGroupLines(long g,bool hideLines)
 	return this->_pGroups[g].pFaces.size();
 }
 
-bool CObjet3D::_SaveMESH(const std::string& filename)
+bool CObjet3D::_SaveMESH(const wxString& filename)
 {
 	using namespace formatMESH;
 	formatMESH::CMesh classExport;	
-	return classExport.ExportMESH(this->UnitizeVar, this->_pGroups, this->_pVertices, filename, this->GetNumFaces());
+	return classExport.ExportMESH(this->UnitizeVar, this->_pGroups, this->_pVertices, filename.ToStdString(), this->GetNumFaces());
 }
 
-bool CObjet3D::_SaveASC(const std::string&filename)
+bool CObjet3D::_SaveASC(const wxString& filename)
 {
 	formatASC::CAsc classExport;
-	//classExport.ExportASC(this->UnitizeVar,this->tabVertexMaillage, filename, this->tabVertexMaillageNbFace);
-	classExport.ExportASC(this->UnitizeVar,this->_pGroups,this->_pVertices,filename.c_str(),this->GetNumVertices(),this->GetNumFaces());
+	classExport.ExportASC(this->UnitizeVar,this->_pGroups,this->_pVertices,filename,this->GetNumVertices(),this->GetNumFaces());
 	return true;
 }
-bool CObjet3D::_SaveNFF(const std::string&filename)
+bool CObjet3D::_SaveNFF(const wxString& filename)
 {
 	formatNFF::CNff classExport;
-	classExport.ExportNFF(this->UnitizeVar,this->_pGroups,this->_pVertices,filename.c_str(),this->GetNumVertices(),this->GetNumFaces());
+	classExport.ExportNFF(this->UnitizeVar,this->_pGroups,this->_pVertices,filename,this->GetNumVertices(),this->GetNumFaces());
 	return true;
 }
-bool CObjet3D::_SaveBIN(const std::string& filename)
+bool CObjet3D::_SaveBIN(const wxString& filename)
 {
 	formatBIN::CformatBIN classExport;
-	return classExport.ExportBIN(filename,this->UnitizeVar,this->_pVertices,this->_pTexCoords,this->_pGroups);
+	return classExport.ExportBIN(filename.ToStdString(),this->UnitizeVar,this->_pVertices,this->_pTexCoords,this->_pGroups);
 }
 
-bool CObjet3D::_SavePLYProjectGroup(const std::string&filename)
+bool CObjet3D::_SavePLYProjectGroup(const wxString& filename)
 {
 
 	formatRPLY::t_model modelExport;
@@ -936,7 +930,7 @@ bool CObjet3D::_SavePLYProjectGroup(const std::string&filename)
 	}
 	std::vector<int> LayerIdToIdMat;
 	int lastidmat=-1;
-	int lastlayerid=-1;
+	std::size_t lastlayerid=-1;
 	for(int g=0; g < this->_pGroups.size(); g++)
 	{
 		for(long f=0; f < this->_pGroups[g].pFaces.size() ;f++)
@@ -968,7 +962,7 @@ bool CObjet3D::_SavePLYProjectGroup(const std::string&filename)
 						name=mat->GetElementParent()->GetElementInfos().libelleElement;
 					}
 					modelExport.modelLayers.push_back(formatRPLY::t_layer(name));
-					lastlayerid=LayerIdToIdMat.size()-1;
+					lastlayerid=LayerIdToIdMat.size()-1L;
 				} else {
 					lastlayerid=layerIndex;
 				}
@@ -977,9 +971,9 @@ bool CObjet3D::_SavePLYProjectGroup(const std::string&filename)
 		}
 	}
 	
-	return formatRPLY::CPly::ExportPly(modelExport,filename);
+	return formatRPLY::CPly::ExportPly(modelExport, filename.ToStdString());
 }
-bool CObjet3D::_SavePLY(const std::string&filename)
+bool CObjet3D::_SavePLY(const wxString& filename)
 {
 
 	formatRPLY::t_model modelExport;
@@ -1006,17 +1000,7 @@ bool CObjet3D::_SavePLY(const std::string&filename)
 			}
 		}
 	}
-	return formatRPLY::CPly::ExportPly(modelExport,filename);
-}
-
-
-
-
-bool CObjet3D::_SaveNFFMaillage(const std::string&filename)
-{
-	formatNFF::CNff classExport;
-	//classExport.ExportTetraNFF(this->UnitizeVar,this->tabVertexMaillage, filename, this->tabVertexMaillageNbFace);
-	return true;
+	return formatRPLY::CPly::ExportPly(modelExport,filename.ToStdString());
 }
 
 bool CObjet3D::_LoadSTL(const std::string&filename)
@@ -1194,7 +1178,7 @@ bool CObjet3D::_LoadBIN(const std::string& filename)
 	}
 	catch(...)
 	{
-		wxLogWarning(_("Unable to load this format"));
+		wxLogWarning(wxGetTranslation("Unable to load this format"));
 		return false;
 	}
 

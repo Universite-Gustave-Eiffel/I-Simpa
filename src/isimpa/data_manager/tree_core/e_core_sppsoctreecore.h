@@ -92,18 +92,18 @@ public:
 		InitTransmission(confCore);
 		#if 0
 		    // Code source à destination de PoEdit
-			_("SPPS");
-			_("Random");
-			_("Energetic");
-			_("Export surface receivers for each frequency band");
-			_("Calculation method");
-			_("Number of sound particles per source");
-			_("Number of sound particles per source (display)");
-			_("Active calculation of atmospheric absorption");
-			_("Active calculation of diffusion by fitting objects");
-			_("Active calculation of direct field only");
-			_("Calculation informations");
-			_("Radius of receivers (m)");
+			wxGetTranslation("SPPS");
+			wxGetTranslation("Random");
+			wxGetTranslation("Energetic");
+			wxGetTranslation("Export surface receivers for each frequency band");
+			wxGetTranslation("Calculation method");
+			wxGetTranslation("Number of sound particles per source");
+			wxGetTranslation("Number of sound particles per source (display)");
+			wxGetTranslation("Active calculation of atmospheric absorption");
+			wxGetTranslation("Active calculation of diffusion by fitting objects");
+			wxGetTranslation("Active calculation of direct field only");
+			wxGetTranslation("Calculation informations");
+			wxGetTranslation("Radius of receivers (m)");
 		#endif
 
 		this->AppendFils(new E_Core_Core_Bfreqselection(this));

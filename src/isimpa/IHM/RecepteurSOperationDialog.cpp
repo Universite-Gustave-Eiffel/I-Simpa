@@ -40,11 +40,11 @@
 #include "last_cpp_include.hpp"
 
 RecepteurSelectionWizard::RecepteurSelectionWizard(wxFrame *frame, E_Report_File* _rootFolder)
-        : wxWizard(frame,wxID_ANY,_("Compare surface receivers"),wxBitmap("./Bitmaps/wiz3.png", wxBITMAP_TYPE_PNG)),
+        : wxWizard(frame,wxID_ANY,wxGetTranslation("Compare surface receivers"),wxBitmap("./Bitmaps/wiz3.png", wxBITMAP_TYPE_PNG)),
 		rootFolder(_rootFolder)
 { 
-	_("&Cancel");
-	_("< &Back");
+	wxGetTranslation("&Cancel");
+	wxGetTranslation("< &Back");
     m_page1 = new PageReferenceSelection(this);
 	PageOtherRecepeurSurfSelection* otherPage=new PageOtherRecepeurSurfSelection(this);
 	PageReferenceSelection::Chain(m_page1,otherPage);
@@ -64,7 +64,7 @@ RecepteurSelectionWizard::t_UserSelection RecepteurSelectionWizard::GetUserPrefe
 void RecepteurSelectionWizard::RefreshNextButtonState()
 {
 	wxButton* btNext=wxDynamicCast(wxWindow::FindWindowById(wxID_FORWARD,this),wxButton);
-	btNext->SetLabel( HasNextPage(this->GetCurrentPage()) ? _("&Next >") : _("&Finish"));
+	btNext->SetLabel( HasNextPage(this->GetCurrentPage()) ? wxGetTranslation("&Next >") : wxGetTranslation("&Finish"));
 }
 BEGIN_EVENT_TABLE(PanelReferenceSelection, wxPanel)
 	EVT_COMBOBOX(WIZARDCTRL_REFERENCE_SELECTION,  PanelReferenceSelection::OnRecepteurSurfSelected)
@@ -109,17 +109,17 @@ PanelReferenceSelection::PanelReferenceSelection(wxWindow* parent,RecepteurSelec
 
 void PanelReferenceSelection::OnRecepteurSurfSelected(wxCommandEvent& event)
 {
-	wxGenericComboCtrl* TreeBox = wxDynamicCast(wxWindow::FindWindowById(WIZARDCTRL_REFERENCE_SELECTION,this),wxGenericComboCtrl);
-	if(TreeBox)
+	auto* treeBox = dynamic_cast<wxGenericComboCtrl *>(FindWindowById(WIZARDCTRL_REFERENCE_SELECTION,this));
+	if(treeBox)
 	{
-		//On vérifie si l'élément séléctionné est bien du type recherché
-		ComboTreeCtrl* popupCtrlTree= wxDynamicCast(TreeBox->GetPopupControl(),ComboTreeCtrl);
+		// Check the returned control type is the expected one
+		const ComboTreeCtrl *popupCtrlTree = dynamic_cast<ComboTreeCtrl *>(treeBox->GetPopupControl());
 		if(popupCtrlTree)
 		{
 			Element* comboElement=popupCtrlTree->GetElementSelection();
 			if(comboElement && !comboElement->IsFittingWithThisType(Element::ELEMENT_TYPE_REPORT_RECEPTEURSSVISUALISATION))
 			{
-				wxLogError(_("This file or folder doesn't correspond to a compatible surface receivers"));
+				wxLogError(wxGetTranslation("This file or folder doesn't correspond to a compatible surface receivers"));
 			}
 			
 		}
@@ -128,11 +128,11 @@ void PanelReferenceSelection::OnRecepteurSurfSelected(wxCommandEvent& event)
 
 E_Report_File* PanelReferenceSelection::GetSelectedReportFile()
 {
-	wxGenericComboCtrl* TreeBox = wxDynamicCast(wxWindow::FindWindowById(WIZARDCTRL_REFERENCE_SELECTION,this),wxGenericComboCtrl);
-	if(TreeBox)
+	auto* treeBox = dynamic_cast<wxGenericComboCtrl *>(FindWindowById(WIZARDCTRL_REFERENCE_SELECTION,this));
+	if(treeBox)
 	{
-		//On vérifie si l'élément séléctionné est bien du type recherché
-		ComboTreeCtrl* popupCtrlTree= wxDynamicCast(TreeBox->GetPopupControl(),ComboTreeCtrl);
+		// Check the returned control type is the expected one
+		const ComboTreeCtrl *popupCtrlTree = dynamic_cast<ComboTreeCtrl *>(treeBox->GetPopupControl());
 		if(popupCtrlTree)
 		{
 			Element* selectedElement=popupCtrlTree->GetElementSelection();
@@ -142,7 +142,7 @@ E_Report_File* PanelReferenceSelection::GetSelectedReportFile()
 			}
 		}
 	}
-	return NULL;
+	return nullptr;
 }
 
 BEGIN_EVENT_TABLE(PageReferenceSelection, wxWizardPageSimple)
@@ -155,7 +155,7 @@ PageReferenceSelection::PageReferenceSelection(RecepteurSelectionWizard *parent)
         wxBoxSizer *mainSizer = new wxBoxSizer(wxVERTICAL);
 
         mainSizer->Add(
-			new wxStaticText(this, wxID_ANY,_("Please, select surface receivers of reference:")),
+			new wxStaticText(this, wxID_ANY,wxGetTranslation("Please, select surface receivers of reference:")),
             0,
             wxALL,
             5
@@ -179,7 +179,7 @@ void PageReferenceSelection::OnPageChanging(wxWizardEvent& wizEvent)
 		E_Report_File* selectedFile=panelCtrl->GetSelectedReportFile();
 		if(!selectedFile || selectedFile->GetElementInfos().typeElement!=Element::ELEMENT_TYPE_REPORT_RECEPTEURSSVISUALISATION)
 		{
-			wxLogError(_("You must select a surface receiver data file to continue"));
+			wxLogError(wxGetTranslation("You must select a surface receiver data file to continue"));
 			wizEvent.Veto();
 			return;
 		}
@@ -201,7 +201,7 @@ PageOtherRecepeurSurfSelection::PageOtherRecepeurSurfSelection(RecepteurSelectio
         wxBoxSizer *mainSizer = new wxBoxSizer(wxVERTICAL);
 
         mainSizer->Add(
-			new wxStaticText(this, wxID_ANY,_("Surface receiver to be compared to the reference one:")),
+			new wxStaticText(this, wxID_ANY,wxGetTranslation("Surface receiver to be compared to the reference one:")),
             0,
             wxALL,
             5
@@ -217,20 +217,20 @@ PageOtherRecepeurSurfSelection::PageOtherRecepeurSurfSelection(RecepteurSelectio
 			  );
 
         mainSizer->Add(
-			new wxStaticText(this, wxID_ANY,_("Result filename")),
+			new wxStaticText(this, wxID_ANY,wxGetTranslation("Result filename")),
             0,
             wxALL,
             5
         );
         mainSizer->Add(
-			new wxTextCtrl(this,WIZARDRSCTRL_TEXTBOX_RESULT_FILENAME,_("Power gain")),
+			new wxTextCtrl(this,WIZARDRSCTRL_TEXTBOX_RESULT_FILENAME,wxGetTranslation("Power gain")),
             0,
             wxALL,
             5
         );
 
-		wxCheckBox* checkAdd=new wxCheckBox(this,WIZARDRSCTRL_CHECKBOX_ANOTHER_RS_ENTRY,_("Add new data file"));
-		checkAdd->SetToolTip(_("Add next data file"));
+		wxCheckBox* checkAdd=new wxCheckBox(this,WIZARDRSCTRL_CHECKBOX_ANOTHER_RS_ENTRY,wxGetTranslation("Add new data file"));
+		checkAdd->SetToolTip(wxGetTranslation("Add next data file"));
         mainSizer->Add(
 			checkAdd,
             0,
@@ -250,7 +250,7 @@ void PageOtherRecepeurSurfSelection::OnPageChanging(wxWizardEvent& wizEvent)
 			//On test si l'utilisateur a bien choisi un fichier compatible
 			if(!selectedFile || selectedFile->GetElementInfos().typeElement!=Element::ELEMENT_TYPE_REPORT_RECEPTEURSSVISUALISATION)
 			{
-				wxLogError(_("You must select a surface receiver data file to continue"));
+				wxLogError(wxGetTranslation("You must select a surface receiver data file to continue"));
 				wizEvent.Veto();
 				return;
 			}
@@ -261,13 +261,13 @@ void PageOtherRecepeurSurfSelection::OnPageChanging(wxWizardEvent& wizEvent)
 			//On test si l'utilisateur n'a pas déjà choisi ce fichier dans le traitement, de même pour nom du fichier de sortie
 			if(outputFileName.IsEmpty())
 			{
-				wxLogError(_("Please, give filename for the output results"));
+				wxLogError(wxGetTranslation("Please, give filename for the output results"));
 				wizEvent.Veto();
 				return;
 			}
 			if(selectedFileName==wiz_parent->userSelection.referenceFilePath)
 			{
-				wxLogError(_("You have select the same file as the reference one.  Please select another file"));
+				wxLogError(wxGetTranslation("You have select the same file as the reference one.  Please select another file"));
 				wizEvent.Veto();
 				return;
 			}
@@ -277,13 +277,13 @@ void PageOtherRecepeurSurfSelection::OnPageChanging(wxWizardEvent& wizEvent)
 				{
 					if(wiz_parent->userSelection.comparaisonFilesPath[identry]==selectedFileName)
 					{
-						wxLogError(_("You have already select this file. Please select another file"));
+						wxLogError(wxGetTranslation("You have already select this file. Please select another file"));
 						wizEvent.Veto();
 						return;
 					}
 					if(outputFileName==wiz_parent->userSelection.comparaisonFilesOutputFileNames[identry])
 					{
-						wxLogError(_("You have already used this label as an output data file.  Please select another label"));
+						wxLogError(wxGetTranslation("You have already used this label as an output data file.  Please select another label"));
 						wizEvent.Veto();
 						return;
 					}

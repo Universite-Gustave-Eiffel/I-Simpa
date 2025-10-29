@@ -51,20 +51,20 @@ private:
 		modes.push_back("Volume");
 		modes.push_back("Borders");
 		this->AppendPropertyList("rendermode","Render mode",modes,0);
-		_("Volume");
-		_("Borders");
-		_("Render mode");
+		wxGetTranslation("Volume");
+		wxGetTranslation("Borders");
+		wxGetTranslation("Render mode");
 	}
 	void InitProperties()
 	{
 		this->AppendPropertyColor("couleur","Color",GetRandValue()*255,GetRandValue()*255,GetRandValue()*255);
-		_("Color"); //Pour generer le fichier de langues automatiquement
+		wxGetTranslation("Color"); //Pour generer le fichier de langues automatiquement
 		this->AppendPropertyBool("showlabel","Show name",false);
-		_("Show name");
+		wxGetTranslation("Show name");
 		if(this->pere && this->pere->GetElementInfos().typeElement!=Element::ELEMENT_TYPE_SCENE_ENCOMBREMENTS_ENCOMBREMENT)
 		{
 			this->AppendPropertyDecimal("obj_transp","Opacity",.5f,false,2,true,true,1,0);
-			_("Opacity");
+			wxGetTranslation("Opacity");
 			InitLineRenderingProp();
 		}
 	}
@@ -73,7 +73,7 @@ public:
 		:Element(parent,"Display",Element::ELEMENT_TYPE_SCENE_ENCOMBREMENTS_ENCOMBREMENT_RENDU,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_3D_DISPLAY);
-		_("Display");
+		wxGetTranslation("Display");
 		if(parent && parent->GetElementInfos().typeElement!=Element::ELEMENT_TYPE_SCENE_ENCOMBREMENTS_ENCOMBREMENT && !this->IsPropertyExist("rendermode"))
 			InitLineRenderingProp();
 	}

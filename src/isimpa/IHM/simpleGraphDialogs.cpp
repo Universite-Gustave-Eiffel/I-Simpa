@@ -127,8 +127,8 @@ namespace sgSpace
 						bestSize(size),
 						mainParent(_mainParent)
 		{
-			_("OK");
-			_("Cancel");
+			wxGetTranslation("OK");
+			wxGetTranslation("Cancel");
 			wxSize clientSize=this->GetClientSize();
 			areaData.Create(clientSize.GetWidth(),clientSize.GetHeight());
 			currentSample.SelectObject(areaData);
@@ -268,7 +268,7 @@ SG_PropertySheetDialog::SG_PropertySheetDialog(simpleGraph* parent, wxWindowID i
 	ApplyButton=NULL;
     if( buttonSizer )
     {
-		ApplyButton=new wxButton(m_innerSizer->GetContainingWindow(),wxID_APPLY,_("Apply"));
+		ApplyButton=new wxButton(m_innerSizer->GetContainingWindow(),wxID_APPLY,wxGetTranslation("Apply"));
 		ApplyButton->Disable();
 		buttonSizer->Add( ApplyButton);
         m_innerSizer->Add( buttonSizer, 0, wxGROW, 2); //|wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT|wxRIGHT
@@ -281,8 +281,8 @@ SG_PropertySheetDialog::SG_PropertySheetDialog(simpleGraph* parent, wxWindowID i
     wxPanel* generalSettings = CreateGeneralSettingsPage(notebook);
     wxPanel* curvesSettings = CreateCurvesSettingsPage(notebook);
 
-    notebook->AddPage(generalSettings, _("General parameters"), true);
-    notebook->AddPage(curvesSettings, _("Data style"), false);
+    notebook->AddPage(generalSettings, wxGetTranslation("General parameters"), true);
+    notebook->AddPage(curvesSettings, wxGetTranslation("Data style"), false);
 
     LayoutDialog();
 }
@@ -408,7 +408,7 @@ void SG_PropertySheetDialog::OnUserChoosePenStyle(wxCommandEvent& ev)
 void SG_PropertySheetDialog::OnUserChoosePenStippleBitmap(wxCommandEvent& ev)
 {
 	wxPen currentPen=elementsModifications.Item(selectedElementIndice).elStyle.GetPen();
-	wxFileDialog openFileDialog( this, _("Load image"), "All image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.pcx;*.tiff;*.xpm;*.ico;*.cur;*.ani", "All image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.pcx;*.tiff;*.xpm;*.ico;*.cur;*.ani", _("All image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.pcx;*.tiff;*.xpm;*.ico;*.cur;*.ani"));
+	wxFileDialog openFileDialog( this, wxGetTranslation("Load image"), "All image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.pcx;*.tiff;*.xpm;*.ico;*.cur;*.ani", "All image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.pcx;*.tiff;*.xpm;*.ico;*.cur;*.ani", wxGetTranslation("All image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.pcx;*.tiff;*.xpm;*.ico;*.cur;*.ani"));
 	if (openFileDialog.ShowModal() == wxID_OK)
 	{
 		wxString FileName(openFileDialog.GetPath());
@@ -461,7 +461,7 @@ void SG_PropertySheetDialog::OnUserChooseBrushStippleBitmap(wxCommandEvent& ev)
 {
 
 	wxBrush currentBrush=elementsModifications.Item(selectedElementIndice).elStyle.GetBrush();
-	wxFileDialog openFileDialog( this, _("Load image"), "All image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.pcx;*.tiff;*.xpm;*.ico;*.cur;*.ani", "All image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.pcx;*.tiff;*.xpm;*.ico;*.cur;*.ani", _("All image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.pcx;*.tiff;*.xpm;*.ico;*.cur;*.ani"));
+	wxFileDialog openFileDialog( this, wxGetTranslation("Load image"), "All image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.pcx;*.tiff;*.xpm;*.ico;*.cur;*.ani", "All image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.pcx;*.tiff;*.xpm;*.ico;*.cur;*.ani", wxGetTranslation("All image files|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.pcx;*.tiff;*.xpm;*.ico;*.cur;*.ani"));
 	if (openFileDialog.ShowModal() == wxID_OK)
 	{
 		wxString FileName(openFileDialog.GetPath());
@@ -533,28 +533,28 @@ void SG_PropertySheetDialog::FillGeneralPropGrid()
 {
 
 	//Ajout des paramètres généraux
-	PushGeneralSetting(B_PARAM_USE_ANTIALIASING,_("Anti-aliasing"));
+	PushGeneralSetting(B_PARAM_USE_ANTIALIASING,wxGetTranslation("Anti-aliasing"));
 
-	PushGeneralSetting(B_PARAM_HIDE_LEGEND,_("Hide legend"));
+	PushGeneralSetting(B_PARAM_HIDE_LEGEND,wxGetTranslation("Hide legend"));
 
-	//PushGeneralSetting(I_PARAM_BORDER_TITLE,_("Titre, Bordure"));
-	//PushGeneralSetting(B_PARAM_TITLE_IS_VISIBLE,_("Titre, Visible"));
+	//PushGeneralSetting(I_PARAM_BORDER_TITLE,wxGetTranslation("Titre, Bordure"));
+	//PushGeneralSetting(B_PARAM_TITLE_IS_VISIBLE,wxGetTranslation("Titre, Visible"));
 
-	PushGeneralSetting(I_PARAM_TIC_SIZE,_("Axis, dash size"));
-	PushGeneralSetting(I_PARAM_X_BORDER_AXIS,_("X axis, line"));
-	PushGeneralSetting(I_PARAM_Y_BORDER_AXIS,_("Y axis, line"));
+	PushGeneralSetting(I_PARAM_TIC_SIZE,wxGetTranslation("Axis, dash size"));
+	PushGeneralSetting(I_PARAM_X_BORDER_AXIS,wxGetTranslation("X axis, line"));
+	PushGeneralSetting(I_PARAM_Y_BORDER_AXIS,wxGetTranslation("Y axis, line"));
 
-	PushGeneralSetting(I_PARAM_LEGEND_ICON_SIZE,_("Legend, icon length"));
+	PushGeneralSetting(I_PARAM_LEGEND_ICON_SIZE,wxGetTranslation("Legend, icon length"));
 
 
 
-	PushGeneralSetting(F_PARAM_X_MIN,_("Scale, x minimum value"));
-	PushGeneralSetting(F_PARAM_X_MAX,_("Scale, x maximum value"));
-	PushGeneralSetting(F_PARAM_Y_MIN,_("Scale, y minimum value"));
-	PushGeneralSetting(F_PARAM_Y_MAX,_("Scale, y maximum value"));
-	PushGeneralSetting(F_PARAM_Y_TIC,_("Scale Y"));
-	PushGeneralSetting(F_PARAM_X_TIC,_("Scale X"));
-	PushGeneralSetting(F_PARAM_MARKER_SIZE,_("Marker, size (%)"));
+	PushGeneralSetting(F_PARAM_X_MIN,wxGetTranslation("Scale, x minimum value"));
+	PushGeneralSetting(F_PARAM_X_MAX,wxGetTranslation("Scale, x maximum value"));
+	PushGeneralSetting(F_PARAM_Y_MIN,wxGetTranslation("Scale, y minimum value"));
+	PushGeneralSetting(F_PARAM_Y_MAX,wxGetTranslation("Scale, y maximum value"));
+	PushGeneralSetting(F_PARAM_Y_TIC,wxGetTranslation("Scale Y"));
+	PushGeneralSetting(F_PARAM_X_TIC,wxGetTranslation("Scale X"));
+	PushGeneralSetting(F_PARAM_MARKER_SIZE,wxGetTranslation("Marker, size (%)"));
 
 
 
@@ -570,7 +570,7 @@ void SG_PropertySheetDialog::FillGeneralPropGrid()
 	generalPropGrid->SetRowLabelAlignment(wxVERTICAL,wxALIGN_LEFT);
 	generalPropGrid->AppendRows(propertyArray.GetCount());
 	
-	generalPropGrid->SetColLabelValue(0, _("Data"));
+	generalPropGrid->SetColLabelValue(0, wxGetTranslation("Data"));
 	for(int idRow=0;idRow<propertyArray.GetCount();idRow++)
 	{
 		generalPropGrid->SetRowLabelValue(idRow,propertyArray.Item(idRow).propertyLabel);
@@ -632,15 +632,15 @@ void SG_PropertySheetDialog::GetGeneralSettingValue(const MAIN_PROPERTY_GRID_ELE
 void SG_PropertySheetDialog::AddControlsToGeneralSubPane(wxWindow* collapsidePaneArea)
 {
     wxSizer *paneSz = new wxBoxSizer(wxVERTICAL);
-	paneSz->Add(new wxCheckBox(collapsidePaneArea, ID_CURVE_CONTROL_VISIBILITY, _("Visible on/off")), 1, wxGROW|wxTOP, 2);
-	paneSz->Add(new wxButton(collapsidePaneArea,ID_CURVE_CONTROL_FONT_BUTTON, _("Character font")), 1, wxGROW|wxTOP, 2);
-	paneSz->Add(new wxStaticText(collapsidePaneArea,wxID_ANY,_("Drawing method")), 1, wxGROW|wxTOP, 2);
+	paneSz->Add(new wxCheckBox(collapsidePaneArea, ID_CURVE_CONTROL_VISIBILITY, wxGetTranslation("Visible on/off")), 1, wxGROW|wxTOP, 2);
+	paneSz->Add(new wxButton(collapsidePaneArea,ID_CURVE_CONTROL_FONT_BUTTON, wxGetTranslation("Character font")), 1, wxGROW|wxTOP, 2);
+	paneSz->Add(new wxStaticText(collapsidePaneArea,wxID_ANY,wxGetTranslation("Drawing method")), 1, wxGROW|wxTOP, 2);
 	paneSz->Add(new wxComboBox(collapsidePaneArea,ID_CURVE_CONTROL_DRAWING_METHOD,"",wxDefaultPosition, wxDefaultSize, 0, NULL, wxCB_READONLY | wxCB_DROPDOWN ), 1, wxGROW|wxTOP, 2);
-	paneSz->Add(new wxStaticText(collapsidePaneArea,wxID_ANY,_("Marker")), 1, wxGROW|wxTOP, 2);
+	paneSz->Add(new wxStaticText(collapsidePaneArea,wxID_ANY,wxGetTranslation("Marker")), 1, wxGROW|wxTOP, 2);
 	paneSz->Add(new wxComboBox(collapsidePaneArea,ID_CURVE_CONTROL_MARKER,"",wxDefaultPosition, wxDefaultSize, 0, NULL, wxCB_READONLY | wxCB_DROPDOWN ), 1, wxGROW|wxTOP, 2);
-	paneSz->Add(new wxStaticText(collapsidePaneArea,wxID_ANY,_("Labelled")), 1, wxGROW|wxTOP, 2);
+	paneSz->Add(new wxStaticText(collapsidePaneArea,wxID_ANY,wxGetTranslation("Labelled")), 1, wxGROW|wxTOP, 2);
 	paneSz->Add(new wxTextCtrl(collapsidePaneArea,ID_CURVE_CONTROL_LABEL), 1, wxGROW|wxTOP, 2);
-	paneSz->Add(new wxStaticText(collapsidePaneArea,wxID_ANY,_("Text rotation (degree)")), 1, wxGROW|wxTOP, 2);
+	paneSz->Add(new wxStaticText(collapsidePaneArea,wxID_ANY,wxGetTranslation("Text rotation (degree)")), 1, wxGROW|wxTOP, 2);
 	paneSz->Add(new wxSpinCtrl(collapsidePaneArea,ID_CURVE_CONTROL_TEXT_ROTATION,wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, -180, 180,  0), 1, wxGROW|wxTOP, 2);
     collapsidePaneArea->SetSizer(paneSz);
     paneSz->SetSizeHints(collapsidePaneArea);
@@ -648,11 +648,11 @@ void SG_PropertySheetDialog::AddControlsToGeneralSubPane(wxWindow* collapsidePan
 void SG_PropertySheetDialog::AddControlsToPenSubPane(wxWindow* collapsidePaneArea)
 {
     wxSizer *paneSz = new wxBoxSizer(wxVERTICAL);
-	paneSz->Add(new wxButton(collapsidePaneArea,ID_CURVE_CONTROL_PEN_COLOR_BUTTON, _("Color")), 1, wxGROW|wxTOP, 2);
-	paneSz->Add(new wxButton(collapsidePaneArea,ID_CURVE_CONTROL_PEN_BITMAP_STIPPLE_BUTTON, _("Loading image...")), 1, wxGROW|wxTOP, 2);
-	paneSz->Add(new wxStaticText(collapsidePaneArea,wxID_ANY,_("Drawing style")), 1, wxGROW|wxTOP, 2);
+	paneSz->Add(new wxButton(collapsidePaneArea,ID_CURVE_CONTROL_PEN_COLOR_BUTTON, wxGetTranslation("Color")), 1, wxGROW|wxTOP, 2);
+	paneSz->Add(new wxButton(collapsidePaneArea,ID_CURVE_CONTROL_PEN_BITMAP_STIPPLE_BUTTON, wxGetTranslation("Loading image...")), 1, wxGROW|wxTOP, 2);
+	paneSz->Add(new wxStaticText(collapsidePaneArea,wxID_ANY,wxGetTranslation("Drawing style")), 1, wxGROW|wxTOP, 2);
 	paneSz->Add(new wxComboBox(collapsidePaneArea,ID_CURVE_CONTROL_PEN_STYLE_LIST,"",wxDefaultPosition, wxDefaultSize, 0, NULL, wxCB_READONLY | wxCB_DROPDOWN ), 1, wxGROW|wxTOP, 2);
-	paneSz->Add(new wxStaticText(collapsidePaneArea,wxID_ANY,_("Line thickness")), 1, wxGROW|wxTOP, 2);
+	paneSz->Add(new wxStaticText(collapsidePaneArea,wxID_ANY,wxGetTranslation("Line thickness")), 1, wxGROW|wxTOP, 2);
 	paneSz->Add(new wxSpinCtrl(collapsidePaneArea,ID_CURVE_CONTROL_PEN_WIDTH,wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 5000,  1), 1, wxGROW|wxTOP, 2);
     collapsidePaneArea->SetSizer(paneSz);
     paneSz->SetSizeHints(collapsidePaneArea);
@@ -661,9 +661,9 @@ void SG_PropertySheetDialog::AddControlsToPenSubPane(wxWindow* collapsidePaneAre
 void SG_PropertySheetDialog::AddControlsToBrushSubPane(wxWindow* collapsidePaneArea)
 {
     wxSizer *paneSz = new wxBoxSizer(wxVERTICAL);
-	paneSz->Add(new wxButton(collapsidePaneArea,ID_CURVE_CONTROL_BRUSH_COLOR_BUTTON, _("Color")), 1, wxGROW|wxTOP, 2);
-	paneSz->Add(new wxButton(collapsidePaneArea,ID_CURVE_CONTROL_BRUSH_BITMAP_STIPPLE_BUTTON, _("Loading image...")), 1, wxGROW|wxTOP, 2);
-	paneSz->Add(new wxStaticText(collapsidePaneArea,wxID_ANY,_("Filling style")), 1, wxGROW|wxTOP, 2);
+	paneSz->Add(new wxButton(collapsidePaneArea,ID_CURVE_CONTROL_BRUSH_COLOR_BUTTON, wxGetTranslation("Color")), 1, wxGROW|wxTOP, 2);
+	paneSz->Add(new wxButton(collapsidePaneArea,ID_CURVE_CONTROL_BRUSH_BITMAP_STIPPLE_BUTTON, wxGetTranslation("Loading image...")), 1, wxGROW|wxTOP, 2);
+	paneSz->Add(new wxStaticText(collapsidePaneArea,wxID_ANY,wxGetTranslation("Filling style")), 1, wxGROW|wxTOP, 2);
 	paneSz->Add(new wxComboBox(collapsidePaneArea,ID_CURVE_CONTROL_BRUSH_STYLE_LIST,"",wxDefaultPosition, wxDefaultSize, 0, NULL, wxCB_READONLY | wxCB_DROPDOWN ), 1, wxGROW|wxTOP, 2);
     collapsidePaneArea->SetSizer(paneSz);
     paneSz->SetSizeHints(collapsidePaneArea);
@@ -678,28 +678,28 @@ wxPanel* SG_PropertySheetDialog::CreateCurvesSettingsPage(wxWindow* parent)
 	///////////////////////
 	// Ajout du choix des éléments de dessin
 	topSizer->AddSpacer(5);
-	topSizer->Add(new wxStaticText(panel,wxID_ANY,_("Drawing element:")));
+	topSizer->Add(new wxStaticText(panel,wxID_ANY,wxGetTranslation("Drawing element:")));
 	topSizer->Add(new wxComboBox(panel,ID_CURVE_CONTROL_CURVE_CHOICE,"",wxDefaultPosition, wxDefaultSize, 0, NULL, wxCB_READONLY | wxCB_DROPDOWN ), 0, wxGROW|wxALL, 5 );
 
 	///////////////////////
 	// Ajout de l'apercu
-	//topSizer->Add(new wxStaticText(panel,wxID_ANY,_("Aperçu :")), 1, wxGROW|wxTOP, 2);
+	//topSizer->Add(new wxStaticText(panel,wxID_ANY,wxGetTranslation("Aperçu :")), 1, wxGROW|wxTOP, 2);
 	topSizer->AddSpacer(3);
 	topSizer->Add(new SG_SampleArea(panel,this,ID_CURVE_CONTROL_SAMPLE_AREA,"",wxDefaultPosition,FromDIP(wxSize(-1,20))), 0, wxGROW|wxBOTTOM, 2);
 		
 	///////////////////////
 	// Ajout du sous-panneau Paramètres généraux
-	wxCollapsiblePane *collpaneGeneral = new wxCollapsiblePane(panel, wxID_ANY, _("General parameters:"));
+	wxCollapsiblePane *collpaneGeneral = new wxCollapsiblePane(panel, wxID_ANY, wxGetTranslation("General parameters:"));
 	topSizer->Add(collpaneGeneral, 0, wxGROW|wxALL );
 	AddControlsToGeneralSubPane(collpaneGeneral->GetPane());
 	///////////////////////
 	// Ajout du sous-panneau Trait
-	wxCollapsiblePane *collpanePen = new wxCollapsiblePane(panel, wxID_ANY, _("Outline:"));
+	wxCollapsiblePane *collpanePen = new wxCollapsiblePane(panel, wxID_ANY, wxGetTranslation("Outline:"));
 	topSizer->Add(collpanePen, 0, wxGROW|wxALL );
 	AddControlsToPenSubPane(collpanePen->GetPane());
 	///////////////////////
 	// Ajout du sous-panneau Remplissage
-	wxCollapsiblePane *collpaneBrush = new wxCollapsiblePane(panel, wxID_ANY, _("Filling:"));
+	wxCollapsiblePane *collpaneBrush = new wxCollapsiblePane(panel, wxID_ANY, wxGetTranslation("Filling:"));
 	topSizer->Add(collpaneBrush, 0, wxGROW|wxALL );
 	AddControlsToBrushSubPane(collpaneBrush->GetPane());
 

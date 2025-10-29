@@ -116,33 +116,14 @@ OpenGlViewer::TOOL_MODE OpenGlViewer::GetCurrentTool()
 {
 	return currentTool;
 }
-int OpenGlViewer::GetImage(wxImage& aimage, const int awidth, const int aheight)
-{
-	if(appLoaded)
-	{
-	    #ifdef _WIN32
-            int retour = m_GLApp->GetImage(aimage,awidth,aheight,(HWND)this->GetHWND());
-        #else
-            int retour = m_GLApp->GetImage(aimage,awidth,aheight);
-        #endif
-		return retour;
-	}
-	else
-		return 0;
-}
 
 int OpenGlViewer::GetImage(wxImage& aimage)
 {
-	if(appLoaded)
-	{
+	if(appLoaded) {
 		Display();
-		//int retour = m_GLApp->GetImage(aimage,awidth,aheight,(HWND)this->GetHWND());
-		int retour = m_GLApp->GetImage(aimage);
-		wxSizeEvent sizeevt;
-		return retour;
+		return m_GLApp->GetImage(aimage);
 	}
-	else
-		return 0;
+	return 0;
 }
 
 void OpenGlViewer::SetSimulationRefreshRate(const int& refreshrate)
@@ -268,7 +249,7 @@ void OpenGlViewer::OnTimer( wxTimerEvent& event) //rafraichie le rendu afin d'af
 		}
 	}
 	catch( ... ) {
-		wxLogError(_("Display error unknown"));
+		wxLogError(wxGetTranslation("Display error unknown"));
 		m_Timer.Start(this->minimalTimeStep,true);
 		return;
 	}
@@ -291,11 +272,41 @@ void OpenGlViewer::OnPaint( wxPaintEvent& event )
 	}
 }
 
+// Get the actual framebuffer size (physical pixels) accounting for HiDPI
+wxSize GetDPIScaledSize(wxWindow* window)
+{
+	wxSize size = window->GetClientSize();
+
+#if wxCHECK_VERSION(3, 1, 0)
+	// wxWidgets 3.1.0+ has built-in content scale factor
+	double scaleFactor = window->GetContentScaleFactor();
+	size.x = static_cast<int>(size.x * scaleFactor);
+	size.y = static_cast<int>(size.y * scaleFactor);
+#elif defined(__WXGTK3__)
+	// For GTK3, get scale factor from GDK
+	GdkWindow* gdkWindow = gtk_widget_get_window(static_cast<GtkWidget*>(window->GetHandle()));
+	if (gdkWindow) {
+		int scale = gdk_window_get_scale_factor(gdkWindow);
+		size.x *= scale;
+		size.y *= scale;
+	}
+#elif defined(__WXMAC__)
+	// For macOS, get backing scale factor
+	NSView* view = (NSView*)window->GetHandle();
+	if (view && view.window) {
+		double scaleFactor = view.window.backingScaleFactor;
+		size.x = static_cast<int>(size.x * scaleFactor);
+		size.y = static_cast<int>(size.y * scaleFactor);
+	}
+#endif
+
+	return size;
+}
+
 void OpenGlViewer::Display()
 {
 	//Initialisation
-	int w, h;
-    GetClientSize(&w, &h);
+    const wxSize size = GetDPIScaledSize(this);
 
 	if (IsShown() && this->GetParent()->IsShown()) {
 		if(!ActivateContext())
@@ -307,10 +318,10 @@ void OpenGlViewer::Display()
 	}
 	//Execution des commandes de rendu 3D
 
-	m_GLApp->ChangeWindow(w,h);
+	m_GLApp->ChangeWindow(size.GetWidth(),size.GetHeight());
 	m_GLApp->Display();
 
-	legendDrawer.Draw(w,h);
+	legendDrawer.Draw(size.GetWidth(),size.GetHeight());
 
 	SwapBuffers();
 }
@@ -358,8 +369,11 @@ void OpenGlViewer::OnMouseEvent(wxMouseEvent& event)
 				doScreenRefresh=true; //Il faut redessiner avant la sélection, l'algorithme de sélection se servant de la derniere scene dessinée
 			if(currentTool == TOOL_MODE_SELECTION)
 			{
-				t_faceIndex vertexSel = m_GLApp->SelectVertex( event.GetX(),event.GetY());
-
+				wxPoint cursorPosition = event.GetPosition();
+				double scaleFactor = GetContentScaleFactor();
+				cursorPosition = wxPoint(static_cast<int>(cursorPosition.x * scaleFactor),
+										 static_cast<int>(cursorPosition.y * scaleFactor));
+				t_faceIndex vertexSel = m_GLApp->SelectVertex( cursorPosition.x, cursorPosition.y);
 				if(event.LeftDClick())
 				{
 					OnMouseDoubleClick(vertexSel);
@@ -372,26 +386,33 @@ void OpenGlViewer::OnMouseEvent(wxMouseEvent& event)
 						doScreenRefresh=true;
 					}
 				}
-			}else if(currentTool == TOOL_MODE_RECEPTEURS_SOUNDLEVEL_EXTRACT)
-			{
-				vec3 posCurseur=m_GLApp->SelectPosition(event.GetX(),event.GetY());
-				if(eventPositionBinded)
+			} else if (currentTool == TOOL_MODE_RECEPTEURS_SOUNDLEVEL_EXTRACT) {
+				wxPoint cursorPosition = event.GetPosition();
+				double scaleFactor = GetContentScaleFactor();
+				cursorPosition = wxPoint(static_cast<int>(cursorPosition.x * scaleFactor),
+				                         static_cast<int>(cursorPosition.y * scaleFactor));
+				vec3 posCurseur = m_GLApp->SelectPosition(cursorPosition.x, cursorPosition.y);
+				if (eventPositionBinded)
 					(*pointeurFonctionEventSelectionPosition)(posCurseur);
-				doScreenRefresh=true;
+				doScreenRefresh = true;
 			}
-			if(modeSelectionPoint && CurrentObject!=NULL)
-			{
-				vec3 posCurseur=m_GLApp->SelectPosition(event.GetX(),event.GetY());
-				t_faceIndex vertexSel = m_GLApp->SelectVertex( event.GetX(),event.GetY());
+			if (modeSelectionPoint && CurrentObject != nullptr) {
+				wxPoint cursorPosition = event.GetPosition();
+				double scaleFactor = GetContentScaleFactor();
+				cursorPosition = wxPoint(static_cast<int>(cursorPosition.x * scaleFactor),
+				                         static_cast<int>(cursorPosition.y * scaleFactor));
+				vec3 posCurseur = m_GLApp->SelectPosition(cursorPosition.x, cursorPosition.y);
+				t_faceIndex vertexSel = m_GLApp->SelectVertex(cursorPosition.x, cursorPosition.y);
 				vec3 posProjection;
-
-				if(vertexSel!=t_faceIndex(-1,-1) && eventPositionBinded && CurrentObject->GetExactCollisionPosition(vertexSel,posCurseur,&posProjection))
-				{
-					(*pointeurFonctionEventSelectionPosition)(coordsOperation::GlCoordsToCommonCoords(CurrentObject->UnitizeVar, posProjection));
-					doScreenRefresh=true;
-				}else{
-					(*pointeurFonctionEventSelectionPosition)(coordsOperation::GlCoordsToCommonCoords(CurrentObject->UnitizeVar, posCurseur));
-					doScreenRefresh=true;
+				if (vertexSel != t_faceIndex(-1, -1) && eventPositionBinded && CurrentObject->GetExactCollisionPosition(
+					    vertexSel, posCurseur, &posProjection)) {
+					(*pointeurFonctionEventSelectionPosition)(
+						coordsOperation::GlCoordsToCommonCoords(CurrentObject->UnitizeVar, posProjection));
+					doScreenRefresh = true;
+				} else {
+					(*pointeurFonctionEventSelectionPosition)(
+						coordsOperation::GlCoordsToCommonCoords(CurrentObject->UnitizeVar, posCurseur));
+					doScreenRefresh = true;
 				}
 			}
 		}

@@ -47,7 +47,7 @@ public:
 		:Element(parent,"Display",Element::ELEMENT_TYPE_SCENE_RECEPTEURSS_RECEPTEUR_RENDU,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_3D_DISPLAY);
-		_("Display");
+		wxGetTranslation("Display");
 	}
 
 	E_Scene_Recepteurss_Recepteur_Rendu( Element* parent)

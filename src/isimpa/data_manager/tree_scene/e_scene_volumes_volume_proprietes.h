@@ -46,7 +46,7 @@ public:
 		:Element(parent,"Properties",Element::ELEMENT_TYPE_SCENE_VOLUMES_VOLUME_PROPRIETES,noeudCourant)
 	{
 		SetIcon(GRAPH_STATE_ALL,GRAPH_EL_CONFIGURATION);
-		_("Properties");
+		wxGetTranslation("Properties");
 
 		// delete unused properties
 		Element* fcompute_mean_free_path(nullptr);
