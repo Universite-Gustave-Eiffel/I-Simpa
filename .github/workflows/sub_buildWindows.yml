@@ -120,6 +120,8 @@ jobs:
           -DCMAKE_BUILD_TYPE=Release
           -DCMAKE_C_COMPILER_LAUNCHER=${{ env.ccachebindir }}/ccache.exe
           -DCMAKE_CXX_COMPILER_LAUNCHER=${{ env.ccachebindir }}/ccache.exe
+          -DGETTEXT_MSGFMT_EXECUTABLE="C:/Program Files (x86)/Poedit/GettextTools/bin/msgfmt.exe"
+          -DGETTEXT_MSGMERGE_EXECUTABLE="C:/Program Files (x86)/Poedit/GettextTools/bin/msgmerge.exe"
       - name: Compiling sources
         run: |
           cmake --build "${{ env.builddir }}" --config Release --parallel
