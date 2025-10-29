@@ -29,6 +29,7 @@
 * ----------------------------------------------------------------------*/
 
 #include "GlBitmapSurface.h"
+#include <cstring> // keep it for memset into linux build
 #include "GL/opengl_inc.h"
 #include "3dengine/tools/opengl_test.hpp"
 #include <cmath>
