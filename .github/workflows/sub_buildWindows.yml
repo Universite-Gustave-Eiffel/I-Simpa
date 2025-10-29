@@ -111,7 +111,7 @@ jobs:
         uses: microsoft/setup-msbuild@v2
       - name: Install GnuWin32 gettext tools
         run: |
-          choco install gettext.tool -y
+          choco install poedit -y
       - name: Configuring CMake
         run: >
           cmake -B"${{ env.builddir }}" .
