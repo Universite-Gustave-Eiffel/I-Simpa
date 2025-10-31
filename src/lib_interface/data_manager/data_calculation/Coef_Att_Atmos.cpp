@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,26 +20,23 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
-// Cette fonction calcule le coefficient d'atténuation
-// atmosphérique du son dans l'air
+// Cette fonction calcule le coefficient d'attï¿½nuation
+// atmosphï¿½rique du son dans l'air
 // Norme ISO 9613-1:1993(F)
 //
 // Auteur : J. Picaut (LCPC)
-// Date de la dernière modification : 23 juillet 2007
+// Date de la derniï¿½re modification : 23 juillet 2007
 //
-// En entrée :
-// - fréquence acoustique (Hz)
-// - humidité relative (en %)
-// - pression atmosphérique (en Pa)
-// - température en Kelvin (en K)
+// En entrï¿½e :
+// - frï¿½quence acoustique (Hz)
+// - humiditï¿½ relative (en %)
+// - pression atmosphï¿½rique (en Pa)
+// - tempï¿½rature en Kelvin (en K)
 // En sortie : Absorption totale en dB/m
 
 #include "calculsPropagation.h"
@@ -50,7 +47,7 @@ namespace CalculsGenerauxThermodynamique
 	using namespace CGTconst;
 	double CCalculsGenerauxThermodynamique::Coef_Att_Atmos(double F, double H, double P, double K)
 	{
-		// Célérité du son
+		// Cï¿½lï¿½ritï¿½ du son
 		double cson = CCalculsGenerauxThermodynamique::c_son(K);
 
 		// Calcul de la fraction molaire de vapeur d'eau
@@ -61,7 +58,7 @@ namespace CalculsGenerauxThermodynamique
 		// Absorption classique et rotationnelle
 		double Acr = (Pref/P) * (1.60E-10) * sqrt( K / Kref) * pow(F,2);
 
-		// Absorption vibratoire de l'oxygène
+		// Absorption vibratoire de l'oxygï¿½ne
 		double Fr = (P/Pref) * (24. + 4.04E4 * hmol * (0.02 + hmol) / (0.391 + hmol) );
 		double Am = 1.559 * FmolO * exp(-KvibO/K) * pow(KvibO/K,2);
 		double AvibO = Am * (F/cson) * 2. *(F/Fr) / (1 + pow(F/Fr,2));

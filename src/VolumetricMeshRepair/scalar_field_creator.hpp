@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,9 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 #include "spatial_discretization.hpp"
@@ -38,16 +35,16 @@
 namespace ScalarFieldBuilders
 {
 	/**
-	 * Retourne les coordonnées du centre du cube correspondant à l'indice en paramètre
+	 * Retourne les coordonnï¿½es du centre du cube correspondant ï¿½ l'indice en paramï¿½tre
 	 */
 	vec3 CellIdToCenterCoordinate( const ivec3& cell_id, const decimal& cellSize, const vec3& zeroCellCenter);
 	/**
-	 * Cette classe permet de générer un espace discrétisé en plusieurs volumes. C'est la première étape de la reconstruction du modèle.
+	 * Cette classe permet de gï¿½nï¿½rer un espace discrï¿½tisï¿½ en plusieurs volumes. C'est la premiï¿½re ï¿½tape de la reconstruction du modï¿½le.
 	 */
 	class ScalarFieldCreator
 	{
 	protected:
-		PTR<SpatialDiscretization::weight_matrix> fieldData; //Données de la matrice X,Y,Z
+		PTR<SpatialDiscretization::weight_matrix> fieldData; //Donnï¿½es de la matrice X,Y,Z
 
 
 		struct mainVolumeConstruction_t
@@ -66,12 +63,12 @@ namespace ScalarFieldBuilders
 		decimal resolution;
 		static void ComputeMatrixParams(const vec3& boxMin,const vec3& boxMax, const decimal& minResolution, mainVolumeConstruction_t& computedVolumeInfo);
 		/**
-		 * Initialise les données pour le volume extérieur
+		 * Initialise les donnï¿½es pour le volume extï¿½rieur
 		 */
 		void InitExteriorVolumeId();
 		/**
-		 * Propage les valeurs des identifiants de volume d'une cellule à l'autre
-		 * Si la cellule cible est modifié cette méthode retourne vrai
+		 * Propage les valeurs des identifiants de volume d'une cellule ï¿½ l'autre
+		 * Si la cellule cible est modifiï¿½ cette mï¿½thode retourne vrai
 		 */
 		bool CellToCellVolumePropagation(const ivec2& destinationPropa,const ivec2& sourcePropa,const SpatialDiscretization::weight_t& volumeId);
 		/**
@@ -79,42 +76,42 @@ namespace ScalarFieldBuilders
 		 */
 		void ExtandVolume(const SpatialDiscretization::weight_t& volumeId);
 		/**
-		 * Retourne la position de la première cellule avec la valeur en paramètre
+		 * Retourne la position de la premiï¿½re cellule avec la valeur en paramï¿½tre
 		 */
 		ivec3 GetFirstCellByWeight(const SpatialDiscretization::weight_t& weight,SpatialDiscretization::zcell** foundCell);
 
 		/**
 		 * Calcul pour chaque volume sa valeur en m^3
-		 * @param[out] volumeValue Un tableau de dimension égale au nombre de volume dans le domaine. Dont la valeur est en m^3.
+		 * @param[out] volumeValue Un tableau de dimension ï¿½gale au nombre de volume dans le domaine. Dont la valeur est en m^3.
 		 */
 		void ComputeVolumesValue(std::vector<decimal>& volumeValue);
 
 		/**
-		 * Retourne l'indice de la cellule contenant le point passé en paramètre
+		 * Retourne l'indice de la cellule contenant le point passï¿½ en paramï¿½tre
 		 */
 		ivec3 GetCellIdByCoord(const vec3& position);
 	public:
 		/**
 		 * Constructeur
-		 * @param _resolution Dimension d'une cellule qui composera la matrice. Plus la résolution est élevée plus le model généré sera proche du modèle en entrée et plus de triangles seront générés.
+		 * @param _resolution Dimension d'une cellule qui composera la matrice. Plus la rï¿½solution est ï¿½levï¿½e plus le model gï¿½nï¿½rï¿½ sera proche du modï¿½le en entrï¿½e et plus de triangles seront gï¿½nï¿½rï¿½s.
 		 */
 		ScalarFieldCreator(const decimal& _resolution);
 		/**
-		 * Initialisation de la matrice selon la résolution et la boite englobante passé en paramètre.
-		 * @param boxMin Coordonnées minimale des objets qui alimenteront la matrice
-		 * @param boxMax Coordonnées maximale des objets qui alimenteront la matrice
+		 * Initialisation de la matrice selon la rï¿½solution et la boite englobante passï¿½ en paramï¿½tre.
+		 * @param boxMin Coordonnï¿½es minimale des objets qui alimenteront la matrice
+		 * @param boxMax Coordonnï¿½es maximale des objets qui alimenteront la matrice
 		 */
 		void FirstStep_Params(const vec3& boxMin,const vec3& boxMax);
 		virtual ~ScalarFieldCreator();
 
 		/**
-		 * Une fois toutes les primitives renseignées. Cette méthode doit être appelée afin de détecter les volumes délimité par les limites.
+		 * Une fois toutes les primitives renseignï¿½es. Cette mï¿½thode doit ï¿½tre appelï¿½e afin de dï¿½tecter les volumes dï¿½limitï¿½ par les limites.
 		 */
 		void ThirdStep_VolumesCreator();
 
 		/**
 		 * Retourne la valeur de la matrice selon les indices des cellules
-		 * @param index Entier positif désignant le n° de cellule.
+		 * @param index Entier positif dï¿½signant le nï¿½ de cellule.
 		 * @see GetDomainSize()
 		 */
 		SpatialDiscretization::weight_t GetMatrixValue(const ivec3& index);
@@ -124,7 +121,7 @@ namespace ScalarFieldBuilders
 
 
 		/**
-		 * Pour toutes les valeurs de Z pour un x,y donné. Retourne la valeur min,max.
+		 * Pour toutes les valeurs de Z pour un x,y donnï¿½. Retourne la valeur min,max.
 		 */
 		void GetMinMaxOnZ( const ivec2& xyCell, SpatialDiscretization::weight_t& minVolId,SpatialDiscretization::weight_t& maxVolId);
 		bool IsContainsVol( const ivec2& xyCell, SpatialDiscretization::weight_t& volId);
@@ -137,7 +134,7 @@ namespace ScalarFieldBuilders
 		/**
 		 * Exporte les indices et volumes des domaines
 		 * @param fileName Nom et chemin du fichier de sortie
-		 * @param volsLabelsFileName Nom et chemin du fichier d'entrée des noms utilisateur de volume (fichier texte avec "x y z NomDuVolume" à chaque ligne)
+		 * @param volsLabelsFileName Nom et chemin du fichier d'entrï¿½e des noms utilisateur de volume (fichier texte avec "x y z NomDuVolume" ï¿½ chaque ligne)
 		 */
 		void ExportVolsStats(const std::string& fileName, const std::string& volsLabelsFileName=std::string());
 		///////////////////////////////

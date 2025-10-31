@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,9 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 #include <math.h>
@@ -33,14 +30,14 @@
 #include <float.h>
 
 /*! \file Mathlib.h
-    \brief Ce fichier contient la librairie mathématique de l'interface
+    \brief Ce fichier contient la librairie mathï¿½matique de l'interface
     
-    Le type vecteur est déclaré ici, ainsi que les opérations sur ces vecteurs.
+    Le type vecteur est dï¿½clarï¿½ ici, ainsi que les opï¿½rations sur ces vecteurs.
 */
 #ifndef __HMATHLIB__
 #define __HMATHLIB__
 /**
- * @brief Fonctions mathématiques
+ * @brief Fonctions mathï¿½matiques
  */
 namespace core_mathlib
 {
@@ -131,9 +128,9 @@ public:
 	}
 	float dot(const vec2 &v) { return ((this->x*v.x) + (this->y*v.y)); } // Produit scalaire
 	bool compare(const vec2 &_v,float epsi=EPSILON) { return (fabs(this->x - _v.x) < epsi && fabs(this->y - _v.y) < epsi); }
-	/** @brief retourne les coordonnée du point le plus proche de *this sur la droite passant par vA et vB */
+	/** @brief retourne les coordonnï¿½e du point le plus proche de *this sur la droite passant par vA et vB */
 	vec2 closestPointOnLine(const vec2 &vA, const vec2 &vB) { return (((vB-vA) * this->projectionOnLine(vA, vB)) + vA); }
-	/** @brief retourne les coordonnée du point le plus proche de *this sur le segment vA,vB */
+	/** @brief retourne les coordonnï¿½e du point le plus proche de *this sur le segment vA,vB */
 	vec2 closestPointOnSegment(const vec2 &vA, const vec2 &vB) {
 		float factor = this->projectionOnLine(vA, vB);
 		if (factor <= 0.0f) return vA;
@@ -145,7 +142,7 @@ public:
 		vec2 v(vB - vA);
 		return v.dot(*this - vA) / v.dot(v);
 	}
-	/** @brief  Fonction d'interpolation linéaire entre 2 vecteurs */
+	/** @brief  Fonction d'interpolation linï¿½aire entre 2 vecteurs */
 	vec2 lerp(vec2 &u, vec2 &v, float factor) { return ((u * (1 - factor)) + (v * factor)); }
 	float angle(void) { return (float)atan2(this->y,this->x); }
 	float angle(const vec2 &v) { return (float)atan2(v.y-this->y,v.x-this->x); }
@@ -236,9 +233,9 @@ public:
 		if(angle < EPSILON) return 0;
 		return angle;
 	}
-	/** @brief  retourne les coordonnée du point le plus proche de *this sur la droite passant par vA et vB */
+	/** @brief  retourne les coordonnï¿½e du point le plus proche de *this sur la droite passant par vA et vB */
 	vec3 closestPointOnLine(const vec3 &vA, const vec3 &vB) { return (((vB-vA) * this->projectionOnLine(vA, vB)) + vA); }
-	/** @brief  retourne les coordonnées du point le plus proche de *this sur le segment vA,vB */
+	/** @brief  retourne les coordonnï¿½es du point le plus proche de *this sur le segment vA,vB */
 	vec3 closestPointOnSegment(const vec3 &vA, const vec3 &vB) {
 		float factor = this->projectionOnLine(vA, vB);
 		if (factor <= 0.0f) return vA;
@@ -250,11 +247,11 @@ public:
 		vec3 v(vB - vA);
 		return v.dot(*this - vA) / v.dot(v);
 	}
-	/** @brief  Fonction d'interpolation linéaire entre 2 vecteurs */
+	/** @brief  Fonction d'interpolation linï¿½aire entre 2 vecteurs */
 	vec3 lerp(vec3 &u, vec3 &v, float factor) { return ((u * (1 - factor)) + (v * factor)); }
 
 	/** @brief Calcul la distance entre deux points
-	 * @return Résultat du calcul
+	 * @return Rï¿½sultat du calcul
 	 */
     double distance(const vec3& a_vector) const
     {
@@ -268,7 +265,7 @@ public:
     }
 	/** @brief Rotation d'un vecteur selon deux angles
 	 *
-	 * Fonction pour le calcul du changement de coordonnées du vecteur
+	 * Fonction pour le calcul du changement de coordonnï¿½es du vecteur
 	 * this par rotation suivant le vecteur n
 	 * d'un angle (radians)
 	 * 
@@ -646,9 +643,9 @@ inline float GetAireTriangle(const vec3& a,const vec3& b,const vec3& c)
  * @return Vrai si Si ecart==0 ou ecart>0.1
  */
 inline bool DotIsInVertex(const vec3& dot,const vec3& va,const vec3& vb,const vec3& vc,float* ecart=NULL)
-{ //retourne vrai si le point est dans un triangle, le total à la fin correspond à environ 2PI si c'est le cas
+{ //retourne vrai si le point est dans un triangle, le total ï¿½ la fin correspond ï¿½ environ 2PI si c'est le cas
 	float totangle=0;
-	// calcul des vecteurs des cotés
+	// calcul des vecteurs des cotï¿½s
 	vec3 vda(dot-va);
 	vec3 vdb(dot-vb);
 	vec3 vdc(dot-vc);
@@ -664,7 +661,7 @@ inline bool DotIsInVertex(const vec3& dot,const vec3& va,const vec3& vb,const ve
 		return false;
 }
 /**
- * Retourne vrai si le point dotTest est dans le tetraedre formé par les sommets v1,v2,v3,v4
+ * Retourne vrai si le point dotTest est dans le tetraedre formï¿½ par les sommets v1,v2,v3,v4
  * @ref http://steve.hollasch.net/cgindex/geometry/ptintet.html
  */
 static bool DotInTetra(const vec3& dotTest,const vec3& v1,const vec3& v2,const vec3& v3,const vec3& v4)
@@ -735,10 +732,10 @@ inline int LineLineIntersect(
  * @param va Sommet A du triangle
  * @param vb Sommet B du triangle
  * @param vc Sommet C du triangle
- * @param P Point à comparer
- * @param[out] pfSParam Paramètre S, NULL si non utile
- * @param[out] pfTParam Paramètre S, NULL si non utile
- * @return La distance au carré
+ * @param P Point ï¿½ comparer
+ * @param[out] pfSParam Paramï¿½tre S, NULL si non utile
+ * @param[out] pfTParam Paramï¿½tre S, NULL si non utile
+ * @return La distance au carrï¿½
  * @see http://www.koders.com/info.aspx?c=ProjectInfo&pid=5DRMDA36QNAWVUKA2NQXHZRHUF
  */
 

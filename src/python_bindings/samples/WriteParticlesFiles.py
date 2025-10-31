@@ -1,9 +1,9 @@
 #----------------------------------------------------------------------
-# I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+# I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 #
 # I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 # to scientific acoustic simulations.
-# Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+# Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 #
 # I-SIMPA is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 # see <http://ww.gnu.org/licenses/>
 #
-# For more information, please consult: <http://i-simpa.ifsttar.fr> or 
+# For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
 # send an email to i-simpa@ifsttar.fr
 #
 # To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
@@ -30,7 +30,7 @@
 
 # -*- coding: cp1252 -*-
 #####################
-# Ce script créé un fichier de particules qui forme une sinusoïde
+# Ce script crï¿½ï¿½ un fichier de particules qui forme une sinusoï¿½de
 #
 #####################
 
@@ -48,7 +48,7 @@ nbtimestep=12
 pospart=[[i/800.,2,1+pi/100.*(i/10.)] for i in range(0,nbpart)]
 
 for part in pospart:
-    pwriter.NewParticle(0) #pas de temps de départ n°0
+    pwriter.NewParticle(0) #pas de temps de dï¿½part nï¿½0
     for i in range(0,nbtimestep):
         pwriter.NewPositionParticle(part[0],2,(sin(part[2]+(i*(pi/6)))+2),1.)
 pwriter.Close()

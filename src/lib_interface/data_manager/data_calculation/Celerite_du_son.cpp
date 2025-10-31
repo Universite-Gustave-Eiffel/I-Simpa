@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,22 +20,19 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
-// Cette fonction calcule la célérité du son dans l'air
+// Cette fonction calcule la cï¿½lï¿½ritï¿½ du son dans l'air
 // Norme ISO 9613-1:1993(F)
 //
 // Auteur : J. Picaut (LCPC)
-// Date de la dernière modification : 19 février 2007
+// Date de la derniï¿½re modification : 19 fï¿½vrier 2007
 //
-// En entrée : température en Kelvin
-// En sortie : célérité du son en m/s
+// En entrï¿½e : tempï¿½rature en Kelvin
+// En sortie : cï¿½lï¿½ritï¿½ du son en m/s
 
 #include "calculsPropagation.h"
 using namespace std;

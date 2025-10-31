@@ -12,7 +12,7 @@
 ; FREQUENCY HEADER
 ;
 "SpeakerName","Sample speaker" 
-"Manufacturer","IFSTTAR" 
+"Manufacturer","UMRAE, CEREMA, Univ Gustave Eiffel"
 "Frequency",40,"Hz" 
 "Sensitivity",96,"dB" 
 "Impedance",4,"ohms" 

@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,9 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 #ifdef _DEBUG
@@ -45,8 +42,8 @@
 #include <coreString.h>
 
 /**
- * Cette méthode permet le tirage aléatoire d'un nombre décimal
- * @return Decimal de 0 à 1
+ * Cette mï¿½thode permet le tirage alï¿½atoire d'un nombre dï¿½cimal
+ * @return Decimal de 0 ï¿½ 1
  */
 inline decimal GetRandValue()
 {
@@ -130,8 +127,8 @@ int MainRemesh(int argc, char* argv[])
 	std::string fileInput;
 	std::string fileOutput;
 	std::string volStatsOutput;
-	unsigned int depth(0); //Résolution relative 2^d sur chaque axe
-	unsigned int iv_buffer(0); //buffer pour les indices des volumes passés par l'utilisateur.
+	unsigned int depth(0); //Rï¿½solution relative 2^d sur chaque axe
+	unsigned int iv_buffer(0); //buffer pour les indices des volumes passï¿½s par l'utilisateur.
 	bool verbose(false);
 	try
 	{
@@ -172,7 +169,7 @@ int MainRemesh(int argc, char* argv[])
 	vec3 minBoundingBox,maxBoundingBox;
 
 
-	//1ère passe Evaluation de la boite englobante
+	//1ï¿½re passe Evaluation de la boite englobante
 	std::cout<<"Open "<< fileInput<<std::endl;
 	formatRPLY::t_model model3D;
 	if(!formatRPLY::CPly::ImportPly(model3D,fileInput) || model3D.modelVertices.size()==0)
@@ -214,7 +211,7 @@ int MainRemesh(int argc, char* argv[])
 
 
 	/////////////////////////////////////////////////////////////
-	//2 eme étape Passe Renseignement des limites des domaines
+	//2 eme ï¿½tape Passe Renseignement des limites des domaines
 
 	unsigned int idtri(0);
 	std::size_t triCount(model3D.modelFaces.size());
@@ -260,7 +257,7 @@ int MainRemesh(int argc, char* argv[])
 	model3D.modelFaces.clear();
 
 	/////////////////////////////////////////////////////////////
-	//3 eme étape Discrétisation spaciale
+	//3 eme ï¿½tape Discrï¿½tisation spaciale
 
 
 	FromTriangleRemesh.ThirdStep_VolumesCreator();
@@ -282,7 +279,7 @@ int MainRemesh(int argc, char* argv[])
 	}
 
 	/////////////////////////////////////////////////////////////
-	//4 eme étape Marching Cubes
+	//4 eme ï¿½tape Marching Cubes
 	progressionInfo progressInfo(1); //Marching Cube, Adaptative Mesh, Polygon decimation
 
 	if(volumeSelectionInfo.extractedVolumes.empty())
@@ -323,7 +320,7 @@ int MainRemesh(int argc, char* argv[])
 			marchCubeTrig.Triangulate(FromTriangleRemesh,i,ProcessVolumeOperation);
 
 			/////////////////////////////////////////////////////////////
-			//5 eme étape Rapprochement du maillage par rapport au modèle d'origine
+			//5 eme ï¿½tape Rapprochement du maillage par rapport au modï¿½le d'origine
 
 			progressOperation AdaptativeMeshOperation(&ProcessVolumeOperation,1);
 			if(meshGuide.get())
@@ -333,7 +330,7 @@ int MainRemesh(int argc, char* argv[])
 			}
 
 			/////////////////////////////////////////////////////////////
-			//6 eme étape Réduction de triangles
+			//6 eme ï¿½tape Rï¿½duction de triangles
 			std::cout<<"Reducing polygons.."<<std::endl;
 			if(quality_constraint!=-1)
 				marchCubeTrig.SetQualityConstraint(quality_constraint);
@@ -345,7 +342,7 @@ int MainRemesh(int argc, char* argv[])
 
 
 
-			if(i==2) //Les faces sont inversés dans le maillage exterieur du modèle
+			if(i==2) //Les faces sont inversï¿½s dans le maillage exterieur du modï¿½le
 				marchCubeTrig.InvertFacesNormal();
 			std::cout<<"Save model in "<<saveto<<std::endl;
 			marchCubeTrig.SaveAs(saveto);
@@ -358,7 +355,7 @@ int main(int argc, char* argv[])
 	int ret(MainRemesh(argc,argv));
 
     #ifdef _DEBUG
-		_CrtDumpMemoryLeaks(); //Affiche les fuites mémoires
+		_CrtDumpMemoryLeaks(); //Affiche les fuites mï¿½moires
 	#endif
 
 	return ret;

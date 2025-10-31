@@ -1,9 +1,9 @@
 #----------------------------------------------------------------------
-# I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+# I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 #
 # I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 # to scientific acoustic simulations.
-# Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+# Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 #
 # I-SIMPA is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 # see <http://ww.gnu.org/licenses/>
 #
-# For more information, please consult: <http://i-simpa.ifsttar.fr> or 
+# For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
 # send an email to i-simpa@ifsttar.fr
 #
 # To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
@@ -34,7 +34,7 @@ import libsimpa as ls
 ##############################################
 # Tableaux
  
-#Définition des 8 sommets du cube           
+#Dï¿½finition des 8 sommets du cube           
 sommets=[   [5.0, 0.0, 0.0],
             [0.0, 0.0, 0.0],
             [0.0, 5.0, 0.0],
@@ -44,7 +44,7 @@ sommets=[   [5.0, 0.0, 0.0],
             [0.0, 0.0, 5.0],
             [5.0, 0.0, 5.0]
         ]
-#Définition des 12 faces triangulaire du cube
+#Dï¿½finition des 12 faces triangulaire du cube
 # [ sommetA, sommetB, sommetC, idencombrement, idmateriau, idrecepteursurf ]
 faces=  [   [0, 1, 2, -1, 66, -1],
         [0, 2, 3, -1, 66, -1],
@@ -60,11 +60,11 @@ faces=  [   [0, 1, 2, -1, 66, -1],
         [6, 7, 4, -1, 66, -1]
         ]
 ############################################
-## Création du modèle 3D
+## Crï¿½ation du modï¿½le 3D
 
 def CreerModele(filepath):
     """
-        Création du modèle 3D
+        Crï¿½ation du modï¿½le 3D
     """
     model=ls.ioModel()
     #Ajout des sommets
@@ -80,5 +80,5 @@ def CreerModele(filepath):
         newface.idMat=face[4]
         newface.idRs=face[5]
         model.faces.append(newface)
-    #sauvegarde du modèle
+    #sauvegarde du modï¿½le
     ls.CformatBIN().ExportBIN(filepath,model)

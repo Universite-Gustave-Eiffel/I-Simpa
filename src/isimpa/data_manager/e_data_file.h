@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,9 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 #include "first_header_include.hpp"
@@ -39,11 +36,11 @@
 #include <wx/string.h>
 
 /** \file e_data_file.h
-\brief Classe spécialisant E_Data afin de représenter un chemin de fichier
+\brief Classe spï¿½cialisant E_Data afin de reprï¿½senter un chemin de fichier
 */
 
 /**
-\brief Classe spécialisant E_Data afin de représenter un chemin de fichier
+\brief Classe spï¿½cialisant E_Data afin de reprï¿½senter un chemin de fichier
 @see MainPropGrid
 */
 
@@ -61,7 +58,7 @@ public:
 	E_Data_File(wxXmlNode* noeudCourant, Element* parent, wxString storageFolder, wxString _dialogTitle, wxString _fileExtension)
 		:E_Data(parent, "Unnamedprop", "", Element::ELEMENT_TYPE_FILE, noeudCourant)
 	{
-		// création depuis le xml
+		// crï¿½ation depuis le xml
 		dialogTitle = _dialogTitle;
 		fileExtension = _fileExtension;
 

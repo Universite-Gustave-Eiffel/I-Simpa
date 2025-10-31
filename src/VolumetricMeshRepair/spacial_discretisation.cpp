@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,9 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 #ifdef _DEBUG
@@ -38,8 +35,8 @@
 #include <iostream>
 
 /**
- * Cette méthode permet le tirage aléatoire d'un nombre décimal
- * @return Decimal de 0 à 1
+ * Cette mï¿½thode permet le tirage alï¿½atoire d'un nombre dï¿½cimal
+ * @return Decimal de 0 ï¿½ 1
  */
 inline float GetRandValue()
 {
@@ -59,7 +56,7 @@ inline int Range(const int& from,const int& to)
 void TestAlgo()
 {
 	const unsigned int resolution(500);
-	xcell_t mainArray(resolution); //Créé une discrétisation spaciale de 15m3  si la précision est de 1m
+	xcell_t mainArray(resolution); //Crï¿½ï¿½ une discrï¿½tisation spaciale de 15m3  si la prï¿½cision est de 1m
 	/*
 	mainArray.at(10).at(10).at(10).dotValue.set(3.14f,3.14f,3.14158f);
 	mainArray.at(9).at(11).at(10)=mainArray[10][10][10];
@@ -104,7 +101,7 @@ int main(int argc, char* argv[])
 	TestAlgo();
 
 	#ifdef _DEBUG
-		_CrtDumpMemoryLeaks(); //Affiche les fuites mémoires
+		_CrtDumpMemoryLeaks(); //Affiche les fuites mï¿½moires
 	#endif
 
 	return 0;

@@ -45,7 +45,7 @@ the TCR numerical codes (embedded within the I-Simpa software).
 	-  You can also `contribute to the documentation`_.
 	-  The official documentation is available in English only.
 
-.. _visit the offical I-Simpa website: http://i-simpa.ifsttar.fr
+.. _visit the offical I-Simpa website: https://i-simpa.univ-gustave-eiffel.fr
 .. _instructions: https://github.com/Ifsttar/I-Simpa/wiki
 .. _contribute to the documentation: https://github.com/Ifsttar/I-Simpa/wiki/Write-documentation
 .. _write an Issue on GitHub: https://github.com/Ifsttar/I-Simpa/issues

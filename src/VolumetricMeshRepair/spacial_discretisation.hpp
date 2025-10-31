@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,9 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 #include <boost/smart_ptr.hpp>
@@ -45,7 +42,7 @@ class Cell
 	   Cell() : cellData(0),Size(0) {}
    Cell(const cell_id_t& _DomainSize ) : cellData(_DomainSize),Size(_DomainSize) {};
    /**
-    * Utilisé via la méthode at, si une cellule doit etre créé
+    * Utilisï¿½ via la mï¿½thode at, si une cellule doit etre crï¿½ï¿½
 	*/
    void SetCellSize( const cell_id_t& cellSize) { this->Size = cellSize; }
    void SetNextCell( boost::shared_ptr<Cell>& _nextCell)
@@ -62,7 +59,7 @@ class Cell
 		}
    }
    /**
-    * Acceder à cellData
+    * Acceder ï¿½ cellData
 	*/
    const cellData_t& operator [](const cell_id_t& id) const
    {
@@ -83,8 +80,8 @@ class Cell
 	#endif
    }
    /**
-    * Spécifier des données, créé le noeud avec cet indice
-	* Todo supprimer modèle iteratif
+    * Spï¿½cifier des donnï¿½es, crï¿½ï¿½ le noeud avec cet indice
+	* Todo supprimer modï¿½le iteratif
 	*/
    cellData_t& at( const cell_id_t& id, const cell_id_t& domainSize)
    {
@@ -93,11 +90,11 @@ class Cell
 	   Cell* curCell=this;
 	   while(curCell)
 	   {
-		   if(curCell->Size==1 && curId==0) //Retourner les données courantes
+		   if(curCell->Size==1 && curId==0) //Retourner les donnï¿½es courantes
 		   {
 			   return curCell->cellData;
 		   }else if(curId<curCell->Size){	//Subdiviser cette cellule en 2 ou 3 cellules
-			   if(curId==0) //Subdiviser cette cellule en 2 cellules, retourner la première
+			   if(curId==0) //Subdiviser cette cellule en 2 cellules, retourner la premiï¿½re
 			   {
 				  boost::shared_ptr<Cell> NextNextCell(curCell->nextCell);
 				  curCell->nextCell=boost::shared_ptr<Cell>(new Cell(domainSize));
@@ -105,7 +102,7 @@ class Cell
 				  curCell->SetCellSize(1);
 				  (*curCell->nextCell).SetNextCell(NextNextCell);
 				  return curCell->cellData;
-			   }else if(curId==curCell->Size-1){//Subdiviser cette cellule en 2 cellules, retourner la deuxième
+			   }else if(curId==curCell->Size-1){//Subdiviser cette cellule en 2 cellules, retourner la deuxiï¿½me
 				  boost::shared_ptr<Cell> NextNextCell(curCell->nextCell);
 				  curCell->nextCell=boost::shared_ptr<Cell>(new Cell(domainSize));
 				  (*curCell->nextCell).SetCellSize(1);
@@ -149,7 +146,7 @@ class CellArray
 			cellData[cellId].SetCellSize(_DomainSize);
    }
    /**
-    * Utilisé via la méthode at, si une cellule doit etre créé
+    * Utilisï¿½ via la mï¿½thode at, si une cellule doit etre crï¿½ï¿½
 	*/
    void SetCellSize( const cell_id_t& cellSize) {
 	   this->Size = cellSize;
@@ -164,15 +161,15 @@ class CellArray
 			cellData[cellId].Count(cnt);
 	}
    /**
-    * Acceder à cellData
+    * Acceder ï¿½ cellData
 	*/
    const cellData_t& operator [](const cell_id_t& id) const
    {
 		return cellData[id];
    }
    /**
-    * Spécifier des données, créé le noeud avec cet indice
-	* Todo supprimer modèle iteratif
+    * Spï¿½cifier des donnï¿½es, crï¿½ï¿½ le noeud avec cet indice
+	* Todo supprimer modï¿½le iteratif
 	*/
    cellData_t& at( const cell_id_t& id, const cell_id_t& domainSize)
    {
@@ -186,14 +183,14 @@ class CellArray
 class CellData
 {
  public:
-	 CellData(  const cell_id_t& domainSize ) {};  //Ce paramètre n'est pas utilisé
+	 CellData(  const cell_id_t& domainSize ) {};  //Ce paramï¿½tre n'est pas utilisï¿½
 	 vec3 dotValue;
 	 void Count( unsigned int& cnt)
 	 {
 		cnt++;
 	 }
 };
-//operator [] retourne le cell data de ce noeud si  id est inférieur à Size, sinon il retourne  (*nextCell)[id-Size] (éviter la récursivité)
+//operator [] retourne le cell data de ce noeud si  id est infï¿½rieur ï¿½ Size, sinon il retourne  (*nextCell)[id-Size] (ï¿½viter la rï¿½cursivitï¿½)
 
 typedef Cell<CellData> zcell_t;
 typedef CellArray<zcell_t> ycell_t;

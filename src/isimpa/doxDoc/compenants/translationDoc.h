@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,67 +20,64 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 
 /*! \page traductionTuto Note sur la gestion de la traduction
  * 
- * Ce logiciel est destiné à être traduit dans plusieurs langues.
+ * Ce logiciel est destinï¿½ ï¿½ ï¿½tre traduit dans plusieurs langues.
  *
- * Le système de traduction utilisé est un des plus commun et est surtout natif à WxWidgets
+ * Le systï¿½me de traduction utilisï¿½ est un des plus commun et est surtout natif ï¿½ WxWidgets
  *
  * \section addTraduction Traduire un texte
- * Il n'y a qu'une seule opération à faire pour traduire un texte.
+ * Il n'y a qu'une seule opï¿½ration ï¿½ faire pour traduire un texte.
  *
  * Voici une chaine non traduite :
  * \dontinclude demos/demo_translation_1.h
  *
  * \skipline MARKERWRONG
  *
- * A chaque fois qu'une chaine de texte sera visible par l'utilisateur il faut l'entourer d'une méthode globale comme ceci :
+ * A chaque fois qu'une chaine de texte sera visible par l'utilisateur il faut l'entourer d'une mï¿½thode globale comme ceci :
  *
  * \skipline MARKEROK
  *
  * \section warningtraductionTuto Attention
  * 
- * Le language de base de l'application est en francais. Ensuite il y a un certains nombre de dictionnaires associés.
+ * Le language de base de l'application est en francais. Ensuite il y a un certains nombre de dictionnaires associï¿½s.
  *
- * Le dictionnaire francais est là pour corriger les textes de bases.
- * @warning Si le texte de base est modifié alors toutes les traductions ne seront plus effectuées jusqu'à la mise à jour manuel de chaque dictionnaire. Il faut donc uniquement faire les corrections dans le dictionnaire francais !
+ * Le dictionnaire francais est lï¿½ pour corriger les textes de bases.
+ * @warning Si le texte de base est modifiï¿½ alors toutes les traductions ne seront plus effectuï¿½es jusqu'ï¿½ la mise ï¿½ jour manuel de chaque dictionnaire. Il faut donc uniquement faire les corrections dans le dictionnaire francais !
  *
  *
- * \section specialtraductionTuto Cas spéciaux
+ * \section specialtraductionTuto Cas spï¿½ciaux
  * 
- * Certaines méthodes traduisent elles mêmes les chaines de caractères pour une bonne raison. Dans la plupart des cas cette raison est de ne pas inclure de chaines traduites au sein du fichier de projet.
+ * Certaines mï¿½thodes traduisent elles mï¿½mes les chaines de caractï¿½res pour une bonne raison. Dans la plupart des cas cette raison est de ne pas inclure de chaines traduites au sein du fichier de projet.
  * 
- * Voici une liste non exhaustive de ces méthodes :
- *	- @ref Element::Element() "Libellé de l'élément"
+ * Voici une liste non exhaustive de ces mï¿½thodes :
+ *	- @ref Element::Element() "Libellï¿½ de l'ï¿½lï¿½ment"
  *	- @ref addprop
  *
- * Dans la documentation d'une méthode il est indiqué dans un bloc d'avertissement si un paramètre ne doit pas être traduit au préalable.
+ * Dans la documentation d'une mï¿½thode il est indiquï¿½ dans un bloc d'avertissement si un paramï¿½tre ne doit pas ï¿½tre traduit au prï¿½alable.
  * \section dictionnarytraductionTuto Modifier ou ajouter un dictionnaire
- * L'ajout ou la modification de dictionnaire est simplifié par l'utilisation du logiciel poEdit.
+ * L'ajout ou la modification de dictionnaire est simplifiï¿½ par l'utilisation du logiciel poEdit.
  * @see http://www.poedit.net
  * 
- * Une fois le logiciel installé se placer dans le dossier de langue.Se placer dans /fr/ pour francais.
+ * Une fois le logiciel installï¿½ se placer dans le dossier de langue.Se placer dans /fr/ pour francais.
  *
- * Le fichier internat.po correspond au fichier de configuration ascii qui peut être lu par poEdit.
+ * Le fichier internat.po correspond au fichier de configuration ascii qui peut ï¿½tre lu par poEdit.
  *
  * Ouvrez ce fichier avec poEdit.
  *
  * Pour actualiser les chaines de traductions depuis le code source du projet :
  *	- Ouvrez le menu "Catalogue"
- *	- Cliquez sur "Mise à jour depuis les sources"
+ *	- Cliquez sur "Mise ï¿½ jour depuis les sources"
  *
  * Vous obtenez un rapport sur les modifications et les nouvelles chaines sont visibles dans la liste.
  * 
- * Double-cliquez sur la ligne à modifier et entrez le texte traduit.
+ * Double-cliquez sur la ligne ï¿½ modifier et entrez le texte traduit.
  *
- * Enregistrez le fichier. Aprés enregistrement le fichier internat.mo sera créé. C'est la version binaire du fichier de traduction. La seule compréhensible par notre application.
+ * Enregistrez le fichier. Aprï¿½s enregistrement le fichier internat.mo sera crï¿½ï¿½. C'est la version binaire du fichier de traduction. La seule comprï¿½hensible par notre application.
  */

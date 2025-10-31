@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,9 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 #include "scalar_field_creator.hpp"
@@ -67,8 +64,8 @@ namespace Triangulators
 		virtual ~BaseTriangulator();
 
 		/**
-		 * Affecte la contrainte de qualité. Par défaut elle est de 0.1
-		 * Plus la contrainte est haute plus les triangles générés sont réguliers.
+		 * Affecte la contrainte de qualitï¿½. Par dï¿½faut elle est de 0.1
+		 * Plus la contrainte est haute plus les triangles gï¿½nï¿½rï¿½s sont rï¿½guliers.
 		 */
 		void SetQualityConstraint(const decimal& _quality_constraint) { quality_constraint=_quality_constraint; }
 		void SetMergeQualityConstraint(const decimal& _merge_quality_constraint) { merge_normal_constraint=_merge_quality_constraint; }
@@ -83,21 +80,21 @@ namespace Triangulators
 		void AddFace(const vec3& vertA,const vec3& vertB,const vec3& vertC);
 		/**
 		 * Fin de l'ajout des triangles
-		 * Le modèle peut être traité.
+		 * Le modï¿½le peut ï¿½tre traitï¿½.
 		 */
 		void FinishFeedingFaces();
 		/**
-		 * Réduit le nombre de polygones jusqu'a atteindre au minimum la qualité en paramètre.En respenctant la contrainte PLC.
+		 * Rï¿½duit le nombre de polygones jusqu'a atteindre au minimum la qualitï¿½ en paramï¿½tre.En respenctant la contrainte PLC.
 		 */
 		void PolygonReduction(progressOperation& mainProcess);
 
 
 		/**
-		 * Modifie la position des sommets des triangles de facon à s'approcher du modèle d'origine
+		 * Modifie la position des sommets des triangles de facon ï¿½ s'approcher du modï¿½le d'origine
 		 */
 		void RefineTriangulationGrid(AdaptativeMeshGuide& refinementGuide,const decimal& cellSize, progressOperation& mainProcess,progressionInfo& progressInfo);
 		/**
-		 * Sauvegarde le modèle dans un fichier .PLY
+		 * Sauvegarde le modï¿½le dans un fichier .PLY
 		 */
 
 		bool SaveAs(const std::string& filename);
