@@ -516,11 +516,26 @@ if(wxWidgets_FOUND)
 else(NOT wxWidgets_FOUND)
     set(USING_CPM true)
     set(BUILD_SHARED_LIBS OFF)
+    set(wx_options
+            "wxBUILD_SAMPLES OFF"
+            "wxBUILD_TESTS OFF"
+            "wxBUILD_SHARED OFF"
+            "wxUSE_OPENGL ON"
+            "wxUSE_UNICODE ON"
+            "wxUSE_LIBTIFF OFF"
+            "wxUSE_GLCANVAS_EGL ON"
+            #"wxBUILD_INSTALL OFF"
+    )
+
+    if(APPLE)
+        # issue https://github.com/wxWidgets/wxWidgets/issues/24687
+        list(APPEND wx_options "wxBUILD_PRECOMP OFF")
+    endif()
     CPMAddPackage(
             NAME wxWidgets
             URL https://github.com/wxWidgets/wxWidgets/releases/download/v3.3.1/wxWidgets-3.3.1.tar.bz2
             URL_HASH SHA256=f936c8d694f9c49a367a376f99c751467150a4ed7cbf8f4723ef19b2d2d9998d
-            OPTIONS "wxBUILD_SAMPLES OFF" "wxBUILD_TESTS OFF" "wxBUILD_SHARED OFF" "wxUSE_OPENGL ON" "wxUSE_UNICODE ON" "wxUSE_LIBTIFF OFF" "wxUSE_GLCANVAS_EGL ON"
+            OPTIONS ${wx_options}
     )
 endif()
 
@@ -533,6 +548,9 @@ else()
     FIND_PACKAGE(OpenGL REQUIRED COMPONENTS OpenGL EGL)
 endif()
 
+if(APPLE)
+    set(CMAKE_OSX_SYSROOT /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk)
+endif ()
 
 include_directories(${OPENGL_INCLUDE_DIRS})
 include_directories(${wxWidgets_SOURCE_DIR})
@@ -548,6 +566,14 @@ target_link_libraries(isimpa
         Boost::python
         Boost::thread
 )
+
+if(APPLE)
+    if(CMAKE_OBJCXX_LINK_LIBRARY_USING_FRAMEWORK_SUPPORTED)
+        target_link_libraries(isimpa PRIVATE "$<LINK_LIBRARY:FRAMEWORK,CoreText>")
+    endif()
+
+    target_include_directories(isimpa PRIVATE ${CMAKE_OSX_SYSROOT}/System/Library/Frameworks/CoreText.framework/Headers)
+endif ()
 
 if(USING_CPM)
     target_link_libraries(isimpa wx::core wx::base wx::aui wx::adv wx::xml wx::html wx::gl)
@@ -656,35 +682,42 @@ endif()
 if(NOT IS_FLATPAK)
     if(WIN32 AND NOT DEFINED CPACK_GENERATOR)
         SET(CPACK_GENERATOR "NSIS;ZIP")
+    elseif (APPLE)
+        SET(CPACK_GENERATOR "Bundle")
     endif()
-    SET(CPACK_NSIS_EXECUTABLES_DIRECTORY ".")
-
+    SET(CPACK_BUNDLE_NAME "I-SIMPA")
+    SET(CPACK_BUNDLE_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/Info.plist")
+    SET(CPACK_BUNDLE_ICON "${CMAKE_CURRENT_SOURCE_DIR}/isimpa.ico")
     SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "I-SIMPA")
-    SET(CPACK_PACKAGE_VENDOR "Ifsttar")
+    SET(CPACK_PACKAGE_VENDOR "UMRAE, CEREMA, Univ Gustave Eiffel")
     SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/DESCRIPTION.txt")
     SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE.md")
     SET(CPACK_PACKAGE_VERSION_MAJOR ${isimpa_VERSION_MAJOR})
     SET(CPACK_PACKAGE_VERSION_MINOR ${isimpa_VERSION_MINOR})
     SET(CPACK_PACKAGE_VERSION_PATCH ${isimpa_VERSION_PATCH})
     SET(CPACK_PACKAGE_INSTALL_DIRECTORY "I-SIMPA")
+    SET(CPACK_PACKAGE_ICON "${CMAKE_CURRENT_SOURCE_DIR}/isimpa.ico")
 
     IF(WIN32 AND NOT UNIX)
+        SET(CPACK_NSIS_EXECUTABLES_DIRECTORY ".")
         set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "  CreateShortCut '$DESKTOP\\\\I_SIMPA.lnk' '$INSTDIR\\\\isimpa.exe' ")
         set(CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS "Delete '$DESKTOP\\\\I_SIMPA.lnk'")
-        SET(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}\\\\src\\\\isimpa\\\\isimpa.ico")
         SET(CPACK_NSIS_INSTALLED_ICON_NAME "isimpa.exe")
         SET(CPACK_NSIS_DISPLAY_NAME "I-SIMPA")
         SET(CPACK_NSIS_HELP_LINK "http:\\\\\\\\i-simpa-wiki.readthedocs.io")
-        SET(CPACK_NSIS_URL_INFO_ABOUT "http:\\\\\\\\i-simpa.ifsttar.fr")
-        SET(CPACK_NSIS_CONTACT "i-simpa@ifsttar.fr")
+        SET(CPACK_NSIS_URL_INFO_ABOUT "http:\\\\\\\\i-simpa.unv-eiffel.fr")
+        SET(CPACK_NSIS_CONTACT "contact@noise-planet.org")
         SET(CPACK_NSIS_MODIFY_PATH ON)
-    ELSE(WIN32 AND NOT UNIX)
         SET(CPACK_STRIP_FILES TRUE)
         SET(CPACK_SOURCE_STRIP_FILES "")
     ENDIF(WIN32 AND NOT UNIX)
 
     SET(CPACK_PACKAGE_EXECUTABLES "isimpa" "I-SIMPA")
     SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "Nicolas Fortin")
+
+    # Set the application bundle properties
+    # set(CPACK_MONOLITHIC_INSTALL ON)
+    # set(CPACK_PACKAGE_DIRECTORY "${CMAKE_BINARY_DIR}/package")
 
     INCLUDE(CPack)
 endif()

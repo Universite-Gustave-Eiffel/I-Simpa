@@ -48,7 +48,11 @@
 #include "data_manager/drawable_element.h"
 #include <tools/collision.h>
 
-WX_DECLARE_HASH_MAP( std::size_t, bool, wxIntegerHash, wxIntegerEqual, BoolHashMap );
+#ifdef __APPLE__
+  #include "CTFont.h"
+#endif
+
+WX_DECLARE_HASH_MAP(std::size_t, bool, wxIntegerHash, wxIntegerEqual, BoolHashMap);
 
 
 //#include "data_manager/e_position.h"
@@ -231,6 +235,45 @@ void CObjet3D::BuildFont(void* vhDC)								// Build Our Bitmap Font
 	SelectObject(hDC, oldfont);							// Selects The Font We Want
 	DeleteObject(font);									// Delete The Font
 	#endif
+    #ifdef __APPLE__
+	CTFontRef font = CTFontCreateWithName(CFSTR("Arial"), 24.0, NULL);
+
+	// 3. Créer une liste d'affichage pour chaque caractère
+	GLuint base = glGenLists(128); // Générer 128 listes d'affichage pour les caractères ASCII
+
+	for (unsigned int i = 0; i < 128; i++) {
+		// 4. Récupérer le glyphe pour le caractère actuel
+		UniChar character = (UniChar)i;
+		CGGlyph glyph;
+		CTFontGetGlyphsForCharacters(font, &character, &glyph, 1);
+
+		// 5. Récupérer les métriques du glyphe
+		CGRect bbox = CTFontGetBoundingBox(font);
+		CGFloat width = bbox.size.width;
+		CGFloat height = bbox.size.height;
+
+		// 6. Créer une texture pour le glyphe (simplifié ici)
+		//    En pratique, il faudrait rendre chaque glyphe dans une texture OpenGL.
+		//    Cela nécessite un contexte graphique et un rendu hors écran.
+
+		// 7. Générer la liste d'affichage pour le glyphe
+		glNewList(base + i, GL_COMPILE);
+		glBegin(GL_QUADS);
+		// Dessiner le glyphe comme un quad texturé
+		glTexCoord2f(0, 0); glVertex2f(0, 0);
+		glTexCoord2f(1, 0); glVertex2f(width, 0);
+		glTexCoord2f(1, 1); glVertex2f(width, height);
+		glTexCoord2f(0, 1); glVertex2f(0, height);
+		glEnd();
+		glTranslatef(width, 0, 0); // Avancer la position pour le prochain caractère
+		glEndList();
+	}
+
+	// 8. Libérer la police
+	CFRelease(font);
+
+    #endif
+
 	fontInitialized=true;
 }
 
