@@ -51,11 +51,18 @@ jobs:
     with:
       artifactBasename: Windows-${{ github.run_id }}
 
+  MacOS:
+    needs: [Prepare]
+    uses: ./.github/workflows/sub_buildMacOS.yml
+    with:
+      artifactBasename: MacOS-${{ github.run_id }}
+
   WrapUp:
     needs: [
         Prepare,
         Linux,
-        Windows
+        Windows,
+        MacOS
       ]
     if: always()
     uses: ./.github/workflows/sub_wrapup.yml
