@@ -51,3 +51,9 @@ jobs:
         # Execute tests defined by the CMake configuration.
         # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
         run: make test
+      - name: Upload I-Simpa standalone
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-no-install-arm64
+          path: ${{ env.builddir }}/bin
+
