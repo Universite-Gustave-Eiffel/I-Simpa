@@ -152,6 +152,7 @@ void processManager::AddLogger(smart_ptr<InterfLogger> logger)
 	this->outlogs.push_back(logger);
 }
 
+// TODO run the program in asynchronous mode
 bool uiRunExe(wxFrame* parent,const wxString& path,const wxString& labelOutput, wxWindow* progressDialog,smart_ptr<InterfLogger> extLogger)
 {
     wxGetTranslation("Elapsed time: ");
@@ -174,7 +175,5 @@ bool uiRunExe(wxFrame* parent,const wxString& path,const wxString& labelOutput, 
 		wxLogMessage("Program execution failed");
 		return false;
 	}
-	else {
-		return true;
-	}
+    return true;
 }

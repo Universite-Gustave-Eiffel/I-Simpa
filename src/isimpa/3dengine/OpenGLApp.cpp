@@ -219,13 +219,6 @@ void OpenGLApp::UpdateGlSelectionList(bool useLists)
 		glEndList();
 }
 
-void OpenGLApp::UpdateGlMaillageList()
-{
-	if(!m_IsObjetLoaded)
-		return;
-	LoadGlMaillageList();
-}
-
 void OpenGLApp::ChangeRenderMode(t_renderMode idRenderMode,bool newValue)
 {
 	if(renderMode[idRenderMode]!=newValue)
@@ -264,6 +257,8 @@ void OpenGLApp::LoadGlModelList(bool useLists)
 
 void OpenGLApp::LoadGlMaillageList(bool useLists)
 {
+	if(!m_IsObjetLoaded)
+		return;
 	if(useLists)
 	{
 		InitLst(1);
@@ -456,9 +451,14 @@ void OpenGLApp::RunGlCommands(bool useLists) //useLists à vrai si l'on doit uti
 			this->LoadGlModelList(useLists);
 		if(useLists)
 			glCallList(m_list[0]);
-		if((renderMode[renderMaillageFaces]) || renderMode[renderMaillageLines])
-			if(useLists)
+		if(renderMode[renderMaillageFaces] || renderMode[renderMaillageLines]) {
+			if (!useLists || is_cut_plane_to_update()) {
+				this->LoadGlMaillageList(useLists);
+			}
+			if(useLists) {
 				glCallList(m_list[1]);
+			}
+		}
 
 		if(m_Object->selectionChange || !useLists)
 			this->UpdateGlSelectionList(useLists);

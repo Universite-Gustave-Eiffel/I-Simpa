@@ -698,7 +698,7 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	wxDateTime timeDebOperation=wxDateTime::UNow();
 	wxString modelFileName=coreCalculation->GetStringConfig("modelName");
 	wxString corePath=coreCalculation->GetStringConfig("corePath");
-#ifdef __linux__
+#if defined(__linux__) || defined(__APPLE__)
 	corePath.Replace("\\","/",true);
 #endif
 	wxString reportFolderName=dossierCourant+ApplicationConfiguration::CONST_REPORT_FOLDER_PATH;
@@ -706,7 +706,7 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	wxString exeName=coreCalculation->GetStringConfig("exeName");
 	wxString tetraFileName=coreCalculation->GetStringConfig("tetrameshFileName");
 	wxString rootCorePath=this->PathCores+corePath;
-#ifdef __linux__
+#if defined(__linux__) || defined(__APPLE__)
 	rootCorePath.Replace("\\","/",true);
 #endif
 	///////////////////////////////////////////
@@ -738,10 +738,10 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
         ext = "exe";
     }
     #endif
-    
-	if(!wxFileExists(this->PathCores+corePath+exeName))
+    const wxString programPath = this->PathCores+corePath+exeName;
+	if(!wxFileExists(programPath))
 	{
-		wxLogError(wxGetTranslation("Calculation program file not found."));
+		wxLogError(wxGetTranslation("Calculation program file not found: %s"), programPath.c_str());
 		return;
 	}
 	///////////////////////////////////////////

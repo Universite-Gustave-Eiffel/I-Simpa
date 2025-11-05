@@ -198,10 +198,6 @@ public:
 	void UpdateGlSelectionList(bool useLists=true);
 
 	/**
-	 * Recompile la liste d'instruction correspondant au maillage de la scène
-	 */
-	void UpdateGlMaillageList();
-	/**
 	 * Paramètres du plan de coupe du maillage
 	 */
 	t_cutPlane cutPlane;

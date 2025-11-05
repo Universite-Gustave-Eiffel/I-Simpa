@@ -149,28 +149,28 @@ void OpenGlViewer::RefreshElementDraw()
 
 void OpenGlViewer::SetCutPlane(bool actif,int axe,int signe, float valeur)
 {
-  if(appLoaded)
-  {
-	m_GLApp->cutPlane.actif=actif;
-	if(axe>=0 && axe <=2)
-		m_GLApp->cutPlane.plane=axe;
-	if(signe==1 || signe==-1)
-		m_GLApp->cutPlane.sign=signe;
-	if(valeur>=0 && valeur <=1)
-		m_GLApp->SetPlaneValue(valeur,m_GLApp->cutPlane.plane);
-	//RealCoords -> GlCoords
-    if(axe==1)
-	{
-		m_GLApp->cutPlane.plane=2;
-	}else{
-		if(axe==2)
-		{
-			m_GLApp->cutPlane.plane=1;
-		}
-	}
-  	m_GLApp->set_cut_plane_to_update(true); //ce booléen indique au Timer de rafraichir la visualisation lors du prochain pas de temps
-						   // faire le rafraichissement par l'intermediaire du timer permet de rendre fluide la
-  }						   // modification de la coupe du maillage
+  if(appLoaded) {
+	  m_GLApp->cutPlane.actif=actif;
+  	if(axe>=0 && axe <=2)
+  		m_GLApp->cutPlane.plane=axe;
+  	if(signe==1 || signe==-1)
+  		m_GLApp->cutPlane.sign=signe;
+  	if(valeur>=0 && valeur <=1)
+  		m_GLApp->SetPlaneValue(valeur,m_GLApp->cutPlane.plane);
+  	//RealCoords -> GlCoords
+  	if(axe==1)
+  	{
+  		m_GLApp->cutPlane.plane=2;
+  	}else{
+  		if(axe==2)
+  		{
+  			m_GLApp->cutPlane.plane=1;
+  		}
+  	}
+  	// Ask to recompile or redraw the mesh elements
+  	m_GLApp->set_cut_plane_to_update(true);
+  	doScreenRefresh=true;
+  }
 }
 
 int OpenGlViewer::GetCameraMode()

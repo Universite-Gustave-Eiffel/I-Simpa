@@ -24,17 +24,11 @@
 * send an email to contact@noise-planet.org
 *
 * ----------------------------------------------------------------------*/
+#pragma once
 
 #include "first_header_include.hpp"
-
-
-#define USE_OCTREE 0
-
 #include "data_manager/element.h"
 #include "e_core_sppscore.h"
-#if USE_OCTREE
-#include "e_core_sppsoctreecore.h"
-#endif
 #include "e_core_tccore.h"
 #include "e_core_tlmcore.h"
 

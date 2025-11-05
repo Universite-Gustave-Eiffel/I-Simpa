@@ -259,8 +259,7 @@ set(DATA_MANAGER_TREECORE_SOURCES
     data_manager/tree_core/e_core_core_config.h
     data_manager/tree_core/e_core_core_tetconf.h
     data_manager/tree_core/e_core_sppscore.h
-    data_manager/tree_core/e_core_sppsoctreecore.h
-    data_manager/tree_core/e_core_tccore.h)
+        data_manager/tree_core/e_core_tccore.h)
 
 set(DATA_MANAGER_TREERAPPORT_SOURCES
     data_manager/tree_rapport/e_report.h
