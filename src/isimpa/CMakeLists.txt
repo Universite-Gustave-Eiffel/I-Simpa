@@ -408,11 +408,10 @@ list(APPEND CMAKE_SWIG_FLAGS "-py3" "-DPY3")
 
 set(OpenGL_GL_PREFERENCE LEGACY)
 
-if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    FIND_PACKAGE(OpenGL REQUIRED COMPONENTS OpenGL)
-else()
-    FIND_PACKAGE(OpenGL REQUIRED COMPONENTS OpenGL EGL)
-endif()
+find_package(OpenGL REQUIRED)
+
+# Silence OpenGL deprecation warnings on macOS
+add_definitions(-DGL_SILENCE_DEPRECATION)
 
 include(FindPackageMessage)
 if(OPENGL_GLU_FOUND)
@@ -529,6 +528,7 @@ else(NOT wxWidgets_FOUND)
             "wxUSE_UNICODE ON"
             "wxUSE_LIBTIFF OFF"
             "wxUSE_GLCANVAS_EGL ON"
+            "wxUSE_LIBWEBP OFF"
             #"wxBUILD_INSTALL OFF"
     )
 
@@ -586,7 +586,7 @@ else()
     target_link_libraries(isimpa ${wxWidgets_LIBRARIES})
 endif()
 
-target_link_libraries(isimpa ${OPENGL_LIBRARIES})
+target_link_libraries(isimpa OpenGL::GL)
 
 add_definitions(-DUSE_PYTHON=${PYTHONLIBS_FOUND})
 

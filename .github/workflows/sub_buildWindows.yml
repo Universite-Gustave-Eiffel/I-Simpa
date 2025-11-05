@@ -39,15 +39,8 @@ on:
 
 jobs:
   Build:
-    runs-on: windows-${{ matrix.vsversion }}
-    name: MSW vs${{ matrix.vsversion }} ${{ matrix.configuration }} ${{ matrix.platform }}
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - configuration: 'DLL Release'
-            platform: 'x64'
-            vsversion: 2022
+    runs-on: windows-2022
+    name: MSW vs2022 DLL Release x64
     continue-on-error: ${{ inputs.allowedToFail }}
     env:
       CPM_SOURCE_CACHE: C:/ISIMPA/CPM/
@@ -142,5 +135,5 @@ jobs:
       - name: Upload I-Simpa standalone
         uses: actions/upload-artifact@v4
         with:
-          name: windows-no-install-${{ matrix.platform }}
+          name: windows-no-install-x64
           path: ${{ env.builddir }}/bin

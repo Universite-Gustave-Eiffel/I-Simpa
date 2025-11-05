@@ -42,7 +42,7 @@ jobs:
           cmake -DCPM_SOURCE_CACHE=${{ env.CPM_SOURCE_CACHE }} -B "${{ env.builddir }}" -DCMAKE_BUILD_TYPE=Release
       - name: Compiling sources
         run: |
-          cmake --build "${{ env.builddir }}" --config Release --parallel
+          cmake --build "${{ env.builddir }}" --config Release
       - name: Install
         run: |
           cmake --install "${{ env.builddir }}" --config Release
