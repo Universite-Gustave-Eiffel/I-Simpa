@@ -408,7 +408,13 @@ message(STATUS "Python3_EXECUTABLE: ${Python3_EXECUTABLE}")
 list(APPEND CMAKE_SWIG_FLAGS "-py3" "-DPY3")
 
 set(OpenGL_GL_PREFERENCE LEGACY)
-find_package(OpenGL)
+
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    FIND_PACKAGE(OpenGL REQUIRED COMPONENTS OpenGL)
+else()
+    FIND_PACKAGE(OpenGL REQUIRED COMPONENTS OpenGL EGL)
+endif()
+
 include(FindPackageMessage)
 if(OPENGL_GLU_FOUND)
     find_package_message(OPENGL_GLU

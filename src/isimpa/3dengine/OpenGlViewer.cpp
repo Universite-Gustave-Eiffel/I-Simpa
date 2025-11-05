@@ -93,14 +93,12 @@ OpenGlViewer::OpenGlViewer(wxWindow *parent, wxWindowID id,
 	m_GLApp = new OpenGLApp();
 	gl_context = nullptr;
 	appLoaded=true;
-	cutPlaneToUpdate=false;
 	eventBinded=false;
 	modeSelectionPoint=false;
 	eventPositionBinded=false;
 	CurrentObject= nullptr;
 	currentTool=TOOL_MODE_CAMERA;
-	SetBackgroundStyle(wxBG_STYLE_CUSTOM);
-	ElementDrawToUpdate=false;
+	wxWindow::SetBackgroundStyle(wxBG_STYLE_CUSTOM);
 
 }
 
@@ -142,7 +140,9 @@ void OpenGlViewer::OpenModel(CObjet3D *m_Object)
 
 void OpenGlViewer::RefreshElementDraw()
 {
-	ElementDrawToUpdate=true;
+	if(appLoaded) {
+		m_GLApp->set_element_draw_to_update(true);
+	}
 	doScreenRefresh=true;
 }
 
@@ -168,7 +168,7 @@ void OpenGlViewer::SetCutPlane(bool actif,int axe,int signe, float valeur)
 			m_GLApp->cutPlane.plane=1;
 		}
 	}
-	cutPlaneToUpdate=true; //ce booléen indique au Timer de rafraichir la visualisation lors du prochain pas de temps
+  	m_GLApp->set_cut_plane_to_update(true); //ce booléen indique au Timer de rafraichir la visualisation lors du prochain pas de temps
 						   // faire le rafraichissement par l'intermediaire du timer permet de rendre fluide la
   }						   // modification de la coupe du maillage
 }
@@ -210,24 +210,12 @@ void OpenGlViewer::ResetCamera()
 	}
 }
 
-void OpenGlViewer::OnTimer( wxTimerEvent& event) //rafraichie le rendu afin d'afficher l'evolution des particules
+void OpenGlViewer::OnTimer( wxTimerEvent& event) //Redraw rendering of OpenGL view
 {
 	try
 	{
 		if(appLoaded)
 		{
-			if(ElementDrawToUpdate)
-			{
-				m_GLApp->UpdateGlElementList();
-				ElementDrawToUpdate=false;
-			}
-			if(cutPlaneToUpdate)
-			{
-
-				m_GLApp->UpdateGlMaillageList();
-				cutPlaneToUpdate=false;
-				doScreenRefresh=true;
-			}
 			if(simulationIsRunning)
 			{
 				if( wxDateTime::UNow().GetValue() - LastAnimationTimeStep.GetValue() >=particlesTimeStep)
@@ -247,11 +235,8 @@ void OpenGlViewer::OnTimer( wxTimerEvent& event) //rafraichie le rendu afin d'af
 	}
 	catch( ... ) {
 		wxLogError(wxGetTranslation("Display error unknown"));
-		m_Timer.Start(this->minimalTimeStep,true);
-		return;
 	}
 	m_Timer.Start(this->minimalTimeStep,true);
-
 }
 
 void OpenGlViewer::OnPaint( wxPaintEvent& event )
@@ -462,8 +447,6 @@ void OpenGlViewer::InitAnimatorLst()
 
 bool OpenGlViewer::ActivateContext()
 {
-	wxGLContext *glContext;
-
 	if (!gl_context)
 	{
 		gl_context = new wxGLContext(this);
@@ -474,17 +457,16 @@ bool OpenGlViewer::ActivateContext()
 				#ifdef _WINDOWS
 					CurrentObject->BuildFont(this->GetHDC());
 				#else
-				    CurrentObject->BuildFont(0);
+				    CurrentObject->BuildFont(nullptr);
 			    #endif
 			}
 			m_GLApp->Init(CurrentObject);
 			CheckGLError();
 		}
 		return res;
-	} else {
-		glContext = gl_context;
-		return glContext->SetCurrent(*this);
 	}
+	const wxGLContext *glContext = gl_context;
+	return glContext->SetCurrent(*this);
 }
 
 void OpenGlViewer::ClearAnimatorLst()

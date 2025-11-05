@@ -251,6 +251,28 @@ public:
 	 * Réinitialise les animateurs contenu dans la classe
 	 */
 	void InitAnimatorLst();
+
+	/**
+	 * @return Will update cut plane rendering
+	 */
+	bool is_cut_plane_to_update() const;
+
+	/**
+	 * @param cut_plane_to_update Set to true to update the rendering of the cut plane
+	 */
+	void set_cut_plane_to_update(bool cut_plane_to_update);
+
+	/**
+	 * @return Will redraw the elements in the 3D view
+	 */
+	bool is_element_draw_to_update() const;
+
+	/**
+	 *
+	 * @param element_draw_to_update If true will redraw elements
+	 */
+	void set_element_draw_to_update(bool element_draw_to_update);
+
 private:
 	std::vector<ptAnimatorManager> animators;
 	void SetTimeStep(int idTimeStep);
@@ -288,6 +310,9 @@ private:
 	bool m_list_isinit[4] {false, false, false, false};
 	int CurrentTimeStep;
 	int winHeight,winWidth;
+	bool cutPlaneToUpdate;
+	bool elementDrawToUpdate;
+
 };
 
 #endif //	_OpenGLApp_h

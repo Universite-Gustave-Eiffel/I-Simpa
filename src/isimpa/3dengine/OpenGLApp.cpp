@@ -85,6 +85,8 @@ OpenGLApp::OpenGLApp()
 	m_IsObjetLoaded = false;
 	winHeight=600;
 	winWidth=800;
+	cutPlaneToUpdate=false;
+	elementDrawToUpdate=false;
 	//Initialisation de la camera
 	userCamera.Init(_CAMERA_ELLIP,&winWidth,&winHeight,&m_Trans,&m_Rot,&m_Focal,&m_Model_Trans,&m_Model_Rot);
 	InitCutPlane();
@@ -191,6 +193,10 @@ void OpenGLApp::UpdateGlElementList(bool useLists)
 	{
 		InitLst(2);
 		glNewList(m_list[2], GL_COMPILE);
+		GLenum errorCode = glGetError();
+		if (errorCode != GL_NO_ERROR) {
+			wxLogError( wxT("Error when loading glModelList: %s") , gluErrorString(errorCode) );
+		}
 	}
 	int nbEl=m_Object->GetDrawableElementSize();
 	for(int idEl=0;idEl<nbEl;idEl++)
@@ -243,6 +249,10 @@ void OpenGLApp::LoadGlModelList(bool useLists)
 	{
 		InitLst(0);
 		glNewList(m_list[0], GL_COMPILE);
+		GLenum errorCode = glGetError();
+		if (errorCode != GL_NO_ERROR) {
+			wxLogError( wxT("Error when loading glModelList: %s") , gluErrorString(errorCode) );
+		}
 	}
 	if(renderMode[renderModelFaces] && !renderMode[renderModelMaterialFaces])
 		m_Object->RenderModel(GL_TRIANGLES,!renderMode[renderModelInside],!renderMode[renderModelLinesAndConstruction]);
@@ -455,11 +465,27 @@ void OpenGLApp::RunGlCommands(bool useLists) //useLists à vrai si l'on doit uti
 
 		if(useLists)
 			glCallList(m_list[3]);//Rendu des vertex sélectionnés
-		if(!useLists)
+		if(!useLists || is_element_draw_to_update()) {
 			this->UpdateGlElementList(useLists);
+			set_element_draw_to_update(false);
+		}
+		/*
+		*
+			if(ElementDrawToUpdate)
+			{
+				m_GLApp->UpdateGlElementList();
+				ElementDrawToUpdate=false;
+			}
+			if(cutPlaneToUpdate)
+			{
+
+				m_GLApp->UpdateGlMaillageList();
+				cutPlaneToUpdate=false;
+				doScreenRefresh=true;
+			}
+		 */
 		if(useLists)
 			glCallList(m_list[2]); //e_drawable
-
 		//////////////////////////////////////////////////////
 		// Rendu des animations
 		for (ptAnimatorManager& curManager : animators)
@@ -499,7 +525,9 @@ void OpenGLApp::Display()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	RunGlCommands();
-	//SwapBuffers(hDC);
+	/*
+	bool useLists=!__APPLE__;
+	RunGlCommands(useLists);*/
 }
 
 void OpenGLApp::ChangeWindow(int w, int h)
@@ -550,6 +578,22 @@ void OpenGLApp::LoadAnimatorLst(ptAnimatorManager& managerToCompile)
 			glEndList();
 		}
 	}
+}
+
+bool OpenGLApp::is_cut_plane_to_update() const {
+	return cutPlaneToUpdate;
+}
+
+void OpenGLApp::set_cut_plane_to_update(const bool cut_plane_to_update) {
+	cutPlaneToUpdate = cut_plane_to_update;
+}
+
+bool OpenGLApp::is_element_draw_to_update() const {
+	return elementDrawToUpdate;
+}
+
+void OpenGLApp::set_element_draw_to_update(const bool element_draw_to_update) {
+	elementDrawToUpdate = element_draw_to_update;
 }
 
 void OpenGLApp::Destroy()

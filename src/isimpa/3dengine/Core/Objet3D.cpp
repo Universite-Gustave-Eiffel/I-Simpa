@@ -235,45 +235,6 @@ void CObjet3D::BuildFont(void* vhDC)								// Build Our Bitmap Font
 	SelectObject(hDC, oldfont);							// Selects The Font We Want
 	DeleteObject(font);									// Delete The Font
 	#endif
-    #ifdef __APPLE__
-	CTFontRef font = CTFontCreateWithName(CFSTR("Arial"), 24.0, NULL);
-
-	// 3. Créer une liste d'affichage pour chaque caractère
-	GLuint base = glGenLists(128); // Générer 128 listes d'affichage pour les caractères ASCII
-
-	for (unsigned int i = 0; i < 128; i++) {
-		// 4. Récupérer le glyphe pour le caractère actuel
-		UniChar character = (UniChar)i;
-		CGGlyph glyph;
-		CTFontGetGlyphsForCharacters(font, &character, &glyph, 1);
-
-		// 5. Récupérer les métriques du glyphe
-		CGRect bbox = CTFontGetBoundingBox(font);
-		CGFloat width = bbox.size.width;
-		CGFloat height = bbox.size.height;
-
-		// 6. Créer une texture pour le glyphe (simplifié ici)
-		//    En pratique, il faudrait rendre chaque glyphe dans une texture OpenGL.
-		//    Cela nécessite un contexte graphique et un rendu hors écran.
-
-		// 7. Générer la liste d'affichage pour le glyphe
-		glNewList(base + i, GL_COMPILE);
-		glBegin(GL_QUADS);
-		// Dessiner le glyphe comme un quad texturé
-		glTexCoord2f(0, 0); glVertex2f(0, 0);
-		glTexCoord2f(1, 0); glVertex2f(width, 0);
-		glTexCoord2f(1, 1); glVertex2f(width, height);
-		glTexCoord2f(0, 1); glVertex2f(0, height);
-		glEnd();
-		glTranslatef(width, 0, 0); // Avancer la position pour le prochain caractère
-		glEndList();
-	}
-
-	// 8. Libérer la police
-	CFRelease(font);
-
-    #endif
-
 	fontInitialized=true;
 }
 
@@ -673,19 +634,19 @@ void CObjet3D::RenderDrawableElement(int eIndex, bool blendRendering )
 {
 	if(eIndex>=0 && eIndex<GetDrawableElementSize())
 	{
-		t_HashElement::iterator it=ApplicationConfiguration::BeginRef(ApplicationConfiguration::ELEMENT_REF_TYPE_DRAWABLE);
+		auto it=ApplicationConfiguration::BeginRef(ApplicationConfiguration::ELEMENT_REF_TYPE_DRAWABLE);
 		for(int navigateIndex=0;navigateIndex<eIndex;navigateIndex++)
-			it++;
-		E_Drawable* eleToDraw=dynamic_cast<E_Drawable*>(it->second);
+			++it;
+		auto* eleToDraw=dynamic_cast<E_Drawable*>(it->second);
 		if(eleToDraw)
 		{
 			std::vector<E_Drawable::t_el_draw_object> drawObject;
 			eleToDraw->DrawItem(this->UnitizeVar);
 			eleToDraw->DrawTriangles(this->UnitizeVar,drawObject);
-			int nbTextToDraw=eleToDraw->labelInfo.size();
+			size_t nbTextToDraw=eleToDraw->labelInfo.size();
 			if(nbTextToDraw>0)
 			{
-				std::vector<E_Drawable::t_labelInfo>* labelVect=&eleToDraw->labelInfo;
+				const std::vector<E_Drawable::t_labelInfo>* labelVect=&eleToDraw->labelInfo;
 				for(int i=0;i<nbTextToDraw;i++)
 				{
 					this->glPrint(labelVect->at(i).elementLabelPosition,
@@ -694,7 +655,7 @@ void CObjet3D::RenderDrawableElement(int eIndex, bool blendRendering )
 				}
 			}
 
-			if(drawObject.size()>0)
+			if(!drawObject.empty())
 			{
 				if(!blendRendering)
 				{
@@ -780,7 +741,7 @@ std::string CObjet3D::GetNameGroup(long g)
 }
 
 
-long CObjet3D::_RenderGroupTexture(long g, bool blendRendering)  //Le rendu
+size_t CObjet3D::_RenderGroupTexture(long g, bool blendRendering)  //Le rendu
 { //Rendu d'un modèle texturé
 	bool hasTextCoords=this->_pTexCoords.size()>0;
 	bool cullingActive=!blendRendering;
@@ -823,7 +784,7 @@ long CObjet3D::_RenderGroupTexture(long g, bool blendRendering)  //Le rendu
 				glDisable(GL_CULL_FACE);
 			else
 				glEnable(GL_CULL_FACE);
-			lastStateCulling=!(*faceIterator).internalFace;
+			lastStateCulling=!faceIterator->internalFace;
 			glBegin(GL_TRIANGLES);
 		}
 		if(!blendRendering)
@@ -860,9 +821,8 @@ long CObjet3D::_RenderGroupTexture(long g, bool blendRendering)  //Le rendu
 		glVertex3fv(this->_pVertices[faceIterator->Vertices.c]);
 	}
 	glEnd();
-		glDisable(GL_POLYGON_OFFSET_FILL);
-	/*
-		*/
+    glDisable(GL_POLYGON_OFFSET_FILL);
+
 	return this->_pGroups[g].pFaces.size();
 }
 

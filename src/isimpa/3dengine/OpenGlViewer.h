@@ -248,13 +248,15 @@ private:
 	void (*pointeurFonctionEventSelectionPosition)(const vec3); // groupe,face
 	void OnMouseDoubleClick(t_faceIndex selection);
 	bool eventBinded;
-	bool eventPositionBinded; 
-	bool cutPlaneToUpdate;
-	bool ElementDrawToUpdate;
+	bool eventPositionBinded;
 	bool doScreenRefresh;
 	OpenGLApp *m_GLApp;
 	GLboolean smooth;
 	GLenum modeaff;
+	/**
+	 * Redraw rendering of OpenGL view
+	 * @param event Time event
+	 */
 	void OnTimer( wxTimerEvent& event );
 	bool appLoaded;
 	bool simulationIsRunning;

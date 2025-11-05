@@ -428,7 +428,8 @@ private:
 	bool _SaveCBIN(const wxString& filename);
 	bool faceConnecte(t_faceIndex _f);
 	bool _SaveNFFMaillage(const std::string& filename);
-	long _RenderGroupTexture(long g, bool blendRendering);
+
+	size_t _RenderGroupTexture(long g, bool blendRendering);
 	long _RenderGroupLines(long g,bool hideLines);
 	bool _Load3DS(const std::string& filename);
 	bool _LoadBIN(const std::string& filename);
