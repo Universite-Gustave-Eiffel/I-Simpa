@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,9 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 #include "GL/opengl_inc.h"
@@ -51,7 +48,11 @@
 #include "data_manager/drawable_element.h"
 #include <tools/collision.h>
 
-WX_DECLARE_HASH_MAP( std::size_t, bool, wxIntegerHash, wxIntegerEqual, BoolHashMap );
+#ifdef __APPLE__
+  #include "CTFont.h"
+#endif
+
+WX_DECLARE_HASH_MAP(std::size_t, bool, wxIntegerHash, wxIntegerEqual, BoolHashMap);
 
 
 //#include "data_manager/e_position.h"
@@ -633,19 +634,19 @@ void CObjet3D::RenderDrawableElement(int eIndex, bool blendRendering )
 {
 	if(eIndex>=0 && eIndex<GetDrawableElementSize())
 	{
-		t_HashElement::iterator it=ApplicationConfiguration::BeginRef(ApplicationConfiguration::ELEMENT_REF_TYPE_DRAWABLE);
+		auto it=ApplicationConfiguration::BeginRef(ApplicationConfiguration::ELEMENT_REF_TYPE_DRAWABLE);
 		for(int navigateIndex=0;navigateIndex<eIndex;navigateIndex++)
-			it++;
-		E_Drawable* eleToDraw=dynamic_cast<E_Drawable*>(it->second);
+			++it;
+		auto* eleToDraw=dynamic_cast<E_Drawable*>(it->second);
 		if(eleToDraw)
 		{
 			std::vector<E_Drawable::t_el_draw_object> drawObject;
 			eleToDraw->DrawItem(this->UnitizeVar);
 			eleToDraw->DrawTriangles(this->UnitizeVar,drawObject);
-			int nbTextToDraw=eleToDraw->labelInfo.size();
+			size_t nbTextToDraw=eleToDraw->labelInfo.size();
 			if(nbTextToDraw>0)
 			{
-				std::vector<E_Drawable::t_labelInfo>* labelVect=&eleToDraw->labelInfo;
+				const std::vector<E_Drawable::t_labelInfo>* labelVect=&eleToDraw->labelInfo;
 				for(int i=0;i<nbTextToDraw;i++)
 				{
 					this->glPrint(labelVect->at(i).elementLabelPosition,
@@ -654,7 +655,7 @@ void CObjet3D::RenderDrawableElement(int eIndex, bool blendRendering )
 				}
 			}
 
-			if(drawObject.size()>0)
+			if(!drawObject.empty())
 			{
 				if(!blendRendering)
 				{
@@ -740,7 +741,7 @@ std::string CObjet3D::GetNameGroup(long g)
 }
 
 
-long CObjet3D::_RenderGroupTexture(long g, bool blendRendering)  //Le rendu
+size_t CObjet3D::_RenderGroupTexture(long g, bool blendRendering)  //Le rendu
 { //Rendu d'un modèle texturé
 	bool hasTextCoords=this->_pTexCoords.size()>0;
 	bool cullingActive=!blendRendering;
@@ -783,7 +784,7 @@ long CObjet3D::_RenderGroupTexture(long g, bool blendRendering)  //Le rendu
 				glDisable(GL_CULL_FACE);
 			else
 				glEnable(GL_CULL_FACE);
-			lastStateCulling=!(*faceIterator).internalFace;
+			lastStateCulling=!faceIterator->internalFace;
 			glBegin(GL_TRIANGLES);
 		}
 		if(!blendRendering)
@@ -820,9 +821,8 @@ long CObjet3D::_RenderGroupTexture(long g, bool blendRendering)  //Le rendu
 		glVertex3fv(this->_pVertices[faceIterator->Vertices.c]);
 	}
 	glEnd();
-		glDisable(GL_POLYGON_OFFSET_FILL);
-	/*
-		*/
+    glDisable(GL_POLYGON_OFFSET_FILL);
+
 	return this->_pGroups[g].pFaces.size();
 }
 

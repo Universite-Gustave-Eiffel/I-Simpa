@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,9 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 #include "triangulator.hpp"
@@ -91,7 +88,7 @@ namespace Triangulators
 			}
 			vertFound++;
 		}
-		//Si ce point n'a pas déjà été défini
+		//Si ce point n'a pas dï¿½jï¿½ ï¿½tï¿½ dï¿½fini
 		mergeProcessData.verticeToIndexMap.insert(multimap_pair(hashVert,vertPair_t(vert,mergeProcessData.verticesCount)));
 		//mergeProcessData.verticeToIndexMap[hashVert]=vertPair_t(vert,mergeProcessData.verticesCount);
 		mergeProcessData.verticesCount++;
@@ -100,7 +97,7 @@ namespace Triangulators
 
 	void BaseTriangulator::AddFace(const vec3& vertA,const vec3& vertB,const vec3& vertC)
 	{
-		//Il faut trouver les indices des sommets correspondant à ces positions
+		//Il faut trouver les indices des sommets correspondant ï¿½ ces positions
 		ivec3 sommetsFace(FindOrCreateVertices(vertA,*this->mergeVerticesOperationObjects),
 			FindOrCreateVertices(vertB,*this->mergeVerticesOperationObjects),
 			FindOrCreateVertices(vertC,*this->mergeVerticesOperationObjects));
@@ -148,7 +145,7 @@ namespace Triangulators
 		std::list<std::size_t>& originVerticeToFace(verticesToface[from]);
 		std::list<std::size_t>& destinationVerticeToFace(verticesToface[to]);
 		//////
-		// Création de la liste fusionné des faces des deux points
+		// Crï¿½ation de la liste fusionnï¿½ des faces des deux points
 		std::list<std::size_t> unionFaces(originVerticeToFace);
 		unionFaces.insert(unionFaces.begin(),destinationVerticeToFace.begin(),destinationVerticeToFace.end());
 		unionFaces.sort();
@@ -179,12 +176,12 @@ namespace Triangulators
 				translation=true;
 			}
 
-			if(!(destinationAtOneVertice && translation)) //si le triangle a 3 sommets différends
+			if(!(destinationAtOneVertice && translation)) //si le triangle a 3 sommets diffï¿½rends
 			{
 				faces[*itFace]=fromFace;
 				destinationVerticeToFace.push_back(*itFace);
 			}else{
-				//Cette surface a été supprimé il faut supprimer les liens dans ses sommets
+				//Cette surface a ï¿½tï¿½ supprimï¿½ il faut supprimer les liens dans ses sommets
 				if(destroyedFacets)
 					(*destroyedFacets)[*itFace]=true;
 				destroyedFacetsCounter++;
@@ -196,7 +193,7 @@ namespace Triangulators
 	}
 	decimal GetTriangleQuality(const vec3& A,const vec3& B,const vec3& C)
 	{
-		vec3 h((decimal)A.distance(B),(decimal)C.distance(B),(decimal)A.distance(C)); //Longueur des cotés
+		vec3 h((decimal)A.distance(B),(decimal)C.distance(B),(decimal)A.distance(C)); //Longueur des cotï¿½s
 		decimal aireTri=GetAireTriangle(A,B,C);
 		//Bank, Randolph E., PLTMG: A Software Package for Solving Elliptic Partial Differential Equations, User's Guide 6.0, Society for Industrial and Applied Mathematics, Philadelphia, PA, 1990.
 		//http://www.mathworks.com/access/helpdesk/help/toolbox/pde/ug/pdetriq.html
@@ -204,12 +201,12 @@ namespace Triangulators
 	}
 
 	/**
-	 * L'effet de cette opération est évalué, si elle n'est pas souhaitable cette fonction retourne faux
+	 * L'effet de cette opï¿½ration est ï¿½valuï¿½, si elle n'est pas souhaitable cette fonction retourne faux
 	 */
 	bool IsInterestingEdgeCollapse(const std::vector<vec3>& vertices,const std::vector<ivec3>& faces,const std::size_t& from,const std::list<std::size_t>& originVerticeToFace, const std::size_t& to,const std::list<std::size_t>& destinationVerticeToFace, const decimal& quality_constraint,const decimal& merge_normal_constraint)
 	{
 		//////
-		// Une fois fusionné les triangles restants doivent avoir la même normal,ainsi que de ne pas avoir de mauvais ratio plus petit coté, plus grand coté (afin d'éviter les faces allongés que tetgen n'aime pas)
+		// Une fois fusionnï¿½ les triangles restants doivent avoir la mï¿½me normal,ainsi que de ne pas avoir de mauvais ratio plus petit cotï¿½, plus grand cotï¿½ (afin d'ï¿½viter les faces allongï¿½s que tetgen n'aime pas)
 
 		for(std::list<std::size_t>::const_iterator itFace=originVerticeToFace.begin(); itFace!=originVerticeToFace.end(); itFace++)
 		{
@@ -233,14 +230,14 @@ namespace Triangulators
 				translation=true;
 			}
 
-			if(!(destinationAtOneVertice && translation)) //si le triangle a 3 sommets différends
+			if(!(destinationAtOneVertice && translation)) //si le triangle a 3 sommets diffï¿½rends
 			{
 				const vec3 A(vertices[fromFace.a]),B(vertices[fromFace.b]),C(vertices[fromFace.c]);
 				vec3 oldfaceNormal=core_mathlib::FaceNormal(vertices[oldfromFace.a],vertices[oldfromFace.b],vertices[oldfromFace.c]);
 				vec3 newfaceNormal=core_mathlib::FaceNormal(A,B,C);
 				if(oldfaceNormal.dot(newfaceNormal)<merge_normal_constraint)
 					return false;
-				//Evaluation de la qualité du nouveau triangle
+				//Evaluation de la qualitï¿½ du nouveau triangle
 				decimal quality=GetTriangleQuality(A,B,C);
 
 				if(quality<quality_constraint)
@@ -272,7 +269,7 @@ namespace Triangulators
 	}
 	void BaseTriangulator::PolygonReduction(progressOperation& mainProcess)
 	{
-		//Construction des structures d'optimisation de recherche des segments pouvant être réduit en un point
+		//Construction des structures d'optimisation de recherche des segments pouvant ï¿½tre rï¿½duit en un point
 		std::size_t verticeCount(this->vertices.size());
 		std::size_t destroyedFacetsCounter(0);
 		std::vector<std::list<std::size_t> > verticeToFace(verticeCount);
@@ -458,7 +455,7 @@ namespace Triangulators
 
 	bool BaseTriangulator::RefineVertice(vec3* itvert,const std::size_t& vertId,std::vector<std::list<std::size_t> >& verticeToFace,AdaptativeMeshGuide& refinementGuide,const decimal& cellSize)
 	{
-		decimal maxDist(cellSize*(decimal)5.); //sqrt(2^2+2^2+2^2) , correspond à la distance maximal possible d'une paroie par rapport au maillage
+		decimal maxDist(cellSize*(decimal)5.); //sqrt(2^2+2^2+2^2) , correspond ï¿½ la distance maximal possible d'une paroie par rapport au maillage
 
 		const decimal aproximation=cellSize*(decimal).15;
 		ClosestCandidates_t ClosestCandidates;
@@ -482,7 +479,7 @@ namespace Triangulators
 				*itvert=closestPoint-(translationVec*aproximation);
 
 				///////////////////
-				// Test de validité de la translation
+				// Test de validitï¿½ de la translation
 				bool isCollision(false);
 				std::list<std::size_t>::iterator endit(verticeToFace[vertId].end());
 				for(std::list<std::size_t>::iterator itface=verticeToFace[vertId].begin();itface!=endit;itface++)
@@ -499,7 +496,7 @@ namespace Triangulators
 					translationFound=true;
 					break;
 				}else{
-					*itvert=oldPosition; //cette translation a occasionné une collision avec le maillage, dans ce cas on revient à la position d'origine
+					*itvert=oldPosition; //cette translation a occasionnï¿½ une collision avec le maillage, dans ce cas on revient ï¿½ la position d'origine
 				}
 			}
 		}
@@ -508,7 +505,7 @@ namespace Triangulators
 		if(!translationFound)
 		{
 			//Supprimer le noeud (raccorder les faces)
-			// si la translation a été rejetée
+			// si la translation a ï¿½tï¿½ rejetï¿½e
 			//std::list<std::size_t> toList;
 			//MakeEdgeCollapseListByQuality(faces,verticeToFace[vertId],vertId,toList);
 			//ProcessEdgeCollapse(verticeToFace,vertices,faces,vertId,*toList.begin(),NULL,destroyedFacetsCounter);

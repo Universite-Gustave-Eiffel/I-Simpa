@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,9 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 #include "first_header_include.hpp"
@@ -201,10 +198,6 @@ public:
 	void UpdateGlSelectionList(bool useLists=true);
 
 	/**
-	 * Recompile la liste d'instruction correspondant au maillage de la scène
-	 */
-	void UpdateGlMaillageList();
-	/**
 	 * Paramètres du plan de coupe du maillage
 	 */
 	t_cutPlane cutPlane;
@@ -254,6 +247,28 @@ public:
 	 * Réinitialise les animateurs contenu dans la classe
 	 */
 	void InitAnimatorLst();
+
+	/**
+	 * @return Will update cut plane rendering
+	 */
+	bool is_cut_plane_to_update() const;
+
+	/**
+	 * @param cut_plane_to_update Set to true to update the rendering of the cut plane
+	 */
+	void set_cut_plane_to_update(bool cut_plane_to_update);
+
+	/**
+	 * @return Will redraw the elements in the 3D view
+	 */
+	bool is_element_draw_to_update() const;
+
+	/**
+	 *
+	 * @param element_draw_to_update If true will redraw elements
+	 */
+	void set_element_draw_to_update(bool element_draw_to_update);
+
 private:
 	std::vector<ptAnimatorManager> animators;
 	void SetTimeStep(int idTimeStep);
@@ -291,6 +306,9 @@ private:
 	bool m_list_isinit[4] {false, false, false, false};
 	int CurrentTimeStep;
 	int winHeight,winWidth;
+	bool cutPlaneToUpdate;
+	bool elementDrawToUpdate;
+
 };
 
 #endif //	_OpenGLApp_h

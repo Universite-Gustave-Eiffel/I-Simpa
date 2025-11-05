@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,9 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 #include "m_report_bin.h"
@@ -60,7 +57,7 @@ bool REPORT_MBIN::ExportBIN(const char *strFileName,t_reportbinexchange& reportD
 	//Ecriture des noeuds
 	binFile.write((char*)reportData.nodes,sizeof(t_binNode)*reportData.data_infos.quantNodes);
 	//*************************
-	//Ecriture des tetrahèdres
+	//Ecriture des tetrahï¿½dres
 	binFile.write((char*)reportData.tetras,sizeof(bintetrahedre)*reportData.data_infos.quantTetra);
 
 	binFile.close();
@@ -74,7 +71,7 @@ bool  REPORT_MBIN::ImportBIN(const char *strFileName,t_reportbinexchange& report
 
 	//Declarations
 
-	//Sauvegarde du modèle 3D
+	//Sauvegarde du modï¿½le 3D
 	#ifdef WIN32
 		fstream binFile(pugi::as_wide(strFileName), ios::in | ios::binary);
 	#else
@@ -97,7 +94,7 @@ bool  REPORT_MBIN::ImportBIN(const char *strFileName,t_reportbinexchange& report
 			//Lecture des noeuds
 			binFile.read((char*)reportData.nodes,sizeof(t_binNode)*reportData.data_infos.quantNodes);
 			//*************************
-			//Lecture des tetrahèdres
+			//Lecture des tetrahï¿½dres
 			binFile.read((char*)reportData.tetras,sizeof(bintetrahedre)*reportData.data_infos.quantTetra);
 			binFile.close();
 		}else{

@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,94 +20,91 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 
-/*! \page addElement Ajout d'un élément au sein du projet
+/*! \page addElement Ajout d'un ï¿½lï¿½ment au sein du projet
  * 
- * Voici la marche à suivre pour ajouter un nouveau type de données de projet dans un des trois arbres (scene,core ou resultats)
+ * Voici la marche ï¿½ suivre pour ajouter un nouveau type de donnï¿½es de projet dans un des trois arbres (scene,core ou resultats)
  *
- * \section addElementstepone Créer le fichier d'entête
- * Il faut créer le fichier vide ".h" dans le dossier correspondant à l'arbre où l'élément sera présent :
- *	- data_manager\\tree_scene\\ Pour les éléments du premier onglet
- *	- data_manager\\tree_core\\ Pour les éléments du deuxième onglet
- *	- data_manager\\tree_rapport\\ Pour les éléments du troisième onglet
+ * \section addElementstepone Crï¿½er le fichier d'entï¿½te
+ * Il faut crï¿½er le fichier vide ".h" dans le dossier correspondant ï¿½ l'arbre oï¿½ l'ï¿½lï¿½ment sera prï¿½sent :
+ *	- data_manager\\tree_scene\\ Pour les ï¿½lï¿½ments du premier onglet
+ *	- data_manager\\tree_core\\ Pour les ï¿½lï¿½ments du deuxiï¿½me onglet
+ *	- data_manager\\tree_rapport\\ Pour les ï¿½lï¿½ments du troisiï¿½me onglet
  *
- * Le nom du fichier doit donner une indication sur sa place dans la hiérarchie, il suffit de se référer aux noms des autres éléments.
+ * Le nom du fichier doit donner une indication sur sa place dans la hiï¿½rarchie, il suffit de se rï¿½fï¿½rer aux noms des autres ï¿½lï¿½ments.
  *
- * \section addElementsteptwo Constructeurs de base d'un élément
- * Il faut directement hériter de Element pour un élément n'ayant pas de comportement spécial (un dossier ou un élément de propriété)
+ * \section addElementsteptwo Constructeurs de base d'un ï¿½lï¿½ment
+ * Il faut directement hï¿½riter de Element pour un ï¿½lï¿½ment n'ayant pas de comportement spï¿½cial (un dossier ou un ï¿½lï¿½ment de propriï¿½tï¿½)
  *
  * \include demos/demos_add_element.h
- * Le premier constructeur est le constructeur XML. Il est appelé lors du chargement d'un projet existant.
+ * Le premier constructeur est le constructeur XML. Il est appelï¿½ lors du chargement d'un projet existant.
  *
- * Le deuxième constructeur est le constructeur de création. Il est appelé lors de la création d'un noueau projet ou en cours d'execution du programme.
- * La méthode SaveXMLDoc() est la surcharge permettant de sauvegarder les données propres à l'élément pour une récuperation ultérieure dans le constructeur XML.
+ * Le deuxiï¿½me constructeur est le constructeur de crï¿½ation. Il est appelï¿½ lors de la crï¿½ation d'un noueau projet ou en cours d'execution du programme.
+ * La mï¿½thode SaveXMLDoc() est la surcharge permettant de sauvegarder les donnï¿½es propres ï¿½ l'ï¿½lï¿½ment pour une rï¿½cuperation ultï¿½rieure dans le constructeur XML.
  *
- * @warning Il faut donner un indice à ce nouvel élément en rajoutant une ligne à la fin de l'énumeration des éléments présent dans element.h, voir Element::ELEMENT_TYPE .
+ * @warning Il faut donner un indice ï¿½ ce nouvel ï¿½lï¿½ment en rajoutant une ligne ï¿½ la fin de l'ï¿½numeration des ï¿½lï¿½ments prï¿½sent dans element.h, voir Element::ELEMENT_TYPE .
  *
  * \section addElementstepthree Instanciation de la classe
- * Cette classe n'est pour l'instant pas utilisé. Pour qu'elle le soit il faut ajouter le code d'instanciation de notre nouvelle classe.
- * Pour cela il faut ouvrir le fichier d'entete de l'élément parent.
- * Voici un exemple afin de créer toujours l'élément demo à la création de E_Scene_Projet et charger le ou les élément Demo au chargement d'un projet.
+ * Cette classe n'est pour l'instant pas utilisï¿½. Pour qu'elle le soit il faut ajouter le code d'instanciation de notre nouvelle classe.
+ * Pour cela il faut ouvrir le fichier d'entete de l'ï¿½lï¿½ment parent.
+ * Voici un exemple afin de crï¿½er toujours l'ï¿½lï¿½ment demo ï¿½ la crï¿½ation de E_Scene_Projet et charger le ou les ï¿½lï¿½ment Demo au chargement d'un projet.
  * \include demos/demos_add_element_parent.h
  * Comme vous pouvez le voir il y a 3 modifications :
  *	- Ajout du fichier d'entete de la classe 
  *	  \skipline e_scene_projet_demo
- *	- Les deux lignes de test lors du chargement du fichier XML (Test d'égalité des indices)
+ *	- Les deux lignes de test lors du chargement du fichier XML (Test d'ï¿½galitï¿½ des indices)
  *	  \skip MARKERBEGIN
  *	  \until MARKEREND
- *	- La ligne de création dans le deuxième constructeur.
+ *	- La ligne de crï¿½ation dans le deuxiï¿½me constructeur.
  *	  \skipline MARKERAPPEND
  *
- * Compilez, executez le projet et cliquez sur "Nouveau projet". Vous pouvez voir votre élément dans l'arbre du projet. Cependant l'intéraction avec cet élément est trés limitée.
+ * Compilez, executez le projet et cliquez sur "Nouveau projet". Vous pouvez voir votre ï¿½lï¿½ment dans l'arbre du projet. Cependant l'intï¿½raction avec cet ï¿½lï¿½ment est trï¿½s limitï¿½e.
  *
- * \section addElementstepfour Ajout de propriétés (facultatif)
- * La classe Element dispose de plusieurs méthodes afin de contenir des propriétés tel qu'un champ texte et un champ de couleur (@ref addprop "Ensemble de méthodes"):
+ * \section addElementstepfour Ajout de propriï¿½tï¿½s (facultatif)
+ * La classe Element dispose de plusieurs mï¿½thodes afin de contenir des propriï¿½tï¿½s tel qu'un champ texte et un champ de couleur (@ref addprop "Ensemble de mï¿½thodes"):
  * Reprenons notre exemple. Nous allons ajouter un champ de texte et un champ de couleur.
  * 
  * \include demos/demos_add_element_withprop.h
  * 
- * On a seulement ajouté ces lignes :
+ * On a seulement ajoutï¿½ ces lignes :
  * \skip MARKERBEGIN
  * \until MARKEREND
  *
- * Vous vous demandez peut être quel est l'utilité des lignes comportant uniquement @ref traductionTuto "la méthode de traduction" ?
+ * Vous vous demandez peut ï¿½tre quel est l'utilitï¿½ des lignes comportant uniquement @ref traductionTuto "la mï¿½thode de traduction" ?
  *
- * En fait la raison est simple. Le libellé que vous renseignez dans l'appel de la méthode d'ajout de propriété sera sauvegardé dans le fichier de projet comme étant une chaine non traduite.
- * Si jamais vous utilisez la méthode de traduction wxGetTranslation( ) dans ses paramètres alors les libellé des propriétés d'un projet qui sera échangé entre un anglais et un francais resteront en anglais.
- * Donc utiliser la méthode de traduction en dehors des propriétés permet au champ d'être traduit uniquement lors de l'affichage du libellé et que cette chaine à traduire soit reconnue par le programme de mise à jour des chaines à traduire.
+ * En fait la raison est simple. Le libellï¿½ que vous renseignez dans l'appel de la mï¿½thode d'ajout de propriï¿½tï¿½ sera sauvegardï¿½ dans le fichier de projet comme ï¿½tant une chaine non traduite.
+ * Si jamais vous utilisez la mï¿½thode de traduction wxGetTranslation( ) dans ses paramï¿½tres alors les libellï¿½ des propriï¿½tï¿½s d'un projet qui sera ï¿½changï¿½ entre un anglais et un francais resteront en anglais.
+ * Donc utiliser la mï¿½thode de traduction en dehors des propriï¿½tï¿½s permet au champ d'ï¿½tre traduit uniquement lors de l'affichage du libellï¿½ et que cette chaine ï¿½ traduire soit reconnue par le programme de mise ï¿½ jour des chaines ï¿½ traduire.
  *
- * Vous pouvez ensuite utiliser \ref getprop "les accesseurs de propriétés" pour lire ses données. Consultez \ref gestionpropelement "la documentation relative" pour plus de détails.
+ * Vous pouvez ensuite utiliser \ref getprop "les accesseurs de propriï¿½tï¿½s" pour lire ses donnï¿½es. Consultez \ref gestionpropelement "la documentation relative" pour plus de dï¿½tails.
  *
- * \section addElementstepfive Rendu 3D de l'élément
+ * \section addElementstepfive Rendu 3D de l'ï¿½lï¿½ment
  *
- * Nous allons modifier notre élément de démonstration pour le dessiner sur la vue 3D.
+ * Nous allons modifier notre ï¿½lï¿½ment de dï¿½monstration pour le dessiner sur la vue 3D.
  * \include demos/demos_add_element_drawable.h
  *
  * En premier lieu il ne faut plus inclure directement element.h mais drawable_element.h
  * \skipline drawable_element
  *
- * Nous n'allons plus hériter directement de Element. On va remplacer la classe d'héritage par E_Drawable, cette classe permet justement le rendu 3D d'un élément.
+ * Nous n'allons plus hï¿½riter directement de Element. On va remplacer la classe d'hï¿½ritage par E_Drawable, cette classe permet justement le rendu 3D d'un ï¿½lï¿½ment.
  * \skipline MARKER0
- * Il en va de même pour les deux constructeurs.
+ * Il en va de mï¿½me pour les deux constructeurs.
  *
  * Le constructeur XML
  * \skip MARKER1
  * \until {
- * Le constructeur de création
+ * Le constructeur de crï¿½ation
  * \skip MARKER2
  * \until {
  * 
- * La modification consiste également à la surcharge de la méthode E_Drawable::DrawItem() afin de commander les méthodes de dessins adaptées à notre nouvel élément.
+ * La modification consiste ï¿½galement ï¿½ la surcharge de la mï¿½thode E_Drawable::DrawItem() afin de commander les mï¿½thodes de dessins adaptï¿½es ï¿½ notre nouvel ï¿½lï¿½ment.
  * \skip DrawItem
  * \until }
  * 
- * Le libellé de l'élément est dès à présent visible dans la vue 3D. Les modifications des propriétés sont visibles immédiatement dans la vue 3D.
+ * Le libellï¿½ de l'ï¿½lï¿½ment est dï¿½s ï¿½ prï¿½sent visible dans la vue 3D. Les modifications des propriï¿½tï¿½s sont visibles immï¿½diatement dans la vue 3D.
  */

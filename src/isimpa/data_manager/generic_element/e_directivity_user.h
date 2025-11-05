@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,9 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 #include "first_header_include.hpp"
@@ -33,15 +30,15 @@
 #include "e_directivity.h"
 
 /** \file e_directivity_user.h
-\brief Classe spécialisant e_directivity
+\brief Classe spï¿½cialisant e_directivity
 
-Représente une directivité personalisée utilisateur
+Reprï¿½sente une directivitï¿½ personalisï¿½e utilisateur
 */
 
 /**
-\brief Classe spécialisant e_directivity
+\brief Classe spï¿½cialisant e_directivity
 
-Représente une directivité personalisée utilisateur
+Reprï¿½sente une directivitï¿½ personalisï¿½e utilisateur
 */
 
 class E_Directivity_User : public E_Directivity
@@ -62,7 +59,7 @@ public:
 
 	void OnBeginLabelEdit(wxTreeEvent& treeEvent)
 	{
-		// On autorise l'edition en surchargeant l'événement
+		// On autorise l'edition en surchargeant l'ï¿½vï¿½nement
 	}
 
 	void OnEndLabelEdit(wxTreeEvent& treeEvent)
@@ -70,7 +67,7 @@ public:
 		if (treeEvent.GetLabel() != "")
 		{
 			this->elementInfo.libelleElement = treeEvent.GetLabel();
-			this->Modified(this); //Indique le l'element a été modifié
+			this->Modified(this); //Indique le l'element a ï¿½tï¿½ modifiï¿½
 		}
 	}
 

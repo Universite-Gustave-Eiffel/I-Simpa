@@ -1,9 +1,9 @@
 #----------------------------------------------------------------------
-# I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+# I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 #
 # I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 # to scientific acoustic simulations.
-# Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+# Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 #
 # I-SIMPA is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 # see <http://ww.gnu.org/licenses/>
 #
-# For more information, please consult: <http://i-simpa.ifsttar.fr> or 
+# For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
 # send an email to i-simpa@ifsttar.fr
 #
 # To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
@@ -31,7 +31,7 @@
 # -*- coding: cp1252 -*-
 
 # Titre: Script de conversion en fichiers CSV
-# Description: Script de conversion des fichiers de sortie créés par SPPS en fichier CSV
+# Description: Script de conversion des fichiers de sortie crï¿½ï¿½s par SPPS en fichier CSV
 # Date: Avril 2009
 # Auteur: N. Fortin et J. Picaut
 # Contact: Judicael.Picaut@lcpc.fr
@@ -50,9 +50,9 @@ def GabeToCsv(filepath,csvpath):
     if reader.Load(filepath):
         # Conversion en liste
         data=reader.ToList()
-        # Rotation des données (les colonnes deviennent des lignes)
+        # Rotation des donnï¿½es (les colonnes deviennent des lignes)
         data=zip(*data)
-        # Ecriture des données
+        # Ecriture des donnï¿½es
         fich=open(csvpath,'w')
         for line in data:
             firstcol=True
@@ -62,6 +62,6 @@ def GabeToCsv(filepath,csvpath):
                 else:
                     firstcol=False
                 fich.write(str(col))    # Ecriture de la cellule et virgule
-            fich.write("\n")            # Retour à la ligne
+            fich.write("\n")            # Retour ï¿½ la ligne
         fich.close()
 

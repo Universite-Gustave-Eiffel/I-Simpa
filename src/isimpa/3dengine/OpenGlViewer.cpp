@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,9 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 /**************************************************
@@ -96,14 +93,12 @@ OpenGlViewer::OpenGlViewer(wxWindow *parent, wxWindowID id,
 	m_GLApp = new OpenGLApp();
 	gl_context = nullptr;
 	appLoaded=true;
-	cutPlaneToUpdate=false;
 	eventBinded=false;
 	modeSelectionPoint=false;
 	eventPositionBinded=false;
 	CurrentObject= nullptr;
 	currentTool=TOOL_MODE_CAMERA;
-	SetBackgroundStyle(wxBG_STYLE_CUSTOM);
-	ElementDrawToUpdate=false;
+	wxWindow::SetBackgroundStyle(wxBG_STYLE_CUSTOM);
 
 }
 
@@ -145,35 +140,37 @@ void OpenGlViewer::OpenModel(CObjet3D *m_Object)
 
 void OpenGlViewer::RefreshElementDraw()
 {
-	ElementDrawToUpdate=true;
+	if(appLoaded) {
+		m_GLApp->set_element_draw_to_update(true);
+	}
 	doScreenRefresh=true;
 }
 
 
 void OpenGlViewer::SetCutPlane(bool actif,int axe,int signe, float valeur)
 {
-  if(appLoaded)
-  {
-	m_GLApp->cutPlane.actif=actif;
-	if(axe>=0 && axe <=2)
-		m_GLApp->cutPlane.plane=axe;
-	if(signe==1 || signe==-1)
-		m_GLApp->cutPlane.sign=signe;
-	if(valeur>=0 && valeur <=1)
-		m_GLApp->SetPlaneValue(valeur,m_GLApp->cutPlane.plane);
-	//RealCoords -> GlCoords
-    if(axe==1)
-	{
-		m_GLApp->cutPlane.plane=2;
-	}else{
-		if(axe==2)
-		{
-			m_GLApp->cutPlane.plane=1;
-		}
-	}
-	cutPlaneToUpdate=true; //ce booléen indique au Timer de rafraichir la visualisation lors du prochain pas de temps
-						   // faire le rafraichissement par l'intermediaire du timer permet de rendre fluide la
-  }						   // modification de la coupe du maillage
+  if(appLoaded) {
+	  m_GLApp->cutPlane.actif=actif;
+  	if(axe>=0 && axe <=2)
+  		m_GLApp->cutPlane.plane=axe;
+  	if(signe==1 || signe==-1)
+  		m_GLApp->cutPlane.sign=signe;
+  	if(valeur>=0 && valeur <=1)
+  		m_GLApp->SetPlaneValue(valeur,m_GLApp->cutPlane.plane);
+  	//RealCoords -> GlCoords
+  	if(axe==1)
+  	{
+  		m_GLApp->cutPlane.plane=2;
+  	}else{
+  		if(axe==2)
+  		{
+  			m_GLApp->cutPlane.plane=1;
+  		}
+  	}
+  	// Ask to recompile or redraw the mesh elements
+  	m_GLApp->set_cut_plane_to_update(true);
+  	doScreenRefresh=true;
+  }
 }
 
 int OpenGlViewer::GetCameraMode()
@@ -213,24 +210,12 @@ void OpenGlViewer::ResetCamera()
 	}
 }
 
-void OpenGlViewer::OnTimer( wxTimerEvent& event) //rafraichie le rendu afin d'afficher l'evolution des particules
+void OpenGlViewer::OnTimer( wxTimerEvent& event) //Redraw rendering of OpenGL view
 {
 	try
 	{
 		if(appLoaded)
 		{
-			if(ElementDrawToUpdate)
-			{
-				m_GLApp->UpdateGlElementList();
-				ElementDrawToUpdate=false;
-			}
-			if(cutPlaneToUpdate)
-			{
-
-				m_GLApp->UpdateGlMaillageList();
-				cutPlaneToUpdate=false;
-				doScreenRefresh=true;
-			}
 			if(simulationIsRunning)
 			{
 				if( wxDateTime::UNow().GetValue() - LastAnimationTimeStep.GetValue() >=particlesTimeStep)
@@ -250,11 +235,8 @@ void OpenGlViewer::OnTimer( wxTimerEvent& event) //rafraichie le rendu afin d'af
 	}
 	catch( ... ) {
 		wxLogError(wxGetTranslation("Display error unknown"));
-		m_Timer.Start(this->minimalTimeStep,true);
-		return;
 	}
 	m_Timer.Start(this->minimalTimeStep,true);
-
 }
 
 void OpenGlViewer::OnPaint( wxPaintEvent& event )
@@ -465,8 +447,6 @@ void OpenGlViewer::InitAnimatorLst()
 
 bool OpenGlViewer::ActivateContext()
 {
-	wxGLContext *glContext;
-
 	if (!gl_context)
 	{
 		gl_context = new wxGLContext(this);
@@ -477,17 +457,16 @@ bool OpenGlViewer::ActivateContext()
 				#ifdef _WINDOWS
 					CurrentObject->BuildFont(this->GetHDC());
 				#else
-				    CurrentObject->BuildFont(0);
+				    CurrentObject->BuildFont(nullptr);
 			    #endif
 			}
 			m_GLApp->Init(CurrentObject);
 			CheckGLError();
 		}
 		return res;
-	} else {
-		glContext = gl_context;
-		return glContext->SetCurrent(*this);
 	}
+	const wxGLContext *glContext = gl_context;
+	return glContext->SetCurrent(*this);
 }
 
 void OpenGlViewer::ClearAnimatorLst()

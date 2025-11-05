@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
@@ -20,12 +20,9 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 #include "AboutDialog.hpp"
@@ -79,7 +76,7 @@ AboutDialog::AboutDialog()
         "<html><head> <meta charset=\"UTF-8\"></head><body><h2>I-SIMPA %i.%i.%i</h2><p><small>" + wxGetTranslation("Built on %s") + "</small></p><p>" +
         wxGetTranslation("An Open Source software for 3D sound propagation modelling.") + "</p>"
                 "<p>" + wxGetTranslation("Classical Theory [%i.%i.%i]") + "</p><p>" + wxGetTranslation("SPPS [%i.%i.%i]") +
-        "</p><p>Read more on <a href=\"http://i-simpa.ifsttar.fr\">http://i-simpa.ifsttar.fr</a></p></body></html>",
+        "</p><p>Read more on <a href=\"https://i-simpa.univ-gustave-eiffel.fr\">https://i-simpa.univ-gustave-eiffel.fr</a></p></body></html>",
         ApplicationConfiguration::SPPS_UI_VERSION_MAJOR, ApplicationConfiguration::SPPS_UI_VERSION_MINOR,
         ApplicationConfiguration::SPPS_UI_VERSION_REVISION, ApplicationConfiguration::BUILD_DATE,
         ApplicationConfiguration::CTR_VERSION_MAJOR,

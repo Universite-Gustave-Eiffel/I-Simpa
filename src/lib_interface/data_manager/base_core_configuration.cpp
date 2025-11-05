@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,9 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 #include "data_calculation/calculsPropagation.h"
@@ -63,7 +60,7 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml, bool verbose_mode)
 			SetConfigInformation(FPROP_HUMIDITE,atmoNode->GetProperty("humidite").ToFloat());
 			SetConfigInformation(FPROP_PRESSION_ATMOSPHERIQUE,atmoNode->GetProperty("pression").ToFloat());
 			SetConfigInformation(FPROP_TEMPERATURE,atmoNode->GetProperty("temperature").ToFloat());
-			//Calcul de la célérite du son
+			//Calcul de la cï¿½lï¿½rite du son
 			SetConfigInformation(FPROP_CELERITE,(float)CCalculsGenerauxThermodynamique::c_son(*FastGetConfigValue(FPROP_TEMPERATURE)+273.15));
 			//Calcul de la masse volumique
 			SetConfigInformation(FPROP_RHO,(float)CCalculsGenerauxThermodynamique::masse_vol(*FastGetConfigValue(FPROP_PRESSION_ATMOSPHERIQUE),*FastGetConfigValue(FPROP_TEMPERATURE)+273.15));
@@ -189,7 +186,7 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml, bool verbose_mode)
 		if (verbose_mode) { cout << "Loading of the materials.." << endl; }
 		if(surfacesNode)
 		{
-			//Pour chaque matériaux
+			//Pour chaque matï¿½riaux
 			std::vector<CXmlNode*>::iterator iterateurNoeuds;
 
 			for (iterateurNoeuds = surfacesNode->GetFirstChild(); iterateurNoeuds != surfacesNode->GetLastChild(); iterateurNoeuds++)
@@ -233,14 +230,14 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml, bool verbose_mode)
 		if (verbose_mode) { cout << "Loading of the punctual receivers" << endl; }
 		if(recepteurspNode)
 		{
-			//Pour chaque récepteur ponctuel
+			//Pour chaque rï¿½cepteur ponctuel
 			// Initialisation des valeurs
 			std::vector<CXmlNode*>::iterator iterateurNoeuds;
 			const entier nbpasdetemps=*FastGetConfigValue(IPROP_QUANT_TIMESTEP);
 			for (iterateurNoeuds = recepteurspNode->GetFirstChild(); iterateurNoeuds != recepteurspNode->GetLastChild(); iterateurNoeuds++)
 			{
 				t_Recepteur_P *nvRecepteurp=new t_Recepteur_P(freqList.size(),nbpasdetemps);
-				//Initialisation du tableau des pas de temps en fonction des bandes de fréquences utilisées
+				//Initialisation du tableau des pas de temps en fonction des bandes de frï¿½quences utilisï¿½es
 				for(uentier idfreq=0;idfreq<freqList.size();idfreq++)
 					if(freqList[idfreq]->doCalculation)
 						nvRecepteurp->InitFreq(idfreq);
@@ -267,7 +264,7 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml, bool verbose_mode)
 		if (verbose_mode) { cout << "Loading of the surfaces receivers" << endl; }
 		if(recepteurssNode)
 		{
-			//Pour chaque récepteur surfacique
+			//Pour chaque rï¿½cepteur surfacique
 			// Initialisation des valeurs
 			std::vector<CXmlNode*>::iterator iterateurNoeuds;
 			for (iterateurNoeuds = recepteurssNode->GetFirstChild(); iterateurNoeuds != recepteurssNode->GetLastChild(); iterateurNoeuds++)
@@ -315,7 +312,7 @@ bool Base_Core_Configuration::LoadCfgFile( CXml& fichierXml, bool verbose_mode)
 				t_Encombrement *nvEncombrement=new t_Encombrement(freqList.size());
 				(*nvEncombrement).idEncombrement=(*iterateurNoeuds)->GetProperty("id").ToInt();
 				(*iterateurNoeuds)->OrderChildsByProperty("freq"); //trie des frequences par frequence croissante
-				//Pour chaque bande de fréquence
+				//Pour chaque bande de frï¿½quence
 				uentier indice=0;
 				for (std::vector<CXmlNode*>::iterator iterateurBFreq = (*iterateurNoeuds)->GetFirstChild(); iterateurBFreq != (*iterateurNoeuds)->GetLastChild(); iterateurBFreq++)
 				{

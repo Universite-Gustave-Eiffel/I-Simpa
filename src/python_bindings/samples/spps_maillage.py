@@ -1,9 +1,9 @@
 #----------------------------------------------------------------------
-# I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+# I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 #
 # I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 # to scientific acoustic simulations.
-# Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+# Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 #
 # I-SIMPA is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 # see <http://ww.gnu.org/licenses/>
 #
-# For more information, please consult: <http://i-simpa.ifsttar.fr> or 
+# For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or 
 # send an email to i-simpa@ifsttar.fr
 #
 # To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
@@ -44,7 +44,7 @@ def push_mesh_nodelist(maillage,vertices):
         maillage.nodes.append(newnode)
 def push_tetraedres(maillage,tetralst):
     """
-        Transforme un tableau python en structure de données de maillage
+        Transforme un tableau python en structure de donnï¿½es de maillage
     """
     for tetra in tetralst:
         newtetra=ls.bintetrahedre()
@@ -62,7 +62,7 @@ def push_tetraedres(maillage,tetralst):
             newface.sommets[2]=face[2][2]
         maillage.tetrahedres.append(newtetra)
         
-#Définitions des sommets des tétraèdres
+#Dï¿½finitions des sommets des tï¿½traï¿½dres
 m_sommets=  [   [5.0, 0.0, 0.0],
                 [0.0, 0.0, 0.0],
                 [0.0, 5.0, 0.0],
@@ -74,8 +74,8 @@ m_sommets=  [   [5.0, 0.0, 0.0],
                 [0.0, 2.5, 2.5],
                 [2.5, 0.0, 2.5]
             ]
-#Définition des tétrahèdres
-#   _______________Sommets du tétraèdre__    _Encombrement_    __4 faces du tétraèdre_______________________________________
+#Dï¿½finition des tï¿½trahï¿½dres
+#   _______________Sommets du tï¿½traï¿½dre__    _Encombrement_    __4 faces du tï¿½traï¿½dre_______________________________________
 # [ [ sommetA, sommetB, sommetC, sommetD ] , idVolume        , [ [idfacemodel, idtetravoisin, [ SommetA, SommetB, SommetC]]  , .. ] ]
 tetras= [    [[3, 9, 2], 0, [[-1, 11, [9, 0, 2]], [1, -2, [2, 0, 3]], [-1, 2, [3, 0, 9]], [-1, 12, [9, 2, 3]]]],
              [[5, 9, 7], 0, [[-1, 10, [9, 8, 7]], [-1, 9, [7, 8, 5]], [-1, 13, [5, 8, 9]], [-1, 5, [9, 7, 5]]]],
@@ -95,12 +95,12 @@ tetras= [    [[3, 9, 2], 0, [[-1, 11, [9, 0, 2]], [1, -2, [2, 0, 3]], [-1, 2, [3
 
 def CreerMaillage(filepath):
     """
-        Création du fichier de maillage
+        Crï¿½ation du fichier de maillage
     """
     maillage=ls.trimeshmodel()
     #Ajout des sommets
     push_mesh_nodelist(maillage,m_sommets)
-    #Ajout des tétraèdres
+    #Ajout des tï¿½traï¿½dres
     push_tetraedres(maillage,tetras)
 
     #sauvegarde du maillage

@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,16 +20,13 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 /*
- * Code source écrit dans le cadre du projet OPALHA contrat ADEME n°06.04.C.0070 (2007)
+ * Code source ï¿½crit dans le cadre du projet OPALHA contrat ADEME nï¿½06.04.C.0070 (2007)
  */
 #include "octree44.hpp"
 #include <string.h>
@@ -64,11 +61,11 @@ namespace octreeTool
 
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
-	//// Implémentation de t_Node
+	//// Implï¿½mentation de t_Node
 	////////////////////////////////////////////////////////////////////////////////////////////////
       
 	////////////////////////////////////////////////////////////////////////////////////////////////
-	//// Implémentation de Octree44
+	//// Implï¿½mentation de Octree44
 	////////////////////////////////////////////////////////////////////////////////////////////////
 
 	Octree44::Octree44(spaceElementContainer& _staticElements,const depthSize& maxDepth,const depthSize& minDepth )
@@ -76,7 +73,7 @@ namespace octreeTool
 		const elementSize& _sizeOf=_staticElements.size();
 		sizeOfStaticElements=_sizeOf;
 		/////////////////////////////////////////////////////////////////////////////////////
-		//Calcul du min max permettant de déduire les positions et tailles du noeud principal
+		//Calcul du min max permettant de dï¿½duire les positions et tailles du noeud principal
 
 		if(sizeOfStaticElements>0)
 			_staticElements[0]->GetMinMax(boundingBoxMin,boundingBoxMax);
@@ -100,14 +97,14 @@ namespace octreeTool
 	void Octree44::InitFromBoundingBox()
 	{
 		/////////////////////////////////////////////////////////////////////////////////////
-		//Prend la taille maximal de tout les cotés afin de déterminer la largeur des boites
+		//Prend la taille maximal de tout les cotï¿½s afin de dï¿½terminer la largeur des boites
 		coordPrecision halfSizeMax=(boundingBoxMax[0]-boundingBoxMin[0])/2.;
 		halfSizeMax=MAX(halfSizeMax,(boundingBoxMax[1]-boundingBoxMin[1])/2.);
 		halfSizeMax=MAX(halfSizeMax,(boundingBoxMax[2]-boundingBoxMin[2])/2.);
 
 
 		//halfSizeDiff On ajoute 5% sur les limites
-		//Ceci afin d'empecher des faces d'etres plan sur les cotés des cubes (trés utile sur l'importation de modèles plan )
+		//Ceci afin d'empecher des faces d'etres plan sur les cotï¿½s des cubes (trï¿½s utile sur l'importation de modï¿½les plan )
 
 		coordPrecision halfSizeDiff=halfSizeMax*.05;
 		coordPrecision halfSizeDiffUnaxis=halfSizeMax*.02;
@@ -120,7 +117,7 @@ namespace octreeTool
 		boundingBoxMax[2]+=halfSizeDiff;
 
 		//halfSizeDiffUnaxis Change l'alignement de 2%
-		//Ceci afin d'empecher des faces d'etres plan sur les cotés des cubes (trés utile sur l'importation de modèles plan )
+		//Ceci afin d'empecher des faces d'etres plan sur les cotï¿½s des cubes (trï¿½s utile sur l'importation de modï¿½les plan )
 
 
 		rootNode.SetHalfSize(halfSizeMax);

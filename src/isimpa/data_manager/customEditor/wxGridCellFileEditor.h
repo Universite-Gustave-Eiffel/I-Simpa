@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,9 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 #include "first_header_include.hpp"
@@ -44,9 +41,9 @@
 /**
 *  @brief Editeur de cellule de type fichier
 *
-*  Lors ce que l'utilisateur désire éditer un champ fichier l'instance de cette classe associé est appelé via wxGridCellFileEditor::BeginEdit
+*  Lors ce que l'utilisateur dï¿½sire ï¿½diter un champ fichier l'instance de cette classe associï¿½ est appelï¿½ via wxGridCellFileEditor::BeginEdit
 *  Lors ce que la grille MainPropGrid affiche ce type de champ elle appelle wxGridCellFileEditor::Show
-*  A la fin de l'édition du champ la méthode wxGridCellFileEditor::EndEdit est appelé afin de mettre à jour la cellule texte de base
+*  A la fin de l'ï¿½dition du champ la mï¿½thode wxGridCellFileEditor::EndEdit est appelï¿½ afin de mettre ï¿½ jour la cellule texte de base
 *  @see E_Data_File
 */
 
@@ -59,25 +56,25 @@ public:
 	wxGridCellFileEditor(wxString dialogTitle, wxString fileExtension);
 
 	/**
-	* Début d'édition du champ
+	* Dï¿½but d'ï¿½dition du champ
 	* @param row Ligne
 	* @param col Colonne
-	* @param grid Pointeur vers le contrôle
+	* @param grid Pointeur vers le contrï¿½le
 	*/
 	virtual void BeginEdit(int row, int col, wxGrid* grid);
 
 	/**
 	* Affichage du champ
 	* @param show "use the specified attributes to set colours/fonts for it."
-	* @param attr Attributs de la cellule associée
+	* @param attr Attributs de la cellule associï¿½e
 	*/
 	virtual void Show(bool show, wxGridCellAttr *attr);
 
 	/**
-	* Fin d'édition du champ
+	* Fin d'ï¿½dition du champ
 	* @param row Ligne
 	* @param col Colonne
-	* @param grid Pointeur vers le contrôle
+	* @param grid Pointeur vers le contrï¿½le
 	*/
 	virtual bool EndEdit(int row, int col, const wxGrid *grid,
 		const wxString& oldval, wxString *newval);

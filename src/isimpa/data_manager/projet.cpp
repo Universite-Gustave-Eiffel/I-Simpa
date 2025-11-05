@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,9 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 /*
@@ -701,7 +698,7 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	wxDateTime timeDebOperation=wxDateTime::UNow();
 	wxString modelFileName=coreCalculation->GetStringConfig("modelName");
 	wxString corePath=coreCalculation->GetStringConfig("corePath");
-#ifdef __linux__
+#if defined(__linux__) || defined(__APPLE__)
 	corePath.Replace("\\","/",true);
 #endif
 	wxString reportFolderName=dossierCourant+ApplicationConfiguration::CONST_REPORT_FOLDER_PATH;
@@ -709,7 +706,7 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	wxString exeName=coreCalculation->GetStringConfig("exeName");
 	wxString tetraFileName=coreCalculation->GetStringConfig("tetrameshFileName");
 	wxString rootCorePath=this->PathCores+corePath;
-#ifdef __linux__
+#if defined(__linux__) || defined(__APPLE__)
 	rootCorePath.Replace("\\","/",true);
 #endif
 	///////////////////////////////////////////
@@ -741,10 +738,10 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
         ext = "exe";
     }
     #endif
-    
-	if(!wxFileExists(this->PathCores+corePath+exeName))
+    const wxString programPath = this->PathCores+corePath+exeName;
+	if(!wxFileExists(programPath))
 	{
-		wxLogError(wxGetTranslation("Calculation program file not found."));
+		wxLogError(wxGetTranslation("Calculation program file not found: %s"), programPath.c_str());
 		return;
 	}
 	///////////////////////////////////////////

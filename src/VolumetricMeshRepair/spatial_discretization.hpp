@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,9 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 #include "smart_macro.h"
@@ -51,8 +48,8 @@ namespace SpatialDiscretization
 
 
 	/**
-	 * Cell correspond à un vecteur
-	 * La particularité de ce vecteur c'est de ne réserver que l'espace nécessaire. C'est à dire seul les cellules comportant des informations sont instanciés. Le gain d'espace mémoire nécessaire est élevé, au dépend du temps d'accès aux cellules.
+	 * Cell correspond ï¿½ un vecteur
+	 * La particularitï¿½ de ce vecteur c'est de ne rï¿½server que l'espace nï¿½cessaire. C'est ï¿½ dire seul les cellules comportant des informations sont instanciï¿½s. Le gain d'espace mï¿½moire nï¿½cessaire est ï¿½levï¿½, au dï¿½pend du temps d'accï¿½s aux cellules.
 	 */
 
 	template<class cellData_t>
@@ -114,14 +111,14 @@ namespace SpatialDiscretization
 			return Size;
 		}
 		/**
-		 * Retourne la donnée du noeud
+		 * Retourne la donnï¿½e du noeud
 		 */
 		cellData_t& GetData()
 		{
 			return cellData;
 		}
 	   /**
-		* Acceder à cellData
+		* Acceder ï¿½ cellData
 		*/
 	   const cellData_t& operator [](const cell_id_t& id) const
 	   {
@@ -146,7 +143,7 @@ namespace SpatialDiscretization
 	   }
 
 		/**
-		 * Modifie la valeur courante de la série pour une nouvelle valeur
+		 * Modifie la valeur courante de la sï¿½rie pour une nouvelle valeur
 		 * @param newData Nouvelle valeur
 		 */
 		void SetData(const cellData_t& newData)
@@ -165,7 +162,7 @@ namespace SpatialDiscretization
 			{
 				if(curId>=curCell->Size)
 				{
-					//La cellule suivante peut etre fusionné avec celle-ci dans les conditions suivante
+					//La cellule suivante peut etre fusionnï¿½ avec celle-ci dans les conditions suivante
 					if(curId==curCell->Size && newData==curCell->cellData && curCell->nextCell.get()!=NULL && curCell->nextCell->cellData!=newData)
 					{
 						curCell->Size++;
@@ -186,19 +183,19 @@ namespace SpatialDiscretization
 						return;
 					curId=curId-curCell->Size;
 					curCell=curCell->nextCell.get();
-				}else{ //Cette cellule contient les anciennes données
+				}else{ //Cette cellule contient les anciennes donnï¿½es
 					if(newData==curCell->cellData)
 						return;
 
 					//Fusion de la cellule courante avec la prochaine cellule
-					//Dernière cellule, ou Size==1
+					//Derniï¿½re cellule, ou Size==1
 					if(curId==curCell->Size-1)
 					{
 						if(curCell->nextCell.get()!=NULL && curCell->nextCell->cellData==newData)
 						{
 							if(curCell->Size>1)
 							{
-								//La cellule suivante absorbe notre dernière position
+								//La cellule suivante absorbe notre derniï¿½re position
 								curCell->Size--;
 								curCell->nextCell->Size++;
 								return;
@@ -207,7 +204,7 @@ namespace SpatialDiscretization
 								curCell->DeleteNextCell();
 							}
 						}else{
-							//On insere un élément aprés nous avec la nouvelle valeur
+							//On insere un ï¿½lï¿½ment aprï¿½s nous avec la nouvelle valeur
 							if(curCell->Size>1)
 							{
 								curCell->InsertCellAfter(1,newData,domainInformation);
@@ -220,14 +217,14 @@ namespace SpatialDiscretization
 							return;
 						}
 					}else if(curId==0){
-						//Première position change d'état et taille courante > 1
-						//On doit insérer un noeud
+						//Premiï¿½re position change d'ï¿½tat et taille courante > 1
+						//On doit insï¿½rer un noeud
 						curCell->InsertCellAfter(curCell->Size-1,curCell->cellData,domainInformation);
 						curCell->cellData=newData;
 						curCell->Resize(1,domainInformation);
 						return;
 					}else{
-						//Cellule intermédiaire change d'état
+						//Cellule intermï¿½diaire change d'ï¿½tat
 						curCell->InsertCellAfter(curCell->Size-1-curId,curCell->cellData,domainInformation);
 						curCell->InsertCellAfter(1,newData,domainInformation);
 						curCell->Resize(curId,domainInformation);
@@ -257,7 +254,7 @@ namespace SpatialDiscretization
 				cellData[cellId].Resize(_DomainInformation.domainSize,_DomainInformation);
 	   }
 	   /**
-		* Utilisé via la méthode at, si une cellule doit etre créé
+		* Utilisï¿½ via la mï¿½thode at, si une cellule doit etre crï¿½ï¿½
 		*/
 	   void Resize( const cell_id_t& cellSize,const domainInformation_t& _DomainInformation) {
 		   this->Size = cellSize;
@@ -272,15 +269,15 @@ namespace SpatialDiscretization
 				cellData[cellId].Count(cnt);
 		}
 	   /**
-		* Acceder à cellData
+		* Acceder ï¿½ cellData
 		*/
 	   cellData_t& operator [](const cell_id_t& id)
 	   {
 			return cellData[id];
 	   }
 	   /**
-		* Spécifier des données, créé le noeud avec cet indice
-		* Todo supprimer modèle iteratif
+		* Spï¿½cifier des donnï¿½es, crï¿½ï¿½ le noeud avec cet indice
+		* Todo supprimer modï¿½le iteratif
 		*/
 	   cellData_t& at( const cell_id_t& id, const domainInformation_t& domainInformation)
 	   {
@@ -292,7 +289,7 @@ namespace SpatialDiscretization
 	   }
 	};
 
-	//operator [] retourne le cell data de ce noeud si  id est inférieur à Size, sinon il retourne  (*nextCell)[id-Size] (éviter la récursivité)
+	//operator [] retourne le cell data de ce noeud si  id est infï¿½rieur ï¿½ Size, sinon il retourne  (*nextCell)[id-Size] (ï¿½viter la rï¿½cursivitï¿½)
 
 	typedef PTR<Cell<weight_t> > zcell_ptr_t;
 	typedef Cell<weight_t> zcell;

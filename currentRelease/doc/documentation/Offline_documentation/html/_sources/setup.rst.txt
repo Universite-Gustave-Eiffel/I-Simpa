@@ -4,7 +4,7 @@
 Installation
 ^^^^^^^^^^^^
 
--  **Download I-Simpa** from the web site http://i-simpa.ifsttar.fr
+-  **Download I-Simpa** from the web site https://i-simpa.univ-gustave-eiffel.fr
 -  **Run** the installation file
 -  **Select the language** of installation (language can be changed
    within I-Simpa)

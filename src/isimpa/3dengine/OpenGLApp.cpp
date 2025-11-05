@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,9 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 //#include <mmsystem.h>
@@ -88,6 +85,8 @@ OpenGLApp::OpenGLApp()
 	m_IsObjetLoaded = false;
 	winHeight=600;
 	winWidth=800;
+	cutPlaneToUpdate=false;
+	elementDrawToUpdate=false;
 	//Initialisation de la camera
 	userCamera.Init(_CAMERA_ELLIP,&winWidth,&winHeight,&m_Trans,&m_Rot,&m_Focal,&m_Model_Trans,&m_Model_Rot);
 	InitCutPlane();
@@ -194,6 +193,10 @@ void OpenGLApp::UpdateGlElementList(bool useLists)
 	{
 		InitLst(2);
 		glNewList(m_list[2], GL_COMPILE);
+		GLenum errorCode = glGetError();
+		if (errorCode != GL_NO_ERROR) {
+			wxLogError( wxT("Error when loading glModelList: %s") , gluErrorString(errorCode) );
+		}
 	}
 	int nbEl=m_Object->GetDrawableElementSize();
 	for(int idEl=0;idEl<nbEl;idEl++)
@@ -214,13 +217,6 @@ void OpenGLApp::UpdateGlSelectionList(bool useLists)
 	m_Object->RenderSelection();
 	if(useLists)
 		glEndList();
-}
-
-void OpenGLApp::UpdateGlMaillageList()
-{
-	if(!m_IsObjetLoaded)
-		return;
-	LoadGlMaillageList();
 }
 
 void OpenGLApp::ChangeRenderMode(t_renderMode idRenderMode,bool newValue)
@@ -246,6 +242,10 @@ void OpenGLApp::LoadGlModelList(bool useLists)
 	{
 		InitLst(0);
 		glNewList(m_list[0], GL_COMPILE);
+		GLenum errorCode = glGetError();
+		if (errorCode != GL_NO_ERROR) {
+			wxLogError( wxT("Error when loading glModelList: %s") , gluErrorString(errorCode) );
+		}
 	}
 	if(renderMode[renderModelFaces] && !renderMode[renderModelMaterialFaces])
 		m_Object->RenderModel(GL_TRIANGLES,!renderMode[renderModelInside],!renderMode[renderModelLinesAndConstruction]);
@@ -257,6 +257,8 @@ void OpenGLApp::LoadGlModelList(bool useLists)
 
 void OpenGLApp::LoadGlMaillageList(bool useLists)
 {
+	if(!m_IsObjetLoaded)
+		return;
 	if(useLists)
 	{
 		InitLst(1);
@@ -449,20 +451,41 @@ void OpenGLApp::RunGlCommands(bool useLists) //useLists à vrai si l'on doit uti
 			this->LoadGlModelList(useLists);
 		if(useLists)
 			glCallList(m_list[0]);
-		if((renderMode[renderMaillageFaces]) || renderMode[renderMaillageLines])
-			if(useLists)
+		if(renderMode[renderMaillageFaces] || renderMode[renderMaillageLines]) {
+			if (!useLists || is_cut_plane_to_update()) {
+				this->LoadGlMaillageList(useLists);
+			}
+			if(useLists) {
 				glCallList(m_list[1]);
+			}
+		}
 
 		if(m_Object->selectionChange || !useLists)
 			this->UpdateGlSelectionList(useLists);
 
 		if(useLists)
 			glCallList(m_list[3]);//Rendu des vertex sélectionnés
-		if(!useLists)
+		if(!useLists || is_element_draw_to_update()) {
 			this->UpdateGlElementList(useLists);
+			set_element_draw_to_update(false);
+		}
+		/*
+		*
+			if(ElementDrawToUpdate)
+			{
+				m_GLApp->UpdateGlElementList();
+				ElementDrawToUpdate=false;
+			}
+			if(cutPlaneToUpdate)
+			{
+
+				m_GLApp->UpdateGlMaillageList();
+				cutPlaneToUpdate=false;
+				doScreenRefresh=true;
+			}
+		 */
 		if(useLists)
 			glCallList(m_list[2]); //e_drawable
-
 		//////////////////////////////////////////////////////
 		// Rendu des animations
 		for (ptAnimatorManager& curManager : animators)
@@ -502,7 +525,9 @@ void OpenGLApp::Display()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	RunGlCommands();
-	//SwapBuffers(hDC);
+	/*
+	bool useLists=!__APPLE__;
+	RunGlCommands(useLists);*/
 }
 
 void OpenGLApp::ChangeWindow(int w, int h)
@@ -553,6 +578,22 @@ void OpenGLApp::LoadAnimatorLst(ptAnimatorManager& managerToCompile)
 			glEndList();
 		}
 	}
+}
+
+bool OpenGLApp::is_cut_plane_to_update() const {
+	return cutPlaneToUpdate;
+}
+
+void OpenGLApp::set_cut_plane_to_update(const bool cut_plane_to_update) {
+	cutPlaneToUpdate = cut_plane_to_update;
+}
+
+bool OpenGLApp::is_element_draw_to_update() const {
+	return elementDrawToUpdate;
+}
+
+void OpenGLApp::set_element_draw_to_update(const bool element_draw_to_update) {
+	elementDrawToUpdate = element_draw_to_update;
 }
 
 void OpenGLApp::Destroy()

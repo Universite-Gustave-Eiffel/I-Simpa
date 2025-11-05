@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,17 +20,14 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 /**
- * Cette classe permet de connaitre de facon rapide le point le plus proche des surfaces à partir d'un point de référence
- * Ainsi la classe BaseTriangulator est capable de modifier sa grille afin de coller au plus proche du modèle d'origine. Tout en garantissant la réussite d'un maillage tétraèdrique
+ * Cette classe permet de connaitre de facon rapide le point le plus proche des surfaces ï¿½ partir d'un point de rï¿½fï¿½rence
+ * Ainsi la classe BaseTriangulator est capable de modifier sa grille afin de coller au plus proche du modï¿½le d'origine. Tout en garantissant la rï¿½ussite d'un maillage tï¿½traï¿½drique
  */
 #include "smart_macro.h"
 #include <Core/mathlib.h> //Mathlib de libinterface
@@ -70,9 +67,9 @@ namespace Triangulators
 		 */
 		void EndTriangleFeeding(const unsigned short maxDepth=5);
 		/**
-		 *  Recherche le point planaire par rapport aux surfaces du domaine le plus proche du point d'origine en paramètre.
-		 *  @param OriginPoint Point à partir duquel ce fait le test
-		 *  @param PointNormal Normal du point. Cette normale permet de rendre en priorité le point le plus proche dans la direction de la normale
+		 *  Recherche le point planaire par rapport aux surfaces du domaine le plus proche du point d'origine en paramï¿½tre.
+		 *  @param OriginPoint Point ï¿½ partir duquel ce fait le test
+		 *  @param PointNormal Normal du point. Cette normale permet de rendre en prioritï¿½ le point le plus proche dans la direction de la normale
 		 *  @param maxDist Contrainte de test des surfaces autour du point
 		 */
 		bool GetClosestPoint(const vec3& OriginPoint,const decimal& maxDist,ClosestCandidates_t& foundPositions);

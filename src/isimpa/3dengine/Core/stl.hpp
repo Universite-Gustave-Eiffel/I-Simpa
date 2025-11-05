@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* I-SIMPA (http://i-simpa.ifsttar.fr). This file is part of I-SIMPA.
+* I-SIMPA (https://i-simpa.univ-gustave-eiffel.fr). This file is part of I-SIMPA.
 *
 * I-SIMPA is a GUI for 3D numerical sound propagation modelling dedicated
 * to scientific acoustic simulations.
-* Copyright (C) 2007-2014 - IFSTTAR - Judicael Picaut, Nicolas Fortin
+* Copyright (C) UMRAE, CEREMA, Univ Gustave Eiffel - Judicael Picaut, Nicolas Fortin
 *
 * I-SIMPA is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,30 +20,27 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA or 
 * see <http://ww.gnu.org/licenses/>
 *
-* For more information, please consult: <http://i-simpa.ifsttar.fr> or 
-* send an email to i-simpa@ifsttar.fr
+* For more information, please consult: <https://i-simpa.univ-gustave-eiffel.fr> or
+* send an email to contact@noise-planet.org
 *
-* To contact Ifsttar, write to Ifsttar, 14-20 Boulevard Newton
-* Cite Descartes, Champs sur Marne F-77447 Marne la Vallee Cedex 2 FRANCE
-* or write to scientific.computing@ifsttar.fr
 * ----------------------------------------------------------------------*/
 
 #ifndef _HSTL
 #define _HSTL
 
 /*! \file stl.hpp
-    \brief Implémentation de l'interpréteur de fichier modèle STL (*.stl) 
+    \brief Implï¿½mentation de l'interprï¿½teur de fichier modï¿½le STL (*.stl) 
 */
 #include "Core/mathlib.h"
 #include <vector>
 
-/*! \brief Implémentation de l'interpréteur de fichier modèle STL (*.stl) 
+/*! \brief Implï¿½mentation de l'interprï¿½teur de fichier modï¿½le STL (*.stl) 
 */
 namespace formatSTL
 {
 
 	/**
-	 * @brief Structure de données d'echange avec la classe
+	 * @brief Structure de donnï¿½es d'echange avec la classe
 	 */
 	struct t_face
 	{
@@ -56,7 +53,7 @@ namespace formatSTL
 	};
 
 	/**
-	 * @brief Structure de données du modèle
+	 * @brief Structure de donnï¿½es du modï¿½le
 	 *
 	 */
 	struct t_model
@@ -78,11 +75,11 @@ public:
 	 */
 	CStl();
 	/**
-	 * Méthode d'exportation d'un modèle 3D
+	 * Mï¿½thode d'exportation d'un modï¿½le 3D
 	 */
 	bool ExportSTL(t_model& sceneconst,const char* mfilename);
 	/**
-	 * Méthode d'importation d'un modèle 3D
+	 * Mï¿½thode d'importation d'un modï¿½le 3D
 	 */
 	bool ImportSTL(t_model& sceneconst,const char* mfilename);
 
