@@ -1,23 +1,20 @@
-| Travis Linux build status| AppVeyor Windows build status | CII Best Practices | Documentation |
-|--------------------------|-------------------------------|--------------------|---------------|
-|[![Build Status](https://travis-ci.org/Ifsttar/I-Simpa.svg?branch=master)](https://travis-ci.org/Ifsttar/I-Simpa)| [![Build Status](https://ci.appveyor.com/api/projects/status/github/Ifsttar/I-Simpa?svg=true)](https://ci.appveyor.com/project/nicolas-f/I-Simpa)| [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3005/badge)](https://bestpractices.coreinfrastructure.org/projects/3005)| [![Documentation Status](https://readthedocs.org/projects/i-simpa-wiki/badge/?version=latest)](https://i-simpa-wiki.readthedocs.io/fr/latest/?badge=latest)|
+| Linux/Windows build status| CII Best Practices | Documentation |
+|--------------------------|--------------------|---------------|
+|[![I-SIMPA main CI](https://github.com/Universite-Gustave-Eiffel/I-Simpa/actions/workflows/CI_main.yml/badge.svg?event=push)](https://github.com/Universite-Gustave-Eiffel/I-Simpa/actions/workflows/CI_main.yml)| [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3005/badge)](https://bestpractices.coreinfrastructure.org/projects/3005)| [![Documentation Status](https://readthedocs.org/projects/i-simpa-wiki/badge/?version=latest)](https://i-simpa-wiki.readthedocs.io/fr/latest/?badge=latest)|
 
 
-<IMG SRC="https://github.com/Ifsttar/I-Simpa/blob/master/Docs/images/I-Simpa-logo.jpg" WIDTH=400 ALT="I-Simpa logo" TITLE="I-Simpa logo">|
+<IMG SRC="Docs/images/I-Simpa-logo.jpg" WIDTH=400 ALT="I-Simpa logo" TITLE="I-Simpa logo">|
 
 
 
 * **For general information**, [visit the offical I-Simpa website](https://i-simpa.univ-gustave-eiffel.fr/)
 * **For using I-Simpa**, see [the Online User Guide](http://i-simpa-wiki.readthedocs.io/fr/latest/)
-* **For build instructions**, see [the instructions](https://github.com/Ifsttar/I-Simpa/blob/master/Docs/Building.md)
-* **For contributing to I-Simpa**, see [the GitHub wiki](https://github.com/Ifsttar/I-Simpa/wiki/)
-* **Follow us on Twitter** <a href="https://twitter.com/intent/follow?screen_name=ISimpaOfficial">
-        <img src="https://img.shields.io/twitter/follow/ISimpaOfficial.svg?style=social&logo=twitter"
-            alt="follow on Twitter"></a>
+* **For build instructions**, see [the instructions](Docs/Building.md)
+* **For contributing to I-Simpa**, see [the GitHub wiki](https://github.com/Universite-Gustave-Eiffel/I-Simpa/wiki/)
 
 ## Description
 
-<IMG ALIGN="right" SRC="https://github.com/Ifsttar/I-Simpa/blob/fa9a49791a0359f4ced45bbc31edc8e581eeddd0/Docs/images/Illustrations/illustration_I_Simpa_room.png" WIDTH=350 ALT="Room illustration" TITLE="Room illustration">
+<IMG ALIGN="right" SRC="Docs/images/Illustrations/illustration_I_Simpa_room.png" WIDTH=350 ALT="Room illustration" TITLE="Room illustration">
 
 I-Simpa is a graphical user interface (GUI) developed to host three-dimensional numerical codes for the modeling of sound propagation in complex geometrical domains. Although I-Simpa is well adapted for energetic models (ray-tracing, sound-particle tracing, theory of reverberation…), it can be extend to use ondulatory approaches.
 
@@ -42,7 +39,7 @@ I-Simpa is developped by the [Environmental Acoustic Research unit](http://www.u
 
 ## **License for users**
 
-I-Simpa is an application developped by Ifsttar under the GENERAL PUBLIC LICENSE Version 3, please refere to [GPLv3](https://github.com/Ifsttar/I-Simpa/blob/master/LICENSE.md) for more details about it and [here](https://github.com/Ifsttar/I-Simpa/blob/master/Docs/License.txt) for Ifsttar information.
+I-Simpa is an application developped by Ifsttar under the GENERAL PUBLIC LICENSE Version 3, please refere to [GPLv3](LICENSE.md) for more details about it and [here](Docs/License.txt) for Ifsttar information.
 
 ## **License Agreement for contributors**
 
