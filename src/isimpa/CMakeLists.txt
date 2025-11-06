@@ -586,7 +586,7 @@ else()
     target_link_libraries(isimpa ${wxWidgets_LIBRARIES})
 endif()
 
-target_link_libraries(isimpa OpenGL::GL)
+target_link_libraries(isimpa OpenGL::GL OpenGL::GLU)
 
 add_definitions(-DUSE_PYTHON=${PYTHONLIBS_FOUND})
 
