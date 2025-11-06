@@ -1,4 +1,5 @@
 include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
+include(GNUInstallDirs)
 set(CMAKE_INSTALL_MFC_LIBRARIES TRUE )
 set(CMAKE_INSTALL_UCRT_LIBRARIES TRUE )
 
@@ -18,9 +19,10 @@ if(IS_FLATPAK)
     set(ISIMPA_BIN_DIR bin)
     set(ISIMPA_DATA_DIR bin)
     set(ISIMPA_DOC_DIR bin)
+    set(ISIMPA_DOC_DIR bin)
 else()
     set(ISIMPA_ICON_DIR .)
-    set(ISIMPA_BIN_DIR .)
+    set(ISIMPA_BIN_DIR "${CMAKE_INSTALL_BINDIR}")
     set(ISIMPA_DATA_DIR .)
     set(ISIMPA_DOC_DIR .)
 endif()
@@ -441,7 +443,7 @@ configure_file(data_manager/appconfig_version.cpp.in ${CMAKE_CURRENT_BINARY_DIR}
 # Set Properties->General->Configuration Type to Application
 # Creates isimpa with the listed sources
 # Adds sources to the Solution Explorer
-add_executable(isimpa
+add_executable(isimpa WIN32 MACOSX_BUNDLE
     ${3DENGINE_SOURCES}
     ${3DENGINE_CORE_SOURCES}
     ${3DENGINE_TOOLS_SOURCES}
@@ -614,7 +616,10 @@ include( InstallRequiredSystemLibraries )
 
 # Install executable
 install(TARGETS isimpa
-        RUNTIME DESTINATION ${ISIMPA_BIN_DIR})
+        BUNDLE DESTINATION .
+        RUNTIME DESTINATION ${ISIMPA_BIN_DIR}
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
 set(ISIMPA_RESSOURCES ${PROJECT_SOURCE_DIR}/currentRelease)
 
@@ -690,6 +695,12 @@ if(NOT IS_FLATPAK)
     elseif (APPLE)
         SET(CPACK_GENERATOR "Bundle")
     endif()
+    set(CPACK_SOURCE_IGNORE_FILES
+            /bin/wx*
+            /lib/cmake/wxWidgets
+            /lib/wx
+            /lib/*.a
+    )
     SET(CPACK_BUNDLE_NAME "I-SIMPA")
     SET(CPACK_BUNDLE_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/Info.plist")
     SET(CPACK_BUNDLE_ICON "${CMAKE_CURRENT_SOURCE_DIR}/isimpa.ico")
