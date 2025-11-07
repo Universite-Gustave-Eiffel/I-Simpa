@@ -660,22 +660,86 @@ install(DIRECTORY
 
 # Windows-specific installation (skip for Flatpak)
 if(WIN32 AND NOT IS_FLATPAK)
-    # Copy python libraries
-    get_filename_component(PYTHON_ROOT_FOLDER ${Python3_EXECUTABLE} PATH)
+    get_filename_component(PYTHON_ROOT_FOLDER ${Python3_EXECUTABLE} DIRECTORY)
 
+    # Method 1: Use BundleUtilities to automatically find and copy Python DLLs
+    # This is more reliable than manual copying
+    install(CODE "
+        include(BundleUtilities)
+
+        # Get Python DLL (python3XX.dll or python3XX_d.dll)
+        get_filename_component(PYTHON_DLL_DIR \"${Python3_RUNTIME_LIBRARY}\" DIRECTORY)
+
+        # Gather all DLLs that the executable depends on
+        set(DIRS
+            \"${PYTHON_DLL_DIR}\"
+            \"${PYTHON_ROOT_FOLDER}\"
+            \"${PYTHON_ROOT_FOLDER}/DLLs\"
+            \${CMAKE_INSTALL_PREFIX}/${ISIMPA_BIN_DIR}
+        )
+
+#        # Fix up the bundle (this will copy required DLLs)
+#        fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/${ISIMPA_BIN_DIR}/isimpa.exe\" \"\" \"\${DIRS}\")
+#    " COMPONENT Runtime)
+
+    # Install Python standard library
+    # Exclude unnecessary files to reduce package size
     install(DIRECTORY
             ${PYTHON_ROOT_FOLDER}/Lib
+            DESTINATION .
+            COMPONENT Runtime
+            PATTERN "Lib/site-packages" EXCLUDE
+            PATTERN "Lib/test" EXCLUDE
+            PATTERN "Lib/__pycache__" EXCLUDE
+            PATTERN "*.pyc" EXCLUDE
+            PATTERN "*.pyo" EXCLUDE
+            PATTERN "*.pdb" EXCLUDE
+            PATTERN "*.exp" EXCLUDE
+            PATTERN "*.lib" EXCLUDE
+    )
+
+    # Install Python DLLs directory (extension modules)
+    install(DIRECTORY
             ${PYTHON_ROOT_FOLDER}/DLLs
             DESTINATION .
-            PATTERN "Lib/site-packages" EXCLUDE
-            PATTERN "*.pdb" EXCLUDE)
+            COMPONENT Runtime
+            PATTERN "*.pdb" EXCLUDE
+            PATTERN "*.exp" EXCLUDE
+            PATTERN "*.lib" EXCLUDE
+    )
 
-    install(FILES "${PYTHON_ROOT_FOLDER}/python.exe" DESTINATION .)
+    # Install python.exe and pythonw.exe
+    install(FILES
+            "${PYTHON_ROOT_FOLDER}/python.exe"
+            DESTINATION .
+            COMPONENT Runtime
+            OPTIONAL
+    )
 
+    install(FILES
+            "${PYTHON_ROOT_FOLDER}/pythonw.exe"
+            DESTINATION .
+            COMPONENT Runtime
+            OPTIONAL
+    )
+
+    # Install the main Python DLL (python3XX.dll)
+    if(Python3_RUNTIME_LIBRARY)
+        install(FILES
+                "${Python3_RUNTIME_LIBRARY}"
+                DESTINATION ${ISIMPA_BIN_DIR}
+                COMPONENT Runtime
+        )
+    endif()
+
+    # Install vcruntime if needed
     if(CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS)
-        install(PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION . COMPONENT Runtime)
+        install(PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS}
+                DESTINATION ${ISIMPA_BIN_DIR}
+                COMPONENT Runtime)
     endif()
 endif()
+
 
 # Flatpak-specific: Install desktop file and appdata
 if(IS_FLATPAK)

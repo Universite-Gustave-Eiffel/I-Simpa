@@ -37,6 +37,16 @@ SWIG_LINK_LIBRARIES(libsimpa lib_interface)
 
 SetupBoost()
 
+# Force use of release Python library even in debug builds
+if(WIN32 AND CMAKE_BUILD_TYPE MATCHES Debug)
+    # Remove the _d suffix that CMake adds for debug builds
+    set_target_properties(Python3::Module PROPERTIES
+            IMPORTED_LOCATION_DEBUG "${Python3_LIBRARY_RELEASE}"
+    )
+    # Prevent automatic _d suffix addition
+    add_compile_definitions(SWIG_PYTHON_INTERPRETER_NO_DEBUG)
+endif()
+
 target_link_libraries(${SWIG_MODULE_libsimpa_REAL_NAME} Boost::python Boost::thread)
 
 # Creates a folder "libraries" and adds target project (lib_interface.vcproj) under it
