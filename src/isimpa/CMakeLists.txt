@@ -23,8 +23,8 @@ if(IS_FLATPAK)
 else()
     set(ISIMPA_ICON_DIR .)
     set(ISIMPA_BIN_DIR "${CMAKE_INSTALL_BINDIR}")
-    set(ISIMPA_DATA_DIR .)
-    set(ISIMPA_DOC_DIR .)
+    set(ISIMPA_DATA_DIR "${CMAKE_INSTALL_DATADIR}")
+    set(ISIMPA_DOC_DIR "${CMAKE_INSTALL_DOCDIR}")
 endif()
 
 MACRO(ADDMULTIPLE_LANG curdir installdir)
@@ -610,16 +610,30 @@ ENDIF()
 #    INSTALL
 #--------------#
 
-set(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION ${ISIMPA_BIN_DIR})
-
-include( InstallRequiredSystemLibraries )
-
 # Install executable
 install(TARGETS isimpa
         BUNDLE DESTINATION .
-        RUNTIME DESTINATION ${ISIMPA_BIN_DIR}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+
+
+# Settings for packaging per platform
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    include(platform/windows/CMakeLists.txt)
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    include(platform/linux/CMakeLists.txt)
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    include(platform/darwin/CMakeLists.txt)
+endif ()
+
+
+
+set_target_properties( isimpa PROPERTIES
+        INSTALL_RPATH @executable_path/../Frameworks)
+
+set_source_files_properties(${SHARED_STATIC_ASSETS}
+        PROPERTIES MACOSX_PACKAGE_LOCATION ${CMAKE_INSTALL_DATADIR})
 
 set(ISIMPA_RESSOURCES ${PROJECT_SOURCE_DIR}/currentRelease)
 
@@ -635,7 +649,7 @@ if(IS_FLATPAK)
 
     install(FILES
             isimpa.ico
-            DESTINATION ${ISIMPA_BIN_DIR})
+            DESTINATION ${ISIMPA_DATA_DIR})
 
     install(FILES
             isimpa.png
@@ -649,6 +663,11 @@ else()
             DESTINATION ${ISIMPA_DATA_DIR})
 endif()
 
+# Target properties
+set_target_properties(isimpa PROPERTIES
+        INSTALL_RPATH @executable_path/../Frameworks
+        RESOURCE "${SHARED_STATIC_ASSETS}")
+
 # Install resource directories
 install(DIRECTORY
         ${ISIMPA_RESSOURCES}/Bitmaps
@@ -658,82 +677,3 @@ install(DIRECTORY
         ${ISIMPA_RESSOURCES}/Directivities
         DESTINATION ${ISIMPA_DATA_DIR})
 
-# Windows-specific installation (skip for Flatpak)
-if(WIN32 AND NOT IS_FLATPAK)
-    # Copy python libraries
-    get_filename_component(PYTHON_ROOT_FOLDER ${Python3_EXECUTABLE} PATH)
-
-    install(DIRECTORY
-            ${PYTHON_ROOT_FOLDER}/Lib
-            ${PYTHON_ROOT_FOLDER}/DLLs
-            DESTINATION .
-            PATTERN "Lib/site-packages" EXCLUDE
-            PATTERN "*.pdb" EXCLUDE)
-
-    install(FILES "${PYTHON_ROOT_FOLDER}/python.exe" DESTINATION .)
-
-    if(CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS)
-        install(PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION . COMPONENT Runtime)
-    endif()
-endif()
-
-# Flatpak-specific: Install desktop file and appdata
-if(IS_FLATPAK)
-    install(FILES
-            ${PROJECT_SOURCE_DIR}/org.noise_planet.i-simpa.desktop
-            DESTINATION share/applications)
-
-    install(FILES
-            ${PROJECT_SOURCE_DIR}/org.noise_planet.i-simpa.appdata.xml
-            DESTINATION share/metainfo)
-endif()
-
-# Package creation instructions (skip for Flatpak)
-if(NOT IS_FLATPAK)
-    if(WIN32 AND NOT DEFINED CPACK_GENERATOR)
-        SET(CPACK_GENERATOR "NSIS;ZIP")
-    elseif (APPLE)
-        SET(CPACK_GENERATOR "Bundle")
-    endif()
-    set(CPACK_SOURCE_IGNORE_FILES
-            /bin/wx*
-            /lib/cmake/wxWidgets
-            /lib/wx
-            /lib/*.a
-    )
-    SET(CPACK_BUNDLE_NAME "I-SIMPA")
-    SET(CPACK_BUNDLE_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/Info.plist")
-    SET(CPACK_BUNDLE_ICON "${CMAKE_CURRENT_SOURCE_DIR}/isimpa.ico")
-    SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "I-SIMPA")
-    SET(CPACK_PACKAGE_VENDOR "UMRAE, CEREMA, Univ Gustave Eiffel")
-    SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/DESCRIPTION.txt")
-    SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE.md")
-    SET(CPACK_PACKAGE_VERSION_MAJOR ${isimpa_VERSION_MAJOR})
-    SET(CPACK_PACKAGE_VERSION_MINOR ${isimpa_VERSION_MINOR})
-    SET(CPACK_PACKAGE_VERSION_PATCH ${isimpa_VERSION_PATCH})
-    SET(CPACK_PACKAGE_INSTALL_DIRECTORY "I-SIMPA")
-    SET(CPACK_PACKAGE_ICON "${CMAKE_CURRENT_SOURCE_DIR}/isimpa.ico")
-
-    IF(WIN32 AND NOT UNIX)
-        SET(CPACK_NSIS_EXECUTABLES_DIRECTORY ".")
-        set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "  CreateShortCut '$DESKTOP\\\\I_SIMPA.lnk' '$INSTDIR\\\\isimpa.exe' ")
-        set(CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS "Delete '$DESKTOP\\\\I_SIMPA.lnk'")
-        SET(CPACK_NSIS_INSTALLED_ICON_NAME "isimpa.exe")
-        SET(CPACK_NSIS_DISPLAY_NAME "I-SIMPA")
-        SET(CPACK_NSIS_HELP_LINK "http:\\\\\\\\i-simpa-wiki.readthedocs.io")
-        SET(CPACK_NSIS_URL_INFO_ABOUT "http:\\\\\\\\i-simpa.unv-eiffel.fr")
-        SET(CPACK_NSIS_CONTACT "contact@noise-planet.org")
-        SET(CPACK_NSIS_MODIFY_PATH ON)
-        SET(CPACK_STRIP_FILES TRUE)
-        SET(CPACK_SOURCE_STRIP_FILES "")
-    ENDIF(WIN32 AND NOT UNIX)
-
-    SET(CPACK_PACKAGE_EXECUTABLES "isimpa" "I-SIMPA")
-    SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "Nicolas Fortin")
-
-    # Set the application bundle properties
-    # set(CPACK_MONOLITHIC_INSTALL ON)
-    # set(CPACK_PACKAGE_DIRECTORY "${CMAKE_BINARY_DIR}/package")
-
-    INCLUDE(CPack)
-endif()
