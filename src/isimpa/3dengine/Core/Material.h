@@ -79,11 +79,7 @@ public:
 	 * Destructeur
 	 */
 	~CMaterial() 
-	{	
-		//for(long i=0;i<this->_pMaterial.size();i++)
-	    //delete this->_pMaterial[i].Name;
-		this->_pMaterial.empty();
-	}
+	= default;
 	/**
 	 * Cette méthode permet d'acceder à la liste des matériaux utilisés. Utile pour sauvegarder celles-ci.
 	 * @see CformatBIN::ExportBIN

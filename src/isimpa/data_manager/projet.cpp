@@ -307,7 +307,7 @@ currentHistoryNavigation(0)
 	this->dossierCourant = ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath;
 	this->FichierConfig = "projet_config.xml";	//fichier de config du projet
 	this->FichierConfigDefaut =ApplicationConfiguration::CONST_STATIC_XML_FILE; //fichier de configuration statique
-	this->PathCores=ApplicationConfiguration::CONST_CORE_PATH;
+	this->PathCores=ApplicationConfiguration::getApplicationFolder();
 
 	ctrlDown=false;
 	shiftDown=false;
@@ -2898,7 +2898,7 @@ bool ProjectManager::LoadScene(const t_param_load_model& paramLoading)
 {
 	wxProgressDialog progInfo(wxGetTranslation("Loading 3D scene..."),wxGetTranslation("Loading 3D scene..."),100,mainFrame,wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
 	t_retrieves_groups oldFacesDistribution;
-	if(paramLoading.keepexistingfacegroup)
+	if(paramLoading.keepExistingFaceGroup)
 		BuildFaceGroupAssociation(oldFacesDistribution);
 	bool loadSuccess=sceneMesh.Load(paramLoading.pathModel.ToStdString(), paramLoading.modelRescale);
 	if(loadSuccess)
@@ -2914,7 +2914,7 @@ bool ProjectManager::LoadScene(const t_param_load_model& paramLoading)
 
 		progInfo.Update(25,wxGetTranslation("Loading faces of 3D scene"));
 		this->AddLogMessage(wxString::Format(wxGetTranslation("Loading 3D scene: %s\n"), paramLoading.pathModel.AfterLast(wxFileName::GetPathSeparator())));
-		if(paramLoading.keepexistingfacegroup)
+		if(paramLoading.keepExistingFaceGroup)
 			this->LoadFacesFromModel(&progInfo,&oldFacesDistribution,paramLoading.epsilonLinkingFaceGroup);
 		else
 			this->LoadFacesFromModel(&progInfo);
@@ -2947,9 +2947,9 @@ void ProjectManager::ChangeModel3d(const wxString& FileName)
 	int res=optDialog.ShowModal();
 	if(res==wxID_OK)
 	{
-		paramLoading.keepexistingfacegroup=optDialog.IsKeepExistingFaceLinks();
-		paramLoading.domeshsurface=optDialog.IsMeshSurface();
-		paramLoading.docorrection=optDialog.IsMeshRepair();
+		paramLoading.keepExistingFaceGroup=optDialog.IsKeepExistingFaceLinks();
+		paramLoading.doMeshSurface=optDialog.IsMeshSurface();
+		paramLoading.doCorrection=optDialog.IsMeshRepair();
 		paramLoading.paramTetgen=optDialog.GetMeshParameters();
 		paramLoading.launchRemeshWizard=optDialog.IsRemeshModel();
 		paramLoading.epsilonLinkingFaceGroup=optDialog.GetEpsilonLinkingFaceGroup();
@@ -3207,12 +3207,12 @@ void ProjectManager::OpenNewDataWindow(Element* linkedElement)
 			OnStartRemeshWizard();
 		}
 		//2eme étape éxecuter le logiciel de correction de modèle
-		if(paramRepair.docorrection)
+		if(paramRepair.doCorrection)
 		{
 			meshModified=true;
 			if(!wxFileExists(meshName))
 			{
-				if(paramRepair.domeshsurface)
+				if(paramRepair.doMeshSurface)
 				{
 					sceneMesh._SavePOLY(meshName.ToStdString(),false,false,true, NULL,true);
 				}else{
@@ -3222,7 +3222,7 @@ void ProjectManager::OpenNewDataWindow(Element* linkedElement)
 			RunRemeshProcess(meshName);
 		}
 		// Si pas d'amélioration du contour du modèle
-		if(paramRepair.domeshsurface)
+		if(paramRepair.doMeshSurface)
 		{
 			if(!wxFileExists(meshName))
 				sceneMesh._SavePOLY(meshName.ToStdString(),false,false,true, NULL,true);
@@ -3232,7 +3232,7 @@ void ProjectManager::OpenNewDataWindow(Element* linkedElement)
 			RunTetGenBoundaryMesh(paramRepair.paramTetgen,cacheFolder,"mesh_to_repair","poly");
 			meshModified=true;
 		}
-		if(paramRepair.docorrection && !paramRepair.domeshsurface)
+		if(paramRepair.doCorrection && !paramRepair.doMeshSurface)
 		{
 			//3eme étape, charger le fichier .POLY modifié en gardant les groupes existants et les identifiant de matériaux(couleur d'origine par face) (consistant grâce aux marqueurs par face des fichiers POLY)
 			sceneMesh.LoadPolyWithoutLostCurrentModelGroupAndMaterials(meshName.ToStdString());

@@ -66,7 +66,7 @@ bool ProjectManager::RunCoreMaillage(Element* selectedCore)
 
 bool ProjectManager::RunRemeshProcess(wxString fileToRemesh)
 {
-	wxString MeshRegenPath=ApplicationConfiguration::CONST_PREPROCESS_EXE_PATH;
+	wxString MeshRegenPath=ApplicationConfiguration::getApplicationFolder();
 	wxString MeshRegenExe=ApplicationConfiguration::CONST_PREPROCESS_EXE_FILENAME;
 
 	wxString lblOutput=MeshRegenExe+" - ";
@@ -88,12 +88,12 @@ bool ProjectManager::RunRemeshProcess(wxString fileToRemesh)
 		return false;
 	}
 }
-bool ProjectManager::RunTetGenBoundaryMesh( wxString cmd, wxString cacheFolder,wxString sceneName, wxString sceneNameExt)
+bool ProjectManager::RunTetGenBoundaryMesh( wxString cmd, const wxString& cacheFolder,const wxString& sceneName, const wxString& sceneNameExt)
 {
 	wxDateTime timeDebOperation=wxDateTime::UNow();
 	wxString meshFilePath(cacheFolder+sceneName+"."+sceneNameExt);
 
-	wxString tetgenPath=ApplicationConfiguration::CONST_TETGEN_EXE_PATH;
+	wxString tetgenPath=ApplicationConfiguration::getApplicationFolder();
 	wxString tetgenExe=ApplicationConfiguration::CONST_TETGEN_EXE_FILENAME;
 	wxString lblOutput=tetgenExe+" : ";
 	cmd=tetgenExe+" "+cmd+" \""+meshFilePath+"\"";
@@ -103,13 +103,11 @@ bool ProjectManager::RunTetGenBoundaryMesh( wxString cmd, wxString cacheFolder,w
 	///////////////////////////////////////////
 	///	Verifications de l'existance du coeur de calcul
 	///////////////////////////////////////////
-	#ifdef __WXMSW__
 	if(!wxFileExists(tetgenPath+tetgenExe))
 	{
 		wxLogMessage(wxGetTranslation("Calculation program file not found."));
 		return false;
 	}
-	#endif
 
 	///////////////////////////////////////////
 	///	Suppression des anciens fichier si existant
@@ -149,7 +147,7 @@ bool ProjectManager::RunTetGenBoundaryMesh( wxString cmd, wxString cacheFolder,w
 bool ProjectManager::RunTetGenMaillage(param_TetGenMaillage& paramMaillage)
 {
 	wxDateTime timeDebOperation=wxDateTime::UNow();
-	wxString tetgenPath=ApplicationConfiguration::CONST_TETGEN_EXE_PATH;
+	wxString tetgenPath=ApplicationConfiguration::getApplicationFolder();
 	wxString tetgenExe=ApplicationConfiguration::CONST_TETGEN_EXE_FILENAME;
 	wxString cacheFolder=ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath+"temp"+wxFileName::GetPathSeparator();
 	if(!wxDirExists(cacheFolder))

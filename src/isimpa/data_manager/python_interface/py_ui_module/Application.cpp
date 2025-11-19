@@ -277,9 +277,9 @@ namespace uictrl {
         ProjectManager *self = GetManager();
         ProjectManager::t_param_load_model paramLoading;
         paramLoading.pathModel = path;
-        paramLoading.keepexistingfacegroup = keepexistingfacegroup;
-        paramLoading.docorrection = docorrection;
-        paramLoading.domeshsurface = domeshsurface;
+        paramLoading.keepExistingFaceGroup = keepexistingfacegroup;
+        paramLoading.doCorrection = docorrection;
+        paramLoading.doMeshSurface = domeshsurface;
         paramLoading.glueSurfaces = true;
         paramLoading.paramTetgen = paramTetgen;
         return self->LoadScene(paramLoading);

@@ -69,27 +69,15 @@ const wxString ApplicationConfiguration::CONST_USER_PREFERENCE_FILE_NAME="isimpa
 const wxString ApplicationConfiguration::CONST_RESOURCE_BITMAP_FOLDER=wxString("Bitmaps")+wxFileName::GetPathSeparator();
 const wxString ApplicationConfiguration::CONST_RESOURCE_ISO_FOLDER=wxString("iso")+wxFileName::GetPathSeparator();
 const wxString ApplicationConfiguration::CONST_RESOURCE_DIRECTIVITY_FOLDER = wxString("Directivities") + wxFileName::GetPathSeparator();
-
-
-const wxString ApplicationConfiguration::CONST_TETROOT_PATH=wxString("meshing")+wxFileName::GetPathSeparator();
-
 #ifndef _WIN32
 const wxString ApplicationConfiguration::CONST_TETGEN_EXE_FILENAME = "tetgen";
 #else
 const wxString ApplicationConfiguration::CONST_TETGEN_EXE_FILENAME = "tetgen.exe";
 #endif
 
-const wxString ApplicationConfiguration::CONST_TETGEN_EXE_PATH=ApplicationConfiguration::CONST_TETROOT_PATH+wxString("tetgen")+wxFileName::GetPathSeparator();
-const wxString ApplicationConfiguration::CONST_CORE_PATH=wxString("core") + wxFileName::GetPathSeparator();
-const wxString ApplicationConfiguration::CONST_PREPROCESS_EXE_PATH=ApplicationConfiguration::CONST_TETROOT_PATH+"tetgen"+wxFileName::GetPathSeparator();
 const wxString ApplicationConfiguration::CONST_STATIC_XML_FILE="appconst.xml";
-//const unsigned long ApplicationConfiguration::CONST_WORKINGLIMIT=1325329200;
-
-
 
 ApplicationConfiguration::t_App_Info ApplicationConfiguration::GLOBAL_CURRENT_APPLICATION_INFORMATIONS;
-
-
 
 ApplicationConfiguration::t_GLOBAL_VAR ApplicationConfiguration::GLOBAL_VAR={"", "current","current",false};
 
@@ -635,6 +623,10 @@ bool ApplicationConfiguration::IsIdDirectivityExist(int idDirectivity)
 
 wxString ApplicationConfiguration::getResourcesFolder() {
     return wxStandardPaths::Get().GetResourcesDir();
+}
+
+wxString ApplicationConfiguration::getApplicationFolder() {
+	return wxStandardPaths::Get().GetPluginsDir();
 }
 
 std::vector<ApplicationConfiguration::t_lstDirectiv> ApplicationConfiguration::GetLstDirectivity()

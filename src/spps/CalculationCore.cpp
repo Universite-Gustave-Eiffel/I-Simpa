@@ -33,7 +33,7 @@ void CalculationCore::SetNextParticleCollisionWithObstructionElement(CONF_PARTIC
 {
 	if(*configurationTool->FastGetConfigValue(Core_Configuration::IPROP_DO_CALC_ENCOMBREMENT) && configurationP.currentTetra->volumeEncombrement)
 	{
-		//Tirage aléatoire de la distance
+		//Tirage alï¿½atoire de la distance
 		configurationP.distanceToNextEncombrementEle=-configurationP.currentTetra->volumeEncombrement->encSpectrumProperty[configurationP.frequenceIndex].lambda*log((float)(1-GetRandValue()));
 	}
 }
@@ -48,10 +48,10 @@ bool CalculationCore::Run(CONF_PARTICULE configurationP)
 	reportTool->ParticuleGoToNextTetrahedra(configurationP,configurationP.currentTetra);
 	while(configurationP.stateParticule==PARTICULE_STATE_ALIVE && configurationP.pasCourant<confEnv.nbPasTemps)
 	{
-		//Test d'absorption atmosphérique
+		//Test d'absorption atmosphï¿½rique
 		if(*configurationTool->FastGetConfigValue(Core_Configuration::IPROP_DO_CALC_ABS_ATMO))
 		{
-			//Test de méthode de calcul
+			//Test de mï¿½thode de calcul
 			if(*configurationTool->FastGetConfigValue(Core_Configuration::IPROP_ENERGY_CALCULATION_METHOD))
 			{ //Energetique
 				configurationP.energie*=densite_proba_absorption_atmospherique;
@@ -60,10 +60,10 @@ bool CalculationCore::Run(CONF_PARTICULE configurationP)
 					configurationP.stateParticule=PARTICULE_STATE_ABS_ATMO;
 				}
 			}else{
-				//Aléatoire
+				//Alï¿½atoire
 				if(GetRandValue()>=densite_proba_absorption_atmospherique)
 				{
-					configurationP.energie=0;	// La particule est détruite
+					configurationP.energie=0;	// La particule est dï¿½truite
 					configurationP.stateParticule=PARTICULE_STATE_ABS_ATMO;
 				}
 			}
@@ -73,13 +73,13 @@ bool CalculationCore::Run(CONF_PARTICULE configurationP)
 			Movement(configurationP);	//Effectue un mouvement sur la distance restante
 
 
-		//Fin du pas de temps, la particule a effectué aucune ou plusieurs collisions
+		//Fin du pas de temps, la particule a effectuï¿½ aucune ou plusieurs collisions
 		if(configurationP.stateParticule==PARTICULE_STATE_ALIVE)
 		{
 			reportTool->RecordTimeStep(configurationP);
-			if(configurationP.currentTetra->z!=-1)								//Si le milieu n'est pas homogène
+			if(configurationP.currentTetra->z!=-1)								//Si le milieu n'est pas homogï¿½ne
 			{
-				OnChangeCelerite(configurationP,configurationP.currentTetra);	//On calcul le changement de direction dû au gradiant de célérité
+				OnChangeCelerite(configurationP,configurationP.currentTetra);	//On calcul le changement de direction dï¿½ au gradiant de cï¿½lï¿½ritï¿½
 				SetNextParticleCollision(configurationP);
 			}
 			configurationP.pasCourant++;
@@ -116,7 +116,7 @@ void CalculationCore::Movement(CONF_PARTICULE &configurationP)
 	decimal distanceSurLePas=configurationP.direction.length();
 	decimal celeriteLocal=distanceSurLePas/deltaT;
 	decimal faceDirection;
-	bool collisionResolution=true; //On test de nouveau la collision dans le pas de temps courant si cette valeur est à vrai
+	bool collisionResolution=true; //On test de nouveau la collision dans le pas de temps courant si cette valeur est ï¿½ vrai
 	int iteration=0;
 	decimal distanceCollision=0.f;
 	decimal distanceToTravel=0.f;
@@ -128,16 +128,16 @@ void CalculationCore::Movement(CONF_PARTICULE &configurationP)
 		distanceCollision=(configurationP.nextModelIntersection.collisionPosition-configurationP.position).length();
 		distanceToTravel=celeriteLocal*(deltaT-configurationP.elapsedTime);
 
-		//Test de collision avec un élément de l'encombrement entre la position de la particule et une face du tetrahèdre courant.
+		//Test de collision avec un ï¿½lï¿½ment de l'encombrement entre la position de la particule et une face du tetrahï¿½dre courant.
 		if(*configurationTool->FastGetConfigValue(Core_Configuration::IPROP_DO_CALC_ENCOMBREMENT) && distanceToTravel>=configurationP.distanceToNextEncombrementEle && distanceCollision>configurationP.distanceToNextEncombrementEle && configurationP.currentTetra->volumeEncombrement)
 		{
-			//Collision avec un élément virtuel de l'encombrement courant
+			//Collision avec un ï¿½lï¿½ment virtuel de l'encombrement courant
 
 			//Test d'absorption
 
 			if(*configurationTool->FastGetConfigValue(Core_Configuration::IPROP_ENERGY_CALCULATION_METHOD))
 			{
-				//Energétique
+				//Energï¿½tique
 				configurationP.energie*=(1-configurationP.currentTetra->volumeEncombrement->encSpectrumProperty[configurationP.frequenceIndex].alpha);
 				if(configurationP.energie<=configurationP.energie_epsilon)
 				{
@@ -145,18 +145,18 @@ void CalculationCore::Movement(CONF_PARTICULE &configurationP)
 					return;
 				}
 			}else{
-				//Aléatoire
+				//Alï¿½atoire
 				if( GetRandValue()<=configurationP.currentTetra->volumeEncombrement->encSpectrumProperty[configurationP.frequenceIndex].alpha)
 				{
-					//Absorbé
+					//Absorbï¿½
 					configurationP.energie=0.f;
 					configurationP.stateParticule=PARTICULE_STATE_ABS_ENCOMBREMENT;
 					return;
 				}
 			}
-			//N'est pas absorbé
+			//N'est pas absorbï¿½
 
-			//On incrémente le temps de parcourt entre la position avant et aprés collision avec l'encombrement virtuel
+			//On incrï¿½mente le temps de parcourt entre la position avant et aprï¿½s collision avec l'encombrement virtuel
 			configurationP.elapsedTime+=configurationP.distanceToNextEncombrementEle/celeriteLocal;
 			//On place la particule sur la position de collision
 			FreeParticleTranslation(configurationP,(configurationP.direction/configurationP.direction.length())*configurationP.distanceToNextEncombrementEle);
@@ -185,36 +185,36 @@ void CalculationCore::Movement(CONF_PARTICULE &configurationP)
 			SetNextParticleCollisionWithObstructionElement(configurationP);
 		}else if(distanceCollision<=distanceToTravel) // && configurationP.nextModelIntersection.idface!=-1
 		{
-			//Enregistrement de l'énergie passé à la paroi
+			//Enregistrement de l'ï¿½nergie passï¿½ ï¿½ la paroi
 			reportTool->ParticuleCollideWithSceneMesh(configurationP);
 
 
 			vec3 vecTranslation=configurationP.nextModelIntersection.collisionPosition-configurationP.position;
-			//On incrémente le temps de parcourt entre la position avant et aprés collision
+			//On incrï¿½mente le temps de parcourt entre la position avant et aprï¿½s collision
 			configurationP.elapsedTime+=(vecTranslation/configurationP.direction.length()).length()*deltaT;
 
 			//On place la particule sur la position de collision
 			FreeParticleTranslation(configurationP,vecTranslation);
 
-			// Récuperation de l'information de la face
+			// Rï¿½cuperation de l'information de la face
 			t_cFace* faceInfo=NULL;
 
 			#ifdef UTILISER_MAILLAGE_OPTIMISATION
 			faceInfo=configurationP.currentTetra->faces[configurationP.nextModelIntersection.idface].face_scene;
 
-			//test de passage d'un tétraèdre à un autre
+			//test de passage d'un tï¿½traï¿½dre ï¿½ un autre
 
-			//Vrai si la paroi est anormalement orientée
+			//Vrai si la paroi est anormalement orientï¿½e
 			bool doInvertNormal(false);
 			if(faceInfo)
 			{
 				faceDirection=configurationP.direction.dot(faceInfo->normal);
 				doInvertNormal=(faceDirection<=-BARELY_EPSILON);
 			}
-			//On traverse la paroi du tetrahedre si (pas de résolution de collision si)
-			//	- Ce n'est pas une surface du modèle
-			//  - (ou) Elle n'est pas orientée vers nous et le matériau n'affecte les surfaces sur une orientation
-			//  - (ou) Cette surface est un encombrement et qu'un autre volume nous attend derrière
+			//On traverse la paroi du tetrahedre si (pas de rï¿½solution de collision si)
+			//	- Ce n'est pas une surface du modï¿½le
+			//  - (ou) Elle n'est pas orientï¿½e vers nous et le matï¿½riau n'affecte les surfaces sur une orientation
+			//  - (ou) Cette surface est un encombrement et qu'un autre volume nous attend derriï¿½re
 			if(!faceInfo || ((faceInfo->faceEncombrement || (!(faceInfo->faceMaterial->doubleSidedMaterialEffect) && doInvertNormal)) && configurationP.currentTetra->voisins[configurationP.nextModelIntersection.idface]))
 			{
 				TraverserTetra(configurationP,collisionResolution);
@@ -222,7 +222,7 @@ void CalculationCore::Movement(CONF_PARTICULE &configurationP)
 			#else
 			faceInfo=&sceneMesh->pfaces[configurationP.nextModelIntersection.idface];
 			///////////////////////////////////
-			// Test de passage d'un milieu libre à un milieu encombré (et inversement)
+			// Test de passage d'un milieu libre ï¿½ un milieu encombrï¿½ (et inversement)
 			if(!faceInfo->faceEncombrement)
 			{
 			#endif
@@ -232,10 +232,10 @@ void CalculationCore::Movement(CONF_PARTICULE &configurationP)
 
 
 				bool transmission=false;
-				//Tirage aléatoire pour le test d'absorption
+				//Tirage alï¿½atoire pour le test d'absorption
 				if(*configurationTool->FastGetConfigValue(Core_Configuration::IPROP_DO_CALC_CHAMP_DIRECT))
 				{
-					//Particule absorbée
+					//Particule absorbï¿½e
 					if(configurationP.stateParticule==PARTICULE_STATE_ALIVE)
 						configurationP.stateParticule=PARTICULE_STATE_ABS_SURF;
 					configurationP.energie=0.f;
@@ -243,10 +243,10 @@ void CalculationCore::Movement(CONF_PARTICULE &configurationP)
 				}else{
 					if(*configurationTool->FastGetConfigValue(Core_Configuration::IPROP_ENERGY_CALCULATION_METHOD))
 					{
-						//Methode énérgétique, particule en collision avec la paroi
+						//Methode ï¿½nï¿½rgï¿½tique, particule en collision avec la paroi
 						//Particule courante = (1-alpha)*epsilon
-						//Si l'absorption est totale la particule est absorbée si tau=0
-						if(materialInfo->absorption==1) //Pas de duplication possible de la particule (forcement non réfléchie)
+						//Si l'absorption est totale la particule est absorbï¿½e si tau=0
+						if(materialInfo->absorption==1) //Pas de duplication possible de la particule (forcement non rï¿½flï¿½chie)
 						{
 							if(!materialInfo->dotransmission || !(*configurationTool->FastGetConfigValue(Core_Configuration::IPROP_DO_CALC_TRANSMISSION)))
 							{
@@ -259,7 +259,7 @@ void CalculationCore::Movement(CONF_PARTICULE &configurationP)
 								configurationP.energie*=materialInfo->tau;
 							}
 						}else{
-							if(materialInfo->absorption!=0) //Pas de duplication possible de la particule (forcement réfléchie)
+							if(materialInfo->absorption!=0) //Pas de duplication possible de la particule (forcement rï¿½flï¿½chie)
 							{
 								if(materialInfo->dotransmission && materialInfo->tau!=0 && configurationP.energie*materialInfo->tau>configurationP.energie_epsilon && (*configurationTool->FastGetConfigValue(Core_Configuration::IPROP_DO_CALC_TRANSMISSION)))
 								{
@@ -285,15 +285,15 @@ void CalculationCore::Movement(CONF_PARTICULE &configurationP)
 							} //else reflexion sans absorption
 						}
 					}else{
-						//Test d'absorption en aléatoire
+						//Test d'absorption en alï¿½atoire
 						if(GetRandValue()<=materialInfo->absorption)
 						{
-							// Particule non réfléchie
+							// Particule non rï¿½flï¿½chie
 							if((*configurationTool->FastGetConfigValue(Core_Configuration::IPROP_DO_CALC_TRANSMISSION)) && materialInfo->dotransmission && configurationP.currentTetra->voisins[configurationP.nextModelIntersection.idface] && GetRandValue()*materialInfo->absorption<=materialInfo->tau)
 							{
 								transmission=true;
 							}else{
-								//Particule absorbée
+								//Particule absorbï¿½e
 								if(configurationP.stateParticule==PARTICULE_STATE_ALIVE)
 									configurationP.stateParticule=PARTICULE_STATE_ABS_SURF;
 								configurationP.energie=0.;
@@ -313,7 +313,7 @@ void CalculationCore::Movement(CONF_PARTICULE &configurationP)
 				{
 					TraverserTetra(configurationP,collisionResolution);
 				}else{
-					// Choix de la méthode de reflexion en fonction de la valeur de diffusion
+					// Choix de la mï¿½thode de reflexion en fonction de la valeur de diffusion
 					vec3 nouvDirection;
 					if(materialInfo->diffusion==1 || GetRandValue()<materialInfo->diffusion)
 					{
@@ -326,7 +326,7 @@ void CalculationCore::Movement(CONF_PARTICULE &configurationP)
 					}else{
 						nouvDirection=ReflectionLaws::SpecularReflection(configurationP.direction,faceInfo->normal);
 					}
-					//Calcul de la nouvelle direction de réflexion (en reprenant la célérité de propagation du son)
+					//Calcul de la nouvelle direction de rï¿½flexion (en reprenant la cï¿½lï¿½ritï¿½ de propagation du son)
 					configurationP.direction=nouvDirection*distanceSurLePas;
 					collisionResolution=true;
 					SetNextParticleCollision(configurationP);
@@ -336,7 +336,7 @@ void CalculationCore::Movement(CONF_PARTICULE &configurationP)
 
 		if(iteration>1000)
 		{
-			//Elle est détruite et l'utilisateur en sera informé
+			//Elle est dï¿½truite et l'utilisateur en sera informï¿½
 			if(configurationP.stateParticule==PARTICULE_STATE_ALIVE)
 				configurationP.stateParticule=PARTICULE_STATE_LOOP;
 			configurationP.energie=0;
@@ -349,23 +349,23 @@ void CalculationCore::Movement(CONF_PARTICULE &configurationP)
 	}else{
 		//Il y a eu une ou plusieurs collisions sur le pas de temps courant
  		FreeParticleTranslation(configurationP,configurationP.direction*((deltaT-configurationP.elapsedTime)/deltaT));
-		configurationP.elapsedTime=0; //remise du compteur à 0
+		configurationP.elapsedTime=0; //remise du compteur ï¿½ 0
 	}
 }
 
 
 void CalculationCore::TraverserTetra(CONF_PARTICULE &configurationP, bool& collisionResolution)
 {
-	// Récuperation de l'information de la face
+	// Rï¿½cuperation de l'information de la face
 	t_cFace* faceInfo=NULL;
 	faceInfo=configurationP.currentTetra->faces[configurationP.nextModelIntersection.idface].face_scene;
-	//test de passage d'un tétraèdre à un autre
+	//test de passage d'un tï¿½traï¿½dre ï¿½ un autre
 	//PASSAGE DE TETRAEDRE
 
 	if(!configurationP.currentTetra->voisins[configurationP.nextModelIntersection.idface])
 	{
 		#ifdef _DEBUG
-		std::cout<<"La particule va sortir du perimètre du volume car une face du domaine est mal orientée ou le maillage est incorrect. La particule a été supprimée";
+		std::cout<<"La particule va sortir du perimï¿½tre du volume car une face du domaine est mal orientï¿½e ou le maillage est incorrect. La particule a ï¿½tï¿½ supprimï¿½e";
 		#endif
 		configurationP.energie=0;
 		if(configurationP.stateParticule==PARTICULE_STATE_ALIVE)
@@ -380,7 +380,7 @@ void CalculationCore::TraverserTetra(CONF_PARTICULE &configurationP, bool& colli
 		SetNextParticleCollision(configurationP);
 		collisionResolution=true; //On refait un test de collision avec les tetrahedres
 
-		//Si la particule passe d'un volume d'encombrement à un autre type de volume (faceInfo appartient à l'ancien volume)
+		//Si la particule passe d'un volume d'encombrement ï¿½ un autre type de volume (faceInfo appartient ï¿½ l'ancien volume)
 		if(*configurationTool->FastGetConfigValue(Core_Configuration::IPROP_DO_CALC_ENCOMBREMENT) && faceInfo && oldTetra->volumeEncombrement!=configurationP.currentTetra->volumeEncombrement)
 			SetNextParticleCollisionWithObstructionElement(configurationP);
 	}
@@ -423,26 +423,26 @@ entier_court  CalculationCore::GetTetraFaceCollision(CONF_PARTICULE &configurati
 	{
 
 		//////////////
-		// Test de passage a un autre tétraèdre
+		// Test de passage a un autre tï¿½traï¿½dre
 		TetraFaceTest(0);
 		TetraFaceTest(1);
 		TetraFaceTest(2);
 		TetraFaceTest(3);
 
-		//Dû à une marge d'erreur aucune collision sur les faces du tétrahèdre n'a pu être trouvé
-		// Cette marge d'erreur dépend du maillage du volumes et de la position d'origine des particules
+		//Dï¿½ ï¿½ une marge d'erreur aucune collision sur les faces du tï¿½trahï¿½dre n'a pu ï¿½tre trouvï¿½
+		// Cette marge d'erreur dï¿½pend du maillage du volumes et de la position d'origine des particules
 
 		//configurationP.outputToParticleFile=true; //debug
-		//On recherche parmis les tétraèdres voisins(ceux où la particule est également sur la surface du tétraèdre), lequel est capable de positionner la prochaine face
+		//On recherche parmis les tï¿½traï¿½dres voisins(ceux oï¿½ la particule est ï¿½galement sur la surface du tï¿½traï¿½dre), lequel est capable de positionner la prochaine face
 		//de collision.
-		//Si il est toujours impossible de positionner la particule, celle-ci sera détruite
+		//Si il est toujours impossible de positionner la particule, celle-ci sera dï¿½truite
 		t_Tetra* old_tetra=configurationP.currentTetra;
 		for(unsigned short idtet=0;idtet<4;idtet++)
 		{
 			if(old_tetra->voisins[idtet]!=NULL)
 			{
 				configurationP.currentTetra=old_tetra->voisins[idtet];
-				if(core_mathlib::DotInTetra(configurationP.position,this->sceneTetraMesh->nodes[configurationP.currentTetra->sommets.a],
+				if(DotInTetra(configurationP.position,this->sceneTetraMesh->nodes[configurationP.currentTetra->sommets.a],
 					this->sceneTetraMesh->nodes[configurationP.currentTetra->sommets.b],
 					this->sceneTetraMesh->nodes[configurationP.currentTetra->sommets.c],
 					this->sceneTetraMesh->nodes[configurationP.currentTetra->sommets.d]))
@@ -474,7 +474,7 @@ void CalculationCore::SetNextParticleCollision(CONF_PARTICULE &configurationP)
 			if(faceDist<minDist)
 			{
 				float dotVal=configurationP.direction.dot(sceneMesh->pfaces[collisionInfos.idface].normal);
-				if(dotVal>0) //si la face est orienté vers nous
+				if(dotVal>0) //si la face est orientï¿½ vers nous
 				{
 					configurationP.nextModelIntersection=collisionInfos;
 					minDist=faceDist;
