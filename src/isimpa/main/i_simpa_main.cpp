@@ -230,6 +230,8 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, wxGetTranslation("I
 
 	view_menu = new wxMenu;
 
+	view_menu->Append(ID_clearwindowmanager, wxGetTranslation("Reinitialize interface"));
+	view_menu->AppendSeparator();
 	view_face_menu = new wxMenu;
 	view_face_menu->Append(ID_flat, wxGetTranslation("Outside"),"Outside",wxITEM_RADIO);
 	view_face_menu->Append(ID_flat_inside, wxGetTranslation("Inside"),"Inside",wxITEM_RADIO);
@@ -279,28 +281,17 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, wxGetTranslation("I
 
 	view_menu->AppendSeparator();
 
-	// Copie de la fenêtre openGl dans un fichier ou dans le presse papier
-	wxMenu* affichage_copygl = new wxMenu;
-	//affichage_copygl->Append(ID_copygl_toclipboard, wxGetTranslation("Vers le presse papier"));
-	affichage_copygl->Append(ID_copygl_tofile, wxGetTranslation("To file"));
-	view_menu->Append(ID_fold_copygl, wxGetTranslation("Copy 3D View"),affichage_copygl);
-	//view_menu->AppendSeparator();
-	//view_menu->Append(ID_changeLanguage,wxGetTranslation("Changer la langue du logiciel"));
-
-
-
-	wxMenu* fenetre_menu = new wxMenu;
-	fenetre_menu->Append(ID_clearwindowmanager, wxGetTranslation("Reinitialize interface"));
 	wxMenu* window3D_menu_console = new wxMenu;
 	window3D_menu_console->Append(ID_Dock3Dwindow, wxGetTranslation("Set 3D View as main window"));
 	window3D_menu_console->Append(ID_Float3Dwindow, wxGetTranslation("Floating 3D View"));
-	fenetre_menu->AppendSubMenu(window3D_menu_console,wxGetTranslation("3D View"));
+	window3D_menu_console->Append(ID_copygl_tofile, wxGetTranslation("Copy 3D View"));
+	view_menu->AppendSubMenu(window3D_menu_console,wxGetTranslation("3D View"));
 	wxMenu* fenetre_menu_console = new wxMenu;
 	fenetre_menu_console->Append(ID_Console_SaveToFile, wxGetTranslation("Export to file"));
 	fenetre_menu_console->AppendSeparator();
 	fenetre_menu_console->Append(ID_Console_ClearLog, wxGetTranslation("Delete windows"));
-	fenetre_menu->AppendSeparator();
-	fenetre_menu->AppendSubMenu(fenetre_menu_console,wxGetTranslation("Console"));
+	view_menu->AppendSeparator();
+	view_menu->AppendSubMenu(fenetre_menu_console,wxGetTranslation("Console"));
 
 
 	wxMenu* aide_menu = new wxMenu;
@@ -319,7 +310,6 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, wxGetTranslation("I
 	mb->Append(simulation_menu, wxGetTranslation("Simulation"));
 	mb->Append(outils_menu, wxGetTranslation("Tools"));
 	mb->Append(view_menu, wxGetTranslation("View"));
-	mb->Append(fenetre_menu, wxGetTranslation("Window"));
 	mb->Append(aide_menu, wxGetTranslation("Help"));
 
     SetMenuBar(mb);
