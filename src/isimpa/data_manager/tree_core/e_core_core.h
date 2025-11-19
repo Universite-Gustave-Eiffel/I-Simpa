@@ -112,7 +112,8 @@ public:
 	}
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_RUN_CALCULATION, wxGetTranslation("Run calculation"),"./Bitmaps/popup_launch_calculation.png"));
+		const wxString resourceFolder=ApplicationConfiguration::getResourcesFolder();
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_RUN_CALCULATION, wxGetTranslation("Run calculation"),resourceFolder + "/Bitmaps/popup_launch_calculation.png"));
 		Element::OnRightClic(leMenu);
 	}
 	virtual wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)

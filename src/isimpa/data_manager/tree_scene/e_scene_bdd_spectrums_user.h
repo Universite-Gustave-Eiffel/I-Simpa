@@ -66,7 +66,9 @@ public:
 	
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_USERFREQ, wxGetTranslation("New spectrum"),"./Bitmaps/popup_new.png"));
+
+		const wxString resourceFolder=ApplicationConfiguration::getResourcesFolder();
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_USERFREQ, wxGetTranslation("New spectrum"),resourceFolder + "./Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 

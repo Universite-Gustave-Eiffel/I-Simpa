@@ -798,15 +798,12 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	wxDateTime timeDebCalculation=wxDateTime::UNow();
 
 	if(ext=="py" || ext=="pyc") {
-
 	#ifdef _WIN32
 		cmd = ApplicationConfiguration::getResourcesFolder() + "python.exe -u \"" + rootCorePath + exeName + "\" \"" + workingDir + xmlCoreFileName + "\"";
 	#else
 		cmd = "python -u \"" + rootCorePath + exeName + "\" \"" + workingDir + xmlCoreFileName + "\"";
 	#endif // _WIN32
-
-    }
-    else {
+    } else {
         cmd = rootCorePath + exeName + " \"" + workingDir + xmlCoreFileName + "\"";
     }
 

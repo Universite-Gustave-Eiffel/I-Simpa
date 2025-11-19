@@ -44,6 +44,8 @@
 #include "data_manager/python_interface/instanceManager.hpp"
 #include <wx/wupdlock.h>
 #include <wx/dataobj.h>
+
+#include "appconfig.h"
 #include "IHM/customItem/uimenuitem.hpp"
 #include "last_cpp_include.hpp"
 #include "manager/alphanum.hpp"
@@ -924,9 +926,10 @@ void Element::OnRightClic(wxMenu* leMenu)
 {
 	if(leMenu->GetMenuItemCount()>0)
 		leMenu->AppendSeparator();
-	//leMenu->Append(IDEVENT_COPIER, wxGetTranslation("Copier"));
-	leMenu->Append(GetMenuItem(leMenu,IDEVENT_COPIER, wxGetTranslation("Copy"),"./Bitmaps/popup_copy.png"));
-	wxMenuItem*	pasteMenu=leMenu->Append(GetMenuItem(leMenu,IDEVENT_COLLER, wxGetTranslation("Paste"),"./Bitmaps/popup_paste.png"));
+	const wxString resourceFolder=ApplicationConfiguration::getResourcesFolder();
+
+	leMenu->Append(GetMenuItem(leMenu,IDEVENT_COPIER, wxGetTranslation("Copy"),resourceFolder + "/Bitmaps/popup_copy.png"));
+	wxMenuItem*	pasteMenu=leMenu->Append(GetMenuItem(leMenu,IDEVENT_COLLER, wxGetTranslation("Paste"),resourceFolder + "/Bitmaps/popup_paste.png"));
 
 	wxTreeEvent renameEvent;
 	renameEvent.Allow();
@@ -938,7 +941,7 @@ void Element::OnRightClic(wxMenu* leMenu)
 		leMenu->Append(GetMenuItem(leMenu,IDEVENT_RENAME_ELEMENT, wxGetTranslation("Rename"),"./Bitmaps/popup_rename.png"));
 
 	if(this->elementInfo.userDestroyable)
-		leMenu->Append(GetMenuItem(leMenu,IDEVENT_DELETE_ELEMENT, wxGetTranslation("Delete"),"./Bitmaps/popup_delete.png"));
+		leMenu->Append(GetMenuItem(leMenu,IDEVENT_DELETE_ELEMENT, wxGetTranslation("Delete"),resourceFolder + "/Bitmaps/popup_delete.png"));
 
 	//Si l'element accepte des données provenant de l'exterieur, et si il y a du texte dans le presse papier
 	if(!insertPasteMenu || !wxTheClipboard->IsSupported(wxDataFormat(wxDF_TEXT)))
@@ -946,7 +949,7 @@ void Element::OnRightClic(wxMenu* leMenu)
 	if(this->IsContainsProperties())
 	{
 		leMenu->AppendSeparator();
-		leMenu->Append(GetMenuItem(leMenu,IDEVENT_GETPROPERTIES, wxGetTranslation("Properties"),"./Bitmaps/popup_show_property.png"));
+		leMenu->Append(GetMenuItem(leMenu,IDEVENT_GETPROPERTIES, wxGetTranslation("Properties"),resourceFolder + "/Bitmaps/popup_show_property.png"));
 	}
 }
 void Element::ForceBottomModified()

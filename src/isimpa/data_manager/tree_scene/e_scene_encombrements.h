@@ -103,8 +103,10 @@ public:
 
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_ENCOMBREMENT, wxGetTranslation("Define scene fitted zone "),"./Bitmaps/popup_new.png"));
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_ENCOMBREMENT_CUBOIDE, wxGetTranslation("Define rectangular fitted zone"),"./Bitmaps/popup_new.png"));
+
+		const wxString resourceFolder=ApplicationConfiguration::getResourcesFolder();
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_ENCOMBREMENT, wxGetTranslation("Define scene fitted zone "),resourceFolder + "/Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_ENCOMBREMENT_CUBOIDE, wxGetTranslation("Define rectangular fitted zone"),resourceFolder + "/Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 

@@ -138,8 +138,9 @@ public:
 	
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_USERMAT, wxGetTranslation("New material"),"./Bitmaps/popup_new.png"));
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_MATERIAL_GROUP, wxGetTranslation("Create group"),"./Bitmaps/popup_new.png"));
+		const wxString resourceFolder=ApplicationConfiguration::getResourcesFolder();
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_USERMAT, wxGetTranslation("New material"),resourceFolder + "/Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_MATERIAL_GROUP, wxGetTranslation("Create group"),resourceFolder + "/Bitmaps/popup_new.png"));
 		leMenu->AppendSeparator();		
 		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_IMPORT_MATERIAL, wxGetTranslation("Import from file")));
 		Element::OnRightClic(leMenu);

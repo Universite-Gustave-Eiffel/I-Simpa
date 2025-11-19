@@ -428,7 +428,7 @@ endif(OPENGL_GLU_FOUND)
 
 # Ask make to call python in order to use element.h to produce enum_def.cpp
 ADD_CUSTOM_COMMAND(
-  OUTPUT "enum_def.cpp"
+  OUTPUT "generated/enum_def.cpp"
   COMMENT "Building enum_def.cpp using python script"
   COMMAND "${Python3_EXECUTABLE}" ${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/python_interface/py_ui_module/generate_enum_def.py
   ARGS    "${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/element.h"
@@ -436,9 +436,23 @@ ADD_CUSTOM_COMMAND(
   )
 
 # Before using element_pywrap.cpp build enum_def.cpp
-set_property(SOURCE data_manager/python_interface/py_ui_module/element_pywrap.cpp APPEND PROPERTY OBJECT_DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/enum_def.cpp)
+set_property(SOURCE data_manager/python_interface/py_ui_module/element_pywrap.cpp APPEND PROPERTY OBJECT_DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/generated/enum_def.cpp)
 
 configure_file(data_manager/appconfig_version.cpp.in ${CMAKE_CURRENT_BINARY_DIR}/generated/appconfig_version.cpp )
+
+# List your resource files (recursively or with globbing)
+file(GLOB_RECURSE RESOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/resources/*")
+
+
+# Attach resource files to your executable with the correct bundle location
+foreach(RES_FILE ${RESOURCE_FILES})
+    # Get the path of the file relative to the resource root
+    file(RELATIVE_PATH RES_PATH "${CMAKE_CURRENT_SOURCE_DIR}/resources" "${RES_FILE}")
+    # Set the bundle location for this file, preserving directory structure under Resources/
+    get_filename_component(filename ${RES_PATH} NAME)
+    get_filename_component(dir ${RES_PATH} DIRECTORY)
+    set_source_files_properties(${RES_FILE} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources/${dir}")
+endforeach()
 
 # Set Properties->General->Configuration Type to Application
 # Creates isimpa with the listed sources
@@ -463,12 +477,18 @@ add_executable(isimpa WIN32 MACOSX_BUNDLE
     ${MAIN_SOURCES}
     ${MANAGER_SOURCES}
     ${ISIMPA_SOURCES}
-    ${CMAKE_CURRENT_BINARY_DIR}/enum_def.cpp
-	${CMAKE_CURRENT_BINARY_DIR}/generated/appconfig_version.cpp)
+    ${CMAKE_CURRENT_BINARY_DIR}/generated/enum_def.cpp
+	${CMAKE_CURRENT_BINARY_DIR}/generated/appconfig_version.cpp
+    ${RESOURCE_FILES})
 
 # Creates a folder "executables" and adds target
 # project (isimpa.vcproj) under it
 set_property(TARGET isimpa PROPERTY FOLDER "executables")
+
+set_target_properties(isimpa PROPERTIES MACOSX_BUNDLE_ICON_FILE "isimpa.icns")
+
+#set(ISIMPA_DEST_RESOURCE_FILES "")
+#add_isimpa_resources(isimpa "${CMAKE_CURRENT_SOURCE_DIR}/resources" "" ISIMPA_DEST_RESOURCE_FILES resources/*)
 
 # to convert .po files into .mo files
 FIND_PACKAGE(Gettext)
@@ -606,6 +626,27 @@ if(WIN32) # Check if we are on Windows
   endif()
 ENDIF()
 
+if(NOT APPLE)
+    # Set resource source and destination variables
+    set(RESOURCE_SRC_DIR "${CMAKE_SOURCE_DIR}/src/isimpa/resources")
+
+    if(WIN32)
+        set(RESOURCE_DEST_DIR "$<TARGET_FILE_DIR:isimpa>/resources")
+    else()
+        set(RESOURCE_DEST_DIR "$<TARGET_FILE_DIR:isimpa>/resources")
+    endif()
+
+    # Copy resources directory POST_BUILD
+    add_custom_command(
+            TARGET isimpa POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${RESOURCE_SRC_DIR}" "${RESOURCE_DEST_DIR}"
+            COMMENT "Copying resources to ${RESOURCE_DEST_DIR}"
+    )
+endif ()
+
+
+
 #--------------#
 #    INSTALL
 #--------------#
@@ -618,62 +659,62 @@ install(TARGETS isimpa
         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
 
-# Settings for packaging per platform
-if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    include(platform/windows/CMakeLists.txt)
-elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")
-    include(platform/linux/CMakeLists.txt)
-elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    include(platform/darwin/CMakeLists.txt)
-endif ()
+## Settings for packaging per platform
+#if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+#    include(platform/windows/CMakeLists.txt)
+#elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+#    include(platform/linux/CMakeLists.txt)
+#elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+#    include(platform/darwin/CMakeLists.txt)
+#endif ()
+#
 
+#
+#set_target_properties( isimpa PROPERTIES
+#        INSTALL_RPATH @executable_path/../Frameworks)
 
+#set_source_files_properties(${SHARED_STATIC_ASSETS}
+#        PROPERTIES MACOSX_PACKAGE_LOCATION ${CMAKE_INSTALL_DATADIR})
 
-set_target_properties( isimpa PROPERTIES
-        INSTALL_RPATH @executable_path/../Frameworks)
-
-set_source_files_properties(${SHARED_STATIC_ASSETS}
-        PROPERTIES MACOSX_PACKAGE_LOCATION ${CMAKE_INSTALL_DATADIR})
-
-set(ISIMPA_RESSOURCES ${PROJECT_SOURCE_DIR}/currentRelease)
-
-# Install configuration and documentation files
-if(IS_FLATPAK)
-    install(FILES
-            ${ISIMPA_RESSOURCES}/appconst.xml
-            DESTINATION ${ISIMPA_DATA_DIR})
-
-    install(FILES
-            ${ISIMPA_RESSOURCES}/license.html
-            DESTINATION ${ISIMPA_DOC_DIR})
-
-    install(FILES
-            isimpa.ico
-            DESTINATION ${ISIMPA_DATA_DIR})
-
-    install(FILES
-            isimpa.png
-            DESTINATION ${ISIMPA_ICON_DIR}
-            RENAME org.noise_planet.i-simpa.png)
-else()
-    install(FILES
-            ${ISIMPA_RESSOURCES}/appconst.xml
-            ${ISIMPA_RESSOURCES}/license.html
-            isimpa.ico
-            DESTINATION ${ISIMPA_DATA_DIR})
-endif()
+#set(ISIMPA_RESSOURCES ${PROJECT_SOURCE_DIR}/currentRelease)
+#
+## Install configuration and documentation files
+#if(IS_FLATPAK)
+#    install(FILES
+#            ${ISIMPA_RESSOURCES}/appconst.xml
+#            DESTINATION ${ISIMPA_DATA_DIR})
+#
+#    install(FILES
+#            ${ISIMPA_RESSOURCES}/license.html
+#            DESTINATION ${ISIMPA_DOC_DIR})
+#
+#    install(FILES
+#            isimpa.ico
+#            DESTINATION ${ISIMPA_DATA_DIR})
+#
+#    install(FILES
+#            isimpa.png
+#            DESTINATION ${ISIMPA_ICON_DIR}
+#            RENAME org.noise_planet.i-simpa.png)
+#else()
+#    install(FILES
+#            ${ISIMPA_RESSOURCES}/appconst.xml
+#            ${ISIMPA_RESSOURCES}/license.html
+#            isimpa.ico
+#            DESTINATION ${ISIMPA_DATA_DIR})
+#endif()
 
 # Target properties
-set_target_properties(isimpa PROPERTIES
-        INSTALL_RPATH @executable_path/../Frameworks
-        RESOURCE "${SHARED_STATIC_ASSETS}")
+#set_target_properties(isimpa PROPERTIES
+#        INSTALL_RPATH @executable_path/../Frameworks
+#        RESOURCE "${SHARED_STATIC_ASSETS}")
 
 # Install resource directories
-install(DIRECTORY
-        ${ISIMPA_RESSOURCES}/Bitmaps
-        ${ISIMPA_RESSOURCES}/doc
-        ${ISIMPA_RESSOURCES}/SystemScript
-        ${ISIMPA_RESSOURCES}/UserScript
-        ${ISIMPA_RESSOURCES}/Directivities
-        DESTINATION ${ISIMPA_DATA_DIR})
-
+#install(DIRECTORY
+#        ${ISIMPA_RESSOURCES}/Bitmaps
+#        ${ISIMPA_RESSOURCES}/doc
+#        ${ISIMPA_RESSOURCES}/SystemScript
+#        ${ISIMPA_RESSOURCES}/UserScript
+#        ${ISIMPA_RESSOURCES}/Directivities
+#        DESTINATION ${ISIMPA_DATA_DIR})
+#

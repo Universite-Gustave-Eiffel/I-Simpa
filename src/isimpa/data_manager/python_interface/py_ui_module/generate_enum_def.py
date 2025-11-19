@@ -215,8 +215,8 @@ for line in fichelement:
                 buffEnum += line
 
 cppFile = cppFile.replace("datestamp", time.ctime())
-doxyfichdest = open("enum_doxygen.h", 'wb')
-fichdest = open("enum_def.cpp", 'wb')
+doxyfichdest = open("generated/enum_doxygen.h", 'wb')
+fichdest = open("generated/enum_def.cpp", 'wb')
 fichdest.write(cppFile.encode("utf-8"))
 doxyfichdest.write(doxyhppFile.encode("utf-8"))
 fichdest.close()

@@ -217,8 +217,9 @@ public:
 
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SOURCE, wxGetTranslation("New source"),"./Bitmaps/popup_new.png"));
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SOURCE_GROUP, wxGetTranslation("New group"),"./Bitmaps/popup_new.png"));
+		const wxString resourceFolder=ApplicationConfiguration::getResourcesFolder();
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SOURCE, wxGetTranslation("New source"),resourceFolder + "/Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SOURCE_GROUP, wxGetTranslation("New group"),resourceFolder + "/Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 

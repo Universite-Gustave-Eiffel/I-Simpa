@@ -195,7 +195,8 @@ public:
 
 	void OnRightClic(wxMenu* leMenu)
 	{
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SURFACE_GROUP, wxGetTranslation("Add a group"),"./Bitmaps/popup_new.png"));
+		const wxString resourceFolder=ApplicationConfiguration::getResourcesFolder();
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SURFACE_GROUP, wxGetTranslation("Add a group"),resourceFolder + "/Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 };

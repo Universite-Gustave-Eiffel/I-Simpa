@@ -27,31 +27,3 @@ set_property(TARGET preprocess PROPERTY FOLDER "executables")
 
 # Properties->Linker->Input->Additional Dependencies
 target_link_libraries (preprocess lib_interface)
-
-#--------------#
-#    INSTALL
-#--------------#
-
-# Detect if building for Flatpak
-if(DEFINED ENV{FLATPAK_ID})
-    set(IS_FLATPAK TRUE)
-    message(STATUS "Building for Flatpak environment")
-else()
-    set(IS_FLATPAK FALSE)
-endif()
-
-# Set installation directories based on build type
-if(IS_FLATPAK)
-    set(ISIMPA_BIN_DIR bin)
-else()
-    set(ISIMPA_BIN_DIR .)
-endif()
-
-
-# Adds logic to INSTALL.vcproj to copy preprocess to destination directory
-install (TARGETS preprocess
-        RUNTIME DESTINATION ${ISIMPA_BIN_DIR}/meshing/tetgen)
-
-if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
-    install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION ${ISIMPA_BIN_DIR}/meshing/tetgen COMPONENT System )
-endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
