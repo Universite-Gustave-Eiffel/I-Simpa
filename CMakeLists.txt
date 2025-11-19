@@ -12,9 +12,6 @@ project (isimpa VERSION 1.3.4)
 include(cmake/CPM.cmake)
 # download boost source and compile using CPM
 include(cmake/SetupBoost.cmake)
-# macro to copy resources at build and install time
-include(cmake/CopyResources.cmake)
-
 
 # convert path of a .lib file into a .dll file
 # findboost does not store .dll locations
