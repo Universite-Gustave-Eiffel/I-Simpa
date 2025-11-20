@@ -74,19 +74,21 @@ set(PYTHON_SITE_PACKAGES "${CMAKE_INSTALL_PREFIX}/lib/python${Python3_VERSION_MA
 install (TARGETS ${SWIG_MODULE_libsimpa_REAL_NAME}
         LIBRARY DESTINATION ${PYTHON_SITE_PACKAGES}/libsimpa/
         RUNTIME DESTINATION ${PYTHON_SITE_PACKAGES}/libsimpa/
+        COMPONENT libsimpa
 )
 
 if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
-    install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS}
+    install(PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS}
             DESTINATION ${PYTHON_SITE_PACKAGES}/libsimpa
-            COMPONENT System )
+            COMPONENT libsimpa_dependencies )
 endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
 
 # Install Python files
 install (FILES
         ${ISIMPA_RESSOURCES}/libsimpa/__init__.py
         ${CMAKE_CURRENT_BINARY_DIR}/libsimpa.py
-        DESTINATION ${PYTHON_SITE_PACKAGES}/libsimpa/)
+        DESTINATION ${PYTHON_SITE_PACKAGES}/libsimpa/
+        COMPONENT libsimpa )
 
 
 
@@ -104,7 +106,8 @@ if(WIN32)
     file(RENAME \"${PYTHON_SITE_PACKAGES}/libsimpa/_libsimpa.pyd\" \"${PYTHON_SITE_PACKAGES}/libsimpa/_libsimpa.exe\")
     fixup_bundle(\"${PYTHON_SITE_PACKAGES}/libsimpa/_libsimpa.exe\" \"\"   \"${DIRS}\")
     file(RENAME \"${PYTHON_SITE_PACKAGES}/libsimpa/_libsimpa.exe\" \"${PYTHON_SITE_PACKAGES}/libsimpa/_libsimpa.pyd\")
-")
+"
+    COMPONENT libsimpa_dependencies)
 endif()
 
 #------------#
