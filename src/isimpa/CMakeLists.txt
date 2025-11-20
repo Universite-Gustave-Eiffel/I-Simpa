@@ -2,7 +2,7 @@ include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
 include(GNUInstallDirs)
 set(CMAKE_INSTALL_MFC_LIBRARIES TRUE )
 set(CMAKE_INSTALL_UCRT_LIBRARIES TRUE )
-
+include(InstallRequiredSystemLibraries)
 string(TIMESTAMP BUILD_DATE "%Y-%m-%dT%H:%M:%S")
 
 # Detect if building for Flatpak
@@ -432,19 +432,21 @@ set_property(SOURCE data_manager/python_interface/py_ui_module/element_pywrap.cp
 
 configure_file(data_manager/appconfig_version.cpp.in ${CMAKE_CURRENT_BINARY_DIR}/generated/appconfig_version.cpp )
 
-# List your resource files (recursively or with globbing)
-file(GLOB_RECURSE RESOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/resources/*")
+if(APPLE)
+    # List your resource files (recursively or with globbing)
+    file(GLOB_RECURSE RESOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/resources/*")
 
 
-# Attach resource files to your executable with the correct bundle location
-foreach(RES_FILE ${RESOURCE_FILES})
-    # Get the path of the file relative to the resource root
-    file(RELATIVE_PATH RES_PATH "${CMAKE_CURRENT_SOURCE_DIR}/resources" "${RES_FILE}")
-    # Set the bundle location for this file, preserving directory structure under Resources/
-    get_filename_component(filename ${RES_PATH} NAME)
-    get_filename_component(dir ${RES_PATH} DIRECTORY)
-    set_source_files_properties(${RES_FILE} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources/${dir}")
-endforeach()
+    # Attach resource files to your executable with the correct bundle location
+    foreach(RES_FILE ${RESOURCE_FILES})
+        # Get the path of the file relative to the resource root
+        file(RELATIVE_PATH RES_PATH "${CMAKE_CURRENT_SOURCE_DIR}/resources" "${RES_FILE}")
+        # Set the bundle location for this file, preserving directory structure under Resources/
+        get_filename_component(filename ${RES_PATH} NAME)
+        get_filename_component(dir ${RES_PATH} DIRECTORY)
+        set_source_files_properties(${RES_FILE} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources/${dir}")
+    endforeach()
+endif ()
 
 # Set Properties->General->Configuration Type to Application
 # Creates isimpa with the listed sources
@@ -620,10 +622,10 @@ ENDIF()
 
 if(NOT APPLE)
     # Set resource source and destination variables
-    set(RESOURCE_SRC_DIR "${CMAKE_SOURCE_DIR}/src/isimpa/resources")
+    set(RESOURCE_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/resources")
 
     if(WIN32)
-        set(RESOURCE_DEST_DIR "$<TARGET_FILE_DIR:isimpa>/resources")
+        set(RESOURCE_DEST_DIR "$<TARGET_FILE_DIR:isimpa>")
     else()
         set(RESOURCE_DEST_DIR "$<TARGET_FILE_DIR:isimpa>/resources")
     endif()
@@ -635,78 +637,43 @@ if(NOT APPLE)
             "${RESOURCE_SRC_DIR}" "${RESOURCE_DEST_DIR}"
             COMMENT "Copying resources to ${RESOURCE_DEST_DIR}"
     )
+
+    if(WIN32)
+
+        # Copy python libraries
+        get_filename_component(PYTHON_ROOT_FOLDER ${Python3_EXECUTABLE} PATH)
+
+        # Copy directories after build
+        add_custom_command(TARGET isimpa POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E copy_directory
+                "${PYTHON_ROOT_FOLDER}/Lib"
+                "$<TARGET_FILE_DIR:isimpa>/Lib"
+                COMMAND ${CMAKE_COMMAND} -E copy_directory
+                "${PYTHON_ROOT_FOLDER}/DLLs"
+                "$<TARGET_FILE_DIR:isimpa>/DLLs"
+                COMMAND ${CMAKE_COMMAND} -E copy
+                "${PYTHON_ROOT_FOLDER}/python.exe"
+                "$<TARGET_FILE_DIR:isimpa>/python.exe"
+        )
+
+        # Copy all .dll files from python root folder after build
+        file(GLOB PYTHON_DLL_FILES "${PYTHON_ROOT_FOLDER}/*.dll")
+
+        foreach(dll ${PYTHON_DLL_FILES})
+            add_custom_command(TARGET isimpa POST_BUILD
+                    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    "${dll}"
+                    "$<TARGET_FILE_DIR:isimpa>/"
+            )
+        endforeach()
+
+        # Optionally copy runtime libraries after build
+        if(CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS)
+            add_custom_command(TARGET isimpa POST_BUILD
+                    COMMAND ${CMAKE_COMMAND} -E copy
+                    ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS}
+                    "$<TARGET_FILE_DIR:isimpa>/"
+            )
+        endif()
+    endif ()
 endif ()
-
-
-
-#--------------#
-#    INSTALL
-#--------------#
-
-# Install executable
-install(TARGETS isimpa
-        BUNDLE DESTINATION .
-        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
-
-
-## Settings for packaging per platform
-#if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-#    include(platform/windows/CMakeLists.txt)
-#elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")
-#    include(platform/linux/CMakeLists.txt)
-#elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-#    include(platform/darwin/CMakeLists.txt)
-#endif ()
-#
-
-#
-#set_target_properties( isimpa PROPERTIES
-#        INSTALL_RPATH @executable_path/../Frameworks)
-
-#set_source_files_properties(${SHARED_STATIC_ASSETS}
-#        PROPERTIES MACOSX_PACKAGE_LOCATION ${CMAKE_INSTALL_DATADIR})
-
-#set(ISIMPA_RESSOURCES ${PROJECT_SOURCE_DIR}/currentRelease)
-#
-## Install configuration and documentation files
-#if(IS_FLATPAK)
-#    install(FILES
-#            ${ISIMPA_RESSOURCES}/appconst.xml
-#            DESTINATION ${ISIMPA_DATA_DIR})
-#
-#    install(FILES
-#            ${ISIMPA_RESSOURCES}/license.html
-#            DESTINATION ${ISIMPA_DOC_DIR})
-#
-#    install(FILES
-#            isimpa.ico
-#            DESTINATION ${ISIMPA_DATA_DIR})
-#
-#    install(FILES
-#            isimpa.png
-#            DESTINATION ${ISIMPA_ICON_DIR}
-#            RENAME org.noise_planet.i-simpa.png)
-#else()
-#    install(FILES
-#            ${ISIMPA_RESSOURCES}/appconst.xml
-#            ${ISIMPA_RESSOURCES}/license.html
-#            isimpa.ico
-#            DESTINATION ${ISIMPA_DATA_DIR})
-#endif()
-
-# Target properties
-#set_target_properties(isimpa PROPERTIES
-#        INSTALL_RPATH @executable_path/../Frameworks
-#        RESOURCE "${SHARED_STATIC_ASSETS}")
-
-# Install resource directories
-#install(DIRECTORY
-#        ${ISIMPA_RESSOURCES}/Bitmaps
-#        ${ISIMPA_RESSOURCES}/doc
-#        ${ISIMPA_RESSOURCES}/SystemScript
-#        ${ISIMPA_RESSOURCES}/UserScript
-#        ${ISIMPA_RESSOURCES}/Directivities
-#        DESTINATION ${ISIMPA_DATA_DIR})
-#
