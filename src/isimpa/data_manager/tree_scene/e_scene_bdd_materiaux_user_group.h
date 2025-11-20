@@ -25,6 +25,8 @@
 *
 * ----------------------------------------------------------------------*/
 
+#include <utility>
+
 #include "first_header_include.hpp"
 
 #include "data_manager/tree_scene/e_scene_bdd_materiaux_user_materiau.h"
@@ -114,25 +116,23 @@ public:
 		wxGetTranslation("Group");
 		if(noeudCourant!=NULL)
 		{
-			wxXmlNode* currentChild;
-			InsertChildrens(noeudCourant->GetChildren());
-
+		    InsertChildrens(noeudCourant->GetChildren());
 		}
 	}
 
 
-	E_Scene_Bdd_Materiaux_User_Group( Element* parent,wxString nom="Group")
-		:Element(parent,nom,Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_USER_GROUP)
+	explicit E_Scene_Bdd_Materiaux_User_Group( Element* parent,wxString nom="Group")
+		:Element(parent, nom, ELEMENT_TYPE_SCENE_BDD_MATERIAUX_USER_GROUP)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_USER_MATERIALS_OPEN);
 		SetIcon(GRAPH_STATE_NORMAL,GRAPH_USER_MATERIALS_CLOSE);
 		this->elementInfo.userDestroyable=true;
 		insertPasteMenu=true;
-		this->Modified(this);
+		this->Element::Modified(this);
 	}
 
 
-	void OnPaste(wxXmlNode* nodeElement)
+	void OnPaste(wxXmlNode* nodeElement) override
 	{
 		SetUniqueMaterialsId(nodeElement);
 		SetCopyMaterialsName(nodeElement);
@@ -151,15 +151,15 @@ public:
 		}
 
 	}
-	void OnEndLabelEdit(wxTreeEvent& treeEvent)
+	void OnEndLabelEdit(wxTreeEvent& treeEvent) override
 	{
-		if(treeEvent.GetLabel()!="")
+		if(!treeEvent.GetLabel().empty())
 		{
 			this->elementInfo.libelleElement=treeEvent.GetLabel();
 			this->Modified(this); //Indique le l'element a été modifié
 		}
 	}
-	void OnBeginLabelEdit(wxTreeEvent& treeEvent)
+	void OnBeginLabelEdit(wxTreeEvent& treeEvent) override
 	{
 		//On autorise l'edition en surchargeant l'événement
 	}
@@ -172,7 +172,7 @@ public:
 	 */
 	E_Scene_Bdd_Materiaux_User_Materiau* AppendUserMateriau(wxString name="")
 	{
-		E_Scene_Bdd_Materiaux_User_Materiau* nouvFils=new E_Scene_Bdd_Materiaux_User_Materiau(this,name);
+		auto* nouvFils=new E_Scene_Bdd_Materiaux_User_Materiau(this,std::move(name));
 		this->AppendFils(nouvFils);
 		return nouvFils;
 	}

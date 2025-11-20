@@ -81,7 +81,7 @@ public:
 		}
 	}
 	
-	E_Scene_Bdd_Materiaux_User_Materiau( Element* parent, wxString name=wxTRANSLATE("New material"))
+	explicit E_Scene_Bdd_Materiaux_User_Materiau( Element* parent, const wxString& name=wxTRANSLATE("New material"))
 		:Element(parent,name,Element::ELEMENT_TYPE_SCENE_BDD_MATERIAUX_USER_MATERIAU)
 	{
 		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_MATERIAL_OPEN);
@@ -93,7 +93,7 @@ public:
 		this->AppendFils( new E_Scene_Bdd_Materiaux_RenderMaterial(this));
 	}
 
-	wxXmlNode* SaveXMLCoreDoc(wxXmlNode* NoeudParent)
+	wxXmlNode* SaveXMLCoreDoc(wxXmlNode* NoeudParent) override
 	{
 		//Traitement spécial car seulement les matériaux utilisés sont exportés vers le code de calcul
 		//On utilise le noeud XML créé par le spectre comme noeud pour les éléments fils (autre que le spectre)

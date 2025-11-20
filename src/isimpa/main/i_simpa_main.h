@@ -343,23 +343,12 @@ public:
 	 *	Pour faire appel à cette méthode n'importe où dans le logiciel, utiliser : wxLogMessage()
 	 *	Se référer au document développeur de wxWidgets
 	*/
-	void DoLogRecord(wxLogLevel level,
-		const wxString& szString,
-		const wxLogRecordInfo& info)
-	{
-		wxString message(szString);
-
+	void DoLogTextAtLevel(wxLogLevel level, const wxString& szString) override {
 
 		switch ( level ) {
 			case wxLOG_FatalError:
 				DoLogText(wxString(wxGetTranslation("Fatal error: ")) + szString, wxRED);
 				DoLogText(wxGetTranslation("Program aborted"), wxRED);
-				Flush();
-		#ifdef __WXWINCE__
-				ExitThread(3);
-		#else
-				abort();
-		#endif
 				break;
 
 			case wxLOG_Error:
@@ -393,11 +382,10 @@ public:
 		}
 
 	}
-	void DoLogText(const wxChar *szString, const wxColour* msgColor)
+
+        static void DoLogText(const wxString& szString, const wxColour* msgColor)
 	{
-		wxString str;
-		TimeStamp(&str);
-		projetCourant->AddLogMessage(str + wxString(szString) +   _T("\n"),msgColor);
+	  projetCourant->AddLogMessage(szString + _T("\n"),msgColor);
 	}
 };
 
@@ -526,11 +514,7 @@ class ISimpaApp : public wxApp
 
 			//Surcharge la classe gestionnaire de log
 			delete wxLog::SetActiveTarget(new CustomLog());
-			/*
-			wxLogTextCtrl *logWindow = new wxLogTextCtrl(&(*(frame->logWindow)));
-			logWindow->SetVerbose(true);
-			delete wxLog::SetActiveTarget(logWindow);
-			*/
+		        wxLog::SetTimestamp("%H:%M:%S.%l ");
 
 			//Active la reception des fichiers par drag&drop
 			//DragAcceptFiles((HWND)frame->GetHWND(),true); //msw only

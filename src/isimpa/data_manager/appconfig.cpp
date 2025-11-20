@@ -626,7 +626,7 @@ wxString ApplicationConfiguration::getResourcesFolder() {
 }
 
 wxString ApplicationConfiguration::getApplicationFolder() {
-	return wxStandardPaths::Get().GetPluginsDir();
+	return wxStandardPaths::Get().GetPluginsDir() + st_path_separator();
 }
 
 std::vector<ApplicationConfiguration::t_lstDirectiv> ApplicationConfiguration::GetLstDirectivity()

@@ -678,16 +678,46 @@ if(NOT APPLE)
             )
         endif()
 
-        set(LIBSIMPA_BUILD_DIR "$<TARGET_FILE_DIR:libsimpa>")
+        add_custom_command(TARGET isimpa POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E copy_directory
+                "$<TARGET_FILE_DIR:libsimpa>"
+                "$<TARGET_FILE_DIR:isimpa>/libsimpa"
+                COMMENT "Copying libsimpa to isimpa binary directory"
+        )
 
         add_custom_command(TARGET isimpa POST_BUILD
                 COMMAND ${CMAKE_COMMAND} -E copy_directory
-                "${LIBSIMPA_BUILD_DIR}"
-                "$<TARGET_FILE_DIR:isimpa>/libsimpa"
+                "$<TARGET_FILE_DIR:spps>"
+                "$<TARGET_FILE_DIR:isimpa>"
+                COMMENT "Copying spps to isimpa binary directory"
+        )
+
+        add_custom_command(TARGET isimpa POST_BUILD
                 COMMAND ${CMAKE_COMMAND} -E copy_directory
-                "${LIBSIMPA_BUILD_DIR}"
-                "$<TARGET_FILE_DIR:isimpa>/libsimpa"
-                COMMENT "Copying libsimpa to isimpa binary directory"
+                "$<TARGET_FILE_DIR:vmr>"
+                "$<TARGET_FILE_DIR:isimpa>"
+                COMMENT "Copying vmr to isimpa binary directory"
+        )
+
+        add_custom_command(TARGET isimpa POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E copy_directory
+                "$<TARGET_FILE_DIR:tetgen>"
+                "$<TARGET_FILE_DIR:isimpa>"
+                COMMENT "Copying tetgen to isimpa binary directory"
+        )
+
+        add_custom_command(TARGET isimpa POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E copy_directory
+                "$<TARGET_FILE_DIR:classicalTheory>"
+                "$<TARGET_FILE_DIR:isimpa>"
+                COMMENT "Copying classicalTheory to isimpa binary directory"
+        )
+
+        add_custom_command(TARGET isimpa POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E copy_directory
+                "$<TARGET_FILE_DIR:preprocess>"
+                "$<TARGET_FILE_DIR:isimpa>"
+                COMMENT "Copying preprocess to isimpa binary directory"
         )
     endif ()
 endif ()

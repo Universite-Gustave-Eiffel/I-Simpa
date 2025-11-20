@@ -163,17 +163,18 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, wxGetTranslation("I
 	//m_mgr.SetFrame(this);
 	m_mgr.SetManagedWindow(this);
 	wxIcon ico_ui;
-    #if not defined(__APPLE__)
-		ico_ui.LoadFile(resourceFolder + "/isimpa.ico",wxBITMAP_TYPE_ICO)
+        #ifndef __APPLE__
+		ico_ui.LoadFile(resourceFolder + "/isimpa.ico",wxBITMAP_TYPE_ICO);
 	#else
 		ico_ui.LoadFile(resourceFolder + "/isimpa.icns",wxBITMAP_TYPE_ICON);
 	#endif
 
-	if(ico_ui.IsOk())
-		SetIcon(ico_ui);
-	else
-		wxLogError(wxGetTranslation("Can not read the I-SIMPA icon"));
-	//Creation des menus
+        if (ico_ui.IsOk()) {
+          SetIcon(ico_ui);
+        } else {
+          wxLogError(wxGetTranslation("Can not read the I-SIMPA icon"));
+        }
+        // Creation des menus
 
 
 	wxMenuBar* mb = new wxMenuBar;
@@ -911,7 +912,6 @@ void MainUiFrame::OnCreateModel(wxCommandEvent & event)
 		{
 			std::vector<wxString> valeursChamps;
 			textDialog.GetValues(valeursChamps);
-			 valeursChamps[0];
 
 			modelWidth=Convertor::ToFloat(valeursChamps[0]);
 			if(modelWidth!=0)
