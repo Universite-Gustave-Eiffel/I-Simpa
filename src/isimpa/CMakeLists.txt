@@ -118,14 +118,6 @@ set(3DENGINE_TOOLS_SOURCES
 set(GL_SOURCES
     GL/opengl_inc.h)
 
-if(WIN32) # Check if we are on Windows
-  set(WIN32_SOURCES
-	resources/isimpa.rc
-      )
-else()
-  set(WIN32_SOURCES )
-endif()
-
 set(IHM_SOURCES
     IHM/ComboTreeCtrl.cpp
     IHM/ComboTreeCtrl.h
