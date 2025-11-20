@@ -52,11 +52,16 @@ target_link_libraries(${SWIG_MODULE_libsimpa_REAL_NAME} Boost::python Boost::thr
 # Creates a folder "libraries" and adds target project (lib_interface.vcproj) under it
 set_property(TARGET ${SWIG_MODULE_libsimpa_REAL_NAME} PROPERTY FOLDER "libraries")
 
+add_custom_command(
+        TARGET libsimpa POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        ${CMAKE_CURRENT_BINARY_DIR}/libsimpa.py
+        ${CMAKE_CURRENT_BINARY_DIR}/__init__.py
+        COMMENT "Renaming libsimpa.py to __init__.py for Python package"
+)
 #--------------#
 #    INSTALL
 #--------------#
-
-set(ISIMPA_RESSOURCES ${PROJECT_SOURCE_DIR}/currentRelease)
 
 # Detect if building for Flatpak
 if(DEFINED ENV{FLATPAK_ID})
@@ -85,8 +90,7 @@ endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
 
 # Install Python files
 install (FILES
-        ${ISIMPA_RESSOURCES}/libsimpa/__init__.py
-        ${CMAKE_CURRENT_BINARY_DIR}/libsimpa.py
+        ${CMAKE_CURRENT_SOURCE_DIR}/__init__.py
         DESTINATION ${PYTHON_SITE_PACKAGES}/libsimpa/
         COMPONENT libsimpa )
 

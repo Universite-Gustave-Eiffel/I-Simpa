@@ -444,7 +444,9 @@ if(APPLE)
         # Set the bundle location for this file, preserving directory structure under Resources/
         get_filename_component(filename ${RES_PATH} NAME)
         get_filename_component(dir ${RES_PATH} DIRECTORY)
-        set_source_files_properties(${RES_FILE} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources/${dir}")
+        if(NOT filename STREQUAL "CMakeLists.txt")
+            set_source_files_properties(${RES_FILE} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources/${dir}")
+        endif ()
     endforeach()
 endif ()
 
@@ -633,7 +635,7 @@ if(NOT APPLE)
     # Copy resources directory POST_BUILD
     add_custom_command(
             TARGET isimpa POST_BUILD
-            COMMAND ${CMAKE_COMMAND} -E copy_directory
+            COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different
             "${RESOURCE_SRC_DIR}" "${RESOURCE_DEST_DIR}"
             COMMENT "Copying resources to ${RESOURCE_DEST_DIR}"
     )
@@ -675,5 +677,17 @@ if(NOT APPLE)
                     "$<TARGET_FILE_DIR:isimpa>/"
             )
         endif()
+
+        set(LIBSIMPA_BUILD_DIR "$<TARGET_FILE_DIR:libsimpa>")
+
+        add_custom_command(TARGET isimpa POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E copy_directory
+                "${LIBSIMPA_BUILD_DIR}"
+                "$<TARGET_FILE_DIR:isimpa>/libsimpa"
+                COMMAND ${CMAKE_COMMAND} -E copy_directory
+                "${LIBSIMPA_BUILD_DIR}"
+                "$<TARGET_FILE_DIR:isimpa>/libsimpa"
+                COMMENT "Copying libsimpa to isimpa binary directory"
+        )
     endif ()
 endif ()

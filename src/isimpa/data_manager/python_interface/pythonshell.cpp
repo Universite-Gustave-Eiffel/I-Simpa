@@ -32,6 +32,8 @@
 #include "last_cpp_include.hpp"
 #include <stdio.h>
 
+#include "data_manager/e_data_file.h"
+
 #ifdef USE_PYTHON
 
 using namespace boost::python;
@@ -371,34 +373,30 @@ bool PythonShell::ins_pyelement(boost::python::object& py_el,const wxInt32& wxid
 
 	return isOk;
 }
-void PythonShell::run_startupscript(const wxString& scriptPath,const wxString& pyfilename)
-{
-	//recherche des fichier se nommant __ui_startup__.py
-	wxArrayString files_found;
-	if(!wxDirExists(scriptPath))
-		wxMkDir(scriptPath,0777);
-	if(wxDir::GetAllFiles(scriptPath,&files_found,pyfilename))
-	{
-		for(size_t ifile=0;ifile<files_found.size();ifile++)
-		{
 
-			wxString scriptFile=files_found[ifile];
-			try
-			{
-
-				boost::python::exec_file(WXSTRINGTOCHARPTR(scriptFile),main_namespace,main_namespace);
-
-			}catch( error_already_set )
-			{
-				if (PyErr_Occurred())
-				{
-					PyErr_Print();
-				}
-			}
-			if(ShowMsgStack())
-			   m_py_ctrl->AddPrompt(promptNewCmd);
-		}
-	}
+void PythonShell::run_startupscript(const wxString &scriptPath,
+                                    const wxString &pyfilename) {
+  // recherche des fichier se nommant __ui_startup__.py
+  wxArrayString files_found;
+  if (!wxDirExists(scriptPath))
+    wxMkDir(scriptPath, 0777);
+  if (wxDir::GetAllFiles(scriptPath, &files_found, pyfilename)) {
+    for (const auto &scriptFile : files_found) {
+      wxFileName fn(scriptFile);
+      wxString unixPath = fn.GetFullPath(wxPATH_UNIX);
+      try {
+        // cannot run exec_file, got stack issue on windows
+        exec("exec(open(\"" + unixPath + "\").read())", main_namespace,
+             main_namespace);
+      } catch (error_already_set) {
+        if (PyErr_Occurred()) {
+          PyErr_Print();
+        }
+      }
+      if (ShowMsgStack())
+        m_py_ctrl->AddPrompt(promptNewCmd);
+    }
+  }
 }
 
 #endif
