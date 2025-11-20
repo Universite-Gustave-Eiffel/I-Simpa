@@ -27,7 +27,8 @@ else()
     set(ISIMPA_DOC_DIR "${CMAKE_INSTALL_DOCDIR}")
 endif()
 
-MACRO(ADDMULTIPLE_LANG curdir installdir)
+MACRO(ADDMULTIPLE_LANG curdir installdir resources)
+  get_filename_component(target_name "${CMAKE_CURRENT_SOURCE_DIR}" NAME)
   # MESSAGE(STATUS "ADDMULTIPLE_LANG ${curdir}")
   FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)
   FOREACH(child ${children})
@@ -43,10 +44,23 @@ MACRO(ADDMULTIPLE_LANG curdir installdir)
                 ALL
                 PO_FILES ${curdir}/${child}
         )
-        install(FILES       "${CMAKE_CURRENT_BINARY_DIR}/${lang_name}.gmo"
-                DESTINATION "${installdir}/${lang_name}/LC_MESSAGES"
-                RENAME      "isimpa.mo"
+        # Add a custom command to move the .gmo file after it is built
+        set(gmo_file "${CMAKE_CURRENT_BINARY_DIR}/${lang_name}.gmo")
+        set(mo_file "${installdir}/${lang_name}/LC_MESSAGES/isimpa.mo")
+        add_custom_command(
+                OUTPUT "${mo_file}"
+                COMMAND ${CMAKE_COMMAND} -E make_directory "${installdir}/${lang_name}/LC_MESSAGES"
+                COMMAND ${CMAKE_COMMAND} -E rename
+                "${gmo_file}"
+                "${mo_file}"
+                DEPENDS "${gmo_file}"
+                COMMENT "Moving ${lang_name}.gmo to ${mo_file}"
         )
+        list(APPEND resources "${mo_file}")
+#        install(FILES       "${CMAKE_CURRENT_BINARY_DIR}/${lang_name}.gmo"
+#                DESTINATION "${installdir}/${lang_name}/LC_MESSAGES"
+#                RENAME      "isimpa.mo"
+#        )
     ENDIF()
   ENDFOREACH()
 ENDMACRO()
@@ -432,6 +446,8 @@ set_property(SOURCE data_manager/python_interface/py_ui_module/element_pywrap.cp
 
 configure_file(data_manager/appconfig_version.cpp.in ${CMAKE_CURRENT_BINARY_DIR}/generated/appconfig_version.cpp )
 
+set(RESOURCE_FILES "")
+
 if(APPLE)
     # List your resource files (recursively or with globbing)
     file(GLOB_RECURSE RESOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/resources/*")
@@ -449,6 +465,24 @@ if(APPLE)
         endif ()
     endforeach()
 endif ()
+
+# to convert .po files into .mo files
+FIND_PACKAGE(Gettext)
+IF(GETTEXT_FOUND )
+    MESSAGE(STATUS "Found Gettext")
+    # Main isimpa locale
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_LIST_DIR}/lang share/locale RESOURCE_FILES)
+    # Plugins locale
+#    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/check_version ${CMAKE_BINARY_DIR}/src/check_version)
+#    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/job_tool ${CMAKE_BINARY_DIR}/src/job_tool)
+#    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/moveto_vertex ${CMAKE_BINARY_DIR}/src/moveto_vertex)
+#    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/preceiv_sourceTracker ${CMAKE_BINARY_DIR}/src/preceiv_sourceTracker)
+#    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/recp_tool ${CMAKE_BINARY_DIR}/src/recp_tool)
+#    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/source_tools ${CMAKE_BINARY_DIR}/src/source_tools)
+
+ELSE ()
+    MESSAGE(WARNING "Gettext not found !")
+ENDIF()
 
 # Set Properties->General->Configuration Type to Application
 # Creates isimpa with the listed sources
@@ -483,23 +517,10 @@ set_property(TARGET isimpa PROPERTY FOLDER "executables")
 
 set_target_properties(isimpa PROPERTIES MACOSX_BUNDLE_ICON_FILE "isimpa.icns")
 
-#set(ISIMPA_DEST_RESOURCE_FILES "")
-#add_isimpa_resources(isimpa "${CMAKE_CURRENT_SOURCE_DIR}/resources" "" ISIMPA_DEST_RESOURCE_FILES resources/*)
-
-# to convert .po files into .mo files
-FIND_PACKAGE(Gettext)
+# will build mo files before isimpa
 IF(GETTEXT_FOUND )
-  MESSAGE(STATUS "Found Gettext")
-  # Main isimpa locale
-  ADDMULTIPLE_LANG(${CMAKE_CURRENT_LIST_DIR}/lang share/locale)
-  # Plugins locale
-  add_subdirectory(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/check_version ${CMAKE_BINARY_DIR}/src/check_version)
-  add_subdirectory(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/job_tool ${CMAKE_BINARY_DIR}/src/job_tool)
-  add_subdirectory(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/moveto_vertex ${CMAKE_BINARY_DIR}/src/moveto_vertex)
-  add_subdirectory(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/preceiv_sourceTracker ${CMAKE_BINARY_DIR}/src/preceiv_sourceTracker)
-  add_subdirectory(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/recp_tool ${CMAKE_BINARY_DIR}/src/recp_tool)
-  add_subdirectory(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/source_tools ${CMAKE_BINARY_DIR}/src/source_tools)
-ENDIF()
+    add_dependencies(isimpa pofiles)
+endif ()
 
 SET(wxUSE_GLCANVAS_EGL OFF)
 
