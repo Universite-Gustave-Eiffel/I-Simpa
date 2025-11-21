@@ -384,6 +384,7 @@ void uiTreeCtrl::InitTree()
 			case Element::GRAPH_USER_DIRECTIVITY_CLOSE:
 				imglist->Add(wxBitmap(ressourceFolder + "/Bitmaps/tree_directivity_close.png", wxBITMAP_TYPE_PNG));
 				break;
+			default: ;
 		}
 	}
 

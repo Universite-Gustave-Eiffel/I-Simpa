@@ -163,18 +163,17 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, wxGetTranslation("I
 	//m_mgr.SetFrame(this);
 	m_mgr.SetManagedWindow(this);
 	wxIcon ico_ui;
-        #ifndef __APPLE__
-		ico_ui.LoadFile(resourceFolder + "/isimpa.ico",wxBITMAP_TYPE_ICO);
+    #if not defined(__APPLE__)
+		ico_ui.LoadFile(resourceFolder + "/isimpa.ico",wxBITMAP_TYPE_ICO)
 	#else
 		ico_ui.LoadFile(resourceFolder + "/isimpa.icns",wxBITMAP_TYPE_ICON);
 	#endif
 
-        if (ico_ui.IsOk()) {
-          SetIcon(ico_ui);
-        } else {
-          wxLogError(wxGetTranslation("Can not read the I-SIMPA icon"));
-        }
-        // Creation des menus
+	if(ico_ui.IsOk())
+		SetIcon(ico_ui);
+	else
+		wxLogError(wxGetTranslation("Can not read the I-SIMPA icon"));
+	//Creation des menus
 
 
 	wxMenuBar* mb = new wxMenuBar;
@@ -296,9 +295,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, wxGetTranslation("I
 
 
 	wxMenu* aide_menu = new wxMenu;
-	//aide_menu->Append(ID_Help, wxGetTranslation("Aide"));
 	aide_menu->Append(ID_Help_Web, wxGetTranslation("Website"));
-	//aide_menu->Append(ID_Help_Forum, wxGetTranslation("Online forums"));
 	aide_menu->Append(ID_Help_Doc, wxGetTranslation("Online documentation"));
 	aide_menu->Append(ID_Help_Offline_Doc, wxGetTranslation("Offline documentation"));
 	aide_menu->AppendSeparator();
@@ -316,7 +313,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, wxGetTranslation("I
     SetMenuBar(mb);
 
 	wxSize client_size = GetClientSize();
-	// Creation du contrôle texte d'historique des opérations
+	// Creating the Operation History Text Control
 	shellNotebook= new wxAuiNotebook(this, wxID_ANY,
                                     wxPoint(client_size.x, client_size.y),
                                     FromDIP(wxSize(430,200)),
@@ -336,7 +333,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, wxGetTranslation("I
 	#endif
 
 
-	//Creation du panneau qui contient 3 arbres
+	// Creation of the panel which contains 3 trees
 
 	ctrlNotebook = new wxAuiNotebook(this, wxID_ANY,
                                     wxPoint(client_size.x, client_size.y),
@@ -344,7 +341,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, wxGetTranslation("I
                                     wxAUI_NB_TOP | wxAUI_NB_TAB_SPLIT | wxAUI_NB_TAB_MOVE | wxAUI_NB_SCROLL_BUTTONS );
 
 
-	// Creation des 3 arbres de gestion du projet
+	// Creation of the 3 project management trees
 	this->treeCore = new uiTreeCtrl(ctrlNotebook.get(), -1, wxPoint(0,0), FromDIP(wxSize(-1,250)),wxTR_EDIT_LABELS | wxNO_BORDER | wxTR_MULTIPLE | wxTR_HAS_BUTTONS  | wxTR_HIDE_ROOT, true); //wxTR_MULTIPLE |
 	this->treeResult = new uiTreeCtrl(ctrlNotebook.get(), -1, wxPoint(0,0), FromDIP(wxSize(-1,250)), wxTR_EDIT_LABELS | wxNO_BORDER | wxTR_MULTIPLE | wxTR_HAS_BUTTONS | wxTR_HIDE_ROOT, false );
 	this->treeScene = new uiTreeCtrl(ctrlNotebook.get(), -1, wxPoint(0,0), FromDIP(wxSize(-1,250)), wxTR_EDIT_LABELS | wxNO_BORDER | wxTR_MULTIPLE | wxTR_HAS_BUTTONS | wxTR_HIDE_ROOT, true ); //
@@ -362,7 +359,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, wxGetTranslation("I
 
 
 
-	// Ajout des panneaux de l'interface
+	// Add interface panels
 	m_mgr.AddPane(ctrlNotebook.get(), wxAuiPaneInfo().
 					Name("projet").Caption(wxGetTranslation("Project")).
 					Left().Position(0).CloseButton(false));
@@ -473,7 +470,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, wxGetTranslation("I
     m_mgr.AddPane(mousetool, wxAuiPaneInfo().
                   Name(wxT("toolTb")).Caption(wxGetTranslation("Pointer toolbar")).
                   ToolbarPane().Position(4).Top().CloseButton(false));
-	//Feuille de propriétés
+	// Property Sheet
 
 	propertiesGrid = new MainPropGrid(this,-1,wxDefaultPosition,FromDIP(wxSize(200,300)),262144,wxGetTranslation("Properties"));
 
@@ -912,6 +909,7 @@ void MainUiFrame::OnCreateModel(wxCommandEvent & event)
 		{
 			std::vector<wxString> valeursChamps;
 			textDialog.GetValues(valeursChamps);
+			 valeursChamps[0];
 
 			modelWidth=Convertor::ToFloat(valeursChamps[0]);
 			if(modelWidth!=0)

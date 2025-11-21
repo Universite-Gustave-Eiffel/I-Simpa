@@ -428,7 +428,8 @@ class ISimpaApp : public wxApp
 			wxImage::AddHandler(new wxPNGHandler); //ajoute le support du format png
 			wxImage::AddHandler(new wxICOHandler); //ajoute le support du format ico
 
-			//Charge le gestionnaire de language
+			// Charge le gestionnaire de language
+			wxLocale::AddCatalogLookupPathPrefix(stPath.GetResourcesDir() + wxFileName::GetPathSeparator() + _T("share") + wxFileName::GetPathSeparator() + _T("locale"));
 			wxLanguage choosenLanguage=wxLANGUAGE_DEFAULT;
 			wxString strConf;
 			if(ApplicationConfiguration::GetFileConfig()->Read("interface/language",&strConf))

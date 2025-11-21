@@ -27,40 +27,25 @@ else()
     set(ISIMPA_DOC_DIR "${CMAKE_INSTALL_DOCDIR}")
 endif()
 
-MACRO(ADDMULTIPLE_LANG curdir installdir resources)
-  get_filename_component(target_name "${CMAKE_CURRENT_SOURCE_DIR}" NAME)
-  # MESSAGE(STATUS "ADDMULTIPLE_LANG ${curdir}")
+MACRO(ADDMULTIPLE_LANG curdir installdir)
+  # MESSAGE(STATUS "ADDMULTIPLE_LANG ${curdir} ${installdir}")
   FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)
   FOREACH(child ${children})
     IF(EXISTS "${curdir}/${child}"
             AND NOT IS_DIRECTORY "${curdir}/${child}"
             AND "${child}" MATCHES "\\.po$")
         file(RELATIVE_PATH rel_path "${CMAKE_SOURCE_DIR}" "${curdir}/${child}")
-        MESSAGE(STATUS "Add lang ${rel_path}")
         # Remove the .po extension (last 3 characters)
         string(REGEX REPLACE "\\.po$" "" lang_name "${child}")
-        gettext_process_po_files(
-                ${lang_name}
-                ALL
-                PO_FILES ${curdir}/${child}
+        MESSAGE(STATUS "Add lang ${lang_name} from ${rel_path}")
+        set(output_file "${installdir}/${lang_name}/LC_MESSAGES/isimpa.mo")
+        get_filename_component(output_directory "${output_file}" DIRECTORY)
+        add_custom_command(TARGET isimpa
+                POST_BUILD
+                COMMENT "Create directory and output ${lang_name} to ${output_file}"
+                COMMAND ${CMAKE_COMMAND} -E make_directory "${output_directory}"
+                COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} "${curdir}/${child}" -o "${output_file}"
         )
-        # Add a custom command to move the .gmo file after it is built
-        set(gmo_file "${CMAKE_CURRENT_BINARY_DIR}/${lang_name}.gmo")
-        set(mo_file "${installdir}/${lang_name}/LC_MESSAGES/isimpa.mo")
-        add_custom_command(
-                OUTPUT "${mo_file}"
-                COMMAND ${CMAKE_COMMAND} -E make_directory "${installdir}/${lang_name}/LC_MESSAGES"
-                COMMAND ${CMAKE_COMMAND} -E rename
-                "${gmo_file}"
-                "${mo_file}"
-                DEPENDS "${gmo_file}"
-                COMMENT "Moving ${lang_name}.gmo to ${mo_file}"
-        )
-        list(APPEND resources "${mo_file}")
-#        install(FILES       "${CMAKE_CURRENT_BINARY_DIR}/${lang_name}.gmo"
-#                DESTINATION "${installdir}/${lang_name}/LC_MESSAGES"
-#                RENAME      "isimpa.mo"
-#        )
     ENDIF()
   ENDFOREACH()
 ENDMACRO()
@@ -466,24 +451,6 @@ if(APPLE)
     endforeach()
 endif ()
 
-# to convert .po files into .mo files
-FIND_PACKAGE(Gettext)
-IF(GETTEXT_FOUND )
-    MESSAGE(STATUS "Found Gettext")
-    # Main isimpa locale
-    ADDMULTIPLE_LANG(${CMAKE_CURRENT_LIST_DIR}/lang share/locale RESOURCE_FILES)
-    # Plugins locale
-#    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/check_version ${CMAKE_BINARY_DIR}/src/check_version)
-#    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/job_tool ${CMAKE_BINARY_DIR}/src/job_tool)
-#    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/moveto_vertex ${CMAKE_BINARY_DIR}/src/moveto_vertex)
-#    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/preceiv_sourceTracker ${CMAKE_BINARY_DIR}/src/preceiv_sourceTracker)
-#    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/recp_tool ${CMAKE_BINARY_DIR}/src/recp_tool)
-#    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/source_tools ${CMAKE_BINARY_DIR}/src/source_tools)
-
-ELSE ()
-    MESSAGE(WARNING "Gettext not found !")
-ENDIF()
-
 # Set Properties->General->Configuration Type to Application
 # Creates isimpa with the listed sources
 # Adds sources to the Solution Explorer
@@ -510,6 +477,31 @@ add_executable(isimpa WIN32 MACOSX_BUNDLE
     ${CMAKE_CURRENT_BINARY_DIR}/generated/enum_def.cpp
 	${CMAKE_CURRENT_BINARY_DIR}/generated/appconfig_version.cpp
     ${RESOURCE_FILES})
+
+if(WIN32)
+    set(RESOURCE_DEST_DIR "$<TARGET_FILE_DIR:isimpa>")
+elseif(APPLE)
+    set(RESOURCE_DEST_DIR "$<TARGET_FILE_DIR:isimpa>/../Resources")
+else ()
+    set(RESOURCE_DEST_DIR "$<TARGET_FILE_DIR:isimpa>/resources")
+endif()
+
+# to convert .po files into .mo files
+FIND_PACKAGE(Gettext)
+IF(GETTEXT_FOUND )
+    MESSAGE(STATUS "Found Gettext")
+    # Main isimpa locale
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/lang "${RESOURCE_DEST_DIR}/share/locale")
+    # Plugins locale
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/check_version/locale "${RESOURCE_DEST_DIR}/SystemScript/check_version/locale")
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/job_tool/locale "${RESOURCE_DEST_DIR}/SystemScript/job_tool/locale")
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/moveto_vertex/locale "${RESOURCE_DEST_DIR}/SystemScript/moveto_vertex/locale")
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/preceiv_sourceTracker/locale "${RESOURCE_DEST_DIR}/SystemScript/preceiv_sourceTracker/locale")
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/recp_tool/locale "${RESOURCE_DEST_DIR}/SystemScript/recp_tool/locale")
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/source_tools/locale "${RESOURCE_DEST_DIR}/SystemScript/source_tools/locale")
+ELSE ()
+    MESSAGE(WARNING "Gettext not found !")
+ENDIF()
 
 # Creates a folder "executables" and adds target
 # project (isimpa.vcproj) under it
@@ -646,12 +638,6 @@ ENDIF()
 if(NOT APPLE)
     # Set resource source and destination variables
     set(RESOURCE_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/resources")
-
-    if(WIN32)
-        set(RESOURCE_DEST_DIR "$<TARGET_FILE_DIR:isimpa>")
-    else()
-        set(RESOURCE_DEST_DIR "$<TARGET_FILE_DIR:isimpa>/resources")
-    endif()
 
     # Copy resources directory POST_BUILD
     add_custom_command(
