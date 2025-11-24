@@ -736,8 +736,8 @@ private:
 
 	// File paths
 	wxString dossierCourant;
-	wxString FichierConfig;
-	wxString FichierConfigDefaut;
+	wxString ProjectConfigurationFile;
+	wxString ApplicationConfigurationFile;
 	wxString PathCores;
 	wxString LastComputationFolder; /*<! Last computation temporary path */
 	wxString UserPreferenceXmlFilePath;

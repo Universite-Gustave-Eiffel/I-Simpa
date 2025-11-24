@@ -511,10 +511,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, wxGetTranslation("I
 	this->SetSize(FromDIP(wxSize(1024, 768)));
 }
 void MainUiFrame::OnWindowLoaded() {
-    // Run Python script for started
-    #ifdef USE_PYTHON
-        projetCourant->GetPythonShell()->run_startupscript("SystemScript/", "__ui_started__.py");
-    #endif
+
 }
 void MainUiFrame::OnClearConsole(wxCommandEvent& event)
 {

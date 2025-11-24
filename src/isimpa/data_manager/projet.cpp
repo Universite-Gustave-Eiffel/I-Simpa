@@ -305,9 +305,10 @@ currentHistoryNavigation(0)
 	//On utilise le projet présent dans /current/
 
 	this->dossierCourant = ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath;
-	this->FichierConfig = "projet_config.xml";	//fichier de config du projet
-	this->FichierConfigDefaut =ApplicationConfiguration::CONST_STATIC_XML_FILE; //fichier de configuration statique
-	this->PathCores=ApplicationConfiguration::getApplicationFolder();
+	this->ProjectConfigurationFile = "projet_config.xml"; // Project configuration file
+	this->ApplicationConfigurationFile = ApplicationConfiguration::getResourcesFolder() + wxFileName::GetPathSeparator()
+	                                     + ApplicationConfiguration::CONST_STATIC_XML_FILE; // Static configuration file
+	this->PathCores = ApplicationConfiguration::getApplicationFolder();
 
 	ctrlDown=false;
 	shiftDown=false;
@@ -325,7 +326,7 @@ currentHistoryNavigation(0)
 	this->pyShell=NULL;
 
 	//Gestion fichier xml de configuration par défaut
-	ApplicationConfiguration::LoadConfiguration(this->FichierConfigDefaut);
+	ApplicationConfiguration::LoadConfiguration(this->ApplicationConfigurationFile);
 
 	//Gestion repertoire de projet
 	wxFileName fname;
@@ -799,7 +800,7 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 
 	if(ext=="py" || ext=="pyc") {
 	#ifdef _WIN32
-		cmd = ApplicationConfiguration::getResourcesFolder() + "python.exe -u \"" + rootCorePath + exeName + "\" \"" + workingDir + xmlCoreFileName + "\"";
+		cmd = ApplicationConfiguration::getApplicationFolder() + wxFileName::GetPathSeparator() + "python3.exe -u \"" + rootCorePath + exeName + "\" \"" + workingDir + xmlCoreFileName + "\"";
 	#else
 		cmd = "python -u \"" + rootCorePath + exeName + "\" \"" + workingDir + xmlCoreFileName + "\"";
 	#endif // _WIN32
@@ -1842,7 +1843,7 @@ void ProjectManager::NewProject()
 	tmpDocXml.SetRoot(xmlRoot);
 	this->BuildEmptyProject(xmlRoot);
 	if(tmpDocXml.IsOk())
-		tmpDocXml.Save(this->dossierCourant+this->FichierConfig);
+		tmpDocXml.Save(this->dossierCourant+this->ProjectConfigurationFile);
 	this->LoadCurrentProject();
 	this->Init();
 }
@@ -1856,7 +1857,7 @@ void ProjectManager::LoadCurrentProject(bool reloadXmlFile)
 
 	int prog=0; //compteur information progression
 	if(reloadXmlFile)
-		this->projetConfig.Load(this->dossierCourant+this->FichierConfig);
+		this->projetConfig.Load(this->dossierCourant+this->ProjectConfigurationFile);
 	wxString fEncoding=this->projetConfig.GetFileEncoding();
 	//this->projetConfig.SetEncoding("utf-8");
 	// Initialisation des données par rapport au fichier XML
@@ -1985,7 +1986,7 @@ void ProjectManager::Init( )
 void ProjectManager::ControlPointerInitialisation()
 {
 	treeUserPref->Init(this->rootUserConfig.get());
-	if(!wxFileExists(this->dossierCourant+FichierConfig))
+	if(!wxFileExists(this->dossierCourant+ProjectConfigurationFile))
 	{
 		this->NewProject();
 	}else{
@@ -3140,9 +3141,9 @@ void ProjectManager::UpdateXmlFile(wxString toFolder,bool saveToFile)
 	if(saveToFile)
 	{
 		if(toFolder=="")
-			this->projetConfig.Save(this->dossierCourant+FichierConfig); //,wxXML_NO_INDENTATION
+			this->projetConfig.Save(this->dossierCourant+ProjectConfigurationFile); //,wxXML_NO_INDENTATION
 		else
-			this->projetConfig.Save(toFolder+FichierConfig);
+			this->projetConfig.Save(toFolder+ProjectConfigurationFile);
 	}
 }
 

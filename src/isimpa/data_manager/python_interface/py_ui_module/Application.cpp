@@ -463,6 +463,9 @@ namespace uictrl {
         wxFileName systemscript(ApplicationConfiguration::getResourcesFolder(), "SystemScript");
         systemscript.MakeAbsolute();
         retdict["systemscript"] = WXSTRINGTOSTDWSTRING(systemscript.GetFullPath());
+        wxFileName resourceFolder(ApplicationConfiguration::getResourcesFolder());
+        resourceFolder.MakeAbsolute();
+        retdict["resources_folder"] = WXSTRINGTOSTDWSTRING(resourceFolder.GetFullPath());
         return retdict;
     }
 

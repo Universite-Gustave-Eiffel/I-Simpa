@@ -92,19 +92,8 @@ void ApplicationConfiguration::LoadConfiguration(wxString propFile)
 {
 	if(!wxFileExists(propFile))
 	{
-		//Le fichier de configuration n'existe pas, on va créer son architecture
-		wxXmlDocument tmpDocXml;
-		wxXmlNode* xmlRoot=new wxXmlNode(wxXML_ELEMENT_NODE,"configuration");
-		tmpDocXml.SetRoot(xmlRoot);
-		//Noeud spectres programme
-		wxXmlNode* spectreRoot=new wxXmlNode(xmlRoot,wxXML_ELEMENT_NODE,nameNodeSpectre);
-		tmpDocXml.Save(propFile);
-		//Noeud matériaux programme
-		wxXmlNode* materiauRoot=new wxXmlNode(xmlRoot,wxXML_ELEMENT_NODE,nameNodeMateriaux);
-		tmpDocXml.Save(propFile);
-		//Noeud directivités programme
-		wxXmlNode* directivityRoot = new wxXmlNode(xmlRoot, wxXML_ELEMENT_NODE, nameNodeDirectivity);
-		tmpDocXml.Save(propFile);
+		wxLogWarning("The application configuration file was not found");
+		return;
 	}
 	appConfig.Load(propFile);
 	//Création des tableaux de fréquence

@@ -376,8 +376,6 @@ void PythonShell::run_startupscript(const wxString &scriptPath,
                                     const wxString &pyfilename) {
   // recherche des fichier se nommant __ui_startup__.py
   wxArrayString files_found;
-  if (!wxDirExists(scriptPath))
-    wxMkDir(scriptPath, 0777);
   if (wxDir::GetAllFiles(scriptPath, &files_found, pyfilename)) {
     for (const auto &scriptFile : files_found) {
       wxFileName fn(scriptFile);
