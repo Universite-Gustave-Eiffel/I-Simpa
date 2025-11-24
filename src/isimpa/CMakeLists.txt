@@ -646,7 +646,7 @@ if(NOT APPLE)
             "${RESOURCE_SRC_DIR}" "${RESOURCE_DEST_DIR}"
             COMMENT "Copying resources to ${RESOURCE_DEST_DIR}"
     )
-
+endif ()
     if(WIN32)
 
         # Copy python libraries
@@ -665,66 +665,65 @@ if(NOT APPLE)
                 "$<TARGET_FILE_DIR:isimpa>/python.exe"
         )
 
-        # Copy all .dll files from python root folder after build
-        file(GLOB PYTHON_DLL_FILES "${PYTHON_ROOT_FOLDER}/*.dll")
+    # Copy all .dll files from python root folder after build
+    file(GLOB PYTHON_DLL_FILES "${PYTHON_ROOT_FOLDER}/*.dll")
 
-        foreach(dll ${PYTHON_DLL_FILES})
-            add_custom_command(TARGET isimpa POST_BUILD
-                    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-                    "${dll}"
-                    "$<TARGET_FILE_DIR:isimpa>/"
-            )
-        endforeach()
-
-        # Optionally copy runtime libraries after build
-        if(CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS)
-            add_custom_command(TARGET isimpa POST_BUILD
-                    COMMAND ${CMAKE_COMMAND} -E copy
-                    ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS}
-                    "$<TARGET_FILE_DIR:isimpa>/"
-            )
-        endif()
-
+    foreach(dll ${PYTHON_DLL_FILES})
         add_custom_command(TARGET isimpa POST_BUILD
-                COMMAND ${CMAKE_COMMAND} -E copy_directory
-                "$<TARGET_FILE_DIR:libsimpa>"
-                "$<TARGET_FILE_DIR:isimpa>/libsimpa"
-                COMMENT "Copying libsimpa to isimpa binary directory"
+                COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                "${dll}"
+                "$<TARGET_FILE_DIR:isimpa>/"
         )
-
-        add_custom_command(TARGET isimpa POST_BUILD
-                COMMAND ${CMAKE_COMMAND} -E copy_directory
-                "$<TARGET_FILE_DIR:spps>"
-                "$<TARGET_FILE_DIR:isimpa>"
-                COMMENT "Copying spps to isimpa binary directory"
-        )
-
-        add_custom_command(TARGET isimpa POST_BUILD
-                COMMAND ${CMAKE_COMMAND} -E copy_directory
-                "$<TARGET_FILE_DIR:vmr>"
-                "$<TARGET_FILE_DIR:isimpa>"
-                COMMENT "Copying vmr to isimpa binary directory"
-        )
-
-        add_custom_command(TARGET isimpa POST_BUILD
-                COMMAND ${CMAKE_COMMAND} -E copy_directory
-                "$<TARGET_FILE_DIR:tetgen>"
-                "$<TARGET_FILE_DIR:isimpa>"
-                COMMENT "Copying tetgen to isimpa binary directory"
-        )
-
-        add_custom_command(TARGET isimpa POST_BUILD
-                COMMAND ${CMAKE_COMMAND} -E copy_directory
-                "$<TARGET_FILE_DIR:classicalTheory>"
-                "$<TARGET_FILE_DIR:isimpa>"
-                COMMENT "Copying classicalTheory to isimpa binary directory"
-        )
-
-        add_custom_command(TARGET isimpa POST_BUILD
-                COMMAND ${CMAKE_COMMAND} -E copy_directory
-                "$<TARGET_FILE_DIR:preprocess>"
-                "$<TARGET_FILE_DIR:isimpa>"
-                COMMENT "Copying preprocess to isimpa binary directory"
-        )
-    endif ()
+    endforeach()
 endif ()
+
+# Optionally copy runtime libraries after build
+if(CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS)
+    add_custom_command(TARGET isimpa POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy
+            ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS}
+            "$<TARGET_FILE_DIR:isimpa>/"
+    )
+endif()
+
+add_custom_command(TARGET isimpa POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "$<TARGET_FILE_DIR:libsimpa>"
+        "$<TARGET_FILE_DIR:isimpa>/libsimpa"
+        COMMENT "Copying libsimpa to isimpa binary directory"
+)
+
+add_custom_command(TARGET isimpa POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "$<TARGET_FILE_DIR:spps>"
+        "$<TARGET_FILE_DIR:isimpa>"
+        COMMENT "Copying spps to isimpa binary directory"
+)
+
+add_custom_command(TARGET isimpa POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "$<TARGET_FILE_DIR:vmr>"
+        "$<TARGET_FILE_DIR:isimpa>"
+        COMMENT "Copying vmr to isimpa binary directory"
+)
+
+add_custom_command(TARGET isimpa POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "$<TARGET_FILE_DIR:tetgen>"
+        "$<TARGET_FILE_DIR:isimpa>"
+        COMMENT "Copying tetgen to isimpa binary directory"
+)
+
+add_custom_command(TARGET isimpa POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "$<TARGET_FILE_DIR:classicalTheory>"
+        "$<TARGET_FILE_DIR:isimpa>"
+        COMMENT "Copying classicalTheory to isimpa binary directory"
+)
+
+add_custom_command(TARGET isimpa POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "$<TARGET_FILE_DIR:preprocess>"
+        "$<TARGET_FILE_DIR:isimpa>"
+        COMMENT "Copying preprocess to isimpa binary directory"
+)

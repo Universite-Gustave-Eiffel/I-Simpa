@@ -53,7 +53,7 @@ class manager:
             menu.insert(2,(_(u"Translation of receivers"),self.translaterpfuncid))
             menu.insert(2,(_(u"Rotation of receivers"),self.rotaterpfuncid))
             menu.insert(2,())
-        menu.insert(2,(_(u"Create a receiver grid"),self.makelinerecpid,"Bitmaps/popup_new.png"))
+        menu.insert(2,(_(u"Create a receiver grid"),self.makelinerecpid))
         return True
     def makeline(self,idel):
         lbl_startptx=_(u"Starting position x (m)")

@@ -51,7 +51,7 @@ class manager:
         if len(ui.element(idel).childs())>0:
             menu.insert(2,(_(u"All sources"),submenu))
             menu.insert(2,())
-        menu.insert(2,(_(u"Create a line of sound sources"),self.makelinesrcid,"Bitmaps/popup_new.png"))
+        menu.insert(2,(_(u"Create a line of sound sources"),self.makelinesrcid))
         return True
     def makeline(self,idel):
         lbl_startptx=_(u"Starting position x (m)")

@@ -82,8 +82,12 @@ PythonShell::PythonShell(PyConsole* pyCtrl) :
 	std::string pythonVersion = std::to_string(PY_MAJOR_VERSION) + "." + std::to_string(PY_MINOR_VERSION);
 	const wxFileName userScript(ApplicationConfiguration::getResourcesFolder(), "UserScript");
 	const wxFileName systemScript(ApplicationConfiguration::getResourcesFolder(), "SystemScript");
-	RunRawCmd("import site");
-	RunRawCmd(wxString::Format("site.addsitedir(\"%s\")\nsite.addsitedir(\"%s\")",
+	RunRawCmd(wxString::Format(
+ "import site\n"
+    "import os\n"
+    "site.addsitedir(os.getcwd())\n"
+    "site.addsitedir(\"%s\")\n"
+    "site.addsitedir(\"%s\")\n",
 		userScript.GetAbsolutePath(), systemScript.GetAbsolutePath()));
 }
 PythonShell::~PythonShell()
