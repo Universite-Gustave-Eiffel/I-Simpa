@@ -69,7 +69,7 @@ PyConsole::PyConsole(wxWindow* parent) : wxPanel(parent)
 	inputPanel->SetSizer(inputSizer);
 
 	// Split horizontally with initial sash position at 70% of height
-	splitter->SplitHorizontally(m_outputCtrl, inputPanel, -100);
+	splitter->SplitHorizontally(m_outputCtrl, inputPanel, -50);
 	splitter->SetMinimumPaneSize(50); // Prevent collapsing too small
 	splitter->SetSashGravity(0.7); // Keep 70% for output when resizing window
 

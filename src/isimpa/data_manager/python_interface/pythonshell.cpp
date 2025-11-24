@@ -82,9 +82,9 @@ PythonShell::PythonShell(PyConsole* pyCtrl) :
 	std::string pythonVersion = std::to_string(PY_MAJOR_VERSION) + "." + std::to_string(PY_MINOR_VERSION);
 	const wxFileName userScript(ApplicationConfiguration::getResourcesFolder(), "UserScript");
 	const wxFileName systemScript(ApplicationConfiguration::getResourcesFolder(), "SystemScript");
-	RunRawCmd("import sys");
-	//import("site").attr("addsitedir")(userScript.GetAbsolutePath().c_str());
-	//import("site").attr("addsitedir")(systemScript.GetAbsolutePath().c_str());
+	RunRawCmd("import site");
+	RunRawCmd(wxString::Format("site.addsitedir(\"%s\")\nsite.addsitedir(\"%s\")",
+		userScript.GetAbsolutePath(), systemScript.GetAbsolutePath()));
 }
 PythonShell::~PythonShell()
 {
@@ -158,7 +158,7 @@ void PythonShell::ExecLineCommand(const wxString& newcommand)
 			if(cmd.Freq(' ')==cmd.size())
 				cmd.clear();
 			cmd.Replace("\\n","\n");
-			m_py_ctrl->AddCmd(cmd);
+			m_py_ctrl->AddCmd(cmd+"\n");
 			//Pour déduire la prochaine indentation a utiliser
 			GetIndentation(cmd,&indentation);
 			cmd=oldcmd+cmd;
