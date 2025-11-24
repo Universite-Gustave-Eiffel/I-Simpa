@@ -48,8 +48,8 @@ namespace formatRPLY
 	 */
 	struct t_face
 	{
-		t_face(const ivec3& _indicesSommets) : indicesSommets(_indicesSommets) {}
-		ivec3 indicesSommets;
+		explicit t_face(const ivec3& _verticesIndex) : verticesIndex(_verticesIndex) {}
+		ivec3 verticesIndex;
 	};
 
 
@@ -58,8 +58,8 @@ namespace formatRPLY
 	 */
 	struct t_layer
 	{
-		t_layer(){};
-		t_layer(const std::string& _layerName):layerName(_layerName) {}
+		t_layer()= default;
+		explicit t_layer(const std::string& _layerName):layerName(_layerName) {}
 		std::string layerName;
 	};
 

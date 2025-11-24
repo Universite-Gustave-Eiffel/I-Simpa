@@ -635,7 +635,7 @@ void ProjectManager::CloseApp()
 ProjectManager::~ProjectManager()
 {
 	this->SaveUserPreferenceTree();
-	this->rootUserConfig=(Element*)NULL;
+	this->rootUserConfig=(Element*)nullptr;
 	ApplicationConfiguration::OnApplicationClose();
 	UnloadPyShell();
 }
@@ -1468,7 +1468,7 @@ void ProjectManager::OnSaveConsoleToFile(wxString fileName)
 void ProjectManager::OnSaveShellToFile(wxString fileName)
 {
 	if(shellControl!=NULL)
-		this->shellControl->SaveFile(fileName,wxFILE_KIND_DISK);
+		this->shellControl->GetOutputControl()->SaveFile(fileName,wxFILE_KIND_DISK);
 }
 void ProjectManager::OnClearConsole()
 {
@@ -2012,7 +2012,11 @@ void ProjectManager::SetControlPointer(	wxTextCtrl* _logControl,uiTreeCtrl* _tre
 	propFrame=_propFrame;
 	auiManager=_auiManager;
 
-	InitPythonEngine(); //Initialisation de python
+	try {
+		InitPythonEngine(); //Initialisation de python
+	} catch (...) {
+		wxLogError(_("Error while initializing python engine"));
+	}
 
 	//Chargement de l'arbre de préférence (peut contenir des élément implémenté en python
 	UserPreferenceXmlFilePath= wxStandardPaths::Get().GetUserDataDir()+wxFileName::GetPathSeparator()+ApplicationConfiguration::CONST_USER_PREFERENCE_FILE_NAME;
@@ -2393,13 +2397,15 @@ void ProjectManager::CreateUserPreferenceTree()
 
 void ProjectManager::SaveUserPreferenceTree()
 {
-	//userPreferenceDocument.SetVersion(wxString::Format("%i.%i.%i",ApplicationConfiguration::SPPS_UI_VERSION_MAJOR,ApplicationConfiguration::SPPS_UI_VERSION_MINOR,ApplicationConfiguration::SPPS_UI_VERSION_REVISION));
-	userPreferenceDocument.GetRoot()->DeleteAttribute("app_version");
-	userPreferenceDocument.GetRoot()->AddAttribute("app_version",wxString::Format("%i.%i.%i",ApplicationConfiguration::SPPS_UI_VERSION_MAJOR,ApplicationConfiguration::SPPS_UI_VERSION_MINOR,ApplicationConfiguration::SPPS_UI_VERSION_REVISION));
-	rootUserConfig->SaveXMLDoc(userPreferenceDocument.GetRoot());
-	userPreferenceDocument.SetFileEncoding("utf-8");
-	//userPreferenceDocument.SetEncoding("utf-8");
-	userPreferenceDocument.Save(UserPreferenceXmlFilePath);
+	if (userPreferenceDocument.IsOk()) {
+		userPreferenceDocument.GetRoot()->DeleteAttribute("app_version");
+		userPreferenceDocument.GetRoot()->AddAttribute("app_version",wxString::Format("%i.%i.%i",ApplicationConfiguration::SPPS_UI_VERSION_MAJOR,ApplicationConfiguration::SPPS_UI_VERSION_MINOR,ApplicationConfiguration::SPPS_UI_VERSION_REVISION));
+		rootUserConfig->SaveXMLDoc(userPreferenceDocument.GetRoot());
+		userPreferenceDocument.SetFileEncoding("utf-8");
+		if (!userPreferenceDocument.Save(UserPreferenceXmlFilePath)) {
+			wxLogWarning( wxT("Failed to save user preference tree."));
+		}
+	}
 }
 bool ProjectManager::LoadUserPreferenceTree()
 {

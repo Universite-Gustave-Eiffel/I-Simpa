@@ -399,6 +399,24 @@ class ISimpaApp : public wxApp
 	private:
 		MainUiFrame* frame;
 	public:
+
+
+		bool OnExceptionInMainLoop() override {
+			wxString error;
+			try {
+				throw; // Rethrow the current exception.
+			} catch (const std::exception& e) {
+				error = e.what();
+			} catch ( ... ) {
+				error = "unknown error.";
+			}
+
+			wxLogError("Unexpected exception has occurred: %s, the program will terminate.", error);
+
+			// Exit the main loop and thus terminate the program.
+			return false;
+		}
+
 		/**
 		 * Première méthode appelé à l'execution du logiciel
 		 *	Dans l'ordre, initialise :
@@ -505,25 +523,24 @@ class ISimpaApp : public wxApp
 			//Charge le gestionnaire de projet
 			projetCourant = new ProjectManager();
 
-			/*
-			if(ApplicationConfiguration::CONST_WORKINGLIMIT!=0 && ApplicationConfiguration::CONST_WORKINGLIMIT<wxGetLocalTime())
-				projetCourant=NULL;
-				*/
 			//Charge la feuille principale
-			frame = new MainUiFrame(lang);
-			SetTopWindow(frame);
+			try {
+				frame = new MainUiFrame(lang);
+				SetTopWindow(frame);
+			} catch (const std::exception& e) {
+				wxLogError(wxT("Cannot create main ui frame: %s"), e.what());
+			} catch (...) {
+				wxLogError(wxT("Cannot create main ui frame: Unknown exception"));
+			}
 
 			//Surcharge la classe gestionnaire de log
 			delete wxLog::SetActiveTarget(new CustomLog());
 		        wxLog::SetTimestamp("%H:%M:%S.%l ");
 
-			//Active la reception des fichiers par drag&drop
-			//DragAcceptFiles((HWND)frame->GetHWND(),true); //msw only
-			frame->DragAcceptFiles(true);
-
-
-			//Affiche la feuille principale
-			frame->Show();
+			if (frame) {
+				frame->DragAcceptFiles(true);
+				frame->Show();
+			}
 
 			doInit=true;
 
@@ -534,7 +551,9 @@ class ISimpaApp : public wxApp
 				projetCourant->Open(filename);
 			}
 
-            frame->OnWindowLoaded();
+			if (frame) {
+				frame->OnWindowLoaded();
+			}
 			return true;
 		}
 
@@ -591,6 +610,7 @@ class ISimpaApp : public wxApp
 					projetCourant->Open(fichier);
 			}
 		}
+
 		/**
 		 * Destructeur de l'application
 		 * Détruit les gestionnaire déclarés via la méthode new

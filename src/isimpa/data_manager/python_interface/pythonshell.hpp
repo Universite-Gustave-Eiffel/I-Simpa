@@ -98,8 +98,8 @@ protected:
 	boost::python::object main_namespace;
 	wxString cmd;
 	wxString oldcmd;
-	wxString promptNewCmd;
-	wxString promptMore;
+	const wxString promptNewCmd;
+	const wxString promptMore;
 	void RunRawCmd(const wxString& command);
     PyConsole* m_py_ctrl;
 	boost::python::list event_lst; /*!< Cette liste contient les événements supplémentaires implémentés sous python */

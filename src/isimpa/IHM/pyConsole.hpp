@@ -28,25 +28,32 @@
 #include "first_header_include.hpp"
 
 #include <wx/textctrl.h>
+#include <wx/panel.h>
+#include <wx/stattext.h>
 
 #ifndef __PY_CONSOLE_CTRL_
 #define __PY_CONSOLE_CTRL_
 /**
  * @brief Console Python
  *
- * C'est le contrôle texte qui permet d'emuler python si il est utilisé avec PythonShellThread
+ *  Python GUI panel with the two controls
  */
-class PyConsole : public wxTextCtrl
+class PyConsole : public wxPanel
 {
 protected:
-	void OnTextEnter(wxCommandEvent& txtEvent);
-	void OnKeyDown(wxKeyEvent& txtEvent);
-	int promptSize; /*!< Nombre de caractère de la ligne de commande */
-	long lastpromptpos;
-	bool waitingForNextPrompt; /*!< L'utilisateur ne peut taper de command si python ne nous a pas laissé la main */
-public:
 
+	wxTextCtrl* m_outputCtrl;
+	wxTextCtrl* m_inputCtrl;
+	wxStaticText* m_promptLabel;
+	void OnCommandEnter(wxCommandEvent& event);
+	void AppendOutput(const wxString& text);
+
+	bool waitingForNextPrompt; /*!< The user cannot type commands if Python has not given us control. */
+
+public:
 	PyConsole(wxWindow* parent);
+
+	wxTextCtrl* GetOutputControl() { return m_outputCtrl; }
 	/**
 	 * Ajoute le resulat interpreté par python  dans la console
 	 */
@@ -58,21 +65,13 @@ public:
 	/**
 	 * Ajoute les caractère de ligne de commande (>>> , ... ou autre)
 	 */
-	void AddPrompt(const wxString& pyPrompt);
+	void SetPrompt(const wxString& pyPrompt);
 	
     virtual void Clear();
 	/**
 	 * Ajoute des caractère de la même couleur que le texte tapé par l'utilisateur
 	 */
 	void AddCmd(const wxString& pyCmd,bool atInsertionPoint=false);
-	/**
-	 * C'est le nombre de caractère minimal dans une ligne.
-	 */
-	void SetPromptSize(const wxInt32& lengthPrompt)
-	{
-		promptSize=lengthPrompt;
-	}
-	DECLARE_EVENT_TABLE();
 };
 
 #endif

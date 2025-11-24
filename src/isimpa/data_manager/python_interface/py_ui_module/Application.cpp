@@ -457,10 +457,10 @@ namespace uictrl {
         boost::python::dict retdict;
         retdict["lastcalculationpath"] = WXSTRINGTOSTDWSTRING(self->LastComputationFolder);
         retdict["cachedir"] = WXSTRINGTOSTDWSTRING(ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath);
-        wxFileName userscript("UserScript/");
+        wxFileName userscript(ApplicationConfiguration::getResourcesFolder(), "UserScript");
         userscript.MakeAbsolute();
         retdict["userscript"] = WXSTRINGTOSTDWSTRING(userscript.GetFullPath());
-        wxFileName systemscript("SystemScript/");
+        wxFileName systemscript(ApplicationConfiguration::getResourcesFolder(), "SystemScript");
         systemscript.MakeAbsolute();
         retdict["systemscript"] = WXSTRINGTOSTDWSTRING(systemscript.GetFullPath());
         return retdict;

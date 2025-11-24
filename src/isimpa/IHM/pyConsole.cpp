@@ -30,120 +30,199 @@
 #include "data_manager/appconfig.h"
 #include <wx/log.h>
 #include "last_cpp_include.hpp"
+#include <wx/sizer.h>
+#include <wx/splitter.h>
 
-BEGIN_EVENT_TABLE( PyConsole, wxTextCtrl )
-	EVT_TEXT_ENTER(wxID_ANY, PyConsole::OnTextEnter)
-	EVT_KEY_DOWN (PyConsole::OnKeyDown)
-END_EVENT_TABLE()
+#include "wx/osx/stattext.h"
 
-PyConsole::PyConsole(wxWindow* parent)
-: wxTextCtrl(parent,-1, "",wxDefaultPosition, FromDIP(wxSize(200,150), parent), wxTE_RICH | wxNO_BORDER | wxTE_MULTILINE | wxTE_PROCESS_TAB | wxTE_PROCESS_ENTER   )
+PyConsole::PyConsole(wxWindow* parent) : wxPanel(parent)
 {
 	waitingForNextPrompt=true;
-	promptSize=0;
-	wxFont pythonFont(this->GetFont());
-	if(pythonFont.SetFaceName("Courier"))
-	{
-		pythonFont.SetPointSize(10);
-		this->SetFont(pythonFont);
-	}
+	// Create the splitter window
+	auto* splitter = new wxSplitterWindow(this, wxID_ANY);
+
+	// Top control: read-only output display
+	m_outputCtrl = new wxTextCtrl(splitter, wxID_ANY, wxEmptyString,
+	   wxDefaultPosition, wxDefaultSize,
+	   wxTE_MULTILINE | wxTE_READONLY | wxTE_RICH2 | wxVSCROLL);
+
+	// Bottom panel: contains prompt label and input control
+	auto* inputPanel = new wxPanel(splitter, wxID_ANY);
+	auto* inputSizer = new wxBoxSizer(wxHORIZONTAL);
+
+	// Create prompt label
+	m_promptLabel = new wxStaticText(inputPanel, wxID_ANY, ">>> ");
+
+	// Create input control
+	m_inputCtrl = new wxTextCtrl(inputPanel, wxID_ANY, wxEmptyString,
+	   wxDefaultPosition, wxDefaultSize,
+	   wxTE_PROCESS_ENTER);
+
+	// Set the label background to match the input control
+	m_promptLabel->SetBackgroundColour(m_inputCtrl->GetBackgroundColour());
+	inputPanel->SetBackgroundColour(m_inputCtrl->GetBackgroundColour());
+
+	// Add to horizontal sizer
+	inputSizer->Add(m_promptLabel, 0, wxALIGN_TOP, 5);
+	inputSizer->Add(m_inputCtrl, 1, wxEXPAND, 5);
+
+	inputPanel->SetSizer(inputSizer);
+
+	// Split horizontally with initial sash position at 70% of height
+	splitter->SplitHorizontally(m_outputCtrl, inputPanel, -100);
+	splitter->SetMinimumPaneSize(50); // Prevent collapsing too small
+	splitter->SetSashGravity(0.7); // Keep 70% for output when resizing window
+
+	// Layout
+	auto* sizer = new wxBoxSizer(wxVERTICAL);
+	sizer->Add(splitter, 1, wxEXPAND);
+	SetSizer(sizer);
+
+	// Bind enter key event
+	m_inputCtrl->Bind(wxEVT_TEXT_ENTER, &PyConsole::OnCommandEnter, this);
 }
 
-
-void PyConsole::AddCmd(const wxString& pyCmd,bool atInsertionPoint)
+void PyConsole::OnCommandEnter(wxCommandEvent& event)
 {
-	SetDefaultStyle(*wxBLACK);
-	if(atInsertionPoint)
-		WriteText(pyCmd);
-	else
-		AppendText(pyCmd);
+	wxCommandEvent PostPythonCodeUpdate( wxEVT_PSPS_MAIN_EVENT, GetId() );
+	PostPythonCodeUpdate.SetInt(ApplicationConfiguration::MAIN_EVENT_POST_PYTHON_COMMAND);
+	wxString command=event.GetString();
+	command.Replace("\n","\\n");
+	PostPythonCodeUpdate.SetString(command);
+	wxPostEvent(this, PostPythonCodeUpdate);
+	waitingForNextPrompt=true;
+	m_inputCtrl->Clear();
 }
 
-void PyConsole::Clear()
+void PyConsole::AppendOutput(const wxString& text)
 {
-	lastpromptpos=0;
-	wxTextCtrl::Clear();
+	m_outputCtrl->AppendText(text);
 }
-void PyConsole::AddPrompt(const wxString& pyPrompt)
-{
-	SetDefaultStyle(*wxBLACK);
-	AppendText(pyPrompt);
-	lastpromptpos=this->GetInsertionPoint();
-	waitingForNextPrompt=false;
-}
+
 void PyConsole::AddPythonMsg(const wxString& pyMsg)
 {
-	SetDefaultStyle(*wxBLUE);
-	AppendText(pyMsg);
+	m_outputCtrl->SetDefaultStyle(*wxBLUE);
+	m_outputCtrl->AppendText(pyMsg);
 }
 
 void PyConsole::AddPythonError(const wxString& pyErr)
 {
-	SetDefaultStyle(*wxRED);
-	AppendText(pyErr);
+	m_outputCtrl->SetDefaultStyle(*wxRED);
+	m_outputCtrl->AppendText(pyErr);
 }
-void PyConsole::OnTextEnter(wxCommandEvent& txtEvent)
-{
-	wxCommandEvent PostPythonCodeUpdate( wxEVT_PSPS_MAIN_EVENT, GetId() );
-	PostPythonCodeUpdate.SetInt(ApplicationConfiguration::MAIN_EVENT_POST_PYTHON_COMMAND);
-	wxString command=this->GetRange(lastpromptpos,GetLastPosition());
-	command.Replace("\n","\\n");
-	PostPythonCodeUpdate.SetString(command);
-	wxPostEvent(this, PostPythonCodeUpdate);
-	AppendText("\n");
-	waitingForNextPrompt=true;
-}
-void PyConsole::OnKeyDown(wxKeyEvent& txtEvent)
-{
-	int keycod=txtEvent.GetKeyCode();
-	long pos=GetInsertionPoint();
-	long x,y;
-	PositionToXY(pos,&x,&y);
 
-	if(keycod==WXK_TAB)
-	{
-		AddCmd("    ",true); //On remplace les tabulations par des espaces
-	}else if(keycod==WXK_BACK){
-		if(pos>lastpromptpos) //On conserve le nombre de caractère minimal sur une ligne
-		{
-			long posBefore=pos-4;
-			if(posBefore>0)
-			{
-				wxString line=GetRange(posBefore,pos);
-				if(line=="    ") //on supprime une tabulation complète
-				{
-					this->Remove(posBefore,pos);
-				}else{
-					txtEvent.Skip();
-				}
-			}
-		}
-	}else if(keycod==WXK_RETURN || keycod==WXK_NUMPAD_ENTER){
-		if(pos<lastpromptpos-promptSize)
-		{
-			//On copie la ligne courante a la toute fin de la console
-			long debutLigne=XYToPosition(0,y);
-			
-			wxString line=GetRange(debutLigne+promptSize,debutLigne+GetLineLength(y));
-			AddCmd(line);
-		}else if(!waitingForNextPrompt){
-			SetInsertionPointEnd();
-			txtEvent.Skip();
-		}
-	}else if(keycod==WXK_HOME)
-		{
-		if(y==GetNumberOfLines()-1)
-		{
-			SetInsertionPoint(lastpromptpos);
-		}else{
-			txtEvent.Skip();
-		}
-	
-	}else{
-		//(txtEvent.ControlDown() && keycod==67) pour autoriser ctrl-c avant >>>
-		if((!waitingForNextPrompt && pos>=lastpromptpos )|| keycod==WXK_UP  || keycod==WXK_DOWN  || keycod==WXK_LEFT  || keycod==WXK_RIGHT  || keycod==WXK_HOME  || keycod==WXK_PAGEUP  || keycod==WXK_PAGEDOWN  || keycod==WXK_END || (txtEvent.ControlDown() && keycod==67) ) //On permet la modification du texte seulement sur la derniere ligne
-		{
-			txtEvent.Skip(); //on autorise la saisie
-		}
-	}
+void PyConsole::SetPrompt(const wxString& pyPrompt) {
+	m_promptLabel->SetLabel(pyPrompt);
 }
+
+void PyConsole::Clear() {
+	m_outputCtrl->Clear();
+}
+
+void PyConsole::AddCmd(const wxString& pyCmd, bool atInsertionPoint) {
+	m_outputCtrl->SetDefaultStyle(*wxBLACK);
+	m_outputCtrl->AppendText(pyCmd);
+}
+
+
+
+
+//
+// void PyConsole::AddCmd(const wxString& pyCmd,bool atInsertionPoint)
+// {
+// 	SetDefaultStyle(*wxBLACK);
+// 	if(atInsertionPoint)
+// 		WriteText(pyCmd);
+// 	else
+// 		AppendText(pyCmd);
+// }
+//
+// void PyConsole::Clear()
+// {
+// 	lastPromptPosition=0;
+// 	wxTextCtrl::Clear();
+// }
+// void PyConsole::AddPrompt(const wxString& pyPrompt)
+// {
+// 	SetDefaultStyle(*wxBLACK);
+// 	AppendText(pyPrompt);
+// 	wxYieldIfNeeded();
+// 	lastPromptPosition = GetLastPosition();
+// 	waitingForNextPrompt=false;
+// }
+// void PyConsole::AddPythonMsg(const wxString& pyMsg)
+// {
+// 	SetDefaultStyle(*wxBLUE);
+// 	AppendText(pyMsg);
+// }
+//
+// void PyConsole::AddPythonError(const wxString& pyErr)
+// {
+// 	SetDefaultStyle(*wxRED);
+// 	AppendText(pyErr);
+// }
+// void PyConsole::OnTextEnter(wxCommandEvent& txtEvent)
+// {
+// 	wxCommandEvent PostPythonCodeUpdate( wxEVT_PSPS_MAIN_EVENT, GetId() );
+// 	PostPythonCodeUpdate.SetInt(ApplicationConfiguration::MAIN_EVENT_POST_PYTHON_COMMAND);
+// 	wxString command=this->GetRange(lastPromptPosition,GetLastPosition());
+// 	command.Replace("\n","\\n");
+// 	PostPythonCodeUpdate.SetString(command);
+// 	wxPostEvent(this, PostPythonCodeUpdate);
+// 	AppendText("\n");
+// 	waitingForNextPrompt=true;
+// }
+// void PyConsole::OnKeyDown(wxKeyEvent& txtEvent)
+// {
+// 	int keycod=txtEvent.GetKeyCode();
+// 	long pos=GetInsertionPoint();
+// 	long x,y;
+// 	PositionToXY(pos,&x,&y);
+//
+// 	if(keycod==WXK_TAB)
+// 	{
+// 		AddCmd("    ",true); //On remplace les tabulations par des espaces
+// 	}else if(keycod==WXK_BACK){
+// 		if(pos>lastPromptPosition) //On conserve le nombre de caractère minimal sur une ligne
+// 		{
+// 			long posBefore=pos-4;
+// 			if(posBefore>0)
+// 			{
+// 				wxString line=GetRange(posBefore,pos);
+// 				if(line=="    ") //on supprime une tabulation complète
+// 				{
+// 					this->Remove(posBefore,pos);
+// 				}else{
+// 					txtEvent.Skip();
+// 				}
+// 			}
+// 		}
+// 	}else if(keycod==WXK_RETURN || keycod==WXK_NUMPAD_ENTER){
+// 		if(pos<lastPromptPosition-promptSize)
+// 		{
+// 			//On copie la ligne courante a la toute fin de la console
+// 			long debutLigne=XYToPosition(0,y);
+//
+// 			wxString line=GetRange(debutLigne+promptSize,debutLigne+GetLineLength(y));
+// 			AddCmd(line);
+// 		}else if(!waitingForNextPrompt){
+// 			SetInsertionPointEnd();
+// 			txtEvent.Skip();
+// 		}
+// 	}else if(keycod==WXK_HOME)
+// 		{
+// 		if(y==GetNumberOfLines()-1)
+// 		{
+// 			SetInsertionPoint(lastPromptPosition);
+// 		}else{
+// 			txtEvent.Skip();
+// 		}
+//
+// 	}else{
+// 		//(txtEvent.ControlDown() && keycod==67) pour autoriser ctrl-c avant >>>
+// 		if((!waitingForNextPrompt && pos>=lastPromptPosition )|| keycod==WXK_UP  || keycod==WXK_DOWN  || keycod==WXK_LEFT  || keycod==WXK_RIGHT  || keycod==WXK_HOME  || keycod==WXK_PAGEUP  || keycod==WXK_PAGEDOWN  || keycod==WXK_END || (txtEvent.ControlDown() && keycod==67) ) //On permet la modification du texte seulement sur la derniere ligne
+// 		{
+// 			txtEvent.Skip(); //on autorise la saisie
+// 		}
+// 	}
+//}

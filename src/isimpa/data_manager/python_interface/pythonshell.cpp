@@ -32,6 +32,7 @@
 #include "last_cpp_include.hpp"
 #include <stdio.h>
 
+#include "data_manager/appconfig.h"
 #include "data_manager/e_data_file.h"
 
 #ifdef USE_PYTHON
@@ -50,15 +51,13 @@ BOOST_PYTHON_MODULE(uictrl){
 	export_application_class();
 }
 
-PythonShell::PythonShell(PyConsole* pyCtrl)
+PythonShell::PythonShell(PyConsole* pyCtrl) :
+ promptNewCmd(">>> "), promptMore("... ")
 {
-	promptNewCmd=">>> ";
-	promptMore="... ";
 	m_py_ctrl=pyCtrl;
-	outputRedirectOut=NULL;
-	outputRedirectErr=NULL;
-	outputRedirectIn=NULL;
-
+	outputRedirectOut=nullptr;
+	outputRedirectErr=nullptr;
+	outputRedirectIn=nullptr;
 	main_module = import("__main__");
 	main_namespace = main_module.attr("__dict__");
 
@@ -81,9 +80,11 @@ PythonShell::PythonShell(PyConsole* pyCtrl)
 
 	//Ajout du dossier de script
 	std::string pythonVersion = std::to_string(PY_MAJOR_VERSION) + "." + std::to_string(PY_MINOR_VERSION);
-    boost::python::import("site").attr("addsitedir")("lib/python"+pythonVersion+"/site-packages");
-	boost::python::import("site").attr("addsitedir")("UserScript");
-	boost::python::import("site").attr("addsitedir")("SystemScript");
+	const wxFileName userScript(ApplicationConfiguration::getResourcesFolder(), "UserScript");
+	const wxFileName systemScript(ApplicationConfiguration::getResourcesFolder(), "SystemScript");
+	RunRawCmd("import sys");
+	//import("site").attr("addsitedir")(userScript.GetAbsolutePath().c_str());
+	//import("site").attr("addsitedir")(systemScript.GetAbsolutePath().c_str());
 }
 PythonShell::~PythonShell()
 {
@@ -129,17 +130,13 @@ void PythonShell::Init()
 	RunRawCmd("import sys");
 	RunRawCmd("import uictrl as ui");
 	RunRawCmd(wxGetTranslation("print('Python(TM)',sys.version,'on',sys.platform)"));
-	run_startupscript("UserScript/","__ui_startup__.py");
-	run_startupscript("SystemScript/","__ui_startup__.py");
-	//RunRawCmd("emulationDict=dict()");
+	const wxFileName userScript(ApplicationConfiguration::getResourcesFolder(), "UserScript");
+	const wxFileName systemScript(ApplicationConfiguration::getResourcesFolder(), "SystemScript");
+	run_startupscript(userScript.GetFullPath(), "__ui_startup__.py");
+	run_startupscript(systemScript.GetFullPath(), "__ui_startup__.py");
 	RunRawCmd("consoleEmulation=code.InteractiveInterpreter(__main__.__dict__)"); //emulationDict
-	wxString promptNewCmd(">>> ");
-	wxString promptMore("... ");
 	wxString indentation="";
-	m_py_ctrl->SetPromptSize(promptNewCmd.Length());
 	ShowMsgStack();
-	m_py_ctrl->AddPrompt(promptNewCmd);
-
 }
 
 boost::python::object PythonShell::eval(const wxString& code)
@@ -161,6 +158,7 @@ void PythonShell::ExecLineCommand(const wxString& newcommand)
 			if(cmd.Freq(' ')==cmd.size())
 				cmd.clear();
 			cmd.Replace("\\n","\n");
+			m_py_ctrl->AddCmd(cmd);
 			//Pour déduire la prochaine indentation a utiliser
 			GetIndentation(cmd,&indentation);
 			cmd=oldcmd+cmd;
@@ -171,23 +169,19 @@ void PythonShell::ExecLineCommand(const wxString& newcommand)
 			if(res)
 			{ //La commande nécessite une ligne de code supplémentaire
 				oldcmd=cmd+wxString("\n");
-				m_py_ctrl->AddPrompt(promptMore);
-
-				if(cmd.Right(1)==":") //Ajout d'indentation
-					indentation+="    ";
-				m_py_ctrl->AddCmd(indentation);
+				m_py_ctrl->SetPrompt(promptMore);
 			}else{
 				//La commande est complète
 			   oldcmd.clear();
 			   indentation.clear();
-			   m_py_ctrl->AddPrompt(promptNewCmd);
+			   m_py_ctrl->SetPrompt(promptNewCmd);
 			}
 
 		}
 		ShowMsgStack();
 	}else{
 		RunRawCmd(newcommand);
-		m_py_ctrl->AddPrompt(promptNewCmd);
+		m_py_ctrl->SetPrompt(promptNewCmd);
 	}
 }
 
@@ -276,7 +270,7 @@ void PythonShell::call_event(const int& eventid,const int& elementid)
 			wxLogError(ex.msg());
 		}
 		if(ShowMsgStack())
-		   m_py_ctrl->AddPrompt(promptNewCmd);
+		   m_py_ctrl->SetPrompt(promptNewCmd);
 	}else{
 		ThrowPyException(wxGetTranslation("This event doesn't exist !"));
 	}
@@ -336,7 +330,7 @@ bool PythonShell::GetPythonManagedMenu(const int& element_type,const int& elemen
 				PyErr_Print();
 			}
 			if(ShowMsgStack())
-			   m_py_ctrl->AddPrompt(promptNewCmd);
+			   m_py_ctrl->SetPrompt(promptNewCmd);
 			return false;
 		}
 		catch( const char * msg)
@@ -393,8 +387,6 @@ void PythonShell::run_startupscript(const wxString &scriptPath,
           PyErr_Print();
         }
       }
-      if (ShowMsgStack())
-        m_py_ctrl->AddPrompt(promptNewCmd);
     }
   }
 }

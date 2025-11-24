@@ -87,10 +87,15 @@ void ProjectManager::InitPythonEngine()
 		PythonShell::load_uictrl();
 
 		Py_Initialize();
-		
-		pyShell = new PythonShell(shellControl);
 
-		pyShell->Init();
+		try {
+			pyShell = new PythonShell(shellControl);
+
+			pyShell->Init();
+		} catch ( boost::exception &e ) {
+			PyErr_Print();
+			wxLogError(wxGetTranslation("Unable to initialize Python Shell library"));
+		}
 		
 	}
 }
@@ -102,7 +107,8 @@ void ProjectManager::PyProjectLoadingEvt()
 {
 	if(pyShell)
 	{
-		pyShell->run_startupscript(L"UserScript/",L"__project_loading__.py");
+        wxFileName userscript(ApplicationConfiguration::getResourcesFolder(), "UserScript");
+		pyShell->run_startupscript(userscript.GetFullPath(), L"__project_loading__.py");
 	}
 
 }

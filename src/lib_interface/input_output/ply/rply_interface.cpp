@@ -76,12 +76,12 @@ namespace formatRPLY
 				break;
 			case 1:
 			case 2:
-				model->modelFaces.back().indicesSommets.set((int) idvert, (long) ply_get_argument_value(argument));
+				model->modelFaces.back().verticesIndex.set((int) idvert, (long) ply_get_argument_value(argument));
 				break;
 			case 3: {
                 // Polygon with 4 vertices
 				// Push an additional triangle
-                const ivec3 &lastTri(model->modelFaces.back().indicesSommets);
+                const ivec3 &lastTri(model->modelFaces.back().verticesIndex);
                 model->modelFaces.push_back(
                         t_face(ivec3(lastTri.i[0], lastTri.i[2], (int) ply_get_argument_value(argument))));
                 curInstance->lastFaceSplited = true;
@@ -105,18 +105,24 @@ namespace formatRPLY
 	}
 
 	static int layer_cb(p_ply_argument argument) {
-		long length,idchar;
-		void* ptr;
-		ply_get_argument_user_data(argument, &ptr, NULL);
-		ply_get_argument_property(argument, NULL, &length, &idchar);
-		parsing_instance* curInstance((parsing_instance*)ptr);
-		t_model* model=&(curInstance->currentModel);
-		if(idchar==-1)
-		{
-			std::size_t sizeOfString((std::size_t) ply_get_argument_value(argument));
-			model->modelLayers.push_back(std::string(sizeOfString,' '));
-		}else{
-			model->modelLayers.back().layerName.replace((std::size_t) idchar, 1, 1, (unsigned char)ply_get_argument_value(argument));
+		long length,argumentIndex;
+		void* dataPointer;
+		ply_get_argument_user_data(argument, &dataPointer, nullptr);
+		if (ply_get_argument_property(argument, nullptr, &length, &argumentIndex) == 1) {
+			const auto* curInstance(static_cast<parsing_instance *>(dataPointer));
+			t_model* model=&(curInstance->currentModel);
+			if(argumentIndex==-1) {
+				auto sizeOfString(static_cast<std::size_t>(ply_get_argument_value(argument)));
+				model->modelLayers.emplace_back(std::string(sizeOfString,' '));
+			}else{
+				try {
+					const auto character = static_cast<char>(ply_get_argument_value(argument));
+					model->modelLayers.back().layerName.replace(static_cast<std::size_t>(argumentIndex), 1, 1, character);
+				} catch(std::exception& e) {
+					// unhandled case for the moment
+					fprintf(stderr, "Error while processing layer %lu name in ply file", model->modelLayers.size());
+				}
+			}
 		}
 		return 1;
 	}
@@ -210,9 +216,9 @@ namespace formatRPLY
 		for(std::list<t_face>::iterator itface=scene.modelFaces.begin();itface!=scene.modelFaces.end();itface++)
 		{
 			ply_write(oply,3);
-			ply_write(oply,itface->indicesSommets.a);
-			ply_write(oply,itface->indicesSommets.b);
-			ply_write(oply,itface->indicesSommets.c);
+			ply_write(oply,itface->verticesIndex.a);
+			ply_write(oply,itface->verticesIndex.b);
+			ply_write(oply,itface->verticesIndex.c);
 			if(useLayers)
 			{
 				ply_write(oply,*itLayerIndex);
