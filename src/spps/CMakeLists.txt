@@ -8,9 +8,6 @@ set(spps_VERSION_MINOR ${spps_VERSION_MINOR} PARENT_SCOPE)
 set(spps_VERSION_PATCH ${spps_VERSION_PATCH} PARENT_SCOPE)
 
 include_directories (./ "${CMAKE_SOURCE_DIR}/src/lib_interface" "${CMAKE_CURRENT_BINARY_DIR}/generated/")
-set(CMAKE_INSTALL_MFC_LIBRARIES TRUE) 
-set(CMAKE_INSTALL_UCRT_LIBRARIES TRUE )
-include( InstallRequiredSystemLibraries )
 
 #--------------#
 #    SOURCES

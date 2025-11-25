@@ -509,11 +509,6 @@ set_property(TARGET isimpa PROPERTY FOLDER "executables")
 
 set_target_properties(isimpa PROPERTIES MACOSX_BUNDLE_ICON_FILE "isimpa.icns")
 
-# will build mo files before isimpa
-IF(GETTEXT_FOUND )
-    add_dependencies(isimpa pofiles)
-endif ()
-
 SET(wxUSE_GLCANVAS_EGL OFF)
 
 IF(CMAKE_BUILD_TYPE STREQUAL "Debug")
@@ -635,6 +630,10 @@ if(WIN32) # Check if we are on Windows
   endif()
 ENDIF()
 
+##################################
+## Prepare build directory expected dependencies files for binaries and resources
+
+
 if(NOT APPLE)
     # Set resource source and destination variables
     set(RESOURCE_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/resources")
@@ -690,40 +689,115 @@ add_custom_command(TARGET isimpa POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
         "$<TARGET_FILE_DIR:libsimpa>"
         "$<TARGET_FILE_DIR:isimpa>/libsimpa"
+        COMMAND ${CMAKE_COMMAND} -E rm -f
+        "$<TARGET_FILE_DIR:isimpa>/libsimpa/*.cmake"
+        COMMAND ${CMAKE_COMMAND} -E rm -rf
+        "$<TARGET_FILE_DIR:isimpa>/libsimpa/CMakeFiles"
         COMMENT "Copying libsimpa to isimpa binary directory"
 )
 
 add_custom_command(TARGET isimpa POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-        "$<TARGET_FILE_DIR:spps>"
-        "$<TARGET_FILE_DIR:isimpa>"
-        COMMENT "Copying spps to isimpa binary directory"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "$<TARGET_FILE:spps>"
+        "$<TARGET_FILE_DIR:isimpa>/"
+        COMMENT "Copying spps binary to isimpa binary directory"
 )
 
 add_custom_command(TARGET isimpa POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-        "$<TARGET_FILE_DIR:vmr>"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "$<TARGET_FILE:vmr>"
         "$<TARGET_FILE_DIR:isimpa>"
         COMMENT "Copying vmr to isimpa binary directory"
 )
 
 add_custom_command(TARGET isimpa POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-        "$<TARGET_FILE_DIR:tetgen>"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "$<TARGET_FILE:tetgen>"
         "$<TARGET_FILE_DIR:isimpa>"
         COMMENT "Copying tetgen to isimpa binary directory"
 )
 
 add_custom_command(TARGET isimpa POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-        "$<TARGET_FILE_DIR:classicalTheory>"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "$<TARGET_FILE:classicalTheory>"
         "$<TARGET_FILE_DIR:isimpa>"
         COMMENT "Copying classicalTheory to isimpa binary directory"
 )
 
 add_custom_command(TARGET isimpa POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-        "$<TARGET_FILE_DIR:preprocess>"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "$<TARGET_FILE:preprocess>"
         "$<TARGET_FILE_DIR:isimpa>"
         COMMENT "Copying preprocess to isimpa binary directory"
 )
+
+#######################################################################
+# Prepare install commands for CPack builder
+
+# Install executable
+install(TARGETS isimpa
+        BUNDLE DESTINATION .
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+
+if(APPLE)
+    # Install resources into the bundle
+    install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/resources/"
+            DESTINATION "isimpa.app/Contents/Resources"
+            PATTERN "CMakeLists.txt" EXCLUDE
+    )
+
+    # CPack bundle plist location after install
+    SET(CPACK_BUNDLE_PLIST "${CMAKE_INSTALL_PREFIX}/isimpa.app/Contents/Info.plist")
+    SET(CPACK_BUNDLE_ICON "${CMAKE_CURRENT_SOURCE_DIR}/resources/isimpa.icns")
+
+elseif(WIN32)
+    # Install resources
+    install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/resources/"
+            DESTINATION "${ISIMPA_DATA_DIR}"
+    )
+
+    # Install Python runtime (Windows)
+    get_filename_component(PYTHON_ROOT_FOLDER ${Python3_EXECUTABLE} PATH)
+    install(DIRECTORY "${PYTHON_ROOT_FOLDER}/Lib" DESTINATION "${ISIMPA_BIN_DIR}")
+    install(DIRECTORY "${PYTHON_ROOT_FOLDER}/DLLs" DESTINATION "${ISIMPA_BIN_DIR}")
+    install(PROGRAMS "${PYTHON_ROOT_FOLDER}/python.exe" DESTINATION "${ISIMPA_BIN_DIR}")
+
+    file(GLOB PYTHON_DLL_FILES "${PYTHON_ROOT_FOLDER}/*.dll")
+    install(FILES ${PYTHON_DLL_FILES} DESTINATION "${ISIMPA_BIN_DIR}")
+
+    # Install system runtime libraries
+    if(CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS)
+        install(PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION "${ISIMPA_BIN_DIR}")
+    endif()
+endif()
+
+
+
+if(NOT DEFINED CPACK_GENERATOR)
+    SET(CPACK_GENERATOR "Bundle")
+endif()
+
+set(CPACK_SOURCE_IGNORE_FILES
+        /bin/wx*
+        /lib/cmake/wxWidgets
+        /lib/wx
+        /lib/*.a
+)
+
+SET(CPACK_BUNDLE_NAME "I-SIMPA")
+
+SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "I-SIMPA")
+SET(CPACK_PACKAGE_VENDOR "UMRAE, CEREMA, Univ Gustave Eiffel")
+SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/DESCRIPTION.txt")
+SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE.md")
+SET(CPACK_PACKAGE_VERSION_MAJOR ${isimpa_VERSION_MAJOR})
+SET(CPACK_PACKAGE_VERSION_MINOR ${isimpa_VERSION_MINOR})
+SET(CPACK_PACKAGE_VERSION_PATCH ${isimpa_VERSION_PATCH})
+SET(CPACK_PACKAGE_INSTALL_DIRECTORY "I-SIMPA")
+
+SET(CPACK_PACKAGE_EXECUTABLES "isimpa" "I-SIMPA")
+SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "Nicolas Fortin")
+
+INCLUDE(CPack)
