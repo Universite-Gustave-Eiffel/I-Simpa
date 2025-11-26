@@ -71,49 +71,50 @@ else()
     set(IS_FLATPAK FALSE)
 endif()
 
-# Set installation directories based on build type
-# Flatpak and pip uses standard FHS paths
-set(PYTHON_SITE_PACKAGES "${CMAKE_INSTALL_PREFIX}/lib/python${Python3_VERSION_MAJOR}.${Python3_VERSION_MINOR}/site-packages")
+if(LIBSIMPA_ONLY)
+    # Set installation directories based on build type
+    # Flatpak and pip uses standard FHS paths
+    set(PYTHON_SITE_PACKAGES "${CMAKE_INSTALL_PREFIX}/lib/python${Python3_VERSION_MAJOR}.${Python3_VERSION_MINOR}/site-packages")
 
-# Install the SWIG-generated extension module
-install (TARGETS ${SWIG_MODULE_libsimpa_REAL_NAME}
-        LIBRARY DESTINATION ${PYTHON_SITE_PACKAGES}/libsimpa/
-        RUNTIME DESTINATION ${PYTHON_SITE_PACKAGES}/libsimpa/
-        COMPONENT libsimpa
-)
-
-if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
-    install(PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS}
-            DESTINATION ${PYTHON_SITE_PACKAGES}/libsimpa
-            COMPONENT libsimpa_dependencies )
-endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
-
-# Install Python files
-install (FILES
-        ${CMAKE_CURRENT_SOURCE_DIR}/__init__.py
-        DESTINATION ${PYTHON_SITE_PACKAGES}/libsimpa/
-        COMPONENT libsimpa )
-
-
-
-if(WIN32)
-    get_filename_component(PYTHON_PATH ${Python3_EXECUTABLE} DIRECTORY)
-    #Fetch required Dll's
-    set(DIRS ${Boost_LIBRARY_DIR_DEBUG}
-            ${Boost_LIBRARY_DIR_RELEASE}
-            ${PYTHON_PATH}
+    # Install the SWIG-generated extension module
+    install (TARGETS ${SWIG_MODULE_libsimpa_REAL_NAME}
+            LIBRARY DESTINATION ${PYTHON_SITE_PACKAGES}/libsimpa/
+            RUNTIME DESTINATION ${PYTHON_SITE_PACKAGES}/libsimpa/
+            COMPONENT libsimpa
     )
 
-    install(CODE "
-    include(BundleUtilities)
-    # Rename to .exe as cmake check if the file ends with .exe in windows before gathering dependencies..
-    file(RENAME \"${PYTHON_SITE_PACKAGES}/libsimpa/_libsimpa.pyd\" \"${PYTHON_SITE_PACKAGES}/libsimpa/_libsimpa.exe\")
-    fixup_bundle(\"${PYTHON_SITE_PACKAGES}/libsimpa/_libsimpa.exe\" \"\"   \"${DIRS}\")
-    file(RENAME \"${PYTHON_SITE_PACKAGES}/libsimpa/_libsimpa.exe\" \"${PYTHON_SITE_PACKAGES}/libsimpa/_libsimpa.pyd\")
-"
-    COMPONENT libsimpa_dependencies)
-endif()
+    if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
+        install(PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS}
+                DESTINATION ${PYTHON_SITE_PACKAGES}/libsimpa
+                COMPONENT libsimpa_dependencies )
+    endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
 
+    # Install Python files
+    install (FILES
+            ${CMAKE_CURRENT_SOURCE_DIR}/__init__.py
+            DESTINATION ${PYTHON_SITE_PACKAGES}/libsimpa/
+            COMPONENT libsimpa )
+
+
+
+    if(WIN32)
+        get_filename_component(PYTHON_PATH ${Python3_EXECUTABLE} DIRECTORY)
+        #Fetch required Dll's
+        set(DIRS ${Boost_LIBRARY_DIR_DEBUG}
+                ${Boost_LIBRARY_DIR_RELEASE}
+                ${PYTHON_PATH}
+        )
+
+        install(CODE "
+        include(BundleUtilities)
+        # Rename to .exe as cmake check if the file ends with .exe in windows before gathering dependencies..
+        file(RENAME \"${PYTHON_SITE_PACKAGES}/libsimpa/_libsimpa.pyd\" \"${PYTHON_SITE_PACKAGES}/libsimpa/_libsimpa.exe\")
+        fixup_bundle(\"${PYTHON_SITE_PACKAGES}/libsimpa/_libsimpa.exe\" \"\"   \"${DIRS}\")
+        file(RENAME \"${PYTHON_SITE_PACKAGES}/libsimpa/_libsimpa.exe\" \"${PYTHON_SITE_PACKAGES}/libsimpa/_libsimpa.pyd\")
+    "
+        COMPONENT libsimpa_dependencies)
+    endif()
+endif ()
 #------------#
 #    TEST
 #------------#

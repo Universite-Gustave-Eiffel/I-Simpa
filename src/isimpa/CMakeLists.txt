@@ -737,20 +737,14 @@ add_custom_command(TARGET isimpa POST_BUILD
 # Install executable
 install(TARGETS isimpa
         BUNDLE DESTINATION .
-        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+        RUNTIME DESTINATION ${ISIMPA_BIN_DIR}
+        LIBRARY DESTINATION ${ISIMPA_BIN_DIR}
+        ARCHIVE DESTINATION ${ISIMPA_BIN_DIR})
 
 if(APPLE)
-    # Install resources into the bundle
-    install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/resources/"
-            DESTINATION "isimpa.app/Contents/Resources"
-            PATTERN "CMakeLists.txt" EXCLUDE
-    )
-
     # CPack bundle plist location after install
-    SET(CPACK_BUNDLE_PLIST "${CMAKE_INSTALL_PREFIX}/isimpa.app/Contents/Info.plist")
-    SET(CPACK_BUNDLE_ICON "${CMAKE_CURRENT_SOURCE_DIR}/resources/isimpa.icns")
+    SET(CPACK_BUNDLE_PLIST "${CMAKE_CURRENT_BINARY_DIR}/isimpa.app/Contents/Info.plist")
+    SET(CPACK_BUNDLE_ICON "${CMAKE_CURRENT_BINARY_DIR}/isimpa.app/Contents/Resources/isimpa.icns")
 
 elseif(WIN32)
     # Install resources
@@ -773,10 +767,8 @@ elseif(WIN32)
     endif()
 endif()
 
-
-
-if(NOT DEFINED CPACK_GENERATOR)
-    SET(CPACK_GENERATOR "Bundle")
+if(APPLE AND NOT DEFINED CPACK_GENERATOR)
+    SET(CPACK_GENERATOR "DragNDrop")
 endif()
 
 set(CPACK_SOURCE_IGNORE_FILES
@@ -786,8 +778,11 @@ set(CPACK_SOURCE_IGNORE_FILES
         /lib/*.a
 )
 
-SET(CPACK_BUNDLE_NAME "I-SIMPA")
-
+SET(CPACK_BUNDLE_NAME "isimpa")
+set(CPACK_SOURCE_PACKAGE_FILE_NAME "isimpa-${CMAKE_PROJECT_VERSION}")
+SET(CPACK_PACKAGE_DIRECTORY distribution)
+SET(CPACK_VERBATIM_VARIABLES YES)
+set(CPACK_PACKAGE_INSTALL_DIRECTORY ${CPACK_PACKAGE_NAME})
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "I-SIMPA")
 SET(CPACK_PACKAGE_VENDOR "UMRAE, CEREMA, Univ Gustave Eiffel")
 SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/DESCRIPTION.txt")
