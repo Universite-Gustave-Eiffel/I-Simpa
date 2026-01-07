@@ -33,8 +33,6 @@
 #include <wx/sizer.h>
 #include <wx/splitter.h>
 
-#include "wx/osx/stattext.h"
-
 PyConsole::PyConsole(wxWindow* parent) : wxPanel(parent)
 {
 	waitingForNextPrompt=true;

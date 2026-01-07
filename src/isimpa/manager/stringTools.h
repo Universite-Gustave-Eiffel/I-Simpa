@@ -27,13 +27,12 @@
 
 #include "first_header_include.hpp"
 
-
-#include <iostream>
 #include <string>
 #include <sstream>
 #include <wx/string.h>
 #include <wx/arrstr.h>
 #include <vector>
+#include "math.h"
 
 #ifndef __M_STR_H__
 #define __M_STR_H__
