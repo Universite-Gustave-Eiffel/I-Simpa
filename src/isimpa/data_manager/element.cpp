@@ -938,7 +938,7 @@ void Element::OnRightClic(wxMenu* leMenu)
 	if(renameEvent.IsAllowed() ||  this->elementInfo.userDestroyable)
 		leMenu->AppendSeparator();
 	if(renameEvent.IsAllowed())
-		leMenu->Append(GetMenuItem(leMenu,IDEVENT_RENAME_ELEMENT, wxGetTranslation("Rename"),"./Bitmaps/popup_rename.png"));
+		leMenu->Append(GetMenuItem(leMenu,IDEVENT_RENAME_ELEMENT, wxGetTranslation("Rename"),resourceFolder + "/Bitmaps/popup_rename.png"));
 
 	if(this->elementInfo.userDestroyable)
 		leMenu->Append(GetMenuItem(leMenu,IDEVENT_DELETE_ELEMENT, wxGetTranslation("Delete"),resourceFolder + "/Bitmaps/popup_delete.png"));
