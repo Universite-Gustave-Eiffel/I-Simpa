@@ -733,6 +733,27 @@ add_custom_command(TARGET isimpa POST_BUILD
 
 #######################################################################
 # Prepare install commands for CPack builder
+if(APPLE)
+    set(  "" CACHE STRING "The development team ID for code signing")
+
+    if(TEAM_ID STREQUAL "")
+        message(FATAL_ERROR "Please set the TEAM_ID variable when generating the project")
+    endif()
+
+    set(CMAKE_MACOSX_BUNDLE YES) # after this line, paste this:
+
+    set(XCODE_ATTRIBUTE_CODE_SIGN_STYLE "Manual")
+    set(XCODE_ATTRIBUTE_DEVELOPMENT_TEAM ${TEAM_ID})
+    set(XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "Developer ID Application")
+    set(XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED TRUE)
+
+    set_target_properties(${APP_NAME} PROPERTIES
+            XCODE_ATTRIBUTE_CODE_SIGN_STYLE ${XCODE_ATTRIBUTE_CODE_SIGN_STYLE}
+            XCODE_ATTRIBUTE_DEVELOPMENT_TEAM ${XCODE_ATTRIBUTE_DEVELOPMENT_TEAM}
+            XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY ${XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY}
+            XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED ${XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED}
+    )
+endif ()
 
 # Install executable
 install(TARGETS isimpa
