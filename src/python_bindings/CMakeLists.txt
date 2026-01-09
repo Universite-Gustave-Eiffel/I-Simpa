@@ -56,7 +56,7 @@ add_custom_command(
         TARGET libsimpa POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
         ${CMAKE_CURRENT_BINARY_DIR}/libsimpa.py
-        ${CMAKE_CURRENT_BINARY_DIR}/__init__.py
+        "$<TARGET_FILE_DIR:libsimpa>/__init__.py"
         COMMENT "Renaming libsimpa.py to __init__.py for Python package"
 )
 #--------------#

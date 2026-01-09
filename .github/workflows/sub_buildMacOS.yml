@@ -41,7 +41,7 @@ jobs:
         env:
           TEAMID: ${{ secrets.TEAMID }} # for signing binaries
         run: |
-          cmake -G Xcode -DCPM_SOURCE_CACHE=${{ env.CPM_SOURCE_CACHE }} -B "${{ env.builddir }}" -DCMAKE_BUILD_TYPE=Release -DTEAM_ID="$TEAMID"
+          cmake -G Xcode -DCPM_SOURCE_CACHE=${{ env.CPM_SOURCE_CACHE }} -B "${{ env.builddir }}" -DCMAKE_BUILD_TYPE=Release -DTEAM_ID="${TEAMID}"
       - name: Compiling sources
         run: |
           cmake --build "${{ env.builddir }}" --config Release

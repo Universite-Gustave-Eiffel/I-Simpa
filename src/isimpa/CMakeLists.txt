@@ -478,6 +478,9 @@ add_executable(isimpa WIN32 MACOSX_BUNDLE
 	${CMAKE_CURRENT_BINARY_DIR}/generated/appconfig_version.cpp
     ${RESOURCE_FILES})
 
+# Force wxwidgets dependencies, fix cpack issue expecting locale and libraries files
+add_dependencies(isimpa pofiles)
+
 if(WIN32)
     set(RESOURCE_DEST_DIR "$<TARGET_FILE_DIR:isimpa>")
 elseif(APPLE)
@@ -551,11 +554,13 @@ else(NOT wxWidgets_FOUND)
             "wxBUILD_TESTS OFF"
             "wxBUILD_SHARED OFF"
             "wxUSE_OPENGL ON"
+            "wxUSE_STATIC ON"
             "wxUSE_UNICODE ON"
             "wxUSE_LIBTIFF OFF"
             "wxUSE_GLCANVAS_EGL ON"
             "wxUSE_LIBWEBP OFF"
-            #"wxBUILD_INSTALL OFF"
+            "wxBUILD_MONOLITHIC ON"
+            "wxBUILD_INSTALL OFF"
     )
 
     if(APPLE)
@@ -607,7 +612,7 @@ if(APPLE)
 endif ()
 
 if(USING_CPM)
-    target_link_libraries(isimpa wx::core wx::base wx::aui wx::adv wx::xml wx::html wx::gl)
+    target_link_libraries(isimpa wxmono)
 else()
     target_link_libraries(isimpa ${wxWidgets_LIBRARIES})
 endif()
@@ -688,11 +693,11 @@ endif()
 add_custom_command(TARGET isimpa POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
         "$<TARGET_FILE_DIR:libsimpa>"
-        "$<TARGET_FILE_DIR:isimpa>/libsimpa"
+        "${RESOURCE_DEST_DIR}/libsimpa"
         COMMAND ${CMAKE_COMMAND} -E rm -f
-        "$<TARGET_FILE_DIR:isimpa>/libsimpa/*.cmake"
+        "${RESOURCE_DEST_DIR}/libsimpa/*.cmake"
         COMMAND ${CMAKE_COMMAND} -E rm -rf
-        "$<TARGET_FILE_DIR:isimpa>/libsimpa/CMakeFiles"
+        "${RESOURCE_DEST_DIR}/libsimpa/CMakeFiles"
         COMMENT "Copying libsimpa to isimpa binary directory"
 )
 
@@ -754,6 +759,8 @@ if(APPLE)
             XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED ${XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED}
     )
 endif ()
+
+
 
 # Install executable
 install(TARGETS isimpa
