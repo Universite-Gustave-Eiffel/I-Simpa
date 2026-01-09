@@ -27,7 +27,7 @@ else()
     set(ISIMPA_DOC_DIR "${CMAKE_INSTALL_DOCDIR}")
 endif()
 
-MACRO(ADDMULTIPLE_LANG curdir installdir)
+MACRO(ADDMULTIPLE_LANG curdir installdir appname)
   # MESSAGE(STATUS "ADDMULTIPLE_LANG ${curdir} ${installdir}")
   FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)
   FOREACH(child ${children})
@@ -37,8 +37,8 @@ MACRO(ADDMULTIPLE_LANG curdir installdir)
         file(RELATIVE_PATH rel_path "${CMAKE_SOURCE_DIR}" "${curdir}/${child}")
         # Remove the .po extension (last 3 characters)
         string(REGEX REPLACE "\\.po$" "" lang_name "${child}")
-        MESSAGE(STATUS "Add lang ${lang_name} from ${rel_path}")
-        set(output_file "${installdir}/${lang_name}/LC_MESSAGES/isimpa.mo")
+        set(output_file "${installdir}/${lang_name}/LC_MESSAGES/${appname}.mo")
+        MESSAGE(STATUS "Add lang ${lang_name} from ${rel_path} while save output to ${output_file}")
         get_filename_component(output_directory "${output_file}" DIRECTORY)
         add_custom_command(TARGET isimpa
                 POST_BUILD
@@ -478,9 +478,6 @@ add_executable(isimpa WIN32 MACOSX_BUNDLE
 	${CMAKE_CURRENT_BINARY_DIR}/generated/appconfig_version.cpp
     ${RESOURCE_FILES})
 
-# Force wxwidgets dependencies, fix cpack issue expecting locale and libraries files
-add_dependencies(isimpa pofiles)
-
 if(WIN32)
     set(RESOURCE_DEST_DIR "$<TARGET_FILE_DIR:isimpa>")
 elseif(APPLE)
@@ -494,14 +491,16 @@ FIND_PACKAGE(Gettext)
 IF(GETTEXT_FOUND )
     MESSAGE(STATUS "Found Gettext")
     # Main isimpa locale
-    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/lang "${RESOURCE_DEST_DIR}/share/locale")
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/lang "${RESOURCE_DEST_DIR}/share/locale" "isimpa")
     # Plugins locale
-    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/check_version/locale "${RESOURCE_DEST_DIR}/SystemScript/check_version/locale")
-    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/job_tool/locale "${RESOURCE_DEST_DIR}/SystemScript/job_tool/locale")
-    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/moveto_vertex/locale "${RESOURCE_DEST_DIR}/SystemScript/moveto_vertex/locale")
-    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/preceiv_sourceTracker/locale "${RESOURCE_DEST_DIR}/SystemScript/preceiv_sourceTracker/locale")
-    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/recp_tool/locale "${RESOURCE_DEST_DIR}/SystemScript/recp_tool/locale")
-    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/source_tools/locale "${RESOURCE_DEST_DIR}/SystemScript/source_tools/locale")
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/check_version/locale "${RESOURCE_DEST_DIR}/SystemScript/check_version/locale" "isimpa")
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/job_tool/locale "${RESOURCE_DEST_DIR}/SystemScript/job_tool/locale" "isimpa")
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/moveto_vertex/locale "${RESOURCE_DEST_DIR}/SystemScript/moveto_vertex/locale" "isimpa")
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/preceiv_sourceTracker/locale "${RESOURCE_DEST_DIR}/SystemScript/preceiv_sourceTracker/locale" "isimpa")
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/recp_tool/locale "${RESOURCE_DEST_DIR}/SystemScript/recp_tool/locale" "isimpa")
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/source_tools/locale "${RESOURCE_DEST_DIR}/SystemScript/source_tools/locale" "isimpa")
+    # WxWidgets locale
+    ADDMULTIPLE_LANG(${wxWidgets_SOURCE_DIR}/locale "${RESOURCE_DEST_DIR}/share/locale" "wx")
 ELSE ()
     MESSAGE(WARNING "Gettext not found !")
 ENDIF()
@@ -561,6 +560,7 @@ else(NOT wxWidgets_FOUND)
             "wxUSE_LIBWEBP OFF"
             "wxBUILD_MONOLITHIC ON"
             "wxBUILD_INSTALL OFF"
+            "wxBUILD_LOCALES OFF"
     )
 
     if(APPLE)

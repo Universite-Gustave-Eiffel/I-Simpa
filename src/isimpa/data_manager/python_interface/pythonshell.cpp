@@ -247,15 +247,16 @@ void PythonShell::call_event(const int& eventid,const int& elementid)
 	if(eventid>=0 && GetCountEventTable()>eventid)
 	{	try
 		{
-			//Il faut définir si la méthode attent 1 ou 2 argument
-			//On utilise le module inspect afin d'obtenir le nombre d'argument
+			//It is necessary to define whether the method expects 1 or 2 arguments
+			//We use the inspect module to obtain the number of arguments
 			boost::python::object event_function=event_lst[eventid];
 
 			boost::python::object user_module = import("inspect");
-			object argsTuple = user_module.attr("getargspec")(event_function);
+			object argsTuple = user_module.attr("getfullargspec")(event_function);
 			boost::python::list args = extract_or_throw<boost::python::list>(argsTuple[0]);
 			boost::python::ssize_t argCount=len(args);
-			//Self ne doit pas être pris en compte dans le nombre d'argument
+
+			//Self should not be taken into account in the number of arguments
 			if(args.contains("self"))
 				argCount--;
 			if(argCount==2)

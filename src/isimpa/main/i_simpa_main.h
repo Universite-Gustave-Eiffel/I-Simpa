@@ -459,6 +459,7 @@ class ISimpaApp : public wxApp
 			}
 			lang.Init(choosenLanguage, wxLOCALE_LOAD_DEFAULT);
 			lang.AddCatalog("isimpa");
+			lang.AddCatalog("wx");
 
 
             if(ApplicationConfiguration::GetFileConfig()->Read("interface/appdata",&strConf)) {
