@@ -1,11 +1,12 @@
 #define BOOST_TEST_MODULE lib_interface modelio tests
 #include <boost/test/unit_test.hpp>
 #include <boost/filesystem/operations.hpp>
-#include <iostream>
+#include <boost/filesystem/path.hpp>
 #include <input_output/bin.h>
 #include <input_output/gabe/stdgabe.h>
 #include <input_output/poly/poly.h>
 #include <input_output/importExportMaillage/mbin.h>
+#include <input_output/exportRecepteurSurf/rsbin.h>
 
 using namespace std;
 namespace utf = boost::unit_test;
@@ -539,4 +540,17 @@ BOOST_AUTO_TEST_CASE(write_read_gabe_test1)
 	BOOST_CHECK(resultCol2 == expectedCol2);
 	BOOST_CHECK(resultCol3 == expectedCol3);
 
+}
+
+// Check import of surface receiver file
+BOOST_AUTO_TEST_CASE(surfaceReceiverTest1) {
+	using namespace formatRSBIN;
+	std::string data_dir = GetDataDirectory();
+	t_ExchangeData data;
+	RSBIN rsbin;
+	string path = data_dir + st_path_separator() + "rs_cut.csbin";
+	BOOST_REQUIRE(boost::filesystem::exists(path));
+	BOOST_CHECK(rsbin.ImportBIN(path.c_str(), data));
+	BOOST_CHECK_EQUAL(5, data.nbTimeStep);
+	BOOST_CHECK_EQUAL(data.recordType, RECEPTEURS_RECORD_TYPE_SPL_STANDART);
 }

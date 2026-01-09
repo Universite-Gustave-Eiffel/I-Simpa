@@ -611,7 +611,12 @@ bool ApplicationConfiguration::IsIdDirectivityExist(int idDirectivity)
 }
 
 wxString ApplicationConfiguration::getResourcesFolder() {
-    return wxStandardPaths::Get().GetResourcesDir();
+#ifdef __UNIX__
+	return wxStandardPaths::Get().GetExecutablePath().BeforeLast(wxFileName::GetPathSeparator())+wxFileName::GetPathSeparator()+"resources";
+#else
+	return wxStandardPaths::Get().GetResourcesDir();
+#endif
+
 }
 
 wxString ApplicationConfiguration::getApplicationFolder() {

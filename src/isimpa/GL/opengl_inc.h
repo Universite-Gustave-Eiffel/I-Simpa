@@ -32,7 +32,7 @@
 #include <WS2tcpip.h>
 #include <windows.h>
 #endif
-#ifdef _UNIX
+#ifdef __UNIX__
 #include <GL/glut.h>    // Header File For The GLUT Library
 #include <GL/glx.h>     // Header file fot the glx libraries.
 #endif
