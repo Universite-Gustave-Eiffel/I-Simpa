@@ -29,8 +29,8 @@ modules:
     buildsystem: cmake
     sources:
       - type: archive
-        url: https://github.com/boostorg/boost/releases/download/boost-1.89.0/boost-1.89.0-cmake.7z
-        sha256: 252149f583054515b10688855b24ca1c16072b5118e603b8fe017894d319c262
+        url: https://github.com/boostorg/boost/releases/download/boost-1.89.0/boost-1.89.0-cmake.tar.gz
+        sha256: 954a01219bf818c7fb850fa610c2c8c71a4fa28fa32a1900056bcb6ff58cf908
     config-opts:
       - -DBUILD_TESTING=ON
       - -DBOOST_ENABLE_PYTHON=ON
@@ -116,3 +116,5 @@ modules:
       - -DCPM_SOURCE_CACHE=/app/share
       - -DBoost_DIR=/app/lib64/cmake/Boost-1.86.0
       - -DBOOST_ROOT=/app
+      - -DGLUT_INCLUDE_DIR=/app/include
+      - DGLUT_glut_LIBRARY=/app/lib/libglut.so

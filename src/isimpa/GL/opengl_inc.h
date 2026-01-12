@@ -33,7 +33,6 @@
 #include <windows.h>
 #endif
 #ifdef __UNIX__
-#include <GL/glut.h>    // Header File For The GLUT Library
 #include <GL/glx.h>     // Header file fot the glx libraries.
 #endif
 #if defined(__APPLE__)
