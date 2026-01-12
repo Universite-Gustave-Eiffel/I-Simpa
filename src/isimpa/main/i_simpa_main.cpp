@@ -163,7 +163,7 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, wxGetTranslation("I
 	//m_mgr.SetFrame(this);
 	m_mgr.SetManagedWindow(this);
 	wxIcon ico_ui;
-    #if not defined(__APPLE__)
+        #ifdef _WINDOWS
 		ico_ui.LoadFile(resourceFolder + "/isimpa.ico",wxBITMAP_TYPE_ICO);
 	#else
 		ico_ui.LoadFile(resourceFolder + "/isimpa.icns",wxBITMAP_TYPE_ICON);
@@ -870,7 +870,7 @@ void MainUiFrame::OnLinkWebDoc(wxCommandEvent& event)
 
 void MainUiFrame::OnLinkOfflineDoc(wxCommandEvent& event)
 {
-	wxString docpath = wxString("file://") + ApplicationConfiguration::getResourcesFolder() + wxString("doc") + wxFileName::GetPathSeparator() + wxString("documentation") + wxFileName::GetPathSeparator() + wxString("Offline_documentation") + wxFileName::GetPathSeparator() + wxString("html") + wxFileName::GetPathSeparator() + wxString("index.html");
+	wxString docpath = wxString("file://") + ApplicationConfiguration::getResourcesFolder() + wxString("doc") + wxFileName::GetPathSeparator() + wxString("documentation") + wxFileName::GetPathSeparator() + wxString("documentation.pdf");
 	wxLaunchDefaultBrowser(docpath);
 }
 

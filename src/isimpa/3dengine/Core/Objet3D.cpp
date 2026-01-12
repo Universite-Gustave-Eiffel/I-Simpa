@@ -1109,7 +1109,7 @@ bool CObjet3D::_LoadPLY(const std::string& filename)
 		}
 		//Compte le nombre de face par groupe et reserve la mémoire
 		std::vector<std::size_t> faceCountByLayer(layerCount,0);
-		for(unsigned long & faceIterator : modelImport.modelFacesLayerIndex) {
+		for(auto faceIterator : modelImport.modelFacesLayerIndex) {
 			faceCountByLayer[faceIterator]++;
 		}
 		for(std::size_t groupIdentifier=0;groupIdentifier<layerCount;groupIdentifier++) {
