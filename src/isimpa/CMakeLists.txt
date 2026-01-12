@@ -2,6 +2,7 @@ include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
 include(GNUInstallDirs)
 set(CMAKE_INSTALL_MFC_LIBRARIES TRUE )
 set(CMAKE_INSTALL_UCRT_LIBRARIES TRUE )
+set(CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP TRUE)
 include(InstallRequiredSystemLibraries)
 string(TIMESTAMP BUILD_DATE "%Y-%m-%dT%H:%M:%S")
 
@@ -16,11 +17,15 @@ endif()
 # Set installation directories based on build type
 if(IS_FLATPAK)
     set(ISIMPA_ICON_DIR share/icons/hicolor/256x256/apps)
-    set(ISIMPA_BIN_DIR bin)
-    set(ISIMPA_DATA_DIR bin)
-    set(ISIMPA_DOC_DIR bin)
-    set(ISIMPA_DOC_DIR bin)
-else()
+    set(ISIMPA_BIN_DIR "${CMAKE_INSTALL_BINDIR}")
+    set(ISIMPA_DATA_DIR "${CMAKE_INSTALL_DATADIR}")
+    set(ISIMPA_DOC_DIR "${CMAKE_INSTALL_DOCDIR}")
+elseif (WIN32)
+    set(ISIMPA_ICON_DIR .)
+    set(ISIMPA_BIN_DIR .)
+    set(ISIMPA_DATA_DIR .)
+    set(ISIMPA_DOC_DIR .)
+else ()
     set(ISIMPA_ICON_DIR .)
     set(ISIMPA_BIN_DIR "${CMAKE_INSTALL_BINDIR}")
     set(ISIMPA_DATA_DIR "${CMAKE_INSTALL_DATADIR}")
@@ -679,6 +684,8 @@ endif ()
                 "$<TARGET_FILE_DIR:isimpa>/"
         )
     endforeach()
+
+    install(DIRECTORY "$<TARGET_FILE_DIR:isimpa>/" DESTINATION "${ISIMPA_BIN_DIR}")
 endif ()
 
 # Optionally copy runtime libraries after build
@@ -773,26 +780,6 @@ if(APPLE)
     # CPack bundle plist location after install
     SET(CPACK_BUNDLE_PLIST "${CMAKE_CURRENT_BINARY_DIR}/isimpa.app/Contents/Info.plist")
     SET(CPACK_BUNDLE_ICON "${CMAKE_CURRENT_BINARY_DIR}/isimpa.app/Contents/Resources/isimpa.icns")
-
-elseif(WIN32)
-    # Install resources
-    install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/resources/"
-            DESTINATION "${ISIMPA_DATA_DIR}"
-    )
-
-    # Install Python runtime (Windows)
-    get_filename_component(PYTHON_ROOT_FOLDER ${Python3_EXECUTABLE} PATH)
-    install(DIRECTORY "${PYTHON_ROOT_FOLDER}/Lib" DESTINATION "${ISIMPA_BIN_DIR}")
-    install(DIRECTORY "${PYTHON_ROOT_FOLDER}/DLLs" DESTINATION "${ISIMPA_BIN_DIR}")
-    install(PROGRAMS "${PYTHON_ROOT_FOLDER}/python.exe" DESTINATION "${ISIMPA_BIN_DIR}")
-
-    file(GLOB PYTHON_DLL_FILES "${PYTHON_ROOT_FOLDER}/*.dll")
-    install(FILES ${PYTHON_DLL_FILES} DESTINATION "${ISIMPA_BIN_DIR}")
-
-    # Install system runtime libraries
-    if(CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS)
-        install(PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION "${ISIMPA_BIN_DIR}")
-    endif()
 endif()
 
 if(APPLE AND NOT DEFINED CPACK_GENERATOR)

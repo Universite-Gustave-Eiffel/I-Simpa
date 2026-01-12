@@ -7,9 +7,7 @@ set(ctr_VERSION_MINOR ${ctr_VERSION_MINOR} PARENT_SCOPE)
 set(ctr_VERSION_PATCH ${ctr_VERSION_PATCH} PARENT_SCOPE)
 
 include_directories (./ "${CMAKE_SOURCE_DIR}/src/lib_interface"  "${CMAKE_CURRENT_BINARY_DIR}/generated/")
-set(CMAKE_INSTALL_MFC_LIBRARIES TRUE) 
-set(CMAKE_INSTALL_UCRT_LIBRARIES TRUE ) 
-include( InstallRequiredSystemLibraries )
+
 #--------------#
 #    SOURCES
 #--------------#

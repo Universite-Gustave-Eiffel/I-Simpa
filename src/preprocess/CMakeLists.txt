@@ -1,7 +1,5 @@
 include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
-set(CMAKE_INSTALL_MFC_LIBRARIES TRUE) 
-set(CMAKE_INSTALL_UCRT_LIBRARIES TRUE )
-include( InstallRequiredSystemLibraries )
+
 #--------------#
 #    SOURCES
 #--------------#

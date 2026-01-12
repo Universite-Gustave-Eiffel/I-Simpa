@@ -118,9 +118,10 @@ jobs:
       - name: Compiling sources
         run: |
           cmake --build "${{ env.builddir }}" --config Release --parallel
-      - name: Install
+      - name: CPack
         run: |
-          cmake --install "${{ env.builddir }}" --config Release
+          cpack
+        working-directory: ${{ env.builddir }}
       - name: Print Ccache statistics after build
         run: |
           . $env:ccachebindir\ccache -s
@@ -136,4 +137,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: windows-no-install-x64
-          path: ${{ env.builddir }}/bin
+          path: ${{ env.builddir }}/src/isimpa
+      - name: Upload I-Simpa install
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-setup-x64
+          path: ${{ env.builddir }}/distribution/*.exe

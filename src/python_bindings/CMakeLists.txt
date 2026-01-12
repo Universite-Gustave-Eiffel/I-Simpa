@@ -1,8 +1,4 @@
 # Libsimpa
-set(CMAKE_INSTALL_MFC_LIBRARIES TRUE)
-set(CMAKE_INSTALL_UCRT_LIBRARIES TRUE )
-
-include( InstallRequiredSystemLibraries )
 #---------------------------------------#
 #    DEPENDENCY & EXECUTABLE (OR LIB)
 #---------------------------------------#
