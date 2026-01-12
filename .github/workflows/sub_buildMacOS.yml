@@ -38,10 +38,8 @@ jobs:
       - name: Configure CMake
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
         # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
-        env:
-          TEAMID: ${{ secrets.TEAMID }} # for signing binaries
         run: |
-          cmake -G Xcode -DCPM_SOURCE_CACHE=${{ env.CPM_SOURCE_CACHE }} -B "${{ env.builddir }}" -DCMAKE_BUILD_TYPE=Release -DTEAM_ID="${{ env.TEAMID }}"
+          cmake -G Xcode -DCPM_SOURCE_CACHE=${{ env.CPM_SOURCE_CACHE }} -B "${{ env.builddir }}" -DCMAKE_BUILD_TYPE=Release -DTEAM_ID="${{ secrets.TEAMID }}"
       - name: Compiling sources
         run: |
           cmake --build "${{ env.builddir }}" --config Release

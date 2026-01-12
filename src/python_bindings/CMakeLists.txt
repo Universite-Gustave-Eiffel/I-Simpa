@@ -131,8 +131,7 @@ add_test(NAME check_retrocompat_mesh
         COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_retrocompat_mesh.py ${CMAKE_CURRENT_SOURCE_DIR}/tests/tetramesh.mbin ${PROJECT_BINARY_DIR}/Testing/Temporary/)
 
 add_test(NAME check_retrocompat_gabe
-        COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_retrocompat_gabe.py ${PROJECT_BINARY_DIR}/Testing/Temporary/
-        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/tests/)
+        COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_retrocompat_gabe.py ${PROJECT_BINARY_DIR}/Testing/Temporary/)
 
 add_test(NAME test_math
         COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_math.py)

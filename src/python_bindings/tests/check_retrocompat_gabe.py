@@ -37,11 +37,27 @@ sys.path.append(os.getcwd())
 import libsimpa as ls
 import sys
 
+def ToList(self):
+    """
+        Return data using python array
+    """
+    lstret=[]
+    coltypes=list(self.GetTabTypes())
+    func_binding={ ls.GABE_OBJECTTYPE_SHORTSTRING : self.ReadColStr,
+                   ls.GABE_OBJECTTYPE_INT : self.ReadColInt,
+                   ls.GABE_OBJECTTYPE_FLOAT : self.ReadColFloat
+                   }
+    for idcol in range(0,len(self)):
+        lstret.append([ self.GetColTitle(idcol)] + list(func_binding[coltypes[idcol]](idcol)))
+    return lstret
+
+setattr(ls.Gabe_rw,"ToList",ToList)
+
 driver = ls.Gabe_rw()
 
 expected = [['', "Particules absorb\xe9es par l'atmosph\xe8re", 'Particules absorb\xe9es par les mat\xe9riaux', 'Particules perdues d\xfb aux boucles infinies', 'Particules perdues d\xfb au maillage incorrect', 'Particules restantes', 'Total'], ['50 Hz', 0, 19999966, 0, 2, 32, 20000000]]
 
-gabe_path = "retrocompat_test.gabe"
+gabe_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "retrocompat_test.gabe")
 
 if not os.path.exists(gabe_path):
     sys.exit("File not exists: " + gabe_path)
