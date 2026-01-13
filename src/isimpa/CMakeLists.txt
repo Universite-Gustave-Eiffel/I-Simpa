@@ -18,18 +18,12 @@ endif()
 if(IS_FLATPAK)
     set(ISIMPA_ICON_DIR share/icons/hicolor/256x256/apps)
     set(ISIMPA_BIN_DIR "${CMAKE_INSTALL_BINDIR}")
-    set(ISIMPA_DATA_DIR "${CMAKE_INSTALL_DATADIR}")
-    set(ISIMPA_DOC_DIR "${CMAKE_INSTALL_DOCDIR}")
 elseif (WIN32)
     set(ISIMPA_ICON_DIR .)
     set(ISIMPA_BIN_DIR .)
-    set(ISIMPA_DATA_DIR .)
-    set(ISIMPA_DOC_DIR .)
 else ()
     set(ISIMPA_ICON_DIR .)
     set(ISIMPA_BIN_DIR "${CMAKE_INSTALL_BINDIR}")
-    set(ISIMPA_DATA_DIR "${CMAKE_INSTALL_DATADIR}")
-    set(ISIMPA_DOC_DIR "${CMAKE_INSTALL_DOCDIR}")
 endif()
 
 MACRO(ADDMULTIPLE_LANG curdir installdir appname)
@@ -491,25 +485,6 @@ else ()
     set(RESOURCE_DEST_DIR "$<TARGET_FILE_DIR:isimpa>/resources")
 endif()
 
-# to convert .po files into .mo files
-FIND_PACKAGE(Gettext)
-IF(GETTEXT_FOUND )
-    MESSAGE(STATUS "Found Gettext")
-    # Main isimpa locale
-    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/lang "${RESOURCE_DEST_DIR}/share/locale" "isimpa")
-    # Plugins locale
-    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/check_version/locale "${RESOURCE_DEST_DIR}/SystemScript/check_version/locale" "isimpa")
-    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/job_tool/locale "${RESOURCE_DEST_DIR}/SystemScript/job_tool/locale" "isimpa")
-    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/moveto_vertex/locale "${RESOURCE_DEST_DIR}/SystemScript/moveto_vertex/locale" "isimpa")
-    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/preceiv_sourceTracker/locale "${RESOURCE_DEST_DIR}/SystemScript/preceiv_sourceTracker/locale" "isimpa")
-    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/recp_tool/locale "${RESOURCE_DEST_DIR}/SystemScript/recp_tool/locale" "isimpa")
-    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/source_tools/locale "${RESOURCE_DEST_DIR}/SystemScript/source_tools/locale" "isimpa")
-    # WxWidgets locale
-    ADDMULTIPLE_LANG(${wxWidgets_SOURCE_DIR}/locale "${RESOURCE_DEST_DIR}/share/locale" "wx")
-ELSE ()
-    MESSAGE(WARNING "Gettext not found !")
-ENDIF()
-
 # Creates a folder "executables" and adds target
 # project (isimpa.vcproj) under it
 set_property(TARGET isimpa PROPERTY FOLDER "executables")
@@ -518,20 +493,21 @@ set_target_properties(isimpa PROPERTIES MACOSX_BUNDLE_ICON_FILE "isimpa.icns")
 
 SET(wxUSE_GLCANVAS_EGL OFF)
 
+set(wxWidgets_USE_STATIC_LIBS ON)
+SET(wxWidgets_USE_STATIC ON)
+
 IF(CMAKE_BUILD_TYPE STREQUAL "Debug")
     SET(wxWidgets_USE_DEBUG ON)
-    SET(wxWidgets_USE_STATIC ON)
     MESSAGE(STATUS "Using debug version of wxWidgets")
 ELSE()
     SET(wxWidgets_USE_DEBUG OFF)
-    SET(wxWidgets_USE_STATIC ON)
 ENDIF()
 
 # add wxWidgets as dependency
 
 set(USING_CPM false)
 
-find_package(wxWidgets 3.3.1)
+find_package(wxWidgets 3.3.1 COMPONENTS mono)
 
 if(wxWidgets_FOUND)
 
@@ -547,7 +523,7 @@ if(wxWidgets_FOUND)
         endif()
     endif()
 
-    find_package(wxWidgets COMPONENTS core base xml gl aui adv html REQUIRED)
+    find_package(wxWidgets COMPONENTS mono REQUIRED)
 
     include(${wxWidgets_USE_FILE})
 else(NOT wxWidgets_FOUND)
@@ -579,6 +555,30 @@ else(NOT wxWidgets_FOUND)
             OPTIONS ${wx_options}
     )
 endif()
+
+# to convert .po files into .mo files
+FIND_PACKAGE(Gettext)
+IF(GETTEXT_FOUND )
+    MESSAGE(STATUS "Found Gettext")
+    # Main isimpa locale
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/lang "${RESOURCE_DEST_DIR}/share/locale" "isimpa")
+    # Plugins locale
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/check_version/locale "${RESOURCE_DEST_DIR}/SystemScript/check_version/locale" "isimpa")
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/job_tool/locale "${RESOURCE_DEST_DIR}/SystemScript/job_tool/locale" "isimpa")
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/moveto_vertex/locale "${RESOURCE_DEST_DIR}/SystemScript/moveto_vertex/locale" "isimpa")
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/preceiv_sourceTracker/locale "${RESOURCE_DEST_DIR}/SystemScript/preceiv_sourceTracker/locale" "isimpa")
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/recp_tool/locale "${RESOURCE_DEST_DIR}/SystemScript/recp_tool/locale" "isimpa")
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/source_tools/locale "${RESOURCE_DEST_DIR}/SystemScript/source_tools/locale" "isimpa")
+    # WxWidgets locale
+    # Check if wxWidgets_SOURCE_DIR exists (will generate wx locales if wxBUILD_LOCALES is off)
+    if (EXISTS "${wxWidgets_SOURCE_DIR}")
+        message(WARNING "wxWidgets source directory not found: ${wxWidgets_SOURCE_DIR}")
+        ADDMULTIPLE_LANG(${wxWidgets_SOURCE_DIR}/locale "${RESOURCE_DEST_DIR}/share/locale" "wx")
+    endif ()
+ELSE ()
+    MESSAGE(WARNING "Gettext not found !")
+ENDIF()
+
 
 execute_process(COMMAND ${Python3_EXECUTABLE} -c "import sys; import sysconfig; print(list(sysconfig.get_paths().values()))"
                     OUTPUT_VARIABLE PYTHON_SITE_PACKAGES OUTPUT_STRIP_TRAILING_WHITESPACE)
@@ -697,6 +697,7 @@ if(CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS)
     )
 endif()
 
+
 add_custom_command(TARGET isimpa POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
         "$<TARGET_FILE_DIR:libsimpa>"
@@ -707,41 +708,44 @@ add_custom_command(TARGET isimpa POST_BUILD
         "${RESOURCE_DEST_DIR}/libsimpa/CMakeFiles"
         COMMENT "Copying libsimpa to isimpa binary directory"
 )
+if(NOT IS_FLATPAK)
+    # Copy dependencies to bin directory of I-SIMPA in order to be able to debug the application in Visual Studio/CLion
 
-add_custom_command(TARGET isimpa POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "$<TARGET_FILE:spps>"
-        "$<TARGET_FILE_DIR:isimpa>/"
-        COMMENT "Copying spps binary to isimpa binary directory"
-)
+    add_custom_command(TARGET isimpa POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "$<TARGET_FILE:spps>"
+            "$<TARGET_FILE_DIR:isimpa>/"
+            COMMENT "Copying spps binary to isimpa binary directory"
+    )
 
-add_custom_command(TARGET isimpa POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "$<TARGET_FILE:vmr>"
-        "$<TARGET_FILE_DIR:isimpa>"
-        COMMENT "Copying vmr to isimpa binary directory"
-)
+    add_custom_command(TARGET isimpa POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "$<TARGET_FILE:vmr>"
+            "$<TARGET_FILE_DIR:isimpa>"
+            COMMENT "Copying vmr to isimpa binary directory"
+    )
 
-add_custom_command(TARGET isimpa POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "$<TARGET_FILE:tetgen>"
-        "$<TARGET_FILE_DIR:isimpa>"
-        COMMENT "Copying tetgen to isimpa binary directory"
-)
+    add_custom_command(TARGET isimpa POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "$<TARGET_FILE:tetgen>"
+            "$<TARGET_FILE_DIR:isimpa>"
+            COMMENT "Copying tetgen to isimpa binary directory"
+    )
 
-add_custom_command(TARGET isimpa POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "$<TARGET_FILE:classicalTheory>"
-        "$<TARGET_FILE_DIR:isimpa>"
-        COMMENT "Copying classicalTheory to isimpa binary directory"
-)
+    add_custom_command(TARGET isimpa POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "$<TARGET_FILE:classicalTheory>"
+            "$<TARGET_FILE_DIR:isimpa>"
+            COMMENT "Copying classicalTheory to isimpa binary directory"
+    )
 
-add_custom_command(TARGET isimpa POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "$<TARGET_FILE:preprocess>"
-        "$<TARGET_FILE_DIR:isimpa>"
-        COMMENT "Copying preprocess to isimpa binary directory"
-)
+    add_custom_command(TARGET isimpa POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "$<TARGET_FILE:preprocess>"
+            "$<TARGET_FILE_DIR:isimpa>"
+            COMMENT "Copying preprocess to isimpa binary directory"
+    )
+endif ()
 
 #######################################################################
 # Prepare install commands for CPack builder
@@ -749,7 +753,7 @@ if(APPLE)
     set(  "" CACHE STRING "The development team ID for code signing")
 
     if(TEAM_ID STREQUAL "")
-        message(FATAL_ERROR "Please set the TEAM_ID variable when generating the project")
+        message(WARNING "Please set the TEAM_ID variable when generating the project")
     endif()
 
     set(CMAKE_MACOSX_BUNDLE YES) # after this line, paste this:
@@ -775,6 +779,11 @@ install(TARGETS isimpa
         RUNTIME DESTINATION ${ISIMPA_BIN_DIR}
         LIBRARY DESTINATION ${ISIMPA_BIN_DIR}
         ARCHIVE DESTINATION ${ISIMPA_BIN_DIR})
+
+if (IS_FLATPAK)
+    install(TARGETS spps vmr classicalTheory tetgen preprocess DESTINATION "${ISIMPA_BIN_DIR}")
+    install(DIRECTORY ${RESOURCE_DEST_DIR} DESTINATION "${ISIMPA_BIN_DIR}")
+endif ()
 
 if(APPLE)
     # CPack bundle plist location after install

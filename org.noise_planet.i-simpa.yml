@@ -57,12 +57,18 @@ modules:
   - name: wxwidgets
     buildsystem: cmake
     config-opts:
-      - -DCMAKE_BUILD_TYPE=Release
-      - -DwxBUILD_SHARED=ON
+      - -DCMAKE_BUILD_TYPE=Release      -
+      - -DwxBUILD_SAMPLES=OFF
+      - -DwxBUILD_TESTS=OFF
+      - -DwxBUILD_SHARED=OFF
       - -DwxUSE_OPENGL=ON
-      - -DwxUSE_GLCANVAS_EGL=ON
+      - -DwxUSE_STATIC=ON
       - -DwxUSE_UNICODE=ON
       - -DwxUSE_LIBTIFF=OFF
+      - -DwxUSE_GLCANVAS_EGL=ON
+      - -DwxUSE_LIBWEBP=OFF
+      - -DwxBUILD_MONOLITHIC=ON
+      - -DwxBUILD_LOCALES=ON
     sources:
       - type: archive
         url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.3.1/wxWidgets-3.3.1.tar.bz2
@@ -116,5 +122,3 @@ modules:
       - -DCPM_SOURCE_CACHE=/app/share
       - -DBoost_DIR=/app/lib64/cmake/Boost-1.86.0
       - -DBOOST_ROOT=/app
-      - -DGLUT_INCLUDE_DIR=/app/include
-      - DGLUT_glut_LIBRARY=/app/lib/libglut.so
