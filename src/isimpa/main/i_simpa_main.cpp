@@ -872,7 +872,7 @@ void MainUiFrame::OnLinkWebDoc(wxCommandEvent& event)
 
 void MainUiFrame::OnLinkOfflineDoc(wxCommandEvent& event)
 {
-	wxString docpath = wxString("file://") + ApplicationConfiguration::getResourcesFolder() + wxString("doc") + wxFileName::GetPathSeparator() + wxString("documentation") + wxFileName::GetPathSeparator() + wxString("documentation.pdf");
+	wxString docpath = wxString("file://") + ApplicationConfiguration::getResourcesFolder() + wxFileName::GetPathSeparator() + wxString("doc") + wxFileName::GetPathSeparator() + wxString("documentation.pdf");
 	wxLaunchDefaultBrowser(docpath);
 }
 

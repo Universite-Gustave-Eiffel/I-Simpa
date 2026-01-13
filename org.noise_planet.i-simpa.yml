@@ -15,6 +15,8 @@ finish-args:
 cleanup:
   - '/include'
   - '/lib/debug'
+  - '/lib/libwx*'
+  - '/share/swig'
 modules:
   - name: cpm
     buildsystem: simple
@@ -122,3 +124,4 @@ modules:
       - -DCPM_SOURCE_CACHE=/app/share
       - -DBoost_DIR=/app/lib64/cmake/Boost-1.86.0
       - -DBOOST_ROOT=/app
+
