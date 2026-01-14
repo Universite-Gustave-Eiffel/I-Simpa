@@ -1,6 +1,7 @@
 app-id: org.noise_planet.i-simpa
 runtime: org.freedesktop.Platform
 runtime-version: '25.08'
+runtime-repo: https://flathub.org/repo/flathub.flatpakrepo
 sdk: org.freedesktop.Sdk
 command: isimpa
 finish-args:
