@@ -85,45 +85,49 @@ protected:
 		confCore->AppendPropertyInteger("random_seed",wxTRANSLATE("Random initialization number"), 0,true, false, true);
 	}
 public:
-
-	E_Core_Spps( Element* parent, wxXmlNode* noeudCourant)
-		:E_Core_Core(parent,"SPPS",ELEMENT_TYPE_CORE_SPPS,noeudCourant)
-	{
-		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_SPPSCORE_OPEN);
-		SetIcon(GRAPH_STATE_NORMAL,GRAPH_SPPSCORE_CLOSE);
-		E_Core_Core_Configuration* confCore=dynamic_cast<E_Core_Core_Configuration*>(this->GetElementByType(ELEMENT_TYPE_CORE_CORE_CONFIG));
-		if(confCore)
-		{
-			if(!confCore->IsPropertyExist("trans_epsilon")) //mise à jour projet < 12/11/2008
-				InitTransmission(confCore);
-            Element* proptodel=NULL;
-			if(confCore->IsPropertyExist("outpout_recs_byfreq",&proptodel))//mise à jour projet < 10/04/2009
-			{
-				confCore->DeleteElementByXmlId(proptodel->GetXmlId());
-			}
-			if(!confCore->IsPropertyExist("surf_receiv_method"))
-				InitSurfaceReceiverMethod(confCore);
-			if(!confCore->IsPropertyExist("output_recp_bysource")) {
-				InitOutputRecpBySource(confCore);
-			}
-			if(!confCore->IsPropertyExist("random_seed")) {
-				InitRandomSeed(confCore);
-			}
-			InitExportRs(confCore);
-		}
-		InitNewProperties();
-        if(GetStringConfig("exeName").EndsWith(".exe")) {
-            UpdateStringConfig("exeName", "spps");
+        E_Core_Spps(Element *parent, wxXmlNode *noeudCourant)
+            : E_Core_Core(parent, "SPPS", ELEMENT_TYPE_CORE_SPPS,
+                          noeudCourant) {
+          SetIcon(GRAPH_STATE_EXPANDED, GRAPH_SPPSCORE_OPEN);
+          SetIcon(GRAPH_STATE_NORMAL, GRAPH_SPPSCORE_CLOSE);
+          E_Core_Core_Configuration *confCore =
+              dynamic_cast<E_Core_Core_Configuration *>(
+                  this->GetElementByType(ELEMENT_TYPE_CORE_CORE_CONFIG));
+          if (confCore) {
+            if (!confCore->IsPropertyExist(
+                    "trans_epsilon")) // mise à jour projet < 12/11/2008
+              InitTransmission(confCore);
+            Element *proptodel = NULL;
+            if (confCore->IsPropertyExist(
+                    "outpout_recs_byfreq",
+                    &proptodel)) // mise à jour projet < 10/04/2009
+            {
+              confCore->DeleteElementByXmlId(proptodel->GetXmlId());
+            }
+            if (!confCore->IsPropertyExist("surf_receiv_method"))
+              InitSurfaceReceiverMethod(confCore);
+            if (!confCore->IsPropertyExist("output_recp_bysource")) {
+              InitOutputRecpBySource(confCore);
+            }
+            if (!confCore->IsPropertyExist("random_seed")) {
+              InitRandomSeed(confCore);
+            }
+            InitExportRs(confCore);
+          }
+          InitNewProperties();
+          UpdateStringConfig("exeName", "spps");
+          UpdateStringConfig("corePath", "");
+          // Update labels whose keys have changed
+          initPropLabel(confCore, "trans_epsilon",
+                        wxTRANSLATE("Limit value of the particle extinction "
+                                    "(Energetic method) : ratio 10^n"));
+          initPropLabel(confCore, "trans_calc",
+                        wxTRANSLATE("Active calculation of transmission"));
+          initPropLabel(confCore, "random_seed",
+                        wxTRANSLATE("Random initialization number"));
+          initPropLabel(confCore, "rayon_recepteurp",
+                        wxTRANSLATE("Receiver radius (m)"));
         }
-        if (GetStringConfig("corePath").IsSameAs(wxString("sppsNantes") + wxFileName::GetPathSeparator())) {
-            UpdateStringConfig("corePath", wxString("spps") + wxFileName::GetPathSeparator());
-        }
-		// Update labels whose keys have changed
-		initPropLabel(confCore, "trans_epsilon", wxTRANSLATE("Limit value of the particle extinction (Energetic method) : ratio 10^n"));
-		initPropLabel(confCore, "trans_calc", wxTRANSLATE("Active calculation of transmission"));
-		initPropLabel(confCore, "random_seed", wxTRANSLATE("Random initialization number"));
-		initPropLabel(confCore, "rayon_recepteurp", wxTRANSLATE("Receiver radius (m)"));
-	}
 
 
 	E_Core_Spps( Element* parent)
@@ -164,7 +168,7 @@ public:
 
 		this->AppendPropertyText("modelName","","mesh.cbin",true,true)->Hide();
 		this->AppendPropertyText("exeName","","spps")->Hide();
-		this->AppendPropertyText("corePath","",wxString("spps")+wxFileName::GetPathSeparator())->Hide();
+		this->AppendPropertyText("corePath","","")->Hide();
 		this->AppendPropertyText("tetrameshFileName","","tetramesh.mbin",true,true)->Hide();
 	}
 	wxXmlNode* SaveXMLDoc(wxXmlNode* NoeudParent)

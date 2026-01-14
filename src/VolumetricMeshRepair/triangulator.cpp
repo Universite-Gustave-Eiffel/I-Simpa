@@ -366,33 +366,32 @@ namespace Triangulators
 	{
 		using namespace formatRPLY;
 		t_model outModel;
-		for(std::vector<vec3>::iterator itvert=this->vertices.begin();itvert!=this->vertices.end();itvert++)
+		for(auto & vertice : this->vertices)
 		{
-			outModel.modelVertices.push_back(*itvert);
+			outModel.modelVertices.push_back(vertice);
 		}
-		for(std::vector<ivec3>::iterator itface=this->faces.begin();itface!=this->faces.end();itface++)
+		for(auto & face : this->faces)
 		{
-			outModel.modelFaces.push_back(*itface);
+			outModel.modelFaces.emplace_back(face);
 		}
 		return CPly::ExportPly(outModel, filename);
 	}
+
 	BaseTriangulator::BaseTriangulator()
-		: merge_normal_constraint((decimal)0.999),quality_constraint((decimal)0.1),mergeVerticesOperationObjects(PTR<MergeVerticesOperationObjects_t>(new MergeVerticesOperationObjects_t))
-	{
-
-
+		: quality_constraint(static_cast<decimal>(0.1)), merge_normal_constraint(static_cast<decimal>(0.999)),
+		  verbose(false),
+		  mergeVerticesOperationObjects(PTR<MergeVerticesOperationObjects_t>(new MergeVerticesOperationObjects_t)) {
 	}
-	void GetTriNeigh(const std::vector<std::list<std::size_t> >& verticeToFace,const std::vector<ivec3>& faces,std::list<std::size_t>& tri_lst,const std::size_t& startVertice,unsigned short deep)
-	{
-		std::list<std::size_t>::const_iterator endit(verticeToFace[startVertice].end());
-		for(std::list<std::size_t>::const_iterator itface=verticeToFace[startVertice].begin();itface!=endit;itface++)
-		{
-			tri_lst.push_back(*itface);
-			if(deep>1)
-			{
-				GetTriNeigh(verticeToFace,faces,tri_lst,faces[*itface].a,deep-1);
-				GetTriNeigh(verticeToFace,faces,tri_lst,faces[*itface].b,deep-1);
-				GetTriNeigh(verticeToFace,faces,tri_lst,faces[*itface].c,deep-1);
+
+	void GetTriNeigh(const std::vector<std::list<std::size_t> > &verticeToFace, const std::vector<ivec3> &faces,
+	                 std::list<std::size_t> &tri_lst, const std::size_t &startVertice, unsigned short deep) {
+		const auto endIterator(verticeToFace[startVertice].end());
+		for (auto faceIterator = verticeToFace[startVertice].begin(); faceIterator != endIterator; ++faceIterator) {
+			tri_lst.push_back(*faceIterator);
+			if (deep > 1) {
+				GetTriNeigh(verticeToFace, faces, tri_lst, faces[*faceIterator].a, deep - 1);
+				GetTriNeigh(verticeToFace, faces, tri_lst, faces[*faceIterator].b, deep - 1);
+				GetTriNeigh(verticeToFace, faces, tri_lst, faces[*faceIterator].c, deep - 1);
 			}
 		}
 	}

@@ -48,7 +48,7 @@ namespace ModelReconstructionUI
 			}
 			wxString GetArgFromPreferences(const ReconstructionUserPreferences_t& preferences)
 			{
-				wxString argChain(ApplicationConfiguration::CONST_TETROOT_PATH+"vmr"+wxFileName::GetPathSeparator()+"vmr");
+				wxString argChain(ApplicationConfiguration::getApplicationFolder()+wxFileName::GetPathSeparator()+"vmr");
 				argChain+=wxString::Format(" -depth%i",(int)(preferences.depth));
 
 				if(preferences.getVolStats)
@@ -63,13 +63,9 @@ namespace ModelReconstructionUI
 					if(preferences.adaptativeMeshMethod==ReconstructionUserPreferences_t::ADAPTATIVE_MESH_METHOD_NONE)
 						argChain+=" -noadaptative";
 
-					//Pas encore implémenté
-					//if(preferences.meshSimplificationMethod==ReconstructionUserPreferences_t::MESH_SIMPLIFICATION_METHOD_NONE)
-					//	argChain+=" -noreduction";
-
-					for(ModelReconstructionUI::VolumeIdList_t::const_iterator itvolid=preferences.volumeIdToExport.begin();itvolid!=preferences.volumeIdToExport.end();itvolid++)
+					for(const unsigned short volume_identifier : preferences.volumeIdToExport)
 					{
-						argChain+=wxString::Format(" -iv%i",*itvolid);
+						argChain+=wxString::Format(" -iv%i", volume_identifier);
 					}
 				}
 

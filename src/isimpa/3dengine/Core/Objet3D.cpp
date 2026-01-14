@@ -1103,27 +1103,26 @@ bool CObjet3D::_LoadPLY(const std::string& filename)
 	if(layerCount>0 && facetLayerInfoCount==nbfaces)
 	{
 		this->_pGroups.reserve(layerCount);
-		for(std::list<formatRPLY::t_layer>::iterator itlayer=modelImport.modelLayers.begin();itlayer!=modelImport.modelLayers.end();itlayer++)
+		for(auto & modelLayer : modelImport.modelLayers)
 		{
-			this->_pGroups.push_back((*itlayer).layerName);
+			this->_pGroups.emplace_back(modelLayer.layerName);
 		}
 		//Compte le nombre de face par groupe et reserve la mémoire
 		std::vector<std::size_t> faceCountByLayer(layerCount,0);
-		for(std::list<std::size_t>::iterator itface=modelImport.modelFacesLayerIndex.begin();itface!=modelImport.modelFacesLayerIndex.end();itface++)
-			faceCountByLayer[*itface]++;
-		for(std::size_t idgroup=0;idgroup<layerCount;idgroup++)
-		{
-			this->_pGroups[idgroup].pFaces.reserve(faceCountByLayer[idgroup]);
+		for(auto faceIterator : modelImport.modelFacesLayerIndex) {
+			faceCountByLayer[faceIterator]++;
+		}
+		for(std::size_t groupIdentifier=0;groupIdentifier<layerCount;groupIdentifier++) {
+			this->_pGroups[groupIdentifier].pFaces.reserve(faceCountByLayer[groupIdentifier]);
 		}
 		//
-		std::list<std::size_t>::iterator faceLayerInfoIt=modelImport.modelFacesLayerIndex.begin();
-		for(std::list<formatRPLY::t_face>::iterator itface=modelImport.modelFaces.begin();itface!=modelImport.modelFaces.end();itface++)
-		{
+		auto faceLayerInfoIt=modelImport.modelFacesLayerIndex.begin();
+		for(auto & modelFace : modelImport.modelFaces) {
 			SGroup3D& grp=this->_pGroups[*faceLayerInfoIt];
-			grp.pFaces.push_back(SFace3D());
-			SFace3D& nvface=grp.pFaces.back();
-			nvface.Vertices=(*itface).indicesSommets;
-			nvface.FaceNormals=FaceNormal(this->_pVertices[nvface.Vertices.a],this->_pVertices[nvface.Vertices.b],this->_pVertices[nvface.Vertices.c]);
+			grp.pFaces.emplace_back();
+			SFace3D& newFace=grp.pFaces.back();
+			newFace.Vertices=modelFace.verticesIndex;
+			newFace.FaceNormals=FaceNormal(this->_pVertices[newFace.Vertices.a],this->_pVertices[newFace.Vertices.b],this->_pVertices[newFace.Vertices.c]);
 			faceLayerInfoIt++;
 		}
 
@@ -1146,7 +1145,7 @@ bool CObjet3D::_LoadPLY(const std::string& filename)
 		for(std::list<formatRPLY::t_face>::iterator itface=modelImport.modelFaces.begin();itface!=modelImport.modelFaces.end();itface++)
 		{
 			SFace3D& nvface=grp.pFaces[idface];
-			nvface.Vertices=(*itface).indicesSommets;
+			nvface.Vertices=(*itface).verticesIndex;
 			nvface.FaceNormals=FaceNormal(this->_pVertices[nvface.Vertices.a],this->_pVertices[nvface.Vertices.b],this->_pVertices[nvface.Vertices.c]);
 			idface++;
 		}

@@ -128,7 +128,7 @@ void E_Scene_Groupesurfaces_Groupe::sendStringToVector()
 		exchangeMainData mainData;
 		DGIBIN fileReader;
 		if (fileReader.ImportBIN(fullPath,mainData)) {
-			for(long idface=0;idface<mainData.header.quantFace;idface++)
+			for(Longb idface=0;idface<mainData.header.quantFace;idface++)
 			{
 				this->vertexLst.push_back(t_faceIndex(mainData.tabFaces[idface].face,mainData.tabFaces[idface].group));
 			}
@@ -232,14 +232,14 @@ void E_Scene_Groupesurfaces_Groupe::PushFace(std::vector<std::vector<Application
 	{
 		std::vector<ApplicationConfiguration::t_PropFace> nvGroup;
 		vectorToFeed.push_back(nvGroup);
-		if(faceIndex.group == -1 < 0) {
+		if(faceIndex.group == -1) {
 			faceIndex.group = vectorToFeed.size() - 1;
 		}
 	}
 	while(faceIndex.face == -1 || faceIndex.face >= vectorToFeed[faceIndex.group].size())
 	{
 		vectorToFeed[faceIndex.group].push_back(ApplicationConfiguration::t_PropFace());
-		if(faceIndex.face == -1 < 0) {
+		if(faceIndex.face == -1) {
 			faceIndex.face = vectorToFeed[faceIndex.group].size() - 1;
 		}
 	}
@@ -355,7 +355,7 @@ wxXmlNode* E_Scene_Groupesurfaces_Groupe::SaveXMLDoc(wxXmlNode* NoeudParent)
 		mainData.header.quantFace=tmpFacetList.size();
 		mainData.tabFaces=new binface[mainData.header.quantFace];
 		DGIBIN fileWriter;
-		for(long i=0;i<mainData.header.quantFace;i++)
+		for(Longb i=0;i<mainData.header.quantFace;i++)
 		{
 			mainData.tabFaces[i].face=tmpFacetList[i].face;
 			mainData.tabFaces[i].group=tmpFacetList[i].group;

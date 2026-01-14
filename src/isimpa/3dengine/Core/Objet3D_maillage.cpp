@@ -852,7 +852,7 @@ void CObjet3D::GetTetraMesh(formatMBIN::trimeshmodel& trimesh, bool toRealCoords
     }
     else
     {
-        for (int idNode = 0; idNode < nodesMaillageSize; idNode++)
+        for (std::size_t idNode = 0; idNode < nodesMaillageSize; idNode++)
         {
             vec3 realNodeCoords = coordsOperation::GlCoordsToCommonCoords(UnitizeVar, nodesMaillage[idNode]);
             trimesh.nodes.push_back(formatMBIN::t_binNode(realNodeCoords.x, realNodeCoords.y, realNodeCoords.z));

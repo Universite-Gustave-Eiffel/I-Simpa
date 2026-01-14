@@ -35,12 +35,12 @@
 wxString Convertor::fromConvDecimal=' ';
 wxString Convertor::toConvDecimal=' ';
 
-double Convertor::ToFloat( const wxString& sval )
+float_t Convertor::ToFloat( const wxString& sval )
 {
 	return ToFloat(sval.ToStdString());
 }
 
-double Convertor::ToFloat(const std::string& sval) {
+float_t Convertor::ToFloat(const std::string& sval) {
 	std::istringstream iss(sval);
 	iss.imbue(std::locale::classic());
 

@@ -32,8 +32,7 @@
 #include <WS2tcpip.h>
 #include <windows.h>
 #endif
-#ifdef _UNIX
-#include <GL/glut.h>    // Header File For The GLUT Library
+#if defined(__linux__)
 #include <GL/glx.h>     // Header file fot the glx libraries.
 #endif
 #if defined(__APPLE__)

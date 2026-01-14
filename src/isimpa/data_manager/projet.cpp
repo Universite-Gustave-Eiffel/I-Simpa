@@ -305,9 +305,10 @@ currentHistoryNavigation(0)
 	//On utilise le projet présent dans /current/
 
 	this->dossierCourant = ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath;
-	this->FichierConfig = "projet_config.xml";	//fichier de config du projet
-	this->FichierConfigDefaut =ApplicationConfiguration::CONST_STATIC_XML_FILE; //fichier de configuration statique
-	this->PathCores=ApplicationConfiguration::CONST_CORE_PATH;
+	this->ProjectConfigurationFile = "projet_config.xml"; // Project configuration file
+	this->ApplicationConfigurationFile = ApplicationConfiguration::getResourcesFolder() + wxFileName::GetPathSeparator()
+	                                     + ApplicationConfiguration::CONST_STATIC_XML_FILE; // Static configuration file
+	this->PathCores = ApplicationConfiguration::getApplicationFolder();
 
 	ctrlDown=false;
 	shiftDown=false;
@@ -325,7 +326,7 @@ currentHistoryNavigation(0)
 	this->pyShell=NULL;
 
 	//Gestion fichier xml de configuration par défaut
-	ApplicationConfiguration::LoadConfiguration(this->FichierConfigDefaut);
+	ApplicationConfiguration::LoadConfiguration(this->ApplicationConfigurationFile);
 
 	//Gestion repertoire de projet
 	wxFileName fname;
@@ -635,7 +636,7 @@ void ProjectManager::CloseApp()
 ProjectManager::~ProjectManager()
 {
 	this->SaveUserPreferenceTree();
-	this->rootUserConfig=(Element*)NULL;
+	this->rootUserConfig=(Element*)nullptr;
 	ApplicationConfiguration::OnApplicationClose();
 	UnloadPyShell();
 }
@@ -798,15 +799,12 @@ void ProjectManager::RunCoreCalculation(Element* coreCalculation)
 	wxDateTime timeDebCalculation=wxDateTime::UNow();
 
 	if(ext=="py" || ext=="pyc") {
-
 	#ifdef _WIN32
-		cmd = ApplicationConfiguration::getResourcesFolder() + "python.exe -u \"" + rootCorePath + exeName + "\" \"" + workingDir + xmlCoreFileName + "\"";
+		cmd = ApplicationConfiguration::getApplicationFolder() + wxFileName::GetPathSeparator() + "python3.exe -u \"" + rootCorePath + exeName + "\" \"" + workingDir + xmlCoreFileName + "\"";
 	#else
 		cmd = "python -u \"" + rootCorePath + exeName + "\" \"" + workingDir + xmlCoreFileName + "\"";
 	#endif // _WIN32
-
-    }
-    else {
+    } else {
         cmd = rootCorePath + exeName + " \"" + workingDir + xmlCoreFileName + "\"";
     }
 
@@ -1471,7 +1469,7 @@ void ProjectManager::OnSaveConsoleToFile(wxString fileName)
 void ProjectManager::OnSaveShellToFile(wxString fileName)
 {
 	if(shellControl!=NULL)
-		this->shellControl->SaveFile(fileName,wxFILE_KIND_DISK);
+		this->shellControl->GetOutputControl()->SaveFile(fileName,wxFILE_KIND_DISK);
 }
 void ProjectManager::OnClearConsole()
 {
@@ -1845,7 +1843,7 @@ void ProjectManager::NewProject()
 	tmpDocXml.SetRoot(xmlRoot);
 	this->BuildEmptyProject(xmlRoot);
 	if(tmpDocXml.IsOk())
-		tmpDocXml.Save(this->dossierCourant+this->FichierConfig);
+		tmpDocXml.Save(this->dossierCourant+this->ProjectConfigurationFile);
 	this->LoadCurrentProject();
 	this->Init();
 }
@@ -1859,7 +1857,7 @@ void ProjectManager::LoadCurrentProject(bool reloadXmlFile)
 
 	int prog=0; //compteur information progression
 	if(reloadXmlFile)
-		this->projetConfig.Load(this->dossierCourant+this->FichierConfig);
+		this->projetConfig.Load(this->dossierCourant+this->ProjectConfigurationFile);
 	wxString fEncoding=this->projetConfig.GetFileEncoding();
 	//this->projetConfig.SetEncoding("utf-8");
 	// Initialisation des données par rapport au fichier XML
@@ -1988,7 +1986,7 @@ void ProjectManager::Init( )
 void ProjectManager::ControlPointerInitialisation()
 {
 	treeUserPref->Init(this->rootUserConfig.get());
-	if(!wxFileExists(this->dossierCourant+FichierConfig))
+	if(!wxFileExists(this->dossierCourant+ProjectConfigurationFile))
 	{
 		this->NewProject();
 	}else{
@@ -2015,7 +2013,11 @@ void ProjectManager::SetControlPointer(	wxTextCtrl* _logControl,uiTreeCtrl* _tre
 	propFrame=_propFrame;
 	auiManager=_auiManager;
 
-	InitPythonEngine(); //Initialisation de python
+	try {
+		InitPythonEngine(); //Initialisation de python
+	} catch (...) {
+		wxLogError(_("Error while initializing python engine"));
+	}
 
 	//Chargement de l'arbre de préférence (peut contenir des élément implémenté en python
 	UserPreferenceXmlFilePath= wxStandardPaths::Get().GetUserDataDir()+wxFileName::GetPathSeparator()+ApplicationConfiguration::CONST_USER_PREFERENCE_FILE_NAME;
@@ -2396,13 +2398,15 @@ void ProjectManager::CreateUserPreferenceTree()
 
 void ProjectManager::SaveUserPreferenceTree()
 {
-	//userPreferenceDocument.SetVersion(wxString::Format("%i.%i.%i",ApplicationConfiguration::SPPS_UI_VERSION_MAJOR,ApplicationConfiguration::SPPS_UI_VERSION_MINOR,ApplicationConfiguration::SPPS_UI_VERSION_REVISION));
-	userPreferenceDocument.GetRoot()->DeleteAttribute("app_version");
-	userPreferenceDocument.GetRoot()->AddAttribute("app_version",wxString::Format("%i.%i.%i",ApplicationConfiguration::SPPS_UI_VERSION_MAJOR,ApplicationConfiguration::SPPS_UI_VERSION_MINOR,ApplicationConfiguration::SPPS_UI_VERSION_REVISION));
-	rootUserConfig->SaveXMLDoc(userPreferenceDocument.GetRoot());
-	userPreferenceDocument.SetFileEncoding("utf-8");
-	//userPreferenceDocument.SetEncoding("utf-8");
-	userPreferenceDocument.Save(UserPreferenceXmlFilePath);
+	if (userPreferenceDocument.IsOk()) {
+		userPreferenceDocument.GetRoot()->DeleteAttribute("app_version");
+		userPreferenceDocument.GetRoot()->AddAttribute("app_version",wxString::Format("%i.%i.%i",ApplicationConfiguration::SPPS_UI_VERSION_MAJOR,ApplicationConfiguration::SPPS_UI_VERSION_MINOR,ApplicationConfiguration::SPPS_UI_VERSION_REVISION));
+		rootUserConfig->SaveXMLDoc(userPreferenceDocument.GetRoot());
+		userPreferenceDocument.SetFileEncoding("utf-8");
+		if (!userPreferenceDocument.Save(UserPreferenceXmlFilePath)) {
+			wxLogWarning( wxT("Failed to save user preference tree."));
+		}
+	}
 }
 bool ProjectManager::LoadUserPreferenceTree()
 {
@@ -2901,7 +2905,7 @@ bool ProjectManager::LoadScene(const t_param_load_model& paramLoading)
 {
 	wxProgressDialog progInfo(wxGetTranslation("Loading 3D scene..."),wxGetTranslation("Loading 3D scene..."),100,mainFrame,wxPD_ELAPSED_TIME | wxPD_AUTO_HIDE | wxPD_APP_MODAL );
 	t_retrieves_groups oldFacesDistribution;
-	if(paramLoading.keepexistingfacegroup)
+	if(paramLoading.keepExistingFaceGroup)
 		BuildFaceGroupAssociation(oldFacesDistribution);
 	bool loadSuccess=sceneMesh.Load(paramLoading.pathModel.ToStdString(), paramLoading.modelRescale);
 	if(loadSuccess)
@@ -2917,7 +2921,7 @@ bool ProjectManager::LoadScene(const t_param_load_model& paramLoading)
 
 		progInfo.Update(25,wxGetTranslation("Loading faces of 3D scene"));
 		this->AddLogMessage(wxString::Format(wxGetTranslation("Loading 3D scene: %s\n"), paramLoading.pathModel.AfterLast(wxFileName::GetPathSeparator())));
-		if(paramLoading.keepexistingfacegroup)
+		if(paramLoading.keepExistingFaceGroup)
 			this->LoadFacesFromModel(&progInfo,&oldFacesDistribution,paramLoading.epsilonLinkingFaceGroup);
 		else
 			this->LoadFacesFromModel(&progInfo);
@@ -2950,9 +2954,9 @@ void ProjectManager::ChangeModel3d(const wxString& FileName)
 	int res=optDialog.ShowModal();
 	if(res==wxID_OK)
 	{
-		paramLoading.keepexistingfacegroup=optDialog.IsKeepExistingFaceLinks();
-		paramLoading.domeshsurface=optDialog.IsMeshSurface();
-		paramLoading.docorrection=optDialog.IsMeshRepair();
+		paramLoading.keepExistingFaceGroup=optDialog.IsKeepExistingFaceLinks();
+		paramLoading.doMeshSurface=optDialog.IsMeshSurface();
+		paramLoading.doCorrection=optDialog.IsMeshRepair();
 		paramLoading.paramTetgen=optDialog.GetMeshParameters();
 		paramLoading.launchRemeshWizard=optDialog.IsRemeshModel();
 		paramLoading.epsilonLinkingFaceGroup=optDialog.GetEpsilonLinkingFaceGroup();
@@ -3137,9 +3141,9 @@ void ProjectManager::UpdateXmlFile(wxString toFolder,bool saveToFile)
 	if(saveToFile)
 	{
 		if(toFolder=="")
-			this->projetConfig.Save(this->dossierCourant+FichierConfig); //,wxXML_NO_INDENTATION
+			this->projetConfig.Save(this->dossierCourant+ProjectConfigurationFile); //,wxXML_NO_INDENTATION
 		else
-			this->projetConfig.Save(toFolder+FichierConfig);
+			this->projetConfig.Save(toFolder+ProjectConfigurationFile);
 	}
 }
 
@@ -3210,12 +3214,12 @@ void ProjectManager::OpenNewDataWindow(Element* linkedElement)
 			OnStartRemeshWizard();
 		}
 		//2eme étape éxecuter le logiciel de correction de modèle
-		if(paramRepair.docorrection)
+		if(paramRepair.doCorrection)
 		{
 			meshModified=true;
 			if(!wxFileExists(meshName))
 			{
-				if(paramRepair.domeshsurface)
+				if(paramRepair.doMeshSurface)
 				{
 					sceneMesh._SavePOLY(meshName.ToStdString(),false,false,true, NULL,true);
 				}else{
@@ -3225,7 +3229,7 @@ void ProjectManager::OpenNewDataWindow(Element* linkedElement)
 			RunRemeshProcess(meshName);
 		}
 		// Si pas d'amélioration du contour du modèle
-		if(paramRepair.domeshsurface)
+		if(paramRepair.doMeshSurface)
 		{
 			if(!wxFileExists(meshName))
 				sceneMesh._SavePOLY(meshName.ToStdString(),false,false,true, NULL,true);
@@ -3235,7 +3239,7 @@ void ProjectManager::OpenNewDataWindow(Element* linkedElement)
 			RunTetGenBoundaryMesh(paramRepair.paramTetgen,cacheFolder,"mesh_to_repair","poly");
 			meshModified=true;
 		}
-		if(paramRepair.docorrection && !paramRepair.domeshsurface)
+		if(paramRepair.doCorrection && !paramRepair.doMeshSurface)
 		{
 			//3eme étape, charger le fichier .POLY modifié en gardant les groupes existants et les identifiant de matériaux(couleur d'origine par face) (consistant grâce aux marqueurs par face des fichiers POLY)
 			sceneMesh.LoadPolyWithoutLostCurrentModelGroupAndMaterials(meshName.ToStdString());

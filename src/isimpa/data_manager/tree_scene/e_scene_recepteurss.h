@@ -131,9 +131,10 @@ public:
 	}
 
 	void OnRightClic(wxMenu* leMenu)
-	{	
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_RECEPTEUR_S, wxGetTranslation("New scene receiver"),"./Bitmaps/popup_new.png"));
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_RECEPTEUR_S_COUPE, wxGetTranslation("New plane receiver"),"./Bitmaps/popup_new.png"));
+	{
+		const wxString resourceFolder=ApplicationConfiguration::getResourcesFolder();
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_RECEPTEUR_S, wxGetTranslation("New scene receiver"),resourceFolder + "/Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_RECEPTEUR_S_COUPE, wxGetTranslation("New plane receiver"),resourceFolder + "/Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 	void OnPaste(wxXmlNode* nodeElement)

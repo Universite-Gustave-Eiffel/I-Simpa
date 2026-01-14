@@ -58,25 +58,24 @@ public:
 		InitExportRs(confCore);
 		wxGetTranslation("Atmospheric absorption calculation");
 	}
-	E_Core_Tc( Element* parent, wxXmlNode* noeudCourant)
-		:E_Core_Core(parent, wxTRANSLATE("Classical theory of reverberation (TCR)"),ELEMENT_TYPE_CORE_TC,noeudCourant)
-	{
-		SetIcon(GRAPH_STATE_EXPANDED,GRAPH_STANDARTCORE_OPEN);
-		SetIcon(GRAPH_STATE_NORMAL,GRAPH_STANDARTCORE_CLOSE);
-		Element* coreConf=this->GetElementByType(Element::ELEMENT_TYPE_CORE_CORE_CONFIG);
-		if(!coreConf) //Maj version < 05/11/2008
-		{
-			AddConfTc();
-		}else{
-			InitExportRs(coreConf);
-		}
-        if (GetStringConfig("exeName").EndsWith(".exe")) {
-            UpdateStringConfig("exeName", "classicalTheory");
+        E_Core_Tc(Element *parent, wxXmlNode *noeudCourant)
+            : E_Core_Core(
+                  parent,
+                  wxTRANSLATE("Classical theory of reverberation (TCR)"),
+                  ELEMENT_TYPE_CORE_TC, noeudCourant) {
+          SetIcon(GRAPH_STATE_EXPANDED, GRAPH_STANDARTCORE_OPEN);
+          SetIcon(GRAPH_STATE_NORMAL, GRAPH_STANDARTCORE_CLOSE);
+          Element *coreConf =
+              this->GetElementByType(Element::ELEMENT_TYPE_CORE_CORE_CONFIG);
+          if (!coreConf) // Maj version < 05/11/2008
+          {
+            AddConfTc();
+          } else {
+            InitExportRs(coreConf);
+          }
+          UpdateStringConfig("exeName", "classicalTheory");
+          UpdateStringConfig("corePath", "");
         }
-		if (GetStringConfig("corePath").StartsWith("theorie_classique")) {
-			UpdateStringConfig("corePath", wxString("classical_theory") + wxFileName::GetPathSeparator());
-		}
-	}
 
 	E_Core_Tc( Element* parent)
 		:E_Core_Core(parent, wxTRANSLATE("Classical theory of reverberation"),ELEMENT_TYPE_CORE_TC)
@@ -95,7 +94,7 @@ public:
 
 		this->AppendPropertyText("modelName","","mesh.cbin",true,true)->Hide();
 		this->AppendPropertyText("exeName","","classicalTheory")->Hide();
-		this->AppendPropertyText("corePath","",wxString("classical_theory")+wxFileName::GetPathSeparator())->Hide();
+		this->AppendPropertyText("corePath","","")->Hide();
 		this->AppendPropertyText("tetrameshFileName","","tetramesh.mbin",true,true)->Hide();
 	}
 

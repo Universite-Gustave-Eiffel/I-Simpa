@@ -189,16 +189,12 @@ public:
 	static const wxString CONST_REPORT_DIRECTIVITIES_FOLDER_PATH;
 	static const wxString CONST_MODEL_SCENE_FILENAME;
 	static const wxString CONST_TETGEN_EXE_FILENAME;
-	static const wxString CONST_TETGEN_EXE_PATH;
-	static const wxString CONST_TETROOT_PATH;
 	static const wxString CONST_PREPROCESS_EXE_FILENAME;
-	static const wxString CONST_PREPROCESS_EXE_PATH;
 	static const wxString CONST_GRAPH_CONFIG_PATH;
 	static const wxString CONST_RESOURCE_BITMAP_FOLDER; /*<! Dossier racine où se trouve les données du programme*/
 	static const wxString CONST_RESOURCE_ISO_FOLDER; /*<! Dossier racine où se trouve les données du programme*/
 	static const wxString CONST_RESOURCE_DIRECTIVITY_FOLDER;  /*<! Dossier racine où se trouve les directivités de référence du programme*/
 	//static const wxString CONST_RESOURCE_LNG_FOLDER; /*<! Dossier racine où se trouve les dossiers de langue*/
-	static const wxString CONST_CORE_PATH; /*<! Dossier racine où se trouve les données du programme*/
 	static const wxString CONST_STATIC_XML_FILE; /*<! fichier xml de configuration d'application (materiaux et spectres application)*/
 	//static const unsigned long CONST_WORKINGLIMIT;//timestamp unix de fin de fonctionnement (0 aucune limite)
 	static const int SPPS_UI_VERSION_MAJOR;
@@ -512,6 +508,12 @@ public:
 	 * @return Application ressources path
 	 */
 	static wxString getResourcesFolder();
+
+	/**
+	 * @return Application binary path
+	 */
+	static wxString getApplicationFolder();
+
 	/**
 	* Utilisé dans les listes de directivités afin d'obtenir les noms des directivités et leurs indices
 	* @see AddDirectivity()

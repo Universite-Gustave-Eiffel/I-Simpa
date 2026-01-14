@@ -56,3 +56,4 @@ CMakeSettings.json
 # pixi environments
 .pixi/*
 !.pixi/config.toml
+*.flatpak

@@ -343,23 +343,12 @@ public:
 	 *	Pour faire appel à cette méthode n'importe où dans le logiciel, utiliser : wxLogMessage()
 	 *	Se référer au document développeur de wxWidgets
 	*/
-	void DoLogRecord(wxLogLevel level,
-		const wxString& szString,
-		const wxLogRecordInfo& info)
-	{
-		wxString message(szString);
-
+	void DoLogTextAtLevel(wxLogLevel level, const wxString& szString) override {
 
 		switch ( level ) {
 			case wxLOG_FatalError:
 				DoLogText(wxString(wxGetTranslation("Fatal error: ")) + szString, wxRED);
 				DoLogText(wxGetTranslation("Program aborted"), wxRED);
-				Flush();
-		#ifdef __WXWINCE__
-				ExitThread(3);
-		#else
-				abort();
-		#endif
 				break;
 
 			case wxLOG_Error:
@@ -393,11 +382,10 @@ public:
 		}
 
 	}
-	void DoLogText(const wxChar *szString, const wxColour* msgColor)
+
+        static void DoLogText(const wxString& szString, const wxColour* msgColor)
 	{
-		wxString str;
-		TimeStamp(&str);
-		projetCourant->AddLogMessage(str + wxString(szString) +   _T("\n"),msgColor);
+	  projetCourant->AddLogMessage(szString + _T("\n"),msgColor);
 	}
 };
 
@@ -411,6 +399,24 @@ class ISimpaApp : public wxApp
 	private:
 		MainUiFrame* frame;
 	public:
+
+
+		bool OnExceptionInMainLoop() override {
+			wxString error;
+			try {
+				throw; // Rethrow the current exception.
+			} catch (const std::exception& e) {
+				error = e.what();
+			} catch ( ... ) {
+				error = "unknown error.";
+			}
+
+			wxLogError("Unexpected exception has occurred: %s, the program will terminate.", error);
+
+			// Exit the main loop and thus terminate the program.
+			return false;
+		}
+
 		/**
 		 * Première méthode appelé à l'execution du logiciel
 		 *	Dans l'ordre, initialise :
@@ -440,7 +446,9 @@ class ISimpaApp : public wxApp
 			wxImage::AddHandler(new wxPNGHandler); //ajoute le support du format png
 			wxImage::AddHandler(new wxICOHandler); //ajoute le support du format ico
 
-			//Charge le gestionnaire de language
+			// Charge le gestionnaire de language
+			wxString langDir=ApplicationConfiguration::getResourcesFolder()+wxFileName::GetPathSeparator()+_T("share")+wxFileName::GetPathSeparator()+_T("locale");
+			wxLocale::AddCatalogLookupPathPrefix(langDir);
 			wxLanguage choosenLanguage=wxLANGUAGE_DEFAULT;
 			wxString strConf;
 			if(ApplicationConfiguration::GetFileConfig()->Read("interface/language",&strConf))
@@ -452,6 +460,7 @@ class ISimpaApp : public wxApp
 			}
 			lang.Init(choosenLanguage, wxLOCALE_LOAD_DEFAULT);
 			lang.AddCatalog("isimpa");
+			lang.AddCatalog("wx");
 
 
             if(ApplicationConfiguration::GetFileConfig()->Read("interface/appdata",&strConf)) {
@@ -516,29 +525,24 @@ class ISimpaApp : public wxApp
 			//Charge le gestionnaire de projet
 			projetCourant = new ProjectManager();
 
-			/*
-			if(ApplicationConfiguration::CONST_WORKINGLIMIT!=0 && ApplicationConfiguration::CONST_WORKINGLIMIT<wxGetLocalTime())
-				projetCourant=NULL;
-				*/
 			//Charge la feuille principale
-			frame = new MainUiFrame(lang);
-			SetTopWindow(frame);
+			try {
+				frame = new MainUiFrame(lang);
+				SetTopWindow(frame);
+			} catch (const std::exception& e) {
+				wxLogError(wxT("Cannot create main ui frame: %s"), e.what());
+			} catch (...) {
+				wxLogError(wxT("Cannot create main ui frame: Unknown exception"));
+			}
 
 			//Surcharge la classe gestionnaire de log
 			delete wxLog::SetActiveTarget(new CustomLog());
-			/*
-			wxLogTextCtrl *logWindow = new wxLogTextCtrl(&(*(frame->logWindow)));
-			logWindow->SetVerbose(true);
-			delete wxLog::SetActiveTarget(logWindow);
-			*/
+		        wxLog::SetTimestamp("%H:%M:%S.%l ");
 
-			//Active la reception des fichiers par drag&drop
-			//DragAcceptFiles((HWND)frame->GetHWND(),true); //msw only
-			frame->DragAcceptFiles(true);
-
-
-			//Affiche la feuille principale
-			frame->Show();
+			if (frame) {
+				frame->DragAcceptFiles(true);
+				frame->Show();
+			}
 
 			doInit=true;
 
@@ -549,7 +553,9 @@ class ISimpaApp : public wxApp
 				projetCourant->Open(filename);
 			}
 
-            frame->OnWindowLoaded();
+			if (frame) {
+				frame->OnWindowLoaded();
+			}
 			return true;
 		}
 
@@ -606,6 +612,7 @@ class ISimpaApp : public wxApp
 					projetCourant->Open(fichier);
 			}
 		}
+
 		/**
 		 * Destructeur de l'application
 		 * Détruit les gestionnaire déclarés via la méthode new

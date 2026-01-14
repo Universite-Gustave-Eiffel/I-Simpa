@@ -32,6 +32,9 @@
 #include "last_cpp_include.hpp"
 #include <stdio.h>
 
+#include "data_manager/appconfig.h"
+#include "data_manager/e_data_file.h"
+
 #ifdef USE_PYTHON
 
 using namespace boost::python;
@@ -48,15 +51,13 @@ BOOST_PYTHON_MODULE(uictrl){
 	export_application_class();
 }
 
-PythonShell::PythonShell(PyConsole* pyCtrl)
+PythonShell::PythonShell(PyConsole* pyCtrl) :
+ promptNewCmd(">>> "), promptMore("... ")
 {
-	promptNewCmd=">>> ";
-	promptMore="... ";
 	m_py_ctrl=pyCtrl;
-	outputRedirectOut=NULL;
-	outputRedirectErr=NULL;
-	outputRedirectIn=NULL;
-
+	outputRedirectOut=nullptr;
+	outputRedirectErr=nullptr;
+	outputRedirectIn=nullptr;
 	main_module = import("__main__");
 	main_namespace = main_module.attr("__dict__");
 
@@ -79,9 +80,16 @@ PythonShell::PythonShell(PyConsole* pyCtrl)
 
 	//Ajout du dossier de script
 	std::string pythonVersion = std::to_string(PY_MAJOR_VERSION) + "." + std::to_string(PY_MINOR_VERSION);
-    boost::python::import("site").attr("addsitedir")("lib/python"+pythonVersion+"/site-packages");
-	boost::python::import("site").attr("addsitedir")("UserScript");
-	boost::python::import("site").attr("addsitedir")("SystemScript");
+	const wxFileName userScript(ApplicationConfiguration::getResourcesFolder(), "UserScript");
+	const wxFileName systemScript(ApplicationConfiguration::getResourcesFolder(), "SystemScript");
+	const wxString resourceFolder=ApplicationConfiguration::getResourcesFolder();
+	RunRawCmd(wxString::Format(
+ "import site\n"
+    "import os\n"
+    "site.addsitedir(\"%s\")\n"
+    "site.addsitedir(\"%s\")\n"
+    "site.addsitedir(\"%s\")\n", resourceFolder,
+		userScript.GetAbsolutePath(), systemScript.GetAbsolutePath()));
 }
 PythonShell::~PythonShell()
 {
@@ -127,17 +135,13 @@ void PythonShell::Init()
 	RunRawCmd("import sys");
 	RunRawCmd("import uictrl as ui");
 	RunRawCmd(wxGetTranslation("print('Python(TM)',sys.version,'on',sys.platform)"));
-	run_startupscript("UserScript/","__ui_startup__.py");
-	run_startupscript("SystemScript/","__ui_startup__.py");
-	//RunRawCmd("emulationDict=dict()");
+	const wxFileName userScript(ApplicationConfiguration::getResourcesFolder(), "UserScript");
+	const wxFileName systemScript(ApplicationConfiguration::getResourcesFolder(), "SystemScript");
+	run_startupscript(userScript.GetFullPath(), "__ui_startup__.py");
+	run_startupscript(systemScript.GetFullPath(), "__ui_startup__.py");
 	RunRawCmd("consoleEmulation=code.InteractiveInterpreter(__main__.__dict__)"); //emulationDict
-	wxString promptNewCmd(">>> ");
-	wxString promptMore("... ");
 	wxString indentation="";
-	m_py_ctrl->SetPromptSize(promptNewCmd.Length());
 	ShowMsgStack();
-	m_py_ctrl->AddPrompt(promptNewCmd);
-
 }
 
 boost::python::object PythonShell::eval(const wxString& code)
@@ -159,6 +163,7 @@ void PythonShell::ExecLineCommand(const wxString& newcommand)
 			if(cmd.Freq(' ')==cmd.size())
 				cmd.clear();
 			cmd.Replace("\\n","\n");
+			m_py_ctrl->AddCmd(cmd+"\n");
 			//Pour déduire la prochaine indentation a utiliser
 			GetIndentation(cmd,&indentation);
 			cmd=oldcmd+cmd;
@@ -169,23 +174,19 @@ void PythonShell::ExecLineCommand(const wxString& newcommand)
 			if(res)
 			{ //La commande nécessite une ligne de code supplémentaire
 				oldcmd=cmd+wxString("\n");
-				m_py_ctrl->AddPrompt(promptMore);
-
-				if(cmd.Right(1)==":") //Ajout d'indentation
-					indentation+="    ";
-				m_py_ctrl->AddCmd(indentation);
+				m_py_ctrl->SetPrompt(promptMore);
 			}else{
 				//La commande est complète
 			   oldcmd.clear();
 			   indentation.clear();
-			   m_py_ctrl->AddPrompt(promptNewCmd);
+			   m_py_ctrl->SetPrompt(promptNewCmd);
 			}
 
 		}
 		ShowMsgStack();
 	}else{
 		RunRawCmd(newcommand);
-		m_py_ctrl->AddPrompt(promptNewCmd);
+		m_py_ctrl->SetPrompt(promptNewCmd);
 	}
 }
 
@@ -246,15 +247,16 @@ void PythonShell::call_event(const int& eventid,const int& elementid)
 	if(eventid>=0 && GetCountEventTable()>eventid)
 	{	try
 		{
-			//Il faut définir si la méthode attent 1 ou 2 argument
-			//On utilise le module inspect afin d'obtenir le nombre d'argument
+			//It is necessary to define whether the method expects 1 or 2 arguments
+			//We use the inspect module to obtain the number of arguments
 			boost::python::object event_function=event_lst[eventid];
 
 			boost::python::object user_module = import("inspect");
-			object argsTuple = user_module.attr("getargspec")(event_function);
+			object argsTuple = user_module.attr("getfullargspec")(event_function);
 			boost::python::list args = extract_or_throw<boost::python::list>(argsTuple[0]);
 			boost::python::ssize_t argCount=len(args);
-			//Self ne doit pas être pris en compte dans le nombre d'argument
+
+			//Self should not be taken into account in the number of arguments
 			if(args.contains("self"))
 				argCount--;
 			if(argCount==2)
@@ -274,7 +276,7 @@ void PythonShell::call_event(const int& eventid,const int& elementid)
 			wxLogError(ex.msg());
 		}
 		if(ShowMsgStack())
-		   m_py_ctrl->AddPrompt(promptNewCmd);
+		   m_py_ctrl->SetPrompt(promptNewCmd);
 	}else{
 		ThrowPyException(wxGetTranslation("This event doesn't exist !"));
 	}
@@ -334,7 +336,7 @@ bool PythonShell::GetPythonManagedMenu(const int& element_type,const int& elemen
 				PyErr_Print();
 			}
 			if(ShowMsgStack())
-			   m_py_ctrl->AddPrompt(promptNewCmd);
+			   m_py_ctrl->SetPrompt(promptNewCmd);
 			return false;
 		}
 		catch( const char * msg)
@@ -371,34 +373,26 @@ bool PythonShell::ins_pyelement(boost::python::object& py_el,const wxInt32& wxid
 
 	return isOk;
 }
-void PythonShell::run_startupscript(const wxString& scriptPath,const wxString& pyfilename)
-{
-	//recherche des fichier se nommant __ui_startup__.py
-	wxArrayString files_found;
-	if(!wxDirExists(scriptPath))
-		wxMkDir(scriptPath,0777);
-	if(wxDir::GetAllFiles(scriptPath,&files_found,pyfilename))
-	{
-		for(size_t ifile=0;ifile<files_found.size();ifile++)
-		{
 
-			wxString scriptFile=files_found[ifile];
-			try
-			{
-
-				boost::python::exec_file(WXSTRINGTOCHARPTR(scriptFile),main_namespace,main_namespace);
-
-			}catch( error_already_set )
-			{
-				if (PyErr_Occurred())
-				{
-					PyErr_Print();
-				}
-			}
-			if(ShowMsgStack())
-			   m_py_ctrl->AddPrompt(promptNewCmd);
-		}
-	}
+void PythonShell::run_startupscript(const wxString &scriptPath,
+                                    const wxString &pyfilename) {
+  // recherche des fichier se nommant __ui_startup__.py
+  wxArrayString files_found;
+  if (wxDir::GetAllFiles(scriptPath, &files_found, pyfilename)) {
+    for (const auto &scriptFile : files_found) {
+      wxFileName fn(scriptFile);
+      wxString unixPath = fn.GetFullPath(wxPATH_UNIX);
+      try {
+        // cannot run exec_file, got stack issue on windows
+        exec("exec(open(\"" + unixPath + "\").read())", main_namespace,
+             main_namespace);
+      } catch (error_already_set) {
+        if (PyErr_Occurred()) {
+          PyErr_Print();
+        }
+      }
+    }
+  }
 }
 
 #endif

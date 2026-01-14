@@ -219,9 +219,9 @@ int MainRemesh(int argc, char* argv[])
 	std::cout<<"Feeding matrix "<<std::endl;
 	for(std::list<formatRPLY::t_face>::iterator itface=model3D.modelFaces.begin();itface!=model3D.modelFaces.end();itface++)
 	{
-		FromTriangleRemesh.SecondStep_PushTri(vertices_vec[(*itface).indicesSommets.a],
-			vertices_vec[(*itface).indicesSommets.b],
-			vertices_vec[(*itface).indicesSommets.c]);
+		FromTriangleRemesh.SecondStep_PushTri(vertices_vec[(*itface).verticesIndex.a],
+			vertices_vec[(*itface).verticesIndex.b],
+			vertices_vec[(*itface).verticesIndex.c]);
 		if(verbose)
 		{
 			idtri++;
@@ -245,9 +245,9 @@ int MainRemesh(int argc, char* argv[])
 		for(std::list<formatRPLY::t_face>::iterator itface=model3D.modelFaces.begin();itface!=model3D.modelFaces.end();itface++)
 		{
 
-			meshGuide->AddTri(vertices_vec[(*itface).indicesSommets.a],
-				vertices_vec[(*itface).indicesSommets.b],
-				vertices_vec[(*itface).indicesSommets.c]);
+			meshGuide->AddTri(vertices_vec[(*itface).verticesIndex.a],
+				vertices_vec[(*itface).verticesIndex.b],
+				vertices_vec[(*itface).verticesIndex.c]);
 
 		}
 

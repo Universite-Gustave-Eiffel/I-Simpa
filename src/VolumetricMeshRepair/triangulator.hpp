@@ -47,7 +47,7 @@ namespace Triangulators
 		std::vector<ivec3> faces;
 		decimal quality_constraint;
 		decimal merge_normal_constraint;
-		bool verbose;
+		bool verbose{};
 
 		PTR<MergeVerticesOperationObjects_t> mergeVerticesOperationObjects;
 		#ifdef SAVE_FOUND_COLLISION

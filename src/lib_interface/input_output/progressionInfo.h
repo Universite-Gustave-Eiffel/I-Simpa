@@ -45,53 +45,48 @@ public:
 	/**
 	 * Constructeur
 	 */
-	progressOperation(progressOperation* parentOperation,unsigned int sonEstimation=1)
-		:parent(parentOperation),
-		sizeOf(0)
-		,sizeOfEstimation(sonEstimation)
-	{
-
+	explicit progressOperation(progressOperation *parentOperation, const unsigned int subProcessCountEstimation = 1)
+		: parent(parentOperation)
+		  , sizeOfEstimation(subProcessCountEstimation), sizeOf(0) {
 	}
 
-	~progressOperation()
-	{
-		if(parent)
-		{
-			parent->PushProgression(1-(sizeOf/sizeOfEstimation));
+	~progressOperation() {
+		if (parent) {
+			parent->PushProgression(1 - (sizeOf / static_cast<float>(sizeOfEstimation)));
 		}
 	}
 
-	void GetState(float* thisLvlProg)
-	{
-		*thisLvlProg=sizeOf/sizeOfEstimation;
+	void GetState(float *thisLvlProg) const {
+		*thisLvlProg = sizeOf / static_cast<float>(sizeOfEstimation);
 	}
 
-	void Next()
-	{
+	void Next() {
 		PushProgression(1.f);
 	}
 protected:
-	//friend class progressOperation;
 
 	/**
-	 *  Un des fils a changé d'état incProg constitue la différence entre la dernière mise à jour de sa progression et sa nouvelle progression
-	 * @param incProg ]0;1]
+	 *  One of the sub-processes has changed status incProg is the difference
+	 *  between the last update of its progress and its new progress
+	 * @param incProg Progression increment, number
 	 */
 	void PushProgression(float incProg)
 	{
 		if(sizeOf+incProg<=sizeOfEstimation)
 		{
-			if(parent && sizeOf>0)
-				parent->PushProgression(-(sizeOf/sizeOfEstimation));
+			if(parent && sizeOf>0) {
+				parent->PushProgression(-(sizeOf/static_cast<float>(sizeOfEstimation)));
+			}
 			sizeOf+=incProg;
-			if(parent)
-				parent->PushProgression(sizeOf/sizeOfEstimation);
+			if(parent) {
+				parent->PushProgression(sizeOf/static_cast<float>(sizeOfEstimation));
+			}
 		}
 	}
 private:
 	progressOperation* parent;
-	unsigned int sizeOfEstimation; //Nombre de fils estimé
-	float sizeOf;				   //Nombre de fils détruits
+	unsigned int sizeOfEstimation; //Estimated number of sub-processes
+	float sizeOf;				   //Number of sub-processes removed
 };
 
 

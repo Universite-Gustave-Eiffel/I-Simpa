@@ -27,13 +27,12 @@
 
 #include "first_header_include.hpp"
 
-
-#include <iostream>
 #include <string>
 #include <sstream>
 #include <wx/string.h>
 #include <wx/arrstr.h>
 #include <vector>
+#include "math.h"
 
 #ifndef __M_STR_H__
 #define __M_STR_H__
@@ -111,11 +110,11 @@ public:
 	/**
 		Convertir une chaîne en flottant
 	*/
-	static double ToFloat( const wxString& sval );
+	static float_t ToFloat( const wxString& sval );
 	/**
 		Convertir une chaîne en flottant
 	*/
-	static double ToFloat(const std::string& sval);
+	static float_t ToFloat(const std::string& sval);
 	/**
 		Convertir un flottant en chaîne
 		@param fval Nombre à décimale à convertir

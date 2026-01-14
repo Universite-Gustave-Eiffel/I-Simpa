@@ -6,7 +6,7 @@ cmake_policy(SET CMP0177 NEW) # install() DESTINATION paths are normalized
 cmake_policy(SET CMP0175 NEW)
 # Maps to a solution file (isimpa.sln). The solution will
 # have all targets (exe, lib, dll) as projects (.vcproj)
-project (isimpa VERSION 1.3.4)
+project (isimpa VERSION 1.4.0)
 
 # a better way to load dependencies
 include(cmake/CPM.cmake)

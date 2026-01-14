@@ -1,7 +1,9 @@
 include_directories (./ "${PROJECT_SOURCE_DIR}/src/lib_interface")
+include(GNUInstallDirs)
 set(CMAKE_INSTALL_MFC_LIBRARIES TRUE )
 set(CMAKE_INSTALL_UCRT_LIBRARIES TRUE )
-
+set(CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP TRUE)
+include(InstallRequiredSystemLibraries)
 string(TIMESTAMP BUILD_DATE "%Y-%m-%dT%H:%M:%S")
 
 # Detect if building for Flatpak
@@ -15,35 +17,33 @@ endif()
 # Set installation directories based on build type
 if(IS_FLATPAK)
     set(ISIMPA_ICON_DIR share/icons/hicolor/256x256/apps)
-    set(ISIMPA_BIN_DIR bin)
-    set(ISIMPA_DATA_DIR bin)
-    set(ISIMPA_DOC_DIR bin)
-else()
+    set(ISIMPA_BIN_DIR "${CMAKE_INSTALL_BINDIR}")
+elseif (WIN32)
     set(ISIMPA_ICON_DIR .)
     set(ISIMPA_BIN_DIR .)
-    set(ISIMPA_DATA_DIR .)
-    set(ISIMPA_DOC_DIR .)
+else ()
+    set(ISIMPA_ICON_DIR .)
+    set(ISIMPA_BIN_DIR "${CMAKE_INSTALL_BINDIR}")
 endif()
 
-MACRO(ADDMULTIPLE_LANG curdir installdir)
-  # MESSAGE(STATUS "ADDMULTIPLE_LANG ${curdir}")
+MACRO(ADDMULTIPLE_LANG curdir installdir appname)
+  # MESSAGE(STATUS "ADDMULTIPLE_LANG ${curdir} ${installdir}")
   FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)
   FOREACH(child ${children})
     IF(EXISTS "${curdir}/${child}"
             AND NOT IS_DIRECTORY "${curdir}/${child}"
             AND "${child}" MATCHES "\\.po$")
         file(RELATIVE_PATH rel_path "${CMAKE_SOURCE_DIR}" "${curdir}/${child}")
-        MESSAGE(STATUS "Add lang ${rel_path}")
         # Remove the .po extension (last 3 characters)
         string(REGEX REPLACE "\\.po$" "" lang_name "${child}")
-        gettext_process_po_files(
-                ${lang_name}
-                ALL
-                PO_FILES ${curdir}/${child}
-        )
-        install(FILES       "${CMAKE_CURRENT_BINARY_DIR}/${lang_name}.gmo"
-                DESTINATION "${installdir}/${lang_name}/LC_MESSAGES"
-                RENAME      "isimpa.mo"
+        set(output_file "${installdir}/${lang_name}/LC_MESSAGES/${appname}.mo")
+        MESSAGE(STATUS "Add lang ${lang_name} from ${rel_path} while save output to ${output_file}")
+        get_filename_component(output_directory "${output_file}" DIRECTORY)
+        add_custom_command(TARGET isimpa
+                POST_BUILD
+                COMMENT "Create directory and output ${lang_name} to ${output_file}"
+                COMMAND ${CMAKE_COMMAND} -E make_directory "${output_directory}"
+                COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} "${curdir}/${child}" -o "${output_file}"
         )
     ENDIF()
   ENDFOREACH()
@@ -115,14 +115,6 @@ set(3DENGINE_TOOLS_SOURCES
 
 set(GL_SOURCES
     GL/opengl_inc.h)
-
-if(WIN32) # Check if we are on Windows
-  set(WIN32_SOURCES
-	resources/isimpa.rc
-      )
-else()
-  set(WIN32_SOURCES )
-endif()
 
 set(IHM_SOURCES
     IHM/ComboTreeCtrl.cpp
@@ -426,7 +418,7 @@ endif(OPENGL_GLU_FOUND)
 
 # Ask make to call python in order to use element.h to produce enum_def.cpp
 ADD_CUSTOM_COMMAND(
-  OUTPUT "enum_def.cpp"
+  OUTPUT "generated/enum_def.cpp"
   COMMENT "Building enum_def.cpp using python script"
   COMMAND "${Python3_EXECUTABLE}" ${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/python_interface/py_ui_module/generate_enum_def.py
   ARGS    "${PROJECT_SOURCE_DIR}/src/isimpa/data_manager/element.h"
@@ -434,14 +426,34 @@ ADD_CUSTOM_COMMAND(
   )
 
 # Before using element_pywrap.cpp build enum_def.cpp
-set_property(SOURCE data_manager/python_interface/py_ui_module/element_pywrap.cpp APPEND PROPERTY OBJECT_DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/enum_def.cpp)
+set_property(SOURCE data_manager/python_interface/py_ui_module/element_pywrap.cpp APPEND PROPERTY OBJECT_DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/generated/enum_def.cpp)
 
 configure_file(data_manager/appconfig_version.cpp.in ${CMAKE_CURRENT_BINARY_DIR}/generated/appconfig_version.cpp )
+
+set(RESOURCE_FILES "")
+
+if(APPLE)
+    # List your resource files (recursively or with globbing)
+    file(GLOB_RECURSE RESOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/resources/*")
+
+
+    # Attach resource files to your executable with the correct bundle location
+    foreach(RES_FILE ${RESOURCE_FILES})
+        # Get the path of the file relative to the resource root
+        file(RELATIVE_PATH RES_PATH "${CMAKE_CURRENT_SOURCE_DIR}/resources" "${RES_FILE}")
+        # Set the bundle location for this file, preserving directory structure under Resources/
+        get_filename_component(filename ${RES_PATH} NAME)
+        get_filename_component(dir ${RES_PATH} DIRECTORY)
+        if(NOT filename STREQUAL "CMakeLists.txt")
+            set_source_files_properties(${RES_FILE} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources/${dir}")
+        endif ()
+    endforeach()
+endif ()
 
 # Set Properties->General->Configuration Type to Application
 # Creates isimpa with the listed sources
 # Adds sources to the Solution Explorer
-add_executable(isimpa
+add_executable(isimpa WIN32 MACOSX_BUNDLE
     ${3DENGINE_SOURCES}
     ${3DENGINE_CORE_SOURCES}
     ${3DENGINE_TOOLS_SOURCES}
@@ -461,44 +473,41 @@ add_executable(isimpa
     ${MAIN_SOURCES}
     ${MANAGER_SOURCES}
     ${ISIMPA_SOURCES}
-    ${CMAKE_CURRENT_BINARY_DIR}/enum_def.cpp
-	${CMAKE_CURRENT_BINARY_DIR}/generated/appconfig_version.cpp)
+    ${CMAKE_CURRENT_BINARY_DIR}/generated/enum_def.cpp
+	${CMAKE_CURRENT_BINARY_DIR}/generated/appconfig_version.cpp
+    ${RESOURCE_FILES})
+
+if(WIN32)
+    set(RESOURCE_DEST_DIR "$<TARGET_FILE_DIR:isimpa>")
+elseif(APPLE)
+    set(RESOURCE_DEST_DIR "$<TARGET_FILE_DIR:isimpa>/../Resources")
+else ()
+    set(RESOURCE_DEST_DIR "$<TARGET_FILE_DIR:isimpa>/resources")
+endif()
 
 # Creates a folder "executables" and adds target
 # project (isimpa.vcproj) under it
 set_property(TARGET isimpa PROPERTY FOLDER "executables")
 
-# to convert .po files into .mo files
-FIND_PACKAGE(Gettext)
-IF(GETTEXT_FOUND )
-  MESSAGE(STATUS "Found Gettext")
-  # Main isimpa locale
-  ADDMULTIPLE_LANG(${CMAKE_CURRENT_LIST_DIR}/lang share/locale)
-  # Plugins locale
-  add_subdirectory(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/check_version ${CMAKE_BINARY_DIR}/src/check_version)
-  add_subdirectory(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/job_tool ${CMAKE_BINARY_DIR}/src/job_tool)
-  add_subdirectory(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/moveto_vertex ${CMAKE_BINARY_DIR}/src/moveto_vertex)
-  add_subdirectory(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/preceiv_sourceTracker ${CMAKE_BINARY_DIR}/src/preceiv_sourceTracker)
-  add_subdirectory(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/recp_tool ${CMAKE_BINARY_DIR}/src/recp_tool)
-  add_subdirectory(${PROJECT_SOURCE_DIR}/currentRelease/SystemScript/source_tools ${CMAKE_BINARY_DIR}/src/source_tools)
-ENDIF()
+set_target_properties(isimpa PROPERTIES MACOSX_BUNDLE_ICON_FILE "isimpa.icns")
 
 SET(wxUSE_GLCANVAS_EGL OFF)
 
+set(wxWidgets_USE_STATIC_LIBS ON)
+SET(wxWidgets_USE_STATIC ON)
+
 IF(CMAKE_BUILD_TYPE STREQUAL "Debug")
     SET(wxWidgets_USE_DEBUG ON)
-    SET(wxWidgets_USE_STATIC ON)
     MESSAGE(STATUS "Using debug version of wxWidgets")
 ELSE()
     SET(wxWidgets_USE_DEBUG OFF)
-    SET(wxWidgets_USE_STATIC ON)
 ENDIF()
 
 # add wxWidgets as dependency
 
 set(USING_CPM false)
 
-find_package(wxWidgets 3.3.1)
+find_package(wxWidgets 3.3.1 COMPONENTS mono)
 
 if(wxWidgets_FOUND)
 
@@ -514,7 +523,7 @@ if(wxWidgets_FOUND)
         endif()
     endif()
 
-    find_package(wxWidgets COMPONENTS core base xml gl aui adv html REQUIRED)
+    find_package(wxWidgets COMPONENTS mono REQUIRED)
 
     include(${wxWidgets_USE_FILE})
 else(NOT wxWidgets_FOUND)
@@ -525,11 +534,14 @@ else(NOT wxWidgets_FOUND)
             "wxBUILD_TESTS OFF"
             "wxBUILD_SHARED OFF"
             "wxUSE_OPENGL ON"
+            "wxUSE_STATIC ON"
             "wxUSE_UNICODE ON"
             "wxUSE_LIBTIFF OFF"
             "wxUSE_GLCANVAS_EGL ON"
             "wxUSE_LIBWEBP OFF"
-            #"wxBUILD_INSTALL OFF"
+            "wxBUILD_MONOLITHIC ON"
+            "wxBUILD_INSTALL OFF"
+            "wxBUILD_LOCALES OFF"
     )
 
     if(APPLE)
@@ -543,6 +555,30 @@ else(NOT wxWidgets_FOUND)
             OPTIONS ${wx_options}
     )
 endif()
+
+# to convert .po files into .mo files
+FIND_PACKAGE(Gettext)
+IF(GETTEXT_FOUND )
+    MESSAGE(STATUS "Found Gettext")
+    # Main isimpa locale
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/lang "${RESOURCE_DEST_DIR}/share/locale" "isimpa")
+    # Plugins locale
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/check_version/locale "${RESOURCE_DEST_DIR}/SystemScript/check_version/locale" "isimpa")
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/job_tool/locale "${RESOURCE_DEST_DIR}/SystemScript/job_tool/locale" "isimpa")
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/moveto_vertex/locale "${RESOURCE_DEST_DIR}/SystemScript/moveto_vertex/locale" "isimpa")
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/preceiv_sourceTracker/locale "${RESOURCE_DEST_DIR}/SystemScript/preceiv_sourceTracker/locale" "isimpa")
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/recp_tool/locale "${RESOURCE_DEST_DIR}/SystemScript/recp_tool/locale" "isimpa")
+    ADDMULTIPLE_LANG(${CMAKE_CURRENT_SOURCE_DIR}/resources/SystemScript/source_tools/locale "${RESOURCE_DEST_DIR}/SystemScript/source_tools/locale" "isimpa")
+    # WxWidgets locale
+    # Check if wxWidgets_SOURCE_DIR exists (will generate wx locales if wxBUILD_LOCALES is off)
+    if (EXISTS "${wxWidgets_SOURCE_DIR}")
+        message(WARNING "wxWidgets source directory not found: ${wxWidgets_SOURCE_DIR}")
+        ADDMULTIPLE_LANG(${wxWidgets_SOURCE_DIR}/locale "${RESOURCE_DEST_DIR}/share/locale" "wx")
+    endif ()
+ELSE ()
+    MESSAGE(WARNING "Gettext not found !")
+ENDIF()
+
 
 execute_process(COMMAND ${Python3_EXECUTABLE} -c "import sys; import sysconfig; print(list(sysconfig.get_paths().values()))"
                     OUTPUT_VARIABLE PYTHON_SITE_PACKAGES OUTPUT_STRIP_TRAILING_WHITESPACE)
@@ -581,7 +617,7 @@ if(APPLE)
 endif ()
 
 if(USING_CPM)
-    target_link_libraries(isimpa wx::core wx::base wx::aui wx::adv wx::xml wx::html wx::gl)
+    target_link_libraries(isimpa wxmono)
 else()
     target_link_libraries(isimpa ${wxWidgets_LIBRARIES})
 endif()
@@ -604,125 +640,192 @@ if(WIN32) # Check if we are on Windows
   endif()
 ENDIF()
 
-#--------------#
-#    INSTALL
-#--------------#
+##################################
+## Prepare build directory expected dependencies files for binaries and resources
 
-set(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION ${ISIMPA_BIN_DIR})
 
-include( InstallRequiredSystemLibraries )
+if(NOT APPLE)
+    # Set resource source and destination variables
+    set(RESOURCE_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/resources")
+
+    # Copy resources directory POST_BUILD
+    add_custom_command(
+            TARGET isimpa POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different
+            "${RESOURCE_SRC_DIR}" "${RESOURCE_DEST_DIR}"
+            COMMENT "Copying resources to ${RESOURCE_DEST_DIR}"
+    )
+endif ()
+    if(WIN32)
+
+        # Copy python libraries
+        get_filename_component(PYTHON_ROOT_FOLDER ${Python3_EXECUTABLE} PATH)
+
+        # Copy directories after build
+        add_custom_command(TARGET isimpa POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E copy_directory
+                "${PYTHON_ROOT_FOLDER}/Lib"
+                "$<TARGET_FILE_DIR:isimpa>/Lib"
+                COMMAND ${CMAKE_COMMAND} -E copy_directory
+                "${PYTHON_ROOT_FOLDER}/DLLs"
+                "$<TARGET_FILE_DIR:isimpa>/DLLs"
+                COMMAND ${CMAKE_COMMAND} -E copy
+                "${PYTHON_ROOT_FOLDER}/python.exe"
+                "$<TARGET_FILE_DIR:isimpa>/python.exe"
+        )
+
+    # Copy all .dll files from python root folder after build
+    file(GLOB PYTHON_DLL_FILES "${PYTHON_ROOT_FOLDER}/*.dll")
+
+    foreach(dll ${PYTHON_DLL_FILES})
+        add_custom_command(TARGET isimpa POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                "${dll}"
+                "$<TARGET_FILE_DIR:isimpa>/"
+        )
+    endforeach()
+
+    install(DIRECTORY "$<TARGET_FILE_DIR:isimpa>/" DESTINATION "${ISIMPA_BIN_DIR}")
+endif ()
+
+# Optionally copy runtime libraries after build
+if(CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS)
+    add_custom_command(TARGET isimpa POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy
+            ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS}
+            "$<TARGET_FILE_DIR:isimpa>/"
+    )
+endif()
+
+
+add_custom_command(TARGET isimpa POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "$<TARGET_FILE_DIR:libsimpa>"
+        "${RESOURCE_DEST_DIR}/libsimpa"
+        COMMAND ${CMAKE_COMMAND} -E rm -f
+        "${RESOURCE_DEST_DIR}/libsimpa/*.cmake"
+        COMMAND ${CMAKE_COMMAND} -E rm -rf
+        "${RESOURCE_DEST_DIR}/libsimpa/CMakeFiles"
+        COMMENT "Copying libsimpa to isimpa binary directory"
+)
+if(NOT IS_FLATPAK)
+    # Copy dependencies to bin directory of I-SIMPA in order to be able to debug the application in Visual Studio/CLion
+
+    add_custom_command(TARGET isimpa POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "$<TARGET_FILE:spps>"
+            "$<TARGET_FILE_DIR:isimpa>/"
+            COMMENT "Copying spps binary to isimpa binary directory"
+    )
+
+    add_custom_command(TARGET isimpa POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "$<TARGET_FILE:vmr>"
+            "$<TARGET_FILE_DIR:isimpa>"
+            COMMENT "Copying vmr to isimpa binary directory"
+    )
+
+    add_custom_command(TARGET isimpa POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "$<TARGET_FILE:tetgen>"
+            "$<TARGET_FILE_DIR:isimpa>"
+            COMMENT "Copying tetgen to isimpa binary directory"
+    )
+
+    add_custom_command(TARGET isimpa POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "$<TARGET_FILE:classicalTheory>"
+            "$<TARGET_FILE_DIR:isimpa>"
+            COMMENT "Copying classicalTheory to isimpa binary directory"
+    )
+
+    add_custom_command(TARGET isimpa POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "$<TARGET_FILE:preprocess>"
+            "$<TARGET_FILE_DIR:isimpa>"
+            COMMENT "Copying preprocess to isimpa binary directory"
+    )
+endif ()
+
+#######################################################################
+# Prepare install commands for CPack builder
+if(APPLE)
+    set(  "" CACHE STRING "The development team ID for code signing")
+
+    if(TEAM_ID STREQUAL "")
+        message(WARNING "Please set the TEAM_ID variable when generating the project")
+    else ()
+        set(CMAKE_MACOSX_BUNDLE YES)
+
+        set(XCODE_ATTRIBUTE_CODE_SIGN_STYLE "Manual")
+        set(XCODE_ATTRIBUTE_DEVELOPMENT_TEAM ${TEAM_ID})
+        set(XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "Developer ID Application")
+        set(XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED TRUE)
+
+        set_target_properties(${APP_NAME} PROPERTIES
+                XCODE_ATTRIBUTE_CODE_SIGN_STYLE ${XCODE_ATTRIBUTE_CODE_SIGN_STYLE}
+                XCODE_ATTRIBUTE_DEVELOPMENT_TEAM ${XCODE_ATTRIBUTE_DEVELOPMENT_TEAM}
+                XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY ${XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY}
+                XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED ${XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED}
+        )
+    endif()
+endif ()
+
+
 
 # Install executable
 install(TARGETS isimpa
-        RUNTIME DESTINATION ${ISIMPA_BIN_DIR})
+        BUNDLE DESTINATION .
+        RUNTIME DESTINATION ${ISIMPA_BIN_DIR}
+        LIBRARY DESTINATION ${ISIMPA_BIN_DIR}
+        ARCHIVE DESTINATION ${ISIMPA_BIN_DIR})
 
-set(ISIMPA_RESSOURCES ${PROJECT_SOURCE_DIR}/currentRelease)
+if (IS_FLATPAK)
+    install(TARGETS spps vmr classicalTheory tetgen preprocess DESTINATION "${ISIMPA_BIN_DIR}")
+    install(DIRECTORY ${RESOURCE_DEST_DIR} DESTINATION "${ISIMPA_BIN_DIR}")
+endif ()
 
-# Install configuration and documentation files
-if(IS_FLATPAK)
-    install(FILES
-            ${ISIMPA_RESSOURCES}/appconst.xml
-            DESTINATION ${ISIMPA_DATA_DIR})
-
-    install(FILES
-            ${ISIMPA_RESSOURCES}/license.html
-            DESTINATION ${ISIMPA_DOC_DIR})
-
-    install(FILES
-            isimpa.ico
-            DESTINATION ${ISIMPA_BIN_DIR})
-
-    install(FILES
-            isimpa.png
-            DESTINATION ${ISIMPA_ICON_DIR}
-            RENAME org.noise_planet.i-simpa.png)
-else()
-    install(FILES
-            ${ISIMPA_RESSOURCES}/appconst.xml
-            ${ISIMPA_RESSOURCES}/license.html
-            isimpa.ico
-            DESTINATION ${ISIMPA_DATA_DIR})
+if(APPLE)
+    # CPack bundle plist location after install
+    SET(CPACK_BUNDLE_PLIST "${CMAKE_CURRENT_BINARY_DIR}/isimpa.app/Contents/Info.plist")
+    SET(CPACK_BUNDLE_ICON "${CMAKE_CURRENT_BINARY_DIR}/isimpa.app/Contents/Resources/isimpa.icns")
 endif()
 
-# Install resource directories
-install(DIRECTORY
-        ${ISIMPA_RESSOURCES}/Bitmaps
-        ${ISIMPA_RESSOURCES}/doc
-        ${ISIMPA_RESSOURCES}/SystemScript
-        ${ISIMPA_RESSOURCES}/UserScript
-        ${ISIMPA_RESSOURCES}/Directivities
-        DESTINATION ${ISIMPA_DATA_DIR})
-
-# Windows-specific installation (skip for Flatpak)
-if(WIN32 AND NOT IS_FLATPAK)
-    # Copy python libraries
-    get_filename_component(PYTHON_ROOT_FOLDER ${Python3_EXECUTABLE} PATH)
-
-    install(DIRECTORY
-            ${PYTHON_ROOT_FOLDER}/Lib
-            ${PYTHON_ROOT_FOLDER}/DLLs
-            DESTINATION .
-            PATTERN "Lib/site-packages" EXCLUDE
-            PATTERN "*.pdb" EXCLUDE)
-
-    install(FILES "${PYTHON_ROOT_FOLDER}/python.exe" DESTINATION .)
-
-    if(CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS)
-        install(PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION . COMPONENT Runtime)
-    endif()
+if(APPLE AND NOT DEFINED CPACK_GENERATOR)
+    SET(CPACK_GENERATOR "DragNDrop")
 endif()
 
-# Flatpak-specific: Install desktop file and appdata
-if(IS_FLATPAK)
-    install(FILES
-            ${PROJECT_SOURCE_DIR}/org.noise_planet.i-simpa.desktop
-            DESTINATION share/applications)
+set(CPACK_SOURCE_IGNORE_FILES
+        /bin/wx*
+        /lib/cmake/wxWidgets
+        /lib/wx
+        /lib/*.a
+)
 
-    install(FILES
-            ${PROJECT_SOURCE_DIR}/org.noise_planet.i-simpa.appdata.xml
-            DESTINATION share/metainfo)
-endif()
+SET(CPACK_BUNDLE_NAME "isimpa")
+set(CPACK_SOURCE_PACKAGE_FILE_NAME "isimpa-${CMAKE_PROJECT_VERSION}")
+SET(CPACK_PACKAGE_DIRECTORY distribution)
+SET(CPACK_VERBATIM_VARIABLES YES)
+set(CPACK_PACKAGE_INSTALL_DIRECTORY ${CPACK_PACKAGE_NAME})
+SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "I-SIMPA")
+SET(CPACK_PACKAGE_VENDOR "UMRAE, CEREMA, Univ Gustave Eiffel")
+SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/DESCRIPTION.txt")
+SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE.md")
+SET(CPACK_PACKAGE_VERSION_MAJOR ${isimpa_VERSION_MAJOR})
+SET(CPACK_PACKAGE_VERSION_MINOR ${isimpa_VERSION_MINOR})
+SET(CPACK_PACKAGE_VERSION_PATCH ${isimpa_VERSION_PATCH})
+SET(CPACK_PACKAGE_INSTALL_DIRECTORY "I-SIMPA")
+SET(CPACK_NSIS_EXECUTABLES_DIRECTORY ".")
+set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "  CreateShortCut '$DESKTOP\\\\I_SIMPA.lnk' '$INSTDIR\\\\isimpa.exe' ")
+set(CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS "Delete '$DESKTOP\\\\I_SIMPA.lnk'")
+SET(CPACK_NSIS_INSTALLED_ICON_NAME "isimpa.exe")
+SET(CPACK_NSIS_DISPLAY_NAME "I-SIMPA")
+SET(CPACK_NSIS_HELP_LINK "http:\\\\\\\\i-simpa-wiki.readthedocs.io")
+SET(CPACK_NSIS_URL_INFO_ABOUT "http:\\\\\\\\i-simpa.unv-eiffel.fr")
+SET(CPACK_NSIS_CONTACT "contact@noise-planet.org")
+SET(CPACK_NSIS_MODIFY_PATH ON)
 
-# Package creation instructions (skip for Flatpak)
-if(NOT IS_FLATPAK)
-    if(WIN32 AND NOT DEFINED CPACK_GENERATOR)
-        SET(CPACK_GENERATOR "NSIS;ZIP")
-    elseif (APPLE)
-        SET(CPACK_GENERATOR "Bundle")
-    endif()
-    SET(CPACK_BUNDLE_NAME "I-SIMPA")
-    SET(CPACK_BUNDLE_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/Info.plist")
-    SET(CPACK_BUNDLE_ICON "${CMAKE_CURRENT_SOURCE_DIR}/isimpa.ico")
-    SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "I-SIMPA")
-    SET(CPACK_PACKAGE_VENDOR "UMRAE, CEREMA, Univ Gustave Eiffel")
-    SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/DESCRIPTION.txt")
-    SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE.md")
-    SET(CPACK_PACKAGE_VERSION_MAJOR ${isimpa_VERSION_MAJOR})
-    SET(CPACK_PACKAGE_VERSION_MINOR ${isimpa_VERSION_MINOR})
-    SET(CPACK_PACKAGE_VERSION_PATCH ${isimpa_VERSION_PATCH})
-    SET(CPACK_PACKAGE_INSTALL_DIRECTORY "I-SIMPA")
-    SET(CPACK_PACKAGE_ICON "${CMAKE_CURRENT_SOURCE_DIR}/isimpa.ico")
+SET(CPACK_PACKAGE_EXECUTABLES "isimpa" "I-SIMPA")
+SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "Nicolas Fortin")
 
-    IF(WIN32 AND NOT UNIX)
-        SET(CPACK_NSIS_EXECUTABLES_DIRECTORY ".")
-        set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "  CreateShortCut '$DESKTOP\\\\I_SIMPA.lnk' '$INSTDIR\\\\isimpa.exe' ")
-        set(CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS "Delete '$DESKTOP\\\\I_SIMPA.lnk'")
-        SET(CPACK_NSIS_INSTALLED_ICON_NAME "isimpa.exe")
-        SET(CPACK_NSIS_DISPLAY_NAME "I-SIMPA")
-        SET(CPACK_NSIS_HELP_LINK "http:\\\\\\\\i-simpa-wiki.readthedocs.io")
-        SET(CPACK_NSIS_URL_INFO_ABOUT "http:\\\\\\\\i-simpa.unv-eiffel.fr")
-        SET(CPACK_NSIS_CONTACT "contact@noise-planet.org")
-        SET(CPACK_NSIS_MODIFY_PATH ON)
-        SET(CPACK_STRIP_FILES TRUE)
-        SET(CPACK_SOURCE_STRIP_FILES "")
-    ENDIF(WIN32 AND NOT UNIX)
-
-    SET(CPACK_PACKAGE_EXECUTABLES "isimpa" "I-SIMPA")
-    SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "Nicolas Fortin")
-
-    # Set the application bundle properties
-    # set(CPACK_MONOLITHIC_INSTALL ON)
-    # set(CPACK_PACKAGE_DIRECTORY "${CMAKE_BINARY_DIR}/package")
-
-    INCLUDE(CPack)
-endif()
+INCLUDE(CPack)

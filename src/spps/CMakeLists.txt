@@ -8,9 +8,6 @@ set(spps_VERSION_MINOR ${spps_VERSION_MINOR} PARENT_SCOPE)
 set(spps_VERSION_PATCH ${spps_VERSION_PATCH} PARENT_SCOPE)
 
 include_directories (./ "${CMAKE_SOURCE_DIR}/src/lib_interface" "${CMAKE_CURRENT_BINARY_DIR}/generated/")
-set(CMAKE_INSTALL_MFC_LIBRARIES TRUE) 
-set(CMAKE_INSTALL_UCRT_LIBRARIES TRUE )
-include( InstallRequiredSystemLibraries )
 
 #--------------#
 #    SOURCES
@@ -98,36 +95,6 @@ else()
   endif()
 endif()
 
-#--------------#
-#    INSTALL
-#--------------#
-
-
-set(ISIMPA_RESSOURCES ${PROJECT_SOURCE_DIR}/currentRelease)
-
-# Detect if building for Flatpak
-if(DEFINED ENV{FLATPAK_ID})
-  set(IS_FLATPAK TRUE)
-  message(STATUS "Building for Flatpak environment")
-else()
-  set(IS_FLATPAK FALSE)
-endif()
-
-# Set installation directories based on build type
-if(IS_FLATPAK)
-  set(ISIMPA_BIN_DIR bin)
-else()
-  set(ISIMPA_BIN_DIR .)
-endif()
-
-
-# Adds logic to INSTALL.vcproj to copy spps to destination directory
-install (TARGETS spps
-        RUNTIME DESTINATION ${ISIMPA_BIN_DIR}/core/spps)
-
-if( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
-    install( PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION ${ISIMPA_BIN_DIR}/core/spps COMPONENT System )
-endif( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS )
 #------------#
 #    TEST
 #------------#

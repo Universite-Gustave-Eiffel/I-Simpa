@@ -36,6 +36,7 @@
  */
 #include <string>
 #include <string.h>
+#include <utility>
 #include <vector>
 #include "3dengine/Core/Mathlib.h"
 /**
@@ -106,29 +107,34 @@ struct t_cutPlane{
 /**
  * Structure complète d'une face en 3D
  */
-struct SFace3D
-{
-	SFace3D():idMaterial(-1),selected(false),internalFace(false){memset(Diff,1,sizeof(bool));}
+struct SFace3D {
+	SFace3D() : selected(false), internalFace(false), idMaterial(-1) {
+		memset(Diff, 1, sizeof(bool));
+	}
+
 	bool selected;
 	ivec3 Vertices;
 	ivec3 Normals;
 	vec3 FaceNormals;
 	ivec3 TexCoords;
-	bool Diff[3];			/*!< Affichage ou non des lignes du triangle A B C */
+	bool Diff[3]{}; /*!< Affichage ou non des lignes du triangle A B C */
 	bool internalFace;
-	short idMaterial;		/*!< Identifiant du matériau d'origine du modèle */
+	short idMaterial; /*!< Identifiant du matériau d'origine du modèle */
 };
 
 /**
  * Structure complète d'un groupe de surface
  */
-struct SGroup3D
-{
-	SGroup3D():Material(-1){};
-	SGroup3D(const std::string& groupName):Name(groupName),Material(-1){};
+struct SGroup3D {
+	SGroup3D() : Material(-1) {
+	};
+
+	explicit SGroup3D(std::string groupName)
+		: Name(std::move(groupName)), Material(-1) {
+	};
 	std::string Name;
 	std::vector<SFace3D> pFaces;
-	long Material;					/*!< Identifiant du matériau d'origine du modèle */
+	long Material; /*!< Identifiant du matériau d'origine du modèle */
 };
 
 #endif

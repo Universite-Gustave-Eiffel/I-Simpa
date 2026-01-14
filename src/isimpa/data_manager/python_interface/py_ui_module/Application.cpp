@@ -277,9 +277,9 @@ namespace uictrl {
         ProjectManager *self = GetManager();
         ProjectManager::t_param_load_model paramLoading;
         paramLoading.pathModel = path;
-        paramLoading.keepexistingfacegroup = keepexistingfacegroup;
-        paramLoading.docorrection = docorrection;
-        paramLoading.domeshsurface = domeshsurface;
+        paramLoading.keepExistingFaceGroup = keepexistingfacegroup;
+        paramLoading.doCorrection = docorrection;
+        paramLoading.doMeshSurface = domeshsurface;
         paramLoading.glueSurfaces = true;
         paramLoading.paramTetgen = paramTetgen;
         return self->LoadScene(paramLoading);
@@ -457,12 +457,15 @@ namespace uictrl {
         boost::python::dict retdict;
         retdict["lastcalculationpath"] = WXSTRINGTOSTDWSTRING(self->LastComputationFolder);
         retdict["cachedir"] = WXSTRINGTOSTDWSTRING(ApplicationConfiguration::GLOBAL_VAR.cacheFolderPath);
-        wxFileName userscript("UserScript/");
+        wxFileName userscript(ApplicationConfiguration::getResourcesFolder(), "UserScript");
         userscript.MakeAbsolute();
         retdict["userscript"] = WXSTRINGTOSTDWSTRING(userscript.GetFullPath());
-        wxFileName systemscript("SystemScript/");
+        wxFileName systemscript(ApplicationConfiguration::getResourcesFolder(), "SystemScript");
         systemscript.MakeAbsolute();
         retdict["systemscript"] = WXSTRINGTOSTDWSTRING(systemscript.GetFullPath());
+        wxFileName resourceFolder(ApplicationConfiguration::getResourcesFolder());
+        resourceFolder.MakeAbsolute();
+        retdict["resources_folder"] = WXSTRINGTOSTDWSTRING(resourceFolder.GetFullPath());
         return retdict;
     }
 

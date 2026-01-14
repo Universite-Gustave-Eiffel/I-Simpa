@@ -1,5 +1,6 @@
 #define BOOST_TEST_MODULE lib_interface balloon tests
 #include <boost/test/unit_test.hpp>
+#include <boost/filesystem/operations.hpp>
 #include <iostream>
 #include <input_output/directivity/directivityParser.h>
 #include <Core/mathlib.h>
@@ -7,11 +8,20 @@
 using namespace std;
 namespace utf = boost::unit_test;
 
+std::string GetDataDirectory() {
+	auto& suite = boost::unit_test::framework::master_test_suite();
+	BOOST_REQUIRE_MESSAGE(suite.argc >= 2, "Data directory path must be provided as the first command line argument.");
+	return suite.argv[1];
+}
+
 BOOST_AUTO_TEST_CASE(constructor_test1)
 {
+    std::string data_dir = GetDataDirectory();
+
 	t_DirectivityBalloon balloon;
 	xhn_DirectivityParser fileparser;
-	fileparser.parse("speaker-test1.txt", &balloon);
+
+	BOOST_TEST(fileparser.parse(data_dir + st_path_separator() + "speaker-test1.txt", &balloon));
 
 	BOOST_TEST(balloon.asDataForFrequency(100)	== true);
 	BOOST_TEST(balloon.asDataForFrequency(200)	== false);
@@ -33,9 +43,11 @@ BOOST_AUTO_TEST_CASE(constructor_test1)
 
 BOOST_AUTO_TEST_CASE(constructor_test2)
 {
+    std::string data_dir = GetDataDirectory();
+
 	t_DirectivityBalloon balloon;
 	xhn_DirectivityParser fileparser;
-	fileparser.parse("speaker-test2.txt", &balloon);
+	fileparser.parse(data_dir + st_path_separator() + "speaker-test2.txt", &balloon);
 
 	BOOST_TEST(balloon.asDataForFrequency(40)		== true);
 	BOOST_TEST(balloon.asDataForFrequency(200)		== true);
@@ -59,9 +71,10 @@ BOOST_AUTO_TEST_CASE(constructor_test2)
 
 BOOST_AUTO_TEST_CASE(getValue_test)
 {
+    std::string data_dir = GetDataDirectory();
 	t_DirectivityBalloon balloon;
 	xhn_DirectivityParser fileparser;
-	fileparser.parse("speaker-test2.txt", &balloon);
+	fileparser.parse(data_dir + st_path_separator() + "speaker-test2.txt", &balloon);
 
 	BOOST_TEST(balloon.getValue(50, 115, 30)	== -1.51);
 	BOOST_TEST(balloon.getValue(50, 115, 35)	== -1.71);
@@ -73,9 +86,10 @@ BOOST_AUTO_TEST_CASE(getValue_test)
 
 BOOST_AUTO_TEST_CASE(getInterpolatedValue_test, *utf::tolerance(boost::test_tools::fpc::percent_tolerance(1.0)))
 {
+    std::string data_dir = GetDataDirectory();
 	t_DirectivityBalloon balloon;
 	xhn_DirectivityParser fileparser;
-	fileparser.parse("speaker-test2.txt", &balloon);
+	fileparser.parse(data_dir + st_path_separator() + "speaker-test2.txt", &balloon);
 
 	BOOST_TEST(balloon.getInterpolatedValue(40, 62, 29) == -1.48);
 	BOOST_TEST(balloon.getInterpolatedValue(40, 60, 27.5) == -1.45);

@@ -33,6 +33,28 @@ for its own applications… All have been done in order you can extend I-Simpa e
 
 I-Simpa has been initially developed as a research tool (i.e. for research laboratories), but can also be a very efficient tool for a professional or commercial use.
 
+# Installation
+
+## Windows
+
+Download the setup file from the [release page](https://github.com/Universite-Gustave-Eiffel/I-Simpa/releases) and run it.
+
+## Linux
+
+[Install flatpak](https://flatpak.org/setup/) and run the following command:
+
+Download the flatpak file from the [release page](https://github.com/Universite-Gustave-Eiffel/I-Simpa/releases) and run it:
+
+```bash
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak install isimpa.flatpak
+flatpak run org.noise_planet.i-simpa
+```
+
+## MacOS
+
+Download the dmg file from the [release page](https://github.com/Universite-Gustave-Eiffel/I-Simpa/releases) and run it.
+
 ## Developments
 
 I-Simpa is developped by the [Environmental Acoustic Research unit](http://www.umrae.fr/en/) ([Université Gustave Eiffel](https://www.univ-gustave-eiffel.fr/en/) (formely Ifsttar, formerly LCPC)

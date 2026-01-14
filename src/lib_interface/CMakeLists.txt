@@ -141,11 +141,6 @@ target_link_libraries (lib_interface Boost::filesystem Boost::algorithm)
 #    TEST 1
 #------------#
 
-# Data files
-set(TEST_DATA_DIR "${PROJECT_BINARY_DIR}/Testing")
-file(COPY tests/speaker-test1.txt tests/speaker-test2.txt
-    DESTINATION ${TEST_DATA_DIR})
-
 # Test executable and folder
 set(LIBINTERFACE_TESTS
     tests/balloon_test.cpp)
@@ -167,31 +162,24 @@ set_property(TARGET TEST_lib_interface PROPERTY FOLDER "tests")
 # Add to test suite
 enable_testing()
 add_test( NAME lib_interface
-    WORKING_DIRECTORY ${TEST_DATA_DIR}
-    COMMAND TEST_lib_interface )
+    COMMAND TEST_lib_interface -- "${CMAKE_CURRENT_SOURCE_DIR}/tests"
+    )
 
 
 #------------#
 #    TEST 2
 #------------#
 
-
-file(COPY tests/cube.cbin tests/cube_mesh.mbin tests/test_import1.poly
-    DESTINATION ${TEST_DATA_DIR})
-
 add_executable(TEST_io_lib_interface tests/io_test.cpp )
-
 
 target_link_libraries (TEST_io_lib_interface
     lib_interface
     Boost::unit_test_framework)
 
-
 set_property(TARGET TEST_io_lib_interface PROPERTY FOLDER "tests")
 
 add_test( NAME io_lib_interface
-    WORKING_DIRECTORY ${TEST_DATA_DIR}
-    COMMAND TEST_io_lib_interface )
+    COMMAND TEST_io_lib_interface -- "${CMAKE_CURRENT_SOURCE_DIR}/tests")
 
 set_tests_properties(
     io_lib_interface

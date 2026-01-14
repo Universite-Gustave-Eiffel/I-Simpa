@@ -146,11 +146,16 @@ public:
 	 */
 	struct t_param_load_model
 	{
-		t_param_load_model():paramTetgen("-pq5.00 -T.00001 -E"),epsilonLinkingFaceGroup(0.f),glueSurfaces(true), modelRescale(1.0f) { }
+		t_param_load_model() : keepExistingFaceGroup(false), doCorrection(false), doMeshSurface(false),
+		                       glueSurfaces(true), launchRemeshWizard(false),
+		                       paramTetgen("-pq5.00 -T.00001 -E"),
+		                       epsilonLinkingFaceGroup(0.f), modelRescale(1.0f) {
+		}
+
 		wxString pathModel;
-		bool keepexistingfacegroup;
-		bool docorrection;
-		bool domeshsurface;
+		bool keepExistingFaceGroup;
+		bool doCorrection;
+		bool doMeshSurface;
 		bool glueSurfaces;
 		bool launchRemeshWizard;
 		wxString paramTetgen;
@@ -593,7 +598,7 @@ private:
 	 * Enregistre les modification afin de pouvoir annuler par la suite
 	 */
 	bool PushModificationToHistory(bool force=false);
-	bool RunTetGenBoundaryMesh( wxString cmd, wxString cacheFolder, wxString sceneName, wxString sceneNameExt);
+	bool RunTetGenBoundaryMesh( wxString cmd, const wxString& cacheFolder, const wxString& sceneName, const wxString& sceneNameExt);
 	bool RunRemeshProcess(wxString fileToRemesh);
 	void OpenNewDataWindow(Element* linkedElement);
 	/**
@@ -731,8 +736,8 @@ private:
 
 	// File paths
 	wxString dossierCourant;
-	wxString FichierConfig;
-	wxString FichierConfigDefaut;
+	wxString ProjectConfigurationFile;
+	wxString ApplicationConfigurationFile;
 	wxString PathCores;
 	wxString LastComputationFolder; /*<! Last computation temporary path */
 	wxString UserPreferenceXmlFilePath;
