@@ -485,6 +485,17 @@ else ()
     set(RESOURCE_DEST_DIR "$<TARGET_FILE_DIR:isimpa>/resources")
 endif()
 
+if(APPLE)
+    set_target_properties(isimpa PROPERTIES
+            MACOSX_BUNDLE_GUI_IDENTIFIER "org.noise-planet.isimpa"
+            MACOSX_BUNDLE_BUNDLE_NAME "I-SIMPA"
+            MACOSX_BUNDLE_SHORT_VERSION_STRING "${PROJECT_VERSION}"
+            MACOSX_BUNDLE_BUNDLE_VERSION "${PROJECT_VERSION}"
+            MACOSX_BUNDLE_COPYRIGHT "Copyright © UMRAE, CEREMA, Univ Gustave Eiffel"
+            MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/macosx/Info.plist.in"
+    )
+endif()
+
 # Creates a folder "executables" and adds target
 # project (isimpa.vcproj) under it
 set_property(TARGET isimpa PROPERTY FOLDER "executables")

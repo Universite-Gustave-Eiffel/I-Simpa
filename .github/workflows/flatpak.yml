@@ -1,9 +1,10 @@
+name: Build Flatpak
+
 on:
   push:
     branches: [main]
-  pull_request:
   workflow_dispatch:
-name: CI
+
 jobs:
   flatpak:
     name: "Flatpak"
@@ -24,7 +25,7 @@ jobs:
         with:
           bundle: isimpa-${{ replace(replace(replace(replace(github.ref_name != github.event.repository.default_branch && github.ref_name || github.sha, '/', '_'), '\\', '_'), ':', ''), '*', 'x') }}.flatpak
           manifest-path: org.noise_planet.i-simpa.yml
-          cache-key: flatpak-builder-${{ github.sha }}
+          cache-key: flatpak-builder-${{ matrix.variant.arch }}-v1
           arch: ${{ matrix.variant.arch }}
           verbose: true
 

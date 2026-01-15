@@ -432,6 +432,8 @@ class ISimpaApp : public wxApp
 		 */
 		bool OnInit() override
 		{
+			SetAppName("I-SIMPA");
+			SetVendorName("org.noise_planet.i-simpa");
 			//Makes the executable folder as the current folder
 			wxStandardPaths stPath = wxStandardPaths::Get();
 			wxFileName fPath=stPath.GetExecutablePath();

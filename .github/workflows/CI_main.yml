@@ -28,7 +28,7 @@ name: I-SIMPA main CI
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
   workflow_dispatch:
 

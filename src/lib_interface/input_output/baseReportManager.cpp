@@ -264,9 +264,14 @@ void BaseReportManager::SauveRecepteursSurfaciquesCoupe(stringClass rootFolder,s
 				mainData.tabRs[idRs].dataFaces[idFace].dataFace.nbRecords=0;
 				//Indices de sommets
 				ivec3 sommetstri1(nodecount+(idcol+1+(idrow*nbvertcol)),nodecount+(idcol+(idrow*nbvertcol)),nodecount+(idcol+((idrow+1)*nbvertcol)));
-				memcpy(mainData.tabRs[idRs].dataFaces[idFace].dataFace.sommetsIndex,sommetstri1,sizeof(ivec3));
+				mainData.tabRs[idRs].dataFaces[idFace].dataFace.sommetsIndex[0] = static_cast<int>(sommetstri1.a);
+				mainData.tabRs[idRs].dataFaces[idFace].dataFace.sommetsIndex[1] = static_cast<int>(sommetstri1.b);
+				mainData.tabRs[idRs].dataFaces[idFace].dataFace.sommetsIndex[2] = static_cast<int>(sommetstri1.c);
 				sommetstri1.set(sommetstri1.a,sommetstri1.c,nodecount+(idcol+1+((idrow+1)*nbvertcol)));
-				memcpy(mainData.tabRs[idRs].dataFaces[idFace+1].dataFace.sommetsIndex,sommetstri1,sizeof(ivec3));
+				mainData.tabRs[idRs].dataFaces[idFace+1].dataFace.sommetsIndex[0] = static_cast<int>(sommetstri1.a);
+				mainData.tabRs[idRs].dataFaces[idFace+1].dataFace.sommetsIndex[1] = static_cast<int>(sommetstri1.b);
+				mainData.tabRs[idRs].dataFaces[idFace+1].dataFace.sommetsIndex[2] = static_cast<int>(sommetstri1.c);
+
 				//Valeurs de la surface
 				for(int idTimeStep=0;idTimeStep<mainData.nbTimeStep;idTimeStep++)
 				{
@@ -316,7 +321,9 @@ void BaseReportManager::SauveRecepteursSurfaciquesCoupe(stringClass rootFolder,s
 						record_count++;
 					}
 				}
-				memcpy(mainData.tabRs[idRs].dataFaces[idFace+1].tabTimeStep,mainData.tabRs[idRs].dataFaces[idFace].tabTimeStep,sizeof(formatRSBIN::t_faceValue)*mainData.tabRs[idRs].dataFaces[idFace].dataFace.nbRecords);
+				memcpy(mainData.tabRs[idRs].dataFaces[idFace+1].tabTimeStep,
+					mainData.tabRs[idRs].dataFaces[idFace].tabTimeStep,
+					sizeof(formatRSBIN::t_faceValue)*mainData.tabRs[idRs].dataFaces[idFace].dataFace.nbRecords);
 			}
 		}
 
