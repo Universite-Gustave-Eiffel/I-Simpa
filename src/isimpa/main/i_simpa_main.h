@@ -273,7 +273,7 @@ class MainUiFrame : public wxFrame
 		void OnClickHistoryFile(wxCommandEvent& event);
 		void ExitProgram(wxCloseEvent& event);
 
-		static static wxImage LoadToolbarIcon(const wxString &iconPath);
+		static wxImage LoadToolbarIcon(const wxString &iconPath);
 
 		void OnShow(wxShowEvent& event);
 		void OnOpenProject(wxCommandEvent& event);

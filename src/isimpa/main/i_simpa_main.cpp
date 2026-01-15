@@ -1154,10 +1154,8 @@ void MainUiFrame::ExitProgram(wxCloseEvent& event)
 	}
 }
 
-wxImage MainUiFrame::LoadToolbarIcon(const wxString& iconPath)
-{
-	if (wxFileExists(iconPath))
-	{
+wxImage MainUiFrame::LoadToolbarIcon(const wxString& iconPath) {
+	if (wxFileExists(iconPath)) {
 		wxImage img(iconPath, wxBITMAP_TYPE_PNG);
 		if (img.IsOk())
 			return img;  // Valid image loaded
