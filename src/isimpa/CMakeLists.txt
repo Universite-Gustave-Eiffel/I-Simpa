@@ -789,6 +789,27 @@ if(APPLE)
     # CPack bundle plist location after install
     SET(CPACK_BUNDLE_PLIST "${CMAKE_CURRENT_BINARY_DIR}/isimpa.app/Contents/Info.plist")
     SET(CPACK_BUNDLE_ICON "${CMAKE_CURRENT_BINARY_DIR}/isimpa.app/Contents/Resources/isimpa.icns")
+
+    # Path to the app bundle after install
+    set(APPS "${CMAKE_INSTALL_PREFIX}/isimpa.app")
+
+    # Directories where CMake should search for dependencies
+    set(DIRS
+            "${CMAKE_BINARY_DIR}"
+            "${Python3_LIBRARY_DIRS}"    # or custom path to Python framework
+    )
+
+    install(CODE "
+        if(NOT EXISTS \"${APPS}\")
+            message(WARNING \"Application bundle not found at expected path: ${APPS}\")
+        endif()
+        include(BundleUtilities)
+        fixup_bundle(\"${APPS}\" \"\" \"${DIRS}\"
+        IGNORE_ITEM
+          \"Python\"          # Python binary inside Python.framework
+          \"Python.app\"      # if it exists
+        )
+    " COMPONENT Runtime)
 endif()
 
 if(APPLE AND NOT DEFINED CPACK_GENERATOR)

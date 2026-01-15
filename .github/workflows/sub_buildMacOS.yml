@@ -43,6 +43,9 @@ jobs:
       - name: Compiling sources
         run: |
           cmake --build "${{ env.builddir }}" --config Release
+      - name: Install isimpa.app
+        run: |
+          cmake --install "${{ env.builddir }}" --config Release
       - name: Create distribution package
         run: |
           cpack -G DragNDrop
