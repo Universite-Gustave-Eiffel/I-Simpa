@@ -39,10 +39,21 @@ jobs:
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
         # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
         run: |
-          cmake -G Xcode -DCPM_SOURCE_CACHE=${{ env.CPM_SOURCE_CACHE }} -B "${{ env.builddir }}" -DCMAKE_BUILD_TYPE=Release -DTEAM_ID="${{ secrets.TEAMID }}"
+          cmake -G Xcode -DCPM_SOURCE_CACHE=${{ env.CPM_SOURCE_CACHE }} -B "${{ env.builddir }}" \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DTEAM_ID="${TEAMID}" \
+          -DCODE_SIGN_IDENTITY="${CODE_SIGN_IDENTITY}" \
+          -DPROVISIONING_PROFILE_UUID="${PROVISIONING_PROFILE_UUID}"
+        env:
+          TEAMID: ${{ secrets.TEAMID }}
+          CODE_SIGN_IDENTITY: ${{ secrets.CODE_SIGN_IDENTITY }}
+          PROVISIONING_PROFILE_UUID: ${{ secrets.PROVISIONING_PROFILE_UUID }}
       - name: Compiling sources
         run: |
           cmake --build "${{ env.builddir }}" --config Release
+      - name: Install isimpa.app
+        run: |
+          cmake --install "${{ env.builddir }}" --config Release
       - name: Create distribution package
         run: |
           cpack -G DragNDrop

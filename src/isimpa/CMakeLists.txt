@@ -485,6 +485,17 @@ else ()
     set(RESOURCE_DEST_DIR "$<TARGET_FILE_DIR:isimpa>/resources")
 endif()
 
+if(APPLE)
+    set_target_properties(isimpa PROPERTIES
+            MACOSX_BUNDLE_GUI_IDENTIFIER "org.noise-planet.isimpa"
+            MACOSX_BUNDLE_BUNDLE_NAME "I-SIMPA"
+            MACOSX_BUNDLE_SHORT_VERSION_STRING "${PROJECT_VERSION}"
+            MACOSX_BUNDLE_BUNDLE_VERSION "${PROJECT_VERSION}"
+            MACOSX_BUNDLE_COPYRIGHT "Copyright © UMRAE, CEREMA, Univ Gustave Eiffel"
+            MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/macosx/Info.plist.in"
+    )
+endif()
+
 # Creates a folder "executables" and adds target
 # project (isimpa.vcproj) under it
 set_property(TARGET isimpa PROPERTY FOLDER "executables")
@@ -750,26 +761,39 @@ endif ()
 #######################################################################
 # Prepare install commands for CPack builder
 if(APPLE)
-    set(  "" CACHE STRING "The development team ID for code signing")
+    set(TEAM_ID "" CACHE STRING "The development team ID for code signing")
+    set(CODE_SIGN_IDENTITY "" CACHE STRING "Code signing identity name")
+    set(PROVISIONING_PROFILE_UUID "" CACHE STRING "Provisioning profile UUID (optional)")
 
     if(TEAM_ID STREQUAL "")
-        message(WARNING "Please set the TEAM_ID variable when generating the project")
-    else ()
+        message(WARNING "TEAM_ID required for code signing")
+    else()
         set(CMAKE_MACOSX_BUNDLE YES)
 
         set(XCODE_ATTRIBUTE_CODE_SIGN_STYLE "Manual")
         set(XCODE_ATTRIBUTE_DEVELOPMENT_TEAM ${TEAM_ID})
-        set(XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "Developer ID Application")
+
+        if(NOT CODE_SIGN_IDENTITY STREQUAL "")
+            set(XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY ${CODE_SIGN_IDENTITY})
+        endif()
+
+        if(NOT PROVISIONING_PROFILE_UUID STREQUAL "")
+            set(XCODE_ATTRIBUTE_PROVISIONING_PROFILE_SPECIFIER ${PROVISIONING_PROFILE_UUID})
+        endif()
+
         set(XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED TRUE)
+        set(XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED TRUE)
 
         set_target_properties(${APP_NAME} PROPERTIES
                 XCODE_ATTRIBUTE_CODE_SIGN_STYLE ${XCODE_ATTRIBUTE_CODE_SIGN_STYLE}
                 XCODE_ATTRIBUTE_DEVELOPMENT_TEAM ${XCODE_ATTRIBUTE_DEVELOPMENT_TEAM}
                 XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY ${XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY}
+                XCODE_ATTRIBUTE_PROVISIONING_PROFILE_SPECIFIER ${XCODE_ATTRIBUTE_PROVISIONING_PROFILE_SPECIFIER}
                 XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED ${XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED}
+                XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED ${XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED}
         )
     endif()
-endif ()
+endif()
 
 
 
@@ -789,6 +813,27 @@ if(APPLE)
     # CPack bundle plist location after install
     SET(CPACK_BUNDLE_PLIST "${CMAKE_CURRENT_BINARY_DIR}/isimpa.app/Contents/Info.plist")
     SET(CPACK_BUNDLE_ICON "${CMAKE_CURRENT_BINARY_DIR}/isimpa.app/Contents/Resources/isimpa.icns")
+
+    # Path to the app bundle after install
+    set(APPS "${CMAKE_INSTALL_PREFIX}/isimpa.app")
+
+    # Directories where CMake should search for dependencies
+    set(DIRS
+            "${CMAKE_BINARY_DIR}"
+            "${Python3_LIBRARY_DIRS}"    # or custom path to Python framework
+    )
+
+    install(CODE "
+        if(NOT EXISTS \"${APPS}\")
+            message(WARNING \"Application bundle not found at expected path: ${APPS}\")
+        endif()
+        include(BundleUtilities)
+        fixup_bundle(\"${APPS}\" \"\" \"${DIRS}\"
+        IGNORE_ITEM
+          \"Python\"          # Python binary inside Python.framework
+          \"Python.app\"      # if it exists
+        )
+    " COMPONENT Runtime)
 endif()
 
 if(APPLE AND NOT DEFINED CPACK_GENERATOR)

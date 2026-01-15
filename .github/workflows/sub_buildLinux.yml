@@ -58,7 +58,17 @@ jobs:
         with:
           path: |
             ${{ env.CPM_SOURCE_CACHE }}
-          key: ${{ runner.os }}-isimpa
+          key: ${{ runner.os }}-cpm
+      - name: Cache CMake build directory
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{github.workspace}}/build/**
+            !${{github.workspace}}/build/CMakeFiles/**/*
+            !${{github.workspace}}/build/CMakeCache.txt
+          key: ${{ runner.os }}-cmake-${{ hashFiles('**/CMakeLists.txt', '**/cpm-cache.cmake') }}-${{ env.BUILD_TYPE }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-cmake-${{ hashFiles('**/CMakeLists.txt', '**/cpm-cache.cmake') }}-${{ env.BUILD_TYPE }}-
 
       - name: Configure CMake
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.

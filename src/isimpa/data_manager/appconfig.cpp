@@ -611,7 +611,7 @@ bool ApplicationConfiguration::IsIdDirectivityExist(int idDirectivity)
 }
 
 wxString ApplicationConfiguration::getResourcesFolder() {
-#ifdef __UNIX__
+#if defined(_LINUX)
 	return wxStandardPaths::Get().GetExecutablePath().BeforeLast(wxFileName::GetPathSeparator())+wxFileName::GetPathSeparator()+"resources";
 #else
 	return wxStandardPaths::Get().GetResourcesDir();

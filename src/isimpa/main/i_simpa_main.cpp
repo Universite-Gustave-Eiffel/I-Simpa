@@ -407,35 +407,77 @@ MainUiFrame::MainUiFrame(wxLocale &lang) : wxFrame(NULL, -1, wxGetTranslation("I
 	visualisation->SetToolBitmapSize(FromDIP(wxSize(16,16)));
 	tbProjet->SetToolBitmapSize(FromDIP(wxSize(16,16)));
 
-	tbProjet->AddTool(ID_nouveau_projet, wxGetTranslation("New project"), wxImage(resourceFolder+"/Bitmaps/toolbar_newproject.png", wxBITMAP_TYPE_PNG), wxGetTranslation("New project"));
-	tbProjet->AddTool(ID_ouvrir, wxGetTranslation("Open project"), wxImage(resourceFolder+"/Bitmaps/toolbar_openproject.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Open project"));
+	tbProjet->AddTool(ID_nouveau_projet, wxGetTranslation("New project"),
+	                  LoadToolbarIcon(resourceFolder + "/Bitmaps/toolbar_newproject.png"),
+	                  wxGetTranslation("New project"));
+	tbProjet->AddTool(ID_ouvrir, wxGetTranslation("Open project"),
+	                  LoadToolbarIcon(resourceFolder + "/Bitmaps/toolbar_openproject.png"),
+	                  wxGetTranslation("Open project"));
 	tbProjet->AddSeparator();
-	tbProjet->AddTool(ID_enregistrer, wxGetTranslation("Save project"), wxImage(resourceFolder+"/Bitmaps/toolbar_saveproject.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Save project"));
-	tbProjet->AddTool(ID_enregistrer_sous, wxGetTranslation("Save project as..."), wxImage(resourceFolder+"/Bitmaps/toolbar_saveprojectas.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Save project as..."));
+	tbProjet->AddTool(ID_enregistrer, wxGetTranslation("Save project"),
+	                  LoadToolbarIcon(resourceFolder + "/Bitmaps/toolbar_saveproject.png"),
+	                  wxGetTranslation("Save project"));
+	tbProjet->AddTool(ID_enregistrer_sous, wxGetTranslation("Save project as..."),
+	                  LoadToolbarIcon(resourceFolder + "/Bitmaps/toolbar_saveprojectas.png"),
+	                  wxGetTranslation("Save project as..."));
 
-	simulation->AddTool(ID_previous_step_simulation, wxGetTranslation("Previous time step"), wxImage(resourceFolder+"/Bitmaps/toolbar_animation_previousstep.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Previous time step"));
-	simulation->AddTool(ID_start_simulation, wxGetTranslation("Play"), wxImage(resourceFolder+"/Bitmaps/toolbar_animation_start.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Play"));
-	simulation->AddTool(ID_pause_simulation, wxGetTranslation("Pause"), wxImage(resourceFolder+"/Bitmaps/toolbar_animation_pause.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Pause"));
-	simulation->AddTool(ID_next_step_simulation, wxGetTranslation("Next time step"), wxImage(resourceFolder+"/Bitmaps/toolbar_animation_nextstep.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Next time step"));
-	simulation->AddTool(ID_stop_simulation, wxGetTranslation("Stop"), wxImage(resourceFolder+"/Bitmaps/toolbar_animation_stop.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Stop"));
-	simulation->AddTool(ID_delete_simulation, wxGetTranslation("Delete the simulation"), wxImage(resourceFolder+"/Bitmaps/toolbar_hideallanimations.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Delete the simulation"));
+	simulation->AddTool(ID_previous_step_simulation, wxGetTranslation("Previous time step"),
+	                    LoadToolbarIcon(resourceFolder + "/Bitmaps/toolbar_animation_previousstep.png"),
+	                    wxGetTranslation("Previous time step"));
+	simulation->AddTool(ID_start_simulation, wxGetTranslation("Play"),
+	                    LoadToolbarIcon(resourceFolder + "/Bitmaps/toolbar_animation_start.png"),
+	                    wxGetTranslation("Play"));
+	simulation->AddTool(ID_pause_simulation, wxGetTranslation("Pause"),
+	                    LoadToolbarIcon(resourceFolder + "/Bitmaps/toolbar_animation_pause.png"),
+	                    wxGetTranslation("Pause"));
+	simulation->AddTool(ID_next_step_simulation, wxGetTranslation("Next time step"),
+	                    LoadToolbarIcon(resourceFolder + "/Bitmaps/toolbar_animation_nextstep.png"),
+	                    wxGetTranslation("Next time step"));
+	simulation->AddTool(ID_stop_simulation, wxGetTranslation("Stop"),
+	                    LoadToolbarIcon(resourceFolder + "/Bitmaps/toolbar_animation_stop.png"),
+	                    wxGetTranslation("Stop"));
+	simulation->AddTool(ID_delete_simulation, wxGetTranslation("Delete the simulation"),
+	                    LoadToolbarIcon(resourceFolder + "/Bitmaps/toolbar_hideallanimations.png"),
+	                    wxGetTranslation("Delete the simulation"));
 
-	visualisation->AddTool(ID_tool_flat_inside, wxGetTranslation("Face view"), wxImage(resourceFolder+"/Bitmaps/toolbar_showfaceonly.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Face view"));
-	visualisation->AddTool(ID_tool_wireframe_all, wxGetTranslation("Wireframe view"), wxImage(resourceFolder+"/Bitmaps/toolbar_showsidesonly.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Wireframe view"));
-	visualisation->AddTool(ID_tool_wireframe_and_flat, wxGetTranslation("Combined view"), wxImage(resourceFolder+"/Bitmaps/toolbar_showfacewithsides.png", wxBITMAP_TYPE_PNG), wxGetTranslation("Combined view"));
+	visualisation->AddTool(ID_tool_flat_inside, wxGetTranslation("Face view"),
+	                       LoadToolbarIcon(resourceFolder + "/Bitmaps/toolbar_showfaceonly.png"),
+	                       wxGetTranslation("Face view"));
+	visualisation->AddTool(ID_tool_wireframe_all, wxGetTranslation("Wireframe view"),
+	                       LoadToolbarIcon(resourceFolder + "/Bitmaps/toolbar_showsidesonly.png"),
+	                       wxGetTranslation("Wireframe view"));
+	visualisation->AddTool(ID_tool_wireframe_and_flat, wxGetTranslation("Combined view"),
+	                       LoadToolbarIcon(resourceFolder + "/Bitmaps/toolbar_showfacewithsides.png"),
+	                       wxGetTranslation("Combined view"));
 
 
-	mousetool->AddRadioTool(ID_toolCameraMode, wxGetTranslation("Camera mode"), wxImage(resourceFolder+"/Bitmaps/toolbar_tool_camera.png", wxBITMAP_TYPE_PNG), wxNullBitmap, wxGetTranslation("Camera mode"));
-	mousetool->AddRadioTool(ID_SwitchSelectionMode, wxGetTranslation("Surface selection mode"), wxImage(resourceFolder+"/Bitmaps/toolbar_tool_faceselection.png", wxBITMAP_TYPE_PNG), wxNullBitmap, wxGetTranslation("Surface selection mode"));
-	mousetool->AddRadioTool(ID_toolGetdBLevelMode, wxGetTranslation("Extract sound level from 3D view"), wxImage(resourceFolder+"/Bitmaps/toolbar_tool_extractlvl.png", wxBITMAP_TYPE_PNG), wxNullBitmap, wxGetTranslation("Extract sound level from 3D view"));
+	mousetool->AddRadioTool(ID_toolCameraMode, wxGetTranslation("Camera mode"),
+	                        LoadToolbarIcon(resourceFolder + "/Bitmaps/toolbar_tool_camera.png"), wxNullBitmap,
+	                        wxGetTranslation("Camera mode"));
+	mousetool->AddRadioTool(ID_SwitchSelectionMode, wxGetTranslation("Surface selection mode"),
+	                        LoadToolbarIcon(resourceFolder + "/Bitmaps/toolbar_tool_faceselection.png"), wxNullBitmap,
+	                        wxGetTranslation("Surface selection mode"));
+	mousetool->AddRadioTool(ID_toolGetdBLevelMode, wxGetTranslation("Extract sound level from 3D view"),
+	                        LoadToolbarIcon(resourceFolder + "/Bitmaps/toolbar_tool_extractlvl.png"), wxNullBitmap,
+	                        wxGetTranslation("Extract sound level from 3D view"));
 
 	visualisation->AddSeparator();
-	visualisation->AddTool(ID_InitCamera, wxGetTranslation("Reinitialize camera"), wxImage((resourceFolder+"/Bitmaps/toolbar_camera_movetoorigin.png"), wxBITMAP_TYPE_PNG), wxGetTranslation("Reinitialize camera"));
-	visualisation->AddTool(ID_camera_rotate, wxGetTranslation("Orbit camera"), wxImage((resourceFolder+"/Bitmaps/toolbar_camera_rotation.png"), wxBITMAP_TYPE_PNG), wxGetTranslation("Orbit camera"));
-	visualisation->AddTool(ID_camera_firstperson, wxGetTranslation("First person camera"), wxImage((resourceFolder+"/Bitmaps/toolbar_camera_firstperson.png"), wxBITMAP_TYPE_PNG), wxGetTranslation("First person camera"));
+	visualisation->AddTool(ID_InitCamera, wxGetTranslation("Reinitialize camera"),
+	                       LoadToolbarIcon(resourceFolder + "/Bitmaps/toolbar_camera_movetoorigin.png"),
+	                       wxGetTranslation("Reinitialize camera"));
+	visualisation->AddTool(ID_camera_rotate, wxGetTranslation("Orbit camera"),
+	                       LoadToolbarIcon(resourceFolder + "/Bitmaps/toolbar_camera_rotation.png"),
+	                       wxGetTranslation("Orbit camera"));
+	visualisation->AddTool(ID_camera_firstperson, wxGetTranslation("First person camera"),
+	                       LoadToolbarIcon(resourceFolder + "/Bitmaps/toolbar_camera_firstperson.png"),
+	                       wxGetTranslation("First person camera"));
 
-	toolbarGl->AddTool(ID_Mailler, wxGetTranslation("Meshing"), wxImage((resourceFolder+"/Bitmaps/toolbar_run_tetmesh.png"), wxBITMAP_TYPE_PNG), wxGetTranslation("Meshing"));
-	toolbarGl->AddTool(ID_Tool_ShowHideMailler, wxGetTranslation("Show / Hide meshing"), wxImage((resourceFolder+"/Bitmaps/toolbar_show_hide_tetmesh.png"), wxBITMAP_TYPE_PNG), wxGetTranslation("Show / Hide meshing"));
+	toolbarGl->AddTool(ID_Mailler, wxGetTranslation("Meshing"),
+	                   LoadToolbarIcon(resourceFolder + "/Bitmaps/toolbar_run_tetmesh.png"),
+	                   wxGetTranslation("Meshing"));
+	toolbarGl->AddTool(ID_Tool_ShowHideMailler, wxGetTranslation("Show / Hide meshing"),
+	                   LoadToolbarIcon(resourceFolder + "/Bitmaps/toolbar_show_hide_tetmesh.png"),
+	                   wxGetTranslation("Show / Hide meshing"));
 	toolbarGl->AddSeparator();
 	toolbarGl->AddControl(xPlan);
 	toolbarGl->AddControl(yPlan);
@@ -1080,15 +1122,14 @@ void MainUiFrame::OnShow(wxShowEvent& event)
 void MainUiFrame::ExitProgram(wxCloseEvent& event)
 {
 
-	if(!this->AskUserForSaveModification())
-	{
-		if(event.CanVeto())
-		{
+	if(!this->AskUserForSaveModification()) {
+		if (event.CanVeto()) {
 			event.Veto();
-		}else{
-			projetCourant->SaveChanges(); //Si fermeture par le système on n'ecrase pas la sauvegarde mais on sauvegarde les modifications dans le projet ouvert.
+		} else {
+			//If closed by the system we do not overwrite the save but we save the modifications in the open project.
+			projetCourant->SaveChanges();
 		}
-	}else{
+	} else {
 		fileHistory->Save(*ApplicationConfiguration::GetFileConfig()); //Sauvegarde de l'historique des fichiers
 
 
@@ -1112,6 +1153,23 @@ void MainUiFrame::ExitProgram(wxCloseEvent& event)
 		this->OnCloseWindow(event);
 	}
 }
+
+wxImage MainUiFrame::LoadToolbarIcon(const wxString& iconPath) {
+	if (wxFileExists(iconPath)) {
+		wxImage img(iconPath, wxBITMAP_TYPE_PNG);
+		if (img.IsOk())
+			return img;  // Valid image loaded
+	}
+
+	wxLogWarning(wxGetTranslation("Cannot find or load toolbar icon: %s"), iconPath);
+
+	// Create safe 16x16 dummy transparent image (toolbar-friendly size)
+	wxImage dummy(16, 16);
+	dummy.Clear(wxALPHA_TRANSPARENT);  // Fully transparent, no alpha issues
+	return dummy;
+}
+
+
 
 MainUiFrame::~MainUiFrame()
 {

@@ -33,175 +33,200 @@
 
 namespace formatRSBIN
 {
-	/**
-	 * @brief Structure d'entete du fichier
-	 */
-	struct t_FileHeader
-	{
-		Intb formatVersion;				/*!< Version du format de données */
-		Longb t_FileHeader_Length;		/*!< Taille de la structure */
-		Longb t_nodesPosition_Length;	/*!< Taille de la structure */
-		Longb t_RecepteurS_Length;		/*!< Taille de la structure */
-		Longb t_FaceRS_Length;		    /*!< Taille de la structure */
-		Longb t_faceValue_Length;	 	/*!< Taille de la structure */
-		Intb quantNodes;				/*!< Nombre de noeuds (point liant les faces) */
-		Intb quantRS;					/*!< Nombre de récepteur surfacique */
-		Intb nbTimeStep;				/*!< Nombre de pas de temps */
-		Floatb timeStep;				/*!< Pas de temps (s)*/
-		RECEPTEURS_RECORD_TYPE recordType; /*!< Type d'enregistrement de ce récepteur de surface */
-	};
-    bool RSBIN::ReadHeaderBIN(const char *strFileName,t_ExchangeData& mainData)
-	{
-		//Namespace
-		using namespace std;
+/**
+ * @brief Structure d'entete du fichier
+ */
+    struct t_FileHeader
+    {
+        Intb formatVersion;				/*!< Version du format de données */
+        Longb t_FileHeader_Length;		/*!< Taille de la structure */
+        Longb t_nodesPosition_Length;	/*!< Taille de la structure */
+        Longb t_RecepteurS_Length;		/*!< Taille de la structure */
+        Longb t_FaceRS_Length;		    /*!< Taille de la structure */
+        Longb t_faceValue_Length;	 	/*!< Taille de la structure */
+        Intb quantNodes;				/*!< Nombre de noeuds (point liant les faces) */
+        Intb quantRS;					/*!< Nombre de récepteur surfacique */
+        Intb nbTimeStep;				/*!< Nombre de pas de temps */
+        Floatb timeStep;				/*!< Pas de temps (s)*/
+        RECEPTEURS_RECORD_TYPE recordType; /*!< Type d'enregistrement de ce récepteur de surface */
+    };
 
-		//Declarations
+    // Fonctions utilitaires privées pour garantir la lecture/écriture membre par membre
+    namespace Helpers {
+        void WriteHeader(std::ostream& os, const t_FileHeader& h) {
+            os.write((char*)&h.formatVersion, sizeof(Intb));
+            os.write((char*)&h.t_FileHeader_Length, sizeof(Longb));
+            os.write((char*)&h.t_nodesPosition_Length, sizeof(Longb));
+            os.write((char*)&h.t_RecepteurS_Length, sizeof(Longb));
+            os.write((char*)&h.t_FaceRS_Length, sizeof(Longb));
+            os.write((char*)&h.t_faceValue_Length, sizeof(Longb));
+            os.write((char*)&h.quantNodes, sizeof(Intb));
+            os.write((char*)&h.quantRS, sizeof(Intb));
+            os.write((char*)&h.nbTimeStep, sizeof(Intb));
+            os.write((char*)&h.timeStep, sizeof(Floatb));
+            Intb rType = (Intb)h.recordType;
+            os.write((char*)&rType, sizeof(Intb));
+        }
 
-		//Sauvegarde
-		#ifdef WIN32
-			fstream binFile(pugi::as_wide(strFileName), ios::in | ios::binary);
-		#else
-			fstream binFile(strFileName, ios::in | ios::binary);
-		#endif // WIN
+        void ReadHeader(std::istream& is, t_FileHeader& h) {
+            is.read((char*)&h.formatVersion, sizeof(Intb));
+            is.read((char*)&h.t_FileHeader_Length, sizeof(Longb));
+            is.read((char*)&h.t_nodesPosition_Length, sizeof(Longb));
+            is.read((char*)&h.t_RecepteurS_Length, sizeof(Longb));
+            is.read((char*)&h.t_FaceRS_Length, sizeof(Longb));
+            is.read((char*)&h.t_faceValue_Length, sizeof(Longb));
+            is.read((char*)&h.quantNodes, sizeof(Intb));
+            is.read((char*)&h.quantRS, sizeof(Intb));
+            is.read((char*)&h.nbTimeStep, sizeof(Intb));
+            is.read((char*)&h.timeStep, sizeof(Floatb));
+            Intb rType;
+            is.read((char*)&rType, sizeof(Intb));
+            h.recordType = (RECEPTEURS_RECORD_TYPE)rType;
+        }
+    }
 
-		//*************************
-		// Lecture de l'entete du fichier
-		t_FileHeader fileHeader;
-		binFile.read((char*)&fileHeader,sizeof(t_FileHeader));
+    bool RSBIN::ReadHeaderBIN(const char *strFileName, t_ExchangeData& mainData)
+    {
+        #ifdef WIN32
+            std::ifstream binFile(pugi::as_wide(strFileName), std::ios::in | std::ios::binary);
+        #else
+            std::ifstream binFile(strFileName, std::ios::in | std::ios::binary);
+        #endif
 
-		mainData.nbTimeStep=fileHeader.nbTimeStep;
-		mainData.tabNodesSize=fileHeader.quantNodes;
-		mainData.tabRsSize=fileHeader.quantRS;
-		mainData.timeStep=fileHeader.timeStep;
-		mainData.recordType=fileHeader.recordType;
-		binFile.close();
-		return true;
+        if(!binFile.is_open()) return false;
 
-	}
+        t_FileHeader fileHeader;
+        Helpers::ReadHeader(binFile, fileHeader);
 
-	bool RSBIN::ImportBIN(const char *strFileName,t_ExchangeData& mainData)
-	{
-		//Namespace
-		using namespace std;
+        mainData.nbTimeStep = fileHeader.nbTimeStep;
+        mainData.tabNodesSize = fileHeader.quantNodes;
+        mainData.tabRsSize = fileHeader.quantRS;
+        mainData.timeStep = fileHeader.timeStep;
+        mainData.recordType = fileHeader.recordType;
+        
+        return true;
+    }
 
-		//Declarations
+    bool RSBIN::ImportBIN(const char *strFileName, t_ExchangeData& mainData)
+    {
+        #ifdef WIN32
+            std::ifstream binFile(pugi::as_wide(strFileName), std::ios::in | std::ios::binary);
+        #else
+            std::ifstream binFile(strFileName, std::ios::in | std::ios::binary);
+        #endif
 
-		//Sauvegarde
-		#ifdef WIN32
-				fstream binFile(pugi::as_wide(strFileName), ios::in | ios::binary);
-		#else
-				fstream binFile(strFileName, ios::in | ios::binary);
-		#endif // WIN
+        if(!binFile.is_open()) return false;
 
-		//*************************
-		// Lecture de l'entete du fichier
-		t_FileHeader fileHeader;
-		binFile.read((char*)&fileHeader,sizeof(t_FileHeader));
+        t_FileHeader fileHeader;
+        Helpers::ReadHeader(binFile, fileHeader);
 
-		// Ce booleen permet de rester compatible avec les futurs versions des fichiers
-		// A condition que les données soient rajouté à la fin des structures des données et que la constante de version ai été mis à jour
-		bool versionConflict=(fileHeader.formatVersion!=(const int)VERSION);
-		mainData.nbTimeStep=fileHeader.nbTimeStep;
-		mainData.tabNodesSize=fileHeader.quantNodes;
-		mainData.tabRsSize=fileHeader.quantRS;
-		mainData.tabNodes=new t_nodesPosition[mainData.tabNodesSize];
-		mainData.tabRs = new t_ExchangeData_Recepteurs[mainData.tabRsSize];
-		mainData.timeStep=fileHeader.timeStep;
-		mainData.recordType=fileHeader.recordType;
+        mainData.nbTimeStep = fileHeader.nbTimeStep;
+        mainData.tabNodesSize = fileHeader.quantNodes;
+        mainData.tabRsSize = fileHeader.quantRS;
+        mainData.timeStep = fileHeader.timeStep;
+        mainData.recordType = fileHeader.recordType;
 
-		if(versionConflict)
-			binFile.seekp((Longb)binFile.tellp()+fileHeader.t_FileHeader_Length-sizeof(t_FileHeader));
+        // Gestion de la compatibilité de version pour le header
+        if (fileHeader.t_FileHeader_Length > 44) // 44 est la taille minimale calculée du header
+            binFile.seekg((Longb)binFile.tellg() + fileHeader.t_FileHeader_Length - 44);
 
-		//***************************
-		// Lecture des noeuds
-		for(int idNoeud=0;idNoeud<mainData.tabNodesSize;idNoeud++)
-		{
-			binFile.read((char*)&mainData.tabNodes[idNoeud],sizeof(t_nodesPosition));
-			if(versionConflict)
-				binFile.seekp((Longb)binFile.tellp()+fileHeader.t_nodesPosition_Length-sizeof(t_nodesPosition));
-		}
-		//***************************
-		// Lecture des recepteurs surfaciques
-		for(int idRs=0;idRs<mainData.tabRsSize;idRs++)
-		{
-			binFile.read((char*)&mainData.tabRs[idRs].dataRec,sizeof(t_RecepteurS));
-			if(versionConflict)
-				binFile.seekp((Longb)binFile.tellp()+fileHeader.t_RecepteurS_Length-sizeof(t_RecepteurS));
-			mainData.tabRs[idRs].dataFaces = new t_ExchangeData_Face[mainData.tabRs[idRs].dataRec.quantFaces];
-			//Lecture des faces
-			for(int idFace=0;idFace<mainData.tabRs[idRs].dataRec.quantFaces;idFace++)
-			{
-				binFile.read((char*)&mainData.tabRs[idRs].dataFaces[idFace].dataFace,sizeof(t_FaceRS));
-				if(versionConflict)
-					binFile.seekp((Longb)binFile.tellp()+fileHeader.t_FaceRS_Length-sizeof(t_FaceRS));
-				mainData.tabRs[idRs].dataFaces[idFace].tabTimeStep = new t_faceValue[mainData.tabRs[idRs].dataFaces[idFace].dataFace.nbRecords];
-				//Lecture des valeurs des pas de temps
-				for(int idTimeStep=0;idTimeStep<mainData.tabRs[idRs].dataFaces[idFace].dataFace.nbRecords;idTimeStep++)
-				{
-					binFile.read((char*)&mainData.tabRs[idRs].dataFaces[idFace].tabTimeStep[idTimeStep],sizeof(t_faceValue));
-					if(versionConflict)
-						binFile.seekp((Longb)binFile.tellp()+fileHeader.t_faceValue_Length-sizeof(t_faceValue));
-				}
-			}
-		}
-		binFile.close();
-		return true;
-	}
+        mainData.tabNodes = new t_nodesPosition[mainData.tabNodesSize];
+        for(int idNoeud=0; idNoeud < mainData.tabNodesSize; idNoeud++)
+        {
+            binFile.read((char*)mainData.tabNodes[idNoeud].node, sizeof(Floatb)*3);
+            if(fileHeader.t_nodesPosition_Length > sizeof(Floatb)*3)
+                binFile.seekg((Longb)binFile.tellg() + fileHeader.t_nodesPosition_Length - (sizeof(Floatb)*3));
+        }
 
+        mainData.tabRs = new t_ExchangeData_Recepteurs[mainData.tabRsSize];
+        for(int idRs=0; idRs < mainData.tabRsSize; idRs++)
+        {
+            // Lecture t_RecepteurS
+            binFile.read((char*)&mainData.tabRs[idRs].dataRec.xmlIndex, sizeof(Intb));
+            binFile.read((char*)&mainData.tabRs[idRs].dataRec.quantFaces, sizeof(Intb));
+            binFile.read((char*)mainData.tabRs[idRs].dataRec.recepteurSName, STRING_SIZE);
 
-	bool RSBIN::ExportBIN(const char *strFileName,t_ExchangeData& mainData)
-	{
-		//Namespace
-		using namespace std;
+            if(fileHeader.t_RecepteurS_Length > (sizeof(Intb)*2 + STRING_SIZE))
+                binFile.seekg((Longb)binFile.tellg() + fileHeader.t_RecepteurS_Length - (sizeof(Intb)*2 + STRING_SIZE));
 
-		//Declarations
+            mainData.tabRs[idRs].dataFaces = new t_ExchangeData_Face[mainData.tabRs[idRs].dataRec.quantFaces];
+            
+            for(int idFace=0; idFace < mainData.tabRs[idRs].dataRec.quantFaces; idFace++)
+            {
+                // Lecture t_FaceRS
+                binFile.read((char*)mainData.tabRs[idRs].dataFaces[idFace].dataFace.sommetsIndex, sizeof(Intb)*3);
+                binFile.read((char*)&mainData.tabRs[idRs].dataFaces[idFace].dataFace.nbRecords, sizeof(Intb));
 
-		//Save surface receiver
-		#ifdef WIN32
-		fstream binFile(pugi::as_wide(strFileName), ios::out | ios::binary);
-		#else
-				fstream binFile(strFileName, ios::out | ios::binary);
-		#endif // WIN
+                if(fileHeader.t_FaceRS_Length > sizeof(Intb)*4)
+                    binFile.seekg((Longb)binFile.tellg() + fileHeader.t_FaceRS_Length - (sizeof(Intb)*4));
 
-		//*************************
-		//Ecriture de l'entete du fichier
-		t_FileHeader fileHeader;
-		fileHeader.formatVersion=VERSION;
-		fileHeader.nbTimeStep=mainData.nbTimeStep;
-		fileHeader.quantNodes=mainData.tabNodesSize;
-		fileHeader.quantRS=mainData.tabRsSize;
-		fileHeader.t_FileHeader_Length=sizeof(t_FileHeader);
-		fileHeader.t_nodesPosition_Length=sizeof(t_nodesPosition);
-		fileHeader.t_RecepteurS_Length=sizeof(t_RecepteurS);
-		fileHeader.t_FaceRS_Length=sizeof(t_FaceRS);
-		fileHeader.t_faceValue_Length=sizeof(t_faceValue);
-		fileHeader.timeStep=mainData.timeStep;
-		fileHeader.recordType=mainData.recordType;
+                mainData.tabRs[idRs].dataFaces[idFace].tabTimeStep = new t_faceValue[mainData.tabRs[idRs].dataFaces[idFace].dataFace.nbRecords];
+                
+                for(int idTimeStep=0; idTimeStep < mainData.tabRs[idRs].dataFaces[idFace].dataFace.nbRecords; idTimeStep++)
+                {
+                    // Lecture t_faceValue
+                    binFile.read((char*)&mainData.tabRs[idRs].dataFaces[idFace].tabTimeStep[idTimeStep].timeStep, sizeof(bCourt));
+                    binFile.read((char*)&mainData.tabRs[idRs].dataFaces[idFace].tabTimeStep[idTimeStep].energy, sizeof(Floatb));
 
-		binFile.write((char*)&fileHeader,sizeof(t_FileHeader));
-		//***************************
-		// Ecriture des noeuds
-		for(int idNoeud=0;idNoeud<mainData.tabNodesSize;idNoeud++)
-			binFile.write((char*)&mainData.tabNodes[idNoeud],sizeof(t_nodesPosition));
-		//***************************
-		// Ecriture des recepteurs surfaciques
-		for(int idRs=0;idRs<mainData.tabRsSize;idRs++)
-		{
-			binFile.write((char*)&mainData.tabRs[idRs].dataRec,sizeof(t_RecepteurS));
-			//Ecriture des faces
-			for(int idFace=0;idFace<mainData.tabRs[idRs].dataRec.quantFaces;idFace++)
-			{
-				binFile.write((char*)&mainData.tabRs[idRs].dataFaces[idFace].dataFace,sizeof(t_FaceRS));
-				//Ecriture des valeurs des pas de temps
-				for(int idTimeStep=0;idTimeStep<mainData.tabRs[idRs].dataFaces[idFace].dataFace.nbRecords;idTimeStep++)
-				{
-					binFile.write((char*)&mainData.tabRs[idRs].dataFaces[idFace].tabTimeStep[idTimeStep],sizeof(t_faceValue));
-				}
-			}
-		}
-		binFile.close();
-		return true;
-	}
+                    if(fileHeader.t_faceValue_Length > (sizeof(bCourt)+sizeof(Floatb)))
+                        binFile.seekg((Longb)binFile.tellg() + fileHeader.t_faceValue_Length - (sizeof(bCourt)+sizeof(Floatb)));
+                }
+            }
+        }
+        binFile.close();
+        return true;
+    }
 
-} //fin namespace
+    bool RSBIN::ExportBIN(const char *strFileName, t_ExchangeData& mainData)
+    {
+        #ifdef WIN32
+            std::ofstream binFile(pugi::as_wide(strFileName), std::ios::out | std::ios::binary);
+        #else
+            std::ofstream binFile(strFileName, std::ios::out | std::ios::binary);
+        #endif
+
+        if(!binFile.is_open()) return false;
+
+        t_FileHeader fileHeader;
+        fileHeader.formatVersion = VERSION;
+        fileHeader.nbTimeStep = mainData.nbTimeStep;
+        fileHeader.quantNodes = mainData.tabNodesSize;
+        fileHeader.quantRS = mainData.tabRsSize;
+        // On définit des tailles fixes (sans padding) pour l'export
+        fileHeader.t_FileHeader_Length = 44; 
+        fileHeader.t_nodesPosition_Length = sizeof(Floatb) * 3;
+        fileHeader.t_RecepteurS_Length = sizeof(Intb) * 2 + STRING_SIZE;
+        fileHeader.t_FaceRS_Length = sizeof(Intb) * 4;
+        fileHeader.t_faceValue_Length = sizeof(bCourt) + sizeof(Floatb);
+        fileHeader.timeStep = mainData.timeStep;
+        fileHeader.recordType = mainData.recordType;
+
+        Helpers::WriteHeader(binFile, fileHeader);
+
+        for(int idNoeud=0; idNoeud < mainData.tabNodesSize; idNoeud++) {
+            binFile.write((char*)mainData.tabNodes[idNoeud].node, sizeof(Floatb)*3);
+        }
+
+        for(int idRs=0; idRs < mainData.tabRsSize; idRs++)
+        {
+            binFile.write((char*)&mainData.tabRs[idRs].dataRec.xmlIndex, sizeof(Intb));
+            binFile.write((char*)&mainData.tabRs[idRs].dataRec.quantFaces, sizeof(Intb));
+            binFile.write((char*)mainData.tabRs[idRs].dataRec.recepteurSName, STRING_SIZE);
+
+            for(int idFace=0; idFace < mainData.tabRs[idRs].dataRec.quantFaces; idFace++)
+            {
+                binFile.write((char*)mainData.tabRs[idRs].dataFaces[idFace].dataFace.sommetsIndex, sizeof(Intb)*3);
+                binFile.write((char*)&mainData.tabRs[idRs].dataFaces[idFace].dataFace.nbRecords, sizeof(Intb));
+
+                for(int idTimeStep=0; idTimeStep < mainData.tabRs[idRs].dataFaces[idFace].dataFace.nbRecords; idTimeStep++)
+                {
+                    binFile.write((char*)&mainData.tabRs[idRs].dataFaces[idFace].tabTimeStep[idTimeStep].timeStep, sizeof(bCourt));
+                    binFile.write((char*)&mainData.tabRs[idRs].dataFaces[idFace].tabTimeStep[idTimeStep].energy, sizeof(Floatb));
+                }
+            }
+        }
+        binFile.close();
+        return true;
+    }
+}
 
