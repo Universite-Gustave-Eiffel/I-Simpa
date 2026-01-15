@@ -26,7 +26,11 @@
 
 name: I-SIMPA main CI
 
-on: [workflow_dispatch, push, pull_request]
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
 
 concurrency:
   group: IS-CI-${{ github.head_ref || github.run_id }}

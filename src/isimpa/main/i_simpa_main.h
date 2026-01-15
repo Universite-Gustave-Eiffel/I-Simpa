@@ -430,9 +430,9 @@ class ISimpaApp : public wxApp
 		 *
 		 * @return true Si l'execution du programme c'est terminé normallement
 		 */
-		bool OnInit()
+		bool OnInit() override
 		{
-			//Applique le dossier de l'exécutable comme dossier courant
+			//Makes the executable folder as the current folder
 			wxStandardPaths stPath = wxStandardPaths::Get();
 			wxFileName fPath=stPath.GetExecutablePath();
 			wxString WorkingDir=fPath.GetPath();
@@ -444,26 +444,28 @@ class ISimpaApp : public wxApp
                 wxMkdir(stPath.GetUserDataDir());
             }
 
-			//Charge les gestionnaires de formats d'images
-			wxImage::AddHandler(new wxJPEGHandler); //ajoute le support du format jpeg
-			wxImage::AddHandler(new wxPNGHandler); //ajoute le support du format png
-			wxImage::AddHandler(new wxICOHandler); //ajoute le support du format ico
+			//Loads image format managers
+			wxImage::AddHandler(new wxJPEGHandler); // adds support for jpeg format
+			wxImage::AddHandler(new wxPNGHandler);  // adds support for jpeg png
+			wxImage::AddHandler(new wxICOHandler);  // adds support for jpeg ico
 
-			// Charge le gestionnaire de language
+			// Load the language manager
 			wxString langDir=ApplicationConfiguration::getResourcesFolder()+wxFileName::GetPathSeparator()+_T("share")+wxFileName::GetPathSeparator()+_T("locale");
 			wxLocale::AddCatalogLookupPathPrefix(langDir);
 			wxLanguage choosenLanguage=wxLANGUAGE_DEFAULT;
 			wxString strConf;
+
+			lang.AddCatalog("isimpa");
+			lang.AddCatalog("wx");
+
 			if(ApplicationConfiguration::GetFileConfig()->Read("interface/language",&strConf))
 			{
 				choosenLanguage=(wxLanguage)Convertor::ToInt(strConf);
 			}else{
-				//Il faut demander à l'utilisateur de choisir sa langue
+				// Ask the user to choose their language
 				choosenLanguage=(wxLanguage)MainUiFrame::AskApplicationLanguage(choosenLanguage);
 			}
 			lang.Init(choosenLanguage, wxLOCALE_LOAD_DEFAULT);
-			lang.AddCatalog("isimpa");
-			lang.AddCatalog("wx");
 
 
             if(ApplicationConfiguration::GetFileConfig()->Read("interface/appdata",&strConf)) {
@@ -562,7 +564,7 @@ class ISimpaApp : public wxApp
 			return true;
 		}
 
-		virtual void OnEventLoopEnter( wxEventLoopBase *  loop)
+		void OnEventLoopEnter( wxEventLoopBase *  loop) override
 		{
 			if(loop && loop->IsMain() && doInit)
 			{
