@@ -7,6 +7,8 @@
 namespace formatRSBIN
 {
 #define FINDMINMAX_RSURF(x0,x1,x2,min,max) \
+	  if(x0<min) min=x0;\
+	  if(x0>max) max=x0;\
 	  if(x1<min) min=x1;\
 	  if(x1>max) max=x1;\
 	  if(x2<min) min=x2;\

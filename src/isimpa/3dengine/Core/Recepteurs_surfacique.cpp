@@ -185,8 +185,18 @@ void RecepteursSControler::SetTimeStep(const int& _timeStp)
 
 bool RecepteursSControler::LoadGplFile(const wxString &gplFileName) {
 	using namespace GPL_IO;
+	wxString resolvedFileName(gplFileName);
+	if (!wxFileName(resolvedFileName).IsAbsolute()) {
+		// Older/template projects may carry a bare relative default (e.g.
+		// "Bitmaps/iso/jet.gpl") baked in before this was fixed to store an
+		// absolute path. Resolve it against the app's resources folder
+		// instead of relying on the process' current working directory,
+		// which is not guaranteed (e.g. Flatpak does not chdir into the
+		// app's install dir before launch - see issue #420).
+		resolvedFileName = ApplicationConfiguration::getResourcesFolder() + wxFileName::GetPathSeparator() + gplFileName;
+	}
 	GPL_FileExchange gplReader;
-	int retval = gplReader.Read(WXSTRINGTOSTDSTRING(gplFileName));
+	int retval = gplReader.Read(WXSTRINGTOSTDSTRING(resolvedFileName));
 	if (retval == 0) {
 		colorPalette.reserve(gplReader.GetColorsCount());
 		unsigned short r, g, b;
@@ -464,11 +474,14 @@ bool RecepteursSControler::LoadRecepteursSFile(wxArrayString& recepteurSFiles, v
 				for(int idts=0;idts<QNodesTimeStep;idts++)
 				{
 					//Moyenne de temps
-					nodesData[idNode].energy[idts]/=nodesData[idNode].quantFacesLinked;
-					if(wxFinite(nodesData[idNode].energy[idts]) && (nodesData[idNode].energy[idts]>maxfacetread || maxfacetread==0))
-						maxfacetread=nodesData[idNode].energy[idts];
-					if(wxFinite(nodesData[idNode].energy[idts]) && (nodesData[idNode].energy[idts]<minfacetread || minfacetread==0))
-						minfacetread=nodesData[idNode].energy[idts];
+					if(nodesData[idNode].quantFacesLinked>0)
+					{
+						nodesData[idNode].energy[idts]/=nodesData[idNode].quantFacesLinked;
+						if(wxFinite(nodesData[idNode].energy[idts]) && (nodesData[idNode].energy[idts]>maxfacetread || maxfacetread==0))
+							maxfacetread=nodesData[idNode].energy[idts];
+						if(wxFinite(nodesData[idNode].energy[idts]) && (nodesData[idNode].energy[idts]<minfacetread || minfacetread==0))
+							minfacetread=nodesData[idNode].energy[idts];
+					}
 				}
 			}
 		}
@@ -511,6 +524,13 @@ bool RecepteursSControler::LoadRecepteursSFile(wxArrayString& recepteurSFiles, v
 			for(std::size_t idRs=0;idRs<recepteursS.size();idRs++)
 			{
 				t_recepteurS* newRecepteurss=&recepteursS[idRs];
+				// Refresh() can be called multiple times over this controller's
+				// lifetime (e.g. LoadGplFile() below triggers its own Refresh(NULL)
+				// in addition to the normal config-change/load path). Without
+				// clearing first, stale curves from an earlier call - possibly
+				// computed before v_min/v_max settled - stay baked in forever and
+				// render on top of the current, correct set.
+				newRecepteurss->iso_curves.clear();
 				rsurf_data datars;
 				datars.SetRsBinData(mainData);
 				rsurf_iso_contouring contouringTool(datars,idRs);
