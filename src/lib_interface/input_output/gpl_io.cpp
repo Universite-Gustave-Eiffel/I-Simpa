@@ -28,12 +28,21 @@
 #include "gpl_io.hpp"
 #include <fstream>
 #include <iostream>
+#include <boost/filesystem/path.hpp>
 #ifdef WIN32
 #include "input_output/pugixml/src/pugixml.hpp"
 #endif // WIN32
 
 namespace GPL_IO
 {
+	std::string ResolvePalettePath(const std::string& gpl_filename, const std::string& resources_folder)
+	{
+		boost::filesystem::path palettePath(gpl_filename);
+		if (palettePath.is_absolute() || resources_folder.empty())
+			return gpl_filename;
+		return (boost::filesystem::path(resources_folder) / palettePath).string();
+	}
+
 
 	GPL_FileExchange::GPL_FileExchange()
 	{

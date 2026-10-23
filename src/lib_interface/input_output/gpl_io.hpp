@@ -40,6 +40,21 @@
 namespace GPL_IO
 {
 	/**
+	 * @brief Resolve a palette file path.
+	 *
+	 * Older or template projects can carry a bare relative palette path (e.g.
+	 * "Bitmaps/iso/jet.gpl"). Such a path must be resolved against the
+	 * application resources folder instead of the process' current working
+	 * directory, which is not guaranteed to be the application install
+	 * directory (issue #420: Flatpak does not chdir into the install dir
+	 * before launching the app).
+	 *
+	 * @param[in] gpl_filename Path stored in the project, absolute or relative.
+	 * @param[in] resources_folder Application resources folder.
+	 * @return The path to use to open the file.
+	 */
+	std::string ResolvePalettePath(const std::string& gpl_filename, const std::string& resources_folder);
+	/**
 	 * @brief Gimp Palette file reader
 	 * With this class you can write or read Gimp Palette with the gpl extension. This class was created from scratch and doesn't come from gimp sources.
 	 */

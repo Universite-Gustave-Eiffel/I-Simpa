@@ -101,6 +101,22 @@ struct t_FaceRS
 	Intb sommetsIndex[3];
 	Intb nbRecords; /*!< Nombre de pas de temps où il y a eu un enregistrement de collision */
 };
+/**
+ * @brief Average the energy accumulated on a node over the faces linked to it.
+ *
+ * Returns 0 when the node has no contributing face (quantFacesLinked == 0).
+ * Dividing by zero produced NaN for such vertices, which broke the smooth
+ * color shading of every triangle sharing them.
+ * @param[in] energy Energy accumulated on the node
+ * @param[in] quantFacesLinked Number of faces contributing to this node
+ * @return The averaged energy, 0 when no face contributes
+ */
+inline float AverageNodeEnergy(const float& energy, const int& quantFacesLinked)
+{
+	if (quantFacesLinked <= 0)
+		return 0.f;
+	return energy / (float)quantFacesLinked;
+}
 
 
 
