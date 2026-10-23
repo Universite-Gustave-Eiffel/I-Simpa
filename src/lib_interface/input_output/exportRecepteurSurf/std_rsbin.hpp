@@ -232,6 +232,24 @@ class rsurf_io
 };
 
 
+/**
+ * @brief Update the min/max range with the three vertex values of a triangle.
+ *
+ * The first vertex (x0) must be part of the test: it was missing from the
+ * original macro, so an extreme value sitting on the first corner of a
+ * triangle never reached the reported range and the iso-contouring levels
+ * were computed on a truncated range.
+ */
+inline void UpdateMinMax(const float& x0, const float& x1, const float& x2, float& min, float& max)
+{
+	if (x0 < min) min = x0;
+	if (x0 > max) max = x0;
+	if (x1 < min) min = x1;
+	if (x1 > max) max = x1;
+	if (x2 < min) min = x2;
+	if (x2 > max) max = x2;
+}
+
 class rsurf_iso_contouring
 {
 public:

@@ -185,8 +185,16 @@ void RecepteursSControler::SetTimeStep(const int& _timeStp)
 
 bool RecepteursSControler::LoadGplFile(const wxString &gplFileName) {
 	using namespace GPL_IO;
+	// Older/template projects may carry a bare relative default (e.g.
+	// "Bitmaps/iso/jet.gpl") baked in before this was fixed to store an
+	// absolute path. Resolve it against the app's resources folder instead of
+	// relying on the process' current working directory, which is not
+	// guaranteed (Flatpak does not chdir into the app's install dir before
+	// launch - see issue #420). The resolution itself lives in GPL_IO so that
+	// it can be unit tested without the wx layer.
+	std::string resolvedFileName = ResolvePalettePath(WXSTRINGTOSTDSTRING(gplFileName), WXSTRINGTOSTDSTRING(ApplicationConfiguration::getResourcesFolder()));
 	GPL_FileExchange gplReader;
-	int retval = gplReader.Read(WXSTRINGTOSTDSTRING(gplFileName));
+	int retval = gplReader.Read(resolvedFileName);
 	if (retval == 0) {
 		colorPalette.reserve(gplReader.GetColorsCount());
 		unsigned short r, g, b;
@@ -427,7 +435,7 @@ bool RecepteursSControler::LoadRecepteursSFile(wxArrayString& recepteurSFiles, v
 					if(nodesData[idNode].quantFacesLinked>0)
 					{
 						float* nodeEnergy=&nodesData[idNode].energy[idts];
-							(*nodeEnergy)/=nodesData[idNode].quantFacesLinked;
+							(*nodeEnergy)=AverageNodeEnergy(*nodeEnergy,nodesData[idNode].quantFacesLinked);
 						(*nodeEnergy)=10*log10f((*nodeEnergy)/pow(10.f,-12.f));
 					}
 				}
@@ -464,11 +472,15 @@ bool RecepteursSControler::LoadRecepteursSFile(wxArrayString& recepteurSFiles, v
 				for(int idts=0;idts<QNodesTimeStep;idts++)
 				{
 					//Moyenne de temps
-					nodesData[idNode].energy[idts]/=nodesData[idNode].quantFacesLinked;
-					if(wxFinite(nodesData[idNode].energy[idts]) && (nodesData[idNode].energy[idts]>maxfacetread || maxfacetread==0))
-						maxfacetread=nodesData[idNode].energy[idts];
-					if(wxFinite(nodesData[idNode].energy[idts]) && (nodesData[idNode].energy[idts]<minfacetread || minfacetread==0))
-						minfacetread=nodesData[idNode].energy[idts];
+					if(nodesData[idNode].quantFacesLinked>0)
+					{
+						// AverageNodeEnergy returns 0 instead of NaN when no face contributes
+						nodesData[idNode].energy[idts]=AverageNodeEnergy(nodesData[idNode].energy[idts],nodesData[idNode].quantFacesLinked);
+						if(wxFinite(nodesData[idNode].energy[idts]) && (nodesData[idNode].energy[idts]>maxfacetread || maxfacetread==0))
+							maxfacetread=nodesData[idNode].energy[idts];
+						if(wxFinite(nodesData[idNode].energy[idts]) && (nodesData[idNode].energy[idts]<minfacetread || minfacetread==0))
+							minfacetread=nodesData[idNode].energy[idts];
+					}
 				}
 			}
 		}

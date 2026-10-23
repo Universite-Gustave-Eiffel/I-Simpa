@@ -48,7 +48,10 @@ void ExportTouteBande(formatRSBIN::t_ExchangeData& mainData,std::vector<r_Surf*>
 			if(divBySurface)
 				aireSubRecepteurS=GetAireTriangle(tabRecepteurS[idRs]->faces[idFace].sommets[0],tabRecepteurS[idRs]->faces[idFace].sommets[1],tabRecepteurS[idRs]->faces[idFace].sommets[2]);
 			mainData.tabRs[idRs].dataFaces[idFace].dataFace.nbRecords=0;
-			memcpy(&mainData.tabRs[idRs].dataFaces[idFace].dataFace.sommetsIndex,&tabRecepteurS[idRs]->faces[idFace].indiceSommets,sizeof(ivec3));
+			// t_FaceRS::sommetsIndex is Intb (int32) but ivec3 stores 'long' (8 bytes on
+			// LP64 platforms); copy element-wise, memcpy of sizeof(ivec3) would overflow.
+			for(int idvert=0;idvert<3;idvert++)
+				mainData.tabRs[idRs].dataFaces[idFace].dataFace.sommetsIndex[idvert]=(Intb)tabRecepteurS[idRs]->faces[idFace].indiceSommets[idvert];
 			for(int idTimeStep=0;idTimeStep<mainData.nbTimeStep;idTimeStep++)
 			{
 				bool somethingRecordedAtThisTimeStep=false;
@@ -112,7 +115,10 @@ void ExportSimpleBande(formatRSBIN::t_ExchangeData& mainData,std::vector<r_Surf*
 			if(divBySurface)
 				aireSubRecepteurS=GetAireTriangle(tabRecepteurS[idRs]->faces[idFace].sommets[0],tabRecepteurS[idRs]->faces[idFace].sommets[1],tabRecepteurS[idRs]->faces[idFace].sommets[2]);
 			mainData.tabRs[idRs].dataFaces[idFace].dataFace.nbRecords=0;
-			memcpy(&mainData.tabRs[idRs].dataFaces[idFace].dataFace.sommetsIndex,&tabRecepteurS[idRs]->faces[idFace].indiceSommets,sizeof(ivec3));
+			// t_FaceRS::sommetsIndex is Intb (int32) but ivec3 stores 'long' (8 bytes on
+			// LP64 platforms); copy element-wise, memcpy of sizeof(ivec3) would overflow.
+			for(int idvert=0;idvert<3;idvert++)
+				mainData.tabRs[idRs].dataFaces[idFace].dataFace.sommetsIndex[idvert]=(Intb)tabRecepteurS[idRs]->faces[idFace].indiceSommets[idvert];
 			for(int idTimeStep=0;idTimeStep<mainData.nbTimeStep;idTimeStep++)
 			{
 				if(tabRecepteurS[idRs]->faces[idFace].energieRecu[idfreq][idTimeStep]!=0)

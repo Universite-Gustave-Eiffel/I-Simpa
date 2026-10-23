@@ -7,6 +7,13 @@
 #include <input_output/poly/poly.h>
 #include <input_output/importExportMaillage/mbin.h>
 #include <input_output/exportRecepteurSurf/rsbin.h>
+#include <input_output/exportRecepteurSurf/std_rsbin.hpp>
+#include <input_output/gpl_io.hpp>
+#include <input_output/baseReportManager.h>
+#include <std_tools.hpp>
+#include <cmath>
+#include <fstream>
+#include <stdexcept>
 
 using namespace std;
 namespace utf = boost::unit_test;
@@ -553,4 +560,150 @@ BOOST_AUTO_TEST_CASE(surfaceReceiverTest1) {
 	BOOST_CHECK(rsbin.ImportBIN(path.c_str(), data));
 	BOOST_CHECK_EQUAL(5, data.nbTimeStep);
 	BOOST_CHECK_EQUAL(data.recordType, RECEPTEURS_RECORD_TYPE_SPL_STANDART);
+}
+
+// Check that a bare relative palette path (issue #420) is resolved against the
+// application resources folder instead of the process' current working directory.
+BOOST_AUTO_TEST_CASE(gplRelativePathResolutionTest) {
+	using namespace GPL_IO;
+	namespace fs = boost::filesystem;
+
+	// Work in a private, newly created temporary directory: create_directory fails if
+	// the path already exists, so nothing planted beforehand (e.g. a symbolic link in a
+	// shared temp folder) can be written through. Removed when the test ends.
+	struct TemporaryDirectory {
+		fs::path path;
+		TemporaryDirectory() : path(fs::temp_directory_path() / fs::unique_path("isimpa_gpl_test_%%%%-%%%%-%%%%-%%%%")) {
+			if (!fs::create_directory(path))
+				throw std::runtime_error("temporary directory already exists: " + path.string());
+			fs::permissions(path, fs::owner_all);
+		}
+		~TemporaryDirectory() { boost::system::error_code ec; fs::remove_all(path, ec); }
+	};
+	TemporaryDirectory testRoot;
+
+	const std::string resourcesFolder = (testRoot.path / "resources").string();
+	const std::string relativePalette = "Bitmaps" + st_path_separator() + "iso" + st_path_separator() + "jet.gpl";
+	fs::create_directories(fs::path(resourcesFolder) / "Bitmaps" / "iso");
+	{
+		std::ofstream palette((fs::path(resourcesFolder) / "Bitmaps" / "iso" / "jet.gpl").string());
+		palette << "GIMP Palette\nName: Test palette\nColumns: 16\n#\n255   0   0\tUntitled\n";
+	}
+
+	// A relative path is resolved against the resources folder, not the cwd
+	std::string resolved = ResolvePalettePath(relativePalette, resourcesFolder);
+	BOOST_CHECK(resolved == resourcesFolder + st_path_separator() + relativePalette);
+
+	// An absolute path is left untouched
+	BOOST_CHECK(ResolvePalettePath(resolved, resourcesFolder) == resolved);
+
+	// The working directory is not the resources folder: the raw relative path
+	// is not found there, the resolved one is.
+	struct WorkingDirectoryGuard {
+		fs::path previous;
+		explicit WorkingDirectoryGuard(const fs::path& p) : previous(fs::current_path()) { fs::current_path(p); }
+		~WorkingDirectoryGuard() { fs::current_path(previous); }
+	};
+	fs::path otherWorkingDirectory = testRoot.path / "cwd";
+	fs::create_directories(otherWorkingDirectory);
+	WorkingDirectoryGuard guard(otherWorkingDirectory);
+	GPL_FileExchange reader;
+	BOOST_CHECK_EQUAL(-1, reader.Read(relativePalette));
+	BOOST_CHECK_EQUAL(0, reader.Read(resolved));
+	BOOST_CHECK_EQUAL(1u, reader.GetColorsCount());
+}
+
+// A vertex whose surrounding faces recorded no energy has quantFacesLinked == 0.
+// Dividing the accumulated energy by zero produced NaN, which broke the smooth
+// color shading of every triangle sharing that vertex (issue #425).
+BOOST_AUTO_TEST_CASE(surfaceReceiverNodeEnergyAverageGuardTest) {
+	using namespace formatRSBIN;
+	BOOST_CHECK_EQUAL(AverageNodeEnergy(6.f, 3), 2.f);
+	float averaged = AverageNodeEnergy(0.f, 0);
+	BOOST_CHECK(std::isfinite(averaged));
+	BOOST_CHECK_EQUAL(averaged, 0.f);
+}
+
+// The min/max range used by the iso-contouring must include the first vertex of
+// every triangle: the original macro only tested the 2nd and 3rd ones (issue #425).
+BOOST_AUTO_TEST_CASE(isoContouringFirstVertexMinMaxTest) {
+	using namespace formatRSBIN;
+
+	// A range already narrowed to [50, 60]: only the first vertex reaches 100 and 10
+	float min(50.f), max(60.f);
+	UpdateMinMax(100.f, 10.f, 10.f, min, max);
+	BOOST_CHECK_EQUAL(max, 100.f);
+	BOOST_CHECK_EQUAL(min, 10.f);
+
+	// End to end. The extreme values sit on the first vertex of a middle face, so
+	// the value used to seed the range (the last face processed) does not hide them.
+	rsurf_data data;
+	data.Make(8, 1, 1, 0.1f, "TR");
+	data.MakeRs(0, 4, "iso test", 1);
+	for (std::size_t idnode = 0; idnode < 8; idnode++)
+		data.SetNodeValue(idnode, (float)idnode, 0.f, 0.f);
+
+	// face 0: vertex 0 = 20, vertices 1 and 2 diluted by the other faces
+	data.SetFaceInfo(0, 0, 0, 1, 2, 1);
+	data.SetFaceEnergy(0, 0, 0, 0, 20.f);
+	// face 1: vertex 3 carries the max (100), the 2 other vertices are 60
+	data.SetFaceInfo(0, 1, 3, 1, 2, 1);
+	data.SetFaceEnergy(0, 1, 0, 0, 100.f);
+	// face 2: vertex 4 carries the min (1), the 2 other vertices are ~40
+	data.SetFaceInfo(0, 2, 4, 1, 2, 1);
+	data.SetFaceEnergy(0, 2, 0, 0, 1.f);
+	// face 3 (last): seeds the range with a mid value (30)
+	data.SetFaceInfo(0, 3, 5, 6, 7, 1);
+	data.SetFaceEnergy(0, 3, 0, 0, 30.f);
+
+	rsurf_iso_contouring contouring(data, 0);
+	float reportedMin(0.f), reportedMax(0.f);
+	contouring.GetMinMax(reportedMin, reportedMax);
+	BOOST_CHECK_CLOSE(reportedMin, 1.f, 1e-6);
+	BOOST_CHECK_CLOSE(reportedMax, 100.f, 1e-6);
+}
+
+// t_FaceRS::sommetsIndex is int32 but ivec3 stores long (8 bytes on LP64 platforms).
+// memcpy(..., sizeof(ivec3)) wrote 24 bytes into the 12-byte field, so every exported
+// face ended up with vertices (a, 0, b) instead of (a, b, c) (issue #425).
+BOOST_AUTO_TEST_CASE(surfaceReceiverVertexIndexTest) {
+	using namespace formatRSBIN;
+
+	const int expected[2][3] = {{0, 1, 2}, {3, 4, 5}};
+
+	r_Surf receiver;
+	receiver.InitFaces(2, 1);
+	receiver.idRecepteurS = 1;
+	for (uentier idface = 0; idface < 2; idface++) {
+		receiver.faces[idface].InitFreq(0, 3);
+		receiver.faces[idface].indiceSommets.set(expected[idface][0], expected[idface][1], expected[idface][2]);
+		// A non degenerate triangle, needed when the value is divided by the surface
+		receiver.faces[idface].sommets[0] = vec3(0.f, 0.f, 0.f);
+		receiver.faces[idface].sommets[1] = vec3(1.f, 0.f, 0.f);
+		receiver.faces[idface].sommets[2] = vec3(0.f, 1.f, 0.f);
+		receiver.faces[idface].energieRecu[0][0] = 1.f;
+	}
+
+	t_Mesh mesh;
+	mesh.pvert_size = 6;
+	mesh.pvertices = new vec3[mesh.pvert_size];
+	for (uentier idnode = 0; idnode < mesh.pvert_size; idnode++)
+		mesh.pvertices[idnode] = vec3((decimal)idnode, 1.f, 0.f);
+
+	std::vector<r_Surf*> receivers;
+	receivers.push_back(&receiver);
+
+	// Written in the working directory, like the other io tests
+	std::string exportedFile = "test_rs_vertex_wr.csbin";
+	BaseReportManager::SauveRecepteursSurfaciques(CoreString(exportedFile), 0, receivers, mesh, 0.1f, true);
+
+	t_ExchangeData data;
+	RSBIN rsbin;
+	BOOST_CHECK(rsbin.ImportBIN(exportedFile.c_str(), data));
+	BOOST_CHECK_EQUAL(1, data.tabRsSize);
+	BOOST_CHECK_EQUAL(2, data.tabRs[0].dataRec.quantFaces);
+	for (int idface = 0; idface < 2; idface++) {
+		for (int idvert = 0; idvert < 3; idvert++)
+			BOOST_CHECK_EQUAL(expected[idface][idvert], data.tabRs[0].dataFaces[idface].dataFace.sommetsIndex[idvert]);
+	}
 }

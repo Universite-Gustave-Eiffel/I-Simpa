@@ -6,11 +6,6 @@
 
 namespace formatRSBIN
 {
-#define FINDMINMAX_RSURF(x0,x1,x2,min,max) \
-	  if(x1<min) min=x1;\
-	  if(x1>max) max=x1;\
-	  if(x2<min) min=x2;\
-	  if(x2>max) max=x2;
 
 #ifdef IS_VAL_BETWEEN
 #undef IS_VAL_BETWEEN
@@ -344,7 +339,7 @@ namespace formatRSBIN
 			t_tri_data newtri(A,B,C,vertices_lvl[vertices[0]],vertices_lvl[vertices[1]],vertices_lvl[vertices[2]]);
 			newtri.useInIsoLines=face_useforcalculation[idface];
 			iso_contouring_data->tri_grid.push_back(newtri);
-			FINDMINMAX_RSURF(vertices_lvl[vertices[0]],vertices_lvl[vertices[1]],vertices_lvl[vertices[2]],iso_contouring_data->minValue,iso_contouring_data->maxValue);
+			UpdateMinMax(vertices_lvl[vertices[0]],vertices_lvl[vertices[1]],vertices_lvl[vertices[2]],iso_contouring_data->minValue,iso_contouring_data->maxValue);
 		}
 	}
 	void rsurf_iso_contouring::GetMinMax(float& min,float& max)
