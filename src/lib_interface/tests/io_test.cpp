@@ -13,6 +13,7 @@
 #include <std_tools.hpp>
 #include <cmath>
 #include <fstream>
+#include <stdexcept>
 
 using namespace std;
 namespace utf = boost::unit_test;
@@ -567,7 +568,21 @@ BOOST_AUTO_TEST_CASE(gplRelativePathResolutionTest) {
 	using namespace GPL_IO;
 	namespace fs = boost::filesystem;
 
-	const std::string resourcesFolder = (fs::temp_directory_path() / "isimpa_gpl_test_resources").string();
+	// Work in a private, newly created temporary directory: create_directory fails if
+	// the path already exists, so nothing planted beforehand (e.g. a symbolic link in a
+	// shared temp folder) can be written through. Removed when the test ends.
+	struct TemporaryDirectory {
+		fs::path path;
+		TemporaryDirectory() : path(fs::temp_directory_path() / fs::unique_path("isimpa_gpl_test_%%%%-%%%%-%%%%-%%%%")) {
+			if (!fs::create_directory(path))
+				throw std::runtime_error("temporary directory already exists: " + path.string());
+			fs::permissions(path, fs::owner_all);
+		}
+		~TemporaryDirectory() { boost::system::error_code ec; fs::remove_all(path, ec); }
+	};
+	TemporaryDirectory testRoot;
+
+	const std::string resourcesFolder = (testRoot.path / "resources").string();
 	const std::string relativePalette = "Bitmaps" + st_path_separator() + "iso" + st_path_separator() + "jet.gpl";
 	fs::create_directories(fs::path(resourcesFolder) / "Bitmaps" / "iso");
 	{
@@ -589,7 +604,7 @@ BOOST_AUTO_TEST_CASE(gplRelativePathResolutionTest) {
 		explicit WorkingDirectoryGuard(const fs::path& p) : previous(fs::current_path()) { fs::current_path(p); }
 		~WorkingDirectoryGuard() { fs::current_path(previous); }
 	};
-	fs::path otherWorkingDirectory = fs::temp_directory_path() / "isimpa_gpl_test_cwd";
+	fs::path otherWorkingDirectory = testRoot.path / "cwd";
 	fs::create_directories(otherWorkingDirectory);
 	WorkingDirectoryGuard guard(otherWorkingDirectory);
 	GPL_FileExchange reader;
