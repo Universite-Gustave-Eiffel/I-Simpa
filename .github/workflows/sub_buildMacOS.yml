@@ -1,6 +1,7 @@
 name: Build MacOS
 
 on:
+  workflow_dispatch:
   workflow_call:
     inputs:
       artifactBasename:
@@ -53,12 +54,13 @@ jobs:
           dmg=("${{ env.builddir }}"/distribution/*.dmg)
           test ${#dmg[@]} -eq 1 && test -f "${dmg[0]}"
           mountpoint="$(mktemp -d)"
-          hdiutil attach "${dmg[0]}" -nobrowse -readonly -mountpoint "$mountpoint"
+          printf 'Y\n' | hdiutil attach "${dmg[0]}" -nobrowse -readonly -mountpoint "$mountpoint"
           trap 'hdiutil detach "$mountpoint"; rmdir "$mountpoint"' EXIT
           app="$(find "$mountpoint" -maxdepth 2 -name '*.app' -type d -print -quit)"
           test -n "$app"
           executable="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$app/Contents/Info.plist")"
           test -f "$app/Contents/MacOS/$executable"
+          lipo -verify_arch x86_64 "$app/Contents/MacOS/$executable"
           find "$app" -type f -print0 | while IFS= read -r -d '' binary; do
             if file -b "$binary" | grep -q 'Mach-O'; then
               echo "Checking $binary"
