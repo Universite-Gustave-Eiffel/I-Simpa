@@ -28,6 +28,7 @@
 #include "first_header_include.hpp"
 
 #include "data_manager/element.h"
+#include "data_manager/appconfig.h"
 #ifndef __ELEMENT_VERTEX__
 #define __ELEMENT_VERTEX__
 
@@ -73,7 +74,7 @@ public:
 	{
 		if(this->pere && this->pere->GetElementInfos().userDestroyable)
 		{
-			leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SURFACE_GROUP_FROM_SELECTION,wxGetTranslation("Send to a new surface group"),"./Bitmaps/popup_new.png"));
+			leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_SURFACE_GROUP_FROM_SELECTION,wxGetTranslation("Send to a new surface group"),ApplicationConfiguration::getResourcesFolder() + "/Bitmaps/popup_new.png"));
 			leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_INVERT_FACE_ORIENTATION, wxGetTranslation("Invert face normal")));
 		}
 		Element::OnRightClic(leMenu);

@@ -85,6 +85,7 @@ jobs:
           executable="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$app/Contents/Info.plist")"
           test -f "$app/Contents/MacOS/$executable"
           lipo "$app/Contents/MacOS/$executable" -verify_arch x86_64
+          python3 .github/scripts/check-bundle-resources.py "$app"
           python3 .github/scripts/check-macos-compat.py "$app"
 
 

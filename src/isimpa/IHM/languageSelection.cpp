@@ -34,6 +34,7 @@
 #include <wx/log.h>
 #include <wx/list.h>
 #include <wx/dir.h>
+#include <algorithm>
 #include <list>
 #include "last_cpp_include.hpp"
 
@@ -88,15 +89,16 @@ LanguageSelector::LanguageSelector(wxWindow *parent,
     const int systemLanguage = wxLocale::GetSystemLanguage();
     std::vector<wxString> languages;
     // sort languages
-    wxTranslations* translations = wxTranslations::Get();
-
-    if (translations) {
-        // Get all available translations
-        wxArrayString availLangs = translations->GetAvailableTranslations("isimpa");
-        for (const auto& lang: availLangs) {
-            languages.emplace_back(lang);
-        }
+    // The global translations object is created later by wxLocale::Init().
+    // Use a local loader to enumerate catalogs during the first-run dialog.
+    wxTranslations translations;
+    wxArrayString availLangs = translations.GetAvailableTranslations("isimpa");
+    for (const auto& lang: availLangs) {
+        languages.emplace_back(lang);
     }
+    // English is the source language and doesn't require a translation catalog.
+    if (std::find(languages.begin(), languages.end(), wxString("en")) == languages.end())
+        languages.emplace_back("en");
 
     std::sort(languages.begin(), languages.end());
     for (const auto& lang: languages) {

@@ -61,7 +61,7 @@ bool AboutDialog::CreateAboutDialog(wxWindow *parent) {
 
     // Add header
     if(innerSizer) {
-        wxStaticBitmap* dialogBanner = new wxStaticBitmap(this, wxID_ANY, wxBitmap("./Bitmaps/about_banner.png", wxBITMAP_TYPE_PNG));
+        wxStaticBitmap* dialogBanner = new wxStaticBitmap(this, wxID_ANY, wxBitmap(ApplicationConfiguration::getResourcesFolder() + "/Bitmaps/about_banner.png", wxBITMAP_TYPE_PNG));
         dialogBanner->SetScaleMode(wxStaticBitmap::ScaleMode::Scale_AspectFit);
         innerSizer->Insert(0, dialogBanner);
     }
