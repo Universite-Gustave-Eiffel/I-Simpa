@@ -34,9 +34,6 @@ on:
         type: boolean
         default: false
   push:
-    branches-ignore:
-      - intel-macos-v1.4.0
-      - intel-macos-sonoma
   pull_request:
 
 concurrency:
