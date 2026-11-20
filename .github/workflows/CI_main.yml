@@ -28,6 +28,11 @@ name: I-SIMPA main CI
 
 on:
   workflow_dispatch:
+    inputs:
+      macos_only:
+        description: Build only macOS
+        type: boolean
+        default: false
   push:
     branches-ignore:
       - intel-macos-v1.4.0
@@ -45,12 +50,14 @@ jobs:
       artifactBasename: Prepare-${{ github.run_id }}
 
   Linux:
+    if: ${{ !inputs.macos_only }}
     needs: [Prepare]
     uses: ./.github/workflows/sub_buildLinux.yml
     with:
       artifactBasename: Linux-${{ github.run_id }}
 
   Windows:
+    if: ${{ !inputs.macos_only }}
     needs: [Prepare]
     uses: ./.github/workflows/sub_buildWindows.yml
     with:
