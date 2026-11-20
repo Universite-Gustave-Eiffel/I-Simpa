@@ -24,11 +24,18 @@ jobs:
     env:
       CPM_SOURCE_CACHE: ~/.cache/CPM
       builddir: ${{github.workspace}}/build
+      MACOSX_DEPLOYMENT_TARGET: '14.0'
     steps:
       - uses: actions/checkout@v5
       - name: Install dependencies
         run: |
-          brew install gettext swig
+          brew install gettext swig python@3.14
+      - name: Check Python compatibility
+        run: |
+          set -euo pipefail
+          python_root="$(brew --prefix python@3.14)/Frameworks/Python.framework/Versions/3.14"
+          "$python_root/bin/python3.14" -c 'import ssl, sqlite3, ctypes, zlib; print("Python native modules imported successfully")'
+          python3 .github/scripts/check-macos-compat.py "$python_root/Python" "$python_root/lib/python3.14/lib-dynload"
       - name: Cache CPM dependency packages
         uses: actions/cache@v3
         with:
@@ -40,7 +47,7 @@ jobs:
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
         # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
         run: |
-          cmake -G Xcode -DCPM_SOURCE_CACHE=${{ env.CPM_SOURCE_CACHE }} -B "${{ env.builddir }}" -DCMAKE_BUILD_TYPE=Release -DTEAM_ID="${{ secrets.TEAMID }}"
+          cmake -G Xcode -DCPM_SOURCE_CACHE=${{ env.CPM_SOURCE_CACHE }} -B "${{ env.builddir }}" -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_DEPLOYMENT_TARGET=14.0 -DCMAKE_OSX_ARCHITECTURES=x86_64 -DPython3_EXECUTABLE="$(brew --prefix python@3.14)/bin/python3.14" -DTEAM_ID="${{ secrets.TEAMID }}"
       - name: Compiling sources
         run: |
           cmake --build "${{ env.builddir }}" --config Release
@@ -67,13 +74,7 @@ jobs:
           executable="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$app/Contents/Info.plist")"
           test -f "$app/Contents/MacOS/$executable"
           lipo "$app/Contents/MacOS/$executable" -verify_arch x86_64
-          find "$app" -type f -print0 | while IFS= read -r -d '' binary; do
-            if file -b "$binary" | grep -q 'Mach-O'; then
-              echo "Checking $binary"
-              lipo "$binary" -verify_arch x86_64
-              otool -arch x86_64 -l "$binary" | grep -A 5 -E 'cmd LC_BUILD_VERSION|cmd LC_VERSION_MIN_MACOSX' || true
-            fi
-          done
+          python3 .github/scripts/check-macos-compat.py "$app"
 
 
 
