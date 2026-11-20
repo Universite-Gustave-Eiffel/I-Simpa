@@ -62,12 +62,18 @@ while queue:
             raise ValueError(f'minimum macOS {minimum} exceeds 14.0')
         print(f'{path}: x86_64, macOS {minimum}', flush=True)
         rpaths = re.findall(r'cmd LC_RPATH\s+cmdsize \d+\s+path (.+?) \(offset \d+\)', loads)
+        own_id = re.search(r'cmd LC_ID_DYLIB\s+cmdsize \d+\s+name (.+?) \(offset \d+\)', loads)
         links = run('otool', '-arch', 'x86_64', '-L', str(path)).splitlines()[1:]
         for line in links:
             match = re.match(r'\s*(.*?) \(compatibility version ', line)
             if not match:
                 continue
             dep = match.group(1)
+            if own_id and dep == own_id.group(1):
+                continue
+            if dep == '/usr/local/opt/python@3.14/Frameworks/Python.framework/Versions/3.14/Python' and os.environ.get('SONOMA_PYTHON_LIBRARY'):
+                add(os.environ['SONOMA_PYTHON_LIBRARY'])
+                continue
             if dep.startswith(('/usr/lib/', '/System/Library/')):
                 continue
             def expand(value):
