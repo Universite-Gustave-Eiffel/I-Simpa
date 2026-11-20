@@ -30,6 +30,19 @@ jobs:
       - name: Install dependencies
         run: |
           brew install gettext swig python@3.14
+      - name: Use Sonoma Python framework
+        run: |
+          set -euo pipefail
+          brew fetch --bottle-tag=sonoma python@3.14
+          bottle="$(brew --cache --bottle-tag=sonoma python@3.14)"
+          stage="$RUNNER_TEMP/sonoma-python"
+          mkdir -p "$stage"
+          tar -xzf "$bottle" -C "$stage"
+          framework="$(find "$stage/python@3.14" -name Python.framework -type d -print -quit)"
+          test -n "$framework"
+          destination="$(brew --prefix python@3.14)/Frameworks/Python.framework"
+          rm -rf "$destination"
+          ditto "$framework" "$destination"
       - name: Check Python compatibility
         run: |
           set -euo pipefail
