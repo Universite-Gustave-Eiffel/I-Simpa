@@ -37,7 +37,7 @@ jobs:
           curl -fL --retry 3 https://www.python.org/ftp/python/3.14.7/python-3.14.7-macos11.pkg -o "$package"
           echo '70c5239ad2d62925d2947e46921d0ddd3d35be3d2f0a2d50db33da507dbcb419  '"$package" | shasum -a 256 -c -
           pkgutil --expand-full "$package" "$RUNNER_TEMP/python-installer"
-          library="$(find "$RUNNER_TEMP/python-installer" -path '*/Python.framework/Versions/3.14/Python' -type f -print -quit)"
+          library="$RUNNER_TEMP/python-installer/Python_Framework.pkg/Payload/Versions/3.14/Python"
           test -n "$library"
           install_name_tool -id /usr/local/opt/python@3.14/Frameworks/Python.framework/Versions/3.14/Python "$library"
           echo "SONOMA_PYTHON_LIBRARY=$library" >> "$GITHUB_ENV"
