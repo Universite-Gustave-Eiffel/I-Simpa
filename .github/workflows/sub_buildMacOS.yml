@@ -48,6 +48,12 @@ jobs:
         run: |
           cpack -G DragNDrop
         working-directory: ${{ env.builddir }}
+      - name: Upload I-Simpa standalone
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos_dmg
+          path: ${{ env.builddir }}/distribution/*.dmg
+          if-no-files-found: error
       - name: Inspect packaged Intel binaries
         run: |
           set -euo pipefail
@@ -60,20 +66,14 @@ jobs:
           test -n "$app"
           executable="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$app/Contents/Info.plist")"
           test -f "$app/Contents/MacOS/$executable"
-          lipo -verify_arch x86_64 "$app/Contents/MacOS/$executable"
+          lipo "$app/Contents/MacOS/$executable" -verify_arch x86_64
           find "$app" -type f -print0 | while IFS= read -r -d '' binary; do
             if file -b "$binary" | grep -q 'Mach-O'; then
               echo "Checking $binary"
-              lipo -verify_arch x86_64 "$binary"
+              lipo "$binary" -verify_arch x86_64
               otool -arch x86_64 -l "$binary" | grep -A 5 -E 'cmd LC_BUILD_VERSION|cmd LC_VERSION_MIN_MACOSX' || true
             fi
           done
-      - name: Upload I-Simpa standalone
-        uses: actions/upload-artifact@v4
-        with:
-          name: macos_dmg
-          path: ${{ env.builddir }}/distribution/*.dmg
-          if-no-files-found: error
 
 
 
