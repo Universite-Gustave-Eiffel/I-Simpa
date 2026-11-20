@@ -19,7 +19,7 @@ jobs:
     # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
     # You can convert this to a matrix build if you need cross-platform coverage.
     # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
-    runs-on: macos-latest
+    runs-on: macos-15-intel
     env:
       CPM_SOURCE_CACHE: ~/.cache/CPM
       builddir: ${{github.workspace}}/build
@@ -33,7 +33,7 @@ jobs:
         with:
           path: |
             ${{ env.CPM_SOURCE_CACHE }}
-          key: ${{ runner.os }}-isimpa
+          key: ${{ runner.os }}-${{ runner.arch }}-isimpa
 
       - name: Configure CMake
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
@@ -47,11 +47,31 @@ jobs:
         run: |
           cpack -G DragNDrop
         working-directory: ${{ env.builddir }}
+      - name: Inspect packaged Intel binaries
+        run: |
+          set -euo pipefail
+          dmg=("${{ env.builddir }}"/distribution/*.dmg)
+          test ${#dmg[@]} -eq 1 && test -f "${dmg[0]}"
+          mountpoint="$(mktemp -d)"
+          hdiutil attach "${dmg[0]}" -nobrowse -readonly -mountpoint "$mountpoint"
+          trap 'hdiutil detach "$mountpoint"; rmdir "$mountpoint"' EXIT
+          app="$(find "$mountpoint" -maxdepth 2 -name '*.app' -type d -print -quit)"
+          test -n "$app"
+          executable="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$app/Contents/Info.plist")"
+          test -f "$app/Contents/MacOS/$executable"
+          find "$app" -type f -print0 | while IFS= read -r -d '' binary; do
+            if file -b "$binary" | grep -q 'Mach-O'; then
+              echo "Checking $binary"
+              lipo -verify_arch x86_64 "$binary"
+              otool -arch x86_64 -l "$binary" | grep -A 5 -E 'cmd LC_BUILD_VERSION|cmd LC_VERSION_MIN_MACOSX' || true
+            fi
+          done
       - name: Upload I-Simpa standalone
         uses: actions/upload-artifact@v4
         with:
           name: macos_dmg
           path: ${{ env.builddir }}/distribution/*.dmg
+          if-no-files-found: error
 
 
 
