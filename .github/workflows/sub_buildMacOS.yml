@@ -6,6 +6,10 @@ on:
       artifactBasename:
         type: string
         required: true
+      intel:
+        type: boolean
+        default: false
+        required: false
       allowedToFail:
         default: false
         type: boolean
@@ -19,7 +23,7 @@ jobs:
     # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
     # You can convert this to a matrix build if you need cross-platform coverage.
     # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
-    runs-on: macos-latest
+    runs-on: ${{ inputs.intel && 'macos-15-intel' || 'macos-latest' }}
     env:
       CPM_SOURCE_CACHE: ~/.cache/CPM
       builddir: ${{github.workspace}}/build
@@ -28,18 +32,47 @@ jobs:
       - name: Install dependencies
         run: |
           brew install gettext swig
+      - name: Install Intel Python and set deployment target
+        if: ${{ inputs.intel }}
+        run: |
+          brew install python@3.14
+          echo 'MACOSX_DEPLOYMENT_TARGET=14.0' >> "$GITHUB_ENV"
+      - name: Prepare compatible Python link library
+        if: ${{ inputs.intel }}
+        run: |
+          set -euo pipefail
+          package="$RUNNER_TEMP/python-3.14.7-macos11.pkg"
+          curl -fL --retry 3 https://www.python.org/ftp/python/3.14.7/python-3.14.7-macos11.pkg -o "$package"
+          echo '70c5239ad2d62925d2947e46921d0ddd3d35be3d2f0a2d50db33da507dbcb419  '"$package" | shasum -a 256 -c -
+          pkgutil --expand-full "$package" "$RUNNER_TEMP/python-installer"
+          python_payload="$RUNNER_TEMP/python-installer/Python_Framework.pkg/Payload/Versions/3.14"
+          library="$RUNNER_TEMP/libpython3.14.dylib"
+          cp "$python_payload/Python" "$library"
+          install_name_tool -id /usr/local/opt/python@3.14/Frameworks/Python.framework/Versions/3.14/Python "$library"
+          echo "SONOMA_PYTHON_LIBRARY=$library" >> "$GITHUB_ENV"
+          echo "SONOMA_PYTHON_INCLUDE=$python_payload/include/python3.14" >> "$GITHUB_ENV"
+      - name: Check Python compatibility
+        if: ${{ inputs.intel }}
+        run: |
+          set -euo pipefail
+          python3 .github/scripts/check-macos-compat.py "$SONOMA_PYTHON_LIBRARY"
       - name: Cache CPM dependency packages
         uses: actions/cache@v3
         with:
           path: |
             ${{ env.CPM_SOURCE_CACHE }}
-          key: ${{ runner.os }}-isimpa
+          key: ${{ runner.os }}-${{ runner.arch }}-isimpa
 
       - name: Configure CMake
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
         # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
+        if: ${{ !inputs.intel }}
         run: |
           cmake -G Xcode -DCPM_SOURCE_CACHE=${{ env.CPM_SOURCE_CACHE }} -B "${{ env.builddir }}" -DCMAKE_BUILD_TYPE=Release -DTEAM_ID="${{ secrets.TEAMID }}"
+      - name: Configure CMake for Intel Sonoma
+        if: ${{ inputs.intel }}
+        run: |
+          cmake -G Xcode -DCPM_SOURCE_CACHE=${{ env.CPM_SOURCE_CACHE }} -B "${{ env.builddir }}" -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_DEPLOYMENT_TARGET=14.0 -DCMAKE_OSX_ARCHITECTURES=x86_64 -DPython3_EXECUTABLE="$(brew --prefix python@3.14)/bin/python3.14" -DPython3_LIBRARY="$SONOMA_PYTHON_LIBRARY" -DPython3_INCLUDE_DIR="$SONOMA_PYTHON_INCLUDE" -DTEAM_ID="${{ secrets.TEAMID }}"
       - name: Compiling sources
         run: |
           cmake --build "${{ env.builddir }}" --config Release
@@ -50,8 +83,46 @@ jobs:
       - name: Upload I-Simpa standalone
         uses: actions/upload-artifact@v4
         with:
-          name: macos_dmg
+          name: ${{ inputs.intel && 'macos_intel_dmg' || 'macos_dmg' }}
           path: ${{ env.builddir }}/distribution/*.dmg
+          if-no-files-found: error
+      - name: Inspect packaged Intel binaries
+        if: ${{ inputs.intel }}
+        run: |
+          set -euo pipefail
+          dmg=("${{ env.builddir }}"/distribution/*.dmg)
+          test ${#dmg[@]} -eq 1 && test -f "${dmg[0]}"
+          mountpoint="$(mktemp -d)"
+          printf 'Y\n' | hdiutil attach "${dmg[0]}" -nobrowse -readonly -mountpoint "$mountpoint"
+          trap 'hdiutil detach "$mountpoint"; rmdir "$mountpoint"' EXIT
+          app="$(find "$mountpoint" -maxdepth 2 -name '*.app' -type d -print -quit)"
+          test -n "$app"
+          executable="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$app/Contents/Info.plist")"
+          test -f "$app/Contents/MacOS/$executable"
+          lipo "$app/Contents/MacOS/$executable" -verify_arch x86_64
+          python3 .github/scripts/check-bundle-resources.py "$app"
+          python3 .github/scripts/check-macos-compat.py "$app"
+      - name: Inspect packaged Apple Silicon binaries
+        if: ${{ !inputs.intel }}
+        run: |
+          set -euo pipefail
+          dmg=("${{ env.builddir }}"/distribution/*.dmg)
+          test ${#dmg[@]} -eq 1 && test -f "${dmg[0]}"
+          mountpoint="$(mktemp -d)"
+          printf 'Y\n' | hdiutil attach "${dmg[0]}" -nobrowse -readonly -mountpoint "$mountpoint"
+          trap 'hdiutil detach "$mountpoint"; rmdir "$mountpoint"' EXIT
+          app="$(find "$mountpoint" -maxdepth 2 -name '*.app' -type d -print -quit)"
+          test -n "$app"
+          executable="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$app/Contents/Info.plist")"
+          test -f "$app/Contents/MacOS/$executable"
+          lipo "$app/Contents/MacOS/$executable" -verify_arch arm64
+          python3 .github/scripts/check-bundle-resources.py "$app"
+          find "$app" -type f -print0 | while IFS= read -r -d '' binary; do
+            if file -b "$binary" | grep -q 'Mach-O'; then
+              echo "Checking $binary"
+              lipo "$binary" -verify_arch arm64
+            fi
+          done
 
 
 

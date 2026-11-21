@@ -26,7 +26,15 @@
 
 name: I-SIMPA main CI
 
-on: [workflow_dispatch, push, pull_request]
+on:
+  workflow_dispatch:
+    inputs:
+      macos_only:
+        description: Build only macOS
+        type: boolean
+        default: false
+  push:
+  pull_request:
 
 concurrency:
   group: IS-CI-${{ github.head_ref || github.run_id }}
@@ -40,12 +48,14 @@ jobs:
       artifactBasename: Prepare-${{ github.run_id }}
 
   Linux:
+    if: ${{ !inputs.macos_only }}
     needs: [Prepare]
     uses: ./.github/workflows/sub_buildLinux.yml
     with:
       artifactBasename: Linux-${{ github.run_id }}
 
   Windows:
+    if: ${{ !inputs.macos_only }}
     needs: [Prepare]
     uses: ./.github/workflows/sub_buildWindows.yml
     with:
@@ -57,12 +67,20 @@ jobs:
     with:
       artifactBasename: MacOS-${{ github.run_id }}
 
+  MacOS_Intel:
+    needs: [Prepare]
+    uses: ./.github/workflows/sub_buildMacOS.yml
+    with:
+      artifactBasename: MacOS-Intel-${{ github.run_id }}
+      intel: true
+
   WrapUp:
     needs: [
         Prepare,
         Linux,
         Windows,
-        MacOS
+        MacOS,
+        MacOS_Intel
       ]
     if: always()
     uses: ./.github/workflows/sub_wrapup.yml

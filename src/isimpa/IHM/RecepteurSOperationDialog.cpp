@@ -34,10 +34,11 @@
 #include <wx/log.h>
 #include <wx/checkbox.h>
 #include <wx/button.h>
+#include "data_manager/appconfig.h"
 #include "last_cpp_include.hpp"
 
 RecepteurSelectionWizard::RecepteurSelectionWizard(wxFrame *frame, E_Report_File* _rootFolder)
-        : wxWizard(frame,wxID_ANY,wxGetTranslation("Compare surface receivers"),wxBitmap("./Bitmaps/wiz3.png", wxBITMAP_TYPE_PNG)),
+        : wxWizard(frame,wxID_ANY,wxGetTranslation("Compare surface receivers"),wxBitmap(ApplicationConfiguration::getResourcesFolder() + "/Bitmaps/wiz3.png", wxBITMAP_TYPE_PNG)),
 		rootFolder(_rootFolder)
 { 
 	wxGetTranslation("&Cancel");

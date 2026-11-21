@@ -68,7 +68,7 @@ public:
 	{
 
 		const wxString resourceFolder=ApplicationConfiguration::getResourcesFolder();
-		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_USERFREQ, wxGetTranslation("New spectrum"),resourceFolder + "./Bitmaps/popup_new.png"));
+		leMenu->Append(GetMenuItem(leMenu,Element::IDEVENT_NEW_USERFREQ, wxGetTranslation("New spectrum"),resourceFolder + "/Bitmaps/popup_new.png"));
 		Element::OnRightClic(leMenu);
 	}
 
