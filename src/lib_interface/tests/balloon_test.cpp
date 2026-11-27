@@ -252,3 +252,36 @@ BOOST_AUTO_TEST_CASE(loudspeaker_coordinate_test, *utf::tolerance(boost::test_to
 
 }
 
+
+BOOST_AUTO_TEST_CASE(poles_are_frequency_specific)
+{
+    t_DirectivityBalloon balloon;
+    xhn_DirectivityParser parser;
+    BOOST_REQUIRE(parser.parse(GetDataDirectory() + st_path_separator() + "speaker-poles-test.txt", &balloon));
+
+    // The first meridian supplies the canonical poles within each band.
+    BOOST_TEST(balloon.getValue(100, 0, 0) == 1.0);
+    BOOST_TEST(balloon.getValue(100, 5, 0) == 1.0);
+    BOOST_TEST(balloon.getValue(100, 5, 180) == -4.0);
+    BOOST_TEST(balloon.getValue(1000, 0, 0) == 3.0);
+    BOOST_TEST(balloon.getValue(1000, 5, 0) == 3.0);
+    BOOST_TEST(balloon.getValue(1000, 0, 180) == -12.0);
+    BOOST_TEST(balloon.getValue(1000, 5, 180) == -12.0);
+    BOOST_TEST(balloon.getValue(1000, 5, 90) == -7.0);
+}
+
+BOOST_AUTO_TEST_CASE(exact_poles_ignore_non_grid_azimuth)
+{
+    t_DirectivityBalloon balloon;
+    balloon.setAngleIncrement(5);
+    // Deliberately nonzero endpoints expose a fall-through to an empty map.
+    for (double phi : {5.0, 10.0}) {
+        balloon.setValue(1000, phi, 0, 3.0);
+        balloon.setValue(1000, phi, 5, 2.0);
+        balloon.setValue(1000, phi, 175, -11.0);
+        balloon.setValue(1000, phi, 180, -12.0);
+    }
+    BOOST_TEST(balloon.getInterpolatedValue(1000, 7.5, 0) == 3.0);
+    BOOST_TEST(balloon.getInterpolatedValue(1000, 7.5, 180) == -12.0);
+    BOOST_TEST(balloon.getInterpolatedValue(1000, 5, 180) == -12.0);
+}

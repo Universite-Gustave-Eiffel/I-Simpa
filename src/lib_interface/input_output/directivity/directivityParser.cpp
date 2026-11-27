@@ -66,6 +66,7 @@ bool xhn_DirectivityParser::parse(std::string filePath, t_DirectivityBalloon *ba
 					if (boost::equals(tokens[0], "\"Frequency\"") && tokens.size() == 3) // use iequals() for case insensitivity
 					{
 						currentFrequency = stod(tokens[1]);
+						thetaBoundDefined = false; // Pole values belong to this frequency, not the preceding band.
 					}
 					// data, no missing value allowed, 40% of cpu time
 					else if (tokens.size() == 38 && currentFrequency > 0)

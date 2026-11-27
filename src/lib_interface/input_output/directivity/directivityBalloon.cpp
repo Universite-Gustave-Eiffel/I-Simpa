@@ -83,6 +83,11 @@ double t_DirectivityBalloon::getInterpolatedValue(double freq, double phi, doubl
 		return this->getValue(freq, phi, theta);
 	}
 
+	// All azimuths describe the same point at a pole. In particular,
+	// upper_bound(180) below would return the end iterator.
+	if (theta == 0.0 || theta == 180.0)
+		return attenuations[freq].begin()->second[theta];
+
 	double phi_lowBound, phi_upBound, theta_lowBound, theta_upBound;
 
 	if (attenuations[freq].upper_bound(phi) != attenuations[freq].end()) {
